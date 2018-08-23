@@ -7,40 +7,34 @@ package org.omg.PortableInterceptor;
 * Friday, July 21, 2017 9:58:52 PM PDT
 */
 
+/**
+ * The object reference template. An instance of this must exist for each object
+ * adapter created in an ORB. The server_id, orb_id, and adapter_name attributes
+ * uniquely identify this template within the scope of an IMR. Note that
+ * adapter_id is similarly unique within the same scope, but it is opaque, and
+ * less useful in many cases.
+ */
+public final class ObjectReferenceTemplateHolder implements org.omg.CORBA.portable.Streamable {
+	public org.omg.PortableInterceptor.ObjectReferenceTemplate value = null;
 
-/** The object reference template.  An instance of this must
-   * exist for each object adapter created in an ORB.  The server_id,
-   * orb_id, and adapter_name attributes uniquely identify this template
-   * within the scope of an IMR.  Note that adapter_id is similarly unique
-   * within the same scope, but it is opaque, and less useful in many
-   * cases.
-   */
-public final class ObjectReferenceTemplateHolder implements org.omg.CORBA.portable.Streamable
-{
-  public org.omg.PortableInterceptor.ObjectReferenceTemplate value = null;
+	public ObjectReferenceTemplateHolder() {
+	}
 
-  public ObjectReferenceTemplateHolder ()
-  {
-  }
+	public ObjectReferenceTemplateHolder(
+			org.omg.PortableInterceptor.ObjectReferenceTemplate initialValue) {
+		value = initialValue;
+	}
 
-  public ObjectReferenceTemplateHolder (org.omg.PortableInterceptor.ObjectReferenceTemplate initialValue)
-  {
-    value = initialValue;
-  }
+	public void _read(org.omg.CORBA.portable.InputStream i) {
+		value = org.omg.PortableInterceptor.ObjectReferenceTemplateHelper.read(i);
+	}
 
-  public void _read (org.omg.CORBA.portable.InputStream i)
-  {
-    value = org.omg.PortableInterceptor.ObjectReferenceTemplateHelper.read (i);
-  }
+	public void _write(org.omg.CORBA.portable.OutputStream o) {
+		org.omg.PortableInterceptor.ObjectReferenceTemplateHelper.write(o, value);
+	}
 
-  public void _write (org.omg.CORBA.portable.OutputStream o)
-  {
-    org.omg.PortableInterceptor.ObjectReferenceTemplateHelper.write (o, value);
-  }
-
-  public org.omg.CORBA.TypeCode _type ()
-  {
-    return org.omg.PortableInterceptor.ObjectReferenceTemplateHelper.type ();
-  }
+	public org.omg.CORBA.TypeCode _type() {
+		return org.omg.PortableInterceptor.ObjectReferenceTemplateHelper.type();
+	}
 
 }

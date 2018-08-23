@@ -34,30 +34,30 @@ package java.util;
  */
 public class IllegalFormatPrecisionException extends IllegalFormatException {
 
-    private static final long serialVersionUID = 18711008L;
+	private static final long serialVersionUID = 18711008L;
 
-    private int p;
+	private int p;
 
-    /**
-     * Constructs an instance of this class with the specified precision.
-     *
-     * @param  p
-     *         The precision
-     */
-    public IllegalFormatPrecisionException(int p) {
-        this.p = p;
-    }
+	/**
+	 * Constructs an instance of this class with the specified precision.
+	 *
+	 * @param p
+	 *            The precision
+	 */
+	public IllegalFormatPrecisionException(int p) {
+		this.p = p;
+	}
 
-    /**
-     * Returns the precision
-     *
-     * @return  The precision
-     */
-    public int getPrecision() {
-        return p;
-    }
+	/**
+	 * Returns the precision
+	 *
+	 * @return The precision
+	 */
+	public int getPrecision() {
+		return p;
+	}
 
-    public String getMessage() {
-        return Integer.toString(p);
-    }
+	public String getMessage() {
+		return Integer.toString(p);
+	}
 }

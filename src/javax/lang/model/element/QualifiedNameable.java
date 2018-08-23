@@ -32,10 +32,10 @@ package javax.lang.model.element;
  * @since 1.7
  */
 public interface QualifiedNameable extends Element {
-    /**
-     * Returns the fully qualified name of an element.
-     *
-     * @return the fully qualified name of an element
-     */
-    Name getQualifiedName();
+	/**
+	 * Returns the fully qualified name of an element.
+	 *
+	 * @return the fully qualified name of an element
+	 */
+	Name getQualifiedName();
 }

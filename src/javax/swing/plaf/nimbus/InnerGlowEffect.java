@@ -32,8 +32,8 @@ import java.awt.Color;
  * @author Created by Jasper Potts (Jun 21, 2007)
  */
 class InnerGlowEffect extends InnerShadowEffect {
-    InnerGlowEffect() {
-        distance = 0;
-        color = new Color(255, 255, 211);
-    }
+	InnerGlowEffect() {
+		distance = 0;
+		color = new Color(255, 255, 211);
+	}
 }

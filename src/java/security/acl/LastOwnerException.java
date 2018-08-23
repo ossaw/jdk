@@ -26,8 +26,8 @@
 package java.security.acl;
 
 /**
- * This is an exception that is thrown whenever an attempt is made to delete
- * the last owner of an Access Control List.
+ * This is an exception that is thrown whenever an attempt is made to delete the
+ * last owner of an Access Control List.
  *
  * @see java.security.acl.Owner#deleteOwner
  *
@@ -35,11 +35,11 @@ package java.security.acl;
  */
 public class LastOwnerException extends Exception {
 
-    private static final long serialVersionUID = -5141997548211140359L;
+	private static final long serialVersionUID = -5141997548211140359L;
 
-    /**
-     * Constructs a LastOwnerException.
-     */
-    public LastOwnerException() {
-    }
+	/**
+	 * Constructs a LastOwnerException.
+	 */
+	public LastOwnerException() {
+	}
 }

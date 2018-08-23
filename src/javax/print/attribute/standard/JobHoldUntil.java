@@ -41,19 +41,20 @@ import javax.print.attribute.PrintJobAttribute;
  * attribute, must move the job to the PENDING_HELD state, and must not schedule
  * the job for printing until the specified date-time arrives.
  * <P>
- * When the specified date-time arrives, the printer must remove the {@link
- * JobStateReason JobStateReason} value of JOB_HOLD_UNTIL_SPECIFIED from the
- * job's {@link JobStateReasons JobStateReasons} attribute, if present. If there
- * are no other job state reasons that keep the job in the PENDING_HELD state,
- * the printer must consider the job as a candidate for processing by moving the
- * job to the PENDING state.
+ * When the specified date-time arrives, the printer must remove the
+ * {@link JobStateReason JobStateReason} value of JOB_HOLD_UNTIL_SPECIFIED from
+ * the job's {@link JobStateReasons JobStateReasons} attribute, if present. If
+ * there are no other job state reasons that keep the job in the PENDING_HELD
+ * state, the printer must consider the job as a candidate for processing by
+ * moving the job to the PENDING state.
  * <P>
  * If the specified date-time has already passed, the job must be a candidate
  * for processing immediately. Thus, one way to make the job immediately become
  * a candidate for processing is to specify a JobHoldUntil attribute constructed
  * like this (denoting a date-time of January 1, 1970, 00:00:00 GMT):
+ * 
  * <PRE>
- *     JobHoldUntil immediately = new JobHoldUntil (new Date (0L));
+ * JobHoldUntil immediately = new JobHoldUntil(new Date(0L));
  * </PRE>
  * <P>
  * If the client does not supply this attribute in a Print Request and the
@@ -80,74 +81,73 @@ import javax.print.attribute.PrintJobAttribute;
  * returned by <CODE>getName()</CODE> gives the IPP attribute name.
  * <P>
  *
- * @author  Alan Kaminsky
+ * @author Alan Kaminsky
  */
 public final class JobHoldUntil extends DateTimeSyntax
-        implements PrintRequestAttribute, PrintJobAttribute {
+		implements PrintRequestAttribute, PrintJobAttribute {
 
-    private static final long serialVersionUID = -1664471048860415024L;
+	private static final long serialVersionUID = -1664471048860415024L;
 
+	/**
+	 * Construct a new job hold until date-time attribute with the given
+	 * {@link java.util.Date Date} value.
+	 *
+	 * @param dateTime
+	 *            {@link java.util.Date Date} value.
+	 *
+	 * @exception NullPointerException
+	 *                (unchecked exception) Thrown if <CODE>dateTime</CODE> is
+	 *                null.
+	 */
+	public JobHoldUntil(Date dateTime) {
+		super(dateTime);
+	}
 
-    /**
-     * Construct a new job hold until date-time attribute with the given
-     * {@link java.util.Date Date} value.
-     *
-     * @param  dateTime  {@link java.util.Date Date} value.
-     *
-     * @exception  NullPointerException
-     *     (unchecked exception) Thrown if <CODE>dateTime</CODE> is null.
-     */
-    public JobHoldUntil(Date dateTime) {
-        super (dateTime);
-    }
+	/**
+	 * Returns whether this job hold until attribute is equivalent to the passed
+	 * in object. To be equivalent, all of the following conditions must be
+	 * true:
+	 * <OL TYPE=1>
+	 * <LI><CODE>object</CODE> is not null.
+	 * <LI><CODE>object</CODE> is an instance of class JobHoldUntil.
+	 * <LI>This job hold until attribute's {@link java.util.Date Date} value and
+	 * <CODE>object</CODE>'s {@link java.util.Date Date} value are equal.
+	 * </OL>
+	 *
+	 * @param object
+	 *            Object to compare to.
+	 *
+	 * @return True if <CODE>object</CODE> is equivalent to this job hold until
+	 *         attribute, false otherwise.
+	 */
+	public boolean equals(Object object) {
+		return (super.equals(object) && object instanceof JobHoldUntil);
+	}
 
-    /**
-     * Returns whether this job hold until attribute is equivalent to the
-     * passed in object. To be equivalent, all of the following conditions
-     * must be true:
-     * <OL TYPE=1>
-     * <LI>
-     * <CODE>object</CODE> is not null.
-     * <LI>
-     * <CODE>object</CODE> is an instance of class JobHoldUntil.
-     * <LI>
-     * This job hold until attribute's {@link java.util.Date Date} value and
-     * <CODE>object</CODE>'s {@link java.util.Date Date} value are equal.
-     * </OL>
-     *
-     * @param  object  Object to compare to.
-     *
-     * @return  True if <CODE>object</CODE> is equivalent to this job hold
-     *          until attribute, false otherwise.
-     */
-    public boolean equals(Object object) {
-        return (super.equals(object) && object instanceof JobHoldUntil);
-    }
+	/**
+	 * Get the printing attribute class which is to be used as the "category"
+	 * for this printing attribute value.
+	 * <P>
+	 * For class JobHoldUntil, the category is class JobHoldUntil itself.
+	 *
+	 * @return Printing attribute class (category), an instance of class
+	 *         {@link java.lang.Class java.lang.Class}.
+	 */
+	public final Class<? extends Attribute> getCategory() {
+		return JobHoldUntil.class;
+	}
 
-
-    /**
-     * Get the printing attribute class which is to be used as the "category"
-     * for this printing attribute value.
-     * <P>
-     * For class JobHoldUntil, the category is class JobHoldUntil itself.
-     *
-     * @return  Printing attribute class (category), an instance of class
-     *          {@link java.lang.Class java.lang.Class}.
-     */
-    public final Class<? extends Attribute> getCategory() {
-        return JobHoldUntil.class;
-    }
-
-    /**
-     * Get the name of the category of which this attribute value is an
-     * instance.
-     * <P>
-     * For class JobHoldUntil, the category name is <CODE>"job-hold-until"</CODE>.
-     *
-     * @return  Attribute category name.
-     */
-    public final String getName() {
-        return "job-hold-until";
-    }
+	/**
+	 * Get the name of the category of which this attribute value is an
+	 * instance.
+	 * <P>
+	 * For class JobHoldUntil, the category name is
+	 * <CODE>"job-hold-until"</CODE>.
+	 *
+	 * @return Attribute category name.
+	 */
+	public final String getName() {
+		return "job-hold-until";
+	}
 
 }

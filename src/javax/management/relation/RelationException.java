@@ -35,22 +35,23 @@ import javax.management.JMException;
  */
 public class RelationException extends JMException {
 
-    /* Serial version */
-    private static final long serialVersionUID = 5434016005679159613L;
+	/* Serial version */
+	private static final long serialVersionUID = 5434016005679159613L;
 
-    /**
-     * Default constructor, no message put in exception.
-     */
-    public RelationException() {
-        super();
-    }
+	/**
+	 * Default constructor, no message put in exception.
+	 */
+	public RelationException() {
+		super();
+	}
 
-    /**
-     * Constructor with given message put in exception.
-     *
-     * @param message the detail message.
-     */
-    public RelationException(String message) {
-        super(message);
-    }
+	/**
+	 * Constructor with given message put in exception.
+	 *
+	 * @param message
+	 *            the detail message.
+	 */
+	public RelationException(String message) {
+		super(message);
+	}
 }

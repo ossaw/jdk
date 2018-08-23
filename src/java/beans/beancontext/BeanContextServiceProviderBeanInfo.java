@@ -37,11 +37,11 @@ import java.beans.BeanInfo;
 
 public interface BeanContextServiceProviderBeanInfo extends BeanInfo {
 
-    /**
-     * Gets a <code>BeanInfo</code> array, one for each
-     * service class or interface statically available
-     * from this ServiceProvider.
-     * @return the <code>BeanInfo</code> array
-     */
-    BeanInfo[] getServicesBeanInfo();
+	/**
+	 * Gets a <code>BeanInfo</code> array, one for each service class or
+	 * interface statically available from this ServiceProvider.
+	 * 
+	 * @return the <code>BeanInfo</code> array
+	 */
+	BeanInfo[] getServicesBeanInfo();
 }

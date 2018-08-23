@@ -36,189 +36,190 @@ import java.io.Serializable;
 /**
  * JButton subclass to help out MetalComboBoxUI
  * <p>
- * <strong>Warning:</strong>
- * Serialized objects of this class will not be compatible with
- * future Swing releases. The current serialization support is
- * appropriate for short term storage or RMI between applications running
- * the same version of Swing.  As of 1.4, support for long term storage
- * of all JavaBeans&trade;
- * has been added to the <code>java.beans</code> package.
+ * <strong>Warning:</strong> Serialized objects of this class will not be
+ * compatible with future Swing releases. The current serialization support is
+ * appropriate for short term storage or RMI between applications running the
+ * same version of Swing. As of 1.4, support for long term storage of all
+ * JavaBeans&trade; has been added to the <code>java.beans</code> package.
  * Please see {@link java.beans.XMLEncoder}.
  *
  * @see MetalComboBoxButton
  * @author Tom Santos
  */
 public class MetalComboBoxButton extends JButton {
-    protected JComboBox comboBox;
-    protected JList listBox;
-    protected CellRendererPane rendererPane;
-    protected Icon comboIcon;
-    protected boolean iconOnly = false;
+	protected JComboBox comboBox;
+	protected JList listBox;
+	protected CellRendererPane rendererPane;
+	protected Icon comboIcon;
+	protected boolean iconOnly = false;
 
-    public final JComboBox getComboBox() { return comboBox;}
-    public final void setComboBox( JComboBox cb ) { comboBox = cb;}
+	public final JComboBox getComboBox() {
+		return comboBox;
+	}
 
-    public final Icon getComboIcon() { return comboIcon;}
-    public final void setComboIcon( Icon i ) { comboIcon = i;}
+	public final void setComboBox(JComboBox cb) {
+		comboBox = cb;
+	}
 
-    public final boolean isIconOnly() { return iconOnly;}
-    public final void setIconOnly( boolean isIconOnly ) { iconOnly = isIconOnly;}
+	public final Icon getComboIcon() {
+		return comboIcon;
+	}
 
-    MetalComboBoxButton() {
-        super( "" );
-        DefaultButtonModel model = new DefaultButtonModel() {
-            public void setArmed( boolean armed ) {
-                super.setArmed( isPressed() ? true : armed );
-            }
-        };
-        setModel( model );
-    }
+	public final void setComboIcon(Icon i) {
+		comboIcon = i;
+	}
 
-    public MetalComboBoxButton( JComboBox cb, Icon i,
-                                CellRendererPane pane, JList list ) {
-        this();
-        comboBox = cb;
-        comboIcon = i;
-        rendererPane = pane;
-        listBox = list;
-        setEnabled( comboBox.isEnabled() );
-    }
+	public final boolean isIconOnly() {
+		return iconOnly;
+	}
 
-    public MetalComboBoxButton( JComboBox cb, Icon i, boolean onlyIcon,
-                                CellRendererPane pane, JList list ) {
-        this( cb, i, pane, list );
-        iconOnly = onlyIcon;
-    }
+	public final void setIconOnly(boolean isIconOnly) {
+		iconOnly = isIconOnly;
+	}
 
-    public boolean isFocusTraversable() {
-        return false;
-    }
+	MetalComboBoxButton() {
+		super("");
+		DefaultButtonModel model = new DefaultButtonModel() {
+			public void setArmed(boolean armed) {
+				super.setArmed(isPressed() ? true : armed);
+			}
+		};
+		setModel(model);
+	}
 
-    public void setEnabled(boolean enabled) {
-        super.setEnabled(enabled);
+	public MetalComboBoxButton(JComboBox cb, Icon i, CellRendererPane pane, JList list) {
+		this();
+		comboBox = cb;
+		comboIcon = i;
+		rendererPane = pane;
+		listBox = list;
+		setEnabled(comboBox.isEnabled());
+	}
 
-        // Set the background and foreground to the combobox colors.
-        if (enabled) {
-            setBackground(comboBox.getBackground());
-            setForeground(comboBox.getForeground());
-        } else {
-            setBackground(UIManager.getColor("ComboBox.disabledBackground"));
-            setForeground(UIManager.getColor("ComboBox.disabledForeground"));
-        }
-    }
+	public MetalComboBoxButton(JComboBox cb, Icon i, boolean onlyIcon, CellRendererPane pane,
+			JList list) {
+		this(cb, i, pane, list);
+		iconOnly = onlyIcon;
+	}
 
-    public void paintComponent( Graphics g ) {
-        boolean leftToRight = MetalUtils.isLeftToRight(comboBox);
+	public boolean isFocusTraversable() {
+		return false;
+	}
 
-        // Paint the button as usual
-        super.paintComponent( g );
+	public void setEnabled(boolean enabled) {
+		super.setEnabled(enabled);
 
-        Insets insets = getInsets();
+		// Set the background and foreground to the combobox colors.
+		if (enabled) {
+			setBackground(comboBox.getBackground());
+			setForeground(comboBox.getForeground());
+		} else {
+			setBackground(UIManager.getColor("ComboBox.disabledBackground"));
+			setForeground(UIManager.getColor("ComboBox.disabledForeground"));
+		}
+	}
 
-        int width = getWidth() - (insets.left + insets.right);
-        int height = getHeight() - (insets.top + insets.bottom);
+	public void paintComponent(Graphics g) {
+		boolean leftToRight = MetalUtils.isLeftToRight(comboBox);
 
-        if ( height <= 0 || width <= 0 ) {
-            return;
-        }
+		// Paint the button as usual
+		super.paintComponent(g);
 
-        int left = insets.left;
-        int top = insets.top;
-        int right = left + (width - 1);
-        int bottom = top + (height - 1);
+		Insets insets = getInsets();
 
-        int iconWidth = 0;
-        int iconLeft = (leftToRight) ? right : left;
+		int width = getWidth() - (insets.left + insets.right);
+		int height = getHeight() - (insets.top + insets.bottom);
 
-        // Paint the icon
-        if ( comboIcon != null ) {
-            iconWidth = comboIcon.getIconWidth();
-            int iconHeight = comboIcon.getIconHeight();
-            int iconTop = 0;
+		if (height <= 0 || width <= 0) {
+			return;
+		}
 
-            if ( iconOnly ) {
-                iconLeft = (getWidth() / 2) - (iconWidth / 2);
-                iconTop = (getHeight() / 2) - (iconHeight / 2);
-            }
-            else {
-                if (leftToRight) {
-                    iconLeft = (left + (width - 1)) - iconWidth;
-                }
-                else {
-                    iconLeft = left;
-                }
-                iconTop = (top + ((bottom - top) / 2)) - (iconHeight / 2);
-            }
+		int left = insets.left;
+		int top = insets.top;
+		int right = left + (width - 1);
+		int bottom = top + (height - 1);
 
-            comboIcon.paintIcon( this, g, iconLeft, iconTop );
+		int iconWidth = 0;
+		int iconLeft = (leftToRight) ? right : left;
 
-            // Paint the focus
-            if ( comboBox.hasFocus() && (!MetalLookAndFeel.usingOcean() ||
-                                         comboBox.isEditable())) {
-                g.setColor( MetalLookAndFeel.getFocusColor() );
-                g.drawRect( left - 1, top - 1, width + 3, height + 1 );
-            }
-        }
+		// Paint the icon
+		if (comboIcon != null) {
+			iconWidth = comboIcon.getIconWidth();
+			int iconHeight = comboIcon.getIconHeight();
+			int iconTop = 0;
 
-        if (MetalLookAndFeel.usingOcean()) {
-            // With Ocean the button only paints the arrow, bail.
-            return;
-        }
+			if (iconOnly) {
+				iconLeft = (getWidth() / 2) - (iconWidth / 2);
+				iconTop = (getHeight() / 2) - (iconHeight / 2);
+			} else {
+				if (leftToRight) {
+					iconLeft = (left + (width - 1)) - iconWidth;
+				} else {
+					iconLeft = left;
+				}
+				iconTop = (top + ((bottom - top) / 2)) - (iconHeight / 2);
+			}
 
-        // Let the renderer paint
-        if ( ! iconOnly && comboBox != null ) {
-            ListCellRenderer renderer = comboBox.getRenderer();
-            Component c;
-            boolean renderPressed = getModel().isPressed();
-            c = renderer.getListCellRendererComponent(listBox,
-                                                      comboBox.getSelectedItem(),
-                                                      -1,
-                                                      renderPressed,
-                                                      false);
-            c.setFont(rendererPane.getFont());
+			comboIcon.paintIcon(this, g, iconLeft, iconTop);
 
-            if ( model.isArmed() && model.isPressed() ) {
-                if ( isOpaque() ) {
-                    c.setBackground(UIManager.getColor("Button.select"));
-                }
-                c.setForeground(comboBox.getForeground());
-            }
-            else if ( !comboBox.isEnabled() ) {
-                if ( isOpaque() ) {
-                    c.setBackground(UIManager.getColor("ComboBox.disabledBackground"));
-                }
-                c.setForeground(UIManager.getColor("ComboBox.disabledForeground"));
-            }
-            else {
-                c.setForeground(comboBox.getForeground());
-                c.setBackground(comboBox.getBackground());
-            }
+			// Paint the focus
+			if (comboBox.hasFocus() && (!MetalLookAndFeel.usingOcean() || comboBox.isEditable())) {
+				g.setColor(MetalLookAndFeel.getFocusColor());
+				g.drawRect(left - 1, top - 1, width + 3, height + 1);
+			}
+		}
 
+		if (MetalLookAndFeel.usingOcean()) {
+			// With Ocean the button only paints the arrow, bail.
+			return;
+		}
 
-            int cWidth = width - (insets.right + iconWidth);
+		// Let the renderer paint
+		if (!iconOnly && comboBox != null) {
+			ListCellRenderer renderer = comboBox.getRenderer();
+			Component c;
+			boolean renderPressed = getModel().isPressed();
+			c = renderer.getListCellRendererComponent(listBox, comboBox.getSelectedItem(), -1,
+					renderPressed, false);
+			c.setFont(rendererPane.getFont());
 
-            // Fix for 4238829: should lay out the JPanel.
-            boolean shouldValidate = false;
-            if (c instanceof JPanel)  {
-                shouldValidate = true;
-            }
+			if (model.isArmed() && model.isPressed()) {
+				if (isOpaque()) {
+					c.setBackground(UIManager.getColor("Button.select"));
+				}
+				c.setForeground(comboBox.getForeground());
+			} else if (!comboBox.isEnabled()) {
+				if (isOpaque()) {
+					c.setBackground(UIManager.getColor("ComboBox.disabledBackground"));
+				}
+				c.setForeground(UIManager.getColor("ComboBox.disabledForeground"));
+			} else {
+				c.setForeground(comboBox.getForeground());
+				c.setBackground(comboBox.getBackground());
+			}
 
-            if (leftToRight) {
-                rendererPane.paintComponent( g, c, this,
-                                             left, top, cWidth, height, shouldValidate );
-            }
-            else {
-                rendererPane.paintComponent( g, c, this,
-                                             left + iconWidth, top, cWidth, height, shouldValidate );
-            }
-        }
-    }
+			int cWidth = width - (insets.right + iconWidth);
 
-    public Dimension getMinimumSize() {
-        Dimension ret = new Dimension();
-        Insets insets = getInsets();
-        ret.width = insets.left + getComboIcon().getIconWidth() + insets.right;
-        ret.height = insets.bottom + getComboIcon().getIconHeight() + insets.top;
-        return ret;
-    }
+			// Fix for 4238829: should lay out the JPanel.
+			boolean shouldValidate = false;
+			if (c instanceof JPanel) {
+				shouldValidate = true;
+			}
+
+			if (leftToRight) {
+				rendererPane.paintComponent(g, c, this, left, top, cWidth, height, shouldValidate);
+			} else {
+				rendererPane.paintComponent(g, c, this, left + iconWidth, top, cWidth, height,
+						shouldValidate);
+			}
+		}
+	}
+
+	public Dimension getMinimumSize() {
+		Dimension ret = new Dimension();
+		Insets insets = getInsets();
+		ret.width = insets.left + getComboIcon().getIconWidth() + insets.right;
+		ret.height = insets.bottom + getComboIcon().getIconHeight() + insets.top;
+		return ret;
+	}
 }

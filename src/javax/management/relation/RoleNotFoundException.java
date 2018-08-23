@@ -33,22 +33,23 @@ package javax.management.relation;
  */
 public class RoleNotFoundException extends RelationException {
 
-    /* Serial version */
-    private static final long serialVersionUID = -2986406101364031481L;
+	/* Serial version */
+	private static final long serialVersionUID = -2986406101364031481L;
 
-    /**
-     * Default constructor, no message put in exception.
-     */
-    public RoleNotFoundException() {
-        super();
-    }
+	/**
+	 * Default constructor, no message put in exception.
+	 */
+	public RoleNotFoundException() {
+		super();
+	}
 
-    /**
-     * Constructor with given message put in exception.
-     *
-     * @param message the detail message.
-     */
-    public RoleNotFoundException(String message) {
-        super(message);
-    }
+	/**
+	 * Constructor with given message put in exception.
+	 *
+	 * @param message
+	 *            the detail message.
+	 */
+	public RoleNotFoundException(String message) {
+		super(message);
+	}
 }

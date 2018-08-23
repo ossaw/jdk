@@ -32,9 +32,9 @@ import java.util.ArrayList;
 /**
  * Logging is the implementation class of LoggingMXBean.
  *
- * The <tt>LoggingMXBean</tt> interface provides a standard
- * method for management access to the individual
- * {@code Logger} objects available at runtime.
+ * The <tt>LoggingMXBean</tt> interface provides a standard method for
+ * management access to the individual {@code Logger} objects available at
+ * runtime.
  *
  * @author Ron Mann
  * @author Mandy Chung
@@ -46,74 +46,75 @@ import java.util.ArrayList;
  */
 class Logging implements LoggingMXBean {
 
-    private static LogManager logManager = LogManager.getLogManager();
+	private static LogManager logManager = LogManager.getLogManager();
 
-    /** Constructor of Logging which is the implementation class
-     *  of LoggingMXBean.
-     */
-    Logging() {
-    }
+	/**
+	 * Constructor of Logging which is the implementation class of
+	 * LoggingMXBean.
+	 */
+	Logging() {
+	}
 
-    public List<String> getLoggerNames() {
-        Enumeration<String> loggers = logManager.getLoggerNames();
-        ArrayList<String> array = new ArrayList<>();
+	public List<String> getLoggerNames() {
+		Enumeration<String> loggers = logManager.getLoggerNames();
+		ArrayList<String> array = new ArrayList<>();
 
-        for (; loggers.hasMoreElements();) {
-            array.add(loggers.nextElement());
-        }
-        return array;
-    }
+		for (; loggers.hasMoreElements();) {
+			array.add(loggers.nextElement());
+		}
+		return array;
+	}
 
-    private static String EMPTY_STRING = "";
-    public String getLoggerLevel(String loggerName) {
-        Logger l = logManager.getLogger(loggerName);
-        if (l == null) {
-            return null;
-        }
+	private static String EMPTY_STRING = "";
 
-        Level level = l.getLevel();
-        if (level == null) {
-            return EMPTY_STRING;
-        } else {
-            return level.getLevelName();
-        }
-    }
+	public String getLoggerLevel(String loggerName) {
+		Logger l = logManager.getLogger(loggerName);
+		if (l == null) {
+			return null;
+		}
 
-    public void setLoggerLevel(String loggerName, String levelName) {
-        if (loggerName == null) {
-            throw new NullPointerException("loggerName is null");
-        }
+		Level level = l.getLevel();
+		if (level == null) {
+			return EMPTY_STRING;
+		} else {
+			return level.getLevelName();
+		}
+	}
 
-        Logger logger = logManager.getLogger(loggerName);
-        if (logger == null) {
-            throw new IllegalArgumentException("Logger " + loggerName +
-                "does not exist");
-        }
+	public void setLoggerLevel(String loggerName, String levelName) {
+		if (loggerName == null) {
+			throw new NullPointerException("loggerName is null");
+		}
 
-        Level level = null;
-        if (levelName != null) {
-            // parse will throw IAE if logLevel is invalid
-            level = Level.findLevel(levelName);
-            if (level == null) {
-                throw new IllegalArgumentException("Unknown level \"" + levelName + "\"");
-            }
-        }
+		Logger logger = logManager.getLogger(loggerName);
+		if (logger == null) {
+			throw new IllegalArgumentException("Logger " + loggerName + "does not exist");
+		}
 
-        logger.setLevel(level);
-    }
+		Level level = null;
+		if (levelName != null) {
+			// parse will throw IAE if logLevel is invalid
+			level = Level.findLevel(levelName);
+			if (level == null) {
+				throw new IllegalArgumentException("Unknown level \"" + levelName + "\"");
+			}
+		}
 
-    public String getParentLoggerName( String loggerName ) {
-        Logger l = logManager.getLogger( loggerName );
-        if (l == null) {
-            return null;
-        }
+		logger.setLevel(level);
+	}
 
-        Logger p = l.getParent();
-        if (p == null) {
-            // root logger
-            return EMPTY_STRING;
-        } else {
-            return p.getName();
-        }
-    }
+	public String getParentLoggerName(String loggerName) {
+		Logger l = logManager.getLogger(loggerName);
+		if (l == null) {
+			return null;
+		}
+
+		Logger p = l.getParent();
+		if (p == null) {
+			// root logger
+			return EMPTY_STRING;
+		} else {
+			return p.getName();
+		}
+	}
 }

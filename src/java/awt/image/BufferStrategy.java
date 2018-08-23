@@ -30,31 +30,31 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 /**
- * The <code>BufferStrategy</code> class represents the mechanism with which
- * to organize complex memory on a particular <code>Canvas</code> or
- * <code>Window</code>.  Hardware and software limitations determine whether and
- * how a particular buffer strategy can be implemented.  These limitations
- * are detectable through the capabilities of the
- * <code>GraphicsConfiguration</code> used when creating the
- * <code>Canvas</code> or <code>Window</code>.
+ * The <code>BufferStrategy</code> class represents the mechanism with which to
+ * organize complex memory on a particular <code>Canvas</code> or
+ * <code>Window</code>. Hardware and software limitations determine whether and
+ * how a particular buffer strategy can be implemented. These limitations are
+ * detectable through the capabilities of the <code>GraphicsConfiguration</code>
+ * used when creating the <code>Canvas</code> or <code>Window</code>.
  * <p>
  * It is worth noting that the terms <i>buffer</i> and <i>surface</i> are meant
- * to be synonymous: an area of contiguous memory, either in video device
- * memory or in system memory.
+ * to be synonymous: an area of contiguous memory, either in video device memory
+ * or in system memory.
  * <p>
- * There are several types of complex buffer strategies, including
- * sequential ring buffering and blit buffering.
- * Sequential ring buffering (i.e., double or triple
- * buffering) is the most common; an application draws to a single <i>back
- * buffer</i> and then moves the contents to the front (display) in a single
- * step, either by copying the data or moving the video pointer.
- * Moving the video pointer exchanges the buffers so that the first buffer
- * drawn becomes the <i>front buffer</i>, or what is currently displayed on the
+ * There are several types of complex buffer strategies, including sequential
+ * ring buffering and blit buffering. Sequential ring buffering (i.e., double or
+ * triple buffering) is the most common; an application draws to a single
+ * <i>back buffer</i> and then moves the contents to the front (display) in a
+ * single step, either by copying the data or moving the video pointer. Moving
+ * the video pointer exchanges the buffers so that the first buffer drawn
+ * becomes the <i>front buffer</i>, or what is currently displayed on the
  * device; this is called <i>page flipping</i>.
  * <p>
  * Alternatively, the contents of the back buffer can be copied, or
  * <i>blitted</i> forward in a chain instead of moving the video pointer.
- * <pre>{@code
+ * 
+ * <pre>
+ * {@code
  * Double buffering:
  *
  *                    ***********         ***********
@@ -71,10 +71,13 @@ import java.awt.Image;
  *          *         * <------ *         * <----- *         *
  *          ***********         ***********        ***********
  *
- * }</pre>
+ * }
+ * </pre>
  * <p>
  * Here is an example of how buffer strategies can be created and used:
- * <pre><code>
+ * 
+ * <pre>
+ * <code>
  *
  * // Check the capabilities of the GraphicsConfiguration
  * ...
@@ -123,7 +126,8 @@ import java.awt.Image;
  * // Dispose the window
  * w.setVisible(false);
  * w.dispose();
- * </code></pre>
+ * </code>
+ * </pre>
  *
  * @see java.awt.Window
  * @see java.awt.Canvas
@@ -134,71 +138,70 @@ import java.awt.Image;
  */
 public abstract class BufferStrategy {
 
-    /**
-     * Returns the <code>BufferCapabilities</code> for this
-     * <code>BufferStrategy</code>.
-     *
-     * @return the buffering capabilities of this strategy
-     */
-    public abstract BufferCapabilities getCapabilities();
+	/**
+	 * Returns the <code>BufferCapabilities</code> for this
+	 * <code>BufferStrategy</code>.
+	 *
+	 * @return the buffering capabilities of this strategy
+	 */
+	public abstract BufferCapabilities getCapabilities();
 
-    /**
-     * Creates a graphics context for the drawing buffer.  This method may not
-     * be synchronized for performance reasons; use of this method by multiple
-     * threads should be handled at the application level.  Disposal of the
-     * graphics object obtained must be handled by the application.
-     *
-     * @return a graphics context for the drawing buffer
-     */
-    public abstract Graphics getDrawGraphics();
+	/**
+	 * Creates a graphics context for the drawing buffer. This method may not be
+	 * synchronized for performance reasons; use of this method by multiple
+	 * threads should be handled at the application level. Disposal of the
+	 * graphics object obtained must be handled by the application.
+	 *
+	 * @return a graphics context for the drawing buffer
+	 */
+	public abstract Graphics getDrawGraphics();
 
-    /**
-     * Returns whether the drawing buffer was lost since the last call to
-     * <code>getDrawGraphics</code>.  Since the buffers in a buffer strategy
-     * are usually type <code>VolatileImage</code>, they may become lost.
-     * For a discussion on lost buffers, see <code>VolatileImage</code>.
-     *
-     * @return Whether or not the drawing buffer was lost since the last call
-     * to <code>getDrawGraphics</code>.
-     * @see java.awt.image.VolatileImage
-     */
-    public abstract boolean contentsLost();
+	/**
+	 * Returns whether the drawing buffer was lost since the last call to
+	 * <code>getDrawGraphics</code>. Since the buffers in a buffer strategy are
+	 * usually type <code>VolatileImage</code>, they may become lost. For a
+	 * discussion on lost buffers, see <code>VolatileImage</code>.
+	 *
+	 * @return Whether or not the drawing buffer was lost since the last call to
+	 *         <code>getDrawGraphics</code>.
+	 * @see java.awt.image.VolatileImage
+	 */
+	public abstract boolean contentsLost();
 
-    /**
-     * Returns whether the drawing buffer was recently restored from a lost
-     * state and reinitialized to the default background color (white).
-     * Since the buffers in a buffer strategy are usually type
-     * <code>VolatileImage</code>, they may become lost.  If a surface has
-     * been recently restored from a lost state since the last call to
-     * <code>getDrawGraphics</code>, it may require repainting.
-     * For a discussion on lost buffers, see <code>VolatileImage</code>.
-     *
-     * @return Whether or not the drawing buffer was restored since the last
-     *         call to <code>getDrawGraphics</code>.
-     * @see java.awt.image.VolatileImage
-     */
-    public abstract boolean contentsRestored();
+	/**
+	 * Returns whether the drawing buffer was recently restored from a lost
+	 * state and reinitialized to the default background color (white). Since
+	 * the buffers in a buffer strategy are usually type
+	 * <code>VolatileImage</code>, they may become lost. If a surface has been
+	 * recently restored from a lost state since the last call to
+	 * <code>getDrawGraphics</code>, it may require repainting. For a discussion
+	 * on lost buffers, see <code>VolatileImage</code>.
+	 *
+	 * @return Whether or not the drawing buffer was restored since the last
+	 *         call to <code>getDrawGraphics</code>.
+	 * @see java.awt.image.VolatileImage
+	 */
+	public abstract boolean contentsRestored();
 
-    /**
-     * Makes the next available buffer visible by either copying the memory
-     * (blitting) or changing the display pointer (flipping).
-     */
-    public abstract void show();
+	/**
+	 * Makes the next available buffer visible by either copying the memory
+	 * (blitting) or changing the display pointer (flipping).
+	 */
+	public abstract void show();
 
-    /**
-     * Releases system resources currently consumed by this
-     * <code>BufferStrategy</code> and
-     * removes it from the associated Component.  After invoking this
-     * method, <code>getBufferStrategy</code> will return null.  Trying
-     * to use a <code>BufferStrategy</code> after it has been disposed will
-     * result in undefined behavior.
-     *
-     * @see java.awt.Window#createBufferStrategy
-     * @see java.awt.Canvas#createBufferStrategy
-     * @see java.awt.Window#getBufferStrategy
-     * @see java.awt.Canvas#getBufferStrategy
-     * @since 1.6
-     */
-    public void dispose() {
-    }
+	/**
+	 * Releases system resources currently consumed by this
+	 * <code>BufferStrategy</code> and removes it from the associated Component.
+	 * After invoking this method, <code>getBufferStrategy</code> will return
+	 * null. Trying to use a <code>BufferStrategy</code> after it has been
+	 * disposed will result in undefined behavior.
+	 *
+	 * @see java.awt.Window#createBufferStrategy
+	 * @see java.awt.Canvas#createBufferStrategy
+	 * @see java.awt.Window#getBufferStrategy
+	 * @see java.awt.Canvas#getBufferStrategy
+	 * @since 1.6
+	 */
+	public void dispose() {
+	}
 }

@@ -32,23 +32,25 @@ package javax.print.event;
 
 public class PrintEvent extends java.util.EventObject {
 
-    private static final long serialVersionUID = 2286914924430763847L;
+	private static final long serialVersionUID = 2286914924430763847L;
 
-    /**
-     * Constructs a PrintEvent object.
-     * @param source is the source of the event
-     * @throws IllegalArgumentException if <code>source</code> is
-     *         <code>null</code>.
-     */
-    public PrintEvent (Object source) {
-        super(source);
-    }
+	/**
+	 * Constructs a PrintEvent object.
+	 * 
+	 * @param source
+	 *            is the source of the event
+	 * @throws IllegalArgumentException
+	 *             if <code>source</code> is <code>null</code>.
+	 */
+	public PrintEvent(Object source) {
+		super(source);
+	}
 
-    /**
-     * @return a message describing the event
-     */
-    public String toString() {
-        return ("PrintEvent on " + getSource().toString());
-    }
+	/**
+	 * @return a message describing the event
+	 */
+	public String toString() {
+		return ("PrintEvent on " + getSource().toString());
+	}
 
 }

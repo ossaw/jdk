@@ -35,10 +35,10 @@ package java.lang.reflect;
  */
 public interface AnnotatedType extends AnnotatedElement {
 
-    /**
-     * Returns the underlying type that this annotated type represents.
-     *
-     * @return the type this annotated type represents
-     */
-    public Type getType();
+	/**
+	 * Returns the underlying type that this annotated type represents.
+	 *
+	 * @return the type this annotated type represents
+	 */
+	public Type getType();
 }

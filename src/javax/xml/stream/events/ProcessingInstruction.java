@@ -27,6 +27,7 @@
  */
 
 package javax.xml.stream.events;
+
 /**
  * An interface that describes the data found in processing instructions
  *
@@ -36,17 +37,17 @@ package javax.xml.stream.events;
  */
 public interface ProcessingInstruction extends XMLEvent {
 
-  /**
-   * The target section of the processing instruction
-   *
-   * @return the String value of the PI or null
-   */
-  public String getTarget();
+	/**
+	 * The target section of the processing instruction
+	 *
+	 * @return the String value of the PI or null
+	 */
+	public String getTarget();
 
-  /**
-   * The data section of the processing instruction
-   *
-   * @return the String value of the PI's data or null
-   */
-  public String getData();
+	/**
+	 * The data section of the processing instruction
+	 *
+	 * @return the String value of the PI's data or null
+	 */
+	public String getData();
 }

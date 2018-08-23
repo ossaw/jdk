@@ -34,24 +34,24 @@ import javax.swing.plaf.ComponentUI;
  * @since 1.4
  */
 public class BasicFormattedTextFieldUI extends BasicTextFieldUI {
-    /**
-     * Creates a UI for a JFormattedTextField.
-     *
-     * @param c the formatted text field
-     * @return the UI
-     */
-    public static ComponentUI createUI(JComponent c) {
-        return new BasicFormattedTextFieldUI();
-    }
+	/**
+	 * Creates a UI for a JFormattedTextField.
+	 *
+	 * @param c
+	 *            the formatted text field
+	 * @return the UI
+	 */
+	public static ComponentUI createUI(JComponent c) {
+		return new BasicFormattedTextFieldUI();
+	}
 
-    /**
-     * Fetches the name used as a key to lookup properties through the
-     * UIManager.  This is used as a prefix to all the standard
-     * text properties.
-     *
-     * @return the name "FormattedTextField"
-     */
-    protected String getPropertyPrefix() {
-        return "FormattedTextField";
-    }
+	/**
+	 * Fetches the name used as a key to lookup properties through the
+	 * UIManager. This is used as a prefix to all the standard text properties.
+	 *
+	 * @return the name "FormattedTextField"
+	 */
+	protected String getPropertyPrefix() {
+		return "FormattedTextField";
+	}
 }

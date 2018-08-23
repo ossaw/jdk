@@ -28,7 +28,6 @@ package javax.swing.plaf;
 import java.awt.Insets;
 import javax.swing.plaf.UIResource;
 
-
 /*
  * A subclass of Insets that implements UIResource.  UI
  * classes that use Insets values for default properties
@@ -47,9 +46,8 @@ import javax.swing.plaf.UIResource;
  * @author Amy Fowler
  *
  */
-public class InsetsUIResource extends Insets implements UIResource
-{
-    public InsetsUIResource(int top, int left, int bottom, int right) {
-        super(top, left, bottom, right);
-    }
+public class InsetsUIResource extends Insets implements UIResource {
+	public InsetsUIResource(int top, int left, int bottom, int right) {
+		super(top, left, bottom, right);
+	}
 }

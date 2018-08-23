@@ -27,9 +27,8 @@ package java.nio.channels;
 
 import java.io.IOException;
 
-
 /**
- * A channel that can read and write bytes.  This interface simply unifies
+ * A channel that can read and write bytes. This interface simply unifies
  * {@link ReadableByteChannel} and {@link WritableByteChannel}; it does not
  * specify any new operations.
  *
@@ -38,8 +37,6 @@ import java.io.IOException;
  * @since 1.4
  */
 
-public interface ByteChannel
-    extends ReadableByteChannel, WritableByteChannel
-{
+public interface ByteChannel extends ReadableByteChannel, WritableByteChannel {
 
 }

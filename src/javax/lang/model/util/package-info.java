@@ -24,16 +24,17 @@
  */
 
 /**
- * Utilities to assist in the processing of
- * {@linkplain javax.lang.model.element program elements} and
- * {@linkplain javax.lang.model.type types}.
+ * Utilities to assist in the processing of {@linkplain javax.lang.model.element
+ * program elements} and {@linkplain javax.lang.model.type types}.
  *
- * <p> Unless otherwise specified in a particular implementation, the
- * collections returned by methods in this package should be expected
- * to be unmodifiable by the caller and unsafe for concurrent access.
+ * <p>
+ * Unless otherwise specified in a particular implementation, the collections
+ * returned by methods in this package should be expected to be unmodifiable by
+ * the caller and unsafe for concurrent access.
  *
- * <p> Unless otherwise specified, methods in this package will throw
- * a {@code NullPointerException} if given a {@code null} argument.
+ * <p>
+ * Unless otherwise specified, methods in this package will throw a
+ * {@code NullPointerException} if given a {@code null} argument.
  *
  * @author Joseph D. Darcy
  * @author Scott Seligman

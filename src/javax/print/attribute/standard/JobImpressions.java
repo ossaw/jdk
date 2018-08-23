@@ -72,73 +72,72 @@ import javax.print.attribute.PrintJobAttribute;
  * @see JobKOctets
  * @see JobMediaSheets
  *
- * @author  Alan Kaminsky
+ * @author Alan Kaminsky
  */
 public final class JobImpressions extends IntegerSyntax
-    implements PrintRequestAttribute, PrintJobAttribute {
+		implements PrintRequestAttribute, PrintJobAttribute {
 
-    private static final long serialVersionUID = 8225537206784322464L;
+	private static final long serialVersionUID = 8225537206784322464L;
 
+	/**
+	 * Construct a new job impressions attribute with the given integer value.
+	 *
+	 * @param value
+	 *            Integer value.
+	 *
+	 * @exception IllegalArgumentException
+	 *                (Unchecked exception) Thrown if <CODE>value</CODE> is less
+	 *                than 0.
+	 */
+	public JobImpressions(int value) {
+		super(value, 0, Integer.MAX_VALUE);
+	}
 
-    /**
-     * Construct a new job impressions attribute with the given integer value.
-     *
-     * @param  value  Integer value.
-     *
-     * @exception  IllegalArgumentException
-     *  (Unchecked exception) Thrown if <CODE>value</CODE> is less than 0.
-     */
-    public JobImpressions(int value) {
-        super(value, 0, Integer.MAX_VALUE);
-    }
+	/**
+	 * Returns whether this job impressions attribute is equivalent to the
+	 * passed in object. To be equivalent, all of the following conditions must
+	 * be true:
+	 * <OL TYPE=1>
+	 * <LI><CODE>object</CODE> is not null.
+	 * <LI><CODE>object</CODE> is an instance of class JobImpressions.
+	 * <LI>This job impressions attribute's value and <CODE>object</CODE>'s
+	 * value are equal.
+	 * </OL>
+	 *
+	 * @param object
+	 *            Object to compare to.
+	 *
+	 * @return True if <CODE>object</CODE> is equivalent to this job impressions
+	 *         attribute, false otherwise.
+	 */
+	public boolean equals(Object object) {
+		return super.equals(object) && object instanceof JobImpressions;
+	}
 
-    /**
-     * Returns whether this job impressions attribute is equivalent to the
-     * passed in object. To be equivalent, all of the following conditions must
-     * be true:
-     * <OL TYPE=1>
-     * <LI>
-     * <CODE>object</CODE> is not null.
-     * <LI>
-     * <CODE>object</CODE> is an instance of class JobImpressions.
-     * <LI>
-     * This job impressions attribute's value and <CODE>object</CODE>'s value
-     * are equal.
-     * </OL>
-     *
-     * @param  object  Object to compare to.
-     *
-     * @return  True if <CODE>object</CODE> is equivalent to this job
-     *          impressions attribute, false otherwise.
-     */
-    public boolean equals(Object object) {
-        return super.equals (object) && object instanceof JobImpressions;
-    }
+	/**
+	 * Get the printing attribute class which is to be used as the "category"
+	 * for this printing attribute value.
+	 * <P>
+	 * For class JobImpressions, the category is class JobImpressions itself.
+	 *
+	 * @return Printing attribute class (category), an instance of class
+	 *         {@link java.lang.Class java.lang.Class}.
+	 */
+	public final Class<? extends Attribute> getCategory() {
+		return JobImpressions.class;
+	}
 
-    /**
-     * Get the printing attribute class which is to be used as the "category"
-     * for this printing attribute value.
-     * <P>
-     * For class JobImpressions, the category is class JobImpressions itself.
-     *
-     * @return  Printing attribute class (category), an instance of class
-     *          {@link java.lang.Class java.lang.Class}.
-     */
-    public final Class<? extends Attribute> getCategory() {
-        return JobImpressions.class;
-    }
-
-    /**
-     * Get the name of the category of which this attribute value is an
-     * instance.
-     * <P>
-     * For class JobImpressions, the category name is
-     * <CODE>"job-impressions"</CODE>.
-     *
-     * @return  Attribute category name.
-     */
-    public final String getName() {
-        return "job-impressions";
-    }
+	/**
+	 * Get the name of the category of which this attribute value is an
+	 * instance.
+	 * <P>
+	 * For class JobImpressions, the category name is
+	 * <CODE>"job-impressions"</CODE>.
+	 *
+	 * @return Attribute category name.
+	 */
+	public final String getName() {
+		return "job-impressions";
+	}
 
 }

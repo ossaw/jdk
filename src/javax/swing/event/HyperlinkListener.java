@@ -24,20 +24,20 @@
  */
 package javax.swing.event;
 
-
 import java.util.EventListener;
 
 /**
  * HyperlinkListener
  *
- * @author  Timothy Prinzing
+ * @author Timothy Prinzing
  */
 public interface HyperlinkListener extends EventListener {
 
-    /**
-     * Called when a hypertext link is updated.
-     *
-     * @param e the event responsible for the update
-     */
-    void hyperlinkUpdate(HyperlinkEvent e);
+	/**
+	 * Called when a hypertext link is updated.
+	 *
+	 * @param e
+	 *            the event responsible for the update
+	 */
+	void hyperlinkUpdate(HyperlinkEvent e);
 }

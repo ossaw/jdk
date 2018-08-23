@@ -49,81 +49,79 @@ import javax.print.attribute.PrintJobAttribute;
  * <CODE>getName()</CODE> gives the IPP attribute name.
  * <P>
  *
- * @author  Alan Kaminsky
+ * @author Alan Kaminsky
  */
-public final class JobMessageFromOperator extends TextSyntax
-        implements PrintJobAttribute {
+public final class JobMessageFromOperator extends TextSyntax implements PrintJobAttribute {
 
-    private static final long serialVersionUID = -4620751846003142047L;
+	private static final long serialVersionUID = -4620751846003142047L;
 
-    /**
-     * Constructs a new job message from operator attribute with the given
-     * message and locale.
-     *
-     * @param  message  Message.
-     * @param  locale   Natural language of the text string. null
-     * is interpreted to mean the default locale as returned
-     * by <code>Locale.getDefault()</code>
-     *
-     * @exception  NullPointerException
-     *     (unchecked exception) Thrown if <CODE>message</CODE> is null.
-     */
-    public JobMessageFromOperator(String message, Locale locale) {
-        super (message, locale);
-    }
+	/**
+	 * Constructs a new job message from operator attribute with the given
+	 * message and locale.
+	 *
+	 * @param message
+	 *            Message.
+	 * @param locale
+	 *            Natural language of the text string. null is interpreted to
+	 *            mean the default locale as returned by
+	 *            <code>Locale.getDefault()</code>
+	 *
+	 * @exception NullPointerException
+	 *                (unchecked exception) Thrown if <CODE>message</CODE> is
+	 *                null.
+	 */
+	public JobMessageFromOperator(String message, Locale locale) {
+		super(message, locale);
+	}
 
-    /**
-     * Returns whether this job message from operator attribute is equivalent to
-     * the passed in object. To be equivalent, all of the following conditions
-     * must be true:
-     * <OL TYPE=1>
-     * <LI>
-     * <CODE>object</CODE> is not null.
-     * <LI>
-     * <CODE>object</CODE> is an instance of class JobMessageFromOperator.
-     * <LI>
-     * This job message from operator attribute's underlying string and
-     * <CODE>object</CODE>'s underlying string are equal.
-     * <LI>
-     * This job message from operator attribute's locale and
-     * <CODE>object</CODE>'s locale are equal.
-     * </OL>
-     *
-     * @param  object  Object to compare to.
-     *
-     * @return  True if <CODE>object</CODE> is equivalent to this job
-     *          message from operator attribute, false otherwise.
-     */
-    public boolean equals(Object object) {
-        return (super.equals (object) &&
-                object instanceof JobMessageFromOperator);
-    }
+	/**
+	 * Returns whether this job message from operator attribute is equivalent to
+	 * the passed in object. To be equivalent, all of the following conditions
+	 * must be true:
+	 * <OL TYPE=1>
+	 * <LI><CODE>object</CODE> is not null.
+	 * <LI><CODE>object</CODE> is an instance of class JobMessageFromOperator.
+	 * <LI>This job message from operator attribute's underlying string and
+	 * <CODE>object</CODE>'s underlying string are equal.
+	 * <LI>This job message from operator attribute's locale and
+	 * <CODE>object</CODE>'s locale are equal.
+	 * </OL>
+	 *
+	 * @param object
+	 *            Object to compare to.
+	 *
+	 * @return True if <CODE>object</CODE> is equivalent to this job message
+	 *         from operator attribute, false otherwise.
+	 */
+	public boolean equals(Object object) {
+		return (super.equals(object) && object instanceof JobMessageFromOperator);
+	}
 
-    /**
-     * Get the printing attribute class which is to be used as the "category"
-     * for this printing attribute value.
-     * <P>
-     * For class JobMessageFromOperator, the
-     * category is class JobMessageFromOperator itself.
-     *
-     * @return  Printing attribute class (category), an instance of class
-     *          {@link java.lang.Class java.lang.Class}.
-     */
-    public final Class<? extends Attribute> getCategory() {
-        return JobMessageFromOperator.class;
-    }
+	/**
+	 * Get the printing attribute class which is to be used as the "category"
+	 * for this printing attribute value.
+	 * <P>
+	 * For class JobMessageFromOperator, the category is class
+	 * JobMessageFromOperator itself.
+	 *
+	 * @return Printing attribute class (category), an instance of class
+	 *         {@link java.lang.Class java.lang.Class}.
+	 */
+	public final Class<? extends Attribute> getCategory() {
+		return JobMessageFromOperator.class;
+	}
 
-    /**
-     * Get the name of the category of which this attribute value is an
-     * instance.
-     * <P>
-     * For class JobMessageFromOperator, the
-     * category name is <CODE>"job-message-from-operator"</CODE>.
-     *
-     * @return  Attribute category name.
-     */
-    public final String getName() {
-        return "job-message-from-operator";
-    }
+	/**
+	 * Get the name of the category of which this attribute value is an
+	 * instance.
+	 * <P>
+	 * For class JobMessageFromOperator, the category name is
+	 * <CODE>"job-message-from-operator"</CODE>.
+	 *
+	 * @return Attribute category name.
+	 */
+	public final String getName() {
+		return "job-message-from-operator";
+	}
 
 }

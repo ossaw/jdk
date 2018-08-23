@@ -27,8 +27,8 @@ package javax.annotation.processing;
 
 /**
  * A suggested {@linkplain Processor#getCompletions <em>completion</em>} for an
- * annotation.  A completion is text meant to be inserted into a
- * program as part of an annotation.
+ * annotation. A completion is text meant to be inserted into a program as part
+ * of an annotation.
  *
  * @author Joseph D. Darcy
  * @author Scott Seligman
@@ -37,15 +37,17 @@ package javax.annotation.processing;
  */
 public interface Completion {
 
-    /**
-     * Returns the text of the suggested completion.
-     * @return the text of the suggested completion.
-     */
-    String getValue();
+	/**
+	 * Returns the text of the suggested completion.
+	 * 
+	 * @return the text of the suggested completion.
+	 */
+	String getValue();
 
-    /**
-     * Returns an informative message about the completion.
-     * @return an informative message about the completion.
-     */
-    String getMessage();
+	/**
+	 * Returns an informative message about the completion.
+	 * 
+	 * @return an informative message about the completion.
+	 */
+	String getMessage();
 }

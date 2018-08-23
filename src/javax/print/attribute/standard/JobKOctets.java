@@ -63,10 +63,11 @@ import javax.print.attribute.PrintJobAttribute;
  * document data, rather than a measure of the hardcopy output to be produced.
  * <P>
  * The size of a doc is computed based on the print data representation class as
- * specified by the doc's {@link javax.print.DocFlavor DocFlavor}, as
- * shown in the table below.
+ * specified by the doc's {@link javax.print.DocFlavor DocFlavor}, as shown in
+ * the table below.
  * <P>
- * <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=1 SUMMARY="Table showing computation of doc sizes">
+ * <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=1 SUMMARY=
+ * "Table showing computation of doc sizes">
  * <TR>
  * <TH>Representation Class</TH>
  * <TH>Document Size</TH>
@@ -124,71 +125,71 @@ import javax.print.attribute.PrintJobAttribute;
  * @see JobImpressions
  * @see JobMediaSheets
  *
- * @author  Alan Kaminsky
+ * @author Alan Kaminsky
  */
-public final class JobKOctets   extends IntegerSyntax
-        implements PrintRequestAttribute, PrintJobAttribute {
+public final class JobKOctets extends IntegerSyntax
+		implements PrintRequestAttribute, PrintJobAttribute {
 
-    private static final long serialVersionUID = -8959710146498202869L;
+	private static final long serialVersionUID = -8959710146498202869L;
 
-    /**
-     * Construct a new job K octets attribute with the given integer value.
-     *
-     * @param  value  Integer value.
-     *
-     * @exception  IllegalArgumentException
-     *  (Unchecked exception) Thrown if <CODE>value</CODE> is less than 0.
-     */
-    public JobKOctets(int value) {
-        super (value, 0, Integer.MAX_VALUE);
-    }
+	/**
+	 * Construct a new job K octets attribute with the given integer value.
+	 *
+	 * @param value
+	 *            Integer value.
+	 *
+	 * @exception IllegalArgumentException
+	 *                (Unchecked exception) Thrown if <CODE>value</CODE> is less
+	 *                than 0.
+	 */
+	public JobKOctets(int value) {
+		super(value, 0, Integer.MAX_VALUE);
+	}
 
-    /**
-     * Returns whether this job K octets attribute is equivalent to the passed
-     * in object. To be equivalent, all of the following conditions must be
-     * true:
-     * <OL TYPE=1>
-     * <LI>
-     * <CODE>object</CODE> is not null.
-     * <LI>
-     * <CODE>object</CODE> is an instance of class JobKOctets.
-     * <LI>
-     * This job K octets attribute's value and <CODE>object</CODE>'s value
-     * are equal.
-     * </OL>
-     *
-     * @param  object  Object to compare to.
-     *
-     * @return  True if <CODE>object</CODE> is equivalent to this job K
-     *          octets attribute, false otherwise.
-     */
-    public boolean equals(Object object) {
-        return super.equals(object) && object instanceof JobKOctets;
-    }
+	/**
+	 * Returns whether this job K octets attribute is equivalent to the passed
+	 * in object. To be equivalent, all of the following conditions must be
+	 * true:
+	 * <OL TYPE=1>
+	 * <LI><CODE>object</CODE> is not null.
+	 * <LI><CODE>object</CODE> is an instance of class JobKOctets.
+	 * <LI>This job K octets attribute's value and <CODE>object</CODE>'s value
+	 * are equal.
+	 * </OL>
+	 *
+	 * @param object
+	 *            Object to compare to.
+	 *
+	 * @return True if <CODE>object</CODE> is equivalent to this job K octets
+	 *         attribute, false otherwise.
+	 */
+	public boolean equals(Object object) {
+		return super.equals(object) && object instanceof JobKOctets;
+	}
 
-    /**
-     * Get the printing attribute class which is to be used as the "category"
-     * for this printing attribute value.
-     * <P>
-     * For class JobKOctets, the category is class JobKOctets itself.
-     *
-     * @return  Printing attribute class (category), an instance of class
-     *          {@link java.lang.Class java.lang.Class}.
-     */
-    public final Class<? extends Attribute> getCategory() {
-        return JobKOctets.class;
-    }
+	/**
+	 * Get the printing attribute class which is to be used as the "category"
+	 * for this printing attribute value.
+	 * <P>
+	 * For class JobKOctets, the category is class JobKOctets itself.
+	 *
+	 * @return Printing attribute class (category), an instance of class
+	 *         {@link java.lang.Class java.lang.Class}.
+	 */
+	public final Class<? extends Attribute> getCategory() {
+		return JobKOctets.class;
+	}
 
-    /**
-     * Get the name of the category of which this attribute value is an
-     * instance.
-     * <P>
-     * For class JobKOctets, the category name is <CODE>"job-k-octets"</CODE>.
-     *
-     * @return  Attribute category name.
-     */
-    public final String getName() {
-        return "job-k-octets";
-    }
+	/**
+	 * Get the name of the category of which this attribute value is an
+	 * instance.
+	 * <P>
+	 * For class JobKOctets, the category name is <CODE>"job-k-octets"</CODE>.
+	 *
+	 * @return Attribute category name.
+	 */
+	public final String getName() {
+		return "job-k-octets";
+	}
 
 }

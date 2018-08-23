@@ -31,16 +31,17 @@ import com.sun.jndi.ldap.BerEncoder;
 
 /**
  * Requests that the results of a search operation be sorted by the LDAP server
- * before being returned.
- * The sort criteria are specified using an ordered list of one or more sort
- * keys, with associated sort parameters.
- * Search results are sorted at the LDAP server according to the parameters
- * supplied in the sort control and then returned to the requestor. If sorting
- * is not supported at the server (and the sort control is marked as critical)
- * then the search operation is not performed and an error is returned.
+ * before being returned. The sort criteria are specified using an ordered list
+ * of one or more sort keys, with associated sort parameters. Search results are
+ * sorted at the LDAP server according to the parameters supplied in the sort
+ * control and then returned to the requestor. If sorting is not supported at
+ * the server (and the sort control is marked as critical) then the search
+ * operation is not performed and an error is returned.
  * <p>
  * The following code sample shows how the class may be used:
- * <pre>{@code
+ * 
+ * <pre>
+ * {@code
  *
  *     // Open an LDAP association
  *     LdapContext ctx = new InitialLdapContext();
@@ -85,13 +86,14 @@ import com.sun.jndi.ldap.BerEncoder;
  *     ctx.close();
  *     ...
  *
- * }</pre>
+ * }
+ * </pre>
  * <p>
- * This class implements the LDAPv3 Request Control for server-side sorting
- * as defined in
- * <a href="http://www.ietf.org/rfc/rfc2891.txt">RFC 2891</a>.
+ * This class implements the LDAPv3 Request Control for server-side sorting as
+ * defined in <a href="http://www.ietf.org/rfc/rfc2891.txt">RFC 2891</a>.
  *
  * The control's value has the following ASN.1 definition:
+ * 
  * <pre>
  *
  *     SortKeyList ::= SEQUENCE OF SEQUENCE {
@@ -108,115 +110,116 @@ import com.sun.jndi.ldap.BerEncoder;
  */
 final public class SortControl extends BasicControl {
 
-    /**
-     * The server-side sort control's assigned object identifier
-     * is 1.2.840.113556.1.4.473.
-     */
-    public static final String OID = "1.2.840.113556.1.4.473";
+	/**
+	 * The server-side sort control's assigned object identifier is
+	 * 1.2.840.113556.1.4.473.
+	 */
+	public static final String OID = "1.2.840.113556.1.4.473";
 
-    private static final long serialVersionUID = -1965961680233330744L;
+	private static final long serialVersionUID = -1965961680233330744L;
 
-    /**
-     * Constructs a control to sort on a single attribute in ascending order.
-     * Sorting will be performed using the ordering matching rule defined
-     * for use with the specified attribute.
-     *
-     * @param   sortBy  An attribute ID to sort by.
-     * @param   criticality     If true then the server must honor the control
-     *                          and return the search results sorted as
-     *                          requested or refuse to perform the search.
-     *                          If false, then the server need not honor the
-     *                          control.
-     * @exception IOException If an error was encountered while encoding the
-     *                        supplied arguments into a control.
-     */
-    public SortControl(String sortBy, boolean criticality) throws IOException {
+	/**
+	 * Constructs a control to sort on a single attribute in ascending order.
+	 * Sorting will be performed using the ordering matching rule defined for
+	 * use with the specified attribute.
+	 *
+	 * @param sortBy
+	 *            An attribute ID to sort by.
+	 * @param criticality
+	 *            If true then the server must honor the control and return the
+	 *            search results sorted as requested or refuse to perform the
+	 *            search. If false, then the server need not honor the control.
+	 * @exception IOException
+	 *                If an error was encountered while encoding the supplied
+	 *                arguments into a control.
+	 */
+	public SortControl(String sortBy, boolean criticality) throws IOException {
 
-        super(OID, criticality, null);
-        super.value = setEncodedValue(new SortKey[]{ new SortKey(sortBy) });
-    }
+		super(OID, criticality, null);
+		super.value = setEncodedValue(new SortKey[] { new SortKey(sortBy) });
+	}
 
-    /**
-     * Constructs a control to sort on a list of attributes in ascending order.
-     * Sorting will be performed using the ordering matching rule defined
-     * for use with each of the specified attributes.
-     *
-     * @param   sortBy  A non-null list of attribute IDs to sort by.
-     *                  The list is in order of highest to lowest sort key
-     *                  precedence.
-     * @param   criticality     If true then the server must honor the control
-     *                          and return the search results sorted as
-     *                          requested or refuse to perform the search.
-     *                          If false, then the server need not honor the
-     *                          control.
-     * @exception IOException If an error was encountered while encoding the
-     *                        supplied arguments into a control.
-     */
-    public SortControl(String[] sortBy, boolean criticality)
-        throws IOException {
+	/**
+	 * Constructs a control to sort on a list of attributes in ascending order.
+	 * Sorting will be performed using the ordering matching rule defined for
+	 * use with each of the specified attributes.
+	 *
+	 * @param sortBy
+	 *            A non-null list of attribute IDs to sort by. The list is in
+	 *            order of highest to lowest sort key precedence.
+	 * @param criticality
+	 *            If true then the server must honor the control and return the
+	 *            search results sorted as requested or refuse to perform the
+	 *            search. If false, then the server need not honor the control.
+	 * @exception IOException
+	 *                If an error was encountered while encoding the supplied
+	 *                arguments into a control.
+	 */
+	public SortControl(String[] sortBy, boolean criticality) throws IOException {
 
-        super(OID, criticality, null);
-        SortKey[] sortKeys = new SortKey[sortBy.length];
-        for (int i = 0; i < sortBy.length; i++) {
-            sortKeys[i] = new SortKey(sortBy[i]);
-        }
-        super.value = setEncodedValue(sortKeys);
-    }
+		super(OID, criticality, null);
+		SortKey[] sortKeys = new SortKey[sortBy.length];
+		for (int i = 0; i < sortBy.length; i++) {
+			sortKeys[i] = new SortKey(sortBy[i]);
+		}
+		super.value = setEncodedValue(sortKeys);
+	}
 
-    /**
-     * Constructs a control to sort on a list of sort keys.
-     * Each sort key specifies the sort order and ordering matching rule to use.
-     *
-     * @param   sortBy      A non-null list of keys to sort by.
-     *                      The list is in order of highest to lowest sort key
-     *                      precedence.
-     * @param   criticality     If true then the server must honor the control
-     *                          and return the search results sorted as
-     *                          requested or refuse to perform the search.
-     *                          If false, then the server need not honor the
-     *                          control.
-     * @exception IOException If an error was encountered while encoding the
-     *                        supplied arguments into a control.
-     */
-    public SortControl(SortKey[] sortBy, boolean criticality)
-        throws IOException {
+	/**
+	 * Constructs a control to sort on a list of sort keys. Each sort key
+	 * specifies the sort order and ordering matching rule to use.
+	 *
+	 * @param sortBy
+	 *            A non-null list of keys to sort by. The list is in order of
+	 *            highest to lowest sort key precedence.
+	 * @param criticality
+	 *            If true then the server must honor the control and return the
+	 *            search results sorted as requested or refuse to perform the
+	 *            search. If false, then the server need not honor the control.
+	 * @exception IOException
+	 *                If an error was encountered while encoding the supplied
+	 *                arguments into a control.
+	 */
+	public SortControl(SortKey[] sortBy, boolean criticality) throws IOException {
 
-        super(OID, criticality, null);
-        super.value = setEncodedValue(sortBy);
-    }
+		super(OID, criticality, null);
+		super.value = setEncodedValue(sortBy);
+	}
 
-    /*
-     * Encodes the sort control's value using ASN.1 BER.
-     * The result includes the BER tag and length for the control's value but
-     * does not include the control's object identifer and criticality setting.
-     *
-     * @param   sortKeys    A non-null list of keys to sort by.
-     * @return A possibly null byte array representing the ASN.1 BER encoded
-     *         value of the sort control.
-     * @exception IOException If a BER encoding error occurs.
-     */
-    private byte[] setEncodedValue(SortKey[] sortKeys) throws IOException {
+	/*
+	 * Encodes the sort control's value using ASN.1 BER. The result includes the
+	 * BER tag and length for the control's value but does not include the
+	 * control's object identifer and criticality setting.
+	 *
+	 * @param sortKeys A non-null list of keys to sort by.
+	 * 
+	 * @return A possibly null byte array representing the ASN.1 BER encoded
+	 * value of the sort control.
+	 * 
+	 * @exception IOException If a BER encoding error occurs.
+	 */
+	private byte[] setEncodedValue(SortKey[] sortKeys) throws IOException {
 
-        // build the ASN.1 BER encoding
-        BerEncoder ber = new BerEncoder(30 * sortKeys.length + 10);
-        String matchingRule;
+		// build the ASN.1 BER encoding
+		BerEncoder ber = new BerEncoder(30 * sortKeys.length + 10);
+		String matchingRule;
 
-        ber.beginSeq(Ber.ASN_SEQUENCE | Ber.ASN_CONSTRUCTOR);
+		ber.beginSeq(Ber.ASN_SEQUENCE | Ber.ASN_CONSTRUCTOR);
 
-        for (int i = 0; i < sortKeys.length; i++) {
-            ber.beginSeq(Ber.ASN_SEQUENCE | Ber.ASN_CONSTRUCTOR);
-            ber.encodeString(sortKeys[i].getAttributeID(), true); // v3
+		for (int i = 0; i < sortKeys.length; i++) {
+			ber.beginSeq(Ber.ASN_SEQUENCE | Ber.ASN_CONSTRUCTOR);
+			ber.encodeString(sortKeys[i].getAttributeID(), true); // v3
 
-            if ((matchingRule = sortKeys[i].getMatchingRuleID()) != null) {
-                ber.encodeString(matchingRule, (Ber.ASN_CONTEXT | 0), true);
-            }
-            if (! sortKeys[i].isAscending()) {
-                ber.encodeBoolean(true, (Ber.ASN_CONTEXT | 1));
-            }
-            ber.endSeq();
-        }
-        ber.endSeq();
+			if ((matchingRule = sortKeys[i].getMatchingRuleID()) != null) {
+				ber.encodeString(matchingRule, (Ber.ASN_CONTEXT | 0), true);
+			}
+			if (!sortKeys[i].isAscending()) {
+				ber.encodeBoolean(true, (Ber.ASN_CONTEXT | 1));
+			}
+			ber.endSeq();
+		}
+		ber.endSeq();
 
-        return ber.getTrimmedBuf();
-    }
+		return ber.getTrimmedBuf();
+	}
 }

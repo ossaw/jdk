@@ -64,372 +64,365 @@ import java.net.URL;
  * unmarshal(Node), unmarshal(XMLReader,InputSource),
  * unmarshal(XMLStreamReader), and unmarshal(XMLEventReader).
  *
- * @author <ul>
+ * @author
+ *         <ul>
  *         <li>Kohsuke Kawaguchi, Sun Microsystems, Inc.</li>
  *         </ul>
  * @see javax.xml.bind.Unmarshaller
  * @since JAXB1.0
  */
-public abstract class AbstractUnmarshallerImpl implements Unmarshaller
-{
-    /** handler that will be used to process errors and warnings during unmarshal */
-    private ValidationEventHandler eventHandler =
-        new DefaultValidationEventHandler();
+public abstract class AbstractUnmarshallerImpl implements Unmarshaller {
+	/**
+	 * handler that will be used to process errors and warnings during unmarshal
+	 */
+	private ValidationEventHandler eventHandler = new DefaultValidationEventHandler();
 
-    /** whether or not the unmarshaller will validate */
-    protected boolean validating = false;
+	/** whether or not the unmarshaller will validate */
+	protected boolean validating = false;
 
-    /**
-     * XMLReader that will be used to parse a document.
-     */
-    private XMLReader reader = null;
+	/**
+	 * XMLReader that will be used to parse a document.
+	 */
+	private XMLReader reader = null;
 
-    /**
-     * Obtains a configured XMLReader.
-     *
-     * This method is used when the client-specified
-     * {@link SAXSource} object doesn't have XMLReader.
-     *
-     * {@link Unmarshaller} is not re-entrant, so we will
-     * only use one instance of XMLReader.
-     */
-    protected XMLReader getXMLReader() throws JAXBException {
-        if(reader==null) {
-            try {
-                SAXParserFactory parserFactory;
-                parserFactory = SAXParserFactory.newInstance();
-                parserFactory.setNamespaceAware(true);
-                // there is no point in asking a validation because
-                // there is no guarantee that the document will come with
-                // a proper schemaLocation.
-                parserFactory.setValidating(false);
-                reader = parserFactory.newSAXParser().getXMLReader();
-            } catch( ParserConfigurationException e ) {
-                throw new JAXBException(e);
-            } catch( SAXException e ) {
-                throw new JAXBException(e);
-            }
-        }
-        return reader;
-    }
+	/**
+	 * Obtains a configured XMLReader.
+	 *
+	 * This method is used when the client-specified {@link SAXSource} object
+	 * doesn't have XMLReader.
+	 *
+	 * {@link Unmarshaller} is not re-entrant, so we will only use one instance
+	 * of XMLReader.
+	 */
+	protected XMLReader getXMLReader() throws JAXBException {
+		if (reader == null) {
+			try {
+				SAXParserFactory parserFactory;
+				parserFactory = SAXParserFactory.newInstance();
+				parserFactory.setNamespaceAware(true);
+				// there is no point in asking a validation because
+				// there is no guarantee that the document will come with
+				// a proper schemaLocation.
+				parserFactory.setValidating(false);
+				reader = parserFactory.newSAXParser().getXMLReader();
+			} catch (ParserConfigurationException e) {
+				throw new JAXBException(e);
+			} catch (SAXException e) {
+				throw new JAXBException(e);
+			}
+		}
+		return reader;
+	}
 
-    public Object unmarshal( Source source ) throws JAXBException {
-        if( source == null ) {
-            throw new IllegalArgumentException(
-                Messages.format( Messages.MUST_NOT_BE_NULL, "source" ) );
-        }
+	public Object unmarshal(Source source) throws JAXBException {
+		if (source == null) {
+			throw new IllegalArgumentException(
+					Messages.format(Messages.MUST_NOT_BE_NULL, "source"));
+		}
 
-        if(source instanceof SAXSource)
-            return unmarshal( (SAXSource)source );
-        if(source instanceof StreamSource)
-            return unmarshal( streamSourceToInputSource((StreamSource)source));
-        if(source instanceof DOMSource)
-            return unmarshal( ((DOMSource)source).getNode() );
+		if (source instanceof SAXSource)
+			return unmarshal((SAXSource) source);
+		if (source instanceof StreamSource)
+			return unmarshal(streamSourceToInputSource((StreamSource) source));
+		if (source instanceof DOMSource)
+			return unmarshal(((DOMSource) source).getNode());
 
-        // we don't handle other types of Source
-        throw new IllegalArgumentException();
-    }
+		// we don't handle other types of Source
+		throw new IllegalArgumentException();
+	}
 
-    // use the client specified XMLReader contained in the SAXSource.
-    private Object unmarshal( SAXSource source ) throws JAXBException {
+	// use the client specified XMLReader contained in the SAXSource.
+	private Object unmarshal(SAXSource source) throws JAXBException {
 
-        XMLReader r = source.getXMLReader();
-        if( r == null )
-            r = getXMLReader();
+		XMLReader r = source.getXMLReader();
+		if (r == null)
+			r = getXMLReader();
 
-        return unmarshal( r, source.getInputSource() );
-    }
+		return unmarshal(r, source.getInputSource());
+	}
 
-    /**
-     * Unmarshals an object by using the specified XMLReader and the InputSource.
-     *
-     * The callee should call the setErrorHandler method of the XMLReader
-     * so that errors are passed to the client-specified ValidationEventHandler.
-     */
-    protected abstract Object unmarshal( XMLReader reader, InputSource source ) throws JAXBException;
+	/**
+	 * Unmarshals an object by using the specified XMLReader and the
+	 * InputSource.
+	 *
+	 * The callee should call the setErrorHandler method of the XMLReader so
+	 * that errors are passed to the client-specified ValidationEventHandler.
+	 */
+	protected abstract Object unmarshal(XMLReader reader, InputSource source) throws JAXBException;
 
-    public final Object unmarshal( InputSource source ) throws JAXBException {
-        if( source == null ) {
-            throw new IllegalArgumentException(
-                Messages.format( Messages.MUST_NOT_BE_NULL, "source" ) );
-        }
+	public final Object unmarshal(InputSource source) throws JAXBException {
+		if (source == null) {
+			throw new IllegalArgumentException(
+					Messages.format(Messages.MUST_NOT_BE_NULL, "source"));
+		}
 
-        return unmarshal( getXMLReader(), source );
-    }
+		return unmarshal(getXMLReader(), source);
+	}
 
+	private Object unmarshal(String url) throws JAXBException {
+		return unmarshal(new InputSource(url));
+	}
 
-    private Object unmarshal( String url ) throws JAXBException {
-        return unmarshal( new InputSource(url) );
-    }
+	public final Object unmarshal(URL url) throws JAXBException {
+		if (url == null) {
+			throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "url"));
+		}
 
-    public final Object unmarshal( URL url ) throws JAXBException {
-        if( url == null ) {
-            throw new IllegalArgumentException(
-                Messages.format( Messages.MUST_NOT_BE_NULL, "url" ) );
-        }
+		return unmarshal(url.toExternalForm());
+	}
 
-        return unmarshal( url.toExternalForm() );
-    }
+	public final Object unmarshal(File f) throws JAXBException {
+		if (f == null) {
+			throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "file"));
+		}
 
-    public final Object unmarshal( File f ) throws JAXBException {
-        if( f == null ) {
-            throw new IllegalArgumentException(
-                Messages.format( Messages.MUST_NOT_BE_NULL, "file" ) );
-        }
+		try {
+			// copied from JAXP
+			String path = f.getAbsolutePath();
+			if (File.separatorChar != '/')
+				path = path.replace(File.separatorChar, '/');
+			if (!path.startsWith("/"))
+				path = "/" + path;
+			if (!path.endsWith("/") && f.isDirectory())
+				path = path + "/";
+			return unmarshal(new URL("file", "", path));
+		} catch (MalformedURLException e) {
+			throw new IllegalArgumentException(e.getMessage());
+		}
+	}
 
-        try {
-            // copied from JAXP
-            String path = f.getAbsolutePath();
-            if (File.separatorChar != '/')
-                path = path.replace(File.separatorChar, '/');
-            if (!path.startsWith("/"))
-                path = "/" + path;
-            if (!path.endsWith("/") && f.isDirectory())
-                path = path + "/";
-            return unmarshal(new URL("file", "", path));
-        } catch( MalformedURLException e ) {
-            throw new IllegalArgumentException(e.getMessage());
-        }
-    }
+	public final Object unmarshal(java.io.InputStream is) throws JAXBException {
 
-    public final Object unmarshal( java.io.InputStream is )
-        throws JAXBException {
+		if (is == null) {
+			throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "is"));
+		}
 
-        if( is == null ) {
-            throw new IllegalArgumentException(
-                Messages.format( Messages.MUST_NOT_BE_NULL, "is" ) );
-        }
+		InputSource isrc = new InputSource(is);
+		return unmarshal(isrc);
+	}
 
-        InputSource isrc = new InputSource( is );
-        return unmarshal( isrc );
-    }
+	public final Object unmarshal(Reader reader) throws JAXBException {
+		if (reader == null) {
+			throw new IllegalArgumentException(
+					Messages.format(Messages.MUST_NOT_BE_NULL, "reader"));
+		}
 
-    public final Object unmarshal( Reader reader ) throws JAXBException {
-        if( reader == null ) {
-            throw new IllegalArgumentException(
-                Messages.format( Messages.MUST_NOT_BE_NULL, "reader" ) );
-        }
+		InputSource isrc = new InputSource(reader);
+		return unmarshal(isrc);
+	}
 
-        InputSource isrc = new InputSource( reader );
-        return unmarshal( isrc );
-    }
+	private static InputSource streamSourceToInputSource(StreamSource ss) {
+		InputSource is = new InputSource();
+		is.setSystemId(ss.getSystemId());
+		is.setByteStream(ss.getInputStream());
+		is.setCharacterStream(ss.getReader());
 
+		return is;
+	}
 
-    private static InputSource streamSourceToInputSource( StreamSource ss ) {
-        InputSource is = new InputSource();
-        is.setSystemId( ss.getSystemId() );
-        is.setByteStream( ss.getInputStream() );
-        is.setCharacterStream( ss.getReader() );
+	/**
+	 * Indicates whether or not the Unmarshaller is configured to validate
+	 * during unmarshal operations.
+	 * <p>
+	 * <i><b>Note:</b> I named this method isValidating() to stay in-line with
+	 * JAXP, as opposed to naming it getValidating(). </i>
+	 *
+	 * @return true if the Unmarshaller is configured to validate during
+	 *         unmarshal operations, false otherwise
+	 * @throws JAXBException
+	 *             if an error occurs while retrieving the validating flag
+	 */
+	public boolean isValidating() throws JAXBException {
+		return validating;
+	}
 
-        return is;
-    }
+	/**
+	 * Allow an application to register a validation event handler.
+	 * <p>
+	 * The validation event handler will be called by the JAXB Provider if any
+	 * validation errors are encountered during calls to any of the
+	 * <tt>unmarshal</tt> methods. If the client application does not register a
+	 * validation event handler before invoking the unmarshal methods, then all
+	 * validation events will be silently ignored and may result in unexpected
+	 * behaviour.
+	 *
+	 * @param handler
+	 *            the validation event handler
+	 * @throws JAXBException
+	 *             if an error was encountered while setting the event handler
+	 */
+	public void setEventHandler(ValidationEventHandler handler) throws JAXBException {
 
+		if (handler == null) {
+			eventHandler = new DefaultValidationEventHandler();
+		} else {
+			eventHandler = handler;
+		}
+	}
 
-    /**
-     * Indicates whether or not the Unmarshaller is configured to validate
-     * during unmarshal operations.
-     * <p>
-     * <i><b>Note:</b> I named this method isValidating() to stay in-line
-     * with JAXP, as opposed to naming it getValidating(). </i>
-     *
-     * @return true if the Unmarshaller is configured to validate during
-     *        unmarshal operations, false otherwise
-     * @throws JAXBException if an error occurs while retrieving the validating
-     *        flag
-     */
-    public boolean isValidating() throws JAXBException {
-        return validating;
-    }
+	/**
+	 * Specifies whether or not the Unmarshaller should validate during
+	 * unmarshal operations. By default, the <tt>Unmarshaller</tt> does not
+	 * validate.
+	 * <p>
+	 * This method may only be invoked before or after calling one of the
+	 * unmarshal methods.
+	 *
+	 * @param validating
+	 *            true if the Unmarshaller should validate during unmarshal,
+	 *            false otherwise
+	 * @throws JAXBException
+	 *             if an error occurred while enabling or disabling validation
+	 *             at unmarshal time
+	 */
+	public void setValidating(boolean validating) throws JAXBException {
+		this.validating = validating;
+	}
 
-    /**
-     * Allow an application to register a validation event handler.
-     * <p>
-     * The validation event handler will be called by the JAXB Provider if any
-     * validation errors are encountered during calls to any of the
-     * <tt>unmarshal</tt> methods.  If the client application does not register
-     * a validation event handler before invoking the unmarshal methods, then
-     * all validation events will be silently ignored and may result in
-     * unexpected behaviour.
-     *
-     * @param handler the validation event handler
-     * @throws JAXBException if an error was encountered while setting the
-     *        event handler
-     */
-    public void setEventHandler(ValidationEventHandler handler)
-        throws JAXBException {
+	/**
+	 * Return the current event handler or the default event handler if one
+	 * hasn't been set.
+	 *
+	 * @return the current ValidationEventHandler or the default event handler
+	 *         if it hasn't been set
+	 * @throws JAXBException
+	 *             if an error was encountered while getting the current event
+	 *             handler
+	 */
+	public ValidationEventHandler getEventHandler() throws JAXBException {
+		return eventHandler;
+	}
 
-        if( handler == null ) {
-            eventHandler = new DefaultValidationEventHandler();
-        } else {
-            eventHandler = handler;
-        }
-    }
+	/**
+	 * Creates an UnmarshalException from a SAXException.
+	 *
+	 * This is an utility method provided for the derived classes.
+	 *
+	 * <p>
+	 * When a provider-implemented ContentHandler wants to throw a
+	 * JAXBException, it needs to wrap the exception by a SAXException. If the
+	 * unmarshaller implementation blindly wrap SAXException by JAXBException,
+	 * such an exception will be a JAXBException wrapped by a SAXException
+	 * wrapped by another JAXBException. This is silly.
+	 *
+	 * <p>
+	 * This method checks the nested exception of SAXException and reduce those
+	 * excessive wrapping.
+	 *
+	 * @return the resulting UnmarshalException
+	 */
+	protected UnmarshalException createUnmarshalException(SAXException e) {
+		// check the nested exception to see if it's an UnmarshalException
+		Exception nested = e.getException();
+		if (nested instanceof UnmarshalException)
+			return (UnmarshalException) nested;
 
-    /**
-     * Specifies whether or not the Unmarshaller should validate during
-     * unmarshal operations.  By default, the <tt>Unmarshaller</tt> does
-     * not validate.
-     * <p>
-     * This method may only be invoked before or after calling one of the
-     * unmarshal methods.
-     *
-     * @param validating true if the Unmarshaller should validate during
-     *       unmarshal, false otherwise
-     * @throws JAXBException if an error occurred while enabling or disabling
-     * validation at unmarshal time
-     */
-    public void setValidating(boolean validating) throws JAXBException {
-        this.validating = validating;
-    }
+		if (nested instanceof RuntimeException)
+			// typically this is an unexpected exception,
+			// just throw it rather than wrap it, so that the full stack
+			// trace can be displayed.
+			throw (RuntimeException) nested;
 
-    /**
-     * Return the current event handler or the default event handler if one
-     * hasn't been set.
-     *
-     * @return the current ValidationEventHandler or the default event handler
-     *        if it hasn't been set
-     * @throws JAXBException if an error was encountered while getting the
-     *        current event handler
-     */
-    public ValidationEventHandler getEventHandler() throws JAXBException {
-        return eventHandler;
-    }
+		// otherwise simply wrap it
+		if (nested != null)
+			return new UnmarshalException(nested);
+		else
+			return new UnmarshalException(e);
+	}
 
+	/**
+	 * Default implementation of the setProperty method always throws
+	 * PropertyException since there are no required properties. If a provider
+	 * needs to handle additional properties, it should override this method in
+	 * a derived class.
+	 */
+	public void setProperty(String name, Object value) throws PropertyException {
 
-    /**
-     * Creates an UnmarshalException from a SAXException.
-     *
-     * This is an utility method provided for the derived classes.
-     *
-     * <p>
-     * When a provider-implemented ContentHandler wants to throw a
-     * JAXBException, it needs to wrap the exception by a SAXException.
-     * If the unmarshaller implementation blindly wrap SAXException
-     * by JAXBException, such an exception will be a JAXBException
-     * wrapped by a SAXException wrapped by another JAXBException.
-     * This is silly.
-     *
-     * <p>
-     * This method checks the nested exception of SAXException
-     * and reduce those excessive wrapping.
-     *
-     * @return the resulting UnmarshalException
-     */
-    protected UnmarshalException createUnmarshalException( SAXException e ) {
-        // check the nested exception to see if it's an UnmarshalException
-        Exception nested = e.getException();
-        if(nested instanceof UnmarshalException)
-            return (UnmarshalException)nested;
+		if (name == null) {
+			throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "name"));
+		}
 
-        if(nested instanceof RuntimeException)
-            // typically this is an unexpected exception,
-            // just throw it rather than wrap it, so that the full stack
-            // trace can be displayed.
-            throw (RuntimeException)nested;
+		throw new PropertyException(name, value);
+	}
 
+	/**
+	 * Default implementation of the getProperty method always throws
+	 * PropertyException since there are no required properties. If a provider
+	 * needs to handle additional properties, it should override this method in
+	 * a derived class.
+	 */
+	public Object getProperty(String name) throws PropertyException {
 
-        // otherwise simply wrap it
-        if(nested!=null)
-            return new UnmarshalException(nested);
-        else
-            return new UnmarshalException(e);
-    }
+		if (name == null) {
+			throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "name"));
+		}
 
-    /**
-     * Default implementation of the setProperty method always
-     * throws PropertyException since there are no required
-     * properties. If a provider needs to handle additional
-     * properties, it should override this method in a derived class.
-     */
-    public void setProperty( String name, Object value )
-        throws PropertyException {
+		throw new PropertyException(name);
+	}
 
-        if( name == null ) {
-            throw new IllegalArgumentException(
-                Messages.format( Messages.MUST_NOT_BE_NULL, "name" ) );
-        }
+	public Object unmarshal(XMLEventReader reader) throws JAXBException {
 
-        throw new PropertyException(name, value);
-    }
+		throw new UnsupportedOperationException();
+	}
 
-    /**
-     * Default implementation of the getProperty method always
-     * throws PropertyException since there are no required
-     * properties. If a provider needs to handle additional
-     * properties, it should override this method in a derived class.
-     */
-    public Object getProperty( String name )
-        throws PropertyException {
+	public Object unmarshal(XMLStreamReader reader) throws JAXBException {
 
-        if( name == null ) {
-            throw new IllegalArgumentException(
-                Messages.format( Messages.MUST_NOT_BE_NULL, "name" ) );
-        }
+		throw new UnsupportedOperationException();
+	}
 
-        throw new PropertyException(name);
-    }
+	public <T> JAXBElement<T> unmarshal(Node node, Class<T> expectedType) throws JAXBException {
+		throw new UnsupportedOperationException();
+	}
 
-    public Object unmarshal(XMLEventReader reader) throws JAXBException {
+	public <T> JAXBElement<T> unmarshal(Source source, Class<T> expectedType) throws JAXBException {
+		throw new UnsupportedOperationException();
+	}
 
-        throw new UnsupportedOperationException();
-    }
+	public <T> JAXBElement<T> unmarshal(XMLStreamReader reader, Class<T> expectedType)
+			throws JAXBException {
+		throw new UnsupportedOperationException();
+	}
 
-    public Object unmarshal(XMLStreamReader reader) throws JAXBException {
+	public <T> JAXBElement<T> unmarshal(XMLEventReader reader, Class<T> expectedType)
+			throws JAXBException {
+		throw new UnsupportedOperationException();
+	}
 
-        throw new UnsupportedOperationException();
-    }
+	public void setSchema(Schema schema) {
+		throw new UnsupportedOperationException();
+	}
 
-    public <T> JAXBElement<T> unmarshal(Node node, Class<T> expectedType) throws JAXBException {
-        throw new UnsupportedOperationException();
-    }
+	public Schema getSchema() {
+		throw new UnsupportedOperationException();
+	}
 
-    public <T> JAXBElement<T> unmarshal(Source source, Class<T> expectedType) throws JAXBException {
-        throw new UnsupportedOperationException();
-    }
+	public void setAdapter(XmlAdapter adapter) {
+		if (adapter == null)
+			throw new IllegalArgumentException();
+		setAdapter((Class) adapter.getClass(), adapter);
+	}
 
-    public <T> JAXBElement<T> unmarshal(XMLStreamReader reader, Class<T> expectedType) throws JAXBException {
-        throw new UnsupportedOperationException();
-    }
+	public <A extends XmlAdapter> void setAdapter(Class<A> type, A adapter) {
+		throw new UnsupportedOperationException();
+	}
 
-    public <T> JAXBElement<T> unmarshal(XMLEventReader reader, Class<T> expectedType) throws JAXBException {
-        throw new UnsupportedOperationException();
-    }
+	public <A extends XmlAdapter> A getAdapter(Class<A> type) {
+		throw new UnsupportedOperationException();
+	}
 
-    public void setSchema(Schema schema) {
-        throw new UnsupportedOperationException();
-    }
+	public void setAttachmentUnmarshaller(AttachmentUnmarshaller au) {
+		throw new UnsupportedOperationException();
+	}
 
-    public Schema getSchema() {
-        throw new UnsupportedOperationException();
-    }
+	public AttachmentUnmarshaller getAttachmentUnmarshaller() {
+		throw new UnsupportedOperationException();
+	}
 
-    public void setAdapter(XmlAdapter adapter) {
-        if(adapter==null)
-            throw new IllegalArgumentException();
-        setAdapter((Class)adapter.getClass(),adapter);
-    }
+	public void setListener(Listener listener) {
+		throw new UnsupportedOperationException();
+	}
 
-    public <A extends XmlAdapter> void setAdapter(Class<A> type, A adapter) {
-        throw new UnsupportedOperationException();
-    }
-
-    public <A extends XmlAdapter> A getAdapter(Class<A> type) {
-        throw new UnsupportedOperationException();
-    }
-
-    public void setAttachmentUnmarshaller(AttachmentUnmarshaller au) {
-        throw new UnsupportedOperationException();
-    }
-
-    public AttachmentUnmarshaller getAttachmentUnmarshaller() {
-        throw new UnsupportedOperationException();
-    }
-
-    public void setListener(Listener listener) {
-        throw new UnsupportedOperationException();
-    }
-
-    public Listener getListener() {
-        throw new UnsupportedOperationException();
-    }
+	public Listener getListener() {
+		throw new UnsupportedOperationException();
+	}
 }

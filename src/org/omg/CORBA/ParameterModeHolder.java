@@ -7,41 +7,34 @@ package org.omg.CORBA;
 * Friday, July 21, 2017 9:58:51 PM PDT
 */
 
-
 /**
-   * Enumeration of parameter modes for Parameter.  Possible vaues:
-   * <ul>
-   *   <li>PARAM_IN - Represents an "in" parameter.</li>
-   *   <li>PARAM_OUT - Represents an "out" parameter.</li>
-   *   <li>PARAM_INOUT - Represents an "inout" parameter.</li>
-   * </ul>
-   */
-public final class ParameterModeHolder implements org.omg.CORBA.portable.Streamable
-{
-  public org.omg.CORBA.ParameterMode value = null;
+ * Enumeration of parameter modes for Parameter. Possible vaues:
+ * <ul>
+ * <li>PARAM_IN - Represents an "in" parameter.</li>
+ * <li>PARAM_OUT - Represents an "out" parameter.</li>
+ * <li>PARAM_INOUT - Represents an "inout" parameter.</li>
+ * </ul>
+ */
+public final class ParameterModeHolder implements org.omg.CORBA.portable.Streamable {
+	public org.omg.CORBA.ParameterMode value = null;
 
-  public ParameterModeHolder ()
-  {
-  }
+	public ParameterModeHolder() {
+	}
 
-  public ParameterModeHolder (org.omg.CORBA.ParameterMode initialValue)
-  {
-    value = initialValue;
-  }
+	public ParameterModeHolder(org.omg.CORBA.ParameterMode initialValue) {
+		value = initialValue;
+	}
 
-  public void _read (org.omg.CORBA.portable.InputStream i)
-  {
-    value = org.omg.CORBA.ParameterModeHelper.read (i);
-  }
+	public void _read(org.omg.CORBA.portable.InputStream i) {
+		value = org.omg.CORBA.ParameterModeHelper.read(i);
+	}
 
-  public void _write (org.omg.CORBA.portable.OutputStream o)
-  {
-    org.omg.CORBA.ParameterModeHelper.write (o, value);
-  }
+	public void _write(org.omg.CORBA.portable.OutputStream o) {
+		org.omg.CORBA.ParameterModeHelper.write(o, value);
+	}
 
-  public org.omg.CORBA.TypeCode _type ()
-  {
-    return org.omg.CORBA.ParameterModeHelper.type ();
-  }
+	public org.omg.CORBA.TypeCode _type() {
+		return org.omg.CORBA.ParameterModeHelper.type();
+	}
 
 }

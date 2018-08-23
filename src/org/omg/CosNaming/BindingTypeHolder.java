@@ -7,37 +7,30 @@ package org.omg.CosNaming;
 * Friday, July 21, 2017 9:58:51 PM PDT
 */
 
-
 /**
-   * Specifies whether the given binding is for a object (that is not a
-   * naming context) or for a naming context.
-   */
-public final class BindingTypeHolder implements org.omg.CORBA.portable.Streamable
-{
-  public org.omg.CosNaming.BindingType value = null;
+ * Specifies whether the given binding is for a object (that is not a naming
+ * context) or for a naming context.
+ */
+public final class BindingTypeHolder implements org.omg.CORBA.portable.Streamable {
+	public org.omg.CosNaming.BindingType value = null;
 
-  public BindingTypeHolder ()
-  {
-  }
+	public BindingTypeHolder() {
+	}
 
-  public BindingTypeHolder (org.omg.CosNaming.BindingType initialValue)
-  {
-    value = initialValue;
-  }
+	public BindingTypeHolder(org.omg.CosNaming.BindingType initialValue) {
+		value = initialValue;
+	}
 
-  public void _read (org.omg.CORBA.portable.InputStream i)
-  {
-    value = org.omg.CosNaming.BindingTypeHelper.read (i);
-  }
+	public void _read(org.omg.CORBA.portable.InputStream i) {
+		value = org.omg.CosNaming.BindingTypeHelper.read(i);
+	}
 
-  public void _write (org.omg.CORBA.portable.OutputStream o)
-  {
-    org.omg.CosNaming.BindingTypeHelper.write (o, value);
-  }
+	public void _write(org.omg.CORBA.portable.OutputStream o) {
+		org.omg.CosNaming.BindingTypeHelper.write(o, value);
+	}
 
-  public org.omg.CORBA.TypeCode _type ()
-  {
-    return org.omg.CosNaming.BindingTypeHelper.type ();
-  }
+	public org.omg.CORBA.TypeCode _type() {
+		return org.omg.CosNaming.BindingTypeHelper.type();
+	}
 
 }

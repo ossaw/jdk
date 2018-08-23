@@ -34,12 +34,11 @@ import java.util.List;
  * @since 1.7
  */
 public interface Parameterizable extends Element {
-    /**
-     * Returns the formal type parameters of the type element in
-     * declaration order.
-     *
-     * @return the formal type parameters, or an empty list
-     * if there are none
-     */
-    List<? extends TypeParameterElement> getTypeParameters();
+	/**
+	 * Returns the formal type parameters of the type element in declaration
+	 * order.
+	 *
+	 * @return the formal type parameters, or an empty list if there are none
+	 */
+	List<? extends TypeParameterElement> getTypeParameters();
 }

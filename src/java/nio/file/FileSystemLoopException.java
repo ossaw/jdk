@@ -32,19 +32,17 @@ package java.nio.file;
  * @see Files#walkFileTree
  */
 
-public class FileSystemLoopException
-    extends FileSystemException
-{
-    private static final long serialVersionUID = 4843039591949217617L;
+public class FileSystemLoopException extends FileSystemException {
+	private static final long serialVersionUID = 4843039591949217617L;
 
-    /**
-     * Constructs an instance of this class.
-     *
-     * @param   file
-     *          a string identifying the file causing the cycle or {@code null} if
-     *          not known
-     */
-    public FileSystemLoopException(String file) {
-        super(file);
-    }
+	/**
+	 * Constructs an instance of this class.
+	 *
+	 * @param file
+	 *            a string identifying the file causing the cycle or
+	 *            {@code null} if not known
+	 */
+	public FileSystemLoopException(String file) {
+		super(file);
+	}
 }

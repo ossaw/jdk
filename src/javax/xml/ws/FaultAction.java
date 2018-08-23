@@ -40,13 +40,14 @@ import java.lang.annotation.Target;
  * The <code>wsam:Action</code> attribute value in the <code>fault</code>
  * message in the generated WSDL operation mapped for <code>className</code>
  * class is equal to the corresponding value in the <code>FaultAction</code>.
- * For the exact computation of <code>wsam:Action</code> values for the
- * fault messages, refer to the algorithm in the JAX-WS specification.
+ * For the exact computation of <code>wsam:Action</code> values for the fault
+ * messages, refer to the algorithm in the JAX-WS specification.
  *
  * <p>
- * <b>Example 1</b>: Specify explicit values for <code>Action</code> message addressing
- * property for the <code>input</code>, <code>output</code> and <code>fault</code> message
- * if the Java method throws only one service specific exception.
+ * <b>Example 1</b>: Specify explicit values for <code>Action</code> message
+ * addressing property for the <code>input</code>, <code>output</code> and
+ * <code>fault</code> message if the Java method throws only one service
+ * specific exception.
  *
  * <pre>
  * &#64;WebService(targetNamespace="http://example.com/numbers")
@@ -79,16 +80,16 @@ import java.lang.annotation.Target;
  * </pre>
  *
  * <p>
- * Example 2: Here is an example that shows if the explicit value for <code>Action</code>
- * message addressing property for the service specific exception is not present.
+ * Example 2: Here is an example that shows if the explicit value for
+ * <code>Action</code> message addressing property for the service specific
+ * exception is not present.
  *
  * <pre>
- * &#64;WebService(targetNamespace="http://example.com/numbers")
+ * &#64;WebService(targetNamespace = "http://example.com/numbers")
  * public class AddNumbersImpl {
- *     public int addNumbers(int number1, int number2)
- *         throws AddNumbersException {
- *         return number1 + number2;
- *     }
+ * 	public int addNumbers(int number1, int number2) throws AddNumbersException {
+ * 		return number1 + number2;
+ * 	}
  * }
  * </pre>
  *
@@ -109,8 +110,9 @@ import java.lang.annotation.Target;
  * </pre>
  *
  * <p>
- * Example 3: Here is an example that shows how to specify explicit values for <code>Action</code>
- * message addressing property if the Java method throws more than one service specific exception.
+ * Example 3: Here is an example that shows how to specify explicit values for
+ * <code>Action</code> message addressing property if the Java method throws
+ * more than one service specific exception.
  *
  * <pre>
  * &#64;WebService(targetNamespace="http://example.com/numbers")
@@ -152,13 +154,14 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface FaultAction {
-    /**
-     * Name of the exception class
-     */
-    Class<? extends Exception> className();
+	/**
+	 * Name of the exception class
+	 */
+	Class<? extends Exception> className();
 
-    /**
-     * Value of WS-Addressing <code>Action</code> message addressing property for the exception
-     */
-    String value() default "";
+	/**
+	 * Value of WS-Addressing <code>Action</code> message addressing property
+	 * for the exception
+	 */
+	String value() default "";
 }

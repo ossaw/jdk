@@ -36,13 +36,13 @@ package javax.rmi.CORBA;
  */
 public class ClassDesc implements java.io.Serializable {
 
-    /**
-     * @serial The class's RepositoryId.
-     */
-    private String repid;
+	/**
+	 * @serial The class's RepositoryId.
+	 */
+	private String repid;
 
-    /**
-     * @serial A space-separated list of codebase URLs.
-     */
-    private String codebase;
+	/**
+	 * @serial A space-separated list of codebase URLs.
+	 */
+	private String codebase;
 }

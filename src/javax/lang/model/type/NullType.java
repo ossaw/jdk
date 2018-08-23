@@ -25,10 +25,8 @@
 
 package javax.lang.model.type;
 
-
 /**
- * Represents the null type.
- * This is the type of the expression {@code null},
+ * Represents the null type. This is the type of the expression {@code null},
  *
  * @author Joseph D. Darcy
  * @author Scott Seligman

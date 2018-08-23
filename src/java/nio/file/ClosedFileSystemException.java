@@ -30,14 +30,12 @@ package java.nio.file;
  * a file and the file system is closed.
  */
 
-public class ClosedFileSystemException
-    extends IllegalStateException
-{
-    static final long serialVersionUID = -8158336077256193488L;
+public class ClosedFileSystemException extends IllegalStateException {
+	static final long serialVersionUID = -8158336077256193488L;
 
-    /**
-     * Constructs an instance of this class.
-     */
-    public ClosedFileSystemException() {
-    }
+	/**
+	 * Constructs an instance of this class.
+	 */
+	public ClosedFileSystemException() {
+	}
 }

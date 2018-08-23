@@ -7,36 +7,31 @@ package org.omg.PortableInterceptor;
 * Friday, July 21, 2017 9:58:52 PM PDT
 */
 
+/**
+ * The object reference factory. This provides the capability of creating an
+ * object reference.
+ */
+public final class ObjectReferenceFactoryHolder implements org.omg.CORBA.portable.Streamable {
+	public org.omg.PortableInterceptor.ObjectReferenceFactory value = null;
 
-/** The object reference factory.  This provides the capability of
-  * creating an object reference.
-  */
-public final class ObjectReferenceFactoryHolder implements org.omg.CORBA.portable.Streamable
-{
-  public org.omg.PortableInterceptor.ObjectReferenceFactory value = null;
+	public ObjectReferenceFactoryHolder() {
+	}
 
-  public ObjectReferenceFactoryHolder ()
-  {
-  }
+	public ObjectReferenceFactoryHolder(
+			org.omg.PortableInterceptor.ObjectReferenceFactory initialValue) {
+		value = initialValue;
+	}
 
-  public ObjectReferenceFactoryHolder (org.omg.PortableInterceptor.ObjectReferenceFactory initialValue)
-  {
-    value = initialValue;
-  }
+	public void _read(org.omg.CORBA.portable.InputStream i) {
+		value = org.omg.PortableInterceptor.ObjectReferenceFactoryHelper.read(i);
+	}
 
-  public void _read (org.omg.CORBA.portable.InputStream i)
-  {
-    value = org.omg.PortableInterceptor.ObjectReferenceFactoryHelper.read (i);
-  }
+	public void _write(org.omg.CORBA.portable.OutputStream o) {
+		org.omg.PortableInterceptor.ObjectReferenceFactoryHelper.write(o, value);
+	}
 
-  public void _write (org.omg.CORBA.portable.OutputStream o)
-  {
-    org.omg.PortableInterceptor.ObjectReferenceFactoryHelper.write (o, value);
-  }
-
-  public org.omg.CORBA.TypeCode _type ()
-  {
-    return org.omg.PortableInterceptor.ObjectReferenceFactoryHelper.type ();
-  }
+	public org.omg.CORBA.TypeCode _type() {
+		return org.omg.PortableInterceptor.ObjectReferenceFactoryHelper.type();
+	}
 
 }

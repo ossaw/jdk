@@ -29,6 +29,7 @@ import java.awt.Insets;
 import javax.swing.JMenuBar;
 
 import javax.swing.JMenu;
+
 /**
  * Pluggable look and feel interface for JMenuBar.
  *
@@ -36,4 +37,5 @@ import javax.swing.JMenu;
  * @author David Karlton
  */
 
-public abstract class MenuBarUI extends ComponentUI { }
+public abstract class MenuBarUI extends ComponentUI {
+}

@@ -26,27 +26,27 @@
 package javax.management.timer;
 
 /**
- * <p>Definitions of the notifications sent by TimerAlarmClock
- * MBeans.</p>
+ * <p>
+ * Definitions of the notifications sent by TimerAlarmClock MBeans.
+ * </p>
  */
-class TimerAlarmClockNotification
-    extends javax.management.Notification {
+class TimerAlarmClockNotification extends javax.management.Notification {
 
-    /* Serial version */
-    private static final long serialVersionUID = -4841061275673620641L;
+	/* Serial version */
+	private static final long serialVersionUID = -4841061275673620641L;
 
-    /*
-     * ------------------------------------------
-     *  CONSTRUCTORS
-     * ------------------------------------------
-     */
+	/*
+	 * ------------------------------------------ CONSTRUCTORS
+	 * ------------------------------------------
+	 */
 
-    /**
-     * Constructor.
-     *
-     * @param source the source.
-     */
-    public TimerAlarmClockNotification(TimerAlarmClock source) {
-        super("", source, 0);
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param source
+	 *            the source.
+	 */
+	public TimerAlarmClockNotification(TimerAlarmClock source) {
+		super("", source, 0);
+	}
 }

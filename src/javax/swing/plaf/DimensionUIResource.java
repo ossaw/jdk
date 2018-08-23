@@ -28,7 +28,6 @@ package javax.swing.plaf;
 import java.awt.Dimension;
 import javax.swing.plaf.UIResource;
 
-
 /*
  * A subclass of <code>Dimension</code> that implements
  * <code>UIResource</code>.  UI classes that use
@@ -48,9 +47,8 @@ import javax.swing.plaf.UIResource;
  * @author Amy Fowler
  *
  */
-public class DimensionUIResource extends Dimension implements UIResource
-{
-    public DimensionUIResource(int width, int height) {
-        super(width, height);
-    }
+public class DimensionUIResource extends Dimension implements UIResource {
+	public DimensionUIResource(int width, int height) {
+		super(width, height);
+	}
 }

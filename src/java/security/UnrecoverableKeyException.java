@@ -34,23 +34,24 @@ package java.security;
 
 public class UnrecoverableKeyException extends UnrecoverableEntryException {
 
-    private static final long serialVersionUID = 7275063078190151277L;
+	private static final long serialVersionUID = 7275063078190151277L;
 
-    /**
-     * Constructs an UnrecoverableKeyException with no detail message.
-     */
-    public UnrecoverableKeyException() {
-        super();
-    }
+	/**
+	 * Constructs an UnrecoverableKeyException with no detail message.
+	 */
+	public UnrecoverableKeyException() {
+		super();
+	}
 
-    /**
-     * Constructs an UnrecoverableKeyException with the specified detail
-     * message, which provides more information about why this exception
-     * has been thrown.
-     *
-     * @param msg the detail message.
-     */
-   public UnrecoverableKeyException(String msg) {
-       super(msg);
-    }
+	/**
+	 * Constructs an UnrecoverableKeyException with the specified detail
+	 * message, which provides more information about why this exception has
+	 * been thrown.
+	 *
+	 * @param msg
+	 *            the detail message.
+	 */
+	public UnrecoverableKeyException(String msg) {
+		super(msg);
+	}
 }

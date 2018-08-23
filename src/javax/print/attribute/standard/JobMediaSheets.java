@@ -50,9 +50,9 @@ import javax.print.attribute.PrintJobAttribute;
  * {@link Copies Copies} attribute and a "number of copies" instruction embedded
  * in the document data, if any. This difference allows the system administrator
  * to control the lower and upper bounds of both (1) the size of the document(s)
- * with {@link JobKOctetsSupported JobKOctetsSupported} and {@link
- * JobImpressionsSupported JobImpressionsSupported} and (2) the size of the job
- * with {@link JobMediaSheetsSupported JobMediaSheetsSupported}.
+ * with {@link JobKOctetsSupported JobKOctetsSupported} and
+ * {@link JobImpressionsSupported JobImpressionsSupported} and (2) the size of
+ * the job with {@link JobMediaSheetsSupported JobMediaSheetsSupported}.
  * <P>
  * <B>IPP Compatibility:</B> The integer value gives the IPP integer value. The
  * category name returned by <CODE>getName()</CODE> gives the IPP attribute
@@ -64,75 +64,73 @@ import javax.print.attribute.PrintJobAttribute;
  * @see JobKOctets
  * @see JobImpressions
  *
- * @author  Alan Kaminsky
+ * @author Alan Kaminsky
  */
 public class JobMediaSheets extends IntegerSyntax
-        implements PrintRequestAttribute, PrintJobAttribute {
+		implements PrintRequestAttribute, PrintJobAttribute {
 
+	private static final long serialVersionUID = 408871131531979741L;
 
-    private static final long serialVersionUID = 408871131531979741L;
+	/**
+	 * Construct a new job media sheets attribute with the given integer value.
+	 *
+	 * @param value
+	 *            Integer value.
+	 *
+	 * @exception IllegalArgumentException
+	 *                (Unchecked exception) Thrown if <CODE>value</CODE> is less
+	 *                than 0.
+	 */
+	public JobMediaSheets(int value) {
+		super(value, 0, Integer.MAX_VALUE);
+	}
 
-    /**
-     * Construct a new job media sheets attribute with the given integer
-     * value.
-     *
-     * @param  value  Integer value.
-     *
-     * @exception  IllegalArgumentException
-     *   (Unchecked exception) Thrown if <CODE>value</CODE> is less than 0.
-     */
-    public JobMediaSheets(int value) {
-        super (value, 0, Integer.MAX_VALUE);
-    }
+	/**
+	 * Returns whether this job media sheets attribute is equivalent to the
+	 * passed in object. To be equivalent, all of the following conditions must
+	 * be true:
+	 * <OL TYPE=1>
+	 * <LI><CODE>object</CODE> is not null.
+	 * <LI><CODE>object</CODE> is an instance of class JobMediaSheets.
+	 * <LI>This job media sheets attribute's value and <CODE>object</CODE>'s
+	 * value are equal.
+	 * </OL>
+	 *
+	 * @param object
+	 *            Object to compare to.
+	 *
+	 * @return True if <CODE>object</CODE> is equivalent to this job media
+	 *         sheets attribute, false otherwise.
+	 */
+	public boolean equals(Object object) {
+		return super.equals(object) && object instanceof JobMediaSheets;
+	}
 
-    /**
-     * Returns whether this job media sheets attribute is equivalent to the
-     * passed in object. To be equivalent, all of the following conditions must
-     * be true:
-     * <OL TYPE=1>
-     * <LI>
-     * <CODE>object</CODE> is not null.
-     * <LI>
-     * <CODE>object</CODE> is an instance of class JobMediaSheets.
-     * <LI>
-     * This job media sheets attribute's value and <CODE>object</CODE>'s
-     * value are equal.
-     * </OL>
-     *
-     * @param  object  Object to compare to.
-     *
-     * @return  True if <CODE>object</CODE> is equivalent to this job media
-     *          sheets attribute, false otherwise.
-     */
-    public boolean equals(Object object) {
-        return super.equals(object) && object instanceof JobMediaSheets;
-    }
+	/**
+	 * Get the printing attribute class which is to be used as the "category"
+	 * for this printing attribute value.
+	 * <P>
+	 * For class JobMediaSheets and any vendor-defined subclasses, the category
+	 * is class JobMediaSheets itself.
+	 *
+	 * @return Printing attribute class (category), an instance of class
+	 *         {@link java.lang.Class java.lang.Class}.
+	 */
+	public final Class<? extends Attribute> getCategory() {
+		return JobMediaSheets.class;
+	}
 
-    /**
-     * Get the printing attribute class which is to be used as the "category"
-     * for this printing attribute value.
-     * <P>
-     * For class JobMediaSheets and any vendor-defined subclasses, the category
-     * is class JobMediaSheets itself.
-     *
-     * @return  Printing attribute class (category), an instance of class
-     *          {@link java.lang.Class java.lang.Class}.
-     */
-    public final Class<? extends Attribute> getCategory() {
-        return JobMediaSheets.class;
-    }
-
-    /**
-     * Get the name of the category of which this attribute value is an
-     * instance.
-     * <P>
-     * For class JobMediaSheets and any vendor-defined subclasses, the
-     * category name is <CODE>"job-media-sheets"</CODE>.
-     *
-     * @return  Attribute category name.
-     */
-    public final String getName() {
-        return "job-media-sheets";
-    }
+	/**
+	 * Get the name of the category of which this attribute value is an
+	 * instance.
+	 * <P>
+	 * For class JobMediaSheets and any vendor-defined subclasses, the category
+	 * name is <CODE>"job-media-sheets"</CODE>.
+	 *
+	 * @return Attribute category name.
+	 */
+	public final String getName() {
+		return "job-media-sheets";
+	}
 
 }

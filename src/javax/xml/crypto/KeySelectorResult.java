@@ -45,10 +45,10 @@ import java.security.Key;
  */
 public interface KeySelectorResult {
 
-    /**
-     * Returns the selected key.
-     *
-     * @return the selected key, or <code>null</code> if none can be found
-     */
-    Key getKey();
+	/**
+	 * Returns the selected key.
+	 *
+	 * @return the selected key, or <code>null</code> if none can be found
+	 */
+	Key getKey();
 }
