@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.activation;
@@ -65,17 +45,17 @@ public interface ActivationInstantiator extends Remote {
 	 * </ul>
 	 *
 	 * @param id
-	 *            the object's activation identifier
+	 *             the object's activation identifier
 	 * @param desc
-	 *            the object's descriptor
+	 *             the object's descriptor
 	 * @return a marshalled object containing the serialized representation of
 	 *         remote object's stub
 	 * @exception ActivationException
-	 *                if object activation fails
+	 *                                if object activation fails
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                if remote call fails
 	 * @since 1.2
 	 */
-	public MarshalledObject<? extends Remote> newInstance(ActivationID id, ActivationDesc desc)
-			throws ActivationException, RemoteException;
+	public MarshalledObject<? extends Remote> newInstance(ActivationID id,
+			ActivationDesc desc) throws ActivationException, RemoteException;
 }

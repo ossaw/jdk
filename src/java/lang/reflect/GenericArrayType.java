@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.reflect;
@@ -43,11 +23,17 @@ public interface GenericArrayType extends Type {
 	 * @return a {@code Type} object representing the component type of this
 	 *         array
 	 * @throws TypeNotPresentException
-	 *             if the underlying array type's component type refers to a
-	 *             non-existent type declaration
+	 *                                             if the underlying array
+	 *                                             type's component type refers
+	 *                                             to a
+	 *                                             non-existent type declaration
 	 * @throws MalformedParameterizedTypeException
-	 *             if the underlying array type's component type refers to a
-	 *             parameterized type that cannot be instantiated for any reason
+	 *                                             if the underlying array
+	 *                                             type's component type refers
+	 *                                             to a
+	 *                                             parameterized type that
+	 *                                             cannot be instantiated for
+	 *                                             any reason
 	 */
 	Type getGenericComponentType();
 }

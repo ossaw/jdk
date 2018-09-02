@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,25 +41,18 @@ public class SerializerMessages_pt_BR extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Serializer Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 * 
 	 * 1) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
-	 * 
 	 * 2) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 3) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
-	 *
 	 */
 
 	/** The lookup table for error messages. */
@@ -82,7 +72,8 @@ public class SerializerMessages_pt_BR extends ListResourceBundle {
 				{ MsgKey.ER_RESOURCE_COULD_NOT_LOAD,
 						"O recurso [ {0} ] n\u00E3o foi carregado: {1} \n {2} \t {3}" },
 
-				{ MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO, "Tamanho do buffer <=0" },
+				{ MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO,
+						"Tamanho do buffer <=0" },
 
 				{ MsgKey.ER_INVALID_UTF16_SURROGATE,
 						"Foi detectado um substituto de UTF-16 inv\u00E1lido: {0} ?" },
@@ -107,7 +98,8 @@ public class SerializerMessages_pt_BR extends ListResourceBundle {
 				 * element. The substitution text specifies the name of the
 				 * attribute.
 				 */
-				{ MsgKey.ER_STRAY_ATTRIBUTE, "Atributo ''{0}'' fora do elemento." },
+				{ MsgKey.ER_STRAY_ATTRIBUTE,
+						"Atributo ''{0}'' fora do elemento." },
 
 				/*
 				 * Note to translators: As with the preceding message, a
@@ -128,7 +120,8 @@ public class SerializerMessages_pt_BR extends ListResourceBundle {
 				{ MsgKey.ER_COULD_NOT_LOAD_METHOD_PROPERTY,
 						"N\u00E3o foi poss\u00EDvel carregar o arquivo de propriedade ''{0}'' para o m\u00E9todo de sa\u00EDda ''{1}'' (verificar CLASSPATH)" },
 
-				{ MsgKey.ER_INVALID_PORT, "N\u00FAmero de porta inv\u00E1lido" },
+				{ MsgKey.ER_INVALID_PORT,
+						"N\u00FAmero de porta inv\u00E1lido" },
 
 				{ MsgKey.ER_PORT_WHEN_HOST_NULL,
 						"A porta n\u00E3o pode ser definida quando o host \u00E9 nulo" },
@@ -136,7 +129,8 @@ public class SerializerMessages_pt_BR extends ListResourceBundle {
 				{ MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED,
 						"O host n\u00E3o \u00E9 um endere\u00E7o correto" },
 
-				{ MsgKey.ER_SCHEME_NOT_CONFORMANT, "O esquema n\u00E3o \u00E9 compat\u00EDvel." },
+				{ MsgKey.ER_SCHEME_NOT_CONFORMANT,
+						"O esquema n\u00E3o \u00E9 compat\u00EDvel." },
 
 				{ MsgKey.ER_SCHEME_FROM_NULL_STRING,
 						"N\u00E3o \u00E9 poss\u00EDvel definir o esquema de uma string nula" },
@@ -156,7 +150,8 @@ public class SerializerMessages_pt_BR extends ListResourceBundle {
 				{ MsgKey.ER_FRAG_FOR_GENERIC_URI,
 						"O fragmento s\u00F3 pode ser definido para um URI gen\u00E9rico" },
 
-				{ MsgKey.ER_NO_SCHEME_IN_URI, "Nenhum esquema encontrado no URI" },
+				{ MsgKey.ER_NO_SCHEME_IN_URI,
+						"Nenhum esquema encontrado no URI" },
 
 				{ MsgKey.ER_CANNOT_INIT_URI_EMPTY_PARMS,
 						"N\u00E3o \u00E9 poss\u00EDvel inicializar o URI com par\u00E2metros vazios" },
@@ -176,7 +171,8 @@ public class SerializerMessages_pt_BR extends ListResourceBundle {
 				{ MsgKey.ER_XML_VERSION_NOT_SUPPORTED,
 						"Advert\u00EAncia: a vers\u00E3o do documento de sa\u00EDda deve ser obrigatoriamente ''{0}''. Esta vers\u00E3o do XML n\u00E3o \u00E9 suportada. A vers\u00E3o do documento de sa\u00EDda ser\u00E1 ''1.0''." },
 
-				{ MsgKey.ER_SCHEME_REQUIRED, "O esquema \u00E9 obrigat\u00F3rio!" },
+				{ MsgKey.ER_SCHEME_REQUIRED,
+						"O esquema \u00E9 obrigat\u00F3rio!" },
 
 				/*
 				 * Note to translators: The words 'Properties' and

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.plugins.jpeg;
@@ -108,24 +88,27 @@ public class JPEGImageReadParam extends ImageReadParam {
 	 * arrays. The argument arrays are copied by this method.
 	 *
 	 * @param qTables
-	 *            an array of quantization table objects.
+	 *                        an array of quantization table objects.
 	 * @param DCHuffmanTables
-	 *            an array of Huffman table objects.
+	 *                        an array of Huffman table objects.
 	 * @param ACHuffmanTables
-	 *            an array of Huffman table objects.
+	 *                        an array of Huffman table objects.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if any of the arguments is <code>null</code>, has more
-	 *                than 4 elements, or if the numbers of DC and AC tables
-	 *                differ.
+	 *                                     if any of the arguments is
+	 *                                     <code>null</code>, has more
+	 *                                     than 4 elements, or if the numbers of
+	 *                                     DC and AC tables
+	 *                                     differ.
 	 *
 	 * @see #unsetDecodeTables
 	 */
-	public void setDecodeTables(JPEGQTable[] qTables, JPEGHuffmanTable[] DCHuffmanTables,
+	public void setDecodeTables(JPEGQTable[] qTables,
+			JPEGHuffmanTable[] DCHuffmanTables,
 			JPEGHuffmanTable[] ACHuffmanTables) {
-		if ((qTables == null) || (DCHuffmanTables == null) || (ACHuffmanTables == null)
-				|| (qTables.length > 4) || (DCHuffmanTables.length > 4)
-				|| (ACHuffmanTables.length > 4)
+		if ((qTables == null) || (DCHuffmanTables == null)
+				|| (ACHuffmanTables == null) || (qTables.length > 4)
+				|| (DCHuffmanTables.length > 4) || (ACHuffmanTables.length > 4)
 				|| (DCHuffmanTables.length != ACHuffmanTables.length)) {
 			throw new IllegalArgumentException("Invalid JPEG table arrays");
 		}
@@ -170,7 +153,8 @@ public class JPEGImageReadParam extends ImageReadParam {
 	 * @see #setDecodeTables
 	 */
 	public JPEGHuffmanTable[] getDCHuffmanTables() {
-		return (DCHuffmanTables != null) ? (JPEGHuffmanTable[]) DCHuffmanTables.clone() : null;
+		return (DCHuffmanTables != null) ? (JPEGHuffmanTable[]) DCHuffmanTables
+				.clone() : null;
 	}
 
 	/**
@@ -184,6 +168,7 @@ public class JPEGImageReadParam extends ImageReadParam {
 	 * @see #setDecodeTables
 	 */
 	public JPEGHuffmanTable[] getACHuffmanTables() {
-		return (ACHuffmanTables != null) ? (JPEGHuffmanTable[]) ACHuffmanTables.clone() : null;
+		return (ACHuffmanTables != null) ? (JPEGHuffmanTable[]) ACHuffmanTables
+				.clone() : null;
 	}
 }

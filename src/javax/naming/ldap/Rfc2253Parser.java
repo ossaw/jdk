@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.ldap;
@@ -136,7 +116,8 @@ final class Rfc2253Parser {
 		final int beg = cur;
 		while (cur < len) {
 			char c = chars[cur];
-			if (Character.isLetterOrDigit(c) || c == '.' || c == '-' || c == ' ') {
+			if (Character.isLetterOrDigit(c) || c == '.' || c == '-'
+					|| c == ' ') {
 				++cur;
 			} else {
 				break;
@@ -233,7 +214,8 @@ final class Rfc2253Parser {
 	 * attribute value.
 	 */
 	private boolean atTerminator() {
-		return (cur < len && (chars[cur] == ',' || chars[cur] == ';' || chars[cur] == '+'));
+		return (cur < len && (chars[cur] == ',' || chars[cur] == ';'
+				|| chars[cur] == '+'));
 	}
 
 	/*

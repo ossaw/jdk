@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.remote.util;
@@ -34,7 +14,8 @@ public class OrderClassLoaders extends ClassLoader {
 		this.cl2 = cl2;
 	}
 
-	protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+	protected Class<?> loadClass(String name, boolean resolve)
+			throws ClassNotFoundException {
 		ReflectUtil.checkPackageAccess(name);
 		try {
 			return super.loadClass(name, resolve);

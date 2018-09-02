@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.gif;
@@ -55,9 +35,10 @@ public class GIFImageWriterSpi extends ImageWriterSpi {
 		super(vendorName, version, names, suffixes, MIMETypes, writerClassName,
 				new Class[] { ImageOutputStream.class }, readerSpiNames, true,
 				GIFWritableStreamMetadata.NATIVE_FORMAT_NAME,
-				"com.sun.imageio.plugins.gif.GIFStreamMetadataFormat", null, null, true,
-				GIFWritableImageMetadata.NATIVE_FORMAT_NAME,
-				"com.sun.imageio.plugins.gif.GIFImageMetadataFormat", null, null);
+				"com.sun.imageio.plugins.gif.GIFStreamMetadataFormat", null,
+				null, true, GIFWritableImageMetadata.NATIVE_FORMAT_NAME,
+				"com.sun.imageio.plugins.gif.GIFImageMetadataFormat", null,
+				null);
 	}
 
 	public boolean canEncodeImage(ImageTypeSpecifier type) {

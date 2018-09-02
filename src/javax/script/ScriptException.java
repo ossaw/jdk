@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.script;
@@ -48,7 +28,7 @@ public class ScriptException extends Exception {
 	 * message. Filename, and line and column numbers are unspecified.
 	 *
 	 * @param s
-	 *            The String to use in the message.
+	 *          The String to use in the message.
 	 */
 	public ScriptException(String s) {
 		super(s);
@@ -63,7 +43,7 @@ public class ScriptException extends Exception {
 	 * are unspecified.
 	 *
 	 * @param e
-	 *            The wrapped <code>Exception</code>.
+	 *          The wrapped <code>Exception</code>.
 	 */
 	public ScriptException(Exception e) {
 		super(e);
@@ -77,15 +57,17 @@ public class ScriptException extends Exception {
 	 * linenumber to be used in error messages.
 	 *
 	 * @param message
-	 *            The string to use in the message
+	 *                   The string to use in the message
 	 *
 	 * @param fileName
-	 *            The file or resource name describing the location of a script
-	 *            error causing the <code>ScriptException</code> to be thrown.
+	 *                   The file or resource name describing the location of a
+	 *                   script
+	 *                   error causing the <code>ScriptException</code> to be
+	 *                   thrown.
 	 *
 	 * @param lineNumber
-	 *            A line number describing the location of a script error
-	 *            causing the <code>ScriptException</code> to be thrown.
+	 *                   A line number describing the location of a script error
+	 *                   causing the <code>ScriptException</code> to be thrown.
 	 */
 	public ScriptException(String message, String fileName, int lineNumber) {
 		super(message);
@@ -99,15 +81,16 @@ public class ScriptException extends Exception {
 	 * line number and column number.
 	 * 
 	 * @param message
-	 *            The message.
+	 *                     The message.
 	 * @param fileName
-	 *            The filename
+	 *                     The filename
 	 * @param lineNumber
-	 *            the line number.
+	 *                     the line number.
 	 * @param columnNumber
-	 *            the column number.
+	 *                     the column number.
 	 */
-	public ScriptException(String message, String fileName, int lineNumber, int columnNumber) {
+	public ScriptException(String message, String fileName, int lineNumber,
+			int columnNumber) {
 		super(message);
 		this.fileName = fileName;
 		this.lineNumber = lineNumber;

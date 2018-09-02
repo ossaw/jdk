@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -113,7 +110,8 @@ public class XSAttributeUseImpl implements XSAttributeUse {
 	 */
 	public String getConstraintValue() {
 		// REVISIT: SCAPI: what's the proper representation
-		return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.stringValue();
+		return getConstraintType() == XSConstants.VC_NONE ? null
+				: fDefault.stringValue();
 	}
 
 	/**
@@ -124,23 +122,27 @@ public class XSAttributeUseImpl implements XSAttributeUse {
 	}
 
 	public Object getActualVC() {
-		return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.actualValue;
+		return getConstraintType() == XSConstants.VC_NONE ? null
+				: fDefault.actualValue;
 	}
 
 	public short getActualVCType() {
-		return getConstraintType() == XSConstants.VC_NONE ? XSConstants.UNAVAILABLE_DT
+		return getConstraintType() == XSConstants.VC_NONE
+				? XSConstants.UNAVAILABLE_DT
 				: fDefault.actualValueType;
 	}
 
 	public ShortList getItemValueTypes() {
-		return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.itemValueTypes;
+		return getConstraintType() == XSConstants.VC_NONE ? null
+				: fDefault.itemValueTypes;
 	}
 
 	/**
 	 * Optional. Annotations.
 	 */
 	public XSObjectList getAnnotations() {
-		return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
+		return (fAnnotations != null) ? fAnnotations
+				: XSObjectListImpl.EMPTY_LIST;
 	}
 
 } // class XSAttributeUseImpl

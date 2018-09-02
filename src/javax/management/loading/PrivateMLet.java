@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.loading;
@@ -47,11 +27,14 @@ public class PrivateMLet extends MLet implements PrivateClassLoader {
 	 * class loader.
 	 *
 	 * @param urls
-	 *            The URLs from which to load classes and resources.
+	 *                      The URLs from which to load classes and resources.
 	 * @param delegateToCLR
-	 *            True if, when a class is not found in either the parent
-	 *            ClassLoader or the URLs, the MLet should delegate to its
-	 *            containing MBeanServer's {@link ClassLoaderRepository}.
+	 *                      True if, when a class is not found in either the
+	 *                      parent
+	 *                      ClassLoader or the URLs, the MLet should delegate to
+	 *                      its
+	 *                      containing MBeanServer's
+	 *                      {@link ClassLoaderRepository}.
 	 *
 	 */
 	public PrivateMLet(URL[] urls, boolean delegateToCLR) {
@@ -65,13 +48,16 @@ public class PrivateMLet extends MLet implements PrivateClassLoader {
 	 * be used as the parent class loader for delegation.
 	 *
 	 * @param urls
-	 *            The URLs from which to load classes and resources.
+	 *                      The URLs from which to load classes and resources.
 	 * @param parent
-	 *            The parent class loader for delegation.
+	 *                      The parent class loader for delegation.
 	 * @param delegateToCLR
-	 *            True if, when a class is not found in either the parent
-	 *            ClassLoader or the URLs, the MLet should delegate to its
-	 *            containing MBeanServer's {@link ClassLoaderRepository}.
+	 *                      True if, when a class is not found in either the
+	 *                      parent
+	 *                      ClassLoader or the URLs, the MLet should delegate to
+	 *                      its
+	 *                      containing MBeanServer's
+	 *                      {@link ClassLoaderRepository}.
 	 *
 	 */
 	public PrivateMLet(URL[] urls, ClassLoader parent, boolean delegateToCLR) {
@@ -86,19 +72,23 @@ public class PrivateMLet extends MLet implements PrivateClassLoader {
 	 * URLs.
 	 *
 	 * @param urls
-	 *            The URLs from which to load classes and resources.
+	 *                      The URLs from which to load classes and resources.
 	 * @param parent
-	 *            The parent class loader for delegation.
+	 *                      The parent class loader for delegation.
 	 * @param factory
-	 *            The URLStreamHandlerFactory to use when creating URLs.
+	 *                      The URLStreamHandlerFactory to use when creating
+	 *                      URLs.
 	 * @param delegateToCLR
-	 *            True if, when a class is not found in either the parent
-	 *            ClassLoader or the URLs, the MLet should delegate to its
-	 *            containing MBeanServer's {@link ClassLoaderRepository}.
+	 *                      True if, when a class is not found in either the
+	 *                      parent
+	 *                      ClassLoader or the URLs, the MLet should delegate to
+	 *                      its
+	 *                      containing MBeanServer's
+	 *                      {@link ClassLoaderRepository}.
 	 *
 	 */
-	public PrivateMLet(URL[] urls, ClassLoader parent, URLStreamHandlerFactory factory,
-			boolean delegateToCLR) {
+	public PrivateMLet(URL[] urls, ClassLoader parent,
+			URLStreamHandlerFactory factory, boolean delegateToCLR) {
 		super(urls, parent, factory, delegateToCLR);
 	}
 }

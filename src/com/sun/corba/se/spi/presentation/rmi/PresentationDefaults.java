@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.presentation.rmi;
@@ -36,8 +16,7 @@ import com.sun.corba.se.impl.presentation.rmi.StubFactoryStaticImpl;
 public abstract class PresentationDefaults {
 	private static StubFactoryFactoryStaticImpl staticImpl = null;
 
-	private PresentationDefaults() {
-	}
+	private PresentationDefaults() {}
 
 	public synchronized static PresentationManager.StubFactoryFactory getStaticStubFactoryFactory() {
 		if (staticImpl == null)
@@ -50,7 +29,8 @@ public abstract class PresentationDefaults {
 		return new StubFactoryFactoryProxyImpl();
 	}
 
-	public static PresentationManager.StubFactory makeStaticStubFactory(Class stubClass) {
+	public static PresentationManager.StubFactory makeStaticStubFactory(
+			Class stubClass) {
 		return new StubFactoryStaticImpl(stubClass);
 	}
 }

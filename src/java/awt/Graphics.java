@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -110,8 +90,7 @@ public abstract class Graphics {
 	 * @see java.awt.Graphics#create()
 	 * @see java.awt.Component#getGraphics
 	 */
-	protected Graphics() {
-	}
+	protected Graphics() {}
 
 	/**
 	 * Creates a new <code>Graphics</code> object that is a copy of this
@@ -145,13 +124,13 @@ public abstract class Graphics {
 	 * <p>
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate.
+	 *               the <i>x</i> coordinate.
 	 * @param y
-	 *            the <i>y</i> coordinate.
+	 *               the <i>y</i> coordinate.
 	 * @param width
-	 *            the width of the clipping rectangle.
+	 *               the width of the clipping rectangle.
 	 * @param height
-	 *            the height of the clipping rectangle.
+	 *               the height of the clipping rectangle.
 	 * @return a new graphics context.
 	 * @see java.awt.Graphics#translate
 	 * @see java.awt.Graphics#clipRect
@@ -174,9 +153,9 @@ public abstract class Graphics {
 	 * context will be relative to this new origin.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate.
+	 *          the <i>x</i> coordinate.
 	 * @param y
-	 *            the <i>y</i> coordinate.
+	 *          the <i>y</i> coordinate.
 	 */
 	public abstract void translate(int x, int y);
 
@@ -195,7 +174,7 @@ public abstract class Graphics {
 	 * specified color.
 	 * 
 	 * @param c
-	 *            the new rendering color.
+	 *          the new rendering color.
 	 * @see java.awt.Color
 	 * @see java.awt.Graphics#getColor
 	 */
@@ -225,7 +204,7 @@ public abstract class Graphics {
 	 * then all pixels are restored to their original values.
 	 * 
 	 * @param c1
-	 *            the XOR alternation color
+	 *           the XOR alternation color
 	 */
 	public abstract void setXORMode(Color c1);
 
@@ -244,7 +223,7 @@ public abstract class Graphics {
 	 * argument is silently ignored.
 	 * 
 	 * @param font
-	 *            the font.
+	 *             the font.
 	 * @see java.awt.Graphics#getFont
 	 * @see java.awt.Graphics#drawString(java.lang.String, int, int)
 	 * @see java.awt.Graphics#drawBytes(byte[], int, int, int, int)
@@ -269,7 +248,7 @@ public abstract class Graphics {
 	 * 
 	 * @return the font metrics for the specified font.
 	 * @param f
-	 *            the specified font
+	 *          the specified font
 	 * @see java.awt.Graphics#getFont
 	 * @see java.awt.FontMetrics
 	 * @see java.awt.Graphics#getFontMetrics()
@@ -307,13 +286,15 @@ public abstract class Graphics {
 	 * outside of the clipping area.
 	 * 
 	 * @param x
-	 *            the x coordinate of the rectangle to intersect the clip with
+	 *               the x coordinate of the rectangle to intersect the clip
+	 *               with
 	 * @param y
-	 *            the y coordinate of the rectangle to intersect the clip with
+	 *               the y coordinate of the rectangle to intersect the clip
+	 *               with
 	 * @param width
-	 *            the width of the rectangle to intersect the clip with
+	 *               the width of the rectangle to intersect the clip with
 	 * @param height
-	 *            the height of the rectangle to intersect the clip with
+	 *               the height of the rectangle to intersect the clip with
 	 * @see #setClip(int, int, int, int)
 	 * @see #setClip(Shape)
 	 */
@@ -326,13 +307,13 @@ public abstract class Graphics {
 	 * operations have no effect outside of the clipping area.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the new clip rectangle.
+	 *               the <i>x</i> coordinate of the new clip rectangle.
 	 * @param y
-	 *            the <i>y</i> coordinate of the new clip rectangle.
+	 *               the <i>y</i> coordinate of the new clip rectangle.
 	 * @param width
-	 *            the width of the new clip rectangle.
+	 *               the width of the new clip rectangle.
 	 * @param height
-	 *            the height of the new clip rectangle.
+	 *               the height of the new clip rectangle.
 	 * @see java.awt.Graphics#clipRect
 	 * @see java.awt.Graphics#setClip(Shape)
 	 * @see java.awt.Graphics#getClip
@@ -367,7 +348,7 @@ public abstract class Graphics {
 	 * associated with device bounds and window visibility.
 	 * 
 	 * @param clip
-	 *            the <code>Shape</code> to use to set the clip
+	 *             the <code>Shape</code> to use to set the clip
 	 * @see java.awt.Graphics#getClip()
 	 * @see java.awt.Graphics#clipRect
 	 * @see java.awt.Graphics#setClip(int, int, int, int)
@@ -387,19 +368,20 @@ public abstract class Graphics {
 	 * refreshed by calling the component's <code>paint</code> method.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the source rectangle.
+	 *               the <i>x</i> coordinate of the source rectangle.
 	 * @param y
-	 *            the <i>y</i> coordinate of the source rectangle.
+	 *               the <i>y</i> coordinate of the source rectangle.
 	 * @param width
-	 *            the width of the source rectangle.
+	 *               the width of the source rectangle.
 	 * @param height
-	 *            the height of the source rectangle.
+	 *               the height of the source rectangle.
 	 * @param dx
-	 *            the horizontal distance to copy the pixels.
+	 *               the horizontal distance to copy the pixels.
 	 * @param dy
-	 *            the vertical distance to copy the pixels.
+	 *               the vertical distance to copy the pixels.
 	 */
-	public abstract void copyArea(int x, int y, int width, int height, int dx, int dy);
+	public abstract void copyArea(int x, int y, int width, int height, int dx,
+			int dy);
 
 	/**
 	 * Draws a line, using the current color, between the points
@@ -407,13 +389,13 @@ public abstract class Graphics {
 	 * graphics context's coordinate system.
 	 * 
 	 * @param x1
-	 *            the first point's <i>x</i> coordinate.
+	 *           the first point's <i>x</i> coordinate.
 	 * @param y1
-	 *            the first point's <i>y</i> coordinate.
+	 *           the first point's <i>y</i> coordinate.
 	 * @param x2
-	 *            the second point's <i>x</i> coordinate.
+	 *           the second point's <i>x</i> coordinate.
 	 * @param y2
-	 *            the second point's <i>y</i> coordinate.
+	 *           the second point's <i>y</i> coordinate.
 	 */
 	public abstract void drawLine(int x1, int y1, int x2, int y2);
 
@@ -427,13 +409,13 @@ public abstract class Graphics {
 	 * color.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the rectangle to be filled.
+	 *               the <i>x</i> coordinate of the rectangle to be filled.
 	 * @param y
-	 *            the <i>y</i> coordinate of the rectangle to be filled.
+	 *               the <i>y</i> coordinate of the rectangle to be filled.
 	 * @param width
-	 *            the width of the rectangle to be filled.
+	 *               the width of the rectangle to be filled.
 	 * @param height
-	 *            the height of the rectangle to be filled.
+	 *               the height of the rectangle to be filled.
 	 * @see java.awt.Graphics#clearRect
 	 * @see java.awt.Graphics#drawRect
 	 */
@@ -447,13 +429,13 @@ public abstract class Graphics {
 	 * graphics context's current color.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the rectangle to be drawn.
+	 *               the <i>x</i> coordinate of the rectangle to be drawn.
 	 * @param y
-	 *            the <i>y</i> coordinate of the rectangle to be drawn.
+	 *               the <i>y</i> coordinate of the rectangle to be drawn.
 	 * @param width
-	 *            the width of the rectangle to be drawn.
+	 *               the width of the rectangle to be drawn.
 	 * @param height
-	 *            the height of the rectangle to be drawn.
+	 *               the height of the rectangle to be drawn.
 	 * @see java.awt.Graphics#fillRect
 	 * @see java.awt.Graphics#clearRect
 	 */
@@ -483,13 +465,13 @@ public abstract class Graphics {
 	 * cleared to a specific color.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the rectangle to clear.
+	 *               the <i>x</i> coordinate of the rectangle to clear.
 	 * @param y
-	 *            the <i>y</i> coordinate of the rectangle to clear.
+	 *               the <i>y</i> coordinate of the rectangle to clear.
 	 * @param width
-	 *            the width of the rectangle to clear.
+	 *               the width of the rectangle to clear.
 	 * @param height
-	 *            the height of the rectangle to clear.
+	 *               the height of the rectangle to clear.
 	 * @see java.awt.Graphics#fillRect(int, int, int, int)
 	 * @see java.awt.Graphics#drawRect
 	 * @see java.awt.Graphics#setColor(java.awt.Color)
@@ -506,21 +488,21 @@ public abstract class Graphics {
 	 * <code>y&nbsp;+&nbsp;height</code>.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the rectangle to be drawn.
+	 *                  the <i>x</i> coordinate of the rectangle to be drawn.
 	 * @param y
-	 *            the <i>y</i> coordinate of the rectangle to be drawn.
+	 *                  the <i>y</i> coordinate of the rectangle to be drawn.
 	 * @param width
-	 *            the width of the rectangle to be drawn.
+	 *                  the width of the rectangle to be drawn.
 	 * @param height
-	 *            the height of the rectangle to be drawn.
+	 *                  the height of the rectangle to be drawn.
 	 * @param arcWidth
-	 *            the horizontal diameter of the arc at the four corners.
+	 *                  the horizontal diameter of the arc at the four corners.
 	 * @param arcHeight
-	 *            the vertical diameter of the arc at the four corners.
+	 *                  the vertical diameter of the arc at the four corners.
 	 * @see java.awt.Graphics#fillRoundRect
 	 */
-	public abstract void drawRoundRect(int x, int y, int width, int height, int arcWidth,
-			int arcHeight);
+	public abstract void drawRoundRect(int x, int y, int width, int height,
+			int arcWidth, int arcHeight);
 
 	/**
 	 * Fills the specified rounded corner rectangle with the current color. The
@@ -530,21 +512,21 @@ public abstract class Graphics {
 	 * <code>y&nbsp;+&nbsp;height&nbsp;-&nbsp;1</code>.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the rectangle to be filled.
+	 *                  the <i>x</i> coordinate of the rectangle to be filled.
 	 * @param y
-	 *            the <i>y</i> coordinate of the rectangle to be filled.
+	 *                  the <i>y</i> coordinate of the rectangle to be filled.
 	 * @param width
-	 *            the width of the rectangle to be filled.
+	 *                  the width of the rectangle to be filled.
 	 * @param height
-	 *            the height of the rectangle to be filled.
+	 *                  the height of the rectangle to be filled.
 	 * @param arcWidth
-	 *            the horizontal diameter of the arc at the four corners.
+	 *                  the horizontal diameter of the arc at the four corners.
 	 * @param arcHeight
-	 *            the vertical diameter of the arc at the four corners.
+	 *                  the vertical diameter of the arc at the four corners.
 	 * @see java.awt.Graphics#drawRoundRect
 	 */
-	public abstract void fillRoundRect(int x, int y, int width, int height, int arcWidth,
-			int arcHeight);
+	public abstract void fillRoundRect(int x, int y, int width, int height,
+			int arcWidth, int arcHeight);
 
 	/**
 	 * Draws a 3-D highlighted outline of the specified rectangle. The edges of
@@ -557,19 +539,21 @@ public abstract class Graphics {
 	 * <code>height&nbsp;+&nbsp;1</code> pixels tall.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the rectangle to be drawn.
+	 *               the <i>x</i> coordinate of the rectangle to be drawn.
 	 * @param y
-	 *            the <i>y</i> coordinate of the rectangle to be drawn.
+	 *               the <i>y</i> coordinate of the rectangle to be drawn.
 	 * @param width
-	 *            the width of the rectangle to be drawn.
+	 *               the width of the rectangle to be drawn.
 	 * @param height
-	 *            the height of the rectangle to be drawn.
+	 *               the height of the rectangle to be drawn.
 	 * @param raised
-	 *            a boolean that determines whether the rectangle appears to be
-	 *            raised above the surface or sunk into the surface.
+	 *               a boolean that determines whether the rectangle appears to
+	 *               be
+	 *               raised above the surface or sunk into the surface.
 	 * @see java.awt.Graphics#fill3DRect
 	 */
-	public void draw3DRect(int x, int y, int width, int height, boolean raised) {
+	public void draw3DRect(int x, int y, int width, int height,
+			boolean raised) {
 		Color c = getColor();
 		Color brighter = c.brighter();
 		Color darker = c.darker();
@@ -590,19 +574,21 @@ public abstract class Graphics {
 	 * for the highlighting effect will be determined from the current color.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the rectangle to be filled.
+	 *               the <i>x</i> coordinate of the rectangle to be filled.
 	 * @param y
-	 *            the <i>y</i> coordinate of the rectangle to be filled.
+	 *               the <i>y</i> coordinate of the rectangle to be filled.
 	 * @param width
-	 *            the width of the rectangle to be filled.
+	 *               the width of the rectangle to be filled.
 	 * @param height
-	 *            the height of the rectangle to be filled.
+	 *               the height of the rectangle to be filled.
 	 * @param raised
-	 *            a boolean value that determines whether the rectangle appears
-	 *            to be raised above the surface or etched into the surface.
+	 *               a boolean value that determines whether the rectangle
+	 *               appears
+	 *               to be raised above the surface or etched into the surface.
 	 * @see java.awt.Graphics#draw3DRect
 	 */
-	public void fill3DRect(int x, int y, int width, int height, boolean raised) {
+	public void fill3DRect(int x, int y, int width, int height,
+			boolean raised) {
 		Color c = getColor();
 		Color brighter = c.brighter();
 		Color darker = c.darker();
@@ -629,15 +615,17 @@ public abstract class Graphics {
 	 * wide and <code>height&nbsp;+&nbsp;1</code> pixels tall.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the upper left corner of the oval
-	 *            to be drawn.
+	 *               the <i>x</i> coordinate of the upper left corner of the
+	 *               oval
+	 *               to be drawn.
 	 * @param y
-	 *            the <i>y</i> coordinate of the upper left corner of the oval
-	 *            to be drawn.
+	 *               the <i>y</i> coordinate of the upper left corner of the
+	 *               oval
+	 *               to be drawn.
 	 * @param width
-	 *            the width of the oval to be drawn.
+	 *               the width of the oval to be drawn.
 	 * @param height
-	 *            the height of the oval to be drawn.
+	 *               the height of the oval to be drawn.
 	 * @see java.awt.Graphics#fillOval
 	 */
 	public abstract void drawOval(int x, int y, int width, int height);
@@ -646,15 +634,17 @@ public abstract class Graphics {
 	 * Fills an oval bounded by the specified rectangle with the current color.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the upper left corner of the oval
-	 *            to be filled.
+	 *               the <i>x</i> coordinate of the upper left corner of the
+	 *               oval
+	 *               to be filled.
 	 * @param y
-	 *            the <i>y</i> coordinate of the upper left corner of the oval
-	 *            to be filled.
+	 *               the <i>y</i> coordinate of the upper left corner of the
+	 *               oval
+	 *               to be filled.
 	 * @param width
-	 *            the width of the oval to be filled.
+	 *               the width of the oval to be filled.
 	 * @param height
-	 *            the height of the oval to be filled.
+	 *               the height of the oval to be filled.
 	 * @see java.awt.Graphics#drawOval
 	 */
 	public abstract void fillOval(int x, int y, int width, int height);
@@ -684,22 +674,26 @@ public abstract class Graphics {
 	 * segment will be skewed farther along the longer axis of the bounds.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the upper-left corner of the arc to
-	 *            be drawn.
+	 *                   the <i>x</i> coordinate of the upper-left corner of the
+	 *                   arc to
+	 *                   be drawn.
 	 * @param y
-	 *            the <i>y</i> coordinate of the upper-left corner of the arc to
-	 *            be drawn.
+	 *                   the <i>y</i> coordinate of the upper-left corner of the
+	 *                   arc to
+	 *                   be drawn.
 	 * @param width
-	 *            the width of the arc to be drawn.
+	 *                   the width of the arc to be drawn.
 	 * @param height
-	 *            the height of the arc to be drawn.
+	 *                   the height of the arc to be drawn.
 	 * @param startAngle
-	 *            the beginning angle.
+	 *                   the beginning angle.
 	 * @param arcAngle
-	 *            the angular extent of the arc, relative to the start angle.
+	 *                   the angular extent of the arc, relative to the start
+	 *                   angle.
 	 * @see java.awt.Graphics#fillArc
 	 */
-	public abstract void drawArc(int x, int y, int width, int height, int startAngle, int arcAngle);
+	public abstract void drawArc(int x, int y, int width, int height,
+			int startAngle, int arcAngle);
 
 	/**
 	 * Fills a circular or elliptical arc covering the specified rectangle.
@@ -725,22 +719,26 @@ public abstract class Graphics {
 	 * segment will be skewed farther along the longer axis of the bounds.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the upper-left corner of the arc to
-	 *            be filled.
+	 *                   the <i>x</i> coordinate of the upper-left corner of the
+	 *                   arc to
+	 *                   be filled.
 	 * @param y
-	 *            the <i>y</i> coordinate of the upper-left corner of the arc to
-	 *            be filled.
+	 *                   the <i>y</i> coordinate of the upper-left corner of the
+	 *                   arc to
+	 *                   be filled.
 	 * @param width
-	 *            the width of the arc to be filled.
+	 *                   the width of the arc to be filled.
 	 * @param height
-	 *            the height of the arc to be filled.
+	 *                   the height of the arc to be filled.
 	 * @param startAngle
-	 *            the beginning angle.
+	 *                   the beginning angle.
 	 * @param arcAngle
-	 *            the angular extent of the arc, relative to the start angle.
+	 *                   the angular extent of the arc, relative to the start
+	 *                   angle.
 	 * @see java.awt.Graphics#drawArc
 	 */
-	public abstract void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle);
+	public abstract void fillArc(int x, int y, int width, int height,
+			int startAngle, int arcAngle);
 
 	/**
 	 * Draws a sequence of connected lines defined by arrays of <i>x</i> and
@@ -749,15 +747,16 @@ public abstract class Graphics {
 	 * the last point.
 	 * 
 	 * @param xPoints
-	 *            an array of <i>x</i> points
+	 *                an array of <i>x</i> points
 	 * @param yPoints
-	 *            an array of <i>y</i> points
+	 *                an array of <i>y</i> points
 	 * @param nPoints
-	 *            the total number of points
+	 *                the total number of points
 	 * @see java.awt.Graphics#drawPolygon(int[], int[], int)
 	 * @since JDK1.1
 	 */
-	public abstract void drawPolyline(int xPoints[], int yPoints[], int nPoints);
+	public abstract void drawPolyline(int xPoints[], int yPoints[],
+			int nPoints);
 
 	/**
 	 * Draws a closed polygon defined by arrays of <i>x</i> and <i>y</i>
@@ -774,11 +773,11 @@ public abstract class Graphics {
 	 * points are different.
 	 * 
 	 * @param xPoints
-	 *            a an array of <code>x</code> coordinates.
+	 *                a an array of <code>x</code> coordinates.
 	 * @param yPoints
-	 *            a an array of <code>y</code> coordinates.
+	 *                a an array of <code>y</code> coordinates.
 	 * @param nPoints
-	 *            a the total number of points.
+	 *                a the total number of points.
 	 * @see java.awt.Graphics#fillPolygon
 	 * @see java.awt.Graphics#drawPolyline
 	 */
@@ -789,7 +788,7 @@ public abstract class Graphics {
 	 * <code>Polygon</code> object.
 	 * 
 	 * @param p
-	 *            the polygon to draw.
+	 *          the polygon to draw.
 	 * @see java.awt.Graphics#fillPolygon
 	 * @see java.awt.Graphics#drawPolyline
 	 */
@@ -814,11 +813,11 @@ public abstract class Graphics {
 	 * known as the alternating rule.
 	 * 
 	 * @param xPoints
-	 *            a an array of <code>x</code> coordinates.
+	 *                a an array of <code>x</code> coordinates.
 	 * @param yPoints
-	 *            a an array of <code>y</code> coordinates.
+	 *                a an array of <code>y</code> coordinates.
 	 * @param nPoints
-	 *            a the total number of points.
+	 *                a the total number of points.
 	 * @see java.awt.Graphics#drawPolygon(int[], int[], int)
 	 */
 	public abstract void fillPolygon(int xPoints[], int yPoints[], int nPoints);
@@ -831,7 +830,7 @@ public abstract class Graphics {
 	 * known as the alternating rule.
 	 * 
 	 * @param p
-	 *            the polygon to fill.
+	 *          the polygon to fill.
 	 * @see java.awt.Graphics#drawPolygon(int[], int[], int)
 	 */
 	public void fillPolygon(Polygon p) {
@@ -851,7 +850,7 @@ public abstract class Graphics {
 	 * @param y
 	 *            the <i>y</i> coordinate.
 	 * @throws NullPointerException
-	 *             if <code>str</code> is <code>null</code>.
+	 *                              if <code>str</code> is <code>null</code>.
 	 * @see java.awt.Graphics#drawBytes
 	 * @see java.awt.Graphics#drawChars
 	 */
@@ -866,17 +865,19 @@ public abstract class Graphics {
 	 * <i>y</i>) in this graphics context's coordinate system.
 	 * 
 	 * @param iterator
-	 *            the iterator whose text is to be drawn
+	 *                 the iterator whose text is to be drawn
 	 * @param x
-	 *            the <i>x</i> coordinate.
+	 *                 the <i>x</i> coordinate.
 	 * @param y
-	 *            the <i>y</i> coordinate.
+	 *                 the <i>y</i> coordinate.
 	 * @throws NullPointerException
-	 *             if <code>iterator</code> is <code>null</code>.
+	 *                              if <code>iterator</code> is
+	 *                              <code>null</code>.
 	 * @see java.awt.Graphics#drawBytes
 	 * @see java.awt.Graphics#drawChars
 	 */
-	public abstract void drawString(AttributedCharacterIterator iterator, int x, int y);
+	public abstract void drawString(AttributedCharacterIterator iterator, int x,
+			int y);
 
 	/**
 	 * Draws the text given by the specified character array, using this
@@ -885,21 +886,24 @@ public abstract class Graphics {
 	 * context's coordinate system.
 	 * 
 	 * @param data
-	 *            the array of characters to be drawn
+	 *               the array of characters to be drawn
 	 * @param offset
-	 *            the start offset in the data
+	 *               the start offset in the data
 	 * @param length
-	 *            the number of characters to be drawn
+	 *               the number of characters to be drawn
 	 * @param x
-	 *            the <i>x</i> coordinate of the baseline of the text
+	 *               the <i>x</i> coordinate of the baseline of the text
 	 * @param y
-	 *            the <i>y</i> coordinate of the baseline of the text
+	 *               the <i>y</i> coordinate of the baseline of the text
 	 * @throws NullPointerException
-	 *             if <code>data</code> is <code>null</code>.
+	 *                                   if <code>data</code> is
+	 *                                   <code>null</code>.
 	 * @throws IndexOutOfBoundsException
-	 *             if <code>offset</code> or <code>length</code>is less than
-	 *             zero, or <code>offset+length</code> is greater than the
-	 *             length of the <code>data</code> array.
+	 *                                   if <code>offset</code> or
+	 *                                   <code>length</code>is less than
+	 *                                   zero, or <code>offset+length</code> is
+	 *                                   greater than the
+	 *                                   length of the <code>data</code> array.
 	 * @see java.awt.Graphics#drawBytes
 	 * @see java.awt.Graphics#drawString
 	 */
@@ -918,21 +922,24 @@ public abstract class Graphics {
 	 * Latin characters in that range.
 	 * 
 	 * @param data
-	 *            the data to be drawn
+	 *               the data to be drawn
 	 * @param offset
-	 *            the start offset in the data
+	 *               the start offset in the data
 	 * @param length
-	 *            the number of bytes that are drawn
+	 *               the number of bytes that are drawn
 	 * @param x
-	 *            the <i>x</i> coordinate of the baseline of the text
+	 *               the <i>x</i> coordinate of the baseline of the text
 	 * @param y
-	 *            the <i>y</i> coordinate of the baseline of the text
+	 *               the <i>y</i> coordinate of the baseline of the text
 	 * @throws NullPointerException
-	 *             if <code>data</code> is <code>null</code>.
+	 *                                   if <code>data</code> is
+	 *                                   <code>null</code>.
 	 * @throws IndexOutOfBoundsException
-	 *             if <code>offset</code> or <code>length</code>is less than
-	 *             zero, or <code>offset+length</code> is greater than the
-	 *             length of the <code>data</code> array.
+	 *                                   if <code>offset</code> or
+	 *                                   <code>length</code>is less than
+	 *                                   zero, or <code>offset+length</code> is
+	 *                                   greater than the
+	 *                                   length of the <code>data</code> array.
 	 * @see java.awt.Graphics#drawChars
 	 * @see java.awt.Graphics#drawString
 	 */
@@ -958,14 +965,15 @@ public abstract class Graphics {
 	 * observer.
 	 * 
 	 * @param img
-	 *            the specified image to be drawn. This method does nothing if
-	 *            <code>img</code> is null.
+	 *                 the specified image to be drawn. This method does nothing
+	 *                 if
+	 *                 <code>img</code> is null.
 	 * @param x
-	 *            the <i>x</i> coordinate.
+	 *                 the <i>x</i> coordinate.
 	 * @param y
-	 *            the <i>y</i> coordinate.
+	 *                 the <i>y</i> coordinate.
 	 * @param observer
-	 *            object to be notified as more of the image is converted.
+	 *                 object to be notified as more of the image is converted.
 	 * @return <code>false</code> if the image pixels are still changing;
 	 *         <code>true</code> otherwise.
 	 * @see java.awt.Image
@@ -973,7 +981,8 @@ public abstract class Graphics {
 	 * @see java.awt.image.ImageObserver#imageUpdate(java.awt.Image, int, int,
 	 *      int, int, int)
 	 */
-	public abstract boolean drawImage(Image img, int x, int y, ImageObserver observer);
+	public abstract boolean drawImage(Image img, int x, int y,
+			ImageObserver observer);
 
 	/**
 	 * Draws as much of the specified image as has already been scaled to fit
@@ -997,18 +1006,19 @@ public abstract class Graphics {
 	 * production sequence.
 	 * 
 	 * @param img
-	 *            the specified image to be drawn. This method does nothing if
-	 *            <code>img</code> is null.
+	 *                 the specified image to be drawn. This method does nothing
+	 *                 if
+	 *                 <code>img</code> is null.
 	 * @param x
-	 *            the <i>x</i> coordinate.
+	 *                 the <i>x</i> coordinate.
 	 * @param y
-	 *            the <i>y</i> coordinate.
+	 *                 the <i>y</i> coordinate.
 	 * @param width
-	 *            the width of the rectangle.
+	 *                 the width of the rectangle.
 	 * @param height
-	 *            the height of the rectangle.
+	 *                 the height of the rectangle.
 	 * @param observer
-	 *            object to be notified as more of the image is converted.
+	 *                 object to be notified as more of the image is converted.
 	 * @return <code>false</code> if the image pixels are still changing;
 	 *         <code>true</code> otherwise.
 	 * @see java.awt.Image
@@ -1016,8 +1026,8 @@ public abstract class Graphics {
 	 * @see java.awt.image.ImageObserver#imageUpdate(java.awt.Image, int, int,
 	 *      int, int, int)
 	 */
-	public abstract boolean drawImage(Image img, int x, int y, int width, int height,
-			ImageObserver observer);
+	public abstract boolean drawImage(Image img, int x, int y, int width,
+			int height, ImageObserver observer);
 
 	/**
 	 * Draws as much of the specified image as is currently available. The image
@@ -1041,17 +1051,19 @@ public abstract class Graphics {
 	 * observer.
 	 * 
 	 * @param img
-	 *            the specified image to be drawn. This method does nothing if
-	 *            <code>img</code> is null.
+	 *                 the specified image to be drawn. This method does nothing
+	 *                 if
+	 *                 <code>img</code> is null.
 	 * @param x
-	 *            the <i>x</i> coordinate.
+	 *                 the <i>x</i> coordinate.
 	 * @param y
-	 *            the <i>y</i> coordinate.
+	 *                 the <i>y</i> coordinate.
 	 * @param bgcolor
-	 *            the background color to paint under the non-opaque portions of
-	 *            the image.
+	 *                 the background color to paint under the non-opaque
+	 *                 portions of
+	 *                 the image.
 	 * @param observer
-	 *            object to be notified as more of the image is converted.
+	 *                 object to be notified as more of the image is converted.
 	 * @return <code>false</code> if the image pixels are still changing;
 	 *         <code>true</code> otherwise.
 	 * @see java.awt.Image
@@ -1087,21 +1099,23 @@ public abstract class Graphics {
 	 * production sequence.
 	 * 
 	 * @param img
-	 *            the specified image to be drawn. This method does nothing if
-	 *            <code>img</code> is null.
+	 *                 the specified image to be drawn. This method does nothing
+	 *                 if
+	 *                 <code>img</code> is null.
 	 * @param x
-	 *            the <i>x</i> coordinate.
+	 *                 the <i>x</i> coordinate.
 	 * @param y
-	 *            the <i>y</i> coordinate.
+	 *                 the <i>y</i> coordinate.
 	 * @param width
-	 *            the width of the rectangle.
+	 *                 the width of the rectangle.
 	 * @param height
-	 *            the height of the rectangle.
+	 *                 the height of the rectangle.
 	 * @param bgcolor
-	 *            the background color to paint under the non-opaque portions of
-	 *            the image.
+	 *                 the background color to paint under the non-opaque
+	 *                 portions of
+	 *                 the image.
 	 * @param observer
-	 *            object to be notified as more of the image is converted.
+	 *                 object to be notified as more of the image is converted.
 	 * @return <code>false</code> if the image pixels are still changing;
 	 *         <code>true</code> otherwise.
 	 * @see java.awt.Image
@@ -1109,8 +1123,8 @@ public abstract class Graphics {
 	 * @see java.awt.image.ImageObserver#imageUpdate(java.awt.Image, int, int,
 	 *      int, int, int)
 	 */
-	public abstract boolean drawImage(Image img, int x, int y, int width, int height, Color bgcolor,
-			ImageObserver observer);
+	public abstract boolean drawImage(Image img, int x, int y, int width,
+			int height, Color bgcolor, ImageObserver observer);
 
 	/**
 	 * Draws as much of the specified area of the specified image as is
@@ -1135,35 +1149,40 @@ public abstract class Graphics {
 	 * needed to preserve those mappings.
 	 * 
 	 * @param img
-	 *            the specified image to be drawn. This method does nothing if
-	 *            <code>img</code> is null.
+	 *                 the specified image to be drawn. This method does nothing
+	 *                 if
+	 *                 <code>img</code> is null.
 	 * @param dx1
-	 *            the <i>x</i> coordinate of the first corner of the destination
-	 *            rectangle.
+	 *                 the <i>x</i> coordinate of the first corner of the
+	 *                 destination
+	 *                 rectangle.
 	 * @param dy1
-	 *            the <i>y</i> coordinate of the first corner of the destination
-	 *            rectangle.
+	 *                 the <i>y</i> coordinate of the first corner of the
+	 *                 destination
+	 *                 rectangle.
 	 * @param dx2
-	 *            the <i>x</i> coordinate of the second corner of the
-	 *            destination rectangle.
+	 *                 the <i>x</i> coordinate of the second corner of the
+	 *                 destination rectangle.
 	 * @param dy2
-	 *            the <i>y</i> coordinate of the second corner of the
-	 *            destination rectangle.
+	 *                 the <i>y</i> coordinate of the second corner of the
+	 *                 destination rectangle.
 	 * @param sx1
-	 *            the <i>x</i> coordinate of the first corner of the source
-	 *            rectangle.
+	 *                 the <i>x</i> coordinate of the first corner of the source
+	 *                 rectangle.
 	 * @param sy1
-	 *            the <i>y</i> coordinate of the first corner of the source
-	 *            rectangle.
+	 *                 the <i>y</i> coordinate of the first corner of the source
+	 *                 rectangle.
 	 * @param sx2
-	 *            the <i>x</i> coordinate of the second corner of the source
-	 *            rectangle.
+	 *                 the <i>x</i> coordinate of the second corner of the
+	 *                 source
+	 *                 rectangle.
 	 * @param sy2
-	 *            the <i>y</i> coordinate of the second corner of the source
-	 *            rectangle.
+	 *                 the <i>y</i> coordinate of the second corner of the
+	 *                 source
+	 *                 rectangle.
 	 * @param observer
-	 *            object to be notified as more of the image is scaled and
-	 *            converted.
+	 *                 object to be notified as more of the image is scaled and
+	 *                 converted.
 	 * @return <code>false</code> if the image pixels are still changing;
 	 *         <code>true</code> otherwise.
 	 * @see java.awt.Image
@@ -1172,8 +1191,9 @@ public abstract class Graphics {
 	 *      int, int, int)
 	 * @since JDK1.1
 	 */
-	public abstract boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1,
-			int sy1, int sx2, int sy2, ImageObserver observer);
+	public abstract boolean drawImage(Image img, int dx1, int dy1, int dx2,
+			int dy2, int sx1, int sy1, int sx2, int sy2,
+			ImageObserver observer);
 
 	/**
 	 * Draws as much of the specified area of the specified image as is
@@ -1202,38 +1222,44 @@ public abstract class Graphics {
 	 * needed to preserve those mappings.
 	 * 
 	 * @param img
-	 *            the specified image to be drawn. This method does nothing if
-	 *            <code>img</code> is null.
+	 *                 the specified image to be drawn. This method does nothing
+	 *                 if
+	 *                 <code>img</code> is null.
 	 * @param dx1
-	 *            the <i>x</i> coordinate of the first corner of the destination
-	 *            rectangle.
+	 *                 the <i>x</i> coordinate of the first corner of the
+	 *                 destination
+	 *                 rectangle.
 	 * @param dy1
-	 *            the <i>y</i> coordinate of the first corner of the destination
-	 *            rectangle.
+	 *                 the <i>y</i> coordinate of the first corner of the
+	 *                 destination
+	 *                 rectangle.
 	 * @param dx2
-	 *            the <i>x</i> coordinate of the second corner of the
-	 *            destination rectangle.
+	 *                 the <i>x</i> coordinate of the second corner of the
+	 *                 destination rectangle.
 	 * @param dy2
-	 *            the <i>y</i> coordinate of the second corner of the
-	 *            destination rectangle.
+	 *                 the <i>y</i> coordinate of the second corner of the
+	 *                 destination rectangle.
 	 * @param sx1
-	 *            the <i>x</i> coordinate of the first corner of the source
-	 *            rectangle.
+	 *                 the <i>x</i> coordinate of the first corner of the source
+	 *                 rectangle.
 	 * @param sy1
-	 *            the <i>y</i> coordinate of the first corner of the source
-	 *            rectangle.
+	 *                 the <i>y</i> coordinate of the first corner of the source
+	 *                 rectangle.
 	 * @param sx2
-	 *            the <i>x</i> coordinate of the second corner of the source
-	 *            rectangle.
+	 *                 the <i>x</i> coordinate of the second corner of the
+	 *                 source
+	 *                 rectangle.
 	 * @param sy2
-	 *            the <i>y</i> coordinate of the second corner of the source
-	 *            rectangle.
+	 *                 the <i>y</i> coordinate of the second corner of the
+	 *                 source
+	 *                 rectangle.
 	 * @param bgcolor
-	 *            the background color to paint under the non-opaque portions of
-	 *            the image.
+	 *                 the background color to paint under the non-opaque
+	 *                 portions of
+	 *                 the image.
 	 * @param observer
-	 *            object to be notified as more of the image is scaled and
-	 *            converted.
+	 *                 object to be notified as more of the image is scaled and
+	 *                 converted.
 	 * @return <code>false</code> if the image pixels are still changing;
 	 *         <code>true</code> otherwise.
 	 * @see java.awt.Image
@@ -1242,8 +1268,9 @@ public abstract class Graphics {
 	 *      int, int, int)
 	 * @since JDK1.1
 	 */
-	public abstract boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1,
-			int sy1, int sx2, int sy2, Color bgcolor, ImageObserver observer);
+	public abstract boolean drawImage(Image img, int dx1, int dy1, int dx2,
+			int dy2, int sx1, int sy1, int sx2, int sy2, Color bgcolor,
+			ImageObserver observer);
 
 	/**
 	 * Disposes of this graphics context and releases any system resources that
@@ -1288,7 +1315,8 @@ public abstract class Graphics {
 	 * @return a string representation of this graphics context.
 	 */
 	public String toString() {
-		return getClass().getName() + "[font=" + getFont() + ",color=" + getColor() + "]";
+		return getClass().getName() + "[font=" + getFont() + ",color="
+				+ getColor() + "]";
 	}
 
 	/**
@@ -1320,13 +1348,13 @@ public abstract class Graphics {
 	 * bounds and window visibility.
 	 *
 	 * @param x
-	 *            the x coordinate of the rectangle to test against the clip
+	 *               the x coordinate of the rectangle to test against the clip
 	 * @param y
-	 *            the y coordinate of the rectangle to test against the clip
+	 *               the y coordinate of the rectangle to test against the clip
 	 * @param width
-	 *            the width of the rectangle to test against the clip
+	 *               the width of the rectangle to test against the clip
 	 * @param height
-	 *            the height of the rectangle to test against the clip
+	 *               the height of the rectangle to test against the clip
 	 * @return <code>true</code> if the specified rectangle intersects the
 	 *         bounds of the current clip; <code>false</code> otherwise.
 	 */
@@ -1353,8 +1381,8 @@ public abstract class Graphics {
 	 * the specified <code>Rectangle</code>.
 	 * 
 	 * @param r
-	 *            the rectangle where the current clipping area is copied to.
-	 *            Any current values in this rectangle are overwritten.
+	 *          the rectangle where the current clipping area is copied to.
+	 *          Any current values in this rectangle are overwritten.
 	 * @return the bounding rectangle of the current clipping area.
 	 */
 	public Rectangle getClipBounds(Rectangle r) {

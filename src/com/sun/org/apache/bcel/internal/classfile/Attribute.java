@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.classfile;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.classfile;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -89,7 +81,8 @@ public abstract class Attribute implements Cloneable, Node, Serializable {
 	protected byte tag; // Tag to distiguish subclasses
 	protected ConstantPool constant_pool;
 
-	protected Attribute(byte tag, int name_index, int length, ConstantPool constant_pool) {
+	protected Attribute(byte tag, int name_index, int length,
+			ConstantPool constant_pool) {
 		this.tag = tag;
 		this.name_index = name_index;
 		this.length = length;
@@ -102,7 +95,7 @@ public abstract class Attribute implements Cloneable, Node, Serializable {
 	 * fields, attributes, etc. spawns a tree of objects.
 	 *
 	 * @param v
-	 *            Visitor object
+	 *          Visitor object
 	 */
 	public abstract void accept(Visitor v);
 
@@ -110,7 +103,7 @@ public abstract class Attribute implements Cloneable, Node, Serializable {
 	 * Dump attribute to file stream in binary format.
 	 *
 	 * @param file
-	 *            Output file stream
+	 *             Output file stream
 	 * @throws IOException
 	 */
 	public void dump(DataOutputStream file) throws IOException {
@@ -126,9 +119,9 @@ public abstract class Attribute implements Cloneable, Node, Serializable {
 	 * as "LineNumberTable", because those are handled internally.
 	 *
 	 * @param name
-	 *            the name of the attribute as stored in the class file
+	 *             the name of the attribute as stored in the class file
 	 * @param r
-	 *            the reader object
+	 *             the reader object
 	 */
 	public static void addAttributeReader(String name, AttributeReader r) {
 		readers.put(name, r);
@@ -138,7 +131,7 @@ public abstract class Attribute implements Cloneable, Node, Serializable {
 	 * Remove attribute reader
 	 *
 	 * @param name
-	 *            the name of the attribute as stored in the class file
+	 *             the name of the attribute as stored in the class file
 	 */
 	public static void removeAttributeReader(String name) {
 		readers.remove(name);
@@ -148,23 +141,17 @@ public abstract class Attribute implements Cloneable, Node, Serializable {
 	 * Class method reads one attribute from the input data stream. This method
 	 * must not be accessible from the outside. It is called by the Field and
 	 * Method constructor methods.
-	 *
 	 * @see Field
-	 * 
 	 * @see Method
-	 * 
 	 * @param file Input stream
-	 * 
 	 * @param constant_pool Array of constants
-	 * 
 	 * @return Attribute
-	 * 
 	 * @throws IOException
-	 * 
 	 * @throws ClassFormatException
 	 */
-	public static final Attribute readAttribute(DataInputStream file, ConstantPool constant_pool)
-			throws IOException, ClassFormatException {
+	public static final Attribute readAttribute(DataInputStream file,
+			ConstantPool constant_pool) throws IOException,
+			ClassFormatException {
 		ConstantUtf8 c;
 		String name;
 		int name_index;
@@ -173,7 +160,8 @@ public abstract class Attribute implements Cloneable, Node, Serializable {
 
 		// Get class name from constant pool via `name_index' indirection
 		name_index = (int) file.readUnsignedShort();
-		c = (ConstantUtf8) constant_pool.getConstant(name_index, Constants.CONSTANT_Utf8);
+		c = (ConstantUtf8) constant_pool.getConstant(name_index,
+				Constants.CONSTANT_Utf8);
 		name = c.getBytes();
 
 		// Length of data in bytes
@@ -189,55 +177,62 @@ public abstract class Attribute implements Cloneable, Node, Serializable {
 
 		// Call proper constructor, depending on `tag'
 		switch (tag) {
-		case Constants.ATTR_UNKNOWN:
-			AttributeReader r = (AttributeReader) readers.get(name);
+			case Constants.ATTR_UNKNOWN:
+				AttributeReader r = (AttributeReader) readers.get(name);
 
-			if (r != null)
-				return r.createAttribute(name_index, length, file, constant_pool);
-			else
-				return new Unknown(name_index, length, file, constant_pool);
+				if (r != null)
+					return r.createAttribute(name_index, length, file,
+							constant_pool);
+				else
+					return new Unknown(name_index, length, file, constant_pool);
 
-		case Constants.ATTR_CONSTANT_VALUE:
-			return new ConstantValue(name_index, length, file, constant_pool);
+			case Constants.ATTR_CONSTANT_VALUE:
+				return new ConstantValue(name_index, length, file,
+						constant_pool);
 
-		case Constants.ATTR_SOURCE_FILE:
-			return new SourceFile(name_index, length, file, constant_pool);
+			case Constants.ATTR_SOURCE_FILE:
+				return new SourceFile(name_index, length, file, constant_pool);
 
-		case Constants.ATTR_CODE:
-			return new Code(name_index, length, file, constant_pool);
+			case Constants.ATTR_CODE:
+				return new Code(name_index, length, file, constant_pool);
 
-		case Constants.ATTR_EXCEPTIONS:
-			return new ExceptionTable(name_index, length, file, constant_pool);
+			case Constants.ATTR_EXCEPTIONS:
+				return new ExceptionTable(name_index, length, file,
+						constant_pool);
 
-		case Constants.ATTR_LINE_NUMBER_TABLE:
-			return new LineNumberTable(name_index, length, file, constant_pool);
+			case Constants.ATTR_LINE_NUMBER_TABLE:
+				return new LineNumberTable(name_index, length, file,
+						constant_pool);
 
-		case Constants.ATTR_LOCAL_VARIABLE_TABLE:
-			return new LocalVariableTable(name_index, length, file, constant_pool);
+			case Constants.ATTR_LOCAL_VARIABLE_TABLE:
+				return new LocalVariableTable(name_index, length, file,
+						constant_pool);
 
-		case Constants.ATTR_LOCAL_VARIABLE_TYPE_TABLE:
-			return new LocalVariableTypeTable(name_index, length, file, constant_pool);
+			case Constants.ATTR_LOCAL_VARIABLE_TYPE_TABLE:
+				return new LocalVariableTypeTable(name_index, length, file,
+						constant_pool);
 
-		case Constants.ATTR_INNER_CLASSES:
-			return new InnerClasses(name_index, length, file, constant_pool);
+			case Constants.ATTR_INNER_CLASSES:
+				return new InnerClasses(name_index, length, file,
+						constant_pool);
 
-		case Constants.ATTR_SYNTHETIC:
-			return new Synthetic(name_index, length, file, constant_pool);
+			case Constants.ATTR_SYNTHETIC:
+				return new Synthetic(name_index, length, file, constant_pool);
 
-		case Constants.ATTR_DEPRECATED:
-			return new Deprecated(name_index, length, file, constant_pool);
+			case Constants.ATTR_DEPRECATED:
+				return new Deprecated(name_index, length, file, constant_pool);
 
-		case Constants.ATTR_PMG:
-			return new PMGClass(name_index, length, file, constant_pool);
+			case Constants.ATTR_PMG:
+				return new PMGClass(name_index, length, file, constant_pool);
 
-		case Constants.ATTR_SIGNATURE:
-			return new Signature(name_index, length, file, constant_pool);
+			case Constants.ATTR_SIGNATURE:
+				return new Signature(name_index, length, file, constant_pool);
 
-		case Constants.ATTR_STACK_MAP:
-			return new StackMap(name_index, length, file, constant_pool);
+			case Constants.ATTR_STACK_MAP:
+				return new StackMap(name_index, length, file, constant_pool);
 
-		default: // Never reached
-			throw new IllegalStateException("Ooops! default case reached.");
+			default: // Never reached
+				throw new IllegalStateException("Ooops! default case reached.");
 		}
 	}
 
@@ -250,7 +245,7 @@ public abstract class Attribute implements Cloneable, Node, Serializable {
 
 	/**
 	 * @param Attribute
-	 *            length in bytes.
+	 *                  length in bytes.
 	 */
 	public final void setLength(int length) {
 		this.length = length;
@@ -258,7 +253,7 @@ public abstract class Attribute implements Cloneable, Node, Serializable {
 
 	/**
 	 * @param name_index
-	 *            of attribute.
+	 *                   of attribute.
 	 */
 	public final void setNameIndex(int name_index) {
 		this.name_index = name_index;
@@ -289,7 +284,7 @@ public abstract class Attribute implements Cloneable, Node, Serializable {
 
 	/**
 	 * @param constant_pool
-	 *            Constant pool to be used for this object.
+	 *                      Constant pool to be used for this object.
 	 * @see ConstantPool
 	 */
 	public final void setConstantPool(ConstantPool constant_pool) {

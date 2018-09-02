@@ -19,7 +19,8 @@ abstract public class RepositoryHelper {
 		a.read_value(out.create_input_stream(), type());
 	}
 
-	public static com.sun.corba.se.PortableActivationIDL.Repository extract(org.omg.CORBA.Any a) {
+	public static com.sun.corba.se.PortableActivationIDL.Repository extract(
+			org.omg.CORBA.Any a) {
 		return read(a.create_input_stream());
 	}
 
@@ -28,7 +29,8 @@ abstract public class RepositoryHelper {
 	synchronized public static org.omg.CORBA.TypeCode type() {
 		if (__typeCode == null) {
 			__typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-					com.sun.corba.se.PortableActivationIDL.RepositoryHelper.id(), "Repository");
+					com.sun.corba.se.PortableActivationIDL.RepositoryHelper
+							.id(), "Repository");
 		}
 		return __typeCode;
 	}

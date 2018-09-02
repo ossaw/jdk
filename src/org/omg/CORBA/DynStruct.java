@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -61,9 +41,9 @@ public interface DynStruct extends org.omg.CORBA.Object, org.omg.CORBA.DynAny {
 	 * Set the members of the struct.
 	 *
 	 * @param value
-	 *            the array of name-value pairs.
+	 *              the array of name-value pairs.
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidSeq
-	 *             if the given argument is invalid
+	 *         if the given argument is invalid
 	 * @see #get_members
 	 */
 	public void set_members(org.omg.CORBA.NameValuePair[] value)

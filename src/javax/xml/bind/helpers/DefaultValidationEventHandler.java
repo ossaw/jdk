@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.helpers;
@@ -69,27 +49,28 @@ public class DefaultValidationEventHandler implements ValidationEventHandler {
 		String severity = null;
 		boolean retVal = false;
 		switch (event.getSeverity()) {
-		case ValidationEvent.WARNING:
-			severity = Messages.format(Messages.WARNING);
-			retVal = true; // continue after warnings
-			break;
-		case ValidationEvent.ERROR:
-			severity = Messages.format(Messages.ERROR);
-			retVal = false; // terminate after errors
-			break;
-		case ValidationEvent.FATAL_ERROR:
-			severity = Messages.format(Messages.FATAL_ERROR);
-			retVal = false; // terminate after fatal errors
-			break;
-		default:
-			assert false : Messages.format(Messages.UNRECOGNIZED_SEVERITY, event.getSeverity());
+			case ValidationEvent.WARNING:
+				severity = Messages.format(Messages.WARNING);
+				retVal = true; // continue after warnings
+				break;
+			case ValidationEvent.ERROR:
+				severity = Messages.format(Messages.ERROR);
+				retVal = false; // terminate after errors
+				break;
+			case ValidationEvent.FATAL_ERROR:
+				severity = Messages.format(Messages.FATAL_ERROR);
+				retVal = false; // terminate after fatal errors
+				break;
+			default:
+				assert false : Messages.format(Messages.UNRECOGNIZED_SEVERITY,
+						event.getSeverity());
 		}
 
 		// calculate the location message
 		String location = getLocation(event);
 
-		System.out.println(
-				Messages.format(Messages.SEVERITY_MESSAGE, severity, event.getMessage(), location));
+		System.out.println(Messages.format(Messages.SEVERITY_MESSAGE, severity,
+				event.getMessage(), location));
 
 		// fail on the first error or fatal error
 		return retVal;

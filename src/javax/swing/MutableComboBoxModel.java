@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -28,7 +8,7 @@ package javax.swing;
  * A mutable version of <code>ComboBoxModel</code>.
  *
  * @param <E>
- *            the type of the elements of this model
+ *        the type of the elements of this model
  *
  * @author Tom Santos
  */
@@ -41,7 +21,7 @@ public interface MutableComboBoxModel<E> extends ComboBoxModel<E> {
 	 * has been added.
 	 *
 	 * @param item
-	 *            the item to be added
+	 *             the item to be added
 	 */
 	public void addElement(E item);
 
@@ -61,9 +41,9 @@ public interface MutableComboBoxModel<E> extends ComboBoxModel<E> {
 	 * has been added.
 	 *
 	 * @param item
-	 *            the item to be added
+	 *              the item to be added
 	 * @param index
-	 *            location to add the object
+	 *              location to add the object
 	 */
 	public void insertElementAt(E item, int index);
 
@@ -73,7 +53,7 @@ public interface MutableComboBoxModel<E> extends ComboBoxModel<E> {
 	 * has been removed.
 	 *
 	 * @param index
-	 *            location of the item to be removed
+	 *              location of the item to be removed
 	 */
 	public void removeElementAt(int index);
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -325,9 +305,9 @@ public interface Action extends ActionListener {
 	 * listeners.
 	 *
 	 * @param key
-	 *            a <code>String</code> containing the key
+	 *              a <code>String</code> containing the key
 	 * @param value
-	 *            an <code>Object</code> value
+	 *              an <code>Object</code> value
 	 */
 	public void putValue(String key, Object value);
 
@@ -338,7 +318,7 @@ public interface Action extends ActionListener {
 	 * <code>PropertyChangeEvent</code> is sent to listeners.
 	 *
 	 * @param b
-	 *            true to enable this <code>Action</code>, false to disable it
+	 *          true to enable this <code>Action</code>, false to disable it
 	 */
 	public void setEnabled(boolean b);
 
@@ -358,7 +338,7 @@ public interface Action extends ActionListener {
 	 * changes, the registered listeners are informed of the change.
 	 *
 	 * @param listener
-	 *            a <code>PropertyChangeListener</code> object
+	 *                 a <code>PropertyChangeListener</code> object
 	 */
 	public void addPropertyChangeListener(PropertyChangeListener listener);
 
@@ -366,7 +346,7 @@ public interface Action extends ActionListener {
 	 * Removes a <code>PropertyChange</code> listener.
 	 *
 	 * @param listener
-	 *            a <code>PropertyChangeListener</code> object
+	 *                 a <code>PropertyChangeListener</code> object
 	 * @see #addPropertyChangeListener
 	 */
 	public void removePropertyChangeListener(PropertyChangeListener listener);

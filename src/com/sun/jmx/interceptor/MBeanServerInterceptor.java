@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.interceptor;
@@ -71,29 +51,31 @@ public interface MBeanServerInterceptor extends MBeanServer {
 	 * This method should never be called. Usually hrows
 	 * UnsupportedOperationException.
 	 */
-	public Object instantiate(String className) throws ReflectionException, MBeanException;
+	public Object instantiate(String className) throws ReflectionException,
+			MBeanException;
 
 	/**
 	 * This method should never be called. Usually throws
 	 * UnsupportedOperationException.
 	 */
 	public Object instantiate(String className, ObjectName loaderName)
-			throws ReflectionException, MBeanException, InstanceNotFoundException;
+			throws ReflectionException, MBeanException,
+			InstanceNotFoundException;
 
 	/**
 	 * This method should never be called. Usually throws
 	 * UnsupportedOperationException.
 	 */
-	public Object instantiate(String className, Object[] params, String[] signature)
-			throws ReflectionException, MBeanException;
+	public Object instantiate(String className, Object[] params,
+			String[] signature) throws ReflectionException, MBeanException;
 
 	/**
 	 * This method should never be called. Usually throws
 	 * UnsupportedOperationException.
 	 */
-	public Object instantiate(String className, ObjectName loaderName, Object[] params,
-			String[] signature)
-			throws ReflectionException, MBeanException, InstanceNotFoundException;
+	public Object instantiate(String className, ObjectName loaderName,
+			Object[] params, String[] signature) throws ReflectionException,
+			MBeanException, InstanceNotFoundException;
 
 	/**
 	 * This method should never be called. Usually throws
@@ -116,8 +98,10 @@ public interface MBeanServerInterceptor extends MBeanServer {
 	 * UnsupportedOperationException.
 	 */
 	@Deprecated
-	public ObjectInputStream deserialize(String className, ObjectName loaderName, byte[] data)
-			throws InstanceNotFoundException, OperationsException, ReflectionException;
+	public ObjectInputStream deserialize(String className,
+			ObjectName loaderName, byte[] data)
+			throws InstanceNotFoundException, OperationsException,
+			ReflectionException;
 
 	/**
 	 * This method should never be called. Usually throws

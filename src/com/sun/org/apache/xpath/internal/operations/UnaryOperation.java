@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,7 +28,8 @@ import com.sun.org.apache.xpath.internal.objects.XObject;
 /**
  * The unary operation base class.
  */
-public abstract class UnaryOperation extends Expression implements ExpressionOwner {
+public abstract class UnaryOperation extends Expression implements
+		ExpressionOwner {
 	static final long serialVersionUID = 6536083808424286166L;
 
 	/**
@@ -46,13 +44,13 @@ public abstract class UnaryOperation extends Expression implements ExpressionOwn
 	 * indexes at stylesheet build time.
 	 * 
 	 * @param vars
-	 *            List of QNames that correspond to variables. This list should
-	 *            be searched backwards for the first qualified name that
-	 *            corresponds to the variable reference qname. The position of
-	 *            the QName in the vector from the start of the vector will be
-	 *            its position in the stack frame (but variables above the
-	 *            globalsTop value will need to be offset to the current stack
-	 *            frame).
+	 *             List of QNames that correspond to variables. This list should
+	 *             be searched backwards for the first qualified name that
+	 *             corresponds to the variable reference qname. The position of
+	 *             the QName in the vector from the start of the vector will be
+	 *             its position in the stack frame (but variables above the
+	 *             globalsTop value will need to be offset to the current stack
+	 *             frame).
 	 */
 	public void fixupVariables(java.util.Vector vars, int globalsSize) {
 		m_right.fixupVariables(vars, globalsSize);
@@ -77,8 +75,8 @@ public abstract class UnaryOperation extends Expression implements ExpressionOwn
 	 *
 	 *
 	 * @param r
-	 *            The expression operand to which the unary operation will be
-	 *            applied.
+	 *          The expression operand to which the unary operation will be
+	 *          applied.
 	 */
 	public void setRight(Expression r) {
 		m_right = r;
@@ -90,14 +88,15 @@ public abstract class UnaryOperation extends Expression implements ExpressionOwn
 	 *
 	 *
 	 * @param xctxt
-	 *            The runtime execution context.
+	 *              The runtime execution context.
 	 *
 	 * @return An XObject that represents the result of applying the unary
 	 *         operation to the evaluated operand.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 
 		return operate(m_right.execute(xctxt));
 	}
@@ -107,14 +106,15 @@ public abstract class UnaryOperation extends Expression implements ExpressionOwn
 	 *
 	 *
 	 * @param right
-	 *            non-null reference to the evaluated right operand.
+	 *              non-null reference to the evaluated right operand.
 	 *
 	 * @return non-null reference to the XObject that represents the result of
 	 *         the operation.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public abstract XObject operate(XObject right) throws javax.xml.transform.TransformerException;
+	public abstract XObject operate(XObject right)
+			throws javax.xml.transform.TransformerException;
 
 	/**
 	 * @return the operand of unary operation, as an Expression.

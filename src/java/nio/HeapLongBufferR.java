@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -63,7 +43,8 @@ class HeapLongBufferR extends HeapLongBuffer {
 
 	}
 
-	protected HeapLongBufferR(long[] buf, int mark, int pos, int lim, int cap, int off) {
+	protected HeapLongBufferR(long[] buf, int mark, int pos, int lim, int cap,
+			int off) {
 
 		super(buf, mark, pos, lim, cap, off);
 		this.isReadOnly = true;
@@ -71,13 +52,13 @@ class HeapLongBufferR extends HeapLongBuffer {
 	}
 
 	public LongBuffer slice() {
-		return new HeapLongBufferR(hb, -1, 0, this.remaining(), this.remaining(),
-				this.position() + offset);
+		return new HeapLongBufferR(hb, -1, 0, this.remaining(), this
+				.remaining(), this.position() + offset);
 	}
 
 	public LongBuffer duplicate() {
-		return new HeapLongBufferR(hb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new HeapLongBufferR(hb, this.markValue(), this.position(), this
+				.limit(), this.capacity(), offset);
 	}
 
 	public LongBuffer asReadOnlyBuffer() {

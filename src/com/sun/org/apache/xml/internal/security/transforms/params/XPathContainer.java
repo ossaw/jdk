@@ -36,7 +36,8 @@ import org.w3c.dom.Text;
  *
  * @author Christian Geuer-Pollmann
  */
-public class XPathContainer extends SignatureElementProxy implements TransformParam {
+public class XPathContainer extends SignatureElementProxy implements
+		TransformParam {
 
 	/**
 	 * Constructor XPathContainer

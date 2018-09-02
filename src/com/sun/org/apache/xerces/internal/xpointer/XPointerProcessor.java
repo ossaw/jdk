@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,11 +50,13 @@ public interface XPointerProcessor {
 	 * the order (left-to-right) they appear in the XPointer expression.
 	 *
 	 * @param xpointer
-	 *            A String representing the xpointer expression.
+	 *                 A String representing the xpointer expression.
 	 * @throws XNIException
-	 *             Thrown if the xpointer string does not conform to the
-	 *             XPointer Framework syntax or the syntax of the pointer part
-	 *             does not conform to its definition for its scheme.
+	 *                      Thrown if the xpointer string does not conform to
+	 *                      the
+	 *                      XPointer Framework syntax or the syntax of the
+	 *                      pointer part
+	 *                      does not conform to its definition for its scheme.
 	 *
 	 */
 	public void parseXPointer(String xpointer) throws XNIException;
@@ -68,22 +67,23 @@ public interface XPointerProcessor {
 	 * specified in the xpointer expression.
 	 *
 	 * @param element
-	 *            - The name of the element.
+	 *                   - The name of the element.
 	 * @param attributes
-	 *            - The element attributes.
+	 *                   - The element attributes.
 	 * @param augs
-	 *            - Additional information that may include infoset
-	 *            augmentations
+	 *                   - Additional information that may include infoset
+	 *                   augmentations
 	 * @param event
-	 *            - An integer indicating 0 - The start of an element 1 - The
-	 *            end of an element 2 - An empty element call
+	 *                   - An integer indicating 0 - The start of an element 1 -
+	 *                   The
+	 *                   end of an element 2 - An empty element call
 	 * @return true if the element was resolved by the xpointer
 	 * @throws XNIException
-	 *             Thrown to signal an error
+	 *                      Thrown to signal an error
 	 *
 	 */
-	public boolean resolveXPointer(QName element, XMLAttributes attributes, Augmentations augs,
-			int event) throws XNIException;
+	public boolean resolveXPointer(QName element, XMLAttributes attributes,
+			Augmentations augs, int event) throws XNIException;
 
 	/**
 	 * Returns true if the XPointer expression resolves to the current resource
@@ -93,7 +93,7 @@ public interface XPointerProcessor {
 	 * @return True if the xpointer expression matches a node/fragment in the
 	 *         resource else returns false.
 	 * @throws XNIException
-	 *             Thrown to signal an error
+	 *                      Thrown to signal an error
 	 *
 	 */
 	public boolean isFragmentResolved() throws XNIException;
@@ -105,7 +105,7 @@ public interface XPointerProcessor {
 	 * @return True if the xpointer expression matches a fragment in the
 	 *         resource else returns false.
 	 * @throws XNIException
-	 *             Thrown to signal an error
+	 *                      Thrown to signal an error
 	 *
 	 */
 	public boolean isXPointerResolved() throws XNIException;

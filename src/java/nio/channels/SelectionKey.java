@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -123,8 +103,7 @@ public abstract class SelectionKey {
 	/**
 	 * Constructs an instance of this class.
 	 */
-	protected SelectionKey() {
-	}
+	protected SelectionKey() {}
 
 	// -- Channel and selector operations --
 
@@ -193,7 +172,7 @@ public abstract class SelectionKey {
 	 * @return This key's interest set
 	 *
 	 * @throws CancelledKeyException
-	 *             If this key has been cancelled
+	 *                               If this key has been cancelled
 	 */
 	public abstract int interestOps();
 
@@ -211,12 +190,14 @@ public abstract class SelectionKey {
 	 * @return This selection key
 	 *
 	 * @throws IllegalArgumentException
-	 *             If a bit in the set does not correspond to an operation that
-	 *             is supported by this key's channel, that is, if
-	 *             {@code (ops & ~channel().validOps()) != 0}
+	 *                                  If a bit in the set does not correspond
+	 *                                  to an operation that
+	 *                                  is supported by this key's channel, that
+	 *                                  is, if
+	 *                                  {@code (ops & ~channel().validOps()) != 0}
 	 *
 	 * @throws CancelledKeyException
-	 *             If this key has been cancelled
+	 *                                  If this key has been cancelled
 	 */
 	public abstract SelectionKey interestOps(int ops);
 
@@ -231,7 +212,7 @@ public abstract class SelectionKey {
 	 * @return This key's ready-operation set
 	 *
 	 * @throws CancelledKeyException
-	 *             If this key has been cancelled
+	 *                               If this key has been cancelled
 	 */
 	public abstract int readyOps();
 
@@ -320,7 +301,7 @@ public abstract class SelectionKey {
 	 *         nonzero
 	 *
 	 * @throws CancelledKeyException
-	 *             If this key has been cancelled
+	 *                               If this key has been cancelled
 	 */
 	public final boolean isReadable() {
 		return (readyOps() & OP_READ) != 0;
@@ -352,7 +333,7 @@ public abstract class SelectionKey {
 	 *         nonzero
 	 *
 	 * @throws CancelledKeyException
-	 *             If this key has been cancelled
+	 *                               If this key has been cancelled
 	 */
 	public final boolean isWritable() {
 		return (readyOps() & OP_WRITE) != 0;
@@ -385,7 +366,7 @@ public abstract class SelectionKey {
 	 *         nonzero
 	 *
 	 * @throws CancelledKeyException
-	 *             If this key has been cancelled
+	 *                               If this key has been cancelled
 	 */
 	public final boolean isConnectable() {
 		return (readyOps() & OP_CONNECT) != 0;
@@ -418,7 +399,7 @@ public abstract class SelectionKey {
 	 *         nonzero
 	 *
 	 * @throws CancelledKeyException
-	 *             If this key has been cancelled
+	 *                               If this key has been cancelled
 	 */
 	public final boolean isAcceptable() {
 		return (readyOps() & OP_ACCEPT) != 0;
@@ -442,7 +423,7 @@ public abstract class SelectionKey {
 	 * </p>
 	 *
 	 * @param ob
-	 *            The object to be attached; may be <tt>null</tt>
+	 *           The object to be attached; may be <tt>null</tt>
 	 *
 	 * @return The previously-attached object, if any, otherwise <tt>null</tt>
 	 */

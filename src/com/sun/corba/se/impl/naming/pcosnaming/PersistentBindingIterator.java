@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.naming.pcosnaming;
@@ -64,18 +44,18 @@ public class PersistentBindingIterator extends BindingIteratorImpl {
 	 * Constructs a new PersistentBindingIterator object.
 	 * 
 	 * @param orb
-	 *            a org.omg.CORBA.ORB object.
+	 *               a org.omg.CORBA.ORB object.
 	 * @param aTable
-	 *            A hashtable containing InternalBindingValues which is the
-	 *            content of the PersistentNamingContext.
-	 * @param java.lang.Exception
-	 *            a Java exception.
+	 *               A hashtable containing InternalBindingValues which is the
+	 *               content of the PersistentNamingContext.
+	 * @param        java.lang.Exception
+	 *               a Java exception.
 	 * @exception Exception
-	 *                a Java exception thrown of the base class cannot
-	 *                initialize.
+	 *                      a Java exception thrown of the base class cannot
+	 *                      initialize.
 	 */
-	public PersistentBindingIterator(org.omg.CORBA.ORB orb, Hashtable aTable, POA thePOA)
-			throws java.lang.Exception {
+	public PersistentBindingIterator(org.omg.CORBA.ORB orb, Hashtable aTable,
+			POA thePOA) throws java.lang.Exception {
 		super(orb);
 		this.orb = orb;
 		theHashtable = aTable;
@@ -90,17 +70,19 @@ public class PersistentBindingIterator extends BindingIteratorImpl {
 	 * next binding from the InternalBindingValue.
 	 * 
 	 * @param b
-	 *            The Binding as an out parameter.
+	 *          The Binding as an out parameter.
 	 * @return true if there were more bindings.
 	 */
 	final public boolean NextOne(org.omg.CosNaming.BindingHolder b) {
 		// If there are more elements get the next element
 		boolean hasMore = theEnumeration.hasMoreElements();
 		if (hasMore) {
-			InternalBindingKey theBindingKey = ((InternalBindingKey) theEnumeration.nextElement());
+			InternalBindingKey theBindingKey = ((InternalBindingKey) theEnumeration
+					.nextElement());
 			InternalBindingValue theElement = (InternalBindingValue) theHashtable
 					.get(theBindingKey);
-			NameComponent n = new NameComponent(theBindingKey.id, theBindingKey.kind);
+			NameComponent n = new NameComponent(theBindingKey.id,
+					theBindingKey.kind);
 			NameComponent[] nlist = new NameComponent[1];
 			nlist[0] = n;
 			BindingType theType = theElement.theBindingType;
@@ -117,7 +99,7 @@ public class PersistentBindingIterator extends BindingIteratorImpl {
 	 * Destroys this BindingIterator by disconnecting from the ORB
 	 * 
 	 * @exception org.omg.CORBA.SystemException
-	 *                One of a fixed set of CORBA system exceptions.
+	 *            One of a fixed set of CORBA system exceptions.
 	 */
 	final public void Destroy() {
 		// Remove the object from the Active Object Map.

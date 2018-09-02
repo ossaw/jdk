@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.pept.transport;
@@ -156,7 +136,8 @@ public interface Acceptor {
 	 * @return {@link com.sun.corba.se.pept.protocol.MessageMeidator
 	 *         MessageMediator}
 	 */
-	public MessageMediator createMessageMediator(Broker xbroker, Connection xconnection);
+	public MessageMediator createMessageMediator(Broker xbroker,
+			Connection xconnection);
 
 	// REVISIT: Identical to ContactInfo method. Refactor into base interface.
 
@@ -171,8 +152,8 @@ public interface Acceptor {
 	 *         MessageMediator}
 	 */
 
-	public MessageMediator finishCreatingMessageMediator(Broker broker, Connection xconnection,
-			MessageMediator messageMediator);
+	public MessageMediator finishCreatingMessageMediator(Broker broker,
+			Connection xconnection, MessageMediator messageMediator);
 
 	/**
 	 * Used to get a {@link com.sun.corba.se.pept.encoding.InputObject
@@ -181,7 +162,8 @@ public interface Acceptor {
 	 *
 	 * @return {@link com.sun.corba.se.pept.encoding.InputObject InputObject}
 	 */
-	public InputObject createInputObject(Broker broker, MessageMediator messageMediator);
+	public InputObject createInputObject(Broker broker,
+			MessageMediator messageMediator);
 
 	/**
 	 * Used to get a {@link com.sun.corba.se.pept.encoding.OutputObject
@@ -190,7 +172,8 @@ public interface Acceptor {
 	 *
 	 * @return {@link com.sun.corba.se.pept.encoding.OutputObject OutputObject}
 	 */
-	public OutputObject createOutputObject(Broker broker, MessageMediator messageMediator);
+	public OutputObject createOutputObject(Broker broker,
+			MessageMediator messageMediator);
 
 	//
 	// Usage dictates implementation equals and hashCode.

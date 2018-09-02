@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi;
@@ -97,8 +77,9 @@ public abstract class MidiMessage implements Cloneable {
 	 * specifies a complete, valid MIDI message.
 	 *
 	 * @param data
-	 *            an array of bytes containing the complete message. The message
-	 *            data may be changed using the <code>setMessage</code> method.
+	 *             an array of bytes containing the complete message. The
+	 *             message
+	 *             data may be changed using the <code>setMessage</code> method.
 	 *
 	 * @see #setMessage
 	 */
@@ -115,16 +96,19 @@ public abstract class MidiMessage implements Cloneable {
 	 * complete, valid MIDI message.
 	 *
 	 * @param data
-	 *            the data bytes in the MIDI message
+	 *               the data bytes in the MIDI message
 	 * @param length
-	 *            the number of bytes in the data byte array
+	 *               the number of bytes in the data byte array
 	 * @throws InvalidMidiDataException
-	 *             if the parameter values do not specify a valid MIDI meta
-	 *             message
+	 *                                  if the parameter values do not specify a
+	 *                                  valid MIDI meta
+	 *                                  message
 	 */
-	protected void setMessage(byte[] data, int length) throws InvalidMidiDataException {
+	protected void setMessage(byte[] data, int length)
+			throws InvalidMidiDataException {
 		if (length < 0 || (length > 0 && length > data.length)) {
-			throw new IndexOutOfBoundsException("length out of bounds: " + length);
+			throw new IndexOutOfBoundsException("length out of bounds: "
+					+ length);
 		}
 		this.length = length;
 

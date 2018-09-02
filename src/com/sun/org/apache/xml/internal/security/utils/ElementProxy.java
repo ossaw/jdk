@@ -60,8 +60,7 @@ public abstract class ElementProxy {
 	 * Constructor ElementProxy
 	 *
 	 */
-	public ElementProxy() {
-	}
+	public ElementProxy() {}
 
 	/**
 	 * Constructor ElementProxy
@@ -74,8 +73,8 @@ public abstract class ElementProxy {
 		}
 
 		this.doc = doc;
-		this.constructionElement = createElementForFamilyLocal(this.doc, this.getBaseNamespace(),
-				this.getBaseLocalName());
+		this.constructionElement = createElementForFamilyLocal(this.doc, this
+				.getBaseNamespace(), this.getBaseLocalName());
 	}
 
 	/**
@@ -85,14 +84,15 @@ public abstract class ElementProxy {
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public ElementProxy(Element element, String BaseURI) throws XMLSecurityException {
+	public ElementProxy(Element element, String BaseURI)
+			throws XMLSecurityException {
 		if (element == null) {
 			throw new XMLSecurityException("ElementProxy.nullElement");
 		}
 
 		if (log.isLoggable(java.util.logging.Level.FINE)) {
-			log.log(java.util.logging.Level.FINE,
-					"setElement(\"" + element.getTagName() + "\", \"" + BaseURI + "\")");
+			log.log(java.util.logging.Level.FINE, "setElement(\"" + element
+					.getTagName() + "\", \"" + BaseURI + "\")");
 		}
 
 		this.doc = element.getOwnerDocument();
@@ -116,8 +116,8 @@ public abstract class ElementProxy {
 	 */
 	public abstract String getBaseLocalName();
 
-	protected Element createElementForFamilyLocal(Document doc, String namespace,
-			String localName) {
+	protected Element createElementForFamilyLocal(Document doc,
+			String namespace, String localName) {
 		Element result = null;
 		if (namespace == null) {
 			result = doc.createElementNS(null, localName);
@@ -126,10 +126,13 @@ public abstract class ElementProxy {
 			String prefix = ElementProxy.getDefaultPrefix(baseName);
 			if ((prefix == null) || (prefix.length() == 0)) {
 				result = doc.createElementNS(namespace, localName);
-				result.setAttributeNS(Constants.NamespaceSpecNS, "xmlns", namespace);
+				result.setAttributeNS(Constants.NamespaceSpecNS, "xmlns",
+						namespace);
 			} else {
-				result = doc.createElementNS(namespace, prefix + ":" + localName);
-				result.setAttributeNS(Constants.NamespaceSpecNS, "xmlns:" + prefix, namespace);
+				result = doc.createElementNS(namespace, prefix + ":"
+						+ localName);
+				result.setAttributeNS(Constants.NamespaceSpecNS, "xmlns:"
+						+ prefix, namespace);
 			}
 		}
 		return result;
@@ -146,7 +149,8 @@ public abstract class ElementProxy {
 	 * @param localName
 	 * @return The element created.
 	 */
-	public static Element createElementForFamily(Document doc, String namespace, String localName) {
+	public static Element createElementForFamily(Document doc, String namespace,
+			String localName) {
 		Element result = null;
 		String prefix = ElementProxy.getDefaultPrefix(namespace);
 
@@ -155,10 +159,13 @@ public abstract class ElementProxy {
 		} else {
 			if ((prefix == null) || (prefix.length() == 0)) {
 				result = doc.createElementNS(namespace, localName);
-				result.setAttributeNS(Constants.NamespaceSpecNS, "xmlns", namespace);
+				result.setAttributeNS(Constants.NamespaceSpecNS, "xmlns",
+						namespace);
 			} else {
-				result = doc.createElementNS(namespace, prefix + ":" + localName);
-				result.setAttributeNS(Constants.NamespaceSpecNS, "xmlns:" + prefix, namespace);
+				result = doc.createElementNS(namespace, prefix + ":"
+						+ localName);
+				result.setAttributeNS(Constants.NamespaceSpecNS, "xmlns:"
+						+ prefix, namespace);
 			}
 		}
 
@@ -172,14 +179,15 @@ public abstract class ElementProxy {
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public void setElement(Element element, String BaseURI) throws XMLSecurityException {
+	public void setElement(Element element, String BaseURI)
+			throws XMLSecurityException {
 		if (element == null) {
 			throw new XMLSecurityException("ElementProxy.nullElement");
 		}
 
 		if (log.isLoggable(java.util.logging.Level.FINE)) {
-			log.log(java.util.logging.Level.FINE,
-					"setElement(" + element.getTagName() + ", \"" + BaseURI + "\"");
+			log.log(java.util.logging.Level.FINE, "setElement(" + element
+					.getTagName() + ", \"" + BaseURI + "\"");
 		}
 
 		this.doc = element.getOwnerDocument();
@@ -260,7 +268,8 @@ public abstract class ElementProxy {
 	 */
 	public void addBigIntegerElement(BigInteger bi, String localname) {
 		if (bi != null) {
-			Element e = XMLUtils.createElementInSignatureSpace(this.doc, localname);
+			Element e = XMLUtils.createElementInSignatureSpace(this.doc,
+					localname);
 
 			Base64.fillElementWithBigInteger(e, bi);
 			this.constructionElement.appendChild(e);
@@ -280,7 +289,8 @@ public abstract class ElementProxy {
 
 			this.constructionElement.appendChild(e);
 			if (!XMLUtils.ignoreLineBreaks()) {
-				this.constructionElement.appendChild(this.doc.createTextNode("\n"));
+				this.constructionElement.appendChild(this.doc.createTextNode(
+						"\n"));
 			}
 		}
 	}
@@ -307,8 +317,10 @@ public abstract class ElementProxy {
 	 */
 	public void addBase64Text(byte[] bytes) {
 		if (bytes != null) {
-			Text t = XMLUtils.ignoreLineBreaks() ? this.doc.createTextNode(Base64.encode(bytes))
-					: this.doc.createTextNode("\n" + Base64.encode(bytes) + "\n");
+			Text t = XMLUtils.ignoreLineBreaks() ? this.doc.createTextNode(
+					Base64.encode(bytes))
+					: this.doc.createTextNode("\n" + Base64.encode(bytes)
+							+ "\n");
 			this.constructionElement.appendChild(t);
 		}
 	}
@@ -334,10 +346,11 @@ public abstract class ElementProxy {
 	 * @return The biginteger contained in the given element
 	 * @throws Base64DecodingException
 	 */
-	public BigInteger getBigIntegerFromChildElement(String localname, String namespace)
-			throws Base64DecodingException {
-		return Base64.decodeBigIntegerFromText(XMLUtils
-				.selectNodeText(this.constructionElement.getFirstChild(), namespace, localname, 0));
+	public BigInteger getBigIntegerFromChildElement(String localname,
+			String namespace) throws Base64DecodingException {
+		return Base64.decodeBigIntegerFromText(XMLUtils.selectNodeText(
+				this.constructionElement.getFirstChild(), namespace, localname,
+				0));
 	}
 
 	/**
@@ -352,8 +365,8 @@ public abstract class ElementProxy {
 	@Deprecated
 	public byte[] getBytesFromChildElement(String localname, String namespace)
 			throws XMLSecurityException {
-		Element e = XMLUtils.selectNode(this.constructionElement.getFirstChild(), namespace,
-				localname, 0);
+		Element e = XMLUtils.selectNode(this.constructionElement
+				.getFirstChild(), namespace, localname, 0);
 
 		return Base64.decode(e);
 	}
@@ -366,9 +379,8 @@ public abstract class ElementProxy {
 	 * @return the Text of the textNode
 	 */
 	public String getTextFromChildElement(String localname, String namespace) {
-		return XMLUtils
-				.selectNode(this.constructionElement.getFirstChild(), namespace, localname, 0)
-				.getTextContent();
+		return XMLUtils.selectNode(this.constructionElement.getFirstChild(),
+				namespace, localname, 0).getTextContent();
 	}
 
 	/**
@@ -378,7 +390,8 @@ public abstract class ElementProxy {
 	 * @throws XMLSecurityException
 	 */
 	public byte[] getBytesFromTextChild() throws XMLSecurityException {
-		return Base64.decode(XMLUtils.getFullTextChildrenFromElement(this.constructionElement));
+		return Base64.decode(XMLUtils.getFullTextChildrenFromElement(
+				this.constructionElement));
 	}
 
 	/**
@@ -388,7 +401,8 @@ public abstract class ElementProxy {
 	 *         element
 	 */
 	public String getTextFromTextChild() {
-		return XMLUtils.getFullTextChildrenFromElement(this.constructionElement);
+		return XMLUtils.getFullTextChildrenFromElement(
+				this.constructionElement);
 	}
 
 	/**
@@ -402,8 +416,8 @@ public abstract class ElementProxy {
 		int number = 0;
 		Node sibling = this.constructionElement.getFirstChild();
 		while (sibling != null) {
-			if (localname.equals(sibling.getLocalName())
-					&& namespace.equals(sibling.getNamespaceURI())) {
+			if (localname.equals(sibling.getLocalName()) && namespace.equals(
+					sibling.getNamespaceURI())) {
 				number++;
 			}
 			sibling = sibling.getNextSibling();
@@ -416,15 +430,18 @@ public abstract class ElementProxy {
 	 *
 	 * <PRE>
 	 * // set namespace with ds prefix
-	 * xpathContainer.setXPathNamespaceContext("ds", "http://www.w3.org/2000/09/xmldsig#");
-	 * xpathContainer.setXPathNamespaceContext("xmlns:ds", "http://www.w3.org/2000/09/xmldsig#");
+	 * xpathContainer.setXPathNamespaceContext("ds",
+	 * 		"http://www.w3.org/2000/09/xmldsig#");
+	 * xpathContainer.setXPathNamespaceContext("xmlns:ds",
+	 * 		"http://www.w3.org/2000/09/xmldsig#");
 	 * </PRE>
 	 *
 	 * @param prefix
 	 * @param uri
 	 * @throws XMLSecurityException
 	 */
-	public void setXPathNamespaceContext(String prefix, String uri) throws XMLSecurityException {
+	public void setXPathNamespaceContext(String prefix, String uri)
+			throws XMLSecurityException {
 		String ns;
 
 		if ((prefix == null) || (prefix.length() == 0)) {
@@ -437,18 +454,22 @@ public abstract class ElementProxy {
 			ns = "xmlns:" + prefix;
 		}
 
-		Attr a = this.constructionElement.getAttributeNodeNS(Constants.NamespaceSpecNS, ns);
+		Attr a = this.constructionElement.getAttributeNodeNS(
+				Constants.NamespaceSpecNS, ns);
 
 		if (a != null) {
 			if (!a.getNodeValue().equals(uri)) {
-				Object exArgs[] = { ns, this.constructionElement.getAttributeNS(null, ns) };
+				Object exArgs[] = { ns, this.constructionElement.getAttributeNS(
+						null, ns) };
 
-				throw new XMLSecurityException("namespacePrefixAlreadyUsedByOtherURI", exArgs);
+				throw new XMLSecurityException(
+						"namespacePrefixAlreadyUsedByOtherURI", exArgs);
 			}
 			return;
 		}
 
-		this.constructionElement.setAttributeNS(Constants.NamespaceSpecNS, ns, uri);
+		this.constructionElement.setAttributeNS(Constants.NamespaceSpecNS, ns,
+				uri);
 	}
 
 	/**
@@ -458,8 +479,9 @@ public abstract class ElementProxy {
 	 * @param prefix
 	 * @throws XMLSecurityException
 	 * @throws SecurityException
-	 *             if a security manager is installed and the caller does not
-	 *             have permission to set the default prefix
+	 *                              if a security manager is installed and the
+	 *                              caller does not
+	 *                              have permission to set the default prefix
 	 */
 	public static void setDefaultPrefix(String namespace, String prefix)
 			throws XMLSecurityException {
@@ -469,7 +491,8 @@ public abstract class ElementProxy {
 			if (!storedPrefix.equals(prefix)) {
 				Object exArgs[] = { prefix, namespace, storedPrefix };
 
-				throw new XMLSecurityException("prefix.AlreadyAssigned", exArgs);
+				throw new XMLSecurityException("prefix.AlreadyAssigned",
+						exArgs);
 			}
 		}
 
@@ -489,11 +512,16 @@ public abstract class ElementProxy {
 		setDefaultPrefix("http://www.w3.org/2000/09/xmldsig#", "ds");
 		setDefaultPrefix("http://www.w3.org/2001/04/xmlenc#", "xenc");
 		setDefaultPrefix("http://www.w3.org/2009/xmlenc11#", "xenc11");
-		setDefaultPrefix("http://www.xmlsecurity.org/experimental#", "experimental");
-		setDefaultPrefix("http://www.w3.org/2002/04/xmldsig-filter2", "dsig-xpath-old");
-		setDefaultPrefix("http://www.w3.org/2002/06/xmldsig-filter2", "dsig-xpath");
+		setDefaultPrefix("http://www.xmlsecurity.org/experimental#",
+				"experimental");
+		setDefaultPrefix("http://www.w3.org/2002/04/xmldsig-filter2",
+				"dsig-xpath-old");
+		setDefaultPrefix("http://www.w3.org/2002/06/xmldsig-filter2",
+				"dsig-xpath");
 		setDefaultPrefix("http://www.w3.org/2001/10/xml-exc-c14n#", "ec");
-		setDefaultPrefix("http://www.nue.et-inf.uni-siegen.de/~geuer-pollmann/#xpathFilter", "xx");
+		setDefaultPrefix(
+				"http://www.nue.et-inf.uni-siegen.de/~geuer-pollmann/#xpathFilter",
+				"xx");
 	}
 
 	/**

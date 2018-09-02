@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.synth;
 
@@ -38,7 +18,8 @@ import java.beans.*;
  * @author Joshua Outwater
  * @since 1.7
  */
-public class SynthSpinnerUI extends BasicSpinnerUI implements PropertyChangeListener, SynthUI {
+public class SynthSpinnerUI extends BasicSpinnerUI implements
+		PropertyChangeListener, SynthUI {
 	private SynthStyle style;
 	/**
 	 * A FocusListener implementation which causes the entire spinner to be
@@ -55,7 +36,7 @@ public class SynthSpinnerUI extends BasicSpinnerUI implements PropertyChangeList
 	 * Returns a new instance of SynthSpinnerUI.
 	 *
 	 * @param c
-	 *            the JSpinner (not used)
+	 *          the JSpinner (not used)
 	 * @see ComponentUI#createUI
 	 * @return a new SynthSpinnerUI object
 	 */
@@ -259,8 +240,8 @@ public class SynthSpinnerUI extends BasicSpinnerUI implements PropertyChangeList
 
 			}
 			// copy across the sizeVariant property to the editor
-			text.putClientProperty("JComponent.sizeVariant",
-					spinner.getClientProperty("JComponent.sizeVariant"));
+			text.putClientProperty("JComponent.sizeVariant", spinner
+					.getClientProperty("JComponent.sizeVariant"));
 		}
 	}
 
@@ -286,9 +267,9 @@ public class SynthSpinnerUI extends BasicSpinnerUI implements PropertyChangeList
 	 * Look and Feel rendering code should reside in the {@code paint} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -296,7 +277,8 @@ public class SynthSpinnerUI extends BasicSpinnerUI implements PropertyChangeList
 		SynthContext context = getContext(c);
 
 		SynthLookAndFeel.update(context, g);
-		context.getPainter().paintSpinnerBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
+		context.getPainter().paintSpinnerBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight());
 		paint(context, g);
 		context.dispose();
 	}
@@ -308,9 +290,9 @@ public class SynthSpinnerUI extends BasicSpinnerUI implements PropertyChangeList
 	 * the {@link #paint(SynthContext,Graphics)} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -325,19 +307,19 @@ public class SynthSpinnerUI extends BasicSpinnerUI implements PropertyChangeList
 	 * Paints the specified component. This implementation does nothing.
 	 *
 	 * @param context
-	 *            context for the component being painted
+	 *                context for the component being painted
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *                the {@code Graphics} object used for painting
 	 * @see #update(Graphics,JComponent)
 	 */
-	protected void paint(SynthContext context, Graphics g) {
-	}
+	protected void paint(SynthContext context, Graphics g) {}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
 		context.getPainter().paintSpinnerBorder(context, g, x, y, w, h);
 	}
 
@@ -397,7 +379,8 @@ public class SynthSpinnerUI extends BasicSpinnerUI implements PropertyChangeList
 			return preferredLayoutSize(parent);
 		}
 
-		private void setBounds(Component c, int x, int y, int width, int height) {
+		private void setBounds(Component c, int x, int y, int width,
+				int height) {
 			if (c != null) {
 				c.setBounds(x, y, width, height);
 			}
@@ -428,8 +411,10 @@ public class SynthSpinnerUI extends BasicSpinnerUI implements PropertyChangeList
 
 			int previousY = insets.top + nextHeight;
 			setBounds(editor, editorX, insets.top, editorWidth, availHeight);
-			setBounds(nextButton, buttonsX, insets.top, buttonsWidth, nextHeight);
-			setBounds(previousButton, buttonsX, previousY, buttonsWidth, previousHeight);
+			setBounds(nextButton, buttonsX, insets.top, buttonsWidth,
+					nextHeight);
+			setBounds(previousButton, buttonsX, previousY, buttonsWidth,
+					previousHeight);
 		}
 	}
 

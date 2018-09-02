@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,22 +36,24 @@ import org.w3c.dom.Element;
  */
 class XSDUniqueOrKeyTraverser extends XSDAbstractIDConstraintTraverser {
 
-	public XSDUniqueOrKeyTraverser(XSDHandler handler, XSAttributeChecker gAttrCheck) {
+	public XSDUniqueOrKeyTraverser(XSDHandler handler,
+			XSAttributeChecker gAttrCheck) {
 		super(handler, gAttrCheck);
 	}
 
-	void traverse(Element uElem, XSElementDecl element, XSDocumentInfo schemaDoc,
-			SchemaGrammar grammar) {
+	void traverse(Element uElem, XSElementDecl element,
+			XSDocumentInfo schemaDoc, SchemaGrammar grammar) {
 
 		// General Attribute Checking
-		Object[] attrValues = fAttrChecker.checkAttributes(uElem, false, schemaDoc);
+		Object[] attrValues = fAttrChecker.checkAttributes(uElem, false,
+				schemaDoc);
 
 		// create identity constraint
 		String uName = (String) attrValues[XSAttributeChecker.ATTIDX_NAME];
 
 		if (uName == null) {
-			reportSchemaError("s4s-att-must-appear",
-					new Object[] { DOMUtil.getLocalName(uElem), SchemaSymbols.ATT_NAME }, uElem);
+			reportSchemaError("s4s-att-must-appear", new Object[] { DOMUtil
+					.getLocalName(uElem), SchemaSymbols.ATT_NAME }, uElem);
 			// return this array back to pool
 			fAttrChecker.returnAttrArray(attrValues, schemaDoc);
 			return;
@@ -62,11 +61,11 @@ class XSDUniqueOrKeyTraverser extends XSDAbstractIDConstraintTraverser {
 
 		UniqueOrKey uniqueOrKey = null;
 		if (DOMUtil.getLocalName(uElem).equals(SchemaSymbols.ELT_UNIQUE)) {
-			uniqueOrKey = new UniqueOrKey(schemaDoc.fTargetNamespace, uName, element.fName,
-					IdentityConstraint.IC_UNIQUE);
+			uniqueOrKey = new UniqueOrKey(schemaDoc.fTargetNamespace, uName,
+					element.fName, IdentityConstraint.IC_UNIQUE);
 		} else {
-			uniqueOrKey = new UniqueOrKey(schemaDoc.fTargetNamespace, uName, element.fName,
-					IdentityConstraint.IC_KEY);
+			uniqueOrKey = new UniqueOrKey(schemaDoc.fTargetNamespace, uName,
+					element.fName, IdentityConstraint.IC_KEY);
 		}
 		// it's XSDElementTraverser's job to ensure that there's no
 		// duplication (or if there is that restriction is involved
@@ -74,15 +73,18 @@ class XSDUniqueOrKeyTraverser extends XSDAbstractIDConstraintTraverser {
 
 		// If errors occurred in traversing the identity constraint, then don't
 		// add it to the schema, to avoid errors when processing the instance.
-		if (traverseIdentityConstraint(uniqueOrKey, uElem, schemaDoc, attrValues)) {
+		if (traverseIdentityConstraint(uniqueOrKey, uElem, schemaDoc,
+				attrValues)) {
 			// and stuff this in the grammar
-			if (grammar.getIDConstraintDecl(uniqueOrKey.getIdentityConstraintName()) == null) {
+			if (grammar.getIDConstraintDecl(uniqueOrKey
+					.getIdentityConstraintName()) == null) {
 				grammar.addIDConstraintDecl(element, uniqueOrKey);
 			}
 
-			final String loc = fSchemaHandler.schemaDocument2SystemId(schemaDoc);
-			final IdentityConstraint idc = grammar
-					.getIDConstraintDecl(uniqueOrKey.getIdentityConstraintName(), loc);
+			final String loc = fSchemaHandler.schemaDocument2SystemId(
+					schemaDoc);
+			final IdentityConstraint idc = grammar.getIDConstraintDecl(
+					uniqueOrKey.getIdentityConstraintName(), loc);
 			if (idc == null) {
 				grammar.addIDConstraintDecl(element, uniqueOrKey, loc);
 			}

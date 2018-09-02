@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -35,5 +15,4 @@ package org.omg.CORBA;
  * July 17, 1999 12:26:21 AM PDT.
  */
 
-public interface CurrentOperations {
-} // interface CurrentOperations
+public interface CurrentOperations {} // interface CurrentOperations

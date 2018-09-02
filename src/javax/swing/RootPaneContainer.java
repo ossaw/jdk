@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -103,10 +83,11 @@ public interface RootPaneContainer {
 	 * <code>getRootPane().setContentPane(contentPane);</code>
 	 *
 	 * @exception java.awt.IllegalComponentStateException
-	 *                (a runtime exception) if the content pane parameter is
-	 *                null
+	 *            (a runtime exception) if the content pane parameter is
+	 *            null
 	 * @param contentPane
-	 *            the Container to use for the contents of this JRootPane
+	 *                    the Container to use for the contents of this
+	 *                    JRootPane
 	 * @see JRootPane#getContentPane
 	 * @see #getContentPane
 	 */
@@ -135,8 +116,8 @@ public interface RootPaneContainer {
 	 * </pre>
 	 *
 	 * @exception java.awt.IllegalComponentStateException
-	 *                (a runtime exception) if the layered pane parameter is
-	 *                null
+	 *            (a runtime exception) if the layered pane parameter is
+	 *            null
 	 * @see #getLayeredPane
 	 * @see JRootPane#getLayeredPane
 	 */

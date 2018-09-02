@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.zip;
@@ -82,18 +62,20 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 * 2099 - setting this to a time that is before but near 2099 should be
 	 * sufficient.
 	 */
-	private static final long UPPER_DOSTIME_BOUND = 128L * 365 * 24 * 60 * 60 * 1000;
+	private static final long UPPER_DOSTIME_BOUND = 128L * 365 * 24 * 60 * 60
+			* 1000;
 
 	/**
 	 * Creates a new zip entry with the specified name.
 	 *
 	 * @param name
-	 *            The entry name
+	 *             The entry name
 	 *
 	 * @throws NullPointerException
-	 *             if the entry name is null
+	 *                                  if the entry name is null
 	 * @throws IllegalArgumentException
-	 *             if the entry name is longer than 0xFFFF bytes
+	 *                                  if the entry name is longer than 0xFFFF
+	 *                                  bytes
 	 */
 	public ZipEntry(String name) {
 		Objects.requireNonNull(name, "name");
@@ -107,10 +89,10 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 * Creates a new zip entry with fields taken from the specified zip entry.
 	 *
 	 * @param e
-	 *            A zip Entry object
+	 *          A zip Entry object
 	 *
 	 * @throws NullPointerException
-	 *             if the entry object is null
+	 *                              if the entry object is null
 	 */
 	public ZipEntry(ZipEntry e) {
 		Objects.requireNonNull(e, "entry");
@@ -131,8 +113,7 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	/**
 	 * Creates a new un-initialized zip entry
 	 */
-	ZipEntry() {
-	}
+	ZipEntry() {}
 
 	/**
 	 * Returns the name of the entry.
@@ -155,8 +136,8 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 * convert the epoch time to the MS-DOS data and time.
 	 *
 	 * @param time
-	 *            The last modification time of the entry in milliseconds since
-	 *            the epoch
+	 *             The last modification time of the entry in milliseconds since
+	 *             the epoch
 	 *
 	 * @see #getTime()
 	 * @see #getLastModifiedTime()
@@ -206,11 +187,11 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 * {@code optional extra data} in UTC time.
 	 *
 	 * @param time
-	 *            The last modification time of the entry
+	 *             The last modification time of the entry
 	 * @return This zip entry
 	 *
 	 * @throws NullPointerException
-	 *             if the {@code time} is null
+	 *                              if the {@code time} is null
 	 *
 	 * @see #getLastModifiedTime()
 	 * @since 1.8
@@ -255,11 +236,11 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 * or ZIP file formatted stream.
 	 *
 	 * @param time
-	 *            The last access time of the entry
+	 *             The last access time of the entry
 	 * @return This zip entry
 	 *
 	 * @throws NullPointerException
-	 *             if the {@code time} is null
+	 *                              if the {@code time} is null
 	 *
 	 * @see #getLastAccessTime()
 	 * @since 1.8
@@ -295,11 +276,11 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 * or ZIP file formatted stream.
 	 *
 	 * @param time
-	 *            The creation time of the entry
+	 *             The creation time of the entry
 	 * @return This zip entry
 	 *
 	 * @throws NullPointerException
-	 *             if the {@code time} is null
+	 *                              if the {@code time} is null
 	 *
 	 * @see #getCreationTime()
 	 * @since 1.8
@@ -329,13 +310,16 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 * Sets the uncompressed size of the entry data.
 	 *
 	 * @param size
-	 *            the uncompressed size in bytes
+	 *             the uncompressed size in bytes
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the specified size is less than 0, is greater than
-	 *             0xFFFFFFFF when <a href="package-summary.html#zip64">ZIP64
-	 *             format</a> is not supported, or is less than 0 when ZIP64 is
-	 *             supported
+	 *                                  if the specified size is less than 0, is
+	 *                                  greater than
+	 *                                  0xFFFFFFFF when <a href=
+	 *                                  "package-summary.html#zip64">ZIP64
+	 *                                  format</a> is not supported, or is less
+	 *                                  than 0 when ZIP64 is
+	 *                                  supported
 	 * @see #getSize()
 	 */
 	public void setSize(long size) {
@@ -373,7 +357,7 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 * Sets the size of the compressed entry data.
 	 *
 	 * @param csize
-	 *            the compressed size to set to
+	 *              the compressed size to set to
 	 *
 	 * @see #getCompressedSize()
 	 */
@@ -388,8 +372,9 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 *            the CRC-32 value
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the specified CRC-32 value is less than 0 or greater than
-	 *             0xFFFFFFFF
+	 *                                  if the specified CRC-32 value is less
+	 *                                  than 0 or greater than
+	 *                                  0xFFFFFFFF
 	 * @see #getCrc()
 	 */
 	public void setCrc(long crc) {
@@ -415,10 +400,11 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 * Sets the compression method for the entry.
 	 *
 	 * @param method
-	 *            the compression method, either STORED or DEFLATED
+	 *               the compression method, either STORED or DEFLATED
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the specified compression method is invalid
+	 *                                  if the specified compression method is
+	 *                                  invalid
 	 * @see #getMethod()
 	 */
 	public void setMethod(int method) {
@@ -450,11 +436,12 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 * Application Note 970311</a>.
 	 *
 	 * @param extra
-	 *            The extra field data bytes
+	 *              The extra field data bytes
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the length of the specified extra field data is greater
-	 *             than 0xFFFF bytes
+	 *                                  if the length of the specified extra
+	 *                                  field data is greater
+	 *                                  than 0xFFFF bytes
 	 *
 	 * @see #getExtra()
 	 */
@@ -466,14 +453,15 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 * Sets the optional extra field data for the entry.
 	 *
 	 * @param extra
-	 *            the extra field data bytes
+	 *                the extra field data bytes
 	 * @param doZIP64
-	 *            if true, set size and csize from ZIP64 fields if present
+	 *                if true, set size and csize from ZIP64 fields if present
 	 */
 	void setExtra0(byte[] extra, boolean doZIP64) {
 		if (extra != null) {
 			if (extra.length > 0xFFFF) {
-				throw new IllegalArgumentException("invalid extra field length");
+				throw new IllegalArgumentException(
+						"invalid extra field length");
 			}
 			// extra fields are in "HeaderID(2)DataSize(2)Data... format
 			int off = 0;
@@ -485,52 +473,53 @@ public class ZipEntry implements ZipConstants, Cloneable {
 				if (off + sz > len) // invalid data
 					break;
 				switch (tag) {
-				case EXTID_ZIP64:
-					if (doZIP64) {
-						// LOC extra zip64 entry MUST include BOTH original
-						// and compressed file size fields.
-						// If invalid zip64 extra fields, simply skip. Even
-						// it's rare, it's possible the entry size happens to
-						// be the magic value and it "accidently" has some
-						// bytes in extra match the id.
-						if (sz >= 16) {
-							size = get64(extra, off);
-							csize = get64(extra, off + 8);
+					case EXTID_ZIP64:
+						if (doZIP64) {
+							// LOC extra zip64 entry MUST include BOTH original
+							// and compressed file size fields.
+							// If invalid zip64 extra fields, simply skip. Even
+							// it's rare, it's possible the entry size happens to
+							// be the magic value and it "accidently" has some
+							// bytes in extra match the id.
+							if (sz >= 16) {
+								size = get64(extra, off);
+								csize = get64(extra, off + 8);
+							}
 						}
-					}
-					break;
-				case EXTID_NTFS:
-					if (sz < 32) // reserved 4 bytes + tag 2 bytes + size 2
-									// bytes
-						break; // m[a|c]time 24 bytes
-					int pos = off + 4; // reserved 4 bytes
-					if (get16(extra, pos) != 0x0001 || get16(extra, pos + 2) != 24)
 						break;
-					mtime = winTimeToFileTime(get64(extra, pos + 4));
-					atime = winTimeToFileTime(get64(extra, pos + 12));
-					ctime = winTimeToFileTime(get64(extra, pos + 20));
-					break;
-				case EXTID_EXTT:
-					int flag = Byte.toUnsignedInt(extra[off]);
-					int sz0 = 1;
-					// The CEN-header extra field contains the modification
-					// time only, or no timestamp at all. 'sz' is used to
-					// flag its presence or absence. But if mtime is present
-					// in LOC it must be present in CEN as well.
-					if ((flag & 0x1) != 0 && (sz0 + 4) <= sz) {
-						mtime = unixTimeToFileTime(get32(extra, off + sz0));
-						sz0 += 4;
-					}
-					if ((flag & 0x2) != 0 && (sz0 + 4) <= sz) {
-						atime = unixTimeToFileTime(get32(extra, off + sz0));
-						sz0 += 4;
-					}
-					if ((flag & 0x4) != 0 && (sz0 + 4) <= sz) {
-						ctime = unixTimeToFileTime(get32(extra, off + sz0));
-						sz0 += 4;
-					}
-					break;
-				default:
+					case EXTID_NTFS:
+						if (sz < 32) // reserved 4 bytes + tag 2 bytes + size 2
+										// bytes
+							break; // m[a|c]time 24 bytes
+						int pos = off + 4; // reserved 4 bytes
+						if (get16(extra, pos) != 0x0001 || get16(extra, pos
+								+ 2) != 24)
+							break;
+						mtime = winTimeToFileTime(get64(extra, pos + 4));
+						atime = winTimeToFileTime(get64(extra, pos + 12));
+						ctime = winTimeToFileTime(get64(extra, pos + 20));
+						break;
+					case EXTID_EXTT:
+						int flag = Byte.toUnsignedInt(extra[off]);
+						int sz0 = 1;
+						// The CEN-header extra field contains the modification
+						// time only, or no timestamp at all. 'sz' is used to
+						// flag its presence or absence. But if mtime is present
+						// in LOC it must be present in CEN as well.
+						if ((flag & 0x1) != 0 && (sz0 + 4) <= sz) {
+							mtime = unixTimeToFileTime(get32(extra, off + sz0));
+							sz0 += 4;
+						}
+						if ((flag & 0x2) != 0 && (sz0 + 4) <= sz) {
+							atime = unixTimeToFileTime(get32(extra, off + sz0));
+							sz0 += 4;
+						}
+						if ((flag & 0x4) != 0 && (sz0 + 4) <= sz) {
+							ctime = unixTimeToFileTime(get32(extra, off + sz0));
+							sz0 += 4;
+						}
+						break;
+					default:
 				}
 				off += sz;
 			}
@@ -558,7 +547,7 @@ public class ZipEntry implements ZipConstants, Cloneable {
 	 * only the first 0xFFFF bytes are output to the ZIP file entry.
 	 *
 	 * @param comment
-	 *            the comment string
+	 *                the comment string
 	 *
 	 * @see #getComment()
 	 */

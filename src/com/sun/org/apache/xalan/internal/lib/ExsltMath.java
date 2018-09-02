@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,7 +61,7 @@ public class ExsltMath extends ExsltBase {
 	 * values of any of the nodes to a number is NaN, then NaN is returned.
 	 *
 	 * @param nl
-	 *            The NodeList for the node-set to be evaluated.
+	 *           The NodeList for the node-set to be evaluated.
 	 *
 	 * @return the maximum value found, NaN if any node cannot be converted to a
 	 *         number.
@@ -100,7 +97,7 @@ public class ExsltMath extends ExsltBase {
 	 * values of any of the nodes to a number is NaN, then NaN is returned.
 	 *
 	 * @param nl
-	 *            The NodeList for the node-set to be evaluated.
+	 *           The NodeList for the node-set to be evaluated.
 	 *
 	 * @return the minimum value found, NaN if any node cannot be converted to a
 	 *         number.
@@ -139,7 +136,7 @@ public class ExsltMath extends ExsltBase {
 	 * non-numeric value, math:highest will return an empty node set.
 	 *
 	 * @param nl
-	 *            The NodeList for the node-set to be evaluated.
+	 *           The NodeList for the node-set to be evaluated.
 	 *
 	 * @return node-set with nodes containing the maximum value found, an empty
 	 *         node-set if any node cannot be converted to a number.
@@ -176,7 +173,7 @@ public class ExsltMath extends ExsltBase {
 	 * non-numeric value, math:lowest will return an empty node set.
 	 *
 	 * @param nl
-	 *            The NodeList for the node-set to be evaluated.
+	 *           The NodeList for the node-set to be evaluated.
 	 *
 	 * @return node-set with nodes containing the minimum value found, an empty
 	 *         node-set if any node cannot be converted to a number.
@@ -249,9 +246,9 @@ public class ExsltMath extends ExsltBase {
 	 * to a point (y,x).
 	 *
 	 * @param num1
-	 *            The X axis value
+	 *             The X axis value
 	 * @param num2
-	 *            The Y axis value
+	 *             The Y axis value
 	 * @return The angle (in radians) from the X axis to a point (y,x)
 	 */
 	public static double atan2(double num1, double num2) {
@@ -297,9 +294,9 @@ public class ExsltMath extends ExsltBase {
 	 * specified power.
 	 *
 	 * @param num1
-	 *            The base
+	 *             The base
 	 * @param num2
-	 *            The power
+	 *             The power
 	 * @return The value of the base expression taken to the specified power
 	 */
 	public static double power(double num1, double num2) {
@@ -364,9 +361,9 @@ public class ExsltMath extends ExsltBase {
 	 * </pre>
 	 * 
 	 * @param name
-	 *            The name of the constant
+	 *                  The name of the constant
 	 * @param precision
-	 *            The precision
+	 *                  The precision
 	 * @return The value of the specified constant to the given precision
 	 */
 	public static double constant(String name, double precision) {

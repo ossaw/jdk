@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -41,12 +21,14 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <pre>
  * {
  * 	&#64;code
- * 	MutableCallSite name = new MutableCallSite(MethodType.methodType(String.class));
+ * 	MutableCallSite name = new MutableCallSite(MethodType.methodType(
+ * 			String.class));
  * 	MethodHandle MH_name = name.dynamicInvoker();
  * 	MethodType MT_str1 = MethodType.methodType(String.class);
- * 	MethodHandle MH_upcase = MethodHandles.lookup().findVirtual(String.class, "toUpperCase",
- * 			MT_str1);
- * 	MethodHandle worker1 = MethodHandles.filterReturnValue(MH_name, MH_upcase);
+ * 	MethodHandle MH_upcase = MethodHandles.lookup().findVirtual(String.class,
+ * 			"toUpperCase", MT_str1);
+ * 	MethodHandle worker1 = MethodHandles.filterReturnValue(MH_name,
+ * 			MH_upcase);
  * 	name.setTarget(MethodHandles.constant(String.class, "Rocky"));
  * 	assertEquals("ROCKY", (String) worker1.invokeExact());
  * 	name.setTarget(MethodHandles.constant(String.class, "Fred"));
@@ -65,7 +47,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 	MethodType MT_str2 = MethodType.methodType(String.class, String.class);
  * 	MethodHandle MH_cat = lookup().findVirtual(String.class, "concat",
  * 			methodType(String.class, String.class));
- * 	MethodHandle MH_dear = MethodHandles.insertArguments(MH_cat, 1, ", dear?");
+ * 	MethodHandle MH_dear = MethodHandles.insertArguments(MH_cat, 1,
+ * 			", dear?");
  * 	MethodHandle worker2 = MethodHandles.filterReturnValue(MH_name, MH_dear);
  * 	assertEquals("Fred, dear?", (String) worker2.invokeExact());
  * 	name.setTarget(MethodHandles.constant(String.class, "Wilma"));
@@ -105,9 +88,9 @@ public class MutableCallSite extends CallSite {
 	 * {@link CallSite#setTarget(MethodHandle) setTarget}.
 	 * 
 	 * @param type
-	 *            the method type that this call site will have
+	 *             the method type that this call site will have
 	 * @throws NullPointerException
-	 *             if the proposed type is null
+	 *                              if the proposed type is null
 	 */
 	public MutableCallSite(MethodType type) {
 		super(type);
@@ -118,10 +101,11 @@ public class MutableCallSite extends CallSite {
 	 * of the call site is permanently set to the initial target's type.
 	 * 
 	 * @param target
-	 *            the method handle that will be the initial target of the call
-	 *            site
+	 *               the method handle that will be the initial target of the
+	 *               call
+	 *               site
 	 * @throws NullPointerException
-	 *             if the proposed target is null
+	 *                              if the proposed target is null
 	 */
 	public MutableCallSite(MethodHandle target) {
 		super(target);
@@ -161,12 +145,13 @@ public class MutableCallSite extends CallSite {
 	 * target methods used at any given call site.
 	 *
 	 * @param newTarget
-	 *            the new target
+	 *                  the new target
 	 * @throws NullPointerException
-	 *             if the proposed new target is null
+	 *                                  if the proposed new target is null
 	 * @throws WrongMethodTypeException
-	 *             if the proposed new target has a method type that differs
-	 *             from the previous target
+	 *                                  if the proposed new target has a method
+	 *                                  type that differs
+	 *                                  from the previous target
 	 * @see #getTarget
 	 */
 	@Override
@@ -284,10 +269,11 @@ public class MutableCallSite extends CallSite {
 	 * above.
 	 *
 	 * @param sites
-	 *            an array of call sites to be synchronized
+	 *              an array of call sites to be synchronized
 	 * @throws NullPointerException
-	 *             if the {@code sites} array reference is null or the array
-	 *             contains a null
+	 *                              if the {@code sites} array reference is null
+	 *                              or the array
+	 *                              contains a null
 	 */
 	public static void syncAll(MutableCallSite[] sites) {
 		if (sites.length == 0)

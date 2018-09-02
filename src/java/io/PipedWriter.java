@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -57,7 +37,7 @@ public class PipedWriter extends Writer {
 	 * @param snk
 	 *            The piped reader to connect to.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	public PipedWriter(PipedReader snk) throws IOException {
 		connect(snk);
@@ -71,8 +51,7 @@ public class PipedWriter extends Writer {
 	 * @see java.io.PipedReader#connect(java.io.PipedWriter)
 	 * @see java.io.PipedWriter#connect(java.io.PipedReader)
 	 */
-	public PipedWriter() {
-	}
+	public PipedWriter() {}
 
 	/**
 	 * Connects this piped writer to a receiver. If this object is already
@@ -98,7 +77,7 @@ public class PipedWriter extends Writer {
 	 * @param snk
 	 *            the piped reader to connect to.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	public synchronized void connect(PipedReader snk) throws IOException {
 		if (snk == null) {
@@ -124,12 +103,14 @@ public class PipedWriter extends Writer {
 	 * Implements the <code>write</code> method of <code>Writer</code>.
 	 *
 	 * @param c
-	 *            the <code>char</code> to be written.
+	 *          the <code>char</code> to be written.
 	 * @exception IOException
-	 *                if the pipe is <a href=PipedOutputStream.html#BROKEN>
-	 *                <code>broken</code></a>,
-	 *                {@link #connect(java.io.PipedReader) unconnected}, closed
-	 *                or an I/O error occurs.
+	 *                        if the pipe is
+	 *                        <a href=PipedOutputStream.html#BROKEN>
+	 *                        <code>broken</code></a>,
+	 *                        {@link #connect(java.io.PipedReader) unconnected},
+	 *                        closed
+	 *                        or an I/O error occurs.
 	 */
 	public void write(int c) throws IOException {
 		if (sink == null) {
@@ -147,21 +128,24 @@ public class PipedWriter extends Writer {
 	 * <code>IOException</code> is thrown.
 	 *
 	 * @param cbuf
-	 *            the data.
+	 *             the data.
 	 * @param off
-	 *            the start offset in the data.
+	 *             the start offset in the data.
 	 * @param len
-	 *            the number of characters to write.
+	 *             the number of characters to write.
 	 * @exception IOException
-	 *                if the pipe is <a href=PipedOutputStream.html#BROKEN>
-	 *                <code>broken</code></a>,
-	 *                {@link #connect(java.io.PipedReader) unconnected}, closed
-	 *                or an I/O error occurs.
+	 *                        if the pipe is
+	 *                        <a href=PipedOutputStream.html#BROKEN>
+	 *                        <code>broken</code></a>,
+	 *                        {@link #connect(java.io.PipedReader) unconnected},
+	 *                        closed
+	 *                        or an I/O error occurs.
 	 */
 	public void write(char cbuf[], int off, int len) throws IOException {
 		if (sink == null) {
 			throw new IOException("Pipe not connected");
-		} else if ((off | len | (off + len) | (cbuf.length - (off + len))) < 0) {
+		} else if ((off | len | (off + len) | (cbuf.length - (off
+				+ len))) < 0) {
 			throw new IndexOutOfBoundsException();
 		}
 		sink.receive(cbuf, off, len);
@@ -173,7 +157,7 @@ public class PipedWriter extends Writer {
 	 * in the pipe.
 	 *
 	 * @exception IOException
-	 *                if the pipe is closed, or an I/O error occurs.
+	 *                        if the pipe is closed, or an I/O error occurs.
 	 */
 	public synchronized void flush() throws IOException {
 		if (sink != null) {
@@ -192,7 +176,7 @@ public class PipedWriter extends Writer {
 	 * writing characters.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	public void close() throws IOException {
 		closed = true;

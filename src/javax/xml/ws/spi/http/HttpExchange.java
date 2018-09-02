@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws.spi.http;
@@ -99,7 +79,7 @@ public abstract class HttpExchange {
 	 * {@link #getRequestHeaders}).
 	 *
 	 * @param name
-	 *            the name of the request header
+	 *             the name of the request header
 	 * @return returns the value of the requested header, or null if the request
 	 *         does not have a header of that name
 	 */
@@ -125,11 +105,11 @@ public abstract class HttpExchange {
 	 * {@link #getResponseHeaders()}).
 	 *
 	 * @param name
-	 *            the name of the header
+	 *              the name of the header
 	 * @param value
-	 *            the additional header value. If it contains octet string, it
-	 *            should be encoded according to RFC 2047
-	 *            (http://www.ietf.org/rfc/rfc2047.txt)
+	 *              the additional header value. If it contains octet string, it
+	 *              should be encoded according to RFC 2047
+	 *              (http://www.ietf.org/rfc/rfc2047.txt)
 	 *
 	 * @see #getResponseHeaders
 	 */
@@ -182,7 +162,7 @@ public abstract class HttpExchange {
 	 * can free or reuse underlying resources.
 	 *
 	 * @throws IOException
-	 *             if any i/o error
+	 *                     if any i/o error
 	 */
 	public abstract void close() throws IOException;
 
@@ -192,7 +172,7 @@ public abstract class HttpExchange {
 	 *
 	 * @return the stream from which the request body can be read.
 	 * @throws IOException
-	 *             if any i/o error during request processing
+	 *                     if any i/o error during request processing
 	 */
 	public abstract InputStream getRequestBody() throws IOException;
 
@@ -203,7 +183,7 @@ public abstract class HttpExchange {
 	 *
 	 * @return the stream to which the response body is written
 	 * @throws IOException
-	 *             if any i/o error during response processing
+	 *                     if any i/o error during response processing
 	 */
 	public abstract OutputStream getResponseBody() throws IOException;
 
@@ -214,7 +194,7 @@ public abstract class HttpExchange {
 	 * This method must be called prior to calling {@link #getResponseBody}.
 	 *
 	 * @param status
-	 *            the response code to send
+	 *               the response code to send
 	 * @see #getResponseBody
 	 */
 	public abstract void setStatus(int status);
@@ -294,7 +274,7 @@ public abstract class HttpExchange {
 	 * {@link #REQUEST_X509CERTIFICATE}
 	 *
 	 * @param name
-	 *            attribute name
+	 *             attribute name
 	 * @return the attribute value, or <tt>null</tt> if the attribute doesn't
 	 *         exist
 	 */
@@ -323,7 +303,7 @@ public abstract class HttpExchange {
 	 * logical "role".
 	 *
 	 * @param role
-	 *            specifies the name of the role
+	 *             specifies the name of the role
 	 * @return <tt>true</tt> if the user making this request belongs to a given
 	 *         role
 	 */

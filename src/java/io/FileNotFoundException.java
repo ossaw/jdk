@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -59,7 +39,7 @@ public class FileNotFoundException extends IOException {
 	 * <code>java.lang.Throwable</code>.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public FileNotFoundException(String s) {
 		super(s);

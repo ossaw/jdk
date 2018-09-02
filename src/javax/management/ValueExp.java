@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -48,15 +28,12 @@ package javax.management;
  * compare it against Query.value(5) if the latter is defined as
  * ValueExp<Number>, or against Query.value(5L) if it is defined as
  * ValueExp<Integer>.
- * 
  * Worse, for Query.in we would like to define: QueryExp <T> in(ValueExp<T> val,
  * ValueExp<T>[] valueList) but this is unusable because you cannot write
  * "new ValueExp<Integer>[] {...}" (the compiler forbids it).
- * 
  * The few mistakes you might catch with this generification certainly wouldn't
  * justify the hassle of modifying user code to get the checks to be made and
  * the "unchecked" warnings that would arise if it wasn't so modified.
- * 
  * We could reconsider this if the Query methods were augmented, for example
  * with: AttributeValueExp<Number> numberAttr(String name);
  * AttributeValueExp<String> stringAttr(String name); AttributeValueExp<Boolean>
@@ -70,7 +47,7 @@ public interface ValueExp extends java.io.Serializable {
 	 * Applies the ValueExp on a MBean.
 	 *
 	 * @param name
-	 *            The name of the MBean on which the ValueExp will be applied.
+	 *             The name of the MBean on which the ValueExp will be applied.
 	 *
 	 * @return The <CODE>ValueExp</CODE>.
 	 *
@@ -79,15 +56,15 @@ public interface ValueExp extends java.io.Serializable {
 	 * @exception BadAttributeValueExpException
 	 * @exception InvalidApplicationException
 	 */
-	public ValueExp apply(ObjectName name)
-			throws BadStringOperationException, BadBinaryOpValueExpException,
-			BadAttributeValueExpException, InvalidApplicationException;
+	public ValueExp apply(ObjectName name) throws BadStringOperationException,
+			BadBinaryOpValueExpException, BadAttributeValueExpException,
+			InvalidApplicationException;
 
 	/**
 	 * Sets the MBean server on which the query is to be performed.
 	 *
 	 * @param s
-	 *            The MBean server on which the query is to be performed.
+	 *          The MBean server on which the query is to be performed.
 	 *
 	 * @deprecated This method is not needed because a <code>ValueExp</code> can
 	 *             access the MBean server in which it is being evaluated by

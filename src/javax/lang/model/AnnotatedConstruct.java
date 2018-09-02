@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model;
@@ -151,10 +131,11 @@ public interface AnnotatedConstruct {
 	 * is intended for callers that are written to operate on a known, fixed set
 	 * of annotation types. </blockquote>
 	 *
-	 * @param <A>
-	 *            the annotation type
+	 * @param                <A>
+	 *                       the annotation type
 	 * @param annotationType
-	 *            the {@code Class} object corresponding to the annotation type
+	 *                       the {@code Class} object corresponding to the
+	 *                       annotation type
 	 * @return this construct's annotation for the specified annotation type if
 	 *         present, else {@code null}
 	 *
@@ -208,10 +189,11 @@ public interface AnnotatedConstruct {
 	 * is intended for callers that are written to operate on a known, fixed set
 	 * of annotation types. </blockquote>
 	 *
-	 * @param <A>
-	 *            the annotation type
+	 * @param                <A>
+	 *                       the annotation type
 	 * @param annotationType
-	 *            the {@code Class} object corresponding to the annotation type
+	 *                       the {@code Class} object corresponding to the
+	 *                       annotation type
 	 * @return this construct's annotations for the specified annotation type if
 	 *         present on this construct, else an empty array
 	 *

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2000-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -68,7 +65,7 @@ public final class SynchronizedSymbolTable extends SymbolTable {
 	 * remain unique.
 	 *
 	 * @param symbol
-	 *            The new symbol.
+	 *               The new symbol.
 	 */
 	public String addSymbol(String symbol) {
 
@@ -85,11 +82,11 @@ public final class SynchronizedSymbolTable extends SymbolTable {
 	 * remain unique.
 	 *
 	 * @param buffer
-	 *            The buffer containing the new symbol.
+	 *               The buffer containing the new symbol.
 	 * @param offset
-	 *            The offset into the buffer of the new symbol.
+	 *               The offset into the buffer of the new symbol.
 	 * @param length
-	 *            The length of the new symbol in the buffer.
+	 *               The length of the new symbol in the buffer.
 	 */
 	public String addSymbol(char[] buffer, int offset, int length) {
 
@@ -103,7 +100,7 @@ public final class SynchronizedSymbolTable extends SymbolTable {
 	 * Returns true if the symbol table already contains the specified symbol.
 	 *
 	 * @param symbol
-	 *            The symbol to look for.
+	 *               The symbol to look for.
 	 */
 	public boolean containsSymbol(String symbol) {
 
@@ -117,11 +114,11 @@ public final class SynchronizedSymbolTable extends SymbolTable {
 	 * Returns true if the symbol table already contains the specified symbol.
 	 *
 	 * @param buffer
-	 *            The buffer containing the symbol to look for.
+	 *               The buffer containing the symbol to look for.
 	 * @param offset
-	 *            The offset into the buffer.
+	 *               The offset into the buffer.
 	 * @param length
-	 *            The length of the symbol in the buffer.
+	 *               The length of the symbol in the buffer.
 	 */
 	public boolean containsSymbol(char[] buffer, int offset, int length) {
 

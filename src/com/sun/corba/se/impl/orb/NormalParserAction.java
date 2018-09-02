@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.orb;
@@ -30,7 +10,8 @@ import java.util.Properties;
 import com.sun.corba.se.spi.orb.Operation;
 
 public class NormalParserAction extends ParserActionBase {
-	public NormalParserAction(String propertyName, Operation operation, String fieldName) {
+	public NormalParserAction(String propertyName, Operation operation,
+			String fieldName) {
 		super(propertyName, false, operation, fieldName);
 	}
 

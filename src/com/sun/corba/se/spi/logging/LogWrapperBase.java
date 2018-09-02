@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.logging;
@@ -39,8 +19,8 @@ public abstract class LogWrapperBase {
 		this.loggerName = logger.getName();
 	}
 
-	protected void doLog(Level level, String key, Object[] params, Class wrapperClass,
-			Throwable thr) {
+	protected void doLog(Level level, String key, Object[] params,
+			Class wrapperClass, Throwable thr) {
 		LogRecord lrec = new LogRecord(level, key);
 		if (params != null)
 			lrec.setParameters(params);
@@ -83,7 +63,8 @@ public abstract class LogWrapperBase {
 		}
 	}
 
-	protected void doLog(Level level, String key, Class wrapperClass, Throwable thr) {
+	protected void doLog(Level level, String key, Class wrapperClass,
+			Throwable thr) {
 		doLog(level, key, null, wrapperClass, thr);
 	}
 }

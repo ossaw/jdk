@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: TransletOutputHandlerFactory.java,v 1.2.4.2 2005/09/15 19:12:05 jeffsuttor Exp $
+ * $Id: TransletOutputHandlerFactory.java,v 1.2.4.2 2005/09/15 19:12:05
+ * jeffsuttor Exp $
  */
 
 package com.sun.org.apache.xalan.internal.xsltc.runtime.output;
@@ -78,7 +76,8 @@ public class TransletOutputHandlerFactory {
 		return new TransletOutputHandlerFactory(true);
 	}
 
-	static public TransletOutputHandlerFactory newInstance(boolean useServicesMechanism) {
+	static public TransletOutputHandlerFactory newInstance(
+			boolean useServicesMechanism) {
 		return new TransletOutputHandlerFactory(useServicesMechanism);
 	}
 
@@ -121,7 +120,8 @@ public class TransletOutputHandlerFactory {
 	}
 
 	public Node getNode() {
-		return (_handler instanceof SAX2DOM) ? ((SAX2DOM) _handler).getDOM() : null;
+		return (_handler instanceof SAX2DOM) ? ((SAX2DOM) _handler).getDOM()
+				: null;
 	}
 
 	public void setNextSibling(Node nextSibling) {
@@ -130,7 +130,8 @@ public class TransletOutputHandlerFactory {
 
 	public XMLEventWriter getXMLEventWriter() {
 		return (_handler instanceof SAX2StAXEventWriter)
-				? ((SAX2StAXEventWriter) _handler).getEventWriter() : null;
+				? ((SAX2StAXEventWriter) _handler).getEventWriter()
+				: null;
 	}
 
 	public void setXMLEventWriter(XMLEventWriter eventWriter) {
@@ -139,7 +140,8 @@ public class TransletOutputHandlerFactory {
 
 	public XMLStreamWriter getXMLStreamWriter() {
 		return (_handler instanceof SAX2StAXStreamWriter)
-				? ((SAX2StAXStreamWriter) _handler).getStreamWriter() : null;
+				? ((SAX2StAXStreamWriter) _handler).getStreamWriter()
+				: null;
 	}
 
 	public void setXMLStreamWriter(XMLStreamWriter streamWriter) {
@@ -150,85 +152,89 @@ public class TransletOutputHandlerFactory {
 		_indentNumber = value;
 	}
 
-	public SerializationHandler getSerializationHandler()
-			throws IOException, ParserConfigurationException {
+	public SerializationHandler getSerializationHandler() throws IOException,
+			ParserConfigurationException {
 		SerializationHandler result = null;
 		switch (_outputType) {
-		case STREAM:
+			case STREAM:
 
-			if (_method == null) {
-				result = new ToUnknownStream();
-			} else if (_method.equalsIgnoreCase("xml")) {
+				if (_method == null) {
+					result = new ToUnknownStream();
+				} else if (_method.equalsIgnoreCase("xml")) {
 
-				result = new ToXMLStream();
+					result = new ToXMLStream();
 
-			} else if (_method.equalsIgnoreCase("html")) {
+				} else if (_method.equalsIgnoreCase("html")) {
 
-				result = new ToHTMLStream();
+					result = new ToHTMLStream();
 
-			} else if (_method.equalsIgnoreCase("text")) {
+				} else if (_method.equalsIgnoreCase("text")) {
 
-				result = new ToTextStream();
+					result = new ToTextStream();
 
-			}
-
-			if (result != null && _indentNumber >= 0) {
-				result.setIndentAmount(_indentNumber);
-			}
-
-			result.setEncoding(_encoding);
-
-			if (_writer != null) {
-				result.setWriter(_writer);
-			} else {
-				result.setOutputStream(_ostream);
-			}
-			return result;
-
-		case DOM:
-			_handler = (_node != null) ? new SAX2DOM(_node, _nextSibling, _useServicesMechanism)
-					: new SAX2DOM(_useServicesMechanism);
-			_lexHandler = (LexicalHandler) _handler;
-			// falls through
-		case STAX:
-			if (_xmlStAXEventWriter != null) {
-				_handler = new SAX2StAXEventWriter(_xmlStAXEventWriter);
-			} else if (_xmlStAXStreamWriter != null) {
-				_handler = new SAX2StAXStreamWriter(_xmlStAXStreamWriter);
-			}
-			_lexHandler = (LexicalHandler) _handler;
-			// again falls through - Padmaja Vedula
-		case SAX:
-			if (_method == null) {
-				_method = "xml"; // default case
-			}
-
-			if (_method.equalsIgnoreCase("xml")) {
-
-				if (_lexHandler == null) {
-					result = new ToXMLSAXHandler(_handler, _encoding);
-				} else {
-					result = new ToXMLSAXHandler(_handler, _lexHandler, _encoding);
 				}
 
-			} else if (_method.equalsIgnoreCase("html")) {
-
-				if (_lexHandler == null) {
-					result = new ToHTMLSAXHandler(_handler, _encoding);
-				} else {
-					result = new ToHTMLSAXHandler(_handler, _lexHandler, _encoding);
+				if (result != null && _indentNumber >= 0) {
+					result.setIndentAmount(_indentNumber);
 				}
 
-			} else if (_method.equalsIgnoreCase("text")) {
+				result.setEncoding(_encoding);
 
-				if (_lexHandler == null) {
-					result = new ToTextSAXHandler(_handler, _encoding);
+				if (_writer != null) {
+					result.setWriter(_writer);
 				} else {
-					result = new ToTextSAXHandler(_handler, _lexHandler, _encoding);
+					result.setOutputStream(_ostream);
+				}
+				return result;
+
+			case DOM:
+				_handler = (_node != null) ? new SAX2DOM(_node, _nextSibling,
+						_useServicesMechanism)
+						: new SAX2DOM(_useServicesMechanism);
+				_lexHandler = (LexicalHandler) _handler;
+				// falls through
+			case STAX:
+				if (_xmlStAXEventWriter != null) {
+					_handler = new SAX2StAXEventWriter(_xmlStAXEventWriter);
+				} else if (_xmlStAXStreamWriter != null) {
+					_handler = new SAX2StAXStreamWriter(_xmlStAXStreamWriter);
+				}
+				_lexHandler = (LexicalHandler) _handler;
+				// again falls through - Padmaja Vedula
+			case SAX:
+				if (_method == null) {
+					_method = "xml"; // default case
 				}
 
-			}
-			return result;
+				if (_method.equalsIgnoreCase("xml")) {
+
+					if (_lexHandler == null) {
+						result = new ToXMLSAXHandler(_handler, _encoding);
+					} else {
+						result = new ToXMLSAXHandler(_handler, _lexHandler,
+								_encoding);
+					}
+
+				} else if (_method.equalsIgnoreCase("html")) {
+
+					if (_lexHandler == null) {
+						result = new ToHTMLSAXHandler(_handler, _encoding);
+					} else {
+						result = new ToHTMLSAXHandler(_handler, _lexHandler,
+								_encoding);
+					}
+
+				} else if (_method.equalsIgnoreCase("text")) {
+
+					if (_lexHandler == null) {
+						result = new ToTextSAXHandler(_handler, _encoding);
+					} else {
+						result = new ToTextSAXHandler(_handler, _lexHandler,
+								_encoding);
+					}
+
+				}
+				return result;
 		}
 		return null;
 	}

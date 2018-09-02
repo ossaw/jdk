@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.border;
 
@@ -64,25 +44,26 @@ public interface Border {
 	 * and size.
 	 * 
 	 * @param c
-	 *            the component for which this border is being painted
+	 *               the component for which this border is being painted
 	 * @param g
-	 *            the paint graphics
+	 *               the paint graphics
 	 * @param x
-	 *            the x position of the painted border
+	 *               the x position of the painted border
 	 * @param y
-	 *            the y position of the painted border
+	 *               the y position of the painted border
 	 * @param width
-	 *            the width of the painted border
+	 *               the width of the painted border
 	 * @param height
-	 *            the height of the painted border
+	 *               the height of the painted border
 	 */
-	void paintBorder(Component c, Graphics g, int x, int y, int width, int height);
+	void paintBorder(Component c, Graphics g, int x, int y, int width,
+			int height);
 
 	/**
 	 * Returns the insets of the border.
 	 * 
 	 * @param c
-	 *            the component for which this border insets value applies
+	 *          the component for which this border insets value applies
 	 */
 	Insets getBorderInsets(Component c);
 

@@ -40,7 +40,8 @@ public class KeyName extends SignatureElementProxy implements KeyInfoContent {
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public KeyName(Element element, String BaseURI) throws XMLSecurityException {
+	public KeyName(Element element, String BaseURI)
+			throws XMLSecurityException {
 		super(element, BaseURI);
 	}
 

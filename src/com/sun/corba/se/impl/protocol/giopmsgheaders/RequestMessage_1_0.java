@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol.giopmsgheaders;
@@ -37,7 +17,8 @@ import com.sun.corba.se.spi.ior.ObjectKey;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class RequestMessage_1_0 extends Message_1_0 implements RequestMessage {
+public final class RequestMessage_1_0 extends Message_1_0 implements
+		RequestMessage {
 
 	// Instance variables
 
@@ -56,9 +37,9 @@ public final class RequestMessage_1_0 extends Message_1_0 implements RequestMess
 		this.orb = orb;
 	}
 
-	RequestMessage_1_0(ORB orb, ServiceContexts _service_contexts, int _request_id,
-			boolean _response_expected, byte[] _object_key, String _operation,
-			Principal _requesting_principal) {
+	RequestMessage_1_0(ORB orb, ServiceContexts _service_contexts,
+			int _request_id, boolean _response_expected, byte[] _object_key,
+			String _operation, Principal _requesting_principal) {
 		super(Message.GIOPBigMagic, false, Message.GIOPRequest, 0);
 		this.orb = orb;
 		service_contexts = _service_contexts;
@@ -130,11 +111,12 @@ public final class RequestMessage_1_0 extends Message_1_0 implements RequestMess
 	public void write(org.omg.CORBA.portable.OutputStream ostream) {
 		super.write(ostream);
 		if (this.service_contexts != null) {
-			service_contexts.write((org.omg.CORBA_2_3.portable.OutputStream) ostream,
+			service_contexts.write(
+					(org.omg.CORBA_2_3.portable.OutputStream) ostream,
 					GIOPVersion.V1_0);
 		} else {
-			ServiceContexts
-					.writeNullServiceContext((org.omg.CORBA_2_3.portable.OutputStream) ostream);
+			ServiceContexts.writeNullServiceContext(
+					(org.omg.CORBA_2_3.portable.OutputStream) ostream);
 		}
 		ostream.write_ulong(this.request_id);
 		ostream.write_boolean(this.response_expected);

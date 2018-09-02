@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.event;
@@ -61,13 +41,15 @@ public class TableColumnModelEvent extends java.util.EventObject {
 	 * Constructs a {@code TableColumnModelEvent} object.
 	 *
 	 * @param source
-	 *            the {@code TableColumnModel} that originated the event
+	 *               the {@code TableColumnModel} that originated the event
 	 * @param from
-	 *            an int specifying the index from where the column was moved or
-	 *            removed
+	 *               an int specifying the index from where the column was moved
+	 *               or
+	 *               removed
 	 * @param to
-	 *            an int specifying the index to where the column was moved or
-	 *            added
+	 *               an int specifying the index to where the column was moved
+	 *               or
+	 *               added
 	 * @see #getFromIndex
 	 * @see #getToIndex
 	 */

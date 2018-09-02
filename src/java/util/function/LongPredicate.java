@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.function;
 
@@ -45,7 +25,7 @@ public interface LongPredicate {
 	 * Evaluates this predicate on the given argument.
 	 *
 	 * @param value
-	 *            the input argument
+	 *              the input argument
 	 * @return {@code true} if the input argument matches the predicate,
 	 *         otherwise {@code false}
 	 */
@@ -63,11 +43,11 @@ public interface LongPredicate {
 	 * {@code other} predicate will not be evaluated.
 	 *
 	 * @param other
-	 *            a predicate that will be logically-ANDed with this predicate
+	 *              a predicate that will be logically-ANDed with this predicate
 	 * @return a composed predicate that represents the short-circuiting logical
 	 *         AND of this predicate and the {@code other} predicate
 	 * @throws NullPointerException
-	 *             if other is null
+	 *                              if other is null
 	 */
 	default LongPredicate and(LongPredicate other) {
 		Objects.requireNonNull(other);
@@ -97,11 +77,11 @@ public interface LongPredicate {
 	 * {@code other} predicate will not be evaluated.
 	 *
 	 * @param other
-	 *            a predicate that will be logically-ORed with this predicate
+	 *              a predicate that will be logically-ORed with this predicate
 	 * @return a composed predicate that represents the short-circuiting logical
 	 *         OR of this predicate and the {@code other} predicate
 	 * @throws NullPointerException
-	 *             if other is null
+	 *                              if other is null
 	 */
 	default LongPredicate or(LongPredicate other) {
 		Objects.requireNonNull(other);

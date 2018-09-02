@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.lang;
 
@@ -37,7 +17,7 @@ import java.util.function.Consumer;
  * Loop</a> </strong>
  *
  * @param <T>
- *            the type of elements returned by the iterator
+ *        the type of elements returned by the iterator
  *
  * @since 1.5
  * @jls 14.14.2 The enhanced for statement
@@ -69,9 +49,9 @@ public interface Iterable<T> {
 	 *           </pre>
 	 *
 	 * @param action
-	 *            The action to be performed for each element
+	 *               The action to be performed for each element
 	 * @throws NullPointerException
-	 *             if the specified action is null
+	 *                              if the specified action is null
 	 * @since 1.8
 	 */
 	default void forEach(Consumer<? super T> action) {

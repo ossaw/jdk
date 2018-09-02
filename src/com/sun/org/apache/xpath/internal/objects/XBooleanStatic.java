@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,7 +39,7 @@ public class XBooleanStatic extends XBoolean {
 	 * Construct a XBooleanStatic object.
 	 *
 	 * @param b
-	 *            The value of the object
+	 *          The value of the object
 	 */
 	public XBooleanStatic(boolean b) {
 
@@ -55,7 +52,7 @@ public class XBooleanStatic extends XBoolean {
 	 * Tell if two objects are functionally equal.
 	 *
 	 * @param obj2
-	 *            Object to compare to this
+	 *             Object to compare to this
 	 *
 	 * @return True if the two objects are equal
 	 *
@@ -65,7 +62,8 @@ public class XBooleanStatic extends XBoolean {
 		try {
 			return m_val == obj2.bool();
 		} catch (javax.xml.transform.TransformerException te) {
-			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(te);
+			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
+					te);
 		}
 	}
 }

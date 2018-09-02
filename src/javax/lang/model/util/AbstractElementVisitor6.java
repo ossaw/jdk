@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -61,12 +41,12 @@ import static javax.lang.model.SourceVersion.*;
  * of default methods in this situation.
  *
  * @param <R>
- *            the return type of this visitor's methods. Use {@link Void} for
- *            visitors that do not need to return results.
+ *        the return type of this visitor's methods. Use {@link Void} for
+ *        visitors that do not need to return results.
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
- *            Use {@code Void} for visitors that do not need an additional
- *            parameter.
+ *        the type of the additional parameter to this visitor's methods.
+ *        Use {@code Void} for visitors that do not need an additional
+ *        parameter.
  *
  * @author Joseph D. Darcy
  * @author Scott Seligman
@@ -77,12 +57,12 @@ import static javax.lang.model.SourceVersion.*;
  * @since 1.6
  */
 @SupportedSourceVersion(RELEASE_6)
-public abstract class AbstractElementVisitor6<R, P> implements ElementVisitor<R, P> {
+public abstract class AbstractElementVisitor6<R, P> implements
+		ElementVisitor<R, P> {
 	/**
 	 * Constructor for concrete subclasses to call.
 	 */
-	protected AbstractElementVisitor6() {
-	}
+	protected AbstractElementVisitor6() {}
 
 	/**
 	 * Visits any program element as if by passing itself to that element's
@@ -91,9 +71,9 @@ public abstract class AbstractElementVisitor6<R, P> implements ElementVisitor<R,
 	 * p)}.
 	 *
 	 * @param e
-	 *            the element to visit
+	 *          the element to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 */
 	public final R visit(Element e, P p) {
@@ -108,7 +88,7 @@ public abstract class AbstractElementVisitor6<R, P> implements ElementVisitor<R,
 	 * null)}.
 	 *
 	 * @param e
-	 *            the element to visit
+	 *          the element to visit
 	 * @return a visitor-specified result
 	 */
 	public final R visit(Element e) {
@@ -125,12 +105,13 @@ public abstract class AbstractElementVisitor6<R, P> implements ElementVisitor<R,
 	 * subclass.
 	 *
 	 * @param e
-	 *            the element to visit
+	 *          the element to visit
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return a visitor-specified result
 	 * @throws UnknownElementException
-	 *             a visitor implementation may optionally throw this exception
+	 *                                 a visitor implementation may optionally
+	 *                                 throw this exception
 	 */
 	public R visitUnknown(Element e, P p) {
 		throw new UnknownElementException(e, p);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.basic;
 
@@ -48,8 +28,9 @@ public class BasicGraphicsUtils {
 	private static final Insets GROOVE_INSETS = new Insets(2, 2, 2, 2);
 	private static final Insets ETCHED_INSETS = new Insets(2, 2, 2, 2);
 
-	public static void drawEtchedRect(Graphics g, int x, int y, int w, int h, Color shadow,
-			Color darkShadow, Color highlight, Color lightHighlight) {
+	public static void drawEtchedRect(Graphics g, int x, int y, int w, int h,
+			Color shadow, Color darkShadow, Color highlight,
+			Color lightHighlight) {
 		Color oldColor = g.getColor(); // Make no net change to g
 		g.translate(x, y);
 
@@ -83,8 +64,8 @@ public class BasicGraphicsUtils {
 		return ETCHED_INSETS;
 	}
 
-	public static void drawGroove(Graphics g, int x, int y, int w, int h, Color shadow,
-			Color highlight) {
+	public static void drawGroove(Graphics g, int x, int y, int w, int h,
+			Color shadow, Color highlight) {
 		Color oldColor = g.getColor(); // Make no net change to g
 		g.translate(x, y);
 
@@ -112,9 +93,9 @@ public class BasicGraphicsUtils {
 		return GROOVE_INSETS;
 	}
 
-	public static void drawBezel(Graphics g, int x, int y, int w, int h, boolean isPressed,
-			boolean isDefault, Color shadow, Color darkShadow, Color highlight,
-			Color lightHighlight) {
+	public static void drawBezel(Graphics g, int x, int y, int w, int h,
+			boolean isPressed, boolean isDefault, Color shadow,
+			Color darkShadow, Color highlight, Color lightHighlight) {
 		Color oldColor = g.getColor(); // Make no net change to g
 		g.translate(x, y);
 
@@ -124,7 +105,8 @@ public class BasicGraphicsUtils {
 			g.setColor(shadow);
 			g.drawRect(1, 1, w - 3, h - 3);
 		} else if (isPressed) {
-			drawLoweredBezel(g, x, y, w, h, shadow, darkShadow, highlight, lightHighlight);
+			drawLoweredBezel(g, x, y, w, h, shadow, darkShadow, highlight,
+					lightHighlight);
 		} else if (isDefault) {
 			g.setColor(darkShadow);
 			g.drawRect(0, 0, w - 1, h - 1);
@@ -165,8 +147,9 @@ public class BasicGraphicsUtils {
 		g.setColor(oldColor);
 	}
 
-	public static void drawLoweredBezel(Graphics g, int x, int y, int w, int h, Color shadow,
-			Color darkShadow, Color highlight, Color lightHighlight) {
+	public static void drawLoweredBezel(Graphics g, int x, int y, int w, int h,
+			Color shadow, Color darkShadow, Color highlight,
+			Color lightHighlight) {
 		g.setColor(darkShadow);
 		g.drawLine(0, 0, 0, h - 1);
 		g.drawLine(1, 0, w - 2, 0);
@@ -190,7 +173,8 @@ public class BasicGraphicsUtils {
 	 * <code>underlineChar</code> in text will be underlined. The matching
 	 * algorithm is not case sensitive.
 	 */
-	public static void drawString(Graphics g, String text, int underlinedChar, int x, int y) {
+	public static void drawString(Graphics g, String text, int underlinedChar,
+			int x, int y) {
 		int index = -1;
 
 		if (underlinedChar != '\0') {
@@ -218,23 +202,25 @@ public class BasicGraphicsUtils {
 	 * <code>text</code> (including &lt; 0), nothing will be underlined.
 	 *
 	 * @param g
-	 *            Graphics to draw with
+	 *                        Graphics to draw with
 	 * @param text
-	 *            String to draw
+	 *                        String to draw
 	 * @param underlinedIndex
-	 *            Index of character in text to underline
+	 *                        Index of character in text to underline
 	 * @param x
-	 *            x coordinate to draw at
+	 *                        x coordinate to draw at
 	 * @param y
-	 *            y coordinate to draw at
+	 *                        y coordinate to draw at
 	 * @since 1.4
 	 */
-	public static void drawStringUnderlineCharAt(Graphics g, String text, int underlinedIndex,
-			int x, int y) {
-		SwingUtilities2.drawStringUnderlineCharAt(null, g, text, underlinedIndex, x, y);
+	public static void drawStringUnderlineCharAt(Graphics g, String text,
+			int underlinedIndex, int x, int y) {
+		SwingUtilities2.drawStringUnderlineCharAt(null, g, text,
+				underlinedIndex, x, y);
 	}
 
-	public static void drawDashedRect(Graphics g, int x, int y, int width, int height) {
+	public static void drawDashedRect(Graphics g, int x, int y, int width,
+			int height) {
 		int vx, vy;
 
 		// draw upper and lower horizontal dashes
@@ -250,7 +236,8 @@ public class BasicGraphicsUtils {
 		}
 	}
 
-	public static Dimension getPreferredButtonSize(AbstractButton b, int textIconGap) {
+	public static Dimension getPreferredButtonSize(AbstractButton b,
+			int textIconGap) {
 		if (b.getComponentCount() > 0) {
 			return null;
 		}
@@ -265,10 +252,11 @@ public class BasicGraphicsUtils {
 		Rectangle textR = new Rectangle();
 		Rectangle viewR = new Rectangle(Short.MAX_VALUE, Short.MAX_VALUE);
 
-		SwingUtilities.layoutCompoundLabel(b, fm, text, icon, b.getVerticalAlignment(),
-				b.getHorizontalAlignment(), b.getVerticalTextPosition(),
-				b.getHorizontalTextPosition(), viewR, iconR, textR,
-				(text == null ? 0 : textIconGap));
+		SwingUtilities.layoutCompoundLabel(b, fm, text, icon, b
+				.getVerticalAlignment(), b.getHorizontalAlignment(), b
+						.getVerticalTextPosition(), b
+								.getHorizontalTextPosition(), viewR, iconR,
+				textR, (text == null ? 0 : textIconGap));
 
 		/*
 		 * The preferred size of the button is the size of the text and icon
@@ -293,6 +281,7 @@ public class BasicGraphicsUtils {
 	}
 
 	static boolean isMenuShortcutKeyDown(InputEvent event) {
-		return (event.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0;
+		return (event.getModifiers() & Toolkit.getDefaultToolkit()
+				.getMenuShortcutKeyMask()) != 0;
 	}
 }

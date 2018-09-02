@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.element;
@@ -48,25 +28,22 @@ package javax.lang.model.element;
  * &#64;Nesting(TOP_LEVEL)
  * public class NestingExamples {
  * 	&#64;Nesting(MEMBER)
- * 	static class MemberClass1 {
- * 	}
+ * 	static class MemberClass1 {}
  *
  * 	&#64;Nesting(MEMBER)
- * 	class MemberClass2 {
- * 	}
+ * 	class MemberClass2 {}
  *
  * 	public static void main(String... argv) {
  * 		&#64;Nesting(LOCAL)
- * 		class LocalClass {
- * 		}
+ * 		class LocalClass {}
  * 		;
  *
- * 		Class&lt;?&gt;[] classes = { NestingExamples.class, MemberClass1.class, MemberClass2.class,
- * 				LocalClass.class };
+ * 		Class&lt;?&gt;[] classes = { NestingExamples.class, MemberClass1.class,
+ * 				MemberClass2.class, LocalClass.class };
  *
  * 		for (Class&lt;?&gt; clazz : classes) {
- * 			System.out.format("%s is %s%n", clazz.getName(),
- * 					clazz.getAnnotation(Nesting.class).value());
+ * 			System.out.format("%s is %s%n", clazz.getName(), clazz
+ * 					.getAnnotation(Nesting.class).value());
  * 		}
  * 	}
  * }

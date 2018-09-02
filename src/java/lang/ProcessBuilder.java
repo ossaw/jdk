@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -196,9 +176,9 @@ public final class ProcessBuilder {
 	 * {@code command} corresponds to a valid operating system command.
 	 *
 	 * @param command
-	 *            the list containing the program and its arguments
+	 *                the list containing the program and its arguments
 	 * @throws NullPointerException
-	 *             if the argument is null
+	 *                              if the argument is null
 	 */
 	public ProcessBuilder(List<String> command) {
 		if (command == null)
@@ -214,7 +194,7 @@ public final class ProcessBuilder {
 	 * {@code command} corresponds to a valid operating system command.
 	 *
 	 * @param command
-	 *            a string array containing the program and its arguments
+	 *                a string array containing the program and its arguments
 	 */
 	public ProcessBuilder(String... command) {
 		this.command = new ArrayList<>(command.length);
@@ -230,11 +210,11 @@ public final class ProcessBuilder {
 	 * a valid operating system command.
 	 *
 	 * @param command
-	 *            the list containing the program and its arguments
+	 *                the list containing the program and its arguments
 	 * @return this process builder
 	 *
 	 * @throws NullPointerException
-	 *             if the argument is null
+	 *                              if the argument is null
 	 */
 	public ProcessBuilder command(List<String> command) {
 		if (command == null)
@@ -251,7 +231,7 @@ public final class ProcessBuilder {
 	 * system command.
 	 *
 	 * @param command
-	 *            a string array containing the program and its arguments
+	 *                a string array containing the program and its arguments
 	 * @return this process builder
 	 */
 	public ProcessBuilder command(String... command) {
@@ -337,9 +317,11 @@ public final class ProcessBuilder {
 	 * @return this process builder's environment
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link SecurityManager#checkPermission checkPermission}
-	 *             method doesn't allow access to the process environment
+	 *                           if a security manager exists and its
+	 *                           {@link SecurityManager#checkPermission
+	 *                           checkPermission}
+	 *                           method doesn't allow access to the process
+	 *                           environment
 	 *
 	 * @see Runtime#exec(String[],String[],java.io.File)
 	 * @see System#getenv()
@@ -374,11 +356,12 @@ public final class ProcessBuilder {
 				if (envstring.indexOf((int) '\u0000') != -1)
 					envstring = envstring.replaceFirst("\u0000.*", "");
 
-				int eqlsign = envstring.indexOf('=', ProcessEnvironment.MIN_NAME_LENGTH);
+				int eqlsign = envstring.indexOf('=',
+						ProcessEnvironment.MIN_NAME_LENGTH);
 				// Silently ignore envstrings lacking the required `='.
 				if (eqlsign != -1)
-					environment.put(envstring.substring(0, eqlsign),
-							envstring.substring(eqlsign + 1));
+					environment.put(envstring.substring(0, eqlsign), envstring
+							.substring(eqlsign + 1));
 			}
 		}
 		return this;
@@ -409,7 +392,7 @@ public final class ProcessBuilder {
 	 * {@code user.dir}, as the working directory of the child process.
 	 *
 	 * @param directory
-	 *            the new working directory
+	 *                  the new working directory
 	 * @return this process builder
 	 */
 	public ProcessBuilder directory(File directory) {
@@ -425,8 +408,7 @@ public final class ProcessBuilder {
 	static class NullInputStream extends InputStream {
 		static final NullInputStream INSTANCE = new NullInputStream();
 
-		private NullInputStream() {
-		}
+		private NullInputStream() {}
 
 		public int read() {
 			return -1;
@@ -443,8 +425,7 @@ public final class ProcessBuilder {
 	static class NullOutputStream extends OutputStream {
 		static final NullOutputStream INSTANCE = new NullOutputStream();
 
-		private NullOutputStream() {
-		}
+		private NullOutputStream() {}
 
 		public void write(int b) throws IOException {
 			throw new IOException("Stream closed");
@@ -478,33 +459,33 @@ public final class ProcessBuilder {
 		 * The type of a {@link Redirect}.
 		 */
 		public enum Type {
-			/**
-			 * The type of {@link Redirect#PIPE Redirect.PIPE}.
-			 */
-			PIPE,
+		/**
+		 * The type of {@link Redirect#PIPE Redirect.PIPE}.
+		 */
+		PIPE,
 
-			/**
-			 * The type of {@link Redirect#INHERIT Redirect.INHERIT}.
-			 */
-			INHERIT,
+		/**
+		 * The type of {@link Redirect#INHERIT Redirect.INHERIT}.
+		 */
+		INHERIT,
 
-			/**
-			 * The type of redirects returned from {@link Redirect#from
-			 * Redirect.from(File)}.
-			 */
-			READ,
+		/**
+		 * The type of redirects returned from {@link Redirect#from
+		 * Redirect.from(File)}.
+		 */
+		READ,
 
-			/**
-			 * The type of redirects returned from {@link Redirect#to
-			 * Redirect.to(File)}.
-			 */
-			WRITE,
+		/**
+		 * The type of redirects returned from {@link Redirect#to
+		 * Redirect.to(File)}.
+		 */
+		WRITE,
 
-			/**
-			 * The type of redirects returned from {@link Redirect#appendTo
-			 * Redirect.appendTo(File)}.
-			 */
-			APPEND
+		/**
+		 * The type of redirects returned from {@link Redirect#appendTo
+		 * Redirect.appendTo(File)}.
+		 */
+		APPEND
 		};
 
 		/**
@@ -598,9 +579,9 @@ public final class ProcessBuilder {
 		 * </pre>
 		 *
 		 * @param file
-		 *            The {@code File} for the {@code Redirect}.
+		 *             The {@code File} for the {@code Redirect}.
 		 * @throws NullPointerException
-		 *             if the specified file is null
+		 *                              if the specified file is null
 		 * @return a redirect to read from the specified file
 		 */
 		public static Redirect from(final File file) {
@@ -637,9 +618,9 @@ public final class ProcessBuilder {
 		 * </pre>
 		 *
 		 * @param file
-		 *            The {@code File} for the {@code Redirect}.
+		 *             The {@code File} for the {@code Redirect}.
 		 * @throws NullPointerException
-		 *             if the specified file is null
+		 *                              if the specified file is null
 		 * @return a redirect to write to the specified file
 		 */
 		public static Redirect to(final File file) {
@@ -682,9 +663,9 @@ public final class ProcessBuilder {
 		 * </pre>
 		 *
 		 * @param file
-		 *            The {@code File} for the {@code Redirect}.
+		 *             The {@code File} for the {@code Redirect}.
 		 * @throws NullPointerException
-		 *             if the specified file is null
+		 *                              if the specified file is null
 		 * @return a redirect to append to the specified file
 		 */
 		public static Redirect appendTo(final File file) {
@@ -744,13 +725,13 @@ public final class ProcessBuilder {
 		 * No public constructors. Clients must use predefined static
 		 * {@code Redirect} instances or factory methods.
 		 */
-		private Redirect() {
-		}
+		private Redirect() {}
 	}
 
 	private Redirect[] redirects() {
 		if (redirects == null)
-			redirects = new Redirect[] { Redirect.PIPE, Redirect.PIPE, Redirect.PIPE };
+			redirects = new Redirect[] { Redirect.PIPE, Redirect.PIPE,
+					Redirect.PIPE };
 		return redirects;
 	}
 
@@ -768,17 +749,21 @@ public final class ProcessBuilder {
 	 * will return a <a href="#redirect-input">null output stream</a>.
 	 *
 	 * @param source
-	 *            the new standard input source
+	 *               the new standard input source
 	 * @return this process builder
 	 * @throws IllegalArgumentException
-	 *             if the redirect does not correspond to a valid source of
-	 *             data, that is, has type {@link Redirect.Type#WRITE WRITE} or
-	 *             {@link Redirect.Type#APPEND APPEND}
+	 *                                  if the redirect does not correspond to a
+	 *                                  valid source of
+	 *                                  data, that is, has type
+	 *                                  {@link Redirect.Type#WRITE WRITE} or
+	 *                                  {@link Redirect.Type#APPEND APPEND}
 	 * @since 1.7
 	 */
 	public ProcessBuilder redirectInput(Redirect source) {
-		if (source.type() == Redirect.Type.WRITE || source.type() == Redirect.Type.APPEND)
-			throw new IllegalArgumentException("Redirect invalid for reading: " + source);
+		if (source.type() == Redirect.Type.WRITE || source
+				.type() == Redirect.Type.APPEND)
+			throw new IllegalArgumentException("Redirect invalid for reading: "
+					+ source);
 		redirects()[0] = source;
 		return this;
 	}
@@ -798,16 +783,19 @@ public final class ProcessBuilder {
 	 * <a href="#redirect-output">null input stream</a>.
 	 *
 	 * @param destination
-	 *            the new standard output destination
+	 *                    the new standard output destination
 	 * @return this process builder
 	 * @throws IllegalArgumentException
-	 *             if the redirect does not correspond to a valid destination of
-	 *             data, that is, has type {@link Redirect.Type#READ READ}
+	 *                                  if the redirect does not correspond to a
+	 *                                  valid destination of
+	 *                                  data, that is, has type
+	 *                                  {@link Redirect.Type#READ READ}
 	 * @since 1.7
 	 */
 	public ProcessBuilder redirectOutput(Redirect destination) {
 		if (destination.type() == Redirect.Type.READ)
-			throw new IllegalArgumentException("Redirect invalid for writing: " + destination);
+			throw new IllegalArgumentException("Redirect invalid for writing: "
+					+ destination);
 		redirects()[1] = destination;
 		return this;
 	}
@@ -831,16 +819,19 @@ public final class ProcessBuilder {
 	 * effect.
 	 *
 	 * @param destination
-	 *            the new standard error destination
+	 *                    the new standard error destination
 	 * @return this process builder
 	 * @throws IllegalArgumentException
-	 *             if the redirect does not correspond to a valid destination of
-	 *             data, that is, has type {@link Redirect.Type#READ READ}
+	 *                                  if the redirect does not correspond to a
+	 *                                  valid destination of
+	 *                                  data, that is, has type
+	 *                                  {@link Redirect.Type#READ READ}
 	 * @since 1.7
 	 */
 	public ProcessBuilder redirectError(Redirect destination) {
 		if (destination.type() == Redirect.Type.READ)
-			throw new IllegalArgumentException("Redirect invalid for writing: " + destination);
+			throw new IllegalArgumentException("Redirect invalid for writing: "
+					+ destination);
 		redirects()[2] = destination;
 		return this;
 	}
@@ -855,7 +846,7 @@ public final class ProcessBuilder {
 	 * {@code (Redirect.from(file))}.
 	 *
 	 * @param file
-	 *            the new standard input source
+	 *             the new standard input source
 	 * @return this process builder
 	 * @since 1.7
 	 */
@@ -873,7 +864,7 @@ public final class ProcessBuilder {
 	 * {@code (Redirect.to(file))}.
 	 *
 	 * @param file
-	 *            the new standard output destination
+	 *             the new standard output destination
 	 * @return this process builder
 	 * @since 1.7
 	 */
@@ -891,7 +882,7 @@ public final class ProcessBuilder {
 	 * {@code (Redirect.to(file))}.
 	 *
 	 * @param file
-	 *            the new standard error destination
+	 *             the new standard error destination
 	 * @return this process builder
 	 * @since 1.7
 	 */
@@ -1005,7 +996,7 @@ public final class ProcessBuilder {
 	 * value is {@code false}.
 	 *
 	 * @param redirectErrorStream
-	 *            the new property value
+	 *                            the new property value
 	 * @return this process builder
 	 */
 	public ProcessBuilder redirectErrorStream(boolean redirectErrorStream) {
@@ -1060,32 +1051,45 @@ public final class ProcessBuilder {
 	 * @return a new {@link Process} object for managing the subprocess
 	 *
 	 * @throws NullPointerException
-	 *             if an element of the command list is null
+	 *                                   if an element of the command list is
+	 *                                   null
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             if the command is an empty list (has size {@code 0})
+	 *                                   if the command is an empty list (has
+	 *                                   size {@code 0})
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and
-	 *             <ul>
+	 *                                   if a security manager exists and
+	 *                                   <ul>
 	 *
-	 *             <li>its {@link SecurityManager#checkExec checkExec} method
-	 *             doesn't allow creation of the subprocess, or
+	 *                                   <li>its
+	 *                                   {@link SecurityManager#checkExec
+	 *                                   checkExec} method
+	 *                                   doesn't allow creation of the
+	 *                                   subprocess, or
 	 *
-	 *             <li>the standard input to the subprocess was
-	 *             {@linkplain #redirectInput redirected from a file} and the
-	 *             security manager's {@link SecurityManager#checkRead
-	 *             checkRead} method denies read access to the file, or
+	 *                                   <li>the standard input to the
+	 *                                   subprocess was
+	 *                                   {@linkplain #redirectInput redirected
+	 *                                   from a file} and the
+	 *                                   security manager's
+	 *                                   {@link SecurityManager#checkRead
+	 *                                   checkRead} method denies read access to
+	 *                                   the file, or
 	 *
-	 *             <li>the standard output or standard error of the subprocess
-	 *             was {@linkplain #redirectOutput redirected to a file} and the
-	 *             security manager's {@link SecurityManager#checkWrite
-	 *             checkWrite} method denies write access to the file
+	 *                                   <li>the standard output or standard
+	 *                                   error of the subprocess
+	 *                                   was {@linkplain #redirectOutput
+	 *                                   redirected to a file} and the
+	 *                                   security manager's
+	 *                                   {@link SecurityManager#checkWrite
+	 *                                   checkWrite} method denies write access
+	 *                                   to the file
 	 *
-	 *             </ul>
+	 *                                   </ul>
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                                   if an I/O error occurs
 	 *
 	 * @see Runtime#exec(String[], String[], java.io.File)
 	 */
@@ -1114,7 +1118,8 @@ public final class ProcessBuilder {
 		}
 
 		try {
-			return ProcessImpl.start(cmdarray, environment, dir, redirects, redirectErrorStream);
+			return ProcessImpl.start(cmdarray, environment, dir, redirects,
+					redirectErrorStream);
 		} catch (IOException | IllegalArgumentException e) {
 			String exceptionInfo = ": " + e.getMessage();
 			Throwable cause = e;
@@ -1130,8 +1135,8 @@ public final class ProcessBuilder {
 			// It's much easier for us to create a high-quality error
 			// message than the low-level C code which found the problem.
 			throw new IOException("Cannot run program \"" + prog + "\""
-					+ (dir == null ? "" : " (in directory \"" + dir + "\")") + exceptionInfo,
-					cause);
+					+ (dir == null ? "" : " (in directory \"" + dir + "\")")
+					+ exceptionInfo, cause);
 		}
 	}
 }

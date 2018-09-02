@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.remote.internal;
@@ -39,8 +19,9 @@ import javax.security.auth.Subject;
  * </p>
  */
 public class ClientListenerInfo {
-	public ClientListenerInfo(Integer listenerID, ObjectName name, NotificationListener listener,
-			NotificationFilter filter, Object handback, Subject delegationSubject) {
+	public ClientListenerInfo(Integer listenerID, ObjectName name,
+			NotificationListener listener, NotificationFilter filter,
+			Object handback, Subject delegationSubject) {
 		this.listenerID = listenerID;
 		this.name = name;
 		this.listener = listener;
@@ -81,10 +62,11 @@ public class ClientListenerInfo {
 		return (getObjectName().equals(name) && getListener() == listener);
 	}
 
-	public boolean sameAs(ObjectName name, NotificationListener listener, NotificationFilter filter,
-			Object handback) {
+	public boolean sameAs(ObjectName name, NotificationListener listener,
+			NotificationFilter filter, Object handback) {
 		return (getObjectName().equals(name) && getListener() == listener
-				&& getNotificationFilter() == filter && getHandback() == handback);
+				&& getNotificationFilter() == filter
+				&& getHandback() == handback);
 	}
 
 	private final ObjectName name;

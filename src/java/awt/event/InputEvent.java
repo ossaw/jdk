@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -56,8 +36,8 @@ import sun.security.util.SecurityConstants;
  */
 public abstract class InputEvent extends ComponentEvent {
 
-	private static final PlatformLogger logger = PlatformLogger
-			.getLogger("java.awt.event.InputEvent");
+	private static final PlatformLogger logger = PlatformLogger.getLogger(
+			"java.awt.event.InputEvent");
 
 	/**
 	 * The Shift key modifier constant. It is recommended that SHIFT_DOWN_MASK
@@ -171,12 +151,13 @@ public abstract class InputEvent extends ComponentEvent {
 	 *      one more bit is reserved for FIRST_HIGH_BIT.
 	 * @since 7.0
 	 */
-	private static final int[] BUTTON_DOWN_MASK = new int[] { BUTTON1_DOWN_MASK, BUTTON2_DOWN_MASK,
-			BUTTON3_DOWN_MASK, 1 << 14, // 4th phisical button (this is not a
-										// wheel!)
+	private static final int[] BUTTON_DOWN_MASK = new int[] { BUTTON1_DOWN_MASK,
+			BUTTON2_DOWN_MASK, BUTTON3_DOWN_MASK, 1 << 14, // 4th phisical button (this is not a
+			// wheel!)
 			1 << 15, // (this is not a wheel!)
-			1 << 16, 1 << 17, 1 << 18, 1 << 19, 1 << 20, 1 << 21, 1 << 22, 1 << 23, 1 << 24,
-			1 << 25, 1 << 26, 1 << 27, 1 << 28, 1 << 29, 1 << 30 };
+			1 << 16, 1 << 17, 1 << 18, 1 << 19, 1 << 20, 1 << 21, 1 << 22,
+			1 << 23, 1 << 24, 1 << 25, 1 << 26, 1 << 27, 1 << 28, 1 << 29,
+			1 << 30 };
 
 	/**
 	 * A method to access an array of extended modifiers for additional buttons.
@@ -200,27 +181,30 @@ public abstract class InputEvent extends ComponentEvent {
 	 * </ul>
 	 * 
 	 * @param button
-	 *            is a number to represent a button starting from 1. For
-	 *            example,
+	 *               is a number to represent a button starting from 1. For
+	 *               example,
 	 * 
-	 *            <pre>
-	 *            int button = InputEvent.getMaskForButton(1);
-	 *            </pre>
+	 *               <pre>
+	 *               int button = InputEvent.getMaskForButton(1);
+	 *               </pre>
 	 * 
-	 *            will have the same meaning as
+	 *               will have the same meaning as
 	 * 
-	 *            <pre>
-	 *            int button = InputEvent.getMaskForButton(MouseEvent.BUTTON1);
-	 *            </pre>
+	 *               <pre>
+	 *               int button = InputEvent.getMaskForButton(MouseEvent.BUTTON1);
+	 *               </pre>
 	 * 
-	 *            because {@link MouseEvent#BUTTON1 MouseEvent.BUTTON1} equals
-	 *            to 1. If a mouse has three enabled buttons(see
-	 *            {@link java.awt.MouseInfo#getNumberOfButtons()
-	 *            MouseInfo.getNumberOfButtons()}) then the values from the left
-	 *            column passed into the method will return corresponding values
-	 *            from the right column:
+	 *               because {@link MouseEvent#BUTTON1 MouseEvent.BUTTON1}
+	 *               equals
+	 *               to 1. If a mouse has three enabled buttons(see
+	 *               {@link java.awt.MouseInfo#getNumberOfButtons()
+	 *               MouseInfo.getNumberOfButtons()}) then the values from the
+	 *               left
+	 *               column passed into the method will return corresponding
+	 *               values
+	 *               from the right column:
 	 * 
-	 *            <PRE>
+	 *               <PRE>
 	 *    <b>button </b>   <b>returned mask</b>
 	 *    {@link MouseEvent#BUTTON1 BUTTON1}  
 	{@link MouseEvent#BUTTON1_DOWN_MASK BUTTON1_DOWN_MASK}
@@ -228,25 +212,32 @@ public abstract class InputEvent extends ComponentEvent {
 	{@link MouseEvent#BUTTON2_DOWN_MASK BUTTON2_DOWN_MASK}
 	 *    {@link MouseEvent#BUTTON3 BUTTON3}  
 	{@link MouseEvent#BUTTON3_DOWN_MASK BUTTON3_DOWN_MASK}
-	 * 			</PRE>
+	 * 				</PRE>
 	 * 
-	 *            If a mouse has more than three enabled buttons then more
-	 *            values are admissible (4, 5, etc.). There is no assigned
-	 *            constants for these extended buttons. The button masks for the
-	 *            extra buttons returned by this method have no assigned names
-	 *            like the first three button masks.
-	 *            <p>
-	 *            This method has the following implementation restriction. It
-	 *            returns masks for a limited number of buttons only. The
-	 *            maximum number is implementation dependent and may vary. This
-	 *            limit is defined by the relevant number of buttons that may
-	 *            hypothetically exist on the mouse but it is greater than the
-	 *            {@link java.awt.MouseInfo#getNumberOfButtons()
-	 *            MouseInfo.getNumberOfButtons()}.
-	 *            <p>
+	 *               If a mouse has more than three enabled buttons then more
+	 *               values are admissible (4, 5, etc.). There is no assigned
+	 *               constants for these extended buttons. The button masks for
+	 *               the
+	 *               extra buttons returned by this method have no assigned
+	 *               names
+	 *               like the first three button masks.
+	 *               <p>
+	 *               This method has the following implementation restriction.
+	 *               It
+	 *               returns masks for a limited number of buttons only. The
+	 *               maximum number is implementation dependent and may vary.
+	 *               This
+	 *               limit is defined by the relevant number of buttons that may
+	 *               hypothetically exist on the mouse but it is greater than
+	 *               the
+	 *               {@link java.awt.MouseInfo#getNumberOfButtons()
+	 *               MouseInfo.getNumberOfButtons()}.
+	 *               <p>
 	 * @throws IllegalArgumentException
-	 *             if {@code button} is less than zero or greater than the
-	 *             number of button masks reserved for buttons
+	 *                                  if {@code button} is less than zero or
+	 *                                  greater than the
+	 *                                  number of button masks reserved for
+	 *                                  buttons
 	 * @since 7.0
 	 * @see java.awt.MouseInfo#getNumberOfButtons()
 	 * @see Toolkit#areExtraMouseButtonsEnabled()
@@ -255,7 +246,8 @@ public abstract class InputEvent extends ComponentEvent {
 	 */
 	public static int getMaskForButton(int button) {
 		if (button <= 0 || button > BUTTON_DOWN_MASK.length) {
-			throw new IllegalArgumentException("button doesn\'t exist " + button);
+			throw new IllegalArgumentException("button doesn\'t exist "
+					+ button);
 		}
 		return BUTTON_DOWN_MASK[button - 1];
 	}
@@ -323,25 +315,34 @@ public abstract class InputEvent extends ComponentEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            the object where the event originated
+	 *                  the object where the event originated
 	 * @param id
-	 *            the integer that identifies the event type. It is allowed to
-	 *            pass as parameter any value that allowed for some subclass of
-	 *            {@code InputEvent} class. Passing in the value different from
-	 *            those values result in unspecified behavior
+	 *                  the integer that identifies the event type. It is
+	 *                  allowed to
+	 *                  pass as parameter any value that allowed for some
+	 *                  subclass of
+	 *                  {@code InputEvent} class. Passing in the value different
+	 *                  from
+	 *                  those values result in unspecified behavior
 	 * @param when
-	 *            a long int that gives the time the event occurred. Passing
-	 *            negative or zero value is not recommended
+	 *                  a long int that gives the time the event occurred.
+	 *                  Passing
+	 *                  negative or zero value is not recommended
 	 * @param modifiers
-	 *            a modifier mask describing the modifier keys and mouse buttons
-	 *            (for example, shift, ctrl, alt, and meta) that are down during
-	 *            the event. Only extended modifiers are allowed to be used as a
-	 *            value for this parameter (see the
-	 *            {@link InputEvent#getModifiersEx} class for the description of
-	 *            extended modifiers). Passing negative parameter is not
-	 *            recommended. Zero value means that no modifiers were passed
+	 *                  a modifier mask describing the modifier keys and mouse
+	 *                  buttons
+	 *                  (for example, shift, ctrl, alt, and meta) that are down
+	 *                  during
+	 *                  the event. Only extended modifiers are allowed to be
+	 *                  used as a
+	 *                  value for this parameter (see the
+	 *                  {@link InputEvent#getModifiersEx} class for the
+	 *                  description of
+	 *                  extended modifiers). Passing negative parameter is not
+	 *                  recommended. Zero value means that no modifiers were
+	 *                  passed
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see #getSource()
 	 * @see #getID()
 	 * @see #getWhen()
@@ -361,11 +362,13 @@ public abstract class InputEvent extends ComponentEvent {
 			SecurityManager sm = System.getSecurityManager();
 			if (sm != null) {
 				try {
-					sm.checkPermission(SecurityConstants.AWT.ACCESS_CLIPBOARD_PERMISSION);
+					sm.checkPermission(
+							SecurityConstants.AWT.ACCESS_CLIPBOARD_PERMISSION);
 					b = true;
 				} catch (SecurityException se) {
 					if (logger.isLoggable(PlatformLogger.Level.FINE)) {
-						logger.fine("InputEvent.canAccessSystemClipboard() got SecurityException ",
+						logger.fine(
+								"InputEvent.canAccessSystemClipboard() got SecurityException ",
 								se);
 					}
 				}
@@ -500,8 +503,9 @@ public abstract class InputEvent extends ComponentEvent {
 	 * were passed and will cause the returning an empty string.
 	 *
 	 * @param modifiers
-	 *            a modifier mask describing the extended modifier keys and
-	 *            mouse buttons for the event
+	 *                  a modifier mask describing the extended modifier keys
+	 *                  and
+	 *                  mouse buttons for the event
 	 * @return a text description of the combination of extended modifier keys
 	 *         and mouse buttons that were held down during the event.
 	 * @since 1.4
@@ -532,8 +536,8 @@ public abstract class InputEvent extends ComponentEvent {
 		int buttonNumber = 1;
 		for (int mask : InputEvent.BUTTON_DOWN_MASK) {
 			if ((modifiers & mask) != 0) {
-				buf.append(
-						Toolkit.getProperty("AWT.button" + buttonNumber, "Button" + buttonNumber));
+				buf.append(Toolkit.getProperty("AWT.button" + buttonNumber,
+						"Button" + buttonNumber));
 				buf.append("+");
 			}
 			buttonNumber++;

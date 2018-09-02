@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -56,7 +36,8 @@ public class WindowsPopupMenuSeparatorUI extends BasicPopupMenuSeparatorUI {
 			Component parent = c.getParent();
 			if (parent instanceof JComponent) {
 				Object gutterOffsetObject = ((JComponent) parent)
-						.getClientProperty(WindowsPopupMenuUI.GUTTER_OFFSET_KEY);
+						.getClientProperty(
+								WindowsPopupMenuUI.GUTTER_OFFSET_KEY);
 				if (gutterOffsetObject instanceof Integer) {
 					/*
 					 * gutter offset is in parent's coordinates. See comment in

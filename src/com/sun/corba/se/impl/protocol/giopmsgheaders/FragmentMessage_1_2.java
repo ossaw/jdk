@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol.giopmsgheaders;
@@ -33,17 +13,17 @@ import com.sun.corba.se.spi.ior.iiop.GIOPVersion;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class FragmentMessage_1_2 extends Message_1_2 implements FragmentMessage {
+public final class FragmentMessage_1_2 extends Message_1_2 implements
+		FragmentMessage {
 
 	// Constructors
 
-	FragmentMessage_1_2() {
-	}
+	FragmentMessage_1_2() {}
 
 	// This is currently never called.
 	FragmentMessage_1_2(int _request_id) {
-		super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN, Message.GIOPFragment,
-				0);
+		super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN,
+				Message.GIOPFragment, 0);
 		this.message_type = GIOPFragment;
 		request_id = _request_id;
 	}
@@ -56,21 +36,21 @@ public final class FragmentMessage_1_2 extends Message_1_2 implements FragmentMe
 		this.message_size = 0;
 
 		switch (msg12.message_type) {
-		case GIOPRequest:
-			this.request_id = ((RequestMessage) msg12).getRequestId();
-			break;
-		case GIOPReply:
-			this.request_id = ((ReplyMessage) msg12).getRequestId();
-			break;
-		case GIOPLocateRequest:
-			this.request_id = ((LocateRequestMessage) msg12).getRequestId();
-			break;
-		case GIOPLocateReply:
-			this.request_id = ((LocateReplyMessage) msg12).getRequestId();
-			break;
-		case GIOPFragment:
-			this.request_id = ((FragmentMessage) msg12).getRequestId();
-			break;
+			case GIOPRequest:
+				this.request_id = ((RequestMessage) msg12).getRequestId();
+				break;
+			case GIOPReply:
+				this.request_id = ((ReplyMessage) msg12).getRequestId();
+				break;
+			case GIOPLocateRequest:
+				this.request_id = ((LocateRequestMessage) msg12).getRequestId();
+				break;
+			case GIOPLocateReply:
+				this.request_id = ((LocateReplyMessage) msg12).getRequestId();
+				break;
+			case GIOPFragment:
+				this.request_id = ((FragmentMessage) msg12).getRequestId();
+				break;
 		}
 	}
 

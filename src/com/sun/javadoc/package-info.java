@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /**
@@ -91,25 +71,37 @@
  * <pre>
 import com.sun.javadoc.*;
 
-public class ListParams extends <font color=red title="Doclet API">Doclet</font> {
+public class ListParams extends <font color=red title=
+"Doclet API">Doclet</font> {
 
-    public static boolean start(<font color=red title="Doclet API">RootDoc</font> root) {
-        <font color=red title="Doclet API">ClassDoc</font>[] classes = root.<font color=red title="Doclet API">classes</font>();
+    public static boolean start(<font color=red title=
+"Doclet API">RootDoc</font> root) {
+        <font color=red title=
+"Doclet API">ClassDoc</font>[] classes = root.<font color=red title=
+"Doclet API">classes</font>();
         for (int i = 0; i < classes.length; ++i) {
             <font color=red title="Doclet API">ClassDoc</font> cd = classes[i];
-            printMembers(cd.<font color=red title="Doclet API">constructors</font>());
-            printMembers(cd.<font color=red title="Doclet API">methods</font>());
+            printMembers(cd.<font color=red title=
+"Doclet API">constructors</font>());
+            printMembers(cd.<font color=red title=
+"Doclet API">methods</font>());
         }
         return true;
     }
 
-    static void printMembers(<font color=red title="Doclet API">ExecutableMemberDoc</font>[] mems) {
+    static void printMembers(<font color=red title=
+"Doclet API">ExecutableMemberDoc</font>[] mems) {
         for (int i = 0; i < mems.length; ++i) {
-            <font color=red title="Doclet API">ParamTag</font>[] params = mems[i].<font color=red title="Doclet API">paramTags</font>();
-            System.out.println(mems[i].<font color=red title="Doclet API">qualifiedName</font>());
+            <font color=red title=
+"Doclet API">ParamTag</font>[] params = mems[i].<font color=red title=
+"Doclet API">paramTags</font>();
+            System.out.println(mems[i].<font color=red title=
+"Doclet API">qualifiedName</font>());
             for (int j = 0; j < params.length; ++j) {
-                System.out.println("   " + params[j].<font color=red title="Doclet API">parameterName</font>()
-                    + " - " + params[j].<font color=red title="Doclet API">parameterComment</font>());
+                System.out.println("   " + params[j].<font color=red title=
+"Doclet API">parameterName</font>()
+                    + " - " + params[j].<font color=red title=
+"Doclet API">parameterComment</font>());
             }
         }
     }

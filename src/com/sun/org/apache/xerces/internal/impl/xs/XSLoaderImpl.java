@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,7 +61,8 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 	 * No-args constructor.
 	 */
 	public XSLoaderImpl() {
-		fSchemaLoader.setProperty(XMLSchemaLoader.XMLGRAMMAR_POOL, fGrammarPool);
+		fSchemaLoader.setProperty(XMLSchemaLoader.XMLGRAMMAR_POOL,
+				fGrammarPool);
 	}
 
 	/**
@@ -100,7 +98,7 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 	 * not defined by this specification.
 	 * 
 	 * @param uriList
-	 *            The list of URI locations.
+	 *                The list of URI locations.
 	 * @return An XSModel representing the schema documents.
 	 */
 	public XSModel loadURIList(StringList uriList) {
@@ -108,7 +106,8 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 		try {
 			fGrammarPool.clear();
 			for (int i = 0; i < length; ++i) {
-				fSchemaLoader.loadGrammar(new XMLInputSource(null, uriList.item(i), null));
+				fSchemaLoader.loadGrammar(new XMLInputSource(null, uriList.item(
+						i), null));
 			}
 			return fGrammarPool.toXSModel();
 		} catch (Exception e) {
@@ -122,8 +121,8 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 	 * <code>LSInput</code>s.
 	 * 
 	 * @param is
-	 *            The list of <code>LSInput</code>s from which the XML Schema
-	 *            documents are to be read.
+	 *           The list of <code>LSInput</code>s from which the XML Schema
+	 *           documents are to be read.
 	 * @return An XSModel representing the schema documents.
 	 */
 	public XSModel loadInputList(LSInputList is) {
@@ -131,7 +130,8 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 		try {
 			fGrammarPool.clear();
 			for (int i = 0; i < length; ++i) {
-				fSchemaLoader.loadGrammar(fSchemaLoader.dom2xmlInputSource(is.item(i)));
+				fSchemaLoader.loadGrammar(fSchemaLoader.dom2xmlInputSource(is
+						.item(i)));
 			}
 			return fGrammarPool.toXSModel();
 		} catch (Exception e) {
@@ -152,8 +152,8 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 	public XSModel loadURI(String uri) {
 		try {
 			fGrammarPool.clear();
-			return ((XSGrammar) fSchemaLoader.loadGrammar(new XMLInputSource(null, uri, null)))
-					.toXSModel();
+			return ((XSGrammar) fSchemaLoader.loadGrammar(new XMLInputSource(
+					null, uri, null))).toXSModel();
 		} catch (Exception e) {
 			fSchemaLoader.reportDOMFatalError(e);
 			return null;
@@ -165,15 +165,15 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 	 * <code>LSInput</code> .
 	 * 
 	 * @param is
-	 *            The <code>LSInput</code> from which the source document is to
-	 *            be read.
+	 *           The <code>LSInput</code> from which the source document is to
+	 *           be read.
 	 * @return An XSModel representing this schema.
 	 */
 	public XSModel load(LSInput is) {
 		try {
 			fGrammarPool.clear();
-			return ((XSGrammar) fSchemaLoader.loadGrammar(fSchemaLoader.dom2xmlInputSource(is)))
-					.toXSModel();
+			return ((XSGrammar) fSchemaLoader.loadGrammar(fSchemaLoader
+					.dom2xmlInputSource(is))).toXSModel();
 		} catch (Exception e) {
 			fSchemaLoader.reportDOMFatalError(e);
 			return null;
@@ -182,7 +182,6 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.dom3.DOMConfiguration#setParameter(
 	 * java.lang.String, java.lang.Object)
@@ -193,7 +192,6 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.dom3.DOMConfiguration#getParameter(
 	 * java.lang.String)
@@ -204,7 +202,6 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.dom3.DOMConfiguration#canSetParameter(
 	 * java.lang.String, java.lang.Object)
@@ -215,7 +212,6 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see com.sun.org.apache.xerces.internal.dom3.DOMConfiguration#
 	 * getParameterNames()
 	 */
@@ -231,12 +227,11 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 	 */
 	private static final class XSGrammarMerger extends XSGrammarPool {
 
-		public XSGrammarMerger() {
-		}
+		public XSGrammarMerger() {}
 
 		public void putGrammar(Grammar grammar) {
-			SchemaGrammar cachedGrammar = toSchemaGrammar(
-					super.getGrammar(grammar.getGrammarDescription()));
+			SchemaGrammar cachedGrammar = toSchemaGrammar(super.getGrammar(
+					grammar.getGrammarDescription()));
 			if (cachedGrammar != null) {
 				SchemaGrammar newGrammar = toSchemaGrammar(grammar);
 				if (newGrammar != null) {
@@ -248,17 +243,21 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 		}
 
 		private SchemaGrammar toSchemaGrammar(Grammar grammar) {
-			return (grammar instanceof SchemaGrammar) ? (SchemaGrammar) grammar : null;
+			return (grammar instanceof SchemaGrammar) ? (SchemaGrammar) grammar
+					: null;
 		}
 
-		private void mergeSchemaGrammars(SchemaGrammar cachedGrammar, SchemaGrammar newGrammar) {
+		private void mergeSchemaGrammars(SchemaGrammar cachedGrammar,
+				SchemaGrammar newGrammar) {
 
 			/** Add new top-level element declarations. **/
-			XSNamedMap map = newGrammar.getComponents(XSConstants.ELEMENT_DECLARATION);
+			XSNamedMap map = newGrammar.getComponents(
+					XSConstants.ELEMENT_DECLARATION);
 			int length = map.getLength();
 			for (int i = 0; i < length; ++i) {
 				XSElementDecl decl = (XSElementDecl) map.item(i);
-				if (cachedGrammar.getGlobalElementDecl(decl.getName()) == null) {
+				if (cachedGrammar.getGlobalElementDecl(decl
+						.getName()) == null) {
 					cachedGrammar.addGlobalElementDecl(decl);
 				}
 			}
@@ -268,7 +267,8 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 			length = map.getLength();
 			for (int i = 0; i < length; ++i) {
 				XSAttributeDecl decl = (XSAttributeDecl) map.item(i);
-				if (cachedGrammar.getGlobalAttributeDecl(decl.getName()) == null) {
+				if (cachedGrammar.getGlobalAttributeDecl(decl
+						.getName()) == null) {
 					cachedGrammar.addGlobalAttributeDecl(decl);
 				}
 			}
@@ -288,7 +288,8 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 			length = map.getLength();
 			for (int i = 0; i < length; ++i) {
 				XSAttributeGroupDecl decl = (XSAttributeGroupDecl) map.item(i);
-				if (cachedGrammar.getGlobalAttributeGroupDecl(decl.getName()) == null) {
+				if (cachedGrammar.getGlobalAttributeGroupDecl(decl
+						.getName()) == null) {
 					cachedGrammar.addGlobalAttributeGroupDecl(decl);
 				}
 			}
@@ -308,7 +309,8 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 			length = map.getLength();
 			for (int i = 0; i < length; ++i) {
 				XSNotationDecl decl = (XSNotationDecl) map.item(i);
-				if (cachedGrammar.getGlobalNotationDecl(decl.getName()) == null) {
+				if (cachedGrammar.getGlobalNotationDecl(decl
+						.getName()) == null) {
 					cachedGrammar.addGlobalNotationDecl(decl);
 				}
 			}
@@ -321,7 +323,8 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
 			XSObjectList annotations = newGrammar.getAnnotations();
 			length = annotations.getLength();
 			for (int i = 0; i < length; ++i) {
-				cachedGrammar.addAnnotation((XSAnnotationImpl) annotations.item(i));
+				cachedGrammar.addAnnotation((XSAnnotationImpl) annotations.item(
+						i));
 			}
 
 		}

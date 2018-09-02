@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -50,7 +30,7 @@ public interface Elements {
 	 * Returns a package given its fully qualified name.
 	 *
 	 * @param name
-	 *            fully qualified package name, or "" for an unnamed package
+	 *             fully qualified package name, or "" for an unnamed package
 	 * @return the named package, or {@code null} if it cannot be found
 	 */
 	PackageElement getPackageElement(CharSequence name);
@@ -59,7 +39,7 @@ public interface Elements {
 	 * Returns a type element given its canonical name.
 	 *
 	 * @param name
-	 *            the canonical name
+	 *             the canonical name
 	 * @return the named type element, or {@code null} if it cannot be found
 	 */
 	TypeElement getTypeElement(CharSequence name);
@@ -69,7 +49,7 @@ public interface Elements {
 	 *
 	 * @see AnnotationMirror#getElementValues()
 	 * @param a
-	 *            annotation to examine
+	 *          annotation to examine
 	 * @return the values of the annotation's elements, including defaults
 	 */
 	Map<? extends ExecutableElement, ? extends AnnotationValue> getElementValuesWithDefaults(
@@ -93,7 +73,7 @@ public interface Elements {
 	 * are then concatenated together (including line terminators) and returned.
 	 *
 	 * @param e
-	 *            the element being examined
+	 *          the element being examined
 	 * @return the documentation comment of the element, or {@code null} if
 	 *         there is none
 	 * @jls 3.6 White Space
@@ -105,7 +85,7 @@ public interface Elements {
 	 * otherwise.
 	 *
 	 * @param e
-	 *            the element being examined
+	 *          the element being examined
 	 * @return {@code true} if the element is deprecated, {@code false}
 	 *         otherwise
 	 */
@@ -115,7 +95,7 @@ public interface Elements {
 	 * Returns the <i>binary name</i> of a type element.
 	 *
 	 * @param type
-	 *            the type element being examined
+	 *             the type element being examined
 	 * @return the binary name
 	 *
 	 * @see TypeElement#getQualifiedName
@@ -127,7 +107,7 @@ public interface Elements {
 	 * Returns the package of an element. The package of a package is itself.
 	 *
 	 * @param type
-	 *            the element being examined
+	 *             the element being examined
 	 * @return the package of an element
 	 */
 	PackageElement getPackageOf(Element type);
@@ -142,7 +122,7 @@ public interface Elements {
 	 * {@link ElementFilter}.
 	 *
 	 * @param type
-	 *            the type being examined
+	 *             the type being examined
 	 * @return all members of the type
 	 * @see Element#getEnclosedElements
 	 */
@@ -153,7 +133,7 @@ public interface Elements {
 	 * present or present via inheritance.
 	 *
 	 * @param e
-	 *            the element being examined
+	 *          the element being examined
 	 * @return all annotations of the element
 	 * @see Element#getAnnotationMirrors
 	 * @see javax.lang.model.AnnotatedConstruct
@@ -164,9 +144,9 @@ public interface Elements {
 	 * Tests whether one type, method, or field hides another.
 	 *
 	 * @param hider
-	 *            the first element
+	 *               the first element
 	 * @param hidden
-	 *            the second element
+	 *               the second element
 	 * @return {@code true} if and only if the first element hides the second
 	 */
 	boolean hides(Element hider, Element hidden);
@@ -209,16 +189,17 @@ public interface Elements {
 	 *          elements.getTypeElement("C")); } </blockquote>
 	 *
 	 * @param overrider
-	 *            the first method, possible overrider
+	 *                   the first method, possible overrider
 	 * @param overridden
-	 *            the second method, possibly being overridden
+	 *                   the second method, possibly being overridden
 	 * @param type
-	 *            the type of which the first method is a member
+	 *                   the type of which the first method is a member
 	 * @return {@code true} if and only if the first method overrides the second
 	 * @jls 8.4.8 Inheritance, Overriding, and Hiding
 	 * @jls 9.4.1 Inheritance and Overriding
 	 */
-	boolean overrides(ExecutableElement overrider, ExecutableElement overridden, TypeElement type);
+	boolean overrides(ExecutableElement overrider, ExecutableElement overridden,
+			TypeElement type);
 
 	/**
 	 * Returns the text of a <i>constant expression</i> representing a primitive
@@ -226,10 +207,11 @@ public interface Elements {
 	 * representing the value in source code.
 	 *
 	 * @param value
-	 *            a primitive value or string
+	 *              a primitive value or string
 	 * @return the text of a constant expression
 	 * @throws IllegalArgumentException
-	 *             if the argument is not a primitive value or string
+	 *                                  if the argument is not a primitive value
+	 *                                  or string
 	 *
 	 * @see VariableElement#getConstantValue()
 	 */
@@ -242,9 +224,9 @@ public interface Elements {
 	 * change.
 	 *
 	 * @param w
-	 *            the writer to print the output to
+	 *                 the writer to print the output to
 	 * @param elements
-	 *            the elements to print
+	 *                 the elements to print
 	 */
 	void printElements(java.io.Writer w, Element... elements);
 
@@ -252,7 +234,7 @@ public interface Elements {
 	 * Return a name with the same sequence of characters as the argument.
 	 *
 	 * @param cs
-	 *            the character sequence to return as a name
+	 *           the character sequence to return as a name
 	 * @return a name with the same sequence of characters as the argument
 	 */
 	Name getName(CharSequence cs);
@@ -262,7 +244,7 @@ public interface Elements {
 	 * {@code false} otherwise.
 	 *
 	 * @param type
-	 *            the type element being examined
+	 *             the type element being examined
 	 * @return {@code true} if the element is a functional interface,
 	 *         {@code false} otherwise
 	 * @jls 9.8 Functional Interfaces

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -73,18 +70,23 @@ class XSDWildcardTraverser extends XSDAbstractTraverser {
 	 * @param grammar
 	 * @return the wildcard node index
 	 */
-	XSParticleDecl traverseAny(Element elmNode, XSDocumentInfo schemaDoc, SchemaGrammar grammar) {
+	XSParticleDecl traverseAny(Element elmNode, XSDocumentInfo schemaDoc,
+			SchemaGrammar grammar) {
 
 		// General Attribute Checking for elmNode
-		Object[] attrValues = fAttrChecker.checkAttributes(elmNode, false, schemaDoc);
-		XSWildcardDecl wildcard = traverseWildcardDecl(elmNode, attrValues, schemaDoc, grammar);
+		Object[] attrValues = fAttrChecker.checkAttributes(elmNode, false,
+				schemaDoc);
+		XSWildcardDecl wildcard = traverseWildcardDecl(elmNode, attrValues,
+				schemaDoc, grammar);
 
 		// for <any>, need to create a new particle to reflect the min/max
 		// values
 		XSParticleDecl particle = null;
 		if (wildcard != null) {
-			int min = ((XInt) attrValues[XSAttributeChecker.ATTIDX_MINOCCURS]).intValue();
-			int max = ((XInt) attrValues[XSAttributeChecker.ATTIDX_MAXOCCURS]).intValue();
+			int min = ((XInt) attrValues[XSAttributeChecker.ATTIDX_MINOCCURS])
+					.intValue();
+			int max = ((XInt) attrValues[XSAttributeChecker.ATTIDX_MAXOCCURS])
+					.intValue();
 			if (max != 0) {
 				if (fSchemaHandler.fDeclPool != null) {
 					particle = fSchemaHandler.fDeclPool.getParticleDecl();
@@ -112,12 +114,14 @@ class XSDWildcardTraverser extends XSDAbstractTraverser {
 	 * @param grammar
 	 * @return the wildcard node index
 	 */
-	XSWildcardDecl traverseAnyAttribute(Element elmNode, XSDocumentInfo schemaDoc,
-			SchemaGrammar grammar) {
+	XSWildcardDecl traverseAnyAttribute(Element elmNode,
+			XSDocumentInfo schemaDoc, SchemaGrammar grammar) {
 
 		// General Attribute Checking for elmNode
-		Object[] attrValues = fAttrChecker.checkAttributes(elmNode, false, schemaDoc);
-		XSWildcardDecl wildcard = traverseWildcardDecl(elmNode, attrValues, schemaDoc, grammar);
+		Object[] attrValues = fAttrChecker.checkAttributes(elmNode, false,
+				schemaDoc);
+		XSWildcardDecl wildcard = traverseWildcardDecl(elmNode, attrValues,
+				schemaDoc, grammar);
 		fAttrChecker.returnAttrArray(attrValues, schemaDoc);
 
 		return wildcard;
@@ -149,27 +153,29 @@ class XSDWildcardTraverser extends XSDAbstractTraverser {
 		Element child = DOMUtil.getFirstChildElement(elmNode);
 		XSAnnotationImpl annotation = null;
 		if (child != null) {
-			if (DOMUtil.getLocalName(child).equals(SchemaSymbols.ELT_ANNOTATION)) {
-				annotation = traverseAnnotationDecl(child, attrValues, false, schemaDoc);
+			if (DOMUtil.getLocalName(child).equals(
+					SchemaSymbols.ELT_ANNOTATION)) {
+				annotation = traverseAnnotationDecl(child, attrValues, false,
+						schemaDoc);
 				child = DOMUtil.getNextSiblingElement(child);
 			} else {
 				String text = DOMUtil.getSyntheticAnnotation(elmNode);
 				if (text != null) {
-					annotation = traverseSyntheticAnnotation(elmNode, text, attrValues, false,
-							schemaDoc);
+					annotation = traverseSyntheticAnnotation(elmNode, text,
+							attrValues, false, schemaDoc);
 				}
 			}
 
 			if (child != null) {
-				reportSchemaError("s4s-elt-must-match.1",
-						new Object[] { "wildcard", "(annotation?)", DOMUtil.getLocalName(child) },
-						elmNode);
+				reportSchemaError("s4s-elt-must-match.1", new Object[] {
+						"wildcard", "(annotation?)", DOMUtil.getLocalName(
+								child) }, elmNode);
 			}
 		} else {
 			String text = DOMUtil.getSyntheticAnnotation(elmNode);
 			if (text != null) {
-				annotation = traverseSyntheticAnnotation(elmNode, text, attrValues, false,
-						schemaDoc);
+				annotation = traverseSyntheticAnnotation(elmNode, text,
+						attrValues, false, schemaDoc);
 			}
 		}
 		XSObjectList annotations;

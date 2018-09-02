@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.geom;
@@ -38,7 +18,7 @@ public class NoninvertibleTransformException extends java.lang.Exception {
 	 * with the specified detail message.
 	 * 
 	 * @param s
-	 *            the detail message
+	 *          the detail message
 	 * @since 1.2
 	 */
 	public NoninvertibleTransformException(String s) {

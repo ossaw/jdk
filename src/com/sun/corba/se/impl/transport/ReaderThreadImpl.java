@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.transport;
@@ -82,7 +62,8 @@ public class ReaderThreadImpl implements ReaderThread, Work {
 				try {
 
 					if (orb.transportDebugFlag) {
-						dprint(".doWork: Start ReaderThread cycle: " + connection);
+						dprint(".doWork: Start ReaderThread cycle: "
+								+ connection);
 					}
 
 					if (connection.read()) {
@@ -91,15 +72,16 @@ public class ReaderThreadImpl implements ReaderThread, Work {
 					}
 
 					if (orb.transportDebugFlag) {
-						dprint(".doWork: End ReaderThread cycle: " + connection);
+						dprint(".doWork: End ReaderThread cycle: "
+								+ connection);
 					}
 
 				} catch (Throwable t) {
 					if (orb.transportDebugFlag) {
 						dprint(".doWork: exception in read: " + connection, t);
 					}
-					orb.getTransportManager().getSelector(0)
-							.unregisterForEvent(getConnection().getEventHandler());
+					orb.getTransportManager().getSelector(0).unregisterForEvent(
+							getConnection().getEventHandler());
 					getConnection().close();
 				}
 			}

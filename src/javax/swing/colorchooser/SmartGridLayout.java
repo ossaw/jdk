@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.colorchooser;
@@ -78,7 +58,8 @@ class SmartGridLayout implements LayoutManager, Serializable {
 				for (int row = 0; row < rows; row++) {
 					Component current = layoutGrid[column][row];
 
-					current.setBounds(horizLoc, vertLoc, columnWidths[column], rowHeights[row]);
+					current.setBounds(horizLoc, vertLoc, columnWidths[column],
+							rowHeights[row]);
 					// System.out.println(current.getBounds());
 					vertLoc += (rowHeights[row] + yGap);
 				}
@@ -93,7 +74,8 @@ class SmartGridLayout implements LayoutManager, Serializable {
 				for (int row = 0; row < rows; row++) {
 					Component current = layoutGrid[column][row];
 
-					current.setBounds(horizLoc, vertLoc, columnWidths[column], rowHeights[row]);
+					current.setBounds(horizLoc, vertLoc, columnWidths[column],
+							rowHeights[row]);
 					// System.out.println(current.getBounds());
 					vertLoc += (rowHeights[row] + yGap);
 				}
@@ -130,11 +112,9 @@ class SmartGridLayout implements LayoutManager, Serializable {
 		return minimumLayoutSize(c);
 	}
 
-	public void addLayoutComponent(String s, Component c) {
-	}
+	public void addLayoutComponent(String s, Component c) {}
 
-	public void removeLayoutComponent(Component c) {
-	}
+	public void removeLayoutComponent(Component c) {}
 
 	private void buildLayoutGrid(Container c) {
 

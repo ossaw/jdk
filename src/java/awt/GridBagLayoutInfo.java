@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -66,9 +46,9 @@ public class GridBagLayoutInfo implements java.io.Serializable {
 	 * {@code GridBagLayout} grid cells with it's own parameters.
 	 * 
 	 * @param width
-	 *            the columns
+	 *               the columns
 	 * @param height
-	 *            the rows
+	 *               the rows
 	 * @since 6.0
 	 */
 	GridBagLayoutInfo(int width, int height) {
@@ -82,7 +62,8 @@ public class GridBagLayoutInfo implements java.io.Serializable {
 	 */
 	boolean hasConstantDescent(int row) {
 		return ((baselineType[row]
-				& (1 << Component.BaselineResizeBehavior.CONSTANT_DESCENT.ordinal())) != 0);
+				& (1 << Component.BaselineResizeBehavior.CONSTANT_DESCENT
+						.ordinal())) != 0);
 	}
 
 	/**

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.motif;
@@ -113,7 +93,8 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
 				}
 				if ((evt.getClickCount() == 2)) {
 					closeAction.actionPerformed(new ActionEvent(evt.getSource(),
-							ActionEvent.ACTION_PERFORMED, null, evt.getWhen(), 0));
+							ActionEvent.ACTION_PERFORMED, null, evt.getWhen(),
+							0));
 					systemMenu.setVisible(false);
 				}
 			}
@@ -122,8 +103,8 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
 
 	private static int getButtonMnemonic(String button) {
 		try {
-			return Integer.parseInt(
-					UIManager.getString("InternalFrameTitlePane." + button + "Button.mnemonic"));
+			return Integer.parseInt(UIManager.getString(
+					"InternalFrameTitlePane." + button + "Button.mnemonic"));
 		} catch (NumberFormatException e) {
 			return -1;
 		}
@@ -147,8 +128,7 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
 		add(maximizeButton);
 	}
 
-	public void paintComponent(Graphics g) {
-	}
+	public void paintComponent(Graphics g) {}
 
 	void setColors(Color c, Color h, Color s) {
 		color = c;
@@ -156,8 +136,7 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
 		shadow = s;
 	}
 
-	public void actionPerformed(ActionEvent e) {
-	}
+	public void actionPerformed(ActionEvent e) {}
 
 	public void propertyChange(PropertyChangeEvent evt) {
 		String prop = evt.getPropertyName();
@@ -185,11 +164,9 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
 		enableActions();
 	}
 
-	public void addLayoutComponent(String name, Component c) {
-	}
+	public void addLayoutComponent(String name, Component c) {}
 
-	public void removeLayoutComponent(Component c) {
-	}
+	public void removeLayoutComponent(Component c) {}
 
 	public Dimension preferredLayoutSize(Container c) {
 		return minimumLayoutSize(c);
@@ -306,8 +283,7 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
 			return false;
 		}
 
-		public void requestFocus() {
-		}
+		public void requestFocus() {}
 
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
@@ -326,8 +302,8 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
 			setText(title);
 			setHorizontalAlignment(SwingConstants.CENTER);
 			setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-					UIManager.getColor("activeCaptionBorder"),
-					UIManager.getColor("inactiveCaptionBorder")));
+					UIManager.getColor("activeCaptionBorder"), UIManager
+							.getColor("inactiveCaptionBorder")));
 
 			// Forward mouse events to titlebar for moves.
 			addMouseMotionListener(new MouseMotionListener() {
@@ -363,9 +339,11 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
 		}
 
 		void forwardEventToParent(MouseEvent e) {
-			getParent().dispatchEvent(new MouseEvent(getParent(), e.getID(), e.getWhen(),
-					e.getModifiers(), e.getX(), e.getY(), e.getXOnScreen(), e.getYOnScreen(),
-					e.getClickCount(), e.isPopupTrigger(), MouseEvent.NOBUTTON));
+			getParent().dispatchEvent(new MouseEvent(getParent(), e.getID(), e
+					.getWhen(), e.getModifiers(), e.getX(), e.getY(), e
+							.getXOnScreen(), e.getYOnScreen(), e
+									.getClickCount(), e.isPopupTrigger(),
+					MouseEvent.NOBUTTON));
 		}
 
 		public void paintComponent(Graphics g) {
@@ -378,8 +356,8 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
 			Dimension d = getSize();
 			String frameTitle = frame.getTitle();
 			if (frameTitle != null) {
-				MotifGraphicsUtils.drawStringInRect(frame, g, frameTitle, 0, 0, d.width, d.height,
-						SwingConstants.CENTER);
+				MotifGraphicsUtils.drawStringInRect(frame, g, frameTitle, 0, 0,
+						d.width, d.height, SwingConstants.CENTER);
 			}
 		}
 	}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -49,6 +29,5 @@ public class PortUnreachableException extends SocketException {
 	 * Construct a new {@code PortUnreachableException} with no detailed
 	 * message.
 	 */
-	public PortUnreachableException() {
-	}
+	public PortUnreachableException() {}
 }

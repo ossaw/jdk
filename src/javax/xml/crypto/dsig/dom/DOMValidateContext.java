@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: DOMValidateContext.java,v 1.8 2005/05/10 16:31:14 mullan Exp $
@@ -58,7 +38,8 @@ import org.w3c.dom.Node;
  * @since 1.6
  * @see XMLSignatureFactory#unmarshalXMLSignature(XMLValidateContext)
  */
-public class DOMValidateContext extends DOMCryptoContext implements XMLValidateContext {
+public class DOMValidateContext extends DOMCryptoContext implements
+		XMLValidateContext {
 
 	private Node node;
 
@@ -67,11 +48,12 @@ public class DOMValidateContext extends DOMCryptoContext implements XMLValidateC
 	 * selector and node.
 	 *
 	 * @param ks
-	 *            a key selector for finding a validation key
+	 *             a key selector for finding a validation key
 	 * @param node
-	 *            the node
+	 *             the node
 	 * @throws NullPointerException
-	 *             if <code>ks</code> or <code>node</code> is <code>null</code>
+	 *                              if <code>ks</code> or <code>node</code> is
+	 *                              <code>null</code>
 	 */
 	public DOMValidateContext(KeySelector ks, Node node) {
 		if (ks == null) {
@@ -88,12 +70,13 @@ public class DOMValidateContext extends DOMCryptoContext implements XMLValidateC
 	 * called.
 	 *
 	 * @param validatingKey
-	 *            the validating key
+	 *                      the validating key
 	 * @param node
-	 *            the node
+	 *                      the node
 	 * @throws NullPointerException
-	 *             if <code>validatingKey</code> or <code>node</code> is
-	 *             <code>null</code>
+	 *                              if <code>validatingKey</code> or
+	 *                              <code>node</code> is
+	 *                              <code>null</code>
 	 */
 	public DOMValidateContext(Key validatingKey, Node node) {
 		if (validatingKey == null) {
@@ -110,7 +93,8 @@ public class DOMValidateContext extends DOMCryptoContext implements XMLValidateC
 		this.node = node;
 		super.setKeySelector(ks);
 		if (System.getSecurityManager() != null) {
-			super.setProperty("org.jcp.xml.dsig.secureValidation", Boolean.TRUE);
+			super.setProperty("org.jcp.xml.dsig.secureValidation",
+					Boolean.TRUE);
 		}
 	}
 
@@ -118,9 +102,9 @@ public class DOMValidateContext extends DOMCryptoContext implements XMLValidateC
 	 * Sets the node.
 	 *
 	 * @param node
-	 *            the node
+	 *             the node
 	 * @throws NullPointerException
-	 *             if <code>node</code> is <code>null</code>
+	 *                              if <code>node</code> is <code>null</code>
 	 * @see #getNode
 	 */
 	public void setNode(Node node) {

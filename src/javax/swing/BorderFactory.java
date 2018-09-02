@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -42,8 +22,7 @@ import javax.swing.border.*;
 public class BorderFactory {
 
 	/** Don't let anyone instantiate this class */
-	private BorderFactory() {
-	}
+	private BorderFactory() {}
 
 	//// LineBorder
 	//// ///////////////////////////////////////////////////////////////
@@ -51,7 +30,7 @@ public class BorderFactory {
 	 * Creates a line border withe the specified color.
 	 *
 	 * @param color
-	 *            a <code>Color</code> to use for the line
+	 *              a <code>Color</code> to use for the line
 	 * @return the <code>Border</code> object
 	 */
 	public static Border createLineBorder(Color color) {
@@ -65,9 +44,9 @@ public class BorderFactory {
 	 * {@link #createMatteBorder(int,int,int,int,Color)}.
 	 *
 	 * @param color
-	 *            a <code>Color</code> to use for the line
+	 *                  a <code>Color</code> to use for the line
 	 * @param thickness
-	 *            an integer specifying the width in pixels
+	 *                  an integer specifying the width in pixels
 	 * @return the <code>Border</code> object
 	 */
 	public static Border createLineBorder(Color color, int thickness) {
@@ -79,17 +58,18 @@ public class BorderFactory {
 	 * shape.
 	 *
 	 * @param color
-	 *            the color of the border
+	 *                  the color of the border
 	 * @param thickness
-	 *            the thickness of the border
+	 *                  the thickness of the border
 	 * @param rounded
-	 *            whether or not border corners should be round
+	 *                  whether or not border corners should be round
 	 * @return the {@code Border} object
 	 *
 	 * @see LineBorder#LineBorder(Color, int, boolean)
 	 * @since 1.7
 	 */
-	public static Border createLineBorder(Color color, int thickness, boolean rounded) {
+	public static Border createLineBorder(Color color, int thickness,
+			boolean rounded) {
 		return new LineBorder(color, thickness, rounded);
 	}
 
@@ -97,7 +77,8 @@ public class BorderFactory {
 	//// /////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 	static final Border sharedRaisedBevel = new BevelBorder(BevelBorder.RAISED);
-	static final Border sharedLoweredBevel = new BevelBorder(BevelBorder.LOWERED);
+	static final Border sharedLoweredBevel = new BevelBorder(
+			BevelBorder.LOWERED);
 
 	/**
 	 * Creates a border with a raised beveled edge, using brighter shades of the
@@ -130,8 +111,8 @@ public class BorderFactory {
 	 * highlights are underneath.)
 	 *
 	 * @param type
-	 *            an integer specifying either <code>BevelBorder.LOWERED</code>
-	 *            or <code>BevelBorder.RAISED</code>
+	 *             an integer specifying either <code>BevelBorder.LOWERED</code>
+	 *             or <code>BevelBorder.RAISED</code>
 	 * @return the <code>Border</code> object
 	 */
 	public static Border createBevelBorder(int type) {
@@ -145,15 +126,17 @@ public class BorderFactory {
 	 * uses a brighter shade of the shadow color.
 	 *
 	 * @param type
-	 *            an integer specifying either <code>BevelBorder.LOWERED</code>
-	 *            or <code>BevelBorder.RAISED</code>
+	 *                  an integer specifying either
+	 *                  <code>BevelBorder.LOWERED</code>
+	 *                  or <code>BevelBorder.RAISED</code>
 	 * @param highlight
-	 *            a <code>Color</code> object for highlights
+	 *                  a <code>Color</code> object for highlights
 	 * @param shadow
-	 *            a <code>Color</code> object for shadows
+	 *                  a <code>Color</code> object for shadows
 	 * @return the <code>Border</code> object
 	 */
-	public static Border createBevelBorder(int type, Color highlight, Color shadow) {
+	public static Border createBevelBorder(int type, Color highlight,
+			Color shadow) {
 		return new BevelBorder(type, highlight, shadow);
 	}
 
@@ -162,25 +145,31 @@ public class BorderFactory {
 	 * colors for the inner and outer highlight and shadow areas.
 	 *
 	 * @param type
-	 *            an integer specifying either <code>BevelBorder.LOWERED</code>
-	 *            or <code>BevelBorder.RAISED</code>
+	 *                       an integer specifying either
+	 *                       <code>BevelBorder.LOWERED</code>
+	 *                       or <code>BevelBorder.RAISED</code>
 	 * @param highlightOuter
-	 *            a <code>Color</code> object for the outer edge of the
-	 *            highlight area
+	 *                       a <code>Color</code> object for the outer edge of
+	 *                       the
+	 *                       highlight area
 	 * @param highlightInner
-	 *            a <code>Color</code> object for the inner edge of the
-	 *            highlight area
+	 *                       a <code>Color</code> object for the inner edge of
+	 *                       the
+	 *                       highlight area
 	 * @param shadowOuter
-	 *            a <code>Color</code> object for the outer edge of the shadow
-	 *            area
+	 *                       a <code>Color</code> object for the outer edge of
+	 *                       the shadow
+	 *                       area
 	 * @param shadowInner
-	 *            a <code>Color</code> object for the inner edge of the shadow
-	 *            area
+	 *                       a <code>Color</code> object for the inner edge of
+	 *                       the shadow
+	 *                       area
 	 * @return the <code>Border</code> object
 	 */
-	public static Border createBevelBorder(int type, Color highlightOuter, Color highlightInner,
-			Color shadowOuter, Color shadowInner) {
-		return new BevelBorder(type, highlightOuter, highlightInner, shadowOuter, shadowInner);
+	public static Border createBevelBorder(int type, Color highlightOuter,
+			Color highlightInner, Color shadowOuter, Color shadowInner) {
+		return new BevelBorder(type, highlightOuter, highlightInner,
+				shadowOuter, shadowInner);
 	}
 
 	static Border createSharedBevel(int type) {
@@ -240,7 +229,7 @@ public class BorderFactory {
 	 * {@link BevelBorder#RAISED} or {@link BevelBorder#LOWERED}.
 	 *
 	 * @param type
-	 *            a type of a bevel
+	 *             a type of a bevel
 	 * @return the {@code Border} object or {@code null} if the specified type
 	 *         is not valid
 	 *
@@ -266,17 +255,18 @@ public class BorderFactory {
 	 * {@code shadow} color.
 	 *
 	 * @param type
-	 *            a type of a bevel
+	 *                  a type of a bevel
 	 * @param highlight
-	 *            a basic color of the highlight area
+	 *                  a basic color of the highlight area
 	 * @param shadow
-	 *            a basic color of the shadow area
+	 *                  a basic color of the shadow area
 	 * @return the {@code Border} object
 	 *
 	 * @see BevelBorder#BevelBorder(int, Color, Color)
 	 * @since 1.7
 	 */
-	public static Border createSoftBevelBorder(int type, Color highlight, Color shadow) {
+	public static Border createSoftBevelBorder(int type, Color highlight,
+			Color shadow) {
 		return new SoftBevelBorder(type, highlight, shadow);
 	}
 
@@ -288,23 +278,24 @@ public class BorderFactory {
 	 * switched for a lowered bevel border.
 	 *
 	 * @param type
-	 *            a type of a bevel
+	 *                       a type of a bevel
 	 * @param highlightOuter
-	 *            a color of the outer edge of the highlight area
+	 *                       a color of the outer edge of the highlight area
 	 * @param highlightInner
-	 *            a color of the inner edge of the highlight area
+	 *                       a color of the inner edge of the highlight area
 	 * @param shadowOuter
-	 *            a color of the outer edge of the shadow area
+	 *                       a color of the outer edge of the shadow area
 	 * @param shadowInner
-	 *            a color of the inner edge of the shadow area
+	 *                       a color of the inner edge of the shadow area
 	 * @return the {@code Border} object
 	 *
 	 * @see BevelBorder#BevelBorder(int, Color, Color, Color, Color)
 	 * @since 1.7
 	 */
-	public static Border createSoftBevelBorder(int type, Color highlightOuter, Color highlightInner,
-			Color shadowOuter, Color shadowInner) {
-		return new SoftBevelBorder(type, highlightOuter, highlightInner, shadowOuter, shadowInner);
+	public static Border createSoftBevelBorder(int type, Color highlightOuter,
+			Color highlightInner, Color shadowOuter, Color shadowInner) {
+		return new SoftBevelBorder(type, highlightOuter, highlightInner,
+				shadowOuter, shadowInner);
 	}
 
 	//// EtchedBorder
@@ -328,9 +319,9 @@ public class BorderFactory {
 	 * and shading colors.
 	 *
 	 * @param highlight
-	 *            a <code>Color</code> object for the border highlights
+	 *                  a <code>Color</code> object for the border highlights
 	 * @param shadow
-	 *            a <code>Color</code> object for the border shadows
+	 *                  a <code>Color</code> object for the border shadows
 	 * @return the <code>Border</code> object
 	 */
 	public static Border createEtchedBorder(Color highlight, Color shadow) {
@@ -342,26 +333,28 @@ public class BorderFactory {
 	 * background color for highlighting and shading.
 	 *
 	 * @param type
-	 *            one of <code>EtchedBorder.RAISED</code>, or
-	 *            <code>EtchedBorder.LOWERED</code>
+	 *             one of <code>EtchedBorder.RAISED</code>, or
+	 *             <code>EtchedBorder.LOWERED</code>
 	 * @return the <code>Border</code> object
 	 * @exception IllegalArgumentException
-	 *                if type is not either <code>EtchedBorder.RAISED</code> or
-	 *                <code>EtchedBorder.LOWERED</code>
+	 *                                     if type is not either
+	 *                                     <code>EtchedBorder.RAISED</code> or
+	 *                                     <code>EtchedBorder.LOWERED</code>
 	 * @since 1.3
 	 */
 	public static Border createEtchedBorder(int type) {
 		switch (type) {
-		case EtchedBorder.RAISED:
-			if (sharedRaisedEtchedBorder == null) {
-				sharedRaisedEtchedBorder = new EtchedBorder(EtchedBorder.RAISED);
-			}
-			return sharedRaisedEtchedBorder;
-		case EtchedBorder.LOWERED:
-			return sharedEtchedBorder;
-		default:
-			throw new IllegalArgumentException(
-					"type must be one of EtchedBorder.RAISED or EtchedBorder.LOWERED");
+			case EtchedBorder.RAISED:
+				if (sharedRaisedEtchedBorder == null) {
+					sharedRaisedEtchedBorder = new EtchedBorder(
+							EtchedBorder.RAISED);
+				}
+				return sharedRaisedEtchedBorder;
+			case EtchedBorder.LOWERED:
+				return sharedEtchedBorder;
+			default:
+				throw new IllegalArgumentException(
+						"type must be one of EtchedBorder.RAISED or EtchedBorder.LOWERED");
 		}
 	}
 
@@ -370,16 +363,17 @@ public class BorderFactory {
 	 * and shading colors.
 	 *
 	 * @param type
-	 *            one of <code>EtchedBorder.RAISED</code>, or
-	 *            <code>EtchedBorder.LOWERED</code>
+	 *                  one of <code>EtchedBorder.RAISED</code>, or
+	 *                  <code>EtchedBorder.LOWERED</code>
 	 * @param highlight
-	 *            a <code>Color</code> object for the border highlights
+	 *                  a <code>Color</code> object for the border highlights
 	 * @param shadow
-	 *            a <code>Color</code> object for the border shadows
+	 *                  a <code>Color</code> object for the border shadows
 	 * @return the <code>Border</code> object
 	 * @since 1.3
 	 */
-	public static Border createEtchedBorder(int type, Color highlight, Color shadow) {
+	public static Border createEtchedBorder(int type, Color highlight,
+			Color shadow) {
 		return new EtchedBorder(type, highlight, shadow);
 	}
 
@@ -393,7 +387,7 @@ public class BorderFactory {
 	 * look and feel).
 	 *
 	 * @param title
-	 *            a <code>String</code> containing the text of the title
+	 *              a <code>String</code> containing the text of the title
 	 * @return the <code>TitledBorder</code> object
 	 */
 	public static TitledBorder createTitledBorder(String title) {
@@ -407,9 +401,10 @@ public class BorderFactory {
 	 * color (determined by the current look and feel).
 	 *
 	 * @param border
-	 *            the <code>Border</code> object to add the title to; if
-	 *            <code>null</code> the <code>Border</code> is determined by the
-	 *            current look and feel.
+	 *               the <code>Border</code> object to add the title to; if
+	 *               <code>null</code> the <code>Border</code> is determined by
+	 *               the
+	 *               current look and feel.
 	 * @return the <code>TitledBorder</code> object
 	 */
 	public static TitledBorder createTitledBorder(Border border) {
@@ -422,9 +417,9 @@ public class BorderFactory {
 	 * default font and text color (determined by the current look and feel).
 	 *
 	 * @param border
-	 *            the <code>Border</code> object to add the title to
+	 *               the <code>Border</code> object to add the title to
 	 * @param title
-	 *            a <code>String</code> containing the text of the title
+	 *               a <code>String</code> containing the text of the title
 	 * @return the <code>TitledBorder</code> object
 	 */
 	public static TitledBorder createTitledBorder(Border border, String title) {
@@ -437,39 +432,49 @@ public class BorderFactory {
 	 * feel).
 	 *
 	 * @param border
-	 *            the <code>Border</code> object to add the title to
+	 *                           the <code>Border</code> object to add the title
+	 *                           to
 	 * @param title
-	 *            a <code>String</code> containing the text of the title
+	 *                           a <code>String</code> containing the text of
+	 *                           the title
 	 * @param titleJustification
-	 *            an integer specifying the justification of the title -- one of
-	 *            the following:
-	 *            <ul>
-	 *            <li><code>TitledBorder.LEFT</code>
-	 *            <li><code>TitledBorder.CENTER</code>
-	 *            <li><code>TitledBorder.RIGHT</code>
-	 *            <li><code>TitledBorder.LEADING</code>
-	 *            <li><code>TitledBorder.TRAILING</code>
-	 *            <li><code>TitledBorder.DEFAULT_JUSTIFICATION</code> (leading)
-	 *            </ul>
+	 *                           an integer specifying the justification of the
+	 *                           title -- one of
+	 *                           the following:
+	 *                           <ul>
+	 *                           <li><code>TitledBorder.LEFT</code>
+	 *                           <li><code>TitledBorder.CENTER</code>
+	 *                           <li><code>TitledBorder.RIGHT</code>
+	 *                           <li><code>TitledBorder.LEADING</code>
+	 *                           <li><code>TitledBorder.TRAILING</code>
+	 *                           <li><code>TitledBorder.DEFAULT_JUSTIFICATION</code>
+	 *                           (leading)
+	 *                           </ul>
 	 * @param titlePosition
-	 *            an integer specifying the vertical position of the text in
-	 *            relation to the border -- one of the following:
-	 *            <ul>
-	 *            <li><code> TitledBorder.ABOVE_TOP</code>
-	 *            <li><code>TitledBorder.TOP</code> (sitting on the top line)
-	 *            <li><code>TitledBorder.BELOW_TOP</code>
-	 *            <li><code>TitledBorder.ABOVE_BOTTOM</code>
-	 *            <li><code>TitledBorder.BOTTOM</code> (sitting on the bottom
-	 *            line)
-	 *            <li><code>TitledBorder.BELOW_BOTTOM</code>
-	 *            <li><code>TitledBorder.DEFAULT_POSITION</code> (the title
-	 *            position is determined by the current look and feel)
-	 *            </ul>
+	 *                           an integer specifying the vertical position of
+	 *                           the text in
+	 *                           relation to the border -- one of the following:
+	 *                           <ul>
+	 *                           <li><code> TitledBorder.ABOVE_TOP</code>
+	 *                           <li><code>TitledBorder.TOP</code> (sitting on
+	 *                           the top line)
+	 *                           <li><code>TitledBorder.BELOW_TOP</code>
+	 *                           <li><code>TitledBorder.ABOVE_BOTTOM</code>
+	 *                           <li><code>TitledBorder.BOTTOM</code> (sitting
+	 *                           on the bottom
+	 *                           line)
+	 *                           <li><code>TitledBorder.BELOW_BOTTOM</code>
+	 *                           <li><code>TitledBorder.DEFAULT_POSITION</code>
+	 *                           (the title
+	 *                           position is determined by the current look and
+	 *                           feel)
+	 *                           </ul>
 	 * @return the <code>TitledBorder</code> object
 	 */
 	public static TitledBorder createTitledBorder(Border border, String title,
 			int titleJustification, int titlePosition) {
-		return new TitledBorder(border, title, titleJustification, titlePosition);
+		return new TitledBorder(border, title, titleJustification,
+				titlePosition);
 	}
 
 	/**
@@ -478,41 +483,51 @@ public class BorderFactory {
 	 * and feel).
 	 *
 	 * @param border
-	 *            the <code>Border</code> object to add the title to
+	 *                           the <code>Border</code> object to add the title
+	 *                           to
 	 * @param title
-	 *            a <code>String</code> containing the text of the title
+	 *                           a <code>String</code> containing the text of
+	 *                           the title
 	 * @param titleJustification
-	 *            an integer specifying the justification of the title -- one of
-	 *            the following:
-	 *            <ul>
-	 *            <li><code>TitledBorder.LEFT</code>
-	 *            <li><code>TitledBorder.CENTER</code>
-	 *            <li><code>TitledBorder.RIGHT</code>
-	 *            <li><code>TitledBorder.LEADING</code>
-	 *            <li><code>TitledBorder.TRAILING</code>
-	 *            <li><code>TitledBorder.DEFAULT_JUSTIFICATION</code> (leading)
-	 *            </ul>
+	 *                           an integer specifying the justification of the
+	 *                           title -- one of
+	 *                           the following:
+	 *                           <ul>
+	 *                           <li><code>TitledBorder.LEFT</code>
+	 *                           <li><code>TitledBorder.CENTER</code>
+	 *                           <li><code>TitledBorder.RIGHT</code>
+	 *                           <li><code>TitledBorder.LEADING</code>
+	 *                           <li><code>TitledBorder.TRAILING</code>
+	 *                           <li><code>TitledBorder.DEFAULT_JUSTIFICATION</code>
+	 *                           (leading)
+	 *                           </ul>
 	 * @param titlePosition
-	 *            an integer specifying the vertical position of the text in
-	 *            relation to the border -- one of the following:
-	 *            <ul>
-	 *            <li><code> TitledBorder.ABOVE_TOP</code>
-	 *            <li><code>TitledBorder.TOP</code> (sitting on the top line)
-	 *            <li><code>TitledBorder.BELOW_TOP</code>
-	 *            <li><code>TitledBorder.ABOVE_BOTTOM</code>
-	 *            <li><code>TitledBorder.BOTTOM</code> (sitting on the bottom
-	 *            line)
-	 *            <li><code>TitledBorder.BELOW_BOTTOM</code>
-	 *            <li><code>TitledBorder.DEFAULT_POSITION</code> (the title
-	 *            position is determined by the current look and feel)
-	 *            </ul>
+	 *                           an integer specifying the vertical position of
+	 *                           the text in
+	 *                           relation to the border -- one of the following:
+	 *                           <ul>
+	 *                           <li><code> TitledBorder.ABOVE_TOP</code>
+	 *                           <li><code>TitledBorder.TOP</code> (sitting on
+	 *                           the top line)
+	 *                           <li><code>TitledBorder.BELOW_TOP</code>
+	 *                           <li><code>TitledBorder.ABOVE_BOTTOM</code>
+	 *                           <li><code>TitledBorder.BOTTOM</code> (sitting
+	 *                           on the bottom
+	 *                           line)
+	 *                           <li><code>TitledBorder.BELOW_BOTTOM</code>
+	 *                           <li><code>TitledBorder.DEFAULT_POSITION</code>
+	 *                           (the title
+	 *                           position is determined by the current look and
+	 *                           feel)
+	 *                           </ul>
 	 * @param titleFont
-	 *            a Font object specifying the title font
+	 *                           a Font object specifying the title font
 	 * @return the TitledBorder object
 	 */
 	public static TitledBorder createTitledBorder(Border border, String title,
 			int titleJustification, int titlePosition, Font titleFont) {
-		return new TitledBorder(border, title, titleJustification, titlePosition, titleFont);
+		return new TitledBorder(border, title, titleJustification,
+				titlePosition, titleFont);
 	}
 
 	/**
@@ -520,44 +535,56 @@ public class BorderFactory {
 	 * and color.
 	 *
 	 * @param border
-	 *            the <code>Border</code> object to add the title to
+	 *                           the <code>Border</code> object to add the title
+	 *                           to
 	 * @param title
-	 *            a <code>String</code> containing the text of the title
+	 *                           a <code>String</code> containing the text of
+	 *                           the title
 	 * @param titleJustification
-	 *            an integer specifying the justification of the title -- one of
-	 *            the following:
-	 *            <ul>
-	 *            <li><code>TitledBorder.LEFT</code>
-	 *            <li><code>TitledBorder.CENTER</code>
-	 *            <li><code>TitledBorder.RIGHT</code>
-	 *            <li><code>TitledBorder.LEADING</code>
-	 *            <li><code>TitledBorder.TRAILING</code>
-	 *            <li><code>TitledBorder.DEFAULT_JUSTIFICATION</code> (leading)
-	 *            </ul>
+	 *                           an integer specifying the justification of the
+	 *                           title -- one of
+	 *                           the following:
+	 *                           <ul>
+	 *                           <li><code>TitledBorder.LEFT</code>
+	 *                           <li><code>TitledBorder.CENTER</code>
+	 *                           <li><code>TitledBorder.RIGHT</code>
+	 *                           <li><code>TitledBorder.LEADING</code>
+	 *                           <li><code>TitledBorder.TRAILING</code>
+	 *                           <li><code>TitledBorder.DEFAULT_JUSTIFICATION</code>
+	 *                           (leading)
+	 *                           </ul>
 	 * @param titlePosition
-	 *            an integer specifying the vertical position of the text in
-	 *            relation to the border -- one of the following:
-	 *            <ul>
-	 *            <li><code> TitledBorder.ABOVE_TOP</code>
-	 *            <li><code>TitledBorder.TOP</code> (sitting on the top line)
-	 *            <li><code>TitledBorder.BELOW_TOP</code>
-	 *            <li><code>TitledBorder.ABOVE_BOTTOM</code>
-	 *            <li><code>TitledBorder.BOTTOM</code> (sitting on the bottom
-	 *            line)
-	 *            <li><code>TitledBorder.BELOW_BOTTOM</code>
-	 *            <li><code>TitledBorder.DEFAULT_POSITION</code> (the title
-	 *            position is determined by the current look and feel)
-	 *            </ul>
+	 *                           an integer specifying the vertical position of
+	 *                           the text in
+	 *                           relation to the border -- one of the following:
+	 *                           <ul>
+	 *                           <li><code> TitledBorder.ABOVE_TOP</code>
+	 *                           <li><code>TitledBorder.TOP</code> (sitting on
+	 *                           the top line)
+	 *                           <li><code>TitledBorder.BELOW_TOP</code>
+	 *                           <li><code>TitledBorder.ABOVE_BOTTOM</code>
+	 *                           <li><code>TitledBorder.BOTTOM</code> (sitting
+	 *                           on the bottom
+	 *                           line)
+	 *                           <li><code>TitledBorder.BELOW_BOTTOM</code>
+	 *                           <li><code>TitledBorder.DEFAULT_POSITION</code>
+	 *                           (the title
+	 *                           position is determined by the current look and
+	 *                           feel)
+	 *                           </ul>
 	 * @param titleFont
-	 *            a <code>Font</code> object specifying the title font
+	 *                           a <code>Font</code> object specifying the title
+	 *                           font
 	 * @param titleColor
-	 *            a <code>Color</code> object specifying the title color
+	 *                           a <code>Color</code> object specifying the
+	 *                           title color
 	 * @return the <code>TitledBorder</code> object
 	 */
 	public static TitledBorder createTitledBorder(Border border, String title,
-			int titleJustification, int titlePosition, Font titleFont, Color titleColor) {
-		return new TitledBorder(border, title, titleJustification, titlePosition, titleFont,
-				titleColor);
+			int titleJustification, int titlePosition, Font titleFont,
+			Color titleColor) {
+		return new TitledBorder(border, title, titleJustification,
+				titlePosition, titleFont, titleColor);
 	}
 
 	//// EmptyBorder ///////////////////////////////////////////////////////////
@@ -578,16 +605,18 @@ public class BorderFactory {
 	 * specifying the width of the top, left, bottom, and right sides.
 	 *
 	 * @param top
-	 *            an integer specifying the width of the top, in pixels
+	 *               an integer specifying the width of the top, in pixels
 	 * @param left
-	 *            an integer specifying the width of the left side, in pixels
+	 *               an integer specifying the width of the left side, in pixels
 	 * @param bottom
-	 *            an integer specifying the width of the bottom, in pixels
+	 *               an integer specifying the width of the bottom, in pixels
 	 * @param right
-	 *            an integer specifying the width of the right side, in pixels
+	 *               an integer specifying the width of the right side, in
+	 *               pixels
 	 * @return the <code>Border</code> object
 	 */
-	public static Border createEmptyBorder(int top, int left, int bottom, int right) {
+	public static Border createEmptyBorder(int top, int left, int bottom,
+			int right) {
 		return new EmptyBorder(top, left, bottom, right);
 	}
 
@@ -607,14 +636,17 @@ public class BorderFactory {
 	 * outside and inside edges.
 	 *
 	 * @param outsideBorder
-	 *            a <code>Border</code> object for the outer edge of the
-	 *            compound border
+	 *                      a <code>Border</code> object for the outer edge of
+	 *                      the
+	 *                      compound border
 	 * @param insideBorder
-	 *            a <code>Border</code> object for the inner edge of the
-	 *            compound border
+	 *                      a <code>Border</code> object for the inner edge of
+	 *                      the
+	 *                      compound border
 	 * @return the <code>CompoundBorder</code> object
 	 */
-	public static CompoundBorder createCompoundBorder(Border outsideBorder, Border insideBorder) {
+	public static CompoundBorder createCompoundBorder(Border outsideBorder,
+			Border insideBorder) {
 		return new CompoundBorder(outsideBorder, insideBorder);
 	}
 
@@ -625,19 +657,20 @@ public class BorderFactory {
 	 * border dimensions.)
 	 *
 	 * @param top
-	 *            an integer specifying the width of the top, in pixels
+	 *               an integer specifying the width of the top, in pixels
 	 * @param left
-	 *            an integer specifying the width of the left side, in pixels
+	 *               an integer specifying the width of the left side, in pixels
 	 * @param bottom
-	 *            an integer specifying the width of the right side, in pixels
+	 *               an integer specifying the width of the right side, in
+	 *               pixels
 	 * @param right
-	 *            an integer specifying the width of the bottom, in pixels
+	 *               an integer specifying the width of the bottom, in pixels
 	 * @param color
-	 *            a <code>Color</code> to use for the border
+	 *               a <code>Color</code> to use for the border
 	 * @return the <code>MatteBorder</code> object
 	 */
-	public static MatteBorder createMatteBorder(int top, int left, int bottom, int right,
-			Color color) {
+	public static MatteBorder createMatteBorder(int top, int left, int bottom,
+			int right, Color color) {
 		return new MatteBorder(top, left, bottom, right, color);
 	}
 
@@ -650,19 +683,21 @@ public class BorderFactory {
 	 * If the icon doesn't load, the border area is painted gray.
 	 *
 	 * @param top
-	 *            an integer specifying the width of the top, in pixels
+	 *                 an integer specifying the width of the top, in pixels
 	 * @param left
-	 *            an integer specifying the width of the left side, in pixels
+	 *                 an integer specifying the width of the left side, in
+	 *                 pixels
 	 * @param bottom
-	 *            an integer specifying the width of the right side, in pixels
+	 *                 an integer specifying the width of the right side, in
+	 *                 pixels
 	 * @param right
-	 *            an integer specifying the width of the bottom, in pixels
+	 *                 an integer specifying the width of the bottom, in pixels
 	 * @param tileIcon
-	 *            the <code>Icon</code> object used for the border tiles
+	 *                 the <code>Icon</code> object used for the border tiles
 	 * @return the <code>MatteBorder</code> object
 	 */
-	public static MatteBorder createMatteBorder(int top, int left, int bottom, int right,
-			Icon tileIcon) {
+	public static MatteBorder createMatteBorder(int top, int left, int bottom,
+			int right, Icon tileIcon) {
 		return new MatteBorder(top, left, bottom, right, tileIcon);
 	}
 
@@ -675,11 +710,12 @@ public class BorderFactory {
 	 * foreground color will be used to render the border.
 	 *
 	 * @param stroke
-	 *            the {@link BasicStroke} object used to stroke a shape
+	 *               the {@link BasicStroke} object used to stroke a shape
 	 * @return the {@code Border} object
 	 *
 	 * @throws NullPointerException
-	 *             if the specified {@code stroke} is {@code null}
+	 *                              if the specified {@code stroke} is
+	 *                              {@code null}
 	 *
 	 * @since 1.7
 	 */
@@ -693,13 +729,14 @@ public class BorderFactory {
 	 * color will be used to render the border.
 	 *
 	 * @param stroke
-	 *            the {@link BasicStroke} object used to stroke a shape
+	 *               the {@link BasicStroke} object used to stroke a shape
 	 * @param paint
-	 *            the {@link Paint} object used to generate a color
+	 *               the {@link Paint} object used to generate a color
 	 * @return the {@code Border} object
 	 *
 	 * @throws NullPointerException
-	 *             if the specified {@code stroke} is {@code null}
+	 *                              if the specified {@code stroke} is
+	 *                              {@code null}
 	 *
 	 * @since 1.7
 	 */
@@ -721,7 +758,7 @@ public class BorderFactory {
 	 * dash lines are equal to {@code 1}. A dash line is not rounded.
 	 *
 	 * @param paint
-	 *            the {@link Paint} object used to generate a color
+	 *              the {@link Paint} object used to generate a color
 	 * @return the {@code Border} object
 	 *
 	 * @since 1.7
@@ -738,19 +775,22 @@ public class BorderFactory {
 	 * . A dash line is not rounded.
 	 *
 	 * @param paint
-	 *            the {@link Paint} object used to generate a color
+	 *                the {@link Paint} object used to generate a color
 	 * @param length
-	 *            the relative length of a dash line
+	 *                the relative length of a dash line
 	 * @param spacing
-	 *            the relative spacing between dash lines
+	 *                the relative spacing between dash lines
 	 * @return the {@code Border} object
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the specified {@code length} is less than {@code 1}, or if
-	 *             the specified {@code spacing} is less than {@code 0}
+	 *                                  if the specified {@code length} is less
+	 *                                  than {@code 1}, or if
+	 *                                  the specified {@code spacing} is less
+	 *                                  than {@code 0}
 	 * @since 1.7
 	 */
-	public static Border createDashedBorder(Paint paint, float length, float spacing) {
+	public static Border createDashedBorder(Paint paint, float length,
+			float spacing) {
 		return createDashedBorder(paint, 1.0f, length, spacing, false);
 	}
 
@@ -761,27 +801,30 @@ public class BorderFactory {
 	 * color will be used to render the border.
 	 *
 	 * @param paint
-	 *            the {@link Paint} object used to generate a color
+	 *                  the {@link Paint} object used to generate a color
 	 * @param thickness
-	 *            the width of a dash line
+	 *                  the width of a dash line
 	 * @param length
-	 *            the relative length of a dash line
+	 *                  the relative length of a dash line
 	 * @param spacing
-	 *            the relative spacing between dash lines
+	 *                  the relative spacing between dash lines
 	 * @param rounded
-	 *            whether or not line ends should be round
+	 *                  whether or not line ends should be round
 	 * @return the {@code Border} object
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the specified {@code thickness} is less than {@code 1}, or
-	 *             if the specified {@code length} is less than {@code 1}, or if
-	 *             the specified {@code spacing} is less than {@code 0}
+	 *                                  if the specified {@code thickness} is
+	 *                                  less than {@code 1}, or
+	 *                                  if the specified {@code length} is less
+	 *                                  than {@code 1}, or if
+	 *                                  the specified {@code spacing} is less
+	 *                                  than {@code 0}
 	 * @since 1.7
 	 */
-	public static Border createDashedBorder(Paint paint, float thickness, float length,
-			float spacing, boolean rounded) {
-		boolean shared = !rounded && (paint == null) && (thickness == 1.0f) && (length == 1.0f)
-				&& (spacing == 1.0f);
+	public static Border createDashedBorder(Paint paint, float thickness,
+			float length, float spacing, boolean rounded) {
+		boolean shared = !rounded && (paint == null) && (thickness == 1.0f)
+				&& (length == 1.0f) && (spacing == 1.0f);
 		if (shared && (sharedDashedBorder != null)) {
 			return sharedDashedBorder;
 		}
@@ -796,9 +839,10 @@ public class BorderFactory {
 		}
 		int cap = rounded ? BasicStroke.CAP_ROUND : BasicStroke.CAP_SQUARE;
 		int join = rounded ? BasicStroke.JOIN_ROUND : BasicStroke.JOIN_MITER;
-		float[] array = { thickness * (length - 1.0f), thickness * (spacing + 1.0f) };
-		Border border = createStrokeBorder(
-				new BasicStroke(thickness, cap, join, thickness * 2.0f, array, 0.0f), paint);
+		float[] array = { thickness * (length - 1.0f), thickness * (spacing
+				+ 1.0f) };
+		Border border = createStrokeBorder(new BasicStroke(thickness, cap, join,
+				thickness * 2.0f, array, 0.0f), paint);
 		if (shared) {
 			sharedDashedBorder = border;
 		}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -100,7 +80,7 @@ public abstract class InputVerifier {
 	 * argument's input.
 	 *
 	 * @param input
-	 *            the JComponent to verify
+	 *              the JComponent to verify
 	 * @return <code>true</code> when valid, <code>false</code> when invalid
 	 * @see JComponent#setInputVerifier
 	 * @see JComponent#getInputVerifier
@@ -118,7 +98,7 @@ public abstract class InputVerifier {
 	 * <code>false</code>, then the focus remains in the argument component.
 	 *
 	 * @param input
-	 *            the JComponent to verify
+	 *              the JComponent to verify
 	 * @return <code>true</code> when valid, <code>false</code> when invalid
 	 * @see JComponent#setInputVerifier
 	 * @see JComponent#getInputVerifier

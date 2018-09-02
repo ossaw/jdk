@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -55,14 +35,13 @@ public class EventReaderDelegate implements XMLEventReader {
 	/**
 	 * Construct an empty filter with no parent.
 	 */
-	public EventReaderDelegate() {
-	}
+	public EventReaderDelegate() {}
 
 	/**
 	 * Construct an filter with the specified parent.
 	 * 
 	 * @param reader
-	 *            the parent
+	 *               the parent
 	 */
 	public EventReaderDelegate(XMLEventReader reader) {
 		this.reader = reader;
@@ -72,7 +51,7 @@ public class EventReaderDelegate implements XMLEventReader {
 	 * Set the parent of this instance.
 	 * 
 	 * @param reader
-	 *            the new parent
+	 *               the new parent
 	 */
 	public void setParent(XMLEventReader reader) {
 		this.reader = reader;
@@ -115,7 +94,8 @@ public class EventReaderDelegate implements XMLEventReader {
 		return reader.nextTag();
 	}
 
-	public Object getProperty(java.lang.String name) throws java.lang.IllegalArgumentException {
+	public Object getProperty(java.lang.String name)
+			throws java.lang.IllegalArgumentException {
 		return reader.getProperty(name);
 	}
 

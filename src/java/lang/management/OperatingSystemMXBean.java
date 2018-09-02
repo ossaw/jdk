@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.management;
@@ -67,9 +47,9 @@ public interface OperatingSystemMXBean extends PlatformManagedObject {
 	 * @return the operating system name.
 	 *
 	 * @throws java.lang.SecurityException
-	 *             if a security manager exists and its
-	 *             <code>checkPropertiesAccess</code> method doesn't allow
-	 *             access to this system property.
+	 *         if a security manager exists and its
+	 *         <code>checkPropertiesAccess</code> method doesn't allow
+	 *         access to this system property.
 	 * @see java.lang.SecurityManager#checkPropertyAccess(java.lang.String)
 	 * @see java.lang.System#getProperty
 	 */
@@ -82,9 +62,9 @@ public interface OperatingSystemMXBean extends PlatformManagedObject {
 	 * @return the operating system architecture.
 	 *
 	 * @throws java.lang.SecurityException
-	 *             if a security manager exists and its
-	 *             <code>checkPropertiesAccess</code> method doesn't allow
-	 *             access to this system property.
+	 *         if a security manager exists and its
+	 *         <code>checkPropertiesAccess</code> method doesn't allow
+	 *         access to this system property.
 	 * @see java.lang.SecurityManager#checkPropertyAccess(java.lang.String)
 	 * @see java.lang.System#getProperty
 	 */
@@ -97,9 +77,9 @@ public interface OperatingSystemMXBean extends PlatformManagedObject {
 	 * @return the operating system version.
 	 *
 	 * @throws java.lang.SecurityException
-	 *             if a security manager exists and its
-	 *             <code>checkPropertiesAccess</code> method doesn't allow
-	 *             access to this system property.
+	 *         if a security manager exists and its
+	 *         <code>checkPropertiesAccess</code> method doesn't allow
+	 *         access to this system property.
 	 * @see java.lang.SecurityManager#checkPropertyAccess(java.lang.String)
 	 * @see java.lang.System#getProperty
 	 */

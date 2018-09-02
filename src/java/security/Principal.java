@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -44,7 +24,7 @@ public interface Principal {
 	 * of this interface.
 	 *
 	 * @param another
-	 *            principal to compare with.
+	 *                principal to compare with.
 	 *
 	 * @return true if the principal passed in is the same as that encapsulated
 	 *         by this principal, and false otherwise.
@@ -85,7 +65,7 @@ public interface Principal {
 	 * necessary.
 	 *
 	 * @param subject
-	 *            the {@code Subject}
+	 *                the {@code Subject}
 	 * @return true if {@code subject} is non-null and is implied by this
 	 *         principal, or false otherwise.
 	 * @since 1.8

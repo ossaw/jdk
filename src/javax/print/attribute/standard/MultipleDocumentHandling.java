@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -154,15 +134,16 @@ import javax.print.attribute.PrintJobAttribute;
  * @author David Mendenhall
  * @author Alan Kaminsky
  */
-public class MultipleDocumentHandling extends EnumSyntax
-		implements PrintRequestAttribute, PrintJobAttribute {
+public class MultipleDocumentHandling extends EnumSyntax implements
+		PrintRequestAttribute, PrintJobAttribute {
 
 	private static final long serialVersionUID = 8098326460746413466L;
 
 	/**
 	 * Single document -- see above for <A HREF="#sdfi">further information</A>.
 	 */
-	public static final MultipleDocumentHandling SINGLE_DOCUMENT = new MultipleDocumentHandling(0);
+	public static final MultipleDocumentHandling SINGLE_DOCUMENT = new MultipleDocumentHandling(
+			0);
 
 	/**
 	 * Separate documents uncollated copies -- see above for
@@ -190,19 +171,19 @@ public class MultipleDocumentHandling extends EnumSyntax
 	 * given integer value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected MultipleDocumentHandling(int value) {
 		super(value);
 	}
 
 	private static final String[] myStringTable = { "single-document",
-			"separate-documents-uncollated-copies", "separate-documents-collated-copies",
-			"single-document-new-sheet" };
+			"separate-documents-uncollated-copies",
+			"separate-documents-collated-copies", "single-document-new-sheet" };
 
-	private static final MultipleDocumentHandling[] myEnumValueTable = { SINGLE_DOCUMENT,
-			SEPARATE_DOCUMENTS_UNCOLLATED_COPIES, SEPARATE_DOCUMENTS_COLLATED_COPIES,
-			SINGLE_DOCUMENT_NEW_SHEET };
+	private static final MultipleDocumentHandling[] myEnumValueTable = {
+			SINGLE_DOCUMENT, SEPARATE_DOCUMENTS_UNCOLLATED_COPIES,
+			SEPARATE_DOCUMENTS_COLLATED_COPIES, SINGLE_DOCUMENT_NEW_SHEET };
 
 	/**
 	 * Returns the string table for class MultipleDocumentHandling.

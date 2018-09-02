@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -76,8 +73,7 @@ public class XMLReaderManager {
 	/**
 	 * Hidden constructor
 	 */
-	private XMLReaderManager() {
-	}
+	private XMLReaderManager() {}
 
 	/**
 	 * Retrieves the singleton reader manager
@@ -112,7 +108,8 @@ public class XMLReaderManager {
 		boolean threadHasReader = (reader != null);
 		String factory = SecuritySupport.getSystemProperty(property);
 		if (threadHasReader && m_inUse.get(reader) != Boolean.TRUE
-				&& (factory == null || reader.getClass().getName().equals(factory))) {
+				&& (factory == null || reader.getClass().getName().equals(
+						factory))) {
 			m_inUse.put(reader, Boolean.TRUE);
 		} else {
 			try {
@@ -123,10 +120,12 @@ public class XMLReaderManager {
 					// XMLReaderFactory if setXMLReader is not used
 					reader = XMLReaderFactory.createXMLReader();
 					try {
-						reader.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
+						reader.setFeature(
+								XMLConstants.FEATURE_SECURE_PROCESSING,
 								_secureProcessing);
 					} catch (SAXNotRecognizedException e) {
-						XMLSecurityManager.printWarning(reader.getClass().getName(),
+						XMLSecurityManager.printWarning(reader.getClass()
+								.getName(),
 								XMLConstants.FEATURE_SECURE_PROCESSING, e);
 					}
 				} catch (Exception e) {
@@ -134,7 +133,8 @@ public class XMLReaderManager {
 						// If unable to create an instance, let's try to use
 						// the XMLReader from JAXP
 						if (m_parserFactory == null) {
-							m_parserFactory = FactoryImpl.getSAXFactory(m_useServicesMechanism);
+							m_parserFactory = FactoryImpl.getSAXFactory(
+									m_useServicesMechanism);
 							m_parserFactory.setNamespaceAware(true);
 						}
 
@@ -168,7 +168,8 @@ public class XMLReaderManager {
 
 		try {
 			// reader is cached, but this property might have been reset
-			reader.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, _accessExternalDTD);
+			reader.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD,
+					_accessExternalDTD);
 		} catch (SAXException se) {
 			XMLSecurityManager.printWarning(reader.getClass().getName(),
 					XMLConstants.ACCESS_EXTERNAL_DTD, se);
@@ -177,10 +178,11 @@ public class XMLReaderManager {
 		String lastProperty = "";
 		try {
 			if (_xmlSecurityManager != null) {
-				for (XMLSecurityManager.Limit limit : XMLSecurityManager.Limit.values()) {
+				for (XMLSecurityManager.Limit limit : XMLSecurityManager.Limit
+						.values()) {
 					lastProperty = limit.apiProperty();
-					reader.setProperty(lastProperty,
-							_xmlSecurityManager.getLimitValueAsString(limit));
+					reader.setProperty(lastProperty, _xmlSecurityManager
+							.getLimitValueAsString(limit));
 				}
 				if (_xmlSecurityManager.printEntityCountInfo()) {
 					lastProperty = XalanConstants.JDK_ENTITY_COUNT_INFO;
@@ -189,7 +191,8 @@ public class XMLReaderManager {
 				}
 			}
 		} catch (SAXException se) {
-			XMLSecurityManager.printWarning(reader.getClass().getName(), lastProperty, se);
+			XMLSecurityManager.printWarning(reader.getClass().getName(),
+					lastProperty, se);
 		}
 
 		return reader;
@@ -200,7 +203,7 @@ public class XMLReaderManager {
 	 * the cache, do nothing.
 	 *
 	 * @param reader
-	 *            The XMLReader that's being released.
+	 *               The XMLReader that's being released.
 	 */
 	public synchronized void releaseXMLReader(XMLReader reader) {
 		// If the reader that's being released is the cached reader

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp;
@@ -51,8 +31,9 @@ abstract public class Enumerated implements Serializable {
 	 * first available in getIntTable().
 	 * 
 	 * @exception IllegalArgumentException
-	 *                One of the arguments passed to the method is illegal or
-	 *                inappropriate.
+	 *                                     One of the arguments passed to the
+	 *                                     method is illegal or
+	 *                                     inappropriate.
 	 */
 	public Enumerated() throws IllegalArgumentException {
 		Enumeration<Integer> e = getIntTable().keys();
@@ -67,10 +48,11 @@ abstract public class Enumerated implements Serializable {
 	 * Construct an enumerated from its integer form.
 	 *
 	 * @param valueIndex
-	 *            The integer form.
+	 *                   The integer form.
 	 * @exception IllegalArgumentException
-	 *                One of the arguments passed to the method is illegal or
-	 *                inappropriate.
+	 *                                     One of the arguments passed to the
+	 *                                     method is illegal or
+	 *                                     inappropriate.
 	 */
 	public Enumerated(int valueIndex) throws IllegalArgumentException {
 		if (getIntTable().get(new Integer(valueIndex)) == null) {
@@ -83,10 +65,11 @@ abstract public class Enumerated implements Serializable {
 	 * Construct an enumerated from its Integer form.
 	 *
 	 * @param valueIndex
-	 *            The Integer form.
+	 *                   The Integer form.
 	 * @exception IllegalArgumentException
-	 *                One of the arguments passed to the method is illegal or
-	 *                inappropriate.
+	 *                                     One of the arguments passed to the
+	 *                                     method is illegal or
+	 *                                     inappropriate.
 	 */
 	public Enumerated(Integer valueIndex) throws IllegalArgumentException {
 		if (getIntTable().get(valueIndex) == null) {
@@ -99,10 +82,11 @@ abstract public class Enumerated implements Serializable {
 	 * Construct an enumerated from its string form.
 	 *
 	 * @param valueString
-	 *            The string form.
+	 *                    The string form.
 	 * @exception IllegalArgumentException
-	 *                One of the arguments passed to the method is illegal or
-	 *                inappropriate.
+	 *                                     One of the arguments passed to the
+	 *                                     method is illegal or
+	 *                                     inappropriate.
 	 */
 	public Enumerated(String valueString) throws IllegalArgumentException {
 		Integer index = getStringTable().get(valueString);

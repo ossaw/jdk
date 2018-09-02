@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -77,8 +74,7 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * <code>DatatypeFactory</code>.
 	 * </p>
 	 */
-	public DatatypeFactoryImpl() {
-	}
+	public DatatypeFactoryImpl() {}
 
 	/**
 	 * <p>
@@ -111,18 +107,25 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param lexicalRepresentation
-	 *            <code>String</code> representation of a <code>Duration</code>.
+	 *                              <code>String</code> representation of a
+	 *                              <code>Duration</code>.
 	 *
 	 * @return New <code>Duration</code> created from parsing the
 	 *         <code>lexicalRepresentation</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>lexicalRepresentation</code> is not a valid
-	 *             representation of a <code>Duration</code>.
+	 *                                       If
+	 *                                       <code>lexicalRepresentation</code>
+	 *                                       is not a valid
+	 *                                       representation of a
+	 *                                       <code>Duration</code>.
 	 * @throws UnsupportedOperationException
-	 *             If implementation cannot support requested values.
+	 *                                       If implementation cannot support
+	 *                                       requested values.
 	 * @throws NullPointerException
-	 *             if <code>lexicalRepresentation</code> is <code>null</code>.
+	 *                                       if
+	 *                                       <code>lexicalRepresentation</code>
+	 *                                       is <code>null</code>.
 	 */
 	public Duration newDuration(final String lexicalRepresentation) {
 
@@ -170,7 +173,7 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param durationInMilliseconds
-	 *            Duration in milliseconds to create.
+	 *                               Duration in milliseconds to create.
 	 *
 	 * @return New <code>Duration</code> representing
 	 *         <code>durationInMilliseconds</code>.
@@ -197,41 +200,48 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param isPositive
-	 *            Set to <code>false</code> to create a negative duration. When
-	 *            the length of the duration is zero, this parameter will be
-	 *            ignored.
+	 *                   Set to <code>false</code> to create a negative
+	 *                   duration. When
+	 *                   the length of the duration is zero, this parameter will
+	 *                   be
+	 *                   ignored.
 	 * @param years
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 * @param months
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 * @param days
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 * @param hours
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 * @param minutes
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 * @param seconds
-	 *            of this <code>Duration</code>
+	 *                   of this <code>Duration</code>
 	 *
 	 * @return New <code>Duration</code> created from the specified values.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If values are not a valid representation of a
-	 *             <code>Duration</code>.
+	 *                                       If values are not a valid
+	 *                                       representation of a
+	 *                                       <code>Duration</code>.
 	 * @throws UnsupportedOperationException
-	 *             If implementation cannot support requested values.
+	 *                                       If implementation cannot support
+	 *                                       requested values.
 	 * @throws NullPointerException
-	 *             If any values are <code>null</code>.
+	 *                                       If any values are
+	 *                                       <code>null</code>.
 	 *
 	 * @see #newDuration(boolean isPositive, BigInteger years, BigInteger
 	 *      months, BigInteger days, BigInteger hours, BigInteger minutes,
 	 *      BigDecimal seconds)
 	 */
-	public Duration newDuration(final boolean isPositive, final BigInteger years,
-			final BigInteger months, final BigInteger days, final BigInteger hours,
+	public Duration newDuration(final boolean isPositive,
+			final BigInteger years, final BigInteger months,
+			final BigInteger days, final BigInteger hours,
 			final BigInteger minutes, final BigDecimal seconds) {
 
-		return new DurationImpl(isPositive, years, months, days, hours, minutes, seconds);
+		return new DurationImpl(isPositive, years, months, days, hours, minutes,
+				seconds);
 	}
 
 	/**
@@ -257,26 +267,32 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param isPositive
-	 *            Set to <code>false</code> to create a negative duration. When
-	 *            the length of the duration is zero, this parameter will be
-	 *            ignored.
+	 *                   Set to <code>false</code> to create a negative
+	 *                   duration. When
+	 *                   the length of the duration is zero, this parameter will
+	 *                   be
+	 *                   ignored.
 	 * @param year
-	 *            Year of <code>Duration</code>.
+	 *                   Year of <code>Duration</code>.
 	 * @param month
-	 *            Month of <code>Duration</code>.
+	 *                   Month of <code>Duration</code>.
 	 *
 	 * @return New <code>Duration</code> created using the specified
 	 *         <code>year</code> and <code>month</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the values are not a valid representation of a
-	 *             <code>Duration</code>: if all of the fields (year, month) are
-	 *             null or if any of the fields is negative.
+	 *                                       If the values are not a valid
+	 *                                       representation of a
+	 *                                       <code>Duration</code>: if all of
+	 *                                       the fields (year, month) are
+	 *                                       null or if any of the fields is
+	 *                                       negative.
 	 * @throws UnsupportedOperationException
-	 *             If implementation cannot support requested values.
+	 *                                       If implementation cannot support
+	 *                                       requested values.
 	 */
-	public Duration newDurationYearMonth(final boolean isPositive, final BigInteger year,
-			final BigInteger month) {
+	public Duration newDurationYearMonth(final boolean isPositive,
+			final BigInteger year, final BigInteger month) {
 
 		return new DurationYearMonthImpl(isPositive, year, month);
 
@@ -297,25 +313,29 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param isPositive
-	 *            Set to <code>false</code> to create a negative duration. When
-	 *            the length of the duration is zero, this parameter will be
-	 *            ignored.
+	 *                   Set to <code>false</code> to create a negative
+	 *                   duration. When
+	 *                   the length of the duration is zero, this parameter will
+	 *                   be
+	 *                   ignored.
 	 * @param year
-	 *            Year of <code>Duration</code>.
+	 *                   Year of <code>Duration</code>.
 	 * @param month
-	 *            Month of <code>Duration</code>.
+	 *                   Month of <code>Duration</code>.
 	 *
 	 * @return New <code>Duration</code> created using the specified
 	 *         <code>year</code> and <code>month</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the values are not a valid representation of a
-	 *             <code>Duration</code>: if any of the fields (year, month) is
-	 *             negative.
+	 *                                  If the values are not a valid
+	 *                                  representation of a
+	 *                                  <code>Duration</code>: if any of the
+	 *                                  fields (year, month) is
+	 *                                  negative.
 	 */
 	@Override
-	public Duration newDurationYearMonth(final boolean isPositive, final int year,
-			final int month) {
+	public Duration newDurationYearMonth(final boolean isPositive,
+			final int year, final int month) {
 
 		return new DurationYearMonthImpl(isPositive, year, month);
 	}
@@ -349,19 +369,26 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param lexicalRepresentation
-	 *            Lexical representation of a duration.
+	 *                              Lexical representation of a duration.
 	 *
 	 * @return New <code>Duration</code> created using the specified
 	 *         <code>lexicalRepresentation</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>lexicalRepresentation</code> is not a valid
-	 *             representation of a <code>Duration</code> expressed only in
-	 *             terms of years and months.
+	 *                                       If
+	 *                                       <code>lexicalRepresentation</code>
+	 *                                       is not a valid
+	 *                                       representation of a
+	 *                                       <code>Duration</code> expressed
+	 *                                       only in
+	 *                                       terms of years and months.
 	 * @throws UnsupportedOperationException
-	 *             If implementation cannot support requested values.
+	 *                                       If implementation cannot support
+	 *                                       requested values.
 	 * @throws NullPointerException
-	 *             If <code>lexicalRepresentation</code> is <code>null</code>.
+	 *                                       If
+	 *                                       <code>lexicalRepresentation</code>
+	 *                                       is <code>null</code>.
 	 */
 	public Duration newDurationYearMonth(final String lexicalRepresentation) {
 
@@ -413,7 +440,8 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param durationInMilliseconds
-	 *            Milliseconds of <code>Duration</code> to create.
+	 *                               Milliseconds of <code>Duration</code> to
+	 *                               create.
 	 *
 	 * @return New <code>Duration</code> created using the specified
 	 *         <code>durationInMilliseconds</code>.
@@ -452,25 +480,33 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param lexicalRepresentation
-	 *            Lexical representation of a duration.
+	 *                              Lexical representation of a duration.
 	 *
 	 * @return New <code>Duration</code> created using the specified
 	 *         <code>lexicalRepresentation</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>lexicalRepresentation</code> is not a valid
-	 *             representation of a <code>Duration</code> expressed only in
-	 *             terms of days and time.
+	 *                                       If
+	 *                                       <code>lexicalRepresentation</code>
+	 *                                       is not a valid
+	 *                                       representation of a
+	 *                                       <code>Duration</code> expressed
+	 *                                       only in
+	 *                                       terms of days and time.
 	 * @throws UnsupportedOperationException
-	 *             If implementation cannot support requested values.
+	 *                                       If implementation cannot support
+	 *                                       requested values.
 	 * @throws NullPointerException
-	 *             If <code>lexicalRepresentation</code> is <code>null</code>.
+	 *                                       If
+	 *                                       <code>lexicalRepresentation</code>
+	 *                                       is <code>null</code>.
 	 */
 	public Duration newDurationDayTime(final String lexicalRepresentation) {
 		// lexicalRepresentation must be non-null
 		if (lexicalRepresentation == null) {
-			throw new NullPointerException("Trying to create an xdt:dayTimeDuration with an invalid"
-					+ " lexical representation of \"null\"");
+			throw new NullPointerException(
+					"Trying to create an xdt:dayTimeDuration with an invalid"
+							+ " lexical representation of \"null\"");
 		}
 
 		return new DurationDayTimeImpl(lexicalRepresentation);
@@ -520,7 +556,8 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param durationInMilliseconds
-	 *            Milliseconds of <code>Duration</code> to create.
+	 *                               Milliseconds of <code>Duration</code> to
+	 *                               create.
 	 *
 	 * @return New <code>Duration</code> created with the specified
 	 *         <code>durationInMilliseconds</code>.
@@ -563,31 +600,38 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param isPositive
-	 *            Set to <code>false</code> to create a negative duration. When
-	 *            the length of the duration is zero, this parameter will be
-	 *            ignored.
+	 *                   Set to <code>false</code> to create a negative
+	 *                   duration. When
+	 *                   the length of the duration is zero, this parameter will
+	 *                   be
+	 *                   ignored.
 	 * @param day
-	 *            Day of <code>Duration</code>.
+	 *                   Day of <code>Duration</code>.
 	 * @param hour
-	 *            Hour of <code>Duration</code>.
+	 *                   Hour of <code>Duration</code>.
 	 * @param minute
-	 *            Minute of <code>Duration</code>.
+	 *                   Minute of <code>Duration</code>.
 	 * @param second
-	 *            Second of <code>Duration</code>.
+	 *                   Second of <code>Duration</code>.
 	 *
 	 * @return New <code>Duration</code> created with the specified
 	 *         <code>day</code>, <code>hour</code>, <code>minute</code> and
 	 *         <code>second</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the values are not a valid representation of a
-	 *             <code>Duration</code>: if all the fields (day, hour, ...) are
-	 *             null or if any of the fields is negative.
+	 *                                       If the values are not a valid
+	 *                                       representation of a
+	 *                                       <code>Duration</code>: if all the
+	 *                                       fields (day, hour, ...) are
+	 *                                       null or if any of the fields is
+	 *                                       negative.
 	 * @throws UnsupportedOperationException
-	 *             If implementation cannot support requested values.
+	 *                                       If implementation cannot support
+	 *                                       requested values.
 	 */
-	public Duration newDurationDayTime(final boolean isPositive, final BigInteger day,
-			final BigInteger hour, final BigInteger minute, final BigInteger second) {
+	public Duration newDurationDayTime(final boolean isPositive,
+			final BigInteger day, final BigInteger hour,
+			final BigInteger minute, final BigInteger second) {
 
 		return new DurationDayTimeImpl(isPositive, day, hour, minute,
 				(second != null) ? new BigDecimal(second) : null);
@@ -615,29 +659,33 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param isPositive
-	 *            Set to <code>false</code> to create a negative duration. When
-	 *            the length of the duration is zero, this parameter will be
-	 *            ignored.
+	 *                   Set to <code>false</code> to create a negative
+	 *                   duration. When
+	 *                   the length of the duration is zero, this parameter will
+	 *                   be
+	 *                   ignored.
 	 * @param day
-	 *            Day of <code>Duration</code>.
+	 *                   Day of <code>Duration</code>.
 	 * @param hour
-	 *            Hour of <code>Duration</code>.
+	 *                   Hour of <code>Duration</code>.
 	 * @param minute
-	 *            Minute of <code>Duration</code>.
+	 *                   Minute of <code>Duration</code>.
 	 * @param second
-	 *            Second of <code>Duration</code>.
+	 *                   Second of <code>Duration</code>.
 	 *
 	 * @return New <code>Duration</code> created with the specified
 	 *         <code>day</code>, <code>hour</code>, <code>minute</code> and
 	 *         <code>second</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the values are not a valid representation of a
-	 *             <code>Duration</code>: if any of the fields (day, hour, ...)
-	 *             is negative.
+	 *                                  If the values are not a valid
+	 *                                  representation of a
+	 *                                  <code>Duration</code>: if any of the
+	 *                                  fields (day, hour, ...)
+	 *                                  is negative.
 	 */
-	public Duration newDurationDayTime(final boolean isPositive, final int day, final int hour,
-			final int minute, final int second) {
+	public Duration newDurationDayTime(final boolean isPositive, final int day,
+			final int hour, final int minute, final int second) {
 
 		return new DurationDayTimeImpl(isPositive, day, hour, minute, second);
 	}
@@ -692,19 +740,24 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param lexicalRepresentation
-	 *            Lexical representation of one the eight XML Schema date/time
-	 *            datatypes.
+	 *                              Lexical representation of one the eight XML
+	 *                              Schema date/time
+	 *                              datatypes.
 	 *
 	 * @return <code>XMLGregorianCalendar</code> created from the
 	 *         <code>lexicalRepresentation</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the <code>lexicalRepresentation</code> is not a valid
-	 *             <code>XMLGregorianCalendar</code>.
+	 *                                  If the
+	 *                                  <code>lexicalRepresentation</code> is
+	 *                                  not a valid
+	 *                                  <code>XMLGregorianCalendar</code>.
 	 * @throws NullPointerException
-	 *             If <code>lexicalRepresentation</code> is <code>null</code>.
+	 *                                  If <code>lexicalRepresentation</code> is
+	 *                                  <code>null</code>.
 	 */
-	public XMLGregorianCalendar newXMLGregorianCalendar(final String lexicalRepresentation) {
+	public XMLGregorianCalendar newXMLGregorianCalendar(
+			final String lexicalRepresentation) {
 
 		return new XMLGregorianCalendarImpl(lexicalRepresentation);
 	}
@@ -777,9 +830,10 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 *         <code>java.util.GregorianCalendar</code>
 	 *
 	 * @throws NullPointerException
-	 *             If <code>cal</code> is <code>null</code>.
+	 *                              If <code>cal</code> is <code>null</code>.
 	 */
-	public XMLGregorianCalendar newXMLGregorianCalendar(final GregorianCalendar cal) {
+	public XMLGregorianCalendar newXMLGregorianCalendar(
+			final GregorianCalendar cal) {
 
 		return new XMLGregorianCalendarImpl(cal);
 	}
@@ -793,40 +847,53 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
 	 * </p>
 	 *
 	 * @param year
-	 *            of <code>XMLGregorianCalendar</code> to be created.
+	 *                         of <code>XMLGregorianCalendar</code> to be
+	 *                         created.
 	 * @param month
-	 *            of <code>XMLGregorianCalendar</code> to be created.
+	 *                         of <code>XMLGregorianCalendar</code> to be
+	 *                         created.
 	 * @param day
-	 *            of <code>XMLGregorianCalendar</code> to be created.
+	 *                         of <code>XMLGregorianCalendar</code> to be
+	 *                         created.
 	 * @param hour
-	 *            of <code>XMLGregorianCalendar</code> to be created.
+	 *                         of <code>XMLGregorianCalendar</code> to be
+	 *                         created.
 	 * @param minute
-	 *            of <code>XMLGregorianCalendar</code> to be created.
+	 *                         of <code>XMLGregorianCalendar</code> to be
+	 *                         created.
 	 * @param second
-	 *            of <code>XMLGregorianCalendar</code> to be created.
+	 *                         of <code>XMLGregorianCalendar</code> to be
+	 *                         created.
 	 * @param fractionalSecond
-	 *            of <code>XMLGregorianCalendar</code> to be created.
+	 *                         of <code>XMLGregorianCalendar</code> to be
+	 *                         created.
 	 * @param timezone
-	 *            of <code>XMLGregorianCalendar</code> to be created.
+	 *                         of <code>XMLGregorianCalendar</code> to be
+	 *                         created.
 	 *
 	 * @return <code>XMLGregorianCalendar</code> created from specified values.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If any individual parameter's value is outside the maximum
-	 *             value constraint for the field as determined by the Date/Time
-	 *             Data Mapping table in {@link XMLGregorianCalendar} or if the
-	 *             composite values constitute an invalid
-	 *             <code>XMLGregorianCalendar</code> instance as determined by
-	 *             {@link XMLGregorianCalendar#isValid()}.
+	 *                                  If any individual parameter's value is
+	 *                                  outside the maximum
+	 *                                  value constraint for the field as
+	 *                                  determined by the Date/Time
+	 *                                  Data Mapping table in
+	 *                                  {@link XMLGregorianCalendar} or if the
+	 *                                  composite values constitute an invalid
+	 *                                  <code>XMLGregorianCalendar</code>
+	 *                                  instance as determined by
+	 *                                  {@link XMLGregorianCalendar#isValid()}.
 	 * @throws NullPointerException
-	 *             If any parameters are <code>null</code>.
+	 *                                  If any parameters are <code>null</code>.
 	 *
 	 */
-	public XMLGregorianCalendar newXMLGregorianCalendar(final BigInteger year, final int month,
-			final int day, final int hour, final int minute, final int second,
-			final BigDecimal fractionalSecond, final int timezone) {
+	public XMLGregorianCalendar newXMLGregorianCalendar(final BigInteger year,
+			final int month, final int day, final int hour, final int minute,
+			final int second, final BigDecimal fractionalSecond,
+			final int timezone) {
 
-		return new XMLGregorianCalendarImpl(year, month, day, hour, minute, second,
-				fractionalSecond, timezone);
+		return new XMLGregorianCalendarImpl(year, month, day, hour, minute,
+				second, fractionalSecond, timezone);
 	}
 }

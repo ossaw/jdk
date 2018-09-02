@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.multi;
 
@@ -76,7 +56,8 @@ public class MultiComboBoxUI extends ComboBoxUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public boolean isFocusTraversable(JComboBox a) {
-		boolean returnValue = ((ComboBoxUI) (uis.elementAt(0))).isFocusTraversable(a);
+		boolean returnValue = ((ComboBoxUI) (uis.elementAt(0)))
+				.isFocusTraversable(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComboBoxUI) (uis.elementAt(i))).isFocusTraversable(a);
 		}
@@ -101,7 +82,8 @@ public class MultiComboBoxUI extends ComboBoxUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public boolean isPopupVisible(JComboBox a) {
-		boolean returnValue = ((ComboBoxUI) (uis.elementAt(0))).isPopupVisible(a);
+		boolean returnValue = ((ComboBoxUI) (uis.elementAt(0))).isPopupVisible(
+				a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComboBoxUI) (uis.elementAt(i))).isPopupVisible(a);
 		}
@@ -120,7 +102,8 @@ public class MultiComboBoxUI extends ComboBoxUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public boolean contains(JComponent a, int b, int c) {
-		boolean returnValue = ((ComponentUI) (uis.elementAt(0))).contains(a, b, c);
+		boolean returnValue = ((ComponentUI) (uis.elementAt(0))).contains(a, b,
+				c);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).contains(a, b, c);
 		}
@@ -183,7 +166,8 @@ public class MultiComboBoxUI extends ComboBoxUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Dimension getPreferredSize(JComponent a) {
-		Dimension returnValue = ((ComponentUI) (uis.elementAt(0))).getPreferredSize(a);
+		Dimension returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getPreferredSize(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getPreferredSize(a);
 		}
@@ -198,7 +182,8 @@ public class MultiComboBoxUI extends ComboBoxUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Dimension getMinimumSize(JComponent a) {
-		Dimension returnValue = ((ComponentUI) (uis.elementAt(0))).getMinimumSize(a);
+		Dimension returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getMinimumSize(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getMinimumSize(a);
 		}
@@ -213,7 +198,8 @@ public class MultiComboBoxUI extends ComboBoxUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Dimension getMaximumSize(JComponent a) {
-		Dimension returnValue = ((ComponentUI) (uis.elementAt(0))).getMaximumSize(a);
+		Dimension returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getMaximumSize(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getMaximumSize(a);
 		}
@@ -228,7 +214,8 @@ public class MultiComboBoxUI extends ComboBoxUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public int getAccessibleChildrenCount(JComponent a) {
-		int returnValue = ((ComponentUI) (uis.elementAt(0))).getAccessibleChildrenCount(a);
+		int returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getAccessibleChildrenCount(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getAccessibleChildrenCount(a);
 		}
@@ -243,7 +230,8 @@ public class MultiComboBoxUI extends ComboBoxUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Accessible getAccessibleChild(JComponent a, int b) {
-		Accessible returnValue = ((ComponentUI) (uis.elementAt(0))).getAccessibleChild(a, b);
+		Accessible returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getAccessibleChild(a, b);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getAccessibleChild(a, b);
 		}

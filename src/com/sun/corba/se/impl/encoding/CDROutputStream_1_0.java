@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.encoding;
@@ -158,23 +137,26 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 
 	// REVISIT - This should be re-factored so that including whether
 	// to use pool byte buffers or not doesn't need to be known.
-	public void init(org.omg.CORBA.ORB orb, boolean littleEndian, BufferManagerWrite bufferManager,
-			byte streamFormatVersion, boolean usePooledByteBuffers) {
+	public void init(org.omg.CORBA.ORB orb, boolean littleEndian,
+			BufferManagerWrite bufferManager, byte streamFormatVersion,
+			boolean usePooledByteBuffers) {
 		// ORB must not be null. See CDROutputStream constructor.
 		this.orb = (ORB) orb;
-		this.wrapper = ORBUtilSystemException.get(this.orb, CORBALogDomains.RPC_ENCODING);
+		this.wrapper = ORBUtilSystemException.get(this.orb,
+				CORBALogDomains.RPC_ENCODING);
 		debug = this.orb.transportDebugFlag;
 
 		this.littleEndian = littleEndian;
 		this.bufferManagerWrite = bufferManager;
-		this.bbwi = new ByteBufferWithInfo(orb, bufferManager, usePooledByteBuffers);
+		this.bbwi = new ByteBufferWithInfo(orb, bufferManager,
+				usePooledByteBuffers);
 		this.streamFormatVersion = streamFormatVersion;
 
 		createRepositoryIdHandlers();
 	}
 
-	public void init(org.omg.CORBA.ORB orb, boolean littleEndian, BufferManagerWrite bufferManager,
-			byte streamFormatVersion) {
+	public void init(org.omg.CORBA.ORB orb, boolean littleEndian,
+			BufferManagerWrite bufferManager, byte streamFormatVersion) {
 		init(orb, littleEndian, bufferManager, streamFormatVersion, true);
 	}
 
@@ -268,7 +250,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 
 	// No such type in java
 	public final void write_longdouble(double x) {
-		throw wrapper.longDoubleNotImplemented(CompletionStatus.COMPLETED_MAYBE);
+		throw wrapper.longDoubleNotImplemented(
+				CompletionStatus.COMPLETED_MAYBE);
 	}
 
 	public void write_octet(byte x) {
@@ -302,7 +285,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		// of characters, a single instance of the char type may only
 		// hold one octet of any multi-byte character encoding."
 		if (converter.getNumBytes() > 1)
-			throw wrapper.invalidSingleCharCtb(CompletionStatus.COMPLETED_MAYBE);
+			throw wrapper.invalidSingleCharCtb(
+					CompletionStatus.COMPLETED_MAYBE);
 
 		write_octet(converter.getBytes()[0]);
 	}
@@ -463,7 +447,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		write_long(len);
 		int indirection = get_offset() - 4;
 
-		internalWriteOctetArray(converter.getBytes(), 0, converter.getNumBytes());
+		internalWriteOctetArray(converter.getBytes(), 0, converter
+				.getNumBytes());
 
 		// Write the null ending
 		write_octet((byte) 0);
@@ -617,7 +602,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 				if (obj instanceof java.io.Serializable)
 					throw cce;
 				else
-					ORBUtility.throwNotSerializableForCorba(obj.getClass().getName());
+					ORBUtility.throwNotSerializableForCorba(obj.getClass()
+							.getName());
 			}
 		}
 	}
@@ -660,7 +646,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 			valueHandler = ORBUtility.createValueHandler(); // d11638
 
 		// Write value_tag
-		int indirection = writeValueTag(mustChunk, true, Util.getCodebase(clazz));
+		int indirection = writeValueTag(mustChunk, true, Util.getCodebase(
+				clazz));
 
 		// Write repository ID
 		write_repositoryId(repIdStrs.createSequenceRepID(clazz));
@@ -689,7 +676,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		writeEndTag(mustChunk);
 	}
 
-	private void writeValueBase(org.omg.CORBA.portable.ValueBase object, Class clazz) {
+	private void writeValueBase(org.omg.CORBA.portable.ValueBase object,
+			Class clazz) {
 		// _REVISIT_ could check to see whether chunking really needed
 		mustChunk = true;
 
@@ -746,7 +734,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		}
 
 		// Write value_tag
-		int indirection = writeValueTag(mustChunk, true, Util.getCodebase(clazz));
+		int indirection = writeValueTag(mustChunk, true, Util.getCodebase(
+				clazz));
 
 		// Write rep. id
 		write_repositoryId(repIdStrs.createForJavaType(clazz));
@@ -829,7 +818,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		write_value(object, (String) null);
 	}
 
-	public void write_value(Serializable object, org.omg.CORBA.portable.BoxedValueHelper factory) {
+	public void write_value(Serializable object,
+			org.omg.CORBA.portable.BoxedValueHelper factory) {
 		// Handle null references
 		if (object == null) {
 			// Write null tag and return
@@ -853,7 +843,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 			} catch (BadKind ex) { // tk_value_box
 				modifier = VM_NONE.value;
 			}
-			if (object instanceof CustomMarshal && modifier == VM_CUSTOM.value) {
+			if (object instanceof CustomMarshal
+					&& modifier == VM_CUSTOM.value) {
 				isCustom = true;
 				mustChunk = true;
 			}
@@ -925,7 +916,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 
 	public void start_block() {
 		if (debug) {
-			dprint("CDROutputStream_1_0 start_block, position" + bbwi.position());
+			dprint("CDROutputStream_1_0 start_block, position" + bbwi
+					.position());
 		}
 
 		// Move inBlock=true to after write_long since write_long might
@@ -947,7 +939,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		blockSizeIndex = bbwi.position();
 
 		if (debug) {
-			dprint("CDROutputStream_1_0 start_block, blockSizeIndex " + blockSizeIndex);
+			dprint("CDROutputStream_1_0 start_block, blockSizeIndex "
+					+ blockSizeIndex);
 		}
 
 	}
@@ -1010,7 +1003,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 
 	// ------------ End RMI related methods --------------------------
 
-	public final void write_boolean_array(boolean[] value, int offset, int length) {
+	public final void write_boolean_array(boolean[] value, int offset,
+			int length) {
 		if (value == null)
 			throw wrapper.nullParam(CompletionStatus.COMPLETED_MAYBE);
 
@@ -1066,7 +1060,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		handleSpecialChunkEnd();
 	}
 
-	public final void write_ushort_array(short[] value, int offset, int length) {
+	public final void write_ushort_array(short[] value, int offset,
+			int length) {
 		write_short_array(value, offset, length);
 	}
 
@@ -1088,7 +1083,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		write_long_array(value, offset, length);
 	}
 
-	public final void write_longlong_array(long[] value, int offset, int length) {
+	public final void write_longlong_array(long[] value, int offset,
+			int length) {
 		if (value == null)
 			throw wrapper.nullParam(CompletionStatus.COMPLETED_MAYBE);
 
@@ -1102,7 +1098,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		handleSpecialChunkEnd();
 	}
 
-	public final void write_ulonglong_array(long[] value, int offset, int length) {
+	public final void write_ulonglong_array(long[] value, int offset,
+			int length) {
 		write_longlong_array(value, offset, length);
 	}
 
@@ -1120,7 +1117,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		handleSpecialChunkEnd();
 	}
 
-	public final void write_double_array(double[] value, int offset, int length) {
+	public final void write_double_array(double[] value, int offset,
+			int length) {
 		if (value == null)
 			throw wrapper.nullParam(CompletionStatus.COMPLETED_MAYBE);
 
@@ -1150,7 +1148,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 			write_wstring(value[offset + i]);
 	}
 
-	public final void write_any_array(org.omg.CORBA.Any value[], int offset, int length) {
+	public final void write_any_array(org.omg.CORBA.Any value[], int offset,
+			int length) {
 		for (int i = 0; i < length; i++)
 			write_any(value[offset + i]);
 	}
@@ -1233,8 +1232,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		bbwi.byteBuffer = byteBuffer;
 	}
 
-	private final void updateIndirectionTable(int indirection, java.lang.Object object,
-			java.lang.Object key) {
+	private final void updateIndirectionTable(int indirection,
+			java.lang.Object object, java.lang.Object key) {
 		// int indirection = get_offset();
 		if (valueCache == null)
 			valueCache = new CacheTable(orb, true);
@@ -1275,7 +1274,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		}
 	}
 
-	private final int writeValueTag(boolean chunkIt, boolean useRepId, String codebase) {
+	private final int writeValueTag(boolean chunkIt, boolean useRepId,
+			String codebase) {
 		int indirection = 0;
 		if (chunkIt && !useRepId) {
 			if (codebase == null) {
@@ -1325,14 +1325,18 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 			((CustomValue) object).marshal(parent);
 
 		} else {
-			BoxedValueHelper helper = Utility.getHelper(object.getClass(), null, repID);
+			BoxedValueHelper helper = Utility.getHelper(object.getClass(), null,
+					repID);
 			boolean isCustom = false;
-			if (helper instanceof ValueHelper && object instanceof CustomMarshal) {
+			if (helper instanceof ValueHelper
+					&& object instanceof CustomMarshal) {
 				try {
-					if (((ValueHelper) helper).get_type().type_modifier() == VM_CUSTOM.value)
+					if (((ValueHelper) helper).get_type()
+							.type_modifier() == VM_CUSTOM.value)
 						isCustom = true;
 				} catch (BadKind ex) {
-					throw wrapper.badTypecodeForCustomValue(CompletionStatus.COMPLETED_MAYBE, ex);
+					throw wrapper.badTypecodeForCustomValue(
+							CompletionStatus.COMPLETED_MAYBE, ex);
 				}
 			}
 			if (isCustom)
@@ -1391,8 +1395,9 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 	 * valuetypes.
 	 */
 	private void writeNestingLevel() {
-		if (orb == null || ORBVersionFactory.getFOREIGN().equals(orb.getORBVersion())
-				|| ORBVersionFactory.getNEWER().compareTo(orb.getORBVersion()) <= 0) {
+		if (orb == null || ORBVersionFactory.getFOREIGN().equals(orb
+				.getORBVersion()) || ORBVersionFactory.getNEWER().compareTo(orb
+						.getORBVersion()) <= 0) {
 
 			write_long(chunkedValueNestingLevel);
 
@@ -1433,8 +1438,9 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 	// and codebase strings in the wrong order. This handles
 	// backwards compatibility.
 	private void writeClassBody(Class clz) {
-		if (orb == null || ORBVersionFactory.getFOREIGN().equals(orb.getORBVersion())
-				|| ORBVersionFactory.getNEWER().compareTo(orb.getORBVersion()) <= 0) {
+		if (orb == null || ORBVersionFactory.getFOREIGN().equals(orb
+				.getORBVersion()) || ORBVersionFactory.getNEWER().compareTo(orb
+						.getORBVersion()) <= 0) {
 
 			write_value(Util.getCodebase(clz));
 			write_value(repIdStrs.createForAnyType(clz));
@@ -1454,7 +1460,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 	// }
 
 	private boolean shouldWriteAsIDLEntity(Serializable object) {
-		return ((object instanceof IDLEntity) && (!(object instanceof ValueBase))
+		return ((object instanceof IDLEntity)
+				&& (!(object instanceof ValueBase))
 				&& (!(object instanceof org.omg.CORBA.Object)));
 
 	}
@@ -1482,20 +1489,24 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 
 		// Write the IDLEntity using reflection
 		try {
-			ClassLoader clazzLoader = (clazz == null ? null : clazz.getClassLoader());
-			final Class helperClass = Utility.loadClassForClass(clazz.getName() + "Helper",
-					codebase, clazzLoader, clazz, clazzLoader);
-			final Class argTypes[] = { org.omg.CORBA.portable.OutputStream.class, clazz };
+			ClassLoader clazzLoader = (clazz == null ? null
+					: clazz.getClassLoader());
+			final Class helperClass = Utility.loadClassForClass(clazz.getName()
+					+ "Helper", codebase, clazzLoader, clazz, clazzLoader);
+			final Class argTypes[] = {
+					org.omg.CORBA.portable.OutputStream.class, clazz };
 			// getDeclaredMethod requires RuntimePermission
 			// accessDeclaredMembers
 			// if a different class loader is used (even though the javadoc says
 			// otherwise)
 			Method writeMethod = null;
 			try {
-				writeMethod = (Method) AccessController
-						.doPrivileged(new PrivilegedExceptionAction() {
-							public java.lang.Object run() throws NoSuchMethodException {
-								return helperClass.getDeclaredMethod(kWriteMethod, argTypes);
+				writeMethod = (Method) AccessController.doPrivileged(
+						new PrivilegedExceptionAction() {
+							public java.lang.Object run()
+									throws NoSuchMethodException {
+								return helperClass.getDeclaredMethod(
+										kWriteMethod, argTypes);
 							}
 						});
 			} catch (PrivilegedActionException pae) {
@@ -1505,13 +1516,17 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 			java.lang.Object args[] = { parent, object };
 			writeMethod.invoke(null, args);
 		} catch (ClassNotFoundException cnfe) {
-			throw wrapper.errorInvokingHelperWrite(CompletionStatus.COMPLETED_MAYBE, cnfe);
+			throw wrapper.errorInvokingHelperWrite(
+					CompletionStatus.COMPLETED_MAYBE, cnfe);
 		} catch (NoSuchMethodException nsme) {
-			throw wrapper.errorInvokingHelperWrite(CompletionStatus.COMPLETED_MAYBE, nsme);
+			throw wrapper.errorInvokingHelperWrite(
+					CompletionStatus.COMPLETED_MAYBE, nsme);
 		} catch (IllegalAccessException iae) {
-			throw wrapper.errorInvokingHelperWrite(CompletionStatus.COMPLETED_MAYBE, iae);
+			throw wrapper.errorInvokingHelperWrite(
+					CompletionStatus.COMPLETED_MAYBE, iae);
 		} catch (InvocationTargetException ite) {
-			throw wrapper.errorInvokingHelperWrite(CompletionStatus.COMPLETED_MAYBE, ite);
+			throw wrapper.errorInvokingHelperWrite(
+					CompletionStatus.COMPLETED_MAYBE, ite);
 		}
 		end_block();
 
@@ -1534,7 +1549,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 	//
 	// Pads the string representation of bigDecimal with zeros to fit the given
 	// digits and scale before it gets written to the stream.
-	public void write_fixed(java.math.BigDecimal bigDecimal, short digits, short scale) {
+	public void write_fixed(java.math.BigDecimal bigDecimal, short digits,
+			short scale) {
 		String string = bigDecimal.toString();
 		String integerPart;
 		String fractionPart;
@@ -1693,7 +1709,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 				int x = 0;
 
 				while (x < 16 && x + i < bbwi.position()) {
-					if (ORBUtility.isPrintable((char) bbwi.byteBuffer.get(i + x)))
+					if (ORBUtility.isPrintable((char) bbwi.byteBuffer.get(i
+							+ x)))
 						charBuf[x] = (char) bbwi.byteBuffer.get(i + x);
 					else
 						charBuf[x] = '.';
@@ -1759,8 +1776,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 	public void start_value(String rep_id) {
 
 		if (debug) {
-			dprint("start_value w/ rep id " + rep_id + " called at pos " + get_offset()
-					+ " position " + bbwi.position());
+			dprint("start_value w/ rep id " + rep_id + " called at pos "
+					+ get_offset() + " position " + bbwi.position());
 		}
 
 		if (inBlock)
@@ -1783,7 +1800,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 	public void end_value() {
 
 		if (debug) {
-			dprint("end_value called at pos " + get_offset() + " position " + bbwi.position());
+			dprint("end_value called at pos " + get_offset() + " position "
+					+ bbwi.position());
 		}
 
 		end_block();
@@ -1824,7 +1842,8 @@ public class CDROutputStream_1_0 extends CDROutputStreamBase {
 		if (getByteBufferWithInfo() != null && getByteBuffer() != null) {
 			MessageMediator messageMediator = parent.getMessageMediator();
 			if (messageMediator != null) {
-				CDRInputObject inputObj = (CDRInputObject) messageMediator.getInputObject();
+				CDRInputObject inputObj = (CDRInputObject) messageMediator
+						.getInputObject();
 				if (inputObj != null) {
 					if (inputObj.isSharing(getByteBuffer())) {
 						// Set InputStream's ByteBuffer and bbwi to null

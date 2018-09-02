@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -55,7 +35,7 @@ public interface AccessibleKeyBinding {
 	 * underlying implementation of the key.
 	 *
 	 * @param i
-	 *            zero-based index of the key bindings
+	 *          zero-based index of the key bindings
 	 * @return a javax.lang.Object which specifies the key binding
 	 * @see #getAccessibleKeyBindingCount
 	 */

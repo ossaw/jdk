@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.colorchooser;
@@ -38,7 +18,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.DocumentFilter;
 
-final class ValueFormatter extends AbstractFormatter implements FocusListener, Runnable {
+final class ValueFormatter extends AbstractFormatter implements FocusListener,
+		Runnable {
 
 	static void init(int length, boolean hex, JFormattedTextField text) {
 		ValueFormatter formatter = new ValueFormatter(length, hex);
@@ -51,24 +32,27 @@ final class ValueFormatter extends AbstractFormatter implements FocusListener, R
 
 	private final DocumentFilter filter = new DocumentFilter() {
 		@Override
-		public void remove(FilterBypass fb, int offset, int length) throws BadLocationException {
+		public void remove(FilterBypass fb, int offset, int length)
+				throws BadLocationException {
 			if (isValid(fb.getDocument().getLength() - length)) {
 				fb.remove(offset, length);
 			}
 		}
 
 		@Override
-		public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet set)
-				throws BadLocationException {
-			if (isValid(fb.getDocument().getLength() + text.length() - length) && isValid(text)) {
+		public void replace(FilterBypass fb, int offset, int length,
+				String text, AttributeSet set) throws BadLocationException {
+			if (isValid(fb.getDocument().getLength() + text.length() - length)
+					&& isValid(text)) {
 				fb.replace(offset, length, text.toUpperCase(ENGLISH), set);
 			}
 		}
 
 		@Override
-		public void insertString(FilterBypass fb, int offset, String text, AttributeSet set)
-				throws BadLocationException {
-			if (isValid(fb.getDocument().getLength() + text.length()) && isValid(text)) {
+		public void insertString(FilterBypass fb, int offset, String text,
+				AttributeSet set) throws BadLocationException {
+			if (isValid(fb.getDocument().getLength() + text.length())
+					&& isValid(text)) {
 				fb.insertString(offset, text.toUpperCase(ENGLISH), set);
 			}
 		}
@@ -126,8 +110,7 @@ final class ValueFormatter extends AbstractFormatter implements FocusListener, R
 		}
 	}
 
-	public void focusLost(FocusEvent event) {
-	}
+	public void focusLost(FocusEvent event) {}
 
 	public void run() {
 		if (this.text != null) {

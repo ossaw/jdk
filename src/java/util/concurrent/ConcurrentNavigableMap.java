@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -48,70 +23,71 @@ import java.util.*;
  *
  * @author Doug Lea
  * @param <K>
- *            the type of keys maintained by this map
+ *        the type of keys maintained by this map
  * @param <V>
- *            the type of mapped values
+ *        the type of mapped values
  * @since 1.6
  */
-public interface ConcurrentNavigableMap<K, V> extends ConcurrentMap<K, V>, NavigableMap<K, V> {
+public interface ConcurrentNavigableMap<K, V> extends ConcurrentMap<K, V>,
+		NavigableMap<K, V> {
 	/**
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 */
-	ConcurrentNavigableMap<K, V> subMap(K fromKey, boolean fromInclusive, K toKey,
-			boolean toInclusive);
+	ConcurrentNavigableMap<K, V> subMap(K fromKey, boolean fromInclusive,
+			K toKey, boolean toInclusive);
 
 	/**
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 */
 	ConcurrentNavigableMap<K, V> headMap(K toKey, boolean inclusive);
 
 	/**
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 */
 	ConcurrentNavigableMap<K, V> tailMap(K fromKey, boolean inclusive);
 
 	/**
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 */
 	ConcurrentNavigableMap<K, V> subMap(K fromKey, K toKey);
 
 	/**
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 */
 	ConcurrentNavigableMap<K, V> headMap(K toKey);
 
 	/**
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 */
 	ConcurrentNavigableMap<K, V> tailMap(K fromKey);
 

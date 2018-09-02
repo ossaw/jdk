@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.attribute;
@@ -94,12 +74,13 @@ public abstract class SetOfIntegerSyntax implements Serializable, Cloneable {
 	 * form.
 	 *
 	 * @param members
-	 *            Set members in string form. If null, an empty set is
-	 *            constructed.
+	 *                Set members in string form. If null, an empty set is
+	 *                constructed.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (Unchecked exception) Thrown if <CODE>members</CODE> does
-	 *                not obey the proper syntax.
+	 *                                     (Unchecked exception) Thrown if
+	 *                                     <CODE>members</CODE> does
+	 *                                     not obey the proper syntax.
 	 */
 	protected SetOfIntegerSyntax(String members) {
 		this.members = parse(members);
@@ -125,110 +106,110 @@ public abstract class SetOfIntegerSyntax implements Serializable, Cloneable {
 			c = members.charAt(i++);
 			switch (state) {
 
-			case 0: // Before first integer in first group
-				if (Character.isWhitespace(c)) {
-					state = 0;
-				} else if ((digit = Character.digit(c, 10)) != -1) {
-					lb = digit;
-					state = 1;
-				} else {
-					throw new IllegalArgumentException();
-				}
-				break;
+				case 0: // Before first integer in first group
+					if (Character.isWhitespace(c)) {
+						state = 0;
+					} else if ((digit = Character.digit(c, 10)) != -1) {
+						lb = digit;
+						state = 1;
+					} else {
+						throw new IllegalArgumentException();
+					}
+					break;
 
-			case 1: // In first integer in a group
-				if (Character.isWhitespace(c)) {
-					state = 2;
-				} else if ((digit = Character.digit(c, 10)) != -1) {
-					lb = 10 * lb + digit;
-					state = 1;
-				} else if (c == '-' || c == ':') {
-					state = 3;
-				} else if (c == ',') {
-					accumulate(theRanges, lb, lb);
-					state = 6;
-				} else {
-					throw new IllegalArgumentException();
-				}
-				break;
+				case 1: // In first integer in a group
+					if (Character.isWhitespace(c)) {
+						state = 2;
+					} else if ((digit = Character.digit(c, 10)) != -1) {
+						lb = 10 * lb + digit;
+						state = 1;
+					} else if (c == '-' || c == ':') {
+						state = 3;
+					} else if (c == ',') {
+						accumulate(theRanges, lb, lb);
+						state = 6;
+					} else {
+						throw new IllegalArgumentException();
+					}
+					break;
 
-			case 2: // After first integer in a group
-				if (Character.isWhitespace(c)) {
-					state = 2;
-				} else if (c == '-' || c == ':') {
-					state = 3;
-				} else if (c == ',') {
-					accumulate(theRanges, lb, lb);
-					state = 6;
-				} else {
-					throw new IllegalArgumentException();
-				}
-				break;
+				case 2: // After first integer in a group
+					if (Character.isWhitespace(c)) {
+						state = 2;
+					} else if (c == '-' || c == ':') {
+						state = 3;
+					} else if (c == ',') {
+						accumulate(theRanges, lb, lb);
+						state = 6;
+					} else {
+						throw new IllegalArgumentException();
+					}
+					break;
 
-			case 3: // Before second integer in a group
-				if (Character.isWhitespace(c)) {
-					state = 3;
-				} else if ((digit = Character.digit(c, 10)) != -1) {
-					ub = digit;
-					state = 4;
-				} else {
-					throw new IllegalArgumentException();
-				}
-				break;
+				case 3: // Before second integer in a group
+					if (Character.isWhitespace(c)) {
+						state = 3;
+					} else if ((digit = Character.digit(c, 10)) != -1) {
+						ub = digit;
+						state = 4;
+					} else {
+						throw new IllegalArgumentException();
+					}
+					break;
 
-			case 4: // In second integer in a group
-				if (Character.isWhitespace(c)) {
-					state = 5;
-				} else if ((digit = Character.digit(c, 10)) != -1) {
-					ub = 10 * ub + digit;
-					state = 4;
-				} else if (c == ',') {
-					accumulate(theRanges, lb, ub);
-					state = 6;
-				} else {
-					throw new IllegalArgumentException();
-				}
-				break;
+				case 4: // In second integer in a group
+					if (Character.isWhitespace(c)) {
+						state = 5;
+					} else if ((digit = Character.digit(c, 10)) != -1) {
+						ub = 10 * ub + digit;
+						state = 4;
+					} else if (c == ',') {
+						accumulate(theRanges, lb, ub);
+						state = 6;
+					} else {
+						throw new IllegalArgumentException();
+					}
+					break;
 
-			case 5: // After second integer in a group
-				if (Character.isWhitespace(c)) {
-					state = 5;
-				} else if (c == ',') {
-					accumulate(theRanges, lb, ub);
-					state = 6;
-				} else {
-					throw new IllegalArgumentException();
-				}
-				break;
+				case 5: // After second integer in a group
+					if (Character.isWhitespace(c)) {
+						state = 5;
+					} else if (c == ',') {
+						accumulate(theRanges, lb, ub);
+						state = 6;
+					} else {
+						throw new IllegalArgumentException();
+					}
+					break;
 
-			case 6: // Before first integer in second or later group
-				if (Character.isWhitespace(c)) {
-					state = 6;
-				} else if ((digit = Character.digit(c, 10)) != -1) {
-					lb = digit;
-					state = 1;
-				} else {
-					throw new IllegalArgumentException();
-				}
-				break;
+				case 6: // Before first integer in second or later group
+					if (Character.isWhitespace(c)) {
+						state = 6;
+					} else if ((digit = Character.digit(c, 10)) != -1) {
+						lb = digit;
+						state = 1;
+					} else {
+						throw new IllegalArgumentException();
+					}
+					break;
 			}
 		}
 
 		// Finish off the state machine.
 		switch (state) {
-		case 0: // Before first integer in first group
-			break;
-		case 1: // In first integer in a group
-		case 2: // After first integer in a group
-			accumulate(theRanges, lb, lb);
-			break;
-		case 4: // In second integer in a group
-		case 5: // After second integer in a group
-			accumulate(theRanges, lb, ub);
-			break;
-		case 3: // Before second integer in a group
-		case 6: // Before first integer in second or later group
-			throw new IllegalArgumentException();
+			case 0: // Before first integer in first group
+				break;
+			case 1: // In first integer in a group
+			case 2: // After first integer in a group
+				accumulate(theRanges, lb, lb);
+				break;
+			case 4: // In second integer in a group
+			case 5: // After second integer in a group
+				accumulate(theRanges, lb, ub);
+				break;
+			case 3: // Before second integer in a group
+			case 6: // Before first integer in second or later group
+				throw new IllegalArgumentException();
 		}
 
 		// Return canonical array form.
@@ -266,7 +247,8 @@ public abstract class SetOfIntegerSyntax implements Serializable, Cloneable {
 				if (Math.max(lba, lbb) - Math.min(uba, ubb) <= 1) {
 					// The coalesced range is from the smaller lower bound to
 					// the larger upper bound.
-					ranges.setElementAt(new int[] { Math.min(lba, lbb), Math.max(uba, ubb) }, j);
+					ranges.setElementAt(new int[] { Math.min(lba, lbb), Math
+							.max(uba, ubb) }, j);
 					ranges.remove(j + 1);
 				} else if (lba > lbb) {
 
@@ -299,17 +281,21 @@ public abstract class SetOfIntegerSyntax implements Serializable, Cloneable {
 	 * form.
 	 *
 	 * @param members
-	 *            Set members in array form. If null, an empty set is
-	 *            constructed.
+	 *                Set members in array form. If null, an empty set is
+	 *                constructed.
 	 *
 	 * @exception NullPointerException
-	 *                (Unchecked exception) Thrown if any element of
-	 *                <CODE>members</CODE> is null.
+	 *                                     (Unchecked exception) Thrown if any
+	 *                                     element of
+	 *                                     <CODE>members</CODE> is null.
 	 * @exception IllegalArgumentException
-	 *                (Unchecked exception) Thrown if any element of
-	 *                <CODE>members</CODE> is not a length-one or length-two
-	 *                array or if any non-null range in <CODE>members</CODE> has
-	 *                a lower bound less than zero.
+	 *                                     (Unchecked exception) Thrown if any
+	 *                                     element of
+	 *                                     <CODE>members</CODE> is not a
+	 *                                     length-one or length-two
+	 *                                     array or if any non-null range in
+	 *                                     <CODE>members</CODE> has
+	 *                                     a lower bound less than zero.
 	 */
 	protected SetOfIntegerSyntax(int[][] members) {
 		this.members = parse(members);
@@ -354,11 +340,12 @@ public abstract class SetOfIntegerSyntax implements Serializable, Cloneable {
 	 * Construct a new set-of-integer attribute containing a single integer.
 	 *
 	 * @param member
-	 *            Set member.
+	 *               Set member.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (Unchecked exception) Thrown if <CODE>member</CODE> is
-	 *                less than zero.
+	 *                                     (Unchecked exception) Thrown if
+	 *                                     <CODE>member</CODE> is
+	 *                                     less than zero.
 	 */
 	protected SetOfIntegerSyntax(int member) {
 		if (member < 0) {
@@ -373,20 +360,22 @@ public abstract class SetOfIntegerSyntax implements Serializable, Cloneable {
 	 * range), an empty set is constructed.
 	 *
 	 * @param lowerBound
-	 *            Lower bound of the range.
+	 *                   Lower bound of the range.
 	 * @param upperBound
-	 *            Upper bound of the range.
+	 *                   Upper bound of the range.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (Unchecked exception) Thrown if the range is non-null and
-	 *                <CODE>lowerBound</CODE> is less than zero.
+	 *                                     (Unchecked exception) Thrown if the
+	 *                                     range is non-null and
+	 *                                     <CODE>lowerBound</CODE> is less than
+	 *                                     zero.
 	 */
 	protected SetOfIntegerSyntax(int lowerBound, int upperBound) {
 		if (lowerBound <= upperBound && lowerBound < 0) {
 			throw new IllegalArgumentException();
 		}
-		members = lowerBound <= upperBound ? new int[][] { { lowerBound, upperBound } }
-				: new int[0][];
+		members = lowerBound <= upperBound ? new int[][] { { lowerBound,
+				upperBound } } : new int[0][];
 	}
 
 	/**
@@ -409,7 +398,7 @@ public abstract class SetOfIntegerSyntax implements Serializable, Cloneable {
 	 * Determine if this set-of-integer attribute contains the given value.
 	 *
 	 * @param x
-	 *            Integer value.
+	 *          Integer value.
 	 *
 	 * @return True if this set-of-integer attribute contains the value
 	 *         <CODE>x</CODE>, false otherwise.
@@ -432,7 +421,7 @@ public abstract class SetOfIntegerSyntax implements Serializable, Cloneable {
 	 * attribute's value.
 	 *
 	 * @param attribute
-	 *            Integer attribute.
+	 *                  Integer attribute.
 	 *
 	 * @return True if this set-of-integer attribute contains
 	 *         <CODE>theAttribute</CODE>'s value, false otherwise.
@@ -460,7 +449,7 @@ public abstract class SetOfIntegerSyntax implements Serializable, Cloneable {
 	 * </PRE>
 	 *
 	 * @param x
-	 *            Integer value.
+	 *          Integer value.
 	 *
 	 * @return The smallest integer in this set-of-integer attribute that is
 	 *         greater than <CODE>x</CODE>, or <CODE>-1</CODE> if no integer in
@@ -491,7 +480,7 @@ public abstract class SetOfIntegerSyntax implements Serializable, Cloneable {
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this set-of-integer
 	 *         attribute, false otherwise.

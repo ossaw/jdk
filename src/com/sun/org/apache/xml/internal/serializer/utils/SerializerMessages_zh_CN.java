@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,25 +41,18 @@ public class SerializerMessages_zh_CN extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Serializer Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 * 
 	 * 1) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
-	 * 
 	 * 2) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 3) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
-	 *
 	 */
 
 	/** The lookup table for error messages. */
@@ -82,7 +72,8 @@ public class SerializerMessages_zh_CN extends ListResourceBundle {
 				{ MsgKey.ER_RESOURCE_COULD_NOT_LOAD,
 						"\u8D44\u6E90 [ {0} ] \u65E0\u6CD5\u52A0\u8F7D: {1} \n {2} \t {3}" },
 
-				{ MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO, "\u7F13\u51B2\u533A\u5927\u5C0F <=0" },
+				{ MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO,
+						"\u7F13\u51B2\u533A\u5927\u5C0F <=0" },
 
 				{ MsgKey.ER_INVALID_UTF16_SURROGATE,
 						"\u68C0\u6D4B\u5230\u65E0\u6548\u7684 UTF-16 \u4EE3\u7406: {0}?" },
@@ -129,7 +120,8 @@ public class SerializerMessages_zh_CN extends ListResourceBundle {
 				{ MsgKey.ER_COULD_NOT_LOAD_METHOD_PROPERTY,
 						"\u65E0\u6CD5\u4E3A\u8F93\u51FA\u65B9\u6CD5 ''{1}'' \u52A0\u8F7D\u5C5E\u6027\u6587\u4EF6 ''{0}'' (\u68C0\u67E5 CLASSPATH)" },
 
-				{ MsgKey.ER_INVALID_PORT, "\u65E0\u6548\u7684\u7AEF\u53E3\u53F7" },
+				{ MsgKey.ER_INVALID_PORT,
+						"\u65E0\u6548\u7684\u7AEF\u53E3\u53F7" },
 
 				{ MsgKey.ER_PORT_WHEN_HOST_NULL,
 						"\u4E3B\u673A\u4E3A\u7A7A\u65F6, \u65E0\u6CD5\u8BBE\u7F6E\u7AEF\u53E3" },
@@ -137,7 +129,8 @@ public class SerializerMessages_zh_CN extends ListResourceBundle {
 				{ MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED,
 						"\u4E3B\u673A\u4E0D\u662F\u683C\u5F0F\u826F\u597D\u7684\u5730\u5740" },
 
-				{ MsgKey.ER_SCHEME_NOT_CONFORMANT, "\u65B9\u6848\u4E0D\u4E00\u81F4\u3002" },
+				{ MsgKey.ER_SCHEME_NOT_CONFORMANT,
+						"\u65B9\u6848\u4E0D\u4E00\u81F4\u3002" },
 
 				{ MsgKey.ER_SCHEME_FROM_NULL_STRING,
 						"\u65E0\u6CD5\u4ECE\u7A7A\u5B57\u7B26\u4E32\u8BBE\u7F6E\u65B9\u6848" },
@@ -157,7 +150,8 @@ public class SerializerMessages_zh_CN extends ListResourceBundle {
 				{ MsgKey.ER_FRAG_FOR_GENERIC_URI,
 						"\u53EA\u80FD\u4E3A\u4E00\u822C URI \u8BBE\u7F6E\u7247\u6BB5" },
 
-				{ MsgKey.ER_NO_SCHEME_IN_URI, "\u5728 URI \u4E2D\u627E\u4E0D\u5230\u65B9\u6848" },
+				{ MsgKey.ER_NO_SCHEME_IN_URI,
+						"\u5728 URI \u4E2D\u627E\u4E0D\u5230\u65B9\u6848" },
 
 				{ MsgKey.ER_CANNOT_INIT_URI_EMPTY_PARMS,
 						"\u65E0\u6CD5\u4EE5\u7A7A\u53C2\u6570\u521D\u59CB\u5316 URI" },
@@ -177,7 +171,8 @@ public class SerializerMessages_zh_CN extends ListResourceBundle {
 				{ MsgKey.ER_XML_VERSION_NOT_SUPPORTED,
 						"\u8B66\u544A: \u8F93\u51FA\u6587\u6863\u7684\u7248\u672C\u5E94\u4E3A ''{0}''\u3002\u4E0D\u652F\u6301\u6B64\u7248\u672C\u7684 XML\u3002\u8F93\u51FA\u6587\u6863\u7684\u7248\u672C\u5C06\u4E3A ''1.0''\u3002" },
 
-				{ MsgKey.ER_SCHEME_REQUIRED, "\u65B9\u6848\u662F\u5FC5\u9700\u7684!" },
+				{ MsgKey.ER_SCHEME_REQUIRED,
+						"\u65B9\u6848\u662F\u5FC5\u9700\u7684!" },
 
 				/*
 				 * Note to translators: The words 'Properties' and

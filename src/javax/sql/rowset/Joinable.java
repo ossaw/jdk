@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset;
@@ -151,10 +131,11 @@ public interface Joinable {
 	 * column.
 	 *
 	 * @param columnIdx
-	 *            an <code>int</code> identifying the index of the column to be
-	 *            set as the match column
+	 *                  an <code>int</code> identifying the index of the column
+	 *                  to be
+	 *                  set as the match column
 	 * @throws SQLException
-	 *             if an invalid column index is set
+	 *                      if an invalid column index is set
 	 * @see #setMatchColumn(int[])
 	 * @see #unsetMatchColumn(int)
 	 *
@@ -167,10 +148,11 @@ public interface Joinable {
 	 * this <code>RowSet</code> object based on the match column.
 	 *
 	 * @param columnIdxes
-	 *            an array of <code>int</code> identifying the indexes of the
-	 *            columns to be set as the match columns
+	 *                    an array of <code>int</code> identifying the indexes
+	 *                    of the
+	 *                    columns to be set as the match columns
 	 * @throws SQLException
-	 *             if an invalid column index is set
+	 *                      if an invalid column index is set
 	 * @see #setMatchColumn(int[])
 	 * @see #unsetMatchColumn(int[])
 	 */
@@ -190,11 +172,13 @@ public interface Joinable {
 	 * column.
 	 *
 	 * @param columnName
-	 *            a <code>String</code> object giving the name of the column to
-	 *            be set as the match column
+	 *                   a <code>String</code> object giving the name of the
+	 *                   column to
+	 *                   be set as the match column
 	 * @throws SQLException
-	 *             if an invalid column name is set, the column name is a null,
-	 *             or the column name is an empty string
+	 *                      if an invalid column name is set, the column name is
+	 *                      a null,
+	 *                      or the column name is an empty string
 	 * @see #unsetMatchColumn
 	 * @see #setMatchColumn(int[])
 	 */
@@ -206,11 +190,13 @@ public interface Joinable {
 	 * this <code>RowSet</code> object based on the match column.
 	 *
 	 * @param columnNames
-	 *            an array of <code>String</code> objects giving the names of
-	 *            the column to be set as the match columns
+	 *                    an array of <code>String</code> objects giving the
+	 *                    names of
+	 *                    the column to be set as the match columns
 	 * @throws SQLException
-	 *             if an invalid column name is set, the column name is a null,
-	 *             or the column name is an empty string
+	 *                      if an invalid column name is set, the column name is
+	 *                      a null,
+	 *                      or the column name is an empty string
 	 * @see #unsetMatchColumn
 	 * @see #setMatchColumn(int[])
 	 */
@@ -225,7 +211,7 @@ public interface Joinable {
 	 *         that were set as the match columns for this <code>RowSet</code>
 	 *         object
 	 * @throws SQLException
-	 *             if no match column has been set
+	 *                      if no match column has been set
 	 * @see #setMatchColumn
 	 * @see #unsetMatchColumn
 	 */
@@ -240,7 +226,7 @@ public interface Joinable {
 	 *         columns set as the match columns for this <code>RowSet</code>
 	 *         object
 	 * @throws SQLException
-	 *             if no match column has been set
+	 *                      if no match column has been set
 	 * @see #setMatchColumn
 	 * @see #unsetMatchColumn
 	 *
@@ -257,11 +243,13 @@ public interface Joinable {
 	 * called on the designated column.
 	 *
 	 * @param columnIdx
-	 *            an <code>int</code> that identifies the index of the column
-	 *            that is to be unset as a match column
+	 *                  an <code>int</code> that identifies the index of the
+	 *                  column
+	 *                  that is to be unset as a match column
 	 * @throws SQLException
-	 *             if an invalid column index is designated or if the designated
-	 *             column was not previously set as a match column
+	 *                      if an invalid column index is designated or if the
+	 *                      designated
+	 *                      column was not previously set as a match column
 	 * @see #setMatchColumn
 	 */
 	public void unsetMatchColumn(int columnIdx) throws SQLException;
@@ -271,11 +259,13 @@ public interface Joinable {
 	 * <code>RowSet</code> object.
 	 *
 	 * @param columnIdxes
-	 *            an array of <code>int</code> that identifies the indexes of
-	 *            the columns that are to be unset as match columns
+	 *                    an array of <code>int</code> that identifies the
+	 *                    indexes of
+	 *                    the columns that are to be unset as match columns
 	 * @throws SQLException
-	 *             if an invalid column index is designated or if the designated
-	 *             column was not previously set as a match column
+	 *                      if an invalid column index is designated or if the
+	 *                      designated
+	 *                      column was not previously set as a match column
 	 * @see #setMatchColumn
 	 */
 	public void unsetMatchColumn(int[] columnIdxes) throws SQLException;
@@ -290,11 +280,13 @@ public interface Joinable {
 	 * called on the designated column.
 	 *
 	 * @param columnName
-	 *            a <code>String</code> object giving the name of the column
-	 *            that is to be unset as a match column
+	 *                   a <code>String</code> object giving the name of the
+	 *                   column
+	 *                   that is to be unset as a match column
 	 * @throws SQLException
-	 *             if an invalid column name is designated or the designated
-	 *             column was not previously set as a match column
+	 *                      if an invalid column name is designated or the
+	 *                      designated
+	 *                      column was not previously set as a match column
 	 * @see #setMatchColumn
 	 */
 	public void unsetMatchColumn(String columnName) throws SQLException;
@@ -304,11 +296,13 @@ public interface Joinable {
 	 * <code>RowSet</code> object.
 	 *
 	 * @param columnName
-	 *            an array of <code>String</code> objects giving the names of
-	 *            the columns that are to be unset as the match columns
+	 *                   an array of <code>String</code> objects giving the
+	 *                   names of
+	 *                   the columns that are to be unset as the match columns
 	 * @throws SQLException
-	 *             if an invalid column name is designated or the designated
-	 *             column was not previously set as a match column
+	 *                      if an invalid column name is designated or the
+	 *                      designated
+	 *                      column was not previously set as a match column
 	 * @see #setMatchColumn
 	 */
 	public void unsetMatchColumn(String[] columnName) throws SQLException;

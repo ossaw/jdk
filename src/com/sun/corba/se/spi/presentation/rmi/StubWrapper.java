@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.presentation.rmi;
@@ -115,14 +95,16 @@ public class StubWrapper implements DynamicStub {
 		return object._request(operation);
 	}
 
-	public Request _create_request(Context ctx, String operation, NVList arg_list,
-			NamedValue result) {
+	public Request _create_request(Context ctx, String operation,
+			NVList arg_list, NamedValue result) {
 		return object._create_request(ctx, operation, arg_list, result);
 	}
 
-	public Request _create_request(Context ctx, String operation, NVList arg_list,
-			NamedValue result, ExceptionList exclist, ContextList ctxlist) {
-		return object._create_request(ctx, operation, arg_list, result, exclist, ctxlist);
+	public Request _create_request(Context ctx, String operation,
+			NVList arg_list, NamedValue result, ExceptionList exclist,
+			ContextList ctxlist) {
+		return object._create_request(ctx, operation, arg_list, result, exclist,
+				ctxlist);
 	}
 
 	public Policy _get_policy(int policy_type) {
@@ -133,7 +115,8 @@ public class StubWrapper implements DynamicStub {
 		return object._get_domain_managers();
 	}
 
-	public org.omg.CORBA.Object _set_policy_override(Policy[] policies, SetOverrideType set_add) {
+	public org.omg.CORBA.Object _set_policy_override(Policy[] policies,
+			SetOverrideType set_add) {
 		return object._set_policy_override(policies, set_add);
 	}
 }

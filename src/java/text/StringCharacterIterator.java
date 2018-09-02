@@ -1,41 +1,18 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996, 1997 - All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998 - All Rights Reserved
- *
  * The original version of this source code and documentation
  * is copyrighted and owned by Taligent, Inc., a wholly-owned
  * subsidiary of IBM. These materials are provided under terms
  * of a License Agreement between Taligent and Sun. This technology
  * is protected by multiple US and International patents.
- *
  * This notice and attribution to Taligent may not be removed.
  * Taligent is a registered trademark of Taligent, Inc.
- *
  */
 
 package java.text;
@@ -60,7 +37,7 @@ public final class StringCharacterIterator implements CharacterIterator {
 	 * Constructs an iterator with an initial index of 0.
 	 *
 	 * @param text
-	 *            the {@code String} to be iterated over
+	 *             the {@code String} to be iterated over
 	 */
 	public StringCharacterIterator(String text) {
 		this(text, 0);
@@ -70,9 +47,9 @@ public final class StringCharacterIterator implements CharacterIterator {
 	 * Constructs an iterator with the specified initial index.
 	 *
 	 * @param text
-	 *            The String to be iterated over
+	 *             The String to be iterated over
 	 * @param pos
-	 *            Initial iterator position
+	 *             Initial iterator position
 	 */
 	public StringCharacterIterator(String text, int pos) {
 		this(text, 0, text.length(), pos);
@@ -83,13 +60,13 @@ public final class StringCharacterIterator implements CharacterIterator {
 	 * index set at the specified position.
 	 *
 	 * @param text
-	 *            The String to be iterated over
+	 *              The String to be iterated over
 	 * @param begin
-	 *            Index of the first character
+	 *              Index of the first character
 	 * @param end
-	 *            Index of the character following the last character
+	 *              Index of the character following the last character
 	 * @param pos
-	 *            Initial iterator position
+	 *              Initial iterator position
 	 */
 	public StringCharacterIterator(String text, int begin, int end, int pos) {
 		if (text == null)
@@ -114,7 +91,7 @@ public final class StringCharacterIterator implements CharacterIterator {
 	 * called.
 	 *
 	 * @param text
-	 *            The String to be iterated over
+	 *             The String to be iterated over
 	 * @since 1.2
 	 */
 	public void setText(String text) {

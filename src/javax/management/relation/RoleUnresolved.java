@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.relation;
@@ -84,12 +64,12 @@ public class RoleUnresolved implements Serializable {
 	private static final long serialVersionUID;
 	/**
 	 * @serialField roleName
-	 *                  String Role name
+	 *              String Role name
 	 * @serialField roleValue
-	 *                  List Role value ({@link List} of {@link ObjectName}
-	 *                  objects)
+	 *              List Role value ({@link List} of {@link ObjectName}
+	 *              objects)
 	 * @serialField problemType
-	 *                  int Problem type
+	 *              int Problem type
 	 */
 	private static final ObjectStreamField[] serialPersistentFields;
 	private static boolean compat = false;
@@ -139,15 +119,17 @@ public class RoleUnresolved implements Serializable {
 	 * Constructor.
 	 *
 	 * @param name
-	 *            name of the role
+	 *               name of the role
 	 * @param value
-	 *            value of the role (if problem when setting the role)
+	 *               value of the role (if problem when setting the role)
 	 * @param pbType
-	 *            type of problem (according to known problem types, listed as
-	 *            static final members).
+	 *               type of problem (according to known problem types, listed
+	 *               as
+	 *               static final members).
 	 *
 	 * @exception IllegalArgumentException
-	 *                if null parameter or incorrect problem type
+	 *                                     if null parameter or incorrect
+	 *                                     problem type
 	 */
 	public RoleUnresolved(String name, List<ObjectName> value, int pbType)
 			throws IllegalArgumentException {
@@ -208,10 +190,10 @@ public class RoleUnresolved implements Serializable {
 	 * Sets role name.
 	 *
 	 * @param name
-	 *            the new role name.
+	 *             the new role name.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if null parameter
+	 *                                     if null parameter
 	 *
 	 * @see #getRoleName
 	 */
@@ -230,8 +212,8 @@ public class RoleUnresolved implements Serializable {
 	 * Sets role value.
 	 *
 	 * @param value
-	 *            List of ObjectName objects for referenced MBeans not set in
-	 *            role.
+	 *              List of ObjectName objects for referenced MBeans not set in
+	 *              role.
 	 *
 	 * @see #getRoleValue
 	 */
@@ -249,11 +231,11 @@ public class RoleUnresolved implements Serializable {
 	 * Sets problem type.
 	 *
 	 * @param pbType
-	 *            integer corresponding to a problem. Must be one of those
-	 *            described as static final members of current class.
+	 *               integer corresponding to a problem. Must be one of those
+	 *               described as static final members of current class.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if incorrect problem type
+	 *                                     if incorrect problem type
 	 *
 	 * @see #getProblemType
 	 */
@@ -290,7 +272,8 @@ public class RoleUnresolved implements Serializable {
 		result.append("role name: " + roleName);
 		if (roleValue != null) {
 			result.append("; value: ");
-			for (Iterator<ObjectName> objNameIter = roleValue.iterator(); objNameIter.hasNext();) {
+			for (Iterator<ObjectName> objNameIter = roleValue
+					.iterator(); objNameIter.hasNext();) {
 				ObjectName currObjName = objNameIter.next();
 				result.append(currObjName.toString());
 				if (objNameIter.hasNext()) {
@@ -305,7 +288,8 @@ public class RoleUnresolved implements Serializable {
 	/**
 	 * Deserializes a {@link RoleUnresolved} from an {@link ObjectInputStream}.
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		if (compat) {
 			// Read an object serialized in the old serial form
 			//

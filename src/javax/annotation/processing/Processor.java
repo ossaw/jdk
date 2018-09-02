@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.annotation.processing;
@@ -278,8 +258,9 @@ public interface Processor {
 	 * Initializes the processor with the processing environment.
 	 *
 	 * @param processingEnv
-	 *            environment for facilities the tool framework provides to the
-	 *            processor
+	 *                      environment for facilities the tool framework
+	 *                      provides to the
+	 *                      processor
 	 */
 	void init(ProcessingEnvironment processingEnv);
 
@@ -299,13 +280,15 @@ public interface Processor {
 	 * Processor} must gracefully handle an empty set of annotations.
 	 *
 	 * @param annotations
-	 *            the annotation types requested to be processed
+	 *                    the annotation types requested to be processed
 	 * @param roundEnv
-	 *            environment for information about the current and prior round
+	 *                    environment for information about the current and
+	 *                    prior round
 	 * @return whether or not the set of annotation types are claimed by this
 	 *         processor
 	 */
-	boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv);
+	boolean process(Set<? extends TypeElement> annotations,
+			RoundEnvironment roundEnv);
 
 	/**
 	 * Returns to the tool infrastructure an iterable of suggested completions
@@ -433,16 +416,19 @@ public interface Processor {
 	 * </blockquote>
 	 *
 	 * @param element
-	 *            the element being annotated
+	 *                   the element being annotated
 	 * @param annotation
-	 *            the (perhaps partial) annotation being applied to the element
+	 *                   the (perhaps partial) annotation being applied to the
+	 *                   element
 	 * @param member
-	 *            the annotation member to return possible completions for
+	 *                   the annotation member to return possible completions
+	 *                   for
 	 * @param userText
-	 *            source code text to be completed
+	 *                   source code text to be completed
 	 *
 	 * @return suggested completions to the annotation
 	 */
-	Iterable<? extends Completion> getCompletions(Element element, AnnotationMirror annotation,
-			ExecutableElement member, String userText);
+	Iterable<? extends Completion> getCompletions(Element element,
+			AnnotationMirror annotation, ExecutableElement member,
+			String userText);
 }

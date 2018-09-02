@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.dynamicany;
@@ -37,8 +17,8 @@ import com.sun.corba.se.spi.orb.ORB;
 import com.sun.corba.se.spi.logging.CORBALogDomains;
 import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 
-public class DynAnyFactoryImpl extends org.omg.CORBA.LocalObject
-		implements org.omg.DynamicAny.DynAnyFactory {
+public class DynAnyFactoryImpl extends org.omg.CORBA.LocalObject implements
+		org.omg.DynamicAny.DynAnyFactory {
 	//
 	// Instance variables
 	//
@@ -68,7 +48,8 @@ public class DynAnyFactoryImpl extends org.omg.CORBA.LocalObject
 	}
 
 	// Returns the most derived DynAny type based on the TypeCode.
-	public org.omg.DynamicAny.DynAny create_dyn_any_from_type_code(org.omg.CORBA.TypeCode type)
+	public org.omg.DynamicAny.DynAny create_dyn_any_from_type_code(
+			org.omg.CORBA.TypeCode type)
 			throws org.omg.DynamicAny.DynAnyFactoryPackage.InconsistentTypeCode {
 		return DynAnyUtil.createMostDerivedDynAny(type, orb);
 	}

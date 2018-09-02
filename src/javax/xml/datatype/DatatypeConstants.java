@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.datatype;
@@ -44,8 +24,7 @@ public final class DatatypeConstants {
 	 * Private constructor to prevent instantiation.
 	 * </p>
 	 */
-	private DatatypeConstants() {
-	}
+	private DatatypeConstants() {}
 
 	/**
 	 * Value for first month of year.
@@ -251,21 +230,24 @@ public final class DatatypeConstants {
 	 * <code>dateTime</code>.
 	 * </p>
 	 */
-	public static final QName DATETIME = new QName(XMLConstants.W3C_XML_SCHEMA_NS_URI, "dateTime");
+	public static final QName DATETIME = new QName(
+			XMLConstants.W3C_XML_SCHEMA_NS_URI, "dateTime");
 
 	/**
 	 * <p>
 	 * Fully qualified name for W3C XML Schema 1.0 datatype <code>time</code>.
 	 * </p>
 	 */
-	public static final QName TIME = new QName(XMLConstants.W3C_XML_SCHEMA_NS_URI, "time");
+	public static final QName TIME = new QName(
+			XMLConstants.W3C_XML_SCHEMA_NS_URI, "time");
 
 	/**
 	 * <p>
 	 * Fully qualified name for W3C XML Schema 1.0 datatype <code>date</code>.
 	 * </p>
 	 */
-	public static final QName DATE = new QName(XMLConstants.W3C_XML_SCHEMA_NS_URI, "date");
+	public static final QName DATE = new QName(
+			XMLConstants.W3C_XML_SCHEMA_NS_URI, "date");
 
 	/**
 	 * <p>
@@ -273,8 +255,8 @@ public final class DatatypeConstants {
 	 * <code>gYearMonth</code>.
 	 * </p>
 	 */
-	public static final QName GYEARMONTH = new QName(XMLConstants.W3C_XML_SCHEMA_NS_URI,
-			"gYearMonth");
+	public static final QName GYEARMONTH = new QName(
+			XMLConstants.W3C_XML_SCHEMA_NS_URI, "gYearMonth");
 
 	/**
 	 * <p>
@@ -282,36 +264,40 @@ public final class DatatypeConstants {
 	 * <code>gMonthDay</code>.
 	 * </p>
 	 */
-	public static final QName GMONTHDAY = new QName(XMLConstants.W3C_XML_SCHEMA_NS_URI,
-			"gMonthDay");
+	public static final QName GMONTHDAY = new QName(
+			XMLConstants.W3C_XML_SCHEMA_NS_URI, "gMonthDay");
 
 	/**
 	 * <p>
 	 * Fully qualified name for W3C XML Schema 1.0 datatype <code>gYear</code>.
 	 * </p>
 	 */
-	public static final QName GYEAR = new QName(XMLConstants.W3C_XML_SCHEMA_NS_URI, "gYear");
+	public static final QName GYEAR = new QName(
+			XMLConstants.W3C_XML_SCHEMA_NS_URI, "gYear");
 
 	/**
 	 * <p>
 	 * Fully qualified name for W3C XML Schema 1.0 datatype <code>gMonth</code>.
 	 * </p>
 	 */
-	public static final QName GMONTH = new QName(XMLConstants.W3C_XML_SCHEMA_NS_URI, "gMonth");
+	public static final QName GMONTH = new QName(
+			XMLConstants.W3C_XML_SCHEMA_NS_URI, "gMonth");
 
 	/**
 	 * <p>
 	 * Fully qualified name for W3C XML Schema 1.0 datatype <code>gDay</code>.
 	 * </p>
 	 */
-	public static final QName GDAY = new QName(XMLConstants.W3C_XML_SCHEMA_NS_URI, "gDay");
+	public static final QName GDAY = new QName(
+			XMLConstants.W3C_XML_SCHEMA_NS_URI, "gDay");
 
 	/**
 	 * <p>
 	 * Fully qualified name for W3C XML Schema datatype <code>duration</code>.
 	 * </p>
 	 */
-	public static final QName DURATION = new QName(XMLConstants.W3C_XML_SCHEMA_NS_URI, "duration");
+	public static final QName DURATION = new QName(
+			XMLConstants.W3C_XML_SCHEMA_NS_URI, "duration");
 
 	/**
 	 * <p>
@@ -319,8 +305,8 @@ public final class DatatypeConstants {
 	 * <code>dayTimeDuration</code>.
 	 * </p>
 	 */
-	public static final QName DURATION_DAYTIME = new QName(XMLConstants.W3C_XPATH_DATATYPE_NS_URI,
-			"dayTimeDuration");
+	public static final QName DURATION_DAYTIME = new QName(
+			XMLConstants.W3C_XPATH_DATATYPE_NS_URI, "dayTimeDuration");
 
 	/**
 	 * <p>
@@ -328,8 +314,8 @@ public final class DatatypeConstants {
 	 * <code>yearMonthDuration</code>.
 	 * </p>
 	 */
-	public static final QName DURATION_YEARMONTH = new QName(XMLConstants.W3C_XPATH_DATATYPE_NS_URI,
-			"yearMonthDuration");
+	public static final QName DURATION_YEARMONTH = new QName(
+			XMLConstants.W3C_XPATH_DATATYPE_NS_URI, "yearMonthDuration");
 
 	/**
 	 * W3C XML Schema max timezone offset is -14:00. Zone offset is in minutes.

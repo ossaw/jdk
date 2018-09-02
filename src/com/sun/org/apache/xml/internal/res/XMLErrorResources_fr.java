@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,39 +30,30 @@ public class XMLErrorResources_fr extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Xalan Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 */
 
 	/**
@@ -187,20 +175,24 @@ public class XMLErrorResources_fr extends ListResourceBundle {
 
 			{ ER_CANNOT_OVERWRITE_CAUSE, "Impossible de remplacer la cause" },
 
-			{ ER_NO_DEFAULT_IMPL, "Aucune impl\u00E9mentation par d\u00E9faut trouv\u00E9e " },
+			{ ER_NO_DEFAULT_IMPL,
+					"Aucune impl\u00E9mentation par d\u00E9faut trouv\u00E9e " },
 
 			{ ER_CHUNKEDINTARRAY_NOT_SUPPORTED,
 					"ChunkedIntArray({0}) n''est actuellement pas pris en charge" },
 
-			{ ER_OFFSET_BIGGER_THAN_SLOT, "D\u00E9calage sup\u00E9rieur \u00E0 l'emplacement" },
+			{ ER_OFFSET_BIGGER_THAN_SLOT,
+					"D\u00E9calage sup\u00E9rieur \u00E0 l'emplacement" },
 
 			{ ER_COROUTINE_NOT_AVAIL, "Coroutine non disponible, id={0}" },
 
-			{ ER_COROUTINE_CO_EXIT, "CoroutineManager a re\u00E7u la demande co_exit()" },
+			{ ER_COROUTINE_CO_EXIT,
+					"CoroutineManager a re\u00E7u la demande co_exit()" },
 
 			{ ER_COJOINROUTINESET_FAILED, "Echec de co_joinCoroutineSet()" },
 
-			{ ER_COROUTINE_PARAM, "Erreur de param\u00E8tre de coroutine ({0})" },
+			{ ER_COROUTINE_PARAM,
+					"Erreur de param\u00E8tre de coroutine ({0})" },
 
 			{ ER_PARSER_DOTERMINATE_ANSWERS,
 					"\nINATTENDU : r\u00E9ponses doTerminate de l''analyseur - {0}" },
@@ -214,17 +206,20 @@ public class XMLErrorResources_fr extends ListResourceBundle {
 			{ ER_ITERATOR_AXIS_NOT_IMPLEMENTED,
 					"Erreur : it\u00E9rateur pour l''axe {0} non impl\u00E9ment\u00E9 " },
 
-			{ ER_ITERATOR_CLONE_NOT_SUPPORTED, "Clone d'it\u00E9rateur non pris en charge" },
+			{ ER_ITERATOR_CLONE_NOT_SUPPORTED,
+					"Clone d'it\u00E9rateur non pris en charge" },
 
 			{ ER_UNKNOWN_AXIS_TYPE, "Type de parcours d''axe inconnu : {0}" },
 
-			{ ER_AXIS_NOT_SUPPORTED, "Parcours d''axe non pris en charge : {0}" },
+			{ ER_AXIS_NOT_SUPPORTED,
+					"Parcours d''axe non pris en charge : {0}" },
 
 			{ ER_NO_DTMIDS_AVAIL, "Aucun autre ID DTM n'est disponible" },
 
 			{ ER_NOT_SUPPORTED, "Non pris en charge : {0}" },
 
-			{ ER_NODE_NON_NULL, "Le noeud doit \u00EAtre non NULL pour getDTMHandleFromNode" },
+			{ ER_NODE_NON_NULL,
+					"Le noeud doit \u00EAtre non NULL pour getDTMHandleFromNode" },
 
 			{ ER_COULD_NOT_RESOLVE_NODE,
 					"Impossible de r\u00E9soudre le noeud sur un descripteur" },
@@ -232,9 +227,11 @@ public class XMLErrorResources_fr extends ListResourceBundle {
 			{ ER_STARTPARSE_WHILE_PARSING,
 					"impossible d'appeler startParse lorsque l'analyse est en cours" },
 
-			{ ER_STARTPARSE_NEEDS_SAXPARSER, "startParse n\u00E9cessite un SAXParser non NULL" },
+			{ ER_STARTPARSE_NEEDS_SAXPARSER,
+					"startParse n\u00E9cessite un SAXParser non NULL" },
 
-			{ ER_COULD_NOT_INIT_PARSER, "impossible d'initialiser l'analyseur avec" },
+			{ ER_COULD_NOT_INIT_PARSER,
+					"impossible d'initialiser l'analyseur avec" },
 
 			{ ER_EXCEPTION_CREATING_POOL,
 					"exception lors de la cr\u00E9ation de l'instance du pool" },
@@ -248,7 +245,8 @@ public class XMLErrorResources_fr extends ListResourceBundle {
 
 			{ ER_NO_SCHEME_INURI, "Mod\u00E8le introuvable dans l'URI" },
 
-			{ ER_PATH_INVALID_CHAR, "Le chemin contient un caract\u00E8re non valide : {0}" },
+			{ ER_PATH_INVALID_CHAR,
+					"Le chemin contient un caract\u00E8re non valide : {0}" },
 
 			{ ER_SCHEME_FROM_NULL_STRING,
 					"Impossible de d\u00E9finir le mod\u00E8le \u00E0 partir de la cha\u00EEne NULL" },
@@ -269,13 +267,16 @@ public class XMLErrorResources_fr extends ListResourceBundle {
 			{ ER_FRAG_WHEN_PATH_NULL,
 					"Impossible de d\u00E9finir le fragment quand le chemin d'acc\u00E8s est NULL" },
 
-			{ ER_FRAG_INVALID_CHAR, "Le fragment contient un caract\u00E8re non valide" },
+			{ ER_FRAG_INVALID_CHAR,
+					"Le fragment contient un caract\u00E8re non valide" },
 
 			{ ER_PARSER_IN_USE, "L'analyseur est d\u00E9j\u00E0 utilis\u00E9" },
 
-			{ ER_CANNOT_CHANGE_WHILE_PARSING, "Impossible de modifier {0} {1} pendant l''analyse" },
+			{ ER_CANNOT_CHANGE_WHILE_PARSING,
+					"Impossible de modifier {0} {1} pendant l''analyse" },
 
-			{ ER_SELF_CAUSATION_NOT_PERMITTED, "Causalit\u00E9 circulaire non autoris\u00E9e" },
+			{ ER_SELF_CAUSATION_NOT_PERMITTED,
+					"Causalit\u00E9 circulaire non autoris\u00E9e" },
 
 			{ ER_NO_USERINFO_IF_NO_HOST,
 					"Userinfo peut ne pas \u00EAtre sp\u00E9cifi\u00E9 si l'h\u00F4te ne l'est pas" },
@@ -292,14 +293,17 @@ public class XMLErrorResources_fr extends ListResourceBundle {
 			{ ER_CANNOT_INIT_URI_EMPTY_PARMS,
 					"Impossible d'initialiser l'URI avec des param\u00E8tres vides" },
 
-			{ ER_METHOD_NOT_SUPPORTED, "La m\u00E9thode n'est pas encore prise en charge " },
+			{ ER_METHOD_NOT_SUPPORTED,
+					"La m\u00E9thode n'est pas encore prise en charge " },
 
 			{ ER_INCRSAXSRCFILTER_NOT_RESTARTABLE,
 					"IncrementalSAXSource_Filter ne peut actuellement pas \u00EAtre red\u00E9marr\u00E9" },
 
-			{ ER_XMLRDR_NOT_BEFORE_STARTPARSE, "XMLReader pas avant la demande startParse" },
+			{ ER_XMLRDR_NOT_BEFORE_STARTPARSE,
+					"XMLReader pas avant la demande startParse" },
 
-			{ ER_AXIS_TRAVERSER_NOT_SUPPORTED, "Parcours d''axe non pris en charge : {0}" },
+			{ ER_AXIS_TRAVERSER_NOT_SUPPORTED,
+					"Parcours d''axe non pris en charge : {0}" },
 
 			{ ER_ERRORHANDLER_CREATED_WITH_NULL_PRINTWRITER,
 					"ListingErrorHandler cr\u00E9\u00E9 avec PrintWriter NULL." },
@@ -323,7 +327,8 @@ public class XMLErrorResources_fr extends ListResourceBundle {
 			{ ER_CANT_OUTPUT_TEXT_BEFORE_DOC,
 					"Avertissement : impossible de g\u00E9n\u00E9rer une sortie du texte avant l'\u00E9l\u00E9ment de document. Non pris en compte..." },
 
-			{ ER_CANT_HAVE_MORE_THAN_ONE_ROOT, "Impossible d'avoir plus d'une racine sur un DOM." },
+			{ ER_CANT_HAVE_MORE_THAN_ONE_ROOT,
+					"Impossible d'avoir plus d'une racine sur un DOM." },
 
 			{ ER_ARG_LOCALNAME_NULL, "L'argument \"localName\" est NULL" },
 
@@ -332,32 +337,39 @@ public class XMLErrorResources_fr extends ListResourceBundle {
 			// The localname is the portion after the optional colon; the
 			// message indicates
 			// that there is a problem with that part of the QNAME.
-			{ ER_ARG_LOCALNAME_INVALID, "Le nom local du QName doit \u00EAtre un NCName valide" },
+			{ ER_ARG_LOCALNAME_INVALID,
+					"Le nom local du QName doit \u00EAtre un NCName valide" },
 
 			// Note to translators: A QNAME has the syntactic form
 			// [NCName:]NCName
 			// The prefix is the portion before the optional colon; the message
 			// indicates
 			// that there is a problem with that part of the QNAME.
-			{ ER_ARG_PREFIX_INVALID, "Le pr\u00E9fixe du QName doit \u00EAtre un NCName valide" },
+			{ ER_ARG_PREFIX_INVALID,
+					"Le pr\u00E9fixe du QName doit \u00EAtre un NCName valide" },
 
-			{ ER_NAME_CANT_START_WITH_COLON, "Le nom ne peut pas commencer par deux-points" },
+			{ ER_NAME_CANT_START_WITH_COLON,
+					"Le nom ne peut pas commencer par deux-points" },
 
-			{ "BAD_CODE", "Le param\u00E8tre createMessage \u00E9tait hors limites" },
-			{ "FORMAT_FAILED", "Exception g\u00E9n\u00E9r\u00E9e pendant l'appel messageFormat" },
+			{ "BAD_CODE",
+					"Le param\u00E8tre createMessage \u00E9tait hors limites" },
+			{ "FORMAT_FAILED",
+					"Exception g\u00E9n\u00E9r\u00E9e pendant l'appel messageFormat" },
 			{ "line", "Ligne n\u00B0" }, { "column", "Colonne n\u00B0" },
 
 			{ ER_SERIALIZER_NOT_CONTENTHANDLER,
 					"La classe de serializer ''{0}'' n''impl\u00E9mente pas org.xml.sax.ContentHandler." },
 
-			{ ER_RESOURCE_COULD_NOT_FIND, "La ressource [ {0} ] est introuvable.\n {1}" },
+			{ ER_RESOURCE_COULD_NOT_FIND,
+					"La ressource [ {0} ] est introuvable.\n {1}" },
 
 			{ ER_RESOURCE_COULD_NOT_LOAD,
 					"La ressource [ {0} ] n''a pas pu charger : {1} \n {2} \t {3}" },
 
 			{ ER_BUFFER_SIZE_LESSTHAN_ZERO, "Taille du tampon <=0" },
 
-			{ ER_INVALID_UTF16_SURROGATE, "Substitut UTF-16 non valide d\u00E9tect\u00E9 : {0} ?" },
+			{ ER_INVALID_UTF16_SURROGATE,
+					"Substitut UTF-16 non valide d\u00E9tect\u00E9 : {0} ?" },
 
 			{ ER_OIERROR, "Erreur d'E-S" },
 

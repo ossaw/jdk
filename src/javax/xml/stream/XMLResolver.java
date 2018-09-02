@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -47,18 +27,21 @@ public interface XMLResolver {
 	 * will attempt to resolve the entity using its default mechanism.
 	 *
 	 * @param publicID
-	 *            The public identifier of the external entity being referenced,
-	 *            or null if none was supplied.
+	 *                  The public identifier of the external entity being
+	 *                  referenced,
+	 *                  or null if none was supplied.
 	 * @param systemID
-	 *            The system identifier of the external entity being referenced.
+	 *                  The system identifier of the external entity being
+	 *                  referenced.
 	 * @param baseURI
-	 *            Absolute base URI associated with systemId.
+	 *                  Absolute base URI associated with systemId.
 	 * @param namespace
-	 *            The namespace of the entity to resolve.
+	 *                  The namespace of the entity to resolve.
 	 * @return The resource requested or null.
 	 * @throws XMLStreamException
-	 *             if there was a failure attempting to resolve the resource.
+	 *                            if there was a failure attempting to resolve
+	 *                            the resource.
 	 */
-	public Object resolveEntity(String publicID, String systemID, String baseURI, String namespace)
-			throws XMLStreamException;
+	public Object resolveEntity(String publicID, String systemID,
+			String baseURI, String namespace) throws XMLStreamException;
 }

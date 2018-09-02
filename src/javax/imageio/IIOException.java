@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio;
@@ -47,7 +27,7 @@ public class IIOException extends IOException {
 	 * will return <code>null</code>.
 	 *
 	 * @param message
-	 *            the error message.
+	 *                the error message.
 	 *
 	 * @see #getMessage
 	 */
@@ -61,10 +41,11 @@ public class IIOException extends IOException {
 	 * cause.
 	 *
 	 * @param message
-	 *            the error message.
+	 *                the error message.
 	 * @param cause
-	 *            the <code>Throwable</code> (<code>Error</code> or
-	 *            <code>Exception</code>) that caused this exception to occur.
+	 *                the <code>Throwable</code> (<code>Error</code> or
+	 *                <code>Exception</code>) that caused this exception to
+	 *                occur.
 	 *
 	 * @see #getCause
 	 * @see #getMessage

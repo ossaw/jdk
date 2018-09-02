@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.spi.monitoring;
 
@@ -50,8 +30,8 @@ public interface MonitoredAttribute {
 	 * <p>
 	 *
 	 * @param monitoredAttributeInfo
-	 *            for this Monitored Attribute.
-	 *            </p>
+	 *                               for this Monitored Attribute.
+	 *                               </p>
 	 */
 	public MonitoredAttributeInfo getAttributeInfo();
 
@@ -66,9 +46,10 @@ public interface MonitoredAttribute {
 	 * <p>
 	 *
 	 * @param value
-	 *            should be any one of the Basic Java Type Objects which are
-	 *            Long, Double, Float, String, Integer, Short, Character, Byte.
-	 *            </p>
+	 *              should be any one of the Basic Java Type Objects which are
+	 *              Long, Double, Float, String, Integer, Short, Character,
+	 *              Byte.
+	 *              </p>
 	 */
 	public void setValue(Object value);
 
@@ -88,8 +69,8 @@ public interface MonitoredAttribute {
 	 * <p>
 	 *
 	 * @param value
-	 *            is the current value for this MonitoredAttribute
-	 *            </p>
+	 *              is the current value for this MonitoredAttribute
+	 *              </p>
 	 */
 	public Object getValue();
 
@@ -100,8 +81,8 @@ public interface MonitoredAttribute {
 	 * <p>
 	 *
 	 * @param name
-	 *            of this Attribute
-	 *            </p>
+	 *             of this Attribute
+	 *             </p>
 	 */
 	public String getName();
 

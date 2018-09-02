@@ -84,8 +84,10 @@ public interface CipherReference {
 	 * <code>URI</code> to yield the appropriate cipher value.
 	 *
 	 * @param transforms
-	 *            the set of <code>Transforms</code> that specifies how to
-	 *            transform the reference to yield the intended cipher value.
+	 *                   the set of <code>Transforms</code> that specifies how
+	 *                   to
+	 *                   transform the reference to yield the intended cipher
+	 *                   value.
 	 */
 	void setTransforms(Transforms transforms);
 }

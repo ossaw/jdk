@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.generic;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.generic;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -106,27 +98,31 @@ public class MethodGen extends FieldGenOrMethodGen {
 	 * you remove that local variable, too.
 	 *
 	 * @param access_flags
-	 *            access qualifiers
+	 *                     access qualifiers
 	 * @param return_type
-	 *            method type
+	 *                     method type
 	 * @param arg_types
-	 *            argument types
+	 *                     argument types
 	 * @param arg_names
-	 *            argument names (if this is null, default names will be
-	 *            provided for them)
+	 *                     argument names (if this is null, default names will
+	 *                     be
+	 *                     provided for them)
 	 * @param method_name
-	 *            name of method
+	 *                     name of method
 	 * @param class_name
-	 *            class name containing this method (may be null, if you don't
-	 *            care)
+	 *                     class name containing this method (may be null, if
+	 *                     you don't
+	 *                     care)
 	 * @param il
-	 *            instruction list associated with this method, may be null only
-	 *            for abstract or native methods
+	 *                     instruction list associated with this method, may be
+	 *                     null only
+	 *                     for abstract or native methods
 	 * @param cp
-	 *            constant pool
+	 *                     constant pool
 	 */
-	public MethodGen(int access_flags, Type return_type, Type[] arg_types, String[] arg_names,
-			String method_name, String class_name, InstructionList il, ConstantPoolGen cp) {
+	public MethodGen(int access_flags, Type return_type, Type[] arg_types,
+			String[] arg_names, String method_name, String class_name,
+			InstructionList il, ConstantPoolGen cp) {
 		setAccessFlags(access_flags);
 		setType(return_type);
 		setArgumentTypes(arg_types);
@@ -149,7 +145,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 			 */
 			if (!isStatic() && (class_name != null)) { // Instance method ->
 														// `this' is local var 0
-				addLocalVariable("this", new ObjectType(class_name), start, end);
+				addLocalVariable("this", new ObjectType(class_name), start,
+						end);
 			}
 		}
 
@@ -158,14 +155,16 @@ public class MethodGen extends FieldGenOrMethodGen {
 
 			for (int i = 0; i < size; i++) {
 				if (Type.VOID == arg_types[i]) {
-					throw new ClassGenException("'void' is an illegal argument type for a method");
+					throw new ClassGenException(
+							"'void' is an illegal argument type for a method");
 				}
 			}
 
 			if (arg_names != null) { // Names for variables provided?
 				if (size != arg_names.length)
-					throw new ClassGenException("Mismatch in argument array lengths: " + size
-							+ " vs. " + arg_names.length);
+					throw new ClassGenException(
+							"Mismatch in argument array lengths: " + size
+									+ " vs. " + arg_names.length);
 			} else { // Give them dummy names
 				arg_names = new String[size];
 
@@ -187,19 +186,21 @@ public class MethodGen extends FieldGenOrMethodGen {
 	 * Instantiate from existing method.
 	 *
 	 * @param m
-	 *            method
+	 *                   method
 	 * @param class_name
-	 *            class name containing this method
+	 *                   class name containing this method
 	 * @param cp
-	 *            constant pool
+	 *                   constant pool
 	 */
 	public MethodGen(Method m, String class_name, ConstantPoolGen cp) {
-		this(m.getAccessFlags(), Type.getReturnType(m.getSignature()),
-				Type.getArgumentTypes(m.getSignature()),
-				null /* may be overridden anyway */, m.getName(), class_name,
-				((m.getAccessFlags() & (Constants.ACC_ABSTRACT | Constants.ACC_NATIVE)) == 0)
-						? new InstructionList(m.getCode().getCode()) : null,
-				cp);
+		this(m.getAccessFlags(), Type.getReturnType(m.getSignature()), Type
+				.getArgumentTypes(m.getSignature()), null /*
+															 * may be overridden
+															 * anyway
+															 */, m.getName(),
+				class_name, ((m.getAccessFlags() & (Constants.ACC_ABSTRACT
+						| Constants.ACC_NATIVE)) == 0) ? new InstructionList(m
+								.getCode().getCode()) : null, cp);
 
 		Attribute[] attributes = m.getAttributes();
 		for (int i = 0; i < attributes.length; i++) {
@@ -219,8 +220,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 						ObjectType c_type = null;
 
 						if (type > 0) {
-							String cen = m.getConstantPool().getConstantString(type,
-									Constants.CONSTANT_Class);
+							String cen = m.getConstantPool().getConstantString(
+									type, Constants.CONSTANT_Class);
 							c_type = new ObjectType(cen);
 						}
 
@@ -247,21 +248,26 @@ public class MethodGen extends FieldGenOrMethodGen {
 					a = c_attributes[j];
 
 					if (a instanceof LineNumberTable) {
-						LineNumber[] ln = ((LineNumberTable) a).getLineNumberTable();
+						LineNumber[] ln = ((LineNumberTable) a)
+								.getLineNumberTable();
 
 						for (int k = 0; k < ln.length; k++) {
 							LineNumber l = ln[k];
-							addLineNumber(il.findHandle(l.getStartPC()), l.getLineNumber());
+							addLineNumber(il.findHandle(l.getStartPC()), l
+									.getLineNumber());
 						}
 					} else if (a instanceof LocalVariableTable) {
-						LocalVariable[] lv = ((LocalVariableTable) a).getLocalVariableTable();
+						LocalVariable[] lv = ((LocalVariableTable) a)
+								.getLocalVariableTable();
 
 						removeLocalVariables();
 
 						for (int k = 0; k < lv.length; k++) {
 							LocalVariable l = lv[k];
-							InstructionHandle start = il.findHandle(l.getStartPC());
-							InstructionHandle end = il.findHandle(l.getStartPC() + l.getLength());
+							InstructionHandle start = il.findHandle(l
+									.getStartPC());
+							InstructionHandle end = il.findHandle(l.getStartPC()
+									+ l.getLength());
 
 							// Repair malformed handles
 							if (null == start) {
@@ -272,8 +278,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 								end = il.getEnd();
 							}
 
-							addLocalVariable(l.getName(), Type.getType(l.getSignature()),
-									l.getIndex(), start, end);
+							addLocalVariable(l.getName(), Type.getType(l
+									.getSignature()), l.getIndex(), start, end);
 						}
 					} else if (a instanceof LocalVariableTypeTable) {
 						LocalVariable[] lv = ((LocalVariableTypeTable) a)
@@ -281,8 +287,10 @@ public class MethodGen extends FieldGenOrMethodGen {
 						removeLocalVariableTypes();
 						for (int k = 0; k < lv.length; k++) {
 							LocalVariable l = lv[k];
-							InstructionHandle start = il.findHandle(l.getStartPC());
-							InstructionHandle end = il.findHandle(l.getStartPC() + l.getLength());
+							InstructionHandle start = il.findHandle(l
+									.getStartPC());
+							InstructionHandle end = il.findHandle(l.getStartPC()
+									+ l.getLength());
 							// Repair malformed handles
 							if (null == start) {
 								start = il.getStart();
@@ -290,8 +298,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 							if (null == end) {
 								end = il.getEnd();
 							}
-							addLocalVariableType(l.getName(), Type.getType(l.getSignature()),
-									l.getIndex(), start, end);
+							addLocalVariableType(l.getName(), Type.getType(l
+									.getSignature()), l.getIndex(), start, end);
 						}
 					} else
 						addCodeAttribute(a);
@@ -309,16 +317,16 @@ public class MethodGen extends FieldGenOrMethodGen {
 	 * Adds a local variable to this method.
 	 *
 	 * @param name
-	 *            variable name
+	 *              variable name
 	 * @param type
-	 *            variable type
+	 *              variable type
 	 * @param slot
-	 *            the index of the local variable, if type is long or double,
-	 *            the next available index is slot+2
+	 *              the index of the local variable, if type is long or double,
+	 *              the next available index is slot+2
 	 * @param start
-	 *            from where the variable is valid
+	 *              from where the variable is valid
 	 * @param end
-	 *            until where the variable is valid
+	 *              until where the variable is valid
 	 * @return new local variable object
 	 * @see LocalVariable
 	 */
@@ -332,7 +340,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 			if (slot + add > max_locals)
 				max_locals = slot + add;
 
-			LocalVariableGen l = new LocalVariableGen(slot, name, type, start, end);
+			LocalVariableGen l = new LocalVariableGen(slot, name, type, start,
+					end);
 			int i;
 
 			if ((i = variable_vec.indexOf(l)) >= 0) // Overwrite if necessary
@@ -342,8 +351,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 
 			return l;
 		} else {
-			throw new IllegalArgumentException(
-					"Can not use " + type + " as type for local variable");
+			throw new IllegalArgumentException("Can not use " + type
+					+ " as type for local variable");
 
 		}
 	}
@@ -352,20 +361,21 @@ public class MethodGen extends FieldGenOrMethodGen {
 	 * Adds a local variable to this method and assigns an index automatically.
 	 *
 	 * @param name
-	 *            variable name
+	 *              variable name
 	 * @param type
-	 *            variable type
+	 *              variable type
 	 * @param start
-	 *            from where the variable is valid, if this is null, it is valid
-	 *            from the start
+	 *              from where the variable is valid, if this is null, it is
+	 *              valid
+	 *              from the start
 	 * @param end
-	 *            until where the variable is valid, if this is null, it is
-	 *            valid to the end
+	 *              until where the variable is valid, if this is null, it is
+	 *              valid to the end
 	 * @return new local variable object
 	 * @see LocalVariable
 	 */
-	public LocalVariableGen addLocalVariable(String name, Type type, InstructionHandle start,
-			InstructionHandle end) {
+	public LocalVariableGen addLocalVariable(String name, Type type,
+			InstructionHandle start, InstructionHandle end) {
 		return addLocalVariable(name, type, max_locals, start, end);
 	}
 
@@ -416,7 +426,6 @@ public class MethodGen extends FieldGenOrMethodGen {
 	/*
 	 * If the range of the variable has not been set yet, it will be set to be
 	 * valid from the start to the end of the instruction list.
-	 *
 	 * @return array of declared local variables sorted by index
 	 */
 	public LocalVariableGen[] getLocalVariables() {
@@ -441,7 +450,6 @@ public class MethodGen extends FieldGenOrMethodGen {
 	/*
 	 * If the range of the variable has not been set yet, it will be set to be
 	 * val id from the start to the end of the instruction list.
-	 *
 	 * @return array of declared local variable types sorted by index
 	 */
 	private LocalVariableGen[] getLocalVariableTypes() {
@@ -475,15 +483,16 @@ public class MethodGen extends FieldGenOrMethodGen {
 		for (int i = 0; i < size; i++)
 			lv[i] = lg[i].getLocalVariable(cp);
 
-		return new LocalVariableTable(cp.addUtf8("LocalVariableTable"), 2 + lv.length * 10, lv,
-				cp.getConstantPool());
+		return new LocalVariableTable(cp.addUtf8("LocalVariableTable"), 2
+				+ lv.length * 10, lv, cp.getConstantPool());
 	}
 
 	/**
 	 * @return `LocalVariableTypeTable' attribute of all the local variable
 	 *         types of this method.
 	 */
-	public LocalVariableTypeTable getLocalVariableTypeTable(ConstantPoolGen cp) {
+	public LocalVariableTypeTable getLocalVariableTypeTable(
+			ConstantPoolGen cp) {
 		LocalVariableGen[] lg = getLocalVariableTypes();
 		int size = lg.length;
 		LocalVariable[] lv = new LocalVariable[size];
@@ -491,29 +500,29 @@ public class MethodGen extends FieldGenOrMethodGen {
 		for (int i = 0; i < size; i++)
 			lv[i] = lg[i].getLocalVariable(cp);
 
-		return new LocalVariableTypeTable(cp.addUtf8("LocalVariableTypeTable"), 2 + lv.length * 10,
-				lv, cp.getConstantPool());
+		return new LocalVariableTypeTable(cp.addUtf8("LocalVariableTypeTable"),
+				2 + lv.length * 10, lv, cp.getConstantPool());
 	}
 
 	/**
 	 * Adds a local variable type to this method.
 	 *
 	 * @param name
-	 *            variable name
+	 *              variable name
 	 * @param type
-	 *            variable type
+	 *              variable type
 	 * @param slot
-	 *            the index of the local variable, if type is long or double,
-	 *            the next available index is slot+2
+	 *              the index of the local variable, if type is long or double,
+	 *              the next available index is slot+2
 	 * @param start
-	 *            from where the variable is valid
+	 *              from where the variable is valid
 	 * @param end
-	 *            until where the variable is valid
+	 *              until where the variable is valid
 	 * @return new local variable object
 	 * @see LocalVariable
 	 */
-	private LocalVariableGen addLocalVariableType(String name, Type type, int slot,
-			InstructionHandle start, InstructionHandle end) {
+	private LocalVariableGen addLocalVariableType(String name, Type type,
+			int slot, InstructionHandle start, InstructionHandle end) {
 		byte t = type.getType();
 
 		if (t != Constants.T_ADDRESS) {
@@ -522,7 +531,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 			if (slot + add > max_locals)
 				max_locals = slot + add;
 
-			LocalVariableGen l = new LocalVariableGen(slot, name, type, start, end);
+			LocalVariableGen l = new LocalVariableGen(slot, name, type, start,
+					end);
 			int i;
 
 			if ((i = type_vec.indexOf(l)) >= 0) // Overwrite if necessary
@@ -532,8 +542,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 
 			return l;
 		} else {
-			throw new IllegalArgumentException(
-					"Can not use " + type + " as type for local variable");
+			throw new IllegalArgumentException("Can not use " + type
+					+ " as type for local variable");
 
 		}
 	}
@@ -549,7 +559,7 @@ public class MethodGen extends FieldGenOrMethodGen {
 	 * Give an instruction a line number corresponding to the source code line.
 	 *
 	 * @param ih
-	 *            instruction to tag
+	 *           instruction to tag
 	 * @return new line number object
 	 * @see LineNumber
 	 */
@@ -592,12 +602,13 @@ public class MethodGen extends FieldGenOrMethodGen {
 
 		try {
 			for (int i = 0; i < size; i++)
-				ln[i] = ((LineNumberGen) line_number_vec.get(i)).getLineNumber();
+				ln[i] = ((LineNumberGen) line_number_vec.get(i))
+						.getLineNumber();
 		} catch (ArrayIndexOutOfBoundsException e) {
 		} // Never occurs
 
-		return new LineNumberTable(cp.addUtf8("LineNumberTable"), 2 + ln.length * 4, ln,
-				cp.getConstantPool());
+		return new LineNumberTable(cp.addUtf8("LineNumberTable"), 2 + ln.length
+				* 4, ln, cp.getConstantPool());
 	}
 
 	/**
@@ -605,22 +616,26 @@ public class MethodGen extends FieldGenOrMethodGen {
 	 * and an instruction where the actual handling is done.
 	 *
 	 * @param start_pc
-	 *            Start of region (inclusive)
+	 *                   Start of region (inclusive)
 	 * @param end_pc
-	 *            End of region (inclusive)
+	 *                   End of region (inclusive)
 	 * @param handler_pc
-	 *            Where handling is done
+	 *                   Where handling is done
 	 * @param catch_type
-	 *            class type of handled exception or null if any exception is
-	 *            handled
+	 *                   class type of handled exception or null if any
+	 *                   exception is
+	 *                   handled
 	 * @return new exception handler object
 	 */
 	public CodeExceptionGen addExceptionHandler(InstructionHandle start_pc,
-			InstructionHandle end_pc, InstructionHandle handler_pc, ObjectType catch_type) {
+			InstructionHandle end_pc, InstructionHandle handler_pc,
+			ObjectType catch_type) {
 		if ((start_pc == null) || (end_pc == null) || (handler_pc == null))
-			throw new ClassGenException("Exception handler target is null instruction");
+			throw new ClassGenException(
+					"Exception handler target is null instruction");
 
-		CodeExceptionGen c = new CodeExceptionGen(start_pc, end_pc, handler_pc, catch_type);
+		CodeExceptionGen c = new CodeExceptionGen(start_pc, end_pc, handler_pc,
+				catch_type);
 		exception_vec.add(c);
 		return c;
 	}
@@ -670,7 +685,7 @@ public class MethodGen extends FieldGenOrMethodGen {
 	 * Add an exception possibly thrown by this method.
 	 *
 	 * @param class_name
-	 *            (fully qualified) name of exception
+	 *                   (fully qualified) name of exception
 	 */
 	public void addException(String class_name) {
 		throws_vec.add(class_name);
@@ -713,7 +728,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 		} catch (ArrayIndexOutOfBoundsException e) {
 		}
 
-		return new ExceptionTable(cp.addUtf8("Exceptions"), 2 + 2 * size, ex, cp.getConstantPool());
+		return new ExceptionTable(cp.addUtf8("Exceptions"), 2 + 2 * size, ex, cp
+				.getConstantPool());
 	}
 
 	/**
@@ -723,7 +739,7 @@ public class MethodGen extends FieldGenOrMethodGen {
 	 * MIDP only. Other attributes will be ignored by the JVM but do no harm.
 	 *
 	 * @param a
-	 *            attribute to be added
+	 *          attribute to be added
 	 */
 	public void addCodeAttribute(Attribute a) {
 		code_attrs_vec.add(a);
@@ -813,11 +829,11 @@ public class MethodGen extends FieldGenOrMethodGen {
 					removeAttribute(a);
 			}
 
-			code = new Code(cp.addUtf8("Code"),
-					8 + byte_code.length + // prologue byte code
-							2 + exc_len + // exceptions
-							2 + attrs_len, // attributes
-					max_stack, max_locals, byte_code, c_exc, code_attrs, cp.getConstantPool());
+			code = new Code(cp.addUtf8("Code"), 8 + byte_code.length + // prologue byte code
+					2 + exc_len + // exceptions
+					2 + attrs_len, // attributes
+					max_stack, max_locals, byte_code, c_exc, code_attrs, cp
+							.getConstantPool());
 
 			addAttribute(code);
 		}
@@ -829,8 +845,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 														// there are "throws"
 														// clauses
 
-		Method m = new Method(access_flags, name_index, signature_index, getAttributes(),
-				cp.getConstantPool());
+		Method m = new Method(access_flags, name_index, signature_index,
+				getAttributes(), cp.getConstantPool());
 
 		// Undo effects of adding attributes
 		if (lvt != null)
@@ -868,7 +884,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 						InstructionHandle[] targets = e.getTargets();
 
 						for (int i = 0; i < targets.length; i++) {
-							InstructionTargeter[] targeters = targets[i].getTargeters();
+							InstructionTargeter[] targeters = targets[i]
+									.getTargeters();
 
 							for (int j = 0; j < targeters.length; j++)
 								targeters[j].updateTarget(targets[i], next);
@@ -985,11 +1002,12 @@ public class MethodGen extends FieldGenOrMethodGen {
 				for (int i = 0; i < arg_types.length; i++)
 					max += arg_types[i].getSize();
 
-			for (InstructionHandle ih = il.getStart(); ih != null; ih = ih.getNext()) {
+			for (InstructionHandle ih = il.getStart(); ih != null; ih = ih
+					.getNext()) {
 				Instruction ins = ih.getInstruction();
 
-				if ((ins instanceof LocalVariableInstruction) || (ins instanceof RET)
-						|| (ins instanceof IINC)) {
+				if ((ins instanceof LocalVariableInstruction)
+						|| (ins instanceof RET) || (ins instanceof IINC)) {
 					int index = ((IndexedInstruction) ins).getIndex()
 							+ ((TypedInstruction) ins).getType(cp).getSize();
 
@@ -1041,7 +1059,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 			return null;
 		}
 
-		private final BranchTarget visit(InstructionHandle target, int stackDepth) {
+		private final BranchTarget visit(InstructionHandle target,
+				int stackDepth) {
 			BranchTarget bt = new BranchTarget(target, stackDepth);
 			visitedTargets.put(target, bt);
 
@@ -1059,7 +1078,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 	 *
 	 * @return maximum stack depth used by method
 	 */
-	public static int getMaxStack(ConstantPoolGen cp, InstructionList il, CodeExceptionGen[] et) {
+	public static int getMaxStack(ConstantPoolGen cp, InstructionList il,
+			CodeExceptionGen[] et) {
 		BranchStack branchTargets = new BranchStack();
 
 		/*
@@ -1079,7 +1099,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 		while (ih != null) {
 			Instruction instruction = ih.getInstruction();
 			short opcode = instruction.getOpcode();
-			int delta = instruction.produceStack(cp) - instruction.consumeStack(cp);
+			int delta = instruction.produceStack(cp) - instruction.consumeStack(
+					cp);
 
 			stackDepth += delta;
 			if (stackDepth > maxStackDepth)
@@ -1113,7 +1134,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 			} else {
 				// check for instructions that terminate the method.
 				if (opcode == Constants.ATHROW || opcode == Constants.RET
-						|| (opcode >= Constants.IRETURN && opcode <= Constants.RETURN))
+						|| (opcode >= Constants.IRETURN
+								&& opcode <= Constants.RETURN))
 					ih = null;
 			}
 			// normal case, go to the next instruction.
@@ -1174,8 +1196,8 @@ public class MethodGen extends FieldGenOrMethodGen {
 		String access = Utility.accessToString(access_flags);
 		String signature = Type.getMethodSignature(type, arg_types);
 
-		signature = Utility.methodSignatureToString(signature, name, access, true,
-				getLocalVariableTable(cp));
+		signature = Utility.methodSignatureToString(signature, name, access,
+				true, getLocalVariableTable(cp));
 
 		StringBuffer buf = new StringBuffer(signature);
 

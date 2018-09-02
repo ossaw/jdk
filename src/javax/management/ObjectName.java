@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -436,13 +416,15 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * Initializes this {@link ObjectName} from the given string representation.
 	 *
 	 * @param name
-	 *            A string representation of the {@link ObjectName}
+	 *             A string representation of the {@link ObjectName}
 	 *
 	 * @exception MalformedObjectNameException
-	 *                The string passed as a parameter does not have the right
-	 *                format.
+	 *                                         The string passed as a parameter
+	 *                                         does not have the right
+	 *                                         format.
 	 * @exception NullPointerException
-	 *                The <code>name</code> parameter is null.
+	 *                                         The <code>name</code> parameter
+	 *                                         is null.
 	 */
 	private void construct(String name) throws MalformedObjectNameException {
 
@@ -477,38 +459,41 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 		// parses domain part
 		domain_parsing: while (index < len) {
 			switch (name_chars[index]) {
-			case ':':
-				_domain_length = index++;
-				break domain_parsing;
-			case '=':
-				// ":" omission check.
-				//
-				// Although "=" is a valid character in the domain part
-				// it is true that it is rarely used in the real world.
-				// So check straight away if the ":" has been omitted
-				// from the ObjectName. This allows us to provide a more
-				// accurate exception message.
-				int i = ++index;
-				while ((i < len) && (name_chars[i++] != ':'))
-					if (i == len)
-						throw new MalformedObjectNameException("Domain part must be specified");
-				break;
-			case '\n':
-				throw new MalformedObjectNameException("Invalid character '\\n' in domain name");
-			case '*':
-			case '?':
-				_domain_pattern = true;
-				index++;
-				break;
-			default:
-				index++;
-				break;
+				case ':':
+					_domain_length = index++;
+					break domain_parsing;
+				case '=':
+					// ":" omission check.
+					//
+					// Although "=" is a valid character in the domain part
+					// it is true that it is rarely used in the real world.
+					// So check straight away if the ":" has been omitted
+					// from the ObjectName. This allows us to provide a more
+					// accurate exception message.
+					int i = ++index;
+					while ((i < len) && (name_chars[i++] != ':'))
+						if (i == len)
+							throw new MalformedObjectNameException(
+									"Domain part must be specified");
+					break;
+				case '\n':
+					throw new MalformedObjectNameException(
+							"Invalid character '\\n' in domain name");
+				case '*':
+				case '?':
+					_domain_pattern = true;
+					index++;
+					break;
+				default:
+					index++;
+					break;
 			}
 		}
 
 		// check for non-empty properties
 		if (index == len)
-			throw new MalformedObjectNameException("Key properties cannot be empty");
+			throw new MalformedObjectNameException(
+					"Key properties cannot be empty");
 
 		// we have got the domain part, begins building of _canonicalName
 		System.arraycopy(name_chars, 0, canonical_chars, 0, _domain_length);
@@ -537,7 +522,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 			if (c == '*') {
 				if (_property_list_pattern)
 					throw new MalformedObjectNameException(
-							"Cannot have several '*' characters in pattern " + "property list");
+							"Cannot have several '*' characters in pattern "
+									+ "property list");
 				else {
 					_property_list_pattern = true;
 					if ((++index < len) && (name_chars[index] != ','))
@@ -567,18 +553,20 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 				throw new MalformedObjectNameException("Invalid key (empty)");
 			while ((in_index < len) && ((c1 = name_chars[in_index++]) != '='))
 				switch (c1) {
-				// '=' considered to introduce value part
-				case '*':
-				case '?':
-				case ',':
-				case ':':
-				case '\n':
-					final String ichar = ((c1 == '\n') ? "\\n" : "" + c1);
-					throw new MalformedObjectNameException(
-							"Invalid character '" + ichar + "' in key part of property");
+					// '=' considered to introduce value part
+					case '*':
+					case '?':
+					case ',':
+					case ':':
+					case '\n':
+						final String ichar = ((c1 == '\n') ? "\\n" : "" + c1);
+						throw new MalformedObjectNameException(
+								"Invalid character '" + ichar
+										+ "' in key part of property");
 				}
 			if (name_chars[in_index - 1] != '=')
-				throw new MalformedObjectNameException("Unterminated key property part");
+				throw new MalformedObjectNameException(
+						"Unterminated key property part");
 			value_index = in_index; // in_index pointing after '=' char
 			key_length = value_index - key_index - 1; // found end of key
 
@@ -592,31 +580,35 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 					// the case of an escaped character
 					if (c1 == '\\') {
 						if (++in_index == len)
-							throw new MalformedObjectNameException("Unterminated quoted value");
-						switch (c1 = name_chars[in_index]) {
-						case '\\':
-						case '\"':
-						case '?':
-						case '*':
-						case 'n':
-							break; // valid character
-						default:
 							throw new MalformedObjectNameException(
-									"Invalid escape sequence '\\" + c1 + "' in quoted value");
+									"Unterminated quoted value");
+						switch (c1 = name_chars[in_index]) {
+							case '\\':
+							case '\"':
+							case '?':
+							case '*':
+							case 'n':
+								break; // valid character
+							default:
+								throw new MalformedObjectNameException(
+										"Invalid escape sequence '\\" + c1
+												+ "' in quoted value");
 						}
 					} else if (c1 == '\n') {
-						throw new MalformedObjectNameException("Newline in quoted value");
+						throw new MalformedObjectNameException(
+								"Newline in quoted value");
 					} else {
 						switch (c1) {
-						case '?':
-						case '*':
-							value_pattern = true;
-							break;
+							case '?':
+							case '*':
+								value_pattern = true;
+								break;
 						}
 					}
 				}
 				if (in_index == len)
-					throw new MalformedObjectNameException("Unterminated quoted value");
+					throw new MalformedObjectNameException(
+							"Unterminated quoted value");
 				else
 					value_length = ++in_index - value_index;
 			} else {
@@ -624,22 +616,24 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 				quoted_value = false;
 				while ((in_index < len) && ((c1 = name_chars[in_index]) != ','))
 					switch (c1) {
-					// ',' considered to be the value separator
-					case '*':
-					case '?':
-						value_pattern = true;
-						in_index++;
-						break;
-					case '=':
-					case ':':
-					case '"':
-					case '\n':
-						final String ichar = ((c1 == '\n') ? "\\n" : "" + c1);
-						throw new MalformedObjectNameException(
-								"Invalid character '" + ichar + "' in value part of property");
-					default:
-						in_index++;
-						break;
+						// ',' considered to be the value separator
+						case '*':
+						case '?':
+							value_pattern = true;
+							in_index++;
+							break;
+						case '=':
+						case ':':
+						case '"':
+						case '\n':
+							final String ichar = ((c1 == '\n') ? "\\n"
+									: "" + c1);
+							throw new MalformedObjectNameException(
+									"Invalid character '" + ichar
+											+ "' in value part of property");
+						default:
+							in_index++;
+							break;
 					}
 				value_length = in_index - value_index;
 			}
@@ -648,9 +642,11 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 			if (in_index == len - 1) {
 				if (quoted_value)
 					throw new MalformedObjectNameException(
-							"Invalid ending character `" + name_chars[in_index] + "'");
+							"Invalid ending character `" + name_chars[in_index]
+									+ "'");
 				else
-					throw new MalformedObjectNameException("Invalid ending comma");
+					throw new MalformedObjectNameException(
+							"Invalid ending comma");
 			} else
 				in_index++;
 
@@ -676,24 +672,30 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 		}
 
 		// computes and set canonical name
-		setCanonicalName(name_chars, canonical_chars, keys, keys_map, cname_index, property_index);
+		setCanonicalName(name_chars, canonical_chars, keys, keys_map,
+				cname_index, property_index);
 	}
 
 	/**
 	 * Construct an ObjectName from a domain and a Hashtable.
 	 *
 	 * @param domain
-	 *            Domain of the ObjectName.
+	 *               Domain of the ObjectName.
 	 * @param props
-	 *            Map containing couples <i>key</i> {@literal ->} <i>value</i>.
+	 *               Map containing couples <i>key</i> {@literal ->}
+	 *               <i>value</i>.
 	 *
 	 * @exception MalformedObjectNameException
-	 *                The <code>domain</code> contains an illegal character, or
-	 *                one of the keys or values in <code>table</code> contains
-	 *                an illegal character, or one of the values in
-	 *                <code>table</code> does not follow the rules for quoting.
+	 *                                         The <code>domain</code> contains
+	 *                                         an illegal character, or
+	 *                                         one of the keys or values in
+	 *                                         <code>table</code> contains
+	 *                                         an illegal character, or one of
+	 *                                         the values in
+	 *                                         <code>table</code> does not
+	 *                                         follow the rules for quoting.
 	 * @exception NullPointerException
-	 *                One of the parameters is null.
+	 *                                         One of the parameters is null.
 	 */
 	private void construct(String domain, Map<String, String> props)
 			throws MalformedObjectNameException {
@@ -708,7 +710,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 
 		// The key property list cannot be empty
 		if (props.isEmpty())
-			throw new MalformedObjectNameException("key property list cannot be empty");
+			throw new MalformedObjectNameException(
+					"key property list cannot be empty");
 
 		// checks domain validity
 		if (!isDomain(domain))
@@ -749,7 +752,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 				prop = new Property(key_index, key.length(), value.length());
 			} else {
 				_property_value_pattern = true;
-				prop = new PatternProperty(key_index, key.length(), value.length());
+				prop = new PatternProperty(key_index, key.length(), value
+						.length());
 			}
 			addProperty(prop, i, keys_map, key);
 			i++;
@@ -760,9 +764,10 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 		char[] initial_chars = new char[len];
 		sb.getChars(0, len, initial_chars, 0);
 		char[] canonical_chars = new char[len];
-		System.arraycopy(initial_chars, 0, canonical_chars, 0, _domain_length + 1);
-		setCanonicalName(initial_chars, canonical_chars, keys, keys_map, _domain_length + 1,
-				_kp_array.length);
+		System.arraycopy(initial_chars, 0, canonical_chars, 0, _domain_length
+				+ 1);
+		setCanonicalName(initial_chars, canonical_chars, keys, keys_map,
+				_domain_length + 1, _kp_array.length);
 	}
 	// Category : Instance construction <==============================
 
@@ -772,11 +777,13 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * Add passed property to the list at the given index for the passed key
 	 * name
 	 */
-	private void addProperty(Property prop, int index, Map<String, Property> keys_map,
-			String key_name) throws MalformedObjectNameException {
+	private void addProperty(Property prop, int index,
+			Map<String, Property> keys_map, String key_name)
+			throws MalformedObjectNameException {
 
 		if (keys_map.containsKey(key_name))
-			throw new MalformedObjectNameException("key `" + key_name + "' already defined");
+			throw new MalformedObjectNameException("key `" + key_name
+					+ "' already defined");
 
 		// if no more space for property arrays, have to increase it
 		if (index == _kp_array.length) {
@@ -793,7 +800,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * by filling 'canonical_chars' array with found 'nb-props' properties
 	 * starting at position 'prop_index'.
 	 */
-	private void setCanonicalName(char[] specified_chars, char[] canonical_chars, String[] keys,
+	private void setCanonicalName(char[] specified_chars,
+			char[] canonical_chars, String[] keys,
 			Map<String, Property> keys_map, int prop_index, int nb_props) {
 
 		// Sort the list of found properties
@@ -822,8 +830,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 				prop = _ca_array[i];
 				// length of prop including '=' char
 				prop_len = prop._key_length + prop._value_length + 1;
-				System.arraycopy(specified_chars, prop._key_index, canonical_chars, prop_index,
-						prop_len);
+				System.arraycopy(specified_chars, prop._key_index,
+						canonical_chars, prop_index, prop_len);
 				prop.setKeyIndex(prop_index);
 				prop_index += prop_len;
 				if (i != last_index) {
@@ -855,9 +863,9 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * (startKey == endKey), then the key is empty.
 	 *
 	 * @param s
-	 *            The char array of the original string.
+	 *                 The char array of the original string.
 	 * @param startKey
-	 *            index at which to begin parsing.
+	 *                 index at which to begin parsing.
 	 * @return The index following the last character of the key.
 	 **/
 	private static int parseKey(final char[] s, final int startKey)
@@ -868,22 +876,23 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 		while (next < len) {
 			final char k = s[next++];
 			switch (k) {
-			case '*':
-			case '?':
-			case ',':
-			case ':':
-			case '\n':
-				final String ichar = ((k == '\n') ? "\\n" : "" + k);
-				throw new MalformedObjectNameException("Invalid character in key: `" + ichar + "'");
-			case '=':
-				// we got the key.
-				endKey = next - 1;
-				break;
-			default:
-				if (next < len)
-					continue;
-				else
-					endKey = next;
+				case '*':
+				case '?':
+				case ',':
+				case ':':
+				case '\n':
+					final String ichar = ((k == '\n') ? "\\n" : "" + k);
+					throw new MalformedObjectNameException(
+							"Invalid character in key: `" + ichar + "'");
+				case '=':
+					// we got the key.
+					endKey = next - 1;
+					break;
+				default:
+					if (next < len)
+						continue;
+					else
+						endKey = next;
 			}
 			break;
 		}
@@ -901,9 +910,9 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * (startVal == endVal), then the key is empty.
 	 *
 	 * @param s
-	 *            The char array of the original string.
+	 *                   The char array of the original string.
 	 * @param startValue
-	 *            index at which to begin parsing.
+	 *                   index at which to begin parsing.
 	 * @return The first element of the int array indicates the index following
 	 *         the last character of the value. The second element of the int
 	 *         array indicates that the value is a pattern when its value equals
@@ -932,34 +941,37 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 								"Invalid unterminated quoted character sequence");
 					last = s[next];
 					switch (last) {
-					case '\\':
-					case '?':
-					case '*':
-					case 'n':
-						break;
-					case '\"':
-						// We have an escaped quote. If this escaped
-						// quote is the last character, it does not
-						// qualify as a valid termination quote.
-						//
-						if (next + 1 == len)
-							throw new MalformedObjectNameException("Missing termination quote");
-						break;
-					default:
-						throw new MalformedObjectNameException(
-								"Invalid quoted character sequence '\\" + last + "'");
+						case '\\':
+						case '?':
+						case '*':
+						case 'n':
+							break;
+						case '\"':
+							// We have an escaped quote. If this escaped
+							// quote is the last character, it does not
+							// qualify as a valid termination quote.
+							//
+							if (next + 1 == len)
+								throw new MalformedObjectNameException(
+										"Missing termination quote");
+							break;
+						default:
+							throw new MalformedObjectNameException(
+									"Invalid quoted character sequence '\\"
+											+ last + "'");
 					}
 				} else if (last == '\n') {
-					throw new MalformedObjectNameException("Newline in quoted value");
+					throw new MalformedObjectNameException(
+							"Newline in quoted value");
 				} else if (last == '\"') {
 					next++;
 					break;
 				} else {
 					switch (last) {
-					case '?':
-					case '*':
-						value_pattern = true;
-						break;
+						case '?':
+						case '*':
+							value_pattern = true;
+							break;
 					}
 				}
 				next++;
@@ -969,7 +981,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 				// character is an escaped quote earlier.
 				//
 				if ((next >= len) && (last != '\"'))
-					throw new MalformedObjectNameException("Missing termination quote");
+					throw new MalformedObjectNameException(
+							"Missing termination quote");
 			}
 			endValue = next;
 			if (next < len) {
@@ -981,28 +994,28 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 			while (next < len) {
 				final char v = s[next++];
 				switch (v) {
-				case '*':
-				case '?':
-					value_pattern = true;
-					if (next < len)
-						continue;
-					else
-						endValue = next;
-					break;
-				case '=':
-				case ':':
-				case '\n':
-					final String ichar = ((v == '\n') ? "\\n" : "" + v);
-					throw new MalformedObjectNameException(
-							"Invalid character `" + ichar + "' in value");
-				case ',':
-					endValue = next - 1;
-					break;
-				default:
-					if (next < len)
-						continue;
-					else
-						endValue = next;
+					case '*':
+					case '?':
+						value_pattern = true;
+						if (next < len)
+							continue;
+						else
+							endValue = next;
+						break;
+					case '=':
+					case ':':
+					case '\n':
+						final String ichar = ((v == '\n') ? "\\n" : "" + v);
+						throw new MalformedObjectNameException(
+								"Invalid character `" + ichar + "' in value");
+					case ',':
+						endValue = next - 1;
+						break;
+					default:
+						if (next < len)
+							continue;
+						else
+							endValue = next;
 				}
 				break;
 			}
@@ -1015,7 +1028,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 *
 	 * @return true if the value is a pattern, otherwise false.
 	 */
-	private static boolean checkValue(String val) throws MalformedObjectNameException {
+	private static boolean checkValue(String val)
+			throws MalformedObjectNameException {
 
 		if (val == null)
 			throw new NullPointerException("Invalid value (null)");
@@ -1037,7 +1051,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	/**
 	 * Check if the supplied key is a valid key.
 	 */
-	private static void checkKey(String key) throws MalformedObjectNameException {
+	private static void checkKey(String key)
+			throws MalformedObjectNameException {
 
 		if (key == null)
 			throw new NullPointerException("Invalid key (null)");
@@ -1067,13 +1082,13 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 		while (next < len) {
 			final char c = domain.charAt(next++);
 			switch (c) {
-			case ':':
-			case '\n':
-				return false;
-			case '*':
-			case '?':
-				_domain_pattern = true;
-				break;
+				case ':':
+				case '\n':
+					return false;
+				case '*':
+				case '?':
+					_domain_pattern = true;
+					break;
 			}
 		}
 		return true;
@@ -1133,7 +1148,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 *             </li>
 	 *             </ul>
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 
 		String cn;
 		if (compat) {
@@ -1141,15 +1157,18 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 			//
 			// in.defaultReadObject();
 			final ObjectInputStream.GetField fields = in.readFields();
-			String propListString = (String) fields.get("propertyListString", "");
+			String propListString = (String) fields.get("propertyListString",
+					"");
 
 			// 6616825: take care of property patterns
 			final boolean propPattern = fields.get("propertyPattern", false);
 			if (propPattern) {
-				propListString = (propListString.length() == 0 ? "*" : (propListString + ",*"));
+				propListString = (propListString.length() == 0 ? "*"
+						: (propListString + ",*"));
 			}
 
-			cn = (String) fields.get("domain", "default") + ":" + propListString;
+			cn = (String) fields.get("domain", "default") + ":"
+					+ propListString;
 		} else {
 			// Read an object serialized in the new serial form
 			//
@@ -1255,15 +1274,17 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * </p>
 	 *
 	 * @param name
-	 *            A string representation of the object name.
+	 *             A string representation of the object name.
 	 *
 	 * @return an ObjectName corresponding to the given String.
 	 *
 	 * @exception MalformedObjectNameException
-	 *                The string passed as a parameter does not have the right
-	 *                format.
+	 *                                         The string passed as a parameter
+	 *                                         does not have the right
+	 *                                         format.
 	 * @exception NullPointerException
-	 *                The <code>name</code> parameter is null.
+	 *                                         The <code>name</code> parameter
+	 *                                         is null.
 	 *
 	 */
 	public static ObjectName getInstance(String name)
@@ -1282,24 +1303,27 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * </p>
 	 *
 	 * @param domain
-	 *            The domain part of the object name.
+	 *               The domain part of the object name.
 	 * @param key
-	 *            The attribute in the key property of the object name.
+	 *               The attribute in the key property of the object name.
 	 * @param value
-	 *            The value in the key property of the object name.
+	 *               The value in the key property of the object name.
 	 *
 	 * @return an ObjectName corresponding to the given domain, key, and value.
 	 *
 	 * @exception MalformedObjectNameException
-	 *                The <code>domain</code>, <code>key</code>, or
-	 *                <code>value</code> contains an illegal character, or
-	 *                <code>value</code> does not follow the rules for quoting.
+	 *                                         The <code>domain</code>,
+	 *                                         <code>key</code>, or
+	 *                                         <code>value</code> contains an
+	 *                                         illegal character, or
+	 *                                         <code>value</code> does not
+	 *                                         follow the rules for quoting.
 	 * @exception NullPointerException
-	 *                One of the parameters is null.
+	 *                                         One of the parameters is null.
 	 *
 	 */
-	public static ObjectName getInstance(String domain, String key, String value)
-			throws MalformedObjectNameException {
+	public static ObjectName getInstance(String domain, String key,
+			String value) throws MalformedObjectNameException {
 		return new ObjectName(domain, key, value);
 	}
 
@@ -1314,25 +1338,31 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * </p>
 	 *
 	 * @param domain
-	 *            The domain part of the object name.
+	 *               The domain part of the object name.
 	 * @param table
-	 *            A hash table containing one or more key properties. The key of
-	 *            each entry in the table is the key of a key property in the
-	 *            object name. The associated value in the table is the
-	 *            associated value in the object name.
+	 *               A hash table containing one or more key properties. The key
+	 *               of
+	 *               each entry in the table is the key of a key property in the
+	 *               object name. The associated value in the table is the
+	 *               associated value in the object name.
 	 *
 	 * @return an ObjectName corresponding to the given domain and key mappings.
 	 *
 	 * @exception MalformedObjectNameException
-	 *                The <code>domain</code> contains an illegal character, or
-	 *                one of the keys or values in <code>table</code> contains
-	 *                an illegal character, or one of the values in
-	 *                <code>table</code> does not follow the rules for quoting.
+	 *                                         The <code>domain</code> contains
+	 *                                         an illegal character, or
+	 *                                         one of the keys or values in
+	 *                                         <code>table</code> contains
+	 *                                         an illegal character, or one of
+	 *                                         the values in
+	 *                                         <code>table</code> does not
+	 *                                         follow the rules for quoting.
 	 * @exception NullPointerException
-	 *                One of the parameters is null.
+	 *                                         One of the parameters is null.
 	 *
 	 */
-	public static ObjectName getInstance(String domain, Hashtable<String, String> table)
+	public static ObjectName getInstance(String domain,
+			Hashtable<String, String> table)
 			throws MalformedObjectNameException {
 		return new ObjectName(domain, table);
 	}
@@ -1360,7 +1390,7 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * </p>
 	 *
 	 * @param name
-	 *            an instance of the ObjectName class or of a subclass
+	 *             an instance of the ObjectName class or of a subclass
 	 *
 	 * @return an instance of ObjectName or a subclass that is known to have the
 	 *         same semantics. If <code>name</code> respects the semantics of
@@ -1368,7 +1398,7 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 *         necessarily identical) to <code>name</code>.
 	 *
 	 * @exception NullPointerException
-	 *                The <code>name</code> is null.
+	 *                                 The <code>name</code> is null.
 	 *
 	 */
 	public static ObjectName getInstance(ObjectName name) {
@@ -1381,13 +1411,15 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * Construct an object name from the given string.
 	 *
 	 * @param name
-	 *            A string representation of the object name.
+	 *             A string representation of the object name.
 	 *
 	 * @exception MalformedObjectNameException
-	 *                The string passed as a parameter does not have the right
-	 *                format.
+	 *                                         The string passed as a parameter
+	 *                                         does not have the right
+	 *                                         format.
 	 * @exception NullPointerException
-	 *                The <code>name</code> parameter is null.
+	 *                                         The <code>name</code> parameter
+	 *                                         is null.
 	 */
 	public ObjectName(String name) throws MalformedObjectNameException {
 		construct(name);
@@ -1397,20 +1429,24 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * Construct an object name with exactly one key property.
 	 *
 	 * @param domain
-	 *            The domain part of the object name.
+	 *               The domain part of the object name.
 	 * @param key
-	 *            The attribute in the key property of the object name.
+	 *               The attribute in the key property of the object name.
 	 * @param value
-	 *            The value in the key property of the object name.
+	 *               The value in the key property of the object name.
 	 *
 	 * @exception MalformedObjectNameException
-	 *                The <code>domain</code>, <code>key</code>, or
-	 *                <code>value</code> contains an illegal character, or
-	 *                <code>value</code> does not follow the rules for quoting.
+	 *                                         The <code>domain</code>,
+	 *                                         <code>key</code>, or
+	 *                                         <code>value</code> contains an
+	 *                                         illegal character, or
+	 *                                         <code>value</code> does not
+	 *                                         follow the rules for quoting.
 	 * @exception NullPointerException
-	 *                One of the parameters is null.
+	 *                                         One of the parameters is null.
 	 */
-	public ObjectName(String domain, String key, String value) throws MalformedObjectNameException {
+	public ObjectName(String domain, String key, String value)
+			throws MalformedObjectNameException {
 		// If key or value are null a NullPointerException
 		// will be thrown by the put method in Hashtable.
 		//
@@ -1422,20 +1458,25 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * Construct an object name with several key properties from a Hashtable.
 	 *
 	 * @param domain
-	 *            The domain part of the object name.
+	 *               The domain part of the object name.
 	 * @param table
-	 *            A hash table containing one or more key properties. The key of
-	 *            each entry in the table is the key of a key property in the
-	 *            object name. The associated value in the table is the
-	 *            associated value in the object name.
+	 *               A hash table containing one or more key properties. The key
+	 *               of
+	 *               each entry in the table is the key of a key property in the
+	 *               object name. The associated value in the table is the
+	 *               associated value in the object name.
 	 *
 	 * @exception MalformedObjectNameException
-	 *                The <code>domain</code> contains an illegal character, or
-	 *                one of the keys or values in <code>table</code> contains
-	 *                an illegal character, or one of the values in
-	 *                <code>table</code> does not follow the rules for quoting.
+	 *                                         The <code>domain</code> contains
+	 *                                         an illegal character, or
+	 *                                         one of the keys or values in
+	 *                                         <code>table</code> contains
+	 *                                         an illegal character, or one of
+	 *                                         the values in
+	 *                                         <code>table</code> does not
+	 *                                         follow the rules for quoting.
 	 * @exception NullPointerException
-	 *                One of the parameters is null.
+	 *                                         One of the parameters is null.
 	 */
 	public ObjectName(String domain, Hashtable<String, String> table)
 			throws MalformedObjectNameException {
@@ -1460,7 +1501,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * @return True if the name is a pattern, otherwise false.
 	 */
 	public boolean isPattern() {
-		return (_domain_pattern || _property_list_pattern || _property_value_pattern);
+		return (_domain_pattern || _property_list_pattern
+				|| _property_value_pattern);
 	}
 
 	/**
@@ -1520,16 +1562,17 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * pattern.
 	 *
 	 * @param property
-	 *            The property whose value is to be checked.
+	 *                 The property whose value is to be checked.
 	 *
 	 * @return True if the value associated with the given key property is a
 	 *         pattern, otherwise false.
 	 *
 	 * @exception NullPointerException
-	 *                If <code>property</code> is null.
+	 *                                     If <code>property</code> is null.
 	 * @exception IllegalArgumentException
-	 *                If <code>property</code> is not a valid key property for
-	 *                this ObjectName.
+	 *                                     If <code>property</code> is not a
+	 *                                     valid key property for
+	 *                                     this ObjectName.
 	 *
 	 * @since 1.6
 	 */
@@ -1591,13 +1634,13 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * Obtains the value associated with a key in a key property.
 	 *
 	 * @param property
-	 *            The property whose value is to be obtained.
+	 *                 The property whose value is to be obtained.
 	 *
 	 * @return The value of the property, or null if there is no such property
 	 *         in this ObjectName.
 	 *
 	 * @exception NullPointerException
-	 *                If <code>property</code> is null.
+	 *                                 If <code>property</code> is null.
 	 */
 	public String getKeyProperty(String property) {
 		return _getKeyPropertyList().get(property);
@@ -1626,8 +1669,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 				Property prop;
 				for (int i = len - 1; i >= 0; i--) {
 					prop = _ca_array[i];
-					_propertyList.put(prop.getKeyString(_canonicalName),
-							prop.getValueString(_canonicalName));
+					_propertyList.put(prop.getKeyString(_canonicalName), prop
+							.getValueString(_canonicalName));
 				}
 			}
 		}
@@ -1732,7 +1775,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 *
 	 * @return offset + #of chars written
 	 */
-	private int writeKeyPropertyListString(char[] canonicalChars, char[] data, int offset) {
+	private int writeKeyPropertyListString(char[] canonicalChars, char[] data,
+			int offset) {
 		if (_kp_array.length == 0)
 			return offset;
 
@@ -1745,7 +1789,8 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 		for (int i = 0; i < len; i++) {
 			final Property prop = _kp_array[i];
 			final int prop_len = prop._key_length + prop._value_length + 1;
-			System.arraycopy(value, prop._key_index, dest_chars, index, prop_len);
+			System.arraycopy(value, prop._key_index, dest_chars, index,
+					prop_len);
 			index += prop_len;
 			if (i < last)
 				dest_chars[index++] = ',';
@@ -1796,8 +1841,9 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * canonical form is the string described for {@link #getCanonicalName()}.
 	 *
 	 * @param object
-	 *            The object name that the current object name is to be compared
-	 *            with.
+	 *               The object name that the current object name is to be
+	 *               compared
+	 *               with.
 	 *
 	 * @return True if <code>object</code> is an ObjectName whose canonical form
 	 *         is equal to that of this ObjectName.
@@ -1863,12 +1909,12 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * </ul>
 	 *
 	 * @param s
-	 *            the String to be quoted.
+	 *          the String to be quoted.
 	 *
 	 * @return the quoted String.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>s</code> is null.
+	 *                                 if <code>s</code> is null.
 	 *
 	 */
 	public static String quote(String s) {
@@ -1877,16 +1923,16 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 		for (int i = 0; i < len; i++) {
 			char c = s.charAt(i);
 			switch (c) {
-			case '\n':
-				c = 'n';
-				buf.append('\\');
-				break;
-			case '\\':
-			case '\"':
-			case '*':
-			case '?':
-				buf.append('\\');
-				break;
+				case '\n':
+					c = 'n';
+					buf.append('\\');
+					break;
+				case '\\':
+				case '\"':
+				case '*':
+				case '?':
+					buf.append('\\');
+					break;
 			}
 			buf.append(c);
 		}
@@ -1909,17 +1955,19 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * </p>
 	 *
 	 * @param q
-	 *            the String to be unquoted.
+	 *          the String to be unquoted.
 	 *
 	 * @return the unquoted String.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>q</code> could not have been returned by the
-	 *                {@link #quote} method, for instance if it does not begin
-	 *                and end with a quote (").
+	 *                                     if <code>q</code> could not have been
+	 *                                     returned by the
+	 *                                     {@link #quote} method, for instance
+	 *                                     if it does not begin
+	 *                                     and end with a quote (").
 	 *
 	 * @exception NullPointerException
-	 *                if <code>q</code> is null.
+	 *                                     if <code>q</code> is null.
 	 *
 	 */
 	public static String unquote(String q) {
@@ -1934,25 +1982,27 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 					throw new IllegalArgumentException("Trailing backslash");
 				c = q.charAt(++i);
 				switch (c) {
-				case 'n':
-					c = '\n';
-					break;
-				case '\\':
-				case '\"':
-				case '*':
-				case '?':
-					break;
-				default:
-					throw new IllegalArgumentException("Bad character '" + c + "' after backslash");
+					case 'n':
+						c = '\n';
+						break;
+					case '\\':
+					case '\"':
+					case '*':
+					case '?':
+						break;
+					default:
+						throw new IllegalArgumentException("Bad character '" + c
+								+ "' after backslash");
 				}
 			} else {
 				switch (c) {
-				case '*':
-				case '?':
-				case '\"':
-				case '\n':
-					throw new IllegalArgumentException(
-							"Invalid unescaped character '" + c + "' in the string to unquote");
+					case '*':
+					case '?':
+					case '\"':
+					case '\n':
+						throw new IllegalArgumentException(
+								"Invalid unescaped character '" + c
+										+ "' in the string to unquote");
 				}
 			}
 			buf.append(c);
@@ -1983,12 +2033,12 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * </p>
 	 *
 	 * @param name
-	 *            The name of the MBean to compare to.
+	 *             The name of the MBean to compare to.
 	 *
 	 * @return True if <code>name</code> matches this ObjectName.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>name</code> is null.
+	 *                                 if <code>name</code> is null.
 	 *
 	 */
 	public boolean apply(ObjectName name) {
@@ -1996,11 +2046,13 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 		if (name == null)
 			throw new NullPointerException();
 
-		if (name._domain_pattern || name._property_list_pattern || name._property_value_pattern)
+		if (name._domain_pattern || name._property_list_pattern
+				|| name._property_value_pattern)
 			return false;
 
 		// No pattern
-		if (!_domain_pattern && !_property_list_pattern && !_property_value_pattern)
+		if (!_domain_pattern && !_property_list_pattern
+				&& !_property_value_pattern)
 			return _canonicalName.equals(name._canonicalName);
 
 		return matchDomains(name) && matchKeys(name);
@@ -2071,8 +2123,7 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * ObjectName is not relative to an MBeanServer and does not contain a
 	 * subquery.
 	 */
-	public void setMBeanServer(MBeanServer mbs) {
-	}
+	public void setMBeanServer(MBeanServer mbs) {}
 
 	// Category : QueryExp Interface <=========================
 
@@ -2122,7 +2173,7 @@ public class ObjectName implements Comparable<ObjectName>, QueryExp {
 	 * </ul>
 	 *
 	 * @param name
-	 *            the ObjectName to be compared.
+	 *             the ObjectName to be compared.
 	 *
 	 * @return a negative integer, zero, or a positive integer as this
 	 *         ObjectName is less than, equal to, or greater than the specified

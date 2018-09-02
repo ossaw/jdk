@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -60,8 +40,8 @@ public final class UnknownUserException extends UserException {
 	 * given <code>Any</code> object.
 	 *
 	 * @param a
-	 *            an <code>Any</code> object that contains a user exception
-	 *            returned by the server
+	 *          an <code>Any</code> object that contains a user exception
+	 *          returned by the server
 	 */
 	public UnknownUserException(Any a) {
 		super();

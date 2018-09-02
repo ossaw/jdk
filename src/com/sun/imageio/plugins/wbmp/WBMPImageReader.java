@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.wbmp;
@@ -79,7 +59,8 @@ public class WBMPImageReader extends ImageReader {
 	}
 
 	/** Overrides the method defined in the superclass. */
-	public void setInput(Object input, boolean seekForwardOnly, boolean ignoreMetadata) {
+	public void setInput(Object input, boolean seekForwardOnly,
+			boolean ignoreMetadata) {
 		super.setInput(input, seekForwardOnly, ignoreMetadata);
 		iis = (ImageInputStream) input; // Always works
 		gotHeader = false;
@@ -115,7 +96,8 @@ public class WBMPImageReader extends ImageReader {
 
 	private void checkIndex(int imageIndex) {
 		if (imageIndex != 0) {
-			throw new IndexOutOfBoundsException(I18N.getString("WBMPImageReader0"));
+			throw new IndexOutOfBoundsException(I18N.getString(
+					"WBMPImageReader0"));
 		}
 	}
 
@@ -154,7 +136,8 @@ public class WBMPImageReader extends ImageReader {
 		checkIndex(imageIndex);
 		readHeader();
 
-		BufferedImage bi = new BufferedImage(1, 1, BufferedImage.TYPE_BYTE_BINARY);
+		BufferedImage bi = new BufferedImage(1, 1,
+				BufferedImage.TYPE_BYTE_BINARY);
 		ArrayList list = new ArrayList(1);
 		list.add(new ImageTypeSpecifier(bi));
 		return list.iterator();
@@ -176,7 +159,8 @@ public class WBMPImageReader extends ImageReader {
 		return null;
 	}
 
-	public BufferedImage read(int imageIndex, ImageReadParam param) throws IOException {
+	public BufferedImage read(int imageIndex, ImageReadParam param)
+			throws IOException {
 
 		if (iis == null) {
 			throw new IllegalStateException(I18N.getString("WBMPImageReader1"));
@@ -194,8 +178,8 @@ public class WBMPImageReader extends ImageReader {
 		Rectangle sourceRegion = new Rectangle(0, 0, 0, 0);
 		Rectangle destinationRegion = new Rectangle(0, 0, 0, 0);
 
-		computeRegions(param, this.width, this.height, param.getDestination(), sourceRegion,
-				destinationRegion);
+		computeRegions(param, this.width, this.height, param.getDestination(),
+				sourceRegion, destinationRegion);
 
 		int scaleX = param.getSourceXSubsampling();
 		int scaleY = param.getSourceYSubsampling();
@@ -207,17 +191,21 @@ public class WBMPImageReader extends ImageReader {
 		BufferedImage bi = param.getDestination();
 
 		if (bi == null)
-			bi = new BufferedImage(destinationRegion.x + destinationRegion.width,
-					destinationRegion.y + destinationRegion.height, BufferedImage.TYPE_BYTE_BINARY);
+			bi = new BufferedImage(destinationRegion.x
+					+ destinationRegion.width, destinationRegion.y
+							+ destinationRegion.height,
+					BufferedImage.TYPE_BYTE_BINARY);
 
-		boolean noTransform = destinationRegion.equals(new Rectangle(0, 0, width, height))
-				&& destinationRegion.equals(new Rectangle(0, 0, bi.getWidth(), bi.getHeight()));
+		boolean noTransform = destinationRegion.equals(new Rectangle(0, 0,
+				width, height)) && destinationRegion.equals(new Rectangle(0, 0,
+						bi.getWidth(), bi.getHeight()));
 
 		// Get the image data.
 		WritableRaster tile = bi.getWritableTile(0, 0);
 
 		// Get the SampleModel.
-		MultiPixelPackedSampleModel sm = (MultiPixelPackedSampleModel) bi.getSampleModel();
+		MultiPixelPackedSampleModel sm = (MultiPixelPackedSampleModel) bi
+				.getSampleModel();
 
 		if (noTransform) {
 			if (abortRequested()) {
@@ -266,7 +254,8 @@ public class WBMPImageReader extends ImageReader {
 
 				k += lineStride;
 				iis.skipBytes(skipLength);
-				processImageUpdate(bi, 0, j, destinationRegion.width, 1, 1, 1, new int[] { 0 });
+				processImageUpdate(bi, 0, j, destinationRegion.width, 1, 1, 1,
+						new int[] { 0 });
 				processImageProgress(100.0F * j / destinationRegion.height);
 			}
 		}
@@ -282,7 +271,8 @@ public class WBMPImageReader extends ImageReader {
 		return true;
 	}
 
-	public Raster readRaster(int imageIndex, ImageReadParam param) throws IOException {
+	public Raster readRaster(int imageIndex, ImageReadParam param)
+			throws IOException {
 		BufferedImage bi = read(imageIndex, param);
 		return bi.getData();
 	}

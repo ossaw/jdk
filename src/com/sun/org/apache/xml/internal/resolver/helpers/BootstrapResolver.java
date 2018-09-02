@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -77,21 +75,21 @@ public class BootstrapResolver implements EntityResolver, URIResolver {
 
 	/** Constructor. */
 	public BootstrapResolver() {
-		URL url = this.getClass()
-				.getResource("/com/sun/org/apache/xml/internal/resolver/etc/catalog.dtd");
+		URL url = this.getClass().getResource(
+				"/com/sun/org/apache/xml/internal/resolver/etc/catalog.dtd");
 		if (url != null) {
 			publicMap.put(xmlCatalogPubId, url.toString());
 			systemMap.put(xmlCatalogSysId, url.toString());
 		}
 
-		url = this.getClass()
-				.getResource("/com/sun/org/apache/xml/internal/resolver/etc/catalog.rng");
+		url = this.getClass().getResource(
+				"/com/sun/org/apache/xml/internal/resolver/etc/catalog.rng");
 		if (url != null) {
 			uriMap.put(xmlCatalogRNG, url.toString());
 		}
 
-		url = this.getClass()
-				.getResource("/com/sun/org/apache/xml/internal/resolver/etc/catalog.xsd");
+		url = this.getClass().getResource(
+				"/com/sun/org/apache/xml/internal/resolver/etc/catalog.xsd");
 		if (url != null) {
 			uriMap.put(xmlCatalogXSD, url.toString());
 		}
@@ -138,7 +136,8 @@ public class BootstrapResolver implements EntityResolver, URIResolver {
 	}
 
 	/** Transformer resolve API. */
-	public Source resolve(String href, String base) throws TransformerException {
+	public Source resolve(String href, String base)
+			throws TransformerException {
 
 		String uri = href;
 		String fragment = null;
@@ -162,7 +161,8 @@ public class BootstrapResolver implements EntityResolver, URIResolver {
 					result = url.toString();
 				} else {
 					URL baseURL = new URL(base);
-					url = (href.length() == 0 ? baseURL : new URL(baseURL, uri));
+					url = (href.length() == 0 ? baseURL
+							: new URL(baseURL, uri));
 					result = url.toString();
 				}
 			} catch (java.net.MalformedURLException mue) {
@@ -172,8 +172,8 @@ public class BootstrapResolver implements EntityResolver, URIResolver {
 					// don't bother if the absBase isn't different!
 					return resolve(href, absBase);
 				} else {
-					throw new TransformerException("Malformed URL " + href + "(base " + base + ")",
-							mue);
+					throw new TransformerException("Malformed URL " + href
+							+ "(base " + base + ")", mue);
 				}
 			}
 		}

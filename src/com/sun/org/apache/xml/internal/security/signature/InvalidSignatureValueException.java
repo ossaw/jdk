@@ -70,7 +70,8 @@ public class InvalidSignatureValueException extends XMLSignatureException {
 	 * @param msgID
 	 * @param originalException
 	 */
-	public InvalidSignatureValueException(String msgID, Exception originalException) {
+	public InvalidSignatureValueException(String msgID,
+			Exception originalException) {
 		super(msgID, originalException);
 	}
 

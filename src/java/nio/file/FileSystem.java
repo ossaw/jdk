@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -125,8 +105,7 @@ public abstract class FileSystem implements Closeable {
 	/**
 	 * Initializes a new instance of this class.
 	 */
-	protected FileSystem() {
-	}
+	protected FileSystem() {}
 
 	/**
 	 * Returns the provider that created this file system.
@@ -152,9 +131,10 @@ public abstract class FileSystem implements Closeable {
 	 * {@link FileSystems#getDefault default} file system cannot be closed.
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                       If an I/O error occurs
 	 * @throws UnsupportedOperationException
-	 *             Thrown in the case of the default file system
+	 *                                       Thrown in the case of the default
+	 *                                       file system
 	 */
 	@Override
 	public abstract void close() throws IOException;
@@ -249,9 +229,11 @@ public abstract class FileSystem implements Closeable {
 	 * <pre>
 	 * for (FileStore store : FileSystems.getDefault().getFileStores()) {
 	 * 	long total = store.getTotalSpace() / 1024;
-	 * 	long used = (store.getTotalSpace() - store.getUnallocatedSpace()) / 1024;
+	 * 	long used = (store.getTotalSpace() - store.getUnallocatedSpace())
+	 * 			/ 1024;
 	 * 	long avail = store.getUsableSpace() / 1024;
-	 * 	System.out.format("%-20s %12d %12d %12d%n", store, total, used, avail);
+	 * 	System.out.format("%-20s %12d %12d %12d%n", store, total, used,
+	 * 			avail);
 	 * }
 	 * </pre>
 	 *
@@ -321,14 +303,14 @@ public abstract class FileSystem implements Closeable {
 	 * caused the path string to be rejected.
 	 *
 	 * @param first
-	 *            the path string or initial part of the path string
+	 *              the path string or initial part of the path string
 	 * @param more
-	 *            additional strings to be joined to form the path string
+	 *              additional strings to be joined to form the path string
 	 *
 	 * @return the resulting {@code Path}
 	 *
 	 * @throws InvalidPathException
-	 *             If the path string cannot be converted
+	 *                              If the path string cannot be converted
 	 */
 	public abstract Path getPath(String first, String... more);
 
@@ -498,18 +480,20 @@ public abstract class FileSystem implements Closeable {
 	 * therefore not specified.
 	 *
 	 * @param syntaxAndPattern
-	 *            The syntax and pattern
+	 *                         The syntax and pattern
 	 *
 	 * @return A path matcher that may be used to match paths against the
 	 *         pattern
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the parameter does not take the form:
-	 *             {@code syntax:pattern}
-	 * @throws java.util.regex.PatternSyntaxException
-	 *             If the pattern is invalid
+	 *                                       If the parameter does not take the
+	 *                                       form:
+	 *                                       {@code syntax:pattern}
+	 * @throws                               java.util.regex.PatternSyntaxException
+	 *                                       If the pattern is invalid
 	 * @throws UnsupportedOperationException
-	 *             If the pattern syntax is not known to the implementation
+	 *                                       If the pattern syntax is not known
+	 *                                       to the implementation
 	 *
 	 * @see Files#newDirectoryStream(Path,String)
 	 */
@@ -530,8 +514,9 @@ public abstract class FileSystem implements Closeable {
 	 * </pre>
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If this {@code FileSystem} does not does have a lookup
-	 *             service
+	 *                                       If this {@code FileSystem} does not
+	 *                                       does have a lookup
+	 *                                       service
 	 *
 	 * @return The {@code UserPrincipalLookupService} for this file system
 	 */
@@ -547,12 +532,15 @@ public abstract class FileSystem implements Closeable {
 	 * @return a new watch service
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If this {@code FileSystem} does not support watching file
-	 *             system objects for changes and events. This exception is not
-	 *             thrown by {@code FileSystems} created by the default
-	 *             provider.
+	 *                                       If this {@code FileSystem} does not
+	 *                                       support watching file
+	 *                                       system objects for changes and
+	 *                                       events. This exception is not
+	 *                                       thrown by {@code FileSystems}
+	 *                                       created by the default
+	 *                                       provider.
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                       If an I/O error occurs
 	 */
 	public abstract WatchService newWatchService() throws IOException;
 }

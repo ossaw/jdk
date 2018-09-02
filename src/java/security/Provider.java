@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -134,13 +114,13 @@ public abstract class Provider extends Properties {
 	 * information.
 	 *
 	 * @param name
-	 *            the provider name.
+	 *                the provider name.
 	 *
 	 * @param version
-	 *            the provider version number.
+	 *                the provider version number.
 	 *
 	 * @param info
-	 *            a description of the provider and its services.
+	 *                a description of the provider and its services.
 	 */
 	protected Provider(String name, double version, String info) {
 		this.name = name;
@@ -204,9 +184,10 @@ public abstract class Provider extends Properties {
 	 * provider.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to clear this provider
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                           method
+	 *                           denies access to clear this provider
 	 *
 	 * @since 1.2
 	 */
@@ -223,9 +204,10 @@ public abstract class Provider extends Properties {
 	 * Reads a property list (key and element pairs) from the input stream.
 	 *
 	 * @param inStream
-	 *            the input stream.
+	 *                 the input stream.
 	 * @exception IOException
-	 *                if an error occurred when reading from the input stream.
+	 *                        if an error occurred when reading from the input
+	 *                        stream.
 	 * @see java.util.Properties#load
 	 */
 	@Override
@@ -317,9 +299,10 @@ public abstract class Provider extends Properties {
 	 * provider's property values.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to set property values.
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                           method
+	 *                           denies access to set property values.
 	 *
 	 * @since 1.2
 	 */
@@ -327,7 +310,8 @@ public abstract class Provider extends Properties {
 	public synchronized Object put(Object key, Object value) {
 		check("putProviderProperty." + name);
 		if (debug != null) {
-			debug.println("Set " + name + " provider property [" + key + "/" + value + "]");
+			debug.println("Set " + name + " provider property [" + key + "/"
+					+ value + "]");
 		}
 		return implPut(key, value);
 	}
@@ -344,9 +328,10 @@ public abstract class Provider extends Properties {
 	 * provider's property values.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to set property values.
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                           method
+	 *                           denies access to set property values.
 	 *
 	 * @since 1.8
 	 */
@@ -354,7 +339,8 @@ public abstract class Provider extends Properties {
 	public synchronized Object putIfAbsent(Object key, Object value) {
 		check("putProviderProperty." + name);
 		if (debug != null) {
-			debug.println("Set " + name + " provider property [" + key + "/" + value + "]");
+			debug.println("Set " + name + " provider property [" + key + "/"
+					+ value + "]");
 		}
 		return implPutIfAbsent(key, value);
 	}
@@ -369,9 +355,11 @@ public abstract class Provider extends Properties {
 	 * provider's properties.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to remove this provider's properties.
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                           method
+	 *                           denies access to remove this provider's
+	 *                           properties.
 	 *
 	 * @since 1.2
 	 */
@@ -395,9 +383,11 @@ public abstract class Provider extends Properties {
 	 * provider's properties.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to remove this provider's properties.
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                           method
+	 *                           denies access to remove this provider's
+	 *                           properties.
 	 *
 	 * @since 1.8
 	 */
@@ -421,14 +411,16 @@ public abstract class Provider extends Properties {
 	 * provider's property values.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to set property values.
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                           method
+	 *                           denies access to set property values.
 	 *
 	 * @since 1.8
 	 */
 	@Override
-	public synchronized boolean replace(Object key, Object oldValue, Object newValue) {
+	public synchronized boolean replace(Object key, Object oldValue,
+			Object newValue) {
 		check("putProviderProperty." + name);
 
 		if (debug != null) {
@@ -448,9 +440,10 @@ public abstract class Provider extends Properties {
 	 * provider's property values.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to set property values.
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                           method
+	 *                           denies access to set property values.
 	 *
 	 * @since 1.8
 	 */
@@ -477,9 +470,10 @@ public abstract class Provider extends Properties {
 	 * provider's property values.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to set property values.
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                           method
+	 *                           denies access to set property values.
 	 *
 	 * @since 1.8
 	 */
@@ -506,9 +500,11 @@ public abstract class Provider extends Properties {
 	 * and remove this provider's properties.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to set property values or remove properties.
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                           method
+	 *                           denies access to set property values or remove
+	 *                           properties.
 	 *
 	 * @since 1.8
 	 */
@@ -537,9 +533,11 @@ public abstract class Provider extends Properties {
 	 * and remove this provider's properties.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to set property values and remove properties.
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                           method
+	 *                           denies access to set property values and remove
+	 *                           properties.
 	 *
 	 * @since 1.8
 	 */
@@ -550,7 +548,8 @@ public abstract class Provider extends Properties {
 		check("removeProviderProperty" + name);
 
 		if (debug != null) {
-			debug.println("ComputeIfAbsent " + name + " provider property " + key);
+			debug.println("ComputeIfAbsent " + name + " provider property "
+					+ key);
 		}
 		return implComputeIfAbsent(key, mappingFunction);
 	}
@@ -567,9 +566,11 @@ public abstract class Provider extends Properties {
 	 * and remove this provider's properties.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to set property values or remove properties.
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                           method
+	 *                           denies access to set property values or remove
+	 *                           properties.
 	 *
 	 * @since 1.8
 	 */
@@ -580,7 +581,8 @@ public abstract class Provider extends Properties {
 		check("removeProviderProperty" + name);
 
 		if (debug != null) {
-			debug.println("ComputeIfPresent " + name + " provider property " + key);
+			debug.println("ComputeIfPresent " + name + " provider property "
+					+ key);
 		}
 		return implComputeIfPresent(key, remappingFunction);
 	}
@@ -600,9 +602,11 @@ public abstract class Provider extends Properties {
 	 * and remove this provider's properties.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to set property values or remove properties.
+	 *                           if a security manager exists and its
+	 *                           {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                           method
+	 *                           denies access to set property values or remove
+	 *                           properties.
 	 *
 	 * @since 1.8
 	 */
@@ -638,7 +642,8 @@ public abstract class Provider extends Properties {
 	 * @since 1.8
 	 */
 	@Override
-	public synchronized void forEach(BiConsumer<? super Object, ? super Object> action) {
+	public synchronized void forEach(
+			BiConsumer<? super Object, ? super Object> action) {
 		checkInitialized();
 		super.forEach(action);
 	}
@@ -708,7 +713,8 @@ public abstract class Provider extends Properties {
 		super.put("Provider.id className", this.getClass().getName());
 	}
 
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		Map<Object, Object> copy = new HashMap<>();
 		for (Map.Entry<Object, Object> entry : super.entrySet()) {
 			copy.put(entry.getKey(), entry.getValue());
@@ -769,7 +775,8 @@ public abstract class Provider extends Properties {
 			if (!checkLegacy(key)) {
 				return false;
 			}
-			legacyStrings.replace((String) key, (String) oldValue, (String) newValue);
+			legacyStrings.replace((String) key, (String) oldValue,
+					(String) newValue);
 		}
 		return super.replace(key, oldValue, newValue);
 	}
@@ -906,7 +913,8 @@ public abstract class Provider extends Properties {
 				return false;
 			}
 			ServiceKey other = (ServiceKey) obj;
-			return this.type.equals(other.type) && this.algorithm.equals(other.algorithm);
+			return this.type.equals(other.type) && this.algorithm.equals(
+					other.algorithm);
 		}
 
 		boolean matches(String type, String algorithm) {
@@ -940,7 +948,8 @@ public abstract class Provider extends Properties {
 	 * if the legacy properties are inconsistent or incomplete.
 	 */
 	private void removeInvalidServices(Map<ServiceKey, Service> map) {
-		for (Iterator<Map.Entry<ServiceKey, Service>> t = map.entrySet().iterator(); t.hasNext();) {
+		for (Iterator<Map.Entry<ServiceKey, Service>> t = map.entrySet()
+				.iterator(); t.hasNext();) {
 			Service s = t.next().getValue();
 			if (s.isValid() == false) {
 				t.remove();
@@ -952,7 +961,8 @@ public abstract class Provider extends Properties {
 		int i = key.indexOf(".");
 		if (i < 1) {
 			if (debug != null) {
-				debug.println("Ignoring invalid entry in provider " + name + ":" + key);
+				debug.println("Ignoring invalid entry in provider " + name + ":"
+						+ key);
 			}
 			return null;
 		}
@@ -1041,17 +1051,19 @@ public abstract class Provider extends Properties {
 	 * putService()} is returned.
 	 *
 	 * @param type
-	 *            the type of {@link Service service} requested (for example,
-	 *            {@code MessageDigest})
+	 *                  the type of {@link Service service} requested (for
+	 *                  example,
+	 *                  {@code MessageDigest})
 	 * @param algorithm
-	 *            the case insensitive algorithm name (or alternate alias) of
-	 *            the service requested (for example, {@code SHA-1})
+	 *                  the case insensitive algorithm name (or alternate alias)
+	 *                  of
+	 *                  the service requested (for example, {@code SHA-1})
 	 *
 	 * @return the service describing this Provider's matching service or null
 	 *         if no such service exists
 	 *
 	 * @throws NullPointerException
-	 *             if type or algorithm is null
+	 *                              if type or algorithm is null
 	 *
 	 * @since 1.5
 	 */
@@ -1079,7 +1091,8 @@ public abstract class Provider extends Properties {
 	// re-use will occur e.g. as the framework traverses the provider
 	// list and queries each provider with the same values until it finds
 	// a matching service
-	private static volatile ServiceKey previousKey = new ServiceKey("", "", false);
+	private static volatile ServiceKey previousKey = new ServiceKey("", "",
+			false);
 
 	/**
 	 * Get an unmodifiable Set of all services supported by this Provider.
@@ -1128,14 +1141,15 @@ public abstract class Provider extends Properties {
 	 * {@code SecurityPermission("putProviderProperty."+name)} permission.
 	 *
 	 * @param s
-	 *            the Service to add
+	 *          the Service to add
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to set property values.
+	 *                              if a security manager exists and its
+	 *                              {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                              method
+	 *                              denies access to set property values.
 	 * @throws NullPointerException
-	 *             if s is null
+	 *                              if s is null
 	 *
 	 * @since 1.5
 	 */
@@ -1219,14 +1233,16 @@ public abstract class Provider extends Properties {
 	 * {@code SecurityPermission("removeProviderProperty."+name)} permission.
 	 *
 	 * @param s
-	 *            the Service to be removed
+	 *          the Service to be removed
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             {@link java.lang.SecurityManager#checkSecurityAccess} method
-	 *             denies access to remove this provider's properties.
+	 *                              if a security manager exists and its
+	 *                              {@link java.lang.SecurityManager#checkSecurityAccess}
+	 *                              method
+	 *                              denies access to remove this provider's
+	 *                              properties.
 	 * @throws NullPointerException
-	 *             if s is null
+	 *                              if s is null
 	 *
 	 * @since 1.5
 	 */
@@ -1357,7 +1373,8 @@ public abstract class Provider extends Properties {
 		// POLICY
 		addEngine("Policy", false, "java.security.Policy$Parameters");
 		// CONFIGURATION
-		addEngine("Configuration", false, "javax.security.auth.login.Configuration$Parameters");
+		addEngine("Configuration", false,
+				"javax.security.auth.login.Configuration$Parameters");
 		// XML DSig
 		addEngine("XMLSignatureFactory", false, null);
 		addEngine("KeyInfoFactory", false, null);
@@ -1437,8 +1454,8 @@ public abstract class Provider extends Properties {
 
 		private Service(Provider provider) {
 			this.provider = provider;
-			aliases = Collections.<String> emptyList();
-			attributes = Collections.<UString, String> emptyMap();
+			aliases = Collections.<String>emptyList();
+			attributes = Collections.<UString, String>emptyMap();
 		}
 
 		private boolean isValid() {
@@ -1463,24 +1480,27 @@ public abstract class Provider extends Properties {
 		 * Construct a new service.
 		 *
 		 * @param provider
-		 *            the provider that offers this service
+		 *                   the provider that offers this service
 		 * @param type
-		 *            the type of this service
+		 *                   the type of this service
 		 * @param algorithm
-		 *            the algorithm name
+		 *                   the algorithm name
 		 * @param className
-		 *            the name of the class implementing this service
+		 *                   the name of the class implementing this service
 		 * @param aliases
-		 *            List of aliases or null if algorithm has no aliases
+		 *                   List of aliases or null if algorithm has no aliases
 		 * @param attributes
-		 *            Map of attributes or null if this implementation has no
-		 *            attributes
+		 *                   Map of attributes or null if this implementation
+		 *                   has no
+		 *                   attributes
 		 *
 		 * @throws NullPointerException
-		 *             if provider, type, algorithm, or className is null
+		 *                              if provider, type, algorithm, or
+		 *                              className is null
 		 */
-		public Service(Provider provider, String type, String algorithm, String className,
-				List<String> aliases, Map<String, String> attributes) {
+		public Service(Provider provider, String type, String algorithm,
+				String className, List<String> aliases,
+				Map<String, String> attributes) {
 			if ((provider == null) || (type == null) || (algorithm == null)
 					|| (className == null)) {
 				throw new NullPointerException();
@@ -1490,16 +1510,17 @@ public abstract class Provider extends Properties {
 			this.algorithm = algorithm;
 			this.className = className;
 			if (aliases == null) {
-				this.aliases = Collections.<String> emptyList();
+				this.aliases = Collections.<String>emptyList();
 			} else {
 				this.aliases = new ArrayList<String>(aliases);
 			}
 			if (attributes == null) {
-				this.attributes = Collections.<UString, String> emptyMap();
+				this.attributes = Collections.<UString, String>emptyMap();
 			} else {
 				this.attributes = new HashMap<UString, String>();
 				for (Map.Entry<String, String> entry : attributes.entrySet()) {
-					this.attributes.put(new UString(entry.getKey()), entry.getValue());
+					this.attributes.put(new UString(entry.getKey()), entry
+							.getValue());
 				}
 			}
 		}
@@ -1551,13 +1572,13 @@ public abstract class Provider extends Properties {
 		 * is not set for this Service.
 		 *
 		 * @param name
-		 *            the name of the requested attribute
+		 *             the name of the requested attribute
 		 *
 		 * @return the value of the specified attribute or null if the attribute
 		 *         is not present
 		 *
 		 * @throws NullPointerException
-		 *             if name is null
+		 *                              if name is null
 		 */
 		public final String getAttribute(String name) {
 			if (name == null) {
@@ -1582,22 +1603,29 @@ public abstract class Provider extends Properties {
 		 * Java Cryptography Architecture API Specification &amp; Reference</a>.
 		 *
 		 * @param constructorParameter
-		 *            the value to pass to the constructor, or null if this type
-		 *            of service does not use a constructorParameter.
+		 *                             the value to pass to the constructor, or
+		 *                             null if this type
+		 *                             of service does not use a
+		 *                             constructorParameter.
 		 *
 		 * @return a new implementation of this service
 		 *
 		 * @throws InvalidParameterException
-		 *             if the value of constructorParameter is invalid for this
-		 *             type of service.
+		 *                                   if the value of
+		 *                                   constructorParameter is invalid for
+		 *                                   this
+		 *                                   type of service.
 		 * @throws NoSuchAlgorithmException
-		 *             if instantiation failed for any other reason.
+		 *                                   if instantiation failed for any
+		 *                                   other reason.
 		 */
-		public Object newInstance(Object constructorParameter) throws NoSuchAlgorithmException {
+		public Object newInstance(Object constructorParameter)
+				throws NoSuchAlgorithmException {
 			if (registered == false) {
 				if (provider.getService(type, algorithm) != this) {
-					throw new NoSuchAlgorithmException("Service not registered with Provider "
-							+ provider.getName() + ": " + this);
+					throw new NoSuchAlgorithmException(
+							"Service not registered with Provider " + provider
+									.getName() + ": " + this);
 				}
 				registered = true;
 			}
@@ -1612,7 +1640,8 @@ public abstract class Provider extends Properties {
 				if (cap.constructorParameterClassName == null) {
 					if (constructorParameter != null) {
 						throw new InvalidParameterException(
-								"constructorParameter not used with " + type + " engines");
+								"constructorParameter not used with " + type
+										+ " engines");
 					}
 					Class<?> clazz = getImplClass();
 					Class<?>[] empty = {};
@@ -1625,7 +1654,8 @@ public abstract class Provider extends Properties {
 						if (paramClass.isAssignableFrom(argClass) == false) {
 							throw new InvalidParameterException(
 									"constructorParameter must be instanceof "
-											+ cap.constructorParameterClassName.replace('$', '.')
+											+ cap.constructorParameterClassName
+													.replace('$', '.')
 											+ " for engine type " + type);
 						}
 					}
@@ -1636,13 +1666,17 @@ public abstract class Provider extends Properties {
 			} catch (NoSuchAlgorithmException e) {
 				throw e;
 			} catch (InvocationTargetException e) {
-				throw new NoSuchAlgorithmException("Error constructing implementation (algorithm: "
-						+ algorithm + ", provider: " + provider.getName() + ", class: " + className
-						+ ")", e.getCause());
+				throw new NoSuchAlgorithmException(
+						"Error constructing implementation (algorithm: "
+								+ algorithm + ", provider: " + provider
+										.getName() + ", class: " + className
+								+ ")", e.getCause());
 			} catch (Exception e) {
-				throw new NoSuchAlgorithmException("Error constructing implementation (algorithm: "
-						+ algorithm + ", provider: " + provider.getName() + ", class: " + className
-						+ ")", e);
+				throw new NoSuchAlgorithmException(
+						"Error constructing implementation (algorithm: "
+								+ algorithm + ", provider: " + provider
+										.getName() + ", class: " + className
+								+ ")", e);
 			}
 		}
 
@@ -1659,15 +1693,18 @@ public abstract class Provider extends Properties {
 						clazz = cl.loadClass(className);
 					}
 					if (!Modifier.isPublic(clazz.getModifiers())) {
-						throw new NoSuchAlgorithmException("class configured for " + type
-								+ " (provider: " + provider.getName() + ") is not public.");
+						throw new NoSuchAlgorithmException(
+								"class configured for " + type + " (provider: "
+										+ provider.getName()
+										+ ") is not public.");
 					}
 					classRef = new WeakReference<Class<?>>(clazz);
 				}
 				return clazz;
 			} catch (ClassNotFoundException e) {
-				throw new NoSuchAlgorithmException("class configured for " + type + " (provider: "
-						+ provider.getName() + ") cannot be found.", e);
+				throw new NoSuchAlgorithmException("class configured for "
+						+ type + " (provider: " + provider.getName()
+						+ ") cannot be found.", e);
 			}
 		}
 
@@ -1676,7 +1713,8 @@ public abstract class Provider extends Properties {
 		 * constructor if constructorParameter is null, otherwise use the first
 		 * matching constructor.
 		 */
-		private Object newInstanceGeneric(Object constructorParameter) throws Exception {
+		private Object newInstanceGeneric(Object constructorParameter)
+				throws Exception {
 			Class<?> clazz = getImplClass();
 			if (constructorParameter == null) {
 				// create instance with public no-arg constructor if it exists
@@ -1685,8 +1723,8 @@ public abstract class Provider extends Properties {
 					Constructor<?> con = clazz.getConstructor(empty);
 					return con.newInstance();
 				} catch (NoSuchMethodException e) {
-					throw new NoSuchAlgorithmException(
-							"No public no-arg " + "constructor found in class " + className);
+					throw new NoSuchAlgorithmException("No public no-arg "
+							+ "constructor found in class " + className);
 				}
 			}
 			Class<?> argClass = constructorParameter.getClass();
@@ -1726,15 +1764,17 @@ public abstract class Provider extends Properties {
 		 * Security providers can override it to implement their own test.
 		 *
 		 * @param parameter
-		 *            the parameter to test
+		 *                  the parameter to test
 		 *
 		 * @return false if this this service cannot use the specified
 		 *         parameter; true if it can possibly use the parameter
 		 *
 		 * @throws InvalidParameterException
-		 *             if the value of parameter is invalid for this type of
-		 *             service or if this method cannot be used with this type
-		 *             of service
+		 *                                   if the value of parameter is
+		 *                                   invalid for this type of
+		 *                                   service or if this method cannot be
+		 *                                   used with this type
+		 *                                   of service
 		 */
 		public boolean supportsParameter(Object parameter) {
 			EngineDescription cap = knownEngines.get(type);
@@ -1743,8 +1783,8 @@ public abstract class Provider extends Properties {
 				return true;
 			}
 			if (cap.supportsParameter == false) {
-				throw new InvalidParameterException(
-						"supportsParameter() not " + "used with " + type + " engines");
+				throw new InvalidParameterException("supportsParameter() not "
+						+ "used with " + type + " engines");
 			}
 			// allow null for keys without attributes for compatibility
 			if ((parameter != null) && (parameter instanceof Key == false)) {
@@ -1783,7 +1823,8 @@ public abstract class Provider extends Properties {
 					s = getAttribute("SupportedKeyClasses");
 					if (s != null) {
 						String[] classNames = s.split("\\|");
-						List<Class<?>> classList = new ArrayList<>(classNames.length);
+						List<Class<?>> classList = new ArrayList<>(
+								classNames.length);
 						for (String className : classNames) {
 							Class<?> clazz = getKeyClass(className);
 							if (clazz != null) {
@@ -1792,7 +1833,8 @@ public abstract class Provider extends Properties {
 						}
 						supportedClasses = classList.toArray(CLASS0);
 					}
-					boolean bool = (supportedFormats != null) || (supportedClasses != null);
+					boolean bool = (supportedFormats != null)
+							|| (supportedClasses != null);
 					b = Boolean.valueOf(bool);
 					hasKeyAttributes = b;
 				}
@@ -1853,10 +1895,12 @@ public abstract class Provider extends Properties {
 		 * @return a String representation of this service.
 		 */
 		public String toString() {
-			String aString = aliases.isEmpty() ? "" : "\r\n  aliases: " + aliases.toString();
-			String attrs = attributes.isEmpty() ? "" : "\r\n  attributes: " + attributes.toString();
-			return provider.getName() + ": " + type + "." + algorithm + " -> " + className + aString
-					+ attrs + "\r\n";
+			String aString = aliases.isEmpty() ? ""
+					: "\r\n  aliases: " + aliases.toString();
+			String attrs = attributes.isEmpty() ? ""
+					: "\r\n  attributes: " + attributes.toString();
+			return provider.getName() + ": " + type + "." + algorithm + " -> "
+					+ className + aString + attrs + "\r\n";
 		}
 
 	}

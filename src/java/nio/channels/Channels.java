@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -61,8 +41,7 @@ import sun.nio.cs.StreamEncoder;
 
 public final class Channels {
 
-	private Channels() {
-	} // No instantiation
+	private Channels() {} // No instantiation
 
 	private static void checkNotNull(Object o, String name) {
 		if (o == null)
@@ -73,7 +52,8 @@ public final class Channels {
 	 * Write all remaining bytes in buffer to the given channel. If the channel
 	 * is selectable then it must be configured blocking.
 	 */
-	private static void writeFullyImpl(WritableByteChannel ch, ByteBuffer bb) throws IOException {
+	private static void writeFullyImpl(WritableByteChannel ch, ByteBuffer bb)
+			throws IOException {
 		while (bb.remaining() > 0) {
 			int n = ch.write(bb);
 			if (n <= 0)
@@ -85,9 +65,11 @@ public final class Channels {
 	 * Write all remaining bytes in buffer to the given channel.
 	 *
 	 * @throws IllegalBlockingModeException
-	 *             If the channel is selectable and configured non-blocking.
+	 *                                      If the channel is selectable and
+	 *                                      configured non-blocking.
 	 */
-	private static void writeFully(WritableByteChannel ch, ByteBuffer bb) throws IOException {
+	private static void writeFully(WritableByteChannel ch, ByteBuffer bb)
+			throws IOException {
 		if (ch instanceof SelectableChannel) {
 			SelectableChannel sc = (SelectableChannel) ch;
 			synchronized (sc.blockingLock()) {
@@ -116,7 +98,7 @@ public final class Channels {
 	 * </p>
 	 *
 	 * @param ch
-	 *            The channel from which bytes will be read
+	 *           The channel from which bytes will be read
 	 *
 	 * @return A new input stream
 	 */
@@ -137,7 +119,7 @@ public final class Channels {
 	 * </p>
 	 *
 	 * @param ch
-	 *            The channel to which bytes will be written
+	 *           The channel to which bytes will be written
 	 *
 	 * @return A new output stream
 	 */
@@ -157,14 +139,16 @@ public final class Channels {
 				this.write(b1);
 			}
 
-			public synchronized void write(byte[] bs, int off, int len) throws IOException {
-				if ((off < 0) || (off > bs.length) || (len < 0) || ((off + len) > bs.length)
-						|| ((off + len) < 0)) {
+			public synchronized void write(byte[] bs, int off, int len)
+					throws IOException {
+				if ((off < 0) || (off > bs.length) || (len < 0) || ((off
+						+ len) > bs.length) || ((off + len) < 0)) {
 					throw new IndexOutOfBoundsException();
 				} else if (len == 0) {
 					return;
 				}
-				ByteBuffer bb = ((this.bs == bs) ? this.bb : ByteBuffer.wrap(bs));
+				ByteBuffer bb = ((this.bs == bs) ? this.bb
+						: ByteBuffer.wrap(bs));
 				bb.limit(Math.min(off + len, bb.capacity()));
 				bb.position(off);
 				this.bb = bb;
@@ -190,7 +174,7 @@ public final class Channels {
 	 * </p>
 	 *
 	 * @param ch
-	 *            The channel from which bytes will be read
+	 *           The channel from which bytes will be read
 	 *
 	 * @return A new input stream
 	 *
@@ -215,14 +199,16 @@ public final class Channels {
 			}
 
 			@Override
-			public synchronized int read(byte[] bs, int off, int len) throws IOException {
-				if ((off < 0) || (off > bs.length) || (len < 0) || ((off + len) > bs.length)
-						|| ((off + len) < 0)) {
+			public synchronized int read(byte[] bs, int off, int len)
+					throws IOException {
+				if ((off < 0) || (off > bs.length) || (len < 0) || ((off
+						+ len) > bs.length) || ((off + len) < 0)) {
 					throw new IndexOutOfBoundsException();
 				} else if (len == 0)
 					return 0;
 
-				ByteBuffer bb = ((this.bs == bs) ? this.bb : ByteBuffer.wrap(bs));
+				ByteBuffer bb = ((this.bs == bs) ? this.bb
+						: ByteBuffer.wrap(bs));
 				bb.position(off);
 				bb.limit(Math.min(off + len, bb.capacity()));
 				this.bb = bb;
@@ -262,13 +248,14 @@ public final class Channels {
 	 * </p>
 	 *
 	 * @param ch
-	 *            The channel to which bytes will be written
+	 *           The channel to which bytes will be written
 	 *
 	 * @return A new output stream
 	 *
 	 * @since 1.7
 	 */
-	public static OutputStream newOutputStream(final AsynchronousByteChannel ch) {
+	public static OutputStream newOutputStream(
+			final AsynchronousByteChannel ch) {
 		checkNotNull(ch, "ch");
 		return new OutputStream() {
 
@@ -285,14 +272,16 @@ public final class Channels {
 			}
 
 			@Override
-			public synchronized void write(byte[] bs, int off, int len) throws IOException {
-				if ((off < 0) || (off > bs.length) || (len < 0) || ((off + len) > bs.length)
-						|| ((off + len) < 0)) {
+			public synchronized void write(byte[] bs, int off, int len)
+					throws IOException {
+				if ((off < 0) || (off > bs.length) || (len < 0) || ((off
+						+ len) > bs.length) || ((off + len) < 0)) {
 					throw new IndexOutOfBoundsException();
 				} else if (len == 0) {
 					return;
 				}
-				ByteBuffer bb = ((this.bs == bs) ? this.bb : ByteBuffer.wrap(bs));
+				ByteBuffer bb = ((this.bs == bs) ? this.bb
+						: ByteBuffer.wrap(bs));
 				bb.limit(Math.min(off + len, bb.capacity()));
 				bb.position(off);
 				this.bb = bb;
@@ -334,23 +323,25 @@ public final class Channels {
 	 * </p>
 	 *
 	 * @param in
-	 *            The stream from which bytes are to be read
+	 *           The stream from which bytes are to be read
 	 *
 	 * @return A new readable byte channel
 	 */
 	public static ReadableByteChannel newChannel(final InputStream in) {
 		checkNotNull(in, "in");
 
-		if (in instanceof FileInputStream && FileInputStream.class.equals(in.getClass())) {
+		if (in instanceof FileInputStream && FileInputStream.class.equals(in
+				.getClass())) {
 			return ((FileInputStream) in).getChannel();
 		}
 
 		return new ReadableByteChannelImpl(in);
 	}
 
-	private static class ReadableByteChannelImpl extends AbstractInterruptibleChannel // Not
-																						// really
-																						// interruptible
+	private static class ReadableByteChannelImpl extends
+			AbstractInterruptibleChannel // Not
+			// really
+			// interruptible
 			implements ReadableByteChannel {
 		InputStream in;
 		private static final int TRANSFER_SIZE = 8192;
@@ -368,7 +359,8 @@ public final class Channels {
 			int bytesRead = 0;
 			synchronized (readLock) {
 				while (totalRead < len) {
-					int bytesToRead = Math.min((len - totalRead), TRANSFER_SIZE);
+					int bytesToRead = Math.min((len - totalRead),
+							TRANSFER_SIZE);
 					if (buf.length < bytesToRead)
 						buf = new byte[bytesToRead];
 					if ((totalRead > 0) && !(in.available() > 0))
@@ -415,16 +407,18 @@ public final class Channels {
 	public static WritableByteChannel newChannel(final OutputStream out) {
 		checkNotNull(out, "out");
 
-		if (out instanceof FileOutputStream && FileOutputStream.class.equals(out.getClass())) {
+		if (out instanceof FileOutputStream && FileOutputStream.class.equals(out
+				.getClass())) {
 			return ((FileOutputStream) out).getChannel();
 		}
 
 		return new WritableByteChannelImpl(out);
 	}
 
-	private static class WritableByteChannelImpl extends AbstractInterruptibleChannel // Not
-																						// really
-																						// interruptible
+	private static class WritableByteChannelImpl extends
+			AbstractInterruptibleChannel // Not
+			// really
+			// interruptible
 			implements WritableByteChannel {
 		OutputStream out;
 		private static final int TRANSFER_SIZE = 8192;
@@ -441,7 +435,8 @@ public final class Channels {
 			int totalWritten = 0;
 			synchronized (writeLock) {
 				while (totalWritten < len) {
-					int bytesToWrite = Math.min((len - totalWritten), TRANSFER_SIZE);
+					int bytesToWrite = Math.min((len - totalWritten),
+							TRANSFER_SIZE);
 					if (buf.length < bytesToWrite)
 						buf = new byte[bytesToWrite];
 					src.get(buf, 0, bytesToWrite);
@@ -481,19 +476,21 @@ public final class Channels {
 	 * </p>
 	 *
 	 * @param ch
-	 *            The channel from which bytes will be read
+	 *                     The channel from which bytes will be read
 	 *
 	 * @param dec
-	 *            The charset decoder to be used
+	 *                     The charset decoder to be used
 	 *
 	 * @param minBufferCap
-	 *            The minimum capacity of the internal byte buffer, or
-	 *            <tt>-1</tt> if an implementation-dependent default capacity is
-	 *            to be used
+	 *                     The minimum capacity of the internal byte buffer, or
+	 *                     <tt>-1</tt> if an implementation-dependent default
+	 *                     capacity is
+	 *                     to be used
 	 *
 	 * @return A new reader
 	 */
-	public static Reader newReader(ReadableByteChannel ch, CharsetDecoder dec, int minBufferCap) {
+	public static Reader newReader(ReadableByteChannel ch, CharsetDecoder dec,
+			int minBufferCap) {
 		checkNotNull(ch, "ch");
 		return StreamDecoder.forDecoder(ch, dec.reset(), minBufferCap);
 	}
@@ -524,16 +521,17 @@ public final class Channels {
 	 * </blockquote>
 	 *
 	 * @param ch
-	 *            The channel from which bytes will be read
+	 *               The channel from which bytes will be read
 	 *
 	 * @param csName
-	 *            The name of the charset to be used
+	 *               The name of the charset to be used
 	 *
 	 * @return A new reader
 	 *
 	 * @throws UnsupportedCharsetException
-	 *             If no support for the named charset is available in this
-	 *             instance of the Java virtual machine
+	 *                                     If no support for the named charset
+	 *                                     is available in this
+	 *                                     instance of the Java virtual machine
 	 */
 	public static Reader newReader(ReadableByteChannel ch, String csName) {
 		checkNotNull(csName, "csName");
@@ -555,20 +553,21 @@ public final class Channels {
 	 * </p>
 	 *
 	 * @param ch
-	 *            The channel to which bytes will be written
+	 *                     The channel to which bytes will be written
 	 *
 	 * @param enc
-	 *            The charset encoder to be used
+	 *                     The charset encoder to be used
 	 *
 	 * @param minBufferCap
-	 *            The minimum capacity of the internal byte buffer, or
-	 *            <tt>-1</tt> if an implementation-dependent default capacity is
-	 *            to be used
+	 *                     The minimum capacity of the internal byte buffer, or
+	 *                     <tt>-1</tt> if an implementation-dependent default
+	 *                     capacity is
+	 *                     to be used
 	 *
 	 * @return A new writer
 	 */
-	public static Writer newWriter(final WritableByteChannel ch, final CharsetEncoder enc,
-			final int minBufferCap) {
+	public static Writer newWriter(final WritableByteChannel ch,
+			final CharsetEncoder enc, final int minBufferCap) {
 		checkNotNull(ch, "ch");
 		return StreamEncoder.forEncoder(ch, enc.reset(), minBufferCap);
 	}
@@ -599,16 +598,17 @@ public final class Channels {
 	 * </blockquote>
 	 *
 	 * @param ch
-	 *            The channel to which bytes will be written
+	 *               The channel to which bytes will be written
 	 *
 	 * @param csName
-	 *            The name of the charset to be used
+	 *               The name of the charset to be used
 	 *
 	 * @return A new writer
 	 *
 	 * @throws UnsupportedCharsetException
-	 *             If no support for the named charset is available in this
-	 *             instance of the Java virtual machine
+	 *                                     If no support for the named charset
+	 *                                     is available in this
+	 *                                     instance of the Java virtual machine
 	 */
 	public static Writer newWriter(WritableByteChannel ch, String csName) {
 		checkNotNull(csName, "csName");

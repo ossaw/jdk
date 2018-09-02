@@ -35,7 +35,8 @@ import org.w3c.dom.Element;
  *
  * @author Brent Putman (putmanb@georgetown.edu)
  */
-public class KeyInfoReference extends Signature11ElementProxy implements KeyInfoContent {
+public class KeyInfoReference extends Signature11ElementProxy implements
+		KeyInfoContent {
 
 	/**
 	 * Constructor RetrievalMethod
@@ -44,7 +45,8 @@ public class KeyInfoReference extends Signature11ElementProxy implements KeyInfo
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public KeyInfoReference(Element element, String baseURI) throws XMLSecurityException {
+	public KeyInfoReference(Element element, String baseURI)
+			throws XMLSecurityException {
 		super(element, baseURI);
 	}
 
@@ -66,7 +68,8 @@ public class KeyInfoReference extends Signature11ElementProxy implements KeyInfo
 	 * @return the URI attribute
 	 */
 	public Attr getURIAttr() {
-		return this.constructionElement.getAttributeNodeNS(null, Constants._ATT_URI);
+		return this.constructionElement.getAttributeNodeNS(null,
+				Constants._ATT_URI);
 	}
 
 	/**
@@ -82,12 +85,14 @@ public class KeyInfoReference extends Signature11ElementProxy implements KeyInfo
 	 * Sets the <code>Id</code> attribute
 	 *
 	 * @param Id
-	 *            ID
+	 *           ID
 	 */
 	public void setId(String id) {
 		if (id != null) {
-			this.constructionElement.setAttributeNS(null, Constants._ATT_ID, id);
-			this.constructionElement.setIdAttributeNS(null, Constants._ATT_ID, true);
+			this.constructionElement.setAttributeNS(null, Constants._ATT_ID,
+					id);
+			this.constructionElement.setIdAttributeNS(null, Constants._ATT_ID,
+					true);
 		} else {
 			this.constructionElement.removeAttributeNS(null, Constants._ATT_ID);
 		}

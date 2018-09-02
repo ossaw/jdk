@@ -4,43 +4,34 @@
  */
 /*
  * The Apache Software License, Version 1.1
- *
- *
- * Copyright (c) 2001-2003 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001-2003 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Xerces" and "Apache Software Foundation" must
- *    not be used to endorse or promote products derived from this
- *    software without prior written permission. For written
- *    permission, please contact apache@apache.org.
- *
+ * not be used to endorse or promote products derived from this
+ * software without prior written permission. For written
+ * permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    nor may "Apache" appear in their name, without prior written
- *    permission of the Apache Software Foundation.
- *
+ * nor may "Apache" appear in their name, without prior written
+ * permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -50,11 +41,10 @@
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
  * individuals on behalf of the Apache Software Foundation and was
  * originally based on software copyright (c) 1999, International
- * Business Machines, Inc., http://www.apache.org.  For more
+ * Business Machines, Inc., http://www.apache.org. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -115,11 +105,12 @@ public class XPointerElementHandler implements XPointerSchema {
 
 	/** Recognized properties. */
 
-	private static final String[] RECOGNIZED_PROPERTIES = { ERROR_REPORTER, GRAMMAR_POOL,
-			ENTITY_RESOLVER, XPOINTER_SCHEMA };
+	private static final String[] RECOGNIZED_PROPERTIES = { ERROR_REPORTER,
+			GRAMMAR_POOL, ENTITY_RESOLVER, XPOINTER_SCHEMA };
 
 	/** Property defaults. */
-	private static final Object[] PROPERTY_DEFAULTS = { null, null, null, null };
+	private static final Object[] PROPERTY_DEFAULTS = { null, null, null,
+			null };
 
 	// Data
 
@@ -199,7 +190,8 @@ public class XPointerElementHandler implements XPointerSchema {
 		fSubResourceIdentified = false;
 	}
 
-	public void reset(XMLComponentManager componentManager) throws XNIException {
+	public void reset(XMLComponentManager componentManager)
+			throws XNIException {
 		fNamespaceContext = null;
 		elemCount = 0;
 		fDepth = 0;
@@ -214,17 +206,20 @@ public class XPointerElementHandler implements XPointerSchema {
 		fSubResourceIdentified = false;
 
 		try {
-			setErrorReporter((XMLErrorReporter) componentManager.getProperty(ERROR_REPORTER));
+			setErrorReporter((XMLErrorReporter) componentManager.getProperty(
+					ERROR_REPORTER));
 		} catch (XMLConfigurationException e) {
 			fErrorReporter = null;
 		}
 		try {
-			fGrammarPool = (XMLGrammarPool) componentManager.getProperty(GRAMMAR_POOL);
+			fGrammarPool = (XMLGrammarPool) componentManager.getProperty(
+					GRAMMAR_POOL);
 		} catch (XMLConfigurationException e) {
 			fGrammarPool = null;
 		}
 		try {
-			fEntityResolver = (XMLEntityResolver) componentManager.getProperty(ENTITY_RESOLVER);
+			fEntityResolver = (XMLEntityResolver) componentManager.getProperty(
+					ENTITY_RESOLVER);
 		} catch (XMLConfigurationException e) {
 			fEntityResolver = null;
 		}
@@ -236,7 +231,8 @@ public class XPointerElementHandler implements XPointerSchema {
 			String featureId = (String) xercesFeatures.nextElement();
 			fSettings.addRecognizedFeatures(new String[] { featureId });
 			try {
-				fSettings.setFeature(featureId, componentManager.getFeature(featureId));
+				fSettings.setFeature(featureId, componentManager.getFeature(
+						featureId));
 			} catch (XMLConfigurationException e) {
 				// componentManager doesn't support this feature,
 				// so we won't worry about it
@@ -267,16 +263,19 @@ public class XPointerElementHandler implements XPointerSchema {
 	 * not affect the operation of the component.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                  The feature identifier.
 	 * @param state
-	 *            The state of the feature.
+	 *                  The state of the feature.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 * @throws SAXNotSupportedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 */
-	public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
+	public void setFeature(String featureId, boolean state)
+			throws XMLConfigurationException {
 		if (fSettings != null) {
 			fSettings.setFeature(featureId, state);
 		}
@@ -300,16 +299,19 @@ public class XPointerElementHandler implements XPointerSchema {
 	 * do not affect the operation of the component.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 * @param value
-	 *            The value of the property.
+	 *                   The value of the property.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 * @throws SAXNotSupportedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 */
-	public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
+	public void setProperty(String propertyId, Object value)
+			throws XMLConfigurationException {
 		if (propertyId.equals(ERROR_REPORTER)) {
 			setErrorReporter((XMLErrorReporter) value);
 		}
@@ -327,7 +329,7 @@ public class XPointerElementHandler implements XPointerSchema {
 	 * not want to report a default value for this feature.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                  The feature identifier.
 	 *
 	 * @since Xerces 2.2.0
 	 */
@@ -345,7 +347,7 @@ public class XPointerElementHandler implements XPointerSchema {
 	 * not want to report a default value for this property.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 *
 	 * @since Xerces 2.2.0
 	 */
@@ -361,7 +363,8 @@ public class XPointerElementHandler implements XPointerSchema {
 	private void setErrorReporter(XMLErrorReporter reporter) {
 		fErrorReporter = reporter;
 		if (fErrorReporter != null) {
-			fErrorReporter.putMessageFormatter(XIncludeMessageFormatter.XINCLUDE_DOMAIN,
+			fErrorReporter.putMessageFormatter(
+					XIncludeMessageFormatter.XINCLUDE_DOMAIN,
 					new XIncludeMessageFormatter());
 		}
 	}
@@ -445,8 +448,8 @@ public class XPointerElementHandler implements XPointerSchema {
 	int fCurrentTokenType = 0;// 0 Notype; 1 for integer; 2 for string.
 
 	public void getTokens() {
-		fSchemaPointer = fSchemaPointer.substring(fSchemaPointer.indexOf("(") + 1,
-				fSchemaPointer.length());
+		fSchemaPointer = fSchemaPointer.substring(fSchemaPointer.indexOf("(")
+				+ 1, fSchemaPointer.length());
 		StringTokenizer st = new StringTokenizer(fSchemaPointer, "/");
 		String tempToken;
 		Integer integerToken = null;
@@ -492,7 +495,8 @@ public class XPointerElementHandler implements XPointerSchema {
 		}
 	}
 
-	private boolean isIdAttribute(XMLAttributes attributes, Augmentations augs, int index) {
+	private boolean isIdAttribute(XMLAttributes attributes, Augmentations augs,
+			int index) {
 		Object o = augs.getItem(Constants.ID_ATTRIBUTE);
 		if (o instanceof Boolean)
 			return ((Boolean) o).booleanValue();
@@ -512,8 +516,9 @@ public class XPointerElementHandler implements XPointerSchema {
 			attributes.getName(i, attrName);
 			attrType = attributes.getType(i);
 			attrValue = attributes.getValue(i);
-			if (attrType != null && attrValue != null && isIdAttribute(attributes, aaugs, i)
-					&& attrValue.equals(fCurrentTokenString)) {
+			if (attrType != null && attrValue != null && isIdAttribute(
+					attributes, aaugs, i) && attrValue.equals(
+							fCurrentTokenString)) {
 				if (hasMoreToken()) {
 					fCurrentTokenType = 0;
 					fCurrentTokenString = null;
@@ -566,27 +571,27 @@ public class XPointerElementHandler implements XPointerSchema {
 	///// START OF IMPLEMTATION OF XMLDocumentHandler methods //////////
 
 	public void startDocument(XMLLocator locator, String encoding,
-			NamespaceContext namespaceContext, Augmentations augs) throws XNIException {
+			NamespaceContext namespaceContext, Augmentations augs)
+			throws XNIException {
 
 		getTokens();
 	}
 
-	public void doctypeDecl(String rootElement, String publicId, String systemId,
-			Augmentations augs) throws XNIException {
-	}
+	public void doctypeDecl(String rootElement, String publicId,
+			String systemId, Augmentations augs) throws XNIException {}
 
-	public void xmlDecl(String version, String encoding, String standalone, Augmentations augs)
+	public void xmlDecl(String version, String encoding, String standalone,
+			Augmentations augs) throws XNIException {}
+
+	public void comment(XMLString text, Augmentations augs)
 			throws XNIException {
-	}
-
-	public void comment(XMLString text, Augmentations augs) throws XNIException {
 		if (fDocumentHandler != null && includeElement) {
 			fDocumentHandler.comment(text, augs);
 		}
 	}
 
-	public void processingInstruction(String target, XMLString data, Augmentations augs)
-			throws XNIException {
+	public void processingInstruction(String target, XMLString data,
+			Augmentations augs) throws XNIException {
 		if (fDocumentHandler != null && includeElement) {
 			fDocumentHandler.processingInstruction(target, data, augs);
 
@@ -598,8 +603,8 @@ public class XPointerElementHandler implements XPointerSchema {
 	int fCurrentToken;
 	boolean includeElement;
 
-	public void startElement(QName element, XMLAttributes attributes, Augmentations augs)
-			throws XNIException {
+	public void startElement(QName element, XMLAttributes attributes,
+			Augmentations augs) throws XNIException {
 
 		boolean requiredToken = false;
 		if (fCurrentTokenType == 0)
@@ -617,7 +622,8 @@ public class XPointerElementHandler implements XPointerSchema {
 
 	}
 
-	public void endElement(QName element, Augmentations augs) throws XNIException {
+	public void endElement(QName element, Augmentations augs)
+			throws XNIException {
 		if (includeElement && foundElement != null) {
 			if (elemCount > 0)
 				elemCount--;
@@ -634,39 +640,43 @@ public class XPointerElementHandler implements XPointerSchema {
 		}
 	}
 
-	public void emptyElement(QName element, XMLAttributes attributes, Augmentations augs)
-			throws XNIException {
+	public void emptyElement(QName element, XMLAttributes attributes,
+			Augmentations augs) throws XNIException {
 		if (fDocumentHandler != null && includeElement) {
 			fDocumentHandler.emptyElement(element, attributes, augs);
 		}
 	}
 
-	public void startGeneralEntity(String name, XMLResourceIdentifier resId, String encoding,
-			Augmentations augs) throws XNIException {
+	public void startGeneralEntity(String name, XMLResourceIdentifier resId,
+			String encoding, Augmentations augs) throws XNIException {
 		if (fDocumentHandler != null && includeElement) {
 			fDocumentHandler.startGeneralEntity(name, resId, encoding, augs);
 		}
 	}
 
-	public void textDecl(String version, String encoding, Augmentations augs) throws XNIException {
+	public void textDecl(String version, String encoding, Augmentations augs)
+			throws XNIException {
 		if (fDocumentHandler != null && includeElement) {
 			fDocumentHandler.textDecl(version, encoding, augs);
 		}
 	}
 
-	public void endGeneralEntity(String name, Augmentations augs) throws XNIException {
+	public void endGeneralEntity(String name, Augmentations augs)
+			throws XNIException {
 		if (fDocumentHandler != null) {
 			fDocumentHandler.endGeneralEntity(name, augs);
 		}
 	}
 
-	public void characters(XMLString text, Augmentations augs) throws XNIException {
+	public void characters(XMLString text, Augmentations augs)
+			throws XNIException {
 		if (fDocumentHandler != null && includeElement) {
 			fDocumentHandler.characters(text, augs);
 		}
 	}
 
-	public void ignorableWhitespace(XMLString text, Augmentations augs) throws XNIException {
+	public void ignorableWhitespace(XMLString text, Augmentations augs)
+			throws XNIException {
 		if (fDocumentHandler != null && includeElement) {
 			fDocumentHandler.ignorableWhitespace(text, augs);
 		}
@@ -684,8 +694,7 @@ public class XPointerElementHandler implements XPointerSchema {
 		}
 	}
 
-	public void endDocument(Augmentations augs) throws XNIException {
-	}
+	public void endDocument(Augmentations augs) throws XNIException {}
 
 	public void setDocumentSource(XMLDocumentSource source) {
 		fDocumentSource = source;
@@ -701,8 +710,9 @@ public class XPointerElementHandler implements XPointerSchema {
 
 	protected void reportFatalError(String key, Object[] args) {
 		if (fErrorReporter != null) {
-			fErrorReporter.reportError(fDocLocation, XIncludeMessageFormatter.XINCLUDE_DOMAIN, key,
-					args, XMLErrorReporter.SEVERITY_FATAL_ERROR);
+			fErrorReporter.reportError(fDocLocation,
+					XIncludeMessageFormatter.XINCLUDE_DOMAIN, key, args,
+					XMLErrorReporter.SEVERITY_FATAL_ERROR);
 		}
 		// we won't worry about when error reporter is null, since there should
 		// always be

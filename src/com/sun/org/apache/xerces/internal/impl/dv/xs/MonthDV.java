@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,7 +40,7 @@ public class MonthDV extends AbstractDateTimeDV {
 	 * Convert a string to a compiled form
 	 *
 	 * @param content
-	 *            The lexical representation of gMonth
+	 *                The lexical representation of gMonth
 	 * @return a valid and normalized gMonth object
 	 */
 	public Object getActualValue(String content, ValidationContext context)
@@ -64,7 +61,7 @@ public class MonthDV extends AbstractDateTimeDV {
 	 *            time zone Z or (-),(+)hh:mm
 	 * @return normalized date representation
 	 * @exception SchemaDateTimeException
-	 *                Invalid lexical representation
+	 *                                    Invalid lexical representation
 	 */
 	protected DateTimeData parse(String str) throws SchemaDateTimeException {
 		DateTimeData date = new DateTimeData(str, this);
@@ -74,7 +71,8 @@ public class MonthDV extends AbstractDateTimeDV {
 		date.year = YEAR;
 		date.day = DAY;
 		if (str.charAt(0) != '-' || str.charAt(1) != '-') {
-			throw new SchemaDateTimeException("Invalid format for gMonth: " + str);
+			throw new SchemaDateTimeException("Invalid format for gMonth: "
+					+ str);
 		}
 		int stop = 4;
 		date.month = parseInt(str, 2, stop);
@@ -82,12 +80,14 @@ public class MonthDV extends AbstractDateTimeDV {
 		// REVISIT: allow both --MM and --MM-- now.
 		// need to remove the following 4 lines to disallow --MM--
 		// when the errata is offically in the rec.
-		if (str.length() >= stop + 2 && str.charAt(stop) == '-' && str.charAt(stop + 1) == '-') {
+		if (str.length() >= stop + 2 && str.charAt(stop) == '-' && str.charAt(
+				stop + 1) == '-') {
 			stop += 2;
 		}
 		if (stop < len) {
 			if (!isNextCharUTCSign(str, stop, len)) {
-				throw new SchemaDateTimeException("Error in month parsing: " + str);
+				throw new SchemaDateTimeException("Error in month parsing: "
+						+ str);
 			} else {
 				getTimeZone(str, date, stop, len);
 			}
@@ -119,20 +119,15 @@ public class MonthDV extends AbstractDateTimeDV {
 	 */
 	/*
 	 * protected short compareDates(DateTimeData date1, DateTimeData date2) {
-	 * 
 	 * if ( date1.utc==date2.utc ) { return
 	 * (short)((date1.month>=date2.month)?(date1.month>date2.month)?1:0:-1); }
-	 * 
 	 * if ( date1.utc=='Z' || date2.utc=='Z' ) {
-	 * 
 	 * if ( date1.month==date2.month ) { //--05--Z and --05-- return
 	 * INDETERMINATE; } if ( (date1.month+1 == date2.month || date1.month-1 ==
 	 * date2.month) ) { //--05--Z and (--04-- or --05--) //REVISIT: should this
 	 * case be less than or equal? // maxExclusive should fail but what about
 	 * maxInclusive // return INDETERMINATE; } }
-	 * 
 	 * if ( date1.month<date2.month ) { return -1; } else { return 1; }
-	 * 
 	 * }
 	 */
 
@@ -140,7 +135,7 @@ public class MonthDV extends AbstractDateTimeDV {
 	 * Converts month object representation to String
 	 *
 	 * @param date
-	 *            month object
+	 *             month object
 	 * @return lexical representation of month: --MM with an optional time zone
 	 *         sign
 	 */
@@ -154,11 +149,14 @@ public class MonthDV extends AbstractDateTimeDV {
 	}
 
 	protected XMLGregorianCalendar getXMLGregorianCalendar(DateTimeData date) {
-		return datatypeFactory.newXMLGregorianCalendar(DatatypeConstants.FIELD_UNDEFINED,
-				date.unNormMonth, DatatypeConstants.FIELD_UNDEFINED,
-				DatatypeConstants.FIELD_UNDEFINED, DatatypeConstants.FIELD_UNDEFINED,
-				DatatypeConstants.FIELD_UNDEFINED, DatatypeConstants.FIELD_UNDEFINED,
-				date.hasTimeZone() ? date.timezoneHr * 60 + date.timezoneMin
+		return datatypeFactory.newXMLGregorianCalendar(
+				DatatypeConstants.FIELD_UNDEFINED, date.unNormMonth,
+				DatatypeConstants.FIELD_UNDEFINED,
+				DatatypeConstants.FIELD_UNDEFINED,
+				DatatypeConstants.FIELD_UNDEFINED,
+				DatatypeConstants.FIELD_UNDEFINED,
+				DatatypeConstants.FIELD_UNDEFINED, date.hasTimeZone()
+						? date.timezoneHr * 60 + date.timezoneMin
 						: DatatypeConstants.FIELD_UNDEFINED);
 	}
 }

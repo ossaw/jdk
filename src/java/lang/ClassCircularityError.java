@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -47,7 +27,7 @@ public class ClassCircularityError extends LinkageError {
 	 * message.
 	 *
 	 * @param s
-	 *            The detail message
+	 *          The detail message
 	 */
 	public ClassCircularityError(String s) {
 		super(s);

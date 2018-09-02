@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi;
@@ -122,8 +102,8 @@ public interface Soundbank {
 	 * Obtains an <code>Instrument</code> from the given <code>Patch</code>.
 	 * 
 	 * @param patch
-	 *            a <code>Patch</code> object specifying the bank index and
-	 *            program change number
+	 *              a <code>Patch</code> object specifying the bank index and
+	 *              program change number
 	 * @return the requested instrument, or <code>null</code> if the sound bank
 	 *         doesn't contain that instrument
 	 *

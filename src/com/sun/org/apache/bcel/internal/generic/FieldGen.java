@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.generic;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.generic;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -80,15 +72,16 @@ public class FieldGen extends FieldGenOrMethodGen {
 	 * as defined by setInitValue().
 	 *
 	 * @param access_flags
-	 *            access qualifiers
+	 *                     access qualifiers
 	 * @param type
-	 *            field type
+	 *                     field type
 	 * @param name
-	 *            field name
+	 *                     field name
 	 * @param cp
-	 *            constant pool
+	 *                     constant pool
 	 */
-	public FieldGen(int access_flags, Type type, String name, ConstantPoolGen cp) {
+	public FieldGen(int access_flags, Type type, String name,
+			ConstantPoolGen cp) {
 		setAccessFlags(access_flags);
 		setType(type);
 		setName(name);
@@ -99,13 +92,14 @@ public class FieldGen extends FieldGenOrMethodGen {
 	 * Instantiate from existing field.
 	 *
 	 * @param field
-	 *            Field object
+	 *              Field object
 	 * @param cp
-	 *            constant pool (must contain the same entries as the field's
-	 *            constant pool)
+	 *              constant pool (must contain the same entries as the field's
+	 *              constant pool)
 	 */
 	public FieldGen(Field field, ConstantPoolGen cp) {
-		this(field.getAccessFlags(), Type.getType(field.getSignature()), field.getName(), cp);
+		this(field.getAccessFlags(), Type.getType(field.getSignature()), field
+				.getName(), cp);
 
 		Attribute[] attrs = field.getAttributes();
 
@@ -199,13 +193,16 @@ public class FieldGen extends FieldGenOrMethodGen {
 
 	private void checkType(Type atype) {
 		if (type == null)
-			throw new ClassGenException("You haven't defined the type of the field yet");
+			throw new ClassGenException(
+					"You haven't defined the type of the field yet");
 
 		if (!isFinal())
-			throw new ClassGenException("Only final fields may have an initial value!");
+			throw new ClassGenException(
+					"Only final fields may have an initial value!");
 
 		if (!type.equals(atype))
-			throw new ClassGenException("Types are not compatible: " + type + " vs. " + atype);
+			throw new ClassGenException("Types are not compatible: " + type
+					+ " vs. " + atype);
 	}
 
 	/**
@@ -219,37 +216,38 @@ public class FieldGen extends FieldGenOrMethodGen {
 		if (value != null) {
 			checkType(type);
 			int index = addConstant();
-			addAttribute(
-					new ConstantValue(cp.addUtf8("ConstantValue"), 2, index, cp.getConstantPool()));
+			addAttribute(new ConstantValue(cp.addUtf8("ConstantValue"), 2,
+					index, cp.getConstantPool()));
 		}
 
-		return new Field(access_flags, name_index, signature_index, getAttributes(),
-				cp.getConstantPool());
+		return new Field(access_flags, name_index, signature_index,
+				getAttributes(), cp.getConstantPool());
 	}
 
 	private int addConstant() {
 		switch (type.getType()) {
-		case Constants.T_INT:
-		case Constants.T_CHAR:
-		case Constants.T_BYTE:
-		case Constants.T_BOOLEAN:
-		case Constants.T_SHORT:
-			return cp.addInteger(((Integer) value).intValue());
+			case Constants.T_INT:
+			case Constants.T_CHAR:
+			case Constants.T_BYTE:
+			case Constants.T_BOOLEAN:
+			case Constants.T_SHORT:
+				return cp.addInteger(((Integer) value).intValue());
 
-		case Constants.T_FLOAT:
-			return cp.addFloat(((Float) value).floatValue());
+			case Constants.T_FLOAT:
+				return cp.addFloat(((Float) value).floatValue());
 
-		case Constants.T_DOUBLE:
-			return cp.addDouble(((Double) value).doubleValue());
+			case Constants.T_DOUBLE:
+				return cp.addDouble(((Double) value).doubleValue());
 
-		case Constants.T_LONG:
-			return cp.addLong(((Long) value).longValue());
+			case Constants.T_LONG:
+				return cp.addLong(((Long) value).longValue());
 
-		case Constants.T_REFERENCE:
-			return cp.addString(((String) value));
+			case Constants.T_REFERENCE:
+				return cp.addString(((String) value));
 
-		default:
-			throw new RuntimeException("Oops: Unhandled : " + type.getType());
+			default:
+				throw new RuntimeException("Oops: Unhandled : " + type
+						.getType());
 		}
 	}
 

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: SelfIteratorNoPredicate.java,v 1.2.4.2 2005/09/14 19:45:21 jeffsuttor Exp $
+ * $Id: SelfIteratorNoPredicate.java,v 1.2.4.2 2005/09/14 19:45:21 jeffsuttor
+ * Exp $
  */
 package com.sun.org.apache.xpath.internal.axes;
 
@@ -40,12 +38,13 @@ public class SelfIteratorNoPredicate extends LocPathIterator {
 	 * Create a SelfIteratorNoPredicate object.
 	 *
 	 * @param compiler
-	 *            A reference to the Compiler that contains the op map.
+	 *                 A reference to the Compiler that contains the op map.
 	 * @param opPos
-	 *            The position within the op map, which contains the location
-	 *            path expression for this itterator.
+	 *                 The position within the op map, which contains the
+	 *                 location
+	 *                 path expression for this itterator.
 	 * @param analysis
-	 *            Analysis bits.
+	 *                 Analysis bits.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -59,7 +58,8 @@ public class SelfIteratorNoPredicate extends LocPathIterator {
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public SelfIteratorNoPredicate() throws javax.xml.transform.TransformerException {
+	public SelfIteratorNoPredicate()
+			throws javax.xml.transform.TransformerException {
 		super(null);
 	}
 
@@ -78,7 +78,8 @@ public class SelfIteratorNoPredicate extends LocPathIterator {
 		int next;
 		DTM dtm = m_cdtm;
 
-		m_lastFetched = next = (DTM.NULL == m_lastFetched) ? m_context : DTM.NULL;
+		m_lastFetched = next = (DTM.NULL == m_lastFetched) ? m_context
+				: DTM.NULL;
 
 		// m_lastFetched = next;
 		if (DTM.NULL != next) {
@@ -99,10 +100,11 @@ public class SelfIteratorNoPredicate extends LocPathIterator {
 	 * do a clone operation.
 	 * 
 	 * @param xctxt
-	 *            The XPath runtime context.
+	 *              The XPath runtime context.
 	 * @return the first node out of the nodeset, or DTM.NULL.
 	 */
-	public int asNode(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public int asNode(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		return xctxt.getCurrentNode();
 	}
 
@@ -111,7 +113,7 @@ public class SelfIteratorNoPredicate extends LocPathIterator {
 	 * will need to be overridded by derived classes.
 	 *
 	 * @param xctxt
-	 *            XPath runtime context.
+	 *              XPath runtime context.
 	 *
 	 * @return the index of the last node that can be itterated to.
 	 */

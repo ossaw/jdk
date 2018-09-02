@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf;
@@ -67,7 +47,8 @@ public abstract class TreeUI extends ComponentUI {
 	 * you should get the bounds for the returned path and test x, y against
 	 * that.
 	 */
-	public abstract TreePath getClosestPathForLocation(JTree tree, int x, int y);
+	public abstract TreePath getClosestPathForLocation(JTree tree, int x,
+			int y);
 
 	/**
 	 * Returns true if the tree is being edited. The item that is being edited

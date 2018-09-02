@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,11 +16,11 @@
  */
 
 // Aug 21, 2000:
-//  Added ability to omit DOCTYPE declaration.
-//  Reported by Lars Martin <lars@smb-tec.com>
+// Added ability to omit DOCTYPE declaration.
+// Reported by Lars Martin <lars@smb-tec.com>
 // Aug 25, 2000:
-//  Added ability to omit comments.
-//  Contributed by Anupam Bagchi <abagchi@jtcsv.com>
+// Added ability to omit comments.
+// Contributed by Anupam Bagchi <abagchi@jtcsv.com>
 
 package com.sun.org.apache.xml.internal.serialize;
 
@@ -213,8 +210,7 @@ public class OutputFormat {
 	/**
 	 * Constructs a new output format with the default values.
 	 */
-	public OutputFormat() {
-	}
+	public OutputFormat() {}
 
 	/**
 	 * Constructs a new output format with the default values for the specified
@@ -223,11 +219,11 @@ public class OutputFormat {
 	 * wrapping.
 	 *
 	 * @param method
-	 *            The specified output method
+	 *                  The specified output method
 	 * @param encoding
-	 *            The specified encoding
+	 *                  The specified encoding
 	 * @param indenting
-	 *            True for pretty printing
+	 *                  True for pretty printing
 	 * @see #setEncoding
 	 * @see #setIndenting
 	 * @see #setMethod
@@ -260,11 +256,11 @@ public class OutputFormat {
 	 * wrapping.
 	 *
 	 * @param doc
-	 *            The document to output
+	 *                  The document to output
 	 * @param encoding
-	 *            The specified encoding
+	 *                  The specified encoding
 	 * @param indenting
-	 *            True for pretty printing
+	 *                  True for pretty printing
 	 * @see #setEncoding
 	 * @see #setIndenting
 	 * @see #whichMethod
@@ -293,7 +289,7 @@ public class OutputFormat {
 	 *
 	 * @see #getMethod
 	 * @param method
-	 *            The output method, or null
+	 *               The output method, or null
 	 */
 	public void setMethod(String method) {
 		_method = method;
@@ -317,7 +313,7 @@ public class OutputFormat {
 	 *
 	 * @see #getVersion
 	 * @param version
-	 *            The output method version, or null
+	 *                The output method version, or null
 	 */
 	public void setVersion(String version) {
 		_version = version;
@@ -347,7 +343,7 @@ public class OutputFormat {
 	 * value to zero (off) or the default (on).
 	 *
 	 * @param indent
-	 *            The indentation, or zero
+	 *               The indentation, or zero
 	 */
 	public void setIndent(int indent) {
 		if (indent < 0)
@@ -363,7 +359,7 @@ public class OutputFormat {
 	 * line wrapping, use {@link #setIndent} and {@link #setLineWidth}.
 	 *
 	 * @param on
-	 *            True if indentation should be on
+	 *           True if indentation should be on
 	 */
 	public void setIndenting(boolean on) {
 		if (on) {
@@ -392,7 +388,7 @@ public class OutputFormat {
 	 *
 	 * @see #getEncoding
 	 * @param encoding
-	 *            The encoding, or null
+	 *                 The encoding, or null
 	 */
 	public void setEncoding(String encoding) {
 		_encoding = encoding;
@@ -415,7 +411,8 @@ public class OutputFormat {
 	 */
 	public EncodingInfo getEncodingInfo() throws UnsupportedEncodingException {
 		if (_encodingInfo == null)
-			_encodingInfo = Encodings.getEncodingInfo(_encoding, _allowJavaNames);
+			_encodingInfo = Encodings.getEncodingInfo(_encoding,
+					_allowJavaNames);
 		return _encodingInfo;
 	}
 
@@ -448,7 +445,7 @@ public class OutputFormat {
 	 *
 	 * @see #getMediaType
 	 * @param mediaType
-	 *            The specified media type
+	 *                  The specified media type
 	 */
 	public void setMediaType(String mediaType) {
 		_mediaType = mediaType;
@@ -461,9 +458,9 @@ public class OutputFormat {
 	 * by the DOM Document or SAX events will override these values.
 	 *
 	 * @param publicId
-	 *            The public identifier, or null
+	 *                 The public identifier, or null
 	 * @param systemId
-	 *            The system identifier, or null
+	 *                 The system identifier, or null
 	 */
 	public void setDoctype(String publicId, String systemId) {
 		_doctypePublic = publicId;
@@ -495,7 +492,7 @@ public class OutputFormat {
 	 * Sets comment omitting on and off.
 	 *
 	 * @param omit
-	 *            True if comments should be ommited
+	 *             True if comments should be ommited
 	 */
 	public void setOmitComments(boolean omit) {
 		_omitComments = omit;
@@ -513,7 +510,7 @@ public class OutputFormat {
 	 * Sets DOCTYPE declaration omitting on and off.
 	 *
 	 * @param omit
-	 *            True if DOCTYPE declaration should be ommited
+	 *             True if DOCTYPE declaration should be ommited
 	 */
 	public void setOmitDocumentType(boolean omit) {
 		_omitDoctype = omit;
@@ -531,7 +528,7 @@ public class OutputFormat {
 	 * Sets XML declaration omitting on and off.
 	 *
 	 * @param omit
-	 *            True if XML declaration should be ommited
+	 *             True if XML declaration should be ommited
 	 */
 	public void setOmitXMLDeclaration(boolean omit) {
 		_omitXmlDeclaration = omit;
@@ -549,7 +546,7 @@ public class OutputFormat {
 	 * null for the document to be serialized as standalone.
 	 *
 	 * @param standalone
-	 *            True if document DTD is standalone
+	 *                   True if document DTD is standalone
 	 */
 	public void setStandalone(boolean standalone) {
 		_standalone = standalone;
@@ -568,7 +565,7 @@ public class OutputFormat {
 	 * output as CDATA.
 	 *
 	 * @param tagName
-	 *            The element's tag name
+	 *                The element's tag name
 	 * @return True if should serialize as CDATA
 	 */
 	public boolean isCDataElement(String tagName) {
@@ -587,7 +584,7 @@ public class OutputFormat {
 	 * as CDATA.
 	 *
 	 * @param cdataElements
-	 *            List of CDATA element tag names
+	 *                      List of CDATA element tag names
 	 */
 	public void setCDataElements(String[] cdataElements) {
 		_cdataElements = cdataElements;
@@ -607,7 +604,7 @@ public class OutputFormat {
 	 * output unescaped.
 	 *
 	 * @param tagName
-	 *            The element's tag name
+	 *                The element's tag name
 	 * @return True if should serialize unescaped
 	 */
 	public boolean isNonEscapingElement(String tagName) {
@@ -627,7 +624,7 @@ public class OutputFormat {
 	 * unescaped (no character references).
 	 *
 	 * @param nonEscapingElements
-	 *            List of unescaped element tag names
+	 *                            List of unescaped element tag names
 	 */
 	public void setNonEscapingElements(String[] nonEscapingElements) {
 		_nonEscapingElements = nonEscapingElements;
@@ -652,7 +649,7 @@ public class OutputFormat {
 	 * use the Web line separator.
 	 *
 	 * @param lineSeparator
-	 *            The specified line separator
+	 *                      The specified line separator
 	 */
 	public void setLineSeparator(String lineSeparator) {
 		if (lineSeparator == null)
@@ -677,7 +674,7 @@ public class OutputFormat {
 	 * default value will not preserve spaces.
 	 *
 	 * @param preserve
-	 *            True if spaces should be preserved
+	 *                 True if spaces should be preserved
 	 */
 	public void setPreserveSpace(boolean preserve) {
 		_preserve = preserve;
@@ -699,7 +696,7 @@ public class OutputFormat {
 	 * (on).
 	 *
 	 * @param lineWidth
-	 *            The line width to use, zero for default
+	 *                  The line width to use, zero for default
 	 * @see #getLineWidth
 	 * @see #setIndenting
 	 */
@@ -727,7 +724,7 @@ public class OutputFormat {
 	 * mode).
 	 * 
 	 * @param preserve
-	 *            the preserve flag
+	 *                 the preserve flag
 	 */
 	public void setPreserveEmptyAttributes(boolean preserve) {
 		_preserveEmptyAttributes = preserve;
@@ -790,7 +787,8 @@ public class OutputFormat {
 				value = node.getNodeValue();
 				for (i = 0; i < value.length(); ++i)
 					if (value.charAt(i) != 0x20 && value.charAt(i) != 0x0A
-							&& value.charAt(i) != 0x09 && value.charAt(i) != 0x0D)
+							&& value.charAt(i) != 0x09 && value.charAt(
+									i) != 0x0D)
 						return Method.XML;
 			}
 			node = node.getNextSibling();

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -96,9 +76,9 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 			// we account for that possibility below in the recordIdentity
 			// method by slightly relaxing our uniqueness guarantees if we
 			// end up in that situation.
-			return getClass().getName() + "@"
-					+ Integer.toHexString(System.identityHashCode(getClass())) + ":"
-					+ Integer.toHexString(privatekey);
+			return getClass().getName() + "@" + Integer.toHexString(System
+					.identityHashCode(getClass())) + ":" + Integer.toHexString(
+							privatekey);
 		}
 
 		private synchronized static void recordIdentity(Key k) {
@@ -107,7 +87,8 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 			if (otherref != null) {
 				Key otherkey = (Key) ((WeakReference) otherref).get();
 				if (otherkey != null && otherkey.getClass() == k.getClass()) {
-					throw new IllegalArgumentException(identity + " already registered");
+					throw new IllegalArgumentException(identity
+							+ " already registered");
 				}
 				// Note that this system can fail in a mostly harmless
 				// way. If we end up generating the same identity
@@ -142,7 +123,7 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 		 * as a pre-existing instance of that subclass of Key.
 		 * 
 		 * @param privatekey
-		 *            the specified key
+		 *                   the specified key
 		 */
 		protected Key(int privatekey) {
 			this.privatekey = privatekey;
@@ -861,8 +842,8 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 	 * specified Map object which may be null.
 	 * 
 	 * @param init
-	 *            a map of key/value pairs to initialize the hints or null if
-	 *            the object should be empty
+	 *             a map of key/value pairs to initialize the hints or null if
+	 *             the object should be empty
 	 */
 	public RenderingHints(Map<Key, ?> init) {
 		if (init != null) {
@@ -874,9 +855,10 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 	 * Constructs a new object with the specified key/value pair.
 	 * 
 	 * @param key
-	 *            the key of the particular hint property
+	 *              the key of the particular hint property
 	 * @param value
-	 *            the value of the hint property specified with <code>key</code>
+	 *              the value of the hint property specified with
+	 *              <code>key</code>
 	 */
 	public RenderingHints(Key key, Object value) {
 		hintmap.put(key, value);
@@ -914,7 +896,8 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 	 * @return {@code true} if this {@code RenderingHints} contains a mapping
 	 *         for the specified key.
 	 * @exception ClassCastException
-	 *                if the key can not be cast to {@code RenderingHints.Key}
+	 *                               if the key can not be cast to
+	 *                               {@code RenderingHints.Key}
 	 */
 	public boolean containsKey(Object key) {
 		return hintmap.containsKey((Key) key);
@@ -935,8 +918,9 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 	 * <code>RenderingHints</code>.
 	 *
 	 * @param value
-	 *            value whose presence in this <code>RenderingHints</code> is to
-	 *            be tested.
+	 *              value whose presence in this <code>RenderingHints</code> is
+	 *              to
+	 *              be tested.
 	 * @return <code>true</code> if this <code>RenderingHints</code> maps one or
 	 *         more keys to the specified value.
 	 */
@@ -953,7 +937,8 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 	 *         {@code null} if the key is not mapped to any value in this
 	 *         object.
 	 * @exception ClassCastException
-	 *                if the key can not be cast to {@code RenderingHints.Key}
+	 *                               if the key can not be cast to
+	 *                               {@code RenderingHints.Key}
 	 * @see #put(Object, Object)
 	 */
 	public Object get(Object key) {
@@ -967,24 +952,28 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 	 * method with a key that is equal to the original key.
 	 * 
 	 * @param key
-	 *            the rendering hint key.
+	 *              the rendering hint key.
 	 * @param value
-	 *            the rendering hint value.
+	 *              the rendering hint value.
 	 * @return the previous value of the specified key in this object or
 	 *         {@code null} if it did not have one.
 	 * @exception NullPointerException
-	 *                if the key is {@code null}.
+	 *                                     if the key is {@code null}.
 	 * @exception ClassCastException
-	 *                if the key can not be cast to {@code RenderingHints.Key}
+	 *                                     if the key can not be cast to
+	 *                                     {@code RenderingHints.Key}
 	 * @exception IllegalArgumentException
-	 *                if the {@link Key#isCompatibleValue(java.lang.Object)
-	 *                Key.isCompatibleValue()} method of the specified key
-	 *                returns false for the specified value
+	 *                                     if the
+	 *                                     {@link Key#isCompatibleValue(java.lang.Object)
+	 *                                     Key.isCompatibleValue()} method of
+	 *                                     the specified key
+	 *                                     returns false for the specified value
 	 * @see #get(Object)
 	 */
 	public Object put(Object key, Object value) {
 		if (!((Key) key).isCompatibleValue(value)) {
-			throw new IllegalArgumentException(value + " incompatible with " + key);
+			throw new IllegalArgumentException(value + " incompatible with "
+					+ key);
 		}
 		return hintmap.put((Key) key, value);
 	}
@@ -997,8 +986,8 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 	 * affected.
 	 * 
 	 * @param hints
-	 *            the set of key/value pairs to be added to this
-	 *            <code>RenderingHints</code> object
+	 *              the set of key/value pairs to be added to this
+	 *              <code>RenderingHints</code> object
 	 */
 	public void add(RenderingHints hints) {
 		hintmap.putAll(hints.hintmap);
@@ -1019,7 +1008,8 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 	 * @param key
 	 *            the rendering hints key that needs to be removed
 	 * @exception ClassCastException
-	 *                if the key can not be cast to {@code RenderingHints.Key}
+	 *                               if the key can not be cast to
+	 *                               {@code RenderingHints.Key}
 	 * @return the value to which the key had previously been mapped in this
 	 *         {@code RenderingHints} object, or {@code null} if the key did not
 	 *         have a mapping.
@@ -1035,15 +1025,17 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 	 * {@code Map}.
 	 * 
 	 * @param m
-	 *            the specified {@code Map}
+	 *          the specified {@code Map}
 	 * @exception ClassCastException
-	 *                class of a key or value in the specified {@code Map}
-	 *                prevents it from being stored in this
-	 *                {@code RenderingHints}.
+	 *                                     class of a key or value in the
+	 *                                     specified {@code Map}
+	 *                                     prevents it from being stored in this
+	 *                                     {@code RenderingHints}.
 	 * @exception IllegalArgumentException
-	 *                some aspect of a key or value in the specified {@code Map}
-	 *                prevents it from being stored in this
-	 *                {@code RenderingHints}.
+	 *                                     some aspect of a key or value in the
+	 *                                     specified {@code Map}
+	 *                                     prevents it from being stored in this
+	 *                                     {@code RenderingHints}.
 	 */
 	public void putAll(Map<?, ?> m) {
 		// ## javac bug?
@@ -1138,8 +1130,8 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 	 * different implementations of the <code>Map</code> interface.
 	 *
 	 * @param o
-	 *            <code>Object</code> to be compared for equality with this
-	 *            <code>RenderingHints</code>.
+	 *          <code>Object</code> to be compared for equality with this
+	 *          <code>RenderingHints</code>.
 	 * @return <code>true</code> if the specified <code>Object</code> is equal
 	 *         to this <code>RenderingHints</code>.
 	 */
@@ -1203,7 +1195,8 @@ public class RenderingHints implements Map<Object, Object>, Cloneable {
 	 */
 	public String toString() {
 		if (hintmap == null) {
-			return getClass().getName() + "@" + Integer.toHexString(hashCode()) + " (0 hints)";
+			return getClass().getName() + "@" + Integer.toHexString(hashCode())
+					+ " (0 hints)";
 		}
 
 		return hintmap.toString();

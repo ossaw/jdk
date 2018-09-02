@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -50,32 +30,37 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * Copy the contents from one Dynamic Any into another.
 	 *
 	 * @param dyn_any
-	 *            the <code>DynAny</code> object whose contents are assigned to
-	 *            this <code>DynAny</code>.
+	 *                the <code>DynAny</code> object whose contents are assigned
+	 *                to
+	 *                this <code>DynAny</code>.
 	 * @throws Invalid
-	 *             if the source <code>DynAny</code> is invalid
+	 *                 if the source <code>DynAny</code> is invalid
 	 */
-	public void assign(org.omg.CORBA.DynAny dyn_any) throws org.omg.CORBA.DynAnyPackage.Invalid;
+	public void assign(org.omg.CORBA.DynAny dyn_any)
+			throws org.omg.CORBA.DynAnyPackage.Invalid;
 
 	/**
 	 * Make a <code>DynAny</code> object from an <code>Any</code> object.
 	 *
 	 * @param value
-	 *            the <code>Any</code> object.
+	 *              the <code>Any</code> object.
 	 * @throws Invalid
-	 *             if the source <code>Any</code> object is empty or bad
+	 *                 if the source <code>Any</code> object is empty or bad
 	 */
-	public void from_any(org.omg.CORBA.Any value) throws org.omg.CORBA.DynAnyPackage.Invalid;
+	public void from_any(org.omg.CORBA.Any value)
+			throws org.omg.CORBA.DynAnyPackage.Invalid;
 
 	/**
 	 * Convert a <code>DynAny</code> object to an <code>Any</code> object.
 	 *
 	 * @return the <code>Any</code> object.
 	 * @throws Invalid
-	 *             if this <code>DynAny</code> is empty or bad. created or does
-	 *             not contain a meaningful value
+	 *                 if this <code>DynAny</code> is empty or bad. created or
+	 *                 does
+	 *                 not contain a meaningful value
 	 */
-	public org.omg.CORBA.Any to_any() throws org.omg.CORBA.DynAnyPackage.Invalid;
+	public org.omg.CORBA.Any to_any()
+			throws org.omg.CORBA.DynAnyPackage.Invalid;
 
 	/**
 	 * Destroys this <code>DynAny</code> object and frees any resources used to
@@ -109,13 +94,14 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>boolean</code> to insert into this
-	 *            <code>DynAny</code> object
+	 *              the <code>boolean</code> to insert into this
+	 *              <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_boolean(boolean value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_boolean(boolean value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>byte</code> as the value for this
@@ -127,13 +113,15 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>byte</code> to insert into this <code>DynAny</code>
-	 *            object
+	 *              the <code>byte</code> to insert into this
+	 *              <code>DynAny</code>
+	 *              object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_octet(byte value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_octet(byte value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>char</code> as the value for this
@@ -145,13 +133,15 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>char</code> to insert into this <code>DynAny</code>
-	 *            object
+	 *              the <code>char</code> to insert into this
+	 *              <code>DynAny</code>
+	 *              object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_char(char value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_char(char value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>short</code> as the value for this
@@ -163,13 +153,15 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>short</code> to insert into this <code>DynAny</code>
-	 *            object
+	 *              the <code>short</code> to insert into this
+	 *              <code>DynAny</code>
+	 *              object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_short(short value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_short(short value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>short</code> as the value for this
@@ -181,13 +173,15 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>short</code> to insert into this <code>DynAny</code>
-	 *            object
+	 *              the <code>short</code> to insert into this
+	 *              <code>DynAny</code>
+	 *              object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_ushort(short value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_ushort(short value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>int</code> as the value for this
@@ -199,13 +193,14 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>int</code> to insert into this <code>DynAny</code>
-	 *            object
+	 *              the <code>int</code> to insert into this <code>DynAny</code>
+	 *              object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_long(int value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_long(int value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>int</code> as the value for this
@@ -217,13 +212,14 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>int</code> to insert into this <code>DynAny</code>
-	 *            object
+	 *              the <code>int</code> to insert into this <code>DynAny</code>
+	 *              object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_ulong(int value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_ulong(int value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>float</code> as the value for this
@@ -235,13 +231,15 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>float</code> to insert into this <code>DynAny</code>
-	 *            object
+	 *              the <code>float</code> to insert into this
+	 *              <code>DynAny</code>
+	 *              object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_float(float value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_float(float value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>double</code> as the value for this
@@ -253,13 +251,14 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>double</code> to insert into this
-	 *            <code>DynAny</code> object
+	 *              the <code>double</code> to insert into this
+	 *              <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_double(double value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_double(double value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>String</code> object as the value for this
@@ -271,13 +270,14 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>String</code> to insert into this
-	 *            <code>DynAny</code> object
+	 *              the <code>String</code> to insert into this
+	 *              <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_string(String value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_string(String value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>org.omg.CORBA.Object</code> as the value for this
@@ -289,11 +289,11 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>org.omg.CORBA.Object</code> to insert into this
-	 *            <code>DynAny</code> object
+	 *              the <code>org.omg.CORBA.Object</code> to insert into this
+	 *              <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
 	public void insert_reference(org.omg.CORBA.Object value)
 			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
@@ -308,11 +308,11 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>org.omg.CORBA.TypeCode</code> to insert into this
-	 *            <code>DynAny</code> object
+	 *              the <code>org.omg.CORBA.TypeCode</code> to insert into this
+	 *              <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
 	public void insert_typecode(org.omg.CORBA.TypeCode value)
 			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
@@ -327,13 +327,15 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>long</code> to insert into this <code>DynAny</code>
-	 *            object
+	 *              the <code>long</code> to insert into this
+	 *              <code>DynAny</code>
+	 *              object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_longlong(long value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_longlong(long value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>long</code> as the value for this
@@ -345,13 +347,15 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>long</code> to insert into this <code>DynAny</code>
-	 *            object
+	 *              the <code>long</code> to insert into this
+	 *              <code>DynAny</code>
+	 *              object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_ulonglong(long value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_ulonglong(long value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>char</code> as the value for this
@@ -363,13 +367,15 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>char</code> to insert into this <code>DynAny</code>
-	 *            object
+	 *              the <code>char</code> to insert into this
+	 *              <code>DynAny</code>
+	 *              object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_wchar(char value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_wchar(char value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>String</code> as the value for this
@@ -381,13 +387,14 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>String</code> to insert into this
-	 *            <code>DynAny</code> object
+	 *              the <code>String</code> to insert into this
+	 *              <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_wstring(String value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_wstring(String value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	/**
 	 * Inserts the given <code>org.omg.CORBA.Any</code> object as the value for
@@ -399,13 +406,15 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>org.omg.CORBA.Any</code> object to insert into this
-	 *            <code>DynAny</code> object
+	 *              the <code>org.omg.CORBA.Any</code> object to insert into
+	 *              this
+	 *              <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
-	public void insert_any(org.omg.CORBA.Any value) throws org.omg.CORBA.DynAnyPackage.InvalidValue;
+	public void insert_any(org.omg.CORBA.Any value)
+			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
 
 	// orbos 98-01-18: Objects By Value -- begin
 
@@ -419,11 +428,11 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * with this <code>DynAny</code> object.
 	 *
 	 * @param value
-	 *            the <code>java.io.Serializable</code> object to insert into
-	 *            this <code>DynAny</code> object
+	 *              the <code>java.io.Serializable</code> object to insert into
+	 *              this <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.InvalidValue
-	 *             if the value inserted is not consistent with the type of the
-	 *             accessed component in this <code>DynAny</code> object
+	 *         if the value inserted is not consistent with the type of the
+	 *         accessed component in this <code>DynAny</code> object
 	 */
 	public void insert_val(java.io.Serializable value)
 			throws org.omg.CORBA.DynAnyPackage.InvalidValue;
@@ -435,11 +444,12 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>java.io.Serializable</code> object that is the value
 	 *         for this <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>java.io.Serializable</code> object
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>java.io.Serializable</code> object
 	 */
-	public java.io.Serializable get_val() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
+	public java.io.Serializable get_val()
+			throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
 	// orbos 98-01-18: Objects By Value -- end
 
@@ -450,11 +460,12 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>boolean</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>boolean</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>boolean</code>
 	 */
-	public boolean get_boolean() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
+	public boolean get_boolean()
+			throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
 	/**
 	 * Retrieves the <code>byte</code> contained in this <code>DynAny</code>
@@ -463,9 +474,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>byte</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>byte</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>byte</code>
 	 */
 	public byte get_octet() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -476,9 +487,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>char</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>char</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>char</code>
 	 */
 	public char get_char() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -489,9 +500,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>short</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>short</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>short</code>
 	 */
 	public short get_short() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -502,9 +513,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>short</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>short</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>short</code>
 	 */
 	public short get_ushort() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -515,9 +526,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>int</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>int</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>int</code>
 	 */
 	public int get_long() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -528,9 +539,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>int</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>int</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>int</code>
 	 */
 	public int get_ulong() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -541,9 +552,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>float</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>float</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>float</code>
 	 */
 	public float get_float() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -554,9 +565,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>double</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>double</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>double</code>
 	 */
 	public double get_double() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -567,9 +578,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>String</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>String</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>String</code>
 	 */
 	public String get_string() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -580,11 +591,12 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>org.omg.CORBA.Other</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for an <code>org.omg.CORBA.Other</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for an <code>org.omg.CORBA.Other</code>
 	 */
-	public org.omg.CORBA.Object get_reference() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
+	public org.omg.CORBA.Object get_reference()
+			throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
 	/**
 	 * Retrieves the <code>org.omg.CORBA.TypeCode</code> contained in this
@@ -593,11 +605,12 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>org.omg.CORBA.TypeCode</code> that is the value for
 	 *         this <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>org.omg.CORBA.TypeCode</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>org.omg.CORBA.TypeCode</code>
 	 */
-	public org.omg.CORBA.TypeCode get_typecode() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
+	public org.omg.CORBA.TypeCode get_typecode()
+			throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
 	/**
 	 * Retrieves the <code>long</code> contained in this <code>DynAny</code>
@@ -606,9 +619,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>long</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>long</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>long</code>
 	 */
 	public long get_longlong() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -619,9 +632,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>long</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>long</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>long</code>
 	 */
 	public long get_ulonglong() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -632,9 +645,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>char</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>char</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>char</code>
 	 */
 	public char get_wchar() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -645,9 +658,9 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>String</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for a <code>String</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for a <code>String</code>
 	 */
 	public String get_wstring() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
@@ -658,11 +671,12 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * @return the <code>org.omg.CORBA.Any</code> that is the value for this
 	 *         <code>DynAny</code> object
 	 * @throws org.omg.CORBA.DynAnyPackage.TypeMismatch
-	 *             if the type code of the accessed component in this
-	 *             <code>DynAny</code> object is not equivalent to the type code
-	 *             for an <code>org.omg.CORBA.Any</code>
+	 *         if the type code of the accessed component in this
+	 *         <code>DynAny</code> object is not equivalent to the type code
+	 *         for an <code>org.omg.CORBA.Any</code>
 	 */
-	public org.omg.CORBA.Any get_any() throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
+	public org.omg.CORBA.Any get_any()
+			throws org.omg.CORBA.DynAnyPackage.TypeMismatch;
 
 	/**
 	 * Returns a <code>DynAny</code> object reference that can be used to
@@ -696,8 +710,8 @@ public interface DynAny extends org.omg.CORBA.Object {
 	 * sets a new offset for this pointer.
 	 *
 	 * @param index
-	 *            an <code>int</code> indicating the position to which the
-	 *            pointer should move. The first position is 0.
+	 *              an <code>int</code> indicating the position to which the
+	 *              pointer should move. The first position is 0.
 	 * @return <code>true</code> if the pointer points to a component;
 	 *         <code>false</code> if there is no component at the designated
 	 *         index. If this <code>DynAny</code> object is associated with a

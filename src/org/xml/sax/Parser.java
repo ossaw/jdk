@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // SAX parser interface.
@@ -90,10 +70,10 @@ public interface Parser {
 	 * </p>
 	 *
 	 * @param locale
-	 *            A Java Locale object.
+	 *               A Java Locale object.
 	 * @exception org.xml.sax.SAXException
-	 *                Throws an exception (using the previous or default locale)
-	 *                if the requested locale is not supported.
+	 *            Throws an exception (using the previous or default locale)
+	 *            if the requested locale is not supported.
 	 * @see org.xml.sax.SAXException
 	 * @see org.xml.sax.SAXParseException
 	 */
@@ -115,7 +95,7 @@ public interface Parser {
 	 * </p>
 	 *
 	 * @param resolver
-	 *            The object for resolving entities.
+	 *                 The object for resolving entities.
 	 * @see EntityResolver
 	 * @see HandlerBase
 	 */
@@ -136,7 +116,7 @@ public interface Parser {
 	 * </p>
 	 *
 	 * @param handler
-	 *            The DTD handler.
+	 *                The DTD handler.
 	 * @see DTDHandler
 	 * @see HandlerBase
 	 */
@@ -157,7 +137,7 @@ public interface Parser {
 	 * </p>
 	 *
 	 * @param handler
-	 *            The document handler.
+	 *                The document handler.
 	 * @see DocumentHandler
 	 * @see HandlerBase
 	 */
@@ -179,7 +159,7 @@ public interface Parser {
 	 * </p>
 	 *
 	 * @param handler
-	 *            The error handler.
+	 *                The error handler.
 	 * @see ErrorHandler
 	 * @see SAXException
 	 * @see HandlerBase
@@ -203,12 +183,12 @@ public interface Parser {
 	 * </p>
 	 *
 	 * @param source
-	 *            The input source for the top-level of the XML document.
+	 *               The input source for the top-level of the XML document.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 * @exception java.io.IOException
-	 *                An IO exception from the parser, possibly from a byte
-	 *                stream or character stream supplied by the application.
+	 *            An IO exception from the parser, possibly from a byte
+	 *            stream or character stream supplied by the application.
 	 * @see org.xml.sax.InputSource
 	 * @see #parse(java.lang.String)
 	 * @see #setEntityResolver
@@ -216,7 +196,8 @@ public interface Parser {
 	 * @see #setDocumentHandler
 	 * @see #setErrorHandler
 	 */
-	public abstract void parse(InputSource source) throws SAXException, IOException;
+	public abstract void parse(InputSource source) throws SAXException,
+			IOException;
 
 	/**
 	 * Parse an XML document from a system identifier (URI).
@@ -236,15 +217,16 @@ public interface Parser {
 	 * </p>
 	 *
 	 * @param systemId
-	 *            The system identifier (URI).
+	 *                 The system identifier (URI).
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 * @exception java.io.IOException
-	 *                An IO exception from the parser, possibly from a byte
-	 *                stream or character stream supplied by the application.
+	 *            An IO exception from the parser, possibly from a byte
+	 *            stream or character stream supplied by the application.
 	 * @see #parse(org.xml.sax.InputSource)
 	 */
-	public abstract void parse(String systemId) throws SAXException, IOException;
+	public abstract void parse(String systemId) throws SAXException,
+			IOException;
 
 }
 

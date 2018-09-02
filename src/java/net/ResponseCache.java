@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -72,8 +52,9 @@ public abstract class ResponseCache {
 	 * Gets the system-wide response cache.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it denies
-	 *             {@link NetPermission}{@code ("getResponseCache")}
+	 *                           If a security manager has been installed and it
+	 *                           denies
+	 *                           {@link NetPermission}{@code ("getResponseCache")}
 	 *
 	 * @see #setDefault(ResponseCache)
 	 * @return the system-wide {@code ResponseCache}
@@ -93,11 +74,13 @@ public abstract class ResponseCache {
 	 * Note: non-standard procotol handlers may ignore this setting.
 	 *
 	 * @param responseCache
-	 *            The response cache, or {@code null} to unset the cache.
+	 *                      The response cache, or {@code null} to unset the
+	 *                      cache.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it denies
-	 *             {@link NetPermission}{@code ("setResponseCache")}
+	 *                           If a security manager has been installed and it
+	 *                           denies
+	 *                           {@link NetPermission}{@code ("setResponseCache")}
 	 *
 	 * @see #getDefault()
 	 * @since 1.5
@@ -117,18 +100,20 @@ public abstract class ResponseCache {
 	 * cached response is returned, that resource is used instead.
 	 *
 	 * @param uri
-	 *            a {@code URI} used to reference the requested network resource
+	 *                    a {@code URI} used to reference the requested network
+	 *                    resource
 	 * @param rqstMethod
-	 *            a {@code String} representing the request method
+	 *                    a {@code String} representing the request method
 	 * @param rqstHeaders
-	 *            - a Map from request header field names to lists of field
-	 *            values representing the current request headers
+	 *                    - a Map from request header field names to lists of
+	 *                    field
+	 *                    values representing the current request headers
 	 * @return a {@code CacheResponse} instance if available from cache, or null
 	 *         otherwise
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                                  if an I/O error occurs
 	 * @throws IllegalArgumentException
-	 *             if any one of the arguments is null
+	 *                                  if any one of the arguments is null
 	 *
 	 * @see java.net.URLConnection#setUseCaches(boolean)
 	 * @see java.net.URLConnection#getUseCaches()
@@ -147,17 +132,19 @@ public abstract class ResponseCache {
 	 * resource is not to be cached, then put must return null.
 	 *
 	 * @param uri
-	 *            a {@code URI} used to reference the requested network resource
+	 *             a {@code URI} used to reference the requested network
+	 *             resource
 	 * @param conn
-	 *            - a URLConnection instance that is used to fetch the response
-	 *            to be cached
+	 *             - a URLConnection instance that is used to fetch the response
+	 *             to be cached
 	 * @return a {@code CacheRequest} for recording the response to be cached.
 	 *         Null return indicates that the caller does not intend to cache
 	 *         the response.
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                                  if an I/O error occurs
 	 * @throws IllegalArgumentException
-	 *             if any one of the arguments is null
+	 *                                  if any one of the arguments is null
 	 */
-	public abstract CacheRequest put(URI uri, URLConnection conn) throws IOException;
+	public abstract CacheRequest put(URI uri, URLConnection conn)
+			throws IOException;
 }

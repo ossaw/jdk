@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2000-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,20 +45,21 @@ public interface XMLComponentManager {
 	 * Returns the state of a feature.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                  The feature identifier.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown on configuration error.
+	 *                                   Thrown on configuration error.
 	 */
-	public boolean getFeature(String featureId) throws XMLConfigurationException;
+	public boolean getFeature(String featureId)
+			throws XMLConfigurationException;
 
 	/**
 	 * Returns the state of a feature. Does not throw exceptions.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                     The feature identifier.
 	 * @param defaultValue
-	 *            Default value if future is not available.
+	 *                     Default value if future is not available.
 	 */
 	public boolean getFeature(String featureId, boolean defaultValue);
 
@@ -69,20 +67,21 @@ public interface XMLComponentManager {
 	 * Returns the value of a property.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown on configuration error.
+	 *                                   Thrown on configuration error.
 	 */
-	public Object getProperty(String propertyId) throws XMLConfigurationException;
+	public Object getProperty(String propertyId)
+			throws XMLConfigurationException;
 
 	/**
 	 * Returns the value of a property. Does not throw exceptions.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                      The property identifier.
 	 * @param defaultObject
-	 *            Return value if property is not available.
+	 *                      Return value if property is not available.
 	 *
 	 */
 	public Object getProperty(String propertyId, Object defaultObject);

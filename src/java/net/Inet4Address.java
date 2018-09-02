@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -146,7 +126,8 @@ public final class Inet4Address extends InetAddress {
 	 * @return the alternate object to be serialized.
 	 *
 	 * @throws ObjectStreamException
-	 *             if a new object replacing this object could not be created
+	 *                               if a new object replacing this object could
+	 *                               not be created
 	 */
 	private Object writeReplace() throws ObjectStreamException {
 		// will replace the to be serialized 'this' object
@@ -214,7 +195,8 @@ public final class Inet4Address extends InetAddress {
 		// that have been Registered with IANA" by Bill Manning
 		// draft-manning-dsua-06.txt
 		int address = holder().getAddress();
-		return (((address >>> 24) & 0xFF) == 169) && (((address >>> 16) & 0xFF) == 254);
+		return (((address >>> 24) & 0xFF) == 169) && (((address >>> 16)
+				& 0xFF) == 254);
 	}
 
 	/**
@@ -230,9 +212,10 @@ public final class Inet4Address extends InetAddress {
 		// 172.16/12 prefix
 		// 192.168/16 prefix
 		int address = holder().getAddress();
-		return (((address >>> 24) & 0xFF) == 10)
-				|| ((((address >>> 24) & 0xFF) == 172) && (((address >>> 16) & 0xF0) == 16))
-				|| ((((address >>> 24) & 0xFF) == 192) && (((address >>> 16) & 0xFF) == 168));
+		return (((address >>> 24) & 0xFF) == 10) || ((((address >>> 24)
+				& 0xFF) == 172) && (((address >>> 16) & 0xF0) == 16))
+				|| ((((address >>> 24) & 0xFF) == 192) && (((address >>> 16)
+						& 0xFF) == 168));
 	}
 
 	/**
@@ -247,7 +230,8 @@ public final class Inet4Address extends InetAddress {
 		// 224.0.1.0 to 238.255.255.255
 		byte[] byteAddr = getAddress();
 		return ((byteAddr[0] & 0xff) >= 224 && (byteAddr[0] & 0xff) <= 238)
-				&& !((byteAddr[0] & 0xff) == 224 && byteAddr[1] == 0 && byteAddr[2] == 0);
+				&& !((byteAddr[0] & 0xff) == 224 && byteAddr[1] == 0
+						&& byteAddr[2] == 0);
 	}
 
 	/**
@@ -274,8 +258,8 @@ public final class Inet4Address extends InetAddress {
 	public boolean isMCLinkLocal() {
 		// 224.0.0/24 prefix and ttl == 1
 		int address = holder().getAddress();
-		return (((address >>> 24) & 0xFF) == 224) && (((address >>> 16) & 0xFF) == 0)
-				&& (((address >>> 8) & 0xFF) == 0);
+		return (((address >>> 24) & 0xFF) == 224) && (((address >>> 16)
+				& 0xFF) == 0) && (((address >>> 8) & 0xFF) == 0);
 	}
 
 	/**
@@ -289,7 +273,8 @@ public final class Inet4Address extends InetAddress {
 	public boolean isMCSiteLocal() {
 		// 239.255/16 prefix or ttl < 32
 		int address = holder().getAddress();
-		return (((address >>> 24) & 0xFF) == 239) && (((address >>> 16) & 0xFF) == 255);
+		return (((address >>> 24) & 0xFF) == 239) && (((address >>> 16)
+				& 0xFF) == 255);
 	}
 
 	/**
@@ -303,8 +288,8 @@ public final class Inet4Address extends InetAddress {
 	public boolean isMCOrgLocal() {
 		// 239.192 - 239.195
 		int address = holder().getAddress();
-		return (((address >>> 24) & 0xFF) == 239) && (((address >>> 16) & 0xFF) >= 192)
-				&& (((address >>> 16) & 0xFF) <= 195);
+		return (((address >>> 24) & 0xFF) == 239) && (((address >>> 16)
+				& 0xFF) >= 192) && (((address >>> 16) & 0xFF) <= 195);
 	}
 
 	/**
@@ -361,24 +346,22 @@ public final class Inet4Address extends InetAddress {
 	 */
 	public boolean equals(Object obj) {
 		return (obj != null) && (obj instanceof Inet4Address)
-				&& (((InetAddress) obj).holder().getAddress() == holder().getAddress());
+				&& (((InetAddress) obj).holder().getAddress() == holder()
+						.getAddress());
 	}
 
 	// Utilities
 	/*
 	 * Converts IPv4 binary address into a string suitable for presentation.
-	 *
 	 * @param src a byte array representing an IPv4 numeric address
-	 * 
 	 * @return a String representing the IPv4 address in textual representation
 	 * format
-	 * 
 	 * @since 1.4
 	 */
 
 	static String numericToTextFormat(byte[] src) {
-		return (src[0] & 0xff) + "." + (src[1] & 0xff) + "." + (src[2] & 0xff) + "."
-				+ (src[3] & 0xff);
+		return (src[0] & 0xff) + "." + (src[1] & 0xff) + "." + (src[2] & 0xff)
+				+ "." + (src[3] & 0xff);
 	}
 
 	/**

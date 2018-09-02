@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -94,6 +74,5 @@ class CharacterDataUndefined extends CharacterData {
 
 	static final CharacterData instance = new CharacterDataUndefined();
 
-	private CharacterDataUndefined() {
-	};
+	private CharacterDataUndefined() {};
 }

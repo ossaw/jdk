@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: Manifest.java,v 1.7 2005/05/10 16:03:46 mullan Exp $
@@ -54,8 +34,8 @@ import java.util.List;
  *
  * <pre>
  * XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
- * List references = Collections
- * 		.singletonList(factory.newReference("#reference-1", DigestMethod.SHA1));
+ * List references = Collections.singletonList(factory.newReference(
+ * 		"#reference-1", DigestMethod.SHA1));
  * Manifest manifest = factory.newManifest(references, "manifest-1");
  * </pre>
  *

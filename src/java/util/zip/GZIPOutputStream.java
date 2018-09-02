@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.zip;
@@ -48,7 +28,6 @@ public class GZIPOutputStream extends DeflaterOutputStream {
 
 	/*
 	 * Trailer size in bytes.
-	 *
 	 */
 	private final static int TRAILER_SIZE = 8;
 
@@ -60,13 +39,13 @@ public class GZIPOutputStream extends DeflaterOutputStream {
 	 * 3-argument constructor GZIPOutputStream(out, size, false).
 	 *
 	 * @param out
-	 *            the output stream
+	 *             the output stream
 	 * @param size
-	 *            the output buffer size
+	 *             the output buffer size
 	 * @exception IOException
-	 *                If an I/O error has occurred.
+	 *                                     If an I/O error has occurred.
 	 * @exception IllegalArgumentException
-	 *                if {@code size <= 0}
+	 *                                     if {@code size <= 0}
 	 */
 	public GZIPOutputStream(OutputStream out, int size) throws IOException {
 		this(out, size, false);
@@ -77,24 +56,28 @@ public class GZIPOutputStream extends DeflaterOutputStream {
 	 * mode.
 	 *
 	 * @param out
-	 *            the output stream
+	 *                  the output stream
 	 * @param size
-	 *            the output buffer size
+	 *                  the output buffer size
 	 * @param syncFlush
-	 *            if {@code true} invocation of the inherited
-	 *            {@link DeflaterOutputStream#flush() flush()} method of this
-	 *            instance flushes the compressor with flush mode
-	 *            {@link Deflater#SYNC_FLUSH} before flushing the output stream,
-	 *            otherwise only flushes the output stream
+	 *                  if {@code true} invocation of the inherited
+	 *                  {@link DeflaterOutputStream#flush() flush()} method of
+	 *                  this
+	 *                  instance flushes the compressor with flush mode
+	 *                  {@link Deflater#SYNC_FLUSH} before flushing the output
+	 *                  stream,
+	 *                  otherwise only flushes the output stream
 	 * @exception IOException
-	 *                If an I/O error has occurred.
+	 *                                     If an I/O error has occurred.
 	 * @exception IllegalArgumentException
-	 *                if {@code size <= 0}
+	 *                                     if {@code size <= 0}
 	 *
 	 * @since 1.7
 	 */
-	public GZIPOutputStream(OutputStream out, int size, boolean syncFlush) throws IOException {
-		super(out, new Deflater(Deflater.DEFAULT_COMPRESSION, true), size, syncFlush);
+	public GZIPOutputStream(OutputStream out, int size, boolean syncFlush)
+			throws IOException {
+		super(out, new Deflater(Deflater.DEFAULT_COMPRESSION, true), size,
+				syncFlush);
 		usesDefaultDeflater = true;
 		writeHeader();
 		crc.reset();
@@ -110,7 +93,7 @@ public class GZIPOutputStream extends DeflaterOutputStream {
 	 * @param out
 	 *            the output stream
 	 * @exception IOException
-	 *                If an I/O error has occurred.
+	 *                        If an I/O error has occurred.
 	 */
 	public GZIPOutputStream(OutputStream out) throws IOException {
 		this(out, 512, false);
@@ -121,20 +104,23 @@ public class GZIPOutputStream extends DeflaterOutputStream {
 	 * flush mode.
 	 *
 	 * @param out
-	 *            the output stream
+	 *                  the output stream
 	 * @param syncFlush
-	 *            if {@code true} invocation of the inherited
-	 *            {@link DeflaterOutputStream#flush() flush()} method of this
-	 *            instance flushes the compressor with flush mode
-	 *            {@link Deflater#SYNC_FLUSH} before flushing the output stream,
-	 *            otherwise only flushes the output stream
+	 *                  if {@code true} invocation of the inherited
+	 *                  {@link DeflaterOutputStream#flush() flush()} method of
+	 *                  this
+	 *                  instance flushes the compressor with flush mode
+	 *                  {@link Deflater#SYNC_FLUSH} before flushing the output
+	 *                  stream,
+	 *                  otherwise only flushes the output stream
 	 *
 	 * @exception IOException
-	 *                If an I/O error has occurred.
+	 *                        If an I/O error has occurred.
 	 *
 	 * @since 1.7
 	 */
-	public GZIPOutputStream(OutputStream out, boolean syncFlush) throws IOException {
+	public GZIPOutputStream(OutputStream out, boolean syncFlush)
+			throws IOException {
 		this(out, 512, syncFlush);
 	}
 
@@ -149,9 +135,10 @@ public class GZIPOutputStream extends DeflaterOutputStream {
 	 * @param len
 	 *            the length of the data
 	 * @exception IOException
-	 *                If an I/O error has occurred.
+	 *                        If an I/O error has occurred.
 	 */
-	public synchronized void write(byte[] buf, int off, int len) throws IOException {
+	public synchronized void write(byte[] buf, int off, int len)
+			throws IOException {
 		super.write(buf, off, len);
 		crc.update(buf, off, len);
 	}
@@ -162,7 +149,7 @@ public class GZIPOutputStream extends DeflaterOutputStream {
 	 * succession to the same output stream.
 	 * 
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                        if an I/O error has occurred
 	 */
 	public void finish() throws IOException {
 		if (!def.finished()) {

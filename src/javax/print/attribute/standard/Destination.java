@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -52,8 +32,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Phil Race.
  */
-public final class Destination extends URISyntax
-		implements PrintJobAttribute, PrintRequestAttribute {
+public final class Destination extends URISyntax implements PrintJobAttribute,
+		PrintRequestAttribute {
 
 	private static final long serialVersionUID = 6776739171700415321L;
 
@@ -64,7 +44,8 @@ public final class Destination extends URISyntax
 	 *            URI.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>uri</CODE> is null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>uri</CODE> is null.
 	 */
 	public Destination(URI uri) {
 		super(uri);
@@ -81,7 +62,7 @@ public final class Destination extends URISyntax
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this destination
 	 *         attribute, false otherwise.

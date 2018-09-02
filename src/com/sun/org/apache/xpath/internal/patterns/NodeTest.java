@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -84,8 +81,8 @@ public class NodeTest extends Expression {
 	 * are defined in the {@link org.w3c.dom.traversal.NodeFilter} interface.
 	 *
 	 * @param what
-	 *            bitset mainly defined in
-	 *            {@link org.w3c.dom.traversal.NodeFilter}.
+	 *             bitset mainly defined in
+	 *             {@link org.w3c.dom.traversal.NodeFilter}.
 	 */
 	public void setWhatToShow(int what) {
 		m_whatToShow = what;
@@ -111,7 +108,7 @@ public class NodeTest extends Expression {
 	 * Set the namespace to be tested.
 	 *
 	 * @param ns
-	 *            The namespace to be tested for, or {@link #WILD}, or null.
+	 *           The namespace to be tested for, or {@link #WILD}, or null.
 	 */
 	public void setNamespace(String ns) {
 		m_namespace = ns;
@@ -138,8 +135,8 @@ public class NodeTest extends Expression {
 	 * Set the local name to be tested.
 	 *
 	 * @param name
-	 *            the local name to be tested, or {@link #WILD}, or an empty
-	 *            string.
+	 *             the local name to be tested, or {@link #WILD}, or an empty
+	 *             string.
 	 */
 	public void setLocalName(String name) {
 		m_name = name;
@@ -160,7 +157,8 @@ public class NodeTest extends Expression {
 	 * @see <a href="http://www.w3.org/TR/xslt#conflict">XSLT Specification -
 	 *      5.5 Conflict Resolution for Template Rules</a>
 	 */
-	public static final XNumber SCORE_NODETEST = new XNumber(XPath.MATCH_SCORE_NODETEST);
+	public static final XNumber SCORE_NODETEST = new XNumber(
+			XPath.MATCH_SCORE_NODETEST);
 
 	/**
 	 * The match score if the pattern pattern has the form NCName:*.
@@ -168,7 +166,8 @@ public class NodeTest extends Expression {
 	 * @see <a href="http://www.w3.org/TR/xslt#conflict">XSLT Specification -
 	 *      5.5 Conflict Resolution for Template Rules</a>
 	 */
-	public static final XNumber SCORE_NSWILD = new XNumber(XPath.MATCH_SCORE_NSWILD);
+	public static final XNumber SCORE_NSWILD = new XNumber(
+			XPath.MATCH_SCORE_NSWILD);
 
 	/**
 	 * The match score if the pattern has the form of a QName optionally
@@ -177,7 +176,8 @@ public class NodeTest extends Expression {
 	 * @see <a href="http://www.w3.org/TR/xslt#conflict">XSLT Specification -
 	 *      5.5 Conflict Resolution for Template Rules</a>
 	 */
-	public static final XNumber SCORE_QNAME = new XNumber(XPath.MATCH_SCORE_QNAME);
+	public static final XNumber SCORE_QNAME = new XNumber(
+			XPath.MATCH_SCORE_QNAME);
 
 	/**
 	 * The match score if the pattern consists of something other than just a
@@ -186,7 +186,8 @@ public class NodeTest extends Expression {
 	 * @see <a href="http://www.w3.org/TR/xslt#conflict">XSLT Specification -
 	 *      5.5 Conflict Resolution for Template Rules</a>
 	 */
-	public static final XNumber SCORE_OTHER = new XNumber(XPath.MATCH_SCORE_OTHER);
+	public static final XNumber SCORE_OTHER = new XNumber(
+			XPath.MATCH_SCORE_OTHER);
 
 	/**
 	 * The match score if no match is made.
@@ -194,19 +195,20 @@ public class NodeTest extends Expression {
 	 * @see <a href="http://www.w3.org/TR/xslt#conflict">XSLT Specification -
 	 *      5.5 Conflict Resolution for Template Rules</a>
 	 */
-	public static final XNumber SCORE_NONE = new XNumber(XPath.MATCH_SCORE_NONE);
+	public static final XNumber SCORE_NONE = new XNumber(
+			XPath.MATCH_SCORE_NONE);
 
 	/**
 	 * Construct an NodeTest that tests for namespaces and node names.
 	 *
 	 *
 	 * @param whatToShow
-	 *            Bit set defined mainly by
-	 *            {@link org.w3c.dom.traversal.NodeFilter}.
+	 *                   Bit set defined mainly by
+	 *                   {@link org.w3c.dom.traversal.NodeFilter}.
 	 * @param namespace
-	 *            The namespace to be tested.
+	 *                   The namespace to be tested.
 	 * @param name
-	 *            The local name to be tested.
+	 *                   The local name to be tested.
 	 */
 	public NodeTest(int whatToShow, String namespace, String name) {
 		initNodeTest(whatToShow, namespace, name);
@@ -217,8 +219,8 @@ public class NodeTest extends Expression {
 	 *
 	 *
 	 * @param whatToShow
-	 *            Bit set defined mainly by
-	 *            {@link org.w3c.dom.traversal.NodeFilter}.
+	 *                   Bit set defined mainly by
+	 *                   {@link org.w3c.dom.traversal.NodeFilter}.
 	 */
 	public NodeTest(int whatToShow) {
 		initNodeTest(whatToShow);
@@ -261,8 +263,7 @@ public class NodeTest extends Expression {
 	/**
 	 * Null argument constructor.
 	 */
-	public NodeTest() {
-	}
+	public NodeTest() {}
 
 	/**
 	 * Initialize this node test by setting the whatToShow property, and
@@ -270,8 +271,8 @@ public class NodeTest extends Expression {
 	 *
 	 *
 	 * @param whatToShow
-	 *            Bit set defined mainly by
-	 *            {@link org.w3c.dom.traversal.NodeFilter}.
+	 *                   Bit set defined mainly by
+	 *                   {@link org.w3c.dom.traversal.NodeFilter}.
 	 */
 	public void initNodeTest(int whatToShow) {
 
@@ -287,12 +288,12 @@ public class NodeTest extends Expression {
 	 *
 	 *
 	 * @param whatToShow
-	 *            Bit set defined mainly by
-	 *            {@link org.w3c.dom.traversal.NodeFilter}.
+	 *                   Bit set defined mainly by
+	 *                   {@link org.w3c.dom.traversal.NodeFilter}.
 	 * @param namespace
-	 *            The namespace to be tested.
+	 *                   The namespace to be tested.
 	 * @param name
-	 *            The local name to be tested.
+	 *                   The local name to be tested.
 	 */
 	public void initNodeTest(int whatToShow, String namespace, String name) {
 
@@ -323,7 +324,7 @@ public class NodeTest extends Expression {
 	 * Set the static score for this node test.
 	 * 
 	 * @param score
-	 *            Should be one of the SCORE_XXX constants.
+	 *              Should be one of the SCORE_XXX constants.
 	 */
 	public void setStaticScore(XNumber score) {
 		m_score = score;
@@ -336,7 +337,8 @@ public class NodeTest extends Expression {
 
 		if ((m_namespace == null) && (m_name == null))
 			m_score = SCORE_NODETEST;
-		else if (((m_namespace == WILD) || (m_namespace == null)) && (m_name == WILD))
+		else if (((m_namespace == WILD) || (m_namespace == null))
+				&& (m_name == WILD))
 			m_score = SCORE_NODETEST;
 		else if ((m_namespace != WILD) && (m_name == WILD))
 			m_score = SCORE_NSWILD;
@@ -360,8 +362,8 @@ public class NodeTest extends Expression {
 	 * Tell what node type to test, if not DTMFilter.SHOW_ALL.
 	 *
 	 * @param whatToShow
-	 *            Bit set defined mainly by
-	 *            {@link com.sun.org.apache.xml.internal.dtm.DTMFilter}.
+	 *                   Bit set defined mainly by
+	 *                   {@link com.sun.org.apache.xml.internal.dtm.DTMFilter}.
 	 * @return the node type for the whatToShow. Since whatToShow can specify
 	 *         multiple types, it will return the first bit tested that is on,
 	 *         so the caller of this function should take care that this is the
@@ -417,8 +419,8 @@ public class NodeTest extends Expression {
 	 *
 	 *
 	 * @param whatToShow
-	 *            Bit set defined mainly by
-	 *            {@link com.sun.org.apache.xml.internal.dtm.DTMFilter}.
+	 *                   Bit set defined mainly by
+	 *                   {@link com.sun.org.apache.xml.internal.dtm.DTMFilter}.
 	 */
 	public static void debugWhatToShow(int whatToShow) {
 
@@ -483,9 +485,9 @@ public class NodeTest extends Expression {
 	 * wild and the name p is non-null, or the two strings are equal.
 	 *
 	 * @param p
-	 *            part string from the node.
+	 *          part string from the node.
 	 * @param t
-	 *            target string, which may be {@link #WILD}.
+	 *          target string, which may be {@link #WILD}.
 	 *
 	 * @return true if the strings match according to the rules of this method.
 	 */
@@ -502,17 +504,17 @@ public class NodeTest extends Expression {
 	 * namespaces as "".
 	 *
 	 * @param p
-	 *            part string from the node, which may represent the null
-	 *            namespace as null or as "".
+	 *          part string from the node, which may represent the null
+	 *          namespace as null or as "".
 	 * @param t
-	 *            target string, which may be {@link #WILD}.
+	 *          target string, which may be {@link #WILD}.
 	 *
 	 * @return true if the strings match according to the rules of this method.
 	 */
 	private static final boolean subPartMatchNS(String p, String t) {
 
-		return (p == t)
-				|| ((null != p) && ((p.length() > 0) ? ((t == WILD) || p.equals(t)) : null == t));
+		return (p == t) || ((null != p) && ((p.length() > 0) ? ((t == WILD) || p
+				.equals(t)) : null == t));
 	}
 
 	/**
@@ -520,9 +522,9 @@ public class NodeTest extends Expression {
 	 *
 	 *
 	 * @param xctxt
-	 *            XPath runtime context.
+	 *                XPath runtime context.
 	 * @param context
-	 *            The node being tested.
+	 *                The node being tested.
 	 *
 	 * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
 	 *         ,
@@ -549,45 +551,47 @@ public class NodeTest extends Expression {
 		int nodeBit = (m_whatToShow & (0x00000001 << (nodeType - 1)));
 
 		switch (nodeBit) {
-		case DTMFilter.SHOW_DOCUMENT_FRAGMENT:
-		case DTMFilter.SHOW_DOCUMENT:
-			return SCORE_OTHER;
-		case DTMFilter.SHOW_COMMENT:
-			return m_score;
-		case DTMFilter.SHOW_CDATA_SECTION:
-		case DTMFilter.SHOW_TEXT:
+			case DTMFilter.SHOW_DOCUMENT_FRAGMENT:
+			case DTMFilter.SHOW_DOCUMENT:
+				return SCORE_OTHER;
+			case DTMFilter.SHOW_COMMENT:
+				return m_score;
+			case DTMFilter.SHOW_CDATA_SECTION:
+			case DTMFilter.SHOW_TEXT:
 
-			// was:
-			// return (!xctxt.getDOMHelper().shouldStripSourceNode(context))
-			// ? m_score : SCORE_NONE;
-			return m_score;
-		case DTMFilter.SHOW_PROCESSING_INSTRUCTION:
-			return subPartMatch(dtm.getNodeName(context), m_name) ? m_score : SCORE_NONE;
+				// was:
+				// return (!xctxt.getDOMHelper().shouldStripSourceNode(context))
+				// ? m_score : SCORE_NONE;
+				return m_score;
+			case DTMFilter.SHOW_PROCESSING_INSTRUCTION:
+				return subPartMatch(dtm.getNodeName(context), m_name) ? m_score
+						: SCORE_NONE;
 
-		// From the draft: "Two expanded names are equal if they
-		// have the same local part, and either both have no URI or
-		// both have the same URI."
-		// "A node test * is true for any node of the principal node type.
-		// For example, child::* will select all element children of the
-		// context node, and attribute::* will select all attributes of
-		// the context node."
-		// "A node test can have the form NCName:*. In this case, the prefix
-		// is expanded in the same way as with a QName using the context
-		// namespace declarations. The node test will be true for any node
-		// of the principal type whose expanded name has the URI to which
-		// the prefix expands, regardless of the local part of the name."
-		case DTMFilter.SHOW_NAMESPACE: {
-			String ns = dtm.getLocalName(context);
+			// From the draft: "Two expanded names are equal if they
+			// have the same local part, and either both have no URI or
+			// both have the same URI."
+			// "A node test * is true for any node of the principal node type.
+			// For example, child::* will select all element children of the
+			// context node, and attribute::* will select all attributes of
+			// the context node."
+			// "A node test can have the form NCName:*. In this case, the prefix
+			// is expanded in the same way as with a QName using the context
+			// namespace declarations. The node test will be true for any node
+			// of the principal type whose expanded name has the URI to which
+			// the prefix expands, regardless of the local part of the name."
+			case DTMFilter.SHOW_NAMESPACE: {
+				String ns = dtm.getLocalName(context);
 
-			return (subPartMatch(ns, m_name)) ? m_score : SCORE_NONE;
-		}
-		case DTMFilter.SHOW_ATTRIBUTE:
-		case DTMFilter.SHOW_ELEMENT: {
-			return (m_isTotallyWild || (subPartMatchNS(dtm.getNamespaceURI(context), m_namespace)
-					&& subPartMatch(dtm.getLocalName(context), m_name))) ? m_score : SCORE_NONE;
-		}
-		default:
-			return SCORE_NONE;
+				return (subPartMatch(ns, m_name)) ? m_score : SCORE_NONE;
+			}
+			case DTMFilter.SHOW_ATTRIBUTE:
+			case DTMFilter.SHOW_ELEMENT: {
+				return (m_isTotallyWild || (subPartMatchNS(dtm.getNamespaceURI(
+						context), m_namespace) && subPartMatch(dtm.getLocalName(
+								context), m_name))) ? m_score : SCORE_NONE;
+			}
+			default:
+				return SCORE_NONE;
 		} // end switch(testType)
 	}
 
@@ -596,9 +600,9 @@ public class NodeTest extends Expression {
 	 *
 	 *
 	 * @param xctxt
-	 *            XPath runtime context.
+	 *                XPath runtime context.
 	 * @param context
-	 *            The node being tested.
+	 *                The node being tested.
 	 *
 	 * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
 	 *         ,
@@ -613,54 +617,57 @@ public class NodeTest extends Expression {
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt, int context, DTM dtm, int expType)
-			throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt, int context, DTM dtm,
+			int expType) throws javax.xml.transform.TransformerException {
 
 		if (m_whatToShow == DTMFilter.SHOW_ALL)
 			return m_score;
 
-		int nodeBit = (m_whatToShow & (0x00000001 << ((dtm.getNodeType(context)) - 1)));
+		int nodeBit = (m_whatToShow & (0x00000001 << ((dtm.getNodeType(context))
+				- 1)));
 
 		switch (nodeBit) {
-		case DTMFilter.SHOW_DOCUMENT_FRAGMENT:
-		case DTMFilter.SHOW_DOCUMENT:
-			return SCORE_OTHER;
-		case DTMFilter.SHOW_COMMENT:
-			return m_score;
-		case DTMFilter.SHOW_CDATA_SECTION:
-		case DTMFilter.SHOW_TEXT:
+			case DTMFilter.SHOW_DOCUMENT_FRAGMENT:
+			case DTMFilter.SHOW_DOCUMENT:
+				return SCORE_OTHER;
+			case DTMFilter.SHOW_COMMENT:
+				return m_score;
+			case DTMFilter.SHOW_CDATA_SECTION:
+			case DTMFilter.SHOW_TEXT:
 
-			// was:
-			// return (!xctxt.getDOMHelper().shouldStripSourceNode(context))
-			// ? m_score : SCORE_NONE;
-			return m_score;
-		case DTMFilter.SHOW_PROCESSING_INSTRUCTION:
-			return subPartMatch(dtm.getNodeName(context), m_name) ? m_score : SCORE_NONE;
+				// was:
+				// return (!xctxt.getDOMHelper().shouldStripSourceNode(context))
+				// ? m_score : SCORE_NONE;
+				return m_score;
+			case DTMFilter.SHOW_PROCESSING_INSTRUCTION:
+				return subPartMatch(dtm.getNodeName(context), m_name) ? m_score
+						: SCORE_NONE;
 
-		// From the draft: "Two expanded names are equal if they
-		// have the same local part, and either both have no URI or
-		// both have the same URI."
-		// "A node test * is true for any node of the principal node type.
-		// For example, child::* will select all element children of the
-		// context node, and attribute::* will select all attributes of
-		// the context node."
-		// "A node test can have the form NCName:*. In this case, the prefix
-		// is expanded in the same way as with a QName using the context
-		// namespace declarations. The node test will be true for any node
-		// of the principal type whose expanded name has the URI to which
-		// the prefix expands, regardless of the local part of the name."
-		case DTMFilter.SHOW_NAMESPACE: {
-			String ns = dtm.getLocalName(context);
+			// From the draft: "Two expanded names are equal if they
+			// have the same local part, and either both have no URI or
+			// both have the same URI."
+			// "A node test * is true for any node of the principal node type.
+			// For example, child::* will select all element children of the
+			// context node, and attribute::* will select all attributes of
+			// the context node."
+			// "A node test can have the form NCName:*. In this case, the prefix
+			// is expanded in the same way as with a QName using the context
+			// namespace declarations. The node test will be true for any node
+			// of the principal type whose expanded name has the URI to which
+			// the prefix expands, regardless of the local part of the name."
+			case DTMFilter.SHOW_NAMESPACE: {
+				String ns = dtm.getLocalName(context);
 
-			return (subPartMatch(ns, m_name)) ? m_score : SCORE_NONE;
-		}
-		case DTMFilter.SHOW_ATTRIBUTE:
-		case DTMFilter.SHOW_ELEMENT: {
-			return (m_isTotallyWild || (subPartMatchNS(dtm.getNamespaceURI(context), m_namespace)
-					&& subPartMatch(dtm.getLocalName(context), m_name))) ? m_score : SCORE_NONE;
-		}
-		default:
-			return SCORE_NONE;
+				return (subPartMatch(ns, m_name)) ? m_score : SCORE_NONE;
+			}
+			case DTMFilter.SHOW_ATTRIBUTE:
+			case DTMFilter.SHOW_ELEMENT: {
+				return (m_isTotallyWild || (subPartMatchNS(dtm.getNamespaceURI(
+						context), m_namespace) && subPartMatch(dtm.getLocalName(
+								context), m_name))) ? m_score : SCORE_NONE;
+			}
+			default:
+				return SCORE_NONE;
 		} // end switch(testType)
 	}
 
@@ -668,7 +675,7 @@ public class NodeTest extends Expression {
 	 * Test the current node to see if it matches the given node test.
 	 *
 	 * @param xctxt
-	 *            XPath runtime context.
+	 *              XPath runtime context.
 	 *
 	 * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
 	 *         ,
@@ -683,7 +690,8 @@ public class NodeTest extends Expression {
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		return execute(xctxt, xctxt.getCurrentNode());
 	}
 
@@ -699,7 +707,8 @@ public class NodeTest extends Expression {
 	 *      XPathVisitor)
 	 */
 	public void callVisitors(ExpressionOwner owner, XPathVisitor visitor) {
-		assertion(false, "callVisitors should not be called for this object!!!");
+		assertion(false,
+				"callVisitors should not be called for this object!!!");
 	}
 
 }

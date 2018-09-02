@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -32,8 +12,7 @@ package java.nio.file;
  */
 
 public final class StandardWatchEventKinds {
-	private StandardWatchEventKinds() {
-	}
+	private StandardWatchEventKinds() {}
 
 	/**
 	 * A special event to indicate that events may have been lost or discarded.
@@ -45,8 +24,8 @@ public final class StandardWatchEventKinds {
 	 *
 	 * @see WatchService
 	 */
-	public static final WatchEvent.Kind<Object> OVERFLOW = new StdWatchEventKind<Object>("OVERFLOW",
-			Object.class);
+	public static final WatchEvent.Kind<Object> OVERFLOW = new StdWatchEventKind<Object>(
+			"OVERFLOW", Object.class);
 
 	/**
 	 * Directory entry created.

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.basic;
 
@@ -160,13 +140,15 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		String nm = getKeymapName();
 		Keymap map = JTextComponent.getKeymap(nm);
 		if (map == null) {
-			Keymap parent = JTextComponent.getKeymap(JTextComponent.DEFAULT_KEYMAP);
+			Keymap parent = JTextComponent.getKeymap(
+					JTextComponent.DEFAULT_KEYMAP);
 			map = JTextComponent.addKeymap(nm, parent);
 			String prefix = getPropertyPrefix();
 			Object o = DefaultLookup.get(editor, this, prefix + ".keyBindings");
 			if ((o != null) && (o instanceof JTextComponent.KeyBinding[])) {
 				JTextComponent.KeyBinding[] bindings = (JTextComponent.KeyBinding[]) o;
-				JTextComponent.loadKeymap(map, bindings, getComponent().getActions());
+				JTextComponent.loadKeymap(map, bindings, getComponent()
+						.getActions());
 			}
 		}
 		return map;
@@ -187,7 +169,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 *            the property change event
 	 */
 	protected void propertyChange(PropertyChangeEvent evt) {
-		if (evt.getPropertyName().equals("editable") || evt.getPropertyName().equals("enabled")) {
+		if (evt.getPropertyName().equals("editable") || evt.getPropertyName()
+				.equals("enabled")) {
 
 			updateBackground((JTextComponent) evt.getSource());
 		}
@@ -198,7 +181,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * component is editable and/or enabled.
 	 *
 	 * @param c
-	 *            the JTextComponent that needs its background color updated
+	 *          the JTextComponent that needs its background color updated
 	 */
 	private void updateBackground(JTextComponent c) {
 		// This is a temporary workaround.
@@ -217,11 +200,12 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		if (background instanceof UIResource) {
 			String prefix = getPropertyPrefix();
 
-			Color disabledBG = DefaultLookup.getColor(c, this, prefix + ".disabledBackground",
+			Color disabledBG = DefaultLookup.getColor(c, this, prefix
+					+ ".disabledBackground", null);
+			Color inactiveBG = DefaultLookup.getColor(c, this, prefix
+					+ ".inactiveBackground", null);
+			Color bg = DefaultLookup.getColor(c, this, prefix + ".background",
 					null);
-			Color inactiveBG = DefaultLookup.getColor(c, this, prefix + ".inactiveBackground",
-					null);
-			Color bg = DefaultLookup.getColor(c, this, prefix + ".background", null);
 
 			/*
 			 * In an ideal situation, the following check would not be necessary
@@ -229,21 +213,19 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 			 * UIResouce. However, it turns out that there is existing code that
 			 * uses the following inadvisable pattern to turn a text area into
 			 * what appears to be a multi-line label:
-			 *
 			 * JLabel label = new JLabel(); JTextArea area = new JTextArea();
 			 * area.setBackground(label.getBackground());
 			 * area.setEditable(false);
-			 *
 			 * JLabel's default background is a UIResource. As such, just
 			 * checking for UIResource would have us always changing the
 			 * background away from what the developer wanted.
-			 *
 			 * Therefore, for JTextArea/JEditorPane, we'll additionally check
 			 * that the color we're about to replace matches one that was
 			 * installed by us from the UIDefaults.
 			 */
-			if ((c instanceof JTextArea || c instanceof JEditorPane) && background != disabledBG
-					&& background != inactiveBG && background != bg) {
+			if ((c instanceof JTextArea || c instanceof JEditorPane)
+					&& background != disabledBG && background != inactiveBG
+					&& background != bg) {
 
 				return;
 			}
@@ -301,22 +283,26 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 
 		Color color = editor.getCaretColor();
 		if ((color == null) || (color instanceof UIResource)) {
-			editor.setCaretColor(UIManager.getColor(prefix + ".caretForeground"));
+			editor.setCaretColor(UIManager.getColor(prefix
+					+ ".caretForeground"));
 		}
 
 		Color s = editor.getSelectionColor();
 		if ((s == null) || (s instanceof UIResource)) {
-			editor.setSelectionColor(UIManager.getColor(prefix + ".selectionBackground"));
+			editor.setSelectionColor(UIManager.getColor(prefix
+					+ ".selectionBackground"));
 		}
 
 		Color sfg = editor.getSelectedTextColor();
 		if ((sfg == null) || (sfg instanceof UIResource)) {
-			editor.setSelectedTextColor(UIManager.getColor(prefix + ".selectionForeground"));
+			editor.setSelectedTextColor(UIManager.getColor(prefix
+					+ ".selectionForeground"));
 		}
 
 		Color dfg = editor.getDisabledTextColor();
 		if ((dfg == null) || (dfg instanceof UIResource)) {
-			editor.setDisabledTextColor(UIManager.getColor(prefix + ".inactiveForeground"));
+			editor.setDisabledTextColor(UIManager.getColor(prefix
+					+ ".inactiveForeground"));
 		}
 
 		Border b = editor.getBorder();
@@ -343,7 +329,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 			caret = createCaret();
 			editor.setCaret(caret);
 
-			int rate = DefaultLookup.getInt(getComponent(), this, prefix + ".caretBlinkRate", 500);
+			int rate = DefaultLookup.getInt(getComponent(), this, prefix
+					+ ".caretBlinkRate", 500);
 			caret.setBlinkRate(rate);
 		}
 
@@ -414,14 +401,12 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	/**
 	 * Installs listeners for the UI.
 	 */
-	protected void installListeners() {
-	}
+	protected void installListeners() {}
 
 	/**
 	 * Uninstalls listeners for the UI.
 	 */
-	protected void uninstallListeners() {
-	}
+	protected void uninstallListeners() {}
 
 	protected void installKeyboardActions() {
 		// backward compatibility support... keymaps for the UI
@@ -430,7 +415,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 
 		InputMap km = getInputMap();
 		if (km != null) {
-			SwingUtilities.replaceUIInputMap(editor, JComponent.WHEN_FOCUSED, km);
+			SwingUtilities.replaceUIInputMap(editor, JComponent.WHEN_FOCUSED,
+					km);
 		}
 
 		ActionMap map = getActionMap();
@@ -463,19 +449,21 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		char accelerator = editor.getFocusAccelerator();
 
 		if (changed || accelerator != '\0') {
-			InputMap km = SwingUtilities.getUIInputMap(editor, JComponent.WHEN_IN_FOCUSED_WINDOW);
+			InputMap km = SwingUtilities.getUIInputMap(editor,
+					JComponent.WHEN_IN_FOCUSED_WINDOW);
 
 			if (km == null && accelerator != '\0') {
 				km = new ComponentInputMapUIResource(editor);
-				SwingUtilities.replaceUIInputMap(editor, JComponent.WHEN_IN_FOCUSED_WINDOW, km);
+				SwingUtilities.replaceUIInputMap(editor,
+						JComponent.WHEN_IN_FOCUSED_WINDOW, km);
 				ActionMap am = getActionMap();
 				SwingUtilities.replaceUIActionMap(editor, am);
 			}
 			if (km != null) {
 				km.clear();
 				if (accelerator != '\0') {
-					km.put(KeyStroke.getKeyStroke(accelerator,
-							BasicLookAndFeel.getFocusAcceleratorKeyMask()), "requestFocus");
+					km.put(KeyStroke.getKeyStroke(accelerator, BasicLookAndFeel
+							.getFocusAcceleratorKeyMask()), "requestFocus");
 				}
 			}
 		}
@@ -497,23 +485,28 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		EditorKit editorKit = getEditorKit(editor);
 		if (editorKit != null && editorKit instanceof DefaultEditorKit) {
 			Set<AWTKeyStroke> storedForwardTraversalKeys = editor
-					.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS);
+					.getFocusTraversalKeys(
+							KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS);
 			Set<AWTKeyStroke> storedBackwardTraversalKeys = editor
-					.getFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS);
+					.getFocusTraversalKeys(
+							KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS);
 			Set<AWTKeyStroke> forwardTraversalKeys = new HashSet<AWTKeyStroke>(
 					storedForwardTraversalKeys);
 			Set<AWTKeyStroke> backwardTraversalKeys = new HashSet<AWTKeyStroke>(
 					storedBackwardTraversalKeys);
 			if (editor.isEditable()) {
-				forwardTraversalKeys.remove(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0));
-				backwardTraversalKeys
-						.remove(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, InputEvent.SHIFT_MASK));
+				forwardTraversalKeys.remove(KeyStroke.getKeyStroke(
+						KeyEvent.VK_TAB, 0));
+				backwardTraversalKeys.remove(KeyStroke.getKeyStroke(
+						KeyEvent.VK_TAB, InputEvent.SHIFT_MASK));
 			} else {
-				forwardTraversalKeys.add(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0));
-				backwardTraversalKeys
-						.add(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, InputEvent.SHIFT_MASK));
+				forwardTraversalKeys.add(KeyStroke.getKeyStroke(KeyEvent.VK_TAB,
+						0));
+				backwardTraversalKeys.add(KeyStroke.getKeyStroke(
+						KeyEvent.VK_TAB, InputEvent.SHIFT_MASK));
 			}
-			LookAndFeel.installProperty(editor, "focusTraversalKeysForward", forwardTraversalKeys);
+			LookAndFeel.installProperty(editor, "focusTraversalKeysForward",
+					forwardTraversalKeys);
 			LookAndFeel.installProperty(editor, "focusTraversalKeysBackward",
 					backwardTraversalKeys);
 		}
@@ -524,7 +517,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * As needed updates cursor for the target editor.
 	 */
 	private void updateCursor() {
-		if ((!editor.isCursorSet()) || editor.getCursor() instanceof UIResource) {
+		if ((!editor.isCursorSet()) || editor
+				.getCursor() instanceof UIResource) {
 			Cursor cursor = (editor.isEditable()) ? textCursor : null;
 			editor.setCursor(cursor);
 		}
@@ -556,16 +550,15 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		/*
 		 * fix for bug 4515750 JTextField & non-editable JTextArea bind return
 		 * key - default btn not accessible
-		 *
 		 * Wrap the return action so that it is only enabled when the component
 		 * is editable. This allows the default button to be processed when the
 		 * text component has focus and isn't editable.
-		 *
 		 */
 		if (getEditorKit(editor) instanceof DefaultEditorKit) {
 			if (map != null) {
 				Object obj = map.get(DefaultEditorKit.insertBreakAction);
-				if (obj != null && obj instanceof DefaultEditorKit.InsertBreakAction) {
+				if (obj != null
+						&& obj instanceof DefaultEditorKit.InsertBreakAction) {
 					Action action = new TextActionWrapper((TextAction) obj);
 					componentMap.put(action.getValue(Action.NAME), action);
 				}
@@ -602,7 +595,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 
 	protected void uninstallKeyboardActions() {
 		editor.setKeymap(null);
-		SwingUtilities.replaceUIInputMap(editor, JComponent.WHEN_IN_FOCUSED_WINDOW, null);
+		SwingUtilities.replaceUIInputMap(editor,
+				JComponent.WHEN_IN_FOCUSED_WINDOW, null);
 		SwingUtilities.replaceUIActionMap(editor, null);
 	}
 
@@ -612,7 +606,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * background color of the component.
 	 *
 	 * @param g
-	 *            the graphics context
+	 *          the graphics context
 	 */
 	protected void paintBackground(Graphics g) {
 		g.setColor(editor.getBackground());
@@ -648,7 +642,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * assumed to have come from components embedded in views).
 	 *
 	 * @param v
-	 *            the root view
+	 *          the root view
 	 */
 	protected final void setView(View v) {
 		rootView.setView(v);
@@ -670,7 +664,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * </ol>
 	 *
 	 * @param g
-	 *            the graphics context
+	 *          the graphics context
 	 */
 	protected void paintSafely(Graphics g) {
 		painted = true;
@@ -721,7 +715,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * </ol>
 	 *
 	 * @param c
-	 *            the editor component
+	 *          the editor component
 	 * @see ComponentUI#installUI
 	 */
 	public void installUI(JComponent c) {
@@ -745,7 +739,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 				// no model, create a default one. This will
 				// fire a notification to the updateHandler
 				// which takes care of the rest.
-				editor.setDocument(getEditorKit(editor).createDefaultDocument());
+				editor.setDocument(getEditorKit(editor)
+						.createDefaultDocument());
 			} else {
 				doc.addDocumentListener(updateHandler);
 				modelChanged();
@@ -773,7 +768,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * the highlighter, removes views, and nulls out the keymap.
 	 *
 	 * @param c
-	 *            the editor component
+	 *          the editor component
 	 * @see ComponentUI#uninstallUI
 	 */
 	public void uninstallUI(JComponent c) {
@@ -819,9 +814,9 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * asynchronously.
 	 *
 	 * @param g
-	 *            the graphics context
+	 *          the graphics context
 	 * @param c
-	 *            the editor component
+	 *          the editor component
 	 */
 	public final void paint(Graphics g, JComponent c) {
 		if ((rootView.getViewCount() > 0) && (rootView.getView(0) != null)) {
@@ -849,7 +844,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * give the same answer either way.
 	 *
 	 * @param c
-	 *            the editor component
+	 *          the editor component
 	 * @return the size
 	 */
 	public Dimension getPreferredSize(JComponent c) {
@@ -861,18 +856,20 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 			((AbstractDocument) doc).readLock();
 		}
 		try {
-			if ((d.width > (i.left + i.right)) && (d.height > (i.top + i.bottom))) {
-				rootView.setSize(d.width - i.left - i.right, d.height - i.top - i.bottom);
+			if ((d.width > (i.left + i.right)) && (d.height > (i.top
+					+ i.bottom))) {
+				rootView.setSize(d.width - i.left - i.right, d.height - i.top
+						- i.bottom);
 			} else if (d.width == 0 && d.height == 0) {
 				// Probably haven't been layed out yet, force some sort of
 				// initial sizing.
 				rootView.setSize(Integer.MAX_VALUE, Integer.MAX_VALUE);
 			}
-			d.width = (int) Math.min(
-					(long) rootView.getPreferredSpan(View.X_AXIS) + (long) i.left + (long) i.right,
+			d.width = (int) Math.min((long) rootView.getPreferredSpan(
+					View.X_AXIS) + (long) i.left + (long) i.right,
 					Integer.MAX_VALUE);
-			d.height = (int) Math.min(
-					(long) rootView.getPreferredSpan(View.Y_AXIS) + (long) i.top + (long) i.bottom,
+			d.height = (int) Math.min((long) rootView.getPreferredSpan(
+					View.Y_AXIS) + (long) i.top + (long) i.bottom,
 					Integer.MAX_VALUE);
 		} finally {
 			if (doc instanceof AbstractDocument) {
@@ -886,7 +883,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * Gets the minimum size for the editor component.
 	 *
 	 * @param c
-	 *            the editor component
+	 *          the editor component
 	 * @return the size
 	 */
 	public Dimension getMinimumSize(JComponent c) {
@@ -897,8 +894,10 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 			((AbstractDocument) doc).readLock();
 		}
 		try {
-			d.width = (int) rootView.getMinimumSpan(View.X_AXIS) + i.left + i.right;
-			d.height = (int) rootView.getMinimumSpan(View.Y_AXIS) + i.top + i.bottom;
+			d.width = (int) rootView.getMinimumSpan(View.X_AXIS) + i.left
+					+ i.right;
+			d.height = (int) rootView.getMinimumSpan(View.Y_AXIS) + i.top
+					+ i.bottom;
 		} finally {
 			if (doc instanceof AbstractDocument) {
 				((AbstractDocument) doc).readUnlock();
@@ -911,7 +910,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * Gets the maximum size for the editor component.
 	 *
 	 * @param c
-	 *            the editor component
+	 *          the editor component
 	 * @return the size
 	 */
 	public Dimension getMaximumSize(JComponent c) {
@@ -922,11 +921,10 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 			((AbstractDocument) doc).readLock();
 		}
 		try {
-			d.width = (int) Math.min(
-					(long) rootView.getMaximumSpan(View.X_AXIS) + (long) i.left + (long) i.right,
-					Integer.MAX_VALUE);
-			d.height = (int) Math.min(
-					(long) rootView.getMaximumSpan(View.Y_AXIS) + (long) i.top + (long) i.bottom,
+			d.width = (int) Math.min((long) rootView.getMaximumSpan(View.X_AXIS)
+					+ (long) i.left + (long) i.right, Integer.MAX_VALUE);
+			d.height = (int) Math.min((long) rootView.getMaximumSpan(
+					View.Y_AXIS) + (long) i.top + (long) i.bottom,
 					Integer.MAX_VALUE);
 		} finally {
 			if (doc instanceof AbstractDocument) {
@@ -971,11 +969,13 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 *            the local location in the model to translate &gt;= 0
 	 * @return the coordinates as a rectangle, null if the model is not painted
 	 * @exception BadLocationException
-	 *                if the given position does not represent a valid location
-	 *                in the associated document
+	 *                                 if the given position does not represent
+	 *                                 a valid location
+	 *                                 in the associated document
 	 * @see TextUI#modelToView
 	 */
-	public Rectangle modelToView(JTextComponent tc, int pos) throws BadLocationException {
+	public Rectangle modelToView(JTextComponent tc, int pos)
+			throws BadLocationException {
 		return modelToView(tc, pos, Position.Bias.Forward);
 	}
 
@@ -990,8 +990,9 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 *            the local location in the model to translate &gt;= 0
 	 * @return the coordinates as a rectangle, null if the model is not painted
 	 * @exception BadLocationException
-	 *                if the given position does not represent a valid location
-	 *                in the associated document
+	 *                                 if the given position does not represent
+	 *                                 a valid location
+	 *                                 in the associated document
 	 * @see TextUI#modelToView
 	 */
 	public Rectangle modelToView(JTextComponent tc, int pos, Position.Bias bias)
@@ -1023,10 +1024,10 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * positive size for this translation to be computed.
 	 *
 	 * @param tc
-	 *            the text component for which this UI is installed
+	 *           the text component for which this UI is installed
 	 * @param pt
-	 *            the location in the view to translate. This should be in the
-	 *            same coordinate system as the mouse events.
+	 *           the location in the view to translate. This should be in the
+	 *           same coordinate system as the mouse events.
 	 * @return the offset from the start of the document &gt;= 0, -1 if not
 	 *         painted
 	 * @see TextUI#viewToModel
@@ -1041,15 +1042,16 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * positive size for this translation to be computed.
 	 *
 	 * @param tc
-	 *            the text component for which this UI is installed
+	 *           the text component for which this UI is installed
 	 * @param pt
-	 *            the location in the view to translate. This should be in the
-	 *            same coordinate system as the mouse events.
+	 *           the location in the view to translate. This should be in the
+	 *           same coordinate system as the mouse events.
 	 * @return the offset from the start of the document &gt;= 0, -1 if the
 	 *         component doesn't yet have a positive size.
 	 * @see TextUI#viewToModel
 	 */
-	public int viewToModel(JTextComponent tc, Point pt, Position.Bias[] biasReturn) {
+	public int viewToModel(JTextComponent tc, Point pt,
+			Position.Bias[] biasReturn) {
 		int offs = -1;
 		Document doc = editor.getDocument();
 		if (doc instanceof AbstractDocument) {
@@ -1072,8 +1074,9 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getNextVisualPositionFrom(JTextComponent t, int pos, Position.Bias b, int direction,
-			Position.Bias[] biasRet) throws BadLocationException {
+	public int getNextVisualPositionFrom(JTextComponent t, int pos,
+			Position.Bias b, int direction, Position.Bias[] biasRet)
+			throws BadLocationException {
 		Document doc = editor.getDocument();
 		if (doc instanceof AbstractDocument) {
 			((AbstractDocument) doc).readLock();
@@ -1084,7 +1087,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 				if (alloc != null) {
 					rootView.setSize(alloc.width, alloc.height);
 				}
-				return rootView.getNextVisualPositionFrom(pos, b, alloc, direction, biasRet);
+				return rootView.getNextVisualPositionFrom(pos, b, alloc,
+						direction, biasRet);
 			}
 		} finally {
 			if (doc instanceof AbstractDocument) {
@@ -1099,11 +1103,11 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * model to be repainted. Does nothing if the view is not currently painted.
 	 *
 	 * @param tc
-	 *            the text component for which this UI is installed
+	 *           the text component for which this UI is installed
 	 * @param p0
-	 *            the beginning of the range &gt;= 0
+	 *           the beginning of the range &gt;= 0
 	 * @param p1
-	 *            the end of the range &gt;= p0
+	 *           the end of the range &gt;= p0
 	 * @see TextUI#damageRange
 	 */
 	public void damageRange(JTextComponent tc, int p0, int p1) {
@@ -1115,12 +1119,12 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * model to be repainted.
 	 *
 	 * @param p0
-	 *            the beginning of the range &gt;= 0
+	 *           the beginning of the range &gt;= 0
 	 * @param p1
-	 *            the end of the range &gt;= p0
+	 *           the end of the range &gt;= p0
 	 */
-	public void damageRange(JTextComponent t, int p0, int p1, Position.Bias p0Bias,
-			Position.Bias p1Bias) {
+	public void damageRange(JTextComponent t, int p0, int p1,
+			Position.Bias p0Bias, Position.Bias p1Bias) {
 		if (painted) {
 			Rectangle alloc = getVisibleEditorRect();
 			if (alloc != null) {
@@ -1130,8 +1134,10 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 				}
 				try {
 					rootView.setSize(alloc.width, alloc.height);
-					Shape toDamage = rootView.modelToView(p0, p0Bias, p1, p1Bias, alloc);
-					Rectangle rect = (toDamage instanceof Rectangle) ? (Rectangle) toDamage
+					Shape toDamage = rootView.modelToView(p0, p0Bias, p1,
+							p1Bias, alloc);
+					Rectangle rect = (toDamage instanceof Rectangle)
+							? (Rectangle) toDamage
 							: toDamage.getBounds();
 					editor.repaint(rect.x, rect.y, rect.width, rect.height);
 				} catch (BadLocationException e) {
@@ -1148,7 +1154,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * Fetches the EditorKit for the UI.
 	 *
 	 * @param tc
-	 *            the text component for which this UI is installed
+	 *           the text component for which this UI is installed
 	 * @return the editor capabilities
 	 * @see TextUI#getEditorKit
 	 */
@@ -1168,7 +1174,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * arranged by any logic that calls this method! </font>
 	 *
 	 * @param tc
-	 *            the text component for which this UI is installed
+	 *           the text component for which this UI is installed
 	 * @return the view
 	 * @see TextUI#getRootView
 	 */
@@ -1216,7 +1222,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * element.
 	 *
 	 * @param elem
-	 *            the element
+	 *             the element
 	 * @return the view
 	 */
 	public View create(Element elem) {
@@ -1230,22 +1236,21 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * part of the element.
 	 *
 	 * @param elem
-	 *            the element
+	 *             the element
 	 * @param p0
-	 *            the starting offset &gt;= 0
+	 *             the starting offset &gt;= 0
 	 * @param p1
-	 *            the ending offset &gt;= p0
+	 *             the ending offset &gt;= p0
 	 * @return the view
 	 */
 	public View create(Element elem, int p0, int p1) {
 		return null;
 	}
 
-	public static class BasicCaret extends DefaultCaret implements UIResource {
-	}
+	public static class BasicCaret extends DefaultCaret implements UIResource {}
 
-	public static class BasicHighlighter extends DefaultHighlighter implements UIResource {
-	}
+	public static class BasicHighlighter extends DefaultHighlighter implements
+			UIResource {}
 
 	static class BasicCursor extends Cursor implements UIResource {
 		BasicCursor(int type) {
@@ -1307,7 +1312,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Determines the preferred span for this view along an axis.
 		 *
 		 * @param axis
-		 *            may be either X_AXIS or Y_AXIS
+		 *             may be either X_AXIS or Y_AXIS
 		 * @return the span the view would like to be rendered into. Typically
 		 *         the view is told to render into the span that is returned,
 		 *         although there is no guarantee. The parent may choose to
@@ -1324,7 +1329,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Determines the minimum span for this view along an axis.
 		 *
 		 * @param axis
-		 *            may be either X_AXIS or Y_AXIS
+		 *             may be either X_AXIS or Y_AXIS
 		 * @return the span the view would like to be rendered into. Typically
 		 *         the view is told to render into the span that is returned,
 		 *         although there is no guarantee. The parent may choose to
@@ -1341,7 +1346,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Determines the maximum span for this view along an axis.
 		 *
 		 * @param axis
-		 *            may be either X_AXIS or Y_AXIS
+		 *             may be either X_AXIS or Y_AXIS
 		 * @return the span the view would like to be rendered into. Typically
 		 *         the view is told to render into the span that is returned,
 		 *         although there is no guarantee. The parent may choose to
@@ -1364,13 +1369,14 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * behavior helps make that true.
 		 *
 		 * @param child
-		 *            the child view
+		 *               the child view
 		 * @param width
-		 *            true if the width preference has changed
+		 *               true if the width preference has changed
 		 * @param height
-		 *            true if the height preference has changed
+		 *               true if the height preference has changed
 		 */
-		public void preferenceChanged(View child, boolean width, boolean height) {
+		public void preferenceChanged(View child, boolean width,
+				boolean height) {
 			editor.revalidate();
 		}
 
@@ -1378,7 +1384,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Determines the desired alignment for this view along an axis.
 		 *
 		 * @param axis
-		 *            may be either X_AXIS or Y_AXIS
+		 *             may be either X_AXIS or Y_AXIS
 		 * @return the desired alignment, where 0.0 indicates the origin and 1.0
 		 *         the full span away from the origin
 		 */
@@ -1393,13 +1399,14 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Renders the view.
 		 *
 		 * @param g
-		 *            the graphics context
+		 *                   the graphics context
 		 * @param allocation
-		 *            the region to render into
+		 *                   the region to render into
 		 */
 		public void paint(Graphics g, Shape allocation) {
 			if (view != null) {
-				Rectangle alloc = (allocation instanceof Rectangle) ? (Rectangle) allocation
+				Rectangle alloc = (allocation instanceof Rectangle)
+						? (Rectangle) allocation
 						: allocation.getBounds();
 				setSize(alloc.width, alloc.height);
 				view.paint(g, allocation);
@@ -1410,7 +1417,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Sets the view parent.
 		 *
 		 * @param parent
-		 *            the parent view
+		 *               the parent view
 		 */
 		public void setParent(View parent) {
 			throw new Error("Can't set parent on root view");
@@ -1431,7 +1438,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Gets the n-th view in this container.
 		 *
 		 * @param n
-		 *            the number of the view to get
+		 *          the number of the view to get
 		 * @return the view
 		 */
 		public View getView(int n) {
@@ -1460,9 +1467,9 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * associated component.
 		 *
 		 * @param index
-		 *            the index of the child
+		 *              the index of the child
 		 * @param a
-		 *            the allocation to this view.
+		 *              the allocation to this view.
 		 * @return the allocation to the child
 		 */
 		public Shape getChildAllocation(int index, Shape a) {
@@ -1479,7 +1486,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 *            the allocated region to render into
 		 * @return the bounding box of the given position
 		 */
-		public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
+		public Shape modelToView(int pos, Shape a, Position.Bias b)
+				throws BadLocationException {
 			if (view != null) {
 				return view.modelToView(pos, a, b);
 			}
@@ -1491,29 +1499,31 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * coordinate space of the view mapped to it.
 		 *
 		 * @param p0
-		 *            the position to convert &gt;= 0
+		 *           the position to convert &gt;= 0
 		 * @param b0
-		 *            the bias toward the previous character or the next
-		 *            character represented by p0, in case the position is a
-		 *            boundary of two views.
+		 *           the bias toward the previous character or the next
+		 *           character represented by p0, in case the position is a
+		 *           boundary of two views.
 		 * @param p1
-		 *            the position to convert &gt;= 0
+		 *           the position to convert &gt;= 0
 		 * @param b1
-		 *            the bias toward the previous character or the next
-		 *            character represented by p1, in case the position is a
-		 *            boundary of two views.
+		 *           the bias toward the previous character or the next
+		 *           character represented by p1, in case the position is a
+		 *           boundary of two views.
 		 * @param a
-		 *            the allocated region to render into
+		 *           the allocated region to render into
 		 * @return the bounding box of the given position is returned
 		 * @exception BadLocationException
-		 *                if the given position does not represent a valid
-		 *                location in the associated document
+		 *                                     if the given position does not
+		 *                                     represent a valid
+		 *                                     location in the associated
+		 *                                     document
 		 * @exception IllegalArgumentException
-		 *                for an invalid bias argument
+		 *                                     for an invalid bias argument
 		 * @see View#viewToModel
 		 */
-		public Shape modelToView(int p0, Position.Bias b0, int p1, Position.Bias b1, Shape a)
-				throws BadLocationException {
+		public Shape modelToView(int p0, Position.Bias b0, int p1,
+				Position.Bias b1, Shape a) throws BadLocationException {
 			if (view != null) {
 				return view.modelToView(p0, b0, p1, b1, a);
 			}
@@ -1525,15 +1535,16 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * coordinate space of the model.
 		 *
 		 * @param x
-		 *            x coordinate of the view location to convert
+		 *          x coordinate of the view location to convert
 		 * @param y
-		 *            y coordinate of the view location to convert
+		 *          y coordinate of the view location to convert
 		 * @param a
-		 *            the allocated region to render into
+		 *          the allocated region to render into
 		 * @return the location within the model that best represents the given
 		 *         point in the view
 		 */
-		public int viewToModel(float x, float y, Shape a, Position.Bias[] bias) {
+		public int viewToModel(float x, float y, Shape a,
+				Position.Bias[] bias) {
 			if (view != null) {
 				int retValue = view.viewToModel(x, y, a, bias);
 				return retValue;
@@ -1552,30 +1563,33 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * will be thrown.
 		 *
 		 * @param pos
-		 *            the position to convert &gt;= 0
+		 *                  the position to convert &gt;= 0
 		 * @param a
-		 *            the allocated region to render into
+		 *                  the allocated region to render into
 		 * @param direction
-		 *            the direction from the current position that can be
-		 *            thought of as the arrow keys typically found on a
-		 *            keyboard. This may be SwingConstants.WEST,
-		 *            SwingConstants.EAST, SwingConstants.NORTH, or
-		 *            SwingConstants.SOUTH.
+		 *                  the direction from the current position that can be
+		 *                  thought of as the arrow keys typically found on a
+		 *                  keyboard. This may be SwingConstants.WEST,
+		 *                  SwingConstants.EAST, SwingConstants.NORTH, or
+		 *                  SwingConstants.SOUTH.
 		 * @return the location within the model that best represents the next
 		 *         location visual position.
 		 * @exception BadLocationException
-		 *                the given position is not a valid position within the
-		 *                document
+		 *                                     the given position is not a valid
+		 *                                     position within the
+		 *                                     document
 		 * @exception IllegalArgumentException
-		 *                for an invalid direction
+		 *                                     for an invalid direction
 		 */
-		public int getNextVisualPositionFrom(int pos, Position.Bias b, Shape a, int direction,
-				Position.Bias[] biasRet) throws BadLocationException {
+		public int getNextVisualPositionFrom(int pos, Position.Bias b, Shape a,
+				int direction, Position.Bias[] biasRet)
+				throws BadLocationException {
 			if (pos < -1) {
 				throw new BadLocationException("invalid position", pos);
 			}
 			if (view != null) {
-				int nextPos = view.getNextVisualPositionFrom(pos, b, a, direction, biasRet);
+				int nextPos = view.getNextVisualPositionFrom(pos, b, a,
+						direction, biasRet);
 				if (nextPos != -1) {
 					pos = nextPos;
 				} else {
@@ -1590,11 +1604,11 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * location that this view is responsible for.
 		 *
 		 * @param e
-		 *            the change information from the associated document
+		 *          the change information from the associated document
 		 * @param a
-		 *            the current allocation of the view
+		 *          the current allocation of the view
 		 * @param f
-		 *            the factory to use to rebuild if the view has children
+		 *          the factory to use to rebuild if the view has children
 		 */
 		public void insertUpdate(DocumentEvent e, Shape a, ViewFactory f) {
 			if (view != null) {
@@ -1607,11 +1621,11 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * location that this view is responsible for.
 		 *
 		 * @param e
-		 *            the change information from the associated document
+		 *          the change information from the associated document
 		 * @param a
-		 *            the current allocation of the view
+		 *          the current allocation of the view
 		 * @param f
-		 *            the factory to use to rebuild if the view has children
+		 *          the factory to use to rebuild if the view has children
 		 */
 		public void removeUpdate(DocumentEvent e, Shape a, ViewFactory f) {
 			if (view != null) {
@@ -1624,11 +1638,11 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * a location that this view is responsible for.
 		 *
 		 * @param e
-		 *            the change information from the associated document
+		 *          the change information from the associated document
 		 * @param a
-		 *            the current allocation of the view
+		 *          the current allocation of the view
 		 * @param f
-		 *            the factory to use to rebuild if the view has children
+		 *          the factory to use to rebuild if the view has children
 		 */
 		public void changedUpdate(DocumentEvent e, Shape a, ViewFactory f) {
 			if (view != null) {
@@ -1685,11 +1699,11 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Breaks this view on the given axis at the given length.
 		 *
 		 * @param axis
-		 *            may be either X_AXIS or Y_AXIS
+		 *             may be either X_AXIS or Y_AXIS
 		 * @param len
-		 *            specifies where a break is desired in the span
+		 *             specifies where a break is desired in the span
 		 * @param the
-		 *            current allocation of the view
+		 *             current allocation of the view
 		 * @return the fragment of the view that represents the given span if
 		 *         the view can be broken, otherwise null
 		 */
@@ -1702,7 +1716,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * of 0 or less is not resizable.
 		 *
 		 * @param axis
-		 *            may be either X_AXIS or Y_AXIS
+		 *             may be either X_AXIS or Y_AXIS
 		 * @return the weight
 		 */
 		public int getResizeWeight(int axis) {
@@ -1716,9 +1730,9 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Sets the view size.
 		 *
 		 * @param width
-		 *            the width
+		 *               the width
 		 * @param height
-		 *            the height
+		 *               the height
 		 */
 		public void setSize(float width, float height) {
 			if (view != null) {
@@ -1769,8 +1783,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 	 * view. If the focus accelerator changes, a new keystroke is registered to
 	 * request focus.
 	 */
-	class UpdateHandler
-			implements PropertyChangeListener, DocumentListener, LayoutManager2, UIResource {
+	class UpdateHandler implements PropertyChangeListener, DocumentListener,
+			LayoutManager2, UIResource {
 
 		// --- PropertyChangeListener methods -----------------------
 
@@ -1782,7 +1796,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 			Object oldValue = evt.getOldValue();
 			Object newValue = evt.getNewValue();
 			String propertyName = evt.getPropertyName();
-			if ((oldValue instanceof Document) || (newValue instanceof Document)) {
+			if ((oldValue instanceof Document)
+					|| (newValue instanceof Document)) {
 				if (oldValue != null) {
 					((Document) oldValue).removeDocumentListener(this);
 					i18nView = false;
@@ -1835,7 +1850,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 					dropCaret.setVisible(true);
 				}
 
-				dropCaret.setDot(dropLocation.getIndex(), dropLocation.getBias());
+				dropCaret.setDot(dropLocation.getIndex(), dropLocation
+						.getBias());
 			}
 		}
 
@@ -1848,8 +1864,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * views can update themselves in a dynamic (not hardcoded) way.
 		 *
 		 * @param e
-		 *            The change notification from the currently associated
-		 *            document.
+		 *          The change notification from the currently associated
+		 *          document.
 		 * @see DocumentListener#insertUpdate
 		 */
 		public final void insertUpdate(DocumentEvent e) {
@@ -1877,8 +1893,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * views can update themselves in a dynamic (not hardcoded) way.
 		 *
 		 * @param e
-		 *            The change notification from the currently associated
-		 *            document.
+		 *          The change notification from the currently associated
+		 *          document.
 		 * @see DocumentListener#removeUpdate
 		 */
 		public final void removeUpdate(DocumentEvent e) {
@@ -1893,8 +1909,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * views can update themselves in a dynamic (not hardcoded) way.
 		 *
 		 * @param e
-		 *            The change notification from the currently associated
-		 *            document.
+		 *          The change notification from the currently associated
+		 *          document.
 		 * @see DocumentListener#changedUpdate(DocumentEvent)
 		 */
 		public final void changedUpdate(DocumentEvent e) {
@@ -1908,9 +1924,9 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Adds the specified component with the specified name to the layout.
 		 * 
 		 * @param name
-		 *            the component name
+		 *             the component name
 		 * @param comp
-		 *            the component to be added
+		 *             the component to be added
 		 */
 		public void addLayoutComponent(String name, Component comp) {
 			// not supported
@@ -1920,7 +1936,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Removes the specified component from the layout.
 		 * 
 		 * @param comp
-		 *            the component to be removed
+		 *             the component to be removed
 		 */
 		public void removeLayoutComponent(Component comp) {
 			if (constraints != null) {
@@ -1934,7 +1950,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * given the components in the specified parent container.
 		 * 
 		 * @param parent
-		 *            the component to be laid out
+		 *               the component to be laid out
 		 *
 		 * @see #minimumLayoutSize
 		 */
@@ -1948,7 +1964,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * the components in the specified parent container.
 		 * 
 		 * @param parent
-		 *            the component to be laid out
+		 *               the component to be laid out
 		 * @see #preferredLayoutSize
 		 */
 		public Dimension minimumLayoutSize(Container parent) {
@@ -1966,7 +1982,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * being modified while the layout process is active.
 		 *
 		 * @param parent
-		 *            the component which needs to be laid out
+		 *               the component which needs to be laid out
 		 */
 		public void layoutContainer(Container parent) {
 			if ((constraints != null) && (!constraints.isEmpty())) {
@@ -1984,7 +2000,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 							View v = (View) constraints.get(comp);
 							Shape ca = calculateViewPosition(alloc, v);
 							if (ca != null) {
-								Rectangle compAlloc = (ca instanceof Rectangle) ? (Rectangle) ca
+								Rectangle compAlloc = (ca instanceof Rectangle)
+										? (Rectangle) ca
 										: ca.getBounds();
 								comp.setBounds(compAlloc);
 							}
@@ -2004,7 +2021,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		Shape calculateViewPosition(Shape alloc, View v) {
 			int pos = v.getStartOffset();
 			View child = null;
-			for (View parent = rootView; (parent != null) && (parent != v); parent = child) {
+			for (View parent = rootView; (parent != null)
+					&& (parent != v); parent = child) {
 				int index = parent.getViewIndex(pos, Position.Bias.Forward);
 				alloc = parent.getChildAllocation(index, alloc);
 				child = parent.getView(index);
@@ -2018,9 +2036,9 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * with a constraint that is of type View.
 		 *
 		 * @param comp
-		 *            the component to be added
+		 *                   the component to be added
 		 * @param constraint
-		 *            where/how the component is added to the layout.
+		 *                   where/how the component is added to the layout.
 		 */
 		public void addLayoutComponent(Component comp, Object constraint) {
 			if (constraint instanceof View) {
@@ -2069,8 +2087,7 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Invalidates the layout, indicating that if the layout manager has
 		 * cached information it should be discarded.
 		 */
-		public void invalidateLayout(Container target) {
-		}
+		public void invalidateLayout(Container target) {}
 
 		/**
 		 * The "layout constraints" for the LayoutManager2 implementation. These
@@ -2096,14 +2113,15 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * The operation to perform when this action is triggered.
 		 *
 		 * @param e
-		 *            the action event
+		 *          the action event
 		 */
 		public void actionPerformed(ActionEvent e) {
 			action.actionPerformed(e);
 		}
 
 		public boolean isEnabled() {
-			return (editor == null || editor.isEditable()) ? action.isEnabled() : false;
+			return (editor == null || editor.isEditable()) ? action.isEnabled()
+					: false;
 		}
 
 		TextAction action = null;
@@ -2153,7 +2171,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 			JTextComponent c = (JTextComponent) e.getSource();
 			if (c.getDragEnabled()) {
 				dragStarted = false;
-				if (isDragPossible(e) && DragRecognitionSupport.mousePressed(e)) {
+				if (isDragPossible(e) && DragRecognitionSupport.mousePressed(
+						e)) {
 					e.consume();
 				}
 			}
@@ -2173,7 +2192,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		public void mouseDragged(MouseEvent e) {
 			JTextComponent c = (JTextComponent) e.getSource();
 			if (c.getDragEnabled()) {
-				if (dragStarted || DragRecognitionSupport.mouseDragged(e, this)) {
+				if (dragStarted || DragRecognitionSupport.mouseDragged(e,
+						this)) {
 					e.consume();
 				}
 			}
@@ -2207,7 +2227,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		}
 	}
 
-	static class TextTransferHandler extends TransferHandler implements UIResource {
+	static class TextTransferHandler extends TransferHandler implements
+			UIResource {
 
 		private JTextComponent exportComp;
 		private boolean shouldRemove;
@@ -2246,7 +2267,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * <li>Lastly, DataFlavor.stringFlavor is searched for.
 		 * </ol>
 		 */
-		protected DataFlavor getImportFlavor(DataFlavor[] flavors, JTextComponent c) {
+		protected DataFlavor getImportFlavor(DataFlavor[] flavors,
+				JTextComponent c) {
 			DataFlavor plainFlavor = null;
 			DataFlavor refFlavor = null;
 			DataFlavor stringFlavor = null;
@@ -2254,15 +2276,19 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 			if (c instanceof JEditorPane) {
 				for (int i = 0; i < flavors.length; i++) {
 					String mime = flavors[i].getMimeType();
-					if (mime.startsWith(((JEditorPane) c).getEditorKit().getContentType())) {
+					if (mime.startsWith(((JEditorPane) c).getEditorKit()
+							.getContentType())) {
 						return flavors[i];
-					} else if (plainFlavor == null && mime.startsWith("text/plain")) {
+					} else if (plainFlavor == null && mime.startsWith(
+							"text/plain")) {
 						plainFlavor = flavors[i];
-					} else if (refFlavor == null
-							&& mime.startsWith("application/x-java-jvm-local-objectref")
-							&& flavors[i].getRepresentationClass() == java.lang.String.class) {
+					} else if (refFlavor == null && mime.startsWith(
+							"application/x-java-jvm-local-objectref")
+							&& flavors[i]
+									.getRepresentationClass() == java.lang.String.class) {
 						refFlavor = flavors[i];
-					} else if (stringFlavor == null && flavors[i].equals(DataFlavor.stringFlavor)) {
+					} else if (stringFlavor == null && flavors[i].equals(
+							DataFlavor.stringFlavor)) {
 						stringFlavor = flavors[i];
 					}
 				}
@@ -2280,11 +2306,12 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 				String mime = flavors[i].getMimeType();
 				if (mime.startsWith("text/plain")) {
 					return flavors[i];
-				} else if (refFlavor == null
-						&& mime.startsWith("application/x-java-jvm-local-objectref")
-						&& flavors[i].getRepresentationClass() == java.lang.String.class) {
+				} else if (refFlavor == null && mime.startsWith(
+						"application/x-java-jvm-local-objectref") && flavors[i]
+								.getRepresentationClass() == java.lang.String.class) {
 					refFlavor = flavors[i];
-				} else if (stringFlavor == null && flavors[i].equals(DataFlavor.stringFlavor)) {
+				} else if (stringFlavor == null && flavors[i].equals(
+						DataFlavor.stringFlavor)) {
 					stringFlavor = flavors[i];
 				}
 			}
@@ -2299,8 +2326,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		/**
 		 * Import the given stream data into the text component.
 		 */
-		protected void handleReaderImport(Reader in, JTextComponent c, boolean useRead)
-				throws BadLocationException, IOException {
+		protected void handleReaderImport(Reader in, JTextComponent c,
+				boolean useRead) throws BadLocationException, IOException {
 			if (useRead) {
 				int startPosition = c.getSelectionStart();
 				int endPosition = c.getSelectionEnd();
@@ -2328,39 +2355,40 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 					last = 0;
 					for (int counter = 0; counter < nch; counter++) {
 						switch (buff[counter]) {
-						case '\r':
-							if (lastWasCR) {
-								if (counter == 0) {
-									sbuff.append('\n');
+							case '\r':
+								if (lastWasCR) {
+									if (counter == 0) {
+										sbuff.append('\n');
+									} else {
+										buff[counter - 1] = '\n';
+									}
 								} else {
-									buff[counter - 1] = '\n';
+									lastWasCR = true;
 								}
-							} else {
-								lastWasCR = true;
-							}
-							break;
-						case '\n':
-							if (lastWasCR) {
-								if (counter > (last + 1)) {
-									sbuff.append(buff, last, counter - last - 1);
+								break;
+							case '\n':
+								if (lastWasCR) {
+									if (counter > (last + 1)) {
+										sbuff.append(buff, last, counter - last
+												- 1);
+									}
+									// else nothing to do, can skip \r, next write
+									// will
+									// write \n
+									lastWasCR = false;
+									last = counter;
 								}
-								// else nothing to do, can skip \r, next write
-								// will
-								// write \n
-								lastWasCR = false;
-								last = counter;
-							}
-							break;
-						default:
-							if (lastWasCR) {
-								if (counter == 0) {
-									sbuff.append('\n');
-								} else {
-									buff[counter - 1] = '\n';
+								break;
+							default:
+								if (lastWasCR) {
+									if (counter == 0) {
+										sbuff.append('\n');
+									} else {
+										buff[counter - 1] = '\n';
+									}
+									lastWasCR = false;
 								}
-								lastWasCR = false;
-							}
-							break;
+								break;
 						}
 					}
 					if (last < nch) {
@@ -2388,17 +2416,17 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * be advertised in that case.
 		 *
 		 * @param c
-		 *            The component holding the data to be transfered. This
-		 *            argument is provided to enable sharing of TransferHandlers
-		 *            by multiple components.
+		 *          The component holding the data to be transfered. This
+		 *          argument is provided to enable sharing of TransferHandlers
+		 *          by multiple components.
 		 * @return This is implemented to return NONE if the component is a
 		 *         JPasswordField since exporting data via user gestures is not
 		 *         allowed. If the text component is editable, COPY_OR_MOVE is
 		 *         returned, otherwise just COPY is allowed.
 		 */
 		public int getSourceActions(JComponent c) {
-			if (c instanceof JPasswordField
-					&& c.getClientProperty("JPasswordField.cutCopyAllowed") != Boolean.TRUE) {
+			if (c instanceof JPasswordField && c.getClientProperty(
+					"JPasswordField.cutCopyAllowed") != Boolean.TRUE) {
 				return NONE;
 			}
 
@@ -2409,9 +2437,10 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * Create a Transferable to use as the source for a data transfer.
 		 *
 		 * @param comp
-		 *            The component holding the data to be transfered. This
-		 *            argument is provided to enable sharing of TransferHandlers
-		 *            by multiple components.
+		 *             The component holding the data to be transfered. This
+		 *             argument is provided to enable sharing of
+		 *             TransferHandlers
+		 *             by multiple components.
 		 * @return The representation of the data to be transfered.
 		 *
 		 */
@@ -2420,7 +2449,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 			shouldRemove = true;
 			p0 = exportComp.getSelectionStart();
 			p1 = exportComp.getSelectionEnd();
-			return (p0 != p1) ? (new TextTransferable(exportComp, p0, p1)) : null;
+			return (p0 != p1) ? (new TextTransferable(exportComp, p0, p1))
+					: null;
 		}
 
 		/**
@@ -2428,14 +2458,15 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * should remove the data that was transfered if the action was MOVE.
 		 *
 		 * @param source
-		 *            The component that was the source of the data.
+		 *               The component that was the source of the data.
 		 * @param data
-		 *            The data that was transferred or possibly null if the
-		 *            action is <code>NONE</code>.
+		 *               The data that was transferred or possibly null if the
+		 *               action is <code>NONE</code>.
 		 * @param action
-		 *            The actual action that was performed.
+		 *               The actual action that was performed.
 		 */
-		protected void exportDone(JComponent source, Transferable data, int action) {
+		protected void exportDone(JComponent source, Transferable data,
+				int action) {
 			// only remove the text if shouldRemove has not been set to
 			// false by importData and only if the action is a move
 			if (shouldRemove && action == MOVE) {
@@ -2453,7 +2484,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 				modeBetween = ((JTextComponent) support.getComponent())
 						.getDropMode() == DropMode.INSERT;
 
-				dropBias = ((JTextComponent.DropLocation) support.getDropLocation()).getBias();
+				dropBias = ((JTextComponent.DropLocation) support
+						.getDropLocation()).getBias();
 
 				dropAction = support.getDropAction();
 			}
@@ -2474,38 +2506,43 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * imported into the component.
 		 *
 		 * @param comp
-		 *            The component to receive the transfer. This argument is
-		 *            provided to enable sharing of TransferHandlers by multiple
-		 *            components.
+		 *             The component to receive the transfer. This argument is
+		 *             provided to enable sharing of TransferHandlers by
+		 *             multiple
+		 *             components.
 		 * @param t
-		 *            The data to import
+		 *             The data to import
 		 * @return true if the data was inserted into the component, false
 		 *         otherwise.
 		 */
 		public boolean importData(JComponent comp, Transferable t) {
 			JTextComponent c = (JTextComponent) comp;
 
-			int pos = modeBetween ? c.getDropLocation().getIndex() : c.getCaretPosition();
+			int pos = modeBetween ? c.getDropLocation().getIndex()
+					: c.getCaretPosition();
 
 			// if we are importing to the same component that we exported from
 			// then don't actually do anything if the drop location is inside
 			// the drag location and set shouldRemove to false so that
 			// exportDone
 			// knows not to remove any data
-			if (dropAction == MOVE && c == exportComp && pos >= p0 && pos <= p1) {
+			if (dropAction == MOVE && c == exportComp && pos >= p0
+					&& pos <= p1) {
 				shouldRemove = false;
 				return true;
 			}
 
 			boolean imported = false;
-			DataFlavor importFlavor = getImportFlavor(t.getTransferDataFlavors(), c);
+			DataFlavor importFlavor = getImportFlavor(t
+					.getTransferDataFlavors(), c);
 			if (importFlavor != null) {
 				try {
 					boolean useRead = false;
 					if (comp instanceof JEditorPane) {
 						JEditorPane ep = (JEditorPane) comp;
 						if (!ep.getContentType().startsWith("text/plain")
-								&& importFlavor.getMimeType().startsWith(ep.getContentType())) {
+								&& importFlavor.getMimeType().startsWith(ep
+										.getContentType())) {
 							useRead = true;
 						}
 					}
@@ -2531,7 +2568,8 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 						Caret caret = c.getCaret();
 						if (caret instanceof DefaultCaret) {
 							int newPos = caret.getDot();
-							Position.Bias newBias = ((DefaultCaret) caret).getDotBias();
+							Position.Bias newBias = ((DefaultCaret) caret)
+									.getDotBias();
 
 							((DefaultCaret) caret).setDot(pos, dropBias);
 							((DefaultCaret) caret).moveDot(newPos, newBias);
@@ -2554,11 +2592,13 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 		 * given set of data flavors prior to actually attempting to import it.
 		 *
 		 * @param comp
-		 *            The component to receive the transfer. This argument is
-		 *            provided to enable sharing of TransferHandlers by multiple
-		 *            components.
+		 *                The component to receive the transfer. This argument
+		 *                is
+		 *                provided to enable sharing of TransferHandlers by
+		 *                multiple
+		 *                components.
 		 * @param flavors
-		 *            The data formats available
+		 *                The data formats available
 		 * @return true if the data can be inserted into the component, false
 		 *         otherwise.
 		 */
@@ -2602,9 +2642,10 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 							return;
 						}
 
-						StringWriter sw = new StringWriter(p1.getOffset() - p0.getOffset());
-						ep.getEditorKit().write(sw, doc, p0.getOffset(),
-								p1.getOffset() - p0.getOffset());
+						StringWriter sw = new StringWriter(p1.getOffset() - p0
+								.getOffset());
+						ep.getEditorKit().write(sw, doc, p0.getOffset(), p1
+								.getOffset() - p0.getOffset());
 
 						if (mimeType.startsWith("text/html")) {
 							htmlData = sw.toString();
@@ -2618,10 +2659,12 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 			}
 
 			void removeText() {
-				if ((p0 != null) && (p1 != null) && (p0.getOffset() != p1.getOffset())) {
+				if ((p0 != null) && (p1 != null) && (p0.getOffset() != p1
+						.getOffset())) {
 					try {
 						Document doc = c.getDocument();
-						doc.remove(p0.getOffset(), p1.getOffset() - p0.getOffset());
+						doc.remove(p0.getOffset(), p1.getOffset() - p0
+								.getOffset());
 					} catch (BadLocationException e) {
 					}
 				}
@@ -2642,10 +2685,12 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 
 				try {
 					DataFlavor[] flavors = new DataFlavor[3];
-					flavors[0] = new DataFlavor(mimeType + ";class=java.lang.String");
-					flavors[1] = new DataFlavor(mimeType + ";class=java.io.Reader");
-					flavors[2] = new DataFlavor(
-							mimeType + ";class=java.io.InputStream;charset=unicode");
+					flavors[0] = new DataFlavor(mimeType
+							+ ";class=java.lang.String");
+					flavors[1] = new DataFlavor(mimeType
+							+ ";class=java.io.Reader");
+					flavors[2] = new DataFlavor(mimeType
+							+ ";class=java.io.InputStream;charset=unicode");
 					return flavors;
 				} catch (ClassNotFoundException cle) {
 					// fall through to unsupported (should not happen)
@@ -2657,16 +2702,19 @@ public abstract class BasicTextUI extends TextUI implements ViewFactory {
 			/**
 			 * The only richer format supported is the file list flavor
 			 */
-			protected Object getRicherData(DataFlavor flavor) throws UnsupportedFlavorException {
+			protected Object getRicherData(DataFlavor flavor)
+					throws UnsupportedFlavorException {
 				if (richText == null) {
 					return null;
 				}
 
 				if (String.class.equals(flavor.getRepresentationClass())) {
 					return richText;
-				} else if (Reader.class.equals(flavor.getRepresentationClass())) {
+				} else if (Reader.class.equals(flavor
+						.getRepresentationClass())) {
 					return new StringReader(richText);
-				} else if (InputStream.class.equals(flavor.getRepresentationClass())) {
+				} else if (InputStream.class.equals(flavor
+						.getRepresentationClass())) {
 					return new StringBufferInputStream(richText);
 				}
 				throw new UnsupportedFlavorException(flavor);

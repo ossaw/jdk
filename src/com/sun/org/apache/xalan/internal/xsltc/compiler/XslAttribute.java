@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -86,7 +84,8 @@ final class XslAttribute extends Instruction {
 		QName qname = parser.getQName(name, false);
 		final String prefix = qname.getPrefix();
 
-		if (((prefix != null) && (prefix.equals(XMLNS_PREFIX))) || (name.equals(XMLNS_PREFIX))) {
+		if (((prefix != null) && (prefix.equals(XMLNS_PREFIX))) || (name.equals(
+				XMLNS_PREFIX))) {
 			reportError(this, parser, ErrorMsg.ILLEGAL_ATTR_NAME_ERR, name);
 			return;
 		}
@@ -142,7 +141,8 @@ final class XslAttribute extends Instruction {
 			_prefix = prefix;
 			namespace = lookupNamespace(prefix);
 			if (namespace != null) {
-				_namespace = new AttributeValueTemplate(namespace, parser, this);
+				_namespace = new AttributeValueTemplate(namespace, parser,
+						this);
 			}
 		}
 
@@ -168,7 +168,8 @@ final class XslAttribute extends Instruction {
 			 * an attribute value template).
 			 */
 			if ((parent instanceof LiteralElement) && (!generated)) {
-				((LiteralElement) parent).registerNamespace(_prefix, namespace, stable, false);
+				((LiteralElement) parent).registerNamespace(_prefix, namespace,
+						stable, false);
 			}
 		}
 
@@ -214,8 +215,8 @@ final class XslAttribute extends Instruction {
 		if (!_isLiteral) {
 			// if the qname is an AVT, then the qname has to be checked at
 			// runtime if it is a valid qname
-			LocalVariableGen nameValue = methodGen.addLocalVariable2("nameValue",
-					Util.getJCRefType(STRING_SIG), null);
+			LocalVariableGen nameValue = methodGen.addLocalVariable2(
+					"nameValue", Util.getJCRefType(STRING_SIG), null);
 
 			// store the name into a variable first so _name.translate only
 			// needs to be called once
@@ -224,8 +225,8 @@ final class XslAttribute extends Instruction {
 			il.append(new ALOAD(nameValue.getIndex()));
 
 			// call checkQName if the name is an AVT
-			final int check = cpg.addMethodref(BASIS_LIBRARY_CLASS, "checkAttribQName",
-					"(" + STRING_SIG + ")V");
+			final int check = cpg.addMethodref(BASIS_LIBRARY_CLASS,
+					"checkAttribQName", "(" + STRING_SIG + ")V");
 			il.append(new INVOKESTATIC(check));
 
 			// Save the current handler base on the stack
@@ -249,19 +250,20 @@ final class XslAttribute extends Instruction {
 			il.append(new PUSH(cpg, ((Text) elementAt(0)).getText()));
 		} else {
 			il.append(classGen.loadTranslet());
-			il.append(new GETFIELD(cpg.addFieldref(TRANSLET_CLASS, "stringValueHandler",
-					STRING_VALUE_HANDLER_SIG)));
+			il.append(new GETFIELD(cpg.addFieldref(TRANSLET_CLASS,
+					"stringValueHandler", STRING_VALUE_HANDLER_SIG)));
 			il.append(DUP);
 			il.append(methodGen.storeHandler());
 			// translate contents with substituted handler
 			translateContents(classGen, methodGen);
 			// get String out of the handler
-			il.append(new INVOKEVIRTUAL(
-					cpg.addMethodref(STRING_VALUE_HANDLER, "getValue", "()" + STRING_SIG)));
+			il.append(new INVOKEVIRTUAL(cpg.addMethodref(STRING_VALUE_HANDLER,
+					"getValue", "()" + STRING_SIG)));
 		}
 
 		SyntaxTreeNode parent = getParent();
-		if (parent instanceof LiteralElement && ((LiteralElement) parent).allAttributesUnique()) {
+		if (parent instanceof LiteralElement && ((LiteralElement) parent)
+				.allAttributesUnique()) {
 			int flags = 0;
 			ElemDesc elemDesc = ((LiteralElement) parent).getElemDesc();
 

@@ -11,8 +11,7 @@ package org.omg.IOP;
 public final class IORHolder implements org.omg.CORBA.portable.Streamable {
 	public org.omg.IOP.IOR value = null;
 
-	public IORHolder() {
-	}
+	public IORHolder() {}
 
 	public IORHolder(org.omg.IOP.IOR initialValue) {
 		value = initialValue;

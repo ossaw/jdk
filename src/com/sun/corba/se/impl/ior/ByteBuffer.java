@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -60,17 +40,20 @@ public class ByteBuffer {
 	 * capacity increment.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the ByteBuffer.
+	 *                          the initial capacity of the ByteBuffer.
 	 * @param capacityIncrement
-	 *            the amount by which the capacity is increased when the
-	 *            ByteBuffer overflows.
+	 *                          the amount by which the capacity is increased
+	 *                          when the
+	 *                          ByteBuffer overflows.
 	 * @exception IllegalArgumentException
-	 *                if the specified initial capacity is negative
+	 *                                     if the specified initial capacity is
+	 *                                     negative
 	 */
 	public ByteBuffer(int initialCapacity, int capacityIncrement) {
 		super();
 		if (initialCapacity < 0)
-			throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
+			throw new IllegalArgumentException("Illegal Capacity: "
+					+ initialCapacity);
 		this.elementData = new byte[initialCapacity];
 		this.capacityIncrement = capacityIncrement;
 	}
@@ -80,9 +63,10 @@ public class ByteBuffer {
 	 * with its capacity increment equal to zero.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the ByteBuffer.
+	 *                        the initial capacity of the ByteBuffer.
 	 * @exception IllegalArgumentException
-	 *                if the specified initial capacity is negative
+	 *                                     if the specified initial capacity is
+	 *                                     negative
 	 */
 	public ByteBuffer(int initialCapacity) {
 		this(initialCapacity, 0);
@@ -124,8 +108,8 @@ public class ByteBuffer {
 		int oldCapacity = elementData.length;
 		if (minCapacity > oldCapacity) {
 			byte oldData[] = elementData;
-			int newCapacity = (capacityIncrement > 0) ? (oldCapacity + capacityIncrement)
-					: (oldCapacity * 2);
+			int newCapacity = (capacityIncrement > 0) ? (oldCapacity
+					+ capacityIncrement) : (oldCapacity * 2);
 			if (newCapacity < minCapacity) {
 				newCapacity = minCapacity;
 			}

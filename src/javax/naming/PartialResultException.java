@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -45,7 +25,7 @@ public class PartialResultException extends NamingException {
 	 * specified. All other fields default to null.
 	 *
 	 * @param explanation
-	 *            Possibly null detail explaining the exception.
+	 *                    Possibly null detail explaining the exception.
 	 */
 	public PartialResultException(String explanation) {
 		super(explanation);

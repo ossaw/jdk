@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -81,8 +61,8 @@ import java.util.function.UnaryOperator;
  * @see LinkedList
  * @since JDK1.0
  */
-public class Vector<E> extends AbstractList<E>
-		implements List<E>, RandomAccess, Cloneable, java.io.Serializable {
+public class Vector<E> extends AbstractList<E> implements List<E>, RandomAccess,
+		Cloneable, java.io.Serializable {
 	/**
 	 * The array buffer into which the components of the vector are stored. The
 	 * capacity of the vector is the length of this array buffer, and is at
@@ -122,17 +102,20 @@ public class Vector<E> extends AbstractList<E>
 	 * capacity increment.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the vector
+	 *                          the initial capacity of the vector
 	 * @param capacityIncrement
-	 *            the amount by which the capacity is increased when the vector
-	 *            overflows
+	 *                          the amount by which the capacity is increased
+	 *                          when the vector
+	 *                          overflows
 	 * @throws IllegalArgumentException
-	 *             if the specified initial capacity is negative
+	 *                                  if the specified initial capacity is
+	 *                                  negative
 	 */
 	public Vector(int initialCapacity, int capacityIncrement) {
 		super();
 		if (initialCapacity < 0)
-			throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
+			throw new IllegalArgumentException("Illegal Capacity: "
+					+ initialCapacity);
 		this.elementData = new Object[initialCapacity];
 		this.capacityIncrement = capacityIncrement;
 	}
@@ -142,9 +125,10 @@ public class Vector<E> extends AbstractList<E>
 	 * its capacity increment equal to zero.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the vector
+	 *                        the initial capacity of the vector
 	 * @throws IllegalArgumentException
-	 *             if the specified initial capacity is negative
+	 *                                  if the specified initial capacity is
+	 *                                  negative
 	 */
 	public Vector(int initialCapacity) {
 		this(initialCapacity, 0);
@@ -163,10 +147,10 @@ public class Vector<E> extends AbstractList<E>
 	 * in the order they are returned by the collection's iterator.
 	 *
 	 * @param c
-	 *            the collection whose elements are to be placed into this
-	 *            vector
+	 *          the collection whose elements are to be placed into this
+	 *          vector
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                              if the specified collection is null
 	 * @since 1.2
 	 */
 	public Vector(Collection<? extends E> c) {
@@ -174,7 +158,8 @@ public class Vector<E> extends AbstractList<E>
 		elementCount = elementData.length;
 		// c.toArray might (incorrectly) not return Object[] (see 6260652)
 		if (elementData.getClass() != Object[].class)
-			elementData = Arrays.copyOf(elementData, elementCount, Object[].class);
+			elementData = Arrays.copyOf(elementData, elementCount,
+					Object[].class);
 	}
 
 	/**
@@ -183,15 +168,17 @@ public class Vector<E> extends AbstractList<E>
 	 * {@code anArray}.
 	 *
 	 * @param anArray
-	 *            the array into which the components get copied
+	 *                the array into which the components get copied
 	 * @throws NullPointerException
-	 *             if the given array is null
+	 *                                   if the given array is null
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified array is not large enough to hold all the
-	 *             components of this vector
+	 *                                   if the specified array is not large
+	 *                                   enough to hold all the
+	 *                                   components of this vector
 	 * @throws ArrayStoreException
-	 *             if a component of this vector is not of a runtime type that
-	 *             can be stored in the specified array
+	 *                                   if a component of this vector is not of
+	 *                                   a runtime type that
+	 *                                   can be stored in the specified array
 	 * @see #toArray(Object[])
 	 */
 	public synchronized void copyInto(Object[] anArray) {
@@ -229,7 +216,7 @@ public class Vector<E> extends AbstractList<E>
 	 * will be {@code minCapacity}.
 	 *
 	 * @param minCapacity
-	 *            the desired minimum capacity
+	 *                    the desired minimum capacity
 	 */
 	public synchronized void ensureCapacity(int minCapacity) {
 		if (minCapacity > 0) {
@@ -261,7 +248,9 @@ public class Vector<E> extends AbstractList<E>
 	private void grow(int minCapacity) {
 		// overflow-conscious code
 		int oldCapacity = elementData.length;
-		int newCapacity = oldCapacity + ((capacityIncrement > 0) ? capacityIncrement : oldCapacity);
+		int newCapacity = oldCapacity + ((capacityIncrement > 0)
+				? capacityIncrement
+				: oldCapacity);
 		if (newCapacity - minCapacity < 0)
 			newCapacity = minCapacity;
 		if (newCapacity - MAX_ARRAY_SIZE > 0)
@@ -272,7 +261,8 @@ public class Vector<E> extends AbstractList<E>
 	private static int hugeCapacity(int minCapacity) {
 		if (minCapacity < 0) // overflow
 			throw new OutOfMemoryError();
-		return (minCapacity > MAX_ARRAY_SIZE) ? Integer.MAX_VALUE : MAX_ARRAY_SIZE;
+		return (minCapacity > MAX_ARRAY_SIZE) ? Integer.MAX_VALUE
+				: MAX_ARRAY_SIZE;
 	}
 
 	/**
@@ -282,9 +272,9 @@ public class Vector<E> extends AbstractList<E>
 	 * {@code newSize} and greater are discarded.
 	 *
 	 * @param newSize
-	 *            the new size of this vector
+	 *                the new size of this vector
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if the new size is negative
+	 *                                        if the new size is negative
 	 */
 	public synchronized void setSize(int newSize) {
 		modCount++;
@@ -362,7 +352,7 @@ public class Vector<E> extends AbstractList<E>
 	 * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
 	 *
 	 * @param o
-	 *            element whose presence in this vector is to be tested
+	 *          element whose presence in this vector is to be tested
 	 * @return {@code true} if this vector contains the specified element
 	 */
 	public boolean contains(Object o) {
@@ -377,7 +367,7 @@ public class Vector<E> extends AbstractList<E>
 	 * or -1 if there is no such index.
 	 *
 	 * @param o
-	 *            element to search for
+	 *          element to search for
 	 * @return the index of the first occurrence of the specified element in
 	 *         this vector, or -1 if this vector does not contain the element
 	 */
@@ -394,14 +384,14 @@ public class Vector<E> extends AbstractList<E>
 	 * , or -1 if there is no such index.
 	 *
 	 * @param o
-	 *            element to search for
+	 *              element to search for
 	 * @param index
-	 *            index to start searching from
+	 *              index to start searching from
 	 * @return the index of the first occurrence of the element in this vector
 	 *         at position {@code index} or later in the vector; {@code -1} if
 	 *         the element is not found.
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is negative
+	 *                                   if the specified index is negative
 	 * @see Object#equals(Object)
 	 */
 	public synchronized int indexOf(Object o, int index) {
@@ -425,7 +415,7 @@ public class Vector<E> extends AbstractList<E>
 	 * or -1 if there is no such index.
 	 *
 	 * @param o
-	 *            element to search for
+	 *          element to search for
 	 * @return the index of the last occurrence of the specified element in this
 	 *         vector, or -1 if this vector does not contain the element
 	 */
@@ -442,15 +432,16 @@ public class Vector<E> extends AbstractList<E>
 	 * , or -1 if there is no such index.
 	 *
 	 * @param o
-	 *            element to search for
+	 *              element to search for
 	 * @param index
-	 *            index to start searching backwards from
+	 *              index to start searching backwards from
 	 * @return the index of the last occurrence of the element at position less
 	 *         than or equal to {@code index} in this vector; -1 if the element
 	 *         is not found.
 	 * @throws IndexOutOfBoundsException
-	 *             if the specified index is greater than or equal to the
-	 *             current size of this vector
+	 *                                   if the specified index is greater than
+	 *                                   or equal to the
+	 *                                   current size of this vector
 	 */
 	public synchronized int lastIndexOf(Object o, int index) {
 		if (index >= elementCount)
@@ -476,15 +467,16 @@ public class Vector<E> extends AbstractList<E>
 	 * (which is part of the {@link List} interface).
 	 *
 	 * @param index
-	 *            an index into this vector
+	 *              an index into this vector
 	 * @return the component at the specified index
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if the index is out of range (
-	 *             {@code index < 0 || index >= size()})
+	 *                                        if the index is out of range (
+	 *                                        {@code index < 0 || index >= size()})
 	 */
 	public synchronized E elementAt(int index) {
 		if (index >= elementCount) {
-			throw new ArrayIndexOutOfBoundsException(index + " >= " + elementCount);
+			throw new ArrayIndexOutOfBoundsException(index + " >= "
+					+ elementCount);
 		}
 
 		return elementData(index);
@@ -495,7 +487,7 @@ public class Vector<E> extends AbstractList<E>
 	 *
 	 * @return the first component of this vector
 	 * @throws NoSuchElementException
-	 *             if this vector has no components
+	 *                                if this vector has no components
 	 */
 	public synchronized E firstElement() {
 		if (elementCount == 0) {
@@ -510,7 +502,7 @@ public class Vector<E> extends AbstractList<E>
 	 * @return the last component of the vector, i.e., the component at index
 	 *         <code>size()&nbsp;-&nbsp;1</code>.
 	 * @throws NoSuchElementException
-	 *             if this vector is empty
+	 *                                if this vector is empty
 	 */
 	public synchronized E lastElement() {
 		if (elementCount == 0) {
@@ -536,16 +528,17 @@ public class Vector<E> extends AbstractList<E>
 	 * the old value that was stored at the specified position.
 	 *
 	 * @param obj
-	 *            what the component is to be set to
+	 *              what the component is to be set to
 	 * @param index
-	 *            the specified index
+	 *              the specified index
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if the index is out of range (
-	 *             {@code index < 0 || index >= size()})
+	 *                                        if the index is out of range (
+	 *                                        {@code index < 0 || index >= size()})
 	 */
 	public synchronized void setElementAt(E obj, int index) {
 		if (index >= elementCount) {
-			throw new ArrayIndexOutOfBoundsException(index + " >= " + elementCount);
+			throw new ArrayIndexOutOfBoundsException(index + " >= "
+					+ elementCount);
 		}
 		elementData[index] = obj;
 	}
@@ -567,15 +560,16 @@ public class Vector<E> extends AbstractList<E>
 	 * specified position.
 	 *
 	 * @param index
-	 *            the index of the object to remove
+	 *              the index of the object to remove
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if the index is out of range (
-	 *             {@code index < 0 || index >= size()})
+	 *                                        if the index is out of range (
+	 *                                        {@code index < 0 || index >= size()})
 	 */
 	public synchronized void removeElementAt(int index) {
 		modCount++;
 		if (index >= elementCount) {
-			throw new ArrayIndexOutOfBoundsException(index + " >= " + elementCount);
+			throw new ArrayIndexOutOfBoundsException(index + " >= "
+					+ elementCount);
 		} else if (index < 0) {
 			throw new ArrayIndexOutOfBoundsException(index);
 		}
@@ -606,20 +600,22 @@ public class Vector<E> extends AbstractList<E>
 	 * closely match array usage.
 	 *
 	 * @param obj
-	 *            the component to insert
+	 *              the component to insert
 	 * @param index
-	 *            where to insert the new component
+	 *              where to insert the new component
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if the index is out of range (
-	 *             {@code index < 0 || index > size()})
+	 *                                        if the index is out of range (
+	 *                                        {@code index < 0 || index > size()})
 	 */
 	public synchronized void insertElementAt(E obj, int index) {
 		modCount++;
 		if (index > elementCount) {
-			throw new ArrayIndexOutOfBoundsException(index + " > " + elementCount);
+			throw new ArrayIndexOutOfBoundsException(index + " > "
+					+ elementCount);
 		}
 		ensureCapacityHelper(elementCount + 1);
-		System.arraycopy(elementData, index, elementData, index + 1, elementCount - index);
+		System.arraycopy(elementData, index, elementData, index + 1,
+				elementCount - index);
 		elementData[index] = obj;
 		elementCount++;
 	}
@@ -728,15 +724,16 @@ public class Vector<E> extends AbstractList<E>
 	 * caller knows that the Vector does not contain any null elements.)
 	 *
 	 * @param a
-	 *            the array into which the elements of the Vector are to be
-	 *            stored, if it is big enough; otherwise, a new array of the
-	 *            same runtime type is allocated for this purpose.
+	 *          the array into which the elements of the Vector are to be
+	 *          stored, if it is big enough; otherwise, a new array of the
+	 *          same runtime type is allocated for this purpose.
 	 * @return an array containing the elements of the Vector
 	 * @throws ArrayStoreException
-	 *             if the runtime type of a is not a supertype of the runtime
-	 *             type of every element in this Vector
+	 *                              if the runtime type of a is not a supertype
+	 *                              of the runtime
+	 *                              type of every element in this Vector
 	 * @throws NullPointerException
-	 *             if the given array is null
+	 *                              if the given array is null
 	 * @since 1.2
 	 */
 	@SuppressWarnings("unchecked")
@@ -763,11 +760,11 @@ public class Vector<E> extends AbstractList<E>
 	 * Returns the element at the specified position in this Vector.
 	 *
 	 * @param index
-	 *            index of the element to return
+	 *              index of the element to return
 	 * @return object at the specified index
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if the index is out of range (
-	 *             {@code index < 0 || index >= size()})
+	 *                                        if the index is out of range (
+	 *                                        {@code index < 0 || index >= size()})
 	 * @since 1.2
 	 */
 	public synchronized E get(int index) {
@@ -782,13 +779,13 @@ public class Vector<E> extends AbstractList<E>
 	 * specified element.
 	 *
 	 * @param index
-	 *            index of the element to replace
+	 *                index of the element to replace
 	 * @param element
-	 *            element to be stored at the specified position
+	 *                element to be stored at the specified position
 	 * @return the element previously at the specified position
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if the index is out of range (
-	 *             {@code index < 0 || index >= size()})
+	 *                                        if the index is out of range (
+	 *                                        {@code index < 0 || index >= size()})
 	 * @since 1.2
 	 */
 	public synchronized E set(int index, E element) {
@@ -804,7 +801,7 @@ public class Vector<E> extends AbstractList<E>
 	 * Appends the specified element to the end of this Vector.
 	 *
 	 * @param e
-	 *            element to be appended to this Vector
+	 *          element to be appended to this Vector
 	 * @return {@code true} (as specified by {@link Collection#add})
 	 * @since 1.2
 	 */
@@ -823,7 +820,7 @@ public class Vector<E> extends AbstractList<E>
 	 * exists).
 	 *
 	 * @param o
-	 *            element to be removed from this Vector, if present
+	 *          element to be removed from this Vector, if present
 	 * @return true if the Vector contained the specified element
 	 * @since 1.2
 	 */
@@ -837,12 +834,12 @@ public class Vector<E> extends AbstractList<E>
 	 * elements to the right (adds one to their indices).
 	 *
 	 * @param index
-	 *            index at which the specified element is to be inserted
+	 *                index at which the specified element is to be inserted
 	 * @param element
-	 *            element to be inserted
+	 *                element to be inserted
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if the index is out of range (
-	 *             {@code index < 0 || index > size()})
+	 *                                        if the index is out of range (
+	 *                                        {@code index < 0 || index > size()})
 	 * @since 1.2
 	 */
 	public void add(int index, E element) {
@@ -855,10 +852,10 @@ public class Vector<E> extends AbstractList<E>
 	 * Returns the element that was removed from the Vector.
 	 *
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if the index is out of range (
-	 *             {@code index < 0 || index >= size()})
+	 *                                        if the index is out of range (
+	 *                                        {@code index < 0 || index >= size()})
 	 * @param index
-	 *            the index of the element to be removed
+	 *              the index of the element to be removed
 	 * @return element that was removed
 	 * @since 1.2
 	 */
@@ -870,7 +867,8 @@ public class Vector<E> extends AbstractList<E>
 
 		int numMoved = elementCount - index - 1;
 		if (numMoved > 0)
-			System.arraycopy(elementData, index + 1, elementData, index, numMoved);
+			System.arraycopy(elementData, index + 1, elementData, index,
+					numMoved);
 		elementData[--elementCount] = null; // Let gc do its work
 
 		return oldValue;
@@ -893,12 +891,12 @@ public class Vector<E> extends AbstractList<E>
 	 * Collection.
 	 *
 	 * @param c
-	 *            a collection whose elements will be tested for containment in
-	 *            this Vector
+	 *          a collection whose elements will be tested for containment in
+	 *          this Vector
 	 * @return true if this Vector contains all of the elements in the specified
 	 *         collection
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                              if the specified collection is null
 	 */
 	public synchronized boolean containsAll(Collection<?> c) {
 		return super.containsAll(c);
@@ -913,10 +911,10 @@ public class Vector<E> extends AbstractList<E>
 	 * specified Collection is this Vector, and this Vector is nonempty.)
 	 *
 	 * @param c
-	 *            elements to be inserted into this Vector
+	 *          elements to be inserted into this Vector
 	 * @return {@code true} if this Vector changed as a result of the call
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                              if the specified collection is null
 	 * @since 1.2
 	 */
 	public synchronized boolean addAll(Collection<? extends E> c) {
@@ -934,17 +932,22 @@ public class Vector<E> extends AbstractList<E>
 	 * specified Collection.
 	 *
 	 * @param c
-	 *            a collection of elements to be removed from the Vector
+	 *          a collection of elements to be removed from the Vector
 	 * @return true if this Vector changed as a result of the call
 	 * @throws ClassCastException
-	 *             if the types of one or more elements in this vector are
-	 *             incompatible with the specified collection (
-	 *             <a href="Collection.html#optional-restrictions">optional</a>)
+	 *                              if the types of one or more elements in this
+	 *                              vector are
+	 *                              incompatible with the specified collection (
+	 *                              <a href=
+	 *                              "Collection.html#optional-restrictions">optional</a>)
 	 * @throws NullPointerException
-	 *             if this vector contains one or more null elements and the
-	 *             specified collection does not support null elements (
-	 *             <a href="Collection.html#optional-restrictions">optional</a>
-	 *             ), or if the specified collection is null
+	 *                              if this vector contains one or more null
+	 *                              elements and the
+	 *                              specified collection does not support null
+	 *                              elements (
+	 *                              <a href=
+	 *                              "Collection.html#optional-restrictions">optional</a>
+	 *                              ), or if the specified collection is null
 	 * @since 1.2
 	 */
 	public synchronized boolean removeAll(Collection<?> c) {
@@ -957,18 +960,23 @@ public class Vector<E> extends AbstractList<E>
 	 * elements that are not contained in the specified Collection.
 	 *
 	 * @param c
-	 *            a collection of elements to be retained in this Vector (all
-	 *            other elements are removed)
+	 *          a collection of elements to be retained in this Vector (all
+	 *          other elements are removed)
 	 * @return true if this Vector changed as a result of the call
 	 * @throws ClassCastException
-	 *             if the types of one or more elements in this vector are
-	 *             incompatible with the specified collection (
-	 *             <a href="Collection.html#optional-restrictions">optional</a>)
+	 *                              if the types of one or more elements in this
+	 *                              vector are
+	 *                              incompatible with the specified collection (
+	 *                              <a href=
+	 *                              "Collection.html#optional-restrictions">optional</a>)
 	 * @throws NullPointerException
-	 *             if this vector contains one or more null elements and the
-	 *             specified collection does not support null elements (
-	 *             <a href="Collection.html#optional-restrictions">optional</a>
-	 *             ), or if the specified collection is null
+	 *                              if this vector contains one or more null
+	 *                              elements and the
+	 *                              specified collection does not support null
+	 *                              elements (
+	 *                              <a href=
+	 *                              "Collection.html#optional-restrictions">optional</a>
+	 *                              ), or if the specified collection is null
 	 * @since 1.2
 	 */
 	public synchronized boolean retainAll(Collection<?> c) {
@@ -983,16 +991,18 @@ public class Vector<E> extends AbstractList<E>
 	 * they are returned by the specified Collection's iterator.
 	 *
 	 * @param index
-	 *            index at which to insert the first element from the specified
-	 *            collection
+	 *              index at which to insert the first element from the
+	 *              specified
+	 *              collection
 	 * @param c
-	 *            elements to be inserted into this Vector
+	 *              elements to be inserted into this Vector
 	 * @return {@code true} if this Vector changed as a result of the call
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if the index is out of range (
-	 *             {@code index < 0 || index > size()})
+	 *                                        if the index is out of range (
+	 *                                        {@code index < 0 || index > size()})
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                                        if the specified collection is
+	 *                                        null
 	 * @since 1.2
 	 */
 	public synchronized boolean addAll(int index, Collection<? extends E> c) {
@@ -1006,7 +1016,8 @@ public class Vector<E> extends AbstractList<E>
 
 		int numMoved = elementCount - index;
 		if (numMoved > 0)
-			System.arraycopy(elementData, index, elementData, index + numNew, numMoved);
+			System.arraycopy(elementData, index, elementData, index + numNew,
+					numMoved);
 
 		System.arraycopy(a, 0, elementData, index, numNew);
 		elementCount += numNew;
@@ -1023,7 +1034,7 @@ public class Vector<E> extends AbstractList<E>
 	 * they contain the same elements in the same order.
 	 *
 	 * @param o
-	 *            the Object to be compared for equality with this Vector
+	 *          the Object to be compared for equality with this Vector
 	 * @return true if the specified Object is equal to this Vector
 	 */
 	public synchronized boolean equals(Object o) {
@@ -1075,19 +1086,22 @@ public class Vector<E> extends AbstractList<E>
 	 * fashion that iterations in progress may yield incorrect results.)
 	 *
 	 * @param fromIndex
-	 *            low endpoint (inclusive) of the subList
+	 *                  low endpoint (inclusive) of the subList
 	 * @param toIndex
-	 *            high endpoint (exclusive) of the subList
+	 *                  high endpoint (exclusive) of the subList
 	 * @return a view of the specified range within this List
 	 * @throws IndexOutOfBoundsException
-	 *             if an endpoint index value is out of range
-	 *             {@code (fromIndex < 0 || toIndex > size)}
+	 *                                   if an endpoint index value is out of
+	 *                                   range
+	 *                                   {@code (fromIndex < 0 || toIndex > size)}
 	 * @throws IllegalArgumentException
-	 *             if the endpoint indices are out of order
-	 *             {@code (fromIndex > toIndex)}
+	 *                                   if the endpoint indices are out of
+	 *                                   order
+	 *                                   {@code (fromIndex > toIndex)}
 	 */
 	public synchronized List<E> subList(int fromIndex, int toIndex) {
-		return Collections.synchronizedList(super.subList(fromIndex, toIndex), this);
+		return Collections.synchronizedList(super.subList(fromIndex, toIndex),
+				this);
 	}
 
 	/**
@@ -1100,7 +1114,8 @@ public class Vector<E> extends AbstractList<E>
 	protected synchronized void removeRange(int fromIndex, int toIndex) {
 		modCount++;
 		int numMoved = elementCount - toIndex;
-		System.arraycopy(elementData, toIndex, elementData, fromIndex, numMoved);
+		System.arraycopy(elementData, toIndex, elementData, fromIndex,
+				numMoved);
 
 		// Let gc do its work
 		int newElementCount = elementCount - (toIndex - fromIndex);
@@ -1113,7 +1128,8 @@ public class Vector<E> extends AbstractList<E>
 	 * serialize it). This method performs synchronization to ensure the
 	 * consistency of the serialized data.
 	 */
-	private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
+	private void writeObject(java.io.ObjectOutputStream s)
+			throws java.io.IOException {
 		final java.io.ObjectOutputStream.PutField fields = s.putFields();
 		final Object[] data;
 		synchronized (this) {
@@ -1137,7 +1153,7 @@ public class Vector<E> extends AbstractList<E>
 	 * The returned list iterator is <a href="#fail-fast"><i>fail-fast</i></a>.
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public synchronized ListIterator<E> listIterator(int index) {
 		if (index < 0 || index > elementCount)
@@ -1428,7 +1444,8 @@ public class Vector<E> extends AbstractList<E>
 		public Spliterator<E> trySplit() {
 			int hi = getFence(), lo = index, mid = (lo + hi) >>> 1;
 			return (lo >= mid) ? null
-					: new VectorSpliterator<E>(list, array, lo, index = mid, expectedModCount);
+					: new VectorSpliterator<E>(list, array, lo, index = mid,
+							expectedModCount);
 		}
 
 		@SuppressWarnings("unchecked")
@@ -1477,7 +1494,8 @@ public class Vector<E> extends AbstractList<E>
 		}
 
 		public int characteristics() {
-			return Spliterator.ORDERED | Spliterator.SIZED | Spliterator.SUBSIZED;
+			return Spliterator.ORDERED | Spliterator.SIZED
+					| Spliterator.SUBSIZED;
 		}
 	}
 }

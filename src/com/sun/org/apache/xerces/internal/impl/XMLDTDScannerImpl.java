@@ -4,15 +4,12 @@
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
-
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -71,8 +68,8 @@ import java.io.IOException;
  *
  * @version $Id: XMLDTDScannerImpl.java,v 1.8 2010-11-01 04:39:41 joehw Exp $
  */
-public class XMLDTDScannerImpl extends XMLScanner
-		implements XMLDTDScanner, XMLComponent, XMLEntityHandler {
+public class XMLDTDScannerImpl extends XMLScanner implements XMLDTDScanner,
+		XMLComponent, XMLEntityHandler {
 
 	//
 	// Constants
@@ -92,14 +89,15 @@ public class XMLDTDScannerImpl extends XMLScanner
 	// recognized features and properties
 
 	/** Recognized features. */
-	private static final String[] RECOGNIZED_FEATURES = { VALIDATION, NOTIFY_CHAR_REFS, };
+	private static final String[] RECOGNIZED_FEATURES = { VALIDATION,
+			NOTIFY_CHAR_REFS, };
 
 	/** Feature defaults. */
 	private static final Boolean[] FEATURE_DEFAULTS = { null, Boolean.FALSE, };
 
 	/** Recognized properties. */
-	private static final String[] RECOGNIZED_PROPERTIES = { SYMBOL_TABLE, ERROR_REPORTER,
-			ENTITY_MANAGER, };
+	private static final String[] RECOGNIZED_PROPERTIES = { SYMBOL_TABLE,
+			ERROR_REPORTER, ENTITY_MANAGER, };
 
 	/** Property defaults. */
 	private static final Object[] PROPERTY_DEFAULTS = { null, null, null, };
@@ -207,12 +205,11 @@ public class XMLDTDScannerImpl extends XMLScanner
 	//
 
 	/** Default constructor. */
-	public XMLDTDScannerImpl() {
-	} // <init>()
+	public XMLDTDScannerImpl() {} // <init>()
 
 	/** Constructor for he use of non-XMLComponentManagers. */
-	public XMLDTDScannerImpl(SymbolTable symbolTable, XMLErrorReporter errorReporter,
-			XMLEntityManager entityManager) {
+	public XMLDTDScannerImpl(SymbolTable symbolTable,
+			XMLErrorReporter errorReporter, XMLEntityManager entityManager) {
 		fSymbolTable = symbolTable;
 		fErrorReporter = errorReporter;
 		fEntityManager = entityManager;
@@ -227,10 +224,10 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * Sets the input source.
 	 *
 	 * @param inputSource
-	 *            The input source or null.
+	 *                    The input source or null.
 	 *
 	 * @throws IOException
-	 *             Thrown on i/o error.
+	 *                     Thrown on i/o error.
 	 */
 	public void setInputSource(XMLInputSource inputSource) throws IOException {
 		if (inputSource == null) {
@@ -257,16 +254,21 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * Scans the external subset of the document.
 	 *
 	 * @param complete
-	 *            True if the scanner should scan the document completely,
-	 *            pushing all events to the registered document handler. A value
-	 *            of false indicates that that the scanner should only scan the
-	 *            next portion of the document and return. A scanner instance is
-	 *            permitted to completely scan a document if it does not support
-	 *            this "pull" scanning model.
+	 *                 True if the scanner should scan the document completely,
+	 *                 pushing all events to the registered document handler. A
+	 *                 value
+	 *                 of false indicates that that the scanner should only scan
+	 *                 the
+	 *                 next portion of the document and return. A scanner
+	 *                 instance is
+	 *                 permitted to completely scan a document if it does not
+	 *                 support
+	 *                 this "pull" scanning model.
 	 *
 	 * @return True if there is more to scan, false otherwise.
 	 */
-	public boolean scanDTDExternalSubset(boolean complete) throws IOException, XNIException {
+	public boolean scanDTDExternalSubset(boolean complete) throws IOException,
+			XNIException {
 
 		fEntityManager.setEntityHandler(this);
 		if (fScannerState == SCANNER_STATE_TEXT_DECL) {
@@ -299,20 +301,28 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * Scans the internal subset of the document.
 	 *
 	 * @param complete
-	 *            True if the scanner should scan the document completely,
-	 *            pushing all events to the registered document handler. A value
-	 *            of false indicates that that the scanner should only scan the
-	 *            next portion of the document and return. A scanner instance is
-	 *            permitted to completely scan a document if it does not support
-	 *            this "pull" scanning model.
+	 *                       True if the scanner should scan the document
+	 *                       completely,
+	 *                       pushing all events to the registered document
+	 *                       handler. A value
+	 *                       of false indicates that that the scanner should
+	 *                       only scan the
+	 *                       next portion of the document and return. A scanner
+	 *                       instance is
+	 *                       permitted to completely scan a document if it does
+	 *                       not support
+	 *                       this "pull" scanning model.
 	 * @param standalone
-	 *            True if the document was specified as standalone. This value
-	 *            is important for verifying certain well-formedness
-	 *            constraints.
+	 *                       True if the document was specified as standalone.
+	 *                       This value
+	 *                       is important for verifying certain well-formedness
+	 *                       constraints.
 	 * @param hasExternalDTD
-	 *            True if the document has an external DTD. This allows the
-	 *            scanner to properly notify the handler of the end of the DTD
-	 *            in the absence of an external subset.
+	 *                       True if the document has an external DTD. This
+	 *                       allows the
+	 *                       scanner to properly notify the handler of the end
+	 *                       of the DTD
+	 *                       in the absence of an external subset.
 	 *
 	 * @return True if there is more to scan, false otherwise.
 	 */
@@ -353,8 +363,10 @@ public class XMLDTDScannerImpl extends XMLScanner
 				// we're done, set starting state for external subset
 				setScannerState(SCANNER_STATE_TEXT_DECL);
 				// we're done scanning DTD.
-				fLimitAnalyzer.reset(XMLSecurityManager.Limit.GENERAL_ENTITY_SIZE_LIMIT);
-				fLimitAnalyzer.reset(XMLSecurityManager.Limit.TOTAL_ENTITY_SIZE_LIMIT);
+				fLimitAnalyzer.reset(
+						XMLSecurityManager.Limit.GENERAL_ENTITY_SIZE_LIMIT);
+				fLimitAnalyzer.reset(
+						XMLSecurityManager.Limit.TOTAL_ENTITY_SIZE_LIMIT);
 				return false;
 			}
 		} while (complete);
@@ -368,10 +380,10 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * Skip the DTD if javax.xml.stream.supportDTD is false.
 	 *
 	 * @param supportDTD
-	 *            The value of the property javax.xml.stream.supportDTD.
+	 *                   The value of the property javax.xml.stream.supportDTD.
 	 * @return true if DTD is skipped, false otherwise.
 	 * @throws java.io.IOException
-	 *             if i/o error occurs
+	 *         if i/o error occurs
 	 */
 	@Override
 	public boolean skipDTD(boolean supportDTD) throws IOException {
@@ -386,7 +398,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 					scanSurrogates(fStringBuffer);
 				}
 				if (isInvalidLiteral(c)) {
-					reportFatalError("InvalidCharInDTD", new Object[] { Integer.toHexString(c) });
+					reportFatalError("InvalidCharInDTD", new Object[] { Integer
+							.toHexString(c) });
 					fEntityScanner.scanChar(null);
 				}
 			}
@@ -404,7 +417,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 *
 	 * @param componentManager
 	 */
-	public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
+	public void reset(XMLComponentManager componentManager)
+			throws XMLConfigurationException {
 
 		super.reset(componentManager);
 		init();
@@ -451,7 +465,7 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * not want to report a default value for this feature.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                  The feature identifier.
 	 *
 	 * @since Xerces 2.2.0
 	 */
@@ -469,7 +483,7 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * not want to report a default value for this property.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 *
 	 * @since Xerces 2.2.0
 	 */
@@ -513,7 +527,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 *
 	 * @param dtdContentModelHandler
 	 */
-	public void setDTDContentModelHandler(XMLDTDContentModelHandler dtdContentModelHandler) {
+	public void setDTDContentModelHandler(
+			XMLDTDContentModelHandler dtdContentModelHandler) {
 		fDTDContentModelHandler = dtdContentModelHandler;
 	} // setDTDContentModelHandler
 
@@ -536,22 +551,26 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * entities are just specified by their name.
 	 *
 	 * @param name
-	 *            The name of the entity.
+	 *                   The name of the entity.
 	 * @param identifier
-	 *            The resource identifier.
+	 *                   The resource identifier.
 	 * @param encoding
-	 *            The auto-detected IANA encoding name of the entity stream.
-	 *            This value will be null in those situations where the entity
-	 *            encoding is not auto-detected (e.g. internal entities or a
-	 *            document entity that is parsed from a java.io.Reader).
+	 *                   The auto-detected IANA encoding name of the entity
+	 *                   stream.
+	 *                   This value will be null in those situations where the
+	 *                   entity
+	 *                   encoding is not auto-detected (e.g. internal entities
+	 *                   or a
+	 *                   document entity that is parsed from a java.io.Reader).
 	 * @param augs
-	 *            Additional information that may include infoset augmentations
+	 *                   Additional information that may include infoset
+	 *                   augmentations
 	 *
 	 * @throws XNIException
-	 *             Thrown by handler to signal an error.
+	 *                      Thrown by handler to signal an error.
 	 */
-	public void startEntity(String name, XMLResourceIdentifier identifier, String encoding,
-			Augmentations augs) throws XNIException {
+	public void startEntity(String name, XMLResourceIdentifier identifier,
+			String encoding, Augmentations augs) throws XNIException {
 
 		super.startEntity(name, identifier, encoding, augs);
 
@@ -587,12 +606,13 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * just specified by their name.
 	 *
 	 * @param name
-	 *            The name of the entity.
+	 *             The name of the entity.
 	 *
 	 * @throws XNIException
-	 *             Thrown by handler to signal an error.
+	 *                      Thrown by handler to signal an error.
 	 */
-	public void endEntity(String name, Augmentations augs) throws XNIException, IOException {
+	public void endEntity(String name, Augmentations augs) throws XNIException,
+			IOException {
 
 		super.endEntity(name, augs);
 
@@ -661,8 +681,9 @@ public class XMLDTDScannerImpl extends XMLScanner
 		// For standalone DTD loader, it might be the last opened entity
 		// and if this is the last opened entity and fMarkUpDepth != 0 or
 		// fIncludeSectDepth != 0 or fExtEntityDepth != 0 throw Exception
-		if (augs != null && Boolean.TRUE.equals(augs.getItem(Constants.LAST_ENTITY))
-				&& (fMarkUpDepth != 0 || fExtEntityDepth != 0 || fIncludeSectDepth != 0)) {
+		if (augs != null && Boolean.TRUE.equals(augs.getItem(
+				Constants.LAST_ENTITY)) && (fMarkUpDepth != 0
+						|| fExtEntityDepth != 0 || fIncludeSectDepth != 0)) {
 			throw new EOFException();
 		}
 
@@ -674,7 +695,7 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * Sets the scanner state.
 	 *
 	 * @param state
-	 *            The new scanner state.
+	 *              The new scanner state.
 	 */
 	protected final void setScannerState(int state) {
 
@@ -696,12 +717,12 @@ public class XMLDTDScannerImpl extends XMLScanner
 
 		if (DEBUG_SCANNER_STATE) {
 			switch (state) {
-			case SCANNER_STATE_END_OF_INPUT:
-				return "SCANNER_STATE_END_OF_INPUT";
-			case SCANNER_STATE_TEXT_DECL:
-				return "SCANNER_STATE_TEXT_DECL";
-			case SCANNER_STATE_MARKUP_DECL:
-				return "SCANNER_STATE_MARKUP_DECL";
+				case SCANNER_STATE_END_OF_INPUT:
+					return "SCANNER_STATE_END_OF_INPUT";
+				case SCANNER_STATE_TEXT_DECL:
+					return "SCANNER_STATE_TEXT_DECL";
+				case SCANNER_STATE_MARKUP_DECL:
+					return "SCANNER_STATE_MARKUP_DECL";
 			}
 		}
 
@@ -717,18 +738,22 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * start a parameter entity dealing with the textdecl if there is any
 	 *
 	 * @param name
-	 *            The name of the parameter entity to start (without the '%')
+	 *                The name of the parameter entity to start (without the
+	 *                '%')
 	 * @param literal
-	 *            Whether this is happening within a literal
+	 *                Whether this is happening within a literal
 	 */
-	protected void startPE(String name, boolean literal) throws IOException, XNIException {
+	protected void startPE(String name, boolean literal) throws IOException,
+			XNIException {
 		int depth = fPEDepth;
 		String pName = "%" + name;
 		if (fValidation && !fEntityStore.isDeclaredEntity(pName)) {
-			fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "EntityNotDeclared",
-					new Object[] { name }, XMLErrorReporter.SEVERITY_ERROR);
+			fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
+					"EntityNotDeclared", new Object[] { name },
+					XMLErrorReporter.SEVERITY_ERROR);
 		}
-		fEntityManager.startEntity(false, fSymbolTable.addSymbol(pName), literal);
+		fEntityManager.startEntity(false, fSymbolTable.addSymbol(pName),
+				literal);
 		// if we actually got a new entity and it's external
 		// parse text decl if there is any
 		if (depth != fPEDepth && fEntityScanner.isExternal()) {
@@ -740,15 +765,16 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * Dispatch an XML "event".
 	 *
 	 * @param complete
-	 *            True if this method is intended to scan and dispatch as much
-	 *            as possible.
+	 *                 True if this method is intended to scan and dispatch as
+	 *                 much
+	 *                 as possible.
 	 *
 	 * @return True if a TextDecl was scanned.
 	 *
 	 * @throws IOException
-	 *             Thrown on i/o error.
+	 *                      Thrown on i/o error.
 	 * @throws XNIException
-	 *             Thrown on parse error.
+	 *                      Thrown on parse error.
 	 *
 	 */
 	protected final boolean scanTextDecl() throws IOException, XNIException {
@@ -765,8 +791,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 				while (isValidNameChar(fEntityScanner.peekChar())) {
 					fStringBuffer.append((char) fEntityScanner.scanChar(null));
 				}
-				String target = fSymbolTable.addSymbol(fStringBuffer.ch, fStringBuffer.offset,
-						fStringBuffer.length);
+				String target = fSymbolTable.addSymbol(fStringBuffer.ch,
+						fStringBuffer.offset, fStringBuffer.length);
 				scanPIData(target, fString);
 			}
 
@@ -803,9 +829,9 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * <em>starts with</em> "xml". (e.g. xmlfoo)
 	 *
 	 * @param target
-	 *            The PI target
+	 *               The PI target
 	 * @param data
-	 *            The string to fill in with the data
+	 *               The string to fill in with the data
 	 */
 	protected final void scanPIData(String target, XMLString data)
 			throws IOException, XNIException {
@@ -860,7 +886,9 @@ public class XMLDTDScannerImpl extends XMLScanner
 		// spaces
 		fReportEntity = false;
 		if (!skipSeparator(true, !scanningInternalSubset())) {
-			reportFatalError("MSG_SPACE_REQUIRED_BEFORE_ELEMENT_TYPE_IN_ELEMENTDECL", null);
+			reportFatalError(
+					"MSG_SPACE_REQUIRED_BEFORE_ELEMENT_TYPE_IN_ELEMENTDECL",
+					null);
 		}
 
 		// element name
@@ -871,7 +899,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 
 		// spaces
 		if (!skipSeparator(true, !scanningInternalSubset())) {
-			reportFatalError("MSG_SPACE_REQUIRED_BEFORE_CONTENTSPEC_IN_ELEMENTDECL",
+			reportFatalError(
+					"MSG_SPACE_REQUIRED_BEFORE_CONTENTSPEC_IN_ELEMENTDECL",
 					new Object[] { name });
 		}
 
@@ -895,7 +924,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 			}
 		} else {
 			if (!fEntityScanner.skipChar('(', null)) {
-				reportFatalError("MSG_OPEN_PAREN_OR_ELEMENT_TYPE_REQUIRED_IN_CHILDREN",
+				reportFatalError(
+						"MSG_OPEN_PAREN_OR_ELEMENT_TYPE_REQUIRED_IN_CHILDREN",
 						new Object[] { name });
 			}
 			if (fDTDContentModelHandler != null) {
@@ -947,11 +977,13 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * </pre>
 	 *
 	 * @param elName
-	 *            The element type name this declaration is about.
+	 *               The element type name this declaration is about.
 	 *
-	 *            <strong>Note:</strong> Called after scanning past '(#PCDATA'.
+	 *               <strong>Note:</strong> Called after scanning past
+	 *               '(#PCDATA'.
 	 */
-	private final void scanMixed(String elName) throws IOException, XNIException {
+	private final void scanMixed(String elName) throws IOException,
+			XNIException {
 
 		String childName = null;
 
@@ -965,7 +997,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 			fStringBuffer.append('|');
 			// call handler
 			if (fDTDContentModelHandler != null) {
-				fDTDContentModelHandler.separator(XMLDTDContentModelHandler.SEPARATOR_CHOICE, null);
+				fDTDContentModelHandler.separator(
+						XMLDTDContentModelHandler.SEPARATOR_CHOICE, null);
 			}
 			skipSeparator(false, !scanningInternalSubset());
 
@@ -990,11 +1023,12 @@ public class XMLDTDScannerImpl extends XMLScanner
 			// call handler
 			if (fDTDContentModelHandler != null) {
 				fDTDContentModelHandler.endGroup(null);
-				fDTDContentModelHandler.occurrence(XMLDTDContentModelHandler.OCCURS_ZERO_OR_MORE,
-						null);
+				fDTDContentModelHandler.occurrence(
+						XMLDTDContentModelHandler.OCCURS_ZERO_OR_MORE, null);
 			}
 		} else if (childName != null) {
-			reportFatalError("MixedContentUnterminated", new Object[] { elName });
+			reportFatalError("MixedContentUnterminated", new Object[] {
+					elName });
 		} else if (fEntityScanner.skipChar(')', null)) {
 			fStringBuffer.append(')');
 			// call handler
@@ -1002,7 +1036,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 				fDTDContentModelHandler.endGroup(null);
 			}
 		} else {
-			reportFatalError("MSG_CLOSE_PAREN_REQUIRED_IN_CHILDREN", new Object[] { elName });
+			reportFatalError("MSG_CLOSE_PAREN_REQUIRED_IN_CHILDREN",
+					new Object[] { elName });
 		}
 		fMarkUpDepth--;
 		// we are done
@@ -1020,12 +1055,13 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * </pre>
 	 *
 	 * @param elName
-	 *            The element type name this declaration is about.
+	 *               The element type name this declaration is about.
 	 *
-	 *            <strong>Note:</strong> Called after scanning past the first
-	 *            open paranthesis.
+	 *               <strong>Note:</strong> Called after scanning past the first
+	 *               open paranthesis.
 	 */
-	private final void scanChildren(String elName) throws IOException, XNIException {
+	private final void scanChildren(String elName) throws IOException,
+			XNIException {
 
 		fContentDepth = 0;
 		pushContentStack(0);
@@ -1048,7 +1084,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 			skipSeparator(false, !scanningInternalSubset());
 			String childName = fEntityScanner.scanName(NameType.ELEMENTSTART);
 			if (childName == null) {
-				reportFatalError("MSG_OPEN_PAREN_OR_ELEMENT_TYPE_REQUIRED_IN_CHILDREN",
+				reportFatalError(
+						"MSG_OPEN_PAREN_OR_ELEMENT_TYPE_REQUIRED_IN_CHILDREN",
 						new Object[] { elName });
 				return;
 			}
@@ -1081,8 +1118,9 @@ public class XMLDTDScannerImpl extends XMLScanner
 					currentOp = c;
 					// call handler
 					if (fDTDContentModelHandler != null) {
-						fDTDContentModelHandler
-								.separator(XMLDTDContentModelHandler.SEPARATOR_SEQUENCE, null);
+						fDTDContentModelHandler.separator(
+								XMLDTDContentModelHandler.SEPARATOR_SEQUENCE,
+								null);
 					}
 					fEntityScanner.scanChar(null);
 					fStringBuffer.append(',');
@@ -1091,8 +1129,9 @@ public class XMLDTDScannerImpl extends XMLScanner
 					currentOp = c;
 					// call handler
 					if (fDTDContentModelHandler != null) {
-						fDTDContentModelHandler
-								.separator(XMLDTDContentModelHandler.SEPARATOR_CHOICE, null);
+						fDTDContentModelHandler.separator(
+								XMLDTDContentModelHandler.SEPARATOR_CHOICE,
+								null);
 					}
 					fEntityScanner.scanChar(null);
 					fStringBuffer.append('|');
@@ -1164,7 +1203,9 @@ public class XMLDTDScannerImpl extends XMLScanner
 		// spaces
 		fReportEntity = false;
 		if (!skipSeparator(true, !scanningInternalSubset())) {
-			reportFatalError("MSG_SPACE_REQUIRED_BEFORE_ELEMENT_TYPE_IN_ATTLISTDECL", null);
+			reportFatalError(
+					"MSG_SPACE_REQUIRED_BEFORE_ELEMENT_TYPE_IN_ATTLISTDECL",
+					null);
 		}
 
 		// element name
@@ -1190,7 +1231,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 				fMarkUpDepth--;
 				return;
 			} else {
-				reportFatalError("MSG_SPACE_REQUIRED_BEFORE_ATTRIBUTE_NAME_IN_ATTDEF",
+				reportFatalError(
+						"MSG_SPACE_REQUIRED_BEFORE_ATTRIBUTE_NAME_IN_ATTDEF",
 						new Object[] { elName });
 			}
 		}
@@ -1199,7 +1241,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 		while (!fEntityScanner.skipChar('>', null)) {
 			String name = fEntityScanner.scanName(NameType.ATTRIBUTENAME);
 			if (name == null) {
-				reportFatalError("AttNameRequiredInAttDef", new Object[] { elName });
+				reportFatalError("AttNameRequiredInAttDef", new Object[] {
+						elName });
 			}
 			// spaces
 			if (!skipSeparator(true, !scanningInternalSubset())) {
@@ -1211,12 +1254,14 @@ public class XMLDTDScannerImpl extends XMLScanner
 
 			// spaces
 			if (!skipSeparator(true, !scanningInternalSubset())) {
-				reportFatalError("MSG_SPACE_REQUIRED_BEFORE_DEFAULTDECL_IN_ATTDEF",
+				reportFatalError(
+						"MSG_SPACE_REQUIRED_BEFORE_DEFAULTDECL_IN_ATTDEF",
 						new Object[] { elName, name });
 			}
 
 			// default decl
-			String defaultType = scanAttDefaultDecl(elName, name, type, fLiteral, fLiteral2);
+			String defaultType = scanAttDefaultDecl(elName, name, type,
+					fLiteral, fLiteral2);
 			// REVISIT: Should we do anything with the non-normalized
 			// default attribute value? -Ac
 			// yes--according to bug 5073. - neilg
@@ -1224,32 +1269,33 @@ public class XMLDTDScannerImpl extends XMLScanner
 			if (fDTDHandler != null || nonValidatingMode) {
 				if (fEnumerationCount != 0) {
 					enumr = new String[fEnumerationCount];
-					System.arraycopy(fEnumeration, 0, enumr, 0, fEnumerationCount);
+					System.arraycopy(fEnumeration, 0, enumr, 0,
+							fEnumerationCount);
 				}
 			}
 			// call handler
 			// Determine whether the default value to be passed should be null.
 			// REVISIT: should probably check whether fLiteral.ch is null
 			// instead. LM.
-			if (defaultType != null
-					&& (defaultType.equals("#REQUIRED") || defaultType.equals("#IMPLIED"))) {
+			if (defaultType != null && (defaultType.equals("#REQUIRED")
+					|| defaultType.equals("#IMPLIED"))) {
 				if (fDTDHandler != null) {
-					fDTDHandler.attributeDecl(elName, name, type, enumr, defaultType, null, null,
-							null);
+					fDTDHandler.attributeDecl(elName, name, type, enumr,
+							defaultType, null, null, null);
 				}
 				if (nonValidatingMode) {
-					nvGrammarInfo.attributeDecl(elName, name, type, enumr, defaultType, null, null,
-							null);
+					nvGrammarInfo.attributeDecl(elName, name, type, enumr,
+							defaultType, null, null, null);
 
 				}
 			} else {
 				if (fDTDHandler != null) {
-					fDTDHandler.attributeDecl(elName, name, type, enumr, defaultType, fLiteral,
-							fLiteral2, null);
+					fDTDHandler.attributeDecl(elName, name, type, enumr,
+							defaultType, fLiteral, fLiteral2, null);
 				}
 				if (nonValidatingMode) {
-					nvGrammarInfo.attributeDecl(elName, name, type, enumr, defaultType, fLiteral,
-							fLiteral2, null);
+					nvGrammarInfo.attributeDecl(elName, name, type, enumr,
+							defaultType, fLiteral, fLiteral2, null);
 				}
 			}
 			skipSeparator(false, !scanningInternalSubset());
@@ -1286,9 +1332,9 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * <strong>Note:</strong> Called after scanning past '&lt;!ATTLIST'
 	 *
 	 * @param elName
-	 *            The element type name this declaration is about.
+	 *               The element type name this declaration is about.
 	 * @param atName
-	 *            The attribute name this declaration is about.
+	 *               The attribute name this declaration is about.
 	 */
 	private final String scanAttType(String elName, String atName)
 			throws IOException, XNIException {
@@ -1320,7 +1366,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 			type = "NOTATION";
 			// spaces
 			if (!skipSeparator(true, !scanningInternalSubset())) {
-				reportFatalError("MSG_SPACE_REQUIRED_AFTER_NOTATION_IN_NOTATIONTYPE",
+				reportFatalError(
+						"MSG_SPACE_REQUIRED_AFTER_NOTATION_IN_NOTATIONTYPE",
 						new Object[] { elName, atName });
 			}
 			// open paren
@@ -1343,7 +1390,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 				c = fEntityScanner.scanChar(null);
 			} while (c == '|');
 			if (c != ')') {
-				reportFatalError("NotationTypeUnterminated", new Object[] { elName, atName });
+				reportFatalError("NotationTypeUnterminated", new Object[] {
+						elName, atName });
 			}
 			fMarkUpDepth--;
 		} else { // Enumeration
@@ -1352,7 +1400,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 			int c = fEntityScanner.scanChar(null);
 			if (c != '(') {
 				// "OPEN_PAREN_REQUIRED_BEFORE_ENUMERATION_IN_ATTRDECL",
-				reportFatalError("AttTypeRequiredInAttDef", new Object[] { elName, atName });
+				reportFatalError("AttTypeRequiredInAttDef", new Object[] {
+						elName, atName });
 			}
 			fMarkUpDepth++;
 			do {
@@ -1368,7 +1417,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 				c = fEntityScanner.scanChar(null);
 			} while (c == '|');
 			if (c != ')') {
-				reportFatalError("EnumerationUnterminated", new Object[] { elName, atName });
+				reportFatalError("EnumerationUnterminated", new Object[] {
+						elName, atName });
 			}
 			fMarkUpDepth--;
 		}
@@ -1385,13 +1435,14 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * </pre>
 	 *
 	 * @param name
-	 *            The name of the attribute being scanned.
+	 *                   The name of the attribute being scanned.
 	 * @param defaultVal
-	 *            The string to fill in with the default value.
+	 *                   The string to fill in with the default value.
 	 */
-	protected final String scanAttDefaultDecl(String elName, String atName, String type,
-			XMLString defaultVal, XMLString nonNormalizedDefaultVal)
-			throws IOException, XNIException {
+	protected final String scanAttDefaultDecl(String elName, String atName,
+			String type, XMLString defaultVal,
+			XMLString nonNormalizedDefaultVal) throws IOException,
+			XNIException {
 
 		String defaultType = null;
 		fString.clear();
@@ -1405,14 +1456,16 @@ public class XMLDTDScannerImpl extends XMLScanner
 				defaultType = "#FIXED";
 				// spaces
 				if (!skipSeparator(true, !scanningInternalSubset())) {
-					reportFatalError("MSG_SPACE_REQUIRED_AFTER_FIXED_IN_DEFAULTDECL",
+					reportFatalError(
+							"MSG_SPACE_REQUIRED_AFTER_FIXED_IN_DEFAULTDECL",
 							new Object[] { elName, atName });
 				}
 			}
 			// AttValue
-			boolean isVC = !fStandalone && (fSeenExternalDTD || fSeenExternalPE);
-			scanAttributeValue(defaultVal, nonNormalizedDefaultVal, atName, fAttributes, 0, isVC,
-					elName, false);
+			boolean isVC = !fStandalone && (fSeenExternalDTD
+					|| fSeenExternalPE);
+			scanAttributeValue(defaultVal, nonNormalizedDefaultVal, atName,
+					fAttributes, 0, isVC, elName, false);
 		}
 		return defaultType;
 
@@ -1447,7 +1500,9 @@ public class XMLDTDScannerImpl extends XMLScanner
 				// <!ENTITY % x "x">
 				isPEDecl = true;
 			} else if (scanningInternalSubset()) {
-				reportFatalError("MSG_SPACE_REQUIRED_BEFORE_ENTITY_NAME_IN_ENTITYDECL", null);
+				reportFatalError(
+						"MSG_SPACE_REQUIRED_BEFORE_ENTITY_NAME_IN_ENTITYDECL",
+						null);
 				isPEDecl = true;
 			} else if (fEntityScanner.peekChar() == '%') {
 				// <!ENTITY %%x; "x"> is legal
@@ -1456,13 +1511,17 @@ public class XMLDTDScannerImpl extends XMLScanner
 			} else {
 				sawPERef = true;
 			}
-		} else if (scanningInternalSubset() || !fEntityScanner.skipChar('%', NameType.REFERENCE)) {
+		} else if (scanningInternalSubset() || !fEntityScanner.skipChar('%',
+				NameType.REFERENCE)) {
 			// <!ENTITY[^ ]...> or <!ENTITY[^ %]...>
-			reportFatalError("MSG_SPACE_REQUIRED_BEFORE_ENTITY_NAME_IN_ENTITYDECL", null);
+			reportFatalError(
+					"MSG_SPACE_REQUIRED_BEFORE_ENTITY_NAME_IN_ENTITYDECL",
+					null);
 			isPEDecl = false;
 		} else if (fEntityScanner.skipSpaces()) {
 			// <!ENTITY% ...>
-			reportFatalError("MSG_SPACE_REQUIRED_BEFORE_PERCENT_IN_PEDECL", null);
+			reportFatalError("MSG_SPACE_REQUIRED_BEFORE_PERCENT_IN_PEDECL",
+					null);
 			isPEDecl = false;
 		} else {
 			sawPERef = true;
@@ -1473,7 +1532,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 				if (peName == null) {
 					reportFatalError("NameRequiredInPEReference", null);
 				} else if (!fEntityScanner.skipChar(';', NameType.REFERENCE)) {
-					reportFatalError("SemicolonRequiredInPEReference", new Object[] { peName });
+					reportFatalError("SemicolonRequiredInPEReference",
+							new Object[] { peName });
 				} else {
 					startPE(peName, false);
 				}
@@ -1498,7 +1558,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 
 		// spaces
 		if (!skipSeparator(true, !scanningInternalSubset())) {
-			reportFatalError("MSG_SPACE_REQUIRED_AFTER_ENTITY_NAME_IN_ENTITYDECL",
+			reportFatalError(
+					"MSG_SPACE_REQUIRED_AFTER_ENTITY_NAME_IN_ENTITYDECL",
 					new Object[] { name });
 		}
 
@@ -1517,18 +1578,21 @@ public class XMLDTDScannerImpl extends XMLScanner
 		if (!isPEDecl && fEntityScanner.skipString("NDATA")) {
 			// check whether there was space before NDATA
 			if (!sawSpace) {
-				reportFatalError("MSG_SPACE_REQUIRED_BEFORE_NDATA_IN_UNPARSED_ENTITYDECL",
+				reportFatalError(
+						"MSG_SPACE_REQUIRED_BEFORE_NDATA_IN_UNPARSED_ENTITYDECL",
 						new Object[] { name });
 			}
 
 			// spaces
 			if (!skipSeparator(true, !scanningInternalSubset())) {
-				reportFatalError("MSG_SPACE_REQUIRED_BEFORE_NOTATION_NAME_IN_UNPARSED_ENTITYDECL",
+				reportFatalError(
+						"MSG_SPACE_REQUIRED_BEFORE_NOTATION_NAME_IN_UNPARSED_ENTITYDECL",
 						new Object[] { name });
 			}
 			notation = fEntityScanner.scanName(NameType.NOTATION);
 			if (notation == null) {
-				reportFatalError("MSG_NOTATION_NAME_REQUIRED_FOR_UNPARSED_ENTITYDECL",
+				reportFatalError(
+						"MSG_NOTATION_NAME_REQUIRED_FOR_UNPARSED_ENTITYDECL",
 						new Object[] { name });
 			}
 		}
@@ -1542,7 +1606,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 			fStringBuffer.clear();
 			fStringBuffer2.clear();
 			fStringBuffer.append(fLiteral.ch, fLiteral.offset, fLiteral.length);
-			fStringBuffer2.append(fLiteral2.ch, fLiteral2.offset, fLiteral2.length);
+			fStringBuffer2.append(fLiteral2.ch, fLiteral2.offset,
+					fLiteral2.length);
 		}
 
 		// skip possible trailing space
@@ -1561,25 +1626,31 @@ public class XMLDTDScannerImpl extends XMLScanner
 		if (systemId != null) {
 			String baseSystemId = fEntityScanner.getBaseSystemId();
 			if (notation != null) {
-				fEntityStore.addUnparsedEntity(name, publicId, systemId, baseSystemId, notation);
+				fEntityStore.addUnparsedEntity(name, publicId, systemId,
+						baseSystemId, notation);
 			} else {
-				fEntityStore.addExternalEntity(name, publicId, systemId, baseSystemId);
+				fEntityStore.addExternalEntity(name, publicId, systemId,
+						baseSystemId);
 			}
 			if (fDTDHandler != null) {
 				// Venu Revisit : why false has been removed in expandSYstem
 				fResourceIdentifier.setValues(publicId, systemId, baseSystemId,
-						XMLEntityManager.expandSystemId(systemId, baseSystemId));
+						XMLEntityManager.expandSystemId(systemId,
+								baseSystemId));
 
 				if (notation != null) {
-					fDTDHandler.unparsedEntityDecl(name, fResourceIdentifier, notation, null);
+					fDTDHandler.unparsedEntityDecl(name, fResourceIdentifier,
+							notation, null);
 				} else {
-					fDTDHandler.externalEntityDecl(name, fResourceIdentifier, null);
+					fDTDHandler.externalEntityDecl(name, fResourceIdentifier,
+							null);
 				}
 			}
 		} else {
 			fEntityStore.addInternalEntity(name, fStringBuffer.toString());
 			if (fDTDHandler != null) {
-				fDTDHandler.internalEntityDecl(name, fStringBuffer, fStringBuffer2, null);
+				fDTDHandler.internalEntityDecl(name, fStringBuffer,
+						fStringBuffer2, null);
 			}
 		}
 		fReportEntity = true;
@@ -1590,17 +1661,22 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * Scans an entity value.
 	 *
 	 * @param value
-	 *            The string to fill in with the value.
+	 *                           The string to fill in with the value.
 	 * @param nonNormalizedValue
-	 *            The string to fill in with the non-normalized value.
+	 *                           The string to fill in with the non-normalized
+	 *                           value.
 	 *
-	 *            <strong>Note:</strong> This method uses fString, fStringBuffer
-	 *            (through the use of scanCharReferenceValue), and
-	 *            fStringBuffer2, anything in them at the time of calling is
-	 *            lost.
+	 *                           <strong>Note:</strong> This method uses
+	 *                           fString, fStringBuffer
+	 *                           (through the use of scanCharReferenceValue),
+	 *                           and
+	 *                           fStringBuffer2, anything in them at the time of
+	 *                           calling is
+	 *                           lost.
 	 */
-	protected final void scanEntityValue(String entityName, boolean isPEDecl, XMLString value,
-			XMLString nonNormalizedValue) throws IOException, XNIException {
+	protected final void scanEntityValue(String entityName, boolean isPEDecl,
+			XMLString value, XMLString nonNormalizedValue) throws IOException,
+			XNIException {
 		int quote = fEntityScanner.scanChar(null);
 		if (quote != '\'' && quote != '"') {
 			reportFatalError("OpenQuoteMissingInDecl", null);
@@ -1632,7 +1708,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 					} else {
 						fStringBuffer.append('&');
 						fStringBuffer2.append('&');
-						String eName = fEntityScanner.scanName(NameType.REFERENCE);
+						String eName = fEntityScanner.scanName(
+								NameType.REFERENCE);
 						if (eName == null) {
 							reportFatalError("NameRequiredInReference", null);
 						} else {
@@ -1650,10 +1727,12 @@ public class XMLDTDScannerImpl extends XMLScanner
 				} else if (fEntityScanner.skipChar('%', NameType.REFERENCE)) {
 					while (true) {
 						fStringBuffer2.append('%');
-						String peName = fEntityScanner.scanName(NameType.REFERENCE);
+						String peName = fEntityScanner.scanName(
+								NameType.REFERENCE);
 						if (peName == null) {
 							reportFatalError("NameRequiredInPEReference", null);
-						} else if (!fEntityScanner.skipChar(';', NameType.REFERENCE)) {
+						} else if (!fEntityScanner.skipChar(';',
+								NameType.REFERENCE)) {
 							reportFatalError("SemicolonRequiredInPEReference",
 									new Object[] { peName });
 						} else {
@@ -1678,8 +1757,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 						countChar++;
 						scanSurrogates(fStringBuffer2);
 					} else if (isInvalidLiteral(c)) {
-						reportFatalError("InvalidCharInLiteral",
-								new Object[] { Integer.toHexString(c) });
+						reportFatalError("InvalidCharInLiteral", new Object[] {
+								Integer.toHexString(c) });
 						fEntityScanner.scanChar(null);
 					}
 					// if it's not the delimiting quote or if it is but from a
@@ -1691,8 +1770,10 @@ public class XMLDTDScannerImpl extends XMLScanner
 						fEntityScanner.scanChar(null);
 					}
 				}
-				checkEntityLimit(isPEDecl, entityName, fStringBuffer.length - offset + countChar);
-			} while (fEntityScanner.scanLiteral(quote, fString, false) != quote);
+				checkEntityLimit(isPEDecl, entityName, fStringBuffer.length
+						- offset + countChar);
+			} while (fEntityScanner.scanLiteral(quote, fString,
+					false) != quote);
 			checkEntityLimit(isPEDecl, entityName, fString.length);
 			fStringBuffer.append(fString);
 			fStringBuffer2.append(fString);
@@ -1705,10 +1786,12 @@ public class XMLDTDScannerImpl extends XMLScanner
 		nonNormalizedValue.setValues(literal2);
 		if (fLimitAnalyzer != null) {
 			if (isPEDecl) {
-				fLimitAnalyzer.endEntity(XMLSecurityManager.Limit.PARAMETER_ENTITY_SIZE_LIMIT,
+				fLimitAnalyzer.endEntity(
+						XMLSecurityManager.Limit.PARAMETER_ENTITY_SIZE_LIMIT,
 						entityName);
 			} else {
-				fLimitAnalyzer.endEntity(XMLSecurityManager.Limit.GENERAL_ENTITY_SIZE_LIMIT,
+				fLimitAnalyzer.endEntity(
+						XMLSecurityManager.Limit.GENERAL_ENTITY_SIZE_LIMIT,
 						entityName);
 			}
 		}
@@ -1734,18 +1817,22 @@ public class XMLDTDScannerImpl extends XMLScanner
 		// spaces
 		fReportEntity = false;
 		if (!skipSeparator(true, !scanningInternalSubset())) {
-			reportFatalError("MSG_SPACE_REQUIRED_BEFORE_NOTATION_NAME_IN_NOTATIONDECL", null);
+			reportFatalError(
+					"MSG_SPACE_REQUIRED_BEFORE_NOTATION_NAME_IN_NOTATIONDECL",
+					null);
 		}
 
 		// notation name
 		String name = fEntityScanner.scanName(NameType.NOTATION);
 		if (name == null) {
-			reportFatalError("MSG_NOTATION_NAME_REQUIRED_IN_NOTATIONDECL", null);
+			reportFatalError("MSG_NOTATION_NAME_REQUIRED_IN_NOTATIONDECL",
+					null);
 		}
 
 		// spaces
 		if (!skipSeparator(true, !scanningInternalSubset())) {
-			reportFatalError("MSG_SPACE_REQUIRED_AFTER_NOTATION_NAME_IN_NOTATIONDECL",
+			reportFatalError(
+					"MSG_SPACE_REQUIRED_AFTER_NOTATION_NAME_IN_NOTATIONDECL",
 					new Object[] { name });
 		}
 
@@ -1756,7 +1843,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 		String baseSystemId = fEntityScanner.getBaseSystemId();
 
 		if (systemId == null && publicId == null) {
-			reportFatalError("ExternalIDorPublicIDRequired", new Object[] { name });
+			reportFatalError("ExternalIDorPublicIDRequired", new Object[] {
+					name });
 		}
 
 		// skip possible trailing space
@@ -1801,7 +1889,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * <p>
 	 * <strong>Note:</strong> Called after scanning past '&lt;!['
 	 */
-	private final void scanConditionalSect(int currPEDepth) throws IOException, XNIException {
+	private final void scanConditionalSect(int currPEDepth) throws IOException,
+			XNIException {
 
 		fReportEntity = false;
 		skipSeparator(false, !scanningInternalSubset());
@@ -1810,8 +1899,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 			skipSeparator(false, !scanningInternalSubset());
 			if (currPEDepth != fPEDepth && fValidation) {
 				fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
-						"INVALID_PE_IN_CONDITIONAL",
-						new Object[] { fEntityManager.fCurrentEntity.name },
+						"INVALID_PE_IN_CONDITIONAL", new Object[] {
+								fEntityManager.fCurrentEntity.name },
 						XMLErrorReporter.SEVERITY_ERROR);
 			}
 			// call handler
@@ -1820,7 +1909,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 			}
 
 			if (fDTDHandler != null) {
-				fDTDHandler.startConditional(XMLDTDHandler.CONDITIONAL_INCLUDE, null);
+				fDTDHandler.startConditional(XMLDTDHandler.CONDITIONAL_INCLUDE,
+						null);
 			}
 			fIncludeSectDepth++;
 			// just stop there and go back to the main loop
@@ -1829,13 +1919,14 @@ public class XMLDTDScannerImpl extends XMLScanner
 			skipSeparator(false, !scanningInternalSubset());
 			if (currPEDepth != fPEDepth && fValidation) {
 				fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
-						"INVALID_PE_IN_CONDITIONAL",
-						new Object[] { fEntityManager.fCurrentEntity.name },
+						"INVALID_PE_IN_CONDITIONAL", new Object[] {
+								fEntityManager.fCurrentEntity.name },
 						XMLErrorReporter.SEVERITY_ERROR);
 			}
 			// call handler
 			if (fDTDHandler != null) {
-				fDTDHandler.startConditional(XMLDTDHandler.CONDITIONAL_IGNORE, null);
+				fDTDHandler.startConditional(XMLDTDHandler.CONDITIONAL_IGNORE,
+						null);
 			}
 			if (!fEntityScanner.skipChar('[', null)) {
 				reportFatalError("MSG_MARKUP_NOT_RECOGNIZED_IN_DTD", null);
@@ -1888,9 +1979,12 @@ public class XMLDTDScannerImpl extends XMLScanner
 								fMarkUpDepth--;
 								// call handler
 								if (fDTDHandler != null) {
-									fLiteral.setValues(fIgnoreConditionalBuffer.ch, 0,
-											fIgnoreConditionalBuffer.length - 2);
-									fDTDHandler.ignoredCharacters(fLiteral, null);
+									fLiteral.setValues(
+											fIgnoreConditionalBuffer.ch, 0,
+											fIgnoreConditionalBuffer.length
+													- 2);
+									fDTDHandler.ignoredCharacters(fLiteral,
+											null);
 									fDTDHandler.endConditional(null);
 								}
 								return;
@@ -1920,18 +2014,20 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * Dispatch an XML "event".
 	 *
 	 * @param complete
-	 *            True if this method is intended to scan and dispatch as much
-	 *            as possible.
+	 *                 True if this method is intended to scan and dispatch as
+	 *                 much
+	 *                 as possible.
 	 *
 	 * @return True if there is more to scan.
 	 *
 	 * @throws IOException
-	 *             Thrown on i/o error.
+	 *                      Thrown on i/o error.
 	 * @throws XNIException
-	 *             Thrown on parse error.
+	 *                      Thrown on parse error.
 	 *
 	 */
-	protected final boolean scanDecls(boolean complete) throws IOException, XNIException {
+	protected final boolean scanDecls(boolean complete) throws IOException,
+			XNIException {
 
 		skipSeparator(false, true);
 		boolean again = true;
@@ -1947,7 +2043,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 				} else if (fEntityScanner.skipChar('!', null)) {
 					if (fEntityScanner.skipChar('-', null)) {
 						if (!fEntityScanner.skipChar('-', null)) {
-							reportFatalError("MSG_MARKUP_NOT_RECOGNIZED_IN_DTD", null);
+							reportFatalError("MSG_MARKUP_NOT_RECOGNIZED_IN_DTD",
+									null);
 						} else {
 							scanComment();
 						}
@@ -1959,19 +2056,23 @@ public class XMLDTDScannerImpl extends XMLScanner
 						scanEntityDecl();
 					} else if (fEntityScanner.skipString("NOTATION")) {
 						scanNotationDecl();
-					} else if (fEntityScanner.skipChar('[', null) && !scanningInternalSubset()) {
+					} else if (fEntityScanner.skipChar('[', null)
+							&& !scanningInternalSubset()) {
 						scanConditionalSect(fPEDepth);
 					} else {
 						fMarkUpDepth--;
-						reportFatalError("MSG_MARKUP_NOT_RECOGNIZED_IN_DTD", null);
+						reportFatalError("MSG_MARKUP_NOT_RECOGNIZED_IN_DTD",
+								null);
 					}
 				} else {
 					fMarkUpDepth--;
 					reportFatalError("MSG_MARKUP_NOT_RECOGNIZED_IN_DTD", null);
 				}
-			} else if (fIncludeSectDepth > 0 && fEntityScanner.skipChar(']', null)) {
+			} else if (fIncludeSectDepth > 0 && fEntityScanner.skipChar(']',
+					null)) {
 				// end of conditional section?
-				if (!fEntityScanner.skipChar(']', null) || !fEntityScanner.skipChar('>', null)) {
+				if (!fEntityScanner.skipChar(']', null) || !fEntityScanner
+						.skipChar('>', null)) {
 					reportFatalError("IncludeSectUnterminated", null);
 				}
 				// call handler
@@ -1981,7 +2082,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 				// decreaseMarkupDepth();
 				fIncludeSectDepth--;
 				fMarkUpDepth--;
-			} else if (scanningInternalSubset() && fEntityScanner.peekChar() == ']') {
+			} else if (scanningInternalSubset() && fEntityScanner
+					.peekChar() == ']') {
 				// this is the end of the internal subset, let's stop here
 				return false;
 			} else if (fEntityScanner.skipSpaces()) {
@@ -2004,10 +2106,12 @@ public class XMLDTDScannerImpl extends XMLScanner
 	 * This is recursive and will process has many refs as possible.
 	 *
 	 * @param spaceRequired
-	 *            Specify whether some leading whitespace should be found
+	 *                      Specify whether some leading whitespace should be
+	 *                      found
 	 * @param lookForPERefs
-	 *            Specify whether parameter entity references should be looked
-	 *            for
+	 *                      Specify whether parameter entity references should
+	 *                      be looked
+	 *                      for
 	 * @return True if any leading whitespace was found or the end of a
 	 *         parameter entity was crossed.
 	 */
@@ -2015,7 +2119,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 			throws IOException, XNIException {
 		int depth = fPEDepth;
 		boolean sawSpace = fEntityScanner.skipSpaces();
-		if (!lookForPERefs || !fEntityScanner.skipChar('%', NameType.REFERENCE)) {
+		if (!lookForPERefs || !fEntityScanner.skipChar('%',
+				NameType.REFERENCE)) {
 			return !spaceRequired || sawSpace || (depth != fPEDepth);
 		}
 		while (true) {
@@ -2023,7 +2128,8 @@ public class XMLDTDScannerImpl extends XMLScanner
 			if (name == null) {
 				reportFatalError("NameRequiredInPEReference", null);
 			} else if (!fEntityScanner.skipChar(';', NameType.REFERENCE)) {
-				reportFatalError("SemicolonRequiredInPEReference", new Object[] { name });
+				reportFatalError("SemicolonRequiredInPEReference",
+						new Object[] { name });
 			}
 			startPE(name, false);
 			fEntityScanner.skipSpaces();

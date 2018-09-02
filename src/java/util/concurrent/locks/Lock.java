@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -236,8 +211,10 @@ public interface Lock {
 	 * exception type must be documented by that {@code Lock} implementation.
 	 *
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted while acquiring the lock
-	 *             (and interruption of lock acquisition is supported)
+	 *                              if the current thread is interrupted while
+	 *                              acquiring the lock
+	 *                              (and interruption of lock acquisition is
+	 *                              supported)
 	 */
 	void lockInterruptibly() throws InterruptedException;
 
@@ -327,15 +304,17 @@ public interface Lock {
 	 * exception type must be documented by that {@code Lock} implementation.
 	 *
 	 * @param time
-	 *            the maximum time to wait for the lock
+	 *             the maximum time to wait for the lock
 	 * @param unit
-	 *            the time unit of the {@code time} argument
+	 *             the time unit of the {@code time} argument
 	 * @return {@code true} if the lock was acquired and {@code false} if the
 	 *         waiting time elapsed before the lock was acquired
 	 *
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted while acquiring the lock
-	 *             (and interruption of lock acquisition is supported)
+	 *                              if the current thread is interrupted while
+	 *                              acquiring the lock
+	 *                              (and interruption of lock acquisition is
+	 *                              supported)
 	 */
 	boolean tryLock(long time, TimeUnit unit) throws InterruptedException;
 
@@ -373,8 +352,9 @@ public interface Lock {
 	 *
 	 * @return A new {@link Condition} instance for this {@code Lock} instance
 	 * @throws UnsupportedOperationException
-	 *             if this {@code Lock} implementation does not support
-	 *             conditions
+	 *                                       if this {@code Lock} implementation
+	 *                                       does not support
+	 *                                       conditions
 	 */
 	Condition newCondition();
 }

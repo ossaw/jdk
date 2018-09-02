@@ -4,14 +4,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -132,11 +130,13 @@ public class XSSimpleTypeDelegate implements XSSimpleType {
 		return type.isFixedFacet(facetName);
 	}
 
-	public boolean derivedFrom(String namespace, String name, short derivationMethod) {
+	public boolean derivedFrom(String namespace, String name,
+			short derivationMethod) {
 		return type.derivedFrom(namespace, name, derivationMethod);
 	}
 
-	public boolean derivedFromType(XSTypeDefinition ancestorType, short derivationMethod) {
+	public boolean derivedFromType(XSTypeDefinition ancestorType,
+			short derivationMethod) {
 		return type.derivedFromType(ancestorType, derivationMethod);
 	}
 
@@ -176,8 +176,9 @@ public class XSSimpleTypeDelegate implements XSSimpleType {
 		return type.getType();
 	}
 
-	public void applyFacets(XSFacets facets, short presentFacet, short fixedFacet,
-			ValidationContext context) throws InvalidDatatypeFacetException {
+	public void applyFacets(XSFacets facets, short presentFacet,
+			short fixedFacet, ValidationContext context)
+			throws InvalidDatatypeFacetException {
 		type.applyFacets(facets, presentFacet, fixedFacet, context);
 	}
 
@@ -202,13 +203,13 @@ public class XSSimpleTypeDelegate implements XSSimpleType {
 		type.validate(context, validatedInfo);
 	}
 
-	public Object validate(String content, ValidationContext context, ValidatedInfo validatedInfo)
-			throws InvalidDatatypeValueException {
+	public Object validate(String content, ValidationContext context,
+			ValidatedInfo validatedInfo) throws InvalidDatatypeValueException {
 		return type.validate(content, context, validatedInfo);
 	}
 
-	public Object validate(Object content, ValidationContext context, ValidatedInfo validatedInfo)
-			throws InvalidDatatypeValueException {
+	public Object validate(Object content, ValidationContext context,
+			ValidatedInfo validatedInfo) throws InvalidDatatypeValueException {
 		return type.validate(content, context, validatedInfo);
 	}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -177,15 +157,17 @@ import sun.util.logging.PlatformLogger;
  * @author Arthur van Hoff
  * @author Sami Shaio
  */
-public abstract class Component implements ImageObserver, MenuContainer, Serializable {
+public abstract class Component implements ImageObserver, MenuContainer,
+		Serializable {
 
-	private static final PlatformLogger log = PlatformLogger.getLogger("java.awt.Component");
-	private static final PlatformLogger eventLog = PlatformLogger
-			.getLogger("java.awt.event.Component");
-	private static final PlatformLogger focusLog = PlatformLogger
-			.getLogger("java.awt.focus.Component");
-	private static final PlatformLogger mixingLog = PlatformLogger
-			.getLogger("java.awt.mixing.Component");
+	private static final PlatformLogger log = PlatformLogger.getLogger(
+			"java.awt.Component");
+	private static final PlatformLogger eventLog = PlatformLogger.getLogger(
+			"java.awt.event.Component");
+	private static final PlatformLogger focusLog = PlatformLogger.getLogger(
+			"java.awt.focus.Component");
+	private static final PlatformLogger mixingLog = PlatformLogger.getLogger(
+			"java.awt.mixing.Component");
 
 	/**
 	 * The peer of the component. The peer implements the component's behavior.
@@ -434,9 +416,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 */
 	Set<AWTKeyStroke>[] focusTraversalKeys;
 
-	private static final String[] focusTraversalKeyPropertyNames = { "forwardFocusTraversalKeys",
-			"backwardFocusTraversalKeys", "upCycleFocusTraversalKeys",
-			"downCycleFocusTraversalKeys" };
+	private static final String[] focusTraversalKeyPropertyNames = {
+			"forwardFocusTraversalKeys", "backwardFocusTraversalKeys",
+			"upCycleFocusTraversalKeys", "downCycleFocusTraversalKeys" };
 
 	/**
 	 * Indicates whether focus traversal keys are enabled for this Component.
@@ -459,13 +441,13 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 */
 	static final Object LOCK = new AWTTreeLock();
 
-	static class AWTTreeLock {
-	}
+	static class AWTTreeLock {}
 
 	/*
 	 * The component's AccessControlContext.
 	 */
-	private transient volatile AccessControlContext acc = AccessController.getContext();
+	private transient volatile AccessControlContext acc = AccessController
+			.getContext();
 
 	/**
 	 * Minimum size. (This field perhaps should have been transient).
@@ -582,12 +564,12 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			initIDs();
 		}
 
-		String s = java.security.AccessController
-				.doPrivileged(new GetPropertyAction("awt.image.incrementaldraw"));
+		String s = java.security.AccessController.doPrivileged(
+				new GetPropertyAction("awt.image.incrementaldraw"));
 		isInc = (s == null || s.equals("true"));
 
-		s = java.security.AccessController
-				.doPrivileged(new GetPropertyAction("awt.image.redrawrate"));
+		s = java.security.AccessController.doPrivileged(new GetPropertyAction(
+				"awt.image.redrawrate"));
 		incRate = (s != null) ? Integer.parseInt(s) : 100;
 	}
 
@@ -659,7 +641,6 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * methods); - CR 6608764 (the PropertyChangeListener machinery); - CR
 	 * 7108598 (the
 	 * Container.paint/KeyboardFocusManager.clearMostRecentFocusOwner methods).
-	 *
 	 * Note: this field is considered final, though readObject() prohibits
 	 * initializing final fields.
 	 */
@@ -674,7 +655,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 */
 	final AccessControlContext getAccessControlContext() {
 		if (acc == null) {
-			throw new SecurityException("Component is missing AccessControlContext");
+			throw new SecurityException(
+					"Component is missing AccessControlContext");
 		}
 		return acc;
 	}
@@ -740,7 +722,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * <pre>
 		 * Dimension preferredSize = component.getPreferredSize();
 		 * int baseline = getBaseline(preferredSize.width, preferredSize.height);
-		 * int nextBaseline = getBaseline(preferredSize.width, preferredSize.height + 1);
+		 * int nextBaseline = getBaseline(preferredSize.width, preferredSize.height
+		 * 		+ 1);
 		 * // Amount to add to height when calculating where baseline
 		 * // lands for a particular height:
 		 * int padding = 0;
@@ -817,7 +800,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 
 	static {
 		AWTAccessor.setComponentAccessor(new AWTAccessor.ComponentAccessor() {
-			public void setBackgroundEraseDisabled(Component comp, boolean disabled) {
+			public void setBackgroundEraseDisabled(Component comp,
+					boolean disabled) {
 				comp.backgroundEraseDisabled = disabled;
 			}
 
@@ -830,7 +814,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			}
 
 			public void setMixingCutoutShape(Component comp, Shape shape) {
-				Region region = shape == null ? null : Region.getInstance(shape, null);
+				Region region = shape == null ? null
+						: Region.getInstance(shape, null);
 
 				synchronized (comp.getTreeLock()) {
 					boolean needShowing = false;
@@ -857,11 +842,13 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				}
 			}
 
-			public void setGraphicsConfiguration(Component comp, GraphicsConfiguration gc) {
+			public void setGraphicsConfiguration(Component comp,
+					GraphicsConfiguration gc) {
 				comp.setGraphicsConfiguration(gc);
 			}
 
-			public boolean requestFocus(Component comp, CausedFocusEvent.Cause cause) {
+			public boolean requestFocus(Component comp,
+					CausedFocusEvent.Cause cause) {
 				return comp.requestFocus(cause);
 			}
 
@@ -873,7 +860,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				return comp.isVisible_NoClientCode();
 			}
 
-			public void setRequestFocusController(RequestFocusController requestController) {
+			public void setRequestFocusController(
+					RequestFocusController requestController) {
 				Component.setRequestFocusController(requestController);
 			}
 
@@ -971,7 +959,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				comp.processEvent(e);
 			}
 
-			public AccessControlContext getAccessControlContext(Component comp) {
+			public AccessControlContext getAccessControlContext(
+					Component comp) {
 				return comp.getAccessControlContext();
 			}
 
@@ -1029,7 +1018,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Sets the name of the component to the specified string.
 	 * 
 	 * @param name
-	 *            the string that is to be this component's name
+	 *             the string that is to be this component's name
 	 * @see #getName
 	 * @since JDK1.1
 	 */
@@ -1084,7 +1073,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 *
 	 * @see #isEnabled
 	 * @param dt
-	 *            The DropTarget
+	 *           The DropTarget
 	 */
 
 	public synchronized void setDropTarget(DropTarget dt) {
@@ -1355,13 +1344,14 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			return null;
 		}
 		Window win = getContainingWindow();
-		if (!Toolkit.getDefaultToolkit().getMouseInfoPeer().isWindowUnderMouse(win)) {
+		if (!Toolkit.getDefaultToolkit().getMouseInfoPeer().isWindowUnderMouse(
+				win)) {
 			return null;
 		}
 		final boolean INCLUDE_DISABLED = true;
 		Point relativeToWindow = win.pointRelativeToComponent(pi.getLocation());
-		Component inTheSameWindow = win.findComponentAt(relativeToWindow.x, relativeToWindow.y,
-				INCLUDE_DISABLED);
+		Component inTheSameWindow = win.findComponentAt(relativeToWindow.x,
+				relativeToWindow.y, INCLUDE_DISABLED);
 		return inTheSameWindow;
 	}
 
@@ -1388,7 +1378,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * <code>Component</code>.
 	 *
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true
 	 * @see #isShowing
 	 * @see Container#getMousePosition
 	 * @return mouse coordinates relative to this <code>Component</code>, or
@@ -1400,8 +1391,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			throw new HeadlessException();
 		}
 
-		PointerInfo pi = java.security.AccessController
-				.doPrivileged(new java.security.PrivilegedAction<PointerInfo>() {
+		PointerInfo pi = java.security.AccessController.doPrivileged(
+				new java.security.PrivilegedAction<PointerInfo>() {
 					public PointerInfo run() {
 						return MouseInfo.getPointerInfo();
 					}
@@ -1487,8 +1478,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * container affects only this container.
 	 *
 	 * @param b
-	 *            If <code>true</code>, this component is enabled; otherwise
-	 *            this component is disabled
+	 *          If <code>true</code>, this component is enabled; otherwise
+	 *          this component is disabled
 	 * @see #isEnabled
 	 * @see #isLightweight
 	 * @since JDK1.1
@@ -1515,8 +1506,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				}
 			}
 			if (accessibleContext != null) {
-				accessibleContext.firePropertyChange(AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
-						null, AccessibleState.ENABLED);
+				accessibleContext.firePropertyChange(
+						AccessibleContext.ACCESSIBLE_STATE_PROPERTY, null,
+						AccessibleState.ENABLED);
 			}
 		}
 	}
@@ -1562,8 +1554,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				}
 			}
 			if (accessibleContext != null) {
-				accessibleContext.firePropertyChange(AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
-						null, AccessibleState.ENABLED);
+				accessibleContext.firePropertyChange(
+						AccessibleContext.ACCESSIBLE_STATE_PROPERTY, null,
+						AccessibleState.ENABLED);
 			}
 		}
 	}
@@ -1589,7 +1582,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * enabled.
 	 *
 	 * @param enable
-	 *            true to enable, false to disable
+	 *               true to enable, false to disable
 	 * @see #processKeyEvent
 	 * @since 1.2
 	 */
@@ -1604,7 +1597,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			if (isFocusOwner()) {
 				InputContext inputContext = getInputContext();
 				if (inputContext != null) {
-					FocusEvent focusGainedEvent = new FocusEvent(this, FocusEvent.FOCUS_GAINED);
+					FocusEvent focusGainedEvent = new FocusEvent(this,
+							FocusEvent.FOCUS_GAINED);
 					inputContext.dispatchEvent(focusGainedEvent);
 				}
 			}
@@ -1630,8 +1624,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * invalidates the component hierarchy.
 	 *
 	 * @param b
-	 *            if <code>true</code>, shows this component; otherwise, hides
-	 *            this component
+	 *          if <code>true</code>, shows this component; otherwise, hides
+	 *          this component
 	 * @see #isVisible
 	 * @see #invalidate
 	 * @since JDK1.1
@@ -1653,18 +1647,22 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				ComponentPeer peer = this.peer;
 				if (peer != null) {
 					peer.setVisible(true);
-					createHierarchyEvents(HierarchyEvent.HIERARCHY_CHANGED, this, parent,
-							HierarchyEvent.SHOWING_CHANGED,
-							Toolkit.enabledOnToolkit(AWTEvent.HIERARCHY_EVENT_MASK));
+					createHierarchyEvents(HierarchyEvent.HIERARCHY_CHANGED,
+							this, parent, HierarchyEvent.SHOWING_CHANGED,
+							Toolkit.enabledOnToolkit(
+									AWTEvent.HIERARCHY_EVENT_MASK));
 					if (peer instanceof LightweightPeer) {
 						repaint();
 					}
 					updateCursorImmediately();
 				}
 
-				if (componentListener != null || (eventMask & AWTEvent.COMPONENT_EVENT_MASK) != 0
-						|| Toolkit.enabledOnToolkit(AWTEvent.COMPONENT_EVENT_MASK)) {
-					ComponentEvent e = new ComponentEvent(this, ComponentEvent.COMPONENT_SHOWN);
+				if (componentListener != null || (eventMask
+						& AWTEvent.COMPONENT_EVENT_MASK) != 0 || Toolkit
+								.enabledOnToolkit(
+										AWTEvent.COMPONENT_EVENT_MASK)) {
+					ComponentEvent e = new ComponentEvent(this,
+							ComponentEvent.COMPONENT_SHOWN);
 					Toolkit.getEventQueue().postEvent(e);
 				}
 			}
@@ -1714,23 +1712,28 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			synchronized (getTreeLock()) {
 				visible = false;
 				mixOnHiding(isLightweight());
-				if (containsFocus() && KeyboardFocusManager.isAutoFocusTransferEnabled()) {
+				if (containsFocus() && KeyboardFocusManager
+						.isAutoFocusTransferEnabled()) {
 					transferFocus(true);
 				}
 				ComponentPeer peer = this.peer;
 				if (peer != null) {
 					peer.setVisible(false);
-					createHierarchyEvents(HierarchyEvent.HIERARCHY_CHANGED, this, parent,
-							HierarchyEvent.SHOWING_CHANGED,
-							Toolkit.enabledOnToolkit(AWTEvent.HIERARCHY_EVENT_MASK));
+					createHierarchyEvents(HierarchyEvent.HIERARCHY_CHANGED,
+							this, parent, HierarchyEvent.SHOWING_CHANGED,
+							Toolkit.enabledOnToolkit(
+									AWTEvent.HIERARCHY_EVENT_MASK));
 					if (peer instanceof LightweightPeer) {
 						repaint();
 					}
 					updateCursorImmediately();
 				}
-				if (componentListener != null || (eventMask & AWTEvent.COMPONENT_EVENT_MASK) != 0
-						|| Toolkit.enabledOnToolkit(AWTEvent.COMPONENT_EVENT_MASK)) {
-					ComponentEvent e = new ComponentEvent(this, ComponentEvent.COMPONENT_HIDDEN);
+				if (componentListener != null || (eventMask
+						& AWTEvent.COMPONENT_EVENT_MASK) != 0 || Toolkit
+								.enabledOnToolkit(
+										AWTEvent.COMPONENT_EVENT_MASK)) {
+					ComponentEvent e = new ComponentEvent(this,
+							ComponentEvent.COMPONENT_HIDDEN);
 					Toolkit.getEventQueue().postEvent(e);
 				}
 			}
@@ -1765,9 +1768,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Sets the foreground color of this component.
 	 * 
 	 * @param c
-	 *            the color to become this component's foreground color; if this
-	 *            parameter is <code>null</code> then this component will
-	 *            inherit the foreground color of its parent
+	 *          the color to become this component's foreground color; if this
+	 *          parameter is <code>null</code> then this component will
+	 *          inherit the foreground color of its parent
 	 * @see #getForeground
 	 * @since JDK1.0
 	 */
@@ -1826,9 +1829,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * between operating systems.
 	 *
 	 * @param c
-	 *            the color to become this component's color; if this parameter
-	 *            is <code>null</code>, then this component will inherit the
-	 *            background color of its parent
+	 *          the color to become this component's color; if this parameter
+	 *          is <code>null</code>, then this component will inherit the
+	 *          background color of its parent
 	 * @see #getBackground
 	 * @since JDK1.0
 	 * @beaninfo bound: true
@@ -1894,9 +1897,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * invalidates the component hierarchy.
 	 *
 	 * @param f
-	 *            the font to become this component's font; if this parameter is
-	 *            <code>null</code> then this component will inherit the font of
-	 *            its parent
+	 *          the font to become this component's font; if this parameter is
+	 *          <code>null</code> then this component will inherit the font of
+	 *          its parent
 	 * @see #getFont
 	 * @see #invalidate
 	 * @since JDK1.0
@@ -1948,10 +1951,13 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 *         locale, the locale of its parent is returned
 	 * @see #setLocale
 	 * @exception IllegalComponentStateException
-	 *                if the <code>Component</code> does not have its own locale
-	 *                and has not yet been added to a containment hierarchy such
-	 *                that the locale can be determined from the containing
-	 *                parent
+	 *                                           if the <code>Component</code>
+	 *                                           does not have its own locale
+	 *                                           and has not yet been added to a
+	 *                                           containment hierarchy such
+	 *                                           that the locale can be
+	 *                                           determined from the containing
+	 *                                           parent
 	 * @since JDK1.1
 	 */
 	public Locale getLocale() {
@@ -1976,7 +1982,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * invalidates the component hierarchy.
 	 *
 	 * @param l
-	 *            the locale to become this component's locale
+	 *          the locale to become this component's locale
 	 * @see #getLocale
 	 * @see #invalidate
 	 * @since JDK1.1
@@ -2045,7 +2051,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 *         corner of the component's bounds in the coordinate space of the
 	 *         screen
 	 * @throws IllegalComponentStateException
-	 *             if the component is not showing on the screen
+	 *                                        if the component is not showing on
+	 *                                        the screen
 	 * @see #setLocation
 	 * @see #getLocation
 	 */
@@ -2104,11 +2111,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * invalidates the component hierarchy.
 	 *
 	 * @param x
-	 *            the <i>x</i>-coordinate of the new location's top-left corner
-	 *            in the parent's coordinate space
+	 *          the <i>x</i>-coordinate of the new location's top-left corner
+	 *          in the parent's coordinate space
 	 * @param y
-	 *            the <i>y</i>-coordinate of the new location's top-left corner
-	 *            in the parent's coordinate space
+	 *          the <i>y</i>-coordinate of the new location's top-left corner
+	 *          in the parent's coordinate space
 	 * @see #getLocation
 	 * @see #setBounds
 	 * @see #invalidate
@@ -2139,8 +2146,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * invalidates the component hierarchy.
 	 *
 	 * @param p
-	 *            the point defining the top-left corner of the new location,
-	 *            given in the coordinate space of this component's parent
+	 *          the point defining the top-left corner of the new location,
+	 *          given in the coordinate space of this component's parent
 	 * @see #getLocation
 	 * @see #setBounds
 	 * @see #invalidate
@@ -2182,9 +2189,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * invalidates the component hierarchy.
 	 *
 	 * @param width
-	 *            the new width of this component in pixels
+	 *               the new width of this component in pixels
 	 * @param height
-	 *            the new height of this component in pixels
+	 *               the new height of this component in pixels
 	 * @see #getSize
 	 * @see #setBounds
 	 * @see #invalidate
@@ -2214,9 +2221,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * invalidates the component hierarchy.
 	 *
 	 * @param d
-	 *            the dimension specifying the new size of this component
+	 *          the dimension specifying the new size of this component
 	 * @throws NullPointerException
-	 *             if {@code d} is {@code null}
+	 *                              if {@code d} is {@code null}
 	 * @see #setSize
 	 * @see #setBounds
 	 * @see #invalidate
@@ -2266,13 +2273,13 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * invalidates the component hierarchy.
 	 *
 	 * @param x
-	 *            the new <i>x</i>-coordinate of this component
+	 *               the new <i>x</i>-coordinate of this component
 	 * @param y
-	 *            the new <i>y</i>-coordinate of this component
+	 *               the new <i>y</i>-coordinate of this component
 	 * @param width
-	 *            the new <code>width</code> of this component
+	 *               the new <code>width</code> of this component
 	 * @param height
-	 *            the new <code>height</code> of this component
+	 *               the new <code>height</code> of this component
 	 * @see #getBounds
 	 * @see #setLocation(int, int)
 	 * @see #setLocation(Point)
@@ -2294,7 +2301,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		synchronized (getTreeLock()) {
 			try {
 				setBoundsOp(ComponentPeer.SET_BOUNDS);
-				boolean resized = (this.width != width) || (this.height != height);
+				boolean resized = (this.width != width)
+						|| (this.height != height);
 				boolean moved = (this.x != x) || (this.y != y);
 				if (!resized && !moved) {
 					return;
@@ -2319,7 +2327,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 					if (!(peer instanceof LightweightPeer)) {
 						reshapeNativePeer(x, y, width, height, getBoundsOp());
 						// Check peer actualy changed coordinates
-						resized = (oldWidth != this.width) || (oldHeight != this.height);
+						resized = (oldWidth != this.width)
+								|| (oldHeight != this.height);
 						moved = (oldX != this.x) || (oldY != this.y);
 						// fix for 5025858: do not send ComponentEvents for
 						// toplevel
@@ -2348,7 +2357,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		}
 	}
 
-	private void repaintParentIfNeeded(int oldX, int oldY, int oldWidth, int oldHeight) {
+	private void repaintParentIfNeeded(int oldX, int oldY, int oldWidth,
+			int oldHeight) {
 		if (parent != null && peer instanceof LightweightPeer && isShowing()) {
 			// Have the parent redraw the area this component occupied.
 			parent.repaint(oldX, oldY, oldWidth, oldHeight);
@@ -2357,7 +2367,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		}
 	}
 
-	private void reshapeNativePeer(int x, int y, int width, int height, int op) {
+	private void reshapeNativePeer(int x, int y, int width, int height,
+			int op) {
 		// native peer might be offset by more than direct
 		// parent since parent might be lightweight.
 		int nativeX = x;
@@ -2372,28 +2383,33 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 
 	@SuppressWarnings("deprecation")
 	private void notifyNewBounds(boolean resized, boolean moved) {
-		if (componentListener != null || (eventMask & AWTEvent.COMPONENT_EVENT_MASK) != 0
-				|| Toolkit.enabledOnToolkit(AWTEvent.COMPONENT_EVENT_MASK)) {
+		if (componentListener != null || (eventMask
+				& AWTEvent.COMPONENT_EVENT_MASK) != 0 || Toolkit
+						.enabledOnToolkit(AWTEvent.COMPONENT_EVENT_MASK)) {
 			if (resized) {
-				ComponentEvent e = new ComponentEvent(this, ComponentEvent.COMPONENT_RESIZED);
+				ComponentEvent e = new ComponentEvent(this,
+						ComponentEvent.COMPONENT_RESIZED);
 				Toolkit.getEventQueue().postEvent(e);
 			}
 			if (moved) {
-				ComponentEvent e = new ComponentEvent(this, ComponentEvent.COMPONENT_MOVED);
+				ComponentEvent e = new ComponentEvent(this,
+						ComponentEvent.COMPONENT_MOVED);
 				Toolkit.getEventQueue().postEvent(e);
 			}
 		} else {
-			if (this instanceof Container && ((Container) this).countComponents() > 0) {
-				boolean enabledOnToolkit = Toolkit
-						.enabledOnToolkit(AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK);
+			if (this instanceof Container && ((Container) this)
+					.countComponents() > 0) {
+				boolean enabledOnToolkit = Toolkit.enabledOnToolkit(
+						AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK);
 				if (resized) {
 
-					((Container) this).createChildHierarchyEvents(HierarchyEvent.ANCESTOR_RESIZED,
-							0, enabledOnToolkit);
+					((Container) this).createChildHierarchyEvents(
+							HierarchyEvent.ANCESTOR_RESIZED, 0,
+							enabledOnToolkit);
 				}
 				if (moved) {
-					((Container) this).createChildHierarchyEvents(HierarchyEvent.ANCESTOR_MOVED, 0,
-							enabledOnToolkit);
+					((Container) this).createChildHierarchyEvents(
+							HierarchyEvent.ANCESTOR_MOVED, 0, enabledOnToolkit);
 				}
 			}
 		}
@@ -2409,9 +2425,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * invalidates the component hierarchy.
 	 *
 	 * @param r
-	 *            the new bounding rectangle for this component
+	 *          the new bounding rectangle for this component
 	 * @throws NullPointerException
-	 *             if {@code r} is {@code null}
+	 *                              if {@code r} is {@code null}
 	 * @see #getBounds
 	 * @see #setLocation(int, int)
 	 * @see #setLocation(Point)
@@ -2484,7 +2500,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * the heap.
 	 *
 	 * @param rv
-	 *            the return value, modified to the components bounds
+	 *           the return value, modified to the components bounds
 	 * @return rv
 	 */
 	public Rectangle getBounds(Rectangle rv) {
@@ -2504,7 +2520,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * new <code>Dimension</code> object on the heap.
 	 *
 	 * @param rv
-	 *            the return value, modified to the components size
+	 *           the return value, modified to the components size
 	 * @return rv
 	 */
 	public Dimension getSize(Dimension rv) {
@@ -2524,7 +2540,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * heap.
 	 *
 	 * @param rv
-	 *            the return value, modified to the components location
+	 *           the return value, modified to the components location
 	 * @return rv
 	 */
 	public Point getLocation(Point rv) {
@@ -2587,7 +2603,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * behavior.
 	 *
 	 * @param preferredSize
-	 *            The new preferred size, or null
+	 *                      The new preferred size, or null
 	 * @see #getPreferredSize
 	 * @see #isPreferredSizeSet
 	 * @since 1.5
@@ -2643,7 +2659,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		Dimension dim = prefSize;
 		if (dim == null || !(isPreferredSizeSet() || isValid())) {
 			synchronized (getTreeLock()) {
-				prefSize = (peer != null) ? peer.getPreferredSize() : getMinimumSize();
+				prefSize = (peer != null) ? peer.getPreferredSize()
+						: getMinimumSize();
 				dim = prefSize;
 			}
 		}
@@ -2657,7 +2674,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * behavior.
 	 *
 	 * @param minimumSize
-	 *            the new minimum size of this component
+	 *                    the new minimum size of this component
 	 * @see #getMinimumSize
 	 * @see #isMinimumSizeSet
 	 * @since 1.5
@@ -2727,8 +2744,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * behavior.
 	 *
 	 * @param maximumSize
-	 *            a <code>Dimension</code> containing the desired maximum
-	 *            allowable size
+	 *                    a <code>Dimension</code> containing the desired
+	 *                    maximum
+	 *                    allowable size
 	 * @see #getMaximumSize
 	 * @see #isMaximumSizeSet
 	 * @since 1.5
@@ -2812,12 +2830,12 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * baseline changes with size.
 	 *
 	 * @param width
-	 *            the width to get the baseline for
+	 *               the width to get the baseline for
 	 * @param height
-	 *            the height to get the baseline for
+	 *               the height to get the baseline for
 	 * @return the baseline or &lt; 0 indicating there is no reasonable baseline
 	 * @throws IllegalArgumentException
-	 *             if width or height is &lt; 0
+	 *                                  if width or height is &lt; 0
 	 * @see #getBaselineResizeBehavior
 	 * @see java.awt.FontMetrics
 	 * @since 1.6
@@ -2868,8 +2886,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * @deprecated As of JDK version 1.1, replaced by <code>doLayout()</code>.
 	 */
 	@Deprecated
-	public void layout() {
-	}
+	public void layout() {}
 
 	/**
 	 * Validates this component.
@@ -2890,7 +2907,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			if (!wasValid && peer != null) {
 				Font newfont = getFont();
 				Font oldfont = peerFont;
-				if (newfont != oldfont && (oldfont == null || !oldfont.equals(newfont))) {
+				if (newfont != oldfont && (oldfont == null || !oldfont.equals(
+						newfont))) {
 					peer.setFont(newfont);
 					peerFont = newfont;
 				}
@@ -3081,7 +3099,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * {@link Font Font} class.
 	 * 
 	 * @param font
-	 *            the font for which font metrics is to be obtained
+	 *             the font for which font metrics is to be obtained
 	 * @return the font metrics for <code>font</code>
 	 * @see #getFont
 	 * @see #getPeer
@@ -3093,7 +3111,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		// This is an unsupported hack, but left in for a customer.
 		// Do not remove.
 		FontManager fm = FontManagerFactory.getInstance();
-		if (fm instanceof SunFontManager && ((SunFontManager) fm).usePlatformFontMetrics()) {
+		if (fm instanceof SunFontManager && ((SunFontManager) fm)
+				.usePlatformFontMetrics()) {
 
 			if (peer != null && !(peer instanceof LightweightPeer)) {
 				return peer.getFontMetrics(font);
@@ -3115,9 +3134,10 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * and/or the native system do not support changing the mouse cursor shape.
 	 * 
 	 * @param cursor
-	 *            One of the constants defined by the <code>Cursor</code> class;
-	 *            if this parameter is <code>null</code> then this component
-	 *            will inherit the cursor of its parent
+	 *               One of the constants defined by the <code>Cursor</code>
+	 *               class;
+	 *               if this parameter is <code>null</code> then this component
+	 *               will inherit the cursor of its parent
 	 * @see #isEnabled
 	 * @see #isShowing
 	 * @see #getCursor
@@ -3210,12 +3230,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Painting in AWT and Swing</a>.
 	 *
 	 * @param g
-	 *            the graphics context to use for painting
+	 *          the graphics context to use for painting
 	 * @see #update
 	 * @since JDK1.0
 	 */
-	public void paint(Graphics g) {
-	}
+	public void paint(Graphics g) {}
 
 	/**
 	 * Updates this component.
@@ -3245,7 +3264,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Painting in AWT and Swing</a>.
 	 *
 	 * @param g
-	 *            the specified context to use for updating
+	 *          the specified context to use for updating
 	 * @see #paint
 	 * @see #repaint()
 	 * @since JDK1.0
@@ -3263,15 +3282,16 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * rectangle of this component.
 	 *
 	 * @param g
-	 *            the graphics context to use for painting
+	 *          the graphics context to use for painting
 	 * @see #paint
 	 * @since JDK1.0
 	 */
 	public void paintAll(Graphics g) {
 		if (isShowing()) {
-			GraphicsCallback.PeerPaintCallback.getInstance().runOneComponent(this,
-					new Rectangle(0, 0, width, height), g, g.getClip(),
-					GraphicsCallback.LIGHTWEIGHTS | GraphicsCallback.HEAVYWEIGHTS);
+			GraphicsCallback.PeerPaintCallback.getInstance().runOneComponent(
+					this, new Rectangle(0, 0, width, height), g, g.getClip(),
+					GraphicsCallback.LIGHTWEIGHTS
+							| GraphicsCallback.HEAVYWEIGHTS);
 		}
 	}
 
@@ -3280,7 +3300,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Components.
 	 * 
 	 * @param g
-	 *            the graphics context to use for painting
+	 *          the graphics context to use for painting
 	 * @see #paintAll
 	 */
 	void lightweightPaint(Graphics g) {
@@ -3290,8 +3310,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	/**
 	 * Paints all the heavyweight subcomponents.
 	 */
-	void paintHeavyweightComponents(Graphics g) {
-	}
+	void paintHeavyweightComponents(Graphics g) {}
 
 	/**
 	 * Repaints this component.
@@ -3327,7 +3346,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Painting in AWT and Swing</a>.
 	 *
 	 * @param tm
-	 *            maximum time in milliseconds before update
+	 *           maximum time in milliseconds before update
 	 * @see #paint
 	 * @see #update(Graphics)
 	 * @since JDK1.0
@@ -3351,13 +3370,13 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Painting in AWT and Swing</a>.
 	 *
 	 * @param x
-	 *            the <i>x</i> coordinate
+	 *               the <i>x</i> coordinate
 	 * @param y
-	 *            the <i>y</i> coordinate
+	 *               the <i>y</i> coordinate
 	 * @param width
-	 *            the width
+	 *               the width
 	 * @param height
-	 *            the height
+	 *               the height
 	 * @see #update(Graphics)
 	 * @since JDK1.0
 	 */
@@ -3380,15 +3399,15 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Painting in AWT and Swing</a>.
 	 *
 	 * @param tm
-	 *            maximum time in milliseconds before update
+	 *               maximum time in milliseconds before update
 	 * @param x
-	 *            the <i>x</i> coordinate
+	 *               the <i>x</i> coordinate
 	 * @param y
-	 *            the <i>y</i> coordinate
+	 *               the <i>y</i> coordinate
 	 * @param width
-	 *            the width
+	 *               the width
 	 * @param height
-	 *            the height
+	 *               the height
 	 * @see #update(Graphics)
 	 * @since JDK1.0
 	 */
@@ -3420,7 +3439,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				parent.repaint(tm, px, py, pwidth, pheight);
 			}
 		} else {
-			if (isVisible() && (this.peer != null) && (width > 0) && (height > 0)) {
+			if (isVisible() && (this.peer != null) && (width > 0)
+					&& (height > 0)) {
 				PaintEvent e = new PaintEvent(this, PaintEvent.UPDATE,
 						new Rectangle(x, y, width, height));
 				SunToolkit.postEvent(SunToolkit.targetToAppContext(this), e);
@@ -3442,7 +3462,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * rectangle of this component.
 	 * 
 	 * @param g
-	 *            the graphics context to use for printing
+	 *          the graphics context to use for printing
 	 * @see #paint(Graphics)
 	 * @since JDK1.0
 	 */
@@ -3459,15 +3479,16 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * rectangle of this component.
 	 * 
 	 * @param g
-	 *            the graphics context to use for printing
+	 *          the graphics context to use for printing
 	 * @see #print(Graphics)
 	 * @since JDK1.0
 	 */
 	public void printAll(Graphics g) {
 		if (isShowing()) {
-			GraphicsCallback.PeerPrintCallback.getInstance().runOneComponent(this,
-					new Rectangle(0, 0, width, height), g, g.getClip(),
-					GraphicsCallback.LIGHTWEIGHTS | GraphicsCallback.HEAVYWEIGHTS);
+			GraphicsCallback.PeerPrintCallback.getInstance().runOneComponent(
+					this, new Rectangle(0, 0, width, height), g, g.getClip(),
+					GraphicsCallback.LIGHTWEIGHTS
+							| GraphicsCallback.HEAVYWEIGHTS);
 		}
 	}
 
@@ -3476,7 +3497,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Components.
 	 * 
 	 * @param g
-	 *            the graphics context to use for printing
+	 *          the graphics context to use for printing
 	 * @see #printAll
 	 */
 	void lightweightPrint(Graphics g) {
@@ -3486,8 +3507,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	/**
 	 * Prints all the heavyweight subcomponents.
 	 */
-	void printHeavyweightComponents(Graphics g) {
-	}
+	void printHeavyweightComponents(Graphics g) {}
 
 	private Insets getInsets_NoClientCode() {
 		ComponentPeer peer = this.peer;
@@ -3526,17 +3546,17 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * value of the <code>infoflags</code> argument.
 	 *
 	 * @param img
-	 *            the image being observed
+	 *                  the image being observed
 	 * @param infoflags
-	 *            see <code>imageUpdate</code> for more information
+	 *                  see <code>imageUpdate</code> for more information
 	 * @param x
-	 *            the <i>x</i> coordinate
+	 *                  the <i>x</i> coordinate
 	 * @param y
-	 *            the <i>y</i> coordinate
+	 *                  the <i>y</i> coordinate
 	 * @param w
-	 *            the width
+	 *                  the width
 	 * @param h
-	 *            the height
+	 *                  the height
 	 * @return <code>false</code> if the infoflags indicate that the image is
 	 *         completely loaded; <code>true</code> otherwise.
 	 *
@@ -3552,7 +3572,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 *      int, int, int)
 	 * @since JDK1.0
 	 */
-	public boolean imageUpdate(Image img, int infoflags, int x, int y, int w, int h) {
+	public boolean imageUpdate(Image img, int infoflags, int x, int y, int w,
+			int h) {
 		int rate = -1;
 		if ((infoflags & (FRAMEBITS | ALLBITS)) != 0) {
 			rate = 0;
@@ -3574,7 +3595,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Creates an image from the specified image producer.
 	 * 
 	 * @param producer
-	 *            the image producer
+	 *                 the image producer
 	 * @return the image produced
 	 * @since JDK1.0
 	 */
@@ -3590,9 +3611,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Creates an off-screen drawable image to be used for double buffering.
 	 * 
 	 * @param width
-	 *            the specified width
+	 *               the specified width
 	 * @param height
-	 *            the specified height
+	 *               the specified height
 	 * @return an off-screen drawable image, which can be used for double
 	 *         buffering. The return value may be <code>null</code> if the
 	 *         component is not displayable. This will always happen if
@@ -3620,9 +3641,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * buffering.
 	 * 
 	 * @param width
-	 *            the specified width.
+	 *               the specified width.
 	 * @param height
-	 *            the specified height.
+	 *               the specified height.
 	 * @return an off-screen drawable image, which can be used for double
 	 *         buffering. The return value may be <code>null</code> if the
 	 *         component is not displayable. This will always happen if
@@ -3642,7 +3663,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				return null;
 			}
 		} else {
-			return (peer != null) ? peer.createVolatileImage(width, height) : null;
+			return (peer != null) ? peer.createVolatileImage(width, height)
+					: null;
 		}
 	}
 
@@ -3653,21 +3675,22 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * <code>VolatileImage</code> interface.
 	 * 
 	 * @param width
-	 *            the specified width.
+	 *               the specified width.
 	 * @param height
-	 *            the specified height.
+	 *               the specified height.
 	 * @param caps
-	 *            the image capabilities
+	 *               the image capabilities
 	 * @exception AWTException
-	 *                if an image with the specified capabilities cannot be
-	 *                created
+	 *                         if an image with the specified capabilities
+	 *                         cannot be
+	 *                         created
 	 * @return a VolatileImage object, which can be used to manage surface
 	 *         contents loss and capabilities.
 	 * @see java.awt.image.VolatileImage
 	 * @since 1.4
 	 */
-	public VolatileImage createVolatileImage(int width, int height, ImageCapabilities caps)
-			throws AWTException {
+	public VolatileImage createVolatileImage(int width, int height,
+			ImageCapabilities caps) throws AWTException {
 		// REMIND : check caps
 		return createVolatileImage(width, height);
 	}
@@ -3678,11 +3701,12 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * representation of the image is generated.
 	 * 
 	 * @param image
-	 *            the <code>Image</code> for which to prepare a screen
-	 *            representation
+	 *                 the <code>Image</code> for which to prepare a screen
+	 *                 representation
 	 * @param observer
-	 *            the <code>ImageObserver</code> object to be notified as the
-	 *            image is being prepared
+	 *                 the <code>ImageObserver</code> object to be notified as
+	 *                 the
+	 *                 image is being prepared
 	 * @return <code>true</code> if the image has already been fully prepared;
 	 *         <code>false</code> otherwise
 	 * @since JDK1.0
@@ -3699,27 +3723,31 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * appropriately scaled screen representation of the image is generated.
 	 * 
 	 * @param image
-	 *            the instance of <code>Image</code> for which to prepare a
-	 *            screen representation
+	 *                 the instance of <code>Image</code> for which to prepare a
+	 *                 screen representation
 	 * @param width
-	 *            the width of the desired screen representation
+	 *                 the width of the desired screen representation
 	 * @param height
-	 *            the height of the desired screen representation
+	 *                 the height of the desired screen representation
 	 * @param observer
-	 *            the <code>ImageObserver</code> object to be notified as the
-	 *            image is being prepared
+	 *                 the <code>ImageObserver</code> object to be notified as
+	 *                 the
+	 *                 image is being prepared
 	 * @return <code>true</code> if the image has already been fully prepared;
 	 *         <code>false</code> otherwise
 	 * @see java.awt.image.ImageObserver
 	 * @since JDK1.0
 	 */
-	public boolean prepareImage(Image image, int width, int height, ImageObserver observer) {
+	public boolean prepareImage(Image image, int width, int height,
+			ImageObserver observer) {
 		ComponentPeer peer = this.peer;
 		if (peer instanceof LightweightPeer) {
-			return (parent != null) ? parent.prepareImage(image, width, height, observer)
+			return (parent != null) ? parent.prepareImage(image, width, height,
+					observer)
 					: getToolkit().prepareImage(image, width, height, observer);
 		} else {
-			return (peer != null) ? peer.prepareImage(image, width, height, observer)
+			return (peer != null) ? peer.prepareImage(image, width, height,
+					observer)
 					: getToolkit().prepareImage(image, width, height, observer);
 		}
 	}
@@ -3736,10 +3764,12 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * discussion of the <code>ImageObserver</code> interface.
 	 * 
 	 * @param image
-	 *            the <code>Image</code> object whose status is being checked
+	 *                 the <code>Image</code> object whose status is being
+	 *                 checked
 	 * @param observer
-	 *            the <code>ImageObserver</code> object to be notified as the
-	 *            image is being prepared
+	 *                 the <code>ImageObserver</code> object to be notified as
+	 *                 the
+	 *                 image is being prepared
 	 * @return the bitwise inclusive <b>OR</b> of <code>ImageObserver</code>
 	 *         flags indicating what information about the image is currently
 	 *         available
@@ -3769,14 +3799,18 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * discussion of the <code>ImageObserver</code> interface.
 	 * 
 	 * @param image
-	 *            the <code>Image</code> object whose status is being checked
+	 *                 the <code>Image</code> object whose status is being
+	 *                 checked
 	 * @param width
-	 *            the width of the scaled version whose status is to be checked
+	 *                 the width of the scaled version whose status is to be
+	 *                 checked
 	 * @param height
-	 *            the height of the scaled version whose status is to be checked
+	 *                 the height of the scaled version whose status is to be
+	 *                 checked
 	 * @param observer
-	 *            the <code>ImageObserver</code> object to be notified as the
-	 *            image is being prepared
+	 *                 the <code>ImageObserver</code> object to be notified as
+	 *                 the
+	 *                 image is being prepared
 	 * @return the bitwise inclusive <b>OR</b> of <code>ImageObserver</code>
 	 *         flags indicating what information about the image is currently
 	 *         available
@@ -3785,13 +3819,16 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * @see java.awt.image.ImageObserver
 	 * @since JDK1.0
 	 */
-	public int checkImage(Image image, int width, int height, ImageObserver observer) {
+	public int checkImage(Image image, int width, int height,
+			ImageObserver observer) {
 		ComponentPeer peer = this.peer;
 		if (peer instanceof LightweightPeer) {
-			return (parent != null) ? parent.checkImage(image, width, height, observer)
+			return (parent != null) ? parent.checkImage(image, width, height,
+					observer)
 					: getToolkit().checkImage(image, width, height, observer);
 		} else {
-			return (peer != null) ? peer.checkImage(image, width, height, observer)
+			return (peer != null) ? peer.checkImage(image, width, height,
+					observer)
 					: getToolkit().checkImage(image, width, height, observer);
 		}
 	}
@@ -3809,11 +3846,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * component is discarded.
 	 * 
 	 * @param numBuffers
-	 *            number of buffers to create, including the front buffer
+	 *                   number of buffers to create, including the front buffer
 	 * @exception IllegalArgumentException
-	 *                if numBuffers is less than 1.
+	 *                                     if numBuffers is less than 1.
 	 * @exception IllegalStateException
-	 *                if the component is not displayable
+	 *                                     if the component is not displayable
 	 * @see #isDisplayable
 	 * @see Window#getBufferStrategy()
 	 * @see Canvas#getBufferStrategy()
@@ -3824,7 +3861,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		if (numBuffers > 1) {
 			// Try to create a page-flipping strategy
 			bufferCaps = new BufferCapabilities(new ImageCapabilities(true),
-					new ImageCapabilities(true), BufferCapabilities.FlipContents.UNDEFINED);
+					new ImageCapabilities(true),
+					BufferCapabilities.FlipContents.UNDEFINED);
 			try {
 				createBufferStrategy(numBuffers, bufferCaps);
 				return; // Success
@@ -3864,26 +3902,34 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * the existing <code>BufferStrategy</code>.
 	 * 
 	 * @param numBuffers
-	 *            number of buffers to create
+	 *                   number of buffers to create
 	 * @param caps
-	 *            the required capabilities for creating the buffer strategy;
-	 *            cannot be <code>null</code>
+	 *                   the required capabilities for creating the buffer
+	 *                   strategy;
+	 *                   cannot be <code>null</code>
 	 * @exception AWTException
-	 *                if the capabilities supplied could not be supported or
-	 *                met; this may happen, for example, if there is not enough
-	 *                accelerated memory currently available, or if page
-	 *                flipping is specified but not possible.
+	 *                                     if the capabilities supplied could
+	 *                                     not be supported or
+	 *                                     met; this may happen, for example, if
+	 *                                     there is not enough
+	 *                                     accelerated memory currently
+	 *                                     available, or if page
+	 *                                     flipping is specified but not
+	 *                                     possible.
 	 * @exception IllegalArgumentException
-	 *                if numBuffers is less than 1, or if caps is
-	 *                <code>null</code>
+	 *                                     if numBuffers is less than 1, or if
+	 *                                     caps is
+	 *                                     <code>null</code>
 	 * @see Window#getBufferStrategy()
 	 * @see Canvas#getBufferStrategy()
 	 * @since 1.4
 	 */
-	void createBufferStrategy(int numBuffers, BufferCapabilities caps) throws AWTException {
+	void createBufferStrategy(int numBuffers, BufferCapabilities caps)
+			throws AWTException {
 		// Check arguments
 		if (numBuffers < 1) {
-			throw new IllegalArgumentException("Number of buffers must be at least 1");
+			throw new IllegalArgumentException(
+					"Number of buffers must be at least 1");
 		}
 		if (caps == null) {
 			throw new IllegalArgumentException("No capabilities specified");
@@ -3902,9 +3948,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			}
 			// assert numBuffers > 1;
 			if (caps.isPageFlipping()) {
-				bufferStrategy = new FlipSubRegionBufferStrategy(numBuffers, caps);
+				bufferStrategy = new FlipSubRegionBufferStrategy(numBuffers,
+						caps);
 			} else {
-				bufferStrategy = new BltSubRegionBufferStrategy(numBuffers, caps);
+				bufferStrategy = new BltSubRegionBufferStrategy(numBuffers,
+						caps);
 			}
 		}
 	}
@@ -3919,10 +3967,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		private BufferCapabilities orig;
 
 		private ProxyCapabilities(BufferCapabilities orig) {
-			super(orig.getFrontBufferCapabilities(), orig.getBackBufferCapabilities(),
-					orig.getFlipContents() == BufferCapabilities.FlipContents.BACKGROUND
-							? BufferCapabilities.FlipContents.BACKGROUND
-							: BufferCapabilities.FlipContents.COPIED);
+			super(orig.getFrontBufferCapabilities(), orig
+					.getBackBufferCapabilities(), orig
+							.getFlipContents() == BufferCapabilities.FlipContents.BACKGROUND
+									? BufferCapabilities.FlipContents.BACKGROUND
+									: BufferCapabilities.FlipContents.COPIED);
 			this.orig = orig;
 		}
 	}
@@ -4004,25 +4053,32 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * @see Canvas
 		 * @see Window
 		 * @param numBuffers
-		 *            the number of buffers
+		 *                   the number of buffers
 		 * @param caps
-		 *            the capabilities of the buffers
+		 *                   the capabilities of the buffers
 		 * @exception AWTException
-		 *                if the capabilities supplied could not be supported or
-		 *                met
+		 *                                     if the capabilities supplied
+		 *                                     could not be supported or
+		 *                                     met
 		 * @exception ClassCastException
-		 *                if the component is not a canvas or window.
+		 *                                     if the component is not a canvas
+		 *                                     or window.
 		 * @exception IllegalStateException
-		 *                if the component has no peer
+		 *                                     if the component has no peer
 		 * @exception IllegalArgumentException
-		 *                if {@code numBuffers} is less than two, or if
-		 *                {@code BufferCapabilities.isPageFlipping} is not
-		 *                {@code true}.
+		 *                                     if {@code numBuffers} is less
+		 *                                     than two, or if
+		 *                                     {@code BufferCapabilities.isPageFlipping}
+		 *                                     is not
+		 *                                     {@code true}.
 		 * @see #createBuffers(int, BufferCapabilities)
 		 */
-		protected FlipBufferStrategy(int numBuffers, BufferCapabilities caps) throws AWTException {
-			if (!(Component.this instanceof Window) && !(Component.this instanceof Canvas)) {
-				throw new ClassCastException("Component must be a Canvas or Window");
+		protected FlipBufferStrategy(int numBuffers, BufferCapabilities caps)
+				throws AWTException {
+			if (!(Component.this instanceof Window)
+					&& !(Component.this instanceof Canvas)) {
+				throw new ClassCastException(
+						"Component must be a Canvas or Window");
 			}
 			this.numBuffers = numBuffers;
 			this.caps = caps;
@@ -4034,29 +4090,38 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * capabilities.
 		 * 
 		 * @param numBuffers
-		 *            number of buffers to create; must be greater than one
+		 *                   number of buffers to create; must be greater than
+		 *                   one
 		 * @param caps
-		 *            the capabilities of the buffers.
-		 *            <code>BufferCapabilities.isPageFlipping</code> must be
-		 *            <code>true</code>.
+		 *                   the capabilities of the buffers.
+		 *                   <code>BufferCapabilities.isPageFlipping</code> must
+		 *                   be
+		 *                   <code>true</code>.
 		 * @exception AWTException
-		 *                if the capabilities supplied could not be supported or
-		 *                met
+		 *                                     if the capabilities supplied
+		 *                                     could not be supported or
+		 *                                     met
 		 * @exception IllegalStateException
-		 *                if the component has no peer
+		 *                                     if the component has no peer
 		 * @exception IllegalArgumentException
-		 *                if numBuffers is less than two, or if
-		 *                <code>BufferCapabilities.isPageFlipping</code> is not
-		 *                <code>true</code>.
+		 *                                     if numBuffers is less than two,
+		 *                                     or if
+		 *                                     <code>BufferCapabilities.isPageFlipping</code>
+		 *                                     is not
+		 *                                     <code>true</code>.
 		 * @see java.awt.BufferCapabilities#isPageFlipping()
 		 */
-		protected void createBuffers(int numBuffers, BufferCapabilities caps) throws AWTException {
+		protected void createBuffers(int numBuffers, BufferCapabilities caps)
+				throws AWTException {
 			if (numBuffers < 2) {
-				throw new IllegalArgumentException("Number of buffers cannot be less than two");
+				throw new IllegalArgumentException(
+						"Number of buffers cannot be less than two");
 			} else if (peer == null) {
-				throw new IllegalStateException("Component must have a valid peer");
+				throw new IllegalStateException(
+						"Component must have a valid peer");
 			} else if (caps == null || !caps.isPageFlipping()) {
-				throw new IllegalArgumentException("Page flipping capabilities must be specified");
+				throw new IllegalArgumentException(
+						"Page flipping capabilities must be specified");
 			}
 
 			// save the current bounds
@@ -4106,13 +4171,15 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		/**
 		 * @return direct access to the back buffer, as an image.
 		 * @exception IllegalStateException
-		 *                if the buffers have not yet been created
+		 *                                  if the buffers have not yet been
+		 *                                  created
 		 */
 		protected Image getBackBuffer() {
 			if (peer != null) {
 				return peer.getBackBuffer();
 			} else {
-				throw new IllegalStateException("Component must have a valid peer");
+				throw new IllegalStateException(
+						"Component must have a valid peer");
 			}
 		}
 
@@ -4121,23 +4188,28 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * either by copying or by moving the video pointer.
 		 * 
 		 * @param flipAction
-		 *            an integer value describing the flipping action for the
-		 *            contents of the back buffer. This should be one of the
-		 *            values of the <code>BufferCapabilities.FlipContents</code>
-		 *            property.
+		 *                   an integer value describing the flipping action for
+		 *                   the
+		 *                   contents of the back buffer. This should be one of
+		 *                   the
+		 *                   values of the
+		 *                   <code>BufferCapabilities.FlipContents</code>
+		 *                   property.
 		 * @exception IllegalStateException
-		 *                if the buffers have not yet been created
+		 *                                  if the buffers have not yet been
+		 *                                  created
 		 * @see java.awt.BufferCapabilities#getFlipContents()
 		 */
 		protected void flip(BufferCapabilities.FlipContents flipAction) {
 			if (peer != null) {
 				Image backBuffer = getBackBuffer();
 				if (backBuffer != null) {
-					peer.flip(0, 0, backBuffer.getWidth(null), backBuffer.getHeight(null),
-							flipAction);
+					peer.flip(0, 0, backBuffer.getWidth(null), backBuffer
+							.getHeight(null), flipAction);
 				}
 			} else {
-				throw new IllegalStateException("Component must have a valid peer");
+				throw new IllegalStateException(
+						"Component must have a valid peer");
 			}
 		}
 
@@ -4146,7 +4218,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			if (peer != null) {
 				peer.flip(x1, y1, x2, y2, flipAction);
 			} else {
-				throw new IllegalStateException("Component must have a valid peer");
+				throw new IllegalStateException(
+						"Component must have a valid peer");
 			}
 		}
 
@@ -4158,7 +4231,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			if (peer != null) {
 				peer.destroyBuffers();
 			} else {
-				throw new IllegalStateException("Component must have a valid peer");
+				throw new IllegalStateException(
+						"Component must have a valid peer");
 			}
 		}
 
@@ -4319,9 +4393,10 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * Creates a new blt buffer strategy around a component
 		 * 
 		 * @param numBuffers
-		 *            number of buffers to create, including the front buffer
+		 *                   number of buffers to create, including the front
+		 *                   buffer
 		 * @param caps
-		 *            the capabilities of the buffers
+		 *                   the capabilities of the buffers
 		 */
 		protected BltBufferStrategy(int numBuffers, BufferCapabilities caps) {
 			this.caps = caps;
@@ -4335,7 +4410,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 */
 		public void dispose() {
 			if (backBuffers != null) {
-				for (int counter = backBuffers.length - 1; counter >= 0; counter--) {
+				for (int counter = backBuffers.length
+						- 1; counter >= 0; counter--) {
 					if (backBuffers[counter] != null) {
 						backBuffers[counter].flush();
 						backBuffers[counter] = null;
@@ -4402,8 +4478,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				return getGraphics();
 			}
 			SunGraphics2D g = (SunGraphics2D) backBuffer.getGraphics();
-			g.constrain(-insets.left, -insets.top, backBuffer.getWidth(null) + insets.left,
-					backBuffer.getHeight(null) + insets.top);
+			g.constrain(-insets.left, -insets.top, backBuffer.getWidth(null)
+					+ insets.left, backBuffer.getHeight(null) + insets.top);
 			return g;
 		}
 
@@ -4423,7 +4499,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * Makes the next available buffer visible.
 		 */
 		public void show() {
-			showSubRegion(insets.left, insets.top, width - insets.right, height - insets.bottom);
+			showSubRegion(insets.left, insets.top, width - insets.right, height
+					- insets.bottom);
 		}
 
 		/**
@@ -4453,7 +4530,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				// to translate to client area.
 				g.translate(insets.left, insets.top);
 				for (int i = 0; i < backBuffers.length; i++) {
-					g.drawImage(backBuffers[i], x1, y1, x2, y2, x1, y1, x2, y2, null);
+					g.drawImage(backBuffers[i], x1, y1, x2, y2, x1, y1, x2, y2,
+							null);
 					g.dispose();
 					g = null;
 					g = backBuffers[i].getGraphics();
@@ -4481,7 +4559,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 
 			if (checkSize) {
 				Insets insets = getInsets_NoClientCode();
-				if (getWidth() != width || getHeight() != height || !insets.equals(this.insets)) {
+				if (getWidth() != width || getHeight() != height || !insets
+						.equals(this.insets)) {
 					// component has been resized; recreate the backbuffers
 					createBackBuffers(backBuffers.length);
 					validatedContents = true;
@@ -4535,8 +4614,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	private class FlipSubRegionBufferStrategy extends FlipBufferStrategy
 			implements SubRegionShowable {
 
-		protected FlipSubRegionBufferStrategy(int numBuffers, BufferCapabilities caps)
-				throws AWTException {
+		protected FlipSubRegionBufferStrategy(int numBuffers,
+				BufferCapabilities caps) throws AWTException {
 			super(numBuffers, caps);
 		}
 
@@ -4563,7 +4642,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	private class BltSubRegionBufferStrategy extends BltBufferStrategy
 			implements SubRegionShowable {
 
-		protected BltSubRegionBufferStrategy(int numBuffers, BufferCapabilities caps) {
+		protected BltSubRegionBufferStrategy(int numBuffers,
+				BufferCapabilities caps) {
 			super(numBuffers, caps);
 		}
 
@@ -4658,9 +4738,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * coordinate system of this component.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate of the point
+	 *          the <i>x</i> coordinate of the point
 	 * @param y
-	 *            the <i>y</i> coordinate of the point
+	 *          the <i>y</i> coordinate of the point
 	 * @see #getComponentAt(int, int)
 	 * @since JDK1.1
 	 */
@@ -4682,9 +4762,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * the coordinate system of this component.
 	 * 
 	 * @param p
-	 *            the point
+	 *          the point
 	 * @throws NullPointerException
-	 *             if {@code p} is {@code null}
+	 *                              if {@code p} is {@code null}
 	 * @see #getComponentAt(Point)
 	 * @since JDK1.1
 	 */
@@ -4704,9 +4784,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * is inside its bounding box, and <code>null</code> otherwise.
 	 * 
 	 * @param x
-	 *            the <i>x</i> coordinate
+	 *          the <i>x</i> coordinate
 	 * @param y
-	 *            the <i>y</i> coordinate
+	 *          the <i>y</i> coordinate
 	 * @return the component or subcomponent that contains the (<i>x</i>,&nbsp;
 	 *         <i>y</i>) location; <code>null</code> if the location is outside
 	 *         this component
@@ -4729,7 +4809,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Returns the component or subcomponent that contains the specified point.
 	 * 
 	 * @param p
-	 *            the point
+	 *          the point
 	 * @see java.awt.Component#contains
 	 * @since JDK1.1
 	 */
@@ -4752,7 +4832,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * have been enabled for the <code>Component</code>.
 	 * 
 	 * @param e
-	 *            the event
+	 *          the event
 	 */
 	public final void dispatchEvent(AWTEvent e) {
 		dispatchEventImpl(e);
@@ -4764,9 +4844,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 
 		// Check that this component belongs to this app-context
 		AppContext compContext = appContext;
-		if (compContext != null && !compContext.equals(AppContext.getAppContext())) {
+		if (compContext != null && !compContext.equals(AppContext
+				.getAppContext())) {
 			if (eventLog.isLoggable(PlatformLogger.Level.FINE)) {
-				eventLog.fine("Event " + e + " is being dispatched on the wrong AppContext");
+				eventLog.fine("Event " + e
+						+ " is being dispatched on the wrong AppContext");
 			}
 		}
 
@@ -4804,11 +4886,13 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			// Now, with the event properly targeted to a lightweight
 			// descendant if necessary, invoke the public focus retargeting
 			// and dispatching function
-			if (KeyboardFocusManager.getCurrentKeyboardFocusManager().dispatchEvent(e)) {
+			if (KeyboardFocusManager.getCurrentKeyboardFocusManager()
+					.dispatchEvent(e)) {
 				return;
 			}
 		}
-		if ((e instanceof FocusEvent) && focusLog.isLoggable(PlatformLogger.Level.FINEST)) {
+		if ((e instanceof FocusEvent) && focusLog.isLoggable(
+				PlatformLogger.Level.FINEST)) {
 			focusLog.finest("" + e);
 		}
 		// MouseWheel may need to be retargeted here so that
@@ -4834,8 +4918,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 */
 		if (!e.isConsumed()) {
 			if (e instanceof java.awt.event.KeyEvent) {
-				KeyboardFocusManager.getCurrentKeyboardFocusManager().processKeyEvent(this,
-						(KeyEvent) e);
+				KeyboardFocusManager.getCurrentKeyboardFocusManager()
+						.processKeyEvent(this, (KeyEvent) e);
 				if (e.isConsumed()) {
 					return;
 				}
@@ -4850,7 +4934,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			// input method adapters send them through the Java
 			// event queue instead of directly to the component,
 			// and the input context also handles the Java composition window
-			if (((e instanceof InputMethodEvent) && !(this instanceof CompositionArea)) ||
+			if (((e instanceof InputMethodEvent)
+					&& !(this instanceof CompositionArea)) ||
 			// Otherwise, we only pass on input and focus events, because
 			// a) input methods shouldn't know about semantic or component-level
 			// events
@@ -4862,8 +4947,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				if (inputContext != null) {
 					inputContext.dispatchEvent(e);
 					if (e.isConsumed()) {
-						if ((e instanceof FocusEvent)
-								&& focusLog.isLoggable(PlatformLogger.Level.FINEST)) {
+						if ((e instanceof FocusEvent) && focusLog.isLoggable(
+								PlatformLogger.Level.FINEST)) {
 							focusLog.finest("3579: Skipping " + e);
 						}
 						return;
@@ -4878,7 +4963,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			// the active/passive/peered clients loose focus.
 			if (id == FocusEvent.FOCUS_GAINED) {
 				InputContext inputContext = getInputContext();
-				if (inputContext != null && inputContext instanceof sun.awt.im.InputContext) {
+				if (inputContext != null
+						&& inputContext instanceof sun.awt.im.InputContext) {
 					((sun.awt.im.InputContext) inputContext).disableNativeIM();
 				}
 			}
@@ -4888,37 +4974,38 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * 5. Pre-process any special events before delivery
 		 */
 		switch (id) {
-		// Handling of the PAINT and UPDATE events is now done in the
-		// peer's handleEvent() method so the background can be cleared
-		// selectively for non-native components on Windows only.
-		// - Fred.Ecks@Eng.sun.com, 5-8-98
+			// Handling of the PAINT and UPDATE events is now done in the
+			// peer's handleEvent() method so the background can be cleared
+			// selectively for non-native components on Windows only.
+			// - Fred.Ecks@Eng.sun.com, 5-8-98
 
-		case KeyEvent.KEY_PRESSED:
-		case KeyEvent.KEY_RELEASED:
-			Container p = (Container) ((this instanceof Container) ? this : parent);
-			if (p != null) {
-				p.preProcessKeyEvent((KeyEvent) e);
-				if (e.isConsumed()) {
-					if (focusLog.isLoggable(PlatformLogger.Level.FINEST)) {
-						focusLog.finest("Pre-process consumed event");
+			case KeyEvent.KEY_PRESSED:
+			case KeyEvent.KEY_RELEASED:
+				Container p = (Container) ((this instanceof Container) ? this
+						: parent);
+				if (p != null) {
+					p.preProcessKeyEvent((KeyEvent) e);
+					if (e.isConsumed()) {
+						if (focusLog.isLoggable(PlatformLogger.Level.FINEST)) {
+							focusLog.finest("Pre-process consumed event");
+						}
+						return;
 					}
-					return;
 				}
-			}
-			break;
+				break;
 
-		case WindowEvent.WINDOW_CLOSING:
-			if (toolkit instanceof WindowClosingListener) {
-				windowClosingException = ((WindowClosingListener) toolkit)
-						.windowClosingNotify((WindowEvent) e);
-				if (checkWindowClosingException()) {
-					return;
+			case WindowEvent.WINDOW_CLOSING:
+				if (toolkit instanceof WindowClosingListener) {
+					windowClosingException = ((WindowClosingListener) toolkit)
+							.windowClosingNotify((WindowEvent) e);
+					if (checkWindowClosingException()) {
+						return;
+					}
 				}
-			}
-			break;
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
 
 		/*
@@ -4954,19 +5041,19 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				// back to original event
 				//
 				switch (olde.id) {
-				case Event.KEY_PRESS:
-				case Event.KEY_RELEASE:
-				case Event.KEY_ACTION:
-				case Event.KEY_ACTION_RELEASE:
-					if (olde.key != key) {
-						((KeyEvent) e).setKeyChar(olde.getKeyEventChar());
-					}
-					if (olde.modifiers != modifiers) {
-						((KeyEvent) e).setModifiers(olde.modifiers);
-					}
-					break;
-				default:
-					break;
+					case Event.KEY_PRESS:
+					case Event.KEY_RELEASE:
+					case Event.KEY_ACTION:
+					case Event.KEY_ACTION_RELEASE:
+						if (olde.key != key) {
+							((KeyEvent) e).setKeyChar(olde.getKeyEventChar());
+						}
+						if (olde.modifiers != modifiers) {
+							((KeyEvent) e).setModifiers(olde.modifiers);
+						}
+						break;
+					default:
+						break;
 				}
 			}
 		}
@@ -4992,7 +5079,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 */
 		if (!(e instanceof KeyEvent)) {
 			ComponentPeer tpeer = peer;
-			if (e instanceof FocusEvent && (tpeer == null || tpeer instanceof LightweightPeer)) {
+			if (e instanceof FocusEvent && (tpeer == null
+					|| tpeer instanceof LightweightPeer)) {
 				// if focus owner is lightweight then its native container
 				// processes event
 				Component source = (Component) e.getSource();
@@ -5014,13 +5102,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * override it and handle common-case mouse wheel scrolling. NOP for
 	 * Component.
 	 */
-	void autoProcessMouseWheel(MouseWheelEvent e) {
-	}
+	void autoProcessMouseWheel(MouseWheelEvent e) {}
 
 	/*
 	 * Dispatch given MouseWheelEvent to the first ancestor for which
 	 * MouseWheelEvents are enabled.
-	 *
 	 * Returns whether or not event was dispatched to an ancestor
 	 */
 	boolean dispatchMouseWheelToAncestor(MouseWheelEvent e) {
@@ -5065,14 +5151,16 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 
 				newMWE = new MouseWheelEvent(anc, // new source
 						e.getID(), e.getWhen(), e.getModifiers(), newX, // x
-																		// relative
-																		// to
-																		// new
-																		// source
+						// relative
+						// to
+						// new
+						// source
 						newY, // y relative to new source
-						e.getXOnScreen(), e.getYOnScreen(), e.getClickCount(), e.isPopupTrigger(),
-						e.getScrollType(), e.getScrollAmount(), e.getWheelRotation(),
-						e.getPreciseWheelRotation());
+						e.getXOnScreen(), e.getYOnScreen(), e.getClickCount(), e
+								.isPopupTrigger(), e.getScrollType(), e
+										.getScrollAmount(), e
+												.getWheelRotation(), e
+														.getPreciseWheelRotation());
 				((AWTEvent) e).copyPrivateDataInto(newMWE);
 				// When dispatching a wheel event to
 				// ancestor, there is no need trying to find descendant
@@ -5108,7 +5196,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		// components that handle key events, but components can turn off
 		// input methods by calling enableInputMethods(false).
 		return ((eventMask & AWTEvent.INPUT_METHODS_ENABLED_MASK) != 0)
-				&& ((eventMask & AWTEvent.KEY_EVENT_MASK) != 0 || keyListener != null);
+				&& ((eventMask & AWTEvent.KEY_EVENT_MASK) != 0
+						|| keyListener != null);
 	}
 
 	// REMIND: remove when filtering is handled at lower level
@@ -5118,89 +5207,95 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 
 	boolean eventTypeEnabled(int type) {
 		switch (type) {
-		case ComponentEvent.COMPONENT_MOVED:
-		case ComponentEvent.COMPONENT_RESIZED:
-		case ComponentEvent.COMPONENT_SHOWN:
-		case ComponentEvent.COMPONENT_HIDDEN:
-			if ((eventMask & AWTEvent.COMPONENT_EVENT_MASK) != 0 || componentListener != null) {
-				return true;
-			}
-			break;
-		case FocusEvent.FOCUS_GAINED:
-		case FocusEvent.FOCUS_LOST:
-			if ((eventMask & AWTEvent.FOCUS_EVENT_MASK) != 0 || focusListener != null) {
-				return true;
-			}
-			break;
-		case KeyEvent.KEY_PRESSED:
-		case KeyEvent.KEY_RELEASED:
-		case KeyEvent.KEY_TYPED:
-			if ((eventMask & AWTEvent.KEY_EVENT_MASK) != 0 || keyListener != null) {
-				return true;
-			}
-			break;
-		case MouseEvent.MOUSE_PRESSED:
-		case MouseEvent.MOUSE_RELEASED:
-		case MouseEvent.MOUSE_ENTERED:
-		case MouseEvent.MOUSE_EXITED:
-		case MouseEvent.MOUSE_CLICKED:
-			if ((eventMask & AWTEvent.MOUSE_EVENT_MASK) != 0 || mouseListener != null) {
-				return true;
-			}
-			break;
-		case MouseEvent.MOUSE_MOVED:
-		case MouseEvent.MOUSE_DRAGGED:
-			if ((eventMask & AWTEvent.MOUSE_MOTION_EVENT_MASK) != 0
-					|| mouseMotionListener != null) {
-				return true;
-			}
-			break;
-		case MouseEvent.MOUSE_WHEEL:
-			if ((eventMask & AWTEvent.MOUSE_WHEEL_EVENT_MASK) != 0 || mouseWheelListener != null) {
-				return true;
-			}
-			break;
-		case InputMethodEvent.INPUT_METHOD_TEXT_CHANGED:
-		case InputMethodEvent.CARET_POSITION_CHANGED:
-			if ((eventMask & AWTEvent.INPUT_METHOD_EVENT_MASK) != 0
-					|| inputMethodListener != null) {
-				return true;
-			}
-			break;
-		case HierarchyEvent.HIERARCHY_CHANGED:
-			if ((eventMask & AWTEvent.HIERARCHY_EVENT_MASK) != 0 || hierarchyListener != null) {
-				return true;
-			}
-			break;
-		case HierarchyEvent.ANCESTOR_MOVED:
-		case HierarchyEvent.ANCESTOR_RESIZED:
-			if ((eventMask & AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) != 0
-					|| hierarchyBoundsListener != null) {
-				return true;
-			}
-			break;
-		case ActionEvent.ACTION_PERFORMED:
-			if ((eventMask & AWTEvent.ACTION_EVENT_MASK) != 0) {
-				return true;
-			}
-			break;
-		case TextEvent.TEXT_VALUE_CHANGED:
-			if ((eventMask & AWTEvent.TEXT_EVENT_MASK) != 0) {
-				return true;
-			}
-			break;
-		case ItemEvent.ITEM_STATE_CHANGED:
-			if ((eventMask & AWTEvent.ITEM_EVENT_MASK) != 0) {
-				return true;
-			}
-			break;
-		case AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED:
-			if ((eventMask & AWTEvent.ADJUSTMENT_EVENT_MASK) != 0) {
-				return true;
-			}
-			break;
-		default:
-			break;
+			case ComponentEvent.COMPONENT_MOVED:
+			case ComponentEvent.COMPONENT_RESIZED:
+			case ComponentEvent.COMPONENT_SHOWN:
+			case ComponentEvent.COMPONENT_HIDDEN:
+				if ((eventMask & AWTEvent.COMPONENT_EVENT_MASK) != 0
+						|| componentListener != null) {
+					return true;
+				}
+				break;
+			case FocusEvent.FOCUS_GAINED:
+			case FocusEvent.FOCUS_LOST:
+				if ((eventMask & AWTEvent.FOCUS_EVENT_MASK) != 0
+						|| focusListener != null) {
+					return true;
+				}
+				break;
+			case KeyEvent.KEY_PRESSED:
+			case KeyEvent.KEY_RELEASED:
+			case KeyEvent.KEY_TYPED:
+				if ((eventMask & AWTEvent.KEY_EVENT_MASK) != 0
+						|| keyListener != null) {
+					return true;
+				}
+				break;
+			case MouseEvent.MOUSE_PRESSED:
+			case MouseEvent.MOUSE_RELEASED:
+			case MouseEvent.MOUSE_ENTERED:
+			case MouseEvent.MOUSE_EXITED:
+			case MouseEvent.MOUSE_CLICKED:
+				if ((eventMask & AWTEvent.MOUSE_EVENT_MASK) != 0
+						|| mouseListener != null) {
+					return true;
+				}
+				break;
+			case MouseEvent.MOUSE_MOVED:
+			case MouseEvent.MOUSE_DRAGGED:
+				if ((eventMask & AWTEvent.MOUSE_MOTION_EVENT_MASK) != 0
+						|| mouseMotionListener != null) {
+					return true;
+				}
+				break;
+			case MouseEvent.MOUSE_WHEEL:
+				if ((eventMask & AWTEvent.MOUSE_WHEEL_EVENT_MASK) != 0
+						|| mouseWheelListener != null) {
+					return true;
+				}
+				break;
+			case InputMethodEvent.INPUT_METHOD_TEXT_CHANGED:
+			case InputMethodEvent.CARET_POSITION_CHANGED:
+				if ((eventMask & AWTEvent.INPUT_METHOD_EVENT_MASK) != 0
+						|| inputMethodListener != null) {
+					return true;
+				}
+				break;
+			case HierarchyEvent.HIERARCHY_CHANGED:
+				if ((eventMask & AWTEvent.HIERARCHY_EVENT_MASK) != 0
+						|| hierarchyListener != null) {
+					return true;
+				}
+				break;
+			case HierarchyEvent.ANCESTOR_MOVED:
+			case HierarchyEvent.ANCESTOR_RESIZED:
+				if ((eventMask & AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) != 0
+						|| hierarchyBoundsListener != null) {
+					return true;
+				}
+				break;
+			case ActionEvent.ACTION_PERFORMED:
+				if ((eventMask & AWTEvent.ACTION_EVENT_MASK) != 0) {
+					return true;
+				}
+				break;
+			case TextEvent.TEXT_VALUE_CHANGED:
+				if ((eventMask & AWTEvent.TEXT_EVENT_MASK) != 0) {
+					return true;
+				}
+				break;
+			case ItemEvent.ITEM_STATE_CHANGED:
+				if ((eventMask & AWTEvent.ITEM_EVENT_MASK) != 0) {
+					return true;
+				}
+				break;
+			case AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED:
+				if ((eventMask & AWTEvent.ADJUSTMENT_EVENT_MASK) != 0) {
+					return true;
+				}
+				break;
+			default:
+				break;
 		}
 		//
 		// Always pass on events defined by external programs.
@@ -5250,7 +5345,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the component listener
+	 *          the component listener
 	 * @see java.awt.event.ComponentEvent
 	 * @see java.awt.event.ComponentListener
 	 * @see #removeComponentListener
@@ -5276,7 +5371,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 * 
 	 * @param l
-	 *            the component listener
+	 *          the component listener
 	 * @see java.awt.event.ComponentEvent
 	 * @see java.awt.event.ComponentListener
 	 * @see #addComponentListener
@@ -5315,7 +5410,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the focus listener
+	 *          the focus listener
 	 * @see java.awt.event.FocusEvent
 	 * @see java.awt.event.FocusListener
 	 * @see #removeFocusListener
@@ -5347,7 +5442,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the focus listener
+	 *          the focus listener
 	 * @see java.awt.event.FocusEvent
 	 * @see java.awt.event.FocusListener
 	 * @see #addFocusListener
@@ -5385,7 +5480,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the hierarchy listener
+	 *          the hierarchy listener
 	 * @see java.awt.event.HierarchyEvent
 	 * @see java.awt.event.HierarchyListener
 	 * @see #removeHierarchyListener
@@ -5398,15 +5493,16 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		}
 		boolean notifyAncestors;
 		synchronized (this) {
-			notifyAncestors = (hierarchyListener == null
-					&& (eventMask & AWTEvent.HIERARCHY_EVENT_MASK) == 0);
+			notifyAncestors = (hierarchyListener == null && (eventMask
+					& AWTEvent.HIERARCHY_EVENT_MASK) == 0);
 			hierarchyListener = AWTEventMulticaster.add(hierarchyListener, l);
 			notifyAncestors = (notifyAncestors && hierarchyListener != null);
 			newEventsOnly = true;
 		}
 		if (notifyAncestors) {
 			synchronized (getTreeLock()) {
-				adjustListeningChildrenOnParent(AWTEvent.HIERARCHY_EVENT_MASK, 1);
+				adjustListeningChildrenOnParent(AWTEvent.HIERARCHY_EVENT_MASK,
+						1);
 			}
 		}
 	}
@@ -5423,7 +5519,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the hierarchy listener
+	 *          the hierarchy listener
 	 * @see java.awt.event.HierarchyEvent
 	 * @see java.awt.event.HierarchyListener
 	 * @see #addHierarchyListener
@@ -5436,14 +5532,16 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		}
 		boolean notifyAncestors;
 		synchronized (this) {
-			notifyAncestors = (hierarchyListener != null
-					&& (eventMask & AWTEvent.HIERARCHY_EVENT_MASK) == 0);
-			hierarchyListener = AWTEventMulticaster.remove(hierarchyListener, l);
+			notifyAncestors = (hierarchyListener != null && (eventMask
+					& AWTEvent.HIERARCHY_EVENT_MASK) == 0);
+			hierarchyListener = AWTEventMulticaster.remove(hierarchyListener,
+					l);
 			notifyAncestors = (notifyAncestors && hierarchyListener == null);
 		}
 		if (notifyAncestors) {
 			synchronized (getTreeLock()) {
-				adjustListeningChildrenOnParent(AWTEvent.HIERARCHY_EVENT_MASK, -1);
+				adjustListeningChildrenOnParent(AWTEvent.HIERARCHY_EVENT_MASK,
+						-1);
 			}
 		}
 	}
@@ -5473,7 +5571,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the hierarchy bounds listener
+	 *          the hierarchy bounds listener
 	 * @see java.awt.event.HierarchyEvent
 	 * @see java.awt.event.HierarchyBoundsListener
 	 * @see #removeHierarchyBoundsListener
@@ -5486,15 +5584,18 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		}
 		boolean notifyAncestors;
 		synchronized (this) {
-			notifyAncestors = (hierarchyBoundsListener == null
-					&& (eventMask & AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) == 0);
-			hierarchyBoundsListener = AWTEventMulticaster.add(hierarchyBoundsListener, l);
-			notifyAncestors = (notifyAncestors && hierarchyBoundsListener != null);
+			notifyAncestors = (hierarchyBoundsListener == null && (eventMask
+					& AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) == 0);
+			hierarchyBoundsListener = AWTEventMulticaster.add(
+					hierarchyBoundsListener, l);
+			notifyAncestors = (notifyAncestors
+					&& hierarchyBoundsListener != null);
 			newEventsOnly = true;
 		}
 		if (notifyAncestors) {
 			synchronized (getTreeLock()) {
-				adjustListeningChildrenOnParent(AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK, 1);
+				adjustListeningChildrenOnParent(
+						AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK, 1);
 			}
 		}
 	}
@@ -5511,7 +5612,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the hierarchy bounds listener
+	 *          the hierarchy bounds listener
 	 * @see java.awt.event.HierarchyEvent
 	 * @see java.awt.event.HierarchyBoundsListener
 	 * @see #addHierarchyBoundsListener
@@ -5524,14 +5625,17 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		}
 		boolean notifyAncestors;
 		synchronized (this) {
-			notifyAncestors = (hierarchyBoundsListener != null
-					&& (eventMask & AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) == 0);
-			hierarchyBoundsListener = AWTEventMulticaster.remove(hierarchyBoundsListener, l);
-			notifyAncestors = (notifyAncestors && hierarchyBoundsListener == null);
+			notifyAncestors = (hierarchyBoundsListener != null && (eventMask
+					& AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) == 0);
+			hierarchyBoundsListener = AWTEventMulticaster.remove(
+					hierarchyBoundsListener, l);
+			notifyAncestors = (notifyAncestors
+					&& hierarchyBoundsListener == null);
 		}
 		if (notifyAncestors) {
 			synchronized (getTreeLock()) {
-				adjustListeningChildrenOnParent(AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK, -1);
+				adjustListeningChildrenOnParent(
+						AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK, -1);
 			}
 		}
 	}
@@ -5545,10 +5649,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				eventLog.fine("Assertion failed");
 			}
 		}
-		if ((mask == AWTEvent.HIERARCHY_EVENT_MASK
-				&& (hierarchyListener != null || (eventMask & AWTEvent.HIERARCHY_EVENT_MASK) != 0))
-				|| (mask == AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK && (hierarchyBoundsListener != null
-						|| (eventMask & AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) != 0))) {
+		if ((mask == AWTEvent.HIERARCHY_EVENT_MASK && (hierarchyListener != null
+				|| (eventMask & AWTEvent.HIERARCHY_EVENT_MASK) != 0))
+				|| (mask == AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK
+						&& (hierarchyBoundsListener != null || (eventMask
+								& AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) != 0))) {
 			return 1;
 		} else {
 			return 0;
@@ -5561,39 +5666,42 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	}
 
 	// Should only be called while holding the tree lock
-	int createHierarchyEvents(int id, Component changed, Container changedParent, long changeFlags,
+	int createHierarchyEvents(int id, Component changed,
+			Container changedParent, long changeFlags,
 			boolean enabledOnToolkit) {
 		switch (id) {
-		case HierarchyEvent.HIERARCHY_CHANGED:
-			if (hierarchyListener != null || (eventMask & AWTEvent.HIERARCHY_EVENT_MASK) != 0
-					|| enabledOnToolkit) {
-				HierarchyEvent e = new HierarchyEvent(this, id, changed, changedParent,
-						changeFlags);
-				dispatchEvent(e);
-				return 1;
-			}
-			break;
-		case HierarchyEvent.ANCESTOR_MOVED:
-		case HierarchyEvent.ANCESTOR_RESIZED:
-			if (eventLog.isLoggable(PlatformLogger.Level.FINE)) {
-				if (changeFlags != 0) {
-					eventLog.fine("Assertion (changeFlags == 0) failed");
+			case HierarchyEvent.HIERARCHY_CHANGED:
+				if (hierarchyListener != null || (eventMask
+						& AWTEvent.HIERARCHY_EVENT_MASK) != 0
+						|| enabledOnToolkit) {
+					HierarchyEvent e = new HierarchyEvent(this, id, changed,
+							changedParent, changeFlags);
+					dispatchEvent(e);
+					return 1;
 				}
-			}
-			if (hierarchyBoundsListener != null
-					|| (eventMask & AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) != 0
-					|| enabledOnToolkit) {
-				HierarchyEvent e = new HierarchyEvent(this, id, changed, changedParent);
-				dispatchEvent(e);
-				return 1;
-			}
-			break;
-		default:
-			// assert false
-			if (eventLog.isLoggable(PlatformLogger.Level.FINE)) {
-				eventLog.fine("This code must never be reached");
-			}
-			break;
+				break;
+			case HierarchyEvent.ANCESTOR_MOVED:
+			case HierarchyEvent.ANCESTOR_RESIZED:
+				if (eventLog.isLoggable(PlatformLogger.Level.FINE)) {
+					if (changeFlags != 0) {
+						eventLog.fine("Assertion (changeFlags == 0) failed");
+					}
+				}
+				if (hierarchyBoundsListener != null || (eventMask
+						& AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) != 0
+						|| enabledOnToolkit) {
+					HierarchyEvent e = new HierarchyEvent(this, id, changed,
+							changedParent);
+					dispatchEvent(e);
+					return 1;
+				}
+				break;
+			default:
+				// assert false
+				if (eventLog.isLoggable(PlatformLogger.Level.FINE)) {
+					eventLog.fine("This code must never be reached");
+				}
+				break;
 		}
 		return 0;
 	}
@@ -5633,7 +5741,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the key listener.
+	 *          the key listener.
 	 * @see java.awt.event.KeyEvent
 	 * @see java.awt.event.KeyListener
 	 * @see #removeKeyListener
@@ -5665,7 +5773,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the key listener
+	 *          the key listener
 	 * @see java.awt.event.KeyEvent
 	 * @see java.awt.event.KeyListener
 	 * @see #addKeyListener
@@ -5702,7 +5810,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the mouse listener
+	 *          the mouse listener
 	 * @see java.awt.event.MouseEvent
 	 * @see java.awt.event.MouseListener
 	 * @see #removeMouseListener
@@ -5734,7 +5842,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the mouse listener
+	 *          the mouse listener
 	 * @see java.awt.event.MouseEvent
 	 * @see java.awt.event.MouseListener
 	 * @see #addMouseListener
@@ -5771,7 +5879,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the mouse motion listener
+	 *          the mouse motion listener
 	 * @see java.awt.event.MouseEvent
 	 * @see java.awt.event.MouseMotionListener
 	 * @see #removeMouseMotionListener
@@ -5804,7 +5912,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the mouse motion listener
+	 *          the mouse motion listener
 	 * @see java.awt.event.MouseEvent
 	 * @see java.awt.event.MouseMotionListener
 	 * @see #addMouseMotionListener
@@ -5815,7 +5923,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		if (l == null) {
 			return;
 		}
-		mouseMotionListener = AWTEventMulticaster.remove(mouseMotionListener, l);
+		mouseMotionListener = AWTEventMulticaster.remove(mouseMotionListener,
+				l);
 	}
 
 	/**
@@ -5848,7 +5957,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the mouse wheel listener
+	 *          the mouse wheel listener
 	 * @see java.awt.event.MouseWheelEvent
 	 * @see java.awt.event.MouseWheelListener
 	 * @see #removeMouseWheelListener
@@ -5880,7 +5989,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the mouse wheel listener.
+	 *          the mouse wheel listener.
 	 * @see java.awt.event.MouseWheelEvent
 	 * @see java.awt.event.MouseWheelListener
 	 * @see #addMouseWheelListener
@@ -5922,7 +6031,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * AWT Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the input method listener
+	 *          the input method listener
 	 * @see java.awt.event.InputMethodEvent
 	 * @see java.awt.event.InputMethodListener
 	 * @see #removeInputMethodListener
@@ -5950,7 +6059,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the input method listener
+	 *          the input method listener
 	 * @see java.awt.event.InputMethodEvent
 	 * @see java.awt.event.InputMethodListener
 	 * @see #addInputMethodListener
@@ -5961,7 +6070,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		if (l == null) {
 			return;
 		}
-		inputMethodListener = AWTEventMulticaster.remove(inputMethodListener, l);
+		inputMethodListener = AWTEventMulticaster.remove(inputMethodListener,
+				l);
 	}
 
 	/**
@@ -5992,24 +6102,27 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * listeners with the following code:
 	 *
 	 * <pre>
-	 * MouseListener[] mls = (MouseListener[]) (c.getListeners(MouseListener.class));
+	 * MouseListener[] mls = (MouseListener[]) (c.getListeners(
+	 * 		MouseListener.class));
 	 * </pre>
 	 *
 	 * If no such listeners exist, this method returns an empty array.
 	 *
 	 * @param listenerType
-	 *            the type of listeners requested; this parameter should specify
-	 *            an interface that descends from
-	 *            <code>java.util.EventListener</code>
+	 *                     the type of listeners requested; this parameter
+	 *                     should specify
+	 *                     an interface that descends from
+	 *                     <code>java.util.EventListener</code>
 	 * @return an array of all objects registered as <code><em>Foo</em>
 	 *         Listener</code>s on this component, or an empty array if no such
 	 *         listeners have been added
 	 * @exception ClassCastException
-	 *                if <code>listenerType</code> doesn't specify a class or
-	 *                interface that implements
-	 *                <code>java.util.EventListener</code>
+	 *                               if <code>listenerType</code> doesn't
+	 *                               specify a class or
+	 *                               interface that implements
+	 *                               <code>java.util.EventListener</code>
 	 * @throws NullPointerException
-	 *             if {@code listenerType} is {@code null}
+	 *                              if {@code listenerType} is {@code null}
 	 * @see #getComponentListeners
 	 * @see #getFocusListeners
 	 * @see #getHierarchyListeners
@@ -6098,7 +6211,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * listener is registered.
 	 * 
 	 * @param eventsToEnable
-	 *            the event mask defining the event types
+	 *                       the event mask defining the event types
 	 * @see #processEvent
 	 * @see #disableEvents
 	 * @see AWTEvent
@@ -6107,13 +6220,14 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	protected final void enableEvents(long eventsToEnable) {
 		long notifyAncestors = 0;
 		synchronized (this) {
-			if ((eventsToEnable & AWTEvent.HIERARCHY_EVENT_MASK) != 0 && hierarchyListener == null
-					&& (eventMask & AWTEvent.HIERARCHY_EVENT_MASK) == 0) {
+			if ((eventsToEnable & AWTEvent.HIERARCHY_EVENT_MASK) != 0
+					&& hierarchyListener == null && (eventMask
+							& AWTEvent.HIERARCHY_EVENT_MASK) == 0) {
 				notifyAncestors |= AWTEvent.HIERARCHY_EVENT_MASK;
 			}
 			if ((eventsToEnable & AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) != 0
-					&& hierarchyBoundsListener == null
-					&& (eventMask & AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) == 0) {
+					&& hierarchyBoundsListener == null && (eventMask
+							& AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) == 0) {
 				notifyAncestors |= AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK;
 			}
 			eventMask |= eventsToEnable;
@@ -6137,20 +6251,21 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * being delivered to this component.
 	 * 
 	 * @param eventsToDisable
-	 *            the event mask defining the event types
+	 *                        the event mask defining the event types
 	 * @see #enableEvents
 	 * @since JDK1.1
 	 */
 	protected final void disableEvents(long eventsToDisable) {
 		long notifyAncestors = 0;
 		synchronized (this) {
-			if ((eventsToDisable & AWTEvent.HIERARCHY_EVENT_MASK) != 0 && hierarchyListener == null
-					&& (eventMask & AWTEvent.HIERARCHY_EVENT_MASK) != 0) {
+			if ((eventsToDisable & AWTEvent.HIERARCHY_EVENT_MASK) != 0
+					&& hierarchyListener == null && (eventMask
+							& AWTEvent.HIERARCHY_EVENT_MASK) != 0) {
 				notifyAncestors |= AWTEvent.HIERARCHY_EVENT_MASK;
 			}
 			if ((eventsToDisable & AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) != 0
-					&& hierarchyBoundsListener == null
-					&& (eventMask & AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) != 0) {
+					&& hierarchyBoundsListener == null && (eventMask
+							& AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) != 0) {
 				notifyAncestors |= AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK;
 			}
 			eventMask &= ~eventsToDisable;
@@ -6195,8 +6310,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			}
 
 			// Need to check non-bootstraps.
-			Boolean enabled = java.security.AccessController
-					.doPrivileged(new java.security.PrivilegedAction<Boolean>() {
+			Boolean enabled = java.security.AccessController.doPrivileged(
+					new java.security.PrivilegedAction<Boolean>() {
 						public Boolean run() {
 							return isCoalesceEventsOverriden(clazz);
 						}
@@ -6209,7 +6324,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	/**
 	 * Parameter types of coalesceEvents(AWTEvent,AWTEVent).
 	 */
-	private static final Class[] coalesceEventsParams = { AWTEvent.class, AWTEvent.class };
+	private static final Class[] coalesceEventsParams = { AWTEvent.class,
+			AWTEvent.class };
 
 	/**
 	 * Indicates whether a class or its superclasses override coalesceEvents.
@@ -6276,13 +6392,15 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * <code>AWTEvent</code> is always returned.
 	 *
 	 * @param existingEvent
-	 *            the event already on the <code>EventQueue</code>
+	 *                      the event already on the <code>EventQueue</code>
 	 * @param newEvent
-	 *            the event being posted to the <code>EventQueue</code>
+	 *                      the event being posted to the
+	 *                      <code>EventQueue</code>
 	 * @return a coalesced event, or <code>null</code> indicating that no
 	 *         coalescing was done
 	 */
-	protected AWTEvent coalesceEvents(AWTEvent existingEvent, AWTEvent newEvent) {
+	protected AWTEvent coalesceEvents(AWTEvent existingEvent,
+			AWTEvent newEvent) {
 		return null;
 	}
 
@@ -6295,7 +6413,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the event
+	 *          the event
 	 * @see #processComponentEvent
 	 * @see #processFocusEvent
 	 * @see #processKeyEvent
@@ -6312,20 +6430,20 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 
 		} else if (e instanceof MouseEvent) {
 			switch (e.getID()) {
-			case MouseEvent.MOUSE_PRESSED:
-			case MouseEvent.MOUSE_RELEASED:
-			case MouseEvent.MOUSE_CLICKED:
-			case MouseEvent.MOUSE_ENTERED:
-			case MouseEvent.MOUSE_EXITED:
-				processMouseEvent((MouseEvent) e);
-				break;
-			case MouseEvent.MOUSE_MOVED:
-			case MouseEvent.MOUSE_DRAGGED:
-				processMouseMotionEvent((MouseEvent) e);
-				break;
-			case MouseEvent.MOUSE_WHEEL:
-				processMouseWheelEvent((MouseWheelEvent) e);
-				break;
+				case MouseEvent.MOUSE_PRESSED:
+				case MouseEvent.MOUSE_RELEASED:
+				case MouseEvent.MOUSE_CLICKED:
+				case MouseEvent.MOUSE_ENTERED:
+				case MouseEvent.MOUSE_EXITED:
+					processMouseEvent((MouseEvent) e);
+					break;
+				case MouseEvent.MOUSE_MOVED:
+				case MouseEvent.MOUSE_DRAGGED:
+					processMouseMotionEvent((MouseEvent) e);
+					break;
+				case MouseEvent.MOUSE_WHEEL:
+					processMouseWheelEvent((MouseWheelEvent) e);
+					break;
 			}
 
 		} else if (e instanceof KeyEvent) {
@@ -6337,13 +6455,13 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			processInputMethodEvent((InputMethodEvent) e);
 		} else if (e instanceof HierarchyEvent) {
 			switch (e.getID()) {
-			case HierarchyEvent.HIERARCHY_CHANGED:
-				processHierarchyEvent((HierarchyEvent) e);
-				break;
-			case HierarchyEvent.ANCESTOR_MOVED:
-			case HierarchyEvent.ANCESTOR_RESIZED:
-				processHierarchyBoundsEvent((HierarchyEvent) e);
-				break;
+				case HierarchyEvent.HIERARCHY_CHANGED:
+					processHierarchyEvent((HierarchyEvent) e);
+					break;
+				case HierarchyEvent.ANCESTOR_MOVED:
+				case HierarchyEvent.ANCESTOR_RESIZED:
+					processHierarchyBoundsEvent((HierarchyEvent) e);
+					break;
 			}
 		}
 	}
@@ -6364,7 +6482,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the component event
+	 *          the component event
 	 * @see java.awt.event.ComponentEvent
 	 * @see java.awt.event.ComponentListener
 	 * @see #addComponentListener
@@ -6376,18 +6494,18 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		if (listener != null) {
 			int id = e.getID();
 			switch (id) {
-			case ComponentEvent.COMPONENT_RESIZED:
-				listener.componentResized(e);
-				break;
-			case ComponentEvent.COMPONENT_MOVED:
-				listener.componentMoved(e);
-				break;
-			case ComponentEvent.COMPONENT_SHOWN:
-				listener.componentShown(e);
-				break;
-			case ComponentEvent.COMPONENT_HIDDEN:
-				listener.componentHidden(e);
-				break;
+				case ComponentEvent.COMPONENT_RESIZED:
+					listener.componentResized(e);
+					break;
+				case ComponentEvent.COMPONENT_MOVED:
+					listener.componentMoved(e);
+					break;
+				case ComponentEvent.COMPONENT_SHOWN:
+					listener.componentShown(e);
+					break;
+				case ComponentEvent.COMPONENT_HIDDEN:
+					listener.componentHidden(e);
+					break;
 			}
 		}
 	}
@@ -6423,7 +6541,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the focus event
+	 *          the focus event
 	 * @see java.awt.event.FocusEvent
 	 * @see java.awt.event.FocusListener
 	 * @see java.awt.KeyboardFocusManager
@@ -6437,12 +6555,12 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		if (listener != null) {
 			int id = e.getID();
 			switch (id) {
-			case FocusEvent.FOCUS_GAINED:
-				listener.focusGained(e);
-				break;
-			case FocusEvent.FOCUS_LOST:
-				listener.focusLost(e);
-				break;
+				case FocusEvent.FOCUS_GAINED:
+					listener.focusGained(e);
+					break;
+				case FocusEvent.FOCUS_LOST:
+					listener.focusLost(e);
+					break;
 			}
 		}
 	}
@@ -6480,7 +6598,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * and may result in an exception.
 	 *
 	 * @param e
-	 *            the key event
+	 *          the key event
 	 * @see java.awt.event.KeyEvent
 	 * @see java.awt.event.KeyListener
 	 * @see java.awt.KeyboardFocusManager
@@ -6497,15 +6615,15 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		if (listener != null) {
 			int id = e.getID();
 			switch (id) {
-			case KeyEvent.KEY_TYPED:
-				listener.keyTyped(e);
-				break;
-			case KeyEvent.KEY_PRESSED:
-				listener.keyPressed(e);
-				break;
-			case KeyEvent.KEY_RELEASED:
-				listener.keyReleased(e);
-				break;
+				case KeyEvent.KEY_TYPED:
+					listener.keyTyped(e);
+					break;
+				case KeyEvent.KEY_PRESSED:
+					listener.keyPressed(e);
+					break;
+				case KeyEvent.KEY_RELEASED:
+					listener.keyReleased(e);
+					break;
 			}
 		}
 	}
@@ -6526,7 +6644,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the mouse event
+	 *          the mouse event
 	 * @see java.awt.event.MouseEvent
 	 * @see java.awt.event.MouseListener
 	 * @see #addMouseListener
@@ -6538,21 +6656,21 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		if (listener != null) {
 			int id = e.getID();
 			switch (id) {
-			case MouseEvent.MOUSE_PRESSED:
-				listener.mousePressed(e);
-				break;
-			case MouseEvent.MOUSE_RELEASED:
-				listener.mouseReleased(e);
-				break;
-			case MouseEvent.MOUSE_CLICKED:
-				listener.mouseClicked(e);
-				break;
-			case MouseEvent.MOUSE_EXITED:
-				listener.mouseExited(e);
-				break;
-			case MouseEvent.MOUSE_ENTERED:
-				listener.mouseEntered(e);
-				break;
+				case MouseEvent.MOUSE_PRESSED:
+					listener.mousePressed(e);
+					break;
+				case MouseEvent.MOUSE_RELEASED:
+					listener.mouseReleased(e);
+					break;
+				case MouseEvent.MOUSE_CLICKED:
+					listener.mouseClicked(e);
+					break;
+				case MouseEvent.MOUSE_EXITED:
+					listener.mouseExited(e);
+					break;
+				case MouseEvent.MOUSE_ENTERED:
+					listener.mouseEntered(e);
+					break;
 			}
 		}
 	}
@@ -6574,7 +6692,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the mouse motion event
+	 *          the mouse motion event
 	 * @see java.awt.event.MouseEvent
 	 * @see java.awt.event.MouseMotionListener
 	 * @see #addMouseMotionListener
@@ -6586,12 +6704,12 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		if (listener != null) {
 			int id = e.getID();
 			switch (id) {
-			case MouseEvent.MOUSE_MOVED:
-				listener.mouseMoved(e);
-				break;
-			case MouseEvent.MOUSE_DRAGGED:
-				listener.mouseDragged(e);
-				break;
+				case MouseEvent.MOUSE_MOVED:
+					listener.mouseMoved(e);
+					break;
+				case MouseEvent.MOUSE_DRAGGED:
+					listener.mouseDragged(e);
+					break;
 			}
 		}
 	}
@@ -6616,7 +6734,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the mouse wheel event
+	 *          the mouse wheel event
 	 * @see java.awt.event.MouseWheelEvent
 	 * @see java.awt.event.MouseWheelListener
 	 * @see #addMouseWheelListener
@@ -6628,9 +6746,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		if (listener != null) {
 			int id = e.getID();
 			switch (id) {
-			case MouseEvent.MOUSE_WHEEL:
-				listener.mouseWheelMoved(e);
-				break;
+				case MouseEvent.MOUSE_WHEEL:
+					listener.mouseWheelMoved(e);
+					break;
 			}
 		}
 	}
@@ -6656,7 +6774,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the input method event
+	 *          the input method event
 	 * @see java.awt.event.InputMethodEvent
 	 * @see java.awt.event.InputMethodListener
 	 * @see #addInputMethodListener
@@ -6668,12 +6786,12 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		if (listener != null) {
 			int id = e.getID();
 			switch (id) {
-			case InputMethodEvent.INPUT_METHOD_TEXT_CHANGED:
-				listener.inputMethodTextChanged(e);
-				break;
-			case InputMethodEvent.CARET_POSITION_CHANGED:
-				listener.caretPositionChanged(e);
-				break;
+				case InputMethodEvent.INPUT_METHOD_TEXT_CHANGED:
+					listener.inputMethodTextChanged(e);
+					break;
+				case InputMethodEvent.CARET_POSITION_CHANGED:
+					listener.caretPositionChanged(e);
+					break;
 			}
 		}
 	}
@@ -6694,7 +6812,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the hierarchy event
+	 *          the hierarchy event
 	 * @see java.awt.event.HierarchyEvent
 	 * @see java.awt.event.HierarchyListener
 	 * @see #addHierarchyListener
@@ -6706,9 +6824,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		if (listener != null) {
 			int id = e.getID();
 			switch (id) {
-			case HierarchyEvent.HIERARCHY_CHANGED:
-				listener.hierarchyChanged(e);
-				break;
+				case HierarchyEvent.HIERARCHY_CHANGED:
+					listener.hierarchyChanged(e);
+					break;
 			}
 		}
 	}
@@ -6731,7 +6849,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the hierarchy event
+	 *          the hierarchy event
 	 * @see java.awt.event.HierarchyEvent
 	 * @see java.awt.event.HierarchyBoundsListener
 	 * @see #addHierarchyBoundsListener
@@ -6743,12 +6861,12 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		if (listener != null) {
 			int id = e.getID();
 			switch (id) {
-			case HierarchyEvent.ANCESTOR_MOVED:
-				listener.ancestorMoved(e);
-				break;
-			case HierarchyEvent.ANCESTOR_RESIZED:
-				listener.ancestorResized(e);
-				break;
+				case HierarchyEvent.ANCESTOR_MOVED:
+					listener.ancestorMoved(e);
+					break;
+				case HierarchyEvent.ANCESTOR_RESIZED:
+					listener.ancestorResized(e);
+					break;
 			}
 		}
 	}
@@ -6759,38 +6877,38 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	@Deprecated
 	public boolean handleEvent(Event evt) {
 		switch (evt.id) {
-		case Event.MOUSE_ENTER:
-			return mouseEnter(evt, evt.x, evt.y);
+			case Event.MOUSE_ENTER:
+				return mouseEnter(evt, evt.x, evt.y);
 
-		case Event.MOUSE_EXIT:
-			return mouseExit(evt, evt.x, evt.y);
+			case Event.MOUSE_EXIT:
+				return mouseExit(evt, evt.x, evt.y);
 
-		case Event.MOUSE_MOVE:
-			return mouseMove(evt, evt.x, evt.y);
+			case Event.MOUSE_MOVE:
+				return mouseMove(evt, evt.x, evt.y);
 
-		case Event.MOUSE_DOWN:
-			return mouseDown(evt, evt.x, evt.y);
+			case Event.MOUSE_DOWN:
+				return mouseDown(evt, evt.x, evt.y);
 
-		case Event.MOUSE_DRAG:
-			return mouseDrag(evt, evt.x, evt.y);
+			case Event.MOUSE_DRAG:
+				return mouseDrag(evt, evt.x, evt.y);
 
-		case Event.MOUSE_UP:
-			return mouseUp(evt, evt.x, evt.y);
+			case Event.MOUSE_UP:
+				return mouseUp(evt, evt.x, evt.y);
 
-		case Event.KEY_PRESS:
-		case Event.KEY_ACTION:
-			return keyDown(evt, evt.key);
+			case Event.KEY_PRESS:
+			case Event.KEY_ACTION:
+				return keyDown(evt, evt.key);
 
-		case Event.KEY_RELEASE:
-		case Event.KEY_ACTION_RELEASE:
-			return keyUp(evt, evt.key);
+			case Event.KEY_RELEASE:
+			case Event.KEY_ACTION_RELEASE:
+				return keyUp(evt, evt.key);
 
-		case Event.ACTION_EVENT:
-			return action(evt, evt.arg);
-		case Event.GOT_FOCUS:
-			return gotFocus(evt, evt.arg);
-		case Event.LOST_FOCUS:
-			return lostFocus(evt, evt.arg);
+			case Event.ACTION_EVENT:
+				return action(evt, evt.arg);
+			case Event.GOT_FOCUS:
+				return gotFocus(evt, evt.arg);
+			case Event.LOST_FOCUS:
+				return lostFocus(evt, evt.arg);
 		}
 		return false;
 	}
@@ -6903,21 +7021,24 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				// be enabled.
 				if (parent != null) {
 					long mask = 0;
-					if ((mouseListener != null) || ((eventMask & AWTEvent.MOUSE_EVENT_MASK) != 0)) {
+					if ((mouseListener != null) || ((eventMask
+							& AWTEvent.MOUSE_EVENT_MASK) != 0)) {
 						mask |= AWTEvent.MOUSE_EVENT_MASK;
 					}
-					if ((mouseMotionListener != null)
-							|| ((eventMask & AWTEvent.MOUSE_MOTION_EVENT_MASK) != 0)) {
+					if ((mouseMotionListener != null) || ((eventMask
+							& AWTEvent.MOUSE_MOTION_EVENT_MASK) != 0)) {
 						mask |= AWTEvent.MOUSE_MOTION_EVENT_MASK;
 					}
-					if ((mouseWheelListener != null)
-							|| ((eventMask & AWTEvent.MOUSE_WHEEL_EVENT_MASK) != 0)) {
+					if ((mouseWheelListener != null) || ((eventMask
+							& AWTEvent.MOUSE_WHEEL_EVENT_MASK) != 0)) {
 						mask |= AWTEvent.MOUSE_WHEEL_EVENT_MASK;
 					}
-					if (focusListener != null || (eventMask & AWTEvent.FOCUS_EVENT_MASK) != 0) {
+					if (focusListener != null || (eventMask
+							& AWTEvent.FOCUS_EVENT_MASK) != 0) {
 						mask |= AWTEvent.FOCUS_EVENT_MASK;
 					}
-					if (keyListener != null || (eventMask & AWTEvent.KEY_EVENT_MASK) != 0) {
+					if (keyListener != null || (eventMask
+							& AWTEvent.KEY_EVENT_MASK) != 0) {
 						mask |= AWTEvent.KEY_EVENT_MASK;
 					}
 					if (mask != 0) {
@@ -6930,7 +7051,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				Container parent = getContainer();
 				if (parent != null && parent.isLightweight()) {
 					relocateComponent();
-					if (!parent.isRecursivelyVisibleUpToHeavyweightContainer()) {
+					if (!parent
+							.isRecursivelyVisibleUpToHeavyweightContainer()) {
 						peer.setVisible(false);
 					}
 				}
@@ -6961,11 +7083,15 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 
 			isAddNotifyComplete = true;
 
-			if (hierarchyListener != null || (eventMask & AWTEvent.HIERARCHY_EVENT_MASK) != 0
-					|| Toolkit.enabledOnToolkit(AWTEvent.HIERARCHY_EVENT_MASK)) {
-				HierarchyEvent e = new HierarchyEvent(this, HierarchyEvent.HIERARCHY_CHANGED, this,
-						parent, HierarchyEvent.DISPLAYABILITY_CHANGED
-								| ((isRecursivelyVisible()) ? HierarchyEvent.SHOWING_CHANGED : 0));
+			if (hierarchyListener != null || (eventMask
+					& AWTEvent.HIERARCHY_EVENT_MASK) != 0 || Toolkit
+							.enabledOnToolkit(AWTEvent.HIERARCHY_EVENT_MASK)) {
+				HierarchyEvent e = new HierarchyEvent(this,
+						HierarchyEvent.HIERARCHY_CHANGED, this, parent,
+						HierarchyEvent.DISPLAYABILITY_CHANGED
+								| ((isRecursivelyVisible())
+										? HierarchyEvent.SHOWING_CHANGED
+										: 0));
 				dispatchEvent(e);
 			}
 		}
@@ -6993,7 +7119,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		}
 
 		synchronized (getTreeLock()) {
-			if (isFocusOwner() && KeyboardFocusManager.isAutoFocusTransferEnabledFor(this)) {
+			if (isFocusOwner() && KeyboardFocusManager
+					.isAutoFocusTransferEnabledFor(this)) {
 				transferFocus(true);
 			}
 
@@ -7036,7 +7163,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				peerFont = null;
 
 				Toolkit.getEventQueue().removeSourceEvents(this, false);
-				KeyboardFocusManager.getCurrentKeyboardFocusManager().discardKeyEvents(this);
+				KeyboardFocusManager.getCurrentKeyboardFocusManager()
+						.discardKeyEvents(this);
 
 				p.dispose();
 
@@ -7049,11 +7177,15 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				this.compoundShape = null;
 			}
 
-			if (hierarchyListener != null || (eventMask & AWTEvent.HIERARCHY_EVENT_MASK) != 0
-					|| Toolkit.enabledOnToolkit(AWTEvent.HIERARCHY_EVENT_MASK)) {
-				HierarchyEvent e = new HierarchyEvent(this, HierarchyEvent.HIERARCHY_CHANGED, this,
-						parent, HierarchyEvent.DISPLAYABILITY_CHANGED
-								| ((isRecursivelyVisible()) ? HierarchyEvent.SHOWING_CHANGED : 0));
+			if (hierarchyListener != null || (eventMask
+					& AWTEvent.HIERARCHY_EVENT_MASK) != 0 || Toolkit
+							.enabledOnToolkit(AWTEvent.HIERARCHY_EVENT_MASK)) {
+				HierarchyEvent e = new HierarchyEvent(this,
+						HierarchyEvent.HIERARCHY_CHANGED, this, parent,
+						HierarchyEvent.DISPLAYABILITY_CHANGED
+								| ((isRecursivelyVisible())
+										? HierarchyEvent.SHOWING_CHANGED
+										: 0));
 				dispatchEvent(e);
 			}
 		}
@@ -7111,7 +7243,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * value overrides the Component's default focusability.
 	 *
 	 * @param focusable
-	 *            indicates whether this Component is focusable
+	 *                  indicates whether this Component is focusable
 	 * @see #isFocusable
 	 * @since 1.4
 	 * @beaninfo bound: true
@@ -7126,7 +7258,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 
 		firePropertyChange("focusable", oldFocusable, focusable);
 		if (oldFocusable && !focusable) {
-			if (isFocusOwner() && KeyboardFocusManager.isAutoFocusTransferEnabled()) {
+			if (isFocusOwner() && KeyboardFocusManager
+					.isAutoFocusTransferEnabled()) {
 				transferFocus(true);
 			}
 			KeyboardFocusManager.clearMostRecentFocusOwner(this);
@@ -7192,29 +7325,36 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * in {@code keystrokes} is not an {@code AWTKeyStroke}.
 	 *
 	 * @param id
-	 *            one of KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
-	 *            KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, or
-	 *            KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS
+	 *                   one of KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
+	 *                   KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, or
+	 *                   KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS
 	 * @param keystrokes
-	 *            the Set of AWTKeyStroke for the specified operation
+	 *                   the Set of AWTKeyStroke for the specified operation
 	 * @see #getFocusTraversalKeys
 	 * @see KeyboardFocusManager#FORWARD_TRAVERSAL_KEYS
 	 * @see KeyboardFocusManager#BACKWARD_TRAVERSAL_KEYS
 	 * @see KeyboardFocusManager#UP_CYCLE_TRAVERSAL_KEYS
 	 * @throws IllegalArgumentException
-	 *             if id is not one of
-	 *             KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
-	 *             KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, or
-	 *             KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS, or if
-	 *             keystrokes contains null, or if any keystroke represents a
-	 *             KEY_TYPED event, or if any keystroke already maps to another
-	 *             focus traversal operation for this Component
+	 *                                  if id is not one of
+	 *                                  KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
+	 *                                  KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,
+	 *                                  or
+	 *                                  KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS,
+	 *                                  or if
+	 *                                  keystrokes contains null, or if any
+	 *                                  keystroke represents a
+	 *                                  KEY_TYPED event, or if any keystroke
+	 *                                  already maps to another
+	 *                                  focus traversal operation for this
+	 *                                  Component
 	 * @since 1.4
 	 * @beaninfo bound: true
 	 */
-	public void setFocusTraversalKeys(int id, Set<? extends AWTKeyStroke> keystrokes) {
+	public void setFocusTraversalKeys(int id,
+			Set<? extends AWTKeyStroke> keystrokes) {
 		if (id < 0 || id >= KeyboardFocusManager.TRAVERSAL_KEY_LENGTH - 1) {
-			throw new IllegalArgumentException("invalid focus traversal key identifier");
+			throw new IllegalArgumentException(
+					"invalid focus traversal key identifier");
 		}
 
 		setFocusTraversalKeys_NoIDCheck(id, keystrokes);
@@ -7231,9 +7371,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * current KeyboardFocusManager's default Set is returned.
 	 *
 	 * @param id
-	 *            one of KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
-	 *            KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, or
-	 *            KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS
+	 *           one of KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
+	 *           KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, or
+	 *           KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS
 	 * @return the Set of AWTKeyStrokes for the specified operation. The Set
 	 *         will be unmodifiable, and may be empty. null will never be
 	 *         returned.
@@ -7242,15 +7382,17 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * @see KeyboardFocusManager#BACKWARD_TRAVERSAL_KEYS
 	 * @see KeyboardFocusManager#UP_CYCLE_TRAVERSAL_KEYS
 	 * @throws IllegalArgumentException
-	 *             if id is not one of
-	 *             KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
-	 *             KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, or
-	 *             KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS
+	 *                                  if id is not one of
+	 *                                  KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
+	 *                                  KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,
+	 *                                  or
+	 *                                  KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS
 	 * @since 1.4
 	 */
 	public Set<AWTKeyStroke> getFocusTraversalKeys(int id) {
 		if (id < 0 || id >= KeyboardFocusManager.TRAVERSAL_KEY_LENGTH - 1) {
-			throw new IllegalArgumentException("invalid focus traversal key identifier");
+			throw new IllegalArgumentException(
+					"invalid focus traversal key identifier");
 		}
 
 		return getFocusTraversalKeys_NoIDCheck(id);
@@ -7261,7 +7403,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	// DOWN_CYCLE_TRAVERSAL_KEY while Component does not. The Component method
 	// would erroneously generate an IllegalArgumentException for
 	// DOWN_CYCLE_TRAVERSAL_KEY.
-	final void setFocusTraversalKeys_NoIDCheck(int id, Set<? extends AWTKeyStroke> keystrokes) {
+	final void setFocusTraversalKeys_NoIDCheck(int id,
+			Set<? extends AWTKeyStroke> keystrokes) {
 		Set<AWTKeyStroke> oldKeys;
 
 		synchronized (this) {
@@ -7273,7 +7416,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				for (AWTKeyStroke keystroke : keystrokes) {
 
 					if (keystroke == null) {
-						throw new IllegalArgumentException("cannot set null focus traversal key");
+						throw new IllegalArgumentException(
+								"cannot set null focus traversal key");
 					}
 
 					if (keystroke.getKeyChar() != KeyEvent.CHAR_UNDEFINED) {
@@ -7286,7 +7430,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 							continue;
 						}
 
-						if (getFocusTraversalKeys_NoIDCheck(i).contains(keystroke)) {
+						if (getFocusTraversalKeys_NoIDCheck(i).contains(
+								keystroke)) {
 							throw new IllegalArgumentException(
 									"focus traversal keys must be unique for a Component");
 						}
@@ -7295,17 +7440,21 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			}
 
 			oldKeys = focusTraversalKeys[id];
-			focusTraversalKeys[id] = (keystrokes != null)
-					? Collections.unmodifiableSet(new HashSet<AWTKeyStroke>(keystrokes)) : null;
+			focusTraversalKeys[id] = (keystrokes != null) ? Collections
+					.unmodifiableSet(new HashSet<AWTKeyStroke>(keystrokes))
+					: null;
 		}
 
-		firePropertyChange(focusTraversalKeyPropertyNames[id], oldKeys, keystrokes);
+		firePropertyChange(focusTraversalKeyPropertyNames[id], oldKeys,
+				keystrokes);
 	}
 
 	final Set<AWTKeyStroke> getFocusTraversalKeys_NoIDCheck(int id) {
 		// Okay to return Set directly because it is an unmodifiable view
 		@SuppressWarnings("unchecked")
-		Set<AWTKeyStroke> keystrokes = (focusTraversalKeys != null) ? focusTraversalKeys[id] : null;
+		Set<AWTKeyStroke> keystrokes = (focusTraversalKeys != null)
+				? focusTraversalKeys[id]
+				: null;
 
 		if (keystrokes != null) {
 			return keystrokes;
@@ -7327,22 +7476,24 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Set from an ancestor, or from the current KeyboardFocusManager.
 	 *
 	 * @param id
-	 *            one of KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
-	 *            KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, or
-	 *            KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS
+	 *           one of KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
+	 *           KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, or
+	 *           KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS
 	 * @return <code>true</code> if the the Set of focus traversal keys for the
 	 *         given focus traversal operation has been explicitly defined for
 	 *         this Component; <code>false</code> otherwise.
 	 * @throws IllegalArgumentException
-	 *             if id is not one of
-	 *             KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
-	 *             KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, or
-	 *             KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS
+	 *                                  if id is not one of
+	 *                                  KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
+	 *                                  KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,
+	 *                                  or
+	 *                                  KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS
 	 * @since 1.4
 	 */
 	public boolean areFocusTraversalKeysSet(int id) {
 		if (id < 0 || id >= KeyboardFocusManager.TRAVERSAL_KEY_LENGTH - 1) {
-			throw new IllegalArgumentException("invalid focus traversal key identifier");
+			throw new IllegalArgumentException(
+					"invalid focus traversal key identifier");
 		}
 
 		return (focusTraversalKeys != null && focusTraversalKeys[id] != null);
@@ -7356,21 +7507,23 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * converted to traversal operations.
 	 *
 	 * @param focusTraversalKeysEnabled
-	 *            whether focus traversal keys are enabled for this Component
+	 *                                  whether focus traversal keys are enabled
+	 *                                  for this Component
 	 * @see #getFocusTraversalKeysEnabled
 	 * @see #setFocusTraversalKeys
 	 * @see #getFocusTraversalKeys
 	 * @since 1.4
 	 * @beaninfo bound: true
 	 */
-	public void setFocusTraversalKeysEnabled(boolean focusTraversalKeysEnabled) {
+	public void setFocusTraversalKeysEnabled(
+			boolean focusTraversalKeysEnabled) {
 		boolean oldFocusTraversalKeysEnabled;
 		synchronized (this) {
 			oldFocusTraversalKeysEnabled = this.focusTraversalKeysEnabled;
 			this.focusTraversalKeysEnabled = focusTraversalKeysEnabled;
 		}
-		firePropertyChange("focusTraversalKeysEnabled", oldFocusTraversalKeysEnabled,
-				focusTraversalKeysEnabled);
+		firePropertyChange("focusTraversalKeysEnabled",
+				oldFocusTraversalKeysEnabled, focusTraversalKeysEnabled);
 	}
 
 	/**
@@ -7474,11 +7627,12 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * {@code requestFocus} methods of {@code Component} being invoked.
 	 *
 	 * @param temporary
-	 *            true if the focus change is temporary, such as when the window
-	 *            loses the focus; for more information on temporary focus
-	 *            changes see the
-	 *            <a href="../../java/awt/doc-files/FocusSpec.html">Focus
-	 *            Specification</a>
+	 *                  true if the focus change is temporary, such as when the
+	 *                  window
+	 *                  loses the focus; for more information on temporary focus
+	 *                  changes see the
+	 *                  <a href="../../java/awt/doc-files/FocusSpec.html">Focus
+	 *                  Specification</a>
 	 * @return <code>false</code> if the focus change request is guaranteed to
 	 *         fail; <code>true</code> if it is likely to succeed
 	 * @see java.awt.event.FocusEvent
@@ -7589,11 +7743,12 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * {@code requestFocus} methods of {@code Component} being invoked.
 	 *
 	 * @param temporary
-	 *            true if the focus change is temporary, such as when the window
-	 *            loses the focus; for more information on temporary focus
-	 *            changes see the
-	 *            <a href="../../java/awt/doc-files/FocusSpec.html">Focus
-	 *            Specification</a>
+	 *                  true if the focus change is temporary, such as when the
+	 *                  window
+	 *                  loses the focus; for more information on temporary focus
+	 *                  changes see the
+	 *                  <a href="../../java/awt/doc-files/FocusSpec.html">Focus
+	 *                  Specification</a>
 	 * @return <code>false</code> if the focus change request is guaranteed to
 	 *         fail; <code>true</code> if it is likely to succeed
 	 * @see #requestFocus
@@ -7608,26 +7763,31 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		return requestFocusHelper(temporary, false);
 	}
 
-	boolean requestFocusInWindow(boolean temporary, CausedFocusEvent.Cause cause) {
+	boolean requestFocusInWindow(boolean temporary,
+			CausedFocusEvent.Cause cause) {
 		return requestFocusHelper(temporary, false, cause);
 	}
 
-	final boolean requestFocusHelper(boolean temporary, boolean focusedWindowChangeAllowed) {
+	final boolean requestFocusHelper(boolean temporary,
+			boolean focusedWindowChangeAllowed) {
 		return requestFocusHelper(temporary, focusedWindowChangeAllowed,
 				CausedFocusEvent.Cause.UNKNOWN);
 	}
 
-	final boolean requestFocusHelper(boolean temporary, boolean focusedWindowChangeAllowed,
-			CausedFocusEvent.Cause cause) {
+	final boolean requestFocusHelper(boolean temporary,
+			boolean focusedWindowChangeAllowed, CausedFocusEvent.Cause cause) {
 		// 1) Check if the event being dispatched is a system-generated mouse
 		// event.
 		AWTEvent currentEvent = EventQueue.getCurrentEvent();
-		if (currentEvent instanceof MouseEvent && SunToolkit.isSystemGenerated(currentEvent)) {
+		if (currentEvent instanceof MouseEvent && SunToolkit.isSystemGenerated(
+				currentEvent)) {
 			// 2) Sanity check: if the mouse event component source belongs to
 			// the same containing window.
 			Component source = ((MouseEvent) currentEvent).getComponent();
-			if (source == null || source.getContainingWindow() == getContainingWindow()) {
-				focusLog.finest("requesting focus by mouse event \"in window\"");
+			if (source == null || source
+					.getContainingWindow() == getContainingWindow()) {
+				focusLog.finest(
+						"requesting focus by mouse event \"in window\"");
 
 				// If both the conditions are fulfilled the focus request should
 				// be strictly
@@ -7648,7 +7808,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				focusedWindowChangeAllowed = false;
 			}
 		}
-		if (!isRequestFocusAccepted(temporary, focusedWindowChangeAllowed, cause)) {
+		if (!isRequestFocusAccepted(temporary, focusedWindowChangeAllowed,
+				cause)) {
 			if (focusLog.isLoggable(PlatformLogger.Level.FINEST)) {
 				focusLog.finest("requestFocus is not accepted");
 			}
@@ -7669,7 +7830,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		}
 
 		ComponentPeer peer = this.peer;
-		Component heavyweight = (peer instanceof LightweightPeer) ? getNativeContainer() : this;
+		Component heavyweight = (peer instanceof LightweightPeer)
+				? getNativeContainer()
+				: this;
 		if (heavyweight == null || !heavyweight.isVisible()) {
 			if (focusLog.isLoggable(PlatformLogger.Level.FINEST)) {
 				focusLog.finest("Component is not a part of visible hierarchy");
@@ -7695,11 +7858,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			time = System.currentTimeMillis();
 		}
 
-		boolean success = peer.requestFocus(this, temporary, focusedWindowChangeAllowed, time,
-				cause);
+		boolean success = peer.requestFocus(this, temporary,
+				focusedWindowChangeAllowed, time, cause);
 		if (!success) {
-			KeyboardFocusManager.getCurrentKeyboardFocusManager(appContext).dequeueKeyEvents(time,
-					this);
+			KeyboardFocusManager.getCurrentKeyboardFocusManager(appContext)
+					.dequeueKeyEvents(time, this);
 			if (focusLog.isLoggable(PlatformLogger.Level.FINEST)) {
 				focusLog.finest("Peer request failed");
 			}
@@ -7711,8 +7874,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		return success;
 	}
 
-	private boolean isRequestFocusAccepted(boolean temporary, boolean focusedWindowChangeAllowed,
-			CausedFocusEvent.Cause cause) {
+	private boolean isRequestFocusAccepted(boolean temporary,
+			boolean focusedWindowChangeAllowed, CausedFocusEvent.Cause cause) {
 		if (!isFocusable() || !isVisible()) {
 			if (focusLog.isLoggable(PlatformLogger.Level.FINEST)) {
 				focusLog.finest("Not focusable or not visible");
@@ -7738,13 +7901,16 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 
 		// We have passed all regular checks for focus request,
 		// now let's call RequestFocusController and see what it says.
-		Component focusOwner = KeyboardFocusManager.getMostRecentFocusOwner(window);
+		Component focusOwner = KeyboardFocusManager.getMostRecentFocusOwner(
+				window);
 		if (focusOwner == null) {
 			// sometimes most recent focus owner may be null, but focus owner is
 			// not
 			// e.g. we reset most recent focus owner if user removes focus owner
-			focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
-			if (focusOwner != null && focusOwner.getContainingWindow() != window) {
+			focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager()
+					.getFocusOwner();
+			if (focusOwner != null && focusOwner
+					.getContainingWindow() != window) {
 				focusOwner = null;
 			}
 		}
@@ -7772,8 +7938,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			return true;
 		}
 
-		boolean ret = Component.requestFocusController.acceptRequestFocus(focusOwner, this,
-				temporary, focusedWindowChangeAllowed, cause);
+		boolean ret = Component.requestFocusController.acceptRequestFocus(
+				focusOwner, this, temporary, focusedWindowChangeAllowed, cause);
 		if (focusLog.isLoggable(PlatformLogger.Level.FINEST)) {
 			focusLog.finest("RequestFocusController returns {0}", ret);
 		}
@@ -7786,14 +7952,17 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	// Swing access this method through reflection to implement InputVerifier's
 	// functionality.
 	// Perhaps, we should make this method public (later ;)
-	private static class DummyRequestFocusController implements RequestFocusController {
-		public boolean acceptRequestFocus(Component from, Component to, boolean temporary,
-				boolean focusedWindowChangeAllowed, CausedFocusEvent.Cause cause) {
+	private static class DummyRequestFocusController implements
+			RequestFocusController {
+		public boolean acceptRequestFocus(Component from, Component to,
+				boolean temporary, boolean focusedWindowChangeAllowed,
+				CausedFocusEvent.Cause cause) {
 			return true;
 		}
 	};
 
-	synchronized static void setRequestFocusController(RequestFocusController requestController) {
+	synchronized static void setRequestFocusController(
+			RequestFocusController requestController) {
 		if (requestController == null) {
 			requestFocusController = new DummyRequestFocusController();
 		} else {
@@ -7830,7 +7999,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * belongs to only a single focus traversal cycle.
 	 *
 	 * @param container
-	 *            the Container to be tested
+	 *                  the Container to be tested
 	 * @return <code>true</code> if the specified Container is a focus-cycle-
 	 *         root of this Component; <code>false</code> otherwise
 	 * @see Container#isFocusCycleRoot()
@@ -7871,13 +8040,15 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		Component toFocus = getNextFocusCandidate();
 		boolean res = false;
 		if (toFocus != null && !toFocus.isFocusOwner() && toFocus != this) {
-			res = toFocus.requestFocusInWindow(CausedFocusEvent.Cause.TRAVERSAL_FORWARD);
+			res = toFocus.requestFocusInWindow(
+					CausedFocusEvent.Cause.TRAVERSAL_FORWARD);
 		}
 		if (clearOnFailure && !res) {
 			if (focusLog.isLoggable(PlatformLogger.Level.FINER)) {
 				focusLog.finer("clear global focus owner");
 			}
-			KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwnerPriv();
+			KeyboardFocusManager.getCurrentKeyboardFocusManager()
+					.clearGlobalFocusOwnerPriv();
 		}
 		if (focusLog.isLoggable(PlatformLogger.Level.FINER)) {
 			focusLog.finer("returning result: " + res);
@@ -7888,8 +8059,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	final Component getNextFocusCandidate() {
 		Container rootAncestor = getTraversalRoot();
 		Component comp = this;
-		while (rootAncestor != null
-				&& !(rootAncestor.isShowing() && rootAncestor.canBeFocusOwner())) {
+		while (rootAncestor != null && !(rootAncestor.isShowing()
+				&& rootAncestor.canBeFocusOwner())) {
 			comp = rootAncestor;
 			rootAncestor = comp.getFocusCycleRootAncestor();
 		}
@@ -7898,7 +8069,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		}
 		Component candidate = null;
 		if (rootAncestor != null) {
-			FocusTraversalPolicy policy = rootAncestor.getFocusTraversalPolicy();
+			FocusTraversalPolicy policy = rootAncestor
+					.getFocusTraversalPolicy();
 			Component toFocus = policy.getComponentAfter(rootAncestor, comp);
 			if (focusLog.isLoggable(PlatformLogger.Level.FINER)) {
 				focusLog.finer("component after is " + toFocus);
@@ -7937,27 +8109,30 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	boolean transferFocusBackward(boolean clearOnFailure) {
 		Container rootAncestor = getTraversalRoot();
 		Component comp = this;
-		while (rootAncestor != null
-				&& !(rootAncestor.isShowing() && rootAncestor.canBeFocusOwner())) {
+		while (rootAncestor != null && !(rootAncestor.isShowing()
+				&& rootAncestor.canBeFocusOwner())) {
 			comp = rootAncestor;
 			rootAncestor = comp.getFocusCycleRootAncestor();
 		}
 		boolean res = false;
 		if (rootAncestor != null) {
-			FocusTraversalPolicy policy = rootAncestor.getFocusTraversalPolicy();
+			FocusTraversalPolicy policy = rootAncestor
+					.getFocusTraversalPolicy();
 			Component toFocus = policy.getComponentBefore(rootAncestor, comp);
 			if (toFocus == null) {
 				toFocus = policy.getDefaultComponent(rootAncestor);
 			}
 			if (toFocus != null) {
-				res = toFocus.requestFocusInWindow(CausedFocusEvent.Cause.TRAVERSAL_BACKWARD);
+				res = toFocus.requestFocusInWindow(
+						CausedFocusEvent.Cause.TRAVERSAL_BACKWARD);
 			}
 		}
 		if (clearOnFailure && !res) {
 			if (focusLog.isLoggable(PlatformLogger.Level.FINER)) {
 				focusLog.finer("clear global focus owner");
 			}
-			KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwnerPriv();
+			KeyboardFocusManager.getCurrentKeyboardFocusManager()
+					.clearGlobalFocusOwnerPriv();
 		}
 		if (focusLog.isLoggable(PlatformLogger.Level.FINER)) {
 			focusLog.finer("returning result: " + res);
@@ -7982,13 +8157,16 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		Container rootAncestor;
 		for (rootAncestor = getFocusCycleRootAncestor(); rootAncestor != null
 				&& !(rootAncestor.isShowing() && rootAncestor.isFocusable()
-						&& rootAncestor.isEnabled()); rootAncestor = rootAncestor
-								.getFocusCycleRootAncestor()) {
+						&& rootAncestor
+								.isEnabled()); rootAncestor = rootAncestor
+										.getFocusCycleRootAncestor()) {
 		}
 
 		if (rootAncestor != null) {
-			Container rootAncestorRootAncestor = rootAncestor.getFocusCycleRootAncestor();
-			Container fcr = (rootAncestorRootAncestor != null) ? rootAncestorRootAncestor
+			Container rootAncestorRootAncestor = rootAncestor
+					.getFocusCycleRootAncestor();
+			Container fcr = (rootAncestorRootAncestor != null)
+					? rootAncestorRootAncestor
 					: rootAncestor;
 
 			KeyboardFocusManager.getCurrentKeyboardFocusManager()
@@ -7998,7 +8176,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			Window window = getContainingWindow();
 
 			if (window != null) {
-				Component toFocus = window.getFocusTraversalPolicy().getDefaultComponent(window);
+				Component toFocus = window.getFocusTraversalPolicy()
+						.getDefaultComponent(window);
 				if (toFocus != null) {
 					KeyboardFocusManager.getCurrentKeyboardFocusManager()
 							.setGlobalCurrentFocusCycleRootPriv(window);
@@ -8018,7 +8197,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * @since 1.2
 	 */
 	public boolean hasFocus() {
-		return (KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner() == this);
+		return (KeyboardFocusManager.getCurrentKeyboardFocusManager()
+				.getFocusOwner() == this);
 	}
 
 	/**
@@ -8051,10 +8231,10 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Adds the specified popup menu to the component.
 	 * 
 	 * @param popup
-	 *            the popup menu to be added to the component.
+	 *              the popup menu to be added to the component.
 	 * @see #remove(MenuComponent)
 	 * @exception NullPointerException
-	 *                if {@code popup} is {@code null}
+	 *                                 if {@code popup} is {@code null}
 	 * @since JDK1.1
 	 */
 	public void add(PopupMenu popup) {
@@ -8080,7 +8260,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Removes the specified popup menu from the component.
 	 * 
 	 * @param popup
-	 *            the popup menu to be removed
+	 *              the popup menu to be removed
 	 * @see #add(PopupMenu)
 	 * @since JDK1.1
 	 */
@@ -8119,8 +8299,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		final String invalid = isValid() ? "" : ",invalid";
 		final String hidden = visible ? "" : ",hidden";
 		final String disabled = enabled ? "" : ",disabled";
-		return thisName + ',' + x + ',' + y + ',' + width + 'x' + height + invalid + hidden
-				+ disabled;
+		return thisName + ',' + x + ',' + y + ',' + width + 'x' + height
+				+ invalid + hidden + disabled;
 	}
 
 	/**
@@ -8150,7 +8330,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * @param out
 	 *            a print stream
 	 * @throws NullPointerException
-	 *             if {@code out} is {@code null}
+	 *                              if {@code out} is {@code null}
 	 * @since JDK1.0
 	 */
 	public void list(PrintStream out) {
@@ -8162,12 +8342,12 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * specified print stream.
 	 * 
 	 * @param out
-	 *            a print stream
+	 *               a print stream
 	 * @param indent
-	 *            number of spaces to indent
+	 *               number of spaces to indent
 	 * @see java.io.PrintStream#println(java.lang.Object)
 	 * @throws NullPointerException
-	 *             if {@code out} is {@code null}
+	 *                              if {@code out} is {@code null}
 	 * @since JDK1.0
 	 */
 	public void list(PrintStream out, int indent) {
@@ -8183,7 +8363,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * @param out
 	 *            the print writer to print to
 	 * @throws NullPointerException
-	 *             if {@code out} is {@code null}
+	 *                              if {@code out} is {@code null}
 	 * @since JDK1.1
 	 */
 	public void list(PrintWriter out) {
@@ -8195,11 +8375,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * specified print writer.
 	 * 
 	 * @param out
-	 *            the print writer to print to
+	 *               the print writer to print to
 	 * @param indent
-	 *            the number of spaces to indent
+	 *               the number of spaces to indent
 	 * @throws NullPointerException
-	 *             if {@code out} is {@code null}
+	 *                              if {@code out} is {@code null}
 	 * @see java.io.PrintStream#println(java.lang.Object)
 	 * @since JDK1.1
 	 */
@@ -8252,7 +8432,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * no action is performed.
 	 *
 	 * @param listener
-	 *            the property change listener to be added
+	 *                 the property change listener to be added
 	 *
 	 * @see #removePropertyChangeListener
 	 * @see #getPropertyChangeListeners
@@ -8279,7 +8459,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * If listener is null, no exception is thrown and no action is performed.
 	 *
 	 * @param listener
-	 *            the PropertyChangeListener to be removed
+	 *                 the PropertyChangeListener to be removed
 	 *
 	 * @see #addPropertyChangeListener
 	 * @see #getPropertyChangeListeners
@@ -8343,9 +8523,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * <code>null</code>, no exception is thrown and no action is taken.
 	 *
 	 * @param propertyName
-	 *            one of the property names listed above
+	 *                     one of the property names listed above
 	 * @param listener
-	 *            the property change listener to be added
+	 *                     the property change listener to be added
 	 *
 	 * @see #removePropertyChangeListener(java.lang.String,
 	 *      java.beans.PropertyChangeListener)
@@ -8353,7 +8533,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * @see #addPropertyChangeListener(java.lang.String,
 	 *      java.beans.PropertyChangeListener)
 	 */
-	public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+	public void addPropertyChangeListener(String propertyName,
+			PropertyChangeListener listener) {
 		synchronized (getObjectLock()) {
 			if (listener == null) {
 				return;
@@ -8375,16 +8556,17 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * <code>null</code>, no exception is thrown and no action is taken.
 	 *
 	 * @param propertyName
-	 *            a valid property name
+	 *                     a valid property name
 	 * @param listener
-	 *            the PropertyChangeListener to be removed
+	 *                     the PropertyChangeListener to be removed
 	 *
 	 * @see #addPropertyChangeListener(java.lang.String,
 	 *      java.beans.PropertyChangeListener)
 	 * @see #getPropertyChangeListeners(java.lang.String)
 	 * @see #removePropertyChangeListener(java.beans.PropertyChangeListener)
 	 */
-	public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+	public void removePropertyChangeListener(String propertyName,
+			PropertyChangeListener listener) {
 		synchronized (getObjectLock()) {
 			if (listener == null || changeSupport == null) {
 				return;
@@ -8409,7 +8591,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * @see #getPropertyChangeListeners
 	 * @since 1.4
 	 */
-	public PropertyChangeListener[] getPropertyChangeListeners(String propertyName) {
+	public PropertyChangeListener[] getPropertyChangeListeners(
+			String propertyName) {
 		synchronized (getObjectLock()) {
 			if (changeSupport == null) {
 				return new PropertyChangeListener[0];
@@ -8425,19 +8608,20 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * PropertyChangeListeners.
 	 *
 	 * @param propertyName
-	 *            the property whose value has changed
+	 *                     the property whose value has changed
 	 * @param oldValue
-	 *            the property's previous value
+	 *                     the property's previous value
 	 * @param newValue
-	 *            the property's new value
+	 *                     the property's new value
 	 */
-	protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
+	protected void firePropertyChange(String propertyName, Object oldValue,
+			Object newValue) {
 		PropertyChangeSupport changeSupport;
 		synchronized (getObjectLock()) {
 			changeSupport = this.changeSupport;
 		}
-		if (changeSupport == null
-				|| (oldValue != null && newValue != null && oldValue.equals(newValue))) {
+		if (changeSupport == null || (oldValue != null && newValue != null
+				&& oldValue.equals(newValue))) {
 			return;
 		}
 		changeSupport.firePropertyChange(propertyName, oldValue, newValue);
@@ -8450,14 +8634,15 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * PropertyChangeListeners.
 	 *
 	 * @param propertyName
-	 *            the property whose value has changed
+	 *                     the property whose value has changed
 	 * @param oldValue
-	 *            the property's previous value
+	 *                     the property's previous value
 	 * @param newValue
-	 *            the property's new value
+	 *                     the property's new value
 	 * @since 1.4
 	 */
-	protected void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {
+	protected void firePropertyChange(String propertyName, boolean oldValue,
+			boolean newValue) {
 		PropertyChangeSupport changeSupport = this.changeSupport;
 		if (changeSupport == null || oldValue == newValue) {
 			return;
@@ -8472,14 +8657,15 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * PropertyChangeListeners.
 	 *
 	 * @param propertyName
-	 *            the property whose value has changed
+	 *                     the property whose value has changed
 	 * @param oldValue
-	 *            the property's previous value
+	 *                     the property's previous value
 	 * @param newValue
-	 *            the property's new value
+	 *                     the property's new value
 	 * @since 1.4
 	 */
-	protected void firePropertyChange(String propertyName, int oldValue, int newValue) {
+	protected void firePropertyChange(String propertyName, int oldValue,
+			int newValue) {
 		PropertyChangeSupport changeSupport = this.changeSupport;
 		if (changeSupport == null || oldValue == newValue) {
 			return;
@@ -8491,120 +8677,138 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Reports a bound property change.
 	 *
 	 * @param propertyName
-	 *            the programmatic name of the property that was changed
+	 *                     the programmatic name of the property that was
+	 *                     changed
 	 * @param oldValue
-	 *            the old value of the property (as a byte)
+	 *                     the old value of the property (as a byte)
 	 * @param newValue
-	 *            the new value of the property (as a byte)
+	 *                     the new value of the property (as a byte)
 	 * @see #firePropertyChange(java.lang.String, java.lang.Object,
 	 *      java.lang.Object)
 	 * @since 1.5
 	 */
-	public void firePropertyChange(String propertyName, byte oldValue, byte newValue) {
+	public void firePropertyChange(String propertyName, byte oldValue,
+			byte newValue) {
 		if (changeSupport == null || oldValue == newValue) {
 			return;
 		}
-		firePropertyChange(propertyName, Byte.valueOf(oldValue), Byte.valueOf(newValue));
+		firePropertyChange(propertyName, Byte.valueOf(oldValue), Byte.valueOf(
+				newValue));
 	}
 
 	/**
 	 * Reports a bound property change.
 	 *
 	 * @param propertyName
-	 *            the programmatic name of the property that was changed
+	 *                     the programmatic name of the property that was
+	 *                     changed
 	 * @param oldValue
-	 *            the old value of the property (as a char)
+	 *                     the old value of the property (as a char)
 	 * @param newValue
-	 *            the new value of the property (as a char)
+	 *                     the new value of the property (as a char)
 	 * @see #firePropertyChange(java.lang.String, java.lang.Object,
 	 *      java.lang.Object)
 	 * @since 1.5
 	 */
-	public void firePropertyChange(String propertyName, char oldValue, char newValue) {
+	public void firePropertyChange(String propertyName, char oldValue,
+			char newValue) {
 		if (changeSupport == null || oldValue == newValue) {
 			return;
 		}
-		firePropertyChange(propertyName, new Character(oldValue), new Character(newValue));
+		firePropertyChange(propertyName, new Character(oldValue), new Character(
+				newValue));
 	}
 
 	/**
 	 * Reports a bound property change.
 	 *
 	 * @param propertyName
-	 *            the programmatic name of the property that was changed
+	 *                     the programmatic name of the property that was
+	 *                     changed
 	 * @param oldValue
-	 *            the old value of the property (as a short)
+	 *                     the old value of the property (as a short)
 	 * @param newValue
-	 *            the old value of the property (as a short)
+	 *                     the old value of the property (as a short)
 	 * @see #firePropertyChange(java.lang.String, java.lang.Object,
 	 *      java.lang.Object)
 	 * @since 1.5
 	 */
-	public void firePropertyChange(String propertyName, short oldValue, short newValue) {
+	public void firePropertyChange(String propertyName, short oldValue,
+			short newValue) {
 		if (changeSupport == null || oldValue == newValue) {
 			return;
 		}
-		firePropertyChange(propertyName, Short.valueOf(oldValue), Short.valueOf(newValue));
+		firePropertyChange(propertyName, Short.valueOf(oldValue), Short.valueOf(
+				newValue));
 	}
 
 	/**
 	 * Reports a bound property change.
 	 *
 	 * @param propertyName
-	 *            the programmatic name of the property that was changed
+	 *                     the programmatic name of the property that was
+	 *                     changed
 	 * @param oldValue
-	 *            the old value of the property (as a long)
+	 *                     the old value of the property (as a long)
 	 * @param newValue
-	 *            the new value of the property (as a long)
+	 *                     the new value of the property (as a long)
 	 * @see #firePropertyChange(java.lang.String, java.lang.Object,
 	 *      java.lang.Object)
 	 * @since 1.5
 	 */
-	public void firePropertyChange(String propertyName, long oldValue, long newValue) {
+	public void firePropertyChange(String propertyName, long oldValue,
+			long newValue) {
 		if (changeSupport == null || oldValue == newValue) {
 			return;
 		}
-		firePropertyChange(propertyName, Long.valueOf(oldValue), Long.valueOf(newValue));
+		firePropertyChange(propertyName, Long.valueOf(oldValue), Long.valueOf(
+				newValue));
 	}
 
 	/**
 	 * Reports a bound property change.
 	 *
 	 * @param propertyName
-	 *            the programmatic name of the property that was changed
+	 *                     the programmatic name of the property that was
+	 *                     changed
 	 * @param oldValue
-	 *            the old value of the property (as a float)
+	 *                     the old value of the property (as a float)
 	 * @param newValue
-	 *            the new value of the property (as a float)
+	 *                     the new value of the property (as a float)
 	 * @see #firePropertyChange(java.lang.String, java.lang.Object,
 	 *      java.lang.Object)
 	 * @since 1.5
 	 */
-	public void firePropertyChange(String propertyName, float oldValue, float newValue) {
+	public void firePropertyChange(String propertyName, float oldValue,
+			float newValue) {
 		if (changeSupport == null || oldValue == newValue) {
 			return;
 		}
-		firePropertyChange(propertyName, Float.valueOf(oldValue), Float.valueOf(newValue));
+		firePropertyChange(propertyName, Float.valueOf(oldValue), Float.valueOf(
+				newValue));
 	}
 
 	/**
 	 * Reports a bound property change.
 	 *
 	 * @param propertyName
-	 *            the programmatic name of the property that was changed
+	 *                     the programmatic name of the property that was
+	 *                     changed
 	 * @param oldValue
-	 *            the old value of the property (as a double)
+	 *                     the old value of the property (as a double)
 	 * @param newValue
-	 *            the new value of the property (as a double)
+	 *                     the new value of the property (as a double)
 	 * @see #firePropertyChange(java.lang.String, java.lang.Object,
 	 *      java.lang.Object)
 	 * @since 1.5
 	 */
-	public void firePropertyChange(String propertyName, double oldValue, double newValue) {
+	public void firePropertyChange(String propertyName, double oldValue,
+			double newValue) {
 		if (changeSupport == null || oldValue == newValue) {
 			return;
 		}
-		firePropertyChange(propertyName, Double.valueOf(oldValue), Double.valueOf(newValue));
+		firePropertyChange(propertyName, Double.valueOf(oldValue), Double
+				.valueOf(newValue));
 	}
 
 	// Serialization support.
@@ -8628,27 +8832,31 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		//
 		// Swing classes MUST be loaded by the bootstrap class loader,
 		// otherwise we don't consider them.
-		for (Class<?> klass = Component.this.getClass(); klass != null; klass = klass
-				.getSuperclass()) {
-			if (klass.getPackage() == swingPackage && klass.getClassLoader() == null) {
+		for (Class<?> klass = Component.this
+				.getClass(); klass != null; klass = klass.getSuperclass()) {
+			if (klass.getPackage() == swingPackage && klass
+					.getClassLoader() == null) {
 				final Class<?> swingClass = klass;
 				// Find the first override of the compWriteObjectNotify method
-				Method[] methods = AccessController.doPrivileged(new PrivilegedAction<Method[]>() {
-					public Method[] run() {
-						return swingClass.getDeclaredMethods();
-					}
-				});
-				for (int counter = methods.length - 1; counter >= 0; counter--) {
+				Method[] methods = AccessController.doPrivileged(
+						new PrivilegedAction<Method[]>() {
+							public Method[] run() {
+								return swingClass.getDeclaredMethods();
+							}
+						});
+				for (int counter = methods.length
+						- 1; counter >= 0; counter--) {
 					final Method method = methods[counter];
 					if (method.getName().equals("compWriteObjectNotify")) {
 						// We found it, use doPrivileged to make it accessible
 						// to use.
-						AccessController.doPrivileged(new PrivilegedAction<Void>() {
-							public Void run() {
-								method.setAccessible(true);
-								return null;
-							}
-						});
+						AccessController.doPrivileged(
+								new PrivilegedAction<Void>() {
+									public Void run() {
+										method.setAccessible(true);
+										return null;
+									}
+								});
 						// Invoke the method
 						try {
 							method.invoke(this, (Object[]) null);
@@ -8669,7 +8877,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * are detected and no attempt is made to serialize them.
 	 *
 	 * @param s
-	 *            the <code>ObjectOutputStream</code> to write
+	 *          the <code>ObjectOutputStream</code> to write
 	 * @serialData <code>null</code> terminated sequence of 0 or more pairs; the
 	 *             pair consists of a <code>String</code> and an
 	 *             <code>Object</code>; the <code>String</code> indicates the
@@ -8723,7 +8931,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		s.writeObject(componentOrientation);
 
 		AWTEventMulticaster.save(s, hierarchyListenerK, hierarchyListener);
-		AWTEventMulticaster.save(s, hierarchyBoundsListenerK, hierarchyBoundsListener);
+		AWTEventMulticaster.save(s, hierarchyBoundsListenerK,
+				hierarchyBoundsListener);
 		s.writeObject(null);
 
 		AWTEventMulticaster.save(s, mouseWheelListenerK, mouseWheelListener);
@@ -8737,10 +8946,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * the component. Unrecognized keys or values will be ignored.
 	 *
 	 * @param s
-	 *            the <code>ObjectInputStream</code> to read
+	 *          the <code>ObjectInputStream</code> to read
 	 * @see #writeObject(ObjectOutputStream)
 	 */
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException {
 		objectLock = new Object();
 
 		acc = AccessController.getContext();
@@ -8818,7 +9028,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				if (hierarchyListenerK == key) {
 					addHierarchyListener((HierarchyListener) (s.readObject()));
 				} else if (hierarchyBoundsListenerK == key) {
-					addHierarchyBoundsListener((HierarchyBoundsListener) (s.readObject()));
+					addHierarchyBoundsListener((HierarchyBoundsListener) (s
+							.readObject()));
 				} else {
 					// skip value for unrecognized key
 					s.readObject();
@@ -8842,7 +9053,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				String key = ((String) keyOrNull).intern();
 
 				if (mouseWheelListenerK == key) {
-					addMouseWheelListener((MouseWheelListener) (s.readObject()));
+					addMouseWheelListener((MouseWheelListener) (s
+							.readObject()));
 				} else {
 					// skip value for unrecognized key
 					s.readObject();
@@ -8931,10 +9143,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 *
 	 *
 	 * @param orientation
-	 *            the new component orientation of this component and the
-	 *            components contained within it.
+	 *                    the new component orientation of this component and
+	 *                    the
+	 *                    components contained within it.
 	 * @exception NullPointerException
-	 *                if <code>orientation</code> is null.
+	 *                                 if <code>orientation</code> is null.
 	 * @see #setComponentOrientation
 	 * @see #getComponentOrientation
 	 * @see #invalidate
@@ -8989,12 +9202,13 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			}
 			int nativeX = x;
 			int nativeY = y;
-			for (Component cont = getContainer(); cont != null
-					&& cont.isLightweight(); cont = cont.getContainer()) {
+			for (Component cont = getContainer(); cont != null && cont
+					.isLightweight(); cont = cont.getContainer()) {
 				nativeX += cont.x;
 				nativeY += cont.y;
 			}
-			peer.setBounds(nativeX, nativeY, width, height, ComponentPeer.SET_LOCATION);
+			peer.setBounds(nativeX, nativeY, width, height,
+					ComponentPeer.SET_LOCATION);
 		}
 	}
 
@@ -9015,7 +9229,6 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 
 	/*
 	 * --- Accessibility Support ---
-	 *
 	 * Component will contain all of the methods in interface Accessible, though
 	 * it won't actually implement the interface - that will be up to the
 	 * individual objects which extend Component.
@@ -9060,8 +9273,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * Though the class is abstract, this should be called by all
 		 * sub-classes.
 		 */
-		protected AccessibleAWTComponent() {
-		}
+		protected AccessibleAWTComponent() {}
 
 		/**
 		 * Number of PropertyChangeListener objects registered. It's used to
@@ -9079,12 +9291,13 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * 
 		 * @since 1.3
 		 */
-		protected class AccessibleAWTComponentHandler implements ComponentListener {
+		protected class AccessibleAWTComponentHandler implements
+				ComponentListener {
 			public void componentHidden(ComponentEvent e) {
 				if (accessibleContext != null) {
 					accessibleContext.firePropertyChange(
-							AccessibleContext.ACCESSIBLE_STATE_PROPERTY, AccessibleState.VISIBLE,
-							null);
+							AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
+							AccessibleState.VISIBLE, null);
 				}
 			}
 
@@ -9096,11 +9309,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				}
 			}
 
-			public void componentMoved(ComponentEvent e) {
-			}
+			public void componentMoved(ComponentEvent e) {}
 
-			public void componentResized(ComponentEvent e) {
-			}
+			public void componentResized(ComponentEvent e) {}
 		} // inner class AccessibleAWTComponentHandler
 
 		/**
@@ -9121,8 +9332,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			public void focusLost(FocusEvent event) {
 				if (accessibleContext != null) {
 					accessibleContext.firePropertyChange(
-							AccessibleContext.ACCESSIBLE_STATE_PROPERTY, AccessibleState.FOCUSED,
-							null);
+							AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
+							AccessibleState.FOCUSED, null);
 				}
 			}
 		} // inner class AccessibleAWTFocusHandler
@@ -9131,7 +9342,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * Adds a <code>PropertyChangeListener</code> to the listener list.
 		 *
 		 * @param listener
-		 *            the property change listener to be added
+		 *                 the property change listener to be added
 		 */
 		public void addPropertyChangeListener(PropertyChangeListener listener) {
 			if (accessibleAWTComponentHandler == null) {
@@ -9141,7 +9352,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				accessibleAWTFocusHandler = new AccessibleAWTFocusHandler();
 			}
 			if (propertyListenersCount++ == 0) {
-				Component.this.addComponentListener(accessibleAWTComponentHandler);
+				Component.this.addComponentListener(
+						accessibleAWTComponentHandler);
 				Component.this.addFocusListener(accessibleAWTFocusHandler);
 			}
 			super.addPropertyChangeListener(listener);
@@ -9152,11 +9364,13 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * a PropertyChangeListener that was registered for all properties.
 		 *
 		 * @param listener
-		 *            The PropertyChangeListener to be removed
+		 *                 The PropertyChangeListener to be removed
 		 */
-		public void removePropertyChangeListener(PropertyChangeListener listener) {
+		public void removePropertyChangeListener(
+				PropertyChangeListener listener) {
 			if (--propertyListenersCount == 0) {
-				Component.this.removeComponentListener(accessibleAWTComponentHandler);
+				Component.this.removeComponentListener(
+						accessibleAWTComponentHandler);
 				Component.this.removeFocusListener(accessibleAWTFocusHandler);
 			}
 			super.removePropertyChangeListener(listener);
@@ -9268,7 +9482,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * Returns the nth <code>Accessible</code> child of the object.
 		 *
 		 * @param i
-		 *            zero-based index of child
+		 *          zero-based index of child
 		 * @return the nth <code>Accessible</code> child of the object
 		 */
 		public Accessible getAccessibleChild(int i) {
@@ -9311,7 +9525,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * <code>isOpaque</code>.)
 		 *
 		 * @param c
-		 *            the new <code>Color</code> for the background
+		 *          the new <code>Color</code> for the background
 		 * @see Component#isOpaque
 		 */
 		public void setBackground(Color c) {
@@ -9332,7 +9546,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * Sets the foreground color of this object.
 		 *
 		 * @param c
-		 *            the new <code>Color</code> for the foreground
+		 *          the new <code>Color</code> for the foreground
 		 */
 		public void setForeground(Color c) {
 			Component.this.setForeground(c);
@@ -9356,7 +9570,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * mouse cursor shape.
 		 * 
 		 * @param cursor
-		 *            the new <code>Cursor</code> for the object
+		 *               the new <code>Cursor</code> for the object
 		 */
 		public void setCursor(Cursor cursor) {
 			Component.this.setCursor(cursor);
@@ -9376,7 +9590,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * Sets the <code>Font</code> of this object.
 		 *
 		 * @param f
-		 *            the new <code>Font</code> for the object
+		 *          the new <code>Font</code> for the object
 		 */
 		public void setFont(Font f) {
 			Component.this.setFont(f);
@@ -9386,7 +9600,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * Gets the <code>FontMetrics</code> of this object.
 		 *
 		 * @param f
-		 *            the <code>Font</code>
+		 *          the <code>Font</code>
 		 * @return the <code>FontMetrics</code>, if supported, the object;
 		 *         otherwise, <code>null</code>
 		 * @see #getFont
@@ -9412,7 +9626,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * Sets the enabled state of the object.
 		 *
 		 * @param b
-		 *            if true, enables this object; otherwise, disables it
+		 *          if true, enables this object; otherwise, disables it
 		 */
 		public void setEnabled(boolean b) {
 			boolean old = Component.this.isEnabled();
@@ -9421,8 +9635,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				if (accessibleContext != null) {
 					if (b) {
 						accessibleContext.firePropertyChange(
-								AccessibleContext.ACCESSIBLE_STATE_PROPERTY, null,
-								AccessibleState.ENABLED);
+								AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
+								null, AccessibleState.ENABLED);
 					} else {
 						accessibleContext.firePropertyChange(
 								AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
@@ -9449,7 +9663,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * Sets the visible state of the object.
 		 *
 		 * @param b
-		 *            if true, shows this object; otherwise, hides it
+		 *          if true, shows this object; otherwise, hides it
 		 */
 		public void setVisible(boolean b) {
 			boolean old = Component.this.isVisible();
@@ -9458,8 +9672,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				if (accessibleContext != null) {
 					if (b) {
 						accessibleContext.firePropertyChange(
-								AccessibleContext.ACCESSIBLE_STATE_PROPERTY, null,
-								AccessibleState.VISIBLE);
+								AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
+								null, AccessibleState.VISIBLE);
 					} else {
 						accessibleContext.firePropertyChange(
 								AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
@@ -9487,8 +9701,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * the coordinate system of the object.
 		 *
 		 * @param p
-		 *            the <code>Point</code> relative to the coordinate system
-		 *            of the object
+		 *          the <code>Point</code> relative to the coordinate system
+		 *          of the object
 		 * @return true if object contains <code>Point</code>; otherwise false
 		 */
 		public boolean contains(Point p) {
@@ -9529,7 +9743,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * Sets the location of the object relative to the parent.
 		 * 
 		 * @param p
-		 *            the coordinates of the object
+		 *          the coordinates of the object
 		 */
 		public void setLocation(Point p) {
 			Component.this.setLocation(p);
@@ -9553,7 +9767,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * width, height, and location relative to its parent.
 		 *
 		 * @param r
-		 *            a rectangle indicating this component's bounds
+		 *          a rectangle indicating this component's bounds
 		 */
 		public void setBounds(Rectangle r) {
 			Component.this.setBounds(r);
@@ -9578,7 +9792,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * Resizes this object so that it has width and height.
 		 *
 		 * @param d
-		 *            - the dimension specifying the new size of the object
+		 *          - the dimension specifying the new size of the object
 		 */
 		public void setSize(Dimension d) {
 			Component.this.setSize(d);
@@ -9590,9 +9804,9 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * <code>null</code>.
 		 *
 		 * @param p
-		 *            the point defining the top-left corner of the
-		 *            <code>Accessible</code>, given in the coordinate space of
-		 *            the object's parent
+		 *          the point defining the top-left corner of the
+		 *          <code>Accessible</code>, given in the coordinate space of
+		 *          the object's parent
 		 * @return the <code>Accessible</code>, if it exists, at the specified
 		 *         location; else <code>null</code>
 		 */
@@ -9621,7 +9835,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * component.
 		 *
 		 * @param l
-		 *            the focus listener
+		 *          the focus listener
 		 */
 		public void addFocusListener(FocusListener l) {
 			Component.this.addFocusListener(l);
@@ -9632,7 +9846,7 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		 * events from this component.
 		 *
 		 * @param l
-		 *            the focus listener
+		 *          the focus listener
 		 */
 		public void removeFocusListener(FocusListener l) {
 			Component.this.removeFocusListener(l);
@@ -9691,13 +9905,15 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 				states.add(AccessibleState.FOCUSED);
 			}
 			if (this instanceof Accessible) {
-				AccessibleContext ac = ((Accessible) this).getAccessibleContext();
+				AccessibleContext ac = ((Accessible) this)
+						.getAccessibleContext();
 				if (ac != null) {
 					Accessible ap = ac.getAccessibleParent();
 					if (ap != null) {
 						AccessibleContext pac = ap.getAccessibleContext();
 						if (pac != null) {
-							AccessibleSelection as = pac.getAccessibleSelection();
+							AccessibleSelection as = pac
+									.getAccessibleSelection();
 							if (as != null) {
 								states.add(AccessibleState.SELECTABLE);
 								int i = ac.getAccessibleIndexInParent();
@@ -9724,9 +9940,10 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Checks that the given object is instance of the given class.
 	 * 
 	 * @param obj
-	 *            Object to be checked
+	 *                  Object to be checked
 	 * @param className
-	 *            The name of the class. Must be fully-qualified class name.
+	 *                  The name of the class. Must be fully-qualified class
+	 *                  name.
 	 * @return true, if this object is instanceof given class, false, otherwise,
 	 *         or if obj or className is null
 	 */
@@ -9765,14 +9982,15 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	 * Applies the shape to the component
 	 * 
 	 * @param shape
-	 *            Shape to be applied to the component
+	 *              Shape to be applied to the component
 	 */
 	void applyCompoundShape(Region shape) {
 		checkTreeLock();
 
 		if (!areBoundsValid()) {
 			if (mixingLog.isLoggable(PlatformLogger.Level.FINE)) {
-				mixingLog.fine("this = " + this + "; areBoundsValid = " + areBoundsValid());
+				mixingLog.fine("this = " + this + "; areBoundsValid = "
+						+ areBoundsValid());
 			}
 			return;
 		}
@@ -9808,10 +10026,11 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 					this.compoundShape = shape;
 					Point compAbsolute = getLocationOnWindow();
 					if (mixingLog.isLoggable(PlatformLogger.Level.FINER)) {
-						mixingLog.fine("this = " + this + "; compAbsolute=" + compAbsolute
-								+ "; shape=" + shape);
+						mixingLog.fine("this = " + this + "; compAbsolute="
+								+ compAbsolute + "; shape=" + shape);
 					}
-					peer.applyShape(shape.getTranslatedRegion(-compAbsolute.x, -compAbsolute.y));
+					peer.applyShape(shape.getTranslatedRegion(-compAbsolute.x,
+							-compAbsolute.y));
 				}
 			}
 		}
@@ -9825,7 +10044,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	private Region getAppliedShape() {
 		checkTreeLock();
 		// XXX: if we allow LW components to have a shape, this must be changed
-		return (this.compoundShape == null || isLightweight()) ? getNormalShape()
+		return (this.compoundShape == null || isLightweight())
+				? getNormalShape()
 				: this.compoundShape;
 	}
 
@@ -9834,7 +10054,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		Point curLocation = getLocation();
 
 		for (Container parent = getContainer(); parent != null
-				&& !(parent instanceof Window); parent = parent.getContainer()) {
+				&& !(parent instanceof Window); parent = parent
+						.getContainer()) {
 			curLocation.x += parent.getX();
 			curLocation.y += parent.getY();
 		}
@@ -9850,7 +10071,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		// XXX: we may take into account a user-specified shape for this
 		// component
 		Point compAbsolute = getLocationOnWindow();
-		return Region.getInstanceXYWH(compAbsolute.x, compAbsolute.y, getWidth(), getHeight());
+		return Region.getInstanceXYWH(compAbsolute.x, compAbsolute.y,
+				getWidth(), getHeight());
 	}
 
 	/**
@@ -9895,7 +10117,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		while (cont != null) {
 			for (int i = indexAbove; i > -1; i--) {
 				Component comp = cont.getComponent(i);
-				if (comp != null && comp.isDisplayable() && !comp.isLightweight()) {
+				if (comp != null && comp.isDisplayable() && !comp
+						.isLightweight()) {
 					return comp.getPeer();
 				}
 			}
@@ -9943,13 +10166,12 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			Container cont = comp.getContainer();
 
 			while (cont != null) {
-				for (int index = comp.getSiblingIndexAbove(); index != -1; --index) {
+				for (int index = comp
+						.getSiblingIndexAbove(); index != -1; --index) {
 					/*
 					 * It is assumed that:
-					 *
 					 * getComponent(getContainer().getComponentZOrder(comp)) ==
 					 * comp
-					 *
 					 * The assumption has been made according to the current
 					 * implementation of the Container class.
 					 */
@@ -9981,7 +10203,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		checkTreeLock();
 		if (!areBoundsValid()) {
 			if (mixingLog.isLoggable(PlatformLogger.Level.FINE)) {
-				mixingLog.fine("this = " + this + "; areBoundsValid = " + areBoundsValid());
+				mixingLog.fine("this = " + this + "; areBoundsValid = "
+						+ areBoundsValid());
 			}
 			return; // Because applyCompoundShape() ignores such components
 					// anyway
@@ -10013,7 +10236,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			// of my container
 			Container parent2 = parent.getContainer();
 			while (!parent.isOpaque() && parent2 != null) {
-				parent2.recursiveApplyCurrentShape(parent.getSiblingIndexBelow());
+				parent2.recursiveApplyCurrentShape(parent
+						.getSiblingIndexBelow());
 
 				parent = parent2;
 				parent2 = parent.getContainer();
@@ -10028,13 +10252,15 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			Region opaqueShape = getOpaqueShape();
 
 			// First, cut my siblings
-			parent.recursiveSubtractAndApplyShape(opaqueShape, getSiblingIndexBelow());
+			parent.recursiveSubtractAndApplyShape(opaqueShape,
+					getSiblingIndexBelow());
 
 			// Second, if my container is non-opaque, cut siblings of my
 			// container
 			Container parent2 = parent.getContainer();
 			while (!parent.isOpaque() && parent2 != null) {
-				parent2.recursiveSubtractAndApplyShape(opaqueShape, parent.getSiblingIndexBelow());
+				parent2.recursiveSubtractAndApplyShape(opaqueShape, parent
+						.getSiblingIndexBelow());
 
 				parent = parent2;
 				parent2 = parent.getContainer();
@@ -10065,7 +10291,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 		// or a HW.
 		synchronized (getTreeLock()) {
 			if (mixingLog.isLoggable(PlatformLogger.Level.FINE)) {
-				mixingLog.fine("this = " + this + "; isLightweight = " + isLightweight);
+				mixingLog.fine("this = " + this + "; isLightweight = "
+						+ isLightweight);
 			}
 			if (!isMixingNeeded()) {
 				return;
@@ -10098,8 +10325,8 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 			Container parent = getContainer();
 
 			if (mixingLog.isLoggable(PlatformLogger.Level.FINE)) {
-				mixingLog.fine("this = " + this + "; oldZorder=" + oldZorder + "; newZorder="
-						+ newZorder + "; parent=" + parent);
+				mixingLog.fine("this = " + this + "; oldZorder=" + oldZorder
+						+ "; newZorder=" + newZorder + "; parent=" + parent);
 			}
 			if (!isMixingNeeded()) {
 				return;
@@ -10143,31 +10370,36 @@ public abstract class Component implements ImageObserver, MenuContainer, Seriali
 	final boolean isMixingNeeded() {
 		if (SunToolkit.getSunAwtDisableMixing()) {
 			if (mixingLog.isLoggable(PlatformLogger.Level.FINEST)) {
-				mixingLog.finest("this = " + this + "; Mixing disabled via sun.awt.disableMixing");
+				mixingLog.finest("this = " + this
+						+ "; Mixing disabled via sun.awt.disableMixing");
 			}
 			return false;
 		}
 		if (!areBoundsValid()) {
 			if (mixingLog.isLoggable(PlatformLogger.Level.FINE)) {
-				mixingLog.fine("this = " + this + "; areBoundsValid = " + areBoundsValid());
+				mixingLog.fine("this = " + this + "; areBoundsValid = "
+						+ areBoundsValid());
 			}
 			return false;
 		}
 		Window window = getContainingWindow();
 		if (window != null) {
-			if (!window.hasHeavyweightDescendants() || !window.hasLightweightDescendants()
-					|| window.isDisposing()) {
+			if (!window.hasHeavyweightDescendants() || !window
+					.hasLightweightDescendants() || window.isDisposing()) {
 				if (mixingLog.isLoggable(PlatformLogger.Level.FINE)) {
-					mixingLog.fine("containing window = " + window + "; has h/w descendants = "
-							+ window.hasHeavyweightDescendants() + "; has l/w descendants = "
-							+ window.hasLightweightDescendants() + "; disposing = "
-							+ window.isDisposing());
+					mixingLog.fine("containing window = " + window
+							+ "; has h/w descendants = " + window
+									.hasHeavyweightDescendants()
+							+ "; has l/w descendants = " + window
+									.hasLightweightDescendants()
+							+ "; disposing = " + window.isDisposing());
 				}
 				return false;
 			}
 		} else {
 			if (mixingLog.isLoggable(PlatformLogger.Level.FINE)) {
-				mixingLog.fine("this = " + this + "; containing window is null");
+				mixingLog.fine("this = " + this
+						+ "; containing window is null");
 			}
 			return false;
 		}

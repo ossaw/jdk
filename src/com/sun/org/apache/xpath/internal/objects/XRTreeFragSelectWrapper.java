@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: XRTreeFragSelectWrapper.java,v 1.2.4.1 2005/09/15 02:02:35 jeffsuttor Exp $
+ * $Id: XRTreeFragSelectWrapper.java,v 1.2.4.1 2005/09/15 02:02:35 jeffsuttor
+ * Exp $
  */
 package com.sun.org.apache.xpath.internal.objects;
 
@@ -44,13 +42,13 @@ public class XRTreeFragSelectWrapper extends XRTreeFrag implements Cloneable {
 	 * indexes at stylesheet build time.
 	 * 
 	 * @param vars
-	 *            List of QNames that correspond to variables. This list should
-	 *            be searched backwards for the first qualified name that
-	 *            corresponds to the variable reference qname. The position of
-	 *            the QName in the vector from the start of the vector will be
-	 *            its position in the stack frame (but variables above the
-	 *            globalsTop value will need to be offset to the current stack
-	 *            frame).
+	 *             List of QNames that correspond to variables. This list should
+	 *             be searched backwards for the first qualified name that
+	 *             corresponds to the variable reference qname. The position of
+	 *             the QName in the vector from the start of the vector will be
+	 *             its position in the stack frame (but variables above the
+	 *             globalsTop value will need to be offset to the current stack
+	 *             frame).
 	 */
 	public void fixupVariables(java.util.Vector vars, int globalsSize) {
 		((Expression) m_obj).fixupVariables(vars, globalsSize);
@@ -60,13 +58,14 @@ public class XRTreeFragSelectWrapper extends XRTreeFrag implements Cloneable {
 	 * For support of literal objects in xpaths.
 	 *
 	 * @param xctxt
-	 *            The XPath execution context.
+	 *              The XPath execution context.
 	 *
 	 * @return the result of executing the select expression
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		XObject m_selected;
 		m_selected = ((Expression) m_obj).execute(xctxt);
 		m_selected.allowDetachToRelease(m_allowRelease);
@@ -87,11 +86,12 @@ public class XRTreeFragSelectWrapper extends XRTreeFrag implements Cloneable {
 	 */
 	public void detach() {
 		throw new RuntimeException(XSLMessages.createXPATHMessage(
-				XPATHErrorResources.ER_DETACH_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER, null)); // "detach()
-																								// not
-																								// supported
-																								// by
-																								// XRTreeFragSelectWrapper!");
+				XPATHErrorResources.ER_DETACH_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER,
+				null)); // "detach()
+																																						// not
+																																						// supported
+																																						// by
+																																						// XRTreeFragSelectWrapper!");
 	}
 
 	/**
@@ -102,11 +102,12 @@ public class XRTreeFragSelectWrapper extends XRTreeFrag implements Cloneable {
 	public double num() throws javax.xml.transform.TransformerException {
 
 		throw new RuntimeException(XSLMessages.createXPATHMessage(
-				XPATHErrorResources.ER_NUM_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER, null)); // "num()
-																							// not
-																							// supported
-																							// by
-																							// XRTreeFragSelectWrapper!");
+				XPATHErrorResources.ER_NUM_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER,
+				null)); // "num()
+																																					// not
+																																					// supported
+																																					// by
+																																					// XRTreeFragSelectWrapper!");
 	}
 
 	/**
@@ -116,11 +117,12 @@ public class XRTreeFragSelectWrapper extends XRTreeFrag implements Cloneable {
 	 */
 	public XMLString xstr() {
 		throw new RuntimeException(XSLMessages.createXPATHMessage(
-				XPATHErrorResources.ER_XSTR_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER, null)); // "xstr()
-																							// not
-																							// supported
-																							// by
-																							// XRTreeFragSelectWrapper!");
+				XPATHErrorResources.ER_XSTR_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER,
+				null)); // "xstr()
+																																						// not
+																																						// supported
+																																						// by
+																																						// XRTreeFragSelectWrapper!");
 	}
 
 	/**
@@ -130,11 +132,12 @@ public class XRTreeFragSelectWrapper extends XRTreeFrag implements Cloneable {
 	 */
 	public String str() {
 		throw new RuntimeException(XSLMessages.createXPATHMessage(
-				XPATHErrorResources.ER_STR_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER, null)); // "str()
-																							// not
-																							// supported
-																							// by
-																							// XRTreeFragSelectWrapper!");
+				XPATHErrorResources.ER_STR_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER,
+				null)); // "str()
+																																					// not
+																																					// supported
+																																					// by
+																																					// XRTreeFragSelectWrapper!");
 	}
 
 	/**
@@ -153,11 +156,12 @@ public class XRTreeFragSelectWrapper extends XRTreeFrag implements Cloneable {
 	 */
 	public int rtf() {
 		throw new RuntimeException(XSLMessages.createXPATHMessage(
-				XPATHErrorResources.ER_RTF_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER, null)); // "rtf()
-																							// not
-																							// supported
-																							// by
-																							// XRTreeFragSelectWrapper!");
+				XPATHErrorResources.ER_RTF_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER,
+				null)); // "rtf()
+																																					// not
+																																					// supported
+																																					// by
+																																					// XRTreeFragSelectWrapper!");
 	}
 
 	/**
@@ -167,11 +171,12 @@ public class XRTreeFragSelectWrapper extends XRTreeFrag implements Cloneable {
 	 */
 	public DTMIterator asNodeIterator() {
 		throw new RuntimeException(XSLMessages.createXPATHMessage(
-				XPATHErrorResources.ER_RTF_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER, null)); // "asNodeIterator()
-																							// not
-																							// supported
-																							// by
-																							// XRTreeFragSelectWrapper!");
+				XPATHErrorResources.ER_RTF_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER,
+				null)); // "asNodeIterator()
+																																					// not
+																																					// supported
+																																					// by
+																																					// XRTreeFragSelectWrapper!");
 	}
 
 }

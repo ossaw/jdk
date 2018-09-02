@@ -1,41 +1,14 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2004 World Wide Web Consortium,
- *
  * (Massachusetts Institute of Technology, European Research Consortium for
  * Informatics and Mathematics, Keio University). All Rights Reserved. This
  * work is distributed under the W3C(r) Software License [1] in the hope that
  * it will be useful, but WITHOUT ANY WARRANTY; without even the implied
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
  * [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
  */
 
@@ -84,15 +57,17 @@ public interface Text extends CharacterData {
 	 * node has no data.
 	 * 
 	 * @param offset
-	 *            The 16-bit unit offset at which to split, starting from
-	 *            <code>0</code>.
+	 *               The 16-bit unit offset at which to split, starting from
+	 *               <code>0</code>.
 	 * @return The new node, of the same type as this node.
 	 * @exception DOMException
-	 *                INDEX_SIZE_ERR: Raised if the specified offset is negative
-	 *                or greater than the number of 16-bit units in
-	 *                <code>data</code>. <br>
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this node is
-	 *                readonly.
+	 *                         INDEX_SIZE_ERR: Raised if the specified offset is
+	 *                         negative
+	 *                         or greater than the number of 16-bit units in
+	 *                         <code>data</code>. <br>
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+	 *                         is
+	 *                         readonly.
 	 */
 	public Text splitText(int offset) throws DOMException;
 
@@ -193,11 +168,12 @@ public interface Text extends CharacterData {
 	 * </p>
 	 * 
 	 * @param content
-	 *            The content of the replacing <code>Text</code> node.
+	 *                The content of the replacing <code>Text</code> node.
 	 * @return The <code>Text</code> node created with the specified content.
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if one of the
-	 *                <code>Text</code> nodes being replaced is readonly.
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if one of the
+	 *                         <code>Text</code> nodes being replaced is
+	 *                         readonly.
 	 * @since DOM Level 3
 	 */
 	public Text replaceWholeText(String content) throws DOMException;

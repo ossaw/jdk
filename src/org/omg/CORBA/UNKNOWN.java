@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -62,7 +42,7 @@ public final class UNKNOWN extends SystemException {
 	 * COMPLETED_NO.
 	 * 
 	 * @param s
-	 *            the String containing a detail message
+	 *          the String containing a detail message
 	 */
 	public UNKNOWN(String s) {
 		this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -73,9 +53,9 @@ public final class UNKNOWN extends SystemException {
 	 * code and completion status.
 	 * 
 	 * @param minor
-	 *            the minor code
+	 *                  the minor code
 	 * @param completed
-	 *            the completion status
+	 *                  the completion status
 	 */
 	public UNKNOWN(int minor, CompletionStatus completed) {
 		this("", minor, completed);
@@ -86,11 +66,11 @@ public final class UNKNOWN extends SystemException {
 	 * description message, minor code, and completion status.
 	 * 
 	 * @param s
-	 *            the String containing a description message
+	 *                  the String containing a description message
 	 * @param minor
-	 *            the minor code
+	 *                  the minor code
 	 * @param completed
-	 *            the completion status
+	 *                  the completion status
 	 */
 	public UNKNOWN(String s, int minor, CompletionStatus completed) {
 		super(s, minor, completed);

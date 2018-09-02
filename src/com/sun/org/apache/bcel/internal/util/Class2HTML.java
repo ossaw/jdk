@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.util;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.util;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -99,9 +91,9 @@ public class Class2HTML implements Constants {
 	 * Write contents of the given JavaClass into HTML files.
 	 *
 	 * @param java_class
-	 *            The class to write
+	 *                   The class to write
 	 * @param dir
-	 *            The directory to put the files in
+	 *                   The directory to put the files in
 	 */
 	public Class2HTML(JavaClass java_class, String dir) throws IOException {
 		Method[] methods = java_class.getMethods();
@@ -118,18 +110,18 @@ public class Class2HTML implements Constants {
 		else
 			class_package = ""; // default package
 
-		ConstantHTML constant_html = new ConstantHTML(dir, class_name, class_package, methods,
-				constant_pool);
+		ConstantHTML constant_html = new ConstantHTML(dir, class_name,
+				class_package, methods, constant_pool);
 
 		/*
 		 * Attributes can't be written in one step, so we just open a file which
 		 * will be written consequently.
 		 */
-		AttributeHTML attribute_html = new AttributeHTML(dir, class_name, constant_pool,
-				constant_html);
+		AttributeHTML attribute_html = new AttributeHTML(dir, class_name,
+				constant_pool, constant_html);
 
-		MethodHTML method_html = new MethodHTML(dir, class_name, methods, java_class.getFields(),
-				constant_html, attribute_html);
+		MethodHTML method_html = new MethodHTML(dir, class_name, methods,
+				java_class.getFields(), constant_html, attribute_html);
 		// Write main file (with frames, yuk)
 		writeMainHTML(attribute_html);
 		new CodeHTML(dir, class_name, methods, constant_pool, constant_html);
@@ -142,7 +134,8 @@ public class Class2HTML implements Constants {
 		ClassParser parser = null;
 		JavaClass java_class = null;
 		String zip_file = null;
-		char sep = SecuritySupport.getSystemProperty("file.separator").toCharArray()[0];
+		char sep = SecuritySupport.getSystemProperty("file.separator")
+				.toCharArray()[0];
 		String dir = "." + sep; // Where to store HTML files
 
 		try {
@@ -205,13 +198,14 @@ public class Class2HTML implements Constants {
 		str = Utility.compactClassName(str);
 		str = Utility.compactClassName(str, class_package + ".", true);
 
-		return "<A HREF=\"" + class_name + "_cp.html#cp" + index + "\" TARGET=ConstantPool>" + str
-				+ "</A>";
+		return "<A HREF=\"" + class_name + "_cp.html#cp" + index
+				+ "\" TARGET=ConstantPool>" + str + "</A>";
 	}
 
 	static final String referenceType(String type) {
 		String short_type = Utility.compactClassName(type);
-		short_type = Utility.compactClassName(short_type, class_package + ".", true);
+		short_type = Utility.compactClassName(short_type, class_package + ".",
+				true);
 
 		int index = type.indexOf('['); // Type is an array?
 		if (index > -1)
@@ -219,11 +213,13 @@ public class Class2HTML implements Constants {
 
 		// test for basic type
 		if (type.equals("int") || type.equals("short") || type.equals("boolean")
-				|| type.equals("void") || type.equals("char") || type.equals("byte")
-				|| type.equals("long") || type.equals("double") || type.equals("float"))
+				|| type.equals("void") || type.equals("char") || type.equals(
+						"byte") || type.equals("long") || type.equals("double")
+				|| type.equals("float"))
 			return "<FONT COLOR=\"#00FF00\">" + type + "</FONT>";
 		else
-			return "<A HREF=\"" + type + ".html\" TARGET=_top>" + short_type + "</A>";
+			return "<A HREF=\"" + type + ".html\" TARGET=_top>" + short_type
+					+ "</A>";
 	}
 
 	static String toHTML(String str) {
@@ -235,20 +231,20 @@ public class Class2HTML implements Constants {
 				char ch;
 
 				switch (ch = str.charAt(i)) {
-				case '<':
-					buf.append("&lt;");
-					break;
-				case '>':
-					buf.append("&gt;");
-					break;
-				case '\n':
-					buf.append("\\n");
-					break;
-				case '\r':
-					buf.append("\\r");
-					break;
-				default:
-					buf.append(ch);
+					case '<':
+						buf.append("&lt;");
+						break;
+					case '>':
+						buf.append("&gt;");
+						break;
+					case '\n':
+						buf.append("\\n");
+						break;
+					case '\r':
+						buf.append("\\r");
+						break;
+					default:
+						buf.append(ch);
 				}
 			}
 		} catch (StringIndexOutOfBoundsException e) {
@@ -257,25 +253,31 @@ public class Class2HTML implements Constants {
 		return buf.toString();
 	}
 
-	private void writeMainHTML(AttributeHTML attribute_html) throws IOException {
-		PrintWriter file = new PrintWriter(new FileOutputStream(dir + class_name + ".html"));
+	private void writeMainHTML(AttributeHTML attribute_html)
+			throws IOException {
+		PrintWriter file = new PrintWriter(new FileOutputStream(dir + class_name
+				+ ".html"));
 		Attribute[] attributes = java_class.getAttributes();
 
-		file.println("<HTML>\n" + "<HEAD><TITLE>Documentation for " + class_name + "</TITLE>"
-				+ "</HEAD>\n" + "<FRAMESET BORDER=1 cols=\"30%,*\">\n"
+		file.println("<HTML>\n" + "<HEAD><TITLE>Documentation for " + class_name
+				+ "</TITLE>" + "</HEAD>\n"
+				+ "<FRAMESET BORDER=1 cols=\"30%,*\">\n"
 				+ "<FRAMESET BORDER=1 rows=\"80%,*\">\n" +
 
 				"<FRAME NAME=\"ConstantPool\" SRC=\"" + class_name + "_cp.html"
 				+ "\"\n MARGINWIDTH=\"0\" "
 				+ "MARGINHEIGHT=\"0\" FRAMEBORDER=\"1\" SCROLLING=\"AUTO\">\n"
-				+ "<FRAME NAME=\"Attributes\" SRC=\"" + class_name + "_attributes.html"
-				+ "\"\n MARGINWIDTH=\"0\" "
-				+ "MARGINHEIGHT=\"0\" FRAMEBORDER=\"1\" SCROLLING=\"AUTO\">\n" + "</FRAMESET>\n" +
+				+ "<FRAME NAME=\"Attributes\" SRC=\"" + class_name
+				+ "_attributes.html" + "\"\n MARGINWIDTH=\"0\" "
+				+ "MARGINHEIGHT=\"0\" FRAMEBORDER=\"1\" SCROLLING=\"AUTO\">\n"
+				+ "</FRAMESET>\n" +
 
-				"<FRAMESET BORDER=1 rows=\"80%,*\">\n" + "<FRAME NAME=\"Code\" SRC=\"" + class_name
+				"<FRAMESET BORDER=1 rows=\"80%,*\">\n"
+				+ "<FRAME NAME=\"Code\" SRC=\"" + class_name
 				+ "_code.html\"\n MARGINWIDTH=0 "
 				+ "MARGINHEIGHT=0 FRAMEBORDER=1 SCROLLING=\"AUTO\">\n"
-				+ "<FRAME NAME=\"Methods\" SRC=\"" + class_name + "_methods.html\"\n MARGINWIDTH=0 "
+				+ "<FRAME NAME=\"Methods\" SRC=\"" + class_name
+				+ "_methods.html\"\n MARGINWIDTH=0 "
 				+ "MARGINHEIGHT=0 FRAMEBORDER=1 SCROLLING=\"AUTO\">\n"
 				+ "</FRAMESET></FRAMESET></HTML>");
 

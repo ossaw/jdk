@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -40,14 +20,15 @@ import java.beans.PropertyChangeEvent;
  * @author Arnaud Weber
  * @since 1.7
  */
-public class SynthPopupMenuUI extends BasicPopupMenuUI implements PropertyChangeListener, SynthUI {
+public class SynthPopupMenuUI extends BasicPopupMenuUI implements
+		PropertyChangeListener, SynthUI {
 	private SynthStyle style;
 
 	/**
 	 * Creates a new UI object for the given component.
 	 *
 	 * @param x
-	 *            component to create UI object for
+	 *          component to create UI object for
 	 * @return the UI object
 	 */
 	public static ComponentUI createUI(JComponent x) {
@@ -59,8 +40,10 @@ public class SynthPopupMenuUI extends BasicPopupMenuUI implements PropertyChange
 	 */
 	@Override
 	public void installDefaults() {
-		if (popupMenu.getLayout() == null || popupMenu.getLayout() instanceof UIResource) {
-			popupMenu.setLayout(new SynthMenuLayout(popupMenu, BoxLayout.Y_AXIS));
+		if (popupMenu.getLayout() == null || popupMenu
+				.getLayout() instanceof UIResource) {
+			popupMenu.setLayout(new SynthMenuLayout(popupMenu,
+					BoxLayout.Y_AXIS));
 		}
 		updateStyle(popupMenu);
 	}
@@ -138,9 +121,9 @@ public class SynthPopupMenuUI extends BasicPopupMenuUI implements PropertyChange
 	 * Look and Feel rendering code should reside in the {@code paint} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -148,8 +131,8 @@ public class SynthPopupMenuUI extends BasicPopupMenuUI implements PropertyChange
 		SynthContext context = getContext(c);
 
 		SynthLookAndFeel.update(context, g);
-		context.getPainter().paintPopupMenuBackground(context, g, 0, 0, c.getWidth(),
-				c.getHeight());
+		context.getPainter().paintPopupMenuBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight());
 		paint(context, g);
 		context.dispose();
 	}
@@ -161,9 +144,9 @@ public class SynthPopupMenuUI extends BasicPopupMenuUI implements PropertyChange
 	 * the {@link #paint(SynthContext,Graphics)} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -178,19 +161,19 @@ public class SynthPopupMenuUI extends BasicPopupMenuUI implements PropertyChange
 	 * Paints the specified component. This implementation does nothing.
 	 *
 	 * @param context
-	 *            context for the component being painted
+	 *                context for the component being painted
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *                the {@code Graphics} object used for painting
 	 * @see #update(Graphics,JComponent)
 	 */
-	protected void paint(SynthContext context, Graphics g) {
-	}
+	protected void paint(SynthContext context, Graphics g) {}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
 		context.getPainter().paintPopupMenuBorder(context, g, x, y, w, h);
 	}
 

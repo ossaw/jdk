@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd;
@@ -41,8 +21,7 @@ final class SerializationTester {
 	static {
 		try {
 			stream = new ObjectOutputStream(new OutputStream() {
-				public void write(int b) {
-				}
+				public void write(int b) {}
 			});
 		} catch (IOException cannotHappen) {
 		}
@@ -70,6 +49,5 @@ final class SerializationTester {
 		return true;
 	}
 
-	private SerializationTester() {
-	}
+	private SerializationTester() {}
 }

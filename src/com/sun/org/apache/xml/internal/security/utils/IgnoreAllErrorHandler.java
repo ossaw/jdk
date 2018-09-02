@@ -39,15 +39,14 @@ public class IgnoreAllErrorHandler implements ErrorHandler {
 			.getLogger(IgnoreAllErrorHandler.class.getName());
 
 	/** Field throwExceptions */
-	private static final boolean warnOnExceptions = System
-			.getProperty("com.sun.org.apache.xml.internal.security.test.warn.on.exceptions",
-					"false")
-			.equals("true");
+	private static final boolean warnOnExceptions = System.getProperty(
+			"com.sun.org.apache.xml.internal.security.test.warn.on.exceptions",
+			"false").equals("true");
 
 	/** Field throwExceptions */
-	private static final boolean throwExceptions = System
-			.getProperty("com.sun.org.apache.xml.internal.security.test.throw.exceptions", "false")
-			.equals("true");
+	private static final boolean throwExceptions = System.getProperty(
+			"com.sun.org.apache.xml.internal.security.test.throw.exceptions",
+			"false").equals("true");
 
 	/** @inheritDoc */
 	public void warning(SAXParseException ex) throws SAXException {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: DOMSignContext.java,v 1.9 2005/05/10 16:31:14 mullan Exp $
@@ -66,12 +46,13 @@ public class DOMSignContext extends DOMCryptoContext implements XMLSignContext {
 	 * specified by invoking the {@link #setNextSibling setNextSibling} method.
 	 *
 	 * @param signingKey
-	 *            the signing key
+	 *                   the signing key
 	 * @param parent
-	 *            the parent node
+	 *                   the parent node
 	 * @throws NullPointerException
-	 *             if <code>signingKey</code> or <code>parent</code> is
-	 *             <code>null</code>
+	 *                              if <code>signingKey</code> or
+	 *                              <code>parent</code> is
+	 *                              <code>null</code>
 	 */
 	public DOMSignContext(Key signingKey, Node parent) {
 		if (signingKey == null) {
@@ -94,14 +75,16 @@ public class DOMSignContext extends DOMCryptoContext implements XMLSignContext {
 	 * sibling node.
 	 *
 	 * @param signingKey
-	 *            the signing key
+	 *                    the signing key
 	 * @param parent
-	 *            the parent node
+	 *                    the parent node
 	 * @param nextSibling
-	 *            the next sibling node
+	 *                    the next sibling node
 	 * @throws NullPointerException
-	 *             if <code>signingKey</code>, <code>parent</code> or
-	 *             <code>nextSibling</code> is <code>null</code>
+	 *                              if <code>signingKey</code>,
+	 *                              <code>parent</code> or
+	 *                              <code>nextSibling</code> is
+	 *                              <code>null</code>
 	 */
 	public DOMSignContext(Key signingKey, Node parent, Node nextSibling) {
 		if (signingKey == null) {
@@ -126,12 +109,12 @@ public class DOMSignContext extends DOMCryptoContext implements XMLSignContext {
 	 * method.
 	 *
 	 * @param ks
-	 *            the key selector
+	 *               the key selector
 	 * @param parent
-	 *            the parent node
+	 *               the parent node
 	 * @throws NullPointerException
-	 *             if <code>ks</code> or <code>parent</code> is
-	 *             <code>null</code>
+	 *                              if <code>ks</code> or <code>parent</code> is
+	 *                              <code>null</code>
 	 */
 	public DOMSignContext(KeySelector ks, Node parent) {
 		if (ks == null) {
@@ -151,14 +134,15 @@ public class DOMSignContext extends DOMCryptoContext implements XMLSignContext {
 	 * immediately before the specified next sibling node.
 	 *
 	 * @param ks
-	 *            the key selector
+	 *                    the key selector
 	 * @param parent
-	 *            the parent node
+	 *                    the parent node
 	 * @param nextSibling
-	 *            the next sibling node
+	 *                    the next sibling node
 	 * @throws NullPointerException
-	 *             if <code>ks</code>, <code>parent</code> or
-	 *             <code>nextSibling</code> is <code>null</code>
+	 *                              if <code>ks</code>, <code>parent</code> or
+	 *                              <code>nextSibling</code> is
+	 *                              <code>null</code>
 	 */
 	public DOMSignContext(KeySelector ks, Node parent, Node nextSibling) {
 		if (ks == null) {
@@ -179,10 +163,11 @@ public class DOMSignContext extends DOMCryptoContext implements XMLSignContext {
 	 * Sets the parent node.
 	 *
 	 * @param parent
-	 *            the parent node. The marshalled <code>XMLSignature</code> will
-	 *            be added as a child element of this node.
+	 *               the parent node. The marshalled <code>XMLSignature</code>
+	 *               will
+	 *               be added as a child element of this node.
 	 * @throws NullPointerException
-	 *             if <code>parent</code> is <code>null</code>
+	 *                              if <code>parent</code> is <code>null</code>
 	 * @see #getParent
 	 */
 	public void setParent(Node parent) {
@@ -196,10 +181,12 @@ public class DOMSignContext extends DOMCryptoContext implements XMLSignContext {
 	 * Sets the next sibling node.
 	 *
 	 * @param nextSibling
-	 *            the next sibling node. The marshalled
-	 *            <code>XMLSignature</code> will be inserted immediately before
-	 *            this node. Specify <code>null</code> to remove the current
-	 *            setting.
+	 *                    the next sibling node. The marshalled
+	 *                    <code>XMLSignature</code> will be inserted immediately
+	 *                    before
+	 *                    this node. Specify <code>null</code> to remove the
+	 *                    current
+	 *                    setting.
 	 * @see #getNextSibling
 	 */
 	public void setNextSibling(Node nextSibling) {

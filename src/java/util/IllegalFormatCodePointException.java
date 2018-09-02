@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -48,7 +28,7 @@ public class IllegalFormatCodePointException extends IllegalFormatException {
 	 * point as defined by {@link Character#isValidCodePoint}.
 	 *
 	 * @param c
-	 *            The illegal Unicode code point
+	 *          The illegal Unicode code point
 	 */
 	public IllegalFormatCodePointException(int c) {
 		this.c = c;

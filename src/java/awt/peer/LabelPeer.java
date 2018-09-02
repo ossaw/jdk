@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.peer;
 
@@ -40,7 +20,7 @@ public interface LabelPeer extends ComponentPeer {
 	 * Sets the text to be displayed on the label.
 	 *
 	 * @param label
-	 *            the text to be displayed on the label
+	 *              the text to be displayed on the label
 	 *
 	 * @see Label#setText
 	 */
@@ -50,7 +30,7 @@ public interface LabelPeer extends ComponentPeer {
 	 * Sets the alignment of the label text.
 	 *
 	 * @param alignment
-	 *            the alignment of the label text
+	 *                  the alignment of the label text
 	 *
 	 * @see Label#setAlignment(int)
 	 * @see Label#CENTER

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi;
@@ -50,5 +30,4 @@ package java.rmi;
  * @see java.rmi.server.UnicastRemoteObject
  * @see java.rmi.activation.Activatable
  */
-public interface Remote {
-}
+public interface Remote {}

@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.util;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 2002 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.util;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -71,16 +63,17 @@ import java.io.*;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class BCELifier extends com.sun.org.apache.bcel.internal.classfile.EmptyVisitor {
+public class BCELifier extends
+		com.sun.org.apache.bcel.internal.classfile.EmptyVisitor {
 	private JavaClass _clazz;
 	private PrintWriter _out;
 	private ConstantPoolGen _cp;
 
 	/**
 	 * @param clazz
-	 *            Java class to "decompile"
+	 *              Java class to "decompile"
 	 * @param out
-	 *            where to output Java program
+	 *              where to output Java program
 	 */
 	public BCELifier(JavaClass clazz, OutputStream out) {
 		_clazz = clazz;
@@ -100,7 +93,8 @@ public class BCELifier extends com.sun.org.apache.bcel.internal.classfile.EmptyV
 		String class_name = clazz.getClassName();
 		String super_name = clazz.getSuperclassName();
 		String package_name = clazz.getPackageName();
-		String inter = Utility.printArray(clazz.getInterfaceNames(), false, true);
+		String inter = Utility.printArray(clazz.getInterfaceNames(), false,
+				true);
 		if (!"".equals(package_name)) {
 			class_name = class_name.substring(package_name.length() + 1);
 			_out.println("package " + package_name + ";\n");
@@ -111,17 +105,19 @@ public class BCELifier extends com.sun.org.apache.bcel.internal.classfile.EmptyV
 		_out.println("import com.sun.org.apache.bcel.internal.*;");
 		_out.println("import java.io.*;\n");
 
-		_out.println("public class " + class_name + "Creator implements Constants {");
+		_out.println("public class " + class_name
+				+ "Creator implements Constants {");
 		_out.println("  private InstructionFactory _factory;");
 		_out.println("  private ConstantPoolGen    _cp;");
 		_out.println("  private ClassGen           _cg;\n");
 
 		_out.println("  public " + class_name + "Creator() {");
-		_out.println("    _cg = new ClassGen(\""
-				+ (("".equals(package_name)) ? class_name : package_name + "." + class_name)
-				+ "\", \"" + super_name + "\", " + "\"" + clazz.getSourceFileName() + "\", "
-				+ printFlags(clazz.getAccessFlags(), true) + ", " + "new String[] { " + inter
-				+ " });\n");
+		_out.println("    _cg = new ClassGen(\"" + (("".equals(package_name))
+				? class_name
+				: package_name + "." + class_name) + "\", \"" + super_name
+				+ "\", " + "\"" + clazz.getSourceFileName() + "\", "
+				+ printFlags(clazz.getAccessFlags(), true) + ", "
+				+ "new String[] { " + inter + " });\n");
 
 		_out.println("    _cp = _cg.getConstantPool();");
 		_out.println("    _factory = new InstructionFactory(_cg, _cp);");
@@ -156,7 +152,8 @@ public class BCELifier extends com.sun.org.apache.bcel.internal.classfile.EmptyV
 	}
 
 	private void printCreate() {
-		_out.println("  public void create(OutputStream out) throws IOException {");
+		_out.println(
+				"  public void create(OutputStream out) throws IOException {");
 
 		Field[] fields = _clazz.getFields();
 		if (fields.length > 0) {
@@ -176,15 +173,19 @@ public class BCELifier extends com.sun.org.apache.bcel.internal.classfile.EmptyV
 	private void printMain() {
 		String class_name = _clazz.getClassName();
 
-		_out.println("  public static void _main(String[] args) throws Exception {");
-		_out.println("    " + class_name + "Creator creator = new " + class_name + "Creator();");
-		_out.println("    creator.create(new FileOutputStream(\"" + class_name + ".class\"));");
+		_out.println(
+				"  public static void _main(String[] args) throws Exception {");
+		_out.println("    " + class_name + "Creator creator = new " + class_name
+				+ "Creator();");
+		_out.println("    creator.create(new FileOutputStream(\"" + class_name
+				+ ".class\"));");
 		_out.println("  }");
 	}
 
 	public void visitField(Field field) {
-		_out.println("\n    field = new FieldGen(" + printFlags(field.getAccessFlags()) + ", "
-				+ printType(field.getSignature()) + ", \"" + field.getName() + "\", _cp);");
+		_out.println("\n    field = new FieldGen(" + printFlags(field
+				.getAccessFlags()) + ", " + printType(field.getSignature())
+				+ ", \"" + field.getName() + "\", _cp);");
 
 		ConstantValue cv = field.getConstantValue();
 
@@ -203,9 +204,10 @@ public class BCELifier extends com.sun.org.apache.bcel.internal.classfile.EmptyV
 		Type[] arg_types = mg.getArgumentTypes();
 
 		_out.println("    InstructionList il = new InstructionList();");
-		_out.println("    MethodGen method = new MethodGen(" + printFlags(method.getAccessFlags())
-				+ ", " + printType(result_type) + ", " + printArgumentTypes(arg_types) + ", "
-				+ "new String[] { " + Utility.printArray(mg.getArgumentNames(), false, true)
+		_out.println("    MethodGen method = new MethodGen(" + printFlags(method
+				.getAccessFlags()) + ", " + printType(result_type) + ", "
+				+ printArgumentTypes(arg_types) + ", " + "new String[] { "
+				+ Utility.printArray(mg.getArgumentNames(), false, true)
 				+ " }, \"" + method.getName() + "\", \"" + _clazz.getClassName()
 				+ "\", il, _cp);\n");
 
@@ -232,7 +234,8 @@ public class BCELifier extends com.sun.org.apache.bcel.internal.classfile.EmptyV
 				if ((pow == Constants.ACC_SYNCHRONIZED) && for_class)
 					buf.append("ACC_SUPER | ");
 				else
-					buf.append("ACC_" + Constants.ACCESS_NAMES[i].toUpperCase() + " | ");
+					buf.append("ACC_" + Constants.ACCESS_NAMES[i].toUpperCase()
+							+ " | ");
 			}
 
 			pow <<= 1;
@@ -277,10 +280,11 @@ public class BCELifier extends com.sun.org.apache.bcel.internal.classfile.EmptyV
 		} else if (type instanceof ArrayType) {
 			ArrayType at = (ArrayType) type;
 
-			return "new ArrayType(" + printType(at.getBasicType()) + ", " + at.getDimensions()
-					+ ")";
+			return "new ArrayType(" + printType(at.getBasicType()) + ", " + at
+					.getDimensions() + ")";
 		} else {
-			return "new ObjectType(\"" + Utility.signatureToString(signature, false) + "\")";
+			return "new ObjectType(\"" + Utility.signatureToString(signature,
+					false) + "\")";
 		}
 	}
 

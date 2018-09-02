@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -60,7 +40,8 @@ import javax.xml.transform.Source;
  * For example, to parse an XML value with a DOM parser:
  * 
  * <pre>
- * DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+ * DocumentBuilder parser = DocumentBuilderFactory.newInstance()
+ * 		.newDocumentBuilder();
  * Document result = parser.parse(binaryStream);
  * </pre>
  * 
@@ -136,7 +117,8 @@ import javax.xml.transform.Source;
  * <pre>
  * File xsltFile = new File("a.xslt");
  * File myFile = new File("result.xml");
- * Transformer xslt = TransformerFactory.newInstance().newTransformer(new StreamSource(xsltFile));
+ * Transformer xslt = TransformerFactory.newInstance().newTransformer(
+ * 		new StreamSource(xsltFile));
  * Source source = sqlxml.getSource(null);
  * Result result = new StreamResult(myFile);
  * xslt.transform(source, result);
@@ -156,7 +138,8 @@ import javax.xml.transform.Source;
  * 
  * <pre>
  * File sourceFile = new File("source.xml");
- * Transformer xslt = TransformerFactory.newInstance().newTransformer(new StreamSource(xsltFile));
+ * Transformer xslt = TransformerFactory.newInstance().newTransformer(
+ * 		new StreamSource(xsltFile));
  * Source streamSource = new StreamSource(sourceFile);
  * Result result = sqlxml.setResult(null);
  * xslt.transform(streamSource, result);
@@ -230,9 +213,10 @@ public interface SQLXML {
 	 * subsequent calls to <code>free</code> are treated as a no-op.
 	 * 
 	 * @throws SQLException
-	 *             if there is an error freeing the XML value.
+	 *                      if there is an error freeing the XML value.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	void free() throws SQLException;
@@ -249,10 +233,12 @@ public interface SQLXML {
 	 *
 	 * @return a stream containing the XML data.
 	 * @throws SQLException
-	 *             if there is an error processing the XML value. An exception
-	 *             is thrown if the state is not readable.
+	 *                      if there is an error processing the XML value. An
+	 *                      exception
+	 *                      is thrown if the state is not readable.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	InputStream getBinaryStream() throws SQLException;
@@ -270,10 +256,12 @@ public interface SQLXML {
 	 *
 	 * @return a stream to which data can be written.
 	 * @throws SQLException
-	 *             if there is an error processing the XML value. An exception
-	 *             is thrown if the state is not writable.
+	 *                      if there is an error processing the XML value. An
+	 *                      exception
+	 *                      is thrown if the state is not writable.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	OutputStream setBinaryStream() throws SQLException;
@@ -294,13 +282,17 @@ public interface SQLXML {
 	 *
 	 * @return a stream containing the XML data.
 	 * @throws SQLException
-	 *             if there is an error processing the XML value. The getCause()
-	 *             method of the exception may provide a more detailed
-	 *             exception, for example, if the stream does not contain valid
-	 *             characters. An exception is thrown if the state is not
-	 *             readable.
+	 *                      if there is an error processing the XML value. The
+	 *                      getCause()
+	 *                      method of the exception may provide a more detailed
+	 *                      exception, for example, if the stream does not
+	 *                      contain valid
+	 *                      characters. An exception is thrown if the state is
+	 *                      not
+	 *                      readable.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	Reader getCharacterStream() throws SQLException;
@@ -321,13 +313,17 @@ public interface SQLXML {
 	 *
 	 * @return a stream to which data can be written.
 	 * @throws SQLException
-	 *             if there is an error processing the XML value. The getCause()
-	 *             method of the exception may provide a more detailed
-	 *             exception, for example, if the stream does not contain valid
-	 *             characters. An exception is thrown if the state is not
-	 *             writable.
+	 *                      if there is an error processing the XML value. The
+	 *                      getCause()
+	 *                      method of the exception may provide a more detailed
+	 *                      exception, for example, if the stream does not
+	 *                      contain valid
+	 *                      characters. An exception is thrown if the state is
+	 *                      not
+	 *                      writable.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	Writer setCharacterStream() throws SQLException;
@@ -348,13 +344,17 @@ public interface SQLXML {
 	 * @return a string representation of the XML value designated by this
 	 *         SQLXML instance.
 	 * @throws SQLException
-	 *             if there is an error processing the XML value. The getCause()
-	 *             method of the exception may provide a more detailed
-	 *             exception, for example, if the stream does not contain valid
-	 *             characters. An exception is thrown if the state is not
-	 *             readable.
+	 *                      if there is an error processing the XML value. The
+	 *                      getCause()
+	 *                      method of the exception may provide a more detailed
+	 *                      exception, for example, if the stream does not
+	 *                      contain valid
+	 *                      characters. An exception is thrown if the state is
+	 *                      not
+	 *                      readable.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	String getString() throws SQLException;
@@ -373,15 +373,19 @@ public interface SQLXML {
 	 * may also become not readable depending on implementation.
 	 *
 	 * @param value
-	 *            the XML value
+	 *              the XML value
 	 * @throws SQLException
-	 *             if there is an error processing the XML value. The getCause()
-	 *             method of the exception may provide a more detailed
-	 *             exception, for example, if the stream does not contain valid
-	 *             characters. An exception is thrown if the state is not
-	 *             writable.
+	 *                      if there is an error processing the XML value. The
+	 *                      getCause()
+	 *                      method of the exception may provide a more detailed
+	 *                      exception, for example, if the stream does not
+	 *                      contain valid
+	 *                      characters. An exception is thrown if the state is
+	 *                      not
+	 *                      writable.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	void setString(String value) throws SQLException;
@@ -409,29 +413,36 @@ public interface SQLXML {
 	 * xmlReader.parse(saxSource.getInputSource());
 	 * </pre>
 	 *
-	 * @param <T>
-	 *            the type of the class modeled by this Class object
+	 * @param             <T>
+	 *                    the type of the class modeled by this Class object
 	 * @param sourceClass
-	 *            The class of the source, or null. If the class is null, a
-	 *            vendor specific Source implementation will be returned. The
-	 *            following classes are supported at a minimum:
+	 *                    The class of the source, or null. If the class is
+	 *                    null, a
+	 *                    vendor specific Source implementation will be
+	 *                    returned. The
+	 *                    following classes are supported at a minimum:
 	 * 
-	 *            <pre>
+	 *                    <pre>
 	 *   javax.xml.transform.dom.DOMSource - returns a DOMSource
 	 *   javax.xml.transform.sax.SAXSource - returns a SAXSource
 	 *   javax.xml.transform.stax.StAXSource - returns a StAXSource
 	 *   javax.xml.transform.stream.StreamSource - returns a StreamSource
-	 *            </pre>
+	 *                    </pre>
 	 * 
 	 * @return a Source for reading the XML value.
 	 * @throws SQLException
-	 *             if there is an error processing the XML value or if this
-	 *             feature is not supported. The getCause() method of the
-	 *             exception may provide a more detailed exception, for example,
-	 *             if an XML parser exception occurs. An exception is thrown if
-	 *             the state is not readable.
+	 *                      if there is an error processing the XML value or if
+	 *                      this
+	 *                      feature is not supported. The getCause() method of
+	 *                      the
+	 *                      exception may provide a more detailed exception, for
+	 *                      example,
+	 *                      if an XML parser exception occurs. An exception is
+	 *                      thrown if
+	 *                      the state is not readable.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	<T extends Source> T getSource(Class<T> sourceClass) throws SQLException;
@@ -458,29 +469,36 @@ public interface SQLXML {
 	 * contentHandler.endDocument();
 	 * </pre>
 	 *
-	 * @param <T>
-	 *            the type of the class modeled by this Class object
+	 * @param             <T>
+	 *                    the type of the class modeled by this Class object
 	 * @param resultClass
-	 *            The class of the result, or null. If resultClass is null, a
-	 *            vendor specific Result implementation will be returned. The
-	 *            following classes are supported at a minimum:
+	 *                    The class of the result, or null. If resultClass is
+	 *                    null, a
+	 *                    vendor specific Result implementation will be
+	 *                    returned. The
+	 *                    following classes are supported at a minimum:
 	 * 
-	 *            <pre>
+	 *                    <pre>
 	 *   javax.xml.transform.dom.DOMResult - returns a DOMResult
 	 *   javax.xml.transform.sax.SAXResult - returns a SAXResult
 	 *   javax.xml.transform.stax.StAXResult - returns a StAXResult
 	 *   javax.xml.transform.stream.StreamResult - returns a StreamResult
-	 *            </pre>
+	 *                    </pre>
 	 * 
 	 * @return Returns a Result for setting the XML value.
 	 * @throws SQLException
-	 *             if there is an error processing the XML value or if this
-	 *             feature is not supported. The getCause() method of the
-	 *             exception may provide a more detailed exception, for example,
-	 *             if an XML parser exception occurs. An exception is thrown if
-	 *             the state is not writable.
+	 *                      if there is an error processing the XML value or if
+	 *                      this
+	 *                      feature is not supported. The getCause() method of
+	 *                      the
+	 *                      exception may provide a more detailed exception, for
+	 *                      example,
+	 *                      if an XML parser exception occurs. An exception is
+	 *                      thrown if
+	 *                      the state is not writable.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.6
 	 */
 	<T extends Result> T setResult(Class<T> resultClass) throws SQLException;

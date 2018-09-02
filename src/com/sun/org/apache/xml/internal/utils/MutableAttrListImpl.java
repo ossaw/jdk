@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: MutableAttrListImpl.java,v 1.2.4.1 2005/09/15 08:15:47 suresh_emailid Exp $
+ * $Id: MutableAttrListImpl.java,v 1.2.4.1 2005/09/15 08:15:47 suresh_emailid
+ * Exp $
  */
 package com.sun.org.apache.xml.internal.utils;
 
@@ -32,7 +30,8 @@ import org.xml.sax.helpers.AttributesImpl;
  * 
  * @xsl.usage advanced
  */
-public class MutableAttrListImpl extends AttributesImpl implements Serializable {
+public class MutableAttrListImpl extends AttributesImpl implements
+		Serializable {
 	static final long serialVersionUID = 6289452013442934470L;
 
 	/**
@@ -51,7 +50,7 @@ public class MutableAttrListImpl extends AttributesImpl implements Serializable 
 	 * </p>
 	 *
 	 * @param atts
-	 *            The existing Attributes object.
+	 *             The existing Attributes object.
 	 */
 	public MutableAttrListImpl(Attributes atts) {
 		super(atts);
@@ -67,21 +66,23 @@ public class MutableAttrListImpl extends AttributesImpl implements Serializable 
 	 * </p>
 	 *
 	 * @param uri
-	 *            The Namespace URI, or the empty string if none is available or
-	 *            Namespace processing is not being performed.
+	 *                  The Namespace URI, or the empty string if none is
+	 *                  available or
+	 *                  Namespace processing is not being performed.
 	 * @param localName
-	 *            The local name, or the empty string if Namespace processing is
-	 *            not being performed.
+	 *                  The local name, or the empty string if Namespace
+	 *                  processing is
+	 *                  not being performed.
 	 * @param qName
-	 *            The qualified (prefixed) name, or the empty string if
-	 *            qualified names are not available.
+	 *                  The qualified (prefixed) name, or the empty string if
+	 *                  qualified names are not available.
 	 * @param type
-	 *            The attribute type as a string.
+	 *                  The attribute type as a string.
 	 * @param value
-	 *            The attribute value.
+	 *                  The attribute value.
 	 */
-	public void addAttribute(String uri, String localName, String qName, String type,
-			String value) {
+	public void addAttribute(String uri, String localName, String qName,
+			String type, String value) {
 
 		if (null == uri)
 			uri = "";
@@ -105,7 +106,7 @@ public class MutableAttrListImpl extends AttributesImpl implements Serializable 
 	 * Add the contents of the attribute list to this list.
 	 *
 	 * @param atts
-	 *            List of attributes to add to this list
+	 *             List of attributes to add to this list
 	 */
 	public void addAttributes(Attributes atts) {
 
@@ -123,9 +124,11 @@ public class MutableAttrListImpl extends AttributesImpl implements Serializable 
 			// System.out.println("MutableAttrListImpl#addAttributes:
 			// "+uri+":"+localName+", "+index+", "+atts.getQName(i)+", "+this);
 			if (index >= 0)
-				this.setAttribute(index, uri, localName, qname, atts.getType(i), atts.getValue(i));
+				this.setAttribute(index, uri, localName, qname, atts.getType(i),
+						atts.getValue(i));
 			else
-				addAttribute(uri, localName, qname, atts.getType(i), atts.getValue(i));
+				addAttribute(uri, localName, qname, atts.getType(i), atts
+						.getValue(i));
 		}
 	}
 
@@ -133,7 +136,7 @@ public class MutableAttrListImpl extends AttributesImpl implements Serializable 
 	 * Return true if list contains the given (raw) attribute name.
 	 *
 	 * @param name
-	 *            Raw name of attribute to look for
+	 *             Raw name of attribute to look for
 	 *
 	 * @return true if an attribute is found with this name
 	 */

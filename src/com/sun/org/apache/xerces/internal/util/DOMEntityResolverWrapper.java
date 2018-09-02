@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -69,8 +66,7 @@ public class DOMEntityResolverWrapper implements XMLEntityResolver {
 	//
 
 	/** Default constructor. */
-	public DOMEntityResolverWrapper() {
-	}
+	public DOMEntityResolverWrapper() {}
 
 	/** Wraps the specified DOM entity resolver. */
 	public DOMEntityResolverWrapper(LSResourceResolver entityResolver) {
@@ -100,24 +96,28 @@ public class DOMEntityResolverWrapper implements XMLEntityResolver {
 	 * this method should return null.
 	 *
 	 * @param resourceIdentifier
-	 *            description of the resource to be revsoved
+	 *                           description of the resource to be revsoved
 	 * @throws XNIException
-	 *             Thrown on general error.
+	 *                      Thrown on general error.
 	 * @throws IOException
-	 *             Thrown if resolved entity stream cannot be opened or some
-	 *             other i/o error occurs.
+	 *                      Thrown if resolved entity stream cannot be opened or
+	 *                      some
+	 *                      other i/o error occurs.
 	 */
-	public XMLInputSource resolveEntity(XMLResourceIdentifier resourceIdentifier)
-			throws XNIException, IOException {
+	public XMLInputSource resolveEntity(
+			XMLResourceIdentifier resourceIdentifier) throws XNIException,
+			IOException {
 		// resolve entity using DOM entity resolver
 		if (fEntityResolver != null) {
 			// For entity resolution the type of the resource would be XML TYPE
 			// DOM L3 LS spec mention only the XML 1.0 recommendation right now
-			LSInput inputSource = resourceIdentifier == null
-					? fEntityResolver.resolveResource(null, null, null, null, null)
-					: fEntityResolver.resolveResource(getType(resourceIdentifier),
-							resourceIdentifier.getNamespace(), resourceIdentifier.getPublicId(),
-							resourceIdentifier.getLiteralSystemId(),
+			LSInput inputSource = resourceIdentifier == null ? fEntityResolver
+					.resolveResource(null, null, null, null, null)
+					: fEntityResolver.resolveResource(getType(
+							resourceIdentifier), resourceIdentifier
+									.getNamespace(), resourceIdentifier
+											.getPublicId(), resourceIdentifier
+													.getLiteralSystemId(),
 							resourceIdentifier.getBaseSystemId());
 			if (inputSource != null) {
 				String publicId = inputSource.getPublicId();
@@ -133,8 +133,8 @@ public class DOMEntityResolverWrapper implements XMLEntityResolver {
 				 * following order: characterStream, byteStream, stringData,
 				 * systemId, publicId.
 				 */
-				XMLInputSource xmlInputSource = new XMLInputSource(publicId, systemId,
-						baseSystemId);
+				XMLInputSource xmlInputSource = new XMLInputSource(publicId,
+						systemId, baseSystemId);
 
 				if (charStream != null) {
 					xmlInputSource.setCharacterStream(charStream);
@@ -157,7 +157,8 @@ public class DOMEntityResolverWrapper implements XMLEntityResolver {
 	private String getType(XMLResourceIdentifier resourceIdentifier) {
 		if (resourceIdentifier instanceof XMLGrammarDescription) {
 			XMLGrammarDescription desc = (XMLGrammarDescription) resourceIdentifier;
-			if (XMLGrammarDescription.XML_SCHEMA.equals(desc.getGrammarType())) {
+			if (XMLGrammarDescription.XML_SCHEMA.equals(desc
+					.getGrammarType())) {
 				return XSD_TYPE;
 			}
 		}

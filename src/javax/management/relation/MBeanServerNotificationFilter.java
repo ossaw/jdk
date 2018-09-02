@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.relation;
@@ -89,23 +69,23 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
 	private static final long serialVersionUID;
 	/**
 	 * @serialField selectedNames
-	 *                  List List of {@link ObjectName}s of interest
-	 *                  <ul>
-	 *                  <li><code>null</code> means that all {@link ObjectName}s
-	 *                  are implicitly selected (check for explicit
-	 *                  deselections)</li>
-	 *                  <li>Empty vector means that no {@link ObjectName} is
-	 *                  explicitly selected</li>
-	 *                  </ul>
+	 *              List List of {@link ObjectName}s of interest
+	 *              <ul>
+	 *              <li><code>null</code> means that all {@link ObjectName}s
+	 *              are implicitly selected (check for explicit
+	 *              deselections)</li>
+	 *              <li>Empty vector means that no {@link ObjectName} is
+	 *              explicitly selected</li>
+	 *              </ul>
 	 * @serialField deselectedNames
-	 *                  List List of {@link ObjectName}s with no interest
-	 *                  <ul>
-	 *                  <li><code>null</code> means that all {@link ObjectName}s
-	 *                  are implicitly deselected (check for explicit
-	 *                  selections))</li>
-	 *                  <li>Empty vector means that no {@link ObjectName} is
-	 *                  explicitly deselected</li>
-	 *                  </ul>
+	 *              List List of {@link ObjectName}s with no interest
+	 *              <ul>
+	 *              <li><code>null</code> means that all {@link ObjectName}s
+	 *              are implicitly deselected (check for explicit
+	 *              selections))</li>
+	 *              <li>Empty vector means that no {@link ObjectName} is
+	 *              explicitly deselected</li>
+	 *              </ul>
 	 */
 	private static final ObjectStreamField[] serialPersistentFields;
 	private static boolean compat = false;
@@ -200,10 +180,10 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
 	 * Disables MBeanServerNotifications concerning given ObjectName.
 	 *
 	 * @param objectName
-	 *            ObjectName no longer of interest
+	 *                   ObjectName no longer of interest
 	 *
 	 * @exception IllegalArgumentException
-	 *                if the given ObjectName is null
+	 *                                     if the given ObjectName is null
 	 */
 	public synchronized void disableObjectName(ObjectName objectName)
 			throws IllegalArgumentException {
@@ -213,8 +193,8 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
 			throw new IllegalArgumentException(excMsg);
 		}
 
-		RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(), "disableObjectName",
-				objectName);
+		RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(),
+				"disableObjectName", objectName);
 
 		// Removes from selected ObjectNames, if present
 		if (selectedNames != null) {
@@ -232,7 +212,8 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
 			}
 		}
 
-		RELATION_LOGGER.exiting(MBeanServerNotificationFilter.class.getName(), "disableObjectName");
+		RELATION_LOGGER.exiting(MBeanServerNotificationFilter.class.getName(),
+				"disableObjectName");
 		return;
 	}
 
@@ -256,10 +237,10 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
 	 * Enables MBeanServerNotifications concerning given ObjectName.
 	 *
 	 * @param objectName
-	 *            ObjectName of interest
+	 *                   ObjectName of interest
 	 *
 	 * @exception IllegalArgumentException
-	 *                if the given ObjectName is null
+	 *                                     if the given ObjectName is null
 	 */
 	public synchronized void enableObjectName(ObjectName objectName)
 			throws IllegalArgumentException {
@@ -269,8 +250,8 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
 			throw new IllegalArgumentException(excMsg);
 		}
 
-		RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(), "enableObjectName",
-				objectName);
+		RELATION_LOGGER.entering(MBeanServerNotificationFilter.class.getName(),
+				"enableObjectName", objectName);
 
 		// Removes from deselected ObjectNames, if present
 		if (deselectedNames != null) {
@@ -288,7 +269,8 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
 			}
 		}
 
-		RELATION_LOGGER.exiting(MBeanServerNotificationFilter.class.getName(), "enableObjectName");
+		RELATION_LOGGER.exiting(MBeanServerNotificationFilter.class.getName(),
+				"enableObjectName");
 		return;
 	}
 
@@ -349,13 +331,13 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
 	 * then the notification is sent to the listener.
 	 *
 	 * @param notif
-	 *            The notification to be sent.
+	 *              The notification to be sent.
 	 *
 	 * @return true if the notification has to be sent to the listener, false
 	 *         otherwise.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if null parameter
+	 *                                     if null parameter
 	 */
 	public synchronized boolean isNotificationEnabled(Notification notif)
 			throws IllegalArgumentException {
@@ -372,7 +354,8 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
 		String ntfType = notif.getType();
 		Vector<String> enabledTypes = getEnabledTypes();
 		if (!(enabledTypes.contains(ntfType))) {
-			RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class.getName(),
+			RELATION_LOGGER.logp(Level.FINER,
+					MBeanServerNotificationFilter.class.getName(),
 					"isNotificationEnabled", "Type not selected, exiting");
 			return false;
 		}
@@ -389,16 +372,20 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
 			// checks for explicit selection
 			if (selectedNames.size() == 0) {
 				// All are explicitly not selected
-				RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class.getName(),
-						"isNotificationEnabled", "No ObjectNames selected, exiting");
+				RELATION_LOGGER.logp(Level.FINER,
+						MBeanServerNotificationFilter.class.getName(),
+						"isNotificationEnabled",
+						"No ObjectNames selected, exiting");
 				return false;
 			}
 
 			isSelectedFlg = selectedNames.contains(objName);
 			if (!isSelectedFlg) {
 				// Not in the explicit selected list
-				RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class.getName(),
-						"isNotificationEnabled", "ObjectName not in selected list, exiting");
+				RELATION_LOGGER.logp(Level.FINER,
+						MBeanServerNotificationFilter.class.getName(),
+						"isNotificationEnabled",
+						"ObjectName not in selected list, exiting");
 				return false;
 			}
 		}
@@ -409,21 +396,26 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
 			if (deselectedNames == null) {
 				// All are implicitly deselected and it is not explicitly
 				// selected
-				RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class.getName(),
+				RELATION_LOGGER.logp(Level.FINER,
+						MBeanServerNotificationFilter.class.getName(),
 						"isNotificationEnabled",
-						"ObjectName not selected, and all " + "names deselected, exiting");
+						"ObjectName not selected, and all "
+								+ "names deselected, exiting");
 				return false;
 
 			} else if (deselectedNames.contains(objName)) {
 				// Explicitly deselected
-				RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class.getName(),
-						"isNotificationEnabled", "ObjectName explicitly not selected, exiting");
+				RELATION_LOGGER.logp(Level.FINER,
+						MBeanServerNotificationFilter.class.getName(),
+						"isNotificationEnabled",
+						"ObjectName explicitly not selected, exiting");
 				return false;
 			}
 		}
 
-		RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class.getName(),
-				"isNotificationEnabled", "ObjectName selected, exiting");
+		RELATION_LOGGER.logp(Level.FINER, MBeanServerNotificationFilter.class
+				.getName(), "isNotificationEnabled",
+				"ObjectName selected, exiting");
 		return true;
 	}
 
@@ -431,7 +423,8 @@ public class MBeanServerNotificationFilter extends NotificationFilterSupport {
 	 * Deserializes an {@link MBeanServerNotificationFilter} from an
 	 * {@link ObjectInputStream}.
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		if (compat) {
 			// Read an object serialized in the old serial form
 			//

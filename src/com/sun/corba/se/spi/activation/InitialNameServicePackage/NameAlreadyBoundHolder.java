@@ -9,11 +9,11 @@ package com.sun.corba.se.spi.activation.InitialNameServicePackage;
  * 9:58:51 PM PDT
  */
 
-public final class NameAlreadyBoundHolder implements org.omg.CORBA.portable.Streamable {
+public final class NameAlreadyBoundHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBound value = null;
 
-	public NameAlreadyBoundHolder() {
-	}
+	public NameAlreadyBoundHolder() {}
 
 	public NameAlreadyBoundHolder(
 			com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBound initialValue) {
@@ -26,8 +26,8 @@ public final class NameAlreadyBoundHolder implements org.omg.CORBA.portable.Stre
 	}
 
 	public void _write(org.omg.CORBA.portable.OutputStream o) {
-		com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBoundHelper.write(o,
-				value);
+		com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBoundHelper
+				.write(o, value);
 	}
 
 	public org.omg.CORBA.TypeCode _type() {

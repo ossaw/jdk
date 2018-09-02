@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -56,11 +36,11 @@ public class NavigationFilter {
 	 * <code>FilterBypass</code>
 	 *
 	 * @param fb
-	 *            FilterBypass that can be used to mutate caret position
+	 *             FilterBypass that can be used to mutate caret position
 	 * @param dot
-	 *            the position &gt;= 0
+	 *             the position &gt;= 0
 	 * @param bias
-	 *            Bias to place the dot at
+	 *             Bias to place the dot at
 	 */
 	public void setDot(FilterBypass fb, int dot, Position.Bias bias) {
 		fb.setDot(dot, bias);
@@ -74,11 +54,11 @@ public class NavigationFilter {
 	 * <code>FilterBypass</code>.
 	 *
 	 * @param fb
-	 *            FilterBypass that can be used to mutate caret position
+	 *             FilterBypass that can be used to mutate caret position
 	 * @param dot
-	 *            the position &gt;= 0
+	 *             the position &gt;= 0
 	 * @param bias
-	 *            Bias for new location
+	 *             Bias for new location
 	 */
 	public void moveDot(FilterBypass fb, int dot, Position.Bias bias) {
 		fb.moveDot(dot, bias);
@@ -91,33 +71,38 @@ public class NavigationFilter {
 	 * additional criteria.
 	 *
 	 * @param text
-	 *            JTextComponent containing text
+	 *                  JTextComponent containing text
 	 * @param pos
-	 *            Position used in determining next position
+	 *                  Position used in determining next position
 	 * @param bias
-	 *            Bias used in determining next position
+	 *                  Bias used in determining next position
 	 * @param direction
-	 *            the direction from the current position that can be thought of
-	 *            as the arrow keys typically found on a keyboard. This will be
-	 *            one of the following values:
-	 *            <ul>
-	 *            <li>SwingConstants.WEST
-	 *            <li>SwingConstants.EAST
-	 *            <li>SwingConstants.NORTH
-	 *            <li>SwingConstants.SOUTH
-	 *            </ul>
+	 *                  the direction from the current position that can be
+	 *                  thought of
+	 *                  as the arrow keys typically found on a keyboard. This
+	 *                  will be
+	 *                  one of the following values:
+	 *                  <ul>
+	 *                  <li>SwingConstants.WEST
+	 *                  <li>SwingConstants.EAST
+	 *                  <li>SwingConstants.NORTH
+	 *                  <li>SwingConstants.SOUTH
+	 *                  </ul>
 	 * @param biasRet
-	 *            Used to return resulting Bias of next position
+	 *                  Used to return resulting Bias of next position
 	 * @return the location within the model that best represents the next
 	 *         location visual position
 	 * @exception BadLocationException
 	 * @exception IllegalArgumentException
-	 *                if <code>direction</code> doesn't have one of the legal
-	 *                values above
+	 *                                     if <code>direction</code> doesn't
+	 *                                     have one of the legal
+	 *                                     values above
 	 */
-	public int getNextVisualPositionFrom(JTextComponent text, int pos, Position.Bias bias,
-			int direction, Position.Bias[] biasRet) throws BadLocationException {
-		return text.getUI().getNextVisualPositionFrom(text, pos, bias, direction, biasRet);
+	public int getNextVisualPositionFrom(JTextComponent text, int pos,
+			Position.Bias bias, int direction, Position.Bias[] biasRet)
+			throws BadLocationException {
+		return text.getUI().getNextVisualPositionFrom(text, pos, bias,
+				direction, biasRet);
 	}
 
 	/**
@@ -140,9 +125,9 @@ public class NavigationFilter {
 		 * Sets the caret location, bypassing the NavigationFilter.
 		 *
 		 * @param dot
-		 *            the position &gt;= 0
+		 *             the position &gt;= 0
 		 * @param bias
-		 *            Bias to place the dot at
+		 *             Bias to place the dot at
 		 */
 		public abstract void setDot(int dot, Position.Bias bias);
 
@@ -150,9 +135,9 @@ public class NavigationFilter {
 		 * Moves the caret location, bypassing the NavigationFilter.
 		 *
 		 * @param dot
-		 *            the position &gt;= 0
+		 *             the position &gt;= 0
 		 * @param bias
-		 *            Bias for new location
+		 *             Bias for new location
 		 */
 		public abstract void moveDot(int dot, Position.Bias bias);
 	}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.ref;
@@ -43,7 +23,6 @@ public abstract class Reference<T> {
 
 	/*
 	 * A Reference instance is in one of four possible internal states:
-	 *
 	 * Active: Subject to special treatment by the garbage collector. Some time
 	 * after the collector detects that the reachability of the referent has
 	 * changed to the appropriate state, it changes the instance's state to
@@ -51,36 +30,26 @@ public abstract class Reference<T> {
 	 * was registered with a queue when it was created. In the former case it
 	 * also adds the instance to the pending-Reference list. Newly-created
 	 * instances are Active.
-	 *
 	 * Pending: An element of the pending-Reference list, waiting to be enqueued
 	 * by the Reference-handler thread. Unregistered instances are never in this
 	 * state.
-	 *
 	 * Enqueued: An element of the queue with which the instance was registered
 	 * when it was created. When an instance is removed from its ReferenceQueue,
 	 * it is made Inactive. Unregistered instances are never in this state.
-	 *
 	 * Inactive: Nothing more to do. Once an instance becomes Inactive its state
 	 * will never change again.
-	 *
 	 * The state is encoded in the queue and next fields as follows:
-	 *
 	 * Active: queue = ReferenceQueue with which instance is registered, or
 	 * ReferenceQueue.NULL if it was not registered with a queue; next = null.
-	 *
 	 * Pending: queue = ReferenceQueue with which instance is registered; next =
 	 * this
-	 *
 	 * Enqueued: queue = ReferenceQueue.ENQUEUED; next = Following instance in
 	 * queue, or this if at end of list.
-	 *
 	 * Inactive: queue = ReferenceQueue.NULL; next = this.
-	 *
 	 * With this scheme the collector need only examine the next field in order
 	 * to determine whether a Reference instance requires special treatment: If
 	 * the next field is null then the instance is active; if it is non-null,
 	 * then the collector should treat the instance normally.
-	 *
 	 * To ensure that a concurrent collector can discover active Reference
 	 * objects without interfering with application threads that may apply the
 	 * enqueue() method to those objects, collectors should link discovered
@@ -112,8 +81,7 @@ public abstract class Reference<T> {
 	 * therefore critical that any code holding this lock complete as quickly as
 	 * possible, allocate no new objects, and avoid calling user code.
 	 */
-	static private class Lock {
-	}
+	static private class Lock {}
 
 	private static Lock lock = new Lock();
 
@@ -134,7 +102,8 @@ public abstract class Reference<T> {
 			try {
 				Class.forName(clazz.getName(), true, clazz.getClassLoader());
 			} catch (ClassNotFoundException e) {
-				throw (Error) new NoClassDefFoundError(e.getMessage()).initCause(e);
+				throw (Error) new NoClassDefFoundError(e.getMessage())
+						.initCause(e);
 			}
 		}
 
@@ -167,9 +136,12 @@ public abstract class Reference<T> {
 	 * work instead of looping.
 	 *
 	 * @param waitForNotify
-	 *            if {@code true} and there was no pending {@link Reference},
-	 *            wait until notified from VM or interrupted; if {@code false},
-	 *            return immediately when there is no pending {@link Reference}.
+	 *                      if {@code true} and there was no pending
+	 *                      {@link Reference},
+	 *                      wait until notified from VM or interrupted; if
+	 *                      {@code false},
+	 *                      return immediately when there is no pending
+	 *                      {@link Reference}.
 	 * @return {@code true} if there was a {@link Reference} pending and it was
 	 *         processed, or we waited for notification and either got it or
 	 *         thread was interrupted before being notified; {@code false}

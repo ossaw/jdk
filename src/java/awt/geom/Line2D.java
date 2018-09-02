@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.geom;
@@ -91,20 +71,19 @@ public abstract class Line2D implements Shape, Cloneable {
 		 * 
 		 * @since 1.2
 		 */
-		public Float() {
-		}
+		public Float() {}
 
 		/**
 		 * Constructs and initializes a Line from the specified coordinates.
 		 * 
 		 * @param x1
-		 *            the X coordinate of the start point
+		 *           the X coordinate of the start point
 		 * @param y1
-		 *            the Y coordinate of the start point
+		 *           the Y coordinate of the start point
 		 * @param x2
-		 *            the X coordinate of the end point
+		 *           the X coordinate of the end point
 		 * @param y2
-		 *            the Y coordinate of the end point
+		 *           the Y coordinate of the end point
 		 * @since 1.2
 		 */
 		public Float(float x1, float y1, float x2, float y2) {
@@ -116,9 +95,9 @@ public abstract class Line2D implements Shape, Cloneable {
 		 * <code>Point2D</code> objects.
 		 * 
 		 * @param p1
-		 *            the start <code>Point2D</code> of this line segment
+		 *           the start <code>Point2D</code> of this line segment
 		 * @param p2
-		 *            the end <code>Point2D</code> of this line segment
+		 *           the end <code>Point2D</code> of this line segment
 		 * @since 1.2
 		 */
 		public Float(Point2D p1, Point2D p2) {
@@ -196,13 +175,13 @@ public abstract class Line2D implements Shape, Cloneable {
 		 * the specified float coordinates.
 		 * 
 		 * @param x1
-		 *            the X coordinate of the start point
+		 *           the X coordinate of the start point
 		 * @param y1
-		 *            the Y coordinate of the start point
+		 *           the Y coordinate of the start point
 		 * @param x2
-		 *            the X coordinate of the end point
+		 *           the X coordinate of the end point
 		 * @param y2
-		 *            the Y coordinate of the end point
+		 *           the Y coordinate of the end point
 		 * @since 1.2
 		 */
 		public void setLine(float x1, float y1, float x2, float y2) {
@@ -286,21 +265,20 @@ public abstract class Line2D implements Shape, Cloneable {
 		 * 
 		 * @since 1.2
 		 */
-		public Double() {
-		}
+		public Double() {}
 
 		/**
 		 * Constructs and initializes a <code>Line2D</code> from the specified
 		 * coordinates.
 		 * 
 		 * @param x1
-		 *            the X coordinate of the start point
+		 *           the X coordinate of the start point
 		 * @param y1
-		 *            the Y coordinate of the start point
+		 *           the Y coordinate of the start point
 		 * @param x2
-		 *            the X coordinate of the end point
+		 *           the X coordinate of the end point
 		 * @param y2
-		 *            the Y coordinate of the end point
+		 *           the Y coordinate of the end point
 		 * @since 1.2
 		 */
 		public Double(double x1, double y1, double x2, double y2) {
@@ -312,9 +290,9 @@ public abstract class Line2D implements Shape, Cloneable {
 		 * <code>Point2D</code> objects.
 		 * 
 		 * @param p1
-		 *            the start <code>Point2D</code> of this line segment
+		 *           the start <code>Point2D</code> of this line segment
 		 * @param p2
-		 *            the end <code>Point2D</code> of this line segment
+		 *           the end <code>Point2D</code> of this line segment
 		 * @since 1.2
 		 */
 		public Double(Point2D p1, Point2D p2) {
@@ -427,8 +405,7 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * @see java.awt.geom.Line2D.Double
 	 * @since 1.2
 	 */
-	protected Line2D() {
-	}
+	protected Line2D() {}
 
 	/**
 	 * Returns the X coordinate of the start point in double precision.
@@ -485,13 +462,13 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * specified double coordinates.
 	 * 
 	 * @param x1
-	 *            the X coordinate of the start point
+	 *           the X coordinate of the start point
 	 * @param y1
-	 *            the Y coordinate of the start point
+	 *           the Y coordinate of the start point
 	 * @param x2
-	 *            the X coordinate of the end point
+	 *           the X coordinate of the end point
 	 * @param y2
-	 *            the Y coordinate of the end point
+	 *           the Y coordinate of the end point
 	 * @since 1.2
 	 */
 	public abstract void setLine(double x1, double y1, double x2, double y2);
@@ -501,9 +478,9 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * specified <code>Point2D</code> coordinates.
 	 * 
 	 * @param p1
-	 *            the start <code>Point2D</code> of the line segment
+	 *           the start <code>Point2D</code> of the line segment
 	 * @param p2
-	 *            the end <code>Point2D</code> of the line segment
+	 *           the end <code>Point2D</code> of the line segment
 	 * @since 1.2
 	 */
 	public void setLine(Point2D p1, Point2D p2) {
@@ -515,7 +492,7 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * same as those end points of the specified <code>Line2D</code>.
 	 * 
 	 * @param l
-	 *            the specified <code>Line2D</code>
+	 *          the specified <code>Line2D</code>
 	 * @since 1.2
 	 */
 	public void setLine(Line2D l) {
@@ -548,30 +525,30 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * "beyond {@code (x1,y1)}" or 1 if the point lies "beyond {@code (x2,y2)}".
 	 *
 	 * @param x1
-	 *            the X coordinate of the start point of the specified line
-	 *            segment
+	 *           the X coordinate of the start point of the specified line
+	 *           segment
 	 * @param y1
-	 *            the Y coordinate of the start point of the specified line
-	 *            segment
+	 *           the Y coordinate of the start point of the specified line
+	 *           segment
 	 * @param x2
-	 *            the X coordinate of the end point of the specified line
-	 *            segment
+	 *           the X coordinate of the end point of the specified line
+	 *           segment
 	 * @param y2
-	 *            the Y coordinate of the end point of the specified line
-	 *            segment
+	 *           the Y coordinate of the end point of the specified line
+	 *           segment
 	 * @param px
-	 *            the X coordinate of the specified point to be compared with
-	 *            the specified line segment
+	 *           the X coordinate of the specified point to be compared with
+	 *           the specified line segment
 	 * @param py
-	 *            the Y coordinate of the specified point to be compared with
-	 *            the specified line segment
+	 *           the Y coordinate of the specified point to be compared with
+	 *           the specified line segment
 	 * @return an integer that indicates the position of the third specified
 	 *         coordinates with respect to the line segment formed by the first
 	 *         two specified coordinates.
 	 * @since 1.2
 	 */
-	public static int relativeCCW(double x1, double y1, double x2, double y2, double px,
-			double py) {
+	public static int relativeCCW(double x1, double y1, double x2, double y2,
+			double px, double py) {
 		x2 -= x1;
 		y2 -= y1;
 		px -= x1;
@@ -611,11 +588,11 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * interpret the return value.
 	 * 
 	 * @param px
-	 *            the X coordinate of the specified point to be compared with
-	 *            this <code>Line2D</code>
+	 *           the X coordinate of the specified point to be compared with
+	 *           this <code>Line2D</code>
 	 * @param py
-	 *            the Y coordinate of the specified point to be compared with
-	 *            this <code>Line2D</code>
+	 *           the Y coordinate of the specified point to be compared with
+	 *           this <code>Line2D</code>
 	 * @return an integer that indicates the position of the specified
 	 *         coordinates with respect to this <code>Line2D</code>
 	 * @see #relativeCCW(double, double, double, double, double, double)
@@ -632,15 +609,16 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * interpret the return value.
 	 * 
 	 * @param p
-	 *            the specified <code>Point2D</code> to be compared with this
-	 *            <code>Line2D</code>
+	 *          the specified <code>Point2D</code> to be compared with this
+	 *          <code>Line2D</code>
 	 * @return an integer that indicates the position of the specified
 	 *         <code>Point2D</code> with respect to this <code>Line2D</code>
 	 * @see #relativeCCW(double, double, double, double, double, double)
 	 * @since 1.2
 	 */
 	public int relativeCCW(Point2D p) {
-		return relativeCCW(getX1(), getY1(), getX2(), getY2(), p.getX(), p.getY());
+		return relativeCCW(getX1(), getY1(), getX2(), getY2(), p.getX(), p
+				.getY());
 	}
 
 	/**
@@ -648,38 +626,38 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * intersects the line segment from {@code (x3,y3)} to {@code (x4,y4)}.
 	 *
 	 * @param x1
-	 *            the X coordinate of the start point of the first specified
-	 *            line segment
+	 *           the X coordinate of the start point of the first specified
+	 *           line segment
 	 * @param y1
-	 *            the Y coordinate of the start point of the first specified
-	 *            line segment
+	 *           the Y coordinate of the start point of the first specified
+	 *           line segment
 	 * @param x2
-	 *            the X coordinate of the end point of the first specified line
-	 *            segment
+	 *           the X coordinate of the end point of the first specified line
+	 *           segment
 	 * @param y2
-	 *            the Y coordinate of the end point of the first specified line
-	 *            segment
+	 *           the Y coordinate of the end point of the first specified line
+	 *           segment
 	 * @param x3
-	 *            the X coordinate of the start point of the second specified
-	 *            line segment
+	 *           the X coordinate of the start point of the second specified
+	 *           line segment
 	 * @param y3
-	 *            the Y coordinate of the start point of the second specified
-	 *            line segment
+	 *           the Y coordinate of the start point of the second specified
+	 *           line segment
 	 * @param x4
-	 *            the X coordinate of the end point of the second specified line
-	 *            segment
+	 *           the X coordinate of the end point of the second specified line
+	 *           segment
 	 * @param y4
-	 *            the Y coordinate of the end point of the second specified line
-	 *            segment
+	 *           the Y coordinate of the end point of the second specified line
+	 *           segment
 	 * @return <code>true</code> if the first specified line segment and the
 	 *         second specified line segment intersect each other;
 	 *         <code>false</code> otherwise.
 	 * @since 1.2
 	 */
-	public static boolean linesIntersect(double x1, double y1, double x2, double y2, double x3,
-			double y3, double x4, double y4) {
-		return ((relativeCCW(x1, y1, x2, y2, x3, y3) * relativeCCW(x1, y1, x2, y2, x4, y4) <= 0)
-				&& (relativeCCW(x3, y3, x4, y4, x1, y1)
+	public static boolean linesIntersect(double x1, double y1, double x2,
+			double y2, double x3, double y3, double x4, double y4) {
+		return ((relativeCCW(x1, y1, x2, y2, x3, y3) * relativeCCW(x1, y1, x2,
+				y2, x4, y4) <= 0) && (relativeCCW(x3, y3, x4, y4, x1, y1)
 						* relativeCCW(x3, y3, x4, y4, x2, y2) <= 0));
 	}
 
@@ -688,37 +666,38 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * intersects this line segment.
 	 *
 	 * @param x1
-	 *            the X coordinate of the start point of the specified line
-	 *            segment
+	 *           the X coordinate of the start point of the specified line
+	 *           segment
 	 * @param y1
-	 *            the Y coordinate of the start point of the specified line
-	 *            segment
+	 *           the Y coordinate of the start point of the specified line
+	 *           segment
 	 * @param x2
-	 *            the X coordinate of the end point of the specified line
-	 *            segment
+	 *           the X coordinate of the end point of the specified line
+	 *           segment
 	 * @param y2
-	 *            the Y coordinate of the end point of the specified line
-	 *            segment
+	 *           the Y coordinate of the end point of the specified line
+	 *           segment
 	 * @return {@code <true>} if this line segment and the specified line
 	 *         segment intersect each other; <code>false</code> otherwise.
 	 * @since 1.2
 	 */
 	public boolean intersectsLine(double x1, double y1, double x2, double y2) {
-		return linesIntersect(x1, y1, x2, y2, getX1(), getY1(), getX2(), getY2());
+		return linesIntersect(x1, y1, x2, y2, getX1(), getY1(), getX2(),
+				getY2());
 	}
 
 	/**
 	 * Tests if the specified line segment intersects this line segment.
 	 * 
 	 * @param l
-	 *            the specified <code>Line2D</code>
+	 *          the specified <code>Line2D</code>
 	 * @return <code>true</code> if this line segment and the specified line
 	 *         segment intersect each other; <code>false</code> otherwise.
 	 * @since 1.2
 	 */
 	public boolean intersectsLine(Line2D l) {
-		return linesIntersect(l.getX1(), l.getY1(), l.getX2(), l.getY2(), getX1(), getY1(), getX2(),
-				getY2());
+		return linesIntersect(l.getX1(), l.getY1(), l.getX2(), l.getY2(),
+				getX1(), getY1(), getX2(), getY2());
 	}
 
 	/**
@@ -729,30 +708,30 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * returns 0.0.
 	 *
 	 * @param x1
-	 *            the X coordinate of the start point of the specified line
-	 *            segment
+	 *           the X coordinate of the start point of the specified line
+	 *           segment
 	 * @param y1
-	 *            the Y coordinate of the start point of the specified line
-	 *            segment
+	 *           the Y coordinate of the start point of the specified line
+	 *           segment
 	 * @param x2
-	 *            the X coordinate of the end point of the specified line
-	 *            segment
+	 *           the X coordinate of the end point of the specified line
+	 *           segment
 	 * @param y2
-	 *            the Y coordinate of the end point of the specified line
-	 *            segment
+	 *           the Y coordinate of the end point of the specified line
+	 *           segment
 	 * @param px
-	 *            the X coordinate of the specified point being measured against
-	 *            the specified line segment
+	 *           the X coordinate of the specified point being measured against
+	 *           the specified line segment
 	 * @param py
-	 *            the Y coordinate of the specified point being measured against
-	 *            the specified line segment
+	 *           the Y coordinate of the specified point being measured against
+	 *           the specified line segment
 	 * @return a double value that is the square of the distance from the
 	 *         specified point to the specified line segment.
 	 * @see #ptLineDistSq(double, double, double, double, double, double)
 	 * @since 1.2
 	 */
-	public static double ptSegDistSq(double x1, double y1, double x2, double y2, double px,
-			double py) {
+	public static double ptSegDistSq(double x1, double y1, double x2, double y2,
+			double px, double py) {
 		// Adjust vectors relative to x1,y1
 		// x2,y2 becomes relative vector from x1,y1 to end of segment
 		x2 -= x1;
@@ -807,30 +786,30 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * the line segment in between the end points, this method returns 0.0.
 	 *
 	 * @param x1
-	 *            the X coordinate of the start point of the specified line
-	 *            segment
+	 *           the X coordinate of the start point of the specified line
+	 *           segment
 	 * @param y1
-	 *            the Y coordinate of the start point of the specified line
-	 *            segment
+	 *           the Y coordinate of the start point of the specified line
+	 *           segment
 	 * @param x2
-	 *            the X coordinate of the end point of the specified line
-	 *            segment
+	 *           the X coordinate of the end point of the specified line
+	 *           segment
 	 * @param y2
-	 *            the Y coordinate of the end point of the specified line
-	 *            segment
+	 *           the Y coordinate of the end point of the specified line
+	 *           segment
 	 * @param px
-	 *            the X coordinate of the specified point being measured against
-	 *            the specified line segment
+	 *           the X coordinate of the specified point being measured against
+	 *           the specified line segment
 	 * @param py
-	 *            the Y coordinate of the specified point being measured against
-	 *            the specified line segment
+	 *           the Y coordinate of the specified point being measured against
+	 *           the specified line segment
 	 * @return a double value that is the distance from the specified point to
 	 *         the specified line segment.
 	 * @see #ptLineDist(double, double, double, double, double, double)
 	 * @since 1.2
 	 */
-	public static double ptSegDist(double x1, double y1, double x2, double y2, double px,
-			double py) {
+	public static double ptSegDist(double x1, double y1, double x2, double y2,
+			double px, double py) {
 		return Math.sqrt(ptSegDistSq(x1, y1, x2, y2, px, py));
 	}
 
@@ -842,11 +821,11 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * returns 0.0.
 	 *
 	 * @param px
-	 *            the X coordinate of the specified point being measured against
-	 *            this line segment
+	 *           the X coordinate of the specified point being measured against
+	 *           this line segment
 	 * @param py
-	 *            the Y coordinate of the specified point being measured against
-	 *            this line segment
+	 *           the Y coordinate of the specified point being measured against
+	 *           this line segment
 	 * @return a double value that is the square of the distance from the
 	 *         specified point to the current line segment.
 	 * @see #ptLineDistSq(double, double)
@@ -864,15 +843,16 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * this method returns 0.0.
 	 * 
 	 * @param pt
-	 *            the specified <code>Point2D</code> being measured against this
-	 *            line segment.
+	 *           the specified <code>Point2D</code> being measured against this
+	 *           line segment.
 	 * @return a double value that is the square of the distance from the
 	 *         specified <code>Point2D</code> to the current line segment.
 	 * @see #ptLineDistSq(Point2D)
 	 * @since 1.2
 	 */
 	public double ptSegDistSq(Point2D pt) {
-		return ptSegDistSq(getX1(), getY1(), getX2(), getY2(), pt.getX(), pt.getY());
+		return ptSegDistSq(getX1(), getY1(), getX2(), getY2(), pt.getX(), pt
+				.getY());
 	}
 
 	/**
@@ -883,11 +863,11 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * returns 0.0.
 	 *
 	 * @param px
-	 *            the X coordinate of the specified point being measured against
-	 *            this line segment
+	 *           the X coordinate of the specified point being measured against
+	 *           this line segment
 	 * @param py
-	 *            the Y coordinate of the specified point being measured against
-	 *            this line segment
+	 *           the Y coordinate of the specified point being measured against
+	 *           this line segment
 	 * @return a double value that is the distance from the specified point to
 	 *         the current line segment.
 	 * @see #ptLineDist(double, double)
@@ -905,15 +885,16 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * returns 0.0.
 	 * 
 	 * @param pt
-	 *            the specified <code>Point2D</code> being measured against this
-	 *            line segment
+	 *           the specified <code>Point2D</code> being measured against this
+	 *           line segment
 	 * @return a double value that is the distance from the specified
 	 *         <code>Point2D</code> to the current line segment.
 	 * @see #ptLineDist(Point2D)
 	 * @since 1.2
 	 */
 	public double ptSegDist(Point2D pt) {
-		return ptSegDist(getX1(), getY1(), getX2(), getY2(), pt.getX(), pt.getY());
+		return ptSegDist(getX1(), getY1(), getX2(), getY2(), pt.getX(), pt
+				.getY());
 	}
 
 	/**
@@ -924,26 +905,26 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * returns 0.0.
 	 *
 	 * @param x1
-	 *            the X coordinate of the start point of the specified line
+	 *           the X coordinate of the start point of the specified line
 	 * @param y1
-	 *            the Y coordinate of the start point of the specified line
+	 *           the Y coordinate of the start point of the specified line
 	 * @param x2
-	 *            the X coordinate of the end point of the specified line
+	 *           the X coordinate of the end point of the specified line
 	 * @param y2
-	 *            the Y coordinate of the end point of the specified line
+	 *           the Y coordinate of the end point of the specified line
 	 * @param px
-	 *            the X coordinate of the specified point being measured against
-	 *            the specified line
+	 *           the X coordinate of the specified point being measured against
+	 *           the specified line
 	 * @param py
-	 *            the Y coordinate of the specified point being measured against
-	 *            the specified line
+	 *           the Y coordinate of the specified point being measured against
+	 *           the specified line
 	 * @return a double value that is the square of the distance from the
 	 *         specified point to the specified line.
 	 * @see #ptSegDistSq(double, double, double, double, double, double)
 	 * @since 1.2
 	 */
-	public static double ptLineDistSq(double x1, double y1, double x2, double y2, double px,
-			double py) {
+	public static double ptLineDistSq(double x1, double y1, double x2,
+			double y2, double px, double py) {
 		// Adjust vectors relative to x1,y1
 		// x2,y2 becomes relative vector from x1,y1 to end of segment
 		x2 -= x1;
@@ -972,26 +953,26 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * specified point intersects the line, this method returns 0.0.
 	 *
 	 * @param x1
-	 *            the X coordinate of the start point of the specified line
+	 *           the X coordinate of the start point of the specified line
 	 * @param y1
-	 *            the Y coordinate of the start point of the specified line
+	 *           the Y coordinate of the start point of the specified line
 	 * @param x2
-	 *            the X coordinate of the end point of the specified line
+	 *           the X coordinate of the end point of the specified line
 	 * @param y2
-	 *            the Y coordinate of the end point of the specified line
+	 *           the Y coordinate of the end point of the specified line
 	 * @param px
-	 *            the X coordinate of the specified point being measured against
-	 *            the specified line
+	 *           the X coordinate of the specified point being measured against
+	 *           the specified line
 	 * @param py
-	 *            the Y coordinate of the specified point being measured against
-	 *            the specified line
+	 *           the Y coordinate of the specified point being measured against
+	 *           the specified line
 	 * @return a double value that is the distance from the specified point to
 	 *         the specified line.
 	 * @see #ptSegDist(double, double, double, double, double, double)
 	 * @since 1.2
 	 */
-	public static double ptLineDist(double x1, double y1, double x2, double y2, double px,
-			double py) {
+	public static double ptLineDist(double x1, double y1, double x2, double y2,
+			double px, double py) {
 		return Math.sqrt(ptLineDistSq(x1, y1, x2, y2, px, py));
 	}
 
@@ -1003,11 +984,11 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * method returns 0.0.
 	 *
 	 * @param px
-	 *            the X coordinate of the specified point being measured against
-	 *            this line
+	 *           the X coordinate of the specified point being measured against
+	 *           this line
 	 * @param py
-	 *            the Y coordinate of the specified point being measured against
-	 *            this line
+	 *           the Y coordinate of the specified point being measured against
+	 *           this line
 	 * @return a double value that is the square of the distance from a
 	 *         specified point to the current line.
 	 * @see #ptSegDistSq(double, double)
@@ -1025,15 +1006,16 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * this method returns 0.0.
 	 * 
 	 * @param pt
-	 *            the specified <code>Point2D</code> being measured against this
-	 *            line
+	 *           the specified <code>Point2D</code> being measured against this
+	 *           line
 	 * @return a double value that is the square of the distance from a
 	 *         specified <code>Point2D</code> to the current line.
 	 * @see #ptSegDistSq(Point2D)
 	 * @since 1.2
 	 */
 	public double ptLineDistSq(Point2D pt) {
-		return ptLineDistSq(getX1(), getY1(), getX2(), getY2(), pt.getX(), pt.getY());
+		return ptLineDistSq(getX1(), getY1(), getX2(), getY2(), pt.getX(), pt
+				.getY());
 	}
 
 	/**
@@ -1043,11 +1025,11 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * specified point intersects the line, this method returns 0.0.
 	 *
 	 * @param px
-	 *            the X coordinate of the specified point being measured against
-	 *            this line
+	 *           the X coordinate of the specified point being measured against
+	 *           this line
 	 * @param py
-	 *            the Y coordinate of the specified point being measured against
-	 *            this line
+	 *           the Y coordinate of the specified point being measured against
+	 *           this line
 	 * @return a double value that is the distance from a specified point to the
 	 *         current line.
 	 * @see #ptSegDist(double, double)
@@ -1065,14 +1047,15 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * method returns 0.0.
 	 * 
 	 * @param pt
-	 *            the specified <code>Point2D</code> being measured
+	 *           the specified <code>Point2D</code> being measured
 	 * @return a double value that is the distance from a specified
 	 *         <code>Point2D</code> to the current line.
 	 * @see #ptSegDist(Point2D)
 	 * @since 1.2
 	 */
 	public double ptLineDist(Point2D pt) {
-		return ptLineDist(getX1(), getY1(), getX2(), getY2(), pt.getX(), pt.getY());
+		return ptLineDist(getX1(), getY1(), getX2(), getY2(), pt.getX(), pt
+				.getY());
 	}
 
 	/**
@@ -1082,9 +1065,9 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * it always returns <code>false</code> since a line contains no area.
 	 * 
 	 * @param x
-	 *            the X coordinate of the specified point to be tested
+	 *          the X coordinate of the specified point to be tested
 	 * @param y
-	 *            the Y coordinate of the specified point to be tested
+	 *          the Y coordinate of the specified point to be tested
 	 * @return <code>false</code> because a <code>Line2D</code> contains no
 	 *         area.
 	 * @since 1.2
@@ -1100,7 +1083,7 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * it always returns <code>false</code> since a line contains no area.
 	 * 
 	 * @param p
-	 *            the specified <code>Point2D</code> to be tested
+	 *          the specified <code>Point2D</code> to be tested
 	 * @return <code>false</code> because a <code>Line2D</code> contains no
 	 *         area.
 	 * @since 1.2
@@ -1135,15 +1118,15 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * no area.
 	 * 
 	 * @param x
-	 *            the X coordinate of the upper-left corner of the specified
-	 *            rectangular area
+	 *          the X coordinate of the upper-left corner of the specified
+	 *          rectangular area
 	 * @param y
-	 *            the Y coordinate of the upper-left corner of the specified
-	 *            rectangular area
+	 *          the Y coordinate of the upper-left corner of the specified
+	 *          rectangular area
 	 * @param w
-	 *            the width of the specified rectangular area
+	 *          the width of the specified rectangular area
 	 * @param h
-	 *            the height of the specified rectangular area
+	 *          the height of the specified rectangular area
 	 * @return <code>false</code> because a <code>Line2D</code> contains no
 	 *         area.
 	 * @since 1.2
@@ -1160,7 +1143,7 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * area.
 	 * 
 	 * @param r
-	 *            the specified <code>Rectangle2D</code> to be tested
+	 *          the specified <code>Rectangle2D</code> to be tested
 	 * @return <code>false</code> because a <code>Line2D</code> contains no
 	 *         area.
 	 * @since 1.2
@@ -1186,7 +1169,7 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * not affect any iterations of that geometry that are already in process.
 	 * 
 	 * @param at
-	 *            the specified {@link AffineTransform}
+	 *           the specified {@link AffineTransform}
 	 * @return a {@link PathIterator} that defines the boundary of this
 	 *         <code>Line2D</code>.
 	 * @since 1.2
@@ -1203,13 +1186,16 @@ public abstract class Line2D implements Shape, Cloneable {
 	 * not affect any iterations of that geometry that are already in process.
 	 * 
 	 * @param at
-	 *            the specified <code>AffineTransform</code>
+	 *                 the specified <code>AffineTransform</code>
 	 * @param flatness
-	 *            the maximum amount that the control points for a given curve
-	 *            can vary from colinear before a subdivided curve is replaced
-	 *            by a straight line connecting the end points. Since a
-	 *            <code>Line2D</code> object is always flat, this parameter is
-	 *            ignored.
+	 *                 the maximum amount that the control points for a given
+	 *                 curve
+	 *                 can vary from colinear before a subdivided curve is
+	 *                 replaced
+	 *                 by a straight line connecting the end points. Since a
+	 *                 <code>Line2D</code> object is always flat, this parameter
+	 *                 is
+	 *                 ignored.
 	 * @return a <code>PathIterator</code> that defines the boundary of the
 	 *         flattened <code>Line2D</code>
 	 * @since 1.2
@@ -1223,7 +1209,7 @@ public abstract class Line2D implements Shape, Cloneable {
 	 *
 	 * @return a clone of this instance.
 	 * @exception OutOfMemoryError
-	 *                if there is not enough memory.
+	 *                             if there is not enough memory.
 	 * @see java.lang.Cloneable
 	 * @since 1.2
 	 */

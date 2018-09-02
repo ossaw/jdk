@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws;
@@ -46,14 +26,18 @@ public interface Binding {
 	 * Sets the handler chain for the protocol binding instance.
 	 *
 	 * @param chain
-	 *            A List of handler configuration entries
+	 *              A List of handler configuration entries
 	 * @throws WebServiceException
-	 *             On an error in the configuration of the handler chain
-	 * @throws java.lang.UnsupportedOperationException
-	 *             If this operation is not supported. This may be done to avoid
-	 *             any overriding of a pre-configured handler chain.
+	 *                             On an error in the configuration of the
+	 *                             handler chain
+	 * @throws                     java.lang.UnsupportedOperationException
+	 *                             If this operation is not supported. This may
+	 *                             be done to avoid
+	 *                             any overriding of a pre-configured handler
+	 *                             chain.
 	 */
-	public void setHandlerChain(java.util.List<javax.xml.ws.handler.Handler> chain);
+	public void setHandlerChain(
+			java.util.List<javax.xml.ws.handler.Handler> chain);
 
 	/**
 	 * Get the URI for this binding instance.

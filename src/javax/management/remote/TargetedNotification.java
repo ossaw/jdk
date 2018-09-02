@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -74,12 +54,14 @@ public class TargetedNotification implements Serializable {
 	 * </p>
 	 * 
 	 * @param notification
-	 *            Notification emitted from the MBean server.
+	 *                     Notification emitted from the MBean server.
 	 * @param listenerID
-	 *            The ID of the listener to which this notification is targeted.
+	 *                     The ID of the listener to which this notification is
+	 *                     targeted.
 	 * @exception IllegalArgumentException
-	 *                if the <var>listenerID</var> or <var>notification</var> is
-	 *                null.
+	 *                                     if the <var>listenerID</var> or
+	 *                                     <var>notification</var> is
+	 *                                     null.
 	 */
 	public TargetedNotification(Notification notification, Integer listenerID) {
 		validate(notification, listenerID);
@@ -139,7 +121,8 @@ public class TargetedNotification implements Serializable {
 	// return id.intValue();
 	// }
 
-	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream ois) throws IOException,
+			ClassNotFoundException {
 		ois.defaultReadObject();
 		try {
 			validate(this.notif, this.id);
@@ -148,7 +131,8 @@ public class TargetedNotification implements Serializable {
 		}
 	}
 
-	private static void validate(Notification notif, Integer id) throws IllegalArgumentException {
+	private static void validate(Notification notif, Integer id)
+			throws IllegalArgumentException {
 		if (notif == null) {
 			throw new IllegalArgumentException("Invalid notification: null");
 		}

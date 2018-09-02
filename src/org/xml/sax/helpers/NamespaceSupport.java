@@ -1,32 +1,12 @@
 /*
  * Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // NamespaceSupport.java - generic Namespace support for SAX.
 // http://www.saxproject.org
 // Written by David Megginson
-// This class is in the Public Domain.  NO WARRANTY!
+// This class is in the Public Domain. NO WARRANTY!
 // $Id: NamespaceSupport.java,v 1.5 2004/11/03 22:53:09 jsuttor Exp $
 
 package org.xml.sax.helpers;
@@ -294,11 +274,12 @@ public class NamespaceSupport {
 	 * </p>
 	 *
 	 * @param prefix
-	 *            The prefix to declare, or the empty string to indicate the
-	 *            default element namespace. This may never have the value "xml"
-	 *            or "xmlns".
+	 *               The prefix to declare, or the empty string to indicate the
+	 *               default element namespace. This may never have the value
+	 *               "xml"
+	 *               or "xmlns".
 	 * @param uri
-	 *            The Namespace URI to associate with the prefix.
+	 *               The Namespace URI to associate with the prefix.
 	 * @return true if the prefix was legal, false otherwise
 	 *
 	 * @see #processName
@@ -346,13 +327,15 @@ public class NamespaceSupport {
 	 * </p>
 	 *
 	 * @param qName
-	 *            The XML qualified name to be processed.
+	 *                    The XML qualified name to be processed.
 	 * @param parts
-	 *            An array supplied by the caller, capable of holding at least
-	 *            three members.
+	 *                    An array supplied by the caller, capable of holding at
+	 *                    least
+	 *                    three members.
 	 * @param isAttribute
-	 *            A flag indicating whether this is an attribute name (true) or
-	 *            an element name (false).
+	 *                    A flag indicating whether this is an attribute name
+	 *                    (true) or
+	 *                    an element name (false).
 	 * @return The supplied array holding three internalized strings
 	 *         representing the Namespace URI (or empty string), the local name,
 	 *         and the XML qualified name; or null if there is an undeclared
@@ -360,7 +343,8 @@ public class NamespaceSupport {
 	 * @see #declarePrefix
 	 * @see java.lang.String#intern
 	 */
-	public String[] processName(String qName, String parts[], boolean isAttribute) {
+	public String[] processName(String qName, String parts[],
+			boolean isAttribute) {
 		String myParts[] = currentContext.processName(qName, isAttribute);
 		if (myParts == null) {
 			return null;
@@ -381,7 +365,7 @@ public class NamespaceSupport {
 	 * </p>
 	 *
 	 * @param prefix
-	 *            The prefix to look up.
+	 *               The prefix to look up.
 	 * @return The associated Namespace URI, or null if the prefix is undeclared
 	 *         in this context.
 	 * @see #getPrefix
@@ -499,8 +483,9 @@ public class NamespaceSupport {
 	 * @since SAX 2.1alpha
 	 *
 	 * @exception IllegalStateException
-	 *                when attempting to set this after any context has been
-	 *                pushed.
+	 *                                  when attempting to set this after any
+	 *                                  context has been
+	 *                                  pushed.
 	 */
 	public void setNamespaceDeclUris(boolean value) {
 		if (contextPos != 0)
@@ -565,7 +550,7 @@ public class NamespaceSupport {
 		 * have been freshly constructed, or must have been cleared.
 		 *
 		 * @param context
-		 *            The parent Namespace context object.
+		 *                The parent Namespace context object.
 		 */
 		void setParent(Context parent) {
 			this.parent = parent;
@@ -596,9 +581,9 @@ public class NamespaceSupport {
 		 * Declare a Namespace prefix for this context.
 		 *
 		 * @param prefix
-		 *            The prefix to declare.
+		 *               The prefix to declare.
 		 * @param uri
-		 *            The associated Namespace URI.
+		 *               The associated Namespace URI.
 		 * @see org.xml.sax.helpers.NamespaceSupport#declarePrefix
 		 */
 		void declarePrefix(String prefix, String uri) {
@@ -632,9 +617,9 @@ public class NamespaceSupport {
 		 * Process an XML qualified name in this context.
 		 *
 		 * @param qName
-		 *            The XML qualified name.
+		 *                    The XML qualified name.
 		 * @param isAttribute
-		 *            true if this is an attribute name.
+		 *                    true if this is an attribute name.
 		 * @return An array of three strings containing the URI part (or empty
 		 *         string), the local part, and the raw name, all internalized,
 		 *         or null if there is an undeclared prefix.
@@ -709,7 +694,7 @@ public class NamespaceSupport {
 		 * Look up the URI associated with a prefix in this context.
 		 *
 		 * @param prefix
-		 *            The prefix to look up.
+		 *               The prefix to look up.
 		 * @return The associated Namespace URI, or null if none is declared.
 		 * @see org.xml.sax.helpers.NamespaceSupport#getURI
 		 */

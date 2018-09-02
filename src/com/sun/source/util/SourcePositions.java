@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.source.util;
@@ -52,9 +32,9 @@ public interface SourcePositions {
 	 * </p>
 	 *
 	 * @param file
-	 *            CompilationUnit in which to find tree.
+	 *             CompilationUnit in which to find tree.
 	 * @param tree
-	 *            tree for which a position is sought.
+	 *             tree for which a position is sought.
 	 * @return the start position of tree.
 	 */
 	long getStartPosition(CompilationUnitTree file, Tree tree);
@@ -81,9 +61,9 @@ public interface SourcePositions {
 	 * </p>
 	 *
 	 * @param file
-	 *            CompilationUnit in which to find tree.
+	 *             CompilationUnit in which to find tree.
 	 * @param tree
-	 *            tree for which a position is sought.
+	 *             tree for which a position is sought.
 	 * @return the end position of tree.
 	 */
 	long getEndPosition(CompilationUnitTree file, Tree tree);

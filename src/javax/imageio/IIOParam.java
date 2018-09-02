@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio;
@@ -155,20 +135,27 @@ public abstract class IIOParam {
 	 * any region specification, causing the entire image to be used.
 	 *
 	 * @param sourceRegion
-	 *            a <code>Rectangle</code> specifying the source region of
-	 *            interest, or <code>null</code>.
+	 *                     a <code>Rectangle</code> specifying the source region
+	 *                     of
+	 *                     interest, or <code>null</code>.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>sourceRegion</code> is non-<code>null</code> and
-	 *                either <code>sourceRegion.x</code> or
-	 *                <code>sourceRegion.y</code> is negative.
+	 *                                     if <code>sourceRegion</code> is
+	 *                                     non-<code>null</code> and
+	 *                                     either <code>sourceRegion.x</code> or
+	 *                                     <code>sourceRegion.y</code> is
+	 *                                     negative.
 	 * @exception IllegalArgumentException
-	 *                if <code>sourceRegion</code> is non-<code>null</code> and
-	 *                either <code>sourceRegion.width</code> or
-	 *                <code>sourceRegion.height</code> is negative or 0.
+	 *                                     if <code>sourceRegion</code> is
+	 *                                     non-<code>null</code> and
+	 *                                     either
+	 *                                     <code>sourceRegion.width</code> or
+	 *                                     <code>sourceRegion.height</code> is
+	 *                                     negative or 0.
 	 * @exception IllegalStateException
-	 *                if subsampling is such that this region will have a
-	 *                subsampled width or height of zero.
+	 *                                     if subsampling is such that this
+	 *                                     region will have a
+	 *                                     subsampled width or height of zero.
 	 *
 	 * @see #getSourceRegion
 	 * @see #setSourceSubsampling
@@ -196,10 +183,12 @@ public abstract class IIOParam {
 
 		// Throw an IllegalStateException if region falls between subsamples
 		if (sourceRegion.width <= subsamplingXOffset) {
-			throw new IllegalStateException("sourceRegion.width <= subsamplingXOffset!");
+			throw new IllegalStateException(
+					"sourceRegion.width <= subsamplingXOffset!");
 		}
 		if (sourceRegion.height <= subsamplingYOffset) {
-			throw new IllegalStateException("sourceRegion.height <= subsamplingYOffset!");
+			throw new IllegalStateException(
+					"sourceRegion.height <= subsamplingYOffset!");
 		}
 
 		this.sourceRegion = (Rectangle) sourceRegion.clone();
@@ -277,36 +266,49 @@ public abstract class IIOParam {
 	 * <code>setSourceSubsampling(1, 1, 0, 0)</code> to restore default values.
 	 *
 	 * @param sourceXSubsampling
-	 *            the number of columns to advance between pixels.
+	 *                           the number of columns to advance between
+	 *                           pixels.
 	 * @param sourceYSubsampling
-	 *            the number of rows to advance between pixels.
+	 *                           the number of rows to advance between pixels.
 	 * @param subsamplingXOffset
-	 *            the horizontal offset of the first subsample within the
-	 *            region, or within the image if no region is set.
+	 *                           the horizontal offset of the first subsample
+	 *                           within the
+	 *                           region, or within the image if no region is
+	 *                           set.
 	 * @param subsamplingYOffset
-	 *            the horizontal offset of the first subsample within the
-	 *            region, or within the image if no region is set.
+	 *                           the horizontal offset of the first subsample
+	 *                           within the
+	 *                           region, or within the image if no region is
+	 *                           set.
 	 * @exception IllegalArgumentException
-	 *                if either period is negative or 0, or if either grid
-	 *                offset is negative or greater than the corresponding
-	 *                period.
+	 *                                     if either period is negative or 0, or
+	 *                                     if either grid
+	 *                                     offset is negative or greater than
+	 *                                     the corresponding
+	 *                                     period.
 	 * @exception IllegalStateException
-	 *                if the source region is such that the subsampled output
-	 *                would contain no pixels.
+	 *                                     if the source region is such that the
+	 *                                     subsampled output
+	 *                                     would contain no pixels.
 	 */
-	public void setSourceSubsampling(int sourceXSubsampling, int sourceYSubsampling,
-			int subsamplingXOffset, int subsamplingYOffset) {
+	public void setSourceSubsampling(int sourceXSubsampling,
+			int sourceYSubsampling, int subsamplingXOffset,
+			int subsamplingYOffset) {
 		if (sourceXSubsampling <= 0) {
 			throw new IllegalArgumentException("sourceXSubsampling <= 0!");
 		}
 		if (sourceYSubsampling <= 0) {
 			throw new IllegalArgumentException("sourceYSubsampling <= 0!");
 		}
-		if (subsamplingXOffset < 0 || subsamplingXOffset >= sourceXSubsampling) {
-			throw new IllegalArgumentException("subsamplingXOffset out of range!");
+		if (subsamplingXOffset < 0
+				|| subsamplingXOffset >= sourceXSubsampling) {
+			throw new IllegalArgumentException(
+					"subsamplingXOffset out of range!");
 		}
-		if (subsamplingYOffset < 0 || subsamplingYOffset >= sourceYSubsampling) {
-			throw new IllegalArgumentException("subsamplingYOffset out of range!");
+		if (subsamplingYOffset < 0
+				|| subsamplingYOffset >= sourceYSubsampling) {
+			throw new IllegalArgumentException(
+					"subsamplingYOffset out of range!");
 		}
 
 		// Throw an IllegalStateException if region falls between subsamples
@@ -407,11 +409,12 @@ public abstract class IIOParam {
 	 * subsequent to this call have no effect on this <code>IIOParam</code>.
 	 *
 	 * @param sourceBands
-	 *            an array of integer band indices to be used.
+	 *                    an array of integer band indices to be used.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>sourceBands</code> contains a negative or
-	 *                duplicate value.
+	 *                                     if <code>sourceBands</code> contains
+	 *                                     a negative or
+	 *                                     duplicate value.
 	 *
 	 * @see #getSourceBands
 	 * @see ImageReadParam#setDestinationBands
@@ -429,7 +432,8 @@ public abstract class IIOParam {
 				}
 				for (int j = i + 1; j < numBands; j++) {
 					if (band == sourceBands[j]) {
-						throw new IllegalArgumentException("Duplicate band value!");
+						throw new IllegalArgumentException(
+								"Duplicate band value!");
 					}
 				}
 
@@ -484,8 +488,9 @@ public abstract class IIOParam {
 	 * rather than to the subset of bands being written.
 	 *
 	 * @param destinationType
-	 *            the <code>ImageTypeSpecifier</code> to be used to determine
-	 *            the destination layout and color type.
+	 *                        the <code>ImageTypeSpecifier</code> to be used to
+	 *                        determine
+	 *                        the destination layout and color type.
 	 *
 	 * @see #getDestinationType
 	 */
@@ -531,10 +536,12 @@ public abstract class IIOParam {
 	 * values.
 	 *
 	 * @param destinationOffset
-	 *            the offset in the destination, as a <code>Point</code>.
+	 *                          the offset in the destination, as a
+	 *                          <code>Point</code>.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>destinationOffset</code> is <code>null</code>.
+	 *                                     if <code>destinationOffset</code> is
+	 *                                     <code>null</code>.
 	 *
 	 * @see #getDestinationOffset
 	 * @see ImageWriter#replacePixels
@@ -572,8 +579,8 @@ public abstract class IIOParam {
 	 * <code>setController(getDefaultController())</code>.
 	 *
 	 * @param controller
-	 *            An appropriate <code>IIOParamController</code>, or
-	 *            <code>null</code>.
+	 *                   An appropriate <code>IIOParamController</code>, or
+	 *                   <code>null</code>.
 	 *
 	 * @see IIOParamController
 	 * @see #getController
@@ -654,7 +661,8 @@ public abstract class IIOParam {
 	 * @return <code>true</code> if the controller completed normally.
 	 *
 	 * @exception IllegalStateException
-	 *                if there is no controller currently installed.
+	 *                                  if there is no controller currently
+	 *                                  installed.
 	 *
 	 * @see IIOParamController
 	 * @see #setController(IIOParamController)

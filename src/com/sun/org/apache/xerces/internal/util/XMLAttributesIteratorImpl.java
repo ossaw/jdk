@@ -1,40 +1,20 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xerces.internal.util;
 
-//java imports
+// java imports
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-//xerces imports
+// xerces imports
 import com.sun.org.apache.xerces.internal.util.XMLAttributesImpl;
 
 /**
  *
- * @author  Neeraj Bajaj, Sun Microsystems
+ * @author Neeraj Bajaj, Sun Microsystems
  */
 
 /**
@@ -48,7 +28,8 @@ import com.sun.org.apache.xerces.internal.util.XMLAttributesImpl;
  * better avoid touching XNI as much as possible. - NB.
  */
 
-public class XMLAttributesIteratorImpl extends XMLAttributesImpl implements Iterator {
+public class XMLAttributesIteratorImpl extends XMLAttributesImpl implements
+		Iterator {
 
 	// pointer to current position.
 	protected int fCurrent = 0;
@@ -56,8 +37,7 @@ public class XMLAttributesIteratorImpl extends XMLAttributesImpl implements Iter
 	protected XMLAttributesImpl.Attribute fLastReturnedItem;
 
 	/** Creates a new instance of XMLAttributesIteratorImpl */
-	public XMLAttributesIteratorImpl() {
-	}
+	public XMLAttributesIteratorImpl() {}
 
 	public boolean hasNext() {
 		return fCurrent < getLength() ? true : false;
@@ -99,7 +79,6 @@ public class XMLAttributesIteratorImpl extends XMLAttributesImpl implements Iter
 	 * class AttributeImpl extends
 	 * com.sun.org.apache.xerces.internal.util.XMLAttributesImpl.Attribute
 	 * implements javax.xml.stream.events.Attribute{
-	 * 
 	 * }
 	 */
 

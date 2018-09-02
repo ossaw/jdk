@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -72,14 +52,13 @@ public class ButtonGroup implements Serializable {
 	/**
 	 * Creates a new <code>ButtonGroup</code>.
 	 */
-	public ButtonGroup() {
-	}
+	public ButtonGroup() {}
 
 	/**
 	 * Adds the button to the group.
 	 * 
 	 * @param b
-	 *            the button to be added
+	 *          the button to be added
 	 */
 	public void add(AbstractButton b) {
 		if (b == null) {
@@ -102,7 +81,7 @@ public class ButtonGroup implements Serializable {
 	 * Removes the button from the group.
 	 * 
 	 * @param b
-	 *            the button to be removed
+	 *          the button to be removed
 	 */
 	public void remove(AbstractButton b) {
 		if (b == null) {
@@ -152,10 +131,10 @@ public class ButtonGroup implements Serializable {
 	 * in the group may be selected at a time.
 	 * 
 	 * @param m
-	 *            the <code>ButtonModel</code>
+	 *          the <code>ButtonModel</code>
 	 * @param b
-	 *            <code>true</code> if this button is to be selected, otherwise
-	 *            <code>false</code>
+	 *          <code>true</code> if this button is to be selected, otherwise
+	 *          <code>false</code>
 	 */
 	public void setSelected(ButtonModel m, boolean b) {
 		if (b && m != null && m != selection) {

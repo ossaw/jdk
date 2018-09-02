@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.annotation.processing;
@@ -46,8 +26,8 @@ public class FilerException extends IOException {
 	 * Constructs an exception with the specified detail message.
 	 * 
 	 * @param s
-	 *            the detail message, which should include the name of the file
-	 *            attempting to be opened; may be {@code null}
+	 *          the detail message, which should include the name of the file
+	 *          attempting to be opened; may be {@code null}
 	 */
 	public FilerException(String s) {
 		super(s);

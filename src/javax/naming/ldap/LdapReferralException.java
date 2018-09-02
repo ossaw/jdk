@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.ldap;
@@ -54,7 +34,7 @@ public abstract class LdapReferralException extends ReferralException {
 	 * supplied. All other fields are set to null.
 	 *
 	 * @param explanation
-	 *            Additional detail about this exception. Can be null.
+	 *                    Additional detail about this exception. Can be null.
 	 * @see java.lang.Throwable#getMessage
 	 */
 	protected LdapReferralException(String explanation) {
@@ -89,9 +69,11 @@ public abstract class LdapReferralException extends ReferralException {
 	 *
 	 * @return The non-null context at which to continue the method.
 	 * @exception NamingException
-	 *                If a naming exception was encountered. Call either
-	 *                <tt>retryReferral()</tt> or <tt>skipReferral()</tt> to
-	 *                continue processing referrals.
+	 *                            If a naming exception was encountered. Call
+	 *                            either
+	 *                            <tt>retryReferral()</tt> or
+	 *                            <tt>skipReferral()</tt> to
+	 *                            continue processing referrals.
 	 */
 	public abstract Context getReferralContext() throws NamingException;
 
@@ -118,11 +100,14 @@ public abstract class LdapReferralException extends ReferralException {
 	 *
 	 * @return The non-null context at which to continue the method.
 	 * @exception NamingException
-	 *                If a naming exception was encountered. Call either
-	 *                <tt>retryReferral()</tt> or <tt>skipReferral()</tt> to
-	 *                continue processing referrals.
+	 *                            If a naming exception was encountered. Call
+	 *                            either
+	 *                            <tt>retryReferral()</tt> or
+	 *                            <tt>skipReferral()</tt> to
+	 *                            continue processing referrals.
 	 */
-	public abstract Context getReferralContext(Hashtable<?, ?> env) throws NamingException;
+	public abstract Context getReferralContext(Hashtable<?, ?> env)
+			throws NamingException;
 
 	/**
 	 * Retrieves the context at which to continue the method using request
@@ -149,20 +134,24 @@ public abstract class LdapReferralException extends ReferralException {
 	 * in the <tt>LdapContext</tt> class description for implementation details.
 	 *
 	 * @param reqCtls
-	 *            The possibly null request controls to use for the new context.
-	 *            If null or the empty array means use no request controls.
+	 *                The possibly null request controls to use for the new
+	 *                context.
+	 *                If null or the empty array means use no request controls.
 	 * @param env
-	 *            The possibly null environment properties to use when for the
-	 *            new context. If null, the context is initialized with no
-	 *            environment properties.
+	 *                The possibly null environment properties to use when for
+	 *                the
+	 *                new context. If null, the context is initialized with no
+	 *                environment properties.
 	 * @return The non-null context at which to continue the method.
 	 * @exception NamingException
-	 *                If a naming exception was encountered. Call either
-	 *                <tt>retryReferral()</tt> or <tt>skipReferral()</tt> to
-	 *                continue processing referrals.
+	 *                            If a naming exception was encountered. Call
+	 *                            either
+	 *                            <tt>retryReferral()</tt> or
+	 *                            <tt>skipReferral()</tt> to
+	 *                            continue processing referrals.
 	 */
-	public abstract Context getReferralContext(Hashtable<?, ?> env, Control[] reqCtls)
-			throws NamingException;
+	public abstract Context getReferralContext(Hashtable<?, ?> env,
+			Control[] reqCtls) throws NamingException;
 
 	private static final long serialVersionUID = -1668992791764950804L;
 }

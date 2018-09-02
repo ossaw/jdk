@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.dynamicany;
@@ -60,7 +40,8 @@ public class DynValueBoxImpl extends DynValueCommonImpl implements DynValueBox {
 	// DynValueBox methods
 	//
 
-	public Any get_boxed_value() throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
+	public Any get_boxed_value()
+			throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
 		if (isNull) {
 			throw new InvalidValue();
 		}
@@ -103,7 +84,8 @@ public class DynValueBoxImpl extends DynValueCommonImpl implements DynValueBox {
 
 	protected boolean initializeComponentsFromAny() {
 		try {
-			components = new DynAny[] { DynAnyUtil.createMostDerivedDynAny(any, orb, false) };
+			components = new DynAny[] { DynAnyUtil.createMostDerivedDynAny(any,
+					orb, false) };
 		} catch (InconsistentTypeCode ictc) {
 			return false; // impossible
 		}
@@ -113,7 +95,8 @@ public class DynValueBoxImpl extends DynValueCommonImpl implements DynValueBox {
 	protected boolean initializeComponentsFromTypeCode() {
 		try {
 			any = DynAnyUtil.createDefaultAnyOfType(any.type(), orb);
-			components = new DynAny[] { DynAnyUtil.createMostDerivedDynAny(any, orb, false) };
+			components = new DynAny[] { DynAnyUtil.createMostDerivedDynAny(any,
+					orb, false) };
 		} catch (InconsistentTypeCode ictc) {
 			return false; // impossible
 		}

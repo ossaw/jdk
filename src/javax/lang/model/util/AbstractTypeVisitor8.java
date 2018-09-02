@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -58,18 +38,19 @@ import javax.lang.model.type.*;
  * of default methods in this situation.
  *
  * @param <R>
- *            the return type of this visitor's methods. Use {@link Void} for
- *            visitors that do not need to return results.
+ *        the return type of this visitor's methods. Use {@link Void} for
+ *        visitors that do not need to return results.
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
- *            Use {@code Void} for visitors that do not need an additional
- *            parameter.
+ *        the type of the additional parameter to this visitor's methods.
+ *        Use {@code Void} for visitors that do not need an additional
+ *        parameter.
  *
  * @see AbstractTypeVisitor6
  * @see AbstractTypeVisitor7
  * @since 1.8
  */
-public abstract class AbstractTypeVisitor8<R, P> extends AbstractTypeVisitor7<R, P> {
+public abstract class AbstractTypeVisitor8<R, P> extends
+		AbstractTypeVisitor7<R, P> {
 	/**
 	 * Constructor for concrete subclasses to call.
 	 */
@@ -81,9 +62,9 @@ public abstract class AbstractTypeVisitor8<R, P> extends AbstractTypeVisitor7<R,
 	 * Visits an {@code IntersectionType} in a manner defined by a subclass.
 	 *
 	 * @param t
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of the visit as defined by a subclass
 	 */
 	public abstract R visitIntersection(IntersectionType t, P p);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth;
@@ -125,7 +105,8 @@ public final class PrivateCredentialPermission extends Permission {
 	 * Create a new {@code PrivateCredentialPermission} with the specified
 	 * {@code credentialClass} and Principals.
 	 */
-	PrivateCredentialPermission(String credentialClass, Set<Principal> principals) {
+	PrivateCredentialPermission(String credentialClass,
+			Set<Principal> principals) {
 
 		super(credentialClass);
 		this.credentialClass = credentialClass;
@@ -139,7 +120,8 @@ public final class PrivateCredentialPermission extends Permission {
 				Iterator<Principal> i = principals.iterator();
 				while (i.hasNext()) {
 					Principal p = i.next();
-					this.credOwners[index++] = new CredOwner(p.getClass().getName(), p.getName());
+					this.credOwners[index++] = new CredOwner(p.getClass()
+							.getName(), p.getName());
 				}
 			}
 		}
@@ -153,22 +135,25 @@ public final class PrivateCredentialPermission extends Permission {
 	 * <p>
 	 *
 	 * @param name
-	 *            the name specifying the Credential class and {@code Principal}
-	 *            Set.
-	 *            <p>
+	 *                the name specifying the Credential class and
+	 *                {@code Principal}
+	 *                Set.
+	 *                <p>
 	 *
 	 * @param actions
-	 *            the actions specifying that the Credential can be read.
+	 *                the actions specifying that the Credential can be read.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} does not conform to the correct syntax or if
-	 *             {@code actions} is not "read".
+	 *                                  if {@code name} does not conform to the
+	 *                                  correct syntax or if
+	 *                                  {@code actions} is not "read".
 	 */
 	public PrivateCredentialPermission(String name, String actions) {
 		super(name);
 
 		if (!"read".equalsIgnoreCase(actions))
-			throw new IllegalArgumentException(ResourcesMgr.getString("actions.can.only.be.read."));
+			throw new IllegalArgumentException(ResourcesMgr.getString(
+					"actions.can.only.be.read."));
 		init(name);
 	}
 
@@ -237,7 +222,7 @@ public final class PrivateCredentialPermission extends Permission {
 	 * <p>
 	 *
 	 * @param p
-	 *            the {@code Permission} to check against.
+	 *          the {@code Permission} to check against.
 	 *
 	 * @return true if this {@code PrivateCredentialPermission} implies the
 	 *         specified {@code Permission}, false if not.
@@ -337,11 +322,12 @@ public final class PrivateCredentialPermission extends Permission {
 			System.out.println("Credential Class = " + credentialClass);
 
 		if (tokenizer.hasMoreTokens() == false) {
-			MessageFormat form = new MessageFormat(
-					ResourcesMgr.getString("permission.name.name.syntax.invalid."));
+			MessageFormat form = new MessageFormat(ResourcesMgr.getString(
+					"permission.name.name.syntax.invalid."));
 			Object[] source = { name };
-			throw new IllegalArgumentException(form.format(source) + ResourcesMgr
-					.getString("Credential.Class.not.followed.by.a.Principal.Class.and.Name"));
+			throw new IllegalArgumentException(form.format(source)
+					+ ResourcesMgr.getString(
+							"Credential.Class.not.followed.by.a.Principal.Class.and.Name"));
 		}
 
 		while (tokenizer.hasMoreTokens()) {
@@ -355,11 +341,12 @@ public final class PrivateCredentialPermission extends Permission {
 				System.out.println("    Principal Class = " + principalClass);
 
 			if (tokenizer.hasMoreTokens() == false) {
-				MessageFormat form = new MessageFormat(
-						ResourcesMgr.getString("permission.name.name.syntax.invalid."));
+				MessageFormat form = new MessageFormat(ResourcesMgr.getString(
+						"permission.name.name.syntax.invalid."));
 				Object[] source = { name };
-				throw new IllegalArgumentException(form.format(source) + ResourcesMgr
-						.getString("Principal.Class.not.followed.by.a.Principal.Name"));
+				throw new IllegalArgumentException(form.format(source)
+						+ ResourcesMgr.getString(
+								"Principal.Class.not.followed.by.a.Principal.Name"));
 			}
 
 			// skip delimiter
@@ -369,11 +356,12 @@ public final class PrivateCredentialPermission extends Permission {
 			principalName = tokenizer.nextToken();
 
 			if (!principalName.startsWith("\"")) {
-				MessageFormat form = new MessageFormat(
-						ResourcesMgr.getString("permission.name.name.syntax.invalid."));
+				MessageFormat form = new MessageFormat(ResourcesMgr.getString(
+						"permission.name.name.syntax.invalid."));
 				Object[] source = { name };
 				throw new IllegalArgumentException(form.format(source)
-						+ ResourcesMgr.getString("Principal.Name.must.be.surrounded.by.quotes"));
+						+ ResourcesMgr.getString(
+								"Principal.Name.must.be.surrounded.by.quotes"));
 			}
 
 			if (!principalName.endsWith("\"")) {
@@ -389,18 +377,20 @@ public final class PrivateCredentialPermission extends Permission {
 				}
 
 				if (!principalName.endsWith("\"")) {
-					MessageFormat form = new MessageFormat(
-							ResourcesMgr.getString("permission.name.name.syntax.invalid."));
+					MessageFormat form = new MessageFormat(ResourcesMgr
+							.getString("permission.name.name.syntax.invalid."));
 					Object[] source = { name };
 					throw new IllegalArgumentException(form.format(source)
-							+ ResourcesMgr.getString("Principal.Name.missing.end.quote"));
+							+ ResourcesMgr.getString(
+									"Principal.Name.missing.end.quote"));
 				}
 			}
 
 			if (testing)
 				System.out.println("\tprincipalName = '" + principalName + "'");
 
-			principalName = principalName.substring(1, principalName.length() - 1);
+			principalName = principalName.substring(1, principalName.length()
+					- 1);
 
 			if (principalClass.equals("*") && !principalName.equals("*")) {
 				throw new IllegalArgumentException(ResourcesMgr.getString(
@@ -424,7 +414,8 @@ public final class PrivateCredentialPermission extends Permission {
 			return false;
 
 		if (testing)
-			System.out.println("credential class comparison: " + thisC + "/" + thatC);
+			System.out.println("credential class comparison: " + thisC + "/"
+					+ thatC);
 
 		if (thisC.equals("*"))
 			return true;
@@ -518,9 +509,11 @@ public final class PrivateCredentialPermission extends Permission {
 
 			CredOwner that = (CredOwner) obj;
 
-			if (principalClass.equals("*") || principalClass.equals(that.principalClass)) {
+			if (principalClass.equals("*") || principalClass.equals(
+					that.principalClass)) {
 
-				if (principalName.equals("*") || principalName.equals(that.principalName)) {
+				if (principalName.equals("*") || principalName.equals(
+						that.principalName)) {
 					return true;
 				}
 			}
@@ -533,8 +526,8 @@ public final class PrivateCredentialPermission extends Permission {
 		}
 
 		public String toString() {
-			MessageFormat form = new MessageFormat(
-					ResourcesMgr.getString("CredOwner.Principal.Class.class.Principal.Name.name"));
+			MessageFormat form = new MessageFormat(ResourcesMgr.getString(
+					"CredOwner.Principal.Class.class.Principal.Name.name"));
 			Object[] source = { principalClass, principalName };
 			return (form.format(source));
 		}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print;
@@ -431,8 +411,8 @@ public class DocFlavor implements Serializable, Cloneable {
 	public static final String hostEncoding;
 
 	static {
-		hostEncoding = (String) java.security.AccessController
-				.doPrivileged(new sun.security.action.GetPropertyAction("file.encoding"));
+		hostEncoding = (String) java.security.AccessController.doPrivileged(
+				new sun.security.action.GetPropertyAction("file.encoding"));
 	}
 
 	/**
@@ -458,16 +438,20 @@ public class DocFlavor implements Serializable, Cloneable {
 	 * canonical form and stored internally.
 	 *
 	 * @param mimeType
-	 *            MIME media type string.
+	 *                  MIME media type string.
 	 * @param className
-	 *            Fully-qualified representation class name.
+	 *                  Fully-qualified representation class name.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>mimeType</CODE> is
-	 *                null or <CODE>className</CODE> is null.
+	 *                                     (unchecked exception) Thrown if
+	 *                                     <CODE>mimeType</CODE> is
+	 *                                     null or <CODE>className</CODE> is
+	 *                                     null.
 	 * @exception IllegalArgumentException
-	 *                (unchecked exception) Thrown if <CODE>mimeType</CODE> does
-	 *                not obey the syntax for a MIME media type string.
+	 *                                     (unchecked exception) Thrown if
+	 *                                     <CODE>mimeType</CODE> does
+	 *                                     not obey the syntax for a MIME media
+	 *                                     type string.
 	 */
 	public DocFlavor(String mimeType, String className) {
 		if (className == null) {
@@ -514,16 +498,18 @@ public class DocFlavor implements Serializable, Cloneable {
 	 * <p>
 	 * 
 	 * @param paramName
-	 *            the name of the paramater. This name is internally converted
-	 *            to the canonical lower case format before performing the
-	 *            match.
+	 *                  the name of the paramater. This name is internally
+	 *                  converted
+	 *                  to the canonical lower case format before performing the
+	 *                  match.
 	 * @return String representing a mime parameter, or null if that parameter
 	 *         is not in the mime type string.
 	 * @exception NullPointerException
-	 *                if paramName is null.
+	 *                                 if paramName is null.
 	 */
 	public String getParameter(String paramName) {
-		return (String) myMimeType.getParameterMap().get(paramName.toLowerCase());
+		return (String) myMimeType.getParameterMap().get(paramName
+				.toLowerCase());
 	}
 
 	/**
@@ -573,8 +559,8 @@ public class DocFlavor implements Serializable, Cloneable {
 	 *         otherwise.
 	 */
 	public boolean equals(Object obj) {
-		return obj != null && obj instanceof DocFlavor
-				&& getStringValue().equals(((DocFlavor) obj).getStringValue());
+		return obj != null && obj instanceof DocFlavor && getStringValue()
+				.equals(((DocFlavor) obj).getStringValue());
 	}
 
 	/**
@@ -603,7 +589,8 @@ public class DocFlavor implements Serializable, Cloneable {
 	 *             representation class followed by the String representing the
 	 *             canonical form of the mime type.
 	 */
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException {
 
 		s.defaultReadObject();
 		myMimeType = new MimeType((String) s.readObject());
@@ -626,14 +613,17 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * representation class name of <CODE>"[B"</CODE> (byte array).
 		 *
 		 * @param mimeType
-		 *            MIME media type string.
+		 *                 MIME media type string.
 		 *
 		 * @exception NullPointerException
-		 *                (unchecked exception) Thrown if <CODE>mimeType</CODE>
-		 *                is null.
+		 *                                     (unchecked exception) Thrown if
+		 *                                     <CODE>mimeType</CODE>
+		 *                                     is null.
 		 * @exception IllegalArgumentException
-		 *                (unchecked exception) Thrown if <CODE>mimeType</CODE>
-		 *                does not obey the syntax for a MIME media type string.
+		 *                                     (unchecked exception) Thrown if
+		 *                                     <CODE>mimeType</CODE>
+		 *                                     does not obey the syntax for a
+		 *                                     MIME media type string.
 		 */
 		public BYTE_ARRAY(String mimeType) {
 			super(mimeType, "[B");
@@ -704,7 +694,8 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * print data representation class name = <CODE>"[B"</CODE> (byte
 		 * array).
 		 */
-		public static final BYTE_ARRAY TEXT_HTML_UTF_8 = new BYTE_ARRAY("text/html; charset=utf-8");
+		public static final BYTE_ARRAY TEXT_HTML_UTF_8 = new BYTE_ARRAY(
+				"text/html; charset=utf-8");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"text/html; charset=utf-16"</CODE>,
@@ -751,14 +742,16 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * print data representation class name = <CODE>"[B"</CODE> (byte
 		 * array).
 		 */
-		public static final BYTE_ARRAY POSTSCRIPT = new BYTE_ARRAY("application/postscript");
+		public static final BYTE_ARRAY POSTSCRIPT = new BYTE_ARRAY(
+				"application/postscript");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"application/vnd.hp-PCL"</CODE>,
 		 * print data representation class name = <CODE>"[B"</CODE> (byte
 		 * array).
 		 */
-		public static final BYTE_ARRAY PCL = new BYTE_ARRAY("application/vnd.hp-PCL");
+		public static final BYTE_ARRAY PCL = new BYTE_ARRAY(
+				"application/vnd.hp-PCL");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"image/gif"</CODE>, print data
@@ -784,7 +777,8 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * array). The client must determine that data described using this
 		 * DocFlavor is valid for the printer.
 		 */
-		public static final BYTE_ARRAY AUTOSENSE = new BYTE_ARRAY("application/octet-stream");
+		public static final BYTE_ARRAY AUTOSENSE = new BYTE_ARRAY(
+				"application/octet-stream");
 
 	}
 
@@ -807,14 +801,17 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * stream).
 		 *
 		 * @param mimeType
-		 *            MIME media type string.
+		 *                 MIME media type string.
 		 *
 		 * @exception NullPointerException
-		 *                (unchecked exception) Thrown if <CODE>mimeType</CODE>
-		 *                is null.
+		 *                                     (unchecked exception) Thrown if
+		 *                                     <CODE>mimeType</CODE>
+		 *                                     is null.
 		 * @exception IllegalArgumentException
-		 *                (unchecked exception) Thrown if <CODE>mimeType</CODE>
-		 *                does not obey the syntax for a MIME media type string.
+		 *                                     (unchecked exception) Thrown if
+		 *                                     <CODE>mimeType</CODE>
+		 *                                     does not obey the syntax for a
+		 *                                     MIME media type string.
 		 */
 		public INPUT_STREAM(String mimeType) {
 			super(mimeType, "java.io.InputStream");
@@ -928,21 +925,24 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * data representation class name = <CODE>"java.io.InputStream"</CODE>
 		 * (byte stream).
 		 */
-		public static final INPUT_STREAM PDF = new INPUT_STREAM("application/pdf");
+		public static final INPUT_STREAM PDF = new INPUT_STREAM(
+				"application/pdf");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"application/postscript"</CODE>,
 		 * print data representation class name =
 		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
 		 */
-		public static final INPUT_STREAM POSTSCRIPT = new INPUT_STREAM("application/postscript");
+		public static final INPUT_STREAM POSTSCRIPT = new INPUT_STREAM(
+				"application/postscript");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"application/vnd.hp-PCL"</CODE>,
 		 * print data representation class name =
 		 * <CODE>"java.io.InputStream"</CODE> (byte stream).
 		 */
-		public static final INPUT_STREAM PCL = new INPUT_STREAM("application/vnd.hp-PCL");
+		public static final INPUT_STREAM PCL = new INPUT_STREAM(
+				"application/vnd.hp-PCL");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"image/gif"</CODE>, print data
@@ -972,7 +972,8 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * determine that data described using this DocFlavor is valid for the
 		 * printer.
 		 */
-		public static final INPUT_STREAM AUTOSENSE = new INPUT_STREAM("application/octet-stream");
+		public static final INPUT_STREAM AUTOSENSE = new INPUT_STREAM(
+				"application/octet-stream");
 
 	}
 
@@ -992,14 +993,17 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * representation class name of <CODE>"java.net.URL"</CODE>.
 		 *
 		 * @param mimeType
-		 *            MIME media type string.
+		 *                 MIME media type string.
 		 *
 		 * @exception NullPointerException
-		 *                (unchecked exception) Thrown if <CODE>mimeType</CODE>
-		 *                is null.
+		 *                                     (unchecked exception) Thrown if
+		 *                                     <CODE>mimeType</CODE>
+		 *                                     is null.
 		 * @exception IllegalArgumentException
-		 *                (unchecked exception) Thrown if <CODE>mimeType</CODE>
-		 *                does not obey the syntax for a MIME media type string.
+		 *                                     (unchecked exception) Thrown if
+		 *                                     <CODE>mimeType</CODE>
+		 *                                     does not obey the syntax for a
+		 *                                     MIME media type string.
 		 */
 		public URL(String mimeType) {
 			super(mimeType, "java.net.URL");
@@ -1011,21 +1015,24 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * hostEncoding} Print data representation class name =
 		 * <CODE>"java.net.URL"</CODE> (byte stream).
 		 */
-		public static final URL TEXT_PLAIN_HOST = new URL("text/plain; charset=" + hostEncoding);
+		public static final URL TEXT_PLAIN_HOST = new URL("text/plain; charset="
+				+ hostEncoding);
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-8"</CODE>,
 		 * print data representation class name = <CODE>"java.net.URL"</CODE>
 		 * (byte stream).
 		 */
-		public static final URL TEXT_PLAIN_UTF_8 = new URL("text/plain; charset=utf-8");
+		public static final URL TEXT_PLAIN_UTF_8 = new URL(
+				"text/plain; charset=utf-8");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"text/plain; charset=utf-16"</CODE>
 		 * , print data representation class name = <CODE>java.net.URL""</CODE>
 		 * (byte stream).
 		 */
-		public static final URL TEXT_PLAIN_UTF_16 = new URL("text/plain; charset=utf-16");
+		public static final URL TEXT_PLAIN_UTF_16 = new URL(
+				"text/plain; charset=utf-16");
 
 		/**
 		 * Doc flavor with MIME type =
@@ -1033,7 +1040,8 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * ordering), print data representation class name =
 		 * <CODE>"java.net.URL"</CODE> (byte stream).
 		 */
-		public static final URL TEXT_PLAIN_UTF_16BE = new URL("text/plain; charset=utf-16be");
+		public static final URL TEXT_PLAIN_UTF_16BE = new URL(
+				"text/plain; charset=utf-16be");
 
 		/**
 		 * Doc flavor with MIME type =
@@ -1041,7 +1049,8 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * ordering), print data representation class name =
 		 * <CODE>"java.net.URL"</CODE> (byte stream).
 		 */
-		public static final URL TEXT_PLAIN_UTF_16LE = new URL("text/plain; charset=utf-16le");
+		public static final URL TEXT_PLAIN_UTF_16LE = new URL(
+				"text/plain; charset=utf-16le");
 
 		/**
 		 * Doc flavor with MIME type =
@@ -1049,7 +1058,8 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * representation class name = <CODE>"java.net.URL"</CODE> (byte
 		 * stream).
 		 */
-		public static final URL TEXT_PLAIN_US_ASCII = new URL("text/plain; charset=us-ascii");
+		public static final URL TEXT_PLAIN_US_ASCII = new URL(
+				"text/plain; charset=us-ascii");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"text/html"</CODE>, encoded in the
@@ -1057,21 +1067,24 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * hostEncoding} Print data representation class name =
 		 * <CODE>"java.net.URL"</CODE> (byte stream).
 		 */
-		public static final URL TEXT_HTML_HOST = new URL("text/html; charset=" + hostEncoding);
+		public static final URL TEXT_HTML_HOST = new URL("text/html; charset="
+				+ hostEncoding);
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"text/html; charset=utf-8"</CODE>,
 		 * print data representation class name = <CODE>"java.net.URL"</CODE>
 		 * (byte stream).
 		 */
-		public static final URL TEXT_HTML_UTF_8 = new URL("text/html; charset=utf-8");
+		public static final URL TEXT_HTML_UTF_8 = new URL(
+				"text/html; charset=utf-8");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"text/html; charset=utf-16"</CODE>,
 		 * print data representation class name = <CODE>"java.net.URL"</CODE>
 		 * (byte stream).
 		 */
-		public static final URL TEXT_HTML_UTF_16 = new URL("text/html; charset=utf-16");
+		public static final URL TEXT_HTML_UTF_16 = new URL(
+				"text/html; charset=utf-16");
 
 		/**
 		 * Doc flavor with MIME type =
@@ -1079,7 +1092,8 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * ordering), print data representation class name =
 		 * <CODE>"java.net.URL"</CODE> (byte stream).
 		 */
-		public static final URL TEXT_HTML_UTF_16BE = new URL("text/html; charset=utf-16be");
+		public static final URL TEXT_HTML_UTF_16BE = new URL(
+				"text/html; charset=utf-16be");
 
 		/**
 		 * Doc flavor with MIME type =
@@ -1087,14 +1101,16 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * ordering), print data representation class name =
 		 * <CODE>"java.net.URL"</CODE> (byte stream).
 		 */
-		public static final URL TEXT_HTML_UTF_16LE = new URL("text/html; charset=utf-16le");
+		public static final URL TEXT_HTML_UTF_16LE = new URL(
+				"text/html; charset=utf-16le");
 
 		/**
 		 * Doc flavor with MIME type =
 		 * <CODE>"text/html; charset=us-ascii"</CODE>, print data representation
 		 * class name = <CODE>"java.net.URL"</CODE> (byte stream).
 		 */
-		public static final URL TEXT_HTML_US_ASCII = new URL("text/html; charset=us-ascii");
+		public static final URL TEXT_HTML_US_ASCII = new URL(
+				"text/html; charset=us-ascii");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"application/pdf"</CODE>, print
@@ -1160,16 +1176,20 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * representation class name of <CODE>"[C"</CODE> (character array).
 		 *
 		 * @param mimeType
-		 *            MIME media type string. If it is a text media type, it is
-		 *            assumed to contain a <CODE>"charset=utf-16"</CODE>
-		 *            parameter.
+		 *                 MIME media type string. If it is a text media type,
+		 *                 it is
+		 *                 assumed to contain a <CODE>"charset=utf-16"</CODE>
+		 *                 parameter.
 		 *
 		 * @exception NullPointerException
-		 *                (unchecked exception) Thrown if <CODE>mimeType</CODE>
-		 *                is null.
+		 *                                     (unchecked exception) Thrown if
+		 *                                     <CODE>mimeType</CODE>
+		 *                                     is null.
 		 * @exception IllegalArgumentException
-		 *                (unchecked exception) Thrown if <CODE>mimeType</CODE>
-		 *                does not obey the syntax for a MIME media type string.
+		 *                                     (unchecked exception) Thrown if
+		 *                                     <CODE>mimeType</CODE>
+		 *                                     does not obey the syntax for a
+		 *                                     MIME media type string.
 		 */
 		public CHAR_ARRAY(String mimeType) {
 			super(mimeType, "[C");
@@ -1180,14 +1200,16 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * charset=utf-16"</CODE>, print data representation class name =
 		 * <CODE>"[C"</CODE> (character array).
 		 */
-		public static final CHAR_ARRAY TEXT_PLAIN = new CHAR_ARRAY("text/plain; charset=utf-16");
+		public static final CHAR_ARRAY TEXT_PLAIN = new CHAR_ARRAY(
+				"text/plain; charset=utf-16");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"text/html;
 		 * charset=utf-16"</CODE>, print data representation class name =
 		 * <CODE>"[C"</CODE> (character array).
 		 */
-		public static final CHAR_ARRAY TEXT_HTML = new CHAR_ARRAY("text/html; charset=utf-16");
+		public static final CHAR_ARRAY TEXT_HTML = new CHAR_ARRAY(
+				"text/html; charset=utf-16");
 
 	}
 
@@ -1209,16 +1231,20 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * representation class name of <CODE>"java.lang.String"</CODE>.
 		 *
 		 * @param mimeType
-		 *            MIME media type string. If it is a text media type, it is
-		 *            assumed to contain a <CODE>"charset=utf-16"</CODE>
-		 *            parameter.
+		 *                 MIME media type string. If it is a text media type,
+		 *                 it is
+		 *                 assumed to contain a <CODE>"charset=utf-16"</CODE>
+		 *                 parameter.
 		 *
 		 * @exception NullPointerException
-		 *                (unchecked exception) Thrown if <CODE>mimeType</CODE>
-		 *                is null.
+		 *                                     (unchecked exception) Thrown if
+		 *                                     <CODE>mimeType</CODE>
+		 *                                     is null.
 		 * @exception IllegalArgumentException
-		 *                (unchecked exception) Thrown if <CODE>mimeType</CODE>
-		 *                does not obey the syntax for a MIME media type string.
+		 *                                     (unchecked exception) Thrown if
+		 *                                     <CODE>mimeType</CODE>
+		 *                                     does not obey the syntax for a
+		 *                                     MIME media type string.
 		 */
 		public STRING(String mimeType) {
 			super(mimeType, "java.lang.String");
@@ -1229,14 +1255,16 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * charset=utf-16"</CODE>, print data representation class name =
 		 * <CODE>"java.lang.String"</CODE>.
 		 */
-		public static final STRING TEXT_PLAIN = new STRING("text/plain; charset=utf-16");
+		public static final STRING TEXT_PLAIN = new STRING(
+				"text/plain; charset=utf-16");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"text/html;
 		 * charset=utf-16"</CODE>, print data representation class name =
 		 * <CODE>"java.lang.String"</CODE>.
 		 */
-		public static final STRING TEXT_HTML = new STRING("text/html; charset=utf-16");
+		public static final STRING TEXT_HTML = new STRING(
+				"text/html; charset=utf-16");
 	}
 
 	/**
@@ -1258,16 +1286,20 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * (character stream).
 		 *
 		 * @param mimeType
-		 *            MIME media type string. If it is a text media type, it is
-		 *            assumed to contain a <CODE>"charset=utf-16"</CODE>
-		 *            parameter.
+		 *                 MIME media type string. If it is a text media type,
+		 *                 it is
+		 *                 assumed to contain a <CODE>"charset=utf-16"</CODE>
+		 *                 parameter.
 		 *
 		 * @exception NullPointerException
-		 *                (unchecked exception) Thrown if <CODE>mimeType</CODE>
-		 *                is null.
+		 *                                     (unchecked exception) Thrown if
+		 *                                     <CODE>mimeType</CODE>
+		 *                                     is null.
 		 * @exception IllegalArgumentException
-		 *                (unchecked exception) Thrown if <CODE>mimeType</CODE>
-		 *                does not obey the syntax for a MIME media type string.
+		 *                                     (unchecked exception) Thrown if
+		 *                                     <CODE>mimeType</CODE>
+		 *                                     does not obey the syntax for a
+		 *                                     MIME media type string.
 		 */
 		public READER(String mimeType) {
 			super(mimeType, "java.io.Reader");
@@ -1278,14 +1310,16 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * charset=utf-16"</CODE>, print data representation class name =
 		 * <CODE>"java.io.Reader"</CODE> (character stream).
 		 */
-		public static final READER TEXT_PLAIN = new READER("text/plain; charset=utf-16");
+		public static final READER TEXT_PLAIN = new READER(
+				"text/plain; charset=utf-16");
 
 		/**
 		 * Doc flavor with MIME type = <CODE>"text/html;
 		 * charset=utf-16"</CODE>, print data representation class name =
 		 * <CODE>"java.io.Reader"</CODE> (character stream).
 		 */
-		public static final READER TEXT_HTML = new READER("text/html; charset=utf-16");
+		public static final READER TEXT_HTML = new READER(
+				"text/html; charset=utf-16");
 
 	}
 
@@ -1308,11 +1342,12 @@ public class DocFlavor implements Serializable, Cloneable {
 		 * class name.
 		 *
 		 * @param className
-		 *            Fully-qualified representation class name.
+		 *                  Fully-qualified representation class name.
 		 *
 		 * @exception NullPointerException
-		 *                (unchecked exception) Thrown if <CODE>className</CODE>
-		 *                is null.
+		 *                                 (unchecked exception) Thrown if
+		 *                                 <CODE>className</CODE>
+		 *                                 is null.
 		 */
 		public SERVICE_FORMATTED(String className) {
 			super("application/x-java-jvm-local-objectref", className);

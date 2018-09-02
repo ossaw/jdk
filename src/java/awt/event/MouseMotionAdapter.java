@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -62,13 +42,11 @@ public abstract class MouseMotionAdapter implements MouseMotionListener {
 	 * the first originated until the mouse button is released (regardless of
 	 * whether the mouse position is within the bounds of the component).
 	 */
-	public void mouseDragged(MouseEvent e) {
-	}
+	public void mouseDragged(MouseEvent e) {}
 
 	/**
 	 * Invoked when the mouse button has been moved on a component (with no
 	 * buttons no down).
 	 */
-	public void mouseMoved(MouseEvent e) {
-	}
+	public void mouseMoved(MouseEvent e) {}
 }

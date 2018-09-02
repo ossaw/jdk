@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -121,14 +118,16 @@ import java.util.Objects;
  *
  * @see XIncludeNamespaceSupport
  */
-public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDFilter {
+public class XIncludeHandler implements XMLComponent, XMLDocumentFilter,
+		XMLDTDFilter {
 
 	public final static String XINCLUDE_DEFAULT_CONFIGURATION = "com.sun.org.apache.xerces.internal.parsers.XIncludeParserConfiguration";
 	public final static String HTTP_ACCEPT = "Accept";
 	public final static String HTTP_ACCEPT_LANGUAGE = "Accept-Language";
 	public final static String XPOINTER = "xpointer";
 
-	public final static String XINCLUDE_NS_URI = "http://www.w3.org/2001/XInclude".intern();
+	public final static String XINCLUDE_NS_URI = "http://www.w3.org/2001/XInclude"
+			.intern();
 	public final static String XINCLUDE_INCLUDE = "include".intern();
 	public final static String XINCLUDE_FALLBACK = "fallback".intern();
 
@@ -139,7 +138,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	public final static String XINCLUDE_ATTR_PARSE = "parse".intern();
 	public final static String XINCLUDE_ATTR_ENCODING = "encoding".intern();
 	public final static String XINCLUDE_ATTR_ACCEPT = "accept".intern();
-	public final static String XINCLUDE_ATTR_ACCEPT_LANGUAGE = "accept-language".intern();
+	public final static String XINCLUDE_ATTR_ACCEPT_LANGUAGE = "accept-language"
+			.intern();
 
 	// Top Level Information Items have [included] property in infoset
 	public final static String XINCLUDE_INCLUDED = "[included]".intern();
@@ -151,16 +151,19 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	// used for adding [base URI] attributes
 	public final static String XINCLUDE_BASE = "base".intern();
-	public final static QName XML_BASE_QNAME = new QName(XMLSymbols.PREFIX_XML, XINCLUDE_BASE,
-			(XMLSymbols.PREFIX_XML + ":" + XINCLUDE_BASE).intern(), NamespaceContext.XML_URI);
+	public final static QName XML_BASE_QNAME = new QName(XMLSymbols.PREFIX_XML,
+			XINCLUDE_BASE, (XMLSymbols.PREFIX_XML + ":" + XINCLUDE_BASE)
+					.intern(), NamespaceContext.XML_URI);
 
 	// used for adding [language] attributes
 	public final static String XINCLUDE_LANG = "lang".intern();
-	public final static QName XML_LANG_QNAME = new QName(XMLSymbols.PREFIX_XML, XINCLUDE_LANG,
-			(XMLSymbols.PREFIX_XML + ":" + XINCLUDE_LANG).intern(), NamespaceContext.XML_URI);
+	public final static QName XML_LANG_QNAME = new QName(XMLSymbols.PREFIX_XML,
+			XINCLUDE_LANG, (XMLSymbols.PREFIX_XML + ":" + XINCLUDE_LANG)
+					.intern(), NamespaceContext.XML_URI);
 
-	public final static QName NEW_NS_ATTR_QNAME = new QName(XMLSymbols.PREFIX_XMLNS, "",
-			XMLSymbols.PREFIX_XMLNS + ":", NamespaceContext.XMLNS_URI);
+	public final static QName NEW_NS_ATTR_QNAME = new QName(
+			XMLSymbols.PREFIX_XMLNS, "", XMLSymbols.PREFIX_XMLNS + ":",
+			NamespaceContext.XMLNS_URI);
 
 	// Processing States
 	private final static int STATE_NORMAL_PROCESSING = 1;
@@ -229,15 +232,17 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	protected static final String XML_SECURITY_PROPERTY_MANAGER = Constants.XML_SECURITY_PROPERTY_MANAGER;
 
 	/** Recognized features. */
-	private static final String[] RECOGNIZED_FEATURES = { ALLOW_UE_AND_NOTATION_EVENTS,
-			XINCLUDE_FIXUP_BASE_URIS, XINCLUDE_FIXUP_LANGUAGE };
+	private static final String[] RECOGNIZED_FEATURES = {
+			ALLOW_UE_AND_NOTATION_EVENTS, XINCLUDE_FIXUP_BASE_URIS,
+			XINCLUDE_FIXUP_LANGUAGE };
 
 	/** Feature defaults. */
-	private static final Boolean[] FEATURE_DEFAULTS = { Boolean.TRUE, Boolean.TRUE, Boolean.TRUE };
+	private static final Boolean[] FEATURE_DEFAULTS = { Boolean.TRUE,
+			Boolean.TRUE, Boolean.TRUE };
 
 	/** Recognized properties. */
-	private static final String[] RECOGNIZED_PROPERTIES = { ERROR_REPORTER, ENTITY_RESOLVER,
-			SECURITY_MANAGER, BUFFER_SIZE };
+	private static final String[] RECOGNIZED_PROPERTIES = { ERROR_REPORTER,
+			ENTITY_RESOLVER, SECURITY_MANAGER, BUFFER_SIZE };
 
 	/** Property defaults. */
 	private static final Object[] PROPERTY_DEFAULTS = { null, null, null,
@@ -381,10 +386,12 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	// XMLComponent methods
 
 	@Override
-	public void reset(XMLComponentManager componentManager) throws XNIException {
+	public void reset(XMLComponentManager componentManager)
+			throws XNIException {
 		fNamespaceContext = null;
 		fDepth = 0;
-		fResultDepth = isRootDocument() ? 0 : fParentXIncludeHandler.getResultDepth();
+		fResultDepth = isRootDocument() ? 0
+				: fParentXIncludeHandler.getResultDepth();
 		fNotations.clear();
 		fUnparsedEntities.clear();
 		fParentRelativeURI = null;
@@ -427,26 +434,32 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		fNeedCopyFeatures = true;
 
 		try {
-			fSendUEAndNotationEvents = componentManager.getFeature(ALLOW_UE_AND_NOTATION_EVENTS);
+			fSendUEAndNotationEvents = componentManager.getFeature(
+					ALLOW_UE_AND_NOTATION_EVENTS);
 			if (fChildConfig != null) {
-				fChildConfig.setFeature(ALLOW_UE_AND_NOTATION_EVENTS, fSendUEAndNotationEvents);
+				fChildConfig.setFeature(ALLOW_UE_AND_NOTATION_EVENTS,
+						fSendUEAndNotationEvents);
 			}
 		} catch (XMLConfigurationException e) {
 		}
 
 		try {
-			fFixupBaseURIs = componentManager.getFeature(XINCLUDE_FIXUP_BASE_URIS);
+			fFixupBaseURIs = componentManager.getFeature(
+					XINCLUDE_FIXUP_BASE_URIS);
 			if (fChildConfig != null) {
-				fChildConfig.setFeature(XINCLUDE_FIXUP_BASE_URIS, fFixupBaseURIs);
+				fChildConfig.setFeature(XINCLUDE_FIXUP_BASE_URIS,
+						fFixupBaseURIs);
 			}
 		} catch (XMLConfigurationException e) {
 			fFixupBaseURIs = true;
 		}
 
 		try {
-			fFixupLanguage = componentManager.getFeature(XINCLUDE_FIXUP_LANGUAGE);
+			fFixupLanguage = componentManager.getFeature(
+					XINCLUDE_FIXUP_LANGUAGE);
 			if (fChildConfig != null) {
-				fChildConfig.setFeature(XINCLUDE_FIXUP_LANGUAGE, fFixupLanguage);
+				fChildConfig.setFeature(XINCLUDE_FIXUP_LANGUAGE,
+						fFixupLanguage);
 			}
 		} catch (XMLConfigurationException e) {
 			fFixupLanguage = true;
@@ -454,7 +467,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 		// Get symbol table.
 		try {
-			SymbolTable value = (SymbolTable) componentManager.getProperty(SYMBOL_TABLE);
+			SymbolTable value = (SymbolTable) componentManager.getProperty(
+					SYMBOL_TABLE);
 			if (value != null) {
 				fSymbolTable = value;
 				if (fChildConfig != null) {
@@ -522,10 +536,12 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 					fChildConfig.setProperty(BUFFER_SIZE, value);
 				}
 			} else {
-				fBufferSize = ((Integer) getPropertyDefault(BUFFER_SIZE)).intValue();
+				fBufferSize = ((Integer) getPropertyDefault(BUFFER_SIZE))
+						.intValue();
 			}
 		} catch (XMLConfigurationException e) {
-			fBufferSize = ((Integer) getPropertyDefault(BUFFER_SIZE)).intValue();
+			fBufferSize = ((Integer) getPropertyDefault(BUFFER_SIZE))
+					.intValue();
 		}
 
 		// Reset XML 1.0 text reader.
@@ -579,17 +595,20 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * not affect the operation of the component.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                  The feature identifier.
 	 * @param state
-	 *            The state of the feature.
+	 *                  The state of the feature.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 * @throws SAXNotSupportedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 */
 	@Override
-	public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
+	public void setFeature(String featureId, boolean state)
+			throws XMLConfigurationException {
 		if (featureId.equals(ALLOW_UE_AND_NOTATION_EVENTS)) {
 			fSendUEAndNotationEvents = state;
 		}
@@ -617,17 +636,20 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * do not affect the operation of the component.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 * @param value
-	 *            The value of the property.
+	 *                   The value of the property.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 * @throws SAXNotSupportedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 */
 	@Override
-	public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
+	public void setProperty(String propertyId, Object value)
+			throws XMLConfigurationException {
 		if (propertyId.equals(SYMBOL_TABLE)) {
 			fSymbolTable = (SymbolTable) value;
 			if (fChildConfig != null) {
@@ -692,7 +714,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * not want to report a default value for this feature.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                  The feature identifier.
 	 *
 	 * @since Xerces 2.2.0
 	 */
@@ -711,7 +733,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * not want to report a default value for this property.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 *
 	 * @since Xerces 2.2.0
 	 */
@@ -748,14 +770,17 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 */
 	@Override
 	public void startDocument(XMLLocator locator, String encoding,
-			NamespaceContext namespaceContext, Augmentations augs) throws XNIException {
+			NamespaceContext namespaceContext, Augmentations augs)
+			throws XNIException {
 
 		// we do this to ensure that the proper location is reported in errors
 		// otherwise, the locator from the root document would always be used
 		fErrorReporter.setDocumentLocator(locator);
 
-		if (!isRootDocument() && fParentXIncludeHandler.searchForRecursiveIncludes(locator)) {
-			reportFatalError("RecursiveInclude", new Object[] { locator.getExpandedSystemId() });
+		if (!isRootDocument() && fParentXIncludeHandler
+				.searchForRecursiveIncludes(locator)) {
+			reportFatalError("RecursiveInclude", new Object[] { locator
+					.getExpandedSystemId() });
 		}
 
 		if (!(namespaceContext instanceof XIncludeNamespaceSupport)) {
@@ -779,13 +804,14 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		saveLanguage(fCurrentLanguage);
 
 		if (isRootDocument() && fDocumentHandler != null) {
-			fDocumentHandler.startDocument(locator, encoding, namespaceContext, augs);
+			fDocumentHandler.startDocument(locator, encoding, namespaceContext,
+					augs);
 		}
 	}
 
 	@Override
-	public void xmlDecl(String version, String encoding, String standalone, Augmentations augs)
-			throws XNIException {
+	public void xmlDecl(String version, String encoding, String standalone,
+			Augmentations augs) throws XNIException {
 		fIsXML11 = "1.1".equals(version);
 		if (isRootDocument() && fDocumentHandler != null) {
 			fDocumentHandler.xmlDecl(version, encoding, standalone, augs);
@@ -793,17 +819,19 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	}
 
 	@Override
-	public void doctypeDecl(String rootElement, String publicId, String systemId,
-			Augmentations augs) throws XNIException {
+	public void doctypeDecl(String rootElement, String publicId,
+			String systemId, Augmentations augs) throws XNIException {
 		if (isRootDocument() && fDocumentHandler != null) {
 			fDocumentHandler.doctypeDecl(rootElement, publicId, systemId, augs);
 		}
 	}
 
 	@Override
-	public void comment(XMLString text, Augmentations augs) throws XNIException {
+	public void comment(XMLString text, Augmentations augs)
+			throws XNIException {
 		if (!fInDTD) {
-			if (fDocumentHandler != null && getState() == STATE_NORMAL_PROCESSING) {
+			if (fDocumentHandler != null
+					&& getState() == STATE_NORMAL_PROCESSING) {
 				fDepth++;
 				augs = modifyAugmentations(augs);
 				fDocumentHandler.comment(text, augs);
@@ -815,10 +843,11 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	}
 
 	@Override
-	public void processingInstruction(String target, XMLString data, Augmentations augs)
-			throws XNIException {
+	public void processingInstruction(String target, XMLString data,
+			Augmentations augs) throws XNIException {
 		if (!fInDTD) {
-			if (fDocumentHandler != null && getState() == STATE_NORMAL_PROCESSING) {
+			if (fDocumentHandler != null
+					&& getState() == STATE_NORMAL_PROCESSING) {
 				// we need to change the depth like this so that
 				// modifyAugmentations() works
 				fDepth++;
@@ -832,8 +861,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	}
 
 	@Override
-	public void startElement(QName element, XMLAttributes attributes, Augmentations augs)
-			throws XNIException {
+	public void startElement(QName element, XMLAttributes attributes,
+			Augmentations augs) throws XNIException {
 		fDepth++;
 		int lastState = getState(fDepth - 1);
 		// If the last two states were fallback then this must be a descendant
@@ -841,7 +870,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		// child which isn't a fallback. The specification says we should ignore
 		// such elements
 		// and their children.
-		if (lastState == STATE_EXPECT_FALLBACK && getState(fDepth - 2) == STATE_EXPECT_FALLBACK) {
+		if (lastState == STATE_EXPECT_FALLBACK && getState(fDepth
+				- 2) == STATE_EXPECT_FALLBACK) {
 			setState(STATE_IGNORE);
 		} else {
 			setState(lastState);
@@ -865,10 +895,12 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 			this.handleFallbackElement();
 		} else if (hasXIncludeNamespace(element)) {
 			if (getSawInclude(fDepth - 1)) {
-				reportFatalError("IncludeChild", new Object[] { element.rawname });
+				reportFatalError("IncludeChild", new Object[] {
+						element.rawname });
 			}
 			if (getSawFallback(fDepth - 1)) {
-				reportFatalError("FallbackChild", new Object[] { element.rawname });
+				reportFatalError("FallbackChild", new Object[] {
+						element.rawname });
 			}
 			if (getState() == STATE_NORMAL_PROCESSING) {
 				if (fResultDepth++ == 0) {
@@ -893,8 +925,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	}
 
 	@Override
-	public void emptyElement(QName element, XMLAttributes attributes, Augmentations augs)
-			throws XNIException {
+	public void emptyElement(QName element, XMLAttributes attributes,
+			Augmentations augs) throws XNIException {
 		fDepth++;
 		int lastState = getState(fDepth - 1);
 		// If the last two states were fallback then this must be a descendant
@@ -902,7 +934,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		// child which isn't a fallback. The specification says we should ignore
 		// such elements
 		// and their children.
-		if (lastState == STATE_EXPECT_FALLBACK && getState(fDepth - 2) == STATE_EXPECT_FALLBACK) {
+		if (lastState == STATE_EXPECT_FALLBACK && getState(fDepth
+				- 2) == STATE_EXPECT_FALLBACK) {
 			setState(STATE_IGNORE);
 		} else {
 			setState(lastState);
@@ -920,16 +953,19 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 			if (success) {
 				setState(STATE_IGNORE);
 			} else {
-				reportFatalError("NoFallback", new Object[] { attributes.getValue(null, "href") });
+				reportFatalError("NoFallback", new Object[] { attributes
+						.getValue(null, "href") });
 			}
 		} else if (isFallbackElement(element)) {
 			this.handleFallbackElement();
 		} else if (hasXIncludeNamespace(element)) {
 			if (getSawInclude(fDepth - 1)) {
-				reportFatalError("IncludeChild", new Object[] { element.rawname });
+				reportFatalError("IncludeChild", new Object[] {
+						element.rawname });
 			}
 			if (getSawFallback(fDepth - 1)) {
-				reportFatalError("FallbackChild", new Object[] { element.rawname });
+				reportFatalError("FallbackChild", new Object[] {
+						element.rawname });
 			}
 			if (getState() == STATE_NORMAL_PROCESSING) {
 				if (fResultDepth == 0) {
@@ -964,14 +1000,16 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	}
 
 	@Override
-	public void endElement(QName element, Augmentations augs) throws XNIException {
+	public void endElement(QName element, Augmentations augs)
+			throws XNIException {
 
 		if (isIncludeElement(element)) {
 			// if we're ending an include element, and we were expecting a
 			// fallback
 			// we check to see if the children of this include element contained
 			// a fallback
-			if (getState() == STATE_EXPECT_FALLBACK && !getSawFallback(fDepth + 1)) {
+			if (getState() == STATE_EXPECT_FALLBACK && !getSawFallback(fDepth
+					+ 1)) {
 				reportFatalError("NoFallback", new Object[] { "unknown" });
 			}
 		}
@@ -1010,28 +1048,32 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	}
 
 	@Override
-	public void startGeneralEntity(String name, XMLResourceIdentifier resId, String encoding,
-			Augmentations augs) throws XNIException {
+	public void startGeneralEntity(String name, XMLResourceIdentifier resId,
+			String encoding, Augmentations augs) throws XNIException {
 		if (getState() == STATE_NORMAL_PROCESSING) {
 			if (fResultDepth == 0) {
-				if (augs != null && Boolean.TRUE.equals(augs.getItem(Constants.ENTITY_SKIPPED))) {
+				if (augs != null && Boolean.TRUE.equals(augs.getItem(
+						Constants.ENTITY_SKIPPED))) {
 					reportFatalError("UnexpandedEntityReferenceIllegal");
 				}
 			} else if (fDocumentHandler != null) {
-				fDocumentHandler.startGeneralEntity(name, resId, encoding, augs);
+				fDocumentHandler.startGeneralEntity(name, resId, encoding,
+						augs);
 			}
 		}
 	}
 
 	@Override
-	public void textDecl(String version, String encoding, Augmentations augs) throws XNIException {
+	public void textDecl(String version, String encoding, Augmentations augs)
+			throws XNIException {
 		if (fDocumentHandler != null && getState() == STATE_NORMAL_PROCESSING) {
 			fDocumentHandler.textDecl(version, encoding, augs);
 		}
 	}
 
 	@Override
-	public void endGeneralEntity(String name, Augmentations augs) throws XNIException {
+	public void endGeneralEntity(String name, Augmentations augs)
+			throws XNIException {
 		if (fDocumentHandler != null && getState() == STATE_NORMAL_PROCESSING
 				&& fResultDepth != 0) {
 			fDocumentHandler.endGeneralEntity(name, augs);
@@ -1039,7 +1081,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	}
 
 	@Override
-	public void characters(XMLString text, Augmentations augs) throws XNIException {
+	public void characters(XMLString text, Augmentations augs)
+			throws XNIException {
 		if (getState() == STATE_NORMAL_PROCESSING) {
 			if (fResultDepth == 0) {
 				checkWhitespace(text);
@@ -1055,7 +1098,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	}
 
 	@Override
-	public void ignorableWhitespace(XMLString text, Augmentations augs) throws XNIException {
+	public void ignorableWhitespace(XMLString text, Augmentations augs)
+			throws XNIException {
 		if (fDocumentHandler != null && getState() == STATE_NORMAL_PROCESSING
 				&& fResultDepth != 0) {
 			fDocumentHandler.ignorableWhitespace(text, augs);
@@ -1106,7 +1150,6 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#attributeDecl(java.
 	 * lang.String, java.lang.String, java.lang.String, java.lang.String[],
@@ -1115,26 +1158,27 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void attributeDecl(String elementName, String attributeName, String type,
-			String[] enumeration, String defaultType, XMLString defaultValue,
-			XMLString nonNormalizedDefaultValue, Augmentations augmentations) throws XNIException {
+	public void attributeDecl(String elementName, String attributeName,
+			String type, String[] enumeration, String defaultType,
+			XMLString defaultValue, XMLString nonNormalizedDefaultValue,
+			Augmentations augmentations) throws XNIException {
 		if (fDTDHandler != null) {
-			fDTDHandler.attributeDecl(elementName, attributeName, type, enumeration, defaultType,
-					defaultValue, nonNormalizedDefaultValue, augmentations);
+			fDTDHandler.attributeDecl(elementName, attributeName, type,
+					enumeration, defaultType, defaultValue,
+					nonNormalizedDefaultValue, augmentations);
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#elementDecl(java.
 	 * lang.String, java.lang.String,
 	 * com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void elementDecl(String name, String contentModel, Augmentations augmentations)
-			throws XNIException {
+	public void elementDecl(String name, String contentModel,
+			Augmentations augmentations) throws XNIException {
 		if (fDTDHandler != null) {
 			fDTDHandler.elementDecl(name, contentModel, augmentations);
 		}
@@ -1142,7 +1186,6 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#endAttlist(com.sun.
 	 * org.apache.xerces.internal.xni.Augmentations)
@@ -1156,13 +1199,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#endConditional(com.
 	 * sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void endConditional(Augmentations augmentations) throws XNIException {
+	public void endConditional(Augmentations augmentations)
+			throws XNIException {
 		if (fDTDHandler != null) {
 			fDTDHandler.endConditional(augmentations);
 		}
@@ -1170,7 +1213,6 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#endDTD(com.sun.org.
 	 * apache.xerces.internal.xni.Augmentations)
@@ -1185,13 +1227,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#endExternalSubset(
 	 * com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void endExternalSubset(Augmentations augmentations) throws XNIException {
+	public void endExternalSubset(Augmentations augmentations)
+			throws XNIException {
 		if (fDTDHandler != null) {
 			fDTDHandler.endExternalSubset(augmentations);
 		}
@@ -1199,13 +1241,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#endParameterEntity(
 	 * java.lang.String, com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void endParameterEntity(String name, Augmentations augmentations) throws XNIException {
+	public void endParameterEntity(String name, Augmentations augmentations)
+			throws XNIException {
 		if (fDTDHandler != null) {
 			fDTDHandler.endParameterEntity(name, augmentations);
 		}
@@ -1213,7 +1255,6 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#externalEntityDecl(
 	 * java.lang.String,
@@ -1221,8 +1262,9 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void externalEntityDecl(String name, XMLResourceIdentifier identifier,
-			Augmentations augmentations) throws XNIException {
+	public void externalEntityDecl(String name,
+			XMLResourceIdentifier identifier, Augmentations augmentations)
+			throws XNIException {
 		if (fDTDHandler != null) {
 			fDTDHandler.externalEntityDecl(name, identifier, augmentations);
 		}
@@ -1230,7 +1272,6 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#getDTDSource()
 	 */
 	@Override
@@ -1240,14 +1281,14 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#ignoredCharacters(
 	 * com.sun.org.apache.xerces.internal.xni.XMLString,
 	 * com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void ignoredCharacters(XMLString text, Augmentations augmentations) throws XNIException {
+	public void ignoredCharacters(XMLString text, Augmentations augmentations)
+			throws XNIException {
 		if (fDTDHandler != null) {
 			fDTDHandler.ignoredCharacters(text, augmentations);
 		}
@@ -1255,7 +1296,6 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#internalEntityDecl(
 	 * java.lang.String, com.sun.org.apache.xerces.internal.xni.XMLString,
@@ -1263,16 +1303,17 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void internalEntityDecl(String name, XMLString text, XMLString nonNormalizedText,
-			Augmentations augmentations) throws XNIException {
+	public void internalEntityDecl(String name, XMLString text,
+			XMLString nonNormalizedText, Augmentations augmentations)
+			throws XNIException {
 		if (fDTDHandler != null) {
-			fDTDHandler.internalEntityDecl(name, text, nonNormalizedText, augmentations);
+			fDTDHandler.internalEntityDecl(name, text, nonNormalizedText,
+					augmentations);
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#notationDecl(java.
 	 * lang.String,
@@ -1290,7 +1331,6 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#setDTDSource(com.sun
 	 * .org.apache.xerces.internal.xni.parser.XMLDTDSource)
@@ -1302,13 +1342,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#startAttlist(java.
 	 * lang.String, com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void startAttlist(String elementName, Augmentations augmentations) throws XNIException {
+	public void startAttlist(String elementName, Augmentations augmentations)
+			throws XNIException {
 		if (fDTDHandler != null) {
 			fDTDHandler.startAttlist(elementName, augmentations);
 		}
@@ -1316,13 +1356,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#startConditional(
 	 * short, com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void startConditional(short type, Augmentations augmentations) throws XNIException {
+	public void startConditional(short type, Augmentations augmentations)
+			throws XNIException {
 		if (fDTDHandler != null) {
 			fDTDHandler.startConditional(type, augmentations);
 		}
@@ -1330,14 +1370,14 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#startDTD(com.sun.org
 	 * .apache.xerces.internal.xni.XMLLocator,
 	 * com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void startDTD(XMLLocator locator, Augmentations augmentations) throws XNIException {
+	public void startDTD(XMLLocator locator, Augmentations augmentations)
+			throws XNIException {
 		fInDTD = true;
 		if (fDTDHandler != null) {
 			fDTDHandler.startDTD(locator, augmentations);
@@ -1346,15 +1386,14 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#startExternalSubset(
 	 * com.sun.org.apache.xerces.internal.xni.XMLResourceIdentifier,
 	 * com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void startExternalSubset(XMLResourceIdentifier identifier, Augmentations augmentations)
-			throws XNIException {
+	public void startExternalSubset(XMLResourceIdentifier identifier,
+			Augmentations augmentations) throws XNIException {
 		if (fDTDHandler != null) {
 			fDTDHandler.startExternalSubset(identifier, augmentations);
 		}
@@ -1362,7 +1401,6 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#startParameterEntity
 	 * (java.lang.String,
@@ -1370,16 +1408,17 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * java.lang.String, com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void startParameterEntity(String name, XMLResourceIdentifier identifier, String encoding,
+	public void startParameterEntity(String name,
+			XMLResourceIdentifier identifier, String encoding,
 			Augmentations augmentations) throws XNIException {
 		if (fDTDHandler != null) {
-			fDTDHandler.startParameterEntity(name, identifier, encoding, augmentations);
+			fDTDHandler.startParameterEntity(name, identifier, encoding,
+					augmentations);
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler#unparsedEntityDecl(
 	 * java.lang.String,
@@ -1387,17 +1426,18 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * java.lang.String, com.sun.org.apache.xerces.internal.xni.Augmentations)
 	 */
 	@Override
-	public void unparsedEntityDecl(String name, XMLResourceIdentifier identifier, String notation,
+	public void unparsedEntityDecl(String name,
+			XMLResourceIdentifier identifier, String notation,
 			Augmentations augmentations) throws XNIException {
 		this.addUnparsedEntity(name, identifier, notation, augmentations);
 		if (fDTDHandler != null) {
-			fDTDHandler.unparsedEntityDecl(name, identifier, notation, augmentations);
+			fDTDHandler.unparsedEntityDecl(name, identifier, notation,
+					augmentations);
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.parser.XMLDTDSource#getDTDHandler(
 	 * )
@@ -1409,7 +1449,6 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xni.parser.XMLDTDSource#setDTDHandler(
 	 * com.sun.org.apache.xerces.internal.xni.XMLDTDHandler)
@@ -1424,7 +1463,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	private void setErrorReporter(XMLErrorReporter reporter) {
 		fErrorReporter = reporter;
 		if (fErrorReporter != null) {
-			fErrorReporter.putMessageFormatter(XIncludeMessageFormatter.XINCLUDE_DOMAIN,
+			fErrorReporter.putMessageFormatter(
+					XIncludeMessageFormatter.XINCLUDE_DOMAIN,
 					fXIncludeMessageFormatter);
 			// this ensures the proper location is displayed in error messages
 			if (fDocLocation != null) {
@@ -1459,7 +1499,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		}
 	}
 
-	protected boolean handleIncludeElement(XMLAttributes attributes) throws XNIException {
+	protected boolean handleIncludeElement(XMLAttributes attributes)
+			throws XNIException {
 		if (getSawInclude(fDepth - 1)) {
 			reportFatalError("IncludeChild", new Object[] { XINCLUDE_INCLUDE });
 		}
@@ -1482,7 +1523,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		String parse = attributes.getValue(XINCLUDE_ATTR_PARSE);
 		String xpointer = attributes.getValue(XPOINTER);
 		String accept = attributes.getValue(XINCLUDE_ATTR_ACCEPT);
-		String acceptLanguage = attributes.getValue(XINCLUDE_ATTR_ACCEPT_LANGUAGE);
+		String acceptLanguage = attributes.getValue(
+				XINCLUDE_ATTR_ACCEPT_LANGUAGE);
 
 		if (parse == null) {
 			parse = XINCLUDE_PARSE_XML;
@@ -1496,10 +1538,12 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 			} else {
 				// When parse="xml" and an xpointer is specified treat
 				// all absences of the href attribute as a resource error.
-				Locale locale = (fErrorReporter != null) ? fErrorReporter.getLocale() : null;
+				Locale locale = (fErrorReporter != null) ? fErrorReporter
+						.getLocale() : null;
 				String reason = fXIncludeMessageFormatter.formatMessage(locale,
 						"XPointerStreamability", null);
-				reportResourceError("XMLResourceError", new Object[] { href, reason });
+				reportResourceError("XMLResourceError", new Object[] { href,
+						reason });
 				return false;
 			}
 		}
@@ -1514,7 +1558,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		try {
 			hrefURI = new URI(href, true);
 			if (hrefURI.getFragment() != null) {
-				reportFatalError("HrefFragmentIdentifierIllegal", new Object[] { href });
+				reportFatalError("HrefFragmentIdentifierIllegal", new Object[] {
+						href });
 			}
 		} catch (URI.MalformedURIException exc) {
 			String newHref = escapeHref(href);
@@ -1523,13 +1568,16 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 				try {
 					hrefURI = new URI(href, true);
 					if (hrefURI.getFragment() != null) {
-						reportFatalError("HrefFragmentIdentifierIllegal", new Object[] { href });
+						reportFatalError("HrefFragmentIdentifierIllegal",
+								new Object[] { href });
 					}
 				} catch (URI.MalformedURIException exc2) {
-					reportFatalError("HrefSyntacticallyInvalid", new Object[] { href });
+					reportFatalError("HrefSyntacticallyInvalid", new Object[] {
+							href });
 				}
 			} else {
-				reportFatalError("HrefSyntacticallyInvalid", new Object[] { href });
+				reportFatalError("HrefSyntacticallyInvalid", new Object[] {
+						href });
 			}
 		}
 
@@ -1547,23 +1595,28 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		XMLInputSource includedSource = null;
 		if (fEntityResolver != null) {
 			try {
-				XMLResourceIdentifier resourceIdentifier = new XMLResourceIdentifierImpl(null, href,
-						fCurrentBaseURI.getExpandedSystemId(), XMLEntityManager.expandSystemId(href,
-								fCurrentBaseURI.getExpandedSystemId(), false));
+				XMLResourceIdentifier resourceIdentifier = new XMLResourceIdentifierImpl(
+						null, href, fCurrentBaseURI.getExpandedSystemId(),
+						XMLEntityManager.expandSystemId(href, fCurrentBaseURI
+								.getExpandedSystemId(), false));
 
-				includedSource = fEntityResolver.resolveEntity(resourceIdentifier);
+				includedSource = fEntityResolver.resolveEntity(
+						resourceIdentifier);
 
-				if (includedSource != null && !(includedSource instanceof HTTPInputSource)
+				if (includedSource != null
+						&& !(includedSource instanceof HTTPInputSource)
 						&& (accept != null || acceptLanguage != null)
 						&& includedSource.getCharacterStream() == null
 						&& includedSource.getByteStream() == null) {
 
-					includedSource = createInputSource(includedSource.getPublicId(),
-							includedSource.getSystemId(), includedSource.getBaseSystemId(), accept,
+					includedSource = createInputSource(includedSource
+							.getPublicId(), includedSource.getSystemId(),
+							includedSource.getBaseSystemId(), accept,
 							acceptLanguage);
 				}
 			} catch (IOException e) {
-				reportResourceError("XMLResourceError", new Object[] { href, e.getMessage() });
+				reportResourceError("XMLResourceError", new Object[] { href, e
+						.getMessage() });
 				return false;
 			}
 		}
@@ -1572,11 +1625,11 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 			// setup an HTTPInputSource if either of the content negotation
 			// attributes were specified.
 			if (accept != null || acceptLanguage != null) {
-				includedSource = createInputSource(null, href,
-						fCurrentBaseURI.getExpandedSystemId(), accept, acceptLanguage);
+				includedSource = createInputSource(null, href, fCurrentBaseURI
+						.getExpandedSystemId(), accept, acceptLanguage);
 			} else {
-				includedSource = new XMLInputSource(null, href,
-						fCurrentBaseURI.getExpandedSystemId());
+				includedSource = new XMLInputSource(null, href, fCurrentBaseURI
+						.getExpandedSystemId());
 			}
 		}
 
@@ -1590,7 +1643,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 				if (xpointer != null)
 					parserName = "com.sun.org.apache.xerces.internal.parsers.XPointerParserConfiguration";
 
-				fChildConfig = (XMLParserConfiguration) ObjectFactory.newInstance(parserName, true);
+				fChildConfig = (XMLParserConfiguration) ObjectFactory
+						.newInstance(parserName, true);
 
 				// use the same symbol table, error reporter, entity resolver,
 				// security manager and buffer size.
@@ -1601,51 +1655,57 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 				if (fEntityResolver != null)
 					fChildConfig.setProperty(ENTITY_RESOLVER, fEntityResolver);
 				fChildConfig.setProperty(SECURITY_MANAGER, fSecurityManager);
-				fChildConfig.setProperty(XML_SECURITY_PROPERTY_MANAGER, fSecurityPropertyMgr);
+				fChildConfig.setProperty(XML_SECURITY_PROPERTY_MANAGER,
+						fSecurityPropertyMgr);
 				fChildConfig.setProperty(BUFFER_SIZE, new Integer(fBufferSize));
 
 				// features must be copied to child configuration
 				fNeedCopyFeatures = true;
 
 				// use the same namespace context
-				fChildConfig.setProperty(
-						Constants.XERCES_PROPERTY_PREFIX + Constants.NAMESPACE_CONTEXT_PROPERTY,
+				fChildConfig.setProperty(Constants.XERCES_PROPERTY_PREFIX
+						+ Constants.NAMESPACE_CONTEXT_PROPERTY,
 						fNamespaceContext);
 
-				fChildConfig.setFeature(XINCLUDE_FIXUP_BASE_URIS, fFixupBaseURIs);
+				fChildConfig.setFeature(XINCLUDE_FIXUP_BASE_URIS,
+						fFixupBaseURIs);
 
-				fChildConfig.setFeature(XINCLUDE_FIXUP_LANGUAGE, fFixupLanguage);
+				fChildConfig.setFeature(XINCLUDE_FIXUP_LANGUAGE,
+						fFixupLanguage);
 
 				// If the xpointer attribute is present
 				if (xpointer != null) {
 
-					XPointerHandler newHandler = (XPointerHandler) fChildConfig.getProperty(
-							Constants.XERCES_PROPERTY_PREFIX + Constants.XPOINTER_HANDLER_PROPERTY);
+					XPointerHandler newHandler = (XPointerHandler) fChildConfig
+							.getProperty(Constants.XERCES_PROPERTY_PREFIX
+									+ Constants.XPOINTER_HANDLER_PROPERTY);
 
 					fXPtrProcessor = newHandler;
 
 					// ???
 					((XPointerHandler) fXPtrProcessor).setProperty(
-							Constants.XERCES_PROPERTY_PREFIX + Constants.NAMESPACE_CONTEXT_PROPERTY,
+							Constants.XERCES_PROPERTY_PREFIX
+									+ Constants.NAMESPACE_CONTEXT_PROPERTY,
 							fNamespaceContext);
 
-					((XPointerHandler) fXPtrProcessor).setProperty(XINCLUDE_FIXUP_BASE_URIS,
-							fFixupBaseURIs);
+					((XPointerHandler) fXPtrProcessor).setProperty(
+							XINCLUDE_FIXUP_BASE_URIS, fFixupBaseURIs);
 
-					((XPointerHandler) fXPtrProcessor).setProperty(XINCLUDE_FIXUP_LANGUAGE,
-							fFixupLanguage);
+					((XPointerHandler) fXPtrProcessor).setProperty(
+							XINCLUDE_FIXUP_LANGUAGE, fFixupLanguage);
 
 					if (fErrorReporter != null)
-						((XPointerHandler) fXPtrProcessor).setProperty(ERROR_REPORTER,
-								fErrorReporter);
+						((XPointerHandler) fXPtrProcessor).setProperty(
+								ERROR_REPORTER, fErrorReporter);
 					// ???
 
 					newHandler.setParent(this);
 					newHandler.setDocumentHandler(this.getDocumentHandler());
 					fXPointerChildConfig = fChildConfig;
 				} else {
-					XIncludeHandler newHandler = (XIncludeHandler) fChildConfig.getProperty(
-							Constants.XERCES_PROPERTY_PREFIX + Constants.XINCLUDE_HANDLER_PROPERTY);
+					XIncludeHandler newHandler = (XIncludeHandler) fChildConfig
+							.getProperty(Constants.XERCES_PROPERTY_PREFIX
+									+ Constants.XINCLUDE_HANDLER_PROPERTY);
 
 					newHandler.setParent(this);
 					newHandler.setDocumentHandler(this.getDocumentHandler());
@@ -1659,11 +1719,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 				// Parse the XPointer expression
 				try {
-					((XPointerProcessor) fXPtrProcessor).parseXPointer(xpointer);
+					((XPointerProcessor) fXPtrProcessor).parseXPointer(
+							xpointer);
 
 				} catch (XNIException ex) {
 					// report the XPointer error as a resource error
-					reportResourceError("XMLResourceError", new Object[] { href, ex.getMessage() });
+					reportResourceError("XMLResourceError", new Object[] { href,
+							ex.getMessage() });
 					return false;
 				}
 			} else {
@@ -1689,12 +1751,15 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 				// If the xpointer attribute is present
 				if (xpointer != null) {
 					// and it was not resolved
-					if (!((XPointerProcessor) fXPtrProcessor).isXPointerResolved()) {
-						Locale locale = (fErrorReporter != null) ? fErrorReporter.getLocale()
+					if (!((XPointerProcessor) fXPtrProcessor)
+							.isXPointerResolved()) {
+						Locale locale = (fErrorReporter != null)
+								? fErrorReporter.getLocale()
 								: null;
-						String reason = fXIncludeMessageFormatter.formatMessage(locale,
-								"XPointerResolutionUnsuccessful", null);
-						reportResourceError("XMLResourceError", new Object[] { href, reason });
+						String reason = fXIncludeMessageFormatter.formatMessage(
+								locale, "XPointerResolutionUnsuccessful", null);
+						reportResourceError("XMLResourceError", new Object[] {
+								href, reason });
 						// use the fallback
 						return false;
 					}
@@ -1704,7 +1769,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 				if (fErrorReporter != null) {
 					fErrorReporter.setDocumentLocator(fDocLocation);
 				}
-				reportFatalError("XMLParseError", new Object[] { href, e.getMessage() });
+				reportFatalError("XMLParseError", new Object[] { href, e
+						.getMessage() });
 			} catch (IOException e) {
 				// necessary to make sure proper location is reported in errors
 				if (fErrorReporter != null) {
@@ -1715,7 +1781,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 				// that it was an invalid XML file. So we send a resource error,
 				// not a
 				// fatal error.
-				reportResourceError("XMLResourceError", new Object[] { href, e.getMessage() });
+				reportResourceError("XMLResourceError", new Object[] { href, e
+						.getMessage() });
 				return false;
 			} finally {
 				fNamespaceContext.popScope();
@@ -1730,16 +1797,16 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 				// Setup the appropriate text reader.
 				if (!fIsXML11) {
 					if (fXInclude10TextReader == null) {
-						fXInclude10TextReader = new XIncludeTextReader(includedSource, this,
-								fBufferSize);
+						fXInclude10TextReader = new XIncludeTextReader(
+								includedSource, this, fBufferSize);
 					} else {
 						fXInclude10TextReader.setInputSource(includedSource);
 					}
 					textReader = fXInclude10TextReader;
 				} else {
 					if (fXInclude11TextReader == null) {
-						fXInclude11TextReader = new XInclude11TextReader(includedSource, this,
-								fBufferSize);
+						fXInclude11TextReader = new XInclude11TextReader(
+								includedSource, this, fBufferSize);
 					} else {
 						fXInclude11TextReader.setInputSource(includedSource);
 					}
@@ -1750,21 +1817,23 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 			}
 			// encoding errors
 			catch (MalformedByteSequenceException ex) {
-				fErrorReporter.reportError(ex.getDomain(), ex.getKey(), ex.getArguments(),
-						XMLErrorReporter.SEVERITY_FATAL_ERROR);
+				fErrorReporter.reportError(ex.getDomain(), ex.getKey(), ex
+						.getArguments(), XMLErrorReporter.SEVERITY_FATAL_ERROR);
 			} catch (CharConversionException e) {
-				fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "CharConversionFailure",
-						null, XMLErrorReporter.SEVERITY_FATAL_ERROR);
+				fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
+						"CharConversionFailure", null,
+						XMLErrorReporter.SEVERITY_FATAL_ERROR);
 			} catch (IOException e) {
-				reportResourceError("TextResourceError", new Object[] { href, e.getMessage() });
+				reportResourceError("TextResourceError", new Object[] { href, e
+						.getMessage() });
 				return false;
 			} finally {
 				if (textReader != null) {
 					try {
 						textReader.close();
 					} catch (IOException e) {
-						reportResourceError("TextResourceError",
-								new Object[] { href, e.getMessage() });
+						reportResourceError("TextResourceError", new Object[] {
+								href, e.getMessage() });
 						return false;
 					}
 				}
@@ -1780,7 +1849,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * "http://www.w3.org/2001/XInclude"
 	 * 
 	 * @param element
-	 *            the element to check
+	 *                the element to check
 	 * @return true if the element has the namespace
 	 *         "http://www.w3.org/2001/XInclude"
 	 */
@@ -1788,8 +1857,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		// REVISIT: The namespace of this element should be bound
 		// already. Why are we looking it up from the namespace
 		// context? -- mrglavas
-		return element.uri == XINCLUDE_NS_URI
-				|| fNamespaceContext.getURI(element.prefix) == XINCLUDE_NS_URI;
+		return element.uri == XINCLUDE_NS_URI || fNamespaceContext.getURI(
+				element.prefix) == XINCLUDE_NS_URI;
 	}
 
 	/**
@@ -1797,12 +1866,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * have the XInclude namespace, and a local name of "include".
 	 *
 	 * @param element
-	 *            the element to check
+	 *                the element to check
 	 * @return true if the element is an &lt;include&gt; element
 	 * @see #hasXIncludeNamespace(QName)
 	 */
 	protected boolean isIncludeElement(QName element) {
-		return element.localpart.equals(XINCLUDE_INCLUDE) && hasXIncludeNamespace(element);
+		return element.localpart.equals(XINCLUDE_INCLUDE)
+				&& hasXIncludeNamespace(element);
 	}
 
 	/**
@@ -1810,12 +1880,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * have the XInclude namespace, and a local name of "fallback".
 	 *
 	 * @param element
-	 *            the element to check
+	 *                the element to check
 	 * @return true if the element is an &lt;fallback; element
 	 * @see #hasXIncludeNamespace(QName)
 	 */
 	protected boolean isFallbackElement(QName element) {
-		return element.localpart.equals(XINCLUDE_FALLBACK) && hasXIncludeNamespace(element);
+		return element.localpart.equals(XINCLUDE_FALLBACK)
+				&& hasXIncludeNamespace(element);
 	}
 
 	/**
@@ -1859,7 +1930,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 */
 	protected boolean sameLanguageAsIncludeParent() {
 		String parentLanguage = getIncludeParentLanguage();
-		return parentLanguage != null && parentLanguage.equalsIgnoreCase(fCurrentLanguage);
+		return parentLanguage != null && parentLanguage.equalsIgnoreCase(
+				fCurrentLanguage);
 	}
 
 	/**
@@ -1867,7 +1939,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * included in the current stack.
 	 * 
 	 * @param includedSource
-	 *            the source to check for inclusion
+	 *                       the source to check for inclusion
 	 * @return true if the source has already been included
 	 */
 	protected boolean searchForRecursiveIncludes(XMLLocator includedSource) {
@@ -1876,8 +1948,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		if (includedSystemId == null) {
 			try {
 				includedSystemId = XMLEntityManager.expandSystemId(
-						includedSource.getLiteralSystemId(), includedSource.getBaseSystemId(),
-						false);
+						includedSource.getLiteralSystemId(), includedSource
+								.getBaseSystemId(), false);
 			} catch (MalformedURIException e) {
 				reportFatalError("ExpandedSystemId");
 			}
@@ -1890,7 +1962,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		if (fParentXIncludeHandler == null) {
 			return false;
 		}
-		return fParentXIncludeHandler.searchForRecursiveIncludes(includedSource);
+		return fParentXIncludeHandler.searchForRecursiveIncludes(
+				includedSource);
 	}
 
 	/**
@@ -1901,7 +1974,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * @return true if the current element is a top level included item
 	 */
 	protected boolean isTopLevelIncludedItem() {
-		return isTopLevelIncludedItemViaInclude() || isTopLevelIncludedItemViaFallback();
+		return isTopLevelIncludedItemViaInclude()
+				|| isTopLevelIncludedItemViaFallback();
 	}
 
 	protected boolean isTopLevelIncludedItemViaInclude() {
@@ -1958,7 +2032,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 					// the same URIs to even get to this place
 					uri = fCurrentBaseURI.getExpandedSystemId();
 				}
-				int index = attributes.addAttribute(XML_BASE_QNAME, XMLSymbols.fCDATASymbol, uri);
+				int index = attributes.addAttribute(XML_BASE_QNAME,
+						XMLSymbols.fCDATASymbol, uri);
 				attributes.setSpecified(index, true);
 			}
 
@@ -1970,8 +2045,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 				if (attributes == null) {
 					attributes = new XMLAttributesImpl();
 				}
-				int index = attributes.addAttribute(XML_LANG_QNAME, XMLSymbols.fCDATASymbol,
-						fCurrentLanguage);
+				int index = attributes.addAttribute(XML_LANG_QNAME,
+						XMLSymbols.fCDATASymbol, fCurrentLanguage);
 				attributes.setSpecified(index, true);
 			}
 
@@ -1980,7 +2055,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 			Enumeration inscopeNS = fNamespaceContext.getAllPrefixes();
 			while (inscopeNS.hasMoreElements()) {
 				String prefix = (String) inscopeNS.nextElement();
-				String parentURI = fNamespaceContext.getURIFromIncludeParent(prefix);
+				String parentURI = fNamespaceContext.getURIFromIncludeParent(
+						prefix);
 				String uri = fNamespaceContext.getURI(prefix);
 				if (parentURI != uri && attributes != null) {
 					if (prefix == XMLSymbols.EMPTY_STRING) {
@@ -1994,8 +2070,9 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 							ns.prefix = null;
 							ns.localpart = XMLSymbols.PREFIX_XMLNS;
 							ns.rawname = XMLSymbols.PREFIX_XMLNS;
-							int index = attributes.addAttribute(ns, XMLSymbols.fCDATASymbol,
-									uri != null ? uri : XMLSymbols.EMPTY_STRING);
+							int index = attributes.addAttribute(ns,
+									XMLSymbols.fCDATASymbol, uri != null ? uri
+											: XMLSymbols.EMPTY_STRING);
 							attributes.setSpecified(index, true);
 							// Need to re-declare this prefix in the current
 							// context
@@ -2004,7 +2081,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 							// start and end prefix mapping events. -- mrglavas
 							fNamespaceContext.declarePrefix(prefix, uri);
 						}
-					} else if (attributes.getValue(NamespaceContext.XMLNS_URI, prefix) == null) {
+					} else if (attributes.getValue(NamespaceContext.XMLNS_URI,
+							prefix) == null) {
 						if (attributes == null) {
 							attributes = new XMLAttributesImpl();
 						}
@@ -2012,10 +2090,11 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 						QName ns = (QName) NEW_NS_ATTR_QNAME.clone();
 						ns.localpart = prefix;
 						ns.rawname += prefix;
-						ns.rawname = (fSymbolTable != null) ? fSymbolTable.addSymbol(ns.rawname)
-								: ns.rawname.intern();
-						int index = attributes.addAttribute(ns, XMLSymbols.fCDATASymbol,
-								uri != null ? uri : XMLSymbols.EMPTY_STRING);
+						ns.rawname = (fSymbolTable != null) ? fSymbolTable
+								.addSymbol(ns.rawname) : ns.rawname.intern();
+						int index = attributes.addAttribute(ns,
+								XMLSymbols.fCDATASymbol, uri != null ? uri
+										: XMLSymbols.EMPTY_STRING);
 						attributes.setSpecified(index, true);
 						// Need to re-declare this prefix in the current context
 						// in order for the SAX parser to report the appropriate
@@ -2050,7 +2129,6 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 				 * this stage the value of the attribute is just a string. It
 				 * will be taken care of later in the pipeline, when the IDREFs
 				 * are actually resolved against IDs.
-				 *
 				 * if (type == XMLSymbols.fIDREFSymbol || type ==
 				 * XMLSymbols.fIDREFSSymbol) { }
 				 */
@@ -2080,7 +2158,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 			if (includeParentDepth == 0) {
 				if (fParentRelativeURI == null) {
-					fParentRelativeURI = fParentXIncludeHandler.getRelativeBaseURI();
+					fParentRelativeURI = fParentXIncludeHandler
+							.getRelativeBaseURI();
 				}
 				if (fParentRelativeURI.equals("")) {
 					return relativeURI;
@@ -2207,7 +2286,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * element is a top level included item.
 	 * 
 	 * @param augs
-	 *            the Augmentations to modify.
+	 *             the Augmentations to modify.
 	 * @return the modified Augmentations
 	 */
 	protected Augmentations modifyAugmentations(Augmentations augs) {
@@ -2220,12 +2299,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * included item.
 	 * 
 	 * @param augs
-	 *            the Augmentations to modify.
+	 *              the Augmentations to modify.
 	 * @param force
-	 *            whether to force modification
+	 *              whether to force modification
 	 * @return the modified Augmentations
 	 */
-	protected Augmentations modifyAugmentations(Augmentations augs, boolean force) {
+	protected Augmentations modifyAugmentations(Augmentations augs,
+			boolean force) {
 		if (force || isTopLevelIncludedItem()) {
 			if (augs == null) {
 				augs = new AugmentationsImpl();
@@ -2331,8 +2411,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
 	private void reportError(String key, Object[] args, short severity) {
 		if (fErrorReporter != null) {
-			fErrorReporter.reportError(XIncludeMessageFormatter.XINCLUDE_DOMAIN, key, args,
-					severity);
+			fErrorReporter.reportError(XIncludeMessageFormatter.XINCLUDE_DOMAIN,
+					key, args, severity);
 		}
 		// we won't worry about when error reporter is null, since there should
 		// always be
@@ -2357,14 +2437,16 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * Caches an unparsed entity.
 	 * 
 	 * @param name
-	 *            the name of the unparsed entity
+	 *                      the name of the unparsed entity
 	 * @param identifier
-	 *            the location of the unparsed entity
+	 *                      the location of the unparsed entity
 	 * @param augmentations
-	 *            any Augmentations that were on the original unparsed entity
-	 *            declaration
+	 *                      any Augmentations that were on the original unparsed
+	 *                      entity
+	 *                      declaration
 	 */
-	protected void addUnparsedEntity(String name, XMLResourceIdentifier identifier, String notation,
+	protected void addUnparsedEntity(String name,
+			XMLResourceIdentifier identifier, String notation,
 			Augmentations augmentations) {
 		UnparsedEntity ent = new UnparsedEntity();
 		ent.name = name;
@@ -2381,12 +2463,12 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * Caches a notation.
 	 * 
 	 * @param name
-	 *            the name of the notation
+	 *                      the name of the notation
 	 * @param identifier
-	 *            the location of the notation
+	 *                      the location of the notation
 	 * @param augmentations
-	 *            any Augmentations that were on the original notation
-	 *            declaration
+	 *                      any Augmentations that were on the original notation
+	 *                      declaration
 	 */
 	protected void addNotation(String name, XMLResourceIdentifier identifier,
 			Augmentations augmentations) {
@@ -2408,7 +2490,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * conflicts, and sent to the root DTDHandler.
 	 *
 	 * @param entName
-	 *            the name of the UnparsedEntity to check
+	 *                the name of the UnparsedEntity to check
 	 */
 	protected void checkUnparsedEntity(String entName) {
 		UnparsedEntity ent = new UnparsedEntity();
@@ -2429,7 +2511,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * DTDHandler
 	 *
 	 * @param notName
-	 *            the name of the Notation to check
+	 *                the name of the Notation to check
 	 */
 	protected void checkNotation(String notName) {
 		Notation not = new Notation();
@@ -2458,16 +2540,21 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 				// Calling unparsedEntityDecl() will add the entity to our local
 				// store,
 				// and also send the unparsed entity to the DTDHandler
-				XMLResourceIdentifier id = new XMLResourceIdentifierImpl(ent.publicId, ent.systemId,
-						ent.baseURI, ent.expandedSystemId);
-				addUnparsedEntity(ent.name, id, ent.notation, ent.augmentations);
+				XMLResourceIdentifier id = new XMLResourceIdentifierImpl(
+						ent.publicId, ent.systemId, ent.baseURI,
+						ent.expandedSystemId);
+				addUnparsedEntity(ent.name, id, ent.notation,
+						ent.augmentations);
 				if (fSendUEAndNotationEvents && fDTDHandler != null) {
-					fDTDHandler.unparsedEntityDecl(ent.name, id, ent.notation, ent.augmentations);
+					fDTDHandler.unparsedEntityDecl(ent.name, id, ent.notation,
+							ent.augmentations);
 				}
 			} else {
-				UnparsedEntity localEntity = (UnparsedEntity) fUnparsedEntities.get(index);
+				UnparsedEntity localEntity = (UnparsedEntity) fUnparsedEntities
+						.get(index);
 				if (!ent.isDuplicate(localEntity)) {
-					reportFatalError("NonDuplicateUnparsedEntity", new Object[] { ent.name });
+					reportFatalError("NonDuplicateUnparsedEntity",
+							new Object[] { ent.name });
 				}
 			}
 		} else {
@@ -2488,8 +2575,9 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 			int index = fNotations.indexOf(not);
 			if (index == -1) {
 				// There is no notation with the same name that we have sent.
-				XMLResourceIdentifier id = new XMLResourceIdentifierImpl(not.publicId, not.systemId,
-						not.baseURI, not.expandedSystemId);
+				XMLResourceIdentifier id = new XMLResourceIdentifierImpl(
+						not.publicId, not.systemId, not.baseURI,
+						not.expandedSystemId);
 				addNotation(not.name, id, not.augmentations);
 				if (fSendUEAndNotationEvents && fDTDHandler != null) {
 					fDTDHandler.notationDecl(not.name, id, not.augmentations);
@@ -2497,7 +2585,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 			} else {
 				Notation localNotation = (Notation) fNotations.get(index);
 				if (!not.isDuplicate(localNotation)) {
-					reportFatalError("NonDuplicateNotation", new Object[] { not.name });
+					reportFatalError("NonDuplicateNotation", new Object[] {
+							not.name });
 				}
 			}
 		} else {
@@ -2509,7 +2598,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * Checks whether the string only contains white space characters.
 	 *
 	 * @param value
-	 *            the text to check
+	 *              the text to check
 	 */
 	private void checkWhitespace(XMLString value) {
 		int end = value.offset + value.length;
@@ -2553,22 +2642,24 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	// It would be nice if we didn't have to repeat code like this, but there's
 	// no interface that has
 	// setFeature() and addRecognizedFeatures() that the objects have in common.
-	protected void copyFeatures(XMLComponentManager from, ParserConfigurationSettings to) {
-		Enumeration features = Constants.getXercesFeatures();
-		copyFeatures1(features, Constants.XERCES_FEATURE_PREFIX, from, to);
-		features = Constants.getSAXFeatures();
-		copyFeatures1(features, Constants.SAX_FEATURE_PREFIX, from, to);
-	}
-
-	protected void copyFeatures(XMLComponentManager from, XMLParserConfiguration to) {
-		Enumeration features = Constants.getXercesFeatures();
-		copyFeatures1(features, Constants.XERCES_FEATURE_PREFIX, from, to);
-		features = Constants.getSAXFeatures();
-		copyFeatures1(features, Constants.SAX_FEATURE_PREFIX, from, to);
-	}
-
-	private void copyFeatures1(Enumeration features, String featurePrefix, XMLComponentManager from,
+	protected void copyFeatures(XMLComponentManager from,
 			ParserConfigurationSettings to) {
+		Enumeration features = Constants.getXercesFeatures();
+		copyFeatures1(features, Constants.XERCES_FEATURE_PREFIX, from, to);
+		features = Constants.getSAXFeatures();
+		copyFeatures1(features, Constants.SAX_FEATURE_PREFIX, from, to);
+	}
+
+	protected void copyFeatures(XMLComponentManager from,
+			XMLParserConfiguration to) {
+		Enumeration features = Constants.getXercesFeatures();
+		copyFeatures1(features, Constants.XERCES_FEATURE_PREFIX, from, to);
+		features = Constants.getSAXFeatures();
+		copyFeatures1(features, Constants.SAX_FEATURE_PREFIX, from, to);
+	}
+
+	private void copyFeatures1(Enumeration features, String featurePrefix,
+			XMLComponentManager from, ParserConfigurationSettings to) {
 		while (features.hasMoreElements()) {
 			String featureId = featurePrefix + (String) features.nextElement();
 
@@ -2583,8 +2674,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		}
 	}
 
-	private void copyFeatures1(Enumeration features, String featurePrefix, XMLComponentManager from,
-			XMLParserConfiguration to) {
+	private void copyFeatures1(Enumeration features, String featurePrefix,
+			XMLComponentManager from, XMLParserConfiguration to) {
 		while (features.hasMoreElements()) {
 			String featureId = featurePrefix + (String) features.nextElement();
 			boolean value = from.getFeature(featureId);
@@ -2613,8 +2704,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		// Useful for searching Vectors for notations with the same name
 		@Override
 		public boolean equals(Object obj) {
-			return obj == this
-					|| obj instanceof Notation && Objects.equals(name, ((Notation) obj).name);
+			return obj == this || obj instanceof Notation && Objects.equals(
+					name, ((Notation) obj).name);
 		}
 
 		@Override
@@ -2632,8 +2723,9 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		public boolean isDuplicate(Object obj) {
 			if (obj != null && obj instanceof Notation) {
 				Notation other = (Notation) obj;
-				return Objects.equals(name, other.name) && Objects.equals(publicId, other.publicId)
-						&& Objects.equals(expandedSystemId, other.expandedSystemId);
+				return Objects.equals(name, other.name) && Objects.equals(
+						publicId, other.publicId) && Objects.equals(
+								expandedSystemId, other.expandedSystemId);
 			}
 			return false;
 		}
@@ -2655,8 +2747,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		// Useful for searching Vectors for entities with the same name
 		@Override
 		public boolean equals(Object obj) {
-			return obj == this || obj instanceof UnparsedEntity
-					&& Objects.equals(name, ((UnparsedEntity) obj).name);
+			return obj == this || obj instanceof UnparsedEntity && Objects
+					.equals(name, ((UnparsedEntity) obj).name);
 		}
 
 		@Override
@@ -2674,8 +2766,9 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 		public boolean isDuplicate(Object obj) {
 			if (obj != null && obj instanceof UnparsedEntity) {
 				UnparsedEntity other = (UnparsedEntity) obj;
-				return Objects.equals(name, other.name) && Objects.equals(publicId, other.publicId)
-						&& Objects.equals(expandedSystemId, other.expandedSystemId)
+				return Objects.equals(name, other.name) && Objects.equals(
+						publicId, other.publicId) && Objects.equals(
+								expandedSystemId, other.expandedSystemId)
 						&& Objects.equals(notation, other.notation);
 			}
 			return false;
@@ -2714,7 +2807,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * Saves the given language on the top of the stack.
 	 *
 	 * @param lanaguage
-	 *            the language to push onto the stack.
+	 *                  the language to push onto the stack.
 	 */
 	protected void saveLanguage(String language) {
 		fLanguageScope.push(fDepth);
@@ -2759,7 +2852,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * by merged the literal system IDs.
 	 * 
 	 * @param depth
-	 *            the depth at which to start creating the relative URI
+	 *              the depth at which to start creating the relative URI
 	 * @return a relative URI to convert the base URI at the given depth to the
 	 *         current base URI
 	 */
@@ -2809,13 +2902,16 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * URI into effect.
 	 */
 	protected void processXMLBaseAttributes(XMLAttributes attributes) {
-		String baseURIValue = attributes.getValue(NamespaceContext.XML_URI, "base");
+		String baseURIValue = attributes.getValue(NamespaceContext.XML_URI,
+				"base");
 		if (baseURIValue != null) {
 			try {
-				String expandedValue = XMLEntityManager.expandSystemId(baseURIValue,
-						fCurrentBaseURI.getExpandedSystemId(), false);
+				String expandedValue = XMLEntityManager.expandSystemId(
+						baseURIValue, fCurrentBaseURI.getExpandedSystemId(),
+						false);
 				fCurrentBaseURI.setLiteralSystemId(baseURIValue);
-				fCurrentBaseURI.setBaseSystemId(fCurrentBaseURI.getExpandedSystemId());
+				fCurrentBaseURI.setBaseSystemId(fCurrentBaseURI
+						.getExpandedSystemId());
 				fCurrentBaseURI.setExpandedSystemId(expandedValue);
 
 				// push the new values on the stack
@@ -2843,7 +2939,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	 * header.
 	 *
 	 * @param value
-	 *            string to check
+	 *              string to check
 	 * @return <code>true</code> if the given string would be valid in an HTTP
 	 *         header
 	 */
@@ -2861,15 +2957,18 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	/**
 	 * Returns a new <code>XMLInputSource</code> from the given parameters.
 	 */
-	private XMLInputSource createInputSource(String publicId, String systemId, String baseSystemId,
-			String accept, String acceptLanguage) {
+	private XMLInputSource createInputSource(String publicId, String systemId,
+			String baseSystemId, String accept, String acceptLanguage) {
 
-		HTTPInputSource httpSource = new HTTPInputSource(publicId, systemId, baseSystemId);
+		HTTPInputSource httpSource = new HTTPInputSource(publicId, systemId,
+				baseSystemId);
 		if (accept != null && accept.length() > 0) {
-			httpSource.setHTTPRequestProperty(XIncludeHandler.HTTP_ACCEPT, accept);
+			httpSource.setHTTPRequestProperty(XIncludeHandler.HTTP_ACCEPT,
+					accept);
 		}
 		if (acceptLanguage != null && acceptLanguage.length() > 0) {
-			httpSource.setHTTPRequestProperty(XIncludeHandler.HTTP_ACCEPT_LANGUAGE, acceptLanguage);
+			httpSource.setHTTPRequestProperty(
+					XIncludeHandler.HTTP_ACCEPT_LANGUAGE, acceptLanguage);
 		}
 		return httpSource;
 	}
@@ -2880,8 +2979,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 	private static final char gAfterEscaping1[] = new char[128];
 	// the second hex character if a character needs to be escaped
 	private static final char gAfterEscaping2[] = new char[128];
-	private static final char[] gHexChs = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A',
-			'B', 'C', 'D', 'E', 'F' };
+	private static final char[] gHexChs = { '0', '1', '2', '3', '4', '5', '6',
+			'7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 	// initialize the above 3 arrays
 	static {
 		char[] escChs = { ' ', '<', '>', '"', '{', '}', '|', '\\', '^', '`' };
@@ -2944,7 +3043,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 			for (int j = i; j < len; ++j) {
 				ch = href.charAt(j);
 				if ((ch >= 0x20 && ch <= 0x7E) || (ch >= 0xA0 && ch <= 0xD7FF)
-						|| (ch >= 0xF900 && ch <= 0xFDCF) || (ch >= 0xFDF0 && ch <= 0xFFEF)) {
+						|| (ch >= 0xF900 && ch <= 0xFDCF) || (ch >= 0xFDF0
+								&& ch <= 0xFFEF)) {
 					continue;
 				}
 				if (XMLChar.isHighSurrogate(ch) && ++j < len) {

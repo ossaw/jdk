@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2007-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -133,7 +102,8 @@ import java.util.Objects;
  *
  * @since 1.8
  */
-public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalDate, Serializable {
+public final class LocalDate implements Temporal, TemporalAdjuster,
+		ChronoLocalDate, Serializable {
 
 	/**
 	 * The minimum supported {@code LocalDate}, '-999999999-01-01'. This could
@@ -158,7 +128,8 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * The number of days from year zero to year 1970. There are five 400 year
 	 * cycles from year zero to 2000. There are 7 leap years from 1970 to 2000.
 	 */
-	static final long DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5L) - (30L * 365L + 7L);
+	static final long DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5L) - (30L * 365L
+			+ 7L);
 
 	/**
 	 * The year.
@@ -202,7 +173,7 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * testing because the clock is hard-coded.
 	 *
 	 * @param zone
-	 *            the zone ID to use, not null
+	 *             the zone ID to use, not null
 	 * @return the current date using the system clock, not null
 	 */
 	public static LocalDate now(ZoneId zone) {
@@ -218,7 +189,7 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * injection}.
 	 *
 	 * @param clock
-	 *            the clock to use, not null
+	 *              the clock to use, not null
 	 * @return the current date, not null
 	 */
 	public static LocalDate now(Clock clock) {
@@ -242,15 +213,16 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * exception will be thrown.
 	 *
 	 * @param year
-	 *            the year to represent, from MIN_YEAR to MAX_YEAR
+	 *                   the year to represent, from MIN_YEAR to MAX_YEAR
 	 * @param month
-	 *            the month-of-year to represent, not null
+	 *                   the month-of-year to represent, not null
 	 * @param dayOfMonth
-	 *            the day-of-month to represent, from 1 to 31
+	 *                   the day-of-month to represent, from 1 to 31
 	 * @return the local date, not null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range, or if the
-	 *             day-of-month is invalid for the month-year
+	 *                           if the value of any field is out of range, or
+	 *                           if the
+	 *                           day-of-month is invalid for the month-year
 	 */
 	public static LocalDate of(int year, Month month, int dayOfMonth) {
 		YEAR.checkValidValue(year);
@@ -267,16 +239,17 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * exception will be thrown.
 	 *
 	 * @param year
-	 *            the year to represent, from MIN_YEAR to MAX_YEAR
+	 *                   the year to represent, from MIN_YEAR to MAX_YEAR
 	 * @param month
-	 *            the month-of-year to represent, from 1 (January) to 12
-	 *            (December)
+	 *                   the month-of-year to represent, from 1 (January) to 12
+	 *                   (December)
 	 * @param dayOfMonth
-	 *            the day-of-month to represent, from 1 to 31
+	 *                   the day-of-month to represent, from 1 to 31
 	 * @return the local date, not null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range, or if the
-	 *             day-of-month is invalid for the month-year
+	 *                           if the value of any field is out of range, or
+	 *                           if the
+	 *                           day-of-month is invalid for the month-year
 	 */
 	public static LocalDate of(int year, int month, int dayOfMonth) {
 		YEAR.checkValidValue(year);
@@ -294,21 +267,22 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * be thrown.
 	 *
 	 * @param year
-	 *            the year to represent, from MIN_YEAR to MAX_YEAR
+	 *                  the year to represent, from MIN_YEAR to MAX_YEAR
 	 * @param dayOfYear
-	 *            the day-of-year to represent, from 1 to 366
+	 *                  the day-of-year to represent, from 1 to 366
 	 * @return the local date, not null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range, or if the
-	 *             day-of-year is invalid for the year
+	 *                           if the value of any field is out of range, or
+	 *                           if the
+	 *                           day-of-year is invalid for the year
 	 */
 	public static LocalDate ofYearDay(int year, int dayOfYear) {
 		YEAR.checkValidValue(year);
 		DAY_OF_YEAR.checkValidValue(dayOfYear);
 		boolean leap = IsoChronology.INSTANCE.isLeapYear(year);
 		if (dayOfYear == 366 && leap == false) {
-			throw new DateTimeException(
-					"Invalid date 'DayOfYear 366' as '" + year + "' is not a leap year");
+			throw new DateTimeException("Invalid date 'DayOfYear 366' as '"
+					+ year + "' is not a leap year");
 		}
 		Month moy = Month.of((dayOfYear - 1) / 31 + 1);
 		int monthEnd = moy.firstDayOfYear(leap) + moy.length(leap) - 1;
@@ -328,10 +302,11 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * days where day 0 is 1970-01-01. Negative numbers represent earlier days.
 	 *
 	 * @param epochDay
-	 *            the Epoch Day to convert, based on the epoch 1970-01-01
+	 *                 the Epoch Day to convert, based on the epoch 1970-01-01
 	 * @return the local date, not null
 	 * @throws DateTimeException
-	 *             if the epoch day exceeds the supported date range
+	 *                           if the epoch day exceeds the supported date
+	 *                           range
 	 */
 	public static LocalDate ofEpochDay(long epochDay) {
 		long zeroDay = epochDay + DAYS_0000_TO_1970;
@@ -346,11 +321,13 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 			zeroDay += -adjustCycles * DAYS_PER_CYCLE;
 		}
 		long yearEst = (400 * zeroDay + 591) / DAYS_PER_CYCLE;
-		long doyEst = zeroDay - (365 * yearEst + yearEst / 4 - yearEst / 100 + yearEst / 400);
+		long doyEst = zeroDay - (365 * yearEst + yearEst / 4 - yearEst / 100
+				+ yearEst / 400);
 		if (doyEst < 0) {
 			// fix estimate
 			yearEst--;
-			doyEst = zeroDay - (365 * yearEst + yearEst / 4 - yearEst / 100 + yearEst / 400);
+			doyEst = zeroDay - (365 * yearEst + yearEst / 4 - yearEst / 100
+					+ yearEst / 400);
 		}
 		yearEst += adjust; // reset any negative year
 		int marchDoy0 = (int) doyEst;
@@ -383,17 +360,19 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * reference, {@code LocalDate::from}.
 	 *
 	 * @param temporal
-	 *            the temporal object to convert, not null
+	 *                 the temporal object to convert, not null
 	 * @return the local date, not null
 	 * @throws DateTimeException
-	 *             if unable to convert to a {@code LocalDate}
+	 *                           if unable to convert to a {@code LocalDate}
 	 */
 	public static LocalDate from(TemporalAccessor temporal) {
 		Objects.requireNonNull(temporal, "temporal");
 		LocalDate date = temporal.query(TemporalQueries.localDate());
 		if (date == null) {
-			throw new DateTimeException("Unable to obtain LocalDate from TemporalAccessor: "
-					+ temporal + " of type " + temporal.getClass().getName());
+			throw new DateTimeException(
+					"Unable to obtain LocalDate from TemporalAccessor: "
+							+ temporal + " of type " + temporal.getClass()
+									.getName());
 		}
 		return date;
 	}
@@ -407,10 +386,10 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * {@link java.time.format.DateTimeFormatter#ISO_LOCAL_DATE}.
 	 *
 	 * @param text
-	 *            the text to parse such as "2007-12-03", not null
+	 *             the text to parse such as "2007-12-03", not null
 	 * @return the parsed local date, not null
 	 * @throws DateTimeParseException
-	 *             if the text cannot be parsed
+	 *                                if the text cannot be parsed
 	 */
 	public static LocalDate parse(CharSequence text) {
 		return parse(text, DateTimeFormatter.ISO_LOCAL_DATE);
@@ -423,14 +402,15 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * The text is parsed using the formatter, returning a date.
 	 *
 	 * @param text
-	 *            the text to parse, not null
+	 *                  the text to parse, not null
 	 * @param formatter
-	 *            the formatter to use, not null
+	 *                  the formatter to use, not null
 	 * @return the parsed local date, not null
 	 * @throws DateTimeParseException
-	 *             if the text cannot be parsed
+	 *                                if the text cannot be parsed
 	 */
-	public static LocalDate parse(CharSequence text, DateTimeFormatter formatter) {
+	public static LocalDate parse(CharSequence text,
+			DateTimeFormatter formatter) {
 		Objects.requireNonNull(formatter, "formatter");
 		return formatter.parse(text, LocalDate::from);
 	}
@@ -440,36 +420,39 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * Creates a local date from the year, month and day fields.
 	 *
 	 * @param year
-	 *            the year to represent, validated from MIN_YEAR to MAX_YEAR
+	 *                   the year to represent, validated from MIN_YEAR to
+	 *                   MAX_YEAR
 	 * @param month
-	 *            the month-of-year to represent, from 1 to 12, validated
+	 *                   the month-of-year to represent, from 1 to 12, validated
 	 * @param dayOfMonth
-	 *            the day-of-month to represent, validated from 1 to 31
+	 *                   the day-of-month to represent, validated from 1 to 31
 	 * @return the local date, not null
 	 * @throws DateTimeException
-	 *             if the day-of-month is invalid for the month-year
+	 *                           if the day-of-month is invalid for the
+	 *                           month-year
 	 */
 	private static LocalDate create(int year, int month, int dayOfMonth) {
 		if (dayOfMonth > 28) {
 			int dom = 31;
 			switch (month) {
-			case 2:
-				dom = (IsoChronology.INSTANCE.isLeapYear(year) ? 29 : 28);
-				break;
-			case 4:
-			case 6:
-			case 9:
-			case 11:
-				dom = 30;
-				break;
+				case 2:
+					dom = (IsoChronology.INSTANCE.isLeapYear(year) ? 29 : 28);
+					break;
+				case 4:
+				case 6:
+				case 9:
+				case 11:
+					dom = 30;
+					break;
 			}
 			if (dayOfMonth > dom) {
 				if (dayOfMonth == 29) {
 					throw new DateTimeException(
-							"Invalid date 'February 29' as '" + year + "' is not a leap year");
+							"Invalid date 'February 29' as '" + year
+									+ "' is not a leap year");
 				} else {
-					throw new DateTimeException(
-							"Invalid date '" + Month.of(month).name() + " " + dayOfMonth + "'");
+					throw new DateTimeException("Invalid date '" + Month.of(
+							month).name() + " " + dayOfMonth + "'");
 				}
 			}
 		}
@@ -480,24 +463,26 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * Resolves the date, resolving days past the end of month.
 	 *
 	 * @param year
-	 *            the year to represent, validated from MIN_YEAR to MAX_YEAR
+	 *              the year to represent, validated from MIN_YEAR to MAX_YEAR
 	 * @param month
-	 *            the month-of-year to represent, validated from 1 to 12
+	 *              the month-of-year to represent, validated from 1 to 12
 	 * @param day
-	 *            the day-of-month to represent, validated from 1 to 31
+	 *              the day-of-month to represent, validated from 1 to 31
 	 * @return the resolved date, not null
 	 */
-	private static LocalDate resolvePreviousValid(int year, int month, int day) {
+	private static LocalDate resolvePreviousValid(int year, int month,
+			int day) {
 		switch (month) {
-		case 2:
-			day = Math.min(day, IsoChronology.INSTANCE.isLeapYear(year) ? 29 : 28);
-			break;
-		case 4:
-		case 6:
-		case 9:
-		case 11:
-			day = Math.min(day, 30);
-			break;
+			case 2:
+				day = Math.min(day, IsoChronology.INSTANCE.isLeapYear(year) ? 29
+						: 28);
+				break;
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				day = Math.min(day, 30);
+				break;
 		}
 		return new LocalDate(year, month, day);
 	}
@@ -506,12 +491,13 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * Constructor, previously validated.
 	 *
 	 * @param year
-	 *            the year to represent, from MIN_YEAR to MAX_YEAR
+	 *                   the year to represent, from MIN_YEAR to MAX_YEAR
 	 * @param month
-	 *            the month-of-year to represent, not null
+	 *                   the month-of-year to represent, not null
 	 * @param dayOfMonth
-	 *            the day-of-month to represent, valid for year-month, from 1 to
-	 *            31
+	 *                   the day-of-month to represent, valid for year-month,
+	 *                   from 1 to
+	 *                   31
 	 */
 	private LocalDate(int year, int month, int dayOfMonth) {
 		this.year = year;
@@ -554,7 +540,7 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * determined by the field.
 	 *
 	 * @param field
-	 *            the field to check, null returns false
+	 *              the field to check, null returns false
 	 * @return true if the field is supported on this date, false if not
 	 */
 	@Override // override for Javadoc
@@ -590,7 +576,7 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * determined by the unit.
 	 *
 	 * @param unit
-	 *            the unit to check, null returns false
+	 *             the unit to check, null returns false
 	 * @return true if the unit can be added/subtracted, false if not
 	 */
 	@Override // override for Javadoc
@@ -619,12 +605,13 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * determined by the field.
 	 *
 	 * @param field
-	 *            the field to query the range for, not null
+	 *              the field to query the range for, not null
 	 * @return the range of valid values for the field, not null
 	 * @throws DateTimeException
-	 *             if the range for the field cannot be obtained
+	 *                                          if the range for the field
+	 *                                          cannot be obtained
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the field is not supported
+	 *                                          if the field is not supported
 	 */
 	@Override
 	public ValueRange range(TemporalField field) {
@@ -632,20 +619,21 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 			ChronoField f = (ChronoField) field;
 			if (f.isDateBased()) {
 				switch (f) {
-				case DAY_OF_MONTH:
-					return ValueRange.of(1, lengthOfMonth());
-				case DAY_OF_YEAR:
-					return ValueRange.of(1, lengthOfYear());
-				case ALIGNED_WEEK_OF_MONTH:
-					return ValueRange.of(1,
-							getMonth() == Month.FEBRUARY && isLeapYear() == false ? 4 : 5);
-				case YEAR_OF_ERA:
-					return (getYear() <= 0 ? ValueRange.of(1, Year.MAX_VALUE + 1)
-							: ValueRange.of(1, Year.MAX_VALUE));
+					case DAY_OF_MONTH:
+						return ValueRange.of(1, lengthOfMonth());
+					case DAY_OF_YEAR:
+						return ValueRange.of(1, lengthOfYear());
+					case ALIGNED_WEEK_OF_MONTH:
+						return ValueRange.of(1, getMonth() == Month.FEBRUARY
+								&& isLeapYear() == false ? 4 : 5);
+					case YEAR_OF_ERA:
+						return (getYear() <= 0 ? ValueRange.of(1, Year.MAX_VALUE
+								+ 1) : ValueRange.of(1, Year.MAX_VALUE));
 				}
 				return field.range();
 			}
-			throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
+			throw new UnsupportedTemporalTypeException("Unsupported field: "
+					+ field);
 		}
 		return field.rangeRefinedBy(this);
 	}
@@ -671,16 +659,19 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * and what the value represents, is determined by the field.
 	 *
 	 * @param field
-	 *            the field to get, not null
+	 *              the field to get, not null
 	 * @return the value for the field
 	 * @throws DateTimeException
-	 *             if a value for the field cannot be obtained or the value is
-	 *             outside the range of valid values for the field
+	 *                                          if a value for the field cannot
+	 *                                          be obtained or the value is
+	 *                                          outside the range of valid
+	 *                                          values for the field
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the field is not supported or the range of values exceeds
-	 *             an {@code int}
+	 *                                          if the field is not supported or
+	 *                                          the range of values exceeds
+	 *                                          an {@code int}
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override // override for Javadoc and performance
 	public int get(TemporalField field) {
@@ -708,14 +699,15 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * and what the value represents, is determined by the field.
 	 *
 	 * @param field
-	 *            the field to get, not null
+	 *              the field to get, not null
 	 * @return the value for the field
 	 * @throws DateTimeException
-	 *             if a value for the field cannot be obtained
+	 *                                          if a value for the field cannot
+	 *                                          be obtained
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the field is not supported
+	 *                                          if the field is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public long getLong(TemporalField field) {
@@ -733,36 +725,37 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 
 	private int get0(TemporalField field) {
 		switch ((ChronoField) field) {
-		case DAY_OF_WEEK:
-			return getDayOfWeek().getValue();
-		case ALIGNED_DAY_OF_WEEK_IN_MONTH:
-			return ((day - 1) % 7) + 1;
-		case ALIGNED_DAY_OF_WEEK_IN_YEAR:
-			return ((getDayOfYear() - 1) % 7) + 1;
-		case DAY_OF_MONTH:
-			return day;
-		case DAY_OF_YEAR:
-			return getDayOfYear();
-		case EPOCH_DAY:
-			throw new UnsupportedTemporalTypeException(
-					"Invalid field 'EpochDay' for get() method, use getLong() instead");
-		case ALIGNED_WEEK_OF_MONTH:
-			return ((day - 1) / 7) + 1;
-		case ALIGNED_WEEK_OF_YEAR:
-			return ((getDayOfYear() - 1) / 7) + 1;
-		case MONTH_OF_YEAR:
-			return month;
-		case PROLEPTIC_MONTH:
-			throw new UnsupportedTemporalTypeException(
-					"Invalid field 'ProlepticMonth' for get() method, use getLong() instead");
-		case YEAR_OF_ERA:
-			return (year >= 1 ? year : 1 - year);
-		case YEAR:
-			return year;
-		case ERA:
-			return (year >= 1 ? 1 : 0);
+			case DAY_OF_WEEK:
+				return getDayOfWeek().getValue();
+			case ALIGNED_DAY_OF_WEEK_IN_MONTH:
+				return ((day - 1) % 7) + 1;
+			case ALIGNED_DAY_OF_WEEK_IN_YEAR:
+				return ((getDayOfYear() - 1) % 7) + 1;
+			case DAY_OF_MONTH:
+				return day;
+			case DAY_OF_YEAR:
+				return getDayOfYear();
+			case EPOCH_DAY:
+				throw new UnsupportedTemporalTypeException(
+						"Invalid field 'EpochDay' for get() method, use getLong() instead");
+			case ALIGNED_WEEK_OF_MONTH:
+				return ((day - 1) / 7) + 1;
+			case ALIGNED_WEEK_OF_YEAR:
+				return ((getDayOfYear() - 1) / 7) + 1;
+			case MONTH_OF_YEAR:
+				return month;
+			case PROLEPTIC_MONTH:
+				throw new UnsupportedTemporalTypeException(
+						"Invalid field 'ProlepticMonth' for get() method, use getLong() instead");
+			case YEAR_OF_ERA:
+				return (year >= 1 ? year : 1 - year);
+			case YEAR:
+				return year;
+			case ERA:
+				return (year >= 1 ? 1 : 0);
 		}
-		throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
+		throw new UnsupportedTemporalTypeException("Unsupported field: "
+				+ field);
 	}
 
 	private long getProlepticMonth() {
@@ -930,15 +923,15 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	@Override
 	public int lengthOfMonth() {
 		switch (month) {
-		case 2:
-			return (isLeapYear() ? 29 : 28);
-		case 4:
-		case 6:
-		case 9:
-		case 11:
-			return 30;
-		default:
-			return 31;
+			case 2:
+				return (isLeapYear() ? 29 : 28);
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				return 30;
+			default:
+				return 31;
 		}
 	}
 
@@ -991,13 +984,13 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param adjuster
-	 *            the adjuster to use, not null
+	 *                 the adjuster to use, not null
 	 * @return a {@code LocalDate} based on {@code this} with the adjustment
 	 *         made, not null
 	 * @throws DateTimeException
-	 *             if the adjustment cannot be made
+	 *                             if the adjustment cannot be made
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public LocalDate with(TemporalAdjuster adjuster) {
@@ -1104,17 +1097,17 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param field
-	 *            the field to set in the result, not null
+	 *                 the field to set in the result, not null
 	 * @param newValue
-	 *            the new value of the field in the result
+	 *                 the new value of the field in the result
 	 * @return a {@code LocalDate} based on {@code this} with the specified
 	 *         field set, not null
 	 * @throws DateTimeException
-	 *             if the field cannot be set
+	 *                                          if the field cannot be set
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the field is not supported
+	 *                                          if the field is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public LocalDate with(TemporalField field, long newValue) {
@@ -1122,34 +1115,39 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 			ChronoField f = (ChronoField) field;
 			f.checkValidValue(newValue);
 			switch (f) {
-			case DAY_OF_WEEK:
-				return plusDays(newValue - getDayOfWeek().getValue());
-			case ALIGNED_DAY_OF_WEEK_IN_MONTH:
-				return plusDays(newValue - getLong(ALIGNED_DAY_OF_WEEK_IN_MONTH));
-			case ALIGNED_DAY_OF_WEEK_IN_YEAR:
-				return plusDays(newValue - getLong(ALIGNED_DAY_OF_WEEK_IN_YEAR));
-			case DAY_OF_MONTH:
-				return withDayOfMonth((int) newValue);
-			case DAY_OF_YEAR:
-				return withDayOfYear((int) newValue);
-			case EPOCH_DAY:
-				return LocalDate.ofEpochDay(newValue);
-			case ALIGNED_WEEK_OF_MONTH:
-				return plusWeeks(newValue - getLong(ALIGNED_WEEK_OF_MONTH));
-			case ALIGNED_WEEK_OF_YEAR:
-				return plusWeeks(newValue - getLong(ALIGNED_WEEK_OF_YEAR));
-			case MONTH_OF_YEAR:
-				return withMonth((int) newValue);
-			case PROLEPTIC_MONTH:
-				return plusMonths(newValue - getProlepticMonth());
-			case YEAR_OF_ERA:
-				return withYear((int) (year >= 1 ? newValue : 1 - newValue));
-			case YEAR:
-				return withYear((int) newValue);
-			case ERA:
-				return (getLong(ERA) == newValue ? this : withYear(1 - year));
+				case DAY_OF_WEEK:
+					return plusDays(newValue - getDayOfWeek().getValue());
+				case ALIGNED_DAY_OF_WEEK_IN_MONTH:
+					return plusDays(newValue - getLong(
+							ALIGNED_DAY_OF_WEEK_IN_MONTH));
+				case ALIGNED_DAY_OF_WEEK_IN_YEAR:
+					return plusDays(newValue - getLong(
+							ALIGNED_DAY_OF_WEEK_IN_YEAR));
+				case DAY_OF_MONTH:
+					return withDayOfMonth((int) newValue);
+				case DAY_OF_YEAR:
+					return withDayOfYear((int) newValue);
+				case EPOCH_DAY:
+					return LocalDate.ofEpochDay(newValue);
+				case ALIGNED_WEEK_OF_MONTH:
+					return plusWeeks(newValue - getLong(ALIGNED_WEEK_OF_MONTH));
+				case ALIGNED_WEEK_OF_YEAR:
+					return plusWeeks(newValue - getLong(ALIGNED_WEEK_OF_YEAR));
+				case MONTH_OF_YEAR:
+					return withMonth((int) newValue);
+				case PROLEPTIC_MONTH:
+					return plusMonths(newValue - getProlepticMonth());
+				case YEAR_OF_ERA:
+					return withYear((int) (year >= 1 ? newValue
+							: 1 - newValue));
+				case YEAR:
+					return withYear((int) newValue);
+				case ERA:
+					return (getLong(ERA) == newValue ? this
+							: withYear(1 - year));
 			}
-			throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
+			throw new UnsupportedTemporalTypeException("Unsupported field: "
+					+ field);
 		}
 		return field.adjustInto(this, newValue);
 	}
@@ -1164,11 +1162,11 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param year
-	 *            the year to set in the result, from MIN_YEAR to MAX_YEAR
+	 *             the year to set in the result, from MIN_YEAR to MAX_YEAR
 	 * @return a {@code LocalDate} based on this date with the requested year,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the year value is invalid
+	 *                           if the year value is invalid
 	 */
 	public LocalDate withYear(int year) {
 		if (this.year == year) {
@@ -1187,12 +1185,13 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param month
-	 *            the month-of-year to set in the result, from 1 (January) to 12
-	 *            (December)
+	 *              the month-of-year to set in the result, from 1 (January) to
+	 *              12
+	 *              (December)
 	 * @return a {@code LocalDate} based on this date with the requested month,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the month-of-year value is invalid
+	 *                           if the month-of-year value is invalid
 	 */
 	public LocalDate withMonth(int month) {
 		if (this.month == month) {
@@ -1210,12 +1209,13 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param dayOfMonth
-	 *            the day-of-month to set in the result, from 1 to 28-31
+	 *                   the day-of-month to set in the result, from 1 to 28-31
 	 * @return a {@code LocalDate} based on this date with the requested day,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the day-of-month value is invalid, or if the day-of-month
-	 *             is invalid for the month-year
+	 *                           if the day-of-month value is invalid, or if the
+	 *                           day-of-month
+	 *                           is invalid for the month-year
 	 */
 	public LocalDate withDayOfMonth(int dayOfMonth) {
 		if (this.day == dayOfMonth) {
@@ -1232,12 +1232,13 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param dayOfYear
-	 *            the day-of-year to set in the result, from 1 to 365-366
+	 *                  the day-of-year to set in the result, from 1 to 365-366
 	 * @return a {@code LocalDate} based on this date with the requested day,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the day-of-year value is invalid, or if the day-of-year is
-	 *             invalid for the year
+	 *                           if the day-of-year value is invalid, or if the
+	 *                           day-of-year is
+	 *                           invalid for the year
 	 */
 	public LocalDate withDayOfYear(int dayOfYear) {
 		if (this.getDayOfYear() == dayOfYear) {
@@ -1264,19 +1265,20 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToAdd
-	 *            the amount to add, not null
+	 *                    the amount to add, not null
 	 * @return a {@code LocalDate} based on this date with the addition made,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the addition cannot be made
+	 *                             if the addition cannot be made
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public LocalDate plus(TemporalAmount amountToAdd) {
 		if (amountToAdd instanceof Period) {
 			Period periodToAdd = (Period) amountToAdd;
-			return plusMonths(periodToAdd.toTotalMonths()).plusDays(periodToAdd.getDays());
+			return plusMonths(periodToAdd.toTotalMonths()).plusDays(periodToAdd
+					.getDays());
 		}
 		Objects.requireNonNull(amountToAdd, "amountToAdd");
 		return (LocalDate) amountToAdd.addTo(this);
@@ -1352,41 +1354,43 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToAdd
-	 *            the amount of the unit to add to the result, may be negative
+	 *                    the amount of the unit to add to the result, may be
+	 *                    negative
 	 * @param unit
-	 *            the unit of the amount to add, not null
+	 *                    the unit of the amount to add, not null
 	 * @return a {@code LocalDate} based on this date with the specified amount
 	 *         added, not null
 	 * @throws DateTimeException
-	 *             if the addition cannot be made
+	 *                                          if the addition cannot be made
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public LocalDate plus(long amountToAdd, TemporalUnit unit) {
 		if (unit instanceof ChronoUnit) {
 			ChronoUnit f = (ChronoUnit) unit;
 			switch (f) {
-			case DAYS:
-				return plusDays(amountToAdd);
-			case WEEKS:
-				return plusWeeks(amountToAdd);
-			case MONTHS:
-				return plusMonths(amountToAdd);
-			case YEARS:
-				return plusYears(amountToAdd);
-			case DECADES:
-				return plusYears(Math.multiplyExact(amountToAdd, 10));
-			case CENTURIES:
-				return plusYears(Math.multiplyExact(amountToAdd, 100));
-			case MILLENNIA:
-				return plusYears(Math.multiplyExact(amountToAdd, 1000));
-			case ERAS:
-				return with(ERA, Math.addExact(getLong(ERA), amountToAdd));
+				case DAYS:
+					return plusDays(amountToAdd);
+				case WEEKS:
+					return plusWeeks(amountToAdd);
+				case MONTHS:
+					return plusMonths(amountToAdd);
+				case YEARS:
+					return plusYears(amountToAdd);
+				case DECADES:
+					return plusYears(Math.multiplyExact(amountToAdd, 10));
+				case CENTURIES:
+					return plusYears(Math.multiplyExact(amountToAdd, 100));
+				case MILLENNIA:
+					return plusYears(Math.multiplyExact(amountToAdd, 1000));
+				case ERAS:
+					return with(ERA, Math.addExact(getLong(ERA), amountToAdd));
 			}
-			throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
+			throw new UnsupportedTemporalTypeException("Unsupported unit: "
+					+ unit);
 		}
 		return unit.addTo(this, amountToAdd);
 	}
@@ -1410,11 +1414,11 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param yearsToAdd
-	 *            the years to add, may be negative
+	 *                   the years to add, may be negative
 	 * @return a {@code LocalDate} based on this date with the years added, not
 	 *         null
 	 * @throws DateTimeException
-	 *             if the result exceeds the supported date range
+	 *                           if the result exceeds the supported date range
 	 */
 	public LocalDate plusYears(long yearsToAdd) {
 		if (yearsToAdd == 0) {
@@ -1443,11 +1447,11 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param monthsToAdd
-	 *            the months to add, may be negative
+	 *                    the months to add, may be negative
 	 * @return a {@code LocalDate} based on this date with the months added, not
 	 *         null
 	 * @throws DateTimeException
-	 *             if the result exceeds the supported date range
+	 *                           if the result exceeds the supported date range
 	 */
 	public LocalDate plusMonths(long monthsToAdd) {
 		if (monthsToAdd == 0) {
@@ -1474,11 +1478,11 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param weeksToAdd
-	 *            the weeks to add, may be negative
+	 *                   the weeks to add, may be negative
 	 * @return a {@code LocalDate} based on this date with the weeks added, not
 	 *         null
 	 * @throws DateTimeException
-	 *             if the result exceeds the supported date range
+	 *                           if the result exceeds the supported date range
 	 */
 	public LocalDate plusWeeks(long weeksToAdd) {
 		return plusDays(Math.multiplyExact(weeksToAdd, 7));
@@ -1497,11 +1501,11 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param daysToAdd
-	 *            the days to add, may be negative
+	 *                  the days to add, may be negative
 	 * @return a {@code LocalDate} based on this date with the days added, not
 	 *         null
 	 * @throws DateTimeException
-	 *             if the result exceeds the supported date range
+	 *                           if the result exceeds the supported date range
 	 */
 	public LocalDate plusDays(long daysToAdd) {
 		if (daysToAdd == 0) {
@@ -1529,20 +1533,20 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToSubtract
-	 *            the amount to subtract, not null
+	 *                         the amount to subtract, not null
 	 * @return a {@code LocalDate} based on this date with the subtraction made,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the subtraction cannot be made
+	 *                             if the subtraction cannot be made
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public LocalDate minus(TemporalAmount amountToSubtract) {
 		if (amountToSubtract instanceof Period) {
 			Period periodToSubtract = (Period) amountToSubtract;
-			return minusMonths(periodToSubtract.toTotalMonths())
-					.minusDays(periodToSubtract.getDays());
+			return minusMonths(periodToSubtract.toTotalMonths()).minusDays(
+					periodToSubtract.getDays());
 		}
 		Objects.requireNonNull(amountToSubtract, "amountToSubtract");
 		return (LocalDate) amountToSubtract.subtractFrom(this);
@@ -1563,23 +1567,25 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToSubtract
-	 *            the amount of the unit to subtract from the result, may be
-	 *            negative
+	 *                         the amount of the unit to subtract from the
+	 *                         result, may be
+	 *                         negative
 	 * @param unit
-	 *            the unit of the amount to subtract, not null
+	 *                         the unit of the amount to subtract, not null
 	 * @return a {@code LocalDate} based on this date with the specified amount
 	 *         subtracted, not null
 	 * @throws DateTimeException
-	 *             if the subtraction cannot be made
+	 *                                          if the subtraction cannot be
+	 *                                          made
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public LocalDate minus(long amountToSubtract, TemporalUnit unit) {
-		return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit).plus(1, unit)
-				: plus(-amountToSubtract, unit));
+		return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit)
+				.plus(1, unit) : plus(-amountToSubtract, unit));
 	}
 
 	// -----------------------------------------------------------------------
@@ -1602,15 +1608,15 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param yearsToSubtract
-	 *            the years to subtract, may be negative
+	 *                        the years to subtract, may be negative
 	 * @return a {@code LocalDate} based on this date with the years subtracted,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the result exceeds the supported date range
+	 *                           if the result exceeds the supported date range
 	 */
 	public LocalDate minusYears(long yearsToSubtract) {
-		return (yearsToSubtract == Long.MIN_VALUE ? plusYears(Long.MAX_VALUE).plusYears(1)
-				: plusYears(-yearsToSubtract));
+		return (yearsToSubtract == Long.MIN_VALUE ? plusYears(Long.MAX_VALUE)
+				.plusYears(1) : plusYears(-yearsToSubtract));
 	}
 
 	/**
@@ -1632,15 +1638,15 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param monthsToSubtract
-	 *            the months to subtract, may be negative
+	 *                         the months to subtract, may be negative
 	 * @return a {@code LocalDate} based on this date with the months
 	 *         subtracted, not null
 	 * @throws DateTimeException
-	 *             if the result exceeds the supported date range
+	 *                           if the result exceeds the supported date range
 	 */
 	public LocalDate minusMonths(long monthsToSubtract) {
-		return (monthsToSubtract == Long.MIN_VALUE ? plusMonths(Long.MAX_VALUE).plusMonths(1)
-				: plusMonths(-monthsToSubtract));
+		return (monthsToSubtract == Long.MIN_VALUE ? plusMonths(Long.MAX_VALUE)
+				.plusMonths(1) : plusMonths(-monthsToSubtract));
 	}
 
 	/**
@@ -1657,15 +1663,15 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param weeksToSubtract
-	 *            the weeks to subtract, may be negative
+	 *                        the weeks to subtract, may be negative
 	 * @return a {@code LocalDate} based on this date with the weeks subtracted,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the result exceeds the supported date range
+	 *                           if the result exceeds the supported date range
 	 */
 	public LocalDate minusWeeks(long weeksToSubtract) {
-		return (weeksToSubtract == Long.MIN_VALUE ? plusWeeks(Long.MAX_VALUE).plusWeeks(1)
-				: plusWeeks(-weeksToSubtract));
+		return (weeksToSubtract == Long.MIN_VALUE ? plusWeeks(Long.MAX_VALUE)
+				.plusWeeks(1) : plusWeeks(-weeksToSubtract));
 	}
 
 	/**
@@ -1682,15 +1688,15 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param daysToSubtract
-	 *            the days to subtract, may be negative
+	 *                       the days to subtract, may be negative
 	 * @return a {@code LocalDate} based on this date with the days subtracted,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the result exceeds the supported date range
+	 *                           if the result exceeds the supported date range
 	 */
 	public LocalDate minusDays(long daysToSubtract) {
-		return (daysToSubtract == Long.MIN_VALUE ? plusDays(Long.MAX_VALUE).plusDays(1)
-				: plusDays(-daysToSubtract));
+		return (daysToSubtract == Long.MIN_VALUE ? plusDays(Long.MAX_VALUE)
+				.plusDays(1) : plusDays(-daysToSubtract));
 	}
 
 	// -----------------------------------------------------------------------
@@ -1706,15 +1712,16 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the specified
 	 * query passing {@code this} as the argument.
 	 *
-	 * @param <R>
-	 *            the type of the result
+	 * @param       <R>
+	 *              the type of the result
 	 * @param query
-	 *            the query to invoke, not null
+	 *              the query to invoke, not null
 	 * @return the query result, null may be returned (defined by the query)
 	 * @throws DateTimeException
-	 *             if unable to query (defined by the query)
+	 *                             if unable to query (defined by the query)
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs (defined by the query)
+	 *                             if numeric overflow occurs (defined by the
+	 *                             query)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -1748,12 +1755,12 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param temporal
-	 *            the target object to be adjusted, not null
+	 *                 the target object to be adjusted, not null
 	 * @return the adjusted object, not null
 	 * @throws DateTimeException
-	 *             if unable to make the adjustment
+	 *                             if unable to make the adjustment
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override // override for Javadoc
 	public Temporal adjustInto(Temporal temporal) {
@@ -1802,42 +1809,45 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param endExclusive
-	 *            the end date, exclusive, which is converted to a
-	 *            {@code LocalDate}, not null
+	 *                     the end date, exclusive, which is converted to a
+	 *                     {@code LocalDate}, not null
 	 * @param unit
-	 *            the unit to measure the amount in, not null
+	 *                     the unit to measure the amount in, not null
 	 * @return the amount of time between this date and the end date
 	 * @throws DateTimeException
-	 *             if the amount cannot be calculated, or the end temporal
-	 *             cannot be converted to a {@code LocalDate}
+	 *                                          if the amount cannot be
+	 *                                          calculated, or the end temporal
+	 *                                          cannot be converted to a
+	 *                                          {@code LocalDate}
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	@Override
 	public long until(Temporal endExclusive, TemporalUnit unit) {
 		LocalDate end = LocalDate.from(endExclusive);
 		if (unit instanceof ChronoUnit) {
 			switch ((ChronoUnit) unit) {
-			case DAYS:
-				return daysUntil(end);
-			case WEEKS:
-				return daysUntil(end) / 7;
-			case MONTHS:
-				return monthsUntil(end);
-			case YEARS:
-				return monthsUntil(end) / 12;
-			case DECADES:
-				return monthsUntil(end) / 120;
-			case CENTURIES:
-				return monthsUntil(end) / 1200;
-			case MILLENNIA:
-				return monthsUntil(end) / 12000;
-			case ERAS:
-				return end.getLong(ERA) - getLong(ERA);
+				case DAYS:
+					return daysUntil(end);
+				case WEEKS:
+					return daysUntil(end) / 7;
+				case MONTHS:
+					return monthsUntil(end);
+				case YEARS:
+					return monthsUntil(end) / 12;
+				case DECADES:
+					return monthsUntil(end) / 120;
+				case CENTURIES:
+					return monthsUntil(end) / 1200;
+				case MILLENNIA:
+					return monthsUntil(end) / 12000;
+				case ERAS:
+					return end.getLong(ERA) - getLong(ERA);
 			}
-			throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
+			throw new UnsupportedTemporalTypeException("Unsupported unit: "
+					+ unit);
 		}
 		return unit.between(this, end);
 	}
@@ -1888,8 +1898,9 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * The choice should be made based on which makes the code more readable.
 	 *
 	 * @param endDateExclusive
-	 *            the end date, exclusive, which may be in any chronology, not
-	 *            null
+	 *                         the end date, exclusive, which may be in any
+	 *                         chronology, not
+	 *                         null
 	 * @return the period between this date and the end date, not null
 	 */
 	@Override
@@ -1916,10 +1927,10 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * This date will be passed to the formatter to produce a string.
 	 *
 	 * @param formatter
-	 *            the formatter to use, not null
+	 *                  the formatter to use, not null
 	 * @return the formatted date string, not null
 	 * @throws DateTimeException
-	 *             if an error occurs during printing
+	 *                           if an error occurs during printing
 	 */
 	@Override // override for Javadoc and performance
 	public String format(DateTimeFormatter formatter) {
@@ -1935,7 +1946,7 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * specified time. All possible combinations of date and time are valid.
 	 *
 	 * @param time
-	 *            the time to combine with, not null
+	 *             the time to combine with, not null
 	 * @return the local date-time formed from this date and the specified time,
 	 *         not null
 	 */
@@ -1953,13 +1964,13 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * possible combinations of date and time are valid.
 	 *
 	 * @param hour
-	 *            the hour-of-day to use, from 0 to 23
+	 *               the hour-of-day to use, from 0 to 23
 	 * @param minute
-	 *            the minute-of-hour to use, from 0 to 59
+	 *               the minute-of-hour to use, from 0 to 59
 	 * @return the local date-time formed from this date and the specified time,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range
+	 *                           if the value of any field is out of range
 	 */
 	public LocalDateTime atTime(int hour, int minute) {
 		return atTime(LocalTime.of(hour, minute));
@@ -1974,15 +1985,15 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * possible combinations of date and time are valid.
 	 *
 	 * @param hour
-	 *            the hour-of-day to use, from 0 to 23
+	 *               the hour-of-day to use, from 0 to 23
 	 * @param minute
-	 *            the minute-of-hour to use, from 0 to 59
+	 *               the minute-of-hour to use, from 0 to 59
 	 * @param second
-	 *            the second-of-minute to represent, from 0 to 59
+	 *               the second-of-minute to represent, from 0 to 59
 	 * @return the local date-time formed from this date and the specified time,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range
+	 *                           if the value of any field is out of range
 	 */
 	public LocalDateTime atTime(int hour, int minute, int second) {
 		return atTime(LocalTime.of(hour, minute, second));
@@ -1997,19 +2008,21 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * time are valid.
 	 *
 	 * @param hour
-	 *            the hour-of-day to use, from 0 to 23
+	 *                     the hour-of-day to use, from 0 to 23
 	 * @param minute
-	 *            the minute-of-hour to use, from 0 to 59
+	 *                     the minute-of-hour to use, from 0 to 59
 	 * @param second
-	 *            the second-of-minute to represent, from 0 to 59
+	 *                     the second-of-minute to represent, from 0 to 59
 	 * @param nanoOfSecond
-	 *            the nano-of-second to represent, from 0 to 999,999,999
+	 *                     the nano-of-second to represent, from 0 to
+	 *                     999,999,999
 	 * @return the local date-time formed from this date and the specified time,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range
+	 *                           if the value of any field is out of range
 	 */
-	public LocalDateTime atTime(int hour, int minute, int second, int nanoOfSecond) {
+	public LocalDateTime atTime(int hour, int minute, int second,
+			int nanoOfSecond) {
 		return atTime(LocalTime.of(hour, minute, second, nanoOfSecond));
 	}
 
@@ -2021,12 +2034,13 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * specified time. All possible combinations of date and time are valid.
 	 *
 	 * @param time
-	 *            the time to combine with, not null
+	 *             the time to combine with, not null
 	 * @return the offset date-time formed from this date and the specified
 	 *         time, not null
 	 */
 	public OffsetDateTime atTime(OffsetTime time) {
-		return OffsetDateTime.of(LocalDateTime.of(this, time.toLocalTime()), time.getOffset());
+		return OffsetDateTime.of(LocalDateTime.of(this, time.toLocalTime()),
+				time.getOffset());
 	}
 
 	/**
@@ -2065,7 +2079,7 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * {@link LocalDateTime#atZone(ZoneId)}.
 	 *
 	 * @param zone
-	 *            the zone ID to use, not null
+	 *             the zone ID to use, not null
 	 * @return the zoned date-time formed from this date and the earliest valid
 	 *         time for the zone, not null
 	 */
@@ -2120,7 +2134,7 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * considered, see {@link java.time.chrono.ChronoLocalDate#compareTo}.
 	 *
 	 * @param other
-	 *            the other date to compare to, not null
+	 *              the other date to compare to, not null
 	 * @return the comparator value, negative if less, positive if greater
 	 */
 	@Override // override for Javadoc and performance
@@ -2163,7 +2177,7 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * {@link ChronoLocalDate#timeLineOrder()}.
 	 *
 	 * @param other
-	 *            the other date to compare to, not null
+	 *              the other date to compare to, not null
 	 * @return true if this date is after the specified date
 	 */
 	@Override // override for Javadoc and performance
@@ -2195,7 +2209,7 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * {@link ChronoLocalDate#timeLineOrder()}.
 	 *
 	 * @param other
-	 *            the other date to compare to, not null
+	 *              the other date to compare to, not null
 	 * @return true if this date is before the specified date
 	 */
 	@Override // override for Javadoc and performance
@@ -2227,7 +2241,7 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * {@link ChronoLocalDate#timeLineOrder()}.
 	 *
 	 * @param other
-	 *            the other date to compare to, not null
+	 *              the other date to compare to, not null
 	 * @return true if this date is equal to the specified date
 	 */
 	@Override // override for Javadoc and performance
@@ -2275,7 +2289,8 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 		int yearValue = year;
 		int monthValue = month;
 		int dayValue = day;
-		return (yearValue & 0xFFFFF800) ^ ((yearValue << 11) + (monthValue << 6) + (dayValue));
+		return (yearValue & 0xFFFFF800) ^ ((yearValue << 11) + (monthValue << 6)
+				+ (dayValue));
 	}
 
 	// -----------------------------------------------------------------------
@@ -2334,12 +2349,13 @@ public final class LocalDate implements Temporal, TemporalAdjuster, ChronoLocalD
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws InvalidObjectException
-	 *             always
+	 *                                always
 	 */
 	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 
 	void writeExternal(DataOutput out) throws IOException {

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,11 +40,13 @@ public class BitArray implements Externalizable {
 
 	// This table is used to prevent expensive shift operations
 	// (These operations are inexpensive on CPUs but very expensive on JVMs.)
-	private final static int[] _masks = { 0x80000000, 0x40000000, 0x20000000, 0x10000000,
-			0x08000000, 0x04000000, 0x02000000, 0x01000000, 0x00800000, 0x00400000, 0x00200000,
-			0x00100000, 0x00080000, 0x00040000, 0x00020000, 0x00010000, 0x00008000, 0x00004000,
-			0x00002000, 0x00001000, 0x00000800, 0x00000400, 0x00000200, 0x00000100, 0x00000080,
-			0x00000040, 0x00000020, 0x00000010, 0x00000008, 0x00000004, 0x00000002, 0x00000001 };
+	private final static int[] _masks = { 0x80000000, 0x40000000, 0x20000000,
+			0x10000000, 0x08000000, 0x04000000, 0x02000000, 0x01000000,
+			0x00800000, 0x00400000, 0x00200000, 0x00100000, 0x00080000,
+			0x00040000, 0x00020000, 0x00010000, 0x00008000, 0x00004000,
+			0x00002000, 0x00001000, 0x00000800, 0x00000400, 0x00000200,
+			0x00000100, 0x00000080, 0x00000040, 0x00000020, 0x00000010,
+			0x00000008, 0x00000004, 0x00000002, 0x00000001 };
 
 	private final static boolean DEBUG_ASSERTIONS = false;
 
@@ -258,7 +257,8 @@ public class BitArray implements Externalizable {
 	/**
 	 * Read the whole tree from a file (serialized)
 	 */
-	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+	public void readExternal(ObjectInput in) throws IOException,
+			ClassNotFoundException {
 		_bitSize = in.readInt();
 		_intSize = (_bitSize >>> 5) + 1;
 		_mask = in.readInt();

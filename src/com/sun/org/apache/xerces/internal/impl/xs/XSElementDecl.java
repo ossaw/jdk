@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -130,9 +127,11 @@ public class XSElementDecl implements XSElementDeclaration {
 		return fIDConstraints;
 	}
 
-	static final IdentityConstraint[] resize(IdentityConstraint[] oldArray, int newSize) {
+	static final IdentityConstraint[] resize(IdentityConstraint[] oldArray,
+			int newSize) {
 		IdentityConstraint[] newArray = new IdentityConstraint[newSize];
-		System.arraycopy(oldArray, 0, newArray, 0, Math.min(oldArray.length, newSize));
+		System.arraycopy(oldArray, 0, newArray, 0, Math.min(oldArray.length,
+				newSize));
 		return newArray;
 	}
 
@@ -144,8 +143,8 @@ public class XSElementDecl implements XSElementDeclaration {
 	public String toString() {
 		if (fDescription == null) {
 			if (fTargetNamespace != null) {
-				StringBuffer buffer = new StringBuffer(
-						fTargetNamespace.length() + ((fName != null) ? fName.length() : 4) + 3);
+				StringBuffer buffer = new StringBuffer(fTargetNamespace.length()
+						+ ((fName != null) ? fName.length() : 4) + 3);
 				buffer.append('"');
 				buffer.append(fTargetNamespace);
 				buffer.append('"');
@@ -261,7 +260,8 @@ public class XSElementDecl implements XSElementDeclaration {
 	 */
 	public String getConstraintValue() {
 		// REVISIT: SCAPI: what's the proper representation
-		return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.stringValue();
+		return getConstraintType() == XSConstants.VC_NONE ? null
+				: fDefault.stringValue();
 	}
 
 	/**
@@ -295,8 +295,9 @@ public class XSElementDecl implements XSElementDeclaration {
 	 * group exclusion for this element declaration.
 	 * 
 	 * @param exclusion
-	 *            Extension, restriction or none. Represents final set for the
-	 *            element.
+	 *                  Extension, restriction or none. Represents final set for
+	 *                  the
+	 *                  element.
 	 * @return True if <code>exclusion</code> is a part of the substitution
 	 *         group exclusion subset.
 	 */
@@ -320,8 +321,9 @@ public class XSElementDecl implements XSElementDeclaration {
 	 * substitution for this element declaration.
 	 * 
 	 * @param disallowed
-	 *            Substitution, extension, restriction or none. Represents a
-	 *            block set for the element.
+	 *                   Substitution, extension, restriction or none.
+	 *                   Represents a
+	 *                   block set for the element.
 	 * @return True if <code>disallowed</code> is a part of the substitution
 	 *         group exclusion subset.
 	 */
@@ -350,14 +352,16 @@ public class XSElementDecl implements XSElementDeclaration {
 	 * Optional. Annotation.
 	 */
 	public XSAnnotation getAnnotation() {
-		return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0) : null;
+		return (fAnnotations != null) ? (XSAnnotation) fAnnotations.item(0)
+				: null;
 	}
 
 	/**
 	 * Optional. Annotations.
 	 */
 	public XSObjectList getAnnotations() {
-		return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
+		return (fAnnotations != null) ? fAnnotations
+				: XSObjectListImpl.EMPTY_LIST;
 	}
 
 	/**
@@ -372,16 +376,19 @@ public class XSElementDecl implements XSElementDeclaration {
 	}
 
 	public Object getActualVC() {
-		return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.actualValue;
+		return getConstraintType() == XSConstants.VC_NONE ? null
+				: fDefault.actualValue;
 	}
 
 	public short getActualVCType() {
-		return getConstraintType() == XSConstants.VC_NONE ? XSConstants.UNAVAILABLE_DT
+		return getConstraintType() == XSConstants.VC_NONE
+				? XSConstants.UNAVAILABLE_DT
 				: fDefault.actualValueType;
 	}
 
 	public ShortList getItemValueTypes() {
-		return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.itemValueTypes;
+		return getConstraintType() == XSConstants.VC_NONE ? null
+				: fDefault.itemValueTypes;
 	}
 
 } // class XSElementDecl

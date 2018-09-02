@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.tools;
@@ -33,8 +13,8 @@ import java.util.List;
  * Provides an easy way to collect diagnostics in a list.
  *
  * @param <S>
- *            the type of source objects used by diagnostics received by this
- *            object
+ *        the type of source objects used by diagnostics received by this
+ *        object
  *
  * @author Peter von der Ah&eacute;
  * @since 1.6

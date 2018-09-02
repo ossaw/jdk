@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.text.html;
@@ -130,9 +110,10 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * Generates HTML output from a StyledDocument.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                                 on any I/O error
 	 * @exception BadLocationException
-	 *                if pos represents an invalid location within the document.
+	 *                                 if pos represents an invalid location
+	 *                                 within the document.
 	 *
 	 */
 	public void write() throws IOException, BadLocationException {
@@ -151,7 +132,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * by a semicolon.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	protected void writeAttributes(AttributeSet attr) throws IOException {
 		Enumeration attributeNames = attr.getAttributeNames();
@@ -176,11 +157,12 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * Writes out text.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	protected void text(Element elem) throws IOException, BadLocationException {
 		String contentStr = getText(elem);
-		if ((contentStr.length() > 0) && (contentStr.charAt(contentStr.length() - 1) == NEWLINE)) {
+		if ((contentStr.length() > 0) && (contentStr.charAt(contentStr.length()
+				- 1) == NEWLINE)) {
 			contentStr = contentStr.substring(0, contentStr.length() - 1);
 		}
 		if (contentStr.length() > 0) {
@@ -193,7 +175,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * level.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	protected void writeStartTag(String tag) throws IOException {
 		indent();
@@ -207,7 +189,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * level.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	protected void writeEndTag(String endTag) throws IOException {
 		decrIndent();
@@ -224,7 +206,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * that do not support the tag.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	protected void writeHeader() throws IOException {
 		writeStartTag("<head>");
@@ -240,7 +222,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * Writes out all the named styles as the content of the &lt;style&gt; tag.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	protected void writeStyles() throws IOException {
 		/*
@@ -257,7 +239,8 @@ public class MinimalHTMLWriter extends AbstractWriter {
 			 * PENDING: Once the name attribute is removed from the list we
 			 * check check for 0.
 			 **/
-			if (s.getAttributeCount() == 1 && s.isDefined(StyleConstants.NameAttribute)) {
+			if (s.getAttributeCount() == 1 && s.isDefined(
+					StyleConstants.NameAttribute)) {
 				continue;
 			}
 			indent();
@@ -277,7 +260,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * specially handles leaf elements that are text.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	protected void writeBody() throws IOException, BadLocationException {
 		ElementIterator it = getElementIterator();
@@ -325,7 +308,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * appropriately closed off.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	protected void writeEndParagraph() throws IOException {
 		writeEndMask(fontMask);
@@ -343,14 +326,14 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * the &lt;p&gt; tag and sets its value to be the name of the style.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	protected void writeStartParagraph(Element elem) throws IOException {
 		AttributeSet attr = elem.getAttributes();
 		Object resolveAttr = attr.getAttribute(StyleConstants.ResolveAttribute);
 		if (resolveAttr instanceof StyleContext.NamedStyle) {
-			writeStartTag("<p class="
-					+ mapStyleName(((StyleContext.NamedStyle) resolveAttr).getName()) + ">");
+			writeStartTag("<p class=" + mapStyleName(
+					((StyleContext.NamedStyle) resolveAttr).getName()) + ">");
 		} else {
 			writeStartTag("<p>");
 		}
@@ -360,7 +343,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * Responsible for writing out other non-text leaf elements.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	protected void writeLeaf(Element elem) throws IOException {
 		indent();
@@ -379,17 +362,15 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * others it could be read from a stream.
 	 *
 	 * @param elem
-	 *            element of type StyleConstants.IconElementName
+	 *             element of type StyleConstants.IconElementName
 	 */
-	protected void writeImage(Element elem) throws IOException {
-	}
+	protected void writeImage(Element elem) throws IOException {}
 
 	/**
 	 * Responsible for handling Component Elements; deliberately unimplemented.
 	 * How this method is implemented is a matter of policy.
 	 */
-	protected void writeComponent(Element elem) throws IOException {
-	}
+	protected void writeComponent(Element elem) throws IOException {}
 
 	/**
 	 * Returns true if the element is a text element.
@@ -403,9 +384,10 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * Writes out the attribute set in an HTML-compliant manner.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                                 on any I/O error
 	 * @exception BadLocationException
-	 *                if pos represents an invalid location within the document.
+	 *                                 if pos represents an invalid location
+	 *                                 within the document.
 	 */
 	protected void writeContent(Element elem, boolean needsIndenting)
 			throws IOException, BadLocationException {
@@ -424,7 +406,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * text based on its attribute settings.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 
 	protected void writeHTMLTags(AttributeSet attr) throws IOException {
@@ -485,7 +467,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * mask settings.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	private void writeStartMask(int mask) throws IOException {
 		if (mask != 0) {
@@ -506,7 +488,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * mask settings.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	private void writeEndMask(int mask) throws IOException {
 		if (mask != 0) {
@@ -530,9 +512,10 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * to contain the list of remaining attributes just like inline styles.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
-	protected void writeNonHTMLAttributes(AttributeSet attr) throws IOException {
+	protected void writeNonHTMLAttributes(AttributeSet attr)
+			throws IOException {
 
 		String style = "";
 		String separator = "; ";
@@ -593,7 +576,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * Writes out an end tag for the &lt;font&gt; tag.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	protected void endFontTag() throws IOException {
 		write(NEWLINE);
@@ -609,7 +592,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * out a new start tag.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	protected void startFontTag(String style) throws IOException {
 		boolean callIndent = false;
@@ -629,7 +612,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * out a new start tag.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	private void startSpanTag(String style) throws IOException {
 		boolean callIndent = false;
@@ -647,7 +630,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	 * Writes out an end tag for the &lt;span&gt; tag.
 	 *
 	 * @exception IOException
-	 *                on any I/O error
+	 *                        on any I/O error
 	 */
 	private void endSpanTag() throws IOException {
 		write(NEWLINE);
@@ -693,6 +676,7 @@ public class MinimalHTMLWriter extends AbstractWriter {
 	}
 
 	private boolean isValidCharacter(char character) {
-		return ((character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z'));
+		return ((character >= 'a' && character <= 'z') || (character >= 'A'
+				&& character <= 'Z'));
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -67,30 +47,36 @@ public interface Watchable {
 	 * Implementations of this interface should specify the events they support.
 	 *
 	 * @param watcher
-	 *            the watch service to which this object is to be registered
+	 *                  the watch service to which this object is to be
+	 *                  registered
 	 * @param events
-	 *            the events for which this object should be registered
+	 *                  the events for which this object should be registered
 	 * @param modifiers
-	 *            the modifiers, if any, that modify how the object is
-	 *            registered
+	 *                  the modifiers, if any, that modify how the object is
+	 *                  registered
 	 *
 	 * @return a key representing the registration of this object with the given
 	 *         watch service
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if unsupported events or modifiers are specified
+	 *                                       if unsupported events or modifiers
+	 *                                       are specified
 	 * @throws IllegalArgumentException
-	 *             if an invalid of combination of events are modifiers are
-	 *             specified
+	 *                                       if an invalid of combination of
+	 *                                       events are modifiers are
+	 *                                       specified
 	 * @throws ClosedWatchServiceException
-	 *             if the watch service is closed
+	 *                                       if the watch service is closed
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                                       if an I/O error occurs
 	 * @throws SecurityException
-	 *             if a security manager is installed and it denies an
-	 *             unspecified permission required to monitor this object.
-	 *             Implementations of this interface should specify the
-	 *             permission checks.
+	 *                                       if a security manager is installed
+	 *                                       and it denies an
+	 *                                       unspecified permission required to
+	 *                                       monitor this object.
+	 *                                       Implementations of this interface
+	 *                                       should specify the
+	 *                                       permission checks.
 	 */
 	WatchKey register(WatchService watcher, WatchEvent.Kind<?>[] events,
 			WatchEvent.Modifier... modifiers) throws IOException;
@@ -107,26 +93,31 @@ public interface Watchable {
 	 * </pre>
 	 *
 	 * @param watcher
-	 *            the watch service to which this object is to be registered
+	 *                the watch service to which this object is to be registered
 	 * @param events
-	 *            the events for which this object should be registered
+	 *                the events for which this object should be registered
 	 *
 	 * @return a key representing the registration of this object with the given
 	 *         watch service
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if unsupported events are specified
+	 *                                       if unsupported events are specified
 	 * @throws IllegalArgumentException
-	 *             if an invalid of combination of events are specified
+	 *                                       if an invalid of combination of
+	 *                                       events are specified
 	 * @throws ClosedWatchServiceException
-	 *             if the watch service is closed
+	 *                                       if the watch service is closed
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                                       if an I/O error occurs
 	 * @throws SecurityException
-	 *             if a security manager is installed and it denies an
-	 *             unspecified permission required to monitor this object.
-	 *             Implementations of this interface should specify the
-	 *             permission checks.
+	 *                                       if a security manager is installed
+	 *                                       and it denies an
+	 *                                       unspecified permission required to
+	 *                                       monitor this object.
+	 *                                       Implementations of this interface
+	 *                                       should specify the
+	 *                                       permission checks.
 	 */
-	WatchKey register(WatchService watcher, WatchEvent.Kind<?>... events) throws IOException;
+	WatchKey register(WatchService watcher, WatchEvent.Kind<?>... events)
+			throws IOException;
 }

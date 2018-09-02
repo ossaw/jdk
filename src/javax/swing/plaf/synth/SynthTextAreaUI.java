@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -57,7 +37,7 @@ public class SynthTextAreaUI extends BasicTextAreaUI implements SynthUI {
 	 * Creates a UI object for a JTextArea.
 	 *
 	 * @param ta
-	 *            a text area
+	 *           a text area
 	 * @return the UI object
 	 */
 	public static ComponentUI createUI(JComponent ta) {
@@ -130,9 +110,9 @@ public class SynthTextAreaUI extends BasicTextAreaUI implements SynthUI {
 	 * Look and Feel rendering code should reside in the {@code paint} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -140,7 +120,8 @@ public class SynthTextAreaUI extends BasicTextAreaUI implements SynthUI {
 		SynthContext context = getContext(c);
 
 		SynthLookAndFeel.update(context, g);
-		context.getPainter().paintTextAreaBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
+		context.getPainter().paintTextAreaBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight());
 		paint(context, g);
 		context.dispose();
 	}
@@ -149,9 +130,9 @@ public class SynthTextAreaUI extends BasicTextAreaUI implements SynthUI {
 	 * Paints the specified component.
 	 *
 	 * @param context
-	 *            context for the component being painted
+	 *                context for the component being painted
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *                the {@code Graphics} object used for painting
 	 * @see #update(Graphics,JComponent)
 	 */
 	protected void paint(SynthContext context, Graphics g) {
@@ -172,7 +153,8 @@ public class SynthTextAreaUI extends BasicTextAreaUI implements SynthUI {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
 		context.getPainter().paintTextAreaBorder(context, g, x, y, w, h);
 	}
 

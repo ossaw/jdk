@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: WhitespaceStrippingElementMatcher.java,v 1.1.2.1 2005/08/01 01:30:15 jeffsuttor Exp $
+ * $Id: WhitespaceStrippingElementMatcher.java,v 1.1.2.1 2005/08/01 01:30:15
+ * jeffsuttor Exp $
  */
 package com.sun.org.apache.xpath.internal;
 
@@ -38,16 +36,16 @@ public interface WhitespaceStrippingElementMatcher {
 	 *      Specification</a>
 	 *
 	 * @param support
-	 *            The XPath runtime state.
+	 *                      The XPath runtime state.
 	 * @param targetElement
-	 *            Element to check
+	 *                      Element to check
 	 *
 	 * @return true if the whitespace should be stripped.
 	 *
 	 * @throws TransformerException
 	 */
-	public boolean shouldStripWhiteSpace(XPathContext support, Element targetElement)
-			throws TransformerException;
+	public boolean shouldStripWhiteSpace(XPathContext support,
+			Element targetElement) throws TransformerException;
 
 	/**
 	 * Get information about whether or not whitespace can be stripped.

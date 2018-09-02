@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior.iiop;
@@ -36,7 +16,8 @@ import org.omg.CORBA_2_3.portable.OutputStream;
 /**
  * @author Ken Cavanaugh
  */
-public class ORBTypeComponentImpl extends TaggedComponentBase implements ORBTypeComponent {
+public class ORBTypeComponentImpl extends TaggedComponentBase implements
+		ORBTypeComponent {
 	private int ORBType;
 
 	public boolean equals(Object obj) {

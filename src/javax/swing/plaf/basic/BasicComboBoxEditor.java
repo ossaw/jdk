@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.basic;
 
@@ -70,7 +50,7 @@ public class BasicComboBoxEditor implements ComboBoxEditor, FocusListener {
 	 * Sets the item that should be edited.
 	 *
 	 * @param anObject
-	 *            the displayed value of the editor
+	 *                 the displayed value of the editor
 	 */
 	public void setItem(Object anObject) {
 		String text;
@@ -123,13 +103,11 @@ public class BasicComboBoxEditor implements ComboBoxEditor, FocusListener {
 
 	// This used to do something but now it doesn't. It couldn't be
 	// removed because it would be an API change to do so.
-	public void focusGained(FocusEvent e) {
-	}
+	public void focusGained(FocusEvent e) {}
 
 	// This used to do something but now it doesn't. It couldn't be
 	// removed because it would be an API change to do so.
-	public void focusLost(FocusEvent e) {
-	}
+	public void focusLost(FocusEvent e) {}
 
 	public void addActionListener(ActionListener l) {
 		editor.addActionListener(l);
@@ -172,7 +150,6 @@ public class BasicComboBoxEditor implements ComboBoxEditor, FocusListener {
 	 * all JavaBeans&trade; has been added to the <code>java.beans</code>
 	 * package. Please see {@link java.beans.XMLEncoder}.
 	 */
-	public static class UIResource extends BasicComboBoxEditor
-			implements javax.swing.plaf.UIResource {
-	}
+	public static class UIResource extends BasicComboBoxEditor implements
+			javax.swing.plaf.UIResource {}
 }

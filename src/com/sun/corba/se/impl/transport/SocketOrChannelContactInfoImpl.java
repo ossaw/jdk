@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.transport;
@@ -39,7 +19,8 @@ import com.sun.corba.se.impl.transport.CorbaContactInfoBase;
 /**
  * @author Harold Carr
  */
-public class SocketOrChannelContactInfoImpl extends CorbaContactInfoBase implements SocketInfo {
+public class SocketOrChannelContactInfoImpl extends CorbaContactInfoBase
+		implements SocketInfo {
 	protected boolean isHashCodeCached = false;
 	protected int cachedHashCode;
 
@@ -51,16 +32,17 @@ public class SocketOrChannelContactInfoImpl extends CorbaContactInfoBase impleme
 	// See SocketOrChannelAcceptorImpl.createMessageMediator
 	// See SocketFactoryContactInfoImpl.constructor()
 	// See SocketOrChannelContactInfoImpl.constructor()
-	protected SocketOrChannelContactInfoImpl() {
-	}
+	protected SocketOrChannelContactInfoImpl() {}
 
-	protected SocketOrChannelContactInfoImpl(ORB orb, CorbaContactInfoList contactInfoList) {
+	protected SocketOrChannelContactInfoImpl(ORB orb,
+			CorbaContactInfoList contactInfoList) {
 		this.orb = orb;
 		this.contactInfoList = contactInfoList;
 	}
 
-	public SocketOrChannelContactInfoImpl(ORB orb, CorbaContactInfoList contactInfoList,
-			String socketType, String hostname, int port) {
+	public SocketOrChannelContactInfoImpl(ORB orb,
+			CorbaContactInfoList contactInfoList, String socketType,
+			String hostname, int port) {
 		this(orb, contactInfoList);
 		this.socketType = socketType;
 		this.hostname = hostname;
@@ -68,8 +50,9 @@ public class SocketOrChannelContactInfoImpl extends CorbaContactInfoBase impleme
 	}
 
 	// XREVISIT
-	public SocketOrChannelContactInfoImpl(ORB orb, CorbaContactInfoList contactInfoList,
-			IOR effectiveTargetIOR, short addressingDisposition, String socketType, String hostname,
+	public SocketOrChannelContactInfoImpl(ORB orb,
+			CorbaContactInfoList contactInfoList, IOR effectiveTargetIOR,
+			short addressingDisposition, String socketType, String hostname,
 			int port) {
 		this(orb, contactInfoList, socketType, hostname, port);
 		this.effectiveTargetIOR = effectiveTargetIOR;
@@ -94,8 +77,8 @@ public class SocketOrChannelContactInfoImpl extends CorbaContactInfoBase impleme
 	}
 
 	public Connection createConnection() {
-		Connection connection = new SocketOrChannelConnectionImpl(orb, this, socketType, hostname,
-				port);
+		Connection connection = new SocketOrChannelConnectionImpl(orb, this,
+				socketType, hostname, port);
 		return connection;
 	}
 
@@ -164,7 +147,8 @@ public class SocketOrChannelContactInfoImpl extends CorbaContactInfoBase impleme
 	}
 
 	public String toString() {
-		return "SocketOrChannelContactInfoImpl[" + socketType + " " + hostname + " " + port + "]";
+		return "SocketOrChannelContactInfoImpl[" + socketType + " " + hostname
+				+ " " + port + "]";
 	}
 
 	////////////////////////////////////////////////////

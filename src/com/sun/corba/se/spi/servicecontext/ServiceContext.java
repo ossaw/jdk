@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.servicecontext;
@@ -64,8 +44,7 @@ public abstract class ServiceContext {
 	 * Simple default constructor used when subclass is constructed from its
 	 * representation.
 	 */
-	protected ServiceContext() {
-	}
+	protected ServiceContext() {}
 
 	private void dprint(String msg) {
 		ORBUtility.dprint(this, msg);
@@ -78,7 +57,8 @@ public abstract class ServiceContext {
 	 * read from in. Note that the service context id has been consumed from the
 	 * input stream before this object is constructed.
 	 */
-	protected ServiceContext(InputStream s, GIOPVersion gv) throws SystemException {
+	protected ServiceContext(InputStream s, GIOPVersion gv)
+			throws SystemException {
 		in = s;
 	}
 
@@ -92,8 +72,8 @@ public abstract class ServiceContext {
 	 * for writing the service context to a request or reply header.
 	 */
 	public void write(OutputStream s, GIOPVersion gv) throws SystemException {
-		EncapsOutputStream os = sun.corba.OutputStreamFactory.newEncapsOutputStream((ORB) (s.orb()),
-				gv);
+		EncapsOutputStream os = sun.corba.OutputStreamFactory
+				.newEncapsOutputStream((ORB) (s.orb()), gv);
 		os.putEndian();
 		writeData(os);
 		byte[] data = os.toByteArray();

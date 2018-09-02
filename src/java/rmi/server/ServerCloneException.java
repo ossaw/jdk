@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.server;
@@ -68,7 +48,7 @@ public class ServerCloneException extends CloneNotSupportedException {
 	 * message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public ServerCloneException(String s) {
 		super(s);
@@ -80,9 +60,9 @@ public class ServerCloneException extends CloneNotSupportedException {
 	 * message and cause.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *              the detail message.
 	 * @param cause
-	 *            the cause
+	 *              the cause
 	 */
 	public ServerCloneException(String s, Exception cause) {
 		super(s);
@@ -100,7 +80,8 @@ public class ServerCloneException extends CloneNotSupportedException {
 		if (detail == null)
 			return super.getMessage();
 		else
-			return super.getMessage() + "; nested exception is: \n\t" + detail.toString();
+			return super.getMessage() + "; nested exception is: \n\t" + detail
+					.toString();
 	}
 
 	/**

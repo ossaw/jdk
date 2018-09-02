@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -63,7 +43,8 @@ class HeapCharBufferR extends HeapCharBuffer {
 
 	}
 
-	protected HeapCharBufferR(char[] buf, int mark, int pos, int lim, int cap, int off) {
+	protected HeapCharBufferR(char[] buf, int mark, int pos, int lim, int cap,
+			int off) {
 
 		super(buf, mark, pos, lim, cap, off);
 		this.isReadOnly = true;
@@ -71,13 +52,13 @@ class HeapCharBufferR extends HeapCharBuffer {
 	}
 
 	public CharBuffer slice() {
-		return new HeapCharBufferR(hb, -1, 0, this.remaining(), this.remaining(),
-				this.position() + offset);
+		return new HeapCharBufferR(hb, -1, 0, this.remaining(), this
+				.remaining(), this.position() + offset);
 	}
 
 	public CharBuffer duplicate() {
-		return new HeapCharBufferR(hb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new HeapCharBufferR(hb, this.markValue(), this.position(), this
+				.limit(), this.capacity(), offset);
 	}
 
 	public CharBuffer asReadOnlyBuffer() {
@@ -134,7 +115,8 @@ class HeapCharBufferR extends HeapCharBuffer {
 		if ((start < 0) || (end > length()) || (start > end))
 			throw new IndexOutOfBoundsException();
 		int pos = position();
-		return new HeapCharBufferR(hb, -1, pos + start, pos + end, capacity(), offset);
+		return new HeapCharBufferR(hb, -1, pos + start, pos + end, capacity(),
+				offset);
 	}
 
 	public ByteOrder order() {

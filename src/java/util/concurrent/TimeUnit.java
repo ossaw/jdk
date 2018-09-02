@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -401,9 +376,9 @@ public enum TimeUnit {
 	 * {@code TimeUnit.MILLISECONDS.convert(10L, TimeUnit.MINUTES)}
 	 *
 	 * @param sourceDuration
-	 *            the time duration in the given {@code sourceUnit}
+	 *                       the time duration in the given {@code sourceUnit}
 	 * @param sourceUnit
-	 *            the unit of the {@code sourceDuration} argument
+	 *                       the unit of the {@code sourceDuration} argument
 	 * @return the converted duration in this unit, or {@code Long.MIN_VALUE} if
 	 *         conversion would negatively overflow, or {@code Long.MAX_VALUE}
 	 *         if it would positively overflow.
@@ -417,7 +392,7 @@ public enum TimeUnit {
 	 * NANOSECONDS.convert(duration, this)}.
 	 * 
 	 * @param duration
-	 *            the duration
+	 *                 the duration
 	 * @return the converted duration, or {@code Long.MIN_VALUE} if conversion
 	 *         would negatively overflow, or {@code Long.MAX_VALUE} if it would
 	 *         positively overflow.
@@ -431,7 +406,7 @@ public enum TimeUnit {
 	 * MICROSECONDS.convert(duration, this)}.
 	 * 
 	 * @param duration
-	 *            the duration
+	 *                 the duration
 	 * @return the converted duration, or {@code Long.MIN_VALUE} if conversion
 	 *         would negatively overflow, or {@code Long.MAX_VALUE} if it would
 	 *         positively overflow.
@@ -445,7 +420,7 @@ public enum TimeUnit {
 	 * MILLISECONDS.convert(duration, this)}.
 	 * 
 	 * @param duration
-	 *            the duration
+	 *                 the duration
 	 * @return the converted duration, or {@code Long.MIN_VALUE} if conversion
 	 *         would negatively overflow, or {@code Long.MAX_VALUE} if it would
 	 *         positively overflow.
@@ -459,7 +434,7 @@ public enum TimeUnit {
 	 * this)}.
 	 * 
 	 * @param duration
-	 *            the duration
+	 *                 the duration
 	 * @return the converted duration, or {@code Long.MIN_VALUE} if conversion
 	 *         would negatively overflow, or {@code Long.MAX_VALUE} if it would
 	 *         positively overflow.
@@ -473,7 +448,7 @@ public enum TimeUnit {
 	 * this)}.
 	 * 
 	 * @param duration
-	 *            the duration
+	 *                 the duration
 	 * @return the converted duration, or {@code Long.MIN_VALUE} if conversion
 	 *         would negatively overflow, or {@code Long.MAX_VALUE} if it would
 	 *         positively overflow.
@@ -488,7 +463,7 @@ public enum TimeUnit {
 	 * this)}.
 	 * 
 	 * @param duration
-	 *            the duration
+	 *                 the duration
 	 * @return the converted duration, or {@code Long.MIN_VALUE} if conversion
 	 *         would negatively overflow, or {@code Long.MAX_VALUE} if it would
 	 *         positively overflow.
@@ -503,7 +478,7 @@ public enum TimeUnit {
 	 * this)}.
 	 * 
 	 * @param duration
-	 *            the duration
+	 *                 the duration
 	 * @return the converted duration
 	 * @since 1.6
 	 */
@@ -515,9 +490,9 @@ public enum TimeUnit {
 	 * Utility to compute the excess-nanosecond argument to wait, sleep, join.
 	 * 
 	 * @param d
-	 *            the duration
+	 *          the duration
 	 * @param m
-	 *            the number of milliseconds
+	 *          the number of milliseconds
 	 * @return the number of nanoseconds
 	 */
 	abstract int excessNanos(long d, long m);
@@ -543,14 +518,16 @@ public enum TimeUnit {
 	 * </pre>
 	 *
 	 * @param obj
-	 *            the object to wait on
+	 *                the object to wait on
 	 * @param timeout
-	 *            the maximum time to wait. If less than or equal to zero, do
-	 *            not wait at all.
+	 *                the maximum time to wait. If less than or equal to zero,
+	 *                do
+	 *                not wait at all.
 	 * @throws InterruptedException
-	 *             if interrupted while waiting
+	 *                              if interrupted while waiting
 	 */
-	public void timedWait(Object obj, long timeout) throws InterruptedException {
+	public void timedWait(Object obj, long timeout)
+			throws InterruptedException {
 		if (timeout > 0) {
 			long ms = toMillis(timeout);
 			int ns = excessNanos(timeout, ms);
@@ -564,14 +541,16 @@ public enum TimeUnit {
 	 * the form required by the {@code Thread.join} method.
 	 *
 	 * @param thread
-	 *            the thread to wait for
+	 *                the thread to wait for
 	 * @param timeout
-	 *            the maximum time to wait. If less than or equal to zero, do
-	 *            not wait at all.
+	 *                the maximum time to wait. If less than or equal to zero,
+	 *                do
+	 *                not wait at all.
 	 * @throws InterruptedException
-	 *             if interrupted while waiting
+	 *                              if interrupted while waiting
 	 */
-	public void timedJoin(Thread thread, long timeout) throws InterruptedException {
+	public void timedJoin(Thread thread, long timeout)
+			throws InterruptedException {
 		if (timeout > 0) {
 			long ms = toMillis(timeout);
 			int ns = excessNanos(timeout, ms);
@@ -585,10 +564,11 @@ public enum TimeUnit {
 	 * form required by the {@code Thread.sleep} method.
 	 *
 	 * @param timeout
-	 *            the minimum time to sleep. If less than or equal to zero, do
-	 *            not sleep at all.
+	 *                the minimum time to sleep. If less than or equal to zero,
+	 *                do
+	 *                not sleep at all.
 	 * @throws InterruptedException
-	 *             if interrupted while sleeping
+	 *                              if interrupted while sleeping
 	 */
 	public void sleep(long timeout) throws InterruptedException {
 		if (timeout > 0) {

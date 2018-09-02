@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -75,7 +55,8 @@ class DropShadowEffect extends ShadowEffect {
 	 * @return Image with the result of the effect
 	 */
 	@Override
-	BufferedImage applyEffect(BufferedImage src, BufferedImage dst, int w, int h) {
+	BufferedImage applyEffect(BufferedImage src, BufferedImage dst, int w,
+			int h) {
 		if (src == null || src.getType() != BufferedImage.TYPE_INT_ARGB) {
 			throw new IllegalArgumentException("Effect only works with "
 					+ "source images of type BufferedImage.TYPE_INT_ARGB.");
@@ -106,7 +87,8 @@ class DropShadowEffect extends ShadowEffect {
 			srcRaster.getDataElements(0, y, w, 1, lineBuf);
 			for (int x = 0; x < w; x++) {
 				int dx = x + tmpOffX;
-				tmpBuf1[offset + dx] = (byte) ((lineBuf[x] & 0xFF000000) >>> 24);
+				tmpBuf1[offset + dx] = (byte) ((lineBuf[x]
+						& 0xFF000000) >>> 24);
 			}
 		}
 		// blur
@@ -115,7 +97,7 @@ class DropShadowEffect extends ShadowEffect {
 																		// pass
 		EffectUtils.blur(tmpBuf2, tmpBuf1, tmpH, tmpW, kernel, size);// vertical
 																		// pass
-		// rescale
+																		// rescale
 		float spread = Math.min(1 / (1 - (0.01f * this.spread)), 255);
 		for (int i = 0; i < tmpBuf1.length; i++) {
 			int val = (int) (((int) tmpBuf1[i] & 0xFF) * spread);
@@ -125,14 +107,15 @@ class DropShadowEffect extends ShadowEffect {
 		if (dst == null)
 			dst = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		WritableRaster shadowRaster = dst.getRaster();
-		int red = color.getRed(), green = color.getGreen(), blue = color.getBlue();
+		int red = color.getRed(), green = color.getGreen(), blue = color
+				.getBlue();
 		for (int y = 0; y < h; y++) {
 			int srcY = y + tmpOffY;
 			int shadowOffset = (srcY - offsetY) * tmpW;
 			for (int x = 0; x < w; x++) {
 				int srcX = x + tmpOffX;
-				lineBuf[x] = tmpBuf1[shadowOffset + (srcX - offsetX)] << 24 | red << 16 | green << 8
-						| blue;
+				lineBuf[x] = tmpBuf1[shadowOffset + (srcX - offsetX)] << 24
+						| red << 16 | green << 8 | blue;
 			}
 			shadowRaster.setDataElements(0, y, w, 1, lineBuf);
 		}

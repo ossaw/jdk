@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -43,7 +23,8 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class PagesPerMinute extends IntegerSyntax implements PrintServiceAttribute {
+public final class PagesPerMinute extends IntegerSyntax implements
+		PrintServiceAttribute {
 
 	private static final long serialVersionUID = -6366403993072862015L;
 
@@ -51,11 +32,12 @@ public final class PagesPerMinute extends IntegerSyntax implements PrintServiceA
 	 * Construct a new pages per minute attribute with the given integer value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (Unchecked exception) Thrown if <CODE>value</CODE> is less
-	 *                than 0.
+	 *                                     (Unchecked exception) Thrown if
+	 *                                     <CODE>value</CODE> is less
+	 *                                     than 0.
 	 */
 	public PagesPerMinute(int value) {
 		super(value, 0, Integer.MAX_VALUE);
@@ -73,7 +55,7 @@ public final class PagesPerMinute extends IntegerSyntax implements PrintServiceA
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this pages per
 	 *         minute attribute, false otherwise.

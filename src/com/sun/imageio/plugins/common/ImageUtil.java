@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.common;
@@ -48,7 +28,7 @@ import java.awt.image.SinglePixelPackedSampleModel;
 import java.awt.image.WritableRaster;
 import java.util.Arrays;
 
-//import javax.imageio.ImageTypeSpecifier;
+// import javax.imageio.ImageTypeSpecifier;
 
 import javax.imageio.IIOException;
 import javax.imageio.IIOImage;
@@ -75,10 +55,8 @@ public class ImageUtil {
 	 * ImageTypeSpecifier.createPacked(ColorSpace.getInstance(ColorSpace.CS_sRGB
 	 * ), 0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff, DataBuffer.TYPE_BYTE,
 	 * false);
-	 * 
 	 * SampleModel bandedSM = new
 	 * java.awt.image.BandedSampleModel(DataBuffer.TYPE_BYTE, 1, 1, 15);
-	 * 
 	 * System.out.println(createColorModel(bilevel.getSampleModel()));
 	 * System.out.println(createColorModel(gray.getSampleModel()));
 	 * System.out.println(createColorModel(grayAlpha.getSampleModel()));
@@ -121,7 +99,8 @@ public class ImageUtil {
 	 *         supplied <code>SampleModel</code>, or <code>null</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>sampleModel</code> is <code>null</code>.
+	 *                                  If <code>sampleModel</code> is
+	 *                                  <code>null</code>.
 	 */
 	public static final ColorModel createColorModel(SampleModel sampleModel) {
 		// Check the parameter.
@@ -134,16 +113,16 @@ public class ImageUtil {
 
 		// Check the data type
 		switch (dataType) {
-		case DataBuffer.TYPE_BYTE:
-		case DataBuffer.TYPE_USHORT:
-		case DataBuffer.TYPE_SHORT:
-		case DataBuffer.TYPE_INT:
-		case DataBuffer.TYPE_FLOAT:
-		case DataBuffer.TYPE_DOUBLE:
-			break;
-		default:
-			// Return null for other types.
-			return null;
+			case DataBuffer.TYPE_BYTE:
+			case DataBuffer.TYPE_USHORT:
+			case DataBuffer.TYPE_SHORT:
+			case DataBuffer.TYPE_INT:
+			case DataBuffer.TYPE_FLOAT:
+			case DataBuffer.TYPE_DOUBLE:
+				break;
+			default:
+				// Return null for other types.
+				return null;
 		}
 
 		// The return variable.
@@ -169,10 +148,11 @@ public class ImageUtil {
 
 			boolean hasAlpha = (numBands == 2) || (numBands == 4);
 			boolean isAlphaPremultiplied = false;
-			int transparency = hasAlpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE;
+			int transparency = hasAlpha ? Transparency.TRANSLUCENT
+					: Transparency.OPAQUE;
 
-			colorModel = new ComponentColorModel(colorSpace, sampleSize, hasAlpha,
-					isAlphaPremultiplied, transparency, dataType);
+			colorModel = new ComponentColorModel(colorSpace, sampleSize,
+					hasAlpha, isAlphaPremultiplied, transparency, dataType);
 		} else if (sampleModel.getNumBands() <= 4
 				&& sampleModel instanceof SinglePixelPackedSampleModel) {
 			SinglePixelPackedSampleModel sppsm = (SinglePixelPackedSampleModel) sampleModel;
@@ -214,7 +194,8 @@ public class ImageUtil {
 				map[i] = (byte) (i * 255 / (numEntries - 1));
 			}
 
-			colorModel = new IndexColorModel(bitsPerSample, numEntries, map, map, map);
+			colorModel = new IndexColorModel(bitsPerSample, numEntries, map,
+					map, map);
 
 		}
 
@@ -233,9 +214,11 @@ public class ImageUtil {
 	 * @return the binary data as a packed array of bytes with zero offset of
 	 *         <code>null</code> if the data are not binary.
 	 * @throws IllegalArgumentException
-	 *             if <code>isBinary()</code> returns <code>false</code> with
-	 *             the <code>SampleModel</code> of the supplied
-	 *             <code>Raster</code> as argument.
+	 *                                  if <code>isBinary()</code> returns
+	 *                                  <code>false</code> with
+	 *                                  the <code>SampleModel</code> of the
+	 *                                  supplied
+	 *                                  <code>Raster</code> as argument.
 	 */
 	public static byte[] getPackedBinaryData(Raster raster, Rectangle rect) {
 		SampleModel sm = raster.getSampleModel();
@@ -259,9 +242,10 @@ public class ImageUtil {
 		int bitOffset = mpp.getBitOffset(dx);
 
 		int numBytesPerRow = (rectWidth + 7) / 8;
-		if (dataBuffer instanceof DataBufferByte && eltOffset == 0 && bitOffset == 0
-				&& numBytesPerRow == lineStride
-				&& ((DataBufferByte) dataBuffer).getData().length == numBytesPerRow * rectHeight) {
+		if (dataBuffer instanceof DataBufferByte && eltOffset == 0
+				&& bitOffset == 0 && numBytesPerRow == lineStride
+				&& ((DataBufferByte) dataBuffer)
+						.getData().length == numBytesPerRow * rectHeight) {
 			return ((DataBufferByte) dataBuffer).getData();
 		}
 
@@ -275,7 +259,8 @@ public class ImageUtil {
 				int stride = numBytesPerRow;
 				int offset = 0;
 				for (int y = 0; y < rectHeight; y++) {
-					System.arraycopy(data, eltOffset, binaryDataArray, offset, stride);
+					System.arraycopy(data, eltOffset, binaryDataArray, offset,
+							stride);
 					offset += stride;
 					eltOffset += lineStride;
 				}
@@ -315,7 +300,8 @@ public class ImageUtil {
 					}
 					int shift = 24;
 					while (xRemaining > 0) {
-						binaryDataArray[b++] = (byte) ((data[i] >>> shift) & 0xFF);
+						binaryDataArray[b++] = (byte) ((data[i] >>> shift)
+								& 0xFF);
 						shift -= 8;
 						xRemaining -= 8;
 					}
@@ -330,7 +316,8 @@ public class ImageUtil {
 					int stride = numBytesPerRow;
 					int offset = 0;
 					for (int y = 0; y < rectHeight; y++) {
-						System.arraycopy(data, eltOffset, binaryDataArray, offset, stride);
+						System.arraycopy(data, eltOffset, binaryDataArray,
+								offset, stride);
 						offset += stride;
 						eltOffset += lineStride;
 					}
@@ -342,10 +329,12 @@ public class ImageUtil {
 						int xRemaining = rectWidth;
 						while (xRemaining > 0) {
 							if (xRemaining > rightShift) {
-								binaryDataArray[b++] = (byte) (((data[i++] & 0xFF) << leftShift)
-										| ((data[i] & 0xFF) >>> rightShift));
+								binaryDataArray[b++] = (byte) (((data[i++]
+										& 0xFF) << leftShift) | ((data[i]
+												& 0xFF) >>> rightShift));
 							} else {
-								binaryDataArray[b++] = (byte) ((data[i] & 0xFF) << leftShift);
+								binaryDataArray[b++] = (byte) ((data[i]
+										& 0xFF) << leftShift);
 							}
 							xRemaining -= 8;
 						}
@@ -406,9 +395,11 @@ public class ImageUtil {
 	 * will be the width of the <code>Raster</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>isBinary()</code> returns <code>false</code> with
-	 *             the <code>SampleModel</code> of the supplied
-	 *             <code>Raster</code> as argument.
+	 *                                  if <code>isBinary()</code> returns
+	 *                                  <code>false</code> with
+	 *                                  the <code>SampleModel</code> of the
+	 *                                  supplied
+	 *                                  <code>Raster</code> as argument.
 	 */
 	public static byte[] getUnpackedBinaryData(Raster raster, Rectangle rect) {
 		SampleModel sm = raster.getSampleModel();
@@ -456,7 +447,8 @@ public class ImageUtil {
 				int bOffset = eltOffset * 16 + bitOffset;
 				for (int x = rectX; x < maxX; x++) {
 					short s = data[bOffset / 16];
-					bdata[k++] = (byte) ((s >>> (15 - bOffset % 16)) & 0x0000001);
+					bdata[k++] = (byte) ((s >>> (15 - bOffset % 16))
+							& 0x0000001);
 					bOffset++;
 				}
 				eltOffset += lineStride;
@@ -467,7 +459,8 @@ public class ImageUtil {
 				int bOffset = eltOffset * 32 + bitOffset;
 				for (int x = rectX; x < maxX; x++) {
 					int i = data[bOffset / 32];
-					bdata[k++] = (byte) ((i >>> (31 - bOffset % 32)) & 0x0000001);
+					bdata[k++] = (byte) ((i >>> (31 - bOffset % 32))
+							& 0x0000001);
 					bOffset++;
 				}
 				eltOffset += lineStride;
@@ -482,12 +475,14 @@ public class ImageUtil {
 	 * binary data of the form returned by <code>getPackedBinaryData()</code>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>isBinary()</code> returns <code>false</code> with
-	 *             the <code>SampleModel</code> of the supplied
-	 *             <code>Raster</code> as argument.
+	 *                                  if <code>isBinary()</code> returns
+	 *                                  <code>false</code> with
+	 *                                  the <code>SampleModel</code> of the
+	 *                                  supplied
+	 *                                  <code>Raster</code> as argument.
 	 */
-	public static void setPackedBinaryData(byte[] binaryDataArray, WritableRaster raster,
-			Rectangle rect) {
+	public static void setPackedBinaryData(byte[] binaryDataArray,
+			WritableRaster raster, Rectangle rect) {
 		SampleModel sm = raster.getSampleModel();
 		if (!isBinary(sm)) {
 			throw new IllegalArgumentException(I18N.getString("ImageUtil0"));
@@ -520,7 +515,8 @@ public class ImageUtil {
 				int stride = (rectWidth + 7) / 8;
 				int offset = 0;
 				for (int y = 0; y < rectHeight; y++) {
-					System.arraycopy(binaryDataArray, offset, data, eltOffset, stride);
+					System.arraycopy(binaryDataArray, offset, data, eltOffset,
+							stride);
 					offset += stride;
 					eltOffset += lineStride;
 				}
@@ -534,12 +530,13 @@ public class ImageUtil {
 					int xRemaining = rectWidth;
 					int i = eltOffset;
 					while (xRemaining > 8) {
-						data[i++] = (short) (((binaryDataArray[b++] & 0xFF) << 8)
-								| (binaryDataArray[b++] & 0xFF));
+						data[i++] = (short) (((binaryDataArray[b++]
+								& 0xFF) << 8) | (binaryDataArray[b++] & 0xFF));
 						xRemaining -= 16;
 					}
 					if (xRemaining > 0) {
-						data[i++] = (short) ((binaryDataArray[b++] & 0xFF) << 8);
+						data[i++] = (short) ((binaryDataArray[b++]
+								& 0xFF) << 8);
 					}
 					eltOffset += lineStride;
 				}
@@ -558,7 +555,8 @@ public class ImageUtil {
 					}
 					int shift = 24;
 					while (xRemaining > 0) {
-						data[i] |= (int) ((binaryDataArray[b++] & 0xFF) << shift);
+						data[i] |= (int) ((binaryDataArray[b++]
+								& 0xFF) << shift);
 						shift -= 8;
 						xRemaining -= 8;
 					}
@@ -573,7 +571,8 @@ public class ImageUtil {
 
 				if ((bitOffset & 7) == 0) {
 					for (int y = 0; y < rectHeight; y++) {
-						System.arraycopy(binaryDataArray, offset, data, eltOffset, stride);
+						System.arraycopy(binaryDataArray, offset, data,
+								eltOffset, stride);
 						offset += stride;
 						eltOffset += lineStride;
 					}
@@ -593,23 +592,27 @@ public class ImageUtil {
 							if (xRemaining > leftShift8) {
 								// when all the bits in this BYTE will be set
 								// into the data buffer.
-								data[i] = (byte) ((data[i] & mask)
-										| ((datum & 0xFF) >>> rightShift));
-								data[++i] = (byte) ((datum & 0xFF) << leftShift);
+								data[i] = (byte) ((data[i] & mask) | ((datum
+										& 0xFF) >>> rightShift));
+								data[++i] = (byte) ((datum
+										& 0xFF) << leftShift);
 							} else if (xRemaining > leftShift) {
 								// All the "leftShift" high bits will be set
 								// into the data buffer. But not all the
 								// "rightShift" low bits will be set.
-								data[i] = (byte) ((data[i] & mask)
-										| ((datum & 0xFF) >>> rightShift));
+								data[i] = (byte) ((data[i] & mask) | ((datum
+										& 0xFF) >>> rightShift));
 								i++;
-								data[i] = (byte) ((data[i] & mask1)
-										| ((datum & 0xFF) << leftShift));
+								data[i] = (byte) ((data[i] & mask1) | ((datum
+										& 0xFF) << leftShift));
 							} else {
 								// Less than "leftShift" high bits will be set.
-								int remainMask = (1 << leftShift - xRemaining) - 1;
-								data[i] = (byte) ((data[i] & (mask | remainMask))
-										| (datum & 0xFF) >>> rightShift & ~remainMask);
+								int remainMask = (1 << leftShift - xRemaining)
+										- 1;
+								data[i] = (byte) ((data[i] & (mask
+										| remainMask)) | (datum
+												& 0xFF) >>> rightShift
+												& ~remainMask);
 							}
 							xRemaining -= 8;
 						}
@@ -642,7 +645,8 @@ public class ImageUtil {
 								// Mask the bits to be set.
 								datum &= 255 << 8 - xRemaining;
 							}
-							data[i] = (short) ((data[i] & mask) | (datum << leftShift));
+							data[i] = (short) ((data[i] & mask)
+									| (datum << leftShift));
 						} else if (xRemaining > leftShift16) {
 							// This BYTE will be set into two SHORTs
 							data[i] = (short) ((data[i] & mask1)
@@ -654,13 +658,15 @@ public class ImageUtil {
 							data[i] = (short) ((data[i] & mask1)
 									| ((datum >>> rightShift) & 0xFFFF));
 							i++;
-							data[i] = (short) ((data[i] & mask2) | ((datum << leftShift) & 0xFFFF));
+							data[i] = (short) ((data[i] & mask2)
+									| ((datum << leftShift) & 0xFFFF));
 						} else {
 							// Only some of the high bits will be set into
 							// SHORTs
 							int remainMask = (1 << leftShift - xRemaining) - 1;
 							data[i] = (short) ((data[i] & (mask1 | remainMask))
-									| ((datum >>> rightShift) & 0xFFFF & ~remainMask));
+									| ((datum >>> rightShift) & 0xFFFF
+											& ~remainMask));
 						}
 					}
 					eltOffset += lineStride;
@@ -687,7 +693,8 @@ public class ImageUtil {
 								// Mask the bits to be set.
 								datum &= 255 << 8 - xRemaining;
 							}
-							data[i] = (data[i] & (~(255 << shift))) | (datum << shift);
+							data[i] = (data[i] & (~(255 << shift)))
+									| (datum << shift);
 						} else if (xRemaining > leftShift32) {
 							// All the bits of this BYTE will be set into two
 							// INTs
@@ -722,11 +729,14 @@ public class ImageUtil {
 	 * the corresponding byte is non-zero.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>isBinary()</code> returns <code>false</code> with
-	 *             the <code>SampleModel</code> of the supplied
-	 *             <code>Raster</code> as argument.
+	 *                                  if <code>isBinary()</code> returns
+	 *                                  <code>false</code> with
+	 *                                  the <code>SampleModel</code> of the
+	 *                                  supplied
+	 *                                  <code>Raster</code> as argument.
 	 */
-	public static void setUnpackedBinaryData(byte[] bdata, WritableRaster raster, Rectangle rect) {
+	public static void setUnpackedBinaryData(byte[] bdata,
+			WritableRaster raster, Rectangle rect) {
 		SampleModel sm = raster.getSampleModel();
 		if (!isBinary(sm)) {
 			throw new IllegalArgumentException(I18N.getString("ImageUtil0"));
@@ -755,7 +765,8 @@ public class ImageUtil {
 				int bOffset = eltOffset * 8 + bitOffset;
 				for (int x = 0; x < rectWidth; x++) {
 					if (bdata[k++] != (byte) 0) {
-						data[bOffset / 8] |= (byte) (0x00000001 << (7 - bOffset & 7));
+						data[bOffset / 8] |= (byte) (0x00000001 << (7 - bOffset
+								& 7));
 					}
 					bOffset++;
 				}
@@ -770,7 +781,8 @@ public class ImageUtil {
 				int bOffset = eltOffset * 16 + bitOffset;
 				for (int x = 0; x < rectWidth; x++) {
 					if (bdata[k++] != (byte) 0) {
-						data[bOffset / 16] |= (short) (0x00000001 << (15 - bOffset % 16));
+						data[bOffset / 16] |= (short) (0x00000001 << (15
+								- bOffset % 16));
 					}
 					bOffset++;
 				}
@@ -782,7 +794,8 @@ public class ImageUtil {
 				int bOffset = eltOffset * 32 + bitOffset;
 				for (int x = 0; x < rectWidth; x++) {
 					if (bdata[k++] != (byte) 0) {
-						data[bOffset / 32] |= (int) (0x00000001 << (31 - bOffset % 32));
+						data[bOffset / 32] |= (int) (0x00000001 << (31 - bOffset
+								% 32));
 					}
 					bOffset++;
 				}
@@ -797,7 +810,8 @@ public class ImageUtil {
 				&& sm.getNumBands() == 1;
 	}
 
-	public static ColorModel createColorModel(ColorSpace colorSpace, SampleModel sampleModel) {
+	public static ColorModel createColorModel(ColorSpace colorSpace,
+			SampleModel sampleModel) {
 		ColorModel colorModel = null;
 
 		if (sampleModel == null) {
@@ -818,11 +832,13 @@ public class ImageUtil {
 			}
 
 			if (colorSpace == null)
-				colorSpace = numBands <= 2 ? ColorSpace.getInstance(ColorSpace.CS_GRAY)
+				colorSpace = numBands <= 2 ? ColorSpace.getInstance(
+						ColorSpace.CS_GRAY)
 						: ColorSpace.getInstance(ColorSpace.CS_sRGB);
 
 			boolean useAlpha = (numBands == 2) || (numBands == 4);
-			int transparency = useAlpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE;
+			int transparency = useAlpha ? Transparency.TRANSLUCENT
+					: Transparency.OPAQUE;
 
 			boolean premultiplied = false;
 
@@ -832,8 +848,8 @@ public class ImageUtil {
 				bits[i] = dataTypeSize;
 			}
 
-			colorModel = new ComponentColorModel(colorSpace, bits, useAlpha, premultiplied,
-					transparency, dataType);
+			colorModel = new ComponentColorModel(colorSpace, bits, useAlpha,
+					premultiplied, transparency, dataType);
 		} else if (sampleModel instanceof SinglePixelPackedSampleModel) {
 			SinglePixelPackedSampleModel sppsm = (SinglePixelPackedSampleModel) sampleModel;
 
@@ -867,10 +883,11 @@ public class ImageUtil {
 			if (colorSpace == null)
 				colorSpace = ColorSpace.getInstance(ColorSpace.CS_sRGB);
 
-			colorModel = new DirectColorModel(colorSpace, bits, rmask, gmask, bmask, amask, false,
-					sampleModel.getDataType());
+			colorModel = new DirectColorModel(colorSpace, bits, rmask, gmask,
+					bmask, amask, false, sampleModel.getDataType());
 		} else if (sampleModel instanceof MultiPixelPackedSampleModel) {
-			int bits = ((MultiPixelPackedSampleModel) sampleModel).getPixelBitStride();
+			int bits = ((MultiPixelPackedSampleModel) sampleModel)
+					.getPixelBitStride();
 			int size = 1 << bits;
 			byte[] comp = new byte[size];
 
@@ -904,8 +921,8 @@ public class ImageUtil {
 
 		if (sm instanceof MultiPixelPackedSampleModel) {
 			MultiPixelPackedSampleModel mppsm = (MultiPixelPackedSampleModel) sm;
-			return (mppsm.getScanlineStride() * mppsm.getHeight()
-					+ (mppsm.getDataBitOffset() + elementSize - 1) / elementSize)
+			return (mppsm.getScanlineStride() * mppsm.getHeight() + (mppsm
+					.getDataBitOffset() + elementSize - 1) / elementSize)
 					* ((elementSize + 7) / 8);
 		} else if (sm instanceof ComponentSampleModel) {
 			ComponentSampleModel csm = (ComponentSampleModel) sm;
@@ -931,7 +948,8 @@ public class ImageUtil {
 			return size * (maxBandOff + 1) * ((elementSize + 7) / 8);
 		} else if (sm instanceof SinglePixelPackedSampleModel) {
 			SinglePixelPackedSampleModel sppsm = (SinglePixelPackedSampleModel) sm;
-			long size = sppsm.getScanlineStride() * (sppsm.getHeight() - 1) + sppsm.getWidth();
+			long size = sppsm.getScanlineStride() * (sppsm.getHeight() - 1)
+					+ sppsm.getWidth();
 			return size * ((elementSize + 7) / 8);
 		}
 
@@ -960,11 +978,11 @@ public class ImageUtil {
 	 * Tests whether the color indices represent a gray-scale image.
 	 *
 	 * @param r
-	 *            The red channel color indices.
+	 *          The red channel color indices.
 	 * @param g
-	 *            The green channel color indices.
+	 *          The green channel color indices.
 	 * @param b
-	 *            The blue channel color indices.
+	 *          The blue channel color indices.
 	 * @return If all the indices have 256 entries, and are identical mappings,
 	 *         return <code>true</code>; otherwise, return <code>false</code>.
 	 */
@@ -1024,19 +1042,19 @@ public class ImageUtil {
 	 * <code>IIOException</code> will be thrown.
 	 * 
 	 * @param writer
-	 *            The provided <code>ImageWriter</code>.
+	 *               The provided <code>ImageWriter</code>.
 	 * @param type
-	 *            The image to be tested.
+	 *               The image to be tested.
 	 * @throws IIOException
-	 *             If the writer cannot encoded the provided image.
+	 *                      If the writer cannot encoded the provided image.
 	 */
-	public static final void canEncodeImage(ImageWriter writer, ImageTypeSpecifier type)
-			throws IIOException {
+	public static final void canEncodeImage(ImageWriter writer,
+			ImageTypeSpecifier type) throws IIOException {
 		ImageWriterSpi spi = writer.getOriginatingProvider();
 
 		if (type != null && spi != null && !spi.canEncodeImage(type)) {
-			throw new IIOException(
-					I18N.getString("ImageUtil2") + " " + writer.getClass().getName());
+			throw new IIOException(I18N.getString("ImageUtil2") + " " + writer
+					.getClass().getName());
 		}
 	}
 
@@ -1046,16 +1064,17 @@ public class ImageUtil {
 	 * <code>IIOException</code> will be thrown.
 	 * 
 	 * @param writer
-	 *            The provided <code>ImageWriter</code>.
+	 *                    The provided <code>ImageWriter</code>.
 	 * @param colorModel
-	 *            The provided <code>ColorModel</code>.
+	 *                    The provided <code>ColorModel</code>.
 	 * @param sampleModel
-	 *            The provided <code>SampleModel</code>.
+	 *                    The provided <code>SampleModel</code>.
 	 * @throws IIOException
-	 *             If the writer cannot encoded the provided image.
+	 *                      If the writer cannot encoded the provided image.
 	 */
-	public static final void canEncodeImage(ImageWriter writer, ColorModel colorModel,
-			SampleModel sampleModel) throws IIOException {
+	public static final void canEncodeImage(ImageWriter writer,
+			ColorModel colorModel, SampleModel sampleModel)
+			throws IIOException {
 		ImageTypeSpecifier type = null;
 		if (colorModel != null && sampleModel != null)
 			type = new ImageTypeSpecifier(colorModel, sampleModel);

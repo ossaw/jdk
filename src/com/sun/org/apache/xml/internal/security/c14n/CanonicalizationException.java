@@ -69,7 +69,8 @@ public class CanonicalizationException extends XMLSecurityException {
 	 * @param msgID
 	 * @param originalException
 	 */
-	public CanonicalizationException(String msgID, Exception originalException) {
+	public CanonicalizationException(String msgID,
+			Exception originalException) {
 		super(msgID, originalException);
 	}
 
@@ -80,7 +81,8 @@ public class CanonicalizationException extends XMLSecurityException {
 	 * @param exArgs
 	 * @param originalException
 	 */
-	public CanonicalizationException(String msgID, Object exArgs[], Exception originalException) {
+	public CanonicalizationException(String msgID, Object exArgs[],
+			Exception originalException) {
 		super(msgID, exArgs, originalException);
 	}
 }

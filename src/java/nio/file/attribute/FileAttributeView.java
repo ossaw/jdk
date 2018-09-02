@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file.attribute;
@@ -36,5 +16,4 @@ package java.nio.file.attribute;
  * @see java.nio.file.Files#getFileAttributeView(Path,Class,java.nio.file.LinkOption[])
  */
 
-public interface FileAttributeView extends AttributeView {
-}
+public interface FileAttributeView extends AttributeView {}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.registry;
@@ -60,8 +40,7 @@ public final class LocateRegistry {
 	/**
 	 * Private constructor to disable public construction.
 	 */
-	private LocateRegistry() {
-	}
+	private LocateRegistry() {}
 
 	/**
 	 * Returns a reference to the the remote object <code>Registry</code> for
@@ -69,7 +48,7 @@ public final class LocateRegistry {
 	 *
 	 * @return reference (a stub) to the remote object registry
 	 * @exception RemoteException
-	 *                if the reference could not be created
+	 *                            if the reference could not be created
 	 * @since JDK1.1
 	 */
 	public static Registry getRegistry() throws RemoteException {
@@ -81,10 +60,10 @@ public final class LocateRegistry {
 	 * the local host on the specified <code>port</code>.
 	 *
 	 * @param port
-	 *            port on which the registry accepts requests
+	 *             port on which the registry accepts requests
 	 * @return reference (a stub) to the remote object registry
 	 * @exception RemoteException
-	 *                if the reference could not be created
+	 *                            if the reference could not be created
 	 * @since JDK1.1
 	 */
 	public static Registry getRegistry(int port) throws RemoteException {
@@ -97,10 +76,10 @@ public final class LocateRegistry {
 	 * <code>host</code> is <code>null</code>, the local host is used.
 	 *
 	 * @param host
-	 *            host for the remote registry
+	 *             host for the remote registry
 	 * @return reference (a stub) to the remote object registry
 	 * @exception RemoteException
-	 *                if the reference could not be created
+	 *                            if the reference could not be created
 	 * @since JDK1.1
 	 */
 	public static Registry getRegistry(String host) throws RemoteException {
@@ -113,15 +92,16 @@ public final class LocateRegistry {
 	 * is <code>null</code>, the local host is used.
 	 *
 	 * @param host
-	 *            host for the remote registry
+	 *             host for the remote registry
 	 * @param port
-	 *            port on which the registry accepts requests
+	 *             port on which the registry accepts requests
 	 * @return reference (a stub) to the remote object registry
 	 * @exception RemoteException
-	 *                if the reference could not be created
+	 *                            if the reference could not be created
 	 * @since JDK1.1
 	 */
-	public static Registry getRegistry(String host, int port) throws RemoteException {
+	public static Registry getRegistry(String host, int port)
+			throws RemoteException {
 		return getRegistry(host, port, null);
 	}
 
@@ -134,21 +114,22 @@ public final class LocateRegistry {
 	 * <code>host</code> and <code>port</code>.
 	 *
 	 * @param host
-	 *            host for the remote registry
+	 *             host for the remote registry
 	 * @param port
-	 *            port on which the registry accepts requests
+	 *             port on which the registry accepts requests
 	 * @param csf
-	 *            client-side <code>Socket</code> factory used to make
-	 *            connections to the registry. If <code>csf</code> is null, then
-	 *            the default client-side <code>Socket</code> factory will be
-	 *            used in the registry stub.
+	 *             client-side <code>Socket</code> factory used to make
+	 *             connections to the registry. If <code>csf</code> is null,
+	 *             then
+	 *             the default client-side <code>Socket</code> factory will be
+	 *             used in the registry stub.
 	 * @return reference (a stub) to the remote registry
 	 * @exception RemoteException
-	 *                if the reference could not be created
+	 *                            if the reference could not be created
 	 * @since 1.2
 	 */
-	public static Registry getRegistry(String host, int port, RMIClientSocketFactory csf)
-			throws RemoteException {
+	public static Registry getRegistry(String host, int port,
+			RMIClientSocketFactory csf) throws RemoteException {
 		Registry registry = null;
 
 		if (port <= 0)
@@ -177,7 +158,8 @@ public final class LocateRegistry {
 		 **/
 		LiveRef liveRef = new LiveRef(new ObjID(ObjID.REGISTRY_ID),
 				new TCPEndpoint(host, port, csf, null), false);
-		RemoteRef ref = (csf == null) ? new UnicastRef(liveRef) : new UnicastRef2(liveRef);
+		RemoteRef ref = (csf == null) ? new UnicastRef(liveRef)
+				: new UnicastRef2(liveRef);
 
 		return (Registry) Util.createProxy(RegistryImpl.class, ref, false);
 	}
@@ -196,10 +178,10 @@ public final class LocateRegistry {
 	 * constructed with the value {@link ObjID#REGISTRY_ID}.
 	 *
 	 * @param port
-	 *            the port on which the registry accepts requests
+	 *             the port on which the registry accepts requests
 	 * @return the registry
 	 * @exception RemoteException
-	 *                if the registry could not be exported
+	 *                            if the registry could not be exported
 	 * @since JDK1.1
 	 **/
 	public static Registry createRegistry(int port) throws RemoteException {
@@ -225,16 +207,16 @@ public final class LocateRegistry {
 	 * {@link ObjID#REGISTRY_ID}.
 	 *
 	 * @param port
-	 *            port on which the registry accepts requests
+	 *             port on which the registry accepts requests
 	 * @param csf
-	 *            client-side <code>Socket</code> factory used to make
-	 *            connections to the registry
+	 *             client-side <code>Socket</code> factory used to make
+	 *             connections to the registry
 	 * @param ssf
-	 *            server-side <code>ServerSocket</code> factory used to accept
-	 *            connections to the registry
+	 *             server-side <code>ServerSocket</code> factory used to accept
+	 *             connections to the registry
 	 * @return the registry
 	 * @exception RemoteException
-	 *                if the registry could not be exported
+	 *                            if the registry could not be exported
 	 * @since 1.2
 	 **/
 	public static Registry createRegistry(int port, RMIClientSocketFactory csf,

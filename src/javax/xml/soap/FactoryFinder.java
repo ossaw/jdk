@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.soap;
@@ -35,8 +15,9 @@ class FactoryFinder {
 	 * <code>ClassLoader</code> object.
 	 *
 	 * @exception SOAPException
-	 *                if the given class could not be found or could not be
-	 *                instantiated
+	 *                          if the given class could not be found or could
+	 *                          not be
+	 *                          instantiated
 	 */
 	private static Object newInstance(String className, ClassLoader classLoader)
 			throws SOAPException {
@@ -47,8 +28,8 @@ class FactoryFinder {
 		} catch (ClassNotFoundException x) {
 			throw new SOAPException("Provider " + className + " not found", x);
 		} catch (Exception x) {
-			throw new SOAPException("Provider " + className + " could not be instantiated: " + x,
-					x);
+			throw new SOAPException("Provider " + className
+					+ " could not be instantiated: " + x, x);
 		}
 	}
 
@@ -62,9 +43,10 @@ class FactoryFinder {
 	 *         or <code>null</code>
 	 *
 	 * @param factoryId
-	 *            the name of the factory to find, which is a system property
+	 *                  the name of the factory to find, which is a system
+	 *                  property
 	 * @exception SOAPException
-	 *                if there is a SOAP error
+	 *                          if there is a SOAP error
 	 */
 	static Object find(String factoryId) throws SOAPException {
 		return find(factoryId, null, false);
@@ -82,15 +64,19 @@ class FactoryFinder {
 	 *         may be <code>null</code>
 	 *
 	 * @param factoryId
-	 *            the name of the factory to find, which is a system property
+	 *                          the name of the factory to find, which is a
+	 *                          system property
 	 * @param fallbackClassName
-	 *            the implementation class name, which is to be used only if
-	 *            nothing else is found; <code>null</code> to indicate that
-	 *            there is no fallback class name
+	 *                          the implementation class name, which is to be
+	 *                          used only if
+	 *                          nothing else is found; <code>null</code> to
+	 *                          indicate that
+	 *                          there is no fallback class name
 	 * @exception SOAPException
-	 *                if there is a SOAP error
+	 *                          if there is a SOAP error
 	 */
-	static Object find(String factoryId, String fallbackClassName) throws SOAPException {
+	static Object find(String factoryId, String fallbackClassName)
+			throws SOAPException {
 		return find(factoryId, fallbackClassName, true);
 	}
 
@@ -109,18 +95,21 @@ class FactoryFinder {
 	 *         may not be <code>null</code>
 	 *
 	 * @param factoryId
-	 *            the name of the factory to find, which is a system property
+	 *                         the name of the factory to find, which is a
+	 *                         system property
 	 * @param defaultClassName
-	 *            the implementation class name, which is to be used only if
-	 *            nothing else is found; <code>null</code> to indicate that
-	 *            there is no default class name
+	 *                         the implementation class name, which is to be
+	 *                         used only if
+	 *                         nothing else is found; <code>null</code> to
+	 *                         indicate that
+	 *                         there is no default class name
 	 * @param tryFallback
-	 *            whether to try the default class as a fallback
+	 *                         whether to try the default class as a fallback
 	 * @exception SOAPException
-	 *                if there is a SOAP error
+	 *                          if there is a SOAP error
 	 */
-	static Object find(String factoryId, String defaultClassName, boolean tryFallback)
-			throws SOAPException {
+	static Object find(String factoryId, String defaultClassName,
+			boolean tryFallback) throws SOAPException {
 		ClassLoader classLoader;
 		try {
 			classLoader = Thread.currentThread().getContextClassLoader();
@@ -140,7 +129,8 @@ class FactoryFinder {
 		// try to read from $java.home/lib/jaxm.properties
 		try {
 			String javah = System.getProperty("java.home");
-			String configFile = javah + File.separator + "lib" + File.separator + "jaxm.properties";
+			String configFile = javah + File.separator + "lib" + File.separator
+					+ "jaxm.properties";
 			File f = new File(configFile);
 			if (f.exists()) {
 				Properties props = new Properties();
@@ -162,7 +152,8 @@ class FactoryFinder {
 			}
 
 			if (is != null) {
-				BufferedReader rd = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+				BufferedReader rd = new BufferedReader(new InputStreamReader(is,
+						"UTF-8"));
 
 				String factoryClassName = rd.readLine();
 				rd.close();
@@ -181,7 +172,8 @@ class FactoryFinder {
 		// We didn't find the class through the usual means so try the default
 		// (built in) factory if specified.
 		if (defaultClassName == null) {
-			throw new SOAPException("Provider for " + factoryId + " cannot be found", null);
+			throw new SOAPException("Provider for " + factoryId
+					+ " cannot be found", null);
 		}
 		return newInstance(defaultClassName, classLoader);
 	}
@@ -192,8 +184,8 @@ class FactoryFinder {
 	 * is restricted by package.access we get a SecurityException and can do a
 	 * Class.forName() on it so it will be loaded by the bootstrap class loader.
 	 */
-	private static Class safeLoadClass(String className, ClassLoader classLoader)
-			throws ClassNotFoundException {
+	private static Class safeLoadClass(String className,
+			ClassLoader classLoader) throws ClassNotFoundException {
 		try {
 			// make sure that the current thread has an access to the package of
 			// the given name.
@@ -222,7 +214,8 @@ class FactoryFinder {
 	private static boolean isDefaultImplementation(String className) {
 		return MessageFactory.DEFAULT_MESSAGE_FACTORY.equals(className)
 				|| SOAPFactory.DEFAULT_SOAP_FACTORY.equals(className)
-				|| SOAPConnectionFactory.DEFAULT_SOAP_CONNECTION_FACTORY.equals(className)
-				|| SAAJMetaFactory.DEFAULT_META_FACTORY_CLASS.equals(className);
+				|| SOAPConnectionFactory.DEFAULT_SOAP_CONNECTION_FACTORY.equals(
+						className) || SAAJMetaFactory.DEFAULT_META_FACTORY_CLASS
+								.equals(className);
 	}
 }

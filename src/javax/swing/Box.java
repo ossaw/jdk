@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -72,10 +52,10 @@ public class Box extends JComponent implements Accessible {
 	 * specified axis.
 	 *
 	 * @param axis
-	 *            can be {@link BoxLayout#X_AXIS}, {@link BoxLayout#Y_AXIS},
-	 *            {@link BoxLayout#LINE_AXIS} or {@link BoxLayout#PAGE_AXIS}.
+	 *             can be {@link BoxLayout#X_AXIS}, {@link BoxLayout#Y_AXIS},
+	 *             {@link BoxLayout#LINE_AXIS} or {@link BoxLayout#PAGE_AXIS}.
 	 * @throws AWTError
-	 *             if the <code>axis</code> is invalid
+	 *                  if the <code>axis</code> is invalid
 	 * @see #createHorizontalBox
 	 * @see #createVerticalBox
 	 */
@@ -121,7 +101,7 @@ public class Box extends JComponent implements Accessible {
 	 * WHEN WOULD YOU USE THIS AS OPPOSED TO A STRUT? -->
 	 *
 	 * @param d
-	 *            the dimensions of the invisible component
+	 *          the dimensions of the invisible component
 	 * @return the component
 	 * @see #createGlue
 	 * @see #createHorizontalStrut
@@ -141,7 +121,7 @@ public class Box extends JComponent implements Accessible {
 	 * height.
 	 *
 	 * @param width
-	 *            the width of the invisible component, in pixels &gt;= 0
+	 *              the width of the invisible component, in pixels &gt;= 0
 	 * @return the component
 	 * @see #createVerticalStrut
 	 * @see #createGlue
@@ -162,7 +142,7 @@ public class Box extends JComponent implements Accessible {
 	 * width.
 	 *
 	 * @param height
-	 *            the height of the invisible component, in pixels &gt;= 0
+	 *               the height of the invisible component, in pixels &gt;= 0
 	 * @return the component
 	 * @see #createHorizontalStrut
 	 * @see #createGlue
@@ -233,7 +213,7 @@ public class Box extends JComponent implements Accessible {
 	 * Throws an AWTError, since a Box can use only a BoxLayout.
 	 *
 	 * @param l
-	 *            the layout manager to use
+	 *          the layout manager to use
 	 */
 	public void setLayout(LayoutManager l) {
 		throw new AWTError("Illegal request");
@@ -245,9 +225,9 @@ public class Box extends JComponent implements Accessible {
 	 * is opaque the <code>Graphics</code> is filled using the background.
 	 *
 	 * @param g
-	 *            the <code>Graphics</code> to paint to
+	 *          the <code>Graphics</code> to paint to
 	 * @throws NullPointerException
-	 *             if <code>g</code> is null
+	 *                              if <code>g</code> is null
 	 * @since 1.6
 	 */
 	protected void paintComponent(Graphics g) {
@@ -278,13 +258,14 @@ public class Box extends JComponent implements Accessible {
 		 * Constructor to create shape with the given size ranges.
 		 *
 		 * @param min
-		 *            Minimum size
+		 *             Minimum size
 		 * @param pref
-		 *            Preferred size
+		 *             Preferred size
 		 * @param max
-		 *            Maximum size
+		 *             Maximum size
 		 */
-		@ConstructorProperties({ "minimumSize", "preferredSize", "maximumSize" })
+		@ConstructorProperties({ "minimumSize", "preferredSize",
+				"maximumSize" })
 		public Filler(Dimension min, Dimension pref, Dimension max) {
 			setMinimumSize(min);
 			setPreferredSize(pref);
@@ -297,11 +278,11 @@ public class Box extends JComponent implements Accessible {
 		 * with using the new sizes.
 		 *
 		 * @param min
-		 *            Value to return for getMinimumSize
+		 *             Value to return for getMinimumSize
 		 * @param pref
-		 *            Value to return for getPreferredSize
+		 *             Value to return for getPreferredSize
 		 * @param max
-		 *            Value to return for getMaximumSize
+		 *             Value to return for getMaximumSize
 		 */
 		public void changeShape(Dimension min, Dimension pref, Dimension max) {
 			setMinimumSize(min);
@@ -319,9 +300,9 @@ public class Box extends JComponent implements Accessible {
 		 * using the background.
 		 *
 		 * @param g
-		 *            the <code>Graphics</code> to paint to
+		 *          the <code>Graphics</code> to paint to
 		 * @throws NullPointerException
-		 *             if <code>g</code> is null
+		 *                              if <code>g</code> is null
 		 * @since 1.6
 		 */
 		protected void paintComponent(Graphics g) {

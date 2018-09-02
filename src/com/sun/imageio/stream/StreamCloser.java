@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.stream;
@@ -62,7 +42,8 @@ public class StreamCloser {
 								// Make a copy of the set in order to avoid
 								// concurrent modification (the is.close()
 								// will in turn call removeFromQueue())
-								CloseAction[] actions = new CloseAction[set.size()];
+								CloseAction[] actions = new CloseAction[set
+										.size()];
 								actions = set.toArray(actions);
 								for (CloseAction ca : actions) {
 									if (ca != null) {
@@ -77,27 +58,35 @@ public class StreamCloser {
 					}
 				};
 
-				java.security.AccessController.doPrivileged(new java.security.PrivilegedAction() {
-					public Object run() {
-						/*
-						 * The thread must be a member of a thread group which
-						 * will not get GCed before VM exit. Make its parent the
-						 * top-level thread group.
-						 */
-						ThreadGroup tg = Thread.currentThread().getThreadGroup();
-						for (ThreadGroup tgn = tg; tgn != null; tg = tgn, tgn = tg.getParent())
-							;
-						streamCloser = new Thread(tg, streamCloserRunnable);
-						/*
-						 * Set context class loader to null in order to avoid
-						 * keeping a strong reference to an application
-						 * classloader.
-						 */
-						streamCloser.setContextClassLoader(null);
-						Runtime.getRuntime().addShutdownHook(streamCloser);
-						return null;
-					}
-				});
+				java.security.AccessController.doPrivileged(
+						new java.security.PrivilegedAction() {
+							public Object run() {
+								/*
+								 * The thread must be a member of a thread group
+								 * which
+								 * will not get GCed before VM exit. Make its
+								 * parent the
+								 * top-level thread group.
+								 */
+								ThreadGroup tg = Thread.currentThread()
+										.getThreadGroup();
+								for (ThreadGroup tgn = tg; tgn != null; tg = tgn, tgn = tg
+										.getParent())
+									;
+								streamCloser = new Thread(tg,
+										streamCloserRunnable);
+								/*
+								 * Set context class loader to null in order to
+								 * avoid
+								 * keeping a strong reference to an application
+								 * classloader.
+								 */
+								streamCloser.setContextClassLoader(null);
+								Runtime.getRuntime().addShutdownHook(
+										streamCloser);
+								return null;
+							}
+						});
 			}
 		}
 	}

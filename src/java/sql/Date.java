@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -48,12 +28,12 @@ public class Date extends java.util.Date {
 	 * The result is undefined if a given argument is out of bounds.
 	 *
 	 * @param year
-	 *            the year minus 1900; must be 0 to 8099. (Note that 8099 is
-	 *            9999 minus 1900.)
+	 *              the year minus 1900; must be 0 to 8099. (Note that 8099 is
+	 *              9999 minus 1900.)
 	 * @param month
-	 *            0 to 11
+	 *              0 to 11
 	 * @param day
-	 *            1 to 31
+	 *              1 to 31
 	 * @deprecated instead use the constructor <code>Date(long date)</code>
 	 */
 	@Deprecated
@@ -69,10 +49,11 @@ public class Date extends java.util.Date {
 	 * corresponds to zero GMT.
 	 *
 	 * @param date
-	 *            milliseconds since January 1, 1970, 00:00:00 GMT not to exceed
-	 *            the milliseconds representation for the year 8099. A negative
-	 *            number indicates the number of milliseconds before January 1,
-	 *            1970, 00:00:00 GMT.
+	 *             milliseconds since January 1, 1970, 00:00:00 GMT not to
+	 *             exceed
+	 *             the milliseconds representation for the year 8099. A negative
+	 *             number indicates the number of milliseconds before January 1,
+	 *             1970, 00:00:00 GMT.
 	 */
 	public Date(long date) {
 		// If the millisecond date value contains time info, mask it out.
@@ -88,10 +69,11 @@ public class Date extends java.util.Date {
 	 * that corresponds to zero GMT.
 	 *
 	 * @param date
-	 *            milliseconds since January 1, 1970, 00:00:00 GMT not to exceed
-	 *            the milliseconds representation for the year 8099. A negative
-	 *            number indicates the number of milliseconds before January 1,
-	 *            1970, 00:00:00 GMT.
+	 *             milliseconds since January 1, 1970, 00:00:00 GMT not to
+	 *             exceed
+	 *             the milliseconds representation for the year 8099. A negative
+	 *             number indicates the number of milliseconds before January 1,
+	 *             1970, 00:00:00 GMT.
 	 */
 	public void setTime(long date) {
 		// If the millisecond date value contains time info, mask it out.
@@ -103,13 +85,14 @@ public class Date extends java.util.Date {
 	 * value.
 	 *
 	 * @param s
-	 *            a <code>String</code> object representing a date in in the
-	 *            format "yyyy-[m]m-[d]d". The leading zero for <code>mm</code>
-	 *            and <code>dd</code> may also be omitted.
+	 *          a <code>String</code> object representing a date in in the
+	 *          format "yyyy-[m]m-[d]d". The leading zero for <code>mm</code>
+	 *          and <code>dd</code> may also be omitted.
 	 * @return a <code>java.sql.Date</code> object representing the given date
 	 * @throws IllegalArgumentException
-	 *             if the date given is not in the JDBC date escape format
-	 *             (yyyy-[m]m-[d]d)
+	 *                                  if the date given is not in the JDBC
+	 *                                  date escape format
+	 *                                  (yyyy-[m]m-[d]d)
 	 */
 	public static Date valueOf(String s) {
 		final int YEAR_LENGTH = 4;
@@ -127,17 +110,20 @@ public class Date extends java.util.Date {
 		firstDash = s.indexOf('-');
 		secondDash = s.indexOf('-', firstDash + 1);
 
-		if ((firstDash > 0) && (secondDash > 0) && (secondDash < s.length() - 1)) {
+		if ((firstDash > 0) && (secondDash > 0) && (secondDash < s.length()
+				- 1)) {
 			String yyyy = s.substring(0, firstDash);
 			String mm = s.substring(firstDash + 1, secondDash);
 			String dd = s.substring(secondDash + 1);
-			if (yyyy.length() == YEAR_LENGTH && (mm.length() >= 1 && mm.length() <= MONTH_LENGTH)
-					&& (dd.length() >= 1 && dd.length() <= DAY_LENGTH)) {
+			if (yyyy.length() == YEAR_LENGTH && (mm.length() >= 1 && mm
+					.length() <= MONTH_LENGTH) && (dd.length() >= 1 && dd
+							.length() <= DAY_LENGTH)) {
 				int year = Integer.parseInt(yyyy);
 				int month = Integer.parseInt(mm);
 				int day = Integer.parseInt(dd);
 
-				if ((month >= 1 && month <= MAX_MONTH) && (day >= 1 && day <= MAX_DAY)) {
+				if ((month >= 1 && month <= MAX_MONTH) && (day >= 1
+						&& day <= MAX_DAY)) {
 					d = new Date(year - 1900, month - 1, day);
 				}
 			}
@@ -183,7 +169,7 @@ public class Date extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 * @see #setHours
 	 */
 	@Deprecated
@@ -197,7 +183,7 @@ public class Date extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 * @see #setMinutes
 	 */
 	@Deprecated
@@ -211,7 +197,7 @@ public class Date extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 * @see #setSeconds
 	 */
 	@Deprecated
@@ -225,7 +211,7 @@ public class Date extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 * @see #getHours
 	 */
 	@Deprecated
@@ -239,7 +225,7 @@ public class Date extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 * @see #getMinutes
 	 */
 	@Deprecated
@@ -253,7 +239,7 @@ public class Date extends java.util.Date {
 	 *
 	 * @deprecated
 	 * @exception java.lang.IllegalArgumentException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 * @see #getSeconds
 	 */
 	@Deprecated
@@ -275,15 +261,16 @@ public class Date extends java.util.Date {
 	 * local time zone.
 	 *
 	 * @param date
-	 *            a {@code LocalDate} to convert
+	 *             a {@code LocalDate} to convert
 	 * @return a {@code Date} object
 	 * @exception NullPointerException
-	 *                if {@code date} is null
+	 *                                 if {@code date} is null
 	 * @since 1.8
 	 */
 	@SuppressWarnings("deprecation")
 	public static Date valueOf(LocalDate date) {
-		return new Date(date.getYear() - 1900, date.getMonthValue() - 1, date.getDayOfMonth());
+		return new Date(date.getYear() - 1900, date.getMonthValue() - 1, date
+				.getDayOfMonth());
 	}
 
 	/**
@@ -306,7 +293,7 @@ public class Date extends java.util.Date {
 	 * be used because SQL {@code Date} values do not have a time component.
 	 *
 	 * @exception java.lang.UnsupportedOperationException
-	 *                if this method is invoked
+	 *            if this method is invoked
 	 */
 	@Override
 	public Instant toInstant() {

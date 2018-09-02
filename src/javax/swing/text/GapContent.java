@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -56,7 +36,8 @@ import java.lang.ref.ReferenceQueue;
  *
  * @author Timothy Prinzing
  */
-public class GapContent extends GapVector implements AbstractDocument.Content, Serializable {
+public class GapContent extends GapVector implements AbstractDocument.Content,
+		Serializable {
 
 	/**
 	 * Creates a new GapContent object. Initial size defaults to 10.
@@ -71,7 +52,7 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 	 * implied break and the gap.
 	 *
 	 * @param initialLength
-	 *            the initial size
+	 *                      the initial size
 	 */
 	public GapContent(int initialLength) {
 		super(Math.max(initialLength, 2));
@@ -117,15 +98,16 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 	 * Inserts a string into the content.
 	 *
 	 * @param where
-	 *            the starting position &gt;= 0, &lt; length()
+	 *              the starting position &gt;= 0, &lt; length()
 	 * @param str
-	 *            the non-null string to insert
+	 *              the non-null string to insert
 	 * @return an UndoableEdit object for undoing
 	 * @exception BadLocationException
-	 *                if the specified position is invalid
+	 *                                 if the specified position is invalid
 	 * @see AbstractDocument.Content#insertString
 	 */
-	public UndoableEdit insertString(int where, String str) throws BadLocationException {
+	public UndoableEdit insertString(int where, String str)
+			throws BadLocationException {
 		if (where > length() || where < 0) {
 			throw new BadLocationException("Invalid insert", length());
 		}
@@ -138,15 +120,16 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 	 * Removes part of the content.
 	 *
 	 * @param where
-	 *            the starting position &gt;= 0, where + nitems &lt; length()
+	 *               the starting position &gt;= 0, where + nitems &lt; length()
 	 * @param nitems
-	 *            the number of characters to remove &gt;= 0
+	 *               the number of characters to remove &gt;= 0
 	 * @return an UndoableEdit object for undoing
 	 * @exception BadLocationException
-	 *                if the specified position is invalid
+	 *                                 if the specified position is invalid
 	 * @see AbstractDocument.Content#remove
 	 */
-	public UndoableEdit remove(int where, int nitems) throws BadLocationException {
+	public UndoableEdit remove(int where, int nitems)
+			throws BadLocationException {
 		if (where + nitems >= length()) {
 			throw new BadLocationException("Invalid remove", length() + 1);
 		}
@@ -161,12 +144,12 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 	 * Retrieves a portion of the content.
 	 *
 	 * @param where
-	 *            the starting position &gt;= 0
+	 *              the starting position &gt;= 0
 	 * @param len
-	 *            the length to retrieve &gt;= 0
+	 *              the length to retrieve &gt;= 0
 	 * @return a string representing the content
 	 * @exception BadLocationException
-	 *                if the specified position is invalid
+	 *                                 if the specified position is invalid
 	 * @see AbstractDocument.Content#getString
 	 */
 	public String getString(int where, int len) throws BadLocationException {
@@ -181,16 +164,17 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 	 * actual store is returned to avoid the copy since it is contiguous.
 	 *
 	 * @param where
-	 *            the starting position &gt;= 0, where + len &lt;= length()
+	 *              the starting position &gt;= 0, where + len &lt;= length()
 	 * @param len
-	 *            the number of characters to retrieve &gt;= 0
+	 *              the number of characters to retrieve &gt;= 0
 	 * @param chars
-	 *            the Segment object to return the characters in
+	 *              the Segment object to return the characters in
 	 * @exception BadLocationException
-	 *                if the specified position is invalid
+	 *                                 if the specified position is invalid
 	 * @see AbstractDocument.Content#getChars
 	 */
-	public void getChars(int where, int len, Segment chars) throws BadLocationException {
+	public void getChars(int where, int len, Segment chars)
+			throws BadLocationException {
 		int end = where + len;
 		if (where < 0 || end < 0) {
 			throw new BadLocationException("Invalid location", -1);
@@ -233,10 +217,10 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 	 * content is mutated.
 	 *
 	 * @param offset
-	 *            the offset to track &gt;= 0
+	 *               the offset to track &gt;= 0
 	 * @return the position
 	 * @exception BadLocationException
-	 *                if the specified position is invalid
+	 *                                 if the specified position is invalid
 	 */
 	public Position createPosition(int offset) throws BadLocationException {
 		while (queue.poll() != null) {
@@ -252,8 +236,9 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 		int sortIndex = findSortIndex(search);
 		MarkData m;
 		StickyPosition position;
-		if (sortIndex < marks.size() && (m = marks.elementAt(sortIndex)).index == index
-				&& (position = m.getPosition()) != null) {
+		if (sortIndex < marks.size() && (m = marks.elementAt(
+				sortIndex)).index == index && (position = m
+						.getPosition()) != null) {
 			// position references the correct StickyPostition
 		} else {
 			position = new StickyPosition();
@@ -278,7 +263,8 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 			this.index = index;
 		}
 
-		MarkData(int index, StickyPosition position, ReferenceQueue<? super StickyPosition> queue) {
+		MarkData(int index, StickyPosition position,
+				ReferenceQueue<? super StickyPosition> queue) {
 			super(position, queue);
 			this.index = index;
 		}
@@ -304,8 +290,7 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 
 	final class StickyPosition implements Position {
 
-		StickyPosition() {
-		}
+		StickyPosition() {}
 
 		void setMark(MarkData mark) {
 			this.mark = mark;
@@ -423,7 +408,8 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 	protected void resetMarksAtZero() {
 		if (marks != null && getGapStart() == 0) {
 			int g1 = getGapEnd();
-			for (int counter = 0, maxCounter = marks.size(); counter < maxCounter; counter++) {
+			for (int counter = 0, maxCounter = marks
+					.size(); counter < maxCounter; counter++) {
 				MarkData mark = marks.elementAt(counter);
 				if (mark.index <= g1) {
 					mark.index = 0;
@@ -488,9 +474,9 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 	 * Compares two marks.
 	 *
 	 * @param o1
-	 *            the first object
+	 *           the first object
 	 * @param o2
-	 *            the second object
+	 *           the second object
 	 * @return < 0 if o1 < o2, 0 if the same, > 0 if o1 > o2
 	 */
 	final int compare(MarkData o1, MarkData o2) {
@@ -526,7 +512,7 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 	 * Finds the index of where to insert a new mark.
 	 *
 	 * @param o
-	 *            the mark to insert
+	 *          the mark to insert
 	 * @return the index
 	 */
 	final int findSortIndex(MarkData o) {
@@ -685,7 +671,8 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 
 	// --- serialization -------------------------------------
 
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException {
 		s.defaultReadObject();
 		marks = new MarkVector();
 		search = new MarkData(0);
@@ -702,11 +689,11 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 	 * returned.
 	 *
 	 * @param v
-	 *            the Vector to use, with a new one created on null
+	 *               the Vector to use, with a new one created on null
 	 * @param offset
-	 *            the starting offset &gt;= 0
+	 *               the starting offset &gt;= 0
 	 * @param length
-	 *            the length &gt;= 0
+	 *               the length &gt;= 0
 	 * @return the set of instances
 	 */
 	protected Vector getPositionsInRange(Vector v, int offset, int length) {
@@ -734,7 +721,8 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 			endIndex = findMarkAdjustIndex(endOffset + (g1 - g0) + 1);
 		}
 
-		Vector placeIn = (v == null) ? new Vector(Math.max(1, endIndex - startIndex)) : v;
+		Vector placeIn = (v == null) ? new Vector(Math.max(1, endIndex
+				- startIndex)) : v;
 
 		for (int counter = startIndex; counter < endIndex; counter++) {
 			placeIn.addElement(new UndoPosRef(marks.elementAt(counter)));
@@ -750,9 +738,10 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 	 * subclasses.
 	 *
 	 * @param positions
-	 *            the UndoPosRef instances to reset
+	 *                  the UndoPosRef instances to reset
 	 */
-	protected void updateUndoPositions(Vector positions, int offset, int length) {
+	protected void updateUndoPositions(Vector positions, int offset,
+			int length) {
 		// Find the indexs of the end points.
 		int endOffset = offset + length;
 		int g1 = getGapEnd();
@@ -828,9 +817,9 @@ public class GapContent extends GapVector implements AbstractDocument.Content, S
 		 * was instantiated.
 		 *
 		 * @param endOffset
-		 *            end location of inserted string.
+		 *                  end location of inserted string.
 		 * @param g1
-		 *            resulting end of gap.
+		 *                  resulting end of gap.
 		 */
 		protected void resetLocation(int endOffset, int g1) {
 			if (undoLocation != endOffset) {

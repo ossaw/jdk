@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1996, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.corba;
@@ -97,12 +76,14 @@ public class RequestImpl extends Request {
 	// REVISIT - used to be protected. Now public so it can be
 	// accessed from xgiop.
 	public RequestImpl(ORB orb, org.omg.CORBA.Object targetObject, Context ctx,
-			String operationName, NVList argumentList, NamedValue resultContainer,
-			ExceptionList exceptionList, ContextList ctxList) {
+			String operationName, NVList argumentList,
+			NamedValue resultContainer, ExceptionList exceptionList,
+			ContextList ctxList) {
 
 		// initialize the orb
 		_orb = orb;
-		_wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.OA_INVOCATION);
+		_wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.OA_INVOCATION);
 
 		// initialize target, context and operation name
 		_target = targetObject;
@@ -236,7 +217,8 @@ public class RequestImpl extends Request {
 		return gotResponse;
 	}
 
-	public synchronized void get_response() throws org.omg.CORBA.WrongTransaction {
+	public synchronized void get_response()
+			throws org.omg.CORBA.WrongTransaction {
 		while (gotResponse == false) {
 			// release the lock. wait to be notified by the thread that is
 			// doing the asynchronous invocation.
@@ -255,7 +237,8 @@ public class RequestImpl extends Request {
 	 * request invocation is done.
 	 */
 	protected void doInvocation() {
-		org.omg.CORBA.portable.Delegate delegate = StubAdapter.getDelegate(_target);
+		org.omg.CORBA.portable.Delegate delegate = StubAdapter.getDelegate(
+				_target);
 
 		// Initiate Client Portable Interceptors. Inform the PIHandler that
 		// this is a DII request so that it knows to ignore the second
@@ -272,14 +255,14 @@ public class RequestImpl extends Request {
 				for (int i = 0; i < _arguments.count(); i++) {
 					NamedValue nv = _arguments.item(i);
 					switch (nv.flags()) {
-					case ARG_IN.value:
-						nv.value().write_value($out);
-						break;
-					case ARG_OUT.value:
-						break;
-					case ARG_INOUT.value:
-						nv.value().write_value($out);
-						break;
+						case ARG_IN.value:
+							nv.value().write_value($out);
+							break;
+						case ARG_OUT.value:
+							break;
+						case ARG_INOUT.value:
+							nv.value().write_value($out);
+							break;
 					}
 				}
 			} catch (org.omg.CORBA.Bounds ex) {
@@ -320,13 +303,13 @@ public class RequestImpl extends Request {
 			for (int i = 0; i < _arguments.count(); i++) {
 				NamedValue nv = _arguments.item(i);
 				switch (nv.flags()) {
-				case ARG_IN.value:
-					break;
-				case ARG_OUT.value:
-				case ARG_INOUT.value:
-					Any any = nv.value();
-					any.read_value(is, any.type());
-					break;
+					case ARG_IN.value:
+						break;
+					case ARG_OUT.value:
+					case ARG_INOUT.value:
+						Any any = nv.value();
+						any.read_value(is, any.type());
+						break;
 				}
 			}
 		} catch (org.omg.CORBA.Bounds ex) {

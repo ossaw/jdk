@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws;
@@ -59,12 +39,13 @@ public interface LogicalMessage {
 	 * Sets the message payload
 	 *
 	 * @param payload
-	 *            message payload
+	 *                message payload
 	 * @throws WebServiceException
-	 *             If any error during the setting of the payload in this
-	 *             message
-	 * @throws java.lang.UnsupportedOperationException
-	 *             If this operation is not supported
+	 *                             If any error during the setting of the
+	 *                             payload in this
+	 *                             message
+	 * @throws                     java.lang.UnsupportedOperationException
+	 *                             If this operation is not supported
 	 **/
 	public void setPayload(Source payload);
 
@@ -74,14 +55,17 @@ public interface LogicalMessage {
 	 * to the payload require calling <code>setPayload</code>.
 	 *
 	 * @param context
-	 *            The JAXBContext that should be used to unmarshall the message
-	 *            payload
+	 *                The JAXBContext that should be used to unmarshall the
+	 *                message
+	 *                payload
 	 * @return The contained message payload; returns <code>null</code> if no
 	 *         payload is present in this message
 	 * @throws WebServiceException
-	 *             If an error occurs when using a supplied JAXBContext to
-	 *             unmarshall the payload. The cause of the WebServiceException
-	 *             is the original JAXBException.
+	 *                             If an error occurs when using a supplied
+	 *                             JAXBContext to
+	 *                             unmarshall the payload. The cause of the
+	 *                             WebServiceException
+	 *                             is the original JAXBException.
 	 **/
 	public Object getPayload(JAXBContext context);
 
@@ -89,15 +73,18 @@ public interface LogicalMessage {
 	 * Sets the message payload
 	 *
 	 * @param payload
-	 *            message payload
+	 *                message payload
 	 * @param context
-	 *            The JAXBContext that should be used to marshall the payload
-	 * @throws java.lang.UnsupportedOperationException
-	 *             If this operation is not supported
+	 *                The JAXBContext that should be used to marshall the
+	 *                payload
+	 * @throws                     java.lang.UnsupportedOperationException
+	 *                             If this operation is not supported
 	 * @throws WebServiceException
-	 *             If an error occurs when using the supplied JAXBContext to
-	 *             marshall the payload. The cause of the WebServiceException is
-	 *             the original JAXBException.
+	 *                             If an error occurs when using the supplied
+	 *                             JAXBContext to
+	 *                             marshall the payload. The cause of the
+	 *                             WebServiceException is
+	 *                             the original JAXBException.
 	 **/
 	public void setPayload(Object payload, JAXBContext context);
 }

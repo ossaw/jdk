@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
- * @author    IBM Corp.
- *
- * Copyright IBM Corp. 1999-2000.  All rights reserved.
+ * @author IBM Corp.
+ * Copyright IBM Corp. 1999-2000. All rights reserved.
  */
 
 package javax.management;
@@ -631,14 +610,15 @@ public interface Descriptor extends Serializable, Cloneable {
 	 * present for that name.
 	 *
 	 * @param fieldName
-	 *            the field name.
+	 *                  the field name.
 	 *
 	 * @return the corresponding value, or null if the field is not present.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                if the field name is illegal.
+	 *                                       if the field name is illegal.
 	 */
-	public Object getFieldValue(String fieldName) throws RuntimeOperationsException;
+	public Object getFieldValue(String fieldName)
+			throws RuntimeOperationsException;
 
 	/**
 	 * <p>
@@ -653,18 +633,24 @@ public interface Descriptor extends Serializable, Cloneable {
 	 * </p>
 	 *
 	 * @param fieldName
-	 *            The field name to be set. Cannot be null or empty.
+	 *                   The field name to be set. Cannot be null or empty.
 	 * @param fieldValue
-	 *            The field value to be set for the field name. Can be null if
-	 *            that is a valid value for the field.
+	 *                   The field value to be set for the field name. Can be
+	 *                   null if
+	 *                   that is a valid value for the field.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                if the field name or field value is illegal (wrapped
-	 *                exception is {@link IllegalArgumentException}); or if the
-	 *                descriptor is immutable (wrapped exception is
-	 *                {@link UnsupportedOperationException}).
+	 *                                       if the field name or field value is
+	 *                                       illegal (wrapped
+	 *                                       exception is
+	 *                                       {@link IllegalArgumentException});
+	 *                                       or if the
+	 *                                       descriptor is immutable (wrapped
+	 *                                       exception is
+	 *                                       {@link UnsupportedOperationException}).
 	 */
-	public void setField(String fieldName, Object fieldValue) throws RuntimeOperationsException;
+	public void setField(String fieldName, Object fieldValue)
+			throws RuntimeOperationsException;
 
 	/**
 	 * Returns all of the fields contained in this descriptor as a string array.
@@ -696,14 +682,21 @@ public interface Descriptor extends Serializable, Cloneable {
 	 * String array parameter.
 	 *
 	 * @param fieldNames
-	 *            String array of the names of the fields that the values should
-	 *            be returned for. If the array is empty then an empty array
-	 *            will be returned. If the array is null then all values will be
-	 *            returned, as if the parameter were the array returned by
-	 *            {@link #getFieldNames()}. If a field name in the array does
-	 *            not exist, including the case where it is null or the empty
-	 *            string, then null is returned for the matching array element
-	 *            being returned.
+	 *                   String array of the names of the fields that the values
+	 *                   should
+	 *                   be returned for. If the array is empty then an empty
+	 *                   array
+	 *                   will be returned. If the array is null then all values
+	 *                   will be
+	 *                   returned, as if the parameter were the array returned
+	 *                   by
+	 *                   {@link #getFieldNames()}. If a field name in the array
+	 *                   does
+	 *                   not exist, including the case where it is null or the
+	 *                   empty
+	 *                   string, then null is returned for the matching array
+	 *                   element
+	 *                   being returned.
 	 *
 	 * @return Object array of field values. If the list of {@code fieldNames}
 	 *         is empty, you will get an empty array.
@@ -714,13 +707,17 @@ public interface Descriptor extends Serializable, Cloneable {
 	 * Removes a field from the descriptor.
 	 *
 	 * @param fieldName
-	 *            String name of the field to be removed. If the field name is
-	 *            illegal or the field is not found, no exception is thrown.
+	 *                  String name of the field to be removed. If the field
+	 *                  name is
+	 *                  illegal or the field is not found, no exception is
+	 *                  thrown.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                if a field of the given name exists and the descriptor is
-	 *                immutable. The wrapped exception will be an
-	 *                {@link UnsupportedOperationException}.
+	 *                                       if a field of the given name exists
+	 *                                       and the descriptor is
+	 *                                       immutable. The wrapped exception
+	 *                                       will be an
+	 *                                       {@link UnsupportedOperationException}.
 	 */
 	public void removeField(String fieldName);
 
@@ -737,20 +734,28 @@ public interface Descriptor extends Serializable, Cloneable {
 	 * </p>
 	 *
 	 * @param fieldNames
-	 *            String array of field names. The array and array elements
-	 *            cannot be null.
+	 *                    String array of field names. The array and array
+	 *                    elements
+	 *                    cannot be null.
 	 * @param fieldValues
-	 *            Object array of the corresponding field values. The array
-	 *            cannot be null. Elements of the array can be null.
+	 *                    Object array of the corresponding field values. The
+	 *                    array
+	 *                    cannot be null. Elements of the array can be null.
 	 *
 	 * @throws RuntimeOperationsException
-	 *             if the change fails for any reason. Wrapped exception is
-	 *             {@link IllegalArgumentException} if {@code fieldNames} or
-	 *             {@code fieldValues} is null, or if the arrays are of
-	 *             different lengths, or if there is an illegal value in one of
-	 *             them. Wrapped exception is
-	 *             {@link UnsupportedOperationException} if the descriptor is
-	 *             immutable, and the call would change its contents.
+	 *                                    if the change fails for any reason.
+	 *                                    Wrapped exception is
+	 *                                    {@link IllegalArgumentException} if
+	 *                                    {@code fieldNames} or
+	 *                                    {@code fieldValues} is null, or if the
+	 *                                    arrays are of
+	 *                                    different lengths, or if there is an
+	 *                                    illegal value in one of
+	 *                                    them. Wrapped exception is
+	 *                                    {@link UnsupportedOperationException}
+	 *                                    if the descriptor is
+	 *                                    immutable, and the call would change
+	 *                                    its contents.
 	 *
 	 * @see #getFields
 	 */
@@ -766,9 +771,11 @@ public interface Descriptor extends Serializable, Cloneable {
 	 * </p>
 	 * 
 	 * @exception RuntimeOperationsException
-	 *                for illegal value for field names or field values. If the
-	 *                descriptor construction fails for any reason, this
-	 *                exception will be thrown.
+	 *                                       for illegal value for field names
+	 *                                       or field values. If the
+	 *                                       descriptor construction fails for
+	 *                                       any reason, this
+	 *                                       exception will be thrown.
 	 * @return A descriptor which is equal to this descriptor.
 	 */
 	public Object clone() throws RuntimeOperationsException;
@@ -779,10 +786,14 @@ public interface Descriptor extends Serializable, Cloneable {
 	 * @return true if the values are legal.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                If the validity checking fails for any reason, this
-	 *                exception will be thrown. The method returns false if the
-	 *                descriptor is not valid, but throws this exception if the
-	 *                attempt to determine validity fails.
+	 *                                       If the validity checking fails for
+	 *                                       any reason, this
+	 *                                       exception will be thrown. The
+	 *                                       method returns false if the
+	 *                                       descriptor is not valid, but throws
+	 *                                       this exception if the
+	 *                                       attempt to determine validity
+	 *                                       fails.
 	 */
 	public boolean isValid() throws RuntimeOperationsException;
 

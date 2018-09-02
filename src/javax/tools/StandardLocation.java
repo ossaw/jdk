@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.tools;
@@ -83,7 +63,7 @@ public enum StandardLocation implements Location {
 	 * {@code "_OUTPUT"}.
 	 *
 	 * @param name
-	 *            a name
+	 *             a name
 	 * @return a location
 	 */
 	public static Location locationFor(final String name) {
@@ -113,12 +93,12 @@ public enum StandardLocation implements Location {
 
 	public boolean isOutputLocation() {
 		switch (this) {
-		case CLASS_OUTPUT:
-		case SOURCE_OUTPUT:
-		case NATIVE_HEADER_OUTPUT:
-			return true;
-		default:
-			return false;
+			case CLASS_OUTPUT:
+			case SOURCE_OUTPUT:
+			case NATIVE_HEADER_OUTPUT:
+				return true;
+			default:
+				return false;
 		}
 	}
 }

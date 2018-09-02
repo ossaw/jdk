@@ -11,8 +11,7 @@ package com.sun.corba.se.spi.activation;
 public final class LocatorHolder implements org.omg.CORBA.portable.Streamable {
 	public com.sun.corba.se.spi.activation.Locator value = null;
 
-	public LocatorHolder() {
-	}
+	public LocatorHolder() {}
 
 	public LocatorHolder(com.sun.corba.se.spi.activation.Locator initialValue) {
 		value = initialValue;

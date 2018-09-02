@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.spi;
@@ -137,24 +117,27 @@ public interface LoginModule {
 	 * <p>
 	 *
 	 * @param subject
-	 *            the {@code Subject} to be authenticated.
-	 *            <p>
+	 *                        the {@code Subject} to be authenticated.
+	 *                        <p>
 	 *
 	 * @param callbackHandler
-	 *            a {@code CallbackHandler} for communicating with the end user
-	 *            (prompting for usernames and passwords, for example).
-	 *            <p>
+	 *                        a {@code CallbackHandler} for communicating with
+	 *                        the end user
+	 *                        (prompting for usernames and passwords, for
+	 *                        example).
+	 *                        <p>
 	 *
 	 * @param sharedState
-	 *            state shared with other configured LoginModules.
-	 *            <p>
+	 *                        state shared with other configured LoginModules.
+	 *                        <p>
 	 *
 	 * @param options
-	 *            options specified in the login {@code Configuration} for this
-	 *            particular {@code LoginModule}.
+	 *                        options specified in the login
+	 *                        {@code Configuration} for this
+	 *                        particular {@code LoginModule}.
 	 */
-	void initialize(Subject subject, CallbackHandler callbackHandler, Map<String, ?> sharedState,
-			Map<String, ?> options);
+	void initialize(Subject subject, CallbackHandler callbackHandler,
+			Map<String, ?> sharedState, Map<String, ?> options);
 
 	/**
 	 * Method to authenticate a {@code Subject} (phase 1).
@@ -169,7 +152,7 @@ public interface LoginModule {
 	 * <p>
 	 *
 	 * @exception LoginException
-	 *                if the authentication fails
+	 *                           if the authentication fails
 	 *
 	 * @return true if the authentication succeeded, or false if this
 	 *         {@code LoginModule} should be ignored.
@@ -195,7 +178,7 @@ public interface LoginModule {
 	 * <p>
 	 *
 	 * @exception LoginException
-	 *                if the commit fails
+	 *                           if the commit fails
 	 *
 	 * @return true if this method succeeded, or false if this
 	 *         {@code LoginModule} should be ignored.
@@ -218,7 +201,7 @@ public interface LoginModule {
 	 * <p>
 	 *
 	 * @exception LoginException
-	 *                if the abort fails
+	 *                           if the abort fails
 	 *
 	 * @return true if this method succeeded, or false if this
 	 *         {@code LoginModule} should be ignored.
@@ -235,7 +218,7 @@ public interface LoginModule {
 	 * <p>
 	 *
 	 * @exception LoginException
-	 *                if the logout fails
+	 *                           if the logout fails
 	 *
 	 * @return true if this method succeeded, or false if this
 	 *         {@code LoginModule} should be ignored.

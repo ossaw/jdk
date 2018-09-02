@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util;
 
@@ -61,7 +41,8 @@ class Comparators {
 	/**
 	 * Null-friendly comparators
 	 */
-	final static class NullComparator<T> implements Comparator<T>, Serializable {
+	final static class NullComparator<T> implements Comparator<T>,
+			Serializable {
 		private static final long serialVersionUID = -7569533591570686392L;
 		private final boolean nullFirst;
 		// if null, non-null Ts are considered equal
@@ -87,13 +68,14 @@ class Comparators {
 		@Override
 		public Comparator<T> thenComparing(Comparator<? super T> other) {
 			Objects.requireNonNull(other);
-			return new NullComparator<>(nullFirst,
-					real == null ? other : real.thenComparing(other));
+			return new NullComparator<>(nullFirst, real == null ? other
+					: real.thenComparing(other));
 		}
 
 		@Override
 		public Comparator<T> reversed() {
-			return new NullComparator<>(!nullFirst, real == null ? null : real.reversed());
+			return new NullComparator<>(!nullFirst, real == null ? null
+					: real.reversed());
 		}
 	}
 }

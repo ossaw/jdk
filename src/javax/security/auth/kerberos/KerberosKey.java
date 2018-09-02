@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.kerberos;
@@ -99,16 +79,18 @@ public class KerberosKey implements SecretKey, Destroyable {
 	 * information from a Kerberos "keytab".
 	 *
 	 * @param principal
-	 *            the principal that this secret key belongs to
+	 *                   the principal that this secret key belongs to
 	 * @param keyBytes
-	 *            the raw bytes for the secret key
+	 *                   the raw bytes for the secret key
 	 * @param keyType
-	 *            the key type for the secret key as defined by the Kerberos
-	 *            protocol specification.
+	 *                   the key type for the secret key as defined by the
+	 *                   Kerberos
+	 *                   protocol specification.
 	 * @param versionNum
-	 *            the version number of this secret key
+	 *                   the version number of this secret key
 	 */
-	public KerberosKey(KerberosPrincipal principal, byte[] keyBytes, int keyType, int versionNum) {
+	public KerberosKey(KerberosPrincipal principal, byte[] keyBytes,
+			int keyType, int versionNum) {
 		this.principal = principal;
 		this.versionNum = versionNum;
 		key = new KeyImpl(keyBytes, keyType);
@@ -118,17 +100,21 @@ public class KerberosKey implements SecretKey, Destroyable {
 	 * Constructs a KerberosKey from a principal's password.
 	 *
 	 * @param principal
-	 *            the principal that this password belongs to
+	 *                  the principal that this password belongs to
 	 * @param password
-	 *            the password that should be used to compute the key
+	 *                  the password that should be used to compute the key
 	 * @param algorithm
-	 *            the name for the algorithm that this key will be used for.
-	 *            This parameter may be null in which case the default algorithm
-	 *            "DES" will be assumed.
+	 *                  the name for the algorithm that this key will be used
+	 *                  for.
+	 *                  This parameter may be null in which case the default
+	 *                  algorithm
+	 *                  "DES" will be assumed.
 	 * @throws IllegalArgumentException
-	 *             if the name of the algorithm passed is unsupported.
+	 *                                  if the name of the algorithm passed is
+	 *                                  unsupported.
 	 */
-	public KerberosKey(KerberosPrincipal principal, char[] password, String algorithm) {
+	public KerberosKey(KerberosPrincipal principal, char[] password,
+			String algorithm) {
 
 		this.principal = principal;
 		// Pass principal in for salt
@@ -214,7 +200,8 @@ public class KerberosKey implements SecretKey, Destroyable {
 	 * cause an IllegalStateException to be thrown.
 	 *
 	 * @throws DestroyFailedException
-	 *             if some error occurs while destorying this key.
+	 *                                if some error occurs while destorying this
+	 *                                key.
 	 */
 	public void destroy() throws DestroyFailedException {
 		if (!destroyed) {
@@ -233,8 +220,8 @@ public class KerberosKey implements SecretKey, Destroyable {
 		if (destroyed) {
 			return "Destroyed Principal";
 		}
-		return "Kerberos Principal " + principal.toString() + "Key Version " + versionNum + "key "
-				+ key.toString();
+		return "Kerberos Principal " + principal.toString() + "Key Version "
+				+ versionNum + "key " + key.toString();
 	}
 
 	/**
@@ -262,7 +249,7 @@ public class KerberosKey implements SecretKey, Destroyable {
 	 * {@code KerberosKey} instances are equivalent.
 	 *
 	 * @param other
-	 *            the Object to compare to
+	 *              the Object to compare to
 	 * @return true if the specified object is equal to this KerberosKey, false
 	 *         otherwise. NOTE: Returns false if either of the KerberosKey
 	 *         objects has been destroyed.
@@ -282,8 +269,9 @@ public class KerberosKey implements SecretKey, Destroyable {
 			return false;
 		}
 
-		if (versionNum != otherKey.getVersionNumber() || getKeyType() != otherKey.getKeyType()
-				|| !Arrays.equals(getEncoded(), otherKey.getEncoded())) {
+		if (versionNum != otherKey.getVersionNumber()
+				|| getKeyType() != otherKey.getKeyType() || !Arrays.equals(
+						getEncoded(), otherKey.getEncoded())) {
 			return false;
 		}
 

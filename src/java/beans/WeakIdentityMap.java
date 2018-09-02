@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -78,7 +58,8 @@ abstract class WeakIdentityMap<T> {
 				}
 			}
 			T value = create(key);
-			this.table[index] = new Entry<T>(key, hash, value, this.queue, this.table[index]);
+			this.table[index] = new Entry<T>(key, hash, value, this.queue,
+					this.table[index]);
 			if (++this.size >= this.threshold) {
 				if (this.table.length == MAXIMUM_CAPACITY) {
 					this.threshold = Integer.MAX_VALUE;
@@ -173,7 +154,8 @@ abstract class WeakIdentityMap<T> {
 		private volatile T value;
 		private volatile Entry<T> next;
 
-		Entry(Object key, int hash, T value, ReferenceQueue<Object> queue, Entry<T> next) {
+		Entry(Object key, int hash, T value, ReferenceQueue<Object> queue,
+				Entry<T> next) {
 			super(key, queue);
 			this.hash = hash;
 			this.value = value;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -46,7 +26,7 @@ public class ServiceUnavailableException extends NamingException {
 	 * explanation. All other fields default to null.
 	 *
 	 * @param explanation
-	 *            Possibly null additional detail about this exception.
+	 *                    Possibly null additional detail about this exception.
 	 * @see java.lang.Throwable#getMessage
 	 */
 	public ServiceUnavailableException(String explanation) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -40,8 +20,8 @@ import sun.swing.SwingUtilities2;
  * @author Joshua Outwater
  * @since 1.7
  */
-public class SynthProgressBarUI extends BasicProgressBarUI
-		implements SynthUI, PropertyChangeListener {
+public class SynthProgressBarUI extends BasicProgressBarUI implements SynthUI,
+		PropertyChangeListener {
 	private SynthStyle style;
 	private int progressPadding;
 	private boolean rotateText; // added for Nimbus LAF
@@ -56,7 +36,7 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 	 * Creates a new UI object for the given component.
 	 *
 	 * @param x
-	 *            component to create UI object for
+	 *          component to create UI object for
 	 * @return the UI object
 	 */
 	public static ComponentUI createUI(JComponent x) {
@@ -95,16 +75,19 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 		style = SynthLookAndFeel.updateStyle(context, this);
 		setCellLength(style.getInt(context, "ProgressBar.cellLength", 1));
 		setCellSpacing(style.getInt(context, "ProgressBar.cellSpacing", 0));
-		progressPadding = style.getInt(context, "ProgressBar.progressPadding", 0);
-		paintOutsideClip = style.getBoolean(context, "ProgressBar.paintOutsideClip", false);
+		progressPadding = style.getInt(context, "ProgressBar.progressPadding",
+				0);
+		paintOutsideClip = style.getBoolean(context,
+				"ProgressBar.paintOutsideClip", false);
 		rotateText = style.getBoolean(context, "ProgressBar.rotateText", false);
-		tileWhenIndeterminate = style.getBoolean(context, "ProgressBar.tileWhenIndeterminate",
-				false);
+		tileWhenIndeterminate = style.getBoolean(context,
+				"ProgressBar.tileWhenIndeterminate", false);
 		tileWidth = style.getInt(context, "ProgressBar.tileWidth", 15);
 		// handle scaling for sizeVarients for special case components. The
 		// key "JComponent.sizeVariant" scales for large/small/mini
 		// components are based on Apples LAF
-		String scaleKey = (String) progressBar.getClientProperty("JComponent.sizeVariant");
+		String scaleKey = (String) progressBar.getClientProperty(
+				"JComponent.sizeVariant");
 		if (scaleKey != null) {
 			if ("large".equals(scaleKey)) {
 				tileWidth *= 1.15;
@@ -153,13 +136,14 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 	@Override
 	public int getBaseline(JComponent c, int width, int height) {
 		super.getBaseline(c, width, height);
-		if (progressBar.isStringPainted()
-				&& progressBar.getOrientation() == JProgressBar.HORIZONTAL) {
+		if (progressBar.isStringPainted() && progressBar
+				.getOrientation() == JProgressBar.HORIZONTAL) {
 			SynthContext context = getContext(c);
 			Font font = context.getStyle().getFont(context);
 			FontMetrics metrics = progressBar.getFontMetrics(font);
 			context.dispose();
-			return (height - metrics.getAscent() - metrics.getDescent()) / 2 + metrics.getAscent();
+			return (height - metrics.getAscent() - metrics.getDescent()) / 2
+					+ metrics.getAscent();
 		}
 		return -1;
 	}
@@ -202,9 +186,9 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 	 * Look and Feel rendering code should reside in the {@code paint} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -212,8 +196,8 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 		SynthContext context = getContext(c);
 
 		SynthLookAndFeel.update(context, g);
-		context.getPainter().paintProgressBarBackground(context, g, 0, 0, c.getWidth(),
-				c.getHeight(), progressBar.getOrientation());
+		context.getPainter().paintProgressBarBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight(), progressBar.getOrientation());
 		paint(context, g);
 		context.dispose();
 	}
@@ -225,9 +209,9 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 	 * the {@link #paint(SynthContext,Graphics)} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -242,9 +226,9 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 	 * Paints the specified component.
 	 *
 	 * @param context
-	 *            context for the component being painted
+	 *                context for the component being painted
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *                the {@code Graphics} object used for painting
 	 * @see #update(Graphics,JComponent)
 	 */
 	protected void paint(SynthContext context, Graphics g) {
@@ -257,22 +241,26 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 				if (pBar.getOrientation() == JProgressBar.HORIZONTAL) {
 					x = pBarInsets.left + progressPadding;
 					y = pBarInsets.top + progressPadding;
-					width = (int) (percentComplete * (pBar.getWidth() - (pBarInsets.left
-							+ progressPadding + pBarInsets.right + progressPadding)));
-					height = pBar.getHeight() - (pBarInsets.top + progressPadding
-							+ pBarInsets.bottom + progressPadding);
+					width = (int) (percentComplete * (pBar.getWidth()
+							- (pBarInsets.left + progressPadding
+									+ pBarInsets.right + progressPadding)));
+					height = pBar.getHeight() - (pBarInsets.top
+							+ progressPadding + pBarInsets.bottom
+							+ progressPadding);
 
 					if (!SynthLookAndFeel.isLeftToRight(pBar)) {
-						x = pBar.getWidth() - pBarInsets.right - width - progressPadding
-								- glowWidth;
+						x = pBar.getWidth() - pBarInsets.right - width
+								- progressPadding - glowWidth;
 					}
 				} else { // JProgressBar.VERTICAL
 					x = pBarInsets.left + progressPadding;
-					width = pBar.getWidth() - (pBarInsets.left + progressPadding + pBarInsets.right
-							+ progressPadding);
-					height = (int) (percentComplete * (pBar.getHeight() - (pBarInsets.top
-							+ progressPadding + pBarInsets.bottom + progressPadding)));
-					y = pBar.getHeight() - pBarInsets.bottom - height - progressPadding;
+					width = pBar.getWidth() - (pBarInsets.left + progressPadding
+							+ pBarInsets.right + progressPadding);
+					height = (int) (percentComplete * (pBar.getHeight()
+							- (pBarInsets.top + progressPadding
+									+ pBarInsets.bottom + progressPadding)));
+					y = pBar.getHeight() - pBarInsets.bottom - height
+							- progressPadding;
 
 					if (SynthLookAndFeel.isLeftToRight(pBar)) {
 						y -= glowWidth;
@@ -291,28 +279,32 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 		// bit wider than it should be. Shift as needed to ensure that there is
 		// an animated effect
 		if (tileWhenIndeterminate && pBar.isIndeterminate()) {
-			double percentComplete = (double) getAnimationIndex() / (double) getFrameCount();
+			double percentComplete = (double) getAnimationIndex()
+					/ (double) getFrameCount();
 			int offset = (int) (percentComplete * tileWidth);
 			Shape clip = g.getClip();
 			g.clipRect(x, y, width, height);
 			if (pBar.getOrientation() == JProgressBar.HORIZONTAL) {
 				// paint each tile horizontally
-				for (int i = x - tileWidth + offset; i <= width; i += tileWidth) {
-					context.getPainter().paintProgressBarForeground(context, g, i, y, tileWidth,
-							height, pBar.getOrientation());
+				for (int i = x - tileWidth
+						+ offset; i <= width; i += tileWidth) {
+					context.getPainter().paintProgressBarForeground(context, g,
+							i, y, tileWidth, height, pBar.getOrientation());
 				}
 			} else { // JProgressBar.VERTICAL
 				// paint each tile vertically
-				for (int i = y - offset; i < height + tileWidth; i += tileWidth) {
-					context.getPainter().paintProgressBarForeground(context, g, x, i, width,
-							tileWidth, pBar.getOrientation());
+				for (int i = y - offset; i < height
+						+ tileWidth; i += tileWidth) {
+					context.getPainter().paintProgressBarForeground(context, g,
+							x, i, width, tileWidth, pBar.getOrientation());
 				}
 			}
 			g.setClip(clip);
 		} else {
-			if (minBarSize == null || (width >= minBarSize.width && height >= minBarSize.height)) {
-				context.getPainter().paintProgressBarForeground(context, g, x, y, width, height,
-						pBar.getOrientation());
+			if (minBarSize == null || (width >= minBarSize.width
+					&& height >= minBarSize.height)) {
+				context.getPainter().paintProgressBarForeground(context, g, x,
+						y, width, height, pBar.getOrientation());
 			}
 		}
 
@@ -325,34 +317,38 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 	 * Paints the component's text.
 	 *
 	 * @param context
-	 *            context for the component being painted
+	 *                context for the component being painted
 	 * @param g
-	 *            {@code Graphics} object used for painting
+	 *                {@code Graphics} object used for painting
 	 * @param title
-	 *            the text to paint
+	 *                the text to paint
 	 */
 	protected void paintText(SynthContext context, Graphics g, String title) {
 		if (progressBar.isStringPainted()) {
 			SynthStyle style = context.getStyle();
 			Font font = style.getFont(context);
-			FontMetrics fm = SwingUtilities2.getFontMetrics(progressBar, g, font);
-			int strLength = style.getGraphicsUtils(context).computeStringWidth(context, font, fm,
-					title);
+			FontMetrics fm = SwingUtilities2.getFontMetrics(progressBar, g,
+					font);
+			int strLength = style.getGraphicsUtils(context).computeStringWidth(
+					context, font, fm, title);
 			Rectangle bounds = progressBar.getBounds();
 
-			if (rotateText && progressBar.getOrientation() == JProgressBar.VERTICAL) {
+			if (rotateText && progressBar
+					.getOrientation() == JProgressBar.VERTICAL) {
 				Graphics2D g2 = (Graphics2D) g;
 				// Calculate the position for the text.
 				Point textPos;
 				AffineTransform rotation;
 				if (progressBar.getComponentOrientation().isLeftToRight()) {
 					rotation = AffineTransform.getRotateInstance(-Math.PI / 2);
-					textPos = new Point((bounds.width + fm.getAscent() - fm.getDescent()) / 2,
-							(bounds.height + strLength) / 2);
+					textPos = new Point((bounds.width + fm.getAscent() - fm
+							.getDescent()) / 2, (bounds.height + strLength)
+									/ 2);
 				} else {
 					rotation = AffineTransform.getRotateInstance(Math.PI / 2);
-					textPos = new Point((bounds.width - fm.getAscent() + fm.getDescent()) / 2,
-							(bounds.height - strLength) / 2);
+					textPos = new Point((bounds.width - fm.getAscent() + fm
+							.getDescent()) / 2, (bounds.height - strLength)
+									/ 2);
 				}
 
 				// Progress bar isn't wide enough for the font. Don't paint it.
@@ -364,12 +360,13 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 				font = font.deriveFont(rotation);
 				g2.setFont(font);
 				g2.setColor(style.getColor(context, ColorType.TEXT_FOREGROUND));
-				style.getGraphicsUtils(context).paintText(context, g, title, textPos.x, textPos.y,
-						-1);
+				style.getGraphicsUtils(context).paintText(context, g, title,
+						textPos.x, textPos.y, -1);
 			} else {
 				// Calculate the bounds for the text.
-				Rectangle textRect = new Rectangle((bounds.width / 2) - (strLength / 2),
-						(bounds.height - (fm.getAscent() + fm.getDescent())) / 2, 0, 0);
+				Rectangle textRect = new Rectangle((bounds.width / 2)
+						- (strLength / 2), (bounds.height - (fm.getAscent() + fm
+								.getDescent())) / 2, 0, 0);
 
 				// Progress bar isn't tall enough for the font. Don't paint it.
 				if (textRect.y < 0) {
@@ -379,8 +376,8 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 				// Paint the text.
 				g.setColor(style.getColor(context, ColorType.TEXT_FOREGROUND));
 				g.setFont(font);
-				style.getGraphicsUtils(context).paintText(context, g, title, textRect.x, textRect.y,
-						-1);
+				style.getGraphicsUtils(context).paintText(context, g, title,
+						textRect.x, textRect.y, -1);
 			}
 		}
 	}
@@ -389,7 +386,8 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
 		context.getPainter().paintProgressBarBorder(context, g, x, y, w, h,
 				progressBar.getOrientation());
 	}
@@ -399,7 +397,8 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 	 */
 	@Override
 	public void propertyChange(PropertyChangeEvent e) {
-		if (SynthLookAndFeel.shouldUpdateStyle(e) || "indeterminate".equals(e.getPropertyName())) {
+		if (SynthLookAndFeel.shouldUpdateStyle(e) || "indeterminate".equals(e
+				.getPropertyName())) {
 			updateStyle((JProgressBar) e.getSource());
 		}
 	}
@@ -411,7 +410,8 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 	public Dimension getPreferredSize(JComponent c) {
 		Dimension size = null;
 		Insets border = progressBar.getInsets();
-		FontMetrics fontSizer = progressBar.getFontMetrics(progressBar.getFont());
+		FontMetrics fontSizer = progressBar.getFontMetrics(progressBar
+				.getFont());
 		String progString = progressBar.getString();
 		int stringHeight = fontSizer.getHeight() + fontSizer.getDescent();
 
@@ -424,7 +424,8 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 				}
 
 				// adjust the width if necessary to make room for the string
-				int stringWidth = SwingUtilities2.stringWidth(progressBar, fontSizer, progString);
+				int stringWidth = SwingUtilities2.stringWidth(progressBar,
+						fontSizer, progString);
 				if (stringWidth > size.width) {
 					size.width = stringWidth;
 				}
@@ -438,7 +439,8 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 				}
 
 				// make sure the height is big enough for the string
-				int stringWidth = SwingUtilities2.stringWidth(progressBar, fontSizer, progString);
+				int stringWidth = SwingUtilities2.stringWidth(progressBar,
+						fontSizer, progString);
 				if (stringWidth > size.height) {
 					size.height = stringWidth;
 				}
@@ -448,7 +450,8 @@ public class SynthProgressBarUI extends BasicProgressBarUI
 		// handle scaling for sizeVarients for special case components. The
 		// key "JComponent.sizeVariant" scales for large/small/mini
 		// components are based on Apples LAF
-		String scaleKey = (String) progressBar.getClientProperty("JComponent.sizeVariant");
+		String scaleKey = (String) progressBar.getClientProperty(
+				"JComponent.sizeVariant");
 		if (scaleKey != null) {
 			if ("large".equals(scaleKey)) {
 				size.width *= 1.15f;

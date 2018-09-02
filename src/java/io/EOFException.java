@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -56,7 +36,7 @@ public class EOFException extends IOException {
 	 * <code>java.lang.Throwable</code>.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public EOFException(String s) {
 		super(s);

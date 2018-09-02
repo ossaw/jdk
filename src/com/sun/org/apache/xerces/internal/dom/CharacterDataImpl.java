@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -70,8 +67,7 @@ public abstract class CharacterDataImpl extends ChildNode {
 	// Constructors
 	//
 
-	public CharacterDataImpl() {
-	}
+	public CharacterDataImpl() {}
 
 	/** Factory constructor. */
 	protected CharacterDataImpl(CoreDocumentImpl ownerDocument, String data) {
@@ -119,9 +115,11 @@ public abstract class CharacterDataImpl extends ChildNode {
 		CoreDocumentImpl ownerDocument = ownerDocument();
 
 		if (ownerDocument.errorChecking && isReadOnly()) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN,
 					"NO_MODIFICATION_ALLOWED_ERR", null);
-			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+					msg);
 		}
 
 		// revisit: may want to set the value in ownerDocument.
@@ -162,10 +160,14 @@ public abstract class CharacterDataImpl extends ChildNode {
 	 * Retrieve character data currently stored in this node.
 	 *
 	 * @throws DOMExcpetion(DOMSTRING_SIZE_ERR)
-	 *             In some implementations, the stored data may exceed the
-	 *             permitted length of strings. If so, getData() will throw this
-	 *             DOMException advising the user to instead retrieve the data
-	 *             in chunks via the substring() operation.
+	 *                                          In some implementations, the
+	 *                                          stored data may exceed the
+	 *                                          permitted length of strings. If
+	 *                                          so, getData() will throw this
+	 *                                          DOMException advising the user
+	 *                                          to instead retrieve the data
+	 *                                          in chunks via the substring()
+	 *                                          operation.
 	 */
 	public String getData() {
 		if (needsSyncData()) {
@@ -192,14 +194,16 @@ public abstract class CharacterDataImpl extends ChildNode {
 	 * handle. (See above discussion.)
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if node is readonly.
+	 *                                                   if node is readonly.
 	 */
 	public void appendData(String data) {
 
 		if (isReadOnly()) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN,
 					"NO_MODIFICATION_ALLOWED_ERR", null);
-			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+					msg);
 		}
 		if (data == null) {
 			return;
@@ -219,11 +223,13 @@ public abstract class CharacterDataImpl extends ChildNode {
 	 * request.
 	 *
 	 * @throws DOMException(INDEX_SIZE_ERR)
-	 *             if offset is negative or greater than length, or if count is
-	 *             negative.
+	 *                                                   if offset is negative
+	 *                                                   or greater than length,
+	 *                                                   or if count is
+	 *                                                   negative.
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if node is readonly.
+	 *                                                   if node is readonly.
 	 */
 	public void deleteData(int offset, int count) throws DOMException {
 
@@ -236,19 +242,22 @@ public abstract class CharacterDataImpl extends ChildNode {
 	 * operation allows us to do so. It is not intended for use by application
 	 * programs.
 	 */
-	void internalDeleteData(int offset, int count, boolean replace) throws DOMException {
+	void internalDeleteData(int offset, int count, boolean replace)
+			throws DOMException {
 
 		CoreDocumentImpl ownerDocument = ownerDocument();
 		if (ownerDocument.errorChecking) {
 			if (isReadOnly()) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN,
 						"NO_MODIFICATION_ALLOWED_ERR", null);
-				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+						msg);
 			}
 
 			if (count < 0) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-						"INDEX_SIZE_ERR", null);
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN, "INDEX_SIZE_ERR", null);
 				throw new DOMException(DOMException.INDEX_SIZE_ERR, msg);
 			}
 		}
@@ -258,16 +267,17 @@ public abstract class CharacterDataImpl extends ChildNode {
 		}
 		int tailLength = Math.max(data.length() - count - offset, 0);
 		try {
-			String value = data.substring(0, offset) + (tailLength > 0
-					? data.substring(offset + count, offset + count + tailLength) : "");
+			String value = data.substring(0, offset) + (tailLength > 0 ? data
+					.substring(offset + count, offset + count + tailLength)
+					: "");
 
 			setNodeValueInternal(value, replace);
 
 			// notify document
 			ownerDocument.deletedText(this, offset, count);
 		} catch (StringIndexOutOfBoundsException e) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-					"INDEX_SIZE_ERR", null);
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN, "INDEX_SIZE_ERR", null);
 			throw new DOMException(DOMException.INDEX_SIZE_ERR, msg);
 		}
 
@@ -278,10 +288,11 @@ public abstract class CharacterDataImpl extends ChildNode {
 	 * offset specified.
 	 *
 	 * @throws DOMException(INDEX_SIZE_ERR)
-	 *             if offset is negative or greater than length.
+	 *                                                   if offset is negative
+	 *                                                   or greater than length.
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if node is readonly.
+	 *                                                   if node is readonly.
 	 */
 	public void insertData(int offset, String data) throws DOMException {
 
@@ -295,29 +306,33 @@ public abstract class CharacterDataImpl extends ChildNode {
 	 * operation allows us to do so. It is not intended for use by application
 	 * programs.
 	 */
-	void internalInsertData(int offset, String data, boolean replace) throws DOMException {
+	void internalInsertData(int offset, String data, boolean replace)
+			throws DOMException {
 
 		CoreDocumentImpl ownerDocument = ownerDocument();
 
 		if (ownerDocument.errorChecking && isReadOnly()) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN,
 					"NO_MODIFICATION_ALLOWED_ERR", null);
-			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+					msg);
 		}
 
 		if (needsSyncData()) {
 			synchronizeData();
 		}
 		try {
-			String value = new StringBuffer(this.data).insert(offset, data).toString();
+			String value = new StringBuffer(this.data).insert(offset, data)
+					.toString();
 
 			setNodeValueInternal(value, replace);
 
 			// notify document
 			ownerDocument.insertedText(this, offset, data.length());
 		} catch (StringIndexOutOfBoundsException e) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-					"INDEX_SIZE_ERR", null);
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN, "INDEX_SIZE_ERR", null);
 			throw new DOMException(DOMException.INDEX_SIZE_ERR, msg);
 		}
 
@@ -330,26 +345,31 @@ public abstract class CharacterDataImpl extends ChildNode {
 	 * the specified offset is beyond the end of the existing data.
 	 *
 	 * @param offset
-	 *            The offset at which to begin replacing.
+	 *               The offset at which to begin replacing.
 	 *
 	 * @param count
-	 *            The number of characters to remove, interpreted as in the
-	 *            delete() method.
+	 *               The number of characters to remove, interpreted as in the
+	 *               delete() method.
 	 *
 	 * @param data
-	 *            The new string to be inserted at offset in place of the
-	 *            removed data. Note that the entire string will be inserted --
-	 *            the count parameter does not affect insertion, and the new
-	 *            data may be longer or shorter than the substring it replaces.
+	 *               The new string to be inserted at offset in place of the
+	 *               removed data. Note that the entire string will be inserted
+	 *               --
+	 *               the count parameter does not affect insertion, and the new
+	 *               data may be longer or shorter than the substring it
+	 *               replaces.
 	 *
 	 * @throws DOMException(INDEX_SIZE_ERR)
-	 *             if offset is negative or greater than length, or if count is
-	 *             negative.
+	 *                                                   if offset is negative
+	 *                                                   or greater than length,
+	 *                                                   or if count is
+	 *                                                   negative.
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if node is readonly.
+	 *                                                   if node is readonly.
 	 */
-	public void replaceData(int offset, int count, String data) throws DOMException {
+	public void replaceData(int offset, int count, String data)
+			throws DOMException {
 
 		CoreDocumentImpl ownerDocument = ownerDocument();
 
@@ -360,9 +380,11 @@ public abstract class CharacterDataImpl extends ChildNode {
 		// underspecified; I don't feel compelled
 		// to deal with it right now.
 		if (ownerDocument.errorChecking && isReadOnly()) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN,
 					"NO_MODIFICATION_ALLOWED_ERR", null);
-			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+			throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+					msg);
 		}
 
 		if (needsSyncData()) {
@@ -386,7 +408,7 @@ public abstract class CharacterDataImpl extends ChildNode {
 	 * Store character data into this node.
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if node is readonly.
+	 *                                                   if node is readonly.
 	 */
 	public void setData(String value) throws DOMException {
 		setNodeValue(value);
@@ -399,22 +421,26 @@ public abstract class CharacterDataImpl extends ChildNode {
 	 * chunks via this method.
 	 *
 	 * @param offset
-	 *            Zero-based offset of first character to retrieve.
+	 *               Zero-based offset of first character to retrieve.
 	 * @param count
-	 *            Number of characters to retrieve.
+	 *               Number of characters to retrieve.
 	 *
-	 *            If the sum of offset and count exceeds the length, all
-	 *            characters to end of data are returned.
+	 *               If the sum of offset and count exceeds the length, all
+	 *               characters to end of data are returned.
 	 *
 	 * @throws DOMException(INDEX_SIZE_ERR)
-	 *             if offset is negative or greater than length, or if count is
-	 *             negative.
+	 *                                        if offset is negative or greater
+	 *                                        than length, or if count is
+	 *                                        negative.
 	 *
 	 * @throws DOMException(WSTRING_SIZE_ERR)
-	 *             In some implementations, count may exceed the permitted
-	 *             length of strings. If so, substring() will throw this
-	 *             DOMException advising the user to instead retrieve the data
-	 *             in smaller chunks.
+	 *                                        In some implementations, count may
+	 *                                        exceed the permitted
+	 *                                        length of strings. If so,
+	 *                                        substring() will throw this
+	 *                                        DOMException advising the user to
+	 *                                        instead retrieve the data
+	 *                                        in smaller chunks.
 	 */
 	public String substringData(int offset, int count) throws DOMException {
 
@@ -424,8 +450,8 @@ public abstract class CharacterDataImpl extends ChildNode {
 
 		int length = data.length();
 		if (count < 0 || offset < 0 || offset > length - 1) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-					"INDEX_SIZE_ERR", null);
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN, "INDEX_SIZE_ERR", null);
 			throw new DOMException(DOMException.INDEX_SIZE_ERR, msg);
 		}
 

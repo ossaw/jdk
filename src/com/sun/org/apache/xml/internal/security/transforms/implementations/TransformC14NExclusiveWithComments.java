@@ -57,15 +57,17 @@ public class TransformC14NExclusiveWithComments extends TransformSpi {
 		return implementedTransformURI;
 	}
 
-	protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, OutputStream os,
-			Transform transformObject) throws CanonicalizationException {
+	protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
+			OutputStream os, Transform transformObject)
+			throws CanonicalizationException {
 		try {
 			String inclusiveNamespaces = null;
 
-			if (transformObject.length(InclusiveNamespaces.ExclusiveCanonicalizationNamespace,
+			if (transformObject.length(
+					InclusiveNamespaces.ExclusiveCanonicalizationNamespace,
 					InclusiveNamespaces._TAG_EC_INCLUSIVENAMESPACES) == 1) {
-				Element inclusiveElement = XMLUtils.selectNode(
-						transformObject.getElement().getFirstChild(),
+				Element inclusiveElement = XMLUtils.selectNode(transformObject
+						.getElement().getFirstChild(),
 						InclusiveNamespaces.ExclusiveCanonicalizationNamespace,
 						InclusiveNamespaces._TAG_EC_INCLUSIVENAMESPACES, 0);
 

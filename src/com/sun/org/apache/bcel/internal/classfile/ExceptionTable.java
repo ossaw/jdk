@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.classfile;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.classfile;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -80,21 +72,22 @@ public final class ExceptionTable extends Attribute {
 	 * references (shallow copy). Use copy() for a physical copy.
 	 */
 	public ExceptionTable(ExceptionTable c) {
-		this(c.getNameIndex(), c.getLength(), c.getExceptionIndexTable(), c.getConstantPool());
+		this(c.getNameIndex(), c.getLength(), c.getExceptionIndexTable(), c
+				.getConstantPool());
 	}
 
 	/**
 	 * @param name_index
-	 *            Index in constant pool
+	 *                              Index in constant pool
 	 * @param length
-	 *            Content length in bytes
+	 *                              Content length in bytes
 	 * @param exception_index_table
-	 *            Table of indices in constant pool
+	 *                              Table of indices in constant pool
 	 * @param constant_pool
-	 *            Array of constants
+	 *                              Array of constants
 	 */
-	public ExceptionTable(int name_index, int length, int[] exception_index_table,
-			ConstantPool constant_pool) {
+	public ExceptionTable(int name_index, int length,
+			int[] exception_index_table, ConstantPool constant_pool) {
 		super(Constants.ATTR_EXCEPTIONS, name_index, length, constant_pool);
 		setExceptionIndexTable(exception_index_table);
 	}
@@ -103,17 +96,17 @@ public final class ExceptionTable extends Attribute {
 	 * Construct object from file stream.
 	 * 
 	 * @param name_index
-	 *            Index in constant pool
+	 *                      Index in constant pool
 	 * @param length
-	 *            Content length in bytes
+	 *                      Content length in bytes
 	 * @param file
-	 *            Input stream
+	 *                      Input stream
 	 * @param constant_pool
-	 *            Array of constants
+	 *                      Array of constants
 	 * @throws IOException
 	 */
-	ExceptionTable(int name_index, int length, DataInputStream file, ConstantPool constant_pool)
-			throws IOException {
+	ExceptionTable(int name_index, int length, DataInputStream file,
+			ConstantPool constant_pool) throws IOException {
 		this(name_index, length, (int[]) null, constant_pool);
 
 		number_of_exceptions = file.readUnsignedShort();
@@ -129,7 +122,7 @@ public final class ExceptionTable extends Attribute {
 	 * fields, attributes, etc. spawns a tree of objects.
 	 *
 	 * @param v
-	 *            Visitor object
+	 *          Visitor object
 	 */
 	public void accept(Visitor v) {
 		v.visitExceptionTable(this);
@@ -139,7 +132,7 @@ public final class ExceptionTable extends Attribute {
 	 * Dump exceptions attribute to file stream in binary format.
 	 *
 	 * @param file
-	 *            Output file stream
+	 *             Output file stream
 	 * @throws IOException
 	 */
 	public final void dump(DataOutputStream file) throws IOException {
@@ -169,19 +162,19 @@ public final class ExceptionTable extends Attribute {
 	public final String[] getExceptionNames() {
 		String[] names = new String[number_of_exceptions];
 		for (int i = 0; i < number_of_exceptions; i++)
-			names[i] = constant_pool
-					.getConstantString(exception_index_table[i], Constants.CONSTANT_Class)
-					.replace('/', '.');
+			names[i] = constant_pool.getConstantString(exception_index_table[i],
+					Constants.CONSTANT_Class).replace('/', '.');
 		return names;
 	}
 
 	/**
 	 * @param exception_index_table.
-	 *            Also redefines number_of_exceptions according to table length.
+	 *        Also redefines number_of_exceptions according to table length.
 	 */
 	public final void setExceptionIndexTable(int[] exception_index_table) {
 		this.exception_index_table = exception_index_table;
-		number_of_exceptions = (exception_index_table == null) ? 0 : exception_index_table.length;
+		number_of_exceptions = (exception_index_table == null) ? 0
+				: exception_index_table.length;
 	}
 
 	/**

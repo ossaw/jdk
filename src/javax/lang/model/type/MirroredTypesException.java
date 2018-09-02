@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.type;
@@ -63,11 +43,11 @@ public class MirroredTypesException extends RuntimeException {
 	 * Constructs a new MirroredTypesException for the specified types.
 	 *
 	 * @param types
-	 *            the types being accessed
+	 *              the types being accessed
 	 */
 	public MirroredTypesException(List<? extends TypeMirror> types) {
 		super("Attempt to access Class objects for TypeMirrors " + (types = // defensive
-																			// copy
+				// copy
 				new ArrayList<TypeMirror>(types)).toString());
 		this.types = Collections.unmodifiableList(types);
 	}
@@ -87,7 +67,8 @@ public class MirroredTypesException extends RuntimeException {
 	/**
 	 * Explicitly set all transient fields.
 	 */
-	private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 		s.defaultReadObject();
 		types = null;
 	}

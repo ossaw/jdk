@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform;
@@ -44,7 +24,8 @@ public interface Templates {
 	 * @return A valid non-null instance of a Transformer.
 	 *
 	 * @throws TransformerConfigurationException
-	 *             if a Transformer can not be created.
+	 *                                           if a Transformer can not be
+	 *                                           created.
 	 */
 	Transformer newTransformer() throws TransformerConfigurationException;
 

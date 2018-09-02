@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -74,10 +71,11 @@ class XPathExpressionImpl implements XPathExpression {
 	 * Constructor for XPathExpressionImpl.
 	 *
 	 * @param xpath
-	 *            The wrapped XPath object.
+	 *              The wrapped XPath object.
 	 * @param doc
-	 *            The document to be searched, to parallel the case where'' the
-	 *            XPathEvaluator is obtained by casting the document.
+	 *              The document to be searched, to parallel the case where''
+	 *              the
+	 *              XPathEvaluator is obtained by casting the document.
 	 */
 	XPathExpressionImpl(XPath xpath, Document doc) {
 		m_xpath = xpath;
@@ -100,43 +98,64 @@ class XPathExpressionImpl implements XPathExpression {
 	 * </p>
 	 * 
 	 * @param contextNode
-	 *            The <code>context</code> is context node for the evaluation of
-	 *            this XPath expression.If the XPathEvaluator was obtained by
-	 *            casting the <code>Document</code> then this must be owned by
-	 *            the same document and must be a <code>Document</code>,
-	 *            <code>Element</code>, <code>Attribute</code>,
-	 *            <code>Text</code>, <code>CDATASection</code>,
-	 *            <code>Comment</code>, <code>ProcessingInstruction</code>, or
-	 *            <code>XPathNamespace</code> node.If the context node is a
-	 *            <code>Text</code> or a <code>CDATASection</code>, then the
-	 *            context is interpreted as the whole logical text node as seen
-	 *            by XPath, unless the node is empty in which case it may not
-	 *            serve as the XPath context.
+	 *                    The <code>context</code> is context node for the
+	 *                    evaluation of
+	 *                    this XPath expression.If the XPathEvaluator was
+	 *                    obtained by
+	 *                    casting the <code>Document</code> then this must be
+	 *                    owned by
+	 *                    the same document and must be a <code>Document</code>,
+	 *                    <code>Element</code>, <code>Attribute</code>,
+	 *                    <code>Text</code>, <code>CDATASection</code>,
+	 *                    <code>Comment</code>,
+	 *                    <code>ProcessingInstruction</code>, or
+	 *                    <code>XPathNamespace</code> node.If the context node
+	 *                    is a
+	 *                    <code>Text</code> or a <code>CDATASection</code>, then
+	 *                    the
+	 *                    context is interpreted as the whole logical text node
+	 *                    as seen
+	 *                    by XPath, unless the node is empty in which case it
+	 *                    may not
+	 *                    serve as the XPath context.
 	 * @param type
-	 *            If a specific <code>type</code> is specified, then the result
-	 *            will be coerced to return the specified type relying on XPath
-	 *            conversions and fail if the desired coercion is not possible.
-	 *            This must be one of the type codes of <code>XPathResult</code>
-	 *            .
+	 *                    If a specific <code>type</code> is specified, then the
+	 *                    result
+	 *                    will be coerced to return the specified type relying
+	 *                    on XPath
+	 *                    conversions and fail if the desired coercion is not
+	 *                    possible.
+	 *                    This must be one of the type codes of
+	 *                    <code>XPathResult</code>
+	 *                    .
 	 * @param result
-	 *            The <code>result</code> specifies a specific result object
-	 *            which may be reused and returned by this method. If this is
-	 *            specified as <code>null</code>or the implementation does not
-	 *            reuse the specified result, a new result object will be
-	 *            constructed and returned.For XPath 1.0 results, this object
-	 *            will be of type <code>XPathResult</code>.
+	 *                    The <code>result</code> specifies a specific result
+	 *                    object
+	 *                    which may be reused and returned by this method. If
+	 *                    this is
+	 *                    specified as <code>null</code>or the implementation
+	 *                    does not
+	 *                    reuse the specified result, a new result object will
+	 *                    be
+	 *                    constructed and returned.For XPath 1.0 results, this
+	 *                    object
+	 *                    will be of type <code>XPathResult</code>.
 	 * @return The result of the evaluation of the XPath expression.For XPath
 	 *         1.0 results, this object will be of type <code>XPathResult</code>
 	 *         .
 	 * @exception XPathException
-	 *                TYPE_ERR: Raised if the result cannot be converted to
-	 *                return the specified type.
+	 *                           TYPE_ERR: Raised if the result cannot be
+	 *                           converted to
+	 *                           return the specified type.
 	 * @exception DOMException
-	 *                WRONG_DOCUMENT_ERR: The Node is from a document that is
-	 *                not supported by the XPathEvaluator that created this
-	 *                <code>XPathExpression</code>. <br>
-	 *                NOT_SUPPORTED_ERR: The Node is not a type permitted as an
-	 *                XPath context node.
+	 *                           WRONG_DOCUMENT_ERR: The Node is from a document
+	 *                           that is
+	 *                           not supported by the XPathEvaluator that
+	 *                           created this
+	 *                           <code>XPathExpression</code>. <br>
+	 *                           NOT_SUPPORTED_ERR: The Node is not a type
+	 *                           permitted as an
+	 *                           XPath context node.
 	 *
 	 * @see org.w3c.dom.xpath.XPathExpression#evaluate(Node, short, XPathResult)
 	 * @xsl.usage internal
@@ -148,22 +167,25 @@ class XPathExpressionImpl implements XPathExpression {
 		if (m_doc != null) {
 
 			// Check that the context node is owned by the same document
-			if ((contextNode != m_doc) && (!contextNode.getOwnerDocument().equals(m_doc))) {
-				String fmsg = XPATHMessages
-						.createXPATHMessage(XPATHErrorResources.ER_WRONG_DOCUMENT, null);
+			if ((contextNode != m_doc) && (!contextNode.getOwnerDocument()
+					.equals(m_doc))) {
+				String fmsg = XPATHMessages.createXPATHMessage(
+						XPATHErrorResources.ER_WRONG_DOCUMENT, null);
 				throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, fmsg);
 			}
 
 			// Check that the context node is an acceptable node type
 			short nodeType = contextNode.getNodeType();
-			if ((nodeType != Document.DOCUMENT_NODE) && (nodeType != Document.ELEMENT_NODE)
-					&& (nodeType != Document.ATTRIBUTE_NODE) && (nodeType != Document.TEXT_NODE)
+			if ((nodeType != Document.DOCUMENT_NODE)
+					&& (nodeType != Document.ELEMENT_NODE)
+					&& (nodeType != Document.ATTRIBUTE_NODE)
+					&& (nodeType != Document.TEXT_NODE)
 					&& (nodeType != Document.CDATA_SECTION_NODE)
 					&& (nodeType != Document.COMMENT_NODE)
 					&& (nodeType != Document.PROCESSING_INSTRUCTION_NODE)
 					&& (nodeType != XPathNamespace.XPATH_NAMESPACE_NODE)) {
-				String fmsg = XPATHMessages
-						.createXPATHMessage(XPATHErrorResources.ER_WRONG_NODETYPE, null);
+				String fmsg = XPATHMessages.createXPATHMessage(
+						XPATHErrorResources.ER_WRONG_NODETYPE, null);
 				throw new DOMException(DOMException.NOT_SUPPORTED_ERR, fmsg);
 			}
 		}
@@ -173,7 +195,8 @@ class XPathExpressionImpl implements XPathExpression {
 		// done with it!
 		if (!XPathResultImpl.isValidType(type)) {
 			String fmsg = XPATHMessages.createXPATHMessage(
-					XPATHErrorResources.ER_INVALID_XPATH_TYPE, new Object[] { new Integer(type) });
+					XPATHErrorResources.ER_INVALID_XPATH_TYPE, new Object[] {
+							new Integer(type) });
 			throw new XPathException(XPathException.TYPE_ERR, fmsg); // Invalid
 																		// XPath
 																		// type
@@ -194,8 +217,8 @@ class XPathExpressionImpl implements XPathExpression {
 			xobj = m_xpath.execute(xpathSupport, contextNode, null);
 		} catch (TransformerException te) {
 			// What should we do here?
-			throw new XPathException(XPathException.INVALID_EXPRESSION_ERR,
-					te.getMessageAndLocation());
+			throw new XPathException(XPathException.INVALID_EXPRESSION_ERR, te
+					.getMessageAndLocation());
 		}
 
 		// Create a new XPathResult object

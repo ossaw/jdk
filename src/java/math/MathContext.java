@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -73,28 +53,32 @@ public final class MathContext implements Serializable {
 	 *  precision=0 roundingMode=HALF_UP
 	 *  </code>
 	 */
-	public static final MathContext UNLIMITED = new MathContext(0, RoundingMode.HALF_UP);
+	public static final MathContext UNLIMITED = new MathContext(0,
+			RoundingMode.HALF_UP);
 
 	/**
 	 * A {@code MathContext} object with a precision setting matching the IEEE
 	 * 754R Decimal32 format, 7 digits, and a rounding mode of
 	 * {@link RoundingMode#HALF_EVEN HALF_EVEN}, the IEEE 754R default.
 	 */
-	public static final MathContext DECIMAL32 = new MathContext(7, RoundingMode.HALF_EVEN);
+	public static final MathContext DECIMAL32 = new MathContext(7,
+			RoundingMode.HALF_EVEN);
 
 	/**
 	 * A {@code MathContext} object with a precision setting matching the IEEE
 	 * 754R Decimal64 format, 16 digits, and a rounding mode of
 	 * {@link RoundingMode#HALF_EVEN HALF_EVEN}, the IEEE 754R default.
 	 */
-	public static final MathContext DECIMAL64 = new MathContext(16, RoundingMode.HALF_EVEN);
+	public static final MathContext DECIMAL64 = new MathContext(16,
+			RoundingMode.HALF_EVEN);
 
 	/**
 	 * A {@code MathContext} object with a precision setting matching the IEEE
 	 * 754R Decimal128 format, 34 digits, and a rounding mode of
 	 * {@link RoundingMode#HALF_EVEN HALF_EVEN}, the IEEE 754R default.
 	 */
-	public static final MathContext DECIMAL128 = new MathContext(34, RoundingMode.HALF_EVEN);
+	public static final MathContext DECIMAL128 = new MathContext(34,
+			RoundingMode.HALF_EVEN);
 
 	/* ----- Shared Properties ----- */
 	/**
@@ -125,9 +109,10 @@ public final class MathContext implements Serializable {
 	 * {@link RoundingMode#HALF_UP HALF_UP} rounding mode.
 	 *
 	 * @param setPrecision
-	 *            The non-negative {@code int} precision setting.
+	 *                     The non-negative {@code int} precision setting.
 	 * @throws IllegalArgumentException
-	 *             if the {@code setPrecision} parameter is less than zero.
+	 *                                  if the {@code setPrecision} parameter is
+	 *                                  less than zero.
 	 */
 	public MathContext(int setPrecision) {
 		this(setPrecision, DEFAULT_ROUNDINGMODE);
@@ -139,13 +124,15 @@ public final class MathContext implements Serializable {
 	 * rounding mode.
 	 *
 	 * @param setPrecision
-	 *            The non-negative {@code int} precision setting.
+	 *                        The non-negative {@code int} precision setting.
 	 * @param setRoundingMode
-	 *            The rounding mode to use.
+	 *                        The rounding mode to use.
 	 * @throws IllegalArgumentException
-	 *             if the {@code setPrecision} parameter is less than zero.
+	 *                                  if the {@code setPrecision} parameter is
+	 *                                  less than zero.
 	 * @throws NullPointerException
-	 *             if the rounding mode argument is {@code null}
+	 *                                  if the rounding mode argument is
+	 *                                  {@code null}
 	 */
 	public MathContext(int setPrecision, RoundingMode setRoundingMode) {
 		if (setPrecision < MIN_DIGITS)
@@ -172,10 +159,11 @@ public final class MathContext implements Serializable {
 	 * @param val
 	 *            The string to be parsed
 	 * @throws IllegalArgumentException
-	 *             if the precision section is out of range or of incorrect
-	 *             format
+	 *                                  if the precision section is out of range
+	 *                                  or of incorrect
+	 *                                  format
 	 * @throws NullPointerException
-	 *             if the argument is {@code null}
+	 *                                  if the argument is {@code null}
 	 */
 	public MathContext(String val) {
 		boolean bad = false;
@@ -234,8 +222,8 @@ public final class MathContext implements Serializable {
 	 * equality.
 	 *
 	 * @param x
-	 *            {@code Object} to which this {@code MathContext} is to be
-	 *            compared.
+	 *          {@code Object} to which this {@code MathContext} is to be
+	 *          compared.
 	 * @return {@code true} if and only if the specified {@code Object} is a
 	 *         {@code MathContext} object which has exactly the same settings as
 	 *         this object
@@ -245,10 +233,11 @@ public final class MathContext implements Serializable {
 		if (!(x instanceof MathContext))
 			return false;
 		mc = (MathContext) x;
-		return mc.precision == this.precision && mc.roundingMode == this.roundingMode; // no
-																						// need
-																						// for
-																						// .equals()
+		return mc.precision == this.precision
+				&& mc.roundingMode == this.roundingMode; // no
+																								// need
+																								// for
+																								// .equals()
 	}
 
 	/**
@@ -289,7 +278,8 @@ public final class MathContext implements Serializable {
 	 * @return a {@code String} representing the context settings
 	 */
 	public java.lang.String toString() {
-		return "precision=" + precision + " " + "roundingMode=" + roundingMode.toString();
+		return "precision=" + precision + " " + "roundingMode=" + roundingMode
+				.toString();
 	}
 
 	// Private methods
@@ -299,7 +289,7 @@ public final class MathContext implements Serializable {
 	 * deserialize it).
 	 *
 	 * @param s
-	 *            the stream being read.
+	 *          the stream being read.
 	 */
 	private void readObject(java.io.ObjectInputStream s)
 			throws java.io.IOException, ClassNotFoundException {

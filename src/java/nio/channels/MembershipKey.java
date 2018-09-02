@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -61,8 +41,7 @@ public abstract class MembershipKey {
 	/**
 	 * Initializes a new instance of this class.
 	 */
-	protected MembershipKey() {
-	}
+	protected MembershipKey() {}
 
 	/**
 	 * Tells whether or not this membership is valid.
@@ -115,21 +94,25 @@ public abstract class MembershipKey {
 	 * the socket's receive buffer.
 	 *
 	 * @param source
-	 *            The source address to block
+	 *               The source address to block
 	 *
 	 * @return This membership key
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the {@code source} parameter is not a unicast address or
-	 *             is not the same address type as the multicast group
+	 *                                       If the {@code source} parameter is
+	 *                                       not a unicast address or
+	 *                                       is not the same address type as the
+	 *                                       multicast group
 	 * @throws IllegalStateException
-	 *             If this membership key is source-specific or is no longer
-	 *             valid
+	 *                                       If this membership key is
+	 *                                       source-specific or is no longer
+	 *                                       valid
 	 * @throws UnsupportedOperationException
-	 *             If the underlying operating system does not support source
-	 *             filtering
+	 *                                       If the underlying operating system
+	 *                                       does not support source
+	 *                                       filtering
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                       If an I/O error occurs
 	 */
 	public abstract MembershipKey block(InetAddress source) throws IOException;
 
@@ -138,13 +121,14 @@ public abstract class MembershipKey {
 	 * previously blocked using the {@link #block(InetAddress) block} method.
 	 *
 	 * @param source
-	 *            The source address to unblock
+	 *               The source address to unblock
 	 *
 	 * @return This membership key
 	 *
 	 * @throws IllegalStateException
-	 *             If the given source address is not currently blocked or the
-	 *             membership key is no longer valid
+	 *                               If the given source address is not
+	 *                               currently blocked or the
+	 *                               membership key is no longer valid
 	 */
 	public abstract MembershipKey unblock(InetAddress source);
 

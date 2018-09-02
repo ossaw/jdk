@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2017, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xerces.internal.impl;
@@ -124,7 +104,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 			throws XMLStreamException {
 		init(props);
 		// publicId, systemid, baseSystemId, inputStream, enocding
-		XMLInputSource inputSource = new XMLInputSource(null, null, null, inputStream, null);
+		XMLInputSource inputSource = new XMLInputSource(null, null, null,
+				inputStream, null);
 		// pass the input source to document scanner impl.
 		setInputSource(inputSource);
 	}
@@ -139,7 +120,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * @param props
 	 * @throws XMLStreamException
 	 */
-	public XMLStreamReaderImpl(String systemid, PropertyManager props) throws XMLStreamException {
+	public XMLStreamReaderImpl(String systemid, PropertyManager props)
+			throws XMLStreamException {
 		init(props);
 		// publicId, systemid, baseSystemId, inputStream, enocding
 		XMLInputSource inputSource = new XMLInputSource(null, systemid, null);
@@ -153,8 +135,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * @param props
 	 * @throws XMLStreamException
 	 */
-	public XMLStreamReaderImpl(InputStream inputStream, String encoding, PropertyManager props)
-			throws XMLStreamException {
+	public XMLStreamReaderImpl(InputStream inputStream, String encoding,
+			PropertyManager props) throws XMLStreamException {
 		init(props);
 		// publicId, systemid, baseSystemId, inputStream, enocding
 		XMLInputSource inputSource = new XMLInputSource(null, null, null,
@@ -168,7 +150,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * @param props
 	 * @throws XMLStreamException
 	 */
-	public XMLStreamReaderImpl(Reader reader, PropertyManager props) throws XMLStreamException {
+	public XMLStreamReaderImpl(Reader reader, PropertyManager props)
+			throws XMLStreamException {
 		init(props);
 		// publicId, systemid, baseSystemId, inputStream, enocding
 		// xxx: Using buffered reader
@@ -183,8 +166,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * @param props
 	 * @throws XMLStreamException
 	 */
-	public XMLStreamReaderImpl(XMLInputSource inputSource, PropertyManager props)
-			throws XMLStreamException {
+	public XMLStreamReaderImpl(XMLInputSource inputSource,
+			PropertyManager props) throws XMLStreamException {
 		init(props);
 		// pass the input source to document scanner impl.
 		setInputSource(inputSource);
@@ -194,7 +177,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * @param inputSource
 	 * @throws XMLStreamException
 	 */
-	public void setInputSource(XMLInputSource inputSource) throws XMLStreamException {
+	public void setInputSource(XMLInputSource inputSource)
+			throws XMLStreamException {
 		// once setInputSource() is called this instance is busy parsing the
 		// inputsource supplied
 		// this instances is free for reuse if parser has reached END_DOCUMENT
@@ -211,8 +195,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 				if (versionStr == null)
 					versionStr = getVersion();
 
-				if (fEventType == XMLStreamConstants.START_DOCUMENT && versionStr != null
-						&& versionStr.equals("1.1")) {
+				if (fEventType == XMLStreamConstants.START_DOCUMENT
+						&& versionStr != null && versionStr.equals("1.1")) {
 					switchToXML11Scanner();
 				}
 
@@ -220,7 +204,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 		} catch (java.io.IOException ex) {
 			throw new XMLStreamException(ex);
 		} catch (XNIException ex) { // Issue 56 XNIException not caught
-			throw new XMLStreamException(ex.getMessage(), getLocation(), ex.getException());
+			throw new XMLStreamException(ex.getMessage(), getLocation(), ex
+					.getException());
 		}
 	}// setInputSource
 
@@ -249,7 +234,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	public boolean canReuse() {
 		if (DEBUG) {
 			System.out.println("fReuse = " + fReuse);
-			System.out.println("fEventType = " + getEventTypeString(fEventType));
+			System.out.println("fEventType = " + getEventTypeString(
+					fEventType));
 		}
 		// when parsing begins, fReuse is set to false
 		// fReuse is set to 'true' when application calls close()
@@ -274,10 +260,10 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 		// default value for this property is true. However, this should be
 		// false when using XMLEventReader... Ugh..
 		// because XMLEventReader should not have defined state.
-		fReaderInDefinedState = ((Boolean) fPropertyManager.getProperty(READER_IN_DEFINED_STATE))
-				.booleanValue();
-		fBindNamespaces = ((Boolean) fPropertyManager
-				.getProperty(XMLInputFactory.IS_NAMESPACE_AWARE)).booleanValue();
+		fReaderInDefinedState = ((Boolean) fPropertyManager.getProperty(
+				READER_IN_DEFINED_STATE)).booleanValue();
+		fBindNamespaces = ((Boolean) fPropertyManager.getProperty(
+				XMLInputFactory.IS_NAMESPACE_AWARE)).booleanValue();
 		versionStr = null;
 	}
 
@@ -286,7 +272,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * close the underlying input source.
 	 * 
 	 * @throws XMLStreamException
-	 *             if there are errors freeing associated resources
+	 *                            if there are errors freeing associated
+	 *                            resources
 	 */
 	public void close() throws XMLStreamException {
 		// xxx: Check what this function is intended to do.
@@ -343,14 +330,16 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	}// getLineNumber
 
 	public String getLocalName() {
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.END_ELEMENT) {
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.END_ELEMENT) {
 			// xxx check whats the value of fCurrentElement
 			return fScanner.getElementQName().localpart;
 		} else if (fEventType == XMLEvent.ENTITY_REFERENCE) {
 			return fScanner.getEntityName();
 		}
-		throw new IllegalStateException("Method getLocalName() cannot be called for "
-				+ getEventTypeString(fEventType) + " event.");
+		throw new IllegalStateException(
+				"Method getLocalName() cannot be called for "
+						+ getEventTypeString(fEventType) + " event.");
 	}// getLocalName()
 
 	/**
@@ -358,7 +347,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 */
 	public String getNamespaceURI() {
 		// doesn't take care of Attribute as separte event
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.END_ELEMENT) {
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.END_ELEMENT) {
 			return fScanner.getElementQName().uri;
 		}
 		return null;
@@ -375,8 +365,9 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 			return fScanner.getPIData().toString();
 		} else
 			throw new java.lang.IllegalStateException(
-					"Current state of the parser is " + getEventTypeString(fEventType)
-							+ " But Expected state is " + XMLEvent.PROCESSING_INSTRUCTION);
+					"Current state of the parser is " + getEventTypeString(
+							fEventType) + " But Expected state is "
+							+ XMLEvent.PROCESSING_INSTRUCTION);
 	}// getPIData
 
 	/**
@@ -389,8 +380,9 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 			return fScanner.getPITarget();
 		} else
 			throw new java.lang.IllegalStateException(
-					"Current state of the parser is " + getEventTypeString(fEventType)
-							+ " But Expected state is " + XMLEvent.PROCESSING_INSTRUCTION);
+					"Current state of the parser is " + getEventTypeString(
+							fEventType) + " But Expected state is "
+							+ XMLEvent.PROCESSING_INSTRUCTION);
 
 	}// getPITarget
 
@@ -400,7 +392,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 *         XMLConstants.DEFAULT_NS_PREFIX when no prefix is available.
 	 */
 	public String getPrefix() {
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.END_ELEMENT) {
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.END_ELEMENT) {
 			String prefix = fScanner.getElementQName().prefix;
 			return prefix == null ? XMLConstants.DEFAULT_NS_PREFIX : prefix;
 		}
@@ -412,14 +405,18 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 */
 	public char[] getTextCharacters() {
 		if (fEventType == XMLEvent.CHARACTERS || fEventType == XMLEvent.COMMENT
-				|| fEventType == XMLEvent.CDATA || fEventType == XMLEvent.SPACE) {
+				|| fEventType == XMLEvent.CDATA
+				|| fEventType == XMLEvent.SPACE) {
 			return fScanner.getCharacterData().ch;
 		} else {
-			throw new IllegalStateException("Current state = " + getEventTypeString(fEventType)
-					+ " is not among the states " + getEventTypeString(XMLEvent.CHARACTERS) + " , "
-					+ getEventTypeString(XMLEvent.COMMENT) + " , "
+			throw new IllegalStateException("Current state = "
+					+ getEventTypeString(fEventType)
+					+ " is not among the states " + getEventTypeString(
+							XMLEvent.CHARACTERS) + " , " + getEventTypeString(
+									XMLEvent.COMMENT) + " , "
 					+ getEventTypeString(XMLEvent.CDATA) + " , "
-					+ getEventTypeString(XMLEvent.SPACE) + " valid for getTextCharacters() ");
+					+ getEventTypeString(XMLEvent.SPACE)
+					+ " valid for getTextCharacters() ");
 		}
 	}
 
@@ -428,14 +425,18 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 */
 	public int getTextLength() {
 		if (fEventType == XMLEvent.CHARACTERS || fEventType == XMLEvent.COMMENT
-				|| fEventType == XMLEvent.CDATA || fEventType == XMLEvent.SPACE) {
+				|| fEventType == XMLEvent.CDATA
+				|| fEventType == XMLEvent.SPACE) {
 			return fScanner.getCharacterData().length;
 		} else {
-			throw new IllegalStateException("Current state = " + getEventTypeString(fEventType)
-					+ " is not among the states " + getEventTypeString(XMLEvent.CHARACTERS) + " , "
-					+ getEventTypeString(XMLEvent.COMMENT) + " , "
+			throw new IllegalStateException("Current state = "
+					+ getEventTypeString(fEventType)
+					+ " is not among the states " + getEventTypeString(
+							XMLEvent.CHARACTERS) + " , " + getEventTypeString(
+									XMLEvent.COMMENT) + " , "
 					+ getEventTypeString(XMLEvent.CDATA) + " , "
-					+ getEventTypeString(XMLEvent.SPACE) + " valid for getTextLength() ");
+					+ getEventTypeString(XMLEvent.SPACE)
+					+ " valid for getTextLength() ");
 		}
 
 	}
@@ -445,14 +446,18 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 */
 	public int getTextStart() {
 		if (fEventType == XMLEvent.CHARACTERS || fEventType == XMLEvent.COMMENT
-				|| fEventType == XMLEvent.CDATA || fEventType == XMLEvent.SPACE) {
+				|| fEventType == XMLEvent.CDATA
+				|| fEventType == XMLEvent.SPACE) {
 			return fScanner.getCharacterData().offset;
 		} else {
-			throw new IllegalStateException("Current state = " + getEventTypeString(fEventType)
-					+ " is not among the states " + getEventTypeString(XMLEvent.CHARACTERS) + " , "
-					+ getEventTypeString(XMLEvent.COMMENT) + " , "
+			throw new IllegalStateException("Current state = "
+					+ getEventTypeString(fEventType)
+					+ " is not among the states " + getEventTypeString(
+							XMLEvent.CHARACTERS) + " , " + getEventTypeString(
+									XMLEvent.COMMENT) + " , "
 					+ getEventTypeString(XMLEvent.CDATA) + " , "
-					+ getEventTypeString(XMLEvent.SPACE) + " valid for getTextStart() ");
+					+ getEventTypeString(XMLEvent.SPACE)
+					+ " valid for getTextStart() ");
 		}
 	}
 
@@ -464,7 +469,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 			return fScanner.getPIData().toString();
 		} else if (fEventType == XMLEvent.COMMENT) {
 			return fScanner.getComment();
-		} else if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.END_ELEMENT) {
+		} else if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.END_ELEMENT) {
 			return fScanner.getElementQName().localpart;
 		} else if (fEventType == XMLEvent.CHARACTERS) {
 			return fScanner.getCharacterData().toString();
@@ -482,7 +488,9 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 
 		String version = fEntityScanner.getXMLVersion();
 
-		return "1.0".equals(version) && !fEntityScanner.xmlVersionSetExplicitly ? null : version;
+		return "1.0".equals(version) && !fEntityScanner.xmlVersionSetExplicitly
+				? null
+				: version;
 	}
 
 	/**
@@ -494,7 +502,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 
 	/** this Funtion returns true if the current event has name */
 	public boolean hasName() {
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.END_ELEMENT) {
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.END_ELEMENT) {
 			return true;
 		} else {
 			return false;
@@ -518,9 +527,11 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * @return
 	 */
 	public boolean hasValue() {
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.END_ELEMENT
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.END_ELEMENT
 				|| fEventType == XMLEvent.ENTITY_REFERENCE
-				|| fEventType == XMLEvent.PROCESSING_INSTRUCTION || fEventType == XMLEvent.COMMENT
+				|| fEventType == XMLEvent.PROCESSING_INSTRUCTION
+				|| fEventType == XMLEvent.COMMENT
 				|| fEventType == XMLEvent.CHARACTERS) {
 			return true;
 		} else {
@@ -593,8 +604,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 				versionStr = getVersion();
 			}
 
-			if (fEventType == XMLStreamConstants.START_DOCUMENT && versionStr != null
-					&& versionStr.equals("1.1")) {
+			if (fEventType == XMLStreamConstants.START_DOCUMENT
+					&& versionStr != null && versionStr.equals("1.1")) {
 				switchToXML11Scanner();
 			}
 
@@ -611,15 +622,16 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 			// if this error occured trying to resolve the external DTD subset
 			// and IS_VALIDATING == false, then this is not an XML error
 			if (fScanner.fScannerState == fScanner.SCANNER_STATE_DTD_EXTERNAL) {
-				Boolean isValidating = (Boolean) fPropertyManager
-						.getProperty(XMLInputFactory.IS_VALIDATING);
+				Boolean isValidating = (Boolean) fPropertyManager.getProperty(
+						XMLInputFactory.IS_VALIDATING);
 				if (isValidating != null && !isValidating.booleanValue()) {
 					// ignore the error, set scanner to known state
 					fEventType = XMLEvent.DTD;
 					fScanner.setScannerState(fScanner.SCANNER_STATE_PROLOG);
 					fScanner.setDriver(fScanner.fPrologDriver);
 					if (fDTDDecl == null || fDTDDecl.length() == 0) {
-						fDTDDecl = "<!-- " + "Exception scanning External DTD Subset.  "
+						fDTDDecl = "<!-- "
+								+ "Exception scanning External DTD Subset.  "
 								+ "True contents of DTD cannot be determined.  "
 								+ "Processing will continue as XMLInputFactory.IS_VALIDATING == false."
 								+ " -->";
@@ -631,7 +643,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 			// else real error
 			throw new XMLStreamException(ex.getMessage(), getLocation(), ex);
 		} catch (XNIException ex) {
-			throw new XMLStreamException(ex.getMessage(), getLocation(), ex.getException());
+			throw new XMLStreamException(ex.getMessage(), getLocation(), ex
+					.getException());
 		}
 	} // next()
 
@@ -656,30 +669,30 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 
 	final static String getEventTypeString(int eventType) {
 		switch (eventType) {
-		case XMLEvent.START_ELEMENT:
-			return "START_ELEMENT";
-		case XMLEvent.END_ELEMENT:
-			return "END_ELEMENT";
-		case XMLEvent.PROCESSING_INSTRUCTION:
-			return "PROCESSING_INSTRUCTION";
-		case XMLEvent.CHARACTERS:
-			return "CHARACTERS";
-		case XMLEvent.COMMENT:
-			return "COMMENT";
-		case XMLEvent.START_DOCUMENT:
-			return "START_DOCUMENT";
-		case XMLEvent.END_DOCUMENT:
-			return "END_DOCUMENT";
-		case XMLEvent.ENTITY_REFERENCE:
-			return "ENTITY_REFERENCE";
-		case XMLEvent.ATTRIBUTE:
-			return "ATTRIBUTE";
-		case XMLEvent.DTD:
-			return "DTD";
-		case XMLEvent.CDATA:
-			return "CDATA";
-		case XMLEvent.SPACE:
-			return "SPACE";
+			case XMLEvent.START_ELEMENT:
+				return "START_ELEMENT";
+			case XMLEvent.END_ELEMENT:
+				return "END_ELEMENT";
+			case XMLEvent.PROCESSING_INSTRUCTION:
+				return "PROCESSING_INSTRUCTION";
+			case XMLEvent.CHARACTERS:
+				return "CHARACTERS";
+			case XMLEvent.COMMENT:
+				return "COMMENT";
+			case XMLEvent.START_DOCUMENT:
+				return "START_DOCUMENT";
+			case XMLEvent.END_DOCUMENT:
+				return "END_DOCUMENT";
+			case XMLEvent.ENTITY_REFERENCE:
+				return "ENTITY_REFERENCE";
+			case XMLEvent.ATTRIBUTE:
+				return "ATTRIBUTE";
+			case XMLEvent.DTD:
+				return "DTD";
+			case XMLEvent.CDATA:
+				return "CDATA";
+			case XMLEvent.SPACE:
+				return "SPACE";
 		}
 		return "UNKNOWN_EVENT_TYPE, " + String.valueOf(eventType);
 	}
@@ -691,7 +704,7 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * 
 	 * @return returns the number of attributes
 	 * @throws IllegalStateException
-	 *             if this is not a START_ELEMENT or ATTRIBUTE
+	 *                               if this is not a START_ELEMENT or ATTRIBUTE
 	 */
 	public int getAttributeCount() {
 		// xxx: recognize SAX properties namespace, namespace-prefix to get XML
@@ -699,12 +712,15 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 		// does length includes namespace declarations ?
 
 		// State should be either START_ELEMENT or ATTRIBUTE
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.ATTRIBUTE) {
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.ATTRIBUTE) {
 			return fScanner.getAttributeIterator().getLength();
 		} else {
-			throw new java.lang.IllegalStateException("Current state is not among the states "
-					+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
-					+ getEventTypeString(XMLEvent.ATTRIBUTE) + "valid for getAttributeCount()");
+			throw new java.lang.IllegalStateException(
+					"Current state is not among the states "
+							+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
+							+ getEventTypeString(XMLEvent.ATTRIBUTE)
+							+ "valid for getAttributeCount()");
 		}
 	}// getAttributeCount
 
@@ -712,20 +728,23 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * Returns the localName of the attribute at the provided index
 	 * 
 	 * @param index
-	 *            the position of the attribute
+	 *              the position of the attribute
 	 * @return the localName of the attribute
 	 * @throws IllegalStateException
-	 *             if this is not a START_ELEMENT or ATTRIBUTE
+	 *                               if this is not a START_ELEMENT or ATTRIBUTE
 	 */
 	public QName getAttributeName(int index) {
 		// State should be either START_ELEMENT or ATTRIBUTE
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.ATTRIBUTE) {
-			return convertXNIQNametoJavaxQName(
-					fScanner.getAttributeIterator().getQualifiedName(index));
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.ATTRIBUTE) {
+			return convertXNIQNametoJavaxQName(fScanner.getAttributeIterator()
+					.getQualifiedName(index));
 		} else {
-			throw new java.lang.IllegalStateException("Current state is not among the states "
-					+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
-					+ getEventTypeString(XMLEvent.ATTRIBUTE) + "valid for getAttributeName()");
+			throw new java.lang.IllegalStateException(
+					"Current state is not among the states "
+							+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
+							+ getEventTypeString(XMLEvent.ATTRIBUTE)
+							+ "valid for getAttributeName()");
 		}
 	}// getAttributeName
 
@@ -735,7 +754,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 */
 	public String getAttributeLocalName(int index) {
 		// State should be either START_ELEMENT or ATTRIBUTE
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.ATTRIBUTE) {
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.ATTRIBUTE) {
 			return fScanner.getAttributeIterator().getLocalName(index);
 		} else {
 			throw new java.lang.IllegalStateException();
@@ -746,19 +766,22 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * Returns the namespace of the attribute at the provided index
 	 * 
 	 * @param index
-	 *            the position of the attribute
+	 *              the position of the attribute
 	 * @return the namespace URI (can be null)
 	 * @throws IllegalStateException
-	 *             if this is not a START_ELEMENT or ATTRIBUTE
+	 *                               if this is not a START_ELEMENT or ATTRIBUTE
 	 */
 	public String getAttributeNamespace(int index) {
 		// State should be either START_ELEMENT or ATTRIBUTE
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.ATTRIBUTE) {
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.ATTRIBUTE) {
 			return fScanner.getAttributeIterator().getURI(index);
 		} else {
-			throw new java.lang.IllegalStateException("Current state is not among the states "
-					+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
-					+ getEventTypeString(XMLEvent.ATTRIBUTE) + "valid for getAttributeNamespace()");
+			throw new java.lang.IllegalStateException(
+					"Current state is not among the states "
+							+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
+							+ getEventTypeString(XMLEvent.ATTRIBUTE)
+							+ "valid for getAttributeNamespace()");
 		}
 
 	}// getAttributeNamespace
@@ -767,19 +790,22 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * Returns the prefix of this attribute at the provided index
 	 * 
 	 * @param index
-	 *            the position of the attribute
+	 *              the position of the attribute
 	 * @return the prefix of the attribute
 	 * @throws IllegalStateException
-	 *             if this is not a START_ELEMENT or ATTRIBUTE
+	 *                               if this is not a START_ELEMENT or ATTRIBUTE
 	 */
 	public String getAttributePrefix(int index) {
 		// State should be either START_ELEMENT or ATTRIBUTE
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.ATTRIBUTE) {
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.ATTRIBUTE) {
 			return fScanner.getAttributeIterator().getPrefix(index);
 		} else {
-			throw new java.lang.IllegalStateException("Current state is not among the states "
-					+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
-					+ getEventTypeString(XMLEvent.ATTRIBUTE) + "valid for getAttributePrefix()");
+			throw new java.lang.IllegalStateException(
+					"Current state is not among the states "
+							+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
+							+ getEventTypeString(XMLEvent.ATTRIBUTE)
+							+ "valid for getAttributePrefix()");
 		}
 	}// getAttributePrefix
 
@@ -787,22 +813,26 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * Returns the qname of the attribute at the provided index
 	 *
 	 * @param index
-	 *            the position of the attribute
+	 *              the position of the attribute
 	 * @return the QName of the attribute
 	 * @throws IllegalStateException
-	 *             if this is not a START_ELEMENT or ATTRIBUTE
+	 *                               if this is not a START_ELEMENT or ATTRIBUTE
 	 */
 	public javax.xml.namespace.QName getAttributeQName(int index) {
 		// State should be either START_ELEMENT or ATTRIBUTE
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.ATTRIBUTE) {
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.ATTRIBUTE) {
 			// create new object at runtime..
-			String localName = fScanner.getAttributeIterator().getLocalName(index);
+			String localName = fScanner.getAttributeIterator().getLocalName(
+					index);
 			String uri = fScanner.getAttributeIterator().getURI(index);
 			return new javax.xml.namespace.QName(uri, localName);
 		} else {
-			throw new java.lang.IllegalStateException("Current state is not among the states "
-					+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
-					+ getEventTypeString(XMLEvent.ATTRIBUTE) + "valid for getAttributeQName()");
+			throw new java.lang.IllegalStateException(
+					"Current state is not among the states "
+							+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
+							+ getEventTypeString(XMLEvent.ATTRIBUTE)
+							+ "valid for getAttributeQName()");
 		}
 	}// getAttributeQName
 
@@ -810,19 +840,22 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * Returns the XML type of the attribute at the provided index
 	 * 
 	 * @param index
-	 *            the position of the attribute
+	 *              the position of the attribute
 	 * @return the XML type of the attribute
 	 * @throws IllegalStateException
-	 *             if this is not a START_ELEMENT or ATTRIBUTE
+	 *                               if this is not a START_ELEMENT or ATTRIBUTE
 	 */
 	public String getAttributeType(int index) {
 		// State should be either START_ELEMENT or ATTRIBUTE
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.ATTRIBUTE) {
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.ATTRIBUTE) {
 			return fScanner.getAttributeIterator().getType(index);
 		} else {
-			throw new java.lang.IllegalStateException("Current state is not among the states "
-					+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
-					+ getEventTypeString(XMLEvent.ATTRIBUTE) + "valid for getAttributeType()");
+			throw new java.lang.IllegalStateException(
+					"Current state is not among the states "
+							+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
+							+ getEventTypeString(XMLEvent.ATTRIBUTE)
+							+ "valid for getAttributeType()");
 		}
 
 	}// getAttributeType
@@ -831,19 +864,22 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * Returns the value of the attribute at the index
 	 * 
 	 * @param index
-	 *            the position of the attribute
+	 *              the position of the attribute
 	 * @return the attribute value
 	 * @throws IllegalStateException
-	 *             if this is not a START_ELEMENT or ATTRIBUTE
+	 *                               if this is not a START_ELEMENT or ATTRIBUTE
 	 */
 	public String getAttributeValue(int index) {
 		// State should be either START_ELEMENT or ATTRIBUTE
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.ATTRIBUTE) {
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.ATTRIBUTE) {
 			return fScanner.getAttributeIterator().getValue(index);
 		} else {
-			throw new java.lang.IllegalStateException("Current state is not among the states "
-					+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
-					+ getEventTypeString(XMLEvent.ATTRIBUTE) + "valid for getAttributeValue()");
+			throw new java.lang.IllegalStateException(
+					"Current state is not among the states "
+							+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
+							+ getEventTypeString(XMLEvent.ATTRIBUTE)
+							+ "valid for getAttributeValue()");
 		}
 
 	}// getAttributeValue
@@ -855,19 +891,23 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 */
 	public String getAttributeValue(String namespaceURI, String localName) {
 		// State should be either START_ELEMENT or ATTRIBUTE
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.ATTRIBUTE) {
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.ATTRIBUTE) {
 			XMLAttributesImpl attributes = fScanner.getAttributeIterator();
 			if (namespaceURI == null) { // sjsxp issue 70
-				return attributes.getValue(attributes.getIndexByLocalName(localName));
+				return attributes.getValue(attributes.getIndexByLocalName(
+						localName));
 			} else {
-				return fScanner.getAttributeIterator()
-						.getValue(namespaceURI.length() == 0 ? null : namespaceURI, localName);
+				return fScanner.getAttributeIterator().getValue(namespaceURI
+						.length() == 0 ? null : namespaceURI, localName);
 			}
 
 		} else {
-			throw new java.lang.IllegalStateException("Current state is not among the states "
-					+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
-					+ getEventTypeString(XMLEvent.ATTRIBUTE) + "valid for getAttributeValue()");
+			throw new java.lang.IllegalStateException(
+					"Current state is not among the states "
+							+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
+							+ getEventTypeString(XMLEvent.ATTRIBUTE)
+							+ "valid for getAttributeValue()");
 		}
 
 	}
@@ -878,19 +918,22 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * END_ELEMENT.
 	 * 
 	 * @throws XMLStreamException
-	 *             if the current event is not a START_ELEMENT or if a non text
-	 *             element is encountered
+	 *                            if the current event is not a START_ELEMENT or
+	 *                            if a non text
+	 *                            element is encountered
 	 */
 	public String getElementText() throws XMLStreamException {
 
 		if (getEventType() != XMLStreamConstants.START_ELEMENT) {
-			throw new XMLStreamException("parser must be on START_ELEMENT to read next text",
+			throw new XMLStreamException(
+					"parser must be on START_ELEMENT to read next text",
 					getLocation());
 		}
 		int eventType = next();
 		StringBuffer content = new StringBuffer();
 		while (eventType != XMLStreamConstants.END_ELEMENT) {
-			if (eventType == XMLStreamConstants.CHARACTERS || eventType == XMLStreamConstants.CDATA
+			if (eventType == XMLStreamConstants.CHARACTERS
+					|| eventType == XMLStreamConstants.CDATA
 					|| eventType == XMLStreamConstants.SPACE
 					|| eventType == XMLStreamConstants.ENTITY_REFERENCE) {
 				content.append(getText());
@@ -905,7 +948,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 						"elementGetText() function expects text only elment but START_ELEMENT was encountered.",
 						getLocation());
 			} else {
-				throw new XMLStreamException("Unexpected event type " + eventType, getLocation());
+				throw new XMLStreamException("Unexpected event type "
+						+ eventType, getLocation());
 			}
 			eventType = next();
 		}
@@ -976,13 +1020,16 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * @return the QName for the current START_ELEMENT or END_ELEMENT event
 	 */
 	public javax.xml.namespace.QName getName() {
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.END_ELEMENT)
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.END_ELEMENT)
 			return convertXNIQNametoJavaxQName(fScanner.getElementQName());
 		else
-			throw new java.lang.IllegalStateException("Illegal to call getName() "
-					+ "when event type is " + getEventTypeString(fEventType) + "."
-					+ " Valid states are " + getEventTypeString(XMLEvent.START_ELEMENT) + ", "
-					+ getEventTypeString(XMLEvent.END_ELEMENT));
+			throw new java.lang.IllegalStateException(
+					"Illegal to call getName() " + "when event type is "
+							+ getEventTypeString(fEventType) + "."
+							+ " Valid states are " + getEventTypeString(
+									XMLEvent.START_ELEMENT) + ", "
+							+ getEventTypeString(XMLEvent.END_ELEMENT));
 	}
 
 	/**
@@ -1006,21 +1053,25 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * @return returns the number of namespace declarations on this specific
 	 *         element
 	 * @throws IllegalStateException
-	 *             if this is not a START_ELEMENT, END_ELEMENT or NAMESPACE
+	 *                               if this is not a START_ELEMENT, END_ELEMENT
+	 *                               or NAMESPACE
 	 */
 	public int getNamespaceCount() {
 		// namespaceContext is dynamic object.
 		// REVISIT: check if it specifies all conditions mentioned in the
 		// javadoc
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.END_ELEMENT
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.END_ELEMENT
 				|| fEventType == XMLEvent.NAMESPACE) {
 			return fScanner.getNamespaceContext().getDeclaredPrefixCount();
 		} else {
 			throw new IllegalStateException("Current event state is "
-					+ getEventTypeString(fEventType) + " is not among the states "
-					+ getEventTypeString(XMLEvent.START_ELEMENT) + ", "
-					+ getEventTypeString(XMLEvent.END_ELEMENT) + ", "
-					+ getEventTypeString(XMLEvent.NAMESPACE) + " valid for getNamespaceCount().");
+					+ getEventTypeString(fEventType)
+					+ " is not among the states " + getEventTypeString(
+							XMLEvent.START_ELEMENT) + ", " + getEventTypeString(
+									XMLEvent.END_ELEMENT) + ", "
+					+ getEventTypeString(XMLEvent.NAMESPACE)
+					+ " valid for getNamespaceCount().");
 		}
 	}
 
@@ -1029,22 +1080,28 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * if this is the default namespace declaration
 	 *
 	 * @param index
-	 *            the position of the namespace declaration
+	 *              the position of the namespace declaration
 	 * @return returns the namespace prefix
 	 * @throws IllegalStateException
-	 *             if this is not a START_ELEMENT, END_ELEMENT or NAMESPACE
+	 *                               if this is not a START_ELEMENT, END_ELEMENT
+	 *                               or NAMESPACE
 	 */
 	public String getNamespacePrefix(int index) {
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.END_ELEMENT
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.END_ELEMENT
 				|| fEventType == XMLEvent.NAMESPACE) {
 			// namespaceContext is dynamic object.
-			String prefix = fScanner.getNamespaceContext().getDeclaredPrefixAt(index);
+			String prefix = fScanner.getNamespaceContext().getDeclaredPrefixAt(
+					index);
 			return prefix.equals("") ? null : prefix;
 		} else {
-			throw new IllegalStateException("Current state " + getEventTypeString(fEventType)
-					+ " is not among the states " + getEventTypeString(XMLEvent.START_ELEMENT)
-					+ ", " + getEventTypeString(XMLEvent.END_ELEMENT) + ", "
-					+ getEventTypeString(XMLEvent.NAMESPACE) + " valid for getNamespacePrefix().");
+			throw new IllegalStateException("Current state "
+					+ getEventTypeString(fEventType)
+					+ " is not among the states " + getEventTypeString(
+							XMLEvent.START_ELEMENT) + ", " + getEventTypeString(
+									XMLEvent.END_ELEMENT) + ", "
+					+ getEventTypeString(XMLEvent.NAMESPACE)
+					+ " valid for getNamespacePrefix().");
 		}
 	}
 
@@ -1052,22 +1109,27 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * Returns the uri for the namespace declared at the index.
 	 *
 	 * @param index
-	 *            the position of the namespace declaration
+	 *              the position of the namespace declaration
 	 * @return returns the namespace uri
 	 * @throws IllegalStateException
-	 *             if this is not a START_ELEMENT, END_ELEMENT or NAMESPACE
+	 *                               if this is not a START_ELEMENT, END_ELEMENT
+	 *                               or NAMESPACE
 	 */
 	public String getNamespaceURI(int index) {
-		if (fEventType == XMLEvent.START_ELEMENT || fEventType == XMLEvent.END_ELEMENT
+		if (fEventType == XMLEvent.START_ELEMENT
+				|| fEventType == XMLEvent.END_ELEMENT
 				|| fEventType == XMLEvent.NAMESPACE) {
 			// namespaceContext is dynamic object.
-			return fScanner.getNamespaceContext()
-					.getURI(fScanner.getNamespaceContext().getDeclaredPrefixAt(index));
+			return fScanner.getNamespaceContext().getURI(fScanner
+					.getNamespaceContext().getDeclaredPrefixAt(index));
 		} else {
-			throw new IllegalStateException("Current state " + getEventTypeString(fEventType)
-					+ " is not among the states " + getEventTypeString(XMLEvent.START_ELEMENT)
-					+ ", " + getEventTypeString(XMLEvent.END_ELEMENT) + ", "
-					+ getEventTypeString(XMLEvent.NAMESPACE) + " valid for getNamespaceURI().");
+			throw new IllegalStateException("Current state "
+					+ getEventTypeString(fEventType)
+					+ " is not among the states " + getEventTypeString(
+							XMLEvent.START_ELEMENT) + ", " + getEventTypeString(
+									XMLEvent.END_ELEMENT) + ", "
+					+ getEventTypeString(XMLEvent.NAMESPACE)
+					+ " valid for getNamespaceURI().");
 		}
 
 	}
@@ -1076,12 +1138,13 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * Get the value of a feature/property from the underlying implementation
 	 * 
 	 * @param name
-	 *            The name of the property, may not be null
+	 *             The name of the property, may not be null
 	 * @return The value of the property
 	 * @throws IllegalArgumentException
-	 *             if name is null
+	 *                                  if name is null
 	 */
-	public Object getProperty(java.lang.String name) throws java.lang.IllegalArgumentException {
+	public Object getProperty(java.lang.String name)
+			throws java.lang.IllegalArgumentException {
 		if (name == null)
 			throw new java.lang.IllegalArgumentException();
 		if (fPropertyManager != null) {
@@ -1103,11 +1166,12 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * 
 	 * @return the current text or null
 	 * @throws java.lang.IllegalStateException
-	 *             if this state is not a valid text state.
+	 *         if this state is not a valid text state.
 	 */
 	public String getText() {
 		if (fEventType == XMLEvent.CHARACTERS || fEventType == XMLEvent.COMMENT
-				|| fEventType == XMLEvent.CDATA || fEventType == XMLEvent.SPACE) {
+				|| fEventType == XMLEvent.CDATA
+				|| fEventType == XMLEvent.SPACE) {
 			// this requires creation of new string
 			// fEventType == XMLEvent.ENTITY_REFERENCE
 			return fScanner.getCharacterData().toString();
@@ -1122,7 +1186,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 				if (en == null)
 					return null;
 				if (en.isExternal())
-					return ((Entity.ExternalEntity) en).entityLocation.getExpandedSystemId();
+					return ((Entity.ExternalEntity) en).entityLocation
+							.getExpandedSystemId();
 				else
 					return ((Entity.InternalEntity) en).text;
 			} else
@@ -1135,12 +1200,16 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 			fDTDDecl = tmpBuffer.toString();
 			return fDTDDecl;
 		} else {
-			throw new IllegalStateException("Current state " + getEventTypeString(fEventType)
-					+ " is not among the states" + getEventTypeString(XMLEvent.CHARACTERS) + ", "
-					+ getEventTypeString(XMLEvent.COMMENT) + ", "
-					+ getEventTypeString(XMLEvent.CDATA) + ", " + getEventTypeString(XMLEvent.SPACE)
-					+ ", " + getEventTypeString(XMLEvent.ENTITY_REFERENCE) + ", "
-					+ getEventTypeString(XMLEvent.DTD) + " valid for getText() ");
+			throw new IllegalStateException("Current state "
+					+ getEventTypeString(fEventType)
+					+ " is not among the states" + getEventTypeString(
+							XMLEvent.CHARACTERS) + ", " + getEventTypeString(
+									XMLEvent.COMMENT) + ", "
+					+ getEventTypeString(XMLEvent.CDATA) + ", "
+					+ getEventTypeString(XMLEvent.SPACE) + ", "
+					+ getEventTypeString(XMLEvent.ENTITY_REFERENCE) + ", "
+					+ getEventTypeString(XMLEvent.DTD)
+					+ " valid for getText() ");
 		}
 	}// getText
 
@@ -1151,25 +1220,28 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * null it is not checked for equality.
 	 * 
 	 * @param type
-	 *            the event type
+	 *                     the event type
 	 * @param namespaceURI
-	 *            the uri of the event, may be null
+	 *                     the uri of the event, may be null
 	 * @param localName
-	 *            the localName of the event, may be null
+	 *                     the localName of the event, may be null
 	 * @throws XMLStreamException
-	 *             if the required values are not matched.
+	 *                            if the required values are not matched.
 	 */
-	public void require(int type, String namespaceURI, String localName) throws XMLStreamException {
+	public void require(int type, String namespaceURI, String localName)
+			throws XMLStreamException {
 		if (type != fEventType)
-			throw new XMLStreamException("Event type " + getEventTypeString(type)
-					+ " specified did " + "not match with current parser event "
+			throw new XMLStreamException("Event type " + getEventTypeString(
+					type) + " specified did "
+					+ "not match with current parser event "
 					+ getEventTypeString(fEventType));
 		if (namespaceURI != null && !namespaceURI.equals(getNamespaceURI()))
 			throw new XMLStreamException("Namespace URI " + namespaceURI
-					+ " specified did not match " + "with current namespace URI");
+					+ " specified did not match "
+					+ "with current namespace URI");
 		if (localName != null && !localName.equals(getLocalName()))
-			throw new XMLStreamException("LocalName " + localName + " specified did not match with "
-					+ "current local name");
+			throw new XMLStreamException("LocalName " + localName
+					+ " specified did not match with " + "current local name");
 		return;
 	}
 
@@ -1204,35 +1276,42 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * "target".
 	 *
 	 * @param sourceStart
-	 *            the index of the first character in the source array to copy
+	 *                    the index of the first character in the source array
+	 *                    to copy
 	 * @param target
-	 *            the destination array
+	 *                    the destination array
 	 * @param targetStart
-	 *            the start offset in the target array
+	 *                    the start offset in the target array
 	 * @param length
-	 *            the number of characters to copy
+	 *                    the number of characters to copy
 	 * @return the number of characters actually copied
 	 * @throws XMLStreamException
-	 *             if the underlying XML source is not well-formed
+	 *                                              if the underlying XML source
+	 *                                              is not well-formed
 	 * @throws IndexOutOfBoundsException
-	 *             if targetStart < 0 or > than the length of target
+	 *                                              if targetStart < 0 or > than
+	 *                                              the length of target
 	 * @throws IndexOutOfBoundwhile(isCharacters())
-	 *             ;sException if length < 0 or targetStart + length > length of
-	 *             target
+	 *                                              ;sException if length < 0 or
+	 *                                              targetStart + length >
+	 *                                              length of
+	 *                                              target
 	 * @throws UnsupportedOperationException
-	 *             if this method is not supported
+	 *                                              if this method is not
+	 *                                              supported
 	 * @throws NullPointerException
-	 *             is if target is null
+	 *                                              is if target is null
 	 */
-	public int getTextCharacters(int sourceStart, char[] target, int targetStart, int length)
-			throws XMLStreamException {
+	public int getTextCharacters(int sourceStart, char[] target,
+			int targetStart, int length) throws XMLStreamException {
 
 		if (target == null) {
 			throw new NullPointerException("target char array can't be null");
 		}
 
-		if (targetStart < 0 || length < 0 || sourceStart < 0 || targetStart >= target.length
-				|| (targetStart + length) > target.length) {
+		if (targetStart < 0 || length < 0 || sourceStart < 0
+				|| targetStart >= target.length || (targetStart
+						+ length) > target.length) {
 			throw new IndexOutOfBoundsException();
 		}
 
@@ -1252,8 +1331,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 			copiedLength = length;
 		}
 
-		System.arraycopy(getTextCharacters(), getTextStart() + sourceStart, target, targetStart,
-				copiedLength);
+		System.arraycopy(getTextCharacters(), getTextStart() + sourceStart,
+				target, targetStart, copiedLength);
 		return copiedLength;
 	}
 
@@ -1297,19 +1376,22 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * default
 	 * 
 	 * @param index
-	 *            the position of the attribute
+	 *              the position of the attribute
 	 * @return true if this is a default attribute
 	 * @throws IllegalStateException
-	 *             if this is not a START_ELEMENT or ATTRIBUTE
+	 *                               if this is not a START_ELEMENT or ATTRIBUTE
 	 */
 	public boolean isAttributeSpecified(int index) {
 		// check that current state should be either START_ELEMENT or ATTRIBUTE
-		if ((fEventType == XMLEvent.START_ELEMENT) || (fEventType == XMLEvent.ATTRIBUTE)) {
+		if ((fEventType == XMLEvent.START_ELEMENT)
+				|| (fEventType == XMLEvent.ATTRIBUTE)) {
 			return fScanner.getAttributeIterator().isSpecified(index);
 		} else {
-			throw new IllegalStateException("Current state is not among the states "
-					+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
-					+ getEventTypeString(XMLEvent.ATTRIBUTE) + "valid for isAttributeSpecified()");
+			throw new IllegalStateException(
+					"Current state is not among the states "
+							+ getEventTypeString(XMLEvent.START_ELEMENT) + " , "
+							+ getEventTypeString(XMLEvent.ATTRIBUTE)
+							+ "valid for isAttributeSpecified()");
 		}
 	}
 
@@ -1331,13 +1413,13 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * 
 	 * @return the event type of the element read
 	 * @throws XMLStreamException
-	 *             if the current event is not white space
+	 *                            if the current event is not white space
 	 */
 	public int nextTag() throws XMLStreamException {
 
 		int eventType = next();
 		while ((eventType == XMLStreamConstants.CHARACTERS && isWhiteSpace()) // skip
-																				// whitespace
+				// whitespace
 				|| (eventType == XMLStreamConstants.CDATA && isWhiteSpace())
 				// skip whitespace
 				|| eventType == XMLStreamConstants.SPACE
@@ -1348,9 +1430,11 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 
 		if (eventType != XMLStreamConstants.START_ELEMENT
 				&& eventType != XMLStreamConstants.END_ELEMENT) {
-			throw new XMLStreamException("found: " + getEventTypeString(eventType) + ", expected "
-					+ getEventTypeString(XMLStreamConstants.START_ELEMENT) + " or "
-					+ getEventTypeString(XMLStreamConstants.END_ELEMENT), getLocation());
+			throw new XMLStreamException("found: " + getEventTypeString(
+					eventType) + ", expected " + getEventTypeString(
+							XMLStreamConstants.START_ELEMENT) + " or "
+					+ getEventTypeString(XMLStreamConstants.END_ELEMENT),
+					getLocation());
 		}
 
 		return eventType;
@@ -1380,7 +1464,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 		if (qname.prefix == null) {
 			return new javax.xml.namespace.QName(qname.uri, qname.localpart);
 		} else {
-			return new javax.xml.namespace.QName(qname.uri, qname.localpart, qname.prefix);
+			return new javax.xml.namespace.QName(qname.uri, qname.localpart,
+					qname.prefix);
 		}
 	}
 
@@ -1400,17 +1485,19 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 	 * 
 	 * @return the uri bound to the given prefix or null if it is not bound
 	 * @param prefix
-	 *            The prefix to lookup, may not be null
+	 *               The prefix to lookup, may not be null
 	 * @throws IllegalStateException
-	 *             - if the prefix is null
+	 *                               - if the prefix is null
 	 */
 	public String getNamespaceURI(String prefix) {
 		if (prefix == null)
-			throw new java.lang.IllegalArgumentException("prefix cannot be null.");
+			throw new java.lang.IllegalArgumentException(
+					"prefix cannot be null.");
 
 		// first add the string to symbol table.. since internally identity
 		// comparisons are done.
-		return fScanner.getNamespaceContext().getURI(fSymbolTable.addSymbol(prefix));
+		return fScanner.getNamespaceContext().getURI(fSymbolTable.addSymbol(
+				prefix));
 	}
 
 	// xxx: this function is not being used.
@@ -1446,10 +1533,13 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 					decl = new EntityDeclarationImpl();
 					decl.setEntityName(key);
 					if (en.isExternal()) {
-						decl.setXMLResourceIdentifier(((Entity.ExternalEntity) en).entityLocation);
-						decl.setNotationName(((Entity.ExternalEntity) en).notation);
+						decl.setXMLResourceIdentifier(
+								((Entity.ExternalEntity) en).entityLocation);
+						decl.setNotationName(
+								((Entity.ExternalEntity) en).notation);
 					} else
-						decl.setEntityReplacementText(((Entity.InternalEntity) en).text);
+						decl.setEntityReplacementText(
+								((Entity.InternalEntity) en).text);
 					list.add(decl);
 				}
 			}
@@ -1462,7 +1552,8 @@ public class XMLStreamReaderImpl implements javax.xml.stream.XMLStreamReader {
 		if (fEventType == XMLStreamConstants.DTD) {
 			if (fScanner.fDTDScanner == null)
 				return null;
-			DTDGrammar grammar = ((XMLDTDScannerImpl) (fScanner.fDTDScanner)).getGrammar();
+			DTDGrammar grammar = ((XMLDTDScannerImpl) (fScanner.fDTDScanner))
+					.getGrammar();
 			if (grammar == null)
 				return null;
 			List notations = grammar.getNotationDecls();

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.io;
 
@@ -41,17 +21,21 @@ class DeleteOnExitHook {
 		// delete on exit list and cause the DeleteOnExitHook to be
 		// registered during shutdown in progress. So set the
 		// registerShutdownInProgress parameter to true.
-		sun.misc.SharedSecrets.getJavaLangAccess().registerShutdownHook(
-				2 /* Shutdown hook invocation order */,
-				true /* register even if shutdown in progress */, new Runnable() {
+		sun.misc.SharedSecrets.getJavaLangAccess().registerShutdownHook(2 /*
+																			 * Shutdown
+																			 * hook
+																			 * invocation
+																			 * order
+																			 */,
+				true /* register even if shutdown in progress */,
+				new Runnable() {
 					public void run() {
 						runHooks();
 					}
 				});
 	}
 
-	private DeleteOnExitHook() {
-	}
+	private DeleteOnExitHook() {}
 
 	static synchronized void add(String file) {
 		if (files == null) {

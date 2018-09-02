@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -99,12 +96,16 @@ public final class Messages {
 	 * Constructor.
 	 * 
 	 * @param resourceBundle
-	 *            the class name of the ListResourceBundle that the instance of
-	 *            this class is associated with and will use when creating
-	 *            messages. The class name is without a language suffix. If the
-	 *            value passed is null then
-	 *            loadResourceBundle(errorResourceClass) needs to be called
-	 *            explicitly before any messages are created.
+	 *                       the class name of the ListResourceBundle that the
+	 *                       instance of
+	 *                       this class is associated with and will use when
+	 *                       creating
+	 *                       messages. The class name is without a language
+	 *                       suffix. If the
+	 *                       value passed is null then
+	 *                       loadResourceBundle(errorResourceClass) needs to be
+	 *                       called
+	 *                       explicitly before any messages are created.
 	 *
 	 * @xsl.usage internal
 	 */
@@ -128,22 +129,24 @@ public final class Messages {
 	 * localized to the given locale.
 	 *
 	 * @param msgKey
-	 *            The key for the message text.
+	 *               The key for the message text.
 	 * @param args
-	 *            The arguments to be used as replacement text in the message
-	 *            created.
+	 *               The arguments to be used as replacement text in the message
+	 *               created.
 	 *
 	 * @return The formatted message string.
 	 * @xsl.usage internal
 	 */
 	public final String createMessage(String msgKey, Object args[]) {
 		if (m_resourceBundle == null)
-			m_resourceBundle = SecuritySupport.getResourceBundle(m_resourceBundleName);
+			m_resourceBundle = SecuritySupport.getResourceBundle(
+					m_resourceBundleName);
 
 		if (m_resourceBundle != null) {
 			return createMsg(m_resourceBundle, msgKey, args);
 		} else
-			return "Could not load the resource bundles: " + m_resourceBundleName;
+			return "Could not load the resource bundles: "
+					+ m_resourceBundleName;
 	}
 
 	/**
@@ -151,21 +154,23 @@ public final class Messages {
 	 * localized to the given locale.
 	 *
 	 * @param errorCode
-	 *            The key for the message text.
+	 *                        The key for the message text.
 	 *
 	 * @param fResourceBundle
-	 *            The resource bundle to use.
+	 *                        The resource bundle to use.
 	 * @param msgKey
-	 *            The message key to use.
+	 *                        The message key to use.
 	 * @param args
-	 *            The arguments to be used as replacement text in the message
-	 *            created.
+	 *                        The arguments to be used as replacement text in
+	 *                        the message
+	 *                        created.
 	 *
 	 * @return The formatted message string.
 	 * @xsl.usage internal
 	 */
-	private final String createMsg(ListResourceBundle fResourceBundle, String msgKey, Object args[]) // throws
-																										// Exception
+	private final String createMsg(ListResourceBundle fResourceBundle,
+			String msgKey, Object args[]) // throws
+																												// Exception
 	{
 
 		String fmsg = null;
@@ -192,7 +197,8 @@ public final class Messages {
 				 * even the message that the message is not in the bundle is not
 				 * there ... this is really bad
 				 */
-				msg = "The message key '" + msgKey + "' is not in the message class '"
+				msg = "The message key '" + msgKey
+						+ "' is not in the message class '"
 						+ m_resourceBundleName + "'";
 			}
 		} else if (args != null) {
@@ -220,8 +226,9 @@ public final class Messages {
 				} catch (Exception formatfailed) {
 					// We couldn't even get the message that the format of
 					// the message failed ... so fall back to English.
-					fmsg = "The format of message '" + msgKey + "' in message class '"
-							+ m_resourceBundleName + "' failed.";
+					fmsg = "The format of message '" + msgKey
+							+ "' in message class '" + m_resourceBundleName
+							+ "' failed.";
 				}
 			}
 		} else

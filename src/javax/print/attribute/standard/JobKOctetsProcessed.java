@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -68,7 +48,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class JobKOctetsProcessed extends IntegerSyntax implements PrintJobAttribute {
+public final class JobKOctetsProcessed extends IntegerSyntax implements
+		PrintJobAttribute {
 
 	private static final long serialVersionUID = -6265238509657881806L;
 
@@ -77,11 +58,12 @@ public final class JobKOctetsProcessed extends IntegerSyntax implements PrintJob
 	 * value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (Unchecked exception) Thrown if <CODE>value</CODE> is less
-	 *                than 0.
+	 *                                     (Unchecked exception) Thrown if
+	 *                                     <CODE>value</CODE> is less
+	 *                                     than 0.
 	 */
 	public JobKOctetsProcessed(int value) {
 		super(value, 0, Integer.MAX_VALUE);
@@ -99,7 +81,7 @@ public final class JobKOctetsProcessed extends IntegerSyntax implements PrintJob
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this job K octets
 	 *         processed attribute, false otherwise.

@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -40,11 +39,11 @@ public interface SnmpOidTable {
 	 * the variable.
 	 *
 	 * @param name
-	 *            The name of the MIB variable.
+	 *             The name of the MIB variable.
 	 * @return The <CODE>SnmpOidRecord</CODE> object containing information on
 	 *         the variable.
 	 * @exception SnmpStatusException
-	 *                If the variable is not found.
+	 *                                If the variable is not found.
 	 */
 	public SnmpOidRecord resolveVarName(String name) throws SnmpStatusException;
 
@@ -58,7 +57,7 @@ public interface SnmpOidTable {
 	 * @return The <CODE>SnmpOidRecord</CODE> object containing information on
 	 *         the variable.
 	 * @exception SnmpStatusException
-	 *                If the variable is not found.
+	 *                                If the variable is not found.
 	 */
 	public SnmpOidRecord resolveVarOid(String oid) throws SnmpStatusException;
 

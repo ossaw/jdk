@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -56,22 +36,24 @@ public abstract class CertPathBuilderSpi {
 	/**
 	 * The default constructor.
 	 */
-	public CertPathBuilderSpi() {
-	}
+	public CertPathBuilderSpi() {}
 
 	/**
 	 * Attempts to build a certification path using the specified algorithm
 	 * parameter set.
 	 *
 	 * @param params
-	 *            the algorithm parameters
+	 *               the algorithm parameters
 	 * @return the result of the build algorithm
 	 * @throws CertPathBuilderException
-	 *             if the builder is unable to construct a certification path
-	 *             that satisfies the specified parameters
+	 *                                            if the builder is unable to
+	 *                                            construct a certification path
+	 *                                            that satisfies the specified
+	 *                                            parameters
 	 * @throws InvalidAlgorithmParameterException
-	 *             if the specified parameters are inappropriate for this
-	 *             {@code CertPathBuilder}
+	 *                                            if the specified parameters
+	 *                                            are inappropriate for this
+	 *                                            {@code CertPathBuilder}
 	 */
 	public abstract CertPathBuilderResult engineBuild(CertPathParameters params)
 			throws CertPathBuilderException, InvalidAlgorithmParameterException;
@@ -95,7 +77,7 @@ public abstract class CertPathBuilderSpi {
 	 * @return a {@code CertPathChecker} that this implementation uses to check
 	 *         the revocation status of certificates
 	 * @throws UnsupportedOperationException
-	 *             if this method is not supported
+	 *                                       if this method is not supported
 	 * @since 1.8
 	 */
 	public CertPathChecker engineGetRevocationChecker() {

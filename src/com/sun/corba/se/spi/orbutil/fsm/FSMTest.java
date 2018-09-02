@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.orbutil.fsm;
@@ -149,7 +129,8 @@ public class FSMTest {
 		}
 	};
 
-	private static void add1(StateEngine se, State oldState, Input in, State newState) {
+	private static void add1(StateEngine se, State oldState, Input in,
+			State newState) {
 		se.add(oldState, in, new TestAction1(oldState, in, newState), newState);
 	}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.management;
@@ -48,30 +28,36 @@ public class MonitorInfo extends LockInfo {
 	 * Construct a <tt>MonitorInfo</tt> object.
 	 *
 	 * @param className
-	 *            the fully qualified name of the class of the lock object.
+	 *                         the fully qualified name of the class of the lock
+	 *                         object.
 	 * @param identityHashCode
-	 *            the {@link System#identityHashCode identity hash code} of the
-	 *            lock object.
+	 *                         the {@link System#identityHashCode identity hash
+	 *                         code} of the
+	 *                         lock object.
 	 * @param stackDepth
-	 *            the depth in the stack trace where the object monitor was
-	 *            locked.
+	 *                         the depth in the stack trace where the object
+	 *                         monitor was
+	 *                         locked.
 	 * @param stackFrame
-	 *            the stack frame that locked the object monitor.
+	 *                         the stack frame that locked the object monitor.
 	 * @throws IllegalArgumentException
-	 *             if <tt>stackDepth</tt> &ge; 0 but <tt>stackFrame</tt> is
-	 *             <tt>null</tt>, or <tt>stackDepth</tt> &lt; 0 but
-	 *             <tt>stackFrame</tt> is not <tt>null</tt>.
+	 *                                  if <tt>stackDepth</tt> &ge; 0 but
+	 *                                  <tt>stackFrame</tt> is
+	 *                                  <tt>null</tt>, or <tt>stackDepth</tt>
+	 *                                  &lt; 0 but
+	 *                                  <tt>stackFrame</tt> is not
+	 *                                  <tt>null</tt>.
 	 */
 	public MonitorInfo(String className, int identityHashCode, int stackDepth,
 			StackTraceElement stackFrame) {
 		super(className, identityHashCode);
 		if (stackDepth >= 0 && stackFrame == null) {
-			throw new IllegalArgumentException(
-					"Parameter stackDepth is " + stackDepth + " but stackFrame is null");
+			throw new IllegalArgumentException("Parameter stackDepth is "
+					+ stackDepth + " but stackFrame is null");
 		}
 		if (stackDepth < 0 && stackFrame != null) {
-			throw new IllegalArgumentException(
-					"Parameter stackDepth is " + stackDepth + " but stackFrame is not null");
+			throw new IllegalArgumentException("Parameter stackDepth is "
+					+ stackDepth + " but stackFrame is not null");
 		}
 		this.stackDepth = stackDepth;
 		this.stackFrame = stackFrame;
@@ -126,11 +112,12 @@ public class MonitorInfo extends LockInfo {
 	 * </blockquote>
 	 *
 	 * @param cd
-	 *            <tt>CompositeData</tt> representing a <tt>MonitorInfo</tt>
+	 *           <tt>CompositeData</tt> representing a <tt>MonitorInfo</tt>
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <tt>cd</tt> does not represent a <tt>MonitorInfo</tt> with
-	 *             the attributes described above.
+	 *                                  if <tt>cd</tt> does not represent a
+	 *                                  <tt>MonitorInfo</tt> with
+	 *                                  the attributes described above.
 	 * 
 	 * @return a <tt>MonitorInfo</tt> object represented by <tt>cd</tt> if
 	 *         <tt>cd</tt> is not <tt>null</tt>; <tt>null</tt> otherwise.
@@ -145,10 +132,13 @@ public class MonitorInfo extends LockInfo {
 		} else {
 			MonitorInfoCompositeData.validateCompositeData(cd);
 			String className = MonitorInfoCompositeData.getClassName(cd);
-			int identityHashCode = MonitorInfoCompositeData.getIdentityHashCode(cd);
+			int identityHashCode = MonitorInfoCompositeData.getIdentityHashCode(
+					cd);
 			int stackDepth = MonitorInfoCompositeData.getLockedStackDepth(cd);
-			StackTraceElement stackFrame = MonitorInfoCompositeData.getLockedStackFrame(cd);
-			return new MonitorInfo(className, identityHashCode, stackDepth, stackFrame);
+			StackTraceElement stackFrame = MonitorInfoCompositeData
+					.getLockedStackFrame(cd);
+			return new MonitorInfo(className, identityHashCode, stackDepth,
+					stackFrame);
 		}
 	}
 

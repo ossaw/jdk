@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -164,7 +144,8 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
 	 * {@inheritDoc}
 	 */
 	public void setArmed(boolean b) {
-		if (isMenuItem() && UIManager.getBoolean("MenuItem.disabledAreNavigable")) {
+		if (isMenuItem() && UIManager.getBoolean(
+				"MenuItem.disabledAreNavigable")) {
 			if ((isArmed() == b)) {
 				return;
 			}
@@ -217,8 +198,8 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
 			stateMask &= ~SELECTED;
 		}
 
-		fireItemStateChanged(new ItemEvent(this, ItemEvent.ITEM_STATE_CHANGED, this,
-				b ? ItemEvent.SELECTED : ItemEvent.DESELECTED));
+		fireItemStateChanged(new ItemEvent(this, ItemEvent.ITEM_STATE_CHANGED,
+				this, b ? ItemEvent.SELECTED : ItemEvent.DESELECTED));
 
 		fireStateChanged();
 
@@ -246,8 +227,9 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
 			} else if (currentEvent instanceof ActionEvent) {
 				modifiers = ((ActionEvent) currentEvent).getModifiers();
 			}
-			fireActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED,
-					getActionCommand(), EventQueue.getMostRecentEventTime(), modifiers));
+			fireActionPerformed(new ActionEvent(this,
+					ActionEvent.ACTION_PERFORMED, getActionCommand(), EventQueue
+							.getMostRecentEventTime(), modifiers));
 		}
 
 		fireStateChanged();
@@ -371,7 +353,7 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
 	 * this event type.
 	 *
 	 * @param e
-	 *            the <code>ActionEvent</code> to deliver to listeners
+	 *          the <code>ActionEvent</code> to deliver to listeners
 	 * @see EventListenerList
 	 */
 	protected void fireActionPerformed(ActionEvent e) {
@@ -424,7 +406,7 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
 	 * this event type.
 	 *
 	 * @param e
-	 *            the <code>ItemEvent</code> to deliver to listeners
+	 *          the <code>ItemEvent</code> to deliver to listeners
 	 * @see EventListenerList
 	 */
 	protected void fireItemStateChanged(ItemEvent e) {
@@ -454,22 +436,25 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
 	 * for its action listeners with the following code:
 	 *
 	 * <pre>
-	 * ActionListener[] als = (ActionListener[]) (m.getListeners(ActionListener.class));
+	 * ActionListener[] als = (ActionListener[]) (m.getListeners(
+	 * 		ActionListener.class));
 	 * </pre>
 	 *
 	 * If no such listeners exist, this method returns an empty array.
 	 *
 	 * @param listenerType
-	 *            the type of listeners requested; this parameter should specify
-	 *            an interface that descends from
-	 *            <code>java.util.EventListener</code>
+	 *                     the type of listeners requested; this parameter
+	 *                     should specify
+	 *                     an interface that descends from
+	 *                     <code>java.util.EventListener</code>
 	 * @return an array of all objects registered as <code><em>Foo</em>
 	 *         Listener</code>s on this model, or an empty array if no such
 	 *         listeners have been added
 	 * @exception ClassCastException
-	 *                if <code>listenerType</code> doesn't specify a class or
-	 *                interface that implements
-	 *                <code>java.util.EventListener</code>
+	 *                               if <code>listenerType</code> doesn't
+	 *                               specify a class or
+	 *                               interface that implements
+	 *                               <code>java.util.EventListener</code>
 	 *
 	 * @see #getActionListeners
 	 * @see #getChangeListeners

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -97,8 +77,7 @@ public final class JAXB {
 	/**
 	 * No instanciation is allowed.
 	 */
-	private JAXB() {
-	}
+	private JAXB() {}
 
 	/**
 	 * To improve the performance, we'll cache the last {@link JAXBContext}
@@ -129,7 +108,8 @@ public final class JAXB {
 	 * should be thread-safe thanks to the immutable {@link Cache} and
 	 * {@code volatile}.
 	 */
-	private static <T> JAXBContext getContext(Class<T> type) throws JAXBException {
+	private static <T> JAXBContext getContext(Class<T> type)
+			throws JAXBException {
 		WeakReference<Cache> c = cache;
 		if (c != null) {
 			Cache d = c.get();
@@ -168,8 +148,8 @@ public final class JAXB {
 	 */
 	public static <T> T unmarshal(URL xml, Class<T> type) {
 		try {
-			JAXBElement<T> item = getContext(type).createUnmarshaller().unmarshal(toSource(xml),
-					type);
+			JAXBElement<T> item = getContext(type).createUnmarshaller()
+					.unmarshal(toSource(xml), type);
 			return item.getValue();
 		} catch (JAXBException e) {
 			throw new DataBindingException(e);
@@ -187,8 +167,8 @@ public final class JAXB {
 	 */
 	public static <T> T unmarshal(URI xml, Class<T> type) {
 		try {
-			JAXBElement<T> item = getContext(type).createUnmarshaller().unmarshal(toSource(xml),
-					type);
+			JAXBElement<T> item = getContext(type).createUnmarshaller()
+					.unmarshal(toSource(xml), type);
 			return item.getValue();
 		} catch (JAXBException e) {
 			throw new DataBindingException(e);
@@ -207,8 +187,8 @@ public final class JAXB {
 	 */
 	public static <T> T unmarshal(String xml, Class<T> type) {
 		try {
-			JAXBElement<T> item = getContext(type).createUnmarshaller().unmarshal(toSource(xml),
-					type);
+			JAXBElement<T> item = getContext(type).createUnmarshaller()
+					.unmarshal(toSource(xml), type);
 			return item.getValue();
 		} catch (JAXBException e) {
 			throw new DataBindingException(e);
@@ -226,8 +206,8 @@ public final class JAXB {
 	 */
 	public static <T> T unmarshal(InputStream xml, Class<T> type) {
 		try {
-			JAXBElement<T> item = getContext(type).createUnmarshaller().unmarshal(toSource(xml),
-					type);
+			JAXBElement<T> item = getContext(type).createUnmarshaller()
+					.unmarshal(toSource(xml), type);
 			return item.getValue();
 		} catch (JAXBException e) {
 			throw new DataBindingException(e);
@@ -246,8 +226,8 @@ public final class JAXB {
 	 */
 	public static <T> T unmarshal(Reader xml, Class<T> type) {
 		try {
-			JAXBElement<T> item = getContext(type).createUnmarshaller().unmarshal(toSource(xml),
-					type);
+			JAXBElement<T> item = getContext(type).createUnmarshaller()
+					.unmarshal(toSource(xml), type);
 			return item.getValue();
 		} catch (JAXBException e) {
 			throw new DataBindingException(e);
@@ -264,8 +244,8 @@ public final class JAXB {
 	 */
 	public static <T> T unmarshal(Source xml, Class<T> type) {
 		try {
-			JAXBElement<T> item = getContext(type).createUnmarshaller().unmarshal(toSource(xml),
-					type);
+			JAXBElement<T> item = getContext(type).createUnmarshaller()
+					.unmarshal(toSource(xml), type);
 			return item.getValue();
 		} catch (JAXBException e) {
 			throw new DataBindingException(e);
@@ -312,29 +292,39 @@ public final class JAXB {
 		if (xml instanceof Source) {
 			return (Source) xml;
 		}
-		throw new IllegalArgumentException("I don't understand how to handle " + xml.getClass());
+		throw new IllegalArgumentException("I don't understand how to handle "
+				+ xml.getClass());
 	}
 
 	/**
 	 * Writes a Java object tree to XML and store it to the specified location.
 	 *
 	 * @param jaxbObject
-	 *            The Java object to be marshalled into XML. If this object is a
-	 *            {@link JAXBElement}, it will provide the root tag name and the
-	 *            body. If this object has {@link XmlRootElement} on its class
-	 *            definition, that will be used as the root tag name and the
-	 *            given object will provide the body. Otherwise, the root tag
-	 *            name is {@link Introspector#decapitalize(String) infered} from
-	 *            {@link Class#getSimpleName() the short class name}. This
-	 *            parameter must not be null.
+	 *                   The Java object to be marshalled into XML. If this
+	 *                   object is a
+	 *                   {@link JAXBElement}, it will provide the root tag name
+	 *                   and the
+	 *                   body. If this object has {@link XmlRootElement} on its
+	 *                   class
+	 *                   definition, that will be used as the root tag name and
+	 *                   the
+	 *                   given object will provide the body. Otherwise, the root
+	 *                   tag
+	 *                   name is {@link Introspector#decapitalize(String)
+	 *                   infered} from
+	 *                   {@link Class#getSimpleName() the short class name}.
+	 *                   This
+	 *                   parameter must not be null.
 	 *
 	 * @param xml
-	 *            XML will be written to this file. If it already exists, it
-	 *            will be overwritten.
+	 *                   XML will be written to this file. If it already exists,
+	 *                   it
+	 *                   will be overwritten.
 	 *
 	 * @throws DataBindingException
-	 *             If the operation fails, such as due to I/O error, unbindable
-	 *             classes.
+	 *                              If the operation fails, such as due to I/O
+	 *                              error, unbindable
+	 *                              classes.
 	 */
 	public static void marshal(Object jaxbObject, File xml) {
 		_marshal(jaxbObject, xml);
@@ -344,26 +334,37 @@ public final class JAXB {
 	 * Writes a Java object tree to XML and store it to the specified location.
 	 *
 	 * @param jaxbObject
-	 *            The Java object to be marshalled into XML. If this object is a
-	 *            {@link JAXBElement}, it will provide the root tag name and the
-	 *            body. If this object has {@link XmlRootElement} on its class
-	 *            definition, that will be used as the root tag name and the
-	 *            given object will provide the body. Otherwise, the root tag
-	 *            name is {@link Introspector#decapitalize(String) infered} from
-	 *            {@link Class#getSimpleName() the short class name}. This
-	 *            parameter must not be null.
+	 *                   The Java object to be marshalled into XML. If this
+	 *                   object is a
+	 *                   {@link JAXBElement}, it will provide the root tag name
+	 *                   and the
+	 *                   body. If this object has {@link XmlRootElement} on its
+	 *                   class
+	 *                   definition, that will be used as the root tag name and
+	 *                   the
+	 *                   given object will provide the body. Otherwise, the root
+	 *                   tag
+	 *                   name is {@link Introspector#decapitalize(String)
+	 *                   infered} from
+	 *                   {@link Class#getSimpleName() the short class name}.
+	 *                   This
+	 *                   parameter must not be null.
 	 *
 	 * @param xml
-	 *            The XML will be {@link URLConnection#getOutputStream() sent}
-	 *            to the resource pointed by this URL. Note that not all
-	 *            <tt>URL</tt>s support such operation, and exact semantics
-	 *            depends on the <tt>URL</tt> implementations. In case of
-	 *            {@link HttpURLConnection HTTP URLs}, this will perform HTTP
-	 *            POST.
+	 *                   The XML will be {@link URLConnection#getOutputStream()
+	 *                   sent}
+	 *                   to the resource pointed by this URL. Note that not all
+	 *                   <tt>URL</tt>s support such operation, and exact
+	 *                   semantics
+	 *                   depends on the <tt>URL</tt> implementations. In case of
+	 *                   {@link HttpURLConnection HTTP URLs}, this will perform
+	 *                   HTTP
+	 *                   POST.
 	 *
 	 * @throws DataBindingException
-	 *             If the operation fails, such as due to I/O error, unbindable
-	 *             classes.
+	 *                              If the operation fails, such as due to I/O
+	 *                              error, unbindable
+	 *                              classes.
 	 */
 	public static void marshal(Object jaxbObject, URL xml) {
 		_marshal(jaxbObject, xml);
@@ -373,22 +374,30 @@ public final class JAXB {
 	 * Writes a Java object tree to XML and store it to the specified location.
 	 *
 	 * @param jaxbObject
-	 *            The Java object to be marshalled into XML. If this object is a
-	 *            {@link JAXBElement}, it will provide the root tag name and the
-	 *            body. If this object has {@link XmlRootElement} on its class
-	 *            definition, that will be used as the root tag name and the
-	 *            given object will provide the body. Otherwise, the root tag
-	 *            name is {@link Introspector#decapitalize(String) infered} from
-	 *            {@link Class#getSimpleName() the short class name}. This
-	 *            parameter must not be null.
+	 *                   The Java object to be marshalled into XML. If this
+	 *                   object is a
+	 *                   {@link JAXBElement}, it will provide the root tag name
+	 *                   and the
+	 *                   body. If this object has {@link XmlRootElement} on its
+	 *                   class
+	 *                   definition, that will be used as the root tag name and
+	 *                   the
+	 *                   given object will provide the body. Otherwise, the root
+	 *                   tag
+	 *                   name is {@link Introspector#decapitalize(String)
+	 *                   infered} from
+	 *                   {@link Class#getSimpleName() the short class name}.
+	 *                   This
+	 *                   parameter must not be null.
 	 *
 	 * @param xml
-	 *            The URI is {@link URI#toURL() turned into URL} and then
-	 *            follows the handling of <tt>URL</tt>. See above.
+	 *                   The URI is {@link URI#toURL() turned into URL} and then
+	 *                   follows the handling of <tt>URL</tt>. See above.
 	 *
 	 * @throws DataBindingException
-	 *             If the operation fails, such as due to I/O error, unbindable
-	 *             classes.
+	 *                              If the operation fails, such as due to I/O
+	 *                              error, unbindable
+	 *                              classes.
 	 */
 	public static void marshal(Object jaxbObject, URI xml) {
 		_marshal(jaxbObject, xml);
@@ -398,23 +407,33 @@ public final class JAXB {
 	 * Writes a Java object tree to XML and store it to the specified location.
 	 *
 	 * @param jaxbObject
-	 *            The Java object to be marshalled into XML. If this object is a
-	 *            {@link JAXBElement}, it will provide the root tag name and the
-	 *            body. If this object has {@link XmlRootElement} on its class
-	 *            definition, that will be used as the root tag name and the
-	 *            given object will provide the body. Otherwise, the root tag
-	 *            name is {@link Introspector#decapitalize(String) infered} from
-	 *            {@link Class#getSimpleName() the short class name}. This
-	 *            parameter must not be null.
+	 *                   The Java object to be marshalled into XML. If this
+	 *                   object is a
+	 *                   {@link JAXBElement}, it will provide the root tag name
+	 *                   and the
+	 *                   body. If this object has {@link XmlRootElement} on its
+	 *                   class
+	 *                   definition, that will be used as the root tag name and
+	 *                   the
+	 *                   given object will provide the body. Otherwise, the root
+	 *                   tag
+	 *                   name is {@link Introspector#decapitalize(String)
+	 *                   infered} from
+	 *                   {@link Class#getSimpleName() the short class name}.
+	 *                   This
+	 *                   parameter must not be null.
 	 *
 	 * @param xml
-	 *            The string is first interpreted as an absolute <tt>URI</tt>.
-	 *            If it's not {@link URI#isAbsolute() a valid absolute URI},
-	 *            then it's interpreted as a <tt>File</tt>
+	 *                   The string is first interpreted as an absolute
+	 *                   <tt>URI</tt>.
+	 *                   If it's not {@link URI#isAbsolute() a valid absolute
+	 *                   URI},
+	 *                   then it's interpreted as a <tt>File</tt>
 	 *
 	 * @throws DataBindingException
-	 *             If the operation fails, such as due to I/O error, unbindable
-	 *             classes.
+	 *                              If the operation fails, such as due to I/O
+	 *                              error, unbindable
+	 *                              classes.
 	 */
 	public static void marshal(Object jaxbObject, String xml) {
 		_marshal(jaxbObject, xml);
@@ -424,23 +443,33 @@ public final class JAXB {
 	 * Writes a Java object tree to XML and store it to the specified location.
 	 *
 	 * @param jaxbObject
-	 *            The Java object to be marshalled into XML. If this object is a
-	 *            {@link JAXBElement}, it will provide the root tag name and the
-	 *            body. If this object has {@link XmlRootElement} on its class
-	 *            definition, that will be used as the root tag name and the
-	 *            given object will provide the body. Otherwise, the root tag
-	 *            name is {@link Introspector#decapitalize(String) infered} from
-	 *            {@link Class#getSimpleName() the short class name}. This
-	 *            parameter must not be null.
+	 *                   The Java object to be marshalled into XML. If this
+	 *                   object is a
+	 *                   {@link JAXBElement}, it will provide the root tag name
+	 *                   and the
+	 *                   body. If this object has {@link XmlRootElement} on its
+	 *                   class
+	 *                   definition, that will be used as the root tag name and
+	 *                   the
+	 *                   given object will provide the body. Otherwise, the root
+	 *                   tag
+	 *                   name is {@link Introspector#decapitalize(String)
+	 *                   infered} from
+	 *                   {@link Class#getSimpleName() the short class name}.
+	 *                   This
+	 *                   parameter must not be null.
 	 *
 	 * @param xml
-	 *            The XML will be sent to the given {@link OutputStream}. Upon a
-	 *            successful completion, the stream will be closed by this
-	 *            method.
+	 *                   The XML will be sent to the given {@link OutputStream}.
+	 *                   Upon a
+	 *                   successful completion, the stream will be closed by
+	 *                   this
+	 *                   method.
 	 *
 	 * @throws DataBindingException
-	 *             If the operation fails, such as due to I/O error, unbindable
-	 *             classes.
+	 *                              If the operation fails, such as due to I/O
+	 *                              error, unbindable
+	 *                              classes.
 	 */
 	public static void marshal(Object jaxbObject, OutputStream xml) {
 		_marshal(jaxbObject, xml);
@@ -450,23 +479,32 @@ public final class JAXB {
 	 * Writes a Java object tree to XML and store it to the specified location.
 	 *
 	 * @param jaxbObject
-	 *            The Java object to be marshalled into XML. If this object is a
-	 *            {@link JAXBElement}, it will provide the root tag name and the
-	 *            body. If this object has {@link XmlRootElement} on its class
-	 *            definition, that will be used as the root tag name and the
-	 *            given object will provide the body. Otherwise, the root tag
-	 *            name is {@link Introspector#decapitalize(String) infered} from
-	 *            {@link Class#getSimpleName() the short class name}. This
-	 *            parameter must not be null.
+	 *                   The Java object to be marshalled into XML. If this
+	 *                   object is a
+	 *                   {@link JAXBElement}, it will provide the root tag name
+	 *                   and the
+	 *                   body. If this object has {@link XmlRootElement} on its
+	 *                   class
+	 *                   definition, that will be used as the root tag name and
+	 *                   the
+	 *                   given object will provide the body. Otherwise, the root
+	 *                   tag
+	 *                   name is {@link Introspector#decapitalize(String)
+	 *                   infered} from
+	 *                   {@link Class#getSimpleName() the short class name}.
+	 *                   This
+	 *                   parameter must not be null.
 	 *
 	 * @param xml
-	 *            The XML will be sent as a character stream to the given
-	 *            {@link Writer}. Upon a successful completion, the stream will
-	 *            be closed by this method.
+	 *                   The XML will be sent as a character stream to the given
+	 *                   {@link Writer}. Upon a successful completion, the
+	 *                   stream will
+	 *                   be closed by this method.
 	 *
 	 * @throws DataBindingException
-	 *             If the operation fails, such as due to I/O error, unbindable
-	 *             classes.
+	 *                              If the operation fails, such as due to I/O
+	 *                              error, unbindable
+	 *                              classes.
 	 */
 	public static void marshal(Object jaxbObject, Writer xml) {
 		_marshal(jaxbObject, xml);
@@ -476,21 +514,29 @@ public final class JAXB {
 	 * Writes a Java object tree to XML and store it to the specified location.
 	 *
 	 * @param jaxbObject
-	 *            The Java object to be marshalled into XML. If this object is a
-	 *            {@link JAXBElement}, it will provide the root tag name and the
-	 *            body. If this object has {@link XmlRootElement} on its class
-	 *            definition, that will be used as the root tag name and the
-	 *            given object will provide the body. Otherwise, the root tag
-	 *            name is {@link Introspector#decapitalize(String) infered} from
-	 *            {@link Class#getSimpleName() the short class name}. This
-	 *            parameter must not be null.
+	 *                   The Java object to be marshalled into XML. If this
+	 *                   object is a
+	 *                   {@link JAXBElement}, it will provide the root tag name
+	 *                   and the
+	 *                   body. If this object has {@link XmlRootElement} on its
+	 *                   class
+	 *                   definition, that will be used as the root tag name and
+	 *                   the
+	 *                   given object will provide the body. Otherwise, the root
+	 *                   tag
+	 *                   name is {@link Introspector#decapitalize(String)
+	 *                   infered} from
+	 *                   {@link Class#getSimpleName() the short class name}.
+	 *                   This
+	 *                   parameter must not be null.
 	 *
 	 * @param xml
-	 *            The XML will be sent to the {@link Result} object.
+	 *                   The XML will be sent to the {@link Result} object.
 	 *
 	 * @throws DataBindingException
-	 *             If the operation fails, such as due to I/O error, unbindable
-	 *             classes.
+	 *                              If the operation fails, such as due to I/O
+	 *                              error, unbindable
+	 *                              classes.
 	 */
 	public static void marshal(Object jaxbObject, Result xml) {
 		_marshal(jaxbObject, xml);
@@ -517,84 +563,108 @@ public final class JAXB {
 	 * </ol>
 	 *
 	 * @param jaxbObject
-	 *            The Java object to be marshalled into XML. If this object is a
-	 *            {@link JAXBElement}, it will provide the root tag name and the
-	 *            body. If this object has {@link XmlRootElement} on its class
-	 *            definition, that will be used as the root tag name and the
-	 *            given object will provide the body. Otherwise, the root tag
-	 *            name is {@link Introspector#decapitalize(String) infered} from
-	 *            {@link Class#getSimpleName() the short class name}. This
-	 *            parameter must not be null.
+	 *                   The Java object to be marshalled into XML. If this
+	 *                   object is a
+	 *                   {@link JAXBElement}, it will provide the root tag name
+	 *                   and the
+	 *                   body. If this object has {@link XmlRootElement} on its
+	 *                   class
+	 *                   definition, that will be used as the root tag name and
+	 *                   the
+	 *                   given object will provide the body. Otherwise, the root
+	 *                   tag
+	 *                   name is {@link Introspector#decapitalize(String)
+	 *                   infered} from
+	 *                   {@link Class#getSimpleName() the short class name}.
+	 *                   This
+	 *                   parameter must not be null.
 	 *
 	 * @param xml
-	 *            Represents the receiver of XML. Objects of the following types
-	 *            are allowed.
+	 *                   Represents the receiver of XML. Objects of the
+	 *                   following types
+	 *                   are allowed.
 	 *
-	 *            <table>
-	 *            <tr>
-	 *            <th>Type</th>
-	 *            <th>Operation</th>
-	 *            </tr>
-	 *            <tr>
-	 *            <td>{@link File}</td>
-	 *            <td>XML will be written to this file. If it already exists, it
-	 *            will be overwritten.</td>
-	 *            </tr>
-	 *            <tr>
-	 *            <td>{@link URL}</td>
-	 *            <td>The XML will be {@link URLConnection#getOutputStream()
-	 *            sent} to the resource pointed by this URL. Note that not all
-	 *            <tt>URL</tt>s support such operation, and exact semantics
-	 *            depends on the <tt>URL</tt> implementations. In case of
-	 *            {@link HttpURLConnection HTTP URLs}, this will perform HTTP
-	 *            POST.</td>
-	 *            </tr>
-	 *            <tr>
-	 *            <td>{@link URI}</td>
-	 *            <td>The URI is {@link URI#toURL() turned into URL} and then
-	 *            follows the handling of <tt>URL</tt>. See above.</td>
-	 *            </tr>
-	 *            <tr>
-	 *            <td>{@link String}</td>
-	 *            <td>The string is first interpreted as an absolute
-	 *            <tt>URI</tt>. If it's not {@link URI#isAbsolute() a valid
-	 *            absolute URI}, then it's interpreted as a <tt>File</tt></td>
-	 *            </tr>
-	 *            <tr>
-	 *            <td>{@link OutputStream}</td>
-	 *            <td>The XML will be sent to the given {@link OutputStream}.
-	 *            Upon a successful completion, the stream will be closed by
-	 *            this method.</td>
-	 *            </tr>
-	 *            <tr>
-	 *            <td>{@link Writer}</td>
-	 *            <td>The XML will be sent as a character stream to the given
-	 *            {@link Writer}. Upon a successful completion, the stream will
-	 *            be closed by this method.</td>
-	 *            </tr>
-	 *            <tr>
-	 *            <td>{@link Result}</td>
-	 *            <td>The XML will be sent to the {@link Result} object.</td>
-	 *            </tr>
-	 *            </table>
+	 *                   <table>
+	 *                   <tr>
+	 *                   <th>Type</th>
+	 *                   <th>Operation</th>
+	 *                   </tr>
+	 *                   <tr>
+	 *                   <td>{@link File}</td>
+	 *                   <td>XML will be written to this file. If it already
+	 *                   exists, it
+	 *                   will be overwritten.</td>
+	 *                   </tr>
+	 *                   <tr>
+	 *                   <td>{@link URL}</td>
+	 *                   <td>The XML will be
+	 *                   {@link URLConnection#getOutputStream()
+	 *                   sent} to the resource pointed by this URL. Note that
+	 *                   not all
+	 *                   <tt>URL</tt>s support such operation, and exact
+	 *                   semantics
+	 *                   depends on the <tt>URL</tt> implementations. In case of
+	 *                   {@link HttpURLConnection HTTP URLs}, this will perform
+	 *                   HTTP
+	 *                   POST.</td>
+	 *                   </tr>
+	 *                   <tr>
+	 *                   <td>{@link URI}</td>
+	 *                   <td>The URI is {@link URI#toURL() turned into URL} and
+	 *                   then
+	 *                   follows the handling of <tt>URL</tt>. See above.</td>
+	 *                   </tr>
+	 *                   <tr>
+	 *                   <td>{@link String}</td>
+	 *                   <td>The string is first interpreted as an absolute
+	 *                   <tt>URI</tt>. If it's not {@link URI#isAbsolute() a
+	 *                   valid
+	 *                   absolute URI}, then it's interpreted as a
+	 *                   <tt>File</tt></td>
+	 *                   </tr>
+	 *                   <tr>
+	 *                   <td>{@link OutputStream}</td>
+	 *                   <td>The XML will be sent to the given
+	 *                   {@link OutputStream}.
+	 *                   Upon a successful completion, the stream will be closed
+	 *                   by
+	 *                   this method.</td>
+	 *                   </tr>
+	 *                   <tr>
+	 *                   <td>{@link Writer}</td>
+	 *                   <td>The XML will be sent as a character stream to the
+	 *                   given
+	 *                   {@link Writer}. Upon a successful completion, the
+	 *                   stream will
+	 *                   be closed by this method.</td>
+	 *                   </tr>
+	 *                   <tr>
+	 *                   <td>{@link Result}</td>
+	 *                   <td>The XML will be sent to the {@link Result}
+	 *                   object.</td>
+	 *                   </tr>
+	 *                   </table>
 	 *
 	 * @throws DataBindingException
-	 *             If the operation fails, such as due to I/O error, unbindable
-	 *             classes.
+	 *                              If the operation fails, such as due to I/O
+	 *                              error, unbindable
+	 *                              classes.
 	 */
 	private static void _marshal(Object jaxbObject, Object xml) {
 		try {
 			JAXBContext context;
 
 			if (jaxbObject instanceof JAXBElement) {
-				context = getContext(((JAXBElement<?>) jaxbObject).getDeclaredType());
+				context = getContext(((JAXBElement<?>) jaxbObject)
+						.getDeclaredType());
 			} else {
 				Class<?> clazz = jaxbObject.getClass();
 				XmlRootElement r = clazz.getAnnotation(XmlRootElement.class);
 				context = getContext(clazz);
 				if (r == null) {
 					// we need to infer the name
-					jaxbObject = new JAXBElement(new QName(inferName(clazz)), clazz, jaxbObject);
+					jaxbObject = new JAXBElement(new QName(inferName(clazz)),
+							clazz, jaxbObject);
 				}
 			}
 
@@ -654,7 +724,8 @@ public final class JAXB {
 		if (xml instanceof Result) {
 			return (Result) xml;
 		}
-		throw new IllegalArgumentException("I don't understand how to handle " + xml.getClass());
+		throw new IllegalArgumentException("I don't understand how to handle "
+				+ xml.getClass());
 	}
 
 }

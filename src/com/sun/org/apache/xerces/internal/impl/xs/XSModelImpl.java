@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -59,7 +56,8 @@ import com.sun.org.apache.xerces.internal.xs.XSTypeDefinition;
  *
  * @version $Id: XSModelImpl.java,v 1.7 2010-11-01 04:39:55 joehw Exp $
  */
-public final class XSModelImpl extends AbstractList implements XSModel, XSNamespaceItemList {
+public final class XSModelImpl extends AbstractList implements XSModel,
+		XSNamespaceItemList {
 
 	// the max index / the max value of XSObject type
 	private static final short MAX_COMP_IDX = XSTypeDefinition.SIMPLE_TYPE;
@@ -111,7 +109,7 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * by them to this object.
 	 *
 	 * @param grammars
-	 *            the array of schema grammars
+	 *                 the array of schema grammars
 	 */
 	public XSModelImpl(SchemaGrammar[] grammars) {
 		this(grammars, Constants.SCHEMA_VERSION_1_0);
@@ -201,10 +199,12 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	private SymbolHash buildSubGroups_Org() {
 		SubstitutionGroupHandler sgHandler = new SubstitutionGroupHandler(null);
 		for (int i = 0; i < fGrammarCount; i++) {
-			sgHandler.addSubstitutionGroup(fGrammarList[i].getSubstitutionGroups());
+			sgHandler.addSubstitutionGroup(fGrammarList[i]
+					.getSubstitutionGroups());
 		}
 
-		final XSNamedMap elements = getComponents(XSConstants.ELEMENT_DECLARATION);
+		final XSNamedMap elements = getComponents(
+				XSConstants.ELEMENT_DECLARATION);
 		final int len = elements.getLength();
 		final SymbolHash subGroupMap = new SymbolHash(len * 2);
 		XSElementDecl head;
@@ -212,9 +212,8 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 		for (int i = 0; i < len; i++) {
 			head = (XSElementDecl) elements.item(i);
 			subGroup = sgHandler.getSubstitutionGroup(head);
-			subGroupMap.put(head,
-					subGroup.length > 0 ? new XSObjectListImpl(subGroup, subGroup.length)
-							: XSObjectListImpl.EMPTY_LIST);
+			subGroupMap.put(head, subGroup.length > 0 ? new XSObjectListImpl(
+					subGroup, subGroup.length) : XSObjectListImpl.EMPTY_LIST);
 		}
 		return subGroupMap;
 	}
@@ -222,7 +221,8 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	private SymbolHash buildSubGroups() {
 		SubstitutionGroupHandler sgHandler = new SubstitutionGroupHandler(null);
 		for (int i = 0; i < fGrammarCount; i++) {
-			sgHandler.addSubstitutionGroup(fGrammarList[i].getSubstitutionGroups());
+			sgHandler.addSubstitutionGroup(fGrammarList[i]
+					.getSubstitutionGroups());
 		}
 
 		final XSObjectListImpl elements = getGlobalElements();
@@ -233,9 +233,8 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 		for (int i = 0; i < len; i++) {
 			head = (XSElementDecl) elements.item(i);
 			subGroup = sgHandler.getSubstitutionGroup(head);
-			subGroupMap.put(head,
-					subGroup.length > 0 ? new XSObjectListImpl(subGroup, subGroup.length)
-							: XSObjectListImpl.EMPTY_LIST);
+			subGroupMap.put(head, subGroup.length > 0 ? new XSObjectListImpl(
+					subGroup, subGroup.length) : XSObjectListImpl.EMPTY_LIST);
 		}
 		return subGroupMap;
 	}
@@ -291,18 +290,21 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * attribute declarations, etc.
 	 * 
 	 * @param objectType
-	 *            The type of the declaration, i.e.
-	 *            <code>ELEMENT_DECLARATION</code>. Note that
-	 *            <code>XSTypeDefinition.SIMPLE_TYPE</code> and
-	 *            <code>XSTypeDefinition.COMPLEX_TYPE</code> can also be used as
-	 *            the <code>objectType</code> to retrieve only complex types or
-	 *            simple types, instead of all types.
+	 *                   The type of the declaration, i.e.
+	 *                   <code>ELEMENT_DECLARATION</code>. Note that
+	 *                   <code>XSTypeDefinition.SIMPLE_TYPE</code> and
+	 *                   <code>XSTypeDefinition.COMPLEX_TYPE</code> can also be
+	 *                   used as
+	 *                   the <code>objectType</code> to retrieve only complex
+	 *                   types or
+	 *                   simple types, instead of all types.
 	 * @return A list of top-level definitions of the specified type in
 	 *         <code>objectType</code> or an empty <code>XSNamedMap</code> if no
 	 *         such definitions exist.
 	 */
 	public synchronized XSNamedMap getComponents(short objectType) {
-		if (objectType <= 0 || objectType > MAX_COMP_IDX || !GLOBAL_COMP[objectType]) {
+		if (objectType <= 0 || objectType > MAX_COMP_IDX
+				|| !GLOBAL_COMP[objectType]) {
 			return XSNamedMapImpl.EMPTY_MAP;
 		}
 
@@ -311,37 +313,37 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 		if (fGlobalComponents[objectType] == null) {
 			for (int i = 0; i < fGrammarCount; i++) {
 				switch (objectType) {
-				case XSConstants.TYPE_DEFINITION:
-				case XSTypeDefinition.COMPLEX_TYPE:
-				case XSTypeDefinition.SIMPLE_TYPE:
-					tables[i] = fGrammarList[i].fGlobalTypeDecls;
-					break;
-				case XSConstants.ATTRIBUTE_DECLARATION:
-					tables[i] = fGrammarList[i].fGlobalAttrDecls;
-					break;
-				case XSConstants.ELEMENT_DECLARATION:
-					tables[i] = fGrammarList[i].fGlobalElemDecls;
-					break;
-				case XSConstants.ATTRIBUTE_GROUP:
-					tables[i] = fGrammarList[i].fGlobalAttrGrpDecls;
-					break;
-				case XSConstants.MODEL_GROUP_DEFINITION:
-					tables[i] = fGrammarList[i].fGlobalGroupDecls;
-					break;
-				case XSConstants.NOTATION_DECLARATION:
-					tables[i] = fGrammarList[i].fGlobalNotationDecls;
-					break;
+					case XSConstants.TYPE_DEFINITION:
+					case XSTypeDefinition.COMPLEX_TYPE:
+					case XSTypeDefinition.SIMPLE_TYPE:
+						tables[i] = fGrammarList[i].fGlobalTypeDecls;
+						break;
+					case XSConstants.ATTRIBUTE_DECLARATION:
+						tables[i] = fGrammarList[i].fGlobalAttrDecls;
+						break;
+					case XSConstants.ELEMENT_DECLARATION:
+						tables[i] = fGrammarList[i].fGlobalElemDecls;
+						break;
+					case XSConstants.ATTRIBUTE_GROUP:
+						tables[i] = fGrammarList[i].fGlobalAttrGrpDecls;
+						break;
+					case XSConstants.MODEL_GROUP_DEFINITION:
+						tables[i] = fGrammarList[i].fGlobalGroupDecls;
+						break;
+					case XSConstants.NOTATION_DECLARATION:
+						tables[i] = fGrammarList[i].fGlobalNotationDecls;
+						break;
 				}
 			}
 			// for complex/simple types, create a special implementation,
 			// which take specific types out of the hash table
 			if (objectType == XSTypeDefinition.COMPLEX_TYPE
 					|| objectType == XSTypeDefinition.SIMPLE_TYPE) {
-				fGlobalComponents[objectType] = new XSNamedMap4Types(fNamespaces, tables,
-						fGrammarCount, objectType);
+				fGlobalComponents[objectType] = new XSNamedMap4Types(
+						fNamespaces, tables, fGrammarCount, objectType);
 			} else {
-				fGlobalComponents[objectType] = new XSNamedMapImpl(fNamespaces, tables,
-						fGrammarCount);
+				fGlobalComponents[objectType] = new XSNamedMapImpl(fNamespaces,
+						tables, fGrammarCount);
 			}
 		}
 
@@ -354,17 +356,20 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * declarations, attribute declarations, etc.
 	 * 
 	 * @param objectType
-	 *            The type of the declaration, i.e.
-	 *            <code>ELEMENT_DECLARATION</code>.
+	 *                   The type of the declaration, i.e.
+	 *                   <code>ELEMENT_DECLARATION</code>.
 	 * @param namespace
-	 *            The namespace to which the declaration belongs or
-	 *            <code>null</code> (for components with no target namespace).
+	 *                   The namespace to which the declaration belongs or
+	 *                   <code>null</code> (for components with no target
+	 *                   namespace).
 	 * @return A list of top-level definitions of the specified type in
 	 *         <code>objectType</code> and defined in the specified
 	 *         <code>namespace</code> or an empty <code>XSNamedMap</code>.
 	 */
-	public synchronized XSNamedMap getComponentsByNamespace(short objectType, String namespace) {
-		if (objectType <= 0 || objectType > MAX_COMP_IDX || !GLOBAL_COMP[objectType]) {
+	public synchronized XSNamedMap getComponentsByNamespace(short objectType,
+			String namespace) {
+		if (objectType <= 0 || objectType > MAX_COMP_IDX
+				|| !GLOBAL_COMP[objectType]) {
 			return XSNamedMapImpl.EMPTY_MAP;
 		}
 
@@ -391,35 +396,37 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 		if (fNSComponents[i][objectType] == null) {
 			SymbolHash table = null;
 			switch (objectType) {
-			case XSConstants.TYPE_DEFINITION:
-			case XSTypeDefinition.COMPLEX_TYPE:
-			case XSTypeDefinition.SIMPLE_TYPE:
-				table = fGrammarList[i].fGlobalTypeDecls;
-				break;
-			case XSConstants.ATTRIBUTE_DECLARATION:
-				table = fGrammarList[i].fGlobalAttrDecls;
-				break;
-			case XSConstants.ELEMENT_DECLARATION:
-				table = fGrammarList[i].fGlobalElemDecls;
-				break;
-			case XSConstants.ATTRIBUTE_GROUP:
-				table = fGrammarList[i].fGlobalAttrGrpDecls;
-				break;
-			case XSConstants.MODEL_GROUP_DEFINITION:
-				table = fGrammarList[i].fGlobalGroupDecls;
-				break;
-			case XSConstants.NOTATION_DECLARATION:
-				table = fGrammarList[i].fGlobalNotationDecls;
-				break;
+				case XSConstants.TYPE_DEFINITION:
+				case XSTypeDefinition.COMPLEX_TYPE:
+				case XSTypeDefinition.SIMPLE_TYPE:
+					table = fGrammarList[i].fGlobalTypeDecls;
+					break;
+				case XSConstants.ATTRIBUTE_DECLARATION:
+					table = fGrammarList[i].fGlobalAttrDecls;
+					break;
+				case XSConstants.ELEMENT_DECLARATION:
+					table = fGrammarList[i].fGlobalElemDecls;
+					break;
+				case XSConstants.ATTRIBUTE_GROUP:
+					table = fGrammarList[i].fGlobalAttrGrpDecls;
+					break;
+				case XSConstants.MODEL_GROUP_DEFINITION:
+					table = fGrammarList[i].fGlobalGroupDecls;
+					break;
+				case XSConstants.NOTATION_DECLARATION:
+					table = fGrammarList[i].fGlobalNotationDecls;
+					break;
 			}
 
 			// for complex/simple types, create a special implementation,
 			// which take specific types out of the hash table
 			if (objectType == XSTypeDefinition.COMPLEX_TYPE
 					|| objectType == XSTypeDefinition.SIMPLE_TYPE) {
-				fNSComponents[i][objectType] = new XSNamedMap4Types(namespace, table, objectType);
+				fNSComponents[i][objectType] = new XSNamedMap4Types(namespace,
+						table, objectType);
 			} else {
-				fNSComponents[i][objectType] = new XSNamedMapImpl(namespace, table);
+				fNSComponents[i][objectType] = new XSNamedMapImpl(namespace,
+						table);
 			}
 		}
 
@@ -431,14 +438,15 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * definition.
 	 * 
 	 * @param name
-	 *            The name of the definition.
+	 *                  The name of the definition.
 	 * @param namespace
-	 *            The namespace of the definition, otherwise null.
+	 *                  The namespace of the definition, otherwise null.
 	 * @return An <code>XSTypeDefinition</code> or null if such definition does
 	 *         not exist.
 	 */
 	public XSTypeDefinition getTypeDefinition(String name, String namespace) {
-		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
+		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(
+				namespace));
 		if (sg == null) {
 			return null;
 		}
@@ -450,16 +458,18 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * definition.
 	 * 
 	 * @param name
-	 *            The name of the definition.
+	 *                  The name of the definition.
 	 * @param namespace
-	 *            The namespace of the definition, otherwise null.
+	 *                  The namespace of the definition, otherwise null.
 	 * @param loc
-	 *            The schema location where the component was defined
+	 *                  The schema location where the component was defined
 	 * @return An <code>XSTypeDefinition</code> or null if such definition does
 	 *         not exist.
 	 */
-	public XSTypeDefinition getTypeDefinition(String name, String namespace, String loc) {
-		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
+	public XSTypeDefinition getTypeDefinition(String name, String namespace,
+			String loc) {
+		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(
+				namespace));
 		if (sg == null) {
 			return null;
 		}
@@ -470,14 +480,16 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * Convenience method. Returns a top-level attribute declaration.
 	 * 
 	 * @param name
-	 *            The name of the declaration.
+	 *                  The name of the declaration.
 	 * @param namespace
-	 *            The namespace of the definition, otherwise null.
+	 *                  The namespace of the definition, otherwise null.
 	 * @return A top-level attribute declaration or null if such declaration
 	 *         does not exist.
 	 */
-	public XSAttributeDeclaration getAttributeDeclaration(String name, String namespace) {
-		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
+	public XSAttributeDeclaration getAttributeDeclaration(String name,
+			String namespace) {
+		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(
+				namespace));
 		if (sg == null) {
 			return null;
 		}
@@ -488,17 +500,18 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * Convenience method. Returns a top-level attribute declaration.
 	 * 
 	 * @param name
-	 *            The name of the declaration.
+	 *                  The name of the declaration.
 	 * @param namespace
-	 *            The namespace of the definition, otherwise null.
+	 *                  The namespace of the definition, otherwise null.
 	 * @param loc
-	 *            The schema location where the component was defined
+	 *                  The schema location where the component was defined
 	 * @return A top-level attribute declaration or null if such declaration
 	 *         does not exist.
 	 */
-	public XSAttributeDeclaration getAttributeDeclaration(String name, String namespace,
-			String loc) {
-		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
+	public XSAttributeDeclaration getAttributeDeclaration(String name,
+			String namespace, String loc) {
+		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(
+				namespace));
 		if (sg == null) {
 			return null;
 		}
@@ -509,14 +522,16 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * Convenience method. Returns a top-level element declaration.
 	 * 
 	 * @param name
-	 *            The name of the declaration.
+	 *                  The name of the declaration.
 	 * @param namespace
-	 *            The namespace of the definition, otherwise null.
+	 *                  The namespace of the definition, otherwise null.
 	 * @return A top-level element declaration or null if such declaration does
 	 *         not exist.
 	 */
-	public XSElementDeclaration getElementDeclaration(String name, String namespace) {
-		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
+	public XSElementDeclaration getElementDeclaration(String name,
+			String namespace) {
+		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(
+				namespace));
 		if (sg == null) {
 			return null;
 		}
@@ -527,16 +542,18 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * Convenience method. Returns a top-level element declaration.
 	 * 
 	 * @param name
-	 *            The name of the declaration.
+	 *                  The name of the declaration.
 	 * @param namespace
-	 *            The namespace of the definition, otherwise null.
+	 *                  The namespace of the definition, otherwise null.
 	 * @param loc
-	 *            The schema location where the component was defined
+	 *                  The schema location where the component was defined
 	 * @return A top-level element declaration or null if such declaration does
 	 *         not exist.
 	 */
-	public XSElementDeclaration getElementDeclaration(String name, String namespace, String loc) {
-		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
+	public XSElementDeclaration getElementDeclaration(String name,
+			String namespace, String loc) {
+		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(
+				namespace));
 		if (sg == null) {
 			return null;
 		}
@@ -547,14 +564,16 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * Convenience method. Returns a top-level attribute group definition.
 	 * 
 	 * @param name
-	 *            The name of the definition.
+	 *                  The name of the definition.
 	 * @param namespace
-	 *            The namespace of the definition, otherwise null.
+	 *                  The namespace of the definition, otherwise null.
 	 * @return A top-level attribute group definition or null if such definition
 	 *         does not exist.
 	 */
-	public XSAttributeGroupDefinition getAttributeGroup(String name, String namespace) {
-		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
+	public XSAttributeGroupDefinition getAttributeGroup(String name,
+			String namespace) {
+		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(
+				namespace));
 		if (sg == null) {
 			return null;
 		}
@@ -565,16 +584,18 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * Convenience method. Returns a top-level attribute group definition.
 	 * 
 	 * @param name
-	 *            The name of the definition.
+	 *                  The name of the definition.
 	 * @param namespace
-	 *            The namespace of the definition, otherwise null.
+	 *                  The namespace of the definition, otherwise null.
 	 * @param loc
-	 *            The schema location where the component was defined
+	 *                  The schema location where the component was defined
 	 * @return A top-level attribute group definition or null if such definition
 	 *         does not exist.
 	 */
-	public XSAttributeGroupDefinition getAttributeGroup(String name, String namespace, String loc) {
-		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
+	public XSAttributeGroupDefinition getAttributeGroup(String name,
+			String namespace, String loc) {
+		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(
+				namespace));
 		if (sg == null) {
 			return null;
 		}
@@ -585,14 +606,16 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * Convenience method. Returns a top-level model group definition.
 	 *
 	 * @param name
-	 *            The name of the definition.
+	 *                  The name of the definition.
 	 * @param namespace
-	 *            The namespace of the definition, otherwise null.
+	 *                  The namespace of the definition, otherwise null.
 	 * @return A top-level model group definition definition or null if such
 	 *         definition does not exist.
 	 */
-	public XSModelGroupDefinition getModelGroupDefinition(String name, String namespace) {
-		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
+	public XSModelGroupDefinition getModelGroupDefinition(String name,
+			String namespace) {
+		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(
+				namespace));
 		if (sg == null) {
 			return null;
 		}
@@ -603,17 +626,18 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * Convenience method. Returns a top-level model group definition.
 	 *
 	 * @param name
-	 *            The name of the definition.
+	 *                  The name of the definition.
 	 * @param namespace
-	 *            The namespace of the definition, otherwise null.
+	 *                  The namespace of the definition, otherwise null.
 	 * @param loc
-	 *            The schema location where the component was defined
+	 *                  The schema location where the component was defined
 	 * @return A top-level model group definition definition or null if such
 	 *         definition does not exist.
 	 */
-	public XSModelGroupDefinition getModelGroupDefinition(String name, String namespace,
-			String loc) {
-		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
+	public XSModelGroupDefinition getModelGroupDefinition(String name,
+			String namespace, String loc) {
+		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(
+				namespace));
 		if (sg == null) {
 			return null;
 		}
@@ -623,16 +647,20 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	/**
 	 * @see org.apache.xerces.xs.XSModel#getNotationDeclaration(String, String)
 	 */
-	public XSNotationDeclaration getNotationDeclaration(String name, String namespace) {
-		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
+	public XSNotationDeclaration getNotationDeclaration(String name,
+			String namespace) {
+		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(
+				namespace));
 		if (sg == null) {
 			return null;
 		}
 		return (XSNotationDeclaration) sg.fGlobalNotationDecls.get(name);
 	}
 
-	public XSNotationDeclaration getNotationDeclaration(String name, String namespace, String loc) {
-		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
+	public XSNotationDeclaration getNotationDeclaration(String name,
+			String namespace, String loc) {
+		SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(
+				namespace));
 		if (sg == null) {
 			return null;
 		}
@@ -662,8 +690,8 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 		for (int i = 0; i < fGrammarCount; i++) {
 			SchemaGrammar currGrammar = fGrammarList[i];
 			if (currGrammar.fNumAnnotations > 0) {
-				System.arraycopy(currGrammar.fAnnotations, 0, annotations, currPos,
-						currGrammar.fNumAnnotations);
+				System.arraycopy(currGrammar.fAnnotations, 0, annotations,
+						currPos, currGrammar.fNumAnnotations);
 				currPos += currGrammar.fNumAnnotations;
 			}
 		}
@@ -691,7 +719,7 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * members.
 	 * 
 	 * @param head
-	 *            The substitution group head.
+	 *             The substitution group head.
 	 * @return A list containing the members of the substitution group for the
 	 *         given <code>XSElementDeclaration</code> or an empty
 	 *         <code>XSObjectList</code> if the substitution group contains no
@@ -719,7 +747,7 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
 	 * number of objects in the list. The index starts at 0.
 	 * 
 	 * @param index
-	 *            index into the collection.
+	 *              index into the collection.
 	 * @return The <code>XSNamespaceItem</code> at the <code>index</code>th
 	 *         position in the <code>XSNamespaceItemList</code>, or
 	 *         <code>null</code> if the index specified is not valid.

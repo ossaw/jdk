@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,9 +16,9 @@
  */
 
 // Sep 14, 2000:
-//  Fixed serializer to report IO exception directly, instead at
-//  the end of document processing.
-//  Reported by Patrick Higgins <phiggins@transzap.com>
+// Fixed serializer to report IO exception directly, instead at
+// the end of document processing.
+// Reported by Patrick Higgins <phiggins@transzap.com>
 
 package com.sun.org.apache.xml.internal.serialize;
 
@@ -65,20 +62,21 @@ public class TextSerializer extends BaseMarkupSerializer {
 	}
 
 	public void setOutputFormat(OutputFormat format) {
-		super.setOutputFormat(format != null ? format : new OutputFormat(Method.TEXT, null, false));
+		super.setOutputFormat(format != null ? format
+				: new OutputFormat(Method.TEXT, null, false));
 	}
 
 	// -----------------------------------------//
 	// SAX content handler serializing methods //
 	// -----------------------------------------//
 
-	public void startElement(String namespaceURI, String localName, String rawName,
-			Attributes attrs) throws SAXException {
+	public void startElement(String namespaceURI, String localName,
+			String rawName, Attributes attrs) throws SAXException {
 		startElement(rawName == null ? localName : rawName, null);
 	}
 
-	public void endElement(String namespaceURI, String localName, String rawName)
-			throws SAXException {
+	public void endElement(String namespaceURI, String localName,
+			String rawName) throws SAXException {
 		endElement(rawName == null ? localName : rawName);
 	}
 
@@ -86,7 +84,8 @@ public class TextSerializer extends BaseMarkupSerializer {
 	// SAX document handler serializing methods //
 	// ------------------------------000---------//
 
-	public void startElement(String tagName, AttributeList attrs) throws SAXException {
+	public void startElement(String tagName, AttributeList attrs)
+			throws SAXException {
 		boolean preserveSpace;
 		ElementState state;
 
@@ -143,16 +142,15 @@ public class TextSerializer extends BaseMarkupSerializer {
 			_printer.flush();
 	}
 
-	public void processingInstructionIO(String target, String code) throws IOException {
-	}
+	public void processingInstructionIO(String target, String code)
+			throws IOException {}
 
-	public void comment(String text) {
-	}
+	public void comment(String text) {}
 
-	public void comment(char[] chars, int start, int length) {
-	}
+	public void comment(char[] chars, int start, int length) {}
 
-	public void characters(char[] chars, int start, int length) throws SAXException {
+	public void characters(char[] chars, int start, int length)
+			throws SAXException {
 		ElementState state;
 
 		try {
@@ -164,7 +162,8 @@ public class TextSerializer extends BaseMarkupSerializer {
 		}
 	}
 
-	protected void characters(String text, boolean unescaped) throws IOException {
+	protected void characters(String text, boolean unescaped)
+			throws IOException {
 		ElementState state;
 
 		state = content();
@@ -251,63 +250,63 @@ public class TextSerializer extends BaseMarkupSerializer {
 	 * Serialize the DOM node. This method is unique to the Text serializer.
 	 *
 	 * @param node
-	 *            The node to serialize
+	 *             The node to serialize
 	 */
 	protected void serializeNode(Node node) throws IOException {
 		// Based on the node type call the suitable SAX handler.
 		// Only comments entities and documents which are not
 		// handled by SAX are serialized directly.
 		switch (node.getNodeType()) {
-		case Node.TEXT_NODE: {
-			String text;
+			case Node.TEXT_NODE: {
+				String text;
 
-			text = node.getNodeValue();
-			if (text != null)
-				characters(node.getNodeValue(), true);
-			break;
-		}
-
-		case Node.CDATA_SECTION_NODE: {
-			String text;
-
-			text = node.getNodeValue();
-			if (text != null)
-				characters(node.getNodeValue(), true);
-			break;
-		}
-
-		case Node.COMMENT_NODE:
-			break;
-
-		case Node.ENTITY_REFERENCE_NODE:
-			// Ignore.
-			break;
-
-		case Node.PROCESSING_INSTRUCTION_NODE:
-			break;
-
-		case Node.ELEMENT_NODE:
-			serializeElement((Element) node);
-			break;
-
-		case Node.DOCUMENT_NODE:
-			// !!! Fall through
-		case Node.DOCUMENT_FRAGMENT_NODE: {
-			Node child;
-
-			// By definition this will happen if the node is a document,
-			// document fragment, etc. Just serialize its contents. It will
-			// work well for other nodes that we do not know how to serialize.
-			child = node.getFirstChild();
-			while (child != null) {
-				serializeNode(child);
-				child = child.getNextSibling();
+				text = node.getNodeValue();
+				if (text != null)
+					characters(node.getNodeValue(), true);
+				break;
 			}
-			break;
-		}
 
-		default:
-			break;
+			case Node.CDATA_SECTION_NODE: {
+				String text;
+
+				text = node.getNodeValue();
+				if (text != null)
+					characters(node.getNodeValue(), true);
+				break;
+			}
+
+			case Node.COMMENT_NODE:
+				break;
+
+			case Node.ENTITY_REFERENCE_NODE:
+				// Ignore.
+				break;
+
+			case Node.PROCESSING_INSTRUCTION_NODE:
+				break;
+
+			case Node.ELEMENT_NODE:
+				serializeElement((Element) node);
+				break;
+
+			case Node.DOCUMENT_NODE:
+				// !!! Fall through
+			case Node.DOCUMENT_FRAGMENT_NODE: {
+				Node child;
+
+				// By definition this will happen if the node is a document,
+				// document fragment, etc. Just serialize its contents. It will
+				// work well for other nodes that we do not know how to serialize.
+				child = node.getFirstChild();
+				while (child != null) {
+					serializeNode(child);
+					child = child.getNextSibling();
+				}
+				break;
+			}
+
+			default:
+				break;
 		}
 	}
 

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -88,7 +85,8 @@ public class FastStringBuffer {
 	 * 
 	 * @see #sendNormalizedSAXcharacters(org.xml.sax.ContentHandler,int,int)
 	 */
-	public static final int SUPPRESS_BOTH = SUPPRESS_LEADING_WS | SUPPRESS_TRAILING_WS;
+	public static final int SUPPRESS_BOTH = SUPPRESS_LEADING_WS
+			| SUPPRESS_TRAILING_WS;
 
 	/**
 	 * Manifest constant: Carry trailing whitespace of one chunk as leading
@@ -187,21 +185,30 @@ public class FastStringBuffer {
 	 * two; that really doesn't seem to buy us much, if anything.
 	 *
 	 * @param initChunkBits
-	 *            Length in characters of the initial allocation of a chunk,
-	 *            expressed in log-base-2. (That is, 10 means allocate 1024
-	 *            characters.) Later chunks will use larger allocation units, to
-	 *            trade off allocation speed of large document against storage
-	 *            efficiency of small ones.
+	 *                      Length in characters of the initial allocation of a
+	 *                      chunk,
+	 *                      expressed in log-base-2. (That is, 10 means allocate
+	 *                      1024
+	 *                      characters.) Later chunks will use larger allocation
+	 *                      units, to
+	 *                      trade off allocation speed of large document against
+	 *                      storage
+	 *                      efficiency of small ones.
 	 * @param maxChunkBits
-	 *            Number of character-offset bits that should be used for
-	 *            addressing within a chunk. Maximum length of a chunk is
-	 *            2^chunkBits characters.
+	 *                      Number of character-offset bits that should be used
+	 *                      for
+	 *                      addressing within a chunk. Maximum length of a chunk
+	 *                      is
+	 *                      2^chunkBits characters.
 	 * @param rebundleBits
-	 *            Number of character-offset bits that addressing should advance
-	 *            before we attempt to take a step from initChunkBits to
-	 *            maxChunkBits
+	 *                      Number of character-offset bits that addressing
+	 *                      should advance
+	 *                      before we attempt to take a step from initChunkBits
+	 *                      to
+	 *                      maxChunkBits
 	 */
-	public FastStringBuffer(int initChunkBits, int maxChunkBits, int rebundleBits) {
+	public FastStringBuffer(int initChunkBits, int maxChunkBits,
+			int rebundleBits) {
 		if (DEBUG_FORCE_INIT_BITS != 0)
 			initChunkBits = DEBUG_FORCE_INIT_BITS;
 
@@ -323,9 +330,9 @@ public class FastStringBuffer {
 	 * setLength() is to truncate the FastStringBuffer to a shorter string.
 	 *
 	 * @param l
-	 *            New length. If l<0 or l>=getLength(), this operation will not
-	 *            report an error but future operations will almost certainly
-	 *            fail.
+	 *          New length. If l<0 or l>=getLength(), this operation will not
+	 *          report an error but future operations will almost certainly
+	 *          fail.
 	 */
 	public final void setLength(int l) {
 		m_lastChunk = l >>> m_chunkBits;
@@ -412,7 +419,7 @@ public class FastStringBuffer {
 	 * this instance.
 	 *
 	 * @param value
-	 *            character to be appended.
+	 *              character to be appended.
 	 */
 	public final void append(char value) {
 
@@ -443,7 +450,8 @@ public class FastStringBuffer {
 			if (chunk == null) {
 
 				// Hierarchical encapsulation
-				if (m_lastChunk == 1 << m_rebundleBits && m_chunkBits < m_maxChunkBits) {
+				if (m_lastChunk == 1 << m_rebundleBits
+						&& m_chunkBits < m_maxChunkBits) {
 
 					// Should do all the work of both encapsulating
 					// existing data and establishing new sizes/offsets
@@ -469,7 +477,7 @@ public class FastStringBuffer {
 	 * m_array[] may no longer be valid.
 	 *
 	 * @param value
-	 *            String whose contents are to be appended.
+	 *              String whose contents are to be appended.
 	 */
 	public final void append(String value) {
 
@@ -491,7 +499,8 @@ public class FastStringBuffer {
 			if (available > strlen)
 				available = strlen;
 
-			value.getChars(copyfrom, copyfrom + available, m_array[m_lastChunk], m_firstFree);
+			value.getChars(copyfrom, copyfrom + available, m_array[m_lastChunk],
+					m_firstFree);
 
 			strlen -= available;
 			copyfrom += available;
@@ -516,7 +525,8 @@ public class FastStringBuffer {
 				if (chunk == null) {
 
 					// Hierarchical encapsulation
-					if (m_lastChunk == 1 << m_rebundleBits && m_chunkBits < m_maxChunkBits) {
+					if (m_lastChunk == 1 << m_rebundleBits
+							&& m_chunkBits < m_maxChunkBits) {
 
 						// Should do all the work of both encapsulating
 						// existing data and establishing new sizes/offsets
@@ -544,7 +554,7 @@ public class FastStringBuffer {
 	 * m_array[] may no longer be valid.
 	 *
 	 * @param value
-	 *            StringBuffer whose contents are to be appended.
+	 *              StringBuffer whose contents are to be appended.
 	 */
 	public final void append(StringBuffer value) {
 
@@ -566,7 +576,8 @@ public class FastStringBuffer {
 			if (available > strlen)
 				available = strlen;
 
-			value.getChars(copyfrom, copyfrom + available, m_array[m_lastChunk], m_firstFree);
+			value.getChars(copyfrom, copyfrom + available, m_array[m_lastChunk],
+					m_firstFree);
 
 			strlen -= available;
 			copyfrom += available;
@@ -591,7 +602,8 @@ public class FastStringBuffer {
 				if (chunk == null) {
 
 					// Hierarchical encapsulation
-					if (m_lastChunk == 1 << m_rebundleBits && m_chunkBits < m_maxChunkBits) {
+					if (m_lastChunk == 1 << m_rebundleBits
+							&& m_chunkBits < m_maxChunkBits) {
 
 						// Should do all the work of both encapsulating
 						// existing data and establishing new sizes/offsets
@@ -619,11 +631,12 @@ public class FastStringBuffer {
 	 * m_array[] may no longer be valid.
 	 *
 	 * @param chars
-	 *            character array from which data is to be copied
+	 *               character array from which data is to be copied
 	 * @param start
-	 *            offset in chars of first character to be copied, zero-based.
+	 *               offset in chars of first character to be copied,
+	 *               zero-based.
 	 * @param length
-	 *            number of characters to be copied
+	 *               number of characters to be copied
 	 */
 	public final void append(char[] chars, int start, int length) {
 
@@ -643,7 +656,8 @@ public class FastStringBuffer {
 			if (available > strlen)
 				available = strlen;
 
-			System.arraycopy(chars, copyfrom, m_array[m_lastChunk], m_firstFree, available);
+			System.arraycopy(chars, copyfrom, m_array[m_lastChunk], m_firstFree,
+					available);
 
 			strlen -= available;
 			copyfrom += available;
@@ -668,7 +682,8 @@ public class FastStringBuffer {
 				if (chunk == null) {
 
 					// Hierarchical encapsulation
-					if (m_lastChunk == 1 << m_rebundleBits && m_chunkBits < m_maxChunkBits) {
+					if (m_lastChunk == 1 << m_rebundleBits
+							&& m_chunkBits < m_maxChunkBits) {
 
 						// Should do all the work of both encapsulating
 						// existing data and establishing new sizes/offsets
@@ -696,7 +711,7 @@ public class FastStringBuffer {
 	 * m_array[] may no longer be valid.
 	 *
 	 * @param value
-	 *            FastStringBuffer whose contents are to be appended.
+	 *              FastStringBuffer whose contents are to be appended.
 	 */
 	public final void append(FastStringBuffer value) {
 
@@ -722,19 +737,21 @@ public class FastStringBuffer {
 			if (available > strlen)
 				available = strlen;
 
-			int sourcechunk = (copyfrom + value.m_chunkSize - 1) >>> value.m_chunkBits;
+			int sourcechunk = (copyfrom + value.m_chunkSize
+					- 1) >>> value.m_chunkBits;
 			int sourcecolumn = copyfrom & value.m_chunkMask;
 			int runlength = value.m_chunkSize - sourcecolumn;
 
 			if (runlength > available)
 				runlength = available;
 
-			System.arraycopy(value.m_array[sourcechunk], sourcecolumn, m_array[m_lastChunk],
-					m_firstFree, runlength);
+			System.arraycopy(value.m_array[sourcechunk], sourcecolumn,
+					m_array[m_lastChunk], m_firstFree, runlength);
 
 			if (runlength != available)
-				System.arraycopy(value.m_array[sourcechunk + 1], 0, m_array[m_lastChunk],
-						m_firstFree + runlength, available - runlength);
+				System.arraycopy(value.m_array[sourcechunk + 1], 0,
+						m_array[m_lastChunk], m_firstFree + runlength, available
+								- runlength);
 
 			strlen -= available;
 			copyfrom += available;
@@ -759,7 +776,8 @@ public class FastStringBuffer {
 				if (chunk == null) {
 
 					// Hierarchical encapsulation
-					if (m_lastChunk == 1 << m_rebundleBits && m_chunkBits < m_maxChunkBits) {
+					if (m_lastChunk == 1 << m_rebundleBits
+							&& m_chunkBits < m_maxChunkBits) {
 
 						// Should do all the work of both encapsulating
 						// existing data and establishing new sizes/offsets
@@ -786,9 +804,9 @@ public class FastStringBuffer {
 	 *         CURRENTLY DOES NOT CHECK FOR OUT-OF-RANGE.
 	 *
 	 * @param start
-	 *            Offset of first character in the range.
+	 *               Offset of first character in the range.
 	 * @param length
-	 *            Number of characters to send.
+	 *               Number of characters to send.
 	 */
 	public boolean isWhitespace(int start, int length) {
 
@@ -804,7 +822,8 @@ public class FastStringBuffer {
 				chunkOK = m_innerFSB.isWhitespace(sourcecolumn, runlength);
 			else
 				chunkOK = com.sun.org.apache.xml.internal.utils.XMLCharacterRecognizer
-						.isWhiteSpace(m_array[sourcechunk], sourcecolumn, runlength);
+						.isWhiteSpace(m_array[sourcechunk], sourcecolumn,
+								runlength);
 
 			if (!chunkOK)
 				return false;
@@ -822,9 +841,9 @@ public class FastStringBuffer {
 
 	/**
 	 * @param start
-	 *            Offset of first character in the range.
+	 *               Offset of first character in the range.
 	 * @param length
-	 *            Number of characters to send.
+	 *               Number of characters to send.
 	 * @return a new String object initialized from the specified range of
 	 *         characters.
 	 */
@@ -834,24 +853,27 @@ public class FastStringBuffer {
 		if (startColumn + length < m_chunkMask && m_innerFSB == null) {
 			return getOneChunkString(startChunk, startColumn, length);
 		}
-		return getString(new StringBuffer(length), startChunk, startColumn, length).toString();
+		return getString(new StringBuffer(length), startChunk, startColumn,
+				length).toString();
 	}
 
-	protected String getOneChunkString(int startChunk, int startColumn, int length) {
+	protected String getOneChunkString(int startChunk, int startColumn,
+			int length) {
 		return new String(m_array[startChunk], startColumn, length);
 	}
 
 	/**
 	 * @param sb
-	 *            StringBuffer to be appended to
+	 *               StringBuffer to be appended to
 	 * @param start
-	 *            Offset of first character in the range.
+	 *               Offset of first character in the range.
 	 * @param length
-	 *            Number of characters to send.
+	 *               Number of characters to send.
 	 * @return sb with the requested text appended to it
 	 */
 	StringBuffer getString(StringBuffer sb, int start, int length) {
-		return getString(sb, start >>> m_chunkBits, start & m_chunkMask, length);
+		return getString(sb, start >>> m_chunkBits, start & m_chunkMask,
+				length);
 	}
 
 	/**
@@ -877,7 +899,8 @@ public class FastStringBuffer {
 	 *
 	 * @return the contents of the FastStringBuffer as a standard Java string.
 	 */
-	StringBuffer getString(StringBuffer sb, int startChunk, int startColumn, int length) {
+	StringBuffer getString(StringBuffer sb, int startChunk, int startColumn,
+			int length) {
 
 		int stop = (startChunk << m_chunkBits) + startColumn + length;
 		int stopChunk = stop >>> m_chunkBits;
@@ -887,7 +910,8 @@ public class FastStringBuffer {
 		// StringBuffer sb=new StringBuffer(length);
 		for (int i = startChunk; i < stopChunk; ++i) {
 			if (i == 0 && m_innerFSB != null)
-				m_innerFSB.getString(sb, startColumn, m_chunkSize - startColumn);
+				m_innerFSB.getString(sb, startColumn, m_chunkSize
+						- startColumn);
 			else
 				sb.append(m_array[i], startColumn, m_chunkSize - startColumn);
 
@@ -897,7 +921,8 @@ public class FastStringBuffer {
 		if (stopChunk == 0 && m_innerFSB != null)
 			m_innerFSB.getString(sb, startColumn, stopColumn - startColumn);
 		else if (stopColumn > startColumn)
-			sb.append(m_array[stopChunk], startColumn, stopColumn - startColumn);
+			sb.append(m_array[stopChunk], startColumn, stopColumn
+					- startColumn);
 
 		return sb;
 	}
@@ -932,16 +957,16 @@ public class FastStringBuffer {
 	 * successive events.
 	 *
 	 * @param ch
-	 *            SAX ContentHandler object to receive the event.
+	 *               SAX ContentHandler object to receive the event.
 	 * @param start
-	 *            Offset of first character in the range.
+	 *               Offset of first character in the range.
 	 * @param length
-	 *            Number of characters to send.
+	 *               Number of characters to send.
 	 * @exception org.xml.sax.SAXException
-	 *                may be thrown by handler's characters() method.
+	 *            may be thrown by handler's characters() method.
 	 */
-	public void sendSAXcharacters(org.xml.sax.ContentHandler ch, int start, int length)
-			throws org.xml.sax.SAXException {
+	public void sendSAXcharacters(org.xml.sax.ContentHandler ch, int start,
+			int length) throws org.xml.sax.SAXException {
 
 		int startChunk = start >>> m_chunkBits;
 		int startColumn = start & m_chunkMask;
@@ -956,18 +981,22 @@ public class FastStringBuffer {
 
 		for (int i = startChunk; i < stopChunk; ++i) {
 			if (i == 0 && m_innerFSB != null)
-				m_innerFSB.sendSAXcharacters(ch, startColumn, m_chunkSize - startColumn);
+				m_innerFSB.sendSAXcharacters(ch, startColumn, m_chunkSize
+						- startColumn);
 			else
-				ch.characters(m_array[i], startColumn, m_chunkSize - startColumn);
+				ch.characters(m_array[i], startColumn, m_chunkSize
+						- startColumn);
 
 			startColumn = 0; // after first chunk
 		}
 
 		// Last, or only, chunk
 		if (stopChunk == 0 && m_innerFSB != null)
-			m_innerFSB.sendSAXcharacters(ch, startColumn, stopColumn - startColumn);
+			m_innerFSB.sendSAXcharacters(ch, startColumn, stopColumn
+					- startColumn);
 		else if (stopColumn > startColumn) {
-			ch.characters(m_array[stopChunk], startColumn, stopColumn - startColumn);
+			ch.characters(m_array[stopChunk], startColumn, stopColumn
+					- startColumn);
 		}
 	}
 
@@ -976,11 +1005,11 @@ public class FastStringBuffer {
 	 * events, normalizing the characters according to XSLT rules.
 	 *
 	 * @param ch
-	 *            SAX ContentHandler object to receive the event.
+	 *               SAX ContentHandler object to receive the event.
 	 * @param start
-	 *            Offset of first character in the range.
+	 *               Offset of first character in the range.
 	 * @param length
-	 *            Number of characters to send.
+	 *               Number of characters to send.
 	 * @return normalization status to apply to next chunk (because we may have
 	 *         been called recursively to process an inner FSB):
 	 *         <dl>
@@ -994,10 +1023,10 @@ public class FastStringBuffer {
 	 *         completely suppressed.</dd></dd>
 	 *         </dl>
 	 * @exception org.xml.sax.SAXException
-	 *                may be thrown by handler's characters() method.
+	 *            may be thrown by handler's characters() method.
 	 */
-	public int sendNormalizedSAXcharacters(org.xml.sax.ContentHandler ch, int start, int length)
-			throws org.xml.sax.SAXException {
+	public int sendNormalizedSAXcharacters(org.xml.sax.ContentHandler ch,
+			int start, int length) throws org.xml.sax.SAXException {
 		// This call always starts at the beginning of the
 		// string being written out, either because it was called directly or
 		// because it was an m_innerFSB recursion. This is important since
@@ -1012,11 +1041,12 @@ public class FastStringBuffer {
 
 		for (int i = startChunk; i < stopChunk; ++i) {
 			if (i == 0 && m_innerFSB != null)
-				stateForNextChunk = m_innerFSB.sendNormalizedSAXcharacters(ch, startColumn,
-						m_chunkSize - startColumn);
+				stateForNextChunk = m_innerFSB.sendNormalizedSAXcharacters(ch,
+						startColumn, m_chunkSize - startColumn);
 			else
-				stateForNextChunk = sendNormalizedSAXcharacters(m_array[i], startColumn,
-						m_chunkSize - startColumn, ch, stateForNextChunk);
+				stateForNextChunk = sendNormalizedSAXcharacters(m_array[i],
+						startColumn, m_chunkSize - startColumn, ch,
+						stateForNextChunk);
 
 			startColumn = 0; // after first chunk
 		}
@@ -1029,7 +1059,8 @@ public class FastStringBuffer {
 		else if (stopColumn > startColumn) {
 			stateForNextChunk = // %REVIEW% Is this update really needed?
 					sendNormalizedSAXcharacters(m_array[stopChunk], startColumn,
-							stopColumn - startColumn, ch, stateForNextChunk | SUPPRESS_TRAILING_WS);
+							stopColumn - startColumn, ch, stateForNextChunk
+									| SUPPRESS_TRAILING_WS);
 		}
 		return stateForNextChunk;
 	}
@@ -1045,28 +1076,38 @@ public class FastStringBuffer {
 	 * Note: The recursion is due to the possible recursion of inner FSBs.
 	 *
 	 * @param ch
-	 *            The characters from the XML document.
+	 *                           The characters from the XML document.
 	 * @param start
-	 *            The start position in the array.
+	 *                           The start position in the array.
 	 * @param length
-	 *            The number of characters to read from the array.
+	 *                           The number of characters to read from the
+	 *                           array.
 	 * @param handler
-	 *            SAX ContentHandler object to receive the event.
+	 *                           SAX ContentHandler object to receive the event.
 	 * @param edgeTreatmentFlags
-	 *            How leading/trailing spaces should be handled. This is a
-	 *            bitfield contining two flags, bitwise-ORed together:
-	 *            <dl>
-	 *            <dt>SUPPRESS_LEADING_WS</dt>
-	 *            <dd>When false, causes leading whitespace to be converted to a
-	 *            single space; when true, causes it to be discarded entirely.
-	 *            Should be set TRUE for the first chunk, and (in multi-chunk
-	 *            output) whenever the previous chunk ended in retained
-	 *            whitespace.</dd>
-	 *            <dt>SUPPRESS_TRAILING_WS</dt>
-	 *            <dd>When false, causes trailing whitespace to be converted to
-	 *            a single space; when true, causes it to be discarded entirely.
-	 *            Should be set TRUE for the last or only chunk.</dd>
-	 *            </dl>
+	 *                           How leading/trailing spaces should be handled.
+	 *                           This is a
+	 *                           bitfield contining two flags, bitwise-ORed
+	 *                           together:
+	 *                           <dl>
+	 *                           <dt>SUPPRESS_LEADING_WS</dt>
+	 *                           <dd>When false, causes leading whitespace to be
+	 *                           converted to a
+	 *                           single space; when true, causes it to be
+	 *                           discarded entirely.
+	 *                           Should be set TRUE for the first chunk, and (in
+	 *                           multi-chunk
+	 *                           output) whenever the previous chunk ended in
+	 *                           retained
+	 *                           whitespace.</dd>
+	 *                           <dt>SUPPRESS_TRAILING_WS</dt>
+	 *                           <dd>When false, causes trailing whitespace to
+	 *                           be converted to
+	 *                           a single space; when true, causes it to be
+	 *                           discarded entirely.
+	 *                           Should be set TRUE for the last or only
+	 *                           chunk.</dd>
+	 *                           </dl>
 	 * @return normalization status, as in the edgeTreatmentFlags parameter:
 	 *         <dl>
 	 *         <dt>0</dt>
@@ -1081,20 +1122,23 @@ public class FastStringBuffer {
 	 *
 	 *
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 */
 	static int sendNormalizedSAXcharacters(char ch[], int start, int length,
 			org.xml.sax.ContentHandler handler, int edgeTreatmentFlags)
 			throws org.xml.sax.SAXException {
-		boolean processingLeadingWhitespace = ((edgeTreatmentFlags & SUPPRESS_LEADING_WS) != 0);
+		boolean processingLeadingWhitespace = ((edgeTreatmentFlags
+				& SUPPRESS_LEADING_WS) != 0);
 		boolean seenWhitespace = ((edgeTreatmentFlags & CARRY_WS) != 0);
-		boolean suppressTrailingWhitespace = ((edgeTreatmentFlags & SUPPRESS_TRAILING_WS) != 0);
+		boolean suppressTrailingWhitespace = ((edgeTreatmentFlags
+				& SUPPRESS_TRAILING_WS) != 0);
 		int currPos = start;
 		int limit = start + length;
 
 		// Strip any leading spaces first, if required
 		if (processingLeadingWhitespace) {
-			for (; currPos < limit && XMLCharacterRecognizer.isWhiteSpace(ch[currPos]); currPos++) {
+			for (; currPos < limit && XMLCharacterRecognizer.isWhiteSpace(
+					ch[currPos]); currPos++) {
 			}
 
 			// If we've only encountered leading spaces, the
@@ -1109,8 +1153,8 @@ public class FastStringBuffer {
 			int startNonWhitespace = currPos;
 
 			// Grab a chunk of non-whitespace characters
-			for (; currPos < limit
-					&& !XMLCharacterRecognizer.isWhiteSpace(ch[currPos]); currPos++) {
+			for (; currPos < limit && !XMLCharacterRecognizer.isWhiteSpace(
+					ch[currPos]); currPos++) {
 			}
 
 			// Non-whitespace seen - emit them, along with a single
@@ -1120,13 +1164,15 @@ public class FastStringBuffer {
 					handler.characters(SINGLE_SPACE, 0, 1);
 					seenWhitespace = false;
 				}
-				handler.characters(ch, startNonWhitespace, currPos - startNonWhitespace);
+				handler.characters(ch, startNonWhitespace, currPos
+						- startNonWhitespace);
 			}
 
 			int startWhitespace = currPos;
 
 			// Consume any whitespace characters
-			for (; currPos < limit && XMLCharacterRecognizer.isWhiteSpace(ch[currPos]); currPos++) {
+			for (; currPos < limit && XMLCharacterRecognizer.isWhiteSpace(
+					ch[currPos]); currPos++) {
 			}
 
 			if (startWhitespace != currPos) {
@@ -1134,25 +1180,27 @@ public class FastStringBuffer {
 			}
 		}
 
-		return (seenWhitespace ? CARRY_WS : 0) | (edgeTreatmentFlags & SUPPRESS_TRAILING_WS);
+		return (seenWhitespace ? CARRY_WS : 0) | (edgeTreatmentFlags
+				& SUPPRESS_TRAILING_WS);
 	}
 
 	/**
 	 * Directly normalize and dispatch the character array.
 	 *
 	 * @param ch
-	 *            The characters from the XML document.
+	 *                The characters from the XML document.
 	 * @param start
-	 *            The start position in the array.
+	 *                The start position in the array.
 	 * @param length
-	 *            The number of characters to read from the array.
+	 *                The number of characters to read from the array.
 	 * @param handler
-	 *            SAX ContentHandler object to receive the event.
+	 *                SAX ContentHandler object to receive the event.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 */
-	public static void sendNormalizedSAXcharacters(char ch[], int start, int length,
-			org.xml.sax.ContentHandler handler) throws org.xml.sax.SAXException {
+	public static void sendNormalizedSAXcharacters(char ch[], int start,
+			int length, org.xml.sax.ContentHandler handler)
+			throws org.xml.sax.SAXException {
 		sendNormalizedSAXcharacters(ch, start, length, handler, SUPPRESS_BOTH);
 	}
 
@@ -1163,16 +1211,16 @@ public class FastStringBuffer {
 	 * to LexicalHandler#comment.
 	 *
 	 * @param ch
-	 *            SAX LexicalHandler object to receive the event.
+	 *               SAX LexicalHandler object to receive the event.
 	 * @param start
-	 *            Offset of first character in the range.
+	 *               Offset of first character in the range.
 	 * @param length
-	 *            Number of characters to send.
+	 *               Number of characters to send.
 	 * @exception org.xml.sax.SAXException
-	 *                may be thrown by handler's characters() method.
+	 *            may be thrown by handler's characters() method.
 	 */
-	public void sendSAXComment(org.xml.sax.ext.LexicalHandler ch, int start, int length)
-			throws org.xml.sax.SAXException {
+	public void sendSAXComment(org.xml.sax.ext.LexicalHandler ch, int start,
+			int length) throws org.xml.sax.SAXException {
 
 		// %OPT% Do it this way for now...
 		String comment = getString(start, length);
@@ -1183,27 +1231,33 @@ public class FastStringBuffer {
 	 * Copies characters from this string into the destination character array.
 	 *
 	 * @param srcBegin
-	 *            index of the first character in the string to copy.
+	 *                 index of the first character in the string to copy.
 	 * @param srcEnd
-	 *            index after the last character in the string to copy.
+	 *                 index after the last character in the string to copy.
 	 * @param dst
-	 *            the destination array.
+	 *                 the destination array.
 	 * @param dstBegin
-	 *            the start offset in the destination array.
+	 *                 the start offset in the destination array.
 	 * @exception IndexOutOfBoundsException
-	 *                If any of the following is true:
-	 *                <ul>
-	 *                <li><code>srcBegin</code> is negative.
-	 *                <li><code>srcBegin</code> is greater than
-	 *                <code>srcEnd</code>
-	 *                <li><code>srcEnd</code> is greater than the length of this
-	 *                string
-	 *                <li><code>dstBegin</code> is negative
-	 *                <li><code>dstBegin+(srcEnd-srcBegin)</code> is larger than
-	 *                <code>dst.length</code>
-	 *                </ul>
+	 *                                      If any of the following is true:
+	 *                                      <ul>
+	 *                                      <li><code>srcBegin</code> is
+	 *                                      negative.
+	 *                                      <li><code>srcBegin</code> is greater
+	 *                                      than
+	 *                                      <code>srcEnd</code>
+	 *                                      <li><code>srcEnd</code> is greater
+	 *                                      than the length of this
+	 *                                      string
+	 *                                      <li><code>dstBegin</code> is
+	 *                                      negative
+	 *                                      <li><code>dstBegin+(srcEnd-srcBegin)</code>
+	 *                                      is larger than
+	 *                                      <code>dst.length</code>
+	 *                                      </ul>
 	 * @exception NullPointerException
-	 *                if <code>dst</code> is <code>null</code>
+	 *                                      if <code>dst</code> is
+	 *                                      <code>null</code>
 	 */
 	private void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin) {
 		// %TBD% Joe needs to write this function. Make public when implemented.

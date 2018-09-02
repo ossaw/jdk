@@ -11,10 +11,10 @@ package org.omg.CosNaming.NamingContextPackage;
 public final class NotEmptyHolder implements org.omg.CORBA.portable.Streamable {
 	public org.omg.CosNaming.NamingContextPackage.NotEmpty value = null;
 
-	public NotEmptyHolder() {
-	}
+	public NotEmptyHolder() {}
 
-	public NotEmptyHolder(org.omg.CosNaming.NamingContextPackage.NotEmpty initialValue) {
+	public NotEmptyHolder(
+			org.omg.CosNaming.NamingContextPackage.NotEmpty initialValue) {
 		value = initialValue;
 	}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.copyobject;
@@ -60,7 +40,8 @@ public class CopierManagerImpl implements CopierManager {
 		return (ObjectCopierFactory) (map.get(defaultId));
 	}
 
-	public void registerObjectCopierFactory(ObjectCopierFactory factory, int id) {
+	public void registerObjectCopierFactory(ObjectCopierFactory factory,
+			int id) {
 		map.set(id, factory);
 	}
 }

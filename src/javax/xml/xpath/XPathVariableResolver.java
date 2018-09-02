@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.xpath;
@@ -58,14 +38,15 @@ public interface XPathVariableResolver {
 	 * </p>
 	 *
 	 * @param variableName
-	 *            The <code>QName</code> of the variable name.
+	 *                     The <code>QName</code> of the variable name.
 	 *
 	 * @return The variables value, or <code>null</code> if no variable named
 	 *         <code>variableName</code> exists. The value returned must be of a
 	 *         type appropriate for the underlying object model.
 	 *
 	 * @throws NullPointerException
-	 *             If <code>variableName</code> is <code>null</code>.
+	 *                              If <code>variableName</code> is
+	 *                              <code>null</code>.
 	 */
 	public Object resolveVariable(QName variableName);
 }

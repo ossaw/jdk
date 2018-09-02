@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -116,17 +96,19 @@ public class MetalToolBarUI extends BasicToolBarUI {
 	 * Finds a previously registered component of class <code>target</code> that
 	 * shares the JRootPane ancestor of <code>from</code>.
 	 */
-	synchronized static Object findRegisteredComponentOfType(JComponent from, Class target) {
+	synchronized static Object findRegisteredComponentOfType(JComponent from,
+			Class target) {
 		JRootPane rp = SwingUtilities.getRootPane(from);
 		if (rp != null) {
 			for (int counter = components.size() - 1; counter >= 0; counter--) {
-				Object component = ((WeakReference) components.get(counter)).get();
+				Object component = ((WeakReference) components.get(counter))
+						.get();
 
 				if (component == null) {
 					// WeakReference has gone away, remove the WeakReference
 					components.remove(counter);
-				} else if (target.isInstance(component)
-						&& SwingUtilities.getRootPane((Component) component) == rp) {
+				} else if (target.isInstance(component) && SwingUtilities
+						.getRootPane((Component) component) == rp) {
 					return component;
 				}
 			}
@@ -138,7 +120,8 @@ public class MetalToolBarUI extends BasicToolBarUI {
 	 * Returns true if the passed in JMenuBar is above a horizontal JToolBar.
 	 */
 	static boolean doesMenuBarBorderToolBar(JMenuBar c) {
-		JToolBar tb = (JToolBar) MetalToolBarUI.findRegisteredComponentOfType(c, JToolBar.class);
+		JToolBar tb = (JToolBar) MetalToolBarUI.findRegisteredComponentOfType(c,
+				JToolBar.class);
 		if (tb != null && tb.getOrientation() == JToolBar.HORIZONTAL) {
 			JRootPane rp = SwingUtilities.getRootPane(c);
 			Point point = new Point(0, 0);
@@ -147,8 +130,8 @@ public class MetalToolBarUI extends BasicToolBarUI {
 			int menuY = point.y;
 			point.x = point.y = 0;
 			point = SwingUtilities.convertPoint(tb, point, rp);
-			return (point.x == menuX && menuY + c.getHeight() == point.y
-					&& c.getWidth() == tb.getWidth());
+			return (point.x == menuX && menuY + c.getHeight() == point.y && c
+					.getWidth() == tb.getWidth());
 		}
 		return false;
 	}
@@ -270,11 +253,11 @@ public class MetalToolBarUI extends BasicToolBarUI {
 	 * <code>paint</code>.
 	 *
 	 * @param g
-	 *            Graphics to paint to
+	 *          Graphics to paint to
 	 * @param c
-	 *            JComponent painting on
+	 *          JComponent painting on
 	 * @throws NullPointerException
-	 *             if <code>g</code> or <code>c</code> is null
+	 *                              if <code>g</code> or <code>c</code> is null
 	 * @see javax.swing.plaf.ComponentUI#update
 	 * @see javax.swing.plaf.ComponentUI#paint
 	 * @since 1.5
@@ -287,24 +270,28 @@ public class MetalToolBarUI extends BasicToolBarUI {
 				&& ((JToolBar) c).getOrientation() == JToolBar.HORIZONTAL
 				&& UIManager.get("MenuBar.gradient") != null) {
 			JRootPane rp = SwingUtilities.getRootPane(c);
-			JMenuBar mb = (JMenuBar) findRegisteredComponentOfType(c, JMenuBar.class);
-			if (mb != null && mb.isOpaque() && (mb.getBackground() instanceof UIResource)) {
+			JMenuBar mb = (JMenuBar) findRegisteredComponentOfType(c,
+					JMenuBar.class);
+			if (mb != null && mb.isOpaque() && (mb
+					.getBackground() instanceof UIResource)) {
 				Point point = new Point(0, 0);
 				point = SwingUtilities.convertPoint(c, point, rp);
 				int x = point.x;
 				int y = point.y;
 				point.x = point.y = 0;
 				point = SwingUtilities.convertPoint(mb, point, rp);
-				if (point.x == x && y == point.y + mb.getHeight() && mb.getWidth() == c.getWidth()
-						&& MetalUtils.drawGradient(c, g, "MenuBar.gradient", 0, -mb.getHeight(),
-								c.getWidth(), c.getHeight() + mb.getHeight(), true)) {
+				if (point.x == x && y == point.y + mb.getHeight() && mb
+						.getWidth() == c.getWidth() && MetalUtils.drawGradient(
+								c, g, "MenuBar.gradient", 0, -mb.getHeight(), c
+										.getWidth(), c.getHeight() + mb
+												.getHeight(), true)) {
 					setLastMenuBar(mb);
 					paint(g, c);
 					return;
 				}
 			}
-			if (MetalUtils.drawGradient(c, g, "MenuBar.gradient", 0, 0, c.getWidth(), c.getHeight(),
-					true)) {
+			if (MetalUtils.drawGradient(c, g, "MenuBar.gradient", 0, 0, c
+					.getWidth(), c.getHeight(), true)) {
 				setLastMenuBar(null);
 				paint(g, c);
 				return;
@@ -331,12 +318,12 @@ public class MetalToolBarUI extends BasicToolBarUI {
 	}
 
 	// No longer used. Cannot remove for compatibility reasons
-	protected class MetalContainerListener extends BasicToolBarUI.ToolBarContListener {
-	}
+	protected class MetalContainerListener extends
+			BasicToolBarUI.ToolBarContListener {}
 
 	// No longer used. Cannot remove for compatibility reasons
-	protected class MetalRolloverListener extends BasicToolBarUI.PropertyListener {
-	}
+	protected class MetalRolloverListener extends
+			BasicToolBarUI.PropertyListener {}
 
 	protected class MetalDockingListener extends DockingListener {
 		private boolean pressedInBumps = false;
@@ -354,7 +341,8 @@ public class MetalToolBarUI extends BasicToolBarUI {
 			Rectangle bumpRect = new Rectangle();
 
 			if (toolBar.getOrientation() == JToolBar.HORIZONTAL) {
-				int x = MetalUtils.isLeftToRight(toolBar) ? 0 : toolBar.getSize().width - 14;
+				int x = MetalUtils.isLeftToRight(toolBar) ? 0
+						: toolBar.getSize().width - 14;
 				bumpRect.setBounds(x, 0, 14, toolBar.getSize().height);
 			} else { // vertical
 				bumpRect.setBounds(0, 0, toolBar.getSize().width, 14);
@@ -363,7 +351,8 @@ public class MetalToolBarUI extends BasicToolBarUI {
 				pressedInBumps = true;
 				Point dragOffset = e.getPoint();
 				if (!MetalUtils.isLeftToRight(toolBar)) {
-					dragOffset.x -= (toolBar.getSize().width - toolBar.getPreferredSize().width);
+					dragOffset.x -= (toolBar.getSize().width - toolBar
+							.getPreferredSize().width);
 				}
 				setDragOffset(dragOffset);
 			}

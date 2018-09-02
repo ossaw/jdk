@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -56,7 +53,7 @@ public class Arg {
 	 * Set the qualified name for this argument.
 	 *
 	 * @param name
-	 *            QName object representing the new Qualified Name.
+	 *             QName object representing the new Qualified Name.
 	 */
 	public final void setQName(QName name) {
 		m_qname = name;
@@ -125,8 +122,8 @@ public class Arg {
 	 * Set the value expression for this argument.
 	 *
 	 * @param expr
-	 *            String containing the expression to be stored as this
-	 *            argument's value.
+	 *             String containing the expression to be stored as this
+	 *             argument's value.
 	 * @see #getExpression
 	 */
 	public void setExpression(String expr) {
@@ -187,11 +184,12 @@ public class Arg {
 	 * Construct a parameter argument that contains an expression.
 	 *
 	 * @param qname
-	 *            Name of the argument, expressed as a QName object.
+	 *                        Name of the argument, expressed as a QName object.
 	 * @param expression
-	 *            String to be stored as this argument's value expression.
+	 *                        String to be stored as this argument's value
+	 *                        expression.
 	 * @param isFromWithParam
-	 *            True if this is a parameter variable.
+	 *                        True if this is a parameter variable.
 	 */
 	public Arg(QName qname, String expression, boolean isFromWithParam) {
 
@@ -207,9 +205,9 @@ public class Arg {
 	 * defaults to true.
 	 *
 	 * @param qname
-	 *            Name of the argument, expressed as a QName object.
+	 *              Name of the argument, expressed as a QName object.
 	 * @param val
-	 *            Value of the argument, expressed as an XObject
+	 *              Value of the argument, expressed as an XObject
 	 */
 	public Arg(QName qname, XObject val) {
 
@@ -246,11 +244,11 @@ public class Arg {
 	 * Construct a parameter argument.
 	 *
 	 * @param qname
-	 *            Name of the argument, expressed as a QName object.
+	 *                        Name of the argument, expressed as a QName object.
 	 * @param val
-	 *            Value of the argument, expressed as an XObject
+	 *                        Value of the argument, expressed as an XObject
 	 * @param isFromWithParam
-	 *            True if this is a parameter variable.
+	 *                        True if this is a parameter variable.
 	 */
 	public Arg(QName qname, XObject val, boolean isFromWithParam) {
 

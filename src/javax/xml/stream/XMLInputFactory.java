@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -183,17 +163,18 @@ public abstract class XMLInputFactory {
 
 	static final String DEFAULIMPL = "com.sun.xml.internal.stream.XMLInputFactoryImpl";
 
-	protected XMLInputFactory() {
-	}
+	protected XMLInputFactory() {}
 
 	/**
 	 * Creates a new instance of the factory in exactly the same manner as the
 	 * {@link #newFactory()} method.
 	 * 
 	 * @throws FactoryConfigurationError
-	 *             if an instance of this factory cannot be loaded
+	 *                                   if an instance of this factory cannot
+	 *                                   be loaded
 	 */
-	public static XMLInputFactory newInstance() throws FactoryConfigurationError {
+	public static XMLInputFactory newInstance()
+			throws FactoryConfigurationError {
 		return FactoryFinder.find(XMLInputFactory.class, DEFAULIMPL);
 	}
 
@@ -232,11 +213,14 @@ public abstract class XMLInputFactory {
 	 * </p>
 	 * 
 	 * @throws FactoryConfigurationError
-	 *             in case of {@linkplain java.util.ServiceConfigurationError
-	 *             service configuration error} or if the implementation is not
-	 *             available or cannot be instantiated.
+	 *                                   in case of
+	 *                                   {@linkplain java.util.ServiceConfigurationError
+	 *                                   service configuration error} or if the
+	 *                                   implementation is not
+	 *                                   available or cannot be instantiated.
 	 */
-	public static XMLInputFactory newFactory() throws FactoryConfigurationError {
+	public static XMLInputFactory newFactory()
+			throws FactoryConfigurationError {
 		return FactoryFinder.find(XMLInputFactory.class, DEFAULIMPL);
 	}
 
@@ -244,12 +228,13 @@ public abstract class XMLInputFactory {
 	 * Create a new instance of the factory
 	 *
 	 * @param factoryId
-	 *            Name of the factory to find, same as a property name
+	 *                    Name of the factory to find, same as a property name
 	 * @param classLoader
-	 *            classLoader to use
+	 *                    classLoader to use
 	 * @return the factory implementation
 	 * @throws FactoryConfigurationError
-	 *             if an instance of this factory cannot be loaded
+	 *                                   if an instance of this factory cannot
+	 *                                   be loaded
 	 *
 	 * @deprecated This method has been deprecated to maintain API consistency.
 	 *             All newInstance methods have been replaced with corresponding
@@ -257,11 +242,12 @@ public abstract class XMLInputFactory {
 	 *             {@link #newFactory(java.lang.String, java.lang.ClassLoader)}
 	 *             method defines no changes in behavior.
 	 */
-	public static XMLInputFactory newInstance(String factoryId, ClassLoader classLoader)
-			throws FactoryConfigurationError {
+	public static XMLInputFactory newInstance(String factoryId,
+			ClassLoader classLoader) throws FactoryConfigurationError {
 		// do not fallback if given classloader can't find the class, throw
 		// exception
-		return FactoryFinder.find(XMLInputFactory.class, factoryId, classLoader, null);
+		return FactoryFinder.find(XMLInputFactory.class, factoryId, classLoader,
+				null);
 	}
 
 	/**
@@ -308,29 +294,33 @@ public abstract class XMLInputFactory {
 	 *          factory.
 	 *
 	 * @param factoryId
-	 *            Name of the factory to find, same as a property name
+	 *                    Name of the factory to find, same as a property name
 	 * @param classLoader
-	 *            classLoader to use
+	 *                    classLoader to use
 	 * @return the factory implementation
 	 * @throws FactoryConfigurationError
-	 *             in case of {@linkplain java.util.ServiceConfigurationError
-	 *             service configuration error} or if the implementation is not
-	 *             available or cannot be instantiated.
+	 *                                   in case of
+	 *                                   {@linkplain java.util.ServiceConfigurationError
+	 *                                   service configuration error} or if the
+	 *                                   implementation is not
+	 *                                   available or cannot be instantiated.
 	 * @throws FactoryConfigurationError
-	 *             if an instance of this factory cannot be loaded
+	 *                                   if an instance of this factory cannot
+	 *                                   be loaded
 	 */
-	public static XMLInputFactory newFactory(String factoryId, ClassLoader classLoader)
-			throws FactoryConfigurationError {
+	public static XMLInputFactory newFactory(String factoryId,
+			ClassLoader classLoader) throws FactoryConfigurationError {
 		// do not fallback if given classloader can't find the class, throw
 		// exception
-		return FactoryFinder.find(XMLInputFactory.class, factoryId, classLoader, null);
+		return FactoryFinder.find(XMLInputFactory.class, factoryId, classLoader,
+				null);
 	}
 
 	/**
 	 * Create a new XMLStreamReader from a reader
 	 * 
 	 * @param reader
-	 *            the XML data to read from
+	 *               the XML data to read from
 	 * @throws XMLStreamException
 	 */
 	public abstract XMLStreamReader createXMLStreamReader(java.io.Reader reader)
@@ -340,42 +330,45 @@ public abstract class XMLInputFactory {
 	 * Create a new XMLStreamReader from a JAXP source. This method is optional.
 	 * 
 	 * @param source
-	 *            the source to read from
+	 *               the source to read from
 	 * @throws UnsupportedOperationException
-	 *             if this method is not supported by this XMLInputFactory
+	 *                                       if this method is not supported by
+	 *                                       this XMLInputFactory
 	 * @throws XMLStreamException
 	 */
-	public abstract XMLStreamReader createXMLStreamReader(Source source) throws XMLStreamException;
-
-	/**
-	 * Create a new XMLStreamReader from a java.io.InputStream
-	 * 
-	 * @param stream
-	 *            the InputStream to read from
-	 * @throws XMLStreamException
-	 */
-	public abstract XMLStreamReader createXMLStreamReader(java.io.InputStream stream)
+	public abstract XMLStreamReader createXMLStreamReader(Source source)
 			throws XMLStreamException;
 
 	/**
 	 * Create a new XMLStreamReader from a java.io.InputStream
 	 * 
 	 * @param stream
-	 *            the InputStream to read from
-	 * @param encoding
-	 *            the character encoding of the stream
+	 *               the InputStream to read from
 	 * @throws XMLStreamException
 	 */
-	public abstract XMLStreamReader createXMLStreamReader(java.io.InputStream stream,
-			String encoding) throws XMLStreamException;
+	public abstract XMLStreamReader createXMLStreamReader(
+			java.io.InputStream stream) throws XMLStreamException;
+
+	/**
+	 * Create a new XMLStreamReader from a java.io.InputStream
+	 * 
+	 * @param stream
+	 *                 the InputStream to read from
+	 * @param encoding
+	 *                 the character encoding of the stream
+	 * @throws XMLStreamException
+	 */
+	public abstract XMLStreamReader createXMLStreamReader(
+			java.io.InputStream stream, String encoding)
+			throws XMLStreamException;
 
 	/**
 	 * Create a new XMLStreamReader from a java.io.InputStream
 	 * 
 	 * @param systemId
-	 *            the system ID of the stream
+	 *                 the system ID of the stream
 	 * @param stream
-	 *            the InputStream to read from
+	 *                 the InputStream to read from
 	 */
 	public abstract XMLStreamReader createXMLStreamReader(String systemId,
 			java.io.InputStream stream) throws XMLStreamException;
@@ -384,18 +377,18 @@ public abstract class XMLInputFactory {
 	 * Create a new XMLStreamReader from a java.io.InputStream
 	 * 
 	 * @param systemId
-	 *            the system ID of the stream
+	 *                 the system ID of the stream
 	 * @param reader
-	 *            the InputStream to read from
+	 *                 the InputStream to read from
 	 */
-	public abstract XMLStreamReader createXMLStreamReader(String systemId, java.io.Reader reader)
-			throws XMLStreamException;
+	public abstract XMLStreamReader createXMLStreamReader(String systemId,
+			java.io.Reader reader) throws XMLStreamException;
 
 	/**
 	 * Create a new XMLEventReader from a reader
 	 * 
 	 * @param reader
-	 *            the XML data to read from
+	 *               the XML data to read from
 	 * @throws XMLStreamException
 	 */
 	public abstract XMLEventReader createXMLEventReader(java.io.Reader reader)
@@ -405,13 +398,13 @@ public abstract class XMLInputFactory {
 	 * Create a new XMLEventReader from a reader
 	 * 
 	 * @param systemId
-	 *            the system ID of the input
+	 *                 the system ID of the input
 	 * @param reader
-	 *            the XML data to read from
+	 *                 the XML data to read from
 	 * @throws XMLStreamException
 	 */
-	public abstract XMLEventReader createXMLEventReader(String systemId, java.io.Reader reader)
-			throws XMLStreamException;
+	public abstract XMLEventReader createXMLEventReader(String systemId,
+			java.io.Reader reader) throws XMLStreamException;
 
 	/**
 	 * Create a new XMLEventReader from an XMLStreamReader. After being used to
@@ -419,7 +412,7 @@ public abstract class XMLInputFactory {
 	 * XMLStreamReader must not be used.
 	 * 
 	 * @param reader
-	 *            the XMLStreamReader to read from (may not be modified)
+	 *               the XMLStreamReader to read from (may not be modified)
 	 * @return a new XMLEventReader
 	 * @throws XMLStreamException
 	 */
@@ -431,53 +424,56 @@ public abstract class XMLInputFactory {
 	 * optional.
 	 * 
 	 * @param source
-	 *            the source to read from
+	 *               the source to read from
 	 * @throws UnsupportedOperationException
-	 *             if this method is not supported by this XMLInputFactory
+	 *                                       if this method is not supported by
+	 *                                       this XMLInputFactory
 	 */
-	public abstract XMLEventReader createXMLEventReader(Source source) throws XMLStreamException;
-
-	/**
-	 * Create a new XMLEventReader from a java.io.InputStream
-	 * 
-	 * @param stream
-	 *            the InputStream to read from
-	 * @throws XMLStreamException
-	 */
-	public abstract XMLEventReader createXMLEventReader(java.io.InputStream stream)
+	public abstract XMLEventReader createXMLEventReader(Source source)
 			throws XMLStreamException;
 
 	/**
 	 * Create a new XMLEventReader from a java.io.InputStream
 	 * 
 	 * @param stream
-	 *            the InputStream to read from
-	 * @param encoding
-	 *            the character encoding of the stream
+	 *               the InputStream to read from
 	 * @throws XMLStreamException
 	 */
-	public abstract XMLEventReader createXMLEventReader(java.io.InputStream stream, String encoding)
+	public abstract XMLEventReader createXMLEventReader(
+			java.io.InputStream stream) throws XMLStreamException;
+
+	/**
+	 * Create a new XMLEventReader from a java.io.InputStream
+	 * 
+	 * @param stream
+	 *                 the InputStream to read from
+	 * @param encoding
+	 *                 the character encoding of the stream
+	 * @throws XMLStreamException
+	 */
+	public abstract XMLEventReader createXMLEventReader(
+			java.io.InputStream stream, String encoding)
 			throws XMLStreamException;
 
 	/**
 	 * Create a new XMLEventReader from a java.io.InputStream
 	 * 
 	 * @param systemId
-	 *            the system ID of the stream
+	 *                 the system ID of the stream
 	 * @param stream
-	 *            the InputStream to read from
+	 *                 the InputStream to read from
 	 * @throws XMLStreamException
 	 */
-	public abstract XMLEventReader createXMLEventReader(String systemId, java.io.InputStream stream)
-			throws XMLStreamException;
+	public abstract XMLEventReader createXMLEventReader(String systemId,
+			java.io.InputStream stream) throws XMLStreamException;
 
 	/**
 	 * Create a filtered reader that wraps the filter around the reader
 	 * 
 	 * @param reader
-	 *            the reader to filter
+	 *               the reader to filter
 	 * @param filter
-	 *            the filter to apply to the reader
+	 *               the filter to apply to the reader
 	 * @throws XMLStreamException
 	 */
 	public abstract XMLStreamReader createFilteredReader(XMLStreamReader reader,
@@ -488,13 +484,13 @@ public abstract class XMLInputFactory {
 	 * reader
 	 * 
 	 * @param reader
-	 *            the event reader to wrap
+	 *               the event reader to wrap
 	 * @param filter
-	 *            the filter to apply to the event reader
+	 *               the filter to apply to the event reader
 	 * @throws XMLStreamException
 	 */
-	public abstract XMLEventReader createFilteredReader(XMLEventReader reader, EventFilter filter)
-			throws XMLStreamException;
+	public abstract XMLEventReader createFilteredReader(XMLEventReader reader,
+			EventFilter filter) throws XMLStreamException;
 
 	/**
 	 * The resolver that will be set on any XMLStreamReader or XMLEventReader
@@ -507,7 +503,7 @@ public abstract class XMLInputFactory {
 	 * created by this factory instance.
 	 * 
 	 * @param resolver
-	 *            the resolver to use to resolve references
+	 *                 the resolver to use to resolve references
 	 */
 	public abstract void setXMLResolver(XMLResolver resolver);
 
@@ -522,7 +518,7 @@ public abstract class XMLInputFactory {
 	 * created by this factory instance.
 	 * 
 	 * @param reporter
-	 *            the resolver to use to report non fatal errors
+	 *                 the resolver to use to report non fatal errors
 	 */
 	public abstract void setXMLReporter(XMLReporter reporter);
 
@@ -550,11 +546,11 @@ public abstract class XMLInputFactory {
 	 * </ul>
 	 * 
 	 * @param name
-	 *            The name of the property (may not be null)
+	 *              The name of the property (may not be null)
 	 * @param value
-	 *            The value of the property
+	 *              The value of the property
 	 * @throws java.lang.IllegalArgumentException
-	 *             if the property is not supported
+	 *         if the property is not supported
 	 */
 	public abstract void setProperty(java.lang.String name, Object value)
 			throws java.lang.IllegalArgumentException;
@@ -563,10 +559,10 @@ public abstract class XMLInputFactory {
 	 * Get the value of a feature/property from the underlying implementation
 	 * 
 	 * @param name
-	 *            The name of the property (may not be null)
+	 *             The name of the property (may not be null)
 	 * @return The value of the property
 	 * @throws IllegalArgumentException
-	 *             if the property is not supported
+	 *                                  if the property is not supported
 	 */
 	public abstract Object getProperty(java.lang.String name)
 			throws java.lang.IllegalArgumentException;
@@ -575,7 +571,7 @@ public abstract class XMLInputFactory {
 	 * Query the set of properties that this factory supports.
 	 *
 	 * @param name
-	 *            The name of the property (may not be null)
+	 *             The name of the property (may not be null)
 	 * @return true if the property is supported and false otherwise
 	 */
 	public abstract boolean isPropertySupported(String name);
@@ -584,7 +580,7 @@ public abstract class XMLInputFactory {
 	 * Set a user defined event allocator for events
 	 * 
 	 * @param allocator
-	 *            the user defined allocator
+	 *                  the user defined allocator
 	 */
 	public abstract void setEventAllocator(XMLEventAllocator allocator);
 

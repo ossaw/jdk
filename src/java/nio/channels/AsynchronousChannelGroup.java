@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -147,7 +127,7 @@ public abstract class AsynchronousChannelGroup {
 	 * Initialize a new instance of this class.
 	 *
 	 * @param provider
-	 *            The asynchronous channel provider for this group
+	 *                 The asynchronous channel provider for this group
 	 */
 	protected AsynchronousChannelGroup(AsynchronousChannelProvider provider) {
 		this.provider = provider;
@@ -179,21 +159,21 @@ public abstract class AsynchronousChannelGroup {
 	 * system-wide default {@link AsynchronousChannelProvider} object.
 	 *
 	 * @param nThreads
-	 *            The number of threads in the pool
+	 *                      The number of threads in the pool
 	 * @param threadFactory
-	 *            The factory to use when creating new threads
+	 *                      The factory to use when creating new threads
 	 *
 	 * @return A new asynchronous channel group
 	 *
 	 * @throws IllegalArgumentException
-	 *             If {@code nThreads <= 0}
+	 *                                  If {@code nThreads <= 0}
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                  If an I/O error occurs
 	 */
 	public static AsynchronousChannelGroup withFixedThreadPool(int nThreads,
 			ThreadFactory threadFactory) throws IOException {
-		return AsynchronousChannelProvider.provider().openAsynchronousChannelGroup(nThreads,
-				threadFactory);
+		return AsynchronousChannelProvider.provider()
+				.openAsynchronousChannelGroup(nThreads, threadFactory);
 	}
 
 	/**
@@ -227,22 +207,23 @@ public abstract class AsynchronousChannelGroup {
 	 * system-wide default {@link AsynchronousChannelProvider} object.
 	 *
 	 * @param executor
-	 *            The thread pool for the resulting group
+	 *                    The thread pool for the resulting group
 	 * @param initialSize
-	 *            A value {@code >=0} or a negative value for implementation
-	 *            specific default
+	 *                    A value {@code >=0} or a negative value for
+	 *                    implementation
+	 *                    specific default
 	 *
 	 * @return A new asynchronous channel group
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 *
 	 * @see java.util.concurrent.Executors#newCachedThreadPool
 	 */
-	public static AsynchronousChannelGroup withCachedThreadPool(ExecutorService executor,
-			int initialSize) throws IOException {
-		return AsynchronousChannelProvider.provider().openAsynchronousChannelGroup(executor,
-				initialSize);
+	public static AsynchronousChannelGroup withCachedThreadPool(
+			ExecutorService executor, int initialSize) throws IOException {
+		return AsynchronousChannelProvider.provider()
+				.openAsynchronousChannelGroup(executor, initialSize);
 	}
 
 	/**
@@ -276,16 +257,17 @@ public abstract class AsynchronousChannelGroup {
 	 * initialSize} of {@code 0}.
 	 *
 	 * @param executor
-	 *            The thread pool for the resulting group
+	 *                 The thread pool for the resulting group
 	 *
 	 * @return A new asynchronous channel group
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
-	public static AsynchronousChannelGroup withThreadPool(ExecutorService executor)
-			throws IOException {
-		return AsynchronousChannelProvider.provider().openAsynchronousChannelGroup(executor, 0);
+	public static AsynchronousChannelGroup withThreadPool(
+			ExecutorService executor) throws IOException {
+		return AsynchronousChannelProvider.provider()
+				.openAsynchronousChannelGroup(executor, 0);
 	}
 
 	/**
@@ -335,7 +317,7 @@ public abstract class AsynchronousChannelGroup {
 	 * after which it will return without effect.
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public abstract void shutdownNow() throws IOException;
 
@@ -347,15 +329,15 @@ public abstract class AsynchronousChannelGroup {
 	 * or the current thread is interrupted, whichever happens first.
 	 *
 	 * @param timeout
-	 *            The maximum time to wait, or zero or less to not wait
+	 *                The maximum time to wait, or zero or less to not wait
 	 * @param unit
-	 *            The time unit of the timeout argument
+	 *                The time unit of the timeout argument
 	 *
 	 * @return {@code true} if the group has terminated; {@code false} if the
 	 *         timeout elapsed before termination
 	 *
 	 * @throws InterruptedException
-	 *             If interrupted while waiting
+	 *                              If interrupted while waiting
 	 */
 	public abstract boolean awaitTermination(long timeout, TimeUnit unit)
 			throws InterruptedException;

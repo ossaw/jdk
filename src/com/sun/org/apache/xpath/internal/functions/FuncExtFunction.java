@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -82,13 +79,13 @@ public class FuncExtFunction extends Function {
 	 * indexes at stylesheet build time.
 	 * 
 	 * @param vars
-	 *            List of QNames that correspond to variables. This list should
-	 *            be searched backwards for the first qualified name that
-	 *            corresponds to the variable reference qname. The position of
-	 *            the QName in the vector from the start of the vector will be
-	 *            its position in the stack frame (but variables above the
-	 *            globalsTop value will need to be offset to the current stack
-	 *            frame). NEEDSDOC @param globalsSize
+	 *             List of QNames that correspond to variables. This list should
+	 *             be searched backwards for the first qualified name that
+	 *             corresponds to the variable reference qname. The position of
+	 *             the QName in the vector from the start of the vector will be
+	 *             its position in the stack frame (but variables above the
+	 *             globalsTop value will need to be offset to the current stack
+	 *             frame). NEEDSDOC @param globalsSize
 	 */
 	public void fixupVariables(java.util.Vector vars, int globalsSize) {
 
@@ -134,7 +131,7 @@ public class FuncExtFunction extends Function {
 	 * Return the nth argument passed to the extension function.
 	 *
 	 * @param n
-	 *            The argument number index.
+	 *          The argument number index.
 	 * @return The Expression object at the given index.
 	 */
 	public Expression getArg(int n) {
@@ -159,17 +156,19 @@ public class FuncExtFunction extends Function {
 	 * extension, and a unique method key.
 	 *
 	 * @param namespace
-	 *            The namespace for the extension function, which should not
-	 *            normally be null or empty.
+	 *                      The namespace for the extension function, which
+	 *                      should not
+	 *                      normally be null or empty.
 	 * @param extensionName
-	 *            The local name of the extension.
+	 *                      The local name of the extension.
 	 * @param methodKey
-	 *            Unique method key, which is passed to
-	 *            ExtensionsTable#extFunction in order to allow caching of the
-	 *            method.
+	 *                      Unique method key, which is passed to
+	 *                      ExtensionsTable#extFunction in order to allow
+	 *                      caching of the
+	 *                      method.
 	 */
-	public FuncExtFunction(java.lang.String namespace, java.lang.String extensionName,
-			Object methodKey) {
+	public FuncExtFunction(java.lang.String namespace,
+			java.lang.String extensionName, Object methodKey) {
 		// try{throw new Exception("FuncExtFunction() " + namespace + " " +
 		// extensionName);} catch (Exception e){e.printStackTrace();}
 		m_namespace = namespace;
@@ -181,16 +180,18 @@ public class FuncExtFunction extends Function {
 	 * Execute the function. The function must return a valid object.
 	 * 
 	 * @param xctxt
-	 *            The current execution context.
+	 *              The current execution context.
 	 * @return A valid XObject.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		if (xctxt.isSecureProcessing())
-			throw new javax.xml.transform.TransformerException(XPATHMessages.createXPATHMessage(
-					XPATHErrorResources.ER_EXTENSION_FUNCTION_CANNOT_BE_INVOKED,
-					new Object[] { toString() }));
+			throw new javax.xml.transform.TransformerException(XPATHMessages
+					.createXPATHMessage(
+							XPATHErrorResources.ER_EXTENSION_FUNCTION_CANNOT_BE_INVOKED,
+							new Object[] { toString() }));
 
 		XObject result;
 		Vector argVec = new Vector();
@@ -207,7 +208,8 @@ public class FuncExtFunction extends Function {
 			argVec.addElement(xobj);
 		}
 		// dml
-		ExtensionsProvider extProvider = (ExtensionsProvider) xctxt.getOwnerObject();
+		ExtensionsProvider extProvider = (ExtensionsProvider) xctxt
+				.getOwnerObject();
 		Object val = extProvider.extFunction(this, argVec);
 
 		if (null != val) {
@@ -224,15 +226,17 @@ public class FuncExtFunction extends Function {
 	 * XPath compiler.
 	 *
 	 * @param arg
-	 *            non-null expression that represents the argument.
+	 *               non-null expression that represents the argument.
 	 * @param argNum
-	 *            The argument number index.
+	 *               The argument number index.
 	 *
 	 * @throws WrongNumberArgsException
-	 *             If the argNum parameter is beyond what is specified for this
-	 *             function.
+	 *                                  If the argNum parameter is beyond what
+	 *                                  is specified for this
+	 *                                  function.
 	 */
-	public void setArg(Expression arg, int argNum) throws WrongNumberArgsException {
+	public void setArg(Expression arg, int argNum)
+			throws WrongNumberArgsException {
 		m_argVec.addElement(arg);
 		arg.exprSetParent(this);
 	}
@@ -242,12 +246,12 @@ public class FuncExtFunction extends Function {
 	 *
 	 *
 	 * @param argNum
-	 *            The number of arguments that is being passed to the function.
+	 *               The number of arguments that is being passed to the
+	 *               function.
 	 *
 	 * @throws WrongNumberArgsException
 	 */
-	public void checkNumberArgs(int argNum) throws WrongNumberArgsException {
-	}
+	public void checkNumberArgs(int argNum) throws WrongNumberArgsException {}
 
 	class ArgExtOwner implements ExpressionOwner {
 
@@ -289,7 +293,7 @@ public class FuncExtFunction extends Function {
 	 * parent node for all argument expressions.
 	 *
 	 * @param n
-	 *            The parent node
+	 *          The parent node
 	 */
 	public void exprSetParent(ExpressionNode n) {
 
@@ -313,7 +317,8 @@ public class FuncExtFunction extends Function {
 	 */
 	protected void reportWrongNumberArgs() throws WrongNumberArgsException {
 		String fMsg = XSLMessages.createXPATHMessage(
-				XPATHErrorResources.ER_INCORRECT_PROGRAMMER_ASSERTION, new Object[] {
+				XPATHErrorResources.ER_INCORRECT_PROGRAMMER_ASSERTION,
+				new Object[] {
 						"Programmer's assertion:  the method FunctionMultiArgs.reportWrongNumberArgs() should never be called." });
 
 		throw new RuntimeException(fMsg);

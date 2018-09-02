@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.encoding;
@@ -32,7 +12,8 @@ import com.sun.corba.se.impl.protocol.giopmsgheaders.FragmentMessage;
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 
-public class BufferManagerReadGrow implements BufferManagerRead, MarkAndResetHandler {
+public class BufferManagerReadGrow implements BufferManagerRead,
+		MarkAndResetHandler {
 	// REVISIT - This should go in an abstract class called
 	// BufferManagerReadBase which should implement
 	// BufferManagerRead. Then, this class should extend
@@ -43,7 +24,8 @@ public class BufferManagerReadGrow implements BufferManagerRead, MarkAndResetHan
 
 	BufferManagerReadGrow(ORB orb) {
 		this.orb = orb;
-		this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_ENCODING);
+		this.wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_ENCODING);
 	}
 
 	public void processFragment(ByteBuffer byteBuffer, FragmentMessage header) {
@@ -51,15 +33,13 @@ public class BufferManagerReadGrow implements BufferManagerRead, MarkAndResetHan
 		// done for underflow()???
 	}
 
-	public void init(Message msg) {
-	}
+	public void init(Message msg) {}
 
 	public ByteBufferWithInfo underflow(ByteBufferWithInfo bbwi) {
 		throw wrapper.unexpectedEof();
 	}
 
-	public void cancelProcessing(int requestId) {
-	}
+	public void cancelProcessing(int requestId) {}
 
 	// Mark and reset handler -------------------------
 
@@ -78,8 +58,7 @@ public class BufferManagerReadGrow implements BufferManagerRead, MarkAndResetHan
 	}
 
 	// This will never happen
-	public void fragmentationOccured(ByteBufferWithInfo newFragment) {
-	}
+	public void fragmentationOccured(ByteBufferWithInfo newFragment) {}
 
 	public void reset() {
 
@@ -92,6 +71,5 @@ public class BufferManagerReadGrow implements BufferManagerRead, MarkAndResetHan
 	}
 
 	// Nothing to close and cleanup.
-	public void close(ByteBufferWithInfo bbwi) {
-	}
+	public void close(ByteBufferWithInfo bbwi) {}
 }

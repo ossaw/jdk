@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -48,7 +28,8 @@ import javax.print.attribute.PrintRequestAttribute;
  * <P>
  *
  */
-public final class Fidelity extends EnumSyntax implements PrintJobAttribute, PrintRequestAttribute {
+public final class Fidelity extends EnumSyntax implements PrintJobAttribute,
+		PrintRequestAttribute {
 
 	private static final long serialVersionUID = 6320827847329172308L;
 
@@ -67,7 +48,7 @@ public final class Fidelity extends EnumSyntax implements PrintJobAttribute, Pri
 	 * Construct a new fidelity enumeration value with the given integer value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected Fidelity(int value) {
 		super(value);
@@ -75,7 +56,8 @@ public final class Fidelity extends EnumSyntax implements PrintJobAttribute, Pri
 
 	private static final String[] myStringTable = { "true", "false" };
 
-	private static final Fidelity[] myEnumValueTable = { FIDELITY_TRUE, FIDELITY_FALSE };
+	private static final Fidelity[] myEnumValueTable = { FIDELITY_TRUE,
+			FIDELITY_FALSE };
 
 	/**
 	 * Returns the string table for class Fidelity.

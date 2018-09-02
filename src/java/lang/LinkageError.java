@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -48,7 +28,7 @@ public class LinkageError extends Error {
 	 * Constructs a {@code LinkageError} with the specified detail message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public LinkageError(String s) {
 		super(s);
@@ -59,9 +39,9 @@ public class LinkageError extends Error {
 	 * cause.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *              the detail message.
 	 * @param cause
-	 *            the cause, may be {@code null}
+	 *              the cause, may be {@code null}
 	 * @since 1.7
 	 */
 	public LinkageError(String s, Throwable cause) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -73,12 +53,14 @@ public class PrinterStateReason extends EnumSyntax implements Attribute {
 	/**
 	 * A tray has run out of media.
 	 */
-	public static final PrinterStateReason MEDIA_NEEDED = new PrinterStateReason(1);
+	public static final PrinterStateReason MEDIA_NEEDED = new PrinterStateReason(
+			1);
 
 	/**
 	 * The device has a media jam.
 	 */
-	public static final PrinterStateReason MEDIA_JAM = new PrinterStateReason(2);
+	public static final PrinterStateReason MEDIA_JAM = new PrinterStateReason(
+			2);
 
 	/**
 	 * Someone has paused the printer, but the device(s) are taking an
@@ -89,7 +71,8 @@ public class PrinterStateReason extends EnumSyntax implements Attribute {
 	 * printer can be paused and the implementation takes significant time to
 	 * pause a device in certain circumstances.
 	 */
-	public static final PrinterStateReason MOVING_TO_PAUSED = new PrinterStateReason(3);
+	public static final PrinterStateReason MOVING_TO_PAUSED = new PrinterStateReason(
+			3);
 
 	/**
 	 * Someone has paused the printer and the printer's {@link PrinterState
@@ -123,13 +106,15 @@ public class PrinterStateReason extends EnumSyntax implements Attribute {
 	 * depending on the usage of the output device by other servers on the
 	 * network).
 	 */
-	public static final PrinterStateReason CONNECTING_TO_DEVICE = new PrinterStateReason(6);
+	public static final PrinterStateReason CONNECTING_TO_DEVICE = new PrinterStateReason(
+			6);
 
 	/**
 	 * The server was able to connect to the output device (or is always
 	 * connected), but was unable to get a response from the output device.
 	 */
-	public static final PrinterStateReason TIMED_OUT = new PrinterStateReason(7);
+	public static final PrinterStateReason TIMED_OUT = new PrinterStateReason(
+			7);
 
 	/**
 	 * The printer is in the process of stopping the device and will be stopped
@@ -149,17 +134,20 @@ public class PrinterStateReason extends EnumSyntax implements Attribute {
 	 * If the reason's severity is a warning, half or more but fewer than all of
 	 * the output devices are stopped.
 	 */
-	public static final PrinterStateReason STOPPED_PARTLY = new PrinterStateReason(9);
+	public static final PrinterStateReason STOPPED_PARTLY = new PrinterStateReason(
+			9);
 
 	/**
 	 * The device is low on toner.
 	 */
-	public static final PrinterStateReason TONER_LOW = new PrinterStateReason(10);
+	public static final PrinterStateReason TONER_LOW = new PrinterStateReason(
+			10);
 
 	/**
 	 * The device is out of toner.
 	 */
-	public static final PrinterStateReason TONER_EMPTY = new PrinterStateReason(11);
+	public static final PrinterStateReason TONER_EMPTY = new PrinterStateReason(
+			11);
 
 	/**
 	 * The limit of persistent storage allocated for spooling has been reached.
@@ -168,104 +156,124 @@ public class PrinterStateReason extends EnumSyntax implements Attribute {
 	 * be used by a non-spooling printer that only accepts one or a small number
 	 * jobs at a time or a spooling printer that has filled the spool space.
 	 */
-	public static final PrinterStateReason SPOOL_AREA_FULL = new PrinterStateReason(12);
+	public static final PrinterStateReason SPOOL_AREA_FULL = new PrinterStateReason(
+			12);
 
 	/**
 	 * One or more covers on the device are open.
 	 */
-	public static final PrinterStateReason COVER_OPEN = new PrinterStateReason(13);
+	public static final PrinterStateReason COVER_OPEN = new PrinterStateReason(
+			13);
 
 	/**
 	 * One or more interlock devices on the printer are unlocked.
 	 */
-	public static final PrinterStateReason INTERLOCK_OPEN = new PrinterStateReason(14);
+	public static final PrinterStateReason INTERLOCK_OPEN = new PrinterStateReason(
+			14);
 
 	/**
 	 * One or more doors on the device are open.
 	 */
-	public static final PrinterStateReason DOOR_OPEN = new PrinterStateReason(15);
+	public static final PrinterStateReason DOOR_OPEN = new PrinterStateReason(
+			15);
 
 	/**
 	 * One or more input trays are not in the device.
 	 */
-	public static final PrinterStateReason INPUT_TRAY_MISSING = new PrinterStateReason(16);
+	public static final PrinterStateReason INPUT_TRAY_MISSING = new PrinterStateReason(
+			16);
 
 	/**
 	 * At least one input tray is low on media.
 	 */
-	public static final PrinterStateReason MEDIA_LOW = new PrinterStateReason(17);
+	public static final PrinterStateReason MEDIA_LOW = new PrinterStateReason(
+			17);
 
 	/**
 	 * At least one input tray is empty.
 	 */
-	public static final PrinterStateReason MEDIA_EMPTY = new PrinterStateReason(18);
+	public static final PrinterStateReason MEDIA_EMPTY = new PrinterStateReason(
+			18);
 
 	/**
 	 * One or more output trays are not in the device.
 	 */
-	public static final PrinterStateReason OUTPUT_TRAY_MISSING = new PrinterStateReason(19);
+	public static final PrinterStateReason OUTPUT_TRAY_MISSING = new PrinterStateReason(
+			19);
 
 	/**
 	 * One or more output areas are almost full (e.g. tray, stacker, collator).
 	 */
-	public static final PrinterStateReason OUTPUT_AREA_ALMOST_FULL = new PrinterStateReason(20);
+	public static final PrinterStateReason OUTPUT_AREA_ALMOST_FULL = new PrinterStateReason(
+			20);
 
 	/**
 	 * One or more output areas are full (e.g. tray, stacker, collator).
 	 */
-	public static final PrinterStateReason OUTPUT_AREA_FULL = new PrinterStateReason(21);
+	public static final PrinterStateReason OUTPUT_AREA_FULL = new PrinterStateReason(
+			21);
 
 	/**
 	 * The device is low on at least one marker supply (e.g. toner, ink,
 	 * ribbon).
 	 */
-	public static final PrinterStateReason MARKER_SUPPLY_LOW = new PrinterStateReason(22);
+	public static final PrinterStateReason MARKER_SUPPLY_LOW = new PrinterStateReason(
+			22);
 
 	/**
 	 * The device is out of at least one marker supply (e.g. toner, ink,
 	 * ribbon).
 	 */
-	public static final PrinterStateReason MARKER_SUPPLY_EMPTY = new PrinterStateReason(23);
+	public static final PrinterStateReason MARKER_SUPPLY_EMPTY = new PrinterStateReason(
+			23);
 
 	/**
 	 * The device marker supply waste receptacle is almost full.
 	 */
-	public static final PrinterStateReason MARKER_WASTE_ALMOST_FULL = new PrinterStateReason(24);
+	public static final PrinterStateReason MARKER_WASTE_ALMOST_FULL = new PrinterStateReason(
+			24);
 
 	/**
 	 * The device marker supply waste receptacle is full.
 	 */
-	public static final PrinterStateReason MARKER_WASTE_FULL = new PrinterStateReason(25);
+	public static final PrinterStateReason MARKER_WASTE_FULL = new PrinterStateReason(
+			25);
 
 	/**
 	 * The fuser temperature is above normal.
 	 */
-	public static final PrinterStateReason FUSER_OVER_TEMP = new PrinterStateReason(26);
+	public static final PrinterStateReason FUSER_OVER_TEMP = new PrinterStateReason(
+			26);
 
 	/**
 	 * The fuser temperature is below normal.
 	 */
-	public static final PrinterStateReason FUSER_UNDER_TEMP = new PrinterStateReason(27);
+	public static final PrinterStateReason FUSER_UNDER_TEMP = new PrinterStateReason(
+			27);
 
 	/**
 	 * The optical photo conductor is near end of life.
 	 */
-	public static final PrinterStateReason OPC_NEAR_EOL = new PrinterStateReason(28);
+	public static final PrinterStateReason OPC_NEAR_EOL = new PrinterStateReason(
+			28);
 
 	/**
 	 * The optical photo conductor is no longer functioning.
 	 */
-	public static final PrinterStateReason OPC_LIFE_OVER = new PrinterStateReason(29);
+	public static final PrinterStateReason OPC_LIFE_OVER = new PrinterStateReason(
+			29);
 
 	/**
 	 * The device is low on developer.
 	 */
-	public static final PrinterStateReason DEVELOPER_LOW = new PrinterStateReason(30);
+	public static final PrinterStateReason DEVELOPER_LOW = new PrinterStateReason(
+			30);
 
 	/**
 	 * The device is out of developer.
 	 */
-	public static final PrinterStateReason DEVELOPER_EMPTY = new PrinterStateReason(31);
+	public static final PrinterStateReason DEVELOPER_EMPTY = new PrinterStateReason(
+			31);
 
 	/**
 	 * An interpreter resource is unavailable (e.g., font, form).
@@ -278,29 +286,33 @@ public class PrinterStateReason extends EnumSyntax implements Attribute {
 	 * integer value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected PrinterStateReason(int value) {
 		super(value);
 	}
 
-	private static final String[] myStringTable = { "other", "media-needed", "media-jam",
-			"moving-to-paused", "paused", "shutdown", "connecting-to-device", "timed-out",
-			"stopping", "stopped-partly", "toner-low", "toner-empty", "spool-area-full",
-			"cover-open", "interlock-open", "door-open", "input-tray-missing", "media-low",
-			"media-empty", "output-tray-missing", "output-area-almost-full", "output-area-full",
-			"marker-supply-low", "marker-supply-empty", "marker-waste-almost-full",
-			"marker-waste-full", "fuser-over-temp", "fuser-under-temp", "opc-near-eol",
-			"opc-life-over", "developer-low", "developer-empty",
+	private static final String[] myStringTable = { "other", "media-needed",
+			"media-jam", "moving-to-paused", "paused", "shutdown",
+			"connecting-to-device", "timed-out", "stopping", "stopped-partly",
+			"toner-low", "toner-empty", "spool-area-full", "cover-open",
+			"interlock-open", "door-open", "input-tray-missing", "media-low",
+			"media-empty", "output-tray-missing", "output-area-almost-full",
+			"output-area-full", "marker-supply-low", "marker-supply-empty",
+			"marker-waste-almost-full", "marker-waste-full", "fuser-over-temp",
+			"fuser-under-temp", "opc-near-eol", "opc-life-over",
+			"developer-low", "developer-empty",
 			"interpreter-resource-unavailable" };
 
-	private static final PrinterStateReason[] myEnumValueTable = { OTHER, MEDIA_NEEDED, MEDIA_JAM,
-			MOVING_TO_PAUSED, PAUSED, SHUTDOWN, CONNECTING_TO_DEVICE, TIMED_OUT, STOPPING,
-			STOPPED_PARTLY, TONER_LOW, TONER_EMPTY, SPOOL_AREA_FULL, COVER_OPEN, INTERLOCK_OPEN,
-			DOOR_OPEN, INPUT_TRAY_MISSING, MEDIA_LOW, MEDIA_EMPTY, OUTPUT_TRAY_MISSING,
-			OUTPUT_AREA_ALMOST_FULL, OUTPUT_AREA_FULL, MARKER_SUPPLY_LOW, MARKER_SUPPLY_EMPTY,
-			MARKER_WASTE_ALMOST_FULL, MARKER_WASTE_FULL, FUSER_OVER_TEMP, FUSER_UNDER_TEMP,
-			OPC_NEAR_EOL, OPC_LIFE_OVER, DEVELOPER_LOW, DEVELOPER_EMPTY,
+	private static final PrinterStateReason[] myEnumValueTable = { OTHER,
+			MEDIA_NEEDED, MEDIA_JAM, MOVING_TO_PAUSED, PAUSED, SHUTDOWN,
+			CONNECTING_TO_DEVICE, TIMED_OUT, STOPPING, STOPPED_PARTLY,
+			TONER_LOW, TONER_EMPTY, SPOOL_AREA_FULL, COVER_OPEN, INTERLOCK_OPEN,
+			DOOR_OPEN, INPUT_TRAY_MISSING, MEDIA_LOW, MEDIA_EMPTY,
+			OUTPUT_TRAY_MISSING, OUTPUT_AREA_ALMOST_FULL, OUTPUT_AREA_FULL,
+			MARKER_SUPPLY_LOW, MARKER_SUPPLY_EMPTY, MARKER_WASTE_ALMOST_FULL,
+			MARKER_WASTE_FULL, FUSER_OVER_TEMP, FUSER_UNDER_TEMP, OPC_NEAR_EOL,
+			OPC_LIFE_OVER, DEVELOPER_LOW, DEVELOPER_EMPTY,
 			INTERPRETER_RESOURCE_UNAVAILABLE };
 
 	/**

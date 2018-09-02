@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -59,7 +56,7 @@ public final class ShadowedSymbolTable extends SymbolTable {
 	 * remain unique.
 	 *
 	 * @param symbol
-	 *            The new symbol.
+	 *               The new symbol.
 	 */
 	public String addSymbol(String symbol) {
 
@@ -77,11 +74,11 @@ public final class ShadowedSymbolTable extends SymbolTable {
 	 * remain unique.
 	 *
 	 * @param buffer
-	 *            The buffer containing the new symbol.
+	 *               The buffer containing the new symbol.
 	 * @param offset
-	 *            The offset into the buffer of the new symbol.
+	 *               The offset into the buffer of the new symbol.
 	 * @param length
-	 *            The length of the new symbol in the buffer.
+	 *               The length of the new symbol in the buffer.
 	 */
 	public String addSymbol(char[] buffer, int offset, int length) {
 
@@ -99,7 +96,7 @@ public final class ShadowedSymbolTable extends SymbolTable {
 	 * array that comprises the symbol string.
 	 *
 	 * @param symbol
-	 *            The symbol to hash.
+	 *               The symbol to hash.
 	 */
 	public int hash(String symbol) {
 		return fSymbolTable.hash(symbol);
@@ -112,12 +109,12 @@ public final class ShadowedSymbolTable extends SymbolTable {
 	 * created from the symbol information.
 	 *
 	 * @param buffer
-	 *            The character buffer containing the symbol.
+	 *               The character buffer containing the symbol.
 	 * @param offset
-	 *            The offset into the character buffer of the start of the
-	 *            symbol.
+	 *               The offset into the character buffer of the start of the
+	 *               symbol.
 	 * @param length
-	 *            The length of the symbol.
+	 *               The length of the symbol.
 	 */
 	public int hash(char[] buffer, int offset, int length) {
 		return fSymbolTable.hash(buffer, offset, length);

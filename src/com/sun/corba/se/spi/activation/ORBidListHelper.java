@@ -28,10 +28,13 @@ abstract public class ORBidListHelper {
 		if (__typeCode == null) {
 			__typeCode = org.omg.CORBA.ORB.init().create_string_tc(0);
 			__typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-					com.sun.corba.se.spi.activation.ORBidHelper.id(), "ORBid", __typeCode);
-			__typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
+					com.sun.corba.se.spi.activation.ORBidHelper.id(), "ORBid",
+					__typeCode);
+			__typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
+					__typeCode);
 			__typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-					com.sun.corba.se.spi.activation.ORBidListHelper.id(), "ORBidList", __typeCode);
+					com.sun.corba.se.spi.activation.ORBidListHelper.id(),
+					"ORBidList", __typeCode);
 		}
 		return __typeCode;
 	}
@@ -45,14 +48,17 @@ abstract public class ORBidListHelper {
 		int _len0 = istream.read_long();
 		value = new String[_len0];
 		for (int _o1 = 0; _o1 < value.length; ++_o1)
-			value[_o1] = com.sun.corba.se.spi.activation.ORBidHelper.read(istream);
+			value[_o1] = com.sun.corba.se.spi.activation.ORBidHelper.read(
+					istream);
 		return value;
 	}
 
-	public static void write(org.omg.CORBA.portable.OutputStream ostream, String[] value) {
+	public static void write(org.omg.CORBA.portable.OutputStream ostream,
+			String[] value) {
 		ostream.write_long(value.length);
 		for (int _i0 = 0; _i0 < value.length; ++_i0)
-			com.sun.corba.se.spi.activation.ORBidHelper.write(ostream, value[_i0]);
+			com.sun.corba.se.spi.activation.ORBidHelper.write(ostream,
+					value[_i0]);
 	}
 
 }

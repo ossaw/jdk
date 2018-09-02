@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -136,32 +133,39 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * and entity resolution).
 	 *
 	 * @param source
-	 *            the specification of the source object, which may be null, in
-	 *            which case it is assumed that node construction will take by
-	 *            some other means.
+	 *                    the specification of the source object, which may be
+	 *                    null, in
+	 *                    which case it is assumed that node construction will
+	 *                    take by
+	 *                    some other means.
 	 * @param unique
-	 *            true if the returned DTM must be unique, probably because it
-	 *            is going to be mutated.
+	 *                    true if the returned DTM must be unique, probably
+	 *                    because it
+	 *                    is going to be mutated.
 	 * @param wsfilter
-	 *            Enables filtering of whitespace nodes, and may be null.
+	 *                    Enables filtering of whitespace nodes, and may be
+	 *                    null.
 	 * @param incremental
-	 *            true if the construction should try and be incremental.
+	 *                    true if the construction should try and be
+	 *                    incremental.
 	 * @param doIndexing
-	 *            true if the caller considers it worth it to use indexing
-	 *            schemes.
+	 *                    true if the caller considers it worth it to use
+	 *                    indexing
+	 *                    schemes.
 	 *
 	 * @return a non-null DTM reference.
 	 */
-	public DTM getDTM(javax.xml.transform.Source source, boolean unique, DTMWSFilter wsfilter,
-			boolean incremental, boolean doIndexing) {
-		return m_dtmManager.getDTM(source, unique, wsfilter, incremental, doIndexing);
+	public DTM getDTM(javax.xml.transform.Source source, boolean unique,
+			DTMWSFilter wsfilter, boolean incremental, boolean doIndexing) {
+		return m_dtmManager.getDTM(source, unique, wsfilter, incremental,
+				doIndexing);
 	}
 
 	/**
 	 * Get an instance of a DTM that "owns" a node handle.
 	 *
 	 * @param nodeHandle
-	 *            the nodeHandle.
+	 *                   the nodeHandle.
 	 *
 	 * @return a non-null DTM reference.
 	 */
@@ -174,7 +178,7 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * be non-optimal.
 	 *
 	 * @param node
-	 *            Non-null reference to a DOM node.
+	 *             Non-null reference to a DOM node.
 	 *
 	 * @return a valid DTM handle.
 	 */
@@ -207,9 +211,9 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * without system IDs are always hard deleted. State: experimental.
 	 *
 	 * @param dtm
-	 *            The DTM to be released.
+	 *                         The DTM to be released.
 	 * @param shouldHardDelete
-	 *            True if the DTM should be removed no matter what.
+	 *                         True if the DTM should be removed no matter what.
 	 * @return true if the DTM was removed, false if it was put back in a lru
 	 *         pool.
 	 */
@@ -232,12 +236,14 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * <a href="http://www.w3.org/TR/xpath#NT-UnionExpr">UnionExpr</a>.
 	 *
 	 * @param xpathCompiler
-	 *            ??? Somehow we need to pass in a subpart of the expression. I
-	 *            hate to do this with strings, since the larger expression has
-	 *            already been parsed.
+	 *                      ??? Somehow we need to pass in a subpart of the
+	 *                      expression. I
+	 *                      hate to do this with strings, since the larger
+	 *                      expression has
+	 *                      already been parsed.
 	 *
 	 * @param pos
-	 *            The position in the expression.
+	 *                      The position in the expression.
 	 * @return The newly created <code>DTMIterator</code>.
 	 */
 	public DTMIterator createDTMIterator(Object xpathCompiler, int pos) {
@@ -251,18 +257,20 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * <a href="http://www.w3.org/TR/xpath#NT-UnionExpr">UnionExpr</a>.
 	 *
 	 * @param xpathString
-	 *            Must be a valid string expressing a <a
-	 *            href="http://www.w3.org/TR/xpath#NT-LocationPath>LocationPath
-	 *            </a> or a
-	 *            <a href="http://www.w3.org/TR/xpath#NT-UnionExpr">UnionExpr
-	 *            </a>.
+	 *                    Must be a valid string expressing a <a
+	 *                    href="http://www.w3.org/TR/xpath#NT-LocationPath>LocationPath
+	 *                    </a> or a
+	 *                    <a href=
+	 *                    "http://www.w3.org/TR/xpath#NT-UnionExpr">UnionExpr
+	 *                    </a>.
 	 *
 	 * @param presolver
-	 *            An object that can resolve prefixes to namespace URLs.
+	 *                    An object that can resolve prefixes to namespace URLs.
 	 *
 	 * @return The newly created <code>DTMIterator</code>.
 	 */
-	public DTMIterator createDTMIterator(String xpathString, PrefixResolver presolver) {
+	public DTMIterator createDTMIterator(String xpathString,
+			PrefixResolver presolver) {
 		return m_dtmManager.createDTMIterator(xpathString, presolver);
 	}
 
@@ -272,31 +280,39 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * DTMFilter. The traversal semantics are defined as the descendant access.
 	 *
 	 * @param whatToShow
-	 *            This flag specifies which node types may appear in the logical
-	 *            view of the tree presented by the iterator. See the
-	 *            description of <code>NodeFilter</code> for the set of possible
-	 *            <code>SHOW_</code> values.These flags can be combined using
-	 *            <code>OR</code>.
+	 *                                 This flag specifies which node types may
+	 *                                 appear in the logical
+	 *                                 view of the tree presented by the
+	 *                                 iterator. See the
+	 *                                 description of <code>NodeFilter</code>
+	 *                                 for the set of possible
+	 *                                 <code>SHOW_</code> values.These flags can
+	 *                                 be combined using
+	 *                                 <code>OR</code>.
 	 * @param filter
-	 *            The <code>NodeFilter</code> to be used with this
-	 *            <code>TreeWalker</code>, or <code>null</code> to indicate no
-	 *            filter.
+	 *                                 The <code>NodeFilter</code> to be used
+	 *                                 with this
+	 *                                 <code>TreeWalker</code>, or
+	 *                                 <code>null</code> to indicate no
+	 *                                 filter.
 	 * @param entityReferenceExpansion
-	 *            The value of this flag determines whether entity reference
-	 *            nodes are expanded.
+	 *                                 The value of this flag determines whether
+	 *                                 entity reference
+	 *                                 nodes are expanded.
 	 *
 	 * @return The newly created <code>NodeIterator</code>.
 	 */
 	public DTMIterator createDTMIterator(int whatToShow, DTMFilter filter,
 			boolean entityReferenceExpansion) {
-		return m_dtmManager.createDTMIterator(whatToShow, filter, entityReferenceExpansion);
+		return m_dtmManager.createDTMIterator(whatToShow, filter,
+				entityReferenceExpansion);
 	}
 
 	/**
 	 * Create a new <code>DTMIterator</code> that holds exactly one node.
 	 *
 	 * @param node
-	 *            The node handle that the DTMIterator will iterate to.
+	 *             The node handle that the DTMIterator will iterate to.
 	 *
 	 * @return The newly created <code>DTMIterator</code>.
 	 */
@@ -325,14 +341,14 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * an XPathContext instance.
 	 * 
 	 * @param owner
-	 *            Value that can be retrieved via the getOwnerObject() method.
+	 *              Value that can be retrieved via the getOwnerObject() method.
 	 * @see #getOwnerObject
 	 */
 	public XPathContext(Object owner) {
 		m_owner = owner;
 		try {
-			m_ownerGetErrorListener = m_owner.getClass().getMethod("getErrorListener",
-					new Class[] {});
+			m_ownerGetErrorListener = m_owner.getClass().getMethod(
+					"getErrorListener", new Class[] {});
 		} catch (NoSuchMethodException nsme) {
 		}
 		init(true);
@@ -345,7 +361,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 		m_saxLocations.push(null);
 		m_useServicesMechanism = useServicesMechanism;
 		m_dtmManager = DTMManager.newInstance(
-				com.sun.org.apache.xpath.internal.objects.XMLStringFactoryImpl.getFactory());
+				com.sun.org.apache.xpath.internal.objects.XMLStringFactoryImpl
+						.getFactory());
 	}
 
 	/**
@@ -356,7 +373,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 		// These couldn't be disposed of earlier (see comments in release());
 		// zap them now.
 		if (m_rtfdtm_stack != null)
-			for (java.util.Enumeration e = m_rtfdtm_stack.elements(); e.hasMoreElements();)
+			for (java.util.Enumeration e = m_rtfdtm_stack.elements(); e
+					.hasMoreElements();)
 				m_dtmManager.release((DTM) e.nextElement(), true);
 
 		m_rtfdtm_stack = null; // drop our references too
@@ -367,7 +385,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 		m_global_rtfdtm = null;
 
 		m_dtmManager = DTMManager.newInstance(
-				com.sun.org.apache.xpath.internal.objects.XMLStringFactoryImpl.getFactory());
+				com.sun.org.apache.xpath.internal.objects.XMLStringFactoryImpl
+						.getFactory());
 
 		m_saxLocations.removeAllElements();
 		m_axesIteratorStack.removeAllElements();
@@ -392,7 +411,7 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Set the current locater in the stylesheet.
 	 *
 	 * @param location
-	 *            The location within the stylesheet.
+	 *                 The location within the stylesheet.
 	 */
 	public void setSAXLocator(SourceLocator location) {
 		m_saxLocations.setTop(location);
@@ -402,7 +421,7 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Set the current locater in the stylesheet.
 	 *
 	 * @param location
-	 *            The location within the stylesheet.
+	 *                 The location within the stylesheet.
 	 */
 	public void pushSAXLocator(SourceLocator location) {
 		m_saxLocations.push(location);
@@ -477,7 +496,7 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Get the variable stack, which is in charge of variables and parameters.
 	 *
 	 * @param varStack
-	 *            non-null reference to the variable stack.
+	 *                 non-null reference to the variable stack.
 	 */
 	public final void setVarStack(VariableStack varStack) {
 		m_variableStacks = varStack;
@@ -536,7 +555,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 
 		try {
 			if (null != m_ownerGetErrorListener)
-				retval = (ErrorListener) m_ownerGetErrorListener.invoke(m_owner, new Object[] {});
+				retval = (ErrorListener) m_ownerGetErrorListener.invoke(m_owner,
+						new Object[] {});
 		} catch (Exception e) {
 		}
 
@@ -553,14 +573,15 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Set the ErrorListener where errors and warnings are to be reported.
 	 *
 	 * @param listener
-	 *            A non-null ErrorListener reference.
+	 *                 A non-null ErrorListener reference.
 	 */
-	public void setErrorListener(ErrorListener listener) throws IllegalArgumentException {
+	public void setErrorListener(ErrorListener listener)
+			throws IllegalArgumentException {
 		if (listener == null)
-			throw new IllegalArgumentException(XSLMessages
-					.createXPATHMessage(XPATHErrorResources.ER_NULL_ERROR_HANDLER, null)); // "Null
-																							// error
-																							// handler");
+			throw new IllegalArgumentException(XSLMessages.createXPATHMessage(
+					XPATHErrorResources.ER_NULL_ERROR_HANDLER, null)); // "Null
+																																			// error
+																																			// handler");
 		m_errorListener = listener;
 	}
 
@@ -585,8 +606,9 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Set the URIResolver associated with this execution context.
 	 *
 	 * @param resolver
-	 *            the URIResolver to be associated with this execution context,
-	 *            may be null to clear an already set resolver.
+	 *                 the URIResolver to be associated with this execution
+	 *                 context,
+	 *                 may be null to clear an already set resolver.
 	 */
 	public void setURIResolver(URIResolver resolver) {
 		m_uriResolver = resolver;
@@ -610,7 +632,7 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Set primary XMLReader associated with this execution context.
 	 *
 	 * @param reader
-	 *            The reader of the primary source tree.
+	 *               The reader of the primary source tree.
 	 */
 	public void setPrimaryReader(XMLReader reader) {
 		m_primaryReader = reader;
@@ -658,9 +680,9 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Set the current context node list.
 	 *
 	 * @param nl
-	 *            the <a href="http://www.w3.org/TR/xslt#dt-current-node-list">
-	 *            current node list</a>, also referred to here as a
-	 *            <term>context node list</term>.
+	 *           the <a href="http://www.w3.org/TR/xslt#dt-current-node-list">
+	 *           current node list</a>, also referred to here as a
+	 *           <term>context node list</term>.
 	 * @xsl.usage internal
 	 */
 	public final void pushContextNodeList(DTMIterator nl) {
@@ -674,7 +696,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 */
 	public final void popContextNodeList() {
 		if (m_contextNodeLists.isEmpty())
-			System.err.println("Warning: popContextNodeList when stack is empty!");
+			System.err.println(
+					"Warning: popContextNodeList when stack is empty!");
 		else
 			m_contextNodeLists.pop();
 	}
@@ -717,11 +740,11 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Set the current context node and expression node.
 	 *
 	 * @param cn
-	 *            the
-	 *            <a href="http://www.w3.org/TR/xslt#dt-current-node">current
-	 *            node</a>.
+	 *           the
+	 *           <a href="http://www.w3.org/TR/xslt#dt-current-node">current
+	 *           node</a>.
 	 * @param en
-	 *            the sub-expression context node.
+	 *           the sub-expression context node.
 	 */
 	public final void pushCurrentNodeAndExpression(int cn, int en) {
 		m_currentNodes.push(cn);
@@ -740,13 +763,13 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Push the current context node, expression node, and prefix resolver.
 	 *
 	 * @param cn
-	 *            the
-	 *            <a href="http://www.w3.org/TR/xslt#dt-current-node">current
-	 *            node</a>.
+	 *           the
+	 *           <a href="http://www.w3.org/TR/xslt#dt-current-node">current
+	 *           node</a>.
 	 * @param en
-	 *            the sub-expression context node.
+	 *           the sub-expression context node.
 	 * @param nc
-	 *            the namespace context (prefix resolver.
+	 *           the namespace context (prefix resolver.
 	 */
 	public final void pushExpressionState(int cn, int en, PrefixResolver nc) {
 		m_currentNodes.push(cn);
@@ -767,9 +790,9 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Set the current context node.
 	 *
 	 * @param n
-	 *            the
-	 *            <a href="http://www.w3.org/TR/xslt#dt-current-node">current
-	 *            node</a>.
+	 *          the
+	 *          <a href="http://www.w3.org/TR/xslt#dt-current-node">current
+	 *          node</a>.
 	 */
 	public final void pushCurrentNode(int n) {
 		m_currentNodes.push(n);
@@ -870,7 +893,7 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * support).
 	 *
 	 * @param n
-	 *            The sub-expression node to be current.
+	 *          The sub-expression node to be current.
 	 */
 	public final void pushCurrentExpressionNode(int n) {
 		m_currentExpressionNodes.push(n);
@@ -900,8 +923,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Get the current namespace context for the xpath.
 	 *
 	 * @param pr
-	 *            the prefix resolver to be used for resolving prefixes to
-	 *            namespace URLs.
+	 *           the prefix resolver to be used for resolving prefixes to
+	 *           namespace URLs.
 	 */
 	public final void setNamespaceContext(PrefixResolver pr) {
 		m_prefixResolvers.setTop(pr);
@@ -911,8 +934,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Push a current namespace context for the xpath.
 	 *
 	 * @param pr
-	 *            the prefix resolver to be used for resolving prefixes to
-	 *            namespace URLs.
+	 *           the prefix resolver to be used for resolving prefixes to
+	 *           namespace URLs.
 	 */
 	public final void pushNamespaceContext(PrefixResolver pr) {
 		m_prefixResolvers.push(pr);
@@ -954,7 +977,7 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * Push a TreeWalker on the stack.
 	 *
 	 * @param iter
-	 *            A sub-context AxesWalker.
+	 *             A sub-context AxesWalker.
 	 * @xsl.usage internal
 	 */
 	public final void pushSubContextList(SubContextList iter) {
@@ -977,7 +1000,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 	 * @xsl.usage internal
 	 */
 	public SubContextList getSubContextList() {
-		return m_axesIteratorStack.isEmpty() ? null : (SubContextList) m_axesIteratorStack.peek();
+		return m_axesIteratorStack.isEmpty() ? null
+				: (SubContextList) m_axesIteratorStack.peek();
 	}
 
 	/**
@@ -1110,7 +1134,7 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 		 * Get the value of a node as a number.
 		 * 
 		 * @param n
-		 *            Node to be converted to a number. May be null.
+		 *          Node to be converted to a number. May be null.
 		 * @return value of n as a number.
 		 */
 		public double toNumber(org.w3c.dom.Node n) {
@@ -1125,7 +1149,7 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 		 * Get the value of a node as a string.
 		 * 
 		 * @param n
-		 *            Node to be converted to a string. May be null.
+		 *          Node to be converted to a string. May be null.
 		 * @return value of n as a string, or an empty string if n is null.
 		 */
 		public String toString(org.w3c.dom.Node n) {
@@ -1140,14 +1164,16 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 		 * Get a variable based on it's qualified name.
 		 * 
 		 * @param qname
-		 *            The qualified name of the variable.
+		 *              The qualified name of the variable.
 		 * @return The evaluated value of the variable.
 		 * @throws javax.xml.transform.TransformerException
 		 */
 
-		public final XObject getVariableOrParam(com.sun.org.apache.xml.internal.utils.QName qname)
+		public final XObject getVariableOrParam(
+				com.sun.org.apache.xml.internal.utils.QName qname)
 				throws javax.xml.transform.TransformerException {
-			return m_variableStacks.getVariableOrParam(XPathContext.this, qname);
+			return m_variableStacks.getVariableOrParam(XPathContext.this,
+					qname);
 		}
 
 	}
@@ -1189,7 +1215,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 		// sure
 		// the latter will ever arise, but I'd rather be just a bit paranoid..
 		if (m_global_rtfdtm == null || m_global_rtfdtm.isTreeIncomplete()) {
-			m_global_rtfdtm = (SAX2RTFDTM) m_dtmManager.getDTM(null, true, null, false, false);
+			m_global_rtfdtm = (SAX2RTFDTM) m_dtmManager.getDTM(null, true, null,
+					false, false);
 		}
 		return m_global_rtfdtm;
 	}
@@ -1222,7 +1249,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 
 		if (m_rtfdtm_stack == null) {
 			m_rtfdtm_stack = new Vector();
-			rtfdtm = (SAX2RTFDTM) m_dtmManager.getDTM(null, true, null, false, false);
+			rtfdtm = (SAX2RTFDTM) m_dtmManager.getDTM(null, true, null, false,
+					false);
 			m_rtfdtm_stack.addElement(rtfdtm);
 			++m_which_rtfdtm;
 		} else if (m_which_rtfdtm < 0) {
@@ -1243,9 +1271,11 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 			// as if it were a procedural language...
 			if (rtfdtm.isTreeIncomplete()) {
 				if (++m_which_rtfdtm < m_rtfdtm_stack.size())
-					rtfdtm = (SAX2RTFDTM) m_rtfdtm_stack.elementAt(m_which_rtfdtm);
+					rtfdtm = (SAX2RTFDTM) m_rtfdtm_stack.elementAt(
+							m_which_rtfdtm);
 				else {
-					rtfdtm = (SAX2RTFDTM) m_dtmManager.getDTM(null, true, null, false, false);
+					rtfdtm = (SAX2RTFDTM) m_dtmManager.getDTM(null, true, null,
+							false, false);
 					m_rtfdtm_stack.addElement(rtfdtm);
 				}
 			}
@@ -1289,8 +1319,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 		if (m_which_rtfdtm == previous) {
 			if (previous >= 0) // guard against none-active
 			{
-				boolean isEmpty = ((SAX2RTFDTM) (m_rtfdtm_stack.elementAt(previous)))
-						.popRewindMark();
+				boolean isEmpty = ((SAX2RTFDTM) (m_rtfdtm_stack.elementAt(
+						previous))).popRewindMark();
 			}
 		} else
 			while (m_which_rtfdtm != previous) {
@@ -1298,8 +1328,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 				// _DON'T_ pop the previous, since it's still open (which is why
 				// we
 				// stacked up more of these) and did not receive a mark.
-				boolean isEmpty = ((SAX2RTFDTM) (m_rtfdtm_stack.elementAt(m_which_rtfdtm)))
-						.popRewindMark();
+				boolean isEmpty = ((SAX2RTFDTM) (m_rtfdtm_stack.elementAt(
+						m_which_rtfdtm))).popRewindMark();
 				--m_which_rtfdtm;
 			}
 	}
@@ -1317,7 +1347,8 @@ public class XPathContext extends DTMManager // implements ExpressionContext
 		}
 
 		if (m_DTMXRTreeFrags.containsKey(new Integer(dtmIdentity))) {
-			return (DTMXRTreeFrag) m_DTMXRTreeFrags.get(new Integer(dtmIdentity));
+			return (DTMXRTreeFrag) m_DTMXRTreeFrags.get(new Integer(
+					dtmIdentity));
 		} else {
 			final DTMXRTreeFrag frag = new DTMXRTreeFrag(dtmIdentity, this);
 			m_DTMXRTreeFrags.put(new Integer(dtmIdentity), frag);

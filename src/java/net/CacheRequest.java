@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -46,7 +26,8 @@ public abstract class CacheRequest {
 	 *
 	 * @return an OutputStream to which the response body can be written
 	 * @throws IOException
-	 *             if an I/O error occurs while writing the response body
+	 *                     if an I/O error occurs while writing the response
+	 *                     body
 	 */
 	public abstract OutputStream getBody() throws IOException;
 

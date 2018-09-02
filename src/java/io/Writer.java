@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -79,7 +59,7 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 	 * synchronize on the given object.
 	 *
 	 * @param lock
-	 *            Object to synchronize on
+	 *             Object to synchronize on
 	 */
 	protected Writer(Object lock) {
 		if (lock == null) {
@@ -98,10 +78,10 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 	 * should override this method.
 	 *
 	 * @param c
-	 *            int specifying a character to be written
+	 *          int specifying a character to be written
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public void write(int c) throws IOException {
 		synchronized (lock) {
@@ -117,10 +97,10 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 	 * Writes an array of characters.
 	 *
 	 * @param cbuf
-	 *            Array of characters to be written
+	 *             Array of characters to be written
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public void write(char cbuf[]) throws IOException {
 		write(cbuf, 0, cbuf.length);
@@ -130,18 +110,19 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 	 * Writes a portion of an array of characters.
 	 *
 	 * @param cbuf
-	 *            Array of characters
+	 *             Array of characters
 	 *
 	 * @param off
-	 *            Offset from which to start writing characters
+	 *             Offset from which to start writing characters
 	 *
 	 * @param len
-	 *            Number of characters to write
+	 *             Number of characters to write
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
-	abstract public void write(char cbuf[], int off, int len) throws IOException;
+	abstract public void write(char cbuf[], int off, int len)
+			throws IOException;
 
 	/**
 	 * Writes a string.
@@ -150,7 +131,7 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 	 *            String to be written
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public void write(String str) throws IOException {
 		write(str, 0, str.length());
@@ -169,12 +150,14 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 	 *            Number of characters to write
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If <tt>off</tt> is negative, or <tt>len</tt> is negative, or
-	 *             <tt>off+len</tt> is negative or greater than the length of
-	 *             the given string
+	 *                                   If <tt>off</tt> is negative, or
+	 *                                   <tt>len</tt> is negative, or
+	 *                                   <tt>off+len</tt> is negative or greater
+	 *                                   than the length of
+	 *                                   the given string
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                   If an I/O error occurs
 	 */
 	public void write(String str, int off, int len) throws IOException {
 		synchronized (lock) {
@@ -218,7 +201,7 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 	 * @return This writer
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 *
 	 * @since 1.5
 	 */
@@ -244,31 +227,35 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 	 * </pre>
 	 *
 	 * @param csq
-	 *            The character sequence from which a subsequence will be
-	 *            appended. If <tt>csq</tt> is <tt>null</tt>, then characters
-	 *            will be appended as if <tt>csq</tt> contained the four
-	 *            characters <tt>"null"</tt>.
+	 *              The character sequence from which a subsequence will be
+	 *              appended. If <tt>csq</tt> is <tt>null</tt>, then characters
+	 *              will be appended as if <tt>csq</tt> contained the four
+	 *              characters <tt>"null"</tt>.
 	 *
 	 * @param start
-	 *            The index of the first character in the subsequence
+	 *              The index of the first character in the subsequence
 	 *
 	 * @param end
-	 *            The index of the character following the last character in the
-	 *            subsequence
+	 *              The index of the character following the last character in
+	 *              the
+	 *              subsequence
 	 *
 	 * @return This writer
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If <tt>start</tt> or <tt>end</tt> are negative,
-	 *             <tt>start</tt> is greater than <tt>end</tt>, or <tt>end</tt>
-	 *             is greater than <tt>csq.length()</tt>
+	 *                                   If <tt>start</tt> or <tt>end</tt> are
+	 *                                   negative,
+	 *                                   <tt>start</tt> is greater than
+	 *                                   <tt>end</tt>, or <tt>end</tt>
+	 *                                   is greater than <tt>csq.length()</tt>
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                   If an I/O error occurs
 	 *
 	 * @since 1.5
 	 */
-	public Writer append(CharSequence csq, int start, int end) throws IOException {
+	public Writer append(CharSequence csq, int start, int end)
+			throws IOException {
 		CharSequence cs = (csq == null ? "null" : csq);
 		write(cs.subSequence(start, end).toString());
 		return this;
@@ -286,12 +273,12 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 	 * </pre>
 	 *
 	 * @param c
-	 *            The 16-bit character to append
+	 *          The 16-bit character to append
 	 *
 	 * @return This writer
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 *
 	 * @since 1.5
 	 */
@@ -315,7 +302,7 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 	 * they are actually written to a physical device such as a disk drive.
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	abstract public void flush() throws IOException;
 
@@ -325,7 +312,7 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
 	 * thrown. Closing a previously closed stream has no effect.
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	abstract public void close() throws IOException;
 

@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -125,15 +94,16 @@
  * int dow = now1.get(ChronoField.DAY_OF_WEEK);
  * int month = now1.get(ChronoField.MONTH_OF_YEAR);
  * int year = now1.get(ChronoField.YEAR);
- * System.out.printf("  Today is %s %s %d-%s-%d%n", now1.getChronology().getId(), dow, day, month,
- * 		year);
+ * System.out.printf("  Today is %s %s %d-%s-%d%n", now1.getChronology()
+ * 		.getId(), dow, day, month, year);
  * // Print today's date and the last day of the year for the Thai Buddhist
  * // Calendar.
- * ChronoLocalDate first = now1.with(ChronoField.DAY_OF_MONTH, 1).with(ChronoField.MONTH_OF_YEAR,
- * 		1);
- * ChronoLocalDate last = first.plus(1, ChronoUnit.YEARS).minus(1, ChronoUnit.DAYS);
- * System.out.printf("  %s: 1st of year: %s; end of year: %s%n", last.getChronology().getId(),
- * 		first, last);
+ * ChronoLocalDate first = now1.with(ChronoField.DAY_OF_MONTH, 1).with(
+ * 		ChronoField.MONTH_OF_YEAR, 1);
+ * ChronoLocalDate last = first.plus(1, ChronoUnit.YEARS).minus(1,
+ * 		ChronoUnit.DAYS);
+ * System.out.printf("  %s: 1st of year: %s; end of year: %s%n", last
+ * 		.getChronology().getId(), first, last);
  * </pre>
  *
  * <p>
@@ -148,16 +118,17 @@
  * int dow = now1.get(ChronoField.DAY_OF_WEEK);
  * int month = now1.get(ChronoField.MONTH_OF_YEAR);
  * int year = now1.get(ChronoField.YEAR);
- * System.out.printf("  Today is %s %s %d-%s-%d%n", now1.getChronology().getId(), dow, day, month,
- * 		year);
+ * System.out.printf("  Today is %s %s %d-%s-%d%n", now1.getChronology()
+ * 		.getId(), dow, day, month, year);
  *
  * // Print today's date and the last day of the year for the Thai Buddhist
  * // Calendar.
- * ThaiBuddhistDate first = now1.with(ChronoField.DAY_OF_MONTH, 1).with(ChronoField.MONTH_OF_YEAR,
- * 		1);
- * ThaiBuddhistDate last = first.plus(1, ChronoUnit.YEARS).minus(1, ChronoUnit.DAYS);
- * System.out.printf("  %s: 1st of year: %s; end of year: %s%n", last.getChronology().getId(),
- * 		first, last);
+ * ThaiBuddhistDate first = now1.with(ChronoField.DAY_OF_MONTH, 1).with(
+ * 		ChronoField.MONTH_OF_YEAR, 1);
+ * ThaiBuddhistDate last = first.plus(1, ChronoUnit.YEARS).minus(1,
+ * 		ChronoUnit.DAYS);
+ * System.out.printf("  %s: 1st of year: %s; end of year: %s%n", last
+ * 		.getChronology().getId(), first, last);
  * </pre>
  *
  * <h3>Package specification</h3>

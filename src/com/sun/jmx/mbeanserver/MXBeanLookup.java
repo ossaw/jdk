@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -45,14 +25,11 @@ import javax.management.openmbean.OpenDataException;
 /*
  * This class handles the mapping between MXBean references and ObjectNames.
  * Consider an MXBean interface like this:
- *
  * public interface ModuleMXBean { ProductMXBean getProduct(); void
  * setProduct(ProductMXBean product); }
- *
  * This defines an attribute called "Product" whose originalType will be
  * ProductMXBean and whose openType will be ObjectName. The mapping happens as
  * follows.
- *
  * When the MXBean's getProduct method is called, it is supposed to return a
  * reference to another MXBean, or a proxy for another MXBean. The MXBean layer
  * has to convert this into an ObjectName. If it's a reference to another
@@ -60,23 +37,19 @@ import javax.management.openmbean.OpenDataException;
  * been registered in this MBeanServer; this is the purpose of the
  * mxbeanToObjectName map. If it's a proxy, it can check that the MBeanServer
  * matches and if so extract the ObjectName from the proxy.
- *
  * When the setProduct method is called on a proxy for this MXBean, the argument
  * can be either an MXBean reference (only really logical if the proxy has a
  * local MBeanServer) or another proxy. So the mapping logic is the same as for
  * getProduct on the MXBean.
- *
  * When the MXBean's setProduct method is called, it needs to convert the
  * ObjectName into an object implementing the ProductMXBean interface. We could
  * have a lookup table that reverses mxbeanToObjectName, but this could violate
  * the general JMX property that you cannot obtain a reference to an MBean
  * object. So we always use a proxy for this. However we do have an
  * objectNameToProxy map that allows us to reuse proxy instances.
- *
  * When the getProduct method is called on a proxy for this MXBean, it must
  * convert the returned ObjectName into an instance of ProductMXBean. Again it
  * can do this by making a proxy.
- *
  * From the above, it is clear that the logic for getX on an MXBean is the same
  * as for setX on a proxy, and vice versa.
  */
@@ -88,7 +61,8 @@ public class MXBeanLookup {
 	static MXBeanLookup lookupFor(MBeanServerConnection mbsc) {
 		synchronized (mbscToLookup) {
 			WeakReference<MXBeanLookup> weakLookup = mbscToLookup.get(mbsc);
-			MXBeanLookup lookup = (weakLookup == null) ? null : weakLookup.get();
+			MXBeanLookup lookup = (weakLookup == null) ? null
+					: weakLookup.get();
 			if (lookup == null) {
 				lookup = new MXBeanLookup(mbsc);
 				mbscToLookup.put(mbsc, new WeakReference<MXBeanLookup>(lookup));
@@ -109,7 +83,8 @@ public class MXBeanLookup {
 		return proxy;
 	}
 
-	synchronized ObjectName mxbeanToObjectName(Object mxbean) throws OpenDataException {
+	synchronized ObjectName mxbeanToObjectName(Object mxbean)
+			throws OpenDataException {
 		String wrong;
 		if (mxbean instanceof Proxy) {
 			InvocationHandler ih = Proxy.getInvocationHandler(mxbean);
@@ -127,8 +102,10 @@ public class MXBeanLookup {
 				return name;
 			wrong = "not an MXBean registered in this MBeanServer";
 		}
-		String s = (mxbean == null) ? "null" : "object of type " + mxbean.getClass().getName();
-		throw new OpenDataException("Could not convert " + s + " to an ObjectName: " + wrong);
+		String s = (mxbean == null) ? "null"
+				: "object of type " + mxbean.getClass().getName();
+		throw new OpenDataException("Could not convert " + s
+				+ " to an ObjectName: " + wrong);
 		// Message will be strange if mxbean is null but it is not
 		// supposed to be.
 	}
@@ -137,8 +114,8 @@ public class MXBeanLookup {
 			throws InstanceAlreadyExistsException {
 		ObjectName existing = mxbeanToObjectName.get(mxbean);
 		if (existing != null) {
-			String multiname = AccessController
-					.doPrivileged(new GetPropertyAction("jmx.mxbean.multiname"));
+			String multiname = AccessController.doPrivileged(
+					new GetPropertyAction("jmx.mxbean.multiname"));
 			if (!"true".equalsIgnoreCase(multiname)) {
 				throw new InstanceAlreadyExistsException(
 						"MXBean already registered with name " + existing);

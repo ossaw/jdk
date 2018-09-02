@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -50,7 +30,7 @@ public class BootstrapMethodError extends LinkageError {
 	 * message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public BootstrapMethodError(String s) {
 		super(s);
@@ -61,9 +41,9 @@ public class BootstrapMethodError extends LinkageError {
 	 * message and cause.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *              the detail message.
 	 * @param cause
-	 *            the cause, may be {@code null}.
+	 *              the cause, may be {@code null}.
 	 */
 	public BootstrapMethodError(String s, Throwable cause) {
 		super(s, cause);
@@ -73,7 +53,7 @@ public class BootstrapMethodError extends LinkageError {
 	 * Constructs a {@code BootstrapMethodError} with the specified cause.
 	 *
 	 * @param cause
-	 *            the cause, may be {@code null}.
+	 *              the cause, may be {@code null}.
 	 */
 	public BootstrapMethodError(Throwable cause) {
 		// cf. Throwable(Throwable cause) constructor.

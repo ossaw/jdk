@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -60,7 +40,7 @@ public interface XMLEventAllocator {
 	 * This method must not modify the state of the XMLStreamReader.
 	 * 
 	 * @param reader
-	 *            The XMLStreamReader to allocate from
+	 *               The XMLStreamReader to allocate from
 	 * @return the event corresponding to the current reader state
 	 */
 	public XMLEvent allocate(XMLStreamReader reader) throws XMLStreamException;
@@ -73,9 +53,9 @@ public interface XMLEventAllocator {
 	 * state of the XMLStreamReader.
 	 * 
 	 * @param reader
-	 *            The XMLStreamReader to allocate from
+	 *                 The XMLStreamReader to allocate from
 	 * @param consumer
-	 *            The XMLEventConsumer to add to.
+	 *                 The XMLEventConsumer to add to.
 	 */
 	public void allocate(XMLStreamReader reader, XMLEventConsumer consumer)
 			throws XMLStreamException;

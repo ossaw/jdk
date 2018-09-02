@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -60,7 +40,7 @@ public class LimitExceededException extends NamingException {
 	 * All other fields default to null.
 	 * 
 	 * @param explanation
-	 *            Possibly null detail about this exception.
+	 *                    Possibly null detail about this exception.
 	 * @see java.lang.Throwable#getMessage
 	 */
 	public LimitExceededException(String explanation) {

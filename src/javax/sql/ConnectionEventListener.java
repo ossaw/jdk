@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql;
@@ -55,7 +35,7 @@ public interface ConnectionEventListener extends java.util.EventListener {
 	 * pooled connection.
 	 *
 	 * @param event
-	 *            an event object describing the source of the event
+	 *              an event object describing the source of the event
 	 */
 	void connectionClosed(ConnectionEvent event);
 
@@ -67,9 +47,9 @@ public interface ConnectionEventListener extends java.util.EventListener {
 	 * <code>ConnectionEvent</code> object.
 	 *
 	 * @param event
-	 *            an event object describing the source of the event and
-	 *            containing the <code>SQLException</code> that the driver is
-	 *            about to throw
+	 *              an event object describing the source of the event and
+	 *              containing the <code>SQLException</code> that the driver is
+	 *              about to throw
 	 */
 	void connectionErrorOccurred(ConnectionEvent event);
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -50,8 +30,8 @@ class GlyphPainter1 extends GlyphView.GlyphPainter {
 		sync(v);
 		Segment text = v.getText(p0, p1);
 		int[] justificationData = getJustificationData(v);
-		int width = Utilities.getTabbedTextWidth(v, text, metrics, (int) x, e, p0,
-				justificationData);
+		int width = Utilities.getTabbedTextWidth(v, text, metrics, (int) x, e,
+				p0, justificationData);
 		SegmentCache.releaseSharedSegment(text);
 		return width;
 	}
@@ -86,7 +66,8 @@ class GlyphPainter1 extends GlyphView.GlyphPainter {
 		sync(v);
 		Segment text;
 		TabExpander expander = v.getTabExpander();
-		Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a : a.getBounds();
+		Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a
+				: a.getBounds();
 
 		// determine the x coordinate to render the glyphs
 		int x = alloc.x;
@@ -94,8 +75,8 @@ class GlyphPainter1 extends GlyphView.GlyphPainter {
 		int[] justificationData = getJustificationData(v);
 		if (p != p0) {
 			text = v.getText(p, p0);
-			int width = Utilities.getTabbedTextWidth(v, text, metrics, x, expander, p,
-					justificationData);
+			int width = Utilities.getTabbedTextWidth(v, text, metrics, x,
+					expander, p, justificationData);
 			x += width;
 			SegmentCache.releaseSharedSegment(text);
 		}
@@ -107,7 +88,8 @@ class GlyphPainter1 extends GlyphView.GlyphPainter {
 		text = v.getText(p0, p1);
 		g.setFont(metrics.getFont());
 
-		Utilities.drawTabbedText(v, text, x, y, g, expander, p0, justificationData);
+		Utilities.drawTabbedText(v, text, x, y, g, expander, p0,
+				justificationData);
 		SegmentCache.releaseSharedSegment(text);
 	}
 
@@ -115,7 +97,8 @@ class GlyphPainter1 extends GlyphView.GlyphPainter {
 			throws BadLocationException {
 
 		sync(v);
-		Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a : a.getBounds();
+		Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a
+				: a.getBounds();
 		int p0 = v.getStartOffset();
 		int p1 = v.getEndOffset();
 		TabExpander expander = v.getTabExpander();
@@ -124,16 +107,18 @@ class GlyphPainter1 extends GlyphView.GlyphPainter {
 		if (pos == p1) {
 			// The caller of this is left to right and borders a right to
 			// left view, return our end location.
-			return new Rectangle(alloc.x + alloc.width, alloc.y, 0, metrics.getHeight());
+			return new Rectangle(alloc.x + alloc.width, alloc.y, 0, metrics
+					.getHeight());
 		}
 		if ((pos >= p0) && (pos <= p1)) {
 			// determine range to the left of the position
 			text = v.getText(p0, pos);
 			int[] justificationData = getJustificationData(v);
-			int width = Utilities.getTabbedTextWidth(v, text, metrics, alloc.x, expander, p0,
-					justificationData);
+			int width = Utilities.getTabbedTextWidth(v, text, metrics, alloc.x,
+					expander, p0, justificationData);
 			SegmentCache.releaseSharedSegment(text);
-			return new Rectangle(alloc.x + width, alloc.y, 0, metrics.getHeight());
+			return new Rectangle(alloc.x + width, alloc.y, 0, metrics
+					.getHeight());
 		}
 		throw new BadLocationException("modelToView - can't convert", p1);
 	}
@@ -143,31 +128,34 @@ class GlyphPainter1 extends GlyphView.GlyphPainter {
 	 * coordinate space of the model.
 	 *
 	 * @param v
-	 *            the view containing the view coordinates
+	 *                   the view containing the view coordinates
 	 * @param x
-	 *            the X coordinate
+	 *                   the X coordinate
 	 * @param y
-	 *            the Y coordinate
+	 *                   the Y coordinate
 	 * @param a
-	 *            the allocated region to render into
+	 *                   the allocated region to render into
 	 * @param biasReturn
-	 *            always returns <code>Position.Bias.Forward</code> as the
-	 *            zero-th element of this array
+	 *                   always returns <code>Position.Bias.Forward</code> as
+	 *                   the
+	 *                   zero-th element of this array
 	 * @return the location within the model that best represents the given
 	 *         point in the view
 	 * @see View#viewToModel
 	 */
-	public int viewToModel(GlyphView v, float x, float y, Shape a, Position.Bias[] biasReturn) {
+	public int viewToModel(GlyphView v, float x, float y, Shape a,
+			Position.Bias[] biasReturn) {
 
 		sync(v);
-		Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a : a.getBounds();
+		Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a
+				: a.getBounds();
 		int p0 = v.getStartOffset();
 		int p1 = v.getEndOffset();
 		TabExpander expander = v.getTabExpander();
 		Segment text = v.getText(p0, p1);
 		int[] justificationData = getJustificationData(v);
-		int offs = Utilities.getTabbedTextOffset(v, text, metrics, alloc.x, (int) x, expander, p0,
-				justificationData);
+		int offs = Utilities.getTabbedTextOffset(v, text, metrics, alloc.x,
+				(int) x, expander, p0, justificationData);
 		SegmentCache.releaseSharedSegment(text);
 		int retValue = p0 + offs;
 		if (retValue == p1) {
@@ -204,8 +192,8 @@ class GlyphPainter1 extends GlyphView.GlyphPainter {
 		TabExpander expander = v.getTabExpander();
 		Segment s = v.getText(p0, v.getEndOffset());
 		int[] justificationData = getJustificationData(v);
-		int index = Utilities.getTabbedTextOffset(v, s, metrics, (int) x, (int) (x + len), expander,
-				p0, false, justificationData);
+		int index = Utilities.getTabbedTextOffset(v, s, metrics, (int) x,
+				(int) (x + len), expander, p0, false, justificationData);
 		SegmentCache.releaseSharedSegment(s);
 		int p1 = p0 + index;
 		return p1;

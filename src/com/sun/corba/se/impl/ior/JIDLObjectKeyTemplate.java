@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -56,7 +36,8 @@ public final class JIDLObjectKeyTemplate extends NewObjectKeyTemplateBase {
 	 * This constructor reads a complete ObjectKey (template and Id) from the
 	 * stream.
 	 */
-	public JIDLObjectKeyTemplate(ORB orb, int magic, int scid, InputStream is, OctetSeqHolder osh) {
+	public JIDLObjectKeyTemplate(ORB orb, int magic, int scid, InputStream is,
+			OctetSeqHolder osh) {
 		super(orb, magic, scid, is.read_long(), JIDL_ORB_ID, JIDL_OAID);
 
 		osh.value = readObjectKey(is);
@@ -65,7 +46,8 @@ public final class JIDLObjectKeyTemplate extends NewObjectKeyTemplateBase {
 	}
 
 	public JIDLObjectKeyTemplate(ORB orb, int scid, int serverid) {
-		super(orb, ObjectKeyFactoryImpl.JAVAMAGIC_NEWER, scid, serverid, JIDL_ORB_ID, JIDL_OAID);
+		super(orb, ObjectKeyFactoryImpl.JAVAMAGIC_NEWER, scid, serverid,
+				JIDL_ORB_ID, JIDL_OAID);
 
 		setORBVersion(ORBVersionFactory.getORBVersion());
 	}

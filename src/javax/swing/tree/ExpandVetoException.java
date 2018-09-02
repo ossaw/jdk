@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.tree;
@@ -43,7 +23,7 @@ public class ExpandVetoException extends Exception {
 	 * Constructs an ExpandVetoException object with no message.
 	 *
 	 * @param event
-	 *            a TreeExpansionEvent object
+	 *              a TreeExpansionEvent object
 	 */
 
 	public ExpandVetoException(TreeExpansionEvent event) {
@@ -54,9 +34,9 @@ public class ExpandVetoException extends Exception {
 	 * Constructs an ExpandVetoException object with the specified message.
 	 *
 	 * @param event
-	 *            a TreeExpansionEvent object
+	 *                a TreeExpansionEvent object
 	 * @param message
-	 *            a String containing the message
+	 *                a String containing the message
 	 */
 	public ExpandVetoException(TreeExpansionEvent event, String message) {
 		super(message);

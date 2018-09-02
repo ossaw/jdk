@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -82,7 +62,7 @@ public abstract class ServerSocketChannel extends AbstractSelectableChannel
 	 * Initializes a new instance of this class.
 	 *
 	 * @param provider
-	 *            The provider that created this channel
+	 *                 The provider that created this channel
 	 */
 	protected ServerSocketChannel(SelectorProvider provider) {
 		super(provider);
@@ -107,7 +87,7 @@ public abstract class ServerSocketChannel extends AbstractSelectableChannel
 	 * @return A new socket channel
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public static ServerSocketChannel open() throws IOException {
 		return SelectorProvider.provider().openServerSocketChannel();
@@ -143,27 +123,31 @@ public abstract class ServerSocketChannel extends AbstractSelectableChannel
 	 * </blockquote>
 	 *
 	 * @param local
-	 *            The local address to bind the socket, or {@code null} to bind
-	 *            to an automatically assigned socket address
+	 *              The local address to bind the socket, or {@code null} to
+	 *              bind
+	 *              to an automatically assigned socket address
 	 *
 	 * @return This channel
 	 *
 	 * @throws AlreadyBoundException
-	 *             {@inheritDoc}
+	 *                                         {@inheritDoc}
 	 * @throws UnsupportedAddressTypeException
-	 *             {@inheritDoc}
+	 *                                         {@inheritDoc}
 	 * @throws ClosedChannelException
-	 *             {@inheritDoc}
+	 *                                         {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                         {@inheritDoc}
 	 * @throws SecurityException
-	 *             If a security manager has been installed and its
-	 *             {@link SecurityManager#checkListen checkListen} method denies
-	 *             the operation
+	 *                                         If a security manager has been
+	 *                                         installed and its
+	 *                                         {@link SecurityManager#checkListen
+	 *                                         checkListen} method denies
+	 *                                         the operation
 	 *
 	 * @since 1.7
 	 */
-	public final ServerSocketChannel bind(SocketAddress local) throws IOException {
+	public final ServerSocketChannel bind(SocketAddress local)
+			throws IOException {
 		return bind(local, 0);
 	}
 
@@ -185,44 +169,49 @@ public abstract class ServerSocketChannel extends AbstractSelectableChannel
 	 * implementation specific default is used.
 	 *
 	 * @param local
-	 *            The address to bind the socket, or {@code null} to bind to an
-	 *            automatically assigned socket address
+	 *                The address to bind the socket, or {@code null} to bind to
+	 *                an
+	 *                automatically assigned socket address
 	 * @param backlog
-	 *            The maximum number of pending connections
+	 *                The maximum number of pending connections
 	 *
 	 * @return This channel
 	 *
 	 * @throws AlreadyBoundException
-	 *             If the socket is already bound
+	 *                                         If the socket is already bound
 	 * @throws UnsupportedAddressTypeException
-	 *             If the type of the given address is not supported
+	 *                                         If the type of the given address
+	 *                                         is not supported
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                         If this channel is closed
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                         If some other I/O error occurs
 	 * @throws SecurityException
-	 *             If a security manager has been installed and its
-	 *             {@link SecurityManager#checkListen checkListen} method denies
-	 *             the operation
+	 *                                         If a security manager has been
+	 *                                         installed and its
+	 *                                         {@link SecurityManager#checkListen
+	 *                                         checkListen} method denies
+	 *                                         the operation
 	 *
 	 * @since 1.7
 	 */
-	public abstract ServerSocketChannel bind(SocketAddress local, int backlog) throws IOException;
+	public abstract ServerSocketChannel bind(SocketAddress local, int backlog)
+			throws IOException;
 
 	/**
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClosedChannelException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 *
 	 * @since 1.7
 	 */
-	public abstract <T> ServerSocketChannel setOption(SocketOption<T> name, T value)
-			throws IOException;
+	public abstract <T> ServerSocketChannel setOption(SocketOption<T> name,
+			T value) throws IOException;
 
 	/**
 	 * Retrieves a server socket associated with this channel.
@@ -264,26 +253,33 @@ public abstract class ServerSocketChannel extends AbstractSelectableChannel
 	 *         available to be accepted
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                    If this channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the accept
-	 *             operation is in progress
+	 *                                    If another thread closes this channel
+	 *                                    while the accept
+	 *                                    operation is in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             accept operation is in progress, thereby closing the channel
-	 *             and setting the current thread's interrupt status
+	 *                                    If another thread interrupts the
+	 *                                    current thread while the
+	 *                                    accept operation is in progress,
+	 *                                    thereby closing the channel
+	 *                                    and setting the current thread's
+	 *                                    interrupt status
 	 *
 	 * @throws NotYetBoundException
-	 *             If this channel's socket has not yet been bound
+	 *                                    If this channel's socket has not yet
+	 *                                    been bound
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it does not
-	 *             permit access to the remote endpoint of the new connection
+	 *                                    If a security manager has been
+	 *                                    installed and it does not
+	 *                                    permit access to the remote endpoint
+	 *                                    of the new connection
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                    If some other I/O error occurs
 	 */
 	public abstract SocketChannel accept() throws IOException;
 
@@ -303,9 +299,9 @@ public abstract class ServerSocketChannel extends AbstractSelectableChannel
 	 *         is not bound
 	 *
 	 * @throws ClosedChannelException
-	 *             {@inheritDoc}
+	 *                                {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                {@inheritDoc}
 	 */
 	@Override
 	public abstract SocketAddress getLocalAddress() throws IOException;

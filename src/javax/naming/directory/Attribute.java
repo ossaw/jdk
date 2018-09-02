@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.directory;
@@ -83,8 +63,9 @@ public interface Attribute extends Cloneable, java.io.Serializable {
 	 *         attribute's value is null. If the attribute has zero values, an
 	 *         empty enumeration is returned.
 	 * @exception NamingException
-	 *                If a naming exception was encountered while retrieving the
-	 *                values.
+	 *                            If a naming exception was encountered while
+	 *                            retrieving the
+	 *                            values.
 	 * @see #isOrdered
 	 */
 	NamingEnumeration<?> getAll() throws NamingException;
@@ -98,10 +79,11 @@ public interface Attribute extends Cloneable, java.io.Serializable {
 	 * @return A possibly null object representing one of the attribute's value.
 	 *         It is null if the attribute's value is null.
 	 * @exception NamingException
-	 *                If a naming exception was encountered while retrieving the
-	 *                value.
-	 * @exception java.util.NoSuchElementException
-	 *                If this attribute has no values.
+	 *                            If a naming exception was encountered while
+	 *                            retrieving the
+	 *                            value.
+	 * @exception                 java.util.NoSuchElementException
+	 *                            If this attribute has no values.
 	 */
 	Object get() throws NamingException;
 
@@ -125,8 +107,9 @@ public interface Attribute extends Cloneable, java.io.Serializable {
 	 * information to determine equality.
 	 *
 	 * @param attrVal
-	 *            The possibly null value to check. If null, check whether the
-	 *            attribute has an attribute value whose value is null.
+	 *                The possibly null value to check. If null, check whether
+	 *                the
+	 *                attribute has an attribute value whose value is null.
 	 * @return true if attrVal is one of this attribute's values; false
 	 *         otherwise.
 	 * @see java.lang.Object#equals
@@ -144,8 +127,9 @@ public interface Attribute extends Cloneable, java.io.Serializable {
 	 * <tt>Object.equals()</tt> or schema information to determine equality.
 	 *
 	 * @param attrVal
-	 *            The new possibly null value to add. If null, null is added as
-	 *            an attribute value.
+	 *                The new possibly null value to add. If null, null is added
+	 *                as
+	 *                an attribute value.
 	 * @return true if a value was added; false otherwise.
 	 */
 	boolean add(Object attrVal);
@@ -161,8 +145,8 @@ public interface Attribute extends Cloneable, java.io.Serializable {
 	 * <tt>Object.equals()</tt> or schema information to determine equality.
 	 *
 	 * @param attrval
-	 *            The possibly null value to remove from this attribute. If
-	 *            null, remove the attribute value that is null.
+	 *                The possibly null value to remove from this attribute. If
+	 *                null, remove the attribute value that is null.
 	 * @return true if the value was removed; false otherwise.
 	 */
 	boolean remove(Object attrval);
@@ -197,9 +181,11 @@ public interface Attribute extends Cloneable, java.io.Serializable {
 	 *         supports schemas but this particular attribute does not have any
 	 *         schema information.
 	 * @exception OperationNotSupportedException
-	 *                If getting the schema is not supported.
+	 *                                           If getting the schema is not
+	 *                                           supported.
 	 * @exception NamingException
-	 *                If a naming exception occurs while getting the schema.
+	 *                                           If a naming exception occurs
+	 *                                           while getting the schema.
 	 */
 
 	DirContext getAttributeSyntaxDefinition() throws NamingException;
@@ -223,9 +209,11 @@ public interface Attribute extends Cloneable, java.io.Serializable {
 	 *         supports schemas but this particular attribute does not have any
 	 *         schema information.
 	 * @exception OperationNotSupportedException
-	 *                If getting the schema is not supported.
+	 *                                           If getting the schema is not
+	 *                                           supported.
 	 * @exception NamingException
-	 *                If a naming exception occurs while getting the schema.
+	 *                                           If a naming exception occurs
+	 *                                           while getting the schema.
 	 */
 	DirContext getAttributeDefinition() throws NamingException;
 
@@ -261,15 +249,17 @@ public interface Attribute extends Cloneable, java.io.Serializable {
 	 * returns the value that happens to be at that index.
 	 * 
 	 * @param ix
-	 *            The index of the value in the ordered list of attribute
-	 *            values. {@code 0 <= ix < size()}.
+	 *           The index of the value in the ordered list of attribute
+	 *           values. {@code 0 <= ix < size()}.
 	 * @return The possibly null attribute value at index <tt>ix</tt>; null if
 	 *         the attribute value is null.
 	 * @exception NamingException
-	 *                If a naming exception was encountered while retrieving the
-	 *                value.
+	 *                                      If a naming exception was
+	 *                                      encountered while retrieving the
+	 *                                      value.
 	 * @exception IndexOutOfBoundsException
-	 *                If <tt>ix</tt> is outside the specified range.
+	 *                                      If <tt>ix</tt> is outside the
+	 *                                      specified range.
 	 */
 	Object get(int ix) throws NamingException;
 
@@ -282,11 +272,12 @@ public interface Attribute extends Cloneable, java.io.Serializable {
 	 * list (and their indices decremented by one).
 	 *
 	 * @param ix
-	 *            The index of the value to remove. {@code 0 <= ix < size()}.
+	 *           The index of the value to remove. {@code 0 <= ix < size()}.
 	 * @return The possibly null attribute value at index <tt>ix</tt> that was
 	 *         removed; null if the attribute value is null.
 	 * @exception IndexOutOfBoundsException
-	 *                If <tt>ix</tt> is outside the specified range.
+	 *                                      If <tt>ix</tt> is outside the
+	 *                                      specified range.
 	 */
 	Object remove(int ix);
 
@@ -299,16 +290,20 @@ public interface Attribute extends Cloneable, java.io.Serializable {
 	 * <tt>attrVal</tt>, <tt>IllegalStateException</tt> is thrown.
 	 *
 	 * @param ix
-	 *            The index in the ordered list of attribute values to add the
-	 *            new value. {@code 0 <= ix <= size()}.
+	 *                The index in the ordered list of attribute values to add
+	 *                the
+	 *                new value. {@code 0 <= ix <= size()}.
 	 * @param attrVal
-	 *            The possibly null attribute value to add; if null, null is the
-	 *            value added.
+	 *                The possibly null attribute value to add; if null, null is
+	 *                the
+	 *                value added.
 	 * @exception IndexOutOfBoundsException
-	 *                If <tt>ix</tt> is outside the specified range.
+	 *                                      If <tt>ix</tt> is outside the
+	 *                                      specified range.
 	 * @exception IllegalStateException
-	 *                If the attribute values are unordered and <tt>attrVal</tt>
-	 *                is one of those values.
+	 *                                      If the attribute values are
+	 *                                      unordered and <tt>attrVal</tt>
+	 *                                      is one of those values.
 	 */
 	void add(int ix, Object attrVal);
 
@@ -321,18 +316,20 @@ public interface Attribute extends Cloneable, java.io.Serializable {
 	 * the values. In that case, <tt>IllegalStateException</tt> is thrown.
 	 *
 	 * @param ix
-	 *            The index of the value in the ordered list of attribute
-	 *            values. {@code 0 <= ix < size()}.
+	 *                The index of the value in the ordered list of attribute
+	 *                values. {@code 0 <= ix < size()}.
 	 * @param attrVal
-	 *            The possibly null attribute value to use. If null, 'null'
-	 *            replaces the old value.
+	 *                The possibly null attribute value to use. If null, 'null'
+	 *                replaces the old value.
 	 * @return The possibly null attribute value at index ix that was replaced.
 	 *         Null if the attribute value was null.
 	 * @exception IndexOutOfBoundsException
-	 *                If <tt>ix</tt> is outside the specified range.
+	 *                                      If <tt>ix</tt> is outside the
+	 *                                      specified range.
 	 * @exception IllegalStateException
-	 *                If <tt>attrVal</tt> already exists and the attribute
-	 *                values are unordered.
+	 *                                      If <tt>attrVal</tt> already exists
+	 *                                      and the attribute
+	 *                                      values are unordered.
 	 */
 	Object set(int ix, Object attrVal);
 

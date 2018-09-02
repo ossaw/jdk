@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -92,17 +72,17 @@ public class MediaTray extends Media implements Attribute {
 	 * value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected MediaTray(int value) {
 		super(value);
 	}
 
-	private static final String[] myStringTable = { "top", "middle", "bottom", "envelope", "manual",
-			"large-capacity", "main", "side" };
+	private static final String[] myStringTable = { "top", "middle", "bottom",
+			"envelope", "manual", "large-capacity", "main", "side" };
 
-	private static final MediaTray[] myEnumValueTable = { TOP, MIDDLE, BOTTOM, ENVELOPE, MANUAL,
-			LARGE_CAPACITY, MAIN, SIDE };
+	private static final MediaTray[] myEnumValueTable = { TOP, MIDDLE, BOTTOM,
+			ENVELOPE, MANUAL, LARGE_CAPACITY, MAIN, SIDE };
 
 	/**
 	 * Returns the string table for class MediaTray.

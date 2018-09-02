@@ -10,44 +10,37 @@ import com.sun.org.apache.bcel.internal.Constants;
 import java.io.PrintWriter;
 import java.util.*;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 2002 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -57,9 +50,8 @@ import java.util.*;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -87,8 +79,8 @@ class BCELFactory extends EmptyVisitor {
 
 	public void start() {
 		if (!_mg.isAbstract() && !_mg.isNative()) {
-			for (InstructionHandle ih = _mg.getInstructionList().getStart(); ih != null; ih = ih
-					.getNext()) {
+			for (InstructionHandle ih = _mg.getInstructionList()
+					.getStart(); ih != null; ih = ih.getNext()) {
 				Instruction i = ih.getInstruction();
 
 				if (i instanceof BranchInstruction) {
@@ -97,9 +89,11 @@ class BCELFactory extends EmptyVisitor {
 
 				if (ih.hasTargeters()) {
 					if (i instanceof BranchInstruction) {
-						_out.println("    InstructionHandle ih_" + ih.getPosition() + ";");
+						_out.println("    InstructionHandle ih_" + ih
+								.getPosition() + ";");
 					} else {
-						_out.print("    InstructionHandle ih_" + ih.getPosition() + " = ");
+						_out.print("    InstructionHandle ih_" + ih
+								.getPosition() + " = ");
 					}
 				} else {
 					_out.print("    ");
@@ -118,9 +112,11 @@ class BCELFactory extends EmptyVisitor {
 		short opcode = i.getOpcode();
 
 		if ((InstructionConstants.INSTRUCTIONS[opcode] != null)
-				&& !(i instanceof ConstantPushInstruction) && !(i instanceof ReturnInstruction)) { // Handled
-																									// below
-			_out.println("il.append(InstructionConstants." + i.getName().toUpperCase() + ");");
+				&& !(i instanceof ConstantPushInstruction)
+				&& !(i instanceof ReturnInstruction)) { // Handled
+																																							// below
+			_out.println("il.append(InstructionConstants." + i.getName()
+					.toUpperCase() + ");");
 			return true;
 		}
 
@@ -132,12 +128,12 @@ class BCELFactory extends EmptyVisitor {
 		Type type = i.getType(_cp);
 
 		if (opcode == Constants.IINC) {
-			_out.println("il.append(new IINC(" + i.getIndex() + ", " + ((IINC) i).getIncrement()
-					+ "));");
+			_out.println("il.append(new IINC(" + i.getIndex() + ", "
+					+ ((IINC) i).getIncrement() + "));");
 		} else {
 			String kind = (opcode < Constants.ISTORE) ? "Load" : "Store";
-			_out.println("il.append(_factory.create" + kind + "(" + BCELifier.printType(type) + ", "
-					+ i.getIndex() + "));");
+			_out.println("il.append(_factory.create" + kind + "(" + BCELifier
+					.printType(type) + ", " + i.getIndex() + "));");
 		}
 	}
 
@@ -146,8 +142,8 @@ class BCELFactory extends EmptyVisitor {
 		Type type = i.getType(_cp);
 		String kind = (opcode < Constants.IASTORE) ? "Load" : "Store";
 
-		_out.println(
-				"il.append(_factory.createArray" + kind + "(" + BCELifier.printType(type) + "));");
+		_out.println("il.append(_factory.createArray" + kind + "(" + BCELifier
+				.printType(type) + "));");
 	}
 
 	public void visitFieldInstruction(FieldInstruction i) {
@@ -157,9 +153,10 @@ class BCELFactory extends EmptyVisitor {
 		String field_name = i.getFieldName(_cp);
 		Type type = i.getFieldType(_cp);
 
-		_out.println("il.append(_factory.createFieldAccess(\"" + class_name + "\", \"" + field_name
-				+ "\", " + BCELifier.printType(type) + ", " + "Constants."
-				+ Constants.OPCODE_NAMES[opcode].toUpperCase() + "));");
+		_out.println("il.append(_factory.createFieldAccess(\"" + class_name
+				+ "\", \"" + field_name + "\", " + BCELifier.printType(type)
+				+ ", " + "Constants." + Constants.OPCODE_NAMES[opcode]
+						.toUpperCase() + "));");
 	}
 
 	public void visitInvokeInstruction(InvokeInstruction i) {
@@ -169,10 +166,11 @@ class BCELFactory extends EmptyVisitor {
 		Type type = i.getReturnType(_cp);
 		Type[] arg_types = i.getArgumentTypes(_cp);
 
-		_out.println("il.append(_factory.createInvoke(\"" + class_name + "\", \"" + method_name
-				+ "\", " + BCELifier.printType(type) + ", "
-				+ BCELifier.printArgumentTypes(arg_types) + ", " + "Constants."
-				+ Constants.OPCODE_NAMES[opcode].toUpperCase() + "));");
+		_out.println("il.append(_factory.createInvoke(\"" + class_name
+				+ "\", \"" + method_name + "\", " + BCELifier.printType(type)
+				+ ", " + BCELifier.printArgumentTypes(arg_types) + ", "
+				+ "Constants." + Constants.OPCODE_NAMES[opcode].toUpperCase()
+				+ "));");
 	}
 
 	public void visitAllocationInstruction(AllocationInstruction i) {
@@ -188,22 +186,22 @@ class BCELFactory extends EmptyVisitor {
 		int dim = 1;
 
 		switch (opcode) {
-		case Constants.NEW:
-			_out.println("il.append(_factory.createNew(\"" + ((ObjectType) type).getClassName()
-					+ "\"));");
-			break;
+			case Constants.NEW:
+				_out.println("il.append(_factory.createNew(\""
+						+ ((ObjectType) type).getClassName() + "\"));");
+				break;
 
-		case Constants.MULTIANEWARRAY:
-			dim = ((MULTIANEWARRAY) i).getDimensions();
+			case Constants.MULTIANEWARRAY:
+				dim = ((MULTIANEWARRAY) i).getDimensions();
 
-		case Constants.ANEWARRAY:
-		case Constants.NEWARRAY:
-			_out.println("il.append(_factory.createNewArray(" + BCELifier.printType(type)
-					+ ", (short) " + dim + "));");
-			break;
+			case Constants.ANEWARRAY:
+			case Constants.NEWARRAY:
+				_out.println("il.append(_factory.createNewArray(" + BCELifier
+						.printType(type) + ", (short) " + dim + "));");
+				break;
 
-		default:
-			throw new RuntimeException("Oops: " + opcode);
+			default:
+				throw new RuntimeException("Oops: " + opcode);
 		}
 	}
 
@@ -213,7 +211,8 @@ class BCELFactory extends EmptyVisitor {
 		if (value instanceof String)
 			embed = '"' + Utility.convertString(value.toString()) + '"';
 		else if (value instanceof Character)
-			embed = "(char)0x" + Integer.toHexString(((Character) value).charValue());
+			embed = "(char)0x" + Integer.toHexString(((Character) value)
+					.charValue());
 
 		_out.println("il.append(new PUSH(_cp, " + embed + "));");
 	}
@@ -233,19 +232,22 @@ class BCELFactory extends EmptyVisitor {
 	public void visitINSTANCEOF(INSTANCEOF i) {
 		Type type = i.getType(_cp);
 
-		_out.println("il.append(new INSTANCEOF(_cp.addClass(" + BCELifier.printType(type) + ")));");
+		_out.println("il.append(new INSTANCEOF(_cp.addClass(" + BCELifier
+				.printType(type) + ")));");
 	}
 
 	public void visitCHECKCAST(CHECKCAST i) {
 		Type type = i.getType(_cp);
 
-		_out.println("il.append(_factory.createCheckCast(" + BCELifier.printType(type) + "));");
+		_out.println("il.append(_factory.createCheckCast(" + BCELifier
+				.printType(type) + "));");
 	}
 
 	public void visitReturnInstruction(ReturnInstruction i) {
 		Type type = i.getType(_cp);
 
-		_out.println("il.append(_factory.createReturn(" + BCELifier.printType(type) + "));");
+		_out.println("il.append(_factory.createReturn(" + BCELifier.printType(
+				type) + "));");
 	}
 
 	// Memorize BranchInstructions that need an update
@@ -272,7 +274,8 @@ class BCELFactory extends EmptyVisitor {
 
 			args.append(" }");
 
-			_out.print("    Select " + name + " = new " + bi.getName().toUpperCase() + "(" + args
+			_out.print("    Select " + name + " = new " + bi.getName()
+					.toUpperCase() + "(" + args
 					+ ", new InstructionHandle[] { ");
 
 			for (int i = 0; i < matchs.length; i++) {
@@ -294,8 +297,9 @@ class BCELFactory extends EmptyVisitor {
 				target = "null";
 			}
 
-			_out.println("    BranchInstruction " + name + " = _factory.createBranchInstruction("
-					+ "Constants." + bi.getName().toUpperCase() + ", " + target + ");");
+			_out.println("    BranchInstruction " + name
+					+ " = _factory.createBranchInstruction(" + "Constants." + bi
+							.getName().toUpperCase() + ", " + target + ");");
 		}
 
 		if (bh.hasTargeters())
@@ -324,7 +328,8 @@ class BCELFactory extends EmptyVisitor {
 				for (int j = 0; j < ihs.length; j++) {
 					t_pos = ihs[j].getPosition();
 
-					_out.println("    " + name + ".setTarget(" + j + ", ih_" + t_pos + ");");
+					_out.println("    " + name + ".setTarget(" + j + ", ih_"
+							+ t_pos + ");");
 				}
 			}
 		}
@@ -338,9 +343,10 @@ class BCELFactory extends EmptyVisitor {
 			String type = (h.getCatchType() == null) ? "null"
 					: BCELifier.printType(h.getCatchType());
 
-			_out.println("    method.addExceptionHandler(" + "ih_" + h.getStartPC().getPosition()
-					+ ", " + "ih_" + h.getEndPC().getPosition() + ", " + "ih_"
-					+ h.getHandlerPC().getPosition() + ", " + type + ");");
+			_out.println("    method.addExceptionHandler(" + "ih_" + h
+					.getStartPC().getPosition() + ", " + "ih_" + h.getEndPC()
+							.getPosition() + ", " + "ih_" + h.getHandlerPC()
+									.getPosition() + ", " + type + ");");
 		}
 	}
 }

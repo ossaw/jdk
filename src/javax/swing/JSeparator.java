@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -64,7 +44,8 @@ import java.io.IOException;
  * @author Jeff Shapiro
  */
 @SuppressWarnings("serial")
-public class JSeparator extends JComponent implements SwingConstants, Accessible {
+public class JSeparator extends JComponent implements SwingConstants,
+		Accessible {
 	/**
 	 * @see #getUIClassID
 	 * @see #readObject
@@ -83,12 +64,15 @@ public class JSeparator extends JComponent implements SwingConstants, Accessible
 	 * orientation.
 	 *
 	 * @param orientation
-	 *            an integer specifying <code>SwingConstants.HORIZONTAL</code>
-	 *            or <code>SwingConstants.VERTICAL</code>
+	 *                    an integer specifying
+	 *                    <code>SwingConstants.HORIZONTAL</code>
+	 *                    or <code>SwingConstants.VERTICAL</code>
 	 * @exception IllegalArgumentException
-	 *                if <code>orientation</code> is neither
-	 *                <code>SwingConstants.HORIZONTAL</code> nor
-	 *                <code>SwingConstants.VERTICAL</code>
+	 *                                     if <code>orientation</code> is
+	 *                                     neither
+	 *                                     <code>SwingConstants.HORIZONTAL</code>
+	 *                                     nor
+	 *                                     <code>SwingConstants.VERTICAL</code>
 	 */
 	public JSeparator(int orientation) {
 		checkOrientation(orientation);
@@ -110,7 +94,7 @@ public class JSeparator extends JComponent implements SwingConstants, Accessible
 	 * Sets the L&amp;F object that renders this component.
 	 *
 	 * @param ui
-	 *            the SeparatorUI L&amp;F object
+	 *           the SeparatorUI L&amp;F object
 	 * @see UIDefaults#getUI
 	 * @beaninfo bound: true hidden: true attribute: visualUpdate true
 	 *           description: The UI object that implements the Component's
@@ -175,12 +159,14 @@ public class JSeparator extends JComponent implements SwingConstants, Accessible
 	 * is HORIZONTAL.
 	 * 
 	 * @param orientation
-	 *            either <code>SwingConstants.HORIZONTAL</code> or
-	 *            <code>SwingConstants.VERTICAL</code>
+	 *                    either <code>SwingConstants.HORIZONTAL</code> or
+	 *                    <code>SwingConstants.VERTICAL</code>
 	 * @exception IllegalArgumentException
-	 *                if <code>orientation</code> is neither
-	 *                <code>SwingConstants.HORIZONTAL</code> nor
-	 *                <code>SwingConstants.VERTICAL</code>
+	 *                                     if <code>orientation</code> is
+	 *                                     neither
+	 *                                     <code>SwingConstants.HORIZONTAL</code>
+	 *                                     nor
+	 *                                     <code>SwingConstants.VERTICAL</code>
 	 *
 	 * @see SwingConstants
 	 * @see #getOrientation
@@ -203,11 +189,12 @@ public class JSeparator extends JComponent implements SwingConstants, Accessible
 
 	private void checkOrientation(int orientation) {
 		switch (orientation) {
-		case VERTICAL:
-		case HORIZONTAL:
-			break;
-		default:
-			throw new IllegalArgumentException("orientation must be one of: VERTICAL, HORIZONTAL");
+			case VERTICAL:
+			case HORIZONTAL:
+				break;
+			default:
+				throw new IllegalArgumentException(
+						"orientation must be one of: VERTICAL, HORIZONTAL");
 		}
 	}
 
@@ -221,7 +208,8 @@ public class JSeparator extends JComponent implements SwingConstants, Accessible
 	 * @return a string representation of this <code>JSeparator</code>
 	 */
 	protected String paramString() {
-		String orientationString = (orientation == HORIZONTAL ? "HORIZONTAL" : "VERTICAL");
+		String orientationString = (orientation == HORIZONTAL ? "HORIZONTAL"
+				: "VERTICAL");
 
 		return super.paramString() + ",orientation=" + orientationString;
 	}

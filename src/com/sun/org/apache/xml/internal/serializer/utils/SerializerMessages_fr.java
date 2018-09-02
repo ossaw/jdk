@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,25 +41,18 @@ public class SerializerMessages_fr extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Serializer Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 * 
 	 * 1) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
-	 * 
 	 * 2) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 3) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
-	 *
 	 */
 
 	/** The lookup table for error messages. */
@@ -137,7 +127,8 @@ public class SerializerMessages_fr extends ListResourceBundle {
 				{ MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED,
 						"Le format de l'adresse de l'h\u00F4te n'est pas correct" },
 
-				{ MsgKey.ER_SCHEME_NOT_CONFORMANT, "Le mod\u00E8le n'est pas conforme." },
+				{ MsgKey.ER_SCHEME_NOT_CONFORMANT,
+						"Le mod\u00E8le n'est pas conforme." },
 
 				{ MsgKey.ER_SCHEME_FROM_NULL_STRING,
 						"Impossible de d\u00E9finir le mod\u00E8le \u00E0 partir de la cha\u00EEne NULL" },
@@ -157,7 +148,8 @@ public class SerializerMessages_fr extends ListResourceBundle {
 				{ MsgKey.ER_FRAG_FOR_GENERIC_URI,
 						"Le fragment ne peut \u00EAtre d\u00E9fini que pour un URI g\u00E9n\u00E9rique" },
 
-				{ MsgKey.ER_NO_SCHEME_IN_URI, "Mod\u00E8le introuvable dans l'URI" },
+				{ MsgKey.ER_NO_SCHEME_IN_URI,
+						"Mod\u00E8le introuvable dans l'URI" },
 
 				{ MsgKey.ER_CANNOT_INIT_URI_EMPTY_PARMS,
 						"Impossible d'initialiser l'URI avec des param\u00E8tres vides" },

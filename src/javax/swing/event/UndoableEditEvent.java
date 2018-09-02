@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.event;
@@ -46,10 +26,10 @@ public class UndoableEditEvent extends java.util.EventObject {
 	 * Constructs an UndoableEditEvent object.
 	 *
 	 * @param source
-	 *            the Object that originated the event (typically
-	 *            <code>this</code>)
+	 *               the Object that originated the event (typically
+	 *               <code>this</code>)
 	 * @param edit
-	 *            an UndoableEdit object
+	 *               an UndoableEdit object
 	 */
 	public UndoableEditEvent(Object source, UndoableEdit edit) {
 		super(source);

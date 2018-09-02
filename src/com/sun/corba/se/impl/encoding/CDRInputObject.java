@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.encoding;
@@ -63,16 +43,19 @@ public class CDRInputObject extends CDRInputStream implements InputObject {
 	private ORBUtilSystemException wrapper;
 	private OMGSystemException omgWrapper;
 
-	public CDRInputObject(ORB orb, CorbaConnection corbaConnection, ByteBuffer byteBuffer,
-			Message header) {
-		super(orb, byteBuffer, header.getSize(), header.isLittleEndian(), header.getGIOPVersion(),
-				header.getEncodingVersion(), BufferManagerFactory.newBufferManagerRead(
-						header.getGIOPVersion(), header.getEncodingVersion(), orb));
+	public CDRInputObject(ORB orb, CorbaConnection corbaConnection,
+			ByteBuffer byteBuffer, Message header) {
+		super(orb, byteBuffer, header.getSize(), header.isLittleEndian(), header
+				.getGIOPVersion(), header.getEncodingVersion(),
+				BufferManagerFactory.newBufferManagerRead(header
+						.getGIOPVersion(), header.getEncodingVersion(), orb));
 
 		this.corbaConnection = corbaConnection;
 		this.orb = orb;
-		this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_ENCODING);
-		this.omgWrapper = OMGSystemException.get(orb, CORBALogDomains.RPC_ENCODING);
+		this.wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_ENCODING);
+		this.omgWrapper = OMGSystemException.get(orb,
+				CORBALogDomains.RPC_ENCODING);
 
 		if (orb.transportDebugFlag) {
 			dprint(".CDRInputObject constructor:");
@@ -123,7 +106,8 @@ public class CDRInputObject extends CDRInputStream implements InputObject {
 				unmarshaledHeader = true;
 			} catch (RuntimeException e) {
 				if (((ORB) orb()).transportDebugFlag) {
-					dprint(".unmarshalHeader: !!ERROR!!: " + getMessageHeader() + ": " + e);
+					dprint(".unmarshalHeader: !!ERROR!!: " + getMessageHeader()
+							+ ": " + e);
 				}
 				throw e;
 			} finally {
@@ -155,13 +139,14 @@ public class CDRInputObject extends CDRInputStream implements InputObject {
 		if (codesets == null)
 			return super.createCharBTCConverter();
 
-		OSFCodeSetRegistry.Entry charSet = OSFCodeSetRegistry
-				.lookupEntry(codesets.getCharCodeSet());
+		OSFCodeSetRegistry.Entry charSet = OSFCodeSetRegistry.lookupEntry(
+				codesets.getCharCodeSet());
 
 		if (charSet == null)
 			throw wrapper.unknownCodeset(charSet);
 
-		return CodeSetConversion.impl().getBTCConverter(charSet, isLittleEndian());
+		return CodeSetConversion.impl().getBTCConverter(charSet,
+				isLittleEndian());
 	}
 
 	protected CodeSetConversion.BTCConverter createWCharBTCConverter() {
@@ -178,8 +163,8 @@ public class CDRInputObject extends CDRInputStream implements InputObject {
 				throw omgWrapper.noServerWcharCodesetCmp();
 		}
 
-		OSFCodeSetRegistry.Entry wcharSet = OSFCodeSetRegistry
-				.lookupEntry(codesets.getWCharCodeSet());
+		OSFCodeSetRegistry.Entry wcharSet = OSFCodeSetRegistry.lookupEntry(
+				codesets.getWCharCodeSet());
 
 		if (wcharSet == null)
 			throw wrapper.unknownCodeset(wcharSet);
@@ -194,10 +179,12 @@ public class CDRInputObject extends CDRInputStream implements InputObject {
 		// we do what our old ORBs did.
 		if (wcharSet == OSFCodeSetRegistry.UTF_16) {
 			if (getGIOPVersion().equals(GIOPVersion.V1_2))
-				return CodeSetConversion.impl().getBTCConverter(wcharSet, false);
+				return CodeSetConversion.impl().getBTCConverter(wcharSet,
+						false);
 		}
 
-		return CodeSetConversion.impl().getBTCConverter(wcharSet, isLittleEndian());
+		return CodeSetConversion.impl().getBTCConverter(wcharSet,
+				isLittleEndian());
 	}
 
 	// If we're local and don't have a Connection, use the

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -117,7 +97,7 @@ package java.util;
  * Framework</a>.
  *
  * @param <E>
- *            the type of elements maintained by this set
+ *        the type of elements maintained by this set
  *
  * @author Josh Bloch
  * @see Object#hashCode()
@@ -129,8 +109,8 @@ package java.util;
  * @since 1.4
  */
 
-public class LinkedHashSet<E> extends HashSet<E>
-		implements Set<E>, Cloneable, java.io.Serializable {
+public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable,
+		java.io.Serializable {
 
 	private static final long serialVersionUID = -2851667679971038690L;
 
@@ -139,12 +119,13 @@ public class LinkedHashSet<E> extends HashSet<E>
 	 * capacity and load factor.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the linked hash set
+	 *                        the initial capacity of the linked hash set
 	 * @param loadFactor
-	 *            the load factor of the linked hash set
+	 *                        the load factor of the linked hash set
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is less than zero, or if the load
-	 *             factor is nonpositive
+	 *                                  if the initial capacity is less than
+	 *                                  zero, or if the load
+	 *                                  factor is nonpositive
 	 */
 	public LinkedHashSet(int initialCapacity, float loadFactor) {
 		super(initialCapacity, loadFactor, true);
@@ -155,9 +136,10 @@ public class LinkedHashSet<E> extends HashSet<E>
 	 * capacity and the default load factor (0.75).
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the LinkedHashSet
+	 *                        the initial capacity of the LinkedHashSet
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is less than zero
+	 *                                  if the initial capacity is less than
+	 *                                  zero
 	 */
 	public LinkedHashSet(int initialCapacity) {
 		super(initialCapacity, .75f, true);
@@ -178,9 +160,9 @@ public class LinkedHashSet<E> extends HashSet<E>
 	 * default load factor (0.75).
 	 *
 	 * @param c
-	 *            the collection whose elements are to be placed into this set
+	 *          the collection whose elements are to be placed into this set
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                              if the specified collection is null
 	 */
 	public LinkedHashSet(Collection<? extends E> c) {
 		super(Math.max(2 * c.size(), 11), .75f, true);
@@ -208,6 +190,7 @@ public class LinkedHashSet<E> extends HashSet<E>
 	 */
 	@Override
 	public Spliterator<E> spliterator() {
-		return Spliterators.spliterator(this, Spliterator.DISTINCT | Spliterator.ORDERED);
+		return Spliterators.spliterator(this, Spliterator.DISTINCT
+				| Spliterator.ORDERED);
 	}
 }

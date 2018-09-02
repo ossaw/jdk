@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -53,34 +33,43 @@ public class PixelInterleavedSampleModel extends ComponentSampleModel {
 	 * The number of bands will be given by the length of the bandOffsets array.
 	 * 
 	 * @param dataType
-	 *            The data type for storing samples.
+	 *                       The data type for storing samples.
 	 * @param w
-	 *            The width (in pixels) of the region of image data described.
+	 *                       The width (in pixels) of the region of image data
+	 *                       described.
 	 * @param h
-	 *            The height (in pixels) of the region of image data described.
+	 *                       The height (in pixels) of the region of image data
+	 *                       described.
 	 * @param pixelStride
-	 *            The pixel stride of the image data.
+	 *                       The pixel stride of the image data.
 	 * @param scanlineStride
-	 *            The line stride of the image data.
+	 *                       The line stride of the image data.
 	 * @param bandOffsets
-	 *            The offsets of all bands.
+	 *                       The offsets of all bands.
 	 * @throws IllegalArgumentException
-	 *             if <code>w</code> or <code>h</code> is not greater than 0
+	 *                                  if <code>w</code> or <code>h</code> is
+	 *                                  not greater than 0
 	 * @throws IllegalArgumentException
-	 *             if any offset between bands is greater than the scanline
-	 *             stride
+	 *                                  if any offset between bands is greater
+	 *                                  than the scanline
+	 *                                  stride
 	 * @throws IllegalArgumentException
-	 *             if the product of <code>pixelStride</code> and <code>w</code>
-	 *             is greater than <code>scanlineStride</code>
+	 *                                  if the product of
+	 *                                  <code>pixelStride</code> and
+	 *                                  <code>w</code>
+	 *                                  is greater than
+	 *                                  <code>scanlineStride</code>
 	 * @throws IllegalArgumentException
-	 *             if <code>pixelStride</code> is less than any offset between
-	 *             bands
+	 *                                  if <code>pixelStride</code> is less than
+	 *                                  any offset between
+	 *                                  bands
 	 * @throws IllegalArgumentException
-	 *             if <code>dataType</code> is not one of the supported data
-	 *             types
+	 *                                  if <code>dataType</code> is not one of
+	 *                                  the supported data
+	 *                                  types
 	 */
-	public PixelInterleavedSampleModel(int dataType, int w, int h, int pixelStride,
-			int scanlineStride, int bandOffsets[]) {
+	public PixelInterleavedSampleModel(int dataType, int w, int h,
+			int pixelStride, int scanlineStride, int bandOffsets[]) {
 		super(dataType, w, h, pixelStride, scanlineStride, bandOffsets);
 		int minBandOff = this.bandOffsets[0];
 		int maxBandOff = this.bandOffsets[0];
@@ -90,12 +79,13 @@ public class PixelInterleavedSampleModel extends ComponentSampleModel {
 		}
 		maxBandOff -= minBandOff;
 		if (maxBandOff > scanlineStride) {
-			throw new IllegalArgumentException(
-					"Offsets between bands must be" + " less than the scanline " + " stride");
+			throw new IllegalArgumentException("Offsets between bands must be"
+					+ " less than the scanline " + " stride");
 		}
 		if (pixelStride * w > scanlineStride) {
-			throw new IllegalArgumentException("Pixel stride times width " + "must be less than or "
-					+ "equal to the scanline " + "stride");
+			throw new IllegalArgumentException("Pixel stride times width "
+					+ "must be less than or " + "equal to the scanline "
+					+ "stride");
 		}
 		if (pixelStride < maxBandOff) {
 			throw new IllegalArgumentException("Pixel stride must be greater"
@@ -111,13 +101,14 @@ public class PixelInterleavedSampleModel extends ComponentSampleModel {
 	 * the minimum of all of the band offsets is zero.
 	 * 
 	 * @param w
-	 *            the width of the resulting <code>SampleModel</code>
+	 *          the width of the resulting <code>SampleModel</code>
 	 * @param h
-	 *            the height of the resulting <code>SampleModel</code>
+	 *          the height of the resulting <code>SampleModel</code>
 	 * @return a new <code>SampleModel</code> with the specified width and
 	 *         height.
 	 * @throws IllegalArgumentException
-	 *             if <code>w</code> or <code>h</code> is not greater than 0
+	 *                                  if <code>w</code> or <code>h</code> is
+	 *                                  not greater than 0
 	 */
 	public SampleModel createCompatibleSampleModel(int w, int h) {
 		int minBandoff = bandOffsets[0];
@@ -136,8 +127,8 @@ public class PixelInterleavedSampleModel extends ComponentSampleModel {
 		} else {
 			bandOff = bandOffsets;
 		}
-		return new PixelInterleavedSampleModel(dataType, w, h, pixelStride, pixelStride * w,
-				bandOff);
+		return new PixelInterleavedSampleModel(dataType, w, h, pixelStride,
+				pixelStride * w, bandOff);
 	}
 
 	/**
@@ -153,8 +144,8 @@ public class PixelInterleavedSampleModel extends ComponentSampleModel {
 		for (int i = 0; i < bands.length; i++) {
 			newBandOffsets[i] = bandOffsets[bands[i]];
 		}
-		return new PixelInterleavedSampleModel(this.dataType, width, height, this.pixelStride,
-				scanlineStride, newBandOffsets);
+		return new PixelInterleavedSampleModel(this.dataType, width, height,
+				this.pixelStride, scanlineStride, newBandOffsets);
 	}
 
 	// Differentiate hash code from other ComponentSampleModel subclasses

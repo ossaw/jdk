@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -50,7 +47,7 @@ public final class BoolStack implements Cloneable {
 	 * Construct a IntVector, using the given block size.
 	 *
 	 * @param size
-	 *            array size to allocate
+	 *             array size to allocate
 	 */
 	public BoolStack(int size) {
 
@@ -98,7 +95,7 @@ public final class BoolStack implements Cloneable {
 	 *
 	 * @return The object at the top of this stack.
 	 * @throws EmptyStackException
-	 *             if this stack is empty.
+	 *                             if this stack is empty.
 	 */
 	public final boolean pop() {
 		return m_values[m_index--];
@@ -123,7 +120,7 @@ public final class BoolStack implements Cloneable {
 	 *
 	 *
 	 * @param b
-	 *            Object to set at the top of this stack
+	 *          Object to set at the top of this stack
 	 */
 	public final void setTop(boolean b) {
 		m_values[m_index] = b;
@@ -135,7 +132,7 @@ public final class BoolStack implements Cloneable {
 	 *
 	 * @return the object at the top of this stack.
 	 * @throws EmptyStackException
-	 *             if this stack is empty.
+	 *                             if this stack is empty.
 	 */
 	public final boolean peek() {
 		return m_values[m_index];

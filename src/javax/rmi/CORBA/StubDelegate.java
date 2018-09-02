@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package javax.rmi.CORBA;
@@ -77,7 +56,8 @@ public interface StubDelegate {
 	 * "{@docRoot}/serialized-form.html#javax.rmi.CORBA.Stub">
 	 * <code>Stub.readObject(java.io.ObjectInputStream)</code></a>.
 	 */
-	void readObject(Stub self, ObjectInputStream s) throws IOException, ClassNotFoundException;
+	void readObject(Stub self, ObjectInputStream s) throws IOException,
+			ClassNotFoundException;
 
 	// _REVISIT_ cannot link to Stub.writeObject directly... why not?
 	/**

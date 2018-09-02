@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.colorchooser;
@@ -50,8 +30,8 @@ class ColorModel {
 	}
 
 	int getColor(float[] model) {
-		return to8bit(model[2]) | (to8bit(model[1]) << 8) | (to8bit(model[0]) << 16)
-				| (to8bit(model[3]) << 24);
+		return to8bit(model[2]) | (to8bit(model[1]) << 8) | (to8bit(
+				model[0]) << 16) | (to8bit(model[3]) << 24);
 	}
 
 	int getCount() {
@@ -83,13 +63,15 @@ class ColorModel {
 	}
 
 	final String getText(Component component, String suffix) {
-		return UIManager.getString(this.prefix + suffix + "Text", component.getLocale()); // NON-NLS:
-																							// default
-																							// postfix
+		return UIManager.getString(this.prefix + suffix + "Text", component
+				.getLocale()); // NON-NLS:
+																									// default
+																									// postfix
 	}
 
 	final int getInteger(Component component, String suffix) {
-		Object value = UIManager.get(this.prefix + suffix, component.getLocale());
+		Object value = UIManager.get(this.prefix + suffix, component
+				.getLocale());
 		if (value instanceof Integer) {
 			return (Integer) value;
 		}

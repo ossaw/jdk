@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -78,8 +58,8 @@ class NameImpl {
 	}
 
 	private final boolean isMeta(String n, int i) {
-		return (isA(n, i, syntaxEscape) || isA(n, i, syntaxBeginQuote1)
-				|| isA(n, i, syntaxBeginQuote2) || isSeparator(n, i));
+		return (isA(n, i, syntaxEscape) || isA(n, i, syntaxBeginQuote1) || isA(
+				n, i, syntaxBeginQuote2) || isSeparator(n, i));
 	}
 
 	private final boolean isSeparator(String n, int i) {
@@ -95,8 +75,8 @@ class NameImpl {
 		return (i);
 	}
 
-	private final int extractComp(String name, int i, int len, Vector<String> comps)
-			throws InvalidNameException {
+	private final int extractComp(String name, int i, int len,
+			Vector<String> comps) throws InvalidNameException {
 		String beginQuote;
 		String endQuote;
 		boolean start = true;
@@ -105,8 +85,8 @@ class NameImpl {
 
 		while (i < len) {
 			// handle quoted strings
-			if (start && ((one = isA(name, i, syntaxBeginQuote1))
-					|| isA(name, i, syntaxBeginQuote2))) {
+			if (start && ((one = isA(name, i, syntaxBeginQuote1)) || isA(name,
+					i, syntaxBeginQuote2))) {
 
 				// record choice of quote chars being used
 				beginQuote = one ? syntaxBeginQuote1 : syntaxBeginQuote2;
@@ -116,11 +96,12 @@ class NameImpl {
 				}
 
 				// consume string until matching quote
-				for (i += beginQuote.length(); ((i < len) && !name.startsWith(endQuote, i)); i++) {
+				for (i += beginQuote.length(); ((i < len) && !name.startsWith(
+						endQuote, i)); i++) {
 					// skip escape character if it is escaping ending quote
 					// otherwise leave as is.
-					if (isA(name, i, syntaxEscape)
-							&& isA(name, i + syntaxEscape.length(), endQuote)) {
+					if (isA(name, i, syntaxEscape) && isA(name, i + syntaxEscape
+							.length(), endQuote)) {
 						i += syntaxEscape.length();
 					}
 					answer.append(name.charAt(i)); // copy char
@@ -138,8 +119,8 @@ class NameImpl {
 					break;
 				}
 				// throw (new Exception(
-				throw (new InvalidNameException(
-						name + ": close quote appears before end of component"));
+				throw (new InvalidNameException(name
+						+ ": close quote appears before end of component"));
 
 			} else if (isSeparator(name, i)) {
 				break;
@@ -153,12 +134,13 @@ class NameImpl {
 						escapingStyle = STYLE_ESCAPE;
 					}
 				} else if (i + syntaxEscape.length() >= len) {
-					throw (new InvalidNameException(
-							name + ": unescaped " + syntaxEscape + " at end of component"));
+					throw (new InvalidNameException(name + ": unescaped "
+							+ syntaxEscape + " at end of component"));
 				}
-			} else if (isA(name, i, syntaxTypevalSeparator)
-					&& ((one = isA(name, i + syntaxTypevalSeparator.length(), syntaxBeginQuote1))
-							|| isA(name, i + syntaxTypevalSeparator.length(), syntaxBeginQuote2))) {
+			} else if (isA(name, i, syntaxTypevalSeparator) && ((one = isA(name,
+					i + syntaxTypevalSeparator.length(), syntaxBeginQuote1))
+					|| isA(name, i + syntaxTypevalSeparator.length(),
+							syntaxBeginQuote2))) {
 				// Handle quote occurring after typeval separator
 				beginQuote = one ? syntaxBeginQuote1 : syntaxBeginQuote2;
 				endQuote = one ? syntaxEndQuote1 : syntaxEndQuote2;
@@ -167,11 +149,12 @@ class NameImpl {
 				answer.append(syntaxTypevalSeparator + beginQuote); // add back
 
 				// consume string until matching quote
-				for (i += beginQuote.length(); ((i < len) && !name.startsWith(endQuote, i)); i++) {
+				for (i += beginQuote.length(); ((i < len) && !name.startsWith(
+						endQuote, i)); i++) {
 					// skip escape character if it is escaping ending quote
 					// otherwise leave as is.
-					if (isA(name, i, syntaxEscape)
-							&& isA(name, i + syntaxEscape.length(), endQuote)) {
+					if (isA(name, i, syntaxEscape) && isA(name, i + syntaxEscape
+							.length(), endQuote)) {
 						i += syntaxEscape.length();
 					}
 					answer.append(name.charAt(i)); // copy char
@@ -179,7 +162,8 @@ class NameImpl {
 
 				// no ending quote found
 				if (i >= len)
-					throw new InvalidNameException(name + ": typeval no close quote");
+					throw new InvalidNameException(name
+							+ ": typeval no close quote");
 
 				i += endQuote.length();
 				answer.append(endQuote); // add back
@@ -208,11 +192,13 @@ class NameImpl {
 	}
 
 	private static boolean toBoolean(String name) {
-		return ((name != null) && name.toLowerCase(Locale.ENGLISH).equals("true"));
+		return ((name != null) && name.toLowerCase(Locale.ENGLISH).equals(
+				"true"));
 	}
 
 	private final void recordNamingConvention(Properties p) {
-		String syntaxDirectionStr = p.getProperty("jndi.syntax.direction", "flat");
+		String syntaxDirectionStr = p.getProperty("jndi.syntax.direction",
+				"flat");
 		if (syntaxDirectionStr.equals("left_to_right")) {
 			syntaxDirection = LEFT_TO_RIGHT;
 		} else if (syntaxDirectionStr.equals("right_to_left")) {
@@ -273,7 +259,8 @@ class NameImpl {
 		for (int i = 0; i < len;) {
 			i = extractComp(n, i, len, components);
 
-			String comp = rToL ? components.firstElement() : components.lastElement();
+			String comp = rToL ? components.firstElement()
+					: components.lastElement();
 			if (comp.length() >= 1) {
 				compsAllEmpty = false;
 			}
@@ -403,7 +390,8 @@ class NameImpl {
 					// escape separator
 					strbuf.append(syntaxEscape).append(syntaxSeparator);
 					i += syntaxSeparator.length();
-				} else if (escapeSeparator2 && comp.startsWith(syntaxSeparator2, i)) {
+				} else if (escapeSeparator2 && comp.startsWith(syntaxSeparator2,
+						i)) {
 					// escape separator2
 					strbuf.append(syntaxEscape).append(syntaxSeparator2);
 					i += syntaxSeparator2.length();
@@ -602,13 +590,15 @@ class NameImpl {
 		return true;
 	}
 
-	public boolean addAll(Enumeration<String> comps) throws InvalidNameException {
+	public boolean addAll(Enumeration<String> comps)
+			throws InvalidNameException {
 		boolean added = false;
 		while (comps.hasMoreElements()) {
 			try {
 				String comp = comps.nextElement();
 				if (size() > 0 && syntaxDirection == FLAT) {
-					throw new InvalidNameException("A flat name can only have a single component");
+					throw new InvalidNameException(
+							"A flat name can only have a single component");
 				}
 				components.addElement(comp);
 				added = true;
@@ -619,13 +609,15 @@ class NameImpl {
 		return added;
 	}
 
-	public boolean addAll(int posn, Enumeration<String> comps) throws InvalidNameException {
+	public boolean addAll(int posn, Enumeration<String> comps)
+			throws InvalidNameException {
 		boolean added = false;
 		for (int i = posn; comps.hasMoreElements(); i++) {
 			try {
 				String comp = comps.nextElement();
 				if (size() > 0 && syntaxDirection == FLAT) {
-					throw new InvalidNameException("A flat name can only have a single component");
+					throw new InvalidNameException(
+							"A flat name can only have a single component");
 				}
 				components.insertElementAt(comp, i);
 				added = true;
@@ -638,14 +630,16 @@ class NameImpl {
 
 	public void add(String comp) throws InvalidNameException {
 		if (size() > 0 && syntaxDirection == FLAT) {
-			throw new InvalidNameException("A flat name can only have a single component");
+			throw new InvalidNameException(
+					"A flat name can only have a single component");
 		}
 		components.addElement(comp);
 	}
 
 	public void add(int posn, String comp) throws InvalidNameException {
 		if (size() > 0 && syntaxDirection == FLAT) {
-			throw new InvalidNameException("A flat name can only zero or one component");
+			throw new InvalidNameException(
+					"A flat name can only zero or one component");
 		}
 		components.insertElementAt(comp, posn);
 	}

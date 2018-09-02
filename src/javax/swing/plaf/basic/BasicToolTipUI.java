@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -76,8 +56,8 @@ public class BasicToolTipUI extends ToolTipUI {
 	}
 
 	protected void installDefaults(JComponent c) {
-		LookAndFeel.installColorsAndFont(c, "ToolTip.background", "ToolTip.foreground",
-				"ToolTip.font");
+		LookAndFeel.installColorsAndFont(c, "ToolTip.background",
+				"ToolTip.foreground", "ToolTip.font");
 		LookAndFeel.installProperty(c, "opaque", Boolean.TRUE);
 		componentChanged(c);
 	}
@@ -136,15 +116,15 @@ public class BasicToolTipUI extends ToolTipUI {
 
 		Insets insets = c.getInsets();
 		Rectangle paintTextR = new Rectangle(insets.left + 3, insets.top,
-				size.width - (insets.left + insets.right) - 6,
-				size.height - (insets.top + insets.bottom));
+				size.width - (insets.left + insets.right) - 6, size.height
+						- (insets.top + insets.bottom));
 		View v = (View) c.getClientProperty(BasicHTML.propertyKey);
 		if (v != null) {
 			v.paint(g, paintTextR);
 		} else {
 			g.setFont(font);
-			SwingUtilities2.drawString(c, g, tipText, paintTextR.x,
-					paintTextR.y + metrics.getAscent());
+			SwingUtilities2.drawString(c, g, tipText, paintTextR.x, paintTextR.y
+					+ metrics.getAscent());
 		}
 	}
 
@@ -153,7 +133,8 @@ public class BasicToolTipUI extends ToolTipUI {
 		FontMetrics fm = c.getFontMetrics(font);
 		Insets insets = c.getInsets();
 
-		Dimension prefSize = new Dimension(insets.left + insets.right, insets.top + insets.bottom);
+		Dimension prefSize = new Dimension(insets.left + insets.right,
+				insets.top + insets.bottom);
 		String text = ((JToolTip) c).getTipText();
 
 		if ((text == null) || text.equals("")) {
@@ -175,7 +156,8 @@ public class BasicToolTipUI extends ToolTipUI {
 		Dimension d = getPreferredSize(c);
 		View v = (View) c.getClientProperty(BasicHTML.propertyKey);
 		if (v != null) {
-			d.width -= v.getPreferredSpan(View.X_AXIS) - v.getMinimumSpan(View.X_AXIS);
+			d.width -= v.getPreferredSpan(View.X_AXIS) - v.getMinimumSpan(
+					View.X_AXIS);
 		}
 		return d;
 	}
@@ -184,7 +166,8 @@ public class BasicToolTipUI extends ToolTipUI {
 		Dimension d = getPreferredSize(c);
 		View v = (View) c.getClientProperty(BasicHTML.propertyKey);
 		if (v != null) {
-			d.width += v.getMaximumSpan(View.X_AXIS) - v.getPreferredSpan(View.X_AXIS);
+			d.width += v.getMaximumSpan(View.X_AXIS) - v.getPreferredSpan(
+					View.X_AXIS);
 		}
 		return d;
 	}
@@ -195,7 +178,7 @@ public class BasicToolTipUI extends ToolTipUI {
 	 * update any state dependant upon the <code>JComponent</code>.
 	 *
 	 * @param c
-	 *            the JToolTip the JComponent has changed on.
+	 *          the JToolTip the JComponent has changed on.
 	 */
 	private void componentChanged(JComponent c) {
 		JComponent comp = ((JToolTip) c).getComponent();
@@ -212,18 +195,22 @@ public class BasicToolTipUI extends ToolTipUI {
 				LookAndFeel.installColors(c, "ToolTip.backgroundInactive",
 						"ToolTip.foregroundInactive");
 			} else {
-				LookAndFeel.installColors(c, "ToolTip.background", "ToolTip.foreground");
+				LookAndFeel.installColors(c, "ToolTip.background",
+						"ToolTip.foreground");
 			}
 		} else {
 			LookAndFeel.installBorder(c, "ToolTip.border");
-			LookAndFeel.installColors(c, "ToolTip.background", "ToolTip.foreground");
+			LookAndFeel.installColors(c, "ToolTip.background",
+					"ToolTip.foreground");
 		}
 	}
 
-	private static class PropertyChangeHandler implements PropertyChangeListener {
+	private static class PropertyChangeHandler implements
+			PropertyChangeListener {
 		public void propertyChange(PropertyChangeEvent e) {
 			String name = e.getPropertyName();
-			if (name.equals("tiptext") || "font".equals(name) || "foreground".equals(name)) {
+			if (name.equals("tiptext") || "font".equals(name) || "foreground"
+					.equals(name)) {
 				// remove the old html view client property if one
 				// existed, and install a new one if the text installed
 				// into the JLabel is html source.

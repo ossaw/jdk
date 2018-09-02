@@ -30,18 +30,23 @@ abstract public class IORHelper {
 			synchronized (org.omg.CORBA.TypeCode.class) {
 				if (__typeCode == null) {
 					if (__active) {
-						return org.omg.CORBA.ORB.init().create_recursive_tc(_id);
+						return org.omg.CORBA.ORB.init().create_recursive_tc(
+								_id);
 					}
 					__active = true;
 					org.omg.CORBA.StructMember[] _members0 = new org.omg.CORBA.StructMember[2];
 					org.omg.CORBA.TypeCode _tcOf_members0 = null;
-					_tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(0);
-					_members0[0] = new org.omg.CORBA.StructMember("type_id", _tcOf_members0, null);
+					_tcOf_members0 = org.omg.CORBA.ORB.init().create_string_tc(
+							0);
+					_members0[0] = new org.omg.CORBA.StructMember("type_id",
+							_tcOf_members0, null);
 					_tcOf_members0 = org.omg.IOP.TaggedProfileHelper.type();
-					_tcOf_members0 = org.omg.CORBA.ORB.init().create_sequence_tc(0, _tcOf_members0);
-					_members0[1] = new org.omg.CORBA.StructMember("profiles", _tcOf_members0, null);
-					__typeCode = org.omg.CORBA.ORB.init()
-							.create_struct_tc(org.omg.IOP.IORHelper.id(), "IOR", _members0);
+					_tcOf_members0 = org.omg.CORBA.ORB.init()
+							.create_sequence_tc(0, _tcOf_members0);
+					_members0[1] = new org.omg.CORBA.StructMember("profiles",
+							_tcOf_members0, null);
+					__typeCode = org.omg.CORBA.ORB.init().create_struct_tc(
+							org.omg.IOP.IORHelper.id(), "IOR", _members0);
 					__active = false;
 				}
 			}
@@ -53,7 +58,8 @@ abstract public class IORHelper {
 		return _id;
 	}
 
-	public static org.omg.IOP.IOR read(org.omg.CORBA.portable.InputStream istream) {
+	public static org.omg.IOP.IOR read(
+			org.omg.CORBA.portable.InputStream istream) {
 		org.omg.IOP.IOR value = new org.omg.IOP.IOR();
 		value.type_id = istream.read_string();
 		int _len0 = istream.read_long();
@@ -63,7 +69,8 @@ abstract public class IORHelper {
 		return value;
 	}
 
-	public static void write(org.omg.CORBA.portable.OutputStream ostream, org.omg.IOP.IOR value) {
+	public static void write(org.omg.CORBA.portable.OutputStream ostream,
+			org.omg.IOP.IOR value) {
 		ostream.write_string(value.type_id);
 		ostream.write_long(value.profiles.length);
 		for (int _i0 = 0; _i0 < value.profiles.length; ++_i0)

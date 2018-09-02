@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -86,8 +66,7 @@ import java.lang.reflect.Constructor;
  */
 
 public final class FileSystems {
-	private FileSystems() {
-	}
+	private FileSystems() {}
 
 	// lazy initialization of default file system
 	private static class DefaultFileSystemHolder {
@@ -96,8 +75,8 @@ public final class FileSystems {
 		// returns default file system
 		private static FileSystem defaultFileSystem() {
 			// load default provider
-			FileSystemProvider provider = AccessController
-					.doPrivileged(new PrivilegedAction<FileSystemProvider>() {
+			FileSystemProvider provider = AccessController.doPrivileged(
+					new PrivilegedAction<FileSystemProvider>() {
 						public FileSystemProvider run() {
 							return getDefaultProvider();
 						}
@@ -109,22 +88,28 @@ public final class FileSystems {
 
 		// returns default provider
 		private static FileSystemProvider getDefaultProvider() {
-			FileSystemProvider provider = sun.nio.fs.DefaultFileSystemProvider.create();
+			FileSystemProvider provider = sun.nio.fs.DefaultFileSystemProvider
+					.create();
 
 			// if the property java.nio.file.spi.DefaultFileSystemProvider is
 			// set then its value is the name of the default provider (or a
 			// list)
-			String propValue = System.getProperty("java.nio.file.spi.DefaultFileSystemProvider");
+			String propValue = System.getProperty(
+					"java.nio.file.spi.DefaultFileSystemProvider");
 			if (propValue != null) {
 				for (String cn : propValue.split(",")) {
 					try {
-						Class<?> c = Class.forName(cn, true, ClassLoader.getSystemClassLoader());
-						Constructor<?> ctor = c.getDeclaredConstructor(FileSystemProvider.class);
-						provider = (FileSystemProvider) ctor.newInstance(provider);
+						Class<?> c = Class.forName(cn, true, ClassLoader
+								.getSystemClassLoader());
+						Constructor<?> ctor = c.getDeclaredConstructor(
+								FileSystemProvider.class);
+						provider = (FileSystemProvider) ctor.newInstance(
+								provider);
 
 						// must be "file"
 						if (!provider.getScheme().equals("file"))
-							throw new Error("Default provider must use scheme 'file'");
+							throw new Error(
+									"Default provider must use scheme 'file'");
 
 					} catch (Exception x) {
 						throw new Error(x);
@@ -216,24 +201,30 @@ public final class FileSystems {
 	 * @return the reference to the file system
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the pre-conditions for the {@code uri} parameter are not
-	 *             met
+	 *                                     if the pre-conditions for the
+	 *                                     {@code uri} parameter are not
+	 *                                     met
 	 * @throws FileSystemNotFoundException
-	 *             if the file system, identified by the URI, does not exist
+	 *                                     if the file system, identified by the
+	 *                                     URI, does not exist
 	 * @throws ProviderNotFoundException
-	 *             if a provider supporting the URI scheme is not installed
+	 *                                     if a provider supporting the URI
+	 *                                     scheme is not installed
 	 * @throws SecurityException
-	 *             if a security manager is installed and it denies an
-	 *             unspecified permission
+	 *                                     if a security manager is installed
+	 *                                     and it denies an
+	 *                                     unspecified permission
 	 */
 	public static FileSystem getFileSystem(URI uri) {
 		String scheme = uri.getScheme();
-		for (FileSystemProvider provider : FileSystemProvider.installedProviders()) {
+		for (FileSystemProvider provider : FileSystemProvider
+				.installedProviders()) {
 			if (scheme.equalsIgnoreCase(provider.getScheme())) {
 				return provider.getFileSystem(uri);
 			}
 		}
-		throw new ProviderNotFoundException("Provider \"" + scheme + "\" not found");
+		throw new ProviderNotFoundException("Provider \"" + scheme
+				+ "\" not found");
 	}
 
 	/**
@@ -262,7 +253,8 @@ public final class FileSystems {
 	 * Map&lt;String, String&gt; env = new HashMap&lt;&gt;();
 	 * env.put("capacity", "16G");
 	 * env.put("blockSize", "4k");
-	 * FileSystem fs = FileSystems.newFileSystem(URI.create("memory:///?name=logfs"), env);
+	 * FileSystem fs = FileSystems.newFileSystem(URI.create(
+	 * 		"memory:///?name=logfs"), env);
 	 * </pre>
 	 *
 	 * @param uri
@@ -274,21 +266,31 @@ public final class FileSystems {
 	 * @return a new file system
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the pre-conditions for the {@code uri} parameter are not
-	 *             met, or the {@code env} parameter does not contain properties
-	 *             required by the provider, or a property value is invalid
+	 *                                          if the pre-conditions for the
+	 *                                          {@code uri} parameter are not
+	 *                                          met, or the {@code env}
+	 *                                          parameter does not contain
+	 *                                          properties
+	 *                                          required by the provider, or a
+	 *                                          property value is invalid
 	 * @throws FileSystemAlreadyExistsException
-	 *             if the file system has already been created
+	 *                                          if the file system has already
+	 *                                          been created
 	 * @throws ProviderNotFoundException
-	 *             if a provider supporting the URI scheme is not installed
+	 *                                          if a provider supporting the URI
+	 *                                          scheme is not installed
 	 * @throws IOException
-	 *             if an I/O error occurs creating the file system
+	 *                                          if an I/O error occurs creating
+	 *                                          the file system
 	 * @throws SecurityException
-	 *             if a security manager is installed and it denies an
-	 *             unspecified permission required by the file system provider
-	 *             implementation
+	 *                                          if a security manager is
+	 *                                          installed and it denies an
+	 *                                          unspecified permission required
+	 *                                          by the file system provider
+	 *                                          implementation
 	 */
-	public static FileSystem newFileSystem(URI uri, Map<String, ?> env) throws IOException {
+	public static FileSystem newFileSystem(URI uri, Map<String, ?> env)
+			throws IOException {
 		return newFileSystem(uri, env, null);
 	}
 
@@ -305,40 +307,52 @@ public final class FileSystems {
 	 * is invoked to construct the new file system.
 	 *
 	 * @param uri
-	 *            the URI identifying the file system
+	 *               the URI identifying the file system
 	 * @param env
-	 *            a map of provider specific properties to configure the file
-	 *            system; may be empty
+	 *               a map of provider specific properties to configure the file
+	 *               system; may be empty
 	 * @param loader
-	 *            the class loader to locate the provider or {@code null} to
-	 *            only attempt to locate an installed provider
+	 *               the class loader to locate the provider or {@code null} to
+	 *               only attempt to locate an installed provider
 	 *
 	 * @return a new file system
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the pre-conditions for the {@code uri} parameter are not
-	 *             met, or the {@code env} parameter does not contain properties
-	 *             required by the provider, or a property value is invalid
+	 *                                          if the pre-conditions for the
+	 *                                          {@code uri} parameter are not
+	 *                                          met, or the {@code env}
+	 *                                          parameter does not contain
+	 *                                          properties
+	 *                                          required by the provider, or a
+	 *                                          property value is invalid
 	 * @throws FileSystemAlreadyExistsException
-	 *             if the URI scheme identifies an installed provider and the
-	 *             file system has already been created
+	 *                                          if the URI scheme identifies an
+	 *                                          installed provider and the
+	 *                                          file system has already been
+	 *                                          created
 	 * @throws ProviderNotFoundException
-	 *             if a provider supporting the URI scheme is not found
+	 *                                          if a provider supporting the URI
+	 *                                          scheme is not found
 	 * @throws ServiceConfigurationError
-	 *             when an error occurs while loading a service provider
+	 *                                          when an error occurs while
+	 *                                          loading a service provider
 	 * @throws IOException
-	 *             an I/O error occurs creating the file system
+	 *                                          an I/O error occurs creating the
+	 *                                          file system
 	 * @throws SecurityException
-	 *             if a security manager is installed and it denies an
-	 *             unspecified permission required by the file system provider
-	 *             implementation
+	 *                                          if a security manager is
+	 *                                          installed and it denies an
+	 *                                          unspecified permission required
+	 *                                          by the file system provider
+	 *                                          implementation
 	 */
-	public static FileSystem newFileSystem(URI uri, Map<String, ?> env, ClassLoader loader)
-			throws IOException {
+	public static FileSystem newFileSystem(URI uri, Map<String, ?> env,
+			ClassLoader loader) throws IOException {
 		String scheme = uri.getScheme();
 
 		// check installed providers
-		for (FileSystemProvider provider : FileSystemProvider.installedProviders()) {
+		for (FileSystemProvider provider : FileSystemProvider
+				.installedProviders()) {
 			if (scheme.equalsIgnoreCase(provider.getScheme())) {
 				return provider.newFileSystem(uri, env);
 			}
@@ -346,8 +360,8 @@ public final class FileSystems {
 
 		// if not found, use service-provider loading facility
 		if (loader != null) {
-			ServiceLoader<FileSystemProvider> sl = ServiceLoader.load(FileSystemProvider.class,
-					loader);
+			ServiceLoader<FileSystemProvider> sl = ServiceLoader.load(
+					FileSystemProvider.class, loader);
 			for (FileSystemProvider provider : sl) {
 				if (scheme.equalsIgnoreCase(provider.getScheme())) {
 					return provider.newFileSystem(uri, env);
@@ -355,7 +369,8 @@ public final class FileSystems {
 			}
 		}
 
-		throw new ProviderNotFoundException("Provider \"" + scheme + "\" not found");
+		throw new ProviderNotFoundException("Provider \"" + scheme
+				+ "\" not found");
 	}
 
 	/**
@@ -380,30 +395,35 @@ public final class FileSystems {
 	 * and the file system is returned.
 	 *
 	 * @param path
-	 *            the path to the file
+	 *               the path to the file
 	 * @param loader
-	 *            the class loader to locate the provider or {@code null} to
-	 *            only attempt to locate an installed provider
+	 *               the class loader to locate the provider or {@code null} to
+	 *               only attempt to locate an installed provider
 	 *
 	 * @return a new file system
 	 *
 	 * @throws ProviderNotFoundException
-	 *             if a provider supporting this file type cannot be located
+	 *                                   if a provider supporting this file type
+	 *                                   cannot be located
 	 * @throws ServiceConfigurationError
-	 *             when an error occurs while loading a service provider
+	 *                                   when an error occurs while loading a
+	 *                                   service provider
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                                   if an I/O error occurs
 	 * @throws SecurityException
-	 *             if a security manager is installed and it denies an
-	 *             unspecified permission
+	 *                                   if a security manager is installed and
+	 *                                   it denies an
+	 *                                   unspecified permission
 	 */
-	public static FileSystem newFileSystem(Path path, ClassLoader loader) throws IOException {
+	public static FileSystem newFileSystem(Path path, ClassLoader loader)
+			throws IOException {
 		if (path == null)
 			throw new NullPointerException();
 		Map<String, ?> env = Collections.emptyMap();
 
 		// check installed providers
-		for (FileSystemProvider provider : FileSystemProvider.installedProviders()) {
+		for (FileSystemProvider provider : FileSystemProvider
+				.installedProviders()) {
 			try {
 				return provider.newFileSystem(path, env);
 			} catch (UnsupportedOperationException uoe) {
@@ -412,8 +432,8 @@ public final class FileSystems {
 
 		// if not found, use service-provider loading facility
 		if (loader != null) {
-			ServiceLoader<FileSystemProvider> sl = ServiceLoader.load(FileSystemProvider.class,
-					loader);
+			ServiceLoader<FileSystemProvider> sl = ServiceLoader.load(
+					FileSystemProvider.class, loader);
 			for (FileSystemProvider provider : sl) {
 				try {
 					return provider.newFileSystem(path, env);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.event;
@@ -59,14 +39,16 @@ public class ListSelectionEvent extends EventObject {
 	 * will have changed.
 	 *
 	 * @param firstIndex
-	 *            the first index in the range, &lt;= lastIndex
+	 *                    the first index in the range, &lt;= lastIndex
 	 * @param lastIndex
-	 *            the last index in the range, &gt;= firstIndex
+	 *                    the last index in the range, &gt;= firstIndex
 	 * @param isAdjusting
-	 *            whether or not this is one in a series of multiple events,
-	 *            where changes are still being made
+	 *                    whether or not this is one in a series of multiple
+	 *                    events,
+	 *                    where changes are still being made
 	 */
-	public ListSelectionEvent(Object source, int firstIndex, int lastIndex, boolean isAdjusting) {
+	public ListSelectionEvent(Object source, int firstIndex, int lastIndex,
+			boolean isAdjusting) {
 		super(source);
 		this.firstIndex = firstIndex;
 		this.lastIndex = lastIndex;
@@ -115,8 +97,9 @@ public class ListSelectionEvent extends EventObject {
 	 * @return a String representation of this object
 	 */
 	public String toString() {
-		String properties = " source=" + getSource() + " firstIndex= " + firstIndex + " lastIndex= "
-				+ lastIndex + " isAdjusting= " + isAdjusting + " ";
+		String properties = " source=" + getSource() + " firstIndex= "
+				+ firstIndex + " lastIndex= " + lastIndex + " isAdjusting= "
+				+ isAdjusting + " ";
 		return getClass().getName() + "[" + properties + "]";
 	}
 }

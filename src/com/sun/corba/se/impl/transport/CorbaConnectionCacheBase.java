@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.transport;
@@ -43,18 +23,21 @@ import com.sun.corba.se.impl.orbutil.ORBUtility;
 /**
  * @author Harold Carr
  */
-public abstract class CorbaConnectionCacheBase implements ConnectionCache, CorbaConnectionCache {
+public abstract class CorbaConnectionCacheBase implements ConnectionCache,
+		CorbaConnectionCache {
 	protected ORB orb;
 	protected long timestamp = 0;
 	protected String cacheType;
 	protected String monitoringName;
 	protected ORBUtilSystemException wrapper;
 
-	protected CorbaConnectionCacheBase(ORB orb, String cacheType, String monitoringName) {
+	protected CorbaConnectionCacheBase(ORB orb, String cacheType,
+			String monitoringName) {
 		this.orb = orb;
 		this.cacheType = cacheType;
 		this.monitoringName = monitoringName;
-		wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_TRANSPORT);
+		wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_TRANSPORT);
 		registerWithMonitoring();
 		dprintCreation();
 	}
@@ -134,14 +117,16 @@ public abstract class CorbaConnectionCacheBase implements ConnectionCache, Corba
 			long numberOfConnections = numberOfConnections();
 
 			if (orb.transportDebugFlag) {
-				dprint(".reclaim->: " + numberOfConnections + " ("
-						+ orb.getORBData().getHighWaterMark() + "/"
-						+ orb.getORBData().getLowWaterMark() + "/"
-						+ orb.getORBData().getNumberToReclaim() + ")");
+				dprint(".reclaim->: " + numberOfConnections + " (" + orb
+						.getORBData().getHighWaterMark() + "/" + orb
+								.getORBData().getLowWaterMark() + "/" + orb
+										.getORBData().getNumberToReclaim()
+						+ ")");
 			}
 
 			if (numberOfConnections <= orb.getORBData().getHighWaterMark()
-					|| numberOfConnections < orb.getORBData().getLowWaterMark()) {
+					|| numberOfConnections < orb.getORBData()
+							.getLowWaterMark()) {
 				return false;
 			}
 
@@ -151,7 +136,8 @@ public abstract class CorbaConnectionCacheBase implements ConnectionCache, Corba
 				// REVISIT - A less expensive alternative connection reclaiming
 				// algorithm could be investigated.
 
-				for (int i = 0; i < orb.getORBData().getNumberToReclaim(); i++) {
+				for (int i = 0; i < orb.getORBData()
+						.getNumberToReclaim(); i++) {
 					Connection toClose = null;
 					long lru = java.lang.Long.MAX_VALUE;
 					Iterator iterator = values().iterator();
@@ -181,7 +167,8 @@ public abstract class CorbaConnectionCacheBase implements ConnectionCache, Corba
 
 				if (orb.transportDebugFlag) {
 					dprint(".reclaim: connections reclaimed ("
-							+ (numberOfConnections - numberOfConnections()) + ")");
+							+ (numberOfConnections - numberOfConnections())
+							+ ")");
 				}
 			}
 
@@ -220,17 +207,20 @@ public abstract class CorbaConnectionCacheBase implements ConnectionCache, Corba
 
 	protected void dprintCreation() {
 		if (orb.transportDebugFlag) {
-			dprint(".constructor: cacheType: " + getCacheType() + " monitoringName: "
-					+ getMonitoringName());
+			dprint(".constructor: cacheType: " + getCacheType()
+					+ " monitoringName: " + getMonitoringName());
 		}
 	}
 
 	protected void dprintStatistics() {
 		if (orb.transportDebugFlag) {
-			dprint(".stats: " + numberOfConnections() + "/total " + numberOfBusyConnections()
-					+ "/busy " + numberOfIdleConnections() + "/idle" + " ("
-					+ orb.getORBData().getHighWaterMark() + "/" + orb.getORBData().getLowWaterMark()
-					+ "/" + orb.getORBData().getNumberToReclaim() + ")");
+			dprint(".stats: " + numberOfConnections() + "/total "
+					+ numberOfBusyConnections() + "/busy "
+					+ numberOfIdleConnections() + "/idle" + " (" + orb
+							.getORBData().getHighWaterMark() + "/" + orb
+									.getORBData().getLowWaterMark() + "/" + orb
+											.getORBData().getNumberToReclaim()
+					+ ")");
 		}
 	}
 

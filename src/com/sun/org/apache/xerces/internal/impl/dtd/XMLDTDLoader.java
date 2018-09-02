@@ -4,43 +4,34 @@
  */
 /*
  * The Apache Software License, Version 1.1
- *
- *
  * Copyright (c) 1999-2003 The Apache Software Foundation.
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Xerces" and "Apache Software Foundation" must
- *    not be used to endorse or promote products derived from this
- *    software without prior written permission. For written
- *    permission, please contact apache@apache.org.
- *
+ * not be used to endorse or promote products derived from this
+ * software without prior written permission. For written
+ * permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    nor may "Apache" appear in their name, without prior written
- *    permission of the Apache Software Foundation.
- *
+ * nor may "Apache" appear in their name, without prior written
+ * permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -50,11 +41,10 @@
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
  * individuals on behalf of the Apache Software Foundation and was
  * originally based on software copyright (c) 1999, International
- * Business Machines, Inc., http://www.apache.org.  For more
+ * Business Machines, Inc., http://www.apache.org. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -126,8 +116,9 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 
 	// recognized features:
 	private static final String[] LOADER_RECOGNIZED_FEATURES = { VALIDATION,
-			WARN_ON_DUPLICATE_ATTDEF, WARN_ON_UNDECLARED_ELEMDEF, NOTIFY_CHAR_REFS,
-			STANDARD_URI_CONFORMANT_FEATURE, BALANCE_SYNTAX_TREES };
+			WARN_ON_DUPLICATE_ATTDEF, WARN_ON_UNDECLARED_ELEMDEF,
+			NOTIFY_CHAR_REFS, STANDARD_URI_CONFORMANT_FEATURE,
+			BALANCE_SYNTAX_TREES };
 
 	// property identifiers
 
@@ -144,8 +135,9 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 			+ Constants.LOCALE_PROPERTY;
 
 	/** Recognized properties. */
-	private static final String[] LOADER_RECOGNIZED_PROPERTIES = { SYMBOL_TABLE, ERROR_REPORTER,
-			ERROR_HANDLER, ENTITY_RESOLVER, GRAMMAR_POOL, DTD_VALIDATOR, LOCALE };
+	private static final String[] LOADER_RECOGNIZED_PROPERTIES = { SYMBOL_TABLE,
+			ERROR_REPORTER, ERROR_HANDLER, ENTITY_RESOLVER, GRAMMAR_POOL,
+			DTD_VALIDATOR, LOCALE };
 
 	// enforcing strict uri?
 	private boolean fStrictURI = false;
@@ -192,10 +184,13 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 		}
 		fErrorReporter = errorReporter;
 		// Add XML message formatter if there isn't one.
-		if (fErrorReporter.getMessageFormatter(XMLMessageFormatter.XML_DOMAIN) == null) {
+		if (fErrorReporter.getMessageFormatter(
+				XMLMessageFormatter.XML_DOMAIN) == null) {
 			XMLMessageFormatter xmft = new XMLMessageFormatter();
-			fErrorReporter.putMessageFormatter(XMLMessageFormatter.XML_DOMAIN, xmft);
-			fErrorReporter.putMessageFormatter(XMLMessageFormatter.XMLNS_DOMAIN, xmft);
+			fErrorReporter.putMessageFormatter(XMLMessageFormatter.XML_DOMAIN,
+					xmft);
+			fErrorReporter.putMessageFormatter(XMLMessageFormatter.XMLNS_DOMAIN,
+					xmft);
 		}
 		fEntityResolver = entityResolver;
 		if (fEntityResolver instanceof XMLEntityManager) {
@@ -203,10 +198,10 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 		} else {
 			fEntityManager = new XMLEntityManager();
 		}
-		fEntityManager.setProperty(
-				Constants.XERCES_PROPERTY_PREFIX + Constants.ERROR_REPORTER_PROPERTY,
-				errorReporter);
-		fDTDScanner = createDTDScanner(fSymbolTable, fErrorReporter, fEntityManager);
+		fEntityManager.setProperty(Constants.XERCES_PROPERTY_PREFIX
+				+ Constants.ERROR_REPORTER_PROPERTY, errorReporter);
+		fDTDScanner = createDTDScanner(fSymbolTable, fErrorReporter,
+				fEntityManager);
 		fDTDScanner.setDTDHandler(this);
 		fDTDScanner.setDTDContentModelHandler(this);
 		reset();
@@ -231,16 +226,19 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 	 * not affect the operation of the component.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                  The feature identifier.
 	 * @param state
-	 *            The state of the feature.
+	 *                  The state of the feature.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 * @throws SAXNotSupportedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 */
-	public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
+	public void setFeature(String featureId, boolean state)
+			throws XMLConfigurationException {
 		if (featureId.equals(VALIDATION)) {
 			fValidation = state;
 		} else if (featureId.equals(WARN_ON_DUPLICATE_ATTDEF)) {
@@ -254,7 +252,8 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 		} else if (featureId.equals(BALANCE_SYNTAX_TREES)) {
 			fBalanceSyntaxTrees = state;
 		} else {
-			throw new XMLConfigurationException(Status.NOT_RECOGNIZED, featureId);
+			throw new XMLConfigurationException(Status.NOT_RECOGNIZED,
+					featureId);
 		}
 	} // setFeature(String,boolean)
 
@@ -271,12 +270,13 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 	 * Returns the state of a property.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown on configuration error.
+	 *                                   Thrown on configuration error.
 	 */
-	public Object getProperty(String propertyId) throws XMLConfigurationException {
+	public Object getProperty(String propertyId)
+			throws XMLConfigurationException {
 		if (propertyId.equals(SYMBOL_TABLE)) {
 			return fSymbolTable;
 		} else if (propertyId.equals(ERROR_REPORTER)) {
@@ -303,16 +303,19 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 	 * do not affect the operation of the component.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 * @param value
-	 *            The value of the property.
+	 *                   The value of the property.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 * @throws SAXNotSupportedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 */
-	public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
+	public void setProperty(String propertyId, Object value)
+			throws XMLConfigurationException {
 		if (propertyId.equals(SYMBOL_TABLE)) {
 			fSymbolTable = (SymbolTable) value;
 			fDTDScanner.setProperty(propertyId, value);
@@ -320,10 +323,13 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 		} else if (propertyId.equals(ERROR_REPORTER)) {
 			fErrorReporter = (XMLErrorReporter) value;
 			// Add XML message formatter if there isn't one.
-			if (fErrorReporter.getMessageFormatter(XMLMessageFormatter.XML_DOMAIN) == null) {
+			if (fErrorReporter.getMessageFormatter(
+					XMLMessageFormatter.XML_DOMAIN) == null) {
 				XMLMessageFormatter xmft = new XMLMessageFormatter();
-				fErrorReporter.putMessageFormatter(XMLMessageFormatter.XML_DOMAIN, xmft);
-				fErrorReporter.putMessageFormatter(XMLMessageFormatter.XMLNS_DOMAIN, xmft);
+				fErrorReporter.putMessageFormatter(
+						XMLMessageFormatter.XML_DOMAIN, xmft);
+				fErrorReporter.putMessageFormatter(
+						XMLMessageFormatter.XMLNS_DOMAIN, xmft);
 			}
 			fDTDScanner.setProperty(propertyId, value);
 			fEntityManager.setProperty(propertyId, value);
@@ -337,7 +343,8 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 		} else if (propertyId.equals(GRAMMAR_POOL)) {
 			fGrammarPool = (XMLGrammarPool) value;
 		} else {
-			throw new XMLConfigurationException(Status.NOT_RECOGNIZED, propertyId);
+			throw new XMLConfigurationException(Status.NOT_RECOGNIZED,
+					propertyId);
 		}
 	} // setProperty(String,Object)
 
@@ -345,12 +352,13 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 	 * Returns the state of a feature.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                  The feature identifier.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown on configuration error.
+	 *                                   Thrown on configuration error.
 	 */
-	public boolean getFeature(String featureId) throws XMLConfigurationException {
+	public boolean getFeature(String featureId)
+			throws XMLConfigurationException {
 		if (featureId.equals(VALIDATION)) {
 			return fValidation;
 		} else if (featureId.equals(WARN_ON_DUPLICATE_ATTDEF)) {
@@ -371,11 +379,12 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 	 * Set the locale to use for messages.
 	 *
 	 * @param locale
-	 *            The locale object to use for localization of messages.
+	 *               The locale object to use for localization of messages.
 	 *
 	 * @exception XNIException
-	 *                Thrown if the parser does not support the specified
-	 *                locale.
+	 *                         Thrown if the parser does not support the
+	 *                         specified
+	 *                         locale.
 	 */
 	public void setLocale(Locale locale) {
 		fLocale = locale;
@@ -391,7 +400,7 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 	 * Sets the error handler.
 	 *
 	 * @param errorHandler
-	 *            The error handler.
+	 *                     The error handler.
 	 */
 	public void setErrorHandler(XMLErrorHandler errorHandler) {
 		fErrorReporter.setProperty(ERROR_HANDLER, errorHandler);
@@ -406,7 +415,7 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 	 * Sets the entity resolver.
 	 *
 	 * @param entityResolver
-	 *            The new entity resolver.
+	 *                       The new entity resolver.
 	 */
 	public void setEntityResolver(XMLEntityResolver entityResolver) {
 		fEntityResolver = entityResolver;
@@ -423,20 +432,24 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 	 * by source.
 	 *
 	 * @param source
-	 *            the location of the entity which forms the starting point of
-	 *            the grammar to be constructed.
+	 *               the location of the entity which forms the starting point
+	 *               of
+	 *               the grammar to be constructed.
 	 * @throws IOException
-	 *             When a problem is encountered reading the entity XNIException
-	 *             When a condition arises (such as a FatalError) that requires
-	 *             parsing of the entity be terminated.
+	 *                     When a problem is encountered reading the entity
+	 *                     XNIException
+	 *                     When a condition arises (such as a FatalError) that
+	 *                     requires
+	 *                     parsing of the entity be terminated.
 	 */
-	public Grammar loadGrammar(XMLInputSource source) throws IOException, XNIException {
+	public Grammar loadGrammar(XMLInputSource source) throws IOException,
+			XNIException {
 		reset();
 		// First chance checking strict URI
-		String eid = XMLEntityManager.expandSystemId(source.getSystemId(), source.getBaseSystemId(),
-				fStrictURI);
-		XMLDTDDescription desc = new XMLDTDDescription(source.getPublicId(), source.getSystemId(),
-				source.getBaseSystemId(), eid, null);
+		String eid = XMLEntityManager.expandSystemId(source.getSystemId(),
+				source.getBaseSystemId(), fStrictURI);
+		XMLDTDDescription desc = new XMLDTDDescription(source.getPublicId(),
+				source.getSystemId(), source.getBaseSystemId(), eid, null);
 		if (!fBalanceSyntaxTrees) {
 			fDTDGrammar = new DTDGrammar(fSymbolTable, desc);
 		} else {
@@ -459,7 +472,8 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 			fEntityManager.closeReaders();
 		}
 		if (fDTDGrammar != null && fGrammarPool != null) {
-			fGrammarPool.cacheGrammars(XMLDTDDescription.XML_DTD, new Grammar[] { fDTDGrammar });
+			fGrammarPool.cacheGrammars(XMLDTDDescription.XML_DTD,
+					new Grammar[] { fDTDGrammar });
 		}
 		return fDTDGrammar;
 	} // loadGrammar(XMLInputSource): Grammar
@@ -468,9 +482,10 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 	 * Parse a DTD internal and/or external subset and insert the content into
 	 * the existing DTD grammar owned by the given DTDValidator.
 	 */
-	public void loadGrammarWithContext(XMLDTDValidator validator, String rootName, String publicId,
-			String systemId, String baseSystemId, String internalSubset)
-			throws IOException, XNIException {
+	public void loadGrammarWithContext(XMLDTDValidator validator,
+			String rootName, String publicId, String systemId,
+			String baseSystemId, String internalSubset) throws IOException,
+			XNIException {
 		final DTDGrammarBucket grammarBucket = validator.getGrammarBucket();
 		final DTDGrammar activeGrammar = grammarBucket.getActiveGrammar();
 		if (activeGrammar != null && !activeGrammar.isImmutable()) {
@@ -485,17 +500,19 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
 					// it into thinking that it reached the end of the internal
 					// subset
 					// in a real document.
-					StringBuffer buffer = new StringBuffer(internalSubset.length() + 2);
+					StringBuffer buffer = new StringBuffer(internalSubset
+							.length() + 2);
 					buffer.append(internalSubset).append("]>");
-					XMLInputSource is = new XMLInputSource(null, baseSystemId, null,
-							new StringReader(buffer.toString()), null);
+					XMLInputSource is = new XMLInputSource(null, baseSystemId,
+							null, new StringReader(buffer.toString()), null);
 					fEntityManager.startDocumentEntity(is);
-					fDTDScanner.scanDTDInternalSubset(true, false, systemId != null);
+					fDTDScanner.scanDTDInternalSubset(true, false,
+							systemId != null);
 				}
 				// process external subset
 				if (systemId != null) {
-					XMLDTDDescription desc = new XMLDTDDescription(publicId, systemId, baseSystemId,
-							null, rootName);
+					XMLDTDDescription desc = new XMLDTDDescription(publicId,
+							systemId, baseSystemId, null, rootName);
 					XMLInputSource source = fEntityManager.resolveEntity(desc);
 					fDTDScanner.setInputSource(source);
 					fDTDScanner.scanDTDExternalSubset(true);

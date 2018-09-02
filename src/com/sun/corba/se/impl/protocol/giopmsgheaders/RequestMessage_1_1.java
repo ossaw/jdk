@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol.giopmsgheaders;
@@ -40,7 +20,8 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class RequestMessage_1_1 extends Message_1_1 implements RequestMessage {
+public final class RequestMessage_1_1 extends Message_1_1 implements
+		RequestMessage {
 
 	// Instance variables
 
@@ -59,16 +40,19 @@ public final class RequestMessage_1_1 extends Message_1_1 implements RequestMess
 
 	RequestMessage_1_1(ORB orb) {
 		this.orb = orb;
-		this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
+		this.wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_PROTOCOL);
 	}
 
-	RequestMessage_1_1(ORB orb, ServiceContexts _service_contexts, int _request_id,
-			boolean _response_expected, byte[] _reserved, byte[] _object_key, String _operation,
+	RequestMessage_1_1(ORB orb, ServiceContexts _service_contexts,
+			int _request_id, boolean _response_expected, byte[] _reserved,
+			byte[] _object_key, String _operation,
 			Principal _requesting_principal) {
-		super(Message.GIOPBigMagic, GIOPVersion.V1_1, FLAG_NO_FRAG_BIG_ENDIAN, Message.GIOPRequest,
-				0);
+		super(Message.GIOPBigMagic, GIOPVersion.V1_1, FLAG_NO_FRAG_BIG_ENDIAN,
+				Message.GIOPRequest, 0);
 		this.orb = orb;
-		this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
+		this.wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_PROTOCOL);
 		service_contexts = _service_contexts;
 		request_id = _request_id;
 		response_expected = _response_expected;
@@ -135,17 +119,19 @@ public final class RequestMessage_1_1 extends Message_1_1 implements RequestMess
 	public void write(org.omg.CORBA.portable.OutputStream ostream) {
 		super.write(ostream);
 		if (this.service_contexts != null) {
-			service_contexts.write((org.omg.CORBA_2_3.portable.OutputStream) ostream,
+			service_contexts.write(
+					(org.omg.CORBA_2_3.portable.OutputStream) ostream,
 					GIOPVersion.V1_1);
 		} else {
-			ServiceContexts
-					.writeNullServiceContext((org.omg.CORBA_2_3.portable.OutputStream) ostream);
+			ServiceContexts.writeNullServiceContext(
+					(org.omg.CORBA_2_3.portable.OutputStream) ostream);
 		}
 		ostream.write_ulong(this.request_id);
 		ostream.write_boolean(this.response_expected);
 		nullCheck(this.reserved);
 		if (this.reserved.length != (3)) {
-			throw wrapper.badReservedLength(org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+			throw wrapper.badReservedLength(
+					org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
 		}
 		for (int _i0 = 0; _i0 < (3); ++_i0) {
 			ostream.write_octet(this.reserved[_i0]);

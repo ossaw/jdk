@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.management;
@@ -91,7 +71,7 @@ public interface CompilationMXBean extends PlatformManagedObject {
 	 *
 	 * @return Compilation time in milliseconds
 	 * @throws java.lang.UnsupportedOperationException
-	 *             if the Java virtual machine does not support this operation.
+	 *         if the Java virtual machine does not support this operation.
 	 *
 	 */
 	public long getTotalCompilationTime();

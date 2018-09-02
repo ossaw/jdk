@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -46,9 +26,9 @@ public interface DynArray extends org.omg.CORBA.Object, org.omg.CORBA.DynAny {
 	 * Sets the value of this <code>DynArray</code> object to the given array.
 	 *
 	 * @param value
-	 *            the array of <code>Any</code> objects
+	 *              the array of <code>Any</code> objects
 	 * @exception InvalidSeq
-	 *                if the sequence is bad
+	 *                       if the sequence is bad
 	 * @see #get_elements
 	 */
 	public void set_elements(org.omg.CORBA.Any[] value)

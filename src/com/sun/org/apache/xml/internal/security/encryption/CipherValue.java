@@ -41,7 +41,7 @@ public interface CipherValue {
 	 * <code>CipherValue</code>.
 	 *
 	 * @param value
-	 *            the cipher value.
+	 *              the cipher value.
 	 */
 	void setValue(String value);
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -62,7 +42,7 @@ public abstract class ReferralException extends NamingException {
 	 * supplied. All other fields are set to null.
 	 *
 	 * @param explanation
-	 *            Additional detail about this exception. Can be null.
+	 *                    Additional detail about this exception. Can be null.
 	 * @see java.lang.Throwable#getMessage
 	 */
 	protected ReferralException(String explanation) {
@@ -101,9 +81,11 @@ public abstract class ReferralException extends NamingException {
 	 *
 	 * @return The non-null context at which to continue the method.
 	 * @exception NamingException
-	 *                If a naming exception was encountered. Call either
-	 *                <tt>retryReferral()</tt> or <tt>skipReferral()</tt> to
-	 *                continue processing referrals.
+	 *                            If a naming exception was encountered. Call
+	 *                            either
+	 *                            <tt>retryReferral()</tt> or
+	 *                            <tt>skipReferral()</tt> to
+	 *                            continue processing referrals.
 	 */
 	public abstract Context getReferralContext() throws NamingException;
 
@@ -131,11 +113,14 @@ public abstract class ReferralException extends NamingException {
 	 *
 	 * @return The non-null context at which to continue the method.
 	 * @exception NamingException
-	 *                If a naming exception was encountered. Call either
-	 *                <tt>retryReferral()</tt> or <tt>skipReferral()</tt> to
-	 *                continue processing referrals.
+	 *                            If a naming exception was encountered. Call
+	 *                            either
+	 *                            <tt>retryReferral()</tt> or
+	 *                            <tt>skipReferral()</tt> to
+	 *                            continue processing referrals.
 	 */
-	public abstract Context getReferralContext(Hashtable<?, ?> env) throws NamingException;
+	public abstract Context getReferralContext(Hashtable<?, ?> env)
+			throws NamingException;
 
 	/**
 	 * Discards the referral about to be processed. A call to this method should

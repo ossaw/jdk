@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.source.tree;
@@ -37,11 +17,11 @@ public interface LineMap {
 	 * Find the start position of a line.
 	 *
 	 * @param line
-	 *            line number (beginning at 1)
+	 *             line number (beginning at 1)
 	 * @return position of first character in line
 	 * @throws IndexOutOfBoundsException
-	 *             if {@code lineNumber < 1} if
-	 *             {@code lineNumber > no. of lines}
+	 *                                   if {@code lineNumber < 1} if
+	 *                                   {@code lineNumber > no. of lines}
 	 */
 	long getStartPosition(long line);
 
@@ -49,13 +29,14 @@ public interface LineMap {
 	 * Find the position corresponding to a (line,column).
 	 *
 	 * @param line
-	 *            line number (beginning at 1)
+	 *               line number (beginning at 1)
 	 * @param column
-	 *            tab-expanded column number (beginning 1)
+	 *               tab-expanded column number (beginning 1)
 	 *
 	 * @return position of character
 	 * @throws IndexOutOfBoundsException
-	 *             if {@code line < 1} if {@code line > no. of lines}
+	 *                                   if {@code line < 1} if
+	 *                                   {@code line > no. of lines}
 	 */
 	long getPosition(long line, long column);
 

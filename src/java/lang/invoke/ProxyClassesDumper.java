@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.lang.invoke;
 
@@ -45,11 +25,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *           lambda lead to recursive calls cause stack overflow.
  */
 final class ProxyClassesDumper {
-	private static final char[] HEX = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B',
-			'C', 'D', 'E', 'F' };
-	private static final char[] BAD_CHARS = { '\\', ':', '*', '?', '"', '<', '>', '|' };
-	private static final String[] REPLACEMENT = { "%5C", "%3A", "%2A", "%3F", "%22", "%3C", "%3E",
-			"%7C" };
+	private static final char[] HEX = { '0', '1', '2', '3', '4', '5', '6', '7',
+			'8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+	private static final char[] BAD_CHARS = { '\\', ':', '*', '?', '"', '<',
+			'>', '|' };
+	private static final String[] REPLACEMENT = { "%5C", "%3A", "%2A", "%3F",
+			"%22", "%3C", "%3E", "%7C" };
 
 	private final Path dumpDir;
 
@@ -70,7 +51,8 @@ final class ProxyClassesDumper {
 			return new ProxyClassesDumper(dir);
 		} catch (InvalidPathException ex) {
 			PlatformLogger.getLogger(ProxyClassesDumper.class.getName())
-					.warning("Path " + path + " is not valid - dumping disabled", ex);
+					.warning("Path " + path
+							+ " is not valid - dumping disabled", ex);
 		} catch (IllegalArgumentException iae) {
 			PlatformLogger.getLogger(ProxyClassesDumper.class.getName())
 					.warning(iae.getMessage() + " - dumping disabled");
@@ -84,11 +66,14 @@ final class ProxyClassesDumper {
 
 	private static void validateDumpDir(Path path) {
 		if (!Files.exists(path)) {
-			throw new IllegalArgumentException("Directory " + path + " does not exist");
+			throw new IllegalArgumentException("Directory " + path
+					+ " does not exist");
 		} else if (!Files.isDirectory(path)) {
-			throw new IllegalArgumentException("Path " + path + " is not a directory");
+			throw new IllegalArgumentException("Path " + path
+					+ " is not a directory");
 		} else if (!Files.isWritable(path)) {
-			throw new IllegalArgumentException("Directory " + path + " is not writable");
+			throw new IllegalArgumentException("Directory " + path
+					+ " is not writable");
 		}
 	}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp.agent;
 
@@ -40,10 +20,10 @@ import com.sun.jmx.snmp.SnmpOid;
 import com.sun.jmx.snmp.SnmpPdu;
 import com.sun.jmx.snmp.SnmpEngine;
 
-//  XXX: things to do: use SnmpOid rather than `instance' for future
-//       evolutions.
-//  XXX: Maybe use hashlists rather than vectors for entries?
-//       => in that case, the key should be SnmpOid.toString()
+// XXX: things to do: use SnmpOid rather than `instance' for future
+// evolutions.
+// XXX: Maybe use hashlists rather than vectors for entries?
+// => in that case, the key should be SnmpOid.toString()
 //
 /**
  * This class is used to register varbinds from a SNMP varbind list with the
@@ -77,7 +57,8 @@ final class SnmpRequestTree {
 		setPduType(pdutype);
 	}
 
-	public static int mapSetException(int errorStatus, int version) throws SnmpStatusException {
+	public static int mapSetException(int errorStatus, int version)
+			throws SnmpStatusException {
 
 		final int errorCode = errorStatus;
 
@@ -99,7 +80,8 @@ final class SnmpRequestTree {
 		return mappedErrorCode;
 	}
 
-	public static int mapGetException(int errorStatus, int version) throws SnmpStatusException {
+	public static int mapGetException(int errorStatus, int version)
+			throws SnmpStatusException {
 
 		final int errorCode = errorStatus;
 		if (version == SnmpDefinitions.snmpVersionOne)
@@ -223,8 +205,9 @@ final class SnmpRequestTree {
 	// -------------------------------------------------------------------
 
 	static final class SnmpMibSubRequestImpl implements SnmpMibSubRequest {
-		SnmpMibSubRequestImpl(SnmpMibRequest global, Vector<SnmpVarBind> sublist, SnmpOid entryoid,
-				boolean isnew, boolean getnextflag, SnmpVarBind rs) {
+		SnmpMibSubRequestImpl(SnmpMibRequest global,
+				Vector<SnmpVarBind> sublist, SnmpOid entryoid, boolean isnew,
+				boolean getnextflag, SnmpVarBind rs) {
 			this.global = global;
 			varbinds = sublist;
 			this.version = global.getVersion();
@@ -328,8 +311,8 @@ final class SnmpRequestTree {
 		// -------------------------------------------------------------
 
 		@Override
-		public void registerGetException(SnmpVarBind var, SnmpStatusException exception)
-				throws SnmpStatusException {
+		public void registerGetException(SnmpVarBind var,
+				SnmpStatusException exception) throws SnmpStatusException {
 			// The index in the exception must correspond to
 			// the SNMP index ...
 			//
@@ -345,7 +328,8 @@ final class SnmpRequestTree {
 				return;
 			}
 
-			final int errorCode = mapGetException(exception.getStatus(), version);
+			final int errorCode = mapGetException(exception.getStatus(),
+					version);
 
 			// Now take care of V2 errorCodes that can be stored
 			// in the varbind itself:
@@ -367,8 +351,8 @@ final class SnmpRequestTree {
 		// See SnmpMibSubRequest for the java doc.
 		// -------------------------------------------------------------
 		@Override
-		public void registerSetException(SnmpVarBind var, SnmpStatusException exception)
-				throws SnmpStatusException {
+		public void registerSetException(SnmpVarBind var,
+				SnmpStatusException exception) throws SnmpStatusException {
 			// The index in the exception must correspond to
 			// the SNMP index ...
 			//
@@ -381,7 +365,8 @@ final class SnmpRequestTree {
 			// assignation may already have been performed, we're going
 			// to throw an snmpRspUndoFailed.
 			//
-			throw new SnmpStatusException(SnmpDefinitions.snmpRspUndoFailed, getVarIndex(var) + 1);
+			throw new SnmpStatusException(SnmpDefinitions.snmpRspUndoFailed,
+					getVarIndex(var) + 1);
 		}
 
 		// -------------------------------------------------------------
@@ -389,8 +374,8 @@ final class SnmpRequestTree {
 		// See SnmpMibSubRequest for the java doc.
 		// -------------------------------------------------------------
 		@Override
-		public void registerCheckException(SnmpVarBind var, SnmpStatusException exception)
-				throws SnmpStatusException {
+		public void registerCheckException(SnmpVarBind var,
+				SnmpStatusException exception) throws SnmpStatusException {
 			// The index in the exception must correspond to
 			// the SNMP index ...
 			//
@@ -400,7 +385,8 @@ final class SnmpRequestTree {
 			final int mappedErrorCode = mapSetException(errorCode, version);
 
 			if (errorCode != mappedErrorCode)
-				throw new SnmpStatusException(mappedErrorCode, getVarIndex(var) + 1);
+				throw new SnmpStatusException(mappedErrorCode, getVarIndex(var)
+						+ 1);
 			else
 				throw new SnmpStatusException(exception, getVarIndex(var) + 1);
 		}
@@ -506,7 +492,8 @@ final class SnmpRequestTree {
 		@SuppressWarnings("unchecked")
 		// We need this because of new Vector[n] instead of
 		// new Vector<SnmpVarBind>[n], which is illegal.
-		void add(int pos, SnmpOid oid, Vector<SnmpVarBind> v, boolean isnew, SnmpVarBind statusvb) {
+		void add(int pos, SnmpOid oid, Vector<SnmpVarBind> v, boolean isnew,
+				SnmpVarBind statusvb) {
 
 			if (entryoids == null) {
 				// Vectors are null: Allocate new vectors
@@ -583,8 +570,9 @@ final class SnmpRequestTree {
 			entrycount++;
 		}
 
-		public void addVarbind(SnmpVarBind varbind, SnmpOid entryoid, boolean isnew,
-				SnmpVarBind statusvb) throws SnmpStatusException {
+		public void addVarbind(SnmpVarBind varbind, SnmpOid entryoid,
+				boolean isnew, SnmpVarBind statusvb)
+				throws SnmpStatusException {
 			Vector<SnmpVarBind> v = null;
 			SnmpVarBind rs = statusvb;
 
@@ -600,8 +588,10 @@ final class SnmpRequestTree {
 			} else {
 				// int pos = findOid(entryoids,entryoid);
 				// int pos = findOid(entryoids,entrycount,entryoid);
-				final int pos = getInsertionPoint(entryoids, entrycount, entryoid);
-				if (pos > -1 && pos < entrycount && entryoid.compareTo(entryoids[pos]) == 0) {
+				final int pos = getInsertionPoint(entryoids, entrycount,
+						entryoid);
+				if (pos > -1 && pos < entrycount && entryoid.compareTo(
+						entryoids[pos]) == 0) {
 					v = entrylists[pos];
 					rs = rowstatus[pos];
 				} else {
@@ -621,7 +611,8 @@ final class SnmpRequestTree {
 					if ((rs != null) && (rs != statusvb)
 							&& ((type == SnmpDefinitions.pduWalkRequest)
 									|| (type == SnmpDefinitions.pduSetRequestPdu))) {
-						throw new SnmpStatusException(SnmpStatusException.snmpRspInconsistentValue);
+						throw new SnmpStatusException(
+								SnmpStatusException.snmpRspInconsistentValue);
 					}
 					rowstatus[pos] = statusvb;
 				}
@@ -798,7 +789,8 @@ final class SnmpRequestTree {
 	// adds a varbind to a handler node sublist
 	// -------------------------------------------------------------------
 
-	public void add(SnmpMibNode meta, int depth, SnmpVarBind varbind) throws SnmpStatusException {
+	public void add(SnmpMibNode meta, int depth, SnmpVarBind varbind)
+			throws SnmpStatusException {
 		registerNode(meta, depth, null, varbind, false, null);
 	}
 
@@ -806,8 +798,8 @@ final class SnmpRequestTree {
 	// adds an entry varbind to a handler node sublist
 	// -------------------------------------------------------------------
 
-	public void add(SnmpMibNode meta, int depth, SnmpOid entryoid, SnmpVarBind varbind,
-			boolean isnew) throws SnmpStatusException {
+	public void add(SnmpMibNode meta, int depth, SnmpOid entryoid,
+			SnmpVarBind varbind, boolean isnew) throws SnmpStatusException {
 		registerNode(meta, depth, entryoid, varbind, isnew, null);
 	}
 
@@ -816,8 +808,9 @@ final class SnmpRequestTree {
 	// varbind which holds the row status
 	// -------------------------------------------------------------------
 
-	public void add(SnmpMibNode meta, int depth, SnmpOid entryoid, SnmpVarBind varbind,
-			boolean isnew, SnmpVarBind statusvb) throws SnmpStatusException {
+	public void add(SnmpMibNode meta, int depth, SnmpOid entryoid,
+			SnmpVarBind varbind, boolean isnew, SnmpVarBind statusvb)
+			throws SnmpStatusException {
 		registerNode(meta, depth, entryoid, varbind, isnew, statusvb);
 	}
 
@@ -860,8 +853,8 @@ final class SnmpRequestTree {
 	SnmpMibSubRequest getSubRequest(Handler handler) {
 		if (handler == null)
 			return null;
-		return new SnmpMibSubRequestImpl(request, handler.getSubList(), null, false, getnextflag,
-				null);
+		return new SnmpMibSubRequestImpl(request, handler.getSubList(), null,
+				false, getnextflag, null);
 	}
 
 	// -------------------------------------------------------------------
@@ -889,9 +882,9 @@ final class SnmpRequestTree {
 	SnmpMibSubRequest getSubRequest(Handler handler, int entry) {
 		if (handler == null)
 			return null;
-		return new SnmpMibSubRequestImpl(request, handler.getEntrySubList(entry),
-				handler.getEntryOid(entry), handler.isNewEntry(entry), getnextflag,
-				handler.getRowStatusVarBind(entry));
+		return new SnmpMibSubRequestImpl(request, handler.getEntrySubList(
+				entry), handler.getEntryOid(entry), handler.isNewEntry(entry),
+				getnextflag, handler.getRowStatusVarBind(entry));
 	}
 
 	// -------------------------------------------------------------------
@@ -966,7 +959,8 @@ final class SnmpRequestTree {
 	// `oids' array.
 	// -------------------------------------------------------------------
 
-	private static int getInsertionPoint(SnmpOid[] oids, int count, SnmpOid oid) {
+	private static int getInsertionPoint(SnmpOid[] oids, int count,
+			SnmpOid oid) {
 		final SnmpOid[] localoids = oids;
 		final int size = count;
 		int low = 0;
@@ -1006,16 +1000,17 @@ final class SnmpRequestTree {
 	// adds a varbind in a handler node sublist
 	// -------------------------------------------------------------------
 
-	private void registerNode(SnmpMibNode meta, int depth, SnmpOid entryoid, SnmpVarBind varbind,
-			boolean isnew, SnmpVarBind statusvb) throws SnmpStatusException {
+	private void registerNode(SnmpMibNode meta, int depth, SnmpOid entryoid,
+			SnmpVarBind varbind, boolean isnew, SnmpVarBind statusvb)
+			throws SnmpStatusException {
 		if (meta == null) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpRequestTree.class.getName(), "registerNode",
-					"meta-node is null!");
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpRequestTree.class
+					.getName(), "registerNode", "meta-node is null!");
 			return;
 		}
 		if (varbind == null) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpRequestTree.class.getName(), "registerNode",
-					"varbind is null!");
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpRequestTree.class
+					.getName(), "registerNode", "varbind is null!");
 			return;
 		}
 

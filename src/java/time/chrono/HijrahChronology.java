@@ -1,47 +1,21 @@
 /*
  * Copyright (c) 2012, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * Copyright (c) 2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -219,7 +193,8 @@ import sun.util.logging.PlatformLogger;
  *
  * @since 1.8
  */
-public final class HijrahChronology extends AbstractChronology implements Serializable {
+public final class HijrahChronology extends AbstractChronology implements
+		Serializable {
 
 	/**
 	 * The Hijrah Calendar id.
@@ -303,9 +278,11 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 */
 	static {
 		try {
-			calendarProperties = sun.util.calendar.BaseCalendar.getCalendarProperties();
+			calendarProperties = sun.util.calendar.BaseCalendar
+					.getCalendarProperties();
 		} catch (IOException ioe) {
-			throw new InternalError("Can't initialize lib/calendars.properties", ioe);
+			throw new InternalError("Can't initialize lib/calendars.properties",
+					ioe);
 		}
 
 		try {
@@ -315,10 +292,14 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 			AbstractChronology.registerChrono(INSTANCE, "islamic");
 		} catch (DateTimeException ex) {
 			// Absence of Hijrah calendar is fatal to initializing this class.
-			PlatformLogger logger = PlatformLogger.getLogger("java.time.chrono");
-			logger.severe("Unable to initialize Hijrah calendar: Hijrah-umalqura", ex);
-			throw new RuntimeException("Unable to initialize Hijrah-umalqura calendar",
-					ex.getCause());
+			PlatformLogger logger = PlatformLogger.getLogger(
+					"java.time.chrono");
+			logger.severe(
+					"Unable to initialize Hijrah calendar: Hijrah-umalqura",
+					ex);
+			throw new RuntimeException(
+					"Unable to initialize Hijrah-umalqura calendar", ex
+							.getCause());
 		}
 		registerVariants();
 	}
@@ -343,8 +324,10 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 					AbstractChronology.registerChrono(chrono);
 				} catch (DateTimeException ex) {
 					// Log error and continue
-					PlatformLogger logger = PlatformLogger.getLogger("java.time.chrono");
-					logger.severe("Unable to initialize Hijrah calendar: " + id, ex);
+					PlatformLogger logger = PlatformLogger.getLogger(
+							"java.time.chrono");
+					logger.severe("Unable to initialize Hijrah calendar: " + id,
+							ex);
 				}
 			}
 		}
@@ -358,11 +341,12 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * {@code "calendar.hijrah." + id + ".type"}
 	 * 
 	 * @param id
-	 *            the id of the calendar
+	 *           the id of the calendar
 	 * @throws DateTimeException
-	 *             if the calendar type is missing from the properties file.
+	 *                                  if the calendar type is missing from the
+	 *                                  properties file.
 	 * @throws IllegalArgumentException
-	 *             if the id is empty
+	 *                                  if the id is empty
 	 */
 	private HijrahChronology(String id) throws DateTimeException {
 		if (id.isEmpty()) {
@@ -371,7 +355,8 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 		String propName = PROP_PREFIX + id + PROP_TYPE_SUFFIX;
 		String calType = calendarProperties.getProperty(propName);
 		if (calType == null || calType.isEmpty()) {
-			throw new DateTimeException("calendarType is missing or empty for: " + propName);
+			throw new DateTimeException("calendarType is missing or empty for: "
+					+ propName);
 		}
 		this.typeId = id;
 		this.calendarType = calType;
@@ -387,8 +372,9 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * checked.
 	 *
 	 * @throws DateTimeException
-	 *             if the calendar data configuration is malformed or
-	 *             IOExceptions occur loading the data
+	 *                           if the calendar data configuration is malformed
+	 *                           or
+	 *                           IOExceptions occur loading the data
 	 */
 	private void checkCalendarInit() {
 		// Keep this short so it can be inlined for performance
@@ -436,18 +422,18 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * month-of-year and day-of-month fields.
 	 *
 	 * @param era
-	 *            the Hijrah era, not null
+	 *                   the Hijrah era, not null
 	 * @param yearOfEra
-	 *            the year-of-era
+	 *                   the year-of-era
 	 * @param month
-	 *            the month-of-year
+	 *                   the month-of-year
 	 * @param dayOfMonth
-	 *            the day-of-month
+	 *                   the day-of-month
 	 * @return the Hijrah local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                            if unable to create the date
 	 * @throws ClassCastException
-	 *             if the {@code era} is not a {@code HijrahEra}
+	 *                            if the {@code era} is not a {@code HijrahEra}
 	 */
 	@Override
 	public HijrahDate date(Era era, int yearOfEra, int month, int dayOfMonth) {
@@ -459,14 +445,14 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * month-of-year and day-of-month fields.
 	 *
 	 * @param prolepticYear
-	 *            the proleptic-year
+	 *                      the proleptic-year
 	 * @param month
-	 *            the month-of-year
+	 *                      the month-of-year
 	 * @param dayOfMonth
-	 *            the day-of-month
+	 *                      the day-of-month
 	 * @return the Hijrah local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                           if unable to create the date
 	 */
 	@Override
 	public HijrahDate date(int prolepticYear, int month, int dayOfMonth) {
@@ -478,16 +464,16 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * and day-of-year fields.
 	 *
 	 * @param era
-	 *            the Hijrah era, not null
+	 *                  the Hijrah era, not null
 	 * @param yearOfEra
-	 *            the year-of-era
+	 *                  the year-of-era
 	 * @param dayOfYear
-	 *            the day-of-year
+	 *                  the day-of-year
 	 * @return the Hijrah local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                            if unable to create the date
 	 * @throws ClassCastException
-	 *             if the {@code era} is not a {@code HijrahEra}
+	 *                            if the {@code era} is not a {@code HijrahEra}
 	 */
 	@Override
 	public HijrahDate dateYearDay(Era era, int yearOfEra, int dayOfYear) {
@@ -499,13 +485,14 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * and day-of-year fields.
 	 *
 	 * @param prolepticYear
-	 *            the proleptic-year
+	 *                      the proleptic-year
 	 * @param dayOfYear
-	 *            the day-of-year
+	 *                      the day-of-year
 	 * @return the Hijrah local date, not null
 	 * @throws DateTimeException
-	 *             if the value of the year is out of range, or if the
-	 *             day-of-year is invalid for the year
+	 *                           if the value of the year is out of range, or if
+	 *                           the
+	 *                           day-of-year is invalid for the year
 	 */
 	@Override
 	public HijrahDate dateYearDay(int prolepticYear, int dayOfYear) {
@@ -520,10 +507,10 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Obtains a local date in the Hijrah calendar system from the epoch-day.
 	 *
 	 * @param epochDay
-	 *            the epoch day
+	 *                 the epoch day
 	 * @return the Hijrah local date, not null
 	 * @throws DateTimeException
-	 *             if unable to create the date
+	 *                           if unable to create the date
 	 */
 	@Override // override with covariant return type
 	public HijrahDate dateEpochDay(long epochDay) {
@@ -555,27 +542,32 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public ChronoLocalDateTime<HijrahDate> localDateTime(TemporalAccessor temporal) {
+	public ChronoLocalDateTime<HijrahDate> localDateTime(
+			TemporalAccessor temporal) {
 		return (ChronoLocalDateTime<HijrahDate>) super.localDateTime(temporal);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public ChronoZonedDateTime<HijrahDate> zonedDateTime(TemporalAccessor temporal) {
+	public ChronoZonedDateTime<HijrahDate> zonedDateTime(
+			TemporalAccessor temporal) {
 		return (ChronoZonedDateTime<HijrahDate>) super.zonedDateTime(temporal);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public ChronoZonedDateTime<HijrahDate> zonedDateTime(Instant instant, ZoneId zone) {
-		return (ChronoZonedDateTime<HijrahDate>) super.zonedDateTime(instant, zone);
+	public ChronoZonedDateTime<HijrahDate> zonedDateTime(Instant instant,
+			ZoneId zone) {
+		return (ChronoZonedDateTime<HijrahDate>) super.zonedDateTime(instant,
+				zone);
 	}
 
 	// -----------------------------------------------------------------------
 	@Override
 	public boolean isLeapYear(long prolepticYear) {
 		checkCalendarInit();
-		if (prolepticYear < getMinimumYear() || prolepticYear > getMaximumYear()) {
+		if (prolepticYear < getMinimumYear()
+				|| prolepticYear > getMaximumYear()) {
 			return false;
 		}
 		int len = getYearLength((int) prolepticYear);
@@ -593,16 +585,16 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	@Override
 	public HijrahEra eraOf(int eraValue) {
 		switch (eraValue) {
-		case 1:
-			return HijrahEra.AH;
-		default:
-			throw new DateTimeException("invalid Hijrah era");
+			case 1:
+				return HijrahEra.AH;
+			default:
+				throw new DateTimeException("invalid Hijrah era");
 		}
 	}
 
 	@Override
 	public List<Era> eras() {
-		return Arrays.<Era> asList(HijrahEra.values());
+		return Arrays.<Era>asList(HijrahEra.values());
 	}
 
 	// -----------------------------------------------------------------------
@@ -612,19 +604,20 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 		if (field instanceof ChronoField) {
 			ChronoField f = field;
 			switch (f) {
-			case DAY_OF_MONTH:
-				return ValueRange.of(1, 1, getMinimumMonthLength(), getMaximumMonthLength());
-			case DAY_OF_YEAR:
-				return ValueRange.of(1, getMaximumDayOfYear());
-			case ALIGNED_WEEK_OF_MONTH:
-				return ValueRange.of(1, 5);
-			case YEAR:
-			case YEAR_OF_ERA:
-				return ValueRange.of(getMinimumYear(), getMaximumYear());
-			case ERA:
-				return ValueRange.of(1, 1);
-			default:
-				return field.range();
+				case DAY_OF_MONTH:
+					return ValueRange.of(1, 1, getMinimumMonthLength(),
+							getMaximumMonthLength());
+				case DAY_OF_YEAR:
+					return ValueRange.of(1, getMaximumDayOfYear());
+				case ALIGNED_WEEK_OF_MONTH:
+					return ValueRange.of(1, 5);
+				case YEAR:
+				case YEAR_OF_ERA:
+					return ValueRange.of(getMinimumYear(), getMaximumYear());
+				case ERA:
+					return ValueRange.of(1, 1);
+				default:
+					return field.range();
 			}
 		}
 		return field.range();
@@ -642,18 +635,21 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Check the validity of a year.
 	 *
 	 * @param prolepticYear
-	 *            the year to check
+	 *                      the year to check
 	 */
 	int checkValidYear(long prolepticYear) {
-		if (prolepticYear < getMinimumYear() || prolepticYear > getMaximumYear()) {
-			throw new DateTimeException("Invalid Hijrah year: " + prolepticYear);
+		if (prolepticYear < getMinimumYear()
+				|| prolepticYear > getMaximumYear()) {
+			throw new DateTimeException("Invalid Hijrah year: "
+					+ prolepticYear);
 		}
 		return (int) prolepticYear;
 	}
 
 	void checkValidDayOfYear(int dayOfYear) {
 		if (dayOfYear < 1 || dayOfYear > getMaximumDayOfYear()) {
-			throw new DateTimeException("Invalid Hijrah day of year: " + dayOfYear);
+			throw new DateTimeException("Invalid Hijrah day of year: "
+					+ dayOfYear);
 		}
 	}
 
@@ -669,7 +665,7 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * the epoch day.
 	 *
 	 * @param epochDay
-	 *            the EpochDay
+	 *                 the EpochDay
 	 * @return int[0] = YEAR, int[1] = MONTH, int[2] = DATE
 	 */
 	int[] getHijrahDateInfo(int epochDay) {
@@ -695,11 +691,11 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Return the epoch day computed from Hijrah year, month, and day.
 	 *
 	 * @param prolepticYear
-	 *            the year to represent, 0-origin
+	 *                      the year to represent, 0-origin
 	 * @param monthOfYear
-	 *            the month-of-year to represent, 1-origin
+	 *                      the month-of-year to represent, 1-origin
 	 * @param dayOfMonth
-	 *            the day-of-month to represent, 1-origin
+	 *                      the day-of-month to represent, 1-origin
 	 * @return the epoch day
 	 */
 	long getEpochDay(int prolepticYear, int monthOfYear, int dayOfMonth) {
@@ -707,11 +703,13 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 		checkValidMonth(monthOfYear);
 		int epochMonth = yearToEpochMonth(prolepticYear) + (monthOfYear - 1);
 		if (epochMonth < 0 || epochMonth >= hijrahEpochMonthStartDays.length) {
-			throw new DateTimeException(
-					"Invalid Hijrah date, year: " + prolepticYear + ", month: " + monthOfYear);
+			throw new DateTimeException("Invalid Hijrah date, year: "
+					+ prolepticYear + ", month: " + monthOfYear);
 		}
-		if (dayOfMonth < 1 || dayOfMonth > getMonthLength(prolepticYear, monthOfYear)) {
-			throw new DateTimeException("Invalid Hijrah day of month: " + dayOfMonth);
+		if (dayOfMonth < 1 || dayOfMonth > getMonthLength(prolepticYear,
+				monthOfYear)) {
+			throw new DateTimeException("Invalid Hijrah day of month: "
+					+ dayOfMonth);
 		}
 		return epochMonthToEpochDay(epochMonth) + (dayOfMonth - 1);
 	}
@@ -720,9 +718,9 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Returns day of year for the year and month.
 	 *
 	 * @param prolepticYear
-	 *            a proleptic year
+	 *                      a proleptic year
 	 * @param month
-	 *            a month, 1-origin
+	 *                      a month, 1-origin
 	 * @return the day of year, 1-origin
 	 */
 	int getDayOfYear(int prolepticYear, int month) {
@@ -733,16 +731,16 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Returns month length for the year and month.
 	 *
 	 * @param prolepticYear
-	 *            a proleptic year
+	 *                      a proleptic year
 	 * @param monthOfYear
-	 *            a month, 1-origin.
+	 *                      a month, 1-origin.
 	 * @return the length of the month
 	 */
 	int getMonthLength(int prolepticYear, int monthOfYear) {
 		int epochMonth = yearToEpochMonth(prolepticYear) + (monthOfYear - 1);
 		if (epochMonth < 0 || epochMonth >= hijrahEpochMonthStartDays.length) {
-			throw new DateTimeException(
-					"Invalid Hijrah date, year: " + prolepticYear + ", month: " + monthOfYear);
+			throw new DateTimeException("Invalid Hijrah date, year: "
+					+ prolepticYear + ", month: " + monthOfYear);
 		}
 		return epochMonthLength(epochMonth);
 	}
@@ -751,7 +749,7 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Returns year length. Note: The 12th month must exist in the data.
 	 *
 	 * @param prolepticYear
-	 *            a proleptic year
+	 *                      a proleptic year
 	 * @return year length in days
 	 */
 	int getYearLength(int prolepticYear) {
@@ -833,7 +831,7 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Returns the year computed from the epochMonth
 	 *
 	 * @param epochMonth
-	 *            the epochMonth
+	 *                   the epochMonth
 	 * @return the Hijrah Year
 	 */
 	private int epochMonthToYear(int epochMonth) {
@@ -844,7 +842,7 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Returns the epochMonth for the Hijrah Year.
 	 *
 	 * @param year
-	 *            the HijrahYear
+	 *             the HijrahYear
 	 * @return the epochMonth for the beginning of the year.
 	 */
 	private int yearToEpochMonth(int year) {
@@ -855,7 +853,7 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Returns the Hijrah month from the epochMonth.
 	 *
 	 * @param epochMonth
-	 *            the epochMonth
+	 *                   the epochMonth
 	 * @return the month of the Hijrah Year
 	 */
 	private int epochMonthToMonth(int epochMonth) {
@@ -866,7 +864,7 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Returns the epochDay for the start of the epochMonth.
 	 *
 	 * @param epochMonth
-	 *            the epochMonth
+	 *                   the epochMonth
 	 * @return the epochDay for the start of the epochMonth.
 	 */
 	private int epochMonthToEpochDay(int epochMonth) {
@@ -878,9 +876,9 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Returns the day of year for the requested HijrahYear and month.
 	 *
 	 * @param prolepticYear
-	 *            the Hijrah year
+	 *                      the Hijrah year
 	 * @param month
-	 *            the Hijrah month
+	 *                      the Hijrah month
 	 * @return the day of year for the start of the month of the year
 	 */
 	private int yearMonthToDayOfYear(int prolepticYear, int month) {
@@ -894,13 +892,14 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * the following month minus the start of the requested month.
 	 *
 	 * @param epochMonth
-	 *            the epochMonth; assumed to be within range
+	 *                   the epochMonth; assumed to be within range
 	 * @return the length in days of the epochMonth
 	 */
 	private int epochMonthLength(int epochMonth) {
 		// The very last entry in the epochMonth table is not the start of a
 		// month
-		return hijrahEpochMonthStartDays[epochMonth + 1] - hijrahEpochMonthStartDays[epochMonth];
+		return hijrahEpochMonthStartDays[epochMonth + 1]
+				- hijrahEpochMonthStartDays[epochMonth];
 	}
 
 	// -----------------------------------------------------------------------
@@ -919,16 +918,18 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * </pre>
 	 *
 	 * @param resource
-	 *            the name of the calendar property resource
+	 *                 the name of the calendar property resource
 	 * @return a Properties containing the properties read from the resource.
 	 * @throws Exception
-	 *             if access to the property resource fails
+	 *                   if access to the property resource fails
 	 */
-	private static Properties readConfigProperties(final String resource) throws Exception {
+	private static Properties readConfigProperties(final String resource)
+			throws Exception {
 		try {
-			return AccessController
-					.doPrivileged((java.security.PrivilegedExceptionAction<Properties>) () -> {
-						String libDir = System.getProperty("java.home") + File.separator + "lib";
+			return AccessController.doPrivileged(
+					(java.security.PrivilegedExceptionAction<Properties>) () -> {
+						String libDir = System.getProperty("java.home")
+								+ File.separator + "lib";
 						File file = new File(libDir, resource);
 						Properties props = new Properties();
 						try (InputStream is = new FileInputStream(file)) {
@@ -949,12 +950,14 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * containing the length of each of 12 months.
 	 *
 	 * @throws DateTimeException
-	 *             if initialization of the calendar data from the resource
-	 *             fails
+	 *                           if initialization of the calendar data from the
+	 *                           resource
+	 *                           fails
 	 */
 	private void loadCalendarData() {
 		try {
-			String resourceName = calendarProperties.getProperty(PROP_PREFIX + typeId);
+			String resourceName = calendarProperties.getProperty(PROP_PREFIX
+					+ typeId);
 			Objects.requireNonNull(resourceName,
 					"Resource missing for calendar: " + PROP_PREFIX + typeId);
 			Properties props = readConfigProperties(resourceName);
@@ -969,31 +972,34 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 			for (Map.Entry<Object, Object> entry : props.entrySet()) {
 				String key = (String) entry.getKey();
 				switch (key) {
-				case KEY_ID:
-					id = (String) entry.getValue();
-					break;
-				case KEY_TYPE:
-					type = (String) entry.getValue();
-					break;
-				case KEY_VERSION:
-					version = (String) entry.getValue();
-					break;
-				case KEY_ISO_START: {
-					int[] ymd = parseYMD((String) entry.getValue());
-					isoStart = (int) LocalDate.of(ymd[0], ymd[1], ymd[2]).toEpochDay();
-					break;
-				}
-				default:
-					try {
-						// Everything else is either a year or invalid
-						int year = Integer.valueOf(key);
-						int[] months = parseMonths((String) entry.getValue());
-						years.put(year, months);
-						maxYear = Math.max(maxYear, year);
-						minYear = Math.min(minYear, year);
-					} catch (NumberFormatException nfe) {
-						throw new IllegalArgumentException("bad key: " + key);
+					case KEY_ID:
+						id = (String) entry.getValue();
+						break;
+					case KEY_TYPE:
+						type = (String) entry.getValue();
+						break;
+					case KEY_VERSION:
+						version = (String) entry.getValue();
+						break;
+					case KEY_ISO_START: {
+						int[] ymd = parseYMD((String) entry.getValue());
+						isoStart = (int) LocalDate.of(ymd[0], ymd[1], ymd[2])
+								.toEpochDay();
+						break;
 					}
+					default:
+						try {
+							// Everything else is either a year or invalid
+							int year = Integer.valueOf(key);
+							int[] months = parseMonths((String) entry
+									.getValue());
+							years.put(year, months);
+							maxYear = Math.max(maxYear, year);
+							minYear = Math.min(minYear, year);
+						} catch (NumberFormatException nfe) {
+							throw new IllegalArgumentException("bad key: "
+									+ key);
+						}
 				}
 			}
 
@@ -1003,10 +1009,12 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 			}
 			if (!getCalendarType().equals(type)) {
 				throw new IllegalArgumentException(
-						"Configuration is for a different calendar type: " + type);
+						"Configuration is for a different calendar type: "
+								+ type);
 			}
 			if (version == null || version.isEmpty()) {
-				throw new IllegalArgumentException("Configuration does not contain a version");
+				throw new IllegalArgumentException(
+						"Configuration does not contain a version");
 			}
 			if (isoStart == 0) {
 				throw new IllegalArgumentException(
@@ -1017,8 +1025,10 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 			// epochMonth
 			hijrahStartEpochMonth = minYear * 12;
 			minEpochDay = isoStart;
-			hijrahEpochMonthStartDays = createEpochMonths(minEpochDay, minYear, maxYear, years);
-			maxEpochDay = hijrahEpochMonthStartDays[hijrahEpochMonthStartDays.length - 1];
+			hijrahEpochMonthStartDays = createEpochMonths(minEpochDay, minYear,
+					maxYear, years);
+			maxEpochDay = hijrahEpochMonthStartDays[hijrahEpochMonthStartDays.length
+					- 1];
 
 			// Compute the min and max year length in days.
 			for (int year = minYear; year < maxYear; year++) {
@@ -1028,9 +1038,12 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 			}
 		} catch (Exception ex) {
 			// Log error and throw a DateTimeException
-			PlatformLogger logger = PlatformLogger.getLogger("java.time.chrono");
-			logger.severe("Unable to initialize Hijrah calendar proxy: " + typeId, ex);
-			throw new DateTimeException("Unable to initialize HijrahCalendar: " + typeId, ex);
+			PlatformLogger logger = PlatformLogger.getLogger(
+					"java.time.chrono");
+			logger.severe("Unable to initialize Hijrah calendar proxy: "
+					+ typeId, ex);
+			throw new DateTimeException("Unable to initialize HijrahCalendar: "
+					+ typeId, ex);
 		}
 	}
 
@@ -1041,11 +1054,11 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * entry is the epochDay corresponding to the first day of the month.
 	 *
 	 * @param minYear
-	 *            The minimum year for which data is provided
+	 *                The minimum year for which data is provided
 	 * @param maxYear
-	 *            The maximum year for which data is provided
+	 *                The maximum year for which data is provided
 	 * @param years
-	 *            a Map of year to the array of 12 month lengths
+	 *                a Map of year to the array of 12 month lengths
 	 * @return array of epochDays for each month from min to max
 	 */
 	private int[] createEpochMonths(int epochDay, int minYear, int maxYear,
@@ -1067,7 +1080,8 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 				epochMonths[epochMonth++] = epochDay;
 
 				if (length < 29 || length > 32) {
-					throw new IllegalArgumentException("Invalid month length in year: " + minYear);
+					throw new IllegalArgumentException(
+							"Invalid month length in year: " + minYear);
 				}
 				epochDay += length;
 				minMonthLength = Math.min(minMonthLength, length);
@@ -1079,8 +1093,9 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 		epochMonths[epochMonth++] = epochDay;
 
 		if (epochMonth != epochMonths.length) {
-			throw new IllegalStateException("Did not fill epochMonths exactly: ndx = " + epochMonth
-					+ " should be " + epochMonths.length);
+			throw new IllegalStateException(
+					"Did not fill epochMonths exactly: ndx = " + epochMonth
+							+ " should be " + epochMonths.length);
 		}
 
 		return epochMonths;
@@ -1090,19 +1105,20 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Parses the 12 months lengths from a property value for a specific year.
 	 *
 	 * @param line
-	 *            the value of a year property
+	 *             the value of a year property
 	 * @return an array of int[12] containing the 12 month lengths
 	 * @throws IllegalArgumentException
-	 *             if the number of months is not 12
+	 *                                  if the number of months is not 12
 	 * @throws NumberFormatException
-	 *             if the 12 tokens are not numbers
+	 *                                  if the 12 tokens are not numbers
 	 */
 	private int[] parseMonths(String line) {
 		int[] months = new int[12];
 		String[] numbers = line.split("\\s");
 		if (numbers.length != 12) {
-			throw new IllegalArgumentException("wrong number of months on line: "
-					+ Arrays.toString(numbers) + "; count: " + numbers.length);
+			throw new IllegalArgumentException(
+					"wrong number of months on line: " + Arrays.toString(
+							numbers) + "; count: " + numbers.length);
 		}
 		for (int i = 0; i < 12; i++) {
 			try {
@@ -1118,7 +1134,7 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Parse yyyy-MM-dd into a 3 element array [yyyy, mm, dd].
 	 *
 	 * @param string
-	 *            the input string
+	 *               the input string
 	 * @return the 3 element array with year, month, day
 	 */
 	private int[] parseYMD(String string) {
@@ -1162,11 +1178,12 @@ public final class HijrahChronology extends AbstractChronology implements Serial
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws InvalidObjectException
-	 *             always
+	 *                                always
 	 */
 	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 }

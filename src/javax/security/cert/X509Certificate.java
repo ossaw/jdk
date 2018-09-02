@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.cert;
@@ -142,11 +122,12 @@ public abstract class X509Certificate extends Certificate {
 	private static String X509Provider;
 
 	static {
-		X509Provider = AccessController.doPrivileged(new PrivilegedAction<String>() {
-			public String run() {
-				return Security.getProperty(X509_PROVIDER);
-			}
-		});
+		X509Provider = AccessController.doPrivileged(
+				new PrivilegedAction<String>() {
+					public String run() {
+						return Security.getProperty(X509_PROVIDER);
+					}
+				});
 	}
 
 	/**
@@ -167,13 +148,15 @@ public abstract class X509Certificate extends Certificate {
 	 * </pre>
 	 *
 	 * @param inStream
-	 *            an input stream with the data to be read to initialize the
-	 *            certificate.
+	 *                 an input stream with the data to be read to initialize
+	 *                 the
+	 *                 certificate.
 	 * @return an X509Certificate object initialized with the data from the
 	 *         input stream.
 	 * @exception CertificateException
-	 *                if a class initialization or certificate parsing error
-	 *                occurs.
+	 *                                 if a class initialization or certificate
+	 *                                 parsing error
+	 *                                 occurs.
 	 */
 	public static final X509Certificate getInstance(InputStream inStream)
 			throws CertificateException {
@@ -197,18 +180,21 @@ public abstract class X509Certificate extends Certificate {
 	 * </pre>
 	 *
 	 * @param certData
-	 *            a byte array containing the DER-encoded certificate.
+	 *                 a byte array containing the DER-encoded certificate.
 	 * @return an X509Certificate object initialized with the data from
 	 *         {@code certData}.
 	 * @exception CertificateException
-	 *                if a class initialization or certificate parsing error
-	 *                occurs.
+	 *                                 if a class initialization or certificate
+	 *                                 parsing error
+	 *                                 occurs.
 	 */
-	public static final X509Certificate getInstance(byte[] certData) throws CertificateException {
+	public static final X509Certificate getInstance(byte[] certData)
+			throws CertificateException {
 		return getInst((Object) certData);
 	}
 
-	private static final X509Certificate getInst(Object value) throws CertificateException {
+	private static final X509Certificate getInst(Object value)
+			throws CertificateException {
 		/*
 		 * This turns out not to work for now. To run under JDK1.2 we would need
 		 * to call beginPrivileged() but we can't do that and run under JDK1.1.
@@ -243,9 +229,11 @@ public abstract class X509Certificate extends Certificate {
 		} catch (InstantiationException e) {
 			throw new CertificateException("Problems instantiating: " + e);
 		} catch (InvocationTargetException e) {
-			throw new CertificateException("InvocationTargetException: " + e.getTargetException());
+			throw new CertificateException("InvocationTargetException: " + e
+					.getTargetException());
 		} catch (NoSuchMethodException e) {
-			throw new CertificateException("Could not find class method: " + e.getMessage());
+			throw new CertificateException("Could not find class method: " + e
+					.getMessage());
 		}
 	}
 
@@ -270,12 +258,14 @@ public abstract class X509Certificate extends Certificate {
 	 * </pre>
 	 *
 	 * @exception CertificateExpiredException
-	 *                if the certificate has expired.
+	 *                                            if the certificate has
+	 *                                            expired.
 	 * @exception CertificateNotYetValidException
-	 *                if the certificate is not yet valid.
+	 *                                            if the certificate is not yet
+	 *                                            valid.
 	 */
-	public abstract void checkValidity()
-			throws CertificateExpiredException, CertificateNotYetValidException;
+	public abstract void checkValidity() throws CertificateExpiredException,
+			CertificateNotYetValidException;
 
 	/**
 	 * Checks that the specified date is within the certificate's validity
@@ -283,14 +273,16 @@ public abstract class X509Certificate extends Certificate {
 	 * valid at the specified date/time.
 	 *
 	 * @param date
-	 *            the Date to check against to see if this certificate is valid
-	 *            at that date/time.
+	 *             the Date to check against to see if this certificate is valid
+	 *             at that date/time.
 	 * @exception CertificateExpiredException
-	 *                if the certificate has expired with respect to the
-	 *                {@code date} supplied.
+	 *                                            if the certificate has expired
+	 *                                            with respect to the
+	 *                                            {@code date} supplied.
 	 * @exception CertificateNotYetValidException
-	 *                if the certificate is not yet valid with respect to the
-	 *                {@code date} supplied.
+	 *                                            if the certificate is not yet
+	 *                                            valid with respect to the
+	 *                                            {@code date} supplied.
 	 * @see #checkValidity()
 	 */
 	public abstract void checkValidity(Date date)

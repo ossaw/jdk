@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002,2003-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,7 +37,8 @@ public final class StringListImpl extends AbstractList implements StringList {
 	/**
 	 * An immutable empty list.
 	 */
-	public static final StringListImpl EMPTY_LIST = new StringListImpl(new String[0], 0);
+	public static final StringListImpl EMPTY_LIST = new StringListImpl(
+			new String[0], 0);
 
 	// The array to hold all data
 	private final String[] fArray;
@@ -61,9 +59,9 @@ public final class StringListImpl extends AbstractList implements StringList {
 	 * Construct an XSObjectList implementation
 	 *
 	 * @param array
-	 *            the data array
+	 *               the data array
 	 * @param length
-	 *            the number of elements
+	 *               the number of elements
 	 */
 	public StringListImpl(String[] array, int length) {
 		fArray = array;
@@ -84,8 +82,8 @@ public final class StringListImpl extends AbstractList implements StringList {
 	 * this list.
 	 * 
 	 * @param item
-	 *            <code>GenericString</code> whose presence in this list is to
-	 *            be tested.
+	 *             <code>GenericString</code> whose presence in this list is to
+	 *             be tested.
 	 * @return True if this list contains the <code>GenericString</code>
 	 *         <code>item</code>.
 	 */

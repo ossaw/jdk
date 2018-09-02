@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.text;
@@ -34,13 +14,11 @@ class DontCareFieldPosition extends FieldPosition {
 	static final FieldPosition INSTANCE = new DontCareFieldPosition();
 
 	private final Format.FieldDelegate noDelegate = new Format.FieldDelegate() {
-		public void formatted(Format.Field attr, Object value, int start, int end,
-				StringBuffer buffer) {
-		}
+		public void formatted(Format.Field attr, Object value, int start,
+				int end, StringBuffer buffer) {}
 
-		public void formatted(int fieldID, Format.Field attr, Object value, int start, int end,
-				StringBuffer buffer) {
-		}
+		public void formatted(int fieldID, Format.Field attr, Object value,
+				int start, int end, StringBuffer buffer) {}
 	};
 
 	private DontCareFieldPosition() {

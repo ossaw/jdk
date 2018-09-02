@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.basic;
 
@@ -44,7 +24,8 @@ import java.io.Serializable;
  *
  * @author Arnaud Weber
  */
-public class BasicComboBoxRenderer extends JLabel implements ListCellRenderer, Serializable {
+public class BasicComboBoxRenderer extends JLabel implements ListCellRenderer,
+		Serializable {
 
 	/**
 	 * An empty <code>Border</code>. This field might not be used. To change the
@@ -52,7 +33,8 @@ public class BasicComboBoxRenderer extends JLabel implements ListCellRenderer, S
 	 * <code>setBorder</code> method.
 	 */
 	protected static Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);
-	private final static Border SAFE_NO_FOCUS_BORDER = new EmptyBorder(1, 1, 1, 1);
+	private final static Border SAFE_NO_FOCUS_BORDER = new EmptyBorder(1, 1, 1,
+			1);
 
 	public BasicComboBoxRenderer() {
 		super();
@@ -82,8 +64,8 @@ public class BasicComboBoxRenderer extends JLabel implements ListCellRenderer, S
 		return size;
 	}
 
-	public Component getListCellRendererComponent(JList list, Object value, int index,
-			boolean isSelected, boolean cellHasFocus) {
+	public Component getListCellRendererComponent(JList list, Object value,
+			int index, boolean isSelected, boolean cellHasFocus) {
 
 		/**
 		 * if (isSelected) {
@@ -124,7 +106,6 @@ public class BasicComboBoxRenderer extends JLabel implements ListCellRenderer, S
 	 * all JavaBeans&trade; has been added to the <code>java.beans</code>
 	 * package. Please see {@link java.beans.XMLEncoder}.
 	 */
-	public static class UIResource extends BasicComboBoxRenderer
-			implements javax.swing.plaf.UIResource {
-	}
+	public static class UIResource extends BasicComboBoxRenderer implements
+			javax.swing.plaf.UIResource {}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -63,7 +43,8 @@ class HeapFloatBufferR extends HeapFloatBuffer {
 
 	}
 
-	protected HeapFloatBufferR(float[] buf, int mark, int pos, int lim, int cap, int off) {
+	protected HeapFloatBufferR(float[] buf, int mark, int pos, int lim, int cap,
+			int off) {
 
 		super(buf, mark, pos, lim, cap, off);
 		this.isReadOnly = true;
@@ -71,13 +52,13 @@ class HeapFloatBufferR extends HeapFloatBuffer {
 	}
 
 	public FloatBuffer slice() {
-		return new HeapFloatBufferR(hb, -1, 0, this.remaining(), this.remaining(),
-				this.position() + offset);
+		return new HeapFloatBufferR(hb, -1, 0, this.remaining(), this
+				.remaining(), this.position() + offset);
 	}
 
 	public FloatBuffer duplicate() {
-		return new HeapFloatBufferR(hb, this.markValue(), this.position(), this.limit(),
-				this.capacity(), offset);
+		return new HeapFloatBufferR(hb, this.markValue(), this.position(), this
+				.limit(), this.capacity(), offset);
 	}
 
 	public FloatBuffer asReadOnlyBuffer() {

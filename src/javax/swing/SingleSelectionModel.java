@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -47,7 +27,7 @@ public interface SingleSelectionModel {
 	 * Notifies any listeners if the model changes
 	 *
 	 * @param index
-	 *            an int specifying the model selection
+	 *              an int specifying the model selection
 	 * @see #getSelectedIndex
 	 * @see #addChangeListener
 	 */
@@ -69,7 +49,7 @@ public interface SingleSelectionModel {
 	 * Adds <I>listener</I> as a listener to changes in the model.
 	 * 
 	 * @param listener
-	 *            the ChangeListener to add
+	 *                 the ChangeListener to add
 	 */
 	void addChangeListener(ChangeListener listener);
 
@@ -77,7 +57,7 @@ public interface SingleSelectionModel {
 	 * Removes <I>listener</I> as a listener to changes in the model.
 	 * 
 	 * @param listener
-	 *            the ChangeListener to remove
+	 *                 the ChangeListener to remove
 	 */
 	void removeChangeListener(ChangeListener listener);
 }

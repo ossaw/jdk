@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.naming.namingutil;
@@ -39,8 +19,8 @@ import com.sun.corba.se.spi.logging.CORBALogDomains;
  * @Author Hemanth
  */
 class Utility {
-	private static NamingSystemException wrapper = NamingSystemException
-			.get(CORBALogDomains.NAMING);
+	private static NamingSystemException wrapper = NamingSystemException.get(
+			CORBALogDomains.NAMING);
 
 	/**
 	 * cleanEscapes removes URL escapes as per IETF 2386 RFP.

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.lang.reflect;
 
@@ -54,13 +34,13 @@ public final class Parameter implements AnnotatedElement {
 	 * then {@code Executable} uses this constructor to synthesize them.
 	 *
 	 * @param name
-	 *            The name of the parameter.
+	 *                   The name of the parameter.
 	 * @param modifiers
-	 *            The modifier flags for the parameter.
+	 *                   The modifier flags for the parameter.
 	 * @param executable
-	 *            The executable which defines this parameter.
+	 *                   The executable which defines this parameter.
 	 * @param index
-	 *            The index of the parameter.
+	 *                   The index of the parameter.
 	 */
 	Parameter(String name, int modifiers, Executable executable, int index) {
 		this.name = name;
@@ -79,7 +59,8 @@ public final class Parameter implements AnnotatedElement {
 	public boolean equals(Object obj) {
 		if (obj instanceof Parameter) {
 			Parameter other = (Parameter) obj;
-			return (other.executable.equals(executable) && other.index == index);
+			return (other.executable.equals(executable)
+					&& other.index == index);
 		}
 		return false;
 	}
@@ -263,14 +244,15 @@ public final class Parameter implements AnnotatedElement {
 	 *         argument list.
 	 */
 	public boolean isVarArgs() {
-		return executable.isVarArgs() && index == executable.getParameterCount() - 1;
+		return executable.isVarArgs() && index == executable.getParameterCount()
+				- 1;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
 	public <T extends Annotation> T getAnnotation(Class<T> annotationClass) {
 		Objects.requireNonNull(annotationClass);
@@ -281,14 +263,15 @@ public final class Parameter implements AnnotatedElement {
 	 * {@inheritDoc}
 	 * 
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
 	@Override
-	public <T extends Annotation> T[] getAnnotationsByType(Class<T> annotationClass) {
+	public <T extends Annotation> T[] getAnnotationsByType(
+			Class<T> annotationClass) {
 		Objects.requireNonNull(annotationClass);
 
-		return AnnotationSupport.getDirectlyAndIndirectlyPresent(declaredAnnotations(),
-				annotationClass);
+		return AnnotationSupport.getDirectlyAndIndirectlyPresent(
+				declaredAnnotations(), annotationClass);
 	}
 
 	/**
@@ -300,9 +283,10 @@ public final class Parameter implements AnnotatedElement {
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
-	public <T extends Annotation> T getDeclaredAnnotation(Class<T> annotationClass) {
+	public <T extends Annotation> T getDeclaredAnnotation(
+			Class<T> annotationClass) {
 		// Only annotations on classes are inherited, for all other
 		// objects getDeclaredAnnotation is the same as
 		// getAnnotation.
@@ -311,10 +295,11 @@ public final class Parameter implements AnnotatedElement {
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
 	@Override
-	public <T extends Annotation> T[] getDeclaredAnnotationsByType(Class<T> annotationClass) {
+	public <T extends Annotation> T[] getDeclaredAnnotationsByType(
+			Class<T> annotationClass) {
 		// Only annotations on classes are inherited, for all other
 		// objects getDeclaredAnnotations is the same as
 		// getAnnotations.

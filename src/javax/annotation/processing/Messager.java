@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.annotation.processing;
@@ -56,9 +36,9 @@ public interface Messager {
 	 * Prints a message of the specified kind.
 	 *
 	 * @param kind
-	 *            the kind of message
+	 *             the kind of message
 	 * @param msg
-	 *            the message, or an empty string if none
+	 *             the message, or an empty string if none
 	 */
 	void printMessage(Diagnostic.Kind kind, CharSequence msg);
 
@@ -66,11 +46,11 @@ public interface Messager {
 	 * Prints a message of the specified kind at the location of the element.
 	 *
 	 * @param kind
-	 *            the kind of message
+	 *             the kind of message
 	 * @param msg
-	 *            the message, or an empty string if none
+	 *             the message, or an empty string if none
 	 * @param e
-	 *            the element to use as a position hint
+	 *             the element to use as a position hint
 	 */
 	void printMessage(Diagnostic.Kind kind, CharSequence msg, Element e);
 
@@ -79,31 +59,32 @@ public interface Messager {
 	 * mirror of the annotated element.
 	 *
 	 * @param kind
-	 *            the kind of message
+	 *             the kind of message
 	 * @param msg
-	 *            the message, or an empty string if none
+	 *             the message, or an empty string if none
 	 * @param e
-	 *            the annotated element
+	 *             the annotated element
 	 * @param a
-	 *            the annotation to use as a position hint
+	 *             the annotation to use as a position hint
 	 */
-	void printMessage(Diagnostic.Kind kind, CharSequence msg, Element e, AnnotationMirror a);
+	void printMessage(Diagnostic.Kind kind, CharSequence msg, Element e,
+			AnnotationMirror a);
 
 	/**
 	 * Prints a message of the specified kind at the location of the annotation
 	 * value inside the annotation mirror of the annotated element.
 	 *
 	 * @param kind
-	 *            the kind of message
+	 *             the kind of message
 	 * @param msg
-	 *            the message, or an empty string if none
+	 *             the message, or an empty string if none
 	 * @param e
-	 *            the annotated element
+	 *             the annotated element
 	 * @param a
-	 *            the annotation containing the annotation value
+	 *             the annotation containing the annotation value
 	 * @param v
-	 *            the annotation value to use as a position hint
+	 *             the annotation value to use as a position hint
 	 */
-	void printMessage(Diagnostic.Kind kind, CharSequence msg, Element e, AnnotationMirror a,
-			AnnotationValue v);
+	void printMessage(Diagnostic.Kind kind, CharSequence msg, Element e,
+			AnnotationMirror a, AnnotationValue v);
 }

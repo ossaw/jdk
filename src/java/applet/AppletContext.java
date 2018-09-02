@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.applet;
@@ -77,7 +57,7 @@ public interface AppletContext {
 	 * setting the <code>name</code> attribute.
 	 *
 	 * @param name
-	 *            an applet name.
+	 *             an applet name.
 	 * @return the applet with the given name, or <code>null</code> if not
 	 *         found.
 	 */
@@ -144,9 +124,9 @@ public interface AppletContext {
 	 * An applet viewer or browser is free to ignore <code>showDocument</code>.
 	 *
 	 * @param url
-	 *            an absolute URL giving the location of the document.
+	 *               an absolute URL giving the location of the document.
 	 * @param target
-	 *            a <code>String</code> indicating where to display the page.
+	 *               a <code>String</code> indicating where to display the page.
 	 */
 	public void showDocument(URL url, String target);
 
@@ -156,7 +136,7 @@ public interface AppletContext {
 	 * application can inform users of its current state.
 	 *
 	 * @param status
-	 *            a string to display in the status window.
+	 *               a string to display in the status window.
 	 */
 	void showStatus(String status);
 
@@ -171,14 +151,16 @@ public interface AppletContext {
 	 * <p>
 	 * 
 	 * @param key
-	 *            key with which the specified value is to be associated.
+	 *               key with which the specified value is to be associated.
 	 * @param stream
-	 *            stream to be associated with the specified key. If this
-	 *            parameter is <code>null</code>, the specified key is removed
-	 *            in this applet context.
+	 *               stream to be associated with the specified key. If this
+	 *               parameter is <code>null</code>, the specified key is
+	 *               removed
+	 *               in this applet context.
 	 * @throws IOException
-	 *             if the stream size exceeds a certain size limit. Size limit
-	 *             is decided by the implementor of this interface.
+	 *                     if the stream size exceeds a certain size limit. Size
+	 *                     limit
+	 *                     is decided by the implementor of this interface.
 	 * @since 1.4
 	 */
 	public void setStream(String key, InputStream stream) throws IOException;

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -92,8 +89,8 @@ class XSDocumentInfo {
 
 	// note that the caller must ensure to call returnSchemaAttrs()
 	// to avoid memory leaks!
-	XSDocumentInfo(Element schemaRoot, XSAttributeChecker attrChecker, SymbolTable symbolTable)
-			throws XMLSchemaException {
+	XSDocumentInfo(Element schemaRoot, XSAttributeChecker attrChecker,
+			SymbolTable symbolTable) throws XMLSchemaException {
 		fSchemaElement = schemaRoot;
 		initNamespaceSupport(schemaRoot);
 		fIsChameleonSchema = false;
@@ -122,7 +119,8 @@ class XSDocumentInfo {
 			if (fTargetNamespace != null)
 				fTargetNamespace = symbolTable.addSymbol(fTargetNamespace);
 
-			fNamespaceSupportRoot = new SchemaNamespaceSupport(fNamespaceSupport);
+			fNamespaceSupportRoot = new SchemaNamespaceSupport(
+					fNamespaceSupport);
 
 			// set namespace support
 			fValidationContext.setNamespaceSupport(fNamespaceSupport);
@@ -159,13 +157,15 @@ class XSDocumentInfo {
 				String uri = attr.getNamespaceURI();
 
 				// Check if attribute is an ns decl -- requires ns support
-				if (uri != null && uri.equals("http://www.w3.org/2000/xmlns/")) {
+				if (uri != null && uri.equals(
+						"http://www.w3.org/2000/xmlns/")) {
 					String prefix = attr.getLocalName().intern();
 					if (prefix == "xmlns")
 						prefix = "";
 					// Declare prefix if not set -- moving upwards
 					if (fNamespaceSupport.getURI(prefix) == null) {
-						fNamespaceSupport.declarePrefix(prefix, attr.getValue().intern());
+						fNamespaceSupport.declarePrefix(prefix, attr.getValue()
+								.intern());
 					}
 				}
 			}
@@ -185,7 +185,8 @@ class XSDocumentInfo {
 	}
 
 	void restoreNSSupport() {
-		fNamespaceSupport = (SchemaNamespaceSupport) SchemaNamespaceSupportStack.pop();
+		fNamespaceSupport = (SchemaNamespaceSupport) SchemaNamespaceSupportStack
+				.pop();
 		fValidationContext.setNamespaceSupport(fNamespaceSupport);
 	}
 

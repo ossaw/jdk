@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws;
@@ -63,7 +43,7 @@ public final class WebServicePermission extends BasicPermission {
 	 * Creates a new permission with the specified name.
 	 *
 	 * @param name
-	 *            the name of the <code>WebServicePermission</code>
+	 *             the name of the <code>WebServicePermission</code>
 	 */
 	public WebServicePermission(String name) {
 		super(name);
@@ -76,9 +56,9 @@ public final class WebServicePermission extends BasicPermission {
 	 * <code>null</code>.
 	 *
 	 * @param name
-	 *            the name of the <code>WebServicePermission</code>
+	 *                the name of the <code>WebServicePermission</code>
 	 * @param actions
-	 *            should be <code>null</code>
+	 *                should be <code>null</code>
 	 */
 	public WebServicePermission(String name, String actions) {
 		super(name, actions);

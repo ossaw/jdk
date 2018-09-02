@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -47,8 +27,10 @@ abstract class ModalEventFilter implements EventFilter {
 			return FilterAction.ACCEPT;
 		}
 		int eventID = event.getID();
-		if ((eventID >= MouseEvent.MOUSE_FIRST && eventID <= MouseEvent.MOUSE_LAST)
-				|| (eventID >= ActionEvent.ACTION_FIRST && eventID <= ActionEvent.ACTION_LAST)
+		if ((eventID >= MouseEvent.MOUSE_FIRST
+				&& eventID <= MouseEvent.MOUSE_LAST)
+				|| (eventID >= ActionEvent.ACTION_FIRST
+						&& eventID <= ActionEvent.ACTION_LAST)
 				|| eventID == WindowEvent.WINDOW_CLOSING) {
 			Object o = event.getSource();
 			if (o instanceof sun.awt.ModalExclude) {
@@ -113,17 +95,18 @@ abstract class ModalEventFilter implements EventFilter {
 			blocker = blocker.getModalBlocker();
 		}
 		// compare modality types
-		return modalDialog.getModalityType().compareTo(anotherDialog.getModalityType());
+		return modalDialog.getModalityType().compareTo(anotherDialog
+				.getModalityType());
 	}
 
 	static ModalEventFilter createFilterForDialog(Dialog modalDialog) {
 		switch (modalDialog.getModalityType()) {
-		case DOCUMENT_MODAL:
-			return new DocumentModalEventFilter(modalDialog);
-		case APPLICATION_MODAL:
-			return new ApplicationModalEventFilter(modalDialog);
-		case TOOLKIT_MODAL:
-			return new ToolkitModalEventFilter(modalDialog);
+			case DOCUMENT_MODAL:
+				return new DocumentModalEventFilter(modalDialog);
+			case APPLICATION_MODAL:
+				return new ApplicationModalEventFilter(modalDialog);
+			case TOOLKIT_MODAL:
+				return new ToolkitModalEventFilter(modalDialog);
 		}
 		return null;
 	}
@@ -164,7 +147,8 @@ abstract class ModalEventFilter implements EventFilter {
 		}
 
 		protected FilterAction acceptWindow(Window w) {
-			if (w.isModalExcluded(Dialog.ModalExclusionType.APPLICATION_EXCLUDE)) {
+			if (w.isModalExcluded(
+					Dialog.ModalExclusionType.APPLICATION_EXCLUDE)) {
 				return FilterAction.ACCEPT;
 			}
 			if (w.appContext == appContext) {
@@ -192,7 +176,8 @@ abstract class ModalEventFilter implements EventFilter {
 		protected FilterAction acceptWindow(Window w) {
 			// application- and toolkit-excluded windows are blocked by
 			// document-modal dialogs from their child hierarchy
-			if (w.isModalExcluded(Dialog.ModalExclusionType.APPLICATION_EXCLUDE)) {
+			if (w.isModalExcluded(
+					Dialog.ModalExclusionType.APPLICATION_EXCLUDE)) {
 				Window w1 = modalDialog.getOwner();
 				while (w1 != null) {
 					if (w1 == w) {

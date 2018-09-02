@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -167,7 +147,7 @@ public interface XMLEventWriter extends XMLEventConsumer {
 	 * </table>
 	 * 
 	 * @param event
-	 *            the event to be added
+	 *              the event to be added
 	 * @throws XMLStreamException
 	 */
 	public void add(XMLEvent event) throws XMLStreamException;
@@ -179,7 +159,7 @@ public interface XMLEventWriter extends XMLEventConsumer {
 	 * events in an event reader and call add on each event.
 	 *
 	 * @param reader
-	 *            the event stream to add to the output
+	 *               the event stream to add to the output
 	 * @throws XMLStreamException
 	 */
 
@@ -201,9 +181,9 @@ public interface XMLEventWriter extends XMLEventConsumer {
 	 * scope.
 	 * 
 	 * @param prefix
-	 *            the prefix to bind to the uri
+	 *               the prefix to bind to the uri
 	 * @param uri
-	 *            the uri to bind to the prefix
+	 *               the uri to bind to the prefix
 	 * @throws XMLStreamException
 	 */
 	public void setPrefix(String prefix, String uri) throws XMLStreamException;
@@ -228,10 +208,11 @@ public interface XMLEventWriter extends XMLEventConsumer {
 	 * method as the root context for resolving namespaces.
 	 * 
 	 * @param context
-	 *            the namespace context to use for this writer
+	 *                the namespace context to use for this writer
 	 * @throws XMLStreamException
 	 */
-	public void setNamespaceContext(NamespaceContext context) throws XMLStreamException;
+	public void setNamespaceContext(NamespaceContext context)
+			throws XMLStreamException;
 
 	/**
 	 * Returns the current namespace context.

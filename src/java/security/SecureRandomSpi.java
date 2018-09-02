@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -46,7 +26,7 @@ public abstract class SecureRandomSpi implements java.io.Serializable {
 	 * reduce randomness.
 	 *
 	 * @param seed
-	 *            the seed.
+	 *             the seed.
 	 */
 	protected abstract void engineSetSeed(byte[] seed);
 
@@ -60,7 +40,7 @@ public abstract class SecureRandomSpi implements java.io.Serializable {
 	 * previously called.
 	 *
 	 * @param bytes
-	 *            the array to be filled in with random bytes.
+	 *              the array to be filled in with random bytes.
 	 */
 	protected abstract void engineNextBytes(byte[] bytes);
 
@@ -69,7 +49,7 @@ public abstract class SecureRandomSpi implements java.io.Serializable {
 	 * other random number generators.
 	 *
 	 * @param numBytes
-	 *            the number of seed bytes to generate.
+	 *                 the number of seed bytes to generate.
 	 *
 	 * @return the seed bytes.
 	 */

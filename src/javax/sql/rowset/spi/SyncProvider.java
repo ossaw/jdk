@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset.spi;
@@ -109,7 +89,8 @@ import javax.sql.*;
  * <LI>Using a constructor<BR>
  * 
  * <PRE>
- * CachedRowSet crs = new CachedRowSet("com.fred.providers.HighAvailabilitySyncProvider");
+ * CachedRowSet crs = new CachedRowSet(
+ * 		"com.fred.providers.HighAvailabilitySyncProvider");
  * </PRE>
  * 
  * <LI>Using the <code>setSyncProvider</code> method
@@ -215,8 +196,7 @@ public abstract class SyncProvider {
 	/**
 	 * Creates a default <code>SyncProvider</code> object.
 	 */
-	public SyncProvider() {
-	}
+	public SyncProvider() {}
 
 	/**
 	 * Returns the unique identifier for this <code>SyncProvider</code> object.
@@ -264,21 +244,24 @@ public abstract class SyncProvider {
 	 * it provides for a successful synchronization.
 	 *
 	 * @param datasource_lock
-	 *            one of the following constants indicating the severity level
-	 *            of data source lock required:
+	 *                        one of the following constants indicating the
+	 *                        severity level
+	 *                        of data source lock required:
 	 * 
-	 *            <pre>
+	 *                        <pre>
 	 *           SyncProvider.DATASOURCE_NO_LOCK,
 	 *           SyncProvider.DATASOURCE_ROW_LOCK,
 	 *           SyncProvider.DATASOURCE_TABLE_LOCK,
 	 *           SyncProvider.DATASOURCE_DB_LOCK,
-	 *            </pre>
+	 *                        </pre>
 	 * 
 	 * @throws SyncProviderException
-	 *             if an unsupported data source locking level is set.
+	 *                               if an unsupported data source locking level
+	 *                               is set.
 	 * @see #getDataSourceLock
 	 */
-	public abstract void setDataSourceLock(int datasource_lock) throws SyncProviderException;
+	public abstract void setDataSourceLock(int datasource_lock)
+			throws SyncProviderException;
 
 	/**
 	 * Returns the current data source lock severity level active in this
@@ -296,7 +279,8 @@ public abstract class SyncProvider {
 	 *         </pre>
 	 * 
 	 * @throws SyncProviderException
-	 *             if an error occurs determining the data source locking level.
+	 *                               if an error occurs determining the data
+	 *                               source locking level.
 	 * @see #setDataSourceLock
 	 * 
 	 */

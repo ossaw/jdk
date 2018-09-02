@@ -8,13 +8,14 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public final class RepositoryHolder implements org.omg.CORBA.portable.Streamable {
+public final class RepositoryHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public com.sun.corba.se.spi.activation.Repository value = null;
 
-	public RepositoryHolder() {
-	}
+	public RepositoryHolder() {}
 
-	public RepositoryHolder(com.sun.corba.se.spi.activation.Repository initialValue) {
+	public RepositoryHolder(
+			com.sun.corba.se.spi.activation.Repository initialValue) {
 		value = initialValue;
 	}
 

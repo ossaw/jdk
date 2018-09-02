@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.io;
@@ -51,11 +30,11 @@ import com.sun.corba.se.impl.logging.OMGSystemException;
 
 public abstract class InputStreamHook extends ObjectInputStream {
 	// These should be visible in all the nested classes
-	static final OMGSystemException omgWrapper = OMGSystemException
-			.get(CORBALogDomains.RPC_ENCODING);
+	static final OMGSystemException omgWrapper = OMGSystemException.get(
+			CORBALogDomains.RPC_ENCODING);
 
-	static final UtilSystemException utilWrapper = UtilSystemException
-			.get(CORBALogDomains.RPC_ENCODING);
+	static final UtilSystemException utilWrapper = UtilSystemException.get(
+			CORBALogDomains.RPC_ENCODING);
 
 	private class HookGetFields extends ObjectInputStream.GetField {
 		private Map fields = null;
@@ -77,15 +56,16 @@ public abstract class InputStreamHook extends ObjectInputStream {
 		 * Return true if the named field is defaulted and has no value in this
 		 * stream.
 		 */
-		public boolean defaulted(String name) throws IOException, IllegalArgumentException {
+		public boolean defaulted(String name) throws IOException,
+				IllegalArgumentException {
 			return (!fields.containsKey(name));
 		}
 
 		/**
 		 * Get the value of the named boolean field from the persistent field.
 		 */
-		public boolean get(String name, boolean defvalue)
-				throws IOException, IllegalArgumentException {
+		public boolean get(String name, boolean defvalue) throws IOException,
+				IllegalArgumentException {
 			if (defaulted(name))
 				return defvalue;
 			else
@@ -95,7 +75,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 		/**
 		 * Get the value of the named char field from the persistent fields.
 		 */
-		public char get(String name, char defvalue) throws IOException, IllegalArgumentException {
+		public char get(String name, char defvalue) throws IOException,
+				IllegalArgumentException {
 			if (defaulted(name))
 				return defvalue;
 			else
@@ -106,7 +87,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 		/**
 		 * Get the value of the named byte field from the persistent fields.
 		 */
-		public byte get(String name, byte defvalue) throws IOException, IllegalArgumentException {
+		public byte get(String name, byte defvalue) throws IOException,
+				IllegalArgumentException {
 			if (defaulted(name))
 				return defvalue;
 			else
@@ -117,7 +99,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 		/**
 		 * Get the value of the named short field from the persistent fields.
 		 */
-		public short get(String name, short defvalue) throws IOException, IllegalArgumentException {
+		public short get(String name, short defvalue) throws IOException,
+				IllegalArgumentException {
 			if (defaulted(name))
 				return defvalue;
 			else
@@ -128,7 +111,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 		/**
 		 * Get the value of the named int field from the persistent fields.
 		 */
-		public int get(String name, int defvalue) throws IOException, IllegalArgumentException {
+		public int get(String name, int defvalue) throws IOException,
+				IllegalArgumentException {
 			if (defaulted(name))
 				return defvalue;
 			else
@@ -139,7 +123,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 		/**
 		 * Get the value of the named long field from the persistent fields.
 		 */
-		public long get(String name, long defvalue) throws IOException, IllegalArgumentException {
+		public long get(String name, long defvalue) throws IOException,
+				IllegalArgumentException {
 			if (defaulted(name))
 				return defvalue;
 			else
@@ -150,7 +135,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 		/**
 		 * Get the value of the named float field from the persistent fields.
 		 */
-		public float get(String name, float defvalue) throws IOException, IllegalArgumentException {
+		public float get(String name, float defvalue) throws IOException,
+				IllegalArgumentException {
 			if (defaulted(name))
 				return defvalue;
 			else
@@ -161,8 +147,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 		/**
 		 * Get the value of the named double field from the persistent field.
 		 */
-		public double get(String name, double defvalue)
-				throws IOException, IllegalArgumentException {
+		public double get(String name, double defvalue) throws IOException,
+				IllegalArgumentException {
 			if (defaulted(name))
 				return defvalue;
 			else
@@ -173,8 +159,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 		/**
 		 * Get the value of the named Object field from the persistent field.
 		 */
-		public Object get(String name, Object defvalue)
-				throws IOException, IllegalArgumentException {
+		public Object get(String name, Object defvalue) throws IOException,
+				IllegalArgumentException {
 			if (defaulted(name))
 				return defvalue;
 			else
@@ -191,7 +177,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 		super();
 	}
 
-	public void defaultReadObject() throws IOException, ClassNotFoundException, NotActiveException {
+	public void defaultReadObject() throws IOException, ClassNotFoundException,
+			NotActiveException {
 		readObjectState.beginDefaultReadObject(this);
 
 		defaultReadObjectDelegate();
@@ -201,14 +188,16 @@ public abstract class InputStreamHook extends ObjectInputStream {
 
 	abstract void defaultReadObjectDelegate();
 
-	abstract void readFields(java.util.Map fieldToValueMap) throws java.io.InvalidClassException,
-			java.io.StreamCorruptedException, ClassNotFoundException, java.io.IOException;
+	abstract void readFields(java.util.Map fieldToValueMap)
+			throws java.io.InvalidClassException,
+			java.io.StreamCorruptedException, ClassNotFoundException,
+			java.io.IOException;
 
 	// See java.io.ObjectInputStream.GetField
 	// Remember that this is equivalent to defaultReadObject
 	// in RMI-IIOP
-	public ObjectInputStream.GetField readFields()
-			throws IOException, ClassNotFoundException, NotActiveException {
+	public ObjectInputStream.GetField readFields() throws IOException,
+			ClassNotFoundException, NotActiveException {
 
 		HashMap fieldValueMap = new HashMap();
 
@@ -253,20 +242,19 @@ public abstract class InputStreamHook extends ObjectInputStream {
 	// Description of possible actions
 	protected static class ReadObjectState {
 		public void beginUnmarshalCustomValue(InputStreamHook stream,
-				boolean calledDefaultWriteObject, boolean hasReadObject) throws IOException {
-		}
+				boolean calledDefaultWriteObject, boolean hasReadObject)
+				throws IOException {}
 
-		public void endUnmarshalCustomValue(InputStreamHook stream) throws IOException {
-		}
+		public void endUnmarshalCustomValue(InputStreamHook stream)
+				throws IOException {}
 
-		public void beginDefaultReadObject(InputStreamHook stream) throws IOException {
-		}
+		public void beginDefaultReadObject(InputStreamHook stream)
+				throws IOException {}
 
-		public void endDefaultReadObject(InputStreamHook stream) throws IOException {
-		}
+		public void endDefaultReadObject(InputStreamHook stream)
+				throws IOException {}
 
-		public void readData(InputStreamHook stream) throws IOException {
-		}
+		public void readData(InputStreamHook stream) throws IOException {}
 	}
 
 	protected ReadObjectState readObjectState = DEFAULT_STATE;
@@ -283,7 +271,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 	protected static class DefaultState extends ReadObjectState {
 
 		public void beginUnmarshalCustomValue(InputStreamHook stream,
-				boolean calledDefaultWriteObject, boolean hasReadObject) throws IOException {
+				boolean calledDefaultWriteObject, boolean hasReadObject)
+				throws IOException {
 
 			if (hasReadObject) {
 				if (calledDefaultWriteObject)
@@ -291,7 +280,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 				else {
 					try {
 						if (stream.getStreamFormatVersion() == 2)
-							((ValueInputStream) stream.getOrbStream()).start_value();
+							((ValueInputStream) stream.getOrbStream())
+									.start_value();
 					} catch (Exception e) {
 						// This will happen for Big Integer which uses
 						// writeFields in it's writeObject. We should be past
@@ -316,7 +306,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 	// REVISIT. If a readObject exits here without reading
 	// default data, we won't skip it. This could be done automatically
 	// as in line 1492 in IIOPInputStream.
-	protected static class InReadObjectRemoteDidNotUseWriteObjectState extends ReadObjectState {
+	protected static class InReadObjectRemoteDidNotUseWriteObjectState extends
+			ReadObjectState {
 
 		public void beginUnmarshalCustomValue(InputStreamHook stream,
 				boolean calledDefaultWriteObject, boolean hasReadObject) {
@@ -332,14 +323,16 @@ public abstract class InputStreamHook extends ObjectInputStream {
 		}
 	}
 
-	protected static class InReadObjectPastDefaultsRemoteDidNotUseWOState extends ReadObjectState {
+	protected static class InReadObjectPastDefaultsRemoteDidNotUseWOState
+			extends ReadObjectState {
 
 		public void beginUnmarshalCustomValue(InputStreamHook stream,
 				boolean calledDefaultWriteObject, boolean hasReadObject) {
 			throw utilWrapper.badBeginUnmarshalCustomValue();
 		}
 
-		public void beginDefaultReadObject(InputStreamHook stream) throws IOException {
+		public void beginDefaultReadObject(InputStreamHook stream)
+				throws IOException {
 			// XXX I18N and logging needed.
 			throw new StreamCorruptedException("Default data already read");
 		}
@@ -353,7 +346,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 		throw omgWrapper.rmiiiopOptionalDataIncompatible2();
 	}
 
-	protected static class InReadObjectDefaultsSentState extends ReadObjectState {
+	protected static class InReadObjectDefaultsSentState extends
+			ReadObjectState {
 
 		public void beginUnmarshalCustomValue(InputStreamHook stream,
 				boolean calledDefaultWriteObject, boolean hasReadObject) {
@@ -375,7 +369,8 @@ public abstract class InputStreamHook extends ObjectInputStream {
 			stream.setState(DEFAULT_STATE);
 		}
 
-		public void endDefaultReadObject(InputStreamHook stream) throws IOException {
+		public void endDefaultReadObject(InputStreamHook stream)
+				throws IOException {
 
 			// Read the fake valuetype header in stream format version 2
 			if (stream.getStreamFormatVersion() == 2)
@@ -386,24 +381,30 @@ public abstract class InputStreamHook extends ObjectInputStream {
 
 		public void readData(InputStreamHook stream) throws IOException {
 			org.omg.CORBA.ORB orb = stream.getOrbStream().orb();
-			if ((orb == null) || !(orb instanceof com.sun.corba.se.spi.orb.ORB)) {
-				throw new StreamCorruptedException("Default data must be read first");
+			if ((orb == null)
+					|| !(orb instanceof com.sun.corba.se.spi.orb.ORB)) {
+				throw new StreamCorruptedException(
+						"Default data must be read first");
 			}
-			ORBVersion clientOrbVersion = ((com.sun.corba.se.spi.orb.ORB) orb).getORBVersion();
+			ORBVersion clientOrbVersion = ((com.sun.corba.se.spi.orb.ORB) orb)
+					.getORBVersion();
 
 			// Fix Date interop bug. For older versions of the ORB don't do
 			// anything for readData(). Before this used to throw
 			// StreamCorruptedException for older versions of the ORB where
 			// calledDefaultWriteObject always returns true.
 			if ((ORBVersionFactory.getPEORB().compareTo(clientOrbVersion) <= 0)
-					|| (clientOrbVersion.equals(ORBVersionFactory.getFOREIGN()))) {
+					|| (clientOrbVersion.equals(ORBVersionFactory
+							.getFOREIGN()))) {
 				// XXX I18N and logging needed.
-				throw new StreamCorruptedException("Default data must be read first");
+				throw new StreamCorruptedException(
+						"Default data must be read first");
 			}
 		}
 	}
 
-	protected static class InReadObjectOptionalDataState extends ReadObjectState {
+	protected static class InReadObjectOptionalDataState extends
+			ReadObjectState {
 
 		public void beginUnmarshalCustomValue(InputStreamHook stream,
 				boolean calledDefaultWriteObject, boolean hasReadObject) {
@@ -411,30 +412,35 @@ public abstract class InputStreamHook extends ObjectInputStream {
 			throw utilWrapper.badBeginUnmarshalCustomValue();
 		}
 
-		public void endUnmarshalCustomValue(InputStreamHook stream) throws IOException {
+		public void endUnmarshalCustomValue(InputStreamHook stream)
+				throws IOException {
 			if (stream.getStreamFormatVersion() == 2) {
 				((ValueInputStream) stream.getOrbStream()).end_value();
 			}
 			stream.setState(DEFAULT_STATE);
 		}
 
-		public void beginDefaultReadObject(InputStreamHook stream) throws IOException {
+		public void beginDefaultReadObject(InputStreamHook stream)
+				throws IOException {
 			// XXX I18N and logging needed.
-			throw new StreamCorruptedException("Default data not sent or already read/passed");
+			throw new StreamCorruptedException(
+					"Default data not sent or already read/passed");
 		}
 
 	}
 
-	protected static class InReadObjectNoMoreOptionalDataState
-			extends InReadObjectOptionalDataState {
+	protected static class InReadObjectNoMoreOptionalDataState extends
+			InReadObjectOptionalDataState {
 
 		public void readData(InputStreamHook stream) throws IOException {
 			stream.throwOptionalDataIncompatibleException();
 		}
 	}
 
-	protected static class NoReadObjectDefaultsSentState extends ReadObjectState {
-		public void endUnmarshalCustomValue(InputStreamHook stream) throws IOException {
+	protected static class NoReadObjectDefaultsSentState extends
+			ReadObjectState {
+		public void endUnmarshalCustomValue(InputStreamHook stream)
+				throws IOException {
 			// Code should read default fields before calling this
 
 			if (stream.getStreamFormatVersion() == 2) {

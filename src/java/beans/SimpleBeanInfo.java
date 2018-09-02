@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -113,8 +93,9 @@ public class SimpleBeanInfo implements BeanInfo {
 	 * <p>
 	 * 
 	 * @param resourceName
-	 *            A pathname relative to the directory holding the class file of
-	 *            the current class. For example, "wombat.gif".
+	 *                     A pathname relative to the directory holding the
+	 *                     class file of
+	 *                     the current class. For example, "wombat.gif".
 	 * @return an image object. May be null if the load failed.
 	 */
 	public Image loadImage(final String resourceName) {

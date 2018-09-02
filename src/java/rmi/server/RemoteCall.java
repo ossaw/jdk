@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.server;
@@ -53,7 +33,7 @@ public interface RemoteCall {
 	 *
 	 * @return output stream for arguments/results
 	 * @exception java.io.IOException
-	 *                if an I/O error occurs.
+	 *            if an I/O error occurs.
 	 * @since JDK1.1
 	 * @deprecated no replacement
 	 */
@@ -65,7 +45,7 @@ public interface RemoteCall {
 	 * stream.
 	 *
 	 * @exception java.io.IOException
-	 *                if an I/O error occurs.
+	 *            if an I/O error occurs.
 	 * @since JDK1.1
 	 * @deprecated no replacement
 	 */
@@ -78,7 +58,7 @@ public interface RemoteCall {
 	 *
 	 * @return input stream for reading arguments/results
 	 * @exception java.io.IOException
-	 *                if an I/O error occurs.
+	 *            if an I/O error occurs.
 	 * @since JDK1.1
 	 * @deprecated no replacement
 	 */
@@ -90,7 +70,7 @@ public interface RemoteCall {
 	 * channel early.
 	 *
 	 * @exception java.io.IOException
-	 *                if an I/O error occurs.
+	 *            if an I/O error occurs.
 	 * @since JDK1.1
 	 * @deprecated no replacement
 	 */
@@ -102,24 +82,26 @@ public interface RemoteCall {
 	 * success of the call). Should only succeed once per remote call.
 	 *
 	 * @param success
-	 *            If true, indicates normal return, else indicates exceptional
-	 *            return.
+	 *                If true, indicates normal return, else indicates
+	 *                exceptional
+	 *                return.
 	 * @return output stream for writing call result
 	 * @exception java.io.IOException
-	 *                if an I/O error occurs.
+	 *            if an I/O error occurs.
 	 * @exception java.io.StreamCorruptedException
-	 *                If already been called.
+	 *            If already been called.
 	 * @since JDK1.1
 	 * @deprecated no replacement
 	 */
 	@Deprecated
-	ObjectOutput getResultStream(boolean success) throws IOException, StreamCorruptedException;
+	ObjectOutput getResultStream(boolean success) throws IOException,
+			StreamCorruptedException;
 
 	/**
 	 * Do whatever it takes to execute the call.
 	 *
 	 * @exception java.lang.Exception
-	 *                if a general exception occurs.
+	 *            if a general exception occurs.
 	 * @since JDK1.1
 	 * @deprecated no replacement
 	 */
@@ -130,7 +112,7 @@ public interface RemoteCall {
 	 * Allow cleanup after the remote call has completed.
 	 *
 	 * @exception java.io.IOException
-	 *                if an I/O error occurs.
+	 *            if an I/O error occurs.
 	 * @since JDK1.1
 	 * @deprecated no replacement
 	 */

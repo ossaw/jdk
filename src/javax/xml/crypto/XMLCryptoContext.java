@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: XMLCryptoContext.java,v 1.6 2005/05/10 15:47:42 mullan Exp $
@@ -60,9 +40,10 @@ public interface XMLCryptoContext {
 	 * Sets the base URI.
 	 *
 	 * @param baseURI
-	 *            the base URI, or <code>null</code> to remove current value
+	 *                the base URI, or <code>null</code> to remove current value
 	 * @throws IllegalArgumentException
-	 *             if <code>baseURI</code> is not RFC 2396 compliant
+	 *                                  if <code>baseURI</code> is not RFC 2396
+	 *                                  compliant
 	 * @see #getBaseURI
 	 */
 	void setBaseURI(String baseURI);
@@ -79,8 +60,8 @@ public interface XMLCryptoContext {
 	 * Sets the key selector for finding a key.
 	 *
 	 * @param ks
-	 *            the key selector, or <code>null</code> to remove the current
-	 *            setting
+	 *           the key selector, or <code>null</code> to remove the current
+	 *           setting
 	 * @see #getKeySelector
 	 */
 	void setKeySelector(KeySelector ks);
@@ -101,8 +82,9 @@ public interface XMLCryptoContext {
 	 * in place of an implementation's default <code>URIDereferencer</code>.
 	 *
 	 * @param dereferencer
-	 *            the <code>URIDereferencer</code>, or <code>null</code> to
-	 *            remove any current setting
+	 *                     the <code>URIDereferencer</code>, or
+	 *                     <code>null</code> to
+	 *                     remove any current setting
 	 * @see #getURIDereferencer
 	 */
 	void setURIDereferencer(URIDereferencer dereferencer);
@@ -114,16 +96,18 @@ public interface XMLCryptoContext {
 	 * a prefix, call the {@link #putNamespacePrefix putNamespacePrefix} method.
 	 *
 	 * @param namespaceURI
-	 *            a namespace URI
+	 *                      a namespace URI
 	 * @param defaultPrefix
-	 *            the prefix to be returned in the event that the the specified
-	 *            namespace URI has not been bound to a prefix.
+	 *                      the prefix to be returned in the event that the the
+	 *                      specified
+	 *                      namespace URI has not been bound to a prefix.
 	 * @return the prefix that is associated with the specified namespace URI,
 	 *         or <code>defaultPrefix</code> if the URI is not registered. If
 	 *         the namespace URI is registered but has no prefix, an empty
 	 *         string (<code>""</code>) is returned.
 	 * @throws NullPointerException
-	 *             if <code>namespaceURI</code> is <code>null</code>
+	 *                              if <code>namespaceURI</code> is
+	 *                              <code>null</code>
 	 * @see #putNamespacePrefix(String, String)
 	 */
 	String getNamespacePrefix(String namespaceURI, String defaultPrefix);
@@ -134,15 +118,18 @@ public interface XMLCryptoContext {
 	 * prefix is replaced by the specified prefix.
 	 *
 	 * @param namespaceURI
-	 *            a namespace URI
+	 *                     a namespace URI
 	 * @param prefix
-	 *            a namespace prefix (or <code>null</code> to remove any
-	 *            existing mapping). Specifying the empty string (
-	 *            <code>""</code>) binds no prefix to the namespace URI.
+	 *                     a namespace prefix (or <code>null</code> to remove
+	 *                     any
+	 *                     existing mapping). Specifying the empty string (
+	 *                     <code>""</code>) binds no prefix to the namespace
+	 *                     URI.
 	 * @return the previous prefix associated with the specified namespace URI,
 	 *         or <code>null</code> if there was none
 	 * @throws NullPointerException
-	 *             if <code>namespaceURI</code> is <code>null</code>
+	 *                              if <code>namespaceURI</code> is
+	 *                              <code>null</code>
 	 * @see #getNamespacePrefix(String, String)
 	 */
 	String putNamespacePrefix(String namespaceURI, String prefix);
@@ -164,9 +151,11 @@ public interface XMLCryptoContext {
 	 * putNamespacePrefix} method.
 	 *
 	 * @param defaultPrefix
-	 *            the default namespace prefix, or <code>null</code> to remove
-	 *            the current setting. Specify the empty string (<code>""</code>
-	 *            ) to bind no prefix.
+	 *                      the default namespace prefix, or <code>null</code>
+	 *                      to remove
+	 *                      the current setting. Specify the empty string
+	 *                      (<code>""</code>
+	 *                      ) to bind no prefix.
 	 * @see #getDefaultNamespacePrefix
 	 */
 	void setDefaultNamespacePrefix(String defaultPrefix);
@@ -175,13 +164,13 @@ public interface XMLCryptoContext {
 	 * Sets the specified property.
 	 *
 	 * @param name
-	 *            the name of the property
+	 *              the name of the property
 	 * @param value
-	 *            the value of the property to be set
+	 *              the value of the property to be set
 	 * @return the previous value of the specified property, or
 	 *         <code>null</code> if it did not have a value
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>
+	 *                              if <code>name</code> is <code>null</code>
 	 * @see #getProperty(String)
 	 */
 	Object setProperty(String name, Object value);
@@ -190,11 +179,11 @@ public interface XMLCryptoContext {
 	 * Returns the value of the specified property.
 	 *
 	 * @param name
-	 *            the name of the property
+	 *             the name of the property
 	 * @return the current value of the specified property, or <code>null</code>
 	 *         if it does not have a value
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>
+	 *                              if <code>name</code> is <code>null</code>
 	 * @see #setProperty(String, Object)
 	 */
 	Object getProperty(String name);
@@ -231,14 +220,15 @@ public interface XMLCryptoContext {
 	 * to the cryptographic operation that this context is used for.
 	 *
 	 * @param key
-	 *            key with which the specified value is to be associated with
+	 *              key with which the specified value is to be associated with
 	 * @param value
-	 *            value to be associated with the specified key
+	 *              value to be associated with the specified key
 	 * @return the previous value associated with the key, or <code>null</code>
 	 *         if there was no mapping for the key
 	 * @throws IllegalArgumentException
-	 *             if some aspect of this key or value prevents it from being
-	 *             stored in this context
+	 *                                  if some aspect of this key or value
+	 *                                  prevents it from being
+	 *                                  stored in this context
 	 * @see #get(Object)
 	 */
 	Object put(Object key, Object value);

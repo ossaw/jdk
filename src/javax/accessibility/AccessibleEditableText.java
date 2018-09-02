@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -58,7 +38,7 @@ public interface AccessibleEditableText extends AccessibleText {
 	 * Sets the text contents to the specified string.
 	 *
 	 * @param s
-	 *            the string to set the text contents
+	 *          the string to set the text contents
 	 */
 	public void setTextContents(String s);
 
@@ -66,9 +46,9 @@ public interface AccessibleEditableText extends AccessibleText {
 	 * Inserts the specified string at the given index/
 	 *
 	 * @param index
-	 *            the index in the text where the string will be inserted
+	 *              the index in the text where the string will be inserted
 	 * @param s
-	 *            the string to insert in the text
+	 *              the string to insert in the text
 	 */
 	public void insertTextAtIndex(int index, String s);
 
@@ -76,9 +56,9 @@ public interface AccessibleEditableText extends AccessibleText {
 	 * Returns the text string between two indices.
 	 *
 	 * @param startIndex
-	 *            the starting index in the text
+	 *                   the starting index in the text
 	 * @param endIndex
-	 *            the ending index in the text
+	 *                   the ending index in the text
 	 * @return the text string between the indices
 	 */
 	public String getTextRange(int startIndex, int endIndex);
@@ -87,9 +67,9 @@ public interface AccessibleEditableText extends AccessibleText {
 	 * Deletes the text between two indices
 	 *
 	 * @param startIndex
-	 *            the starting index in the text
+	 *                   the starting index in the text
 	 * @param endIndex
-	 *            the ending index in the text
+	 *                   the ending index in the text
 	 */
 	public void delete(int startIndex, int endIndex);
 
@@ -97,9 +77,9 @@ public interface AccessibleEditableText extends AccessibleText {
 	 * Cuts the text between two indices into the system clipboard.
 	 *
 	 * @param startIndex
-	 *            the starting index in the text
+	 *                   the starting index in the text
 	 * @param endIndex
-	 *            the ending index in the text
+	 *                   the ending index in the text
 	 */
 	public void cut(int startIndex, int endIndex);
 
@@ -108,7 +88,7 @@ public interface AccessibleEditableText extends AccessibleText {
 	 * specified index.
 	 *
 	 * @param startIndex
-	 *            the starting index in the text
+	 *                   the starting index in the text
 	 */
 	public void paste(int startIndex);
 
@@ -116,11 +96,11 @@ public interface AccessibleEditableText extends AccessibleText {
 	 * Replaces the text between two indices with the specified string.
 	 *
 	 * @param startIndex
-	 *            the starting index in the text
+	 *                   the starting index in the text
 	 * @param endIndex
-	 *            the ending index in the text
+	 *                   the ending index in the text
 	 * @param s
-	 *            the string to replace the text between two indices
+	 *                   the string to replace the text between two indices
 	 */
 	public void replaceText(int startIndex, int endIndex, String s);
 
@@ -128,9 +108,9 @@ public interface AccessibleEditableText extends AccessibleText {
 	 * Selects the text between two indices.
 	 *
 	 * @param startIndex
-	 *            the starting index in the text
+	 *                   the starting index in the text
 	 * @param endIndex
-	 *            the ending index in the text
+	 *                   the ending index in the text
 	 */
 	public void selectText(int startIndex, int endIndex);
 
@@ -138,11 +118,11 @@ public interface AccessibleEditableText extends AccessibleText {
 	 * Sets attributes for the text between two indices.
 	 *
 	 * @param startIndex
-	 *            the starting index in the text
+	 *                   the starting index in the text
 	 * @param endIndex
-	 *            the ending index in the text
+	 *                   the ending index in the text
 	 * @param as
-	 *            the attribute set
+	 *                   the attribute set
 	 * @see AttributeSet
 	 */
 	public void setAttributes(int startIndex, int endIndex, AttributeSet as);

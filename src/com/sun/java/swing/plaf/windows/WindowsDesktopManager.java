@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -49,8 +29,8 @@ import java.lang.ref.WeakReference;
  * @see javax.swing.DefaultDesktopManager
  * @author Thomas Ball
  */
-public class WindowsDesktopManager extends DefaultDesktopManager
-		implements java.io.Serializable, javax.swing.plaf.UIResource {
+public class WindowsDesktopManager extends DefaultDesktopManager implements
+		java.io.Serializable, javax.swing.plaf.UIResource {
 
 	/*
 	 * The frame which is currently selected/activated. We store this value to
@@ -59,14 +39,15 @@ public class WindowsDesktopManager extends DefaultDesktopManager
 	private WeakReference<JInternalFrame> currentFrameRef;
 
 	public void activateFrame(JInternalFrame f) {
-		JInternalFrame currentFrame = currentFrameRef != null ? currentFrameRef.get() : null;
+		JInternalFrame currentFrame = currentFrameRef != null ? currentFrameRef
+				.get() : null;
 		try {
 			super.activateFrame(f);
 			if (currentFrame != null && f != currentFrame) {
 				// If the current frame is maximized, transfer that
 				// attribute to the frame being activated.
-				if (currentFrame.isMaximum()
-						&& (f.getClientProperty("JInternalFrame.frameType") != "optionDialog")) {
+				if (currentFrame.isMaximum() && (f.getClientProperty(
+						"JInternalFrame.frameType") != "optionDialog")) {
 					// Special case. If key binding was used to select next
 					// frame instead of minimizing the icon via the minimize
 					// icon.

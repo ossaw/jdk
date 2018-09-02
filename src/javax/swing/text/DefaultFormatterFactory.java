@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -69,8 +49,8 @@ import javax.swing.JFormattedTextField;
  *
  * @since 1.4
  */
-public class DefaultFormatterFactory extends JFormattedTextField.AbstractFormatterFactory
-		implements Serializable {
+public class DefaultFormatterFactory extends
+		JFormattedTextField.AbstractFormatterFactory implements Serializable {
 	/**
 	 * Default <code>AbstractFormatter</code> to use if a more specific one has
 	 * not been specified.
@@ -93,19 +73,21 @@ public class DefaultFormatterFactory extends JFormattedTextField.AbstractFormatt
 	 */
 	private JFormattedTextField.AbstractFormatter nullFormat;
 
-	public DefaultFormatterFactory() {
-	}
+	public DefaultFormatterFactory() {}
 
 	/**
 	 * Creates a <code>DefaultFormatterFactory</code> with the specified
 	 * <code>JFormattedTextField.AbstractFormatter</code>.
 	 *
 	 * @param defaultFormat
-	 *            JFormattedTextField.AbstractFormatter to be used if a more
-	 *            specific JFormattedTextField.AbstractFormatter can not be
-	 *            found.
+	 *                      JFormattedTextField.AbstractFormatter to be used if
+	 *                      a more
+	 *                      specific JFormattedTextField.AbstractFormatter can
+	 *                      not be
+	 *                      found.
 	 */
-	public DefaultFormatterFactory(JFormattedTextField.AbstractFormatter defaultFormat) {
+	public DefaultFormatterFactory(
+			JFormattedTextField.AbstractFormatter defaultFormat) {
 		this(defaultFormat, null);
 	}
 
@@ -114,14 +96,18 @@ public class DefaultFormatterFactory extends JFormattedTextField.AbstractFormatt
 	 * <code>JFormattedTextField.AbstractFormatter</code>s.
 	 *
 	 * @param defaultFormat
-	 *            JFormattedTextField.AbstractFormatter to be used if a more
-	 *            specific JFormattedTextField.AbstractFormatter can not be
-	 *            found.
+	 *                      JFormattedTextField.AbstractFormatter to be used if
+	 *                      a more
+	 *                      specific JFormattedTextField.AbstractFormatter can
+	 *                      not be
+	 *                      found.
 	 * @param displayFormat
-	 *            JFormattedTextField.AbstractFormatter to be used when the
-	 *            JFormattedTextField does not have focus.
+	 *                      JFormattedTextField.AbstractFormatter to be used
+	 *                      when the
+	 *                      JFormattedTextField does not have focus.
 	 */
-	public DefaultFormatterFactory(JFormattedTextField.AbstractFormatter defaultFormat,
+	public DefaultFormatterFactory(
+			JFormattedTextField.AbstractFormatter defaultFormat,
 			JFormattedTextField.AbstractFormatter displayFormat) {
 		this(defaultFormat, displayFormat, null);
 	}
@@ -131,17 +117,22 @@ public class DefaultFormatterFactory extends JFormattedTextField.AbstractFormatt
 	 * JFormattedTextField.AbstractFormatters.
 	 *
 	 * @param defaultFormat
-	 *            JFormattedTextField.AbstractFormatter to be used if a more
-	 *            specific JFormattedTextField.AbstractFormatter can not be
-	 *            found.
+	 *                      JFormattedTextField.AbstractFormatter to be used if
+	 *                      a more
+	 *                      specific JFormattedTextField.AbstractFormatter can
+	 *                      not be
+	 *                      found.
 	 * @param displayFormat
-	 *            JFormattedTextField.AbstractFormatter to be used when the
-	 *            JFormattedTextField does not have focus.
+	 *                      JFormattedTextField.AbstractFormatter to be used
+	 *                      when the
+	 *                      JFormattedTextField does not have focus.
 	 * @param editFormat
-	 *            JFormattedTextField.AbstractFormatter to be used when the
-	 *            JFormattedTextField has focus.
+	 *                      JFormattedTextField.AbstractFormatter to be used
+	 *                      when the
+	 *                      JFormattedTextField has focus.
 	 */
-	public DefaultFormatterFactory(JFormattedTextField.AbstractFormatter defaultFormat,
+	public DefaultFormatterFactory(
+			JFormattedTextField.AbstractFormatter defaultFormat,
 			JFormattedTextField.AbstractFormatter displayFormat,
 			JFormattedTextField.AbstractFormatter editFormat) {
 		this(defaultFormat, displayFormat, editFormat, null);
@@ -152,20 +143,26 @@ public class DefaultFormatterFactory extends JFormattedTextField.AbstractFormatt
 	 * JFormattedTextField.AbstractFormatters.
 	 *
 	 * @param defaultFormat
-	 *            JFormattedTextField.AbstractFormatter to be used if a more
-	 *            specific JFormattedTextField.AbstractFormatter can not be
-	 *            found.
+	 *                      JFormattedTextField.AbstractFormatter to be used if
+	 *                      a more
+	 *                      specific JFormattedTextField.AbstractFormatter can
+	 *                      not be
+	 *                      found.
 	 * @param displayFormat
-	 *            JFormattedTextField.AbstractFormatter to be used when the
-	 *            JFormattedTextField does not have focus.
+	 *                      JFormattedTextField.AbstractFormatter to be used
+	 *                      when the
+	 *                      JFormattedTextField does not have focus.
 	 * @param editFormat
-	 *            JFormattedTextField.AbstractFormatter to be used when the
-	 *            JFormattedTextField has focus.
+	 *                      JFormattedTextField.AbstractFormatter to be used
+	 *                      when the
+	 *                      JFormattedTextField has focus.
 	 * @param nullFormat
-	 *            JFormattedTextField.AbstractFormatter to be used when the
-	 *            JFormattedTextField has a null value.
+	 *                      JFormattedTextField.AbstractFormatter to be used
+	 *                      when the
+	 *                      JFormattedTextField has a null value.
 	 */
-	public DefaultFormatterFactory(JFormattedTextField.AbstractFormatter defaultFormat,
+	public DefaultFormatterFactory(
+			JFormattedTextField.AbstractFormatter defaultFormat,
 			JFormattedTextField.AbstractFormatter displayFormat,
 			JFormattedTextField.AbstractFormatter editFormat,
 			JFormattedTextField.AbstractFormatter nullFormat) {
@@ -283,12 +280,13 @@ public class DefaultFormatterFactory extends JFormattedTextField.AbstractFormatt
 	 * or null formatter based on the state of the JFormattedTextField.
 	 *
 	 * @param source
-	 *            JFormattedTextField requesting
-	 *            JFormattedTextField.AbstractFormatter
+	 *               JFormattedTextField requesting
+	 *               JFormattedTextField.AbstractFormatter
 	 * @return JFormattedTextField.AbstractFormatter to handle formatting
 	 *         duties.
 	 */
-	public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField source) {
+	public JFormattedTextField.AbstractFormatter getFormatter(
+			JFormattedTextField source) {
 		JFormattedTextField.AbstractFormatter format = null;
 
 		if (source == null) {

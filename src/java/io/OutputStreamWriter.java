@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -84,14 +64,16 @@ public class OutputStreamWriter extends Writer {
 	 * Creates an OutputStreamWriter that uses the named charset.
 	 *
 	 * @param out
-	 *            An OutputStream
+	 *                    An OutputStream
 	 *
 	 * @param charsetName
-	 *            The name of a supported {@link java.nio.charset.Charset
-	 *            charset}
+	 *                    The name of a supported
+	 *                    {@link java.nio.charset.Charset
+	 *                    charset}
 	 *
 	 * @exception UnsupportedEncodingException
-	 *                If the named encoding is not supported
+	 *                                         If the named encoding is not
+	 *                                         supported
 	 */
 	public OutputStreamWriter(OutputStream out, String charsetName)
 			throws UnsupportedEncodingException {
@@ -194,7 +176,7 @@ public class OutputStreamWriter extends Writer {
 	 * Writes a single character.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void write(int c) throws IOException {
 		se.write(c);
@@ -204,14 +186,14 @@ public class OutputStreamWriter extends Writer {
 	 * Writes a portion of an array of characters.
 	 *
 	 * @param cbuf
-	 *            Buffer of characters
+	 *             Buffer of characters
 	 * @param off
-	 *            Offset from which to start writing characters
+	 *             Offset from which to start writing characters
 	 * @param len
-	 *            Number of characters to write
+	 *             Number of characters to write
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void write(char cbuf[], int off, int len) throws IOException {
 		se.write(cbuf, off, len);
@@ -228,7 +210,7 @@ public class OutputStreamWriter extends Writer {
 	 *            Number of characters to write
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void write(String str, int off, int len) throws IOException {
 		se.write(str, off, len);
@@ -238,7 +220,7 @@ public class OutputStreamWriter extends Writer {
 	 * Flushes the stream.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void flush() throws IOException {
 		se.flush();

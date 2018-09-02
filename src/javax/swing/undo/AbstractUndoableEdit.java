@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.undo;
@@ -100,7 +80,8 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
 	 * edit. Override should begin with a call to super.
 	 *
 	 * @exception CannotUndoException
-	 *                if <code>canUndo</code> returns <code>false</code>
+	 *                                if <code>canUndo</code> returns
+	 *                                <code>false</code>
 	 * @see #canUndo
 	 */
 	public void undo() throws CannotUndoException {
@@ -132,7 +113,8 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
 	 * should begin with a call to super.
 	 *
 	 * @exception CannotRedoException
-	 *                if <code>canRedo</code> returns <code>false</code>
+	 *                                if <code>canRedo</code> returns
+	 *                                <code>false</code>
 	 * @see #canRedo
 	 */
 	public void redo() throws CannotRedoException {
@@ -160,7 +142,7 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
 	 * This default implementation returns false.
 	 *
 	 * @param anEdit
-	 *            the edit to be added
+	 *               the edit to be added
 	 * @return false
 	 *
 	 * @see UndoableEdit#addEdit
@@ -173,7 +155,7 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
 	 * This default implementation returns false.
 	 *
 	 * @param anEdit
-	 *            the edit to replace
+	 *               the edit to replace
 	 * @return false
 	 *
 	 * @see UndoableEdit#replaceEdit
@@ -225,7 +207,8 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
 	public String getUndoPresentationName() {
 		String name = getPresentationName();
 		if (!"".equals(name)) {
-			name = UIManager.getString("AbstractUndoableEdit.undoText") + " " + name;
+			name = UIManager.getString("AbstractUndoableEdit.undoText") + " "
+					+ name;
 		} else {
 			name = UIManager.getString("AbstractUndoableEdit.undoText");
 		}
@@ -250,7 +233,8 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
 	public String getRedoPresentationName() {
 		String name = getPresentationName();
 		if (!"".equals(name)) {
-			name = UIManager.getString("AbstractUndoableEdit.redoText") + " " + name;
+			name = UIManager.getString("AbstractUndoableEdit.redoText") + " "
+					+ name;
 		} else {
 			name = UIManager.getString("AbstractUndoableEdit.redoText");
 		}
@@ -264,6 +248,7 @@ public class AbstractUndoableEdit implements UndoableEdit, Serializable {
 	 * @return a String representation of this object
 	 */
 	public String toString() {
-		return super.toString() + " hasBeenDone: " + hasBeenDone + " alive: " + alive;
+		return super.toString() + " hasBeenDone: " + hasBeenDone + " alive: "
+				+ alive;
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2009, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -37,9 +17,9 @@ public class PropertyVetoException extends Exception {
 	 * Constructs a <code>PropertyVetoException</code> with a detailed message.
 	 *
 	 * @param mess
-	 *            Descriptive message
+	 *             Descriptive message
 	 * @param evt
-	 *            A PropertyChangeEvent describing the vetoed change.
+	 *             A PropertyChangeEvent describing the vetoed change.
 	 */
 	public PropertyVetoException(String mess, PropertyChangeEvent evt) {
 		super(mess);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.stream;
@@ -94,8 +74,7 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	/**
 	 * Constructs an <code>ImageInputStreamImpl</code>.
 	 */
-	public ImageInputStreamImpl() {
-	}
+	public ImageInputStreamImpl() {}
 
 	/**
 	 * Throws an <code>IOException</code> if the stream has been closed.
@@ -103,7 +82,7 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	 * the stream not to be closed.
 	 *
 	 * @exception IOException
-	 *                if the stream is closed.
+	 *                        if the stream is closed.
 	 */
 	protected final void checkClosed() throws IOException {
 		if (isClosed) {
@@ -135,7 +114,7 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	 *         EOF is reached.
 	 *
 	 * @exception IOException
-	 *                if the stream has been closed.
+	 *                        if the stream has been closed.
 	 */
 	public abstract int read() throws IOException;
 
@@ -149,9 +128,9 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	 *         EOF.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>b</code> is <code>null</code>.
+	 *                                 if <code>b</code> is <code>null</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                 if an I/O error occurs.
 	 */
 	public int read(byte[] b) throws IOException {
 		return read(b, 0, b.length);
@@ -182,13 +161,16 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	 *         EOF.
 	 *
 	 * @exception IndexOutOfBoundsException
-	 *                if <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>off +
-	 * len</code> is greater than <code>b.length</code>.
+	 *                                      if <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>off +
+	 * len</code>                        is greater than
+	 *                                      <code>b.length</code>.
 	 * @exception NullPointerException
-	 *                if <code>b</code> is <code>null</code>.
+	 *                                      if <code>b</code> is
+	 *                                      <code>null</code>.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                      if an I/O error occurs.
 	 */
 	public abstract int read(byte[] b, int off, int len) throws IOException;
 
@@ -238,9 +220,11 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 		}
 
 		if (byteOrder == ByteOrder.BIG_ENDIAN) {
-			return (short) (((byteBuf[0] & 0xff) << 8) | ((byteBuf[1] & 0xff) << 0));
+			return (short) (((byteBuf[0] & 0xff) << 8) | ((byteBuf[1]
+					& 0xff) << 0));
 		} else {
-			return (short) (((byteBuf[1] & 0xff) << 8) | ((byteBuf[0] & 0xff) << 0));
+			return (short) (((byteBuf[1] & 0xff) << 8) | ((byteBuf[0]
+					& 0xff) << 0));
 		}
 	}
 
@@ -299,20 +283,20 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 
 		while (!eol) {
 			switch (c = read()) {
-			case -1:
-			case '\n':
-				eol = true;
-				break;
-			case '\r':
-				eol = true;
-				long cur = getStreamPosition();
-				if ((read()) != '\n') {
-					seek(cur);
-				}
-				break;
-			default:
-				input.append((char) c);
-				break;
+				case -1:
+				case '\n':
+					eol = true;
+					break;
+				case '\r':
+					eol = true;
+					long cur = getStreamPosition();
+					if ((read()) != '\n') {
+						seek(cur);
+					}
+					break;
+				default:
+					input.append((char) c);
+					break;
 			}
 		}
 
@@ -347,7 +331,8 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	public void readFully(byte[] b, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > b.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > b.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > b.length!");
 		}
 
 		while (len > 0) {
@@ -367,7 +352,8 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	public void readFully(short[] s, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > s.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > s.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > s.length!");
 		}
 
 		while (len > 0) {
@@ -382,7 +368,8 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	public void readFully(char[] c, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > c.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > c.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > c.length!");
 		}
 
 		while (len > 0) {
@@ -397,7 +384,8 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	public void readFully(int[] i, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > i.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > i.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > i.length!");
 		}
 
 		while (len > 0) {
@@ -412,7 +400,8 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	public void readFully(long[] l, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > l.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > l.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > l.length!");
 		}
 
 		while (len > 0) {
@@ -427,7 +416,8 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	public void readFully(float[] f, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > f.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > f.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > f.length!");
 		}
 
 		while (len > 0) {
@@ -442,7 +432,8 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	public void readFully(double[] d, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > d.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > d.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > d.length!");
 		}
 
 		while (len > 0) {
@@ -633,7 +624,8 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	public void setBitOffset(int bitOffset) throws IOException {
 		checkClosed();
 		if (bitOffset < 0 || bitOffset > 7) {
-			throw new IllegalArgumentException("bitOffset must be betwwen 0 and 7!");
+			throw new IllegalArgumentException(
+					"bitOffset must be betwwen 0 and 7!");
 		}
 		this.bitOffset = bitOffset;
 	}
@@ -723,14 +715,14 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	 * The bit offset is reset to zero.
 	 *
 	 * @param n
-	 *            the number of bytes to seek forward.
+	 *          the number of bytes to seek forward.
 	 *
 	 * @return an <code>int</code> representing the number of bytes skipped.
 	 *
 	 * @exception IOException
-	 *                if <code>getStreamPosition</code> throws an
-	 *                <code>IOException</code> when computing either the
-	 *                starting or ending position.
+	 *                        if <code>getStreamPosition</code> throws an
+	 *                        <code>IOException</code> when computing either the
+	 *                        starting or ending position.
 	 */
 	public int skipBytes(int n) throws IOException {
 		long pos = getStreamPosition();
@@ -746,14 +738,14 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	 * The bit offset is reset to zero.
 	 *
 	 * @param n
-	 *            the number of bytes to seek forward.
+	 *          the number of bytes to seek forward.
 	 *
 	 * @return a <code>long</code> representing the number of bytes skipped.
 	 *
 	 * @exception IOException
-	 *                if <code>getStreamPosition</code> throws an
-	 *                <code>IOException</code> when computing either the
-	 *                starting or ending position.
+	 *                        if <code>getStreamPosition</code> throws an
+	 *                        <code>IOException</code> when computing either the
+	 *                        starting or ending position.
 	 */
 	public long skipBytes(long n) throws IOException {
 		long pos = getStreamPosition();
@@ -793,7 +785,7 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	 * position lies in the discarded portion of the stream.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	public void reset() throws IOException {
 		if (markByteStack.empty()) {
@@ -802,7 +794,8 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 
 		long pos = ((Long) markByteStack.pop()).longValue();
 		if (pos < flushedPos) {
-			throw new IIOException("Previous marked position has been discarded!");
+			throw new IIOException(
+					"Previous marked position has been discarded!");
 		}
 		seek(pos);
 
@@ -866,7 +859,7 @@ public abstract class ImageInputStreamImpl implements ImageInputStream {
 	 * be called from application code.
 	 *
 	 * @exception Throwable
-	 *                if an error occurs during superclass finalization.
+	 *                      if an error occurs during superclass finalization.
 	 */
 	protected void finalize() throws Throwable {
 		if (!isClosed) {

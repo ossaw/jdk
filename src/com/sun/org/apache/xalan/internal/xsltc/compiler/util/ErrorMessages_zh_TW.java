@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,58 +26,44 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 
 	/*
 	 * XSLTC compile-time error messages.
-	 *
 	 * General notes to translators and definitions:
-	 *
 	 * 1) XSLTC is the name of the product. It is an acronym for "XSLT Compiler"
 	 * . XSLT is an acronym for "XML Stylesheet Language: Transformations".
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An axis is a particular "dimension" in a tree representation of an XML
 	 * document; the nodes in the tree are divided along different axes.
 	 * Traversing the "child" axis, for instance, means that the program would
 	 * visit each child of a particular node; traversing the "descendant" axis
 	 * means that the program would visit the child nodes of a particular node,
 	 * their children, and so on until the leaf nodes of the tree are reached.
-	 *
 	 * 5) An iterator is an object that traverses nodes in a tree along a
 	 * particular axis, one at a time.
-	 *
 	 * 6) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 7) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 8) DOM is an acronym for Document Object Model. It is a tree
 	 * representation of an XML document.
-	 *
 	 * SAX is an acronym for the Simple API for XML processing. It is an API
 	 * used inform an XML processor (in this case XSLTC) of the structure and
 	 * content of an XML document.
-	 *
 	 * Input to the stylesheet processor can come from an XML parser in the form
 	 * of a DOM tree or through the SAX API.
-	 *
 	 * 9) DTD is a document type declaration. It is a way of specifying the
 	 * grammar for an XML file, the names and types of elements, attributes,
 	 * etc.
-	 *
 	 * 10) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 * 11) Translet is an invented term that refers to the class file that
 	 * contains the compiled form of a stylesheet.
 	 */
@@ -132,7 +115,8 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * loaded, but it could not be found. The substitution text is
 				 * the name of the class.
 				 */
-				{ ErrorMsg.CLASS_NOT_FOUND_ERR, "\u627E\u4E0D\u5230\u985E\u5225 ''{0}''\u3002" },
+				{ ErrorMsg.CLASS_NOT_FOUND_ERR,
+						"\u627E\u4E0D\u5230\u985E\u5225 ''{0}''\u3002" },
 
 				/*
 				 * Note to translators: The word "method" here refers to a Java
@@ -164,7 +148,8 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * mentioned in the substitution text is not well-formed
 				 * syntactically.
 				 */
-				{ ErrorMsg.INVALID_URI_ERR, "\u7121\u6548\u7684 URI ''{0}''\u3002" },
+				{ ErrorMsg.INVALID_URI_ERR,
+						"\u7121\u6548\u7684 URI ''{0}''\u3002" },
 
 				/*
 				 * Note to translators: The file or URI named in the
@@ -251,7 +236,8 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * specified on an element in the stylesheet. The attribute is
 				 * named by the substitution text.
 				 */
-				{ ErrorMsg.ILLEGAL_ATTRIBUTE_ERR, "\u7121\u6548\u7684\u5C6C\u6027 ''{0}''\u3002" },
+				{ ErrorMsg.ILLEGAL_ATTRIBUTE_ERR,
+						"\u7121\u6548\u7684\u5C6C\u6027 ''{0}''\u3002" },
 
 				/*
 				 * Note to translators: "import" and "include" are keywords that
@@ -366,7 +352,8 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * Note to translators: An element in the stylesheet contained
 				 * an element of a type that it was not permitted to contain.
 				 */
-				{ ErrorMsg.ILLEGAL_CHILD_ERR, "\u7121\u6548\u7684\u5B50\u9805\u5143\u7D20\u3002" },
+				{ ErrorMsg.ILLEGAL_CHILD_ERR,
+						"\u7121\u6548\u7684\u5B50\u9805\u5143\u7D20\u3002" },
 
 				/*
 				 * Note to translators: The stylesheet tried to create an
@@ -458,7 +445,8 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * error in condition in XSLTC. The substitution text is the
 				 * class name in XSLTC that is missing some functionality.
 				 */
-				{ ErrorMsg.NOT_IMPLEMENTED_ERR, "\u672A\u5BE6\u884C: ''{0}''\u3002" },
+				{ ErrorMsg.NOT_IMPLEMENTED_ERR,
+						"\u672A\u5BE6\u884C: ''{0}''\u3002" },
 
 				/*
 				 * Note to translators: The XML document given to XSLTC as a
@@ -471,7 +459,8 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * Note to translators: The element named in the substitution
 				 * text was encountered in the stylesheet but is not recognized.
 				 */
-				{ ErrorMsg.ELEMENT_PARSE_ERR, "\u7121\u6CD5\u5256\u6790\u5143\u7D20 ''{0}''" },
+				{ ErrorMsg.ELEMENT_PARSE_ERR,
+						"\u7121\u6CD5\u5256\u6790\u5143\u7D20 ''{0}''" },
 
 				/*
 				 * Note to translators: "use", "<key>", "node", "node-set",
@@ -586,7 +575,8 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * Note to translators: The message indicates that XSLTC failed
 				 * to compile the stylesheet into a translet (class file).
 				 */
-				{ ErrorMsg.JAXP_COMPILE_ERR, "\u7121\u6CD5\u7DE8\u8B6F\u6A23\u5F0F\u8868" },
+				{ ErrorMsg.JAXP_COMPILE_ERR,
+						"\u7121\u6CD5\u7DE8\u8B6F\u6A23\u5F0F\u8868" },
 
 				/*
 				 * Note to translators: "TransformerFactory" is a class name. In
@@ -662,7 +652,8 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				{ ErrorMsg.XSLTC_SOURCE_ERR,
 						"\u672A\u8A2D\u5B9A systemId \u800C\u547C\u53EB XSLTCSource.build()\u3002" },
 
-				{ ErrorMsg.ER_RESULT_NULL, "\u7D50\u679C\u4E0D\u61C9\u70BA\u7A7A\u503C" },
+				{ ErrorMsg.ER_RESULT_NULL,
+						"\u7D50\u679C\u4E0D\u61C9\u70BA\u7A7A\u503C" },
 
 				/*
 				 * Note to translators: This message indicates that the value
@@ -722,7 +713,8 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * expression named in the substitution text was not well formed
 				 * syntactically.
 				 */
-				{ ErrorMsg.SYNTAX_ERR, "''{0}'' \u4E2D\u7684\u8A9E\u6CD5\u932F\u8AA4\u3002" },
+				{ ErrorMsg.SYNTAX_ERR,
+						"''{0}'' \u4E2D\u7684\u8A9E\u6CD5\u932F\u8AA4\u3002" },
 
 				/*
 				 * Note to translators: The substitution text is the name of a
@@ -778,7 +770,8 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * substitution text indents it the same amount as the first in
 				 * English.
 				 */
-				{ ErrorMsg.WARNING_PLUS_WRAPPED_MSG, "WARNING:  ''{0}''\n       :{1}" },
+				{ ErrorMsg.WARNING_PLUS_WRAPPED_MSG,
+						"WARNING:  ''{0}''\n       :{1}" },
 
 				/*
 				 * Note to translators: This message is used to indicate the
@@ -794,7 +787,8 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * substitution text indents it the same amount as the first in
 				 * English.
 				 */
-				{ ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG, "FATAL ERROR:  ''{0}''\n           :{1}" },
+				{ ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG,
+						"FATAL ERROR:  ''{0}''\n           :{1}" },
 
 				/*
 				 * Note to translators: This message is used to indicate the
@@ -810,7 +804,8 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * substitution text indents it the same amount as the first in
 				 * English.
 				 */
-				{ ErrorMsg.ERROR_PLUS_WRAPPED_MSG, "ERROR:  ''{0}''\n     :{1}" },
+				{ ErrorMsg.ERROR_PLUS_WRAPPED_MSG,
+						"ERROR:  ''{0}''\n     :{1}" },
 
 				/*
 				 * Note to translators: This message is used to indicate the
@@ -858,14 +853,16 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * header. All the error messages are collected together and
 				 * displayed beneath this message.
 				 */
-				{ ErrorMsg.COMPILER_ERROR_KEY, "\u7DE8\u8B6F\u5668\u932F\u8AA4:" },
+				{ ErrorMsg.COMPILER_ERROR_KEY,
+						"\u7DE8\u8B6F\u5668\u932F\u8AA4:" },
 
 				/*
 				 * Note to translators: The following message is used as a
 				 * header. All the warning messages are collected together and
 				 * displayed beneath this message.
 				 */
-				{ ErrorMsg.COMPILER_WARNING_KEY, "\u7DE8\u8B6F\u5668\u8B66\u544A:" },
+				{ ErrorMsg.COMPILER_WARNING_KEY,
+						"\u7DE8\u8B6F\u5668\u8B66\u544A:" },
 
 				/*
 				 * Note to translators: The following message is used as a
@@ -963,7 +960,6 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
 				 * Note to translators: This message describes an internal error
 				 * in the processor. The "method" that is being referred to is a
 				 * Java method in a translet that XSLTC is generating.
-				 *
 				 */
 				{ ErrorMsg.OUTLINE_ERR_METHOD_TOO_BIG,
 						"\u5167\u90E8 XSLTC \u932F\u8AA4:  translet \u4E2D\u7684\u65B9\u6CD5\u8D85\u904E Java \u865B\u64EC\u6A5F\u5668\u5C0D\u65BC\u65B9\u6CD5\u9577\u5EA6 64 KB \u7684\u9650\u5236\u3002\u9019\u901A\u5E38\u662F\u56E0\u70BA\u6A23\u5F0F\u8868\u4E2D\u6709\u975E\u5E38\u5927\u7684\u6A23\u677F\u3002\u8ACB\u5617\u8A66\u91CD\u65B0\u7D44\u7E54\u60A8\u7684\u6A23\u5F0F\u8868\u4EE5\u4F7F\u7528\u8F03\u5C0F\u7684\u6A23\u677F\u3002" },

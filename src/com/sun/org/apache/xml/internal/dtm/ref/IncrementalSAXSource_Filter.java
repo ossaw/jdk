@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: IncrementalSAXSource_Filter.java,v 1.2.4.1 2005/09/15 08:15:07 suresh_emailid Exp $
+ * $Id: IncrementalSAXSource_Filter.java,v 1.2.4.1 2005/09/15 08:15:07
+ * suresh_emailid Exp $
  */
 
 package com.sun.org.apache.xml.internal.dtm.ref;
@@ -76,8 +74,8 @@ import org.xml.sax.ext.LexicalHandler;
  * 6537912 for further details.
  *
  */
-final class IncrementalSAXSource_Filter implements IncrementalSAXSource, ContentHandler, DTDHandler,
-		LexicalHandler, ErrorHandler, Runnable {
+final class IncrementalSAXSource_Filter implements IncrementalSAXSource,
+		ContentHandler, DTDHandler, LexicalHandler, ErrorHandler, Runnable {
 	boolean DEBUG = false; // Internal status report
 
 	//
@@ -118,15 +116,16 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 	 * Create a IncrementalSAXSource_Filter which is not yet bound to a specific
 	 * SAX event source.
 	 */
-	public IncrementalSAXSource_Filter(CoroutineManager co, int controllerCoroutineID) {
+	public IncrementalSAXSource_Filter(CoroutineManager co,
+			int controllerCoroutineID) {
 		this.init(co, controllerCoroutineID, -1);
 	}
 
 	//
 	// Factories
 	//
-	static public IncrementalSAXSource createIncrementalSAXSource(CoroutineManager co,
-			int controllerCoroutineID) {
+	static public IncrementalSAXSource createIncrementalSAXSource(
+			CoroutineManager co, int controllerCoroutineID) {
 		return new IncrementalSAXSource_Filter(co, controllerCoroutineID);
 	}
 
@@ -134,16 +133,17 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 	// Public methods
 	//
 
-	public void init(CoroutineManager co, int controllerCoroutineID, int sourceCoroutineID) {
+	public void init(CoroutineManager co, int controllerCoroutineID,
+			int sourceCoroutineID) {
 		if (co == null)
 			co = new CoroutineManager();
 		fCoroutineManager = co;
 		fControllerCoroutineID = co.co_joinCoroutineSet(controllerCoroutineID);
 		fSourceCoroutineID = co.co_joinCoroutineSet(sourceCoroutineID);
 		if (fControllerCoroutineID == -1 || fSourceCoroutineID == -1)
-			throw new RuntimeException(XMLMessages
-					.createXMLMessage(XMLErrorResources.ER_COJOINROUTINESET_FAILED, null)); // "co_joinCoroutineSet()
-																							// failed");
+			throw new RuntimeException(XMLMessages.createXMLMessage(
+					XMLErrorResources.ER_COJOINROUTINESET_FAILED, null)); // "co_joinCoroutineSet()
+																																	// failed");
 
 		fNoMoreEvents = false;
 		eventcounter = frequency;
@@ -164,7 +164,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 
 		// Not supported by all SAX2 filters:
 		try {
-			eventsource.setProperty("http://xml.org/sax/properties/lexical-handler", this);
+			eventsource.setProperty(
+					"http://xml.org/sax/properties/lexical-handler", this);
 		} catch (SAXNotRecognizedException e) {
 			// Nothing we can do about it
 		} catch (SAXNotSupportedException e) {
@@ -227,7 +228,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 	// text causing greater than usual readahead. (Unlikely? Consider the
 	// possibility of a large base-64 block in a SOAP stream.)
 	//
-	public void characters(char[] ch, int start, int length) throws org.xml.sax.SAXException {
+	public void characters(char[] ch, int start, int length)
+			throws org.xml.sax.SAXException {
 		if (--eventcounter <= 0) {
 			co_yield(true);
 			eventcounter = frequency;
@@ -245,8 +247,9 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 		co_yield(false);
 	}
 
-	public void endElement(java.lang.String namespaceURI, java.lang.String localName,
-			java.lang.String qName) throws org.xml.sax.SAXException {
+	public void endElement(java.lang.String namespaceURI,
+			java.lang.String localName, java.lang.String qName)
+			throws org.xml.sax.SAXException {
 		if (--eventcounter <= 0) {
 			co_yield(true);
 			eventcounter = frequency;
@@ -255,7 +258,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 			clientContentHandler.endElement(namespaceURI, localName, qName);
 	}
 
-	public void endPrefixMapping(java.lang.String prefix) throws org.xml.sax.SAXException {
+	public void endPrefixMapping(java.lang.String prefix)
+			throws org.xml.sax.SAXException {
 		if (--eventcounter <= 0) {
 			co_yield(true);
 			eventcounter = frequency;
@@ -274,8 +278,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 			clientContentHandler.ignorableWhitespace(ch, start, length);
 	}
 
-	public void processingInstruction(java.lang.String target, java.lang.String data)
-			throws org.xml.sax.SAXException {
+	public void processingInstruction(java.lang.String target,
+			java.lang.String data) throws org.xml.sax.SAXException {
 		if (--eventcounter <= 0) {
 			co_yield(true);
 			eventcounter = frequency;
@@ -294,7 +298,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 			clientContentHandler.setDocumentLocator(locator);
 	}
 
-	public void skippedEntity(java.lang.String name) throws org.xml.sax.SAXException {
+	public void skippedEntity(java.lang.String name)
+			throws org.xml.sax.SAXException {
 		if (--eventcounter <= 0) {
 			co_yield(true);
 			eventcounter = frequency;
@@ -315,18 +320,20 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 			clientContentHandler.startDocument();
 	}
 
-	public void startElement(java.lang.String namespaceURI, java.lang.String localName,
-			java.lang.String qName, Attributes atts) throws org.xml.sax.SAXException {
+	public void startElement(java.lang.String namespaceURI,
+			java.lang.String localName, java.lang.String qName, Attributes atts)
+			throws org.xml.sax.SAXException {
 		if (--eventcounter <= 0) {
 			co_yield(true);
 			eventcounter = frequency;
 		}
 		if (clientContentHandler != null)
-			clientContentHandler.startElement(namespaceURI, localName, qName, atts);
+			clientContentHandler.startElement(namespaceURI, localName, qName,
+					atts);
 	}
 
-	public void startPrefixMapping(java.lang.String prefix, java.lang.String uri)
-			throws org.xml.sax.SAXException {
+	public void startPrefixMapping(java.lang.String prefix,
+			java.lang.String uri) throws org.xml.sax.SAXException {
 		if (--eventcounter <= 0) {
 			co_yield(true);
 			eventcounter = frequency;
@@ -345,7 +352,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 	// actually want to use them to register directly with the filter.
 	// But I want 'em here for now, to remind us to recheck this assertion!
 	//
-	public void comment(char[] ch, int start, int length) throws org.xml.sax.SAXException {
+	public void comment(char[] ch, int start, int length)
+			throws org.xml.sax.SAXException {
 		if (null != clientLexicalHandler)
 			clientLexicalHandler.comment(ch, start, length);
 	}
@@ -360,7 +368,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 			clientLexicalHandler.endDTD();
 	}
 
-	public void endEntity(java.lang.String name) throws org.xml.sax.SAXException {
+	public void endEntity(java.lang.String name)
+			throws org.xml.sax.SAXException {
 		if (null != clientLexicalHandler)
 			clientLexicalHandler.endEntity(name);
 	}
@@ -376,7 +385,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 			clientLexicalHandler.startDTD(name, publicId, systemId);
 	}
 
-	public void startEntity(java.lang.String name) throws org.xml.sax.SAXException {
+	public void startEntity(java.lang.String name)
+			throws org.xml.sax.SAXException {
 		if (null != clientLexicalHandler)
 			clientLexicalHandler.startEntity(name);
 	}
@@ -389,7 +399,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 			clientDTDHandler.notationDecl(a, b, c);
 	}
 
-	public void unparsedEntityDecl(String a, String b, String c, String d) throws SAXException {
+	public void unparsedEntityDecl(String a, String b, String c, String d)
+			throws SAXException {
 		if (null != clientDTDHandler)
 			clientDTDHandler.unparsedEntityDecl(a, b, c, d);
 	}
@@ -463,8 +474,9 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 	 * </p>
 	 *
 	 * @param moreExepected
-	 *            Should always be true unless this is being called at the end
-	 *            of endDocument() handling.
+	 *                      Should always be true unless this is being called at
+	 *                      the end
+	 *                      of endDocument() handling.
 	 */
 	protected void count_and_yield(boolean moreExpected) throws SAXException {
 		if (!moreExpected)
@@ -532,8 +544,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 			Object arg = Boolean.FALSE;
 			if (moreRemains) {
 				// Yield control, resume parsing when done
-				arg = fCoroutineManager.co_resume(Boolean.TRUE, fSourceCoroutineID,
-						fControllerCoroutineID);
+				arg = fCoroutineManager.co_resume(Boolean.TRUE,
+						fSourceCoroutineID, fControllerCoroutineID);
 
 			}
 
@@ -569,23 +581,25 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 	 * waiting for the SAX stream to end by itself.
 	 *
 	 * @throws SAXException
-	 *             is parse thread is already in progress or parsing can not be
-	 *             started.
+	 *                      is parse thread is already in progress or parsing
+	 *                      can not be
+	 *                      started.
 	 */
 	public void startParse(InputSource source) throws SAXException {
 		if (fNoMoreEvents)
-			throw new SAXException(XMLMessages
-					.createXMLMessage(XMLErrorResources.ER_INCRSAXSRCFILTER_NOT_RESTARTABLE, null)); // "IncrmentalSAXSource_Filter
-																										// not
-																										// currently
-																										// restartable.");
+			throw new SAXException(XMLMessages.createXMLMessage(
+					XMLErrorResources.ER_INCRSAXSRCFILTER_NOT_RESTARTABLE,
+					null)); // "IncrmentalSAXSource_Filter
+																																		// not
+																																		// currently
+																																		// restartable.");
 		if (fXMLReader == null)
-			throw new SAXException(XMLMessages
-					.createXMLMessage(XMLErrorResources.ER_XMLRDR_NOT_BEFORE_STARTPARSE, null)); // "XMLReader
-																									// not
-																									// before
-																									// startParse
-																									// request");
+			throw new SAXException(XMLMessages.createXMLMessage(
+					XMLErrorResources.ER_XMLRDR_NOT_BEFORE_STARTPARSE, null)); // "XMLReader
+																																	// not
+																																	// before
+																																	// startParse
+																																	// request");
 
 		fXMLReaderInputSource = source;
 
@@ -603,7 +617,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 			return;
 
 		if (DEBUG)
-			System.out.println("IncrementalSAXSource_Filter parse thread launched");
+			System.out.println(
+					"IncrementalSAXSource_Filter parse thread launched");
 
 		// Initially assume we'll run successfully.
 		Object arg = Boolean.FALSE;
@@ -619,18 +634,20 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 		} catch (StopException ex) {
 			// Expected and harmless
 			if (DEBUG)
-				System.out.println("Active IncrementalSAXSource_Filter normal stop exception");
+				System.out.println(
+						"Active IncrementalSAXSource_Filter normal stop exception");
 		} catch (SAXException ex) {
 			Exception inner = ex.getException();
 			if (inner instanceof StopException) {
 				// Expected and harmless
 				if (DEBUG)
-					System.out.println("Active IncrementalSAXSource_Filter normal stop exception");
+					System.out.println(
+							"Active IncrementalSAXSource_Filter normal stop exception");
 			} else {
 				// Unexpected malfunction
 				if (DEBUG) {
-					System.out
-							.println("Active IncrementalSAXSource_Filter UNEXPECTED SAX exception: "
+					System.out.println(
+							"Active IncrementalSAXSource_Filter UNEXPECTED SAX exception: "
 									+ inner);
 					inner.printStackTrace();
 				}
@@ -644,7 +661,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 		try {
 			// Mark as done and yield control to the controller coroutine
 			fNoMoreEvents = true;
-			fCoroutineManager.co_exit_to(arg, fSourceCoroutineID, fControllerCoroutineID);
+			fCoroutineManager.co_exit_to(arg, fSourceCoroutineID,
+					fControllerCoroutineID);
 		} catch (java.lang.NoSuchMethodException e) {
 			// Shouldn't happen unless we've miscoded our coroutine logic
 			// "CPO, shut down the garbage smashers on the detention level!"
@@ -668,9 +686,10 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 	 * parsing has been achieved.
 	 *
 	 * @param parsemore
-	 *            If true, tells the incremental filter to generate another
-	 *            chunk of output. If false, tells the filter that we're
-	 *            satisfied and it can terminate parsing of this document.
+	 *                  If true, tells the incremental filter to generate
+	 *                  another
+	 *                  chunk of output. If false, tells the filter that we're
+	 *                  satisfied and it can terminate parsing of this document.
 	 *
 	 * @return Boolean.TRUE if there may be more events available by invoking
 	 *         deliverMoreNodes() again. Boolean.FALSE if parsing has run to
@@ -686,8 +705,9 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 			return Boolean.FALSE;
 
 		try {
-			Object result = fCoroutineManager.co_resume(parsemore ? Boolean.TRUE : Boolean.FALSE,
-					fControllerCoroutineID, fSourceCoroutineID);
+			Object result = fCoroutineManager.co_resume(parsemore ? Boolean.TRUE
+					: Boolean.FALSE, fControllerCoroutineID,
+					fSourceCoroutineID);
 			if (result == Boolean.FALSE)
 				fCoroutineManager.co_exit(fControllerCoroutineID);
 
@@ -711,11 +731,8 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 	/*
 	 * public static void _main(String args[]) {
 	 * System.out.println("Starting...");
-	 * 
 	 * org.xml.sax.XMLReader theSAXParser= new
 	 * com.sun.org.apache.xerces.internal.parsers.SAXParser();
-	 * 
-	 * 
 	 * for(int arg=0;arg<args.length;++arg) { // The filter is not currently
 	 * designed to be restartable // after a parse has ended. Generate a new one
 	 * each time. IncrementalSAXSource_Filter filter= new
@@ -723,31 +740,23 @@ final class IncrementalSAXSource_Filter implements IncrementalSAXSource, Content
 	 * com.sun.org.apache.xml.internal.serialize.XMLSerializer trace; trace=new
 	 * com.sun.org.apache.xml.internal.serialize.XMLSerializer(System.out,null);
 	 * filter.setContentHandler(trace); filter.setLexicalHandler(trace);
-	 * 
 	 * try { InputSource source = new InputSource(args[arg]); Object
 	 * result=null; boolean more=true;
-	 * 
 	 * // init not issued; we _should_ automagically Do The Right Thing
-	 * 
 	 * // Bind parser, kick off parsing in a thread
 	 * filter.setXMLReader(theSAXParser); filter.startParse(source);
-	 * 
 	 * for(result = filter.deliverMoreNodes(more); (result instanceof Boolean &&
 	 * ((Boolean)result)==Boolean.TRUE); result = filter.deliverMoreNodes(more))
 	 * { System.out.println("\nSome parsing successful, trying more.\n");
-	 * 
 	 * // Special test: Terminate parsing early. if(arg+1<args.length &&
 	 * "!".equals(args[arg+1])) { ++arg; more=false; }
-	 * 
 	 * }
-	 * 
 	 * if (result instanceof Boolean && ((Boolean)result)==Boolean.FALSE) {
 	 * System.out.println("\nFilter ended (EOF or on request).\n"); } else if
 	 * (result == null) { System.out.println(
 	 * "\nUNEXPECTED: Filter says shut down prematurely.\n"); } else if (result
 	 * instanceof Exception) { System.out.println("\nFilter threw exception:");
 	 * ((Exception)result).printStackTrace(); }
-	 * 
 	 * } catch(SAXException e) { e.printStackTrace(); } } // end for }
 	 */
 } // class IncrementalSAXSource_Filter

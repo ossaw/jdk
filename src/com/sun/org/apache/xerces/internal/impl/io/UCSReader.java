@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2000-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -77,9 +74,9 @@ public class UCSReader extends Reader {
 	 * needs also to be known in advance.
 	 *
 	 * @param inputStream
-	 *            The input stream.
+	 *                    The input stream.
 	 * @param encoding
-	 *            One of UCS2LE, UCS2BE, UCS4LE or UCS4BE.
+	 *                    One of UCS2LE, UCS2BE, UCS4LE or UCS4BE.
 	 */
 	public UCSReader(InputStream inputStream, short encoding) {
 		this(inputStream, DEFAULT_BUFFER_SIZE, encoding);
@@ -91,11 +88,11 @@ public class UCSReader extends Reader {
 	 * known in advance.
 	 *
 	 * @param inputStream
-	 *            The input stream.
+	 *                    The input stream.
 	 * @param size
-	 *            The initial buffer size.
+	 *                    The initial buffer size.
 	 * @param encoding
-	 *            One of UCS2LE, UCS2BE, UCS4LE or UCS4BE.
+	 *                    One of UCS2LE, UCS2BE, UCS4LE or UCS4BE.
 	 */
 	public UCSReader(InputStream inputStream, int size, short encoding) {
 		fInputStream = inputStream;
@@ -124,7 +121,7 @@ public class UCSReader extends Reader {
 	 *         reached
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public int read() throws IOException {
 		int b0 = fInputStream.read() & 0xff;
@@ -140,8 +137,8 @@ public class UCSReader extends Reader {
 			int b3 = fInputStream.read() & 0xff;
 			if (b3 == 0xff)
 				return -1;
-			System.err.println("b0 is " + (b0 & 0xff) + " b1 " + (b1 & 0xff) + " b2 " + (b2 & 0xff)
-					+ " b3 " + (b3 & 0xff));
+			System.err.println("b0 is " + (b0 & 0xff) + " b1 " + (b1 & 0xff)
+					+ " b2 " + (b2 & 0xff) + " b3 " + (b3 & 0xff));
 			if (fEncoding == UCS4BE)
 				return (b0 << 24) + (b1 << 16) + (b2 << 8) + b3;
 			else
@@ -160,17 +157,17 @@ public class UCSReader extends Reader {
 	 * reached.
 	 *
 	 * @param ch
-	 *            Destination buffer
+	 *               Destination buffer
 	 * @param offset
-	 *            Offset at which to start storing characters
+	 *               Offset at which to start storing characters
 	 * @param length
-	 *            Maximum number of characters to read
+	 *               Maximum number of characters to read
 	 *
 	 * @return The number of characters read, or -1 if the end of the stream has
 	 *         been reached
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public int read(char ch[], int offset, int length) throws IOException {
 		int byteLength = length << ((fEncoding >= 4) ? 2 : 1);
@@ -221,9 +218,11 @@ public class UCSReader extends Reader {
 				int b2 = fBuffer[curPos++] & 0xff;
 				int b3 = fBuffer[curPos++] & 0xff;
 				if (fEncoding == UCS4BE)
-					ch[offset + i] = (char) ((b0 << 24) + (b1 << 16) + (b2 << 8) + b3);
+					ch[offset + i] = (char) ((b0 << 24) + (b1 << 16) + (b2 << 8)
+							+ b3);
 				else
-					ch[offset + i] = (char) ((b3 << 24) + (b2 << 16) + (b1 << 8) + b0);
+					ch[offset + i] = (char) ((b3 << 24) + (b2 << 16) + (b1 << 8)
+							+ b0);
 			} else { // UCS-2
 				if (fEncoding == UCS2BE)
 					ch[offset + i] = (char) ((b0 << 8) + b1);
@@ -239,12 +238,12 @@ public class UCSReader extends Reader {
 	 * available, an I/O error occurs, or the end of the stream is reached.
 	 *
 	 * @param n
-	 *            The number of characters to skip
+	 *          The number of characters to skip
 	 *
 	 * @return The number of characters actually skipped
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public long skip(long n) throws IOException {
 		// charWidth will represent the number of bits to move
@@ -269,7 +268,7 @@ public class UCSReader extends Reader {
 	 *         that the next read will block.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public boolean ready() throws IOException {
 		return false;
@@ -288,13 +287,16 @@ public class UCSReader extends Reader {
 	 * streams support the mark() operation.
 	 *
 	 * @param readAheadLimit
-	 *            Limit on the number of characters that may be read while still
-	 *            preserving the mark. After reading this many characters,
-	 *            attempting to reset the stream may fail.
+	 *                       Limit on the number of characters that may be read
+	 *                       while still
+	 *                       preserving the mark. After reading this many
+	 *                       characters,
+	 *                       attempting to reset the stream may fail.
 	 *
 	 * @exception IOException
-	 *                If the stream does not support mark(), or if some other
-	 *                I/O error occurs
+	 *                        If the stream does not support mark(), or if some
+	 *                        other
+	 *                        I/O error occurs
 	 */
 	public void mark(int readAheadLimit) throws IOException {
 		fInputStream.mark(readAheadLimit);
@@ -309,9 +311,11 @@ public class UCSReader extends Reader {
 	 * reset() without supporting mark().
 	 *
 	 * @exception IOException
-	 *                If the stream has not been marked, or if the mark has been
-	 *                invalidated, or if the stream does not support reset(), or
-	 *                if some other I/O error occurs
+	 *                        If the stream has not been marked, or if the mark
+	 *                        has been
+	 *                        invalidated, or if the stream does not support
+	 *                        reset(), or
+	 *                        if some other I/O error occurs
 	 */
 	public void reset() throws IOException {
 		fInputStream.reset();
@@ -323,7 +327,7 @@ public class UCSReader extends Reader {
 	 * previously-closed stream, however, has no effect.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void close() throws IOException {
 		BufferAllocator ba = ThreadLocalBufferAllocator.getBufferAllocator();

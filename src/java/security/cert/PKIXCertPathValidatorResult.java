@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -67,19 +47,22 @@ public class PKIXCertPathValidatorResult implements CertPathValidatorResult {
 	 * specified parameters.
 	 *
 	 * @param trustAnchor
-	 *            a {@code TrustAnchor} describing the CA that served as a trust
-	 *            anchor for the certification path
+	 *                         a {@code TrustAnchor} describing the CA that
+	 *                         served as a trust
+	 *                         anchor for the certification path
 	 * @param policyTree
-	 *            the immutable valid policy tree, or {@code null} if there are
-	 *            no valid policies
+	 *                         the immutable valid policy tree, or {@code null}
+	 *                         if there are
+	 *                         no valid policies
 	 * @param subjectPublicKey
-	 *            the public key of the subject
+	 *                         the public key of the subject
 	 * @throws NullPointerException
-	 *             if the {@code subjectPublicKey} or {@code trustAnchor}
-	 *             parameters are {@code null}
+	 *                              if the {@code subjectPublicKey} or
+	 *                              {@code trustAnchor}
+	 *                              parameters are {@code null}
 	 */
-	public PKIXCertPathValidatorResult(TrustAnchor trustAnchor, PolicyNode policyTree,
-			PublicKey subjectPublicKey) {
+	public PKIXCertPathValidatorResult(TrustAnchor trustAnchor,
+			PolicyNode policyTree, PublicKey subjectPublicKey) {
 		if (subjectPublicKey == null)
 			throw new NullPointerException("subjectPublicKey must be non-null");
 		if (trustAnchor == null)

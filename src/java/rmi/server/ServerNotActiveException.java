@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.server;
@@ -45,15 +25,14 @@ public class ServerNotActiveException extends java.lang.Exception {
 	 * 
 	 * @since JDK1.1
 	 */
-	public ServerNotActiveException() {
-	}
+	public ServerNotActiveException() {}
 
 	/**
 	 * Constructs an <code>ServerNotActiveException</code> with the specified
 	 * detail message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 * @since JDK1.1
 	 */
 	public ServerNotActiveException(String s) {

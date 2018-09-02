@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.activation;
@@ -65,10 +45,11 @@ public class ActivationGroupID implements java.io.Serializable {
 	 * Constructs a unique group id.
 	 *
 	 * @param system
-	 *            the group's activation system
+	 *               the group's activation system
 	 * @throws UnsupportedOperationException
-	 *             if and only if activation is not supported by this
-	 *             implementation
+	 *                                       if and only if activation is not
+	 *                                       supported by this
+	 *                                       implementation
 	 * @since 1.2
 	 */
 	public ActivationGroupID(ActivationSystem system) {

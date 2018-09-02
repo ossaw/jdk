@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.server;
@@ -67,10 +47,11 @@ public interface RMIServerSocketFactory {
 	 * anonymous port).
 	 * 
 	 * @param port
-	 *            the port number
+	 *             the port number
 	 * @return the server socket on the specified port
 	 * @exception IOException
-	 *                if an I/O error occurs during server socket creation
+	 *                        if an I/O error occurs during server socket
+	 *                        creation
 	 * @since 1.2
 	 */
 	public ServerSocket createServerSocket(int port) throws IOException;

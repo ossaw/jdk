@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -46,8 +26,7 @@ class NotQueryExp extends QueryEval implements QueryExp {
 	/**
 	 * Basic Constructor.
 	 */
-	public NotQueryExp() {
-	}
+	public NotQueryExp() {}
 
 	/**
 	 * Creates a new NotQueryExp for negating the specified QueryExp.
@@ -67,8 +46,8 @@ class NotQueryExp extends QueryEval implements QueryExp {
 	 * Applies the NotQueryExp on a MBean.
 	 *
 	 * @param name
-	 *            The name of the MBean on which the NotQueryExp will be
-	 *            applied.
+	 *             The name of the MBean on which the NotQueryExp will be
+	 *             applied.
 	 *
 	 * @return True if the query was successfully applied to the MBean, false
 	 *         otherwise.
@@ -78,9 +57,9 @@ class NotQueryExp extends QueryEval implements QueryExp {
 	 * @exception BadAttributeValueExpException
 	 * @exception InvalidApplicationException
 	 */
-	public boolean apply(ObjectName name)
-			throws BadStringOperationException, BadBinaryOpValueExpException,
-			BadAttributeValueExpException, InvalidApplicationException {
+	public boolean apply(ObjectName name) throws BadStringOperationException,
+			BadBinaryOpValueExpException, BadAttributeValueExpException,
+			InvalidApplicationException {
 		return exp.apply(name) == false;
 	}
 

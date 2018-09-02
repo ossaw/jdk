@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -88,20 +68,30 @@ public interface DomainCombiner {
 	 * <p>
 	 *
 	 * @param currentDomains
-	 *            the ProtectionDomains associated with the current execution
-	 *            Thread, up to the most recent privileged
-	 *            {@code ProtectionDomain}. The ProtectionDomains are are listed
-	 *            in order of execution, with the most recently executing
-	 *            {@code ProtectionDomain} residing at the beginning of the
-	 *            array. This parameter may be {@code null} if the current
-	 *            execution Thread has no associated ProtectionDomains.
-	 *            <p>
+	 *                        the ProtectionDomains associated with the current
+	 *                        execution
+	 *                        Thread, up to the most recent privileged
+	 *                        {@code ProtectionDomain}. The ProtectionDomains
+	 *                        are are listed
+	 *                        in order of execution, with the most recently
+	 *                        executing
+	 *                        {@code ProtectionDomain} residing at the beginning
+	 *                        of the
+	 *                        array. This parameter may be {@code null} if the
+	 *                        current
+	 *                        execution Thread has no associated
+	 *                        ProtectionDomains.
+	 *                        <p>
 	 *
 	 * @param assignedDomains
-	 *            an array of inherited ProtectionDomains. ProtectionDomains may
-	 *            be inherited from a parent Thread, or from a privileged
-	 *            {@code AccessControlContext}. This parameter may be
-	 *            {@code null} if there are no inherited ProtectionDomains.
+	 *                        an array of inherited ProtectionDomains.
+	 *                        ProtectionDomains may
+	 *                        be inherited from a parent Thread, or from a
+	 *                        privileged
+	 *                        {@code AccessControlContext}. This parameter may
+	 *                        be
+	 *                        {@code null} if there are no inherited
+	 *                        ProtectionDomains.
 	 *
 	 * @return a new array consisting of the updated ProtectionDomains, or
 	 *         {@code null}.

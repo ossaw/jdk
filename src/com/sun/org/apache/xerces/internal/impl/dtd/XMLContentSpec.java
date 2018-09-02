@@ -4,43 +4,34 @@
  */
 /*
  * The Apache Software License, Version 1.1
- *
- *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Xerces" and "Apache Software Foundation" must
- *    not be used to endorse or promote products derived from this
- *    software without prior written permission. For written
- *    permission, please contact apache@apache.org.
- *
+ * not be used to endorse or promote products derived from this
+ * software without prior written permission. For written
+ * permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    nor may "Apache" appear in their name, without prior written
- *    permission of the Apache Software Foundation.
- *
+ * nor may "Apache" appear in their name, without prior written
+ * permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -50,11 +41,10 @@
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
  * individuals on behalf of the Apache Software Foundation and was
  * originally based on software copyright (c) 1999, International
- * Business Machines, Inc., http://www.apache.org.  For more
+ * Business Machines, Inc., http://www.apache.org. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -227,7 +217,8 @@ public class XMLContentSpec {
 	 * Constructs a content spec from the values specified by the given content
 	 * spec provider and identifier.
 	 */
-	public XMLContentSpec(XMLContentSpec.Provider provider, int contentSpecIndex) {
+	public XMLContentSpec(XMLContentSpec.Provider provider,
+			int contentSpecIndex) {
 		setValues(provider, contentSpecIndex);
 	}
 
@@ -261,7 +252,8 @@ public class XMLContentSpec {
 	 * provider and identifier. If the specified content spec cannot be
 	 * provided, the values of this content spec are cleared.
 	 */
-	public void setValues(XMLContentSpec.Provider provider, int contentSpecIndex) {
+	public void setValues(XMLContentSpec.Provider provider,
+			int contentSpecIndex) {
 		if (!provider.getContentSpec(contentSpecIndex, this)) {
 			clear();
 		}
@@ -310,14 +302,17 @@ public class XMLContentSpec {
 		 * information for a unique identifier.
 		 *
 		 * @param contentSpecIndex
-		 *            The content spec identifier. All content spec "nodes" have
-		 *            a unique identifier.
+		 *                         The content spec identifier. All content spec
+		 *                         "nodes" have
+		 *                         a unique identifier.
 		 * @param contentSpec
-		 *            The content spec struct to fill in with the information.
+		 *                         The content spec struct to fill in with the
+		 *                         information.
 		 *
 		 * @return Returns true if the contentSpecIndex was found.
 		 */
-		public boolean getContentSpec(int contentSpecIndex, XMLContentSpec contentSpec);
+		public boolean getContentSpec(int contentSpecIndex,
+				XMLContentSpec contentSpec);
 
 	} // interface Provider
 

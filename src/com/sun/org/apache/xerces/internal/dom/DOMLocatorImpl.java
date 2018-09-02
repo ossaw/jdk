@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -79,8 +76,7 @@ public class DOMLocatorImpl implements DOMLocator {
 	// Constructors
 	//
 
-	public DOMLocatorImpl() {
-	}
+	public DOMLocatorImpl() {}
 
 	public DOMLocatorImpl(int lineNumber, int columnNumber, String uri) {
 		fLineNumber = lineNumber;
@@ -88,7 +84,8 @@ public class DOMLocatorImpl implements DOMLocator {
 		fUri = uri;
 	} // DOMLocatorImpl (int lineNumber, int columnNumber, String uri )
 
-	public DOMLocatorImpl(int lineNumber, int columnNumber, int utf16Offset, String uri) {
+	public DOMLocatorImpl(int lineNumber, int columnNumber, int utf16Offset,
+			String uri) {
 		fLineNumber = lineNumber;
 		fColumnNumber = columnNumber;
 		fUri = uri;
@@ -96,8 +93,8 @@ public class DOMLocatorImpl implements DOMLocator {
 	} // DOMLocatorImpl (int lineNumber, int columnNumber, int utf16Offset,
 		// String uri )
 
-	public DOMLocatorImpl(int lineNumber, int columnNumber, int byteoffset, Node relatedData,
-			String uri) {
+	public DOMLocatorImpl(int lineNumber, int columnNumber, int byteoffset,
+			Node relatedData, String uri) {
 		fLineNumber = lineNumber;
 		fColumnNumber = columnNumber;
 		fByteOffset = byteoffset;
@@ -106,8 +103,8 @@ public class DOMLocatorImpl implements DOMLocator {
 	} // DOMLocatorImpl (int lineNumber, int columnNumber, int offset, Node
 		// errorNode, String uri )
 
-	public DOMLocatorImpl(int lineNumber, int columnNumber, int byteoffset, Node relatedData,
-			String uri, int utf16Offset) {
+	public DOMLocatorImpl(int lineNumber, int columnNumber, int byteoffset,
+			Node relatedData, String uri, int utf16Offset) {
 		fLineNumber = lineNumber;
 		fColumnNumber = columnNumber;
 		fByteOffset = byteoffset;

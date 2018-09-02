@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -45,8 +25,7 @@ public class StringValueExp implements ValueExp {
 	/**
 	 * Basic constructor.
 	 */
-	public StringValueExp() {
-	}
+	public StringValueExp() {}
 
 	/**
 	 * Creates a new <CODE>StringValueExp</CODE> representing the given string.
@@ -79,7 +58,7 @@ public class StringValueExp implements ValueExp {
 	 * Sets the MBean server on which the query is to be performed.
 	 *
 	 * @param s
-	 *            The MBean server on which the query is to be performed.
+	 *          The MBean server on which the query is to be performed.
 	 */
 	/*
 	 * There is no need for this method, because if a query is being evaluated a
@@ -87,14 +66,13 @@ public class StringValueExp implements ValueExp {
 	 * itself have done setMBeanServer.
 	 */
 	@Deprecated
-	public void setMBeanServer(MBeanServer s) {
-	}
+	public void setMBeanServer(MBeanServer s) {}
 
 	/**
 	 * Applies the ValueExp on a MBean.
 	 *
 	 * @param name
-	 *            The name of the MBean on which the ValueExp will be applied.
+	 *             The name of the MBean on which the ValueExp will be applied.
 	 *
 	 * @return The <CODE>ValueExp</CODE>.
 	 *
@@ -103,9 +81,9 @@ public class StringValueExp implements ValueExp {
 	 * @exception BadAttributeValueExpException
 	 * @exception InvalidApplicationException
 	 */
-	public ValueExp apply(ObjectName name)
-			throws BadStringOperationException, BadBinaryOpValueExpException,
-			BadAttributeValueExpException, InvalidApplicationException {
+	public ValueExp apply(ObjectName name) throws BadStringOperationException,
+			BadBinaryOpValueExpException, BadAttributeValueExpException,
+			InvalidApplicationException {
 		return this;
 	}
 }

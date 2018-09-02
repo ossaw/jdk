@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.openmbean;
@@ -86,54 +66,70 @@ public class CompositeDataSupport implements CompositeData, Serializable {
 	 * </p>
 	 *
 	 * @param compositeType
-	 *            the <i>composite type </i> of this <i>composite data</i>
-	 *            instance; must not be null.
+	 *                      the <i>composite type </i> of this <i>composite
+	 *                      data</i>
+	 *                      instance; must not be null.
 	 *
 	 * @param itemNames
-	 *            <tt>itemNames</tt> must list, in any order, all the item names
-	 *            defined in <tt>compositeType</tt>; the order in which the
-	 *            names are listed, is used to match values in
-	 *            <tt>itemValues[]</tt>; must not be null or empty.
+	 *                      <tt>itemNames</tt> must list, in any order, all the
+	 *                      item names
+	 *                      defined in <tt>compositeType</tt>; the order in
+	 *                      which the
+	 *                      names are listed, is used to match values in
+	 *                      <tt>itemValues[]</tt>; must not be null or empty.
 	 *
 	 * @param itemValues
-	 *            the values of the items, listed in the same order as their
-	 *            respective names in <tt>itemNames</tt>; each item value can be
-	 *            null, but if it is non-null it must be a valid value for the
-	 *            open type defined in <tt>compositeType</tt> for the
-	 *            corresponding item; must be of the same size as
-	 *            <tt>itemNames</tt>; must not be null or empty.
+	 *                      the values of the items, listed in the same order as
+	 *                      their
+	 *                      respective names in <tt>itemNames</tt>; each item
+	 *                      value can be
+	 *                      null, but if it is non-null it must be a valid value
+	 *                      for the
+	 *                      open type defined in <tt>compositeType</tt> for the
+	 *                      corresponding item; must be of the same size as
+	 *                      <tt>itemNames</tt>; must not be null or empty.
 	 *
 	 * @throws IllegalArgumentException
-	 *             <tt>compositeType</tt> is null, or <tt>itemNames[]</tt> or
-	 *             <tt>itemValues[]</tt> is null or empty, or one of the
-	 *             elements in <tt>itemNames[]</tt> is a null or empty string,
-	 *             or <tt>itemNames[]</tt> and <tt>itemValues[]</tt> are not of
-	 *             the same size.
+	 *                                  <tt>compositeType</tt> is null, or
+	 *                                  <tt>itemNames[]</tt> or
+	 *                                  <tt>itemValues[]</tt> is null or empty,
+	 *                                  or one of the
+	 *                                  elements in <tt>itemNames[]</tt> is a
+	 *                                  null or empty string,
+	 *                                  or <tt>itemNames[]</tt> and
+	 *                                  <tt>itemValues[]</tt> are not of
+	 *                                  the same size.
 	 *
 	 * @throws OpenDataException
-	 *             <tt>itemNames[]</tt> or <tt>itemValues[]</tt>'s size differs
-	 *             from the number of items defined in <tt>compositeType</tt>,
-	 *             or one of the elements in <tt>itemNames[]</tt> does not exist
-	 *             as an item name defined in <tt>compositeType</tt>, or one of
-	 *             the elements in <tt>itemValues[]</tt> is not a valid value
-	 *             for the corresponding item as defined in
-	 *             <tt>compositeType</tt>.
+	 *                                  <tt>itemNames[]</tt> or
+	 *                                  <tt>itemValues[]</tt>'s size differs
+	 *                                  from the number of items defined in
+	 *                                  <tt>compositeType</tt>,
+	 *                                  or one of the elements in
+	 *                                  <tt>itemNames[]</tt> does not exist
+	 *                                  as an item name defined in
+	 *                                  <tt>compositeType</tt>, or one of
+	 *                                  the elements in <tt>itemValues[]</tt> is
+	 *                                  not a valid value
+	 *                                  for the corresponding item as defined in
+	 *                                  <tt>compositeType</tt>.
 	 */
 	public CompositeDataSupport(CompositeType compositeType, String[] itemNames,
 			Object[] itemValues) throws OpenDataException {
 		this(makeMap(itemNames, itemValues), compositeType);
 	}
 
-	private static SortedMap<String, Object> makeMap(String[] itemNames, Object[] itemValues)
-			throws OpenDataException {
+	private static SortedMap<String, Object> makeMap(String[] itemNames,
+			Object[] itemValues) throws OpenDataException {
 
 		if (itemNames == null || itemValues == null)
 			throw new IllegalArgumentException("Null itemNames or itemValues");
 		if (itemNames.length == 0 || itemValues.length == 0)
 			throw new IllegalArgumentException("Empty itemNames or itemValues");
 		if (itemNames.length != itemValues.length) {
-			throw new IllegalArgumentException("Different lengths: itemNames[" + itemNames.length
-					+ "], itemValues[" + itemValues.length + "]");
+			throw new IllegalArgumentException("Different lengths: itemNames["
+					+ itemNames.length + "], itemValues[" + itemValues.length
+					+ "]");
 		}
 
 		SortedMap<String, Object> map = new TreeMap<String, Object>();
@@ -160,30 +156,41 @@ public class CompositeDataSupport implements CompositeData, Serializable {
 	 * .
 	 *
 	 * @param compositeType
-	 *            the <i>composite type </i> of this <i>composite data</i>
-	 *            instance; must not be null.
+	 *                      the <i>composite type </i> of this <i>composite
+	 *                      data</i>
+	 *                      instance; must not be null.
 	 * @param items
-	 *            the mappings of all the item names to their values;
-	 *            <tt>items</tt> must contain all the item names defined in
-	 *            <tt>compositeType</tt>; must not be null or empty.
+	 *                      the mappings of all the item names to their values;
+	 *                      <tt>items</tt> must contain all the item names
+	 *                      defined in
+	 *                      <tt>compositeType</tt>; must not be null or empty.
 	 *
 	 * @throws IllegalArgumentException
-	 *             <tt>compositeType</tt> is null, or <tt>items</tt> is null or
-	 *             empty, or one of the keys in <tt>items</tt> is a null or
-	 *             empty string.
+	 *                                  <tt>compositeType</tt> is null, or
+	 *                                  <tt>items</tt> is null or
+	 *                                  empty, or one of the keys in
+	 *                                  <tt>items</tt> is a null or
+	 *                                  empty string.
 	 * @throws OpenDataException
-	 *             <tt>items</tt>' size differs from the number of items defined
-	 *             in <tt>compositeType</tt>, or one of the keys in
-	 *             <tt>items</tt> does not exist as an item name defined in
-	 *             <tt>compositeType</tt>, or one of the values in
-	 *             <tt>items</tt> is not a valid value for the corresponding
-	 *             item as defined in <tt>compositeType</tt>.
+	 *                                  <tt>items</tt>' size differs from the
+	 *                                  number of items defined
+	 *                                  in <tt>compositeType</tt>, or one of the
+	 *                                  keys in
+	 *                                  <tt>items</tt> does not exist as an item
+	 *                                  name defined in
+	 *                                  <tt>compositeType</tt>, or one of the
+	 *                                  values in
+	 *                                  <tt>items</tt> is not a valid value for
+	 *                                  the corresponding
+	 *                                  item as defined in
+	 *                                  <tt>compositeType</tt>.
 	 * @throws ArrayStoreException
-	 *             one or more keys in <tt>items</tt> is not of the class
-	 *             <tt>java.lang.String</tt>.
+	 *                                  one or more keys in <tt>items</tt> is
+	 *                                  not of the class
+	 *                                  <tt>java.lang.String</tt>.
 	 */
-	public CompositeDataSupport(CompositeType compositeType, Map<String, ?> items)
-			throws OpenDataException {
+	public CompositeDataSupport(CompositeType compositeType,
+			Map<String, ?> items) throws OpenDataException {
 		this(makeMap(items), compositeType);
 	}
 
@@ -196,7 +203,8 @@ public class CompositeDataSupport implements CompositeData, Serializable {
 			if (key == null || key.equals(""))
 				throw new IllegalArgumentException("Null or empty item name");
 			if (!(key instanceof String)) {
-				throw new ArrayStoreException("Item name is not string: " + key);
+				throw new ArrayStoreException("Item name is not string: "
+						+ key);
 				// This can happen because of erasure. The particular
 				// exception is a historical artifact - an implementation
 				// detail that leaked into the API.
@@ -206,13 +214,14 @@ public class CompositeDataSupport implements CompositeData, Serializable {
 		return map;
 	}
 
-	private CompositeDataSupport(SortedMap<String, Object> items, CompositeType compositeType)
-			throws OpenDataException {
+	private CompositeDataSupport(SortedMap<String, Object> items,
+			CompositeType compositeType) throws OpenDataException {
 
 		// Check compositeType is not null
 		//
 		if (compositeType == null) {
-			throw new IllegalArgumentException("Argument compositeType cannot be null.");
+			throw new IllegalArgumentException(
+					"Argument compositeType cannot be null.");
 		}
 
 		// item names defined in compositeType:
@@ -227,9 +236,12 @@ public class CompositeDataSupport implements CompositeData, Serializable {
 			Set<String> extraFromItems = new TreeSet<String>(namesFromItems);
 			extraFromItems.removeAll(namesFromType);
 			if (!extraFromType.isEmpty() || !extraFromItems.isEmpty()) {
-				throw new OpenDataException("Item names do not match CompositeType: "
-						+ "names in items but not in CompositeType: " + extraFromItems
-						+ "; names in CompositeType but not in items: " + extraFromType);
+				throw new OpenDataException(
+						"Item names do not match CompositeType: "
+								+ "names in items but not in CompositeType: "
+								+ extraFromItems
+								+ "; names in CompositeType but not in items: "
+								+ extraFromType);
 			}
 		}
 
@@ -240,8 +252,10 @@ public class CompositeDataSupport implements CompositeData, Serializable {
 			if (value != null) {
 				OpenType<?> itemType = compositeType.getType(name);
 				if (!itemType.isValue(value)) {
-					throw new OpenDataException("Argument value of wrong type for item " + name
-							+ ": value " + value + ", type " + itemType);
+					throw new OpenDataException(
+							"Argument value of wrong type for item " + name
+									+ ": value " + value + ", type "
+									+ itemType);
 				}
 			}
 		}
@@ -265,16 +279,19 @@ public class CompositeDataSupport implements CompositeData, Serializable {
 	 * Returns the value of the item whose name is <tt>key</tt>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <tt>key</tt> is a null or empty String.
+	 *                                  if <tt>key</tt> is a null or empty
+	 *                                  String.
 	 *
 	 * @throws InvalidKeyException
-	 *             if <tt>key</tt> is not an existing item name for this
-	 *             <tt>CompositeData</tt> instance.
+	 *                                  if <tt>key</tt> is not an existing item
+	 *                                  name for this
+	 *                                  <tt>CompositeData</tt> instance.
 	 */
 	public Object get(String key) {
 
 		if ((key == null) || (key.trim().equals(""))) {
-			throw new IllegalArgumentException("Argument key cannot be a null or empty String.");
+			throw new IllegalArgumentException(
+					"Argument key cannot be a null or empty String.");
 		}
 		if (!contents.containsKey(key.trim())) {
 			throw new InvalidKeyException("Argument key=\"" + key.trim()
@@ -288,11 +305,14 @@ public class CompositeDataSupport implements CompositeData, Serializable {
 	 * <tt>keys</tt>, in the same order as <tt>keys</tt>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if an element in <tt>keys</tt> is a null or empty String.
+	 *                                  if an element in <tt>keys</tt> is a null
+	 *                                  or empty String.
 	 *
 	 * @throws InvalidKeyException
-	 *             if an element in <tt>keys</tt> is not an existing item name
-	 *             for this <tt>CompositeData</tt> instance.
+	 *                                  if an element in <tt>keys</tt> is not an
+	 *                                  existing item name
+	 *                                  for this <tt>CompositeData</tt>
+	 *                                  instance.
 	 */
 	public Object[] getAll(String[] keys) {
 
@@ -401,8 +421,8 @@ public class CompositeDataSupport implements CompositeData, Serializable {
 			if (e1 == null)
 				return false;
 
-			boolean eq = e1.getClass().isArray()
-					? Arrays.deepEquals(new Object[] { e1 }, new Object[] { e2 }) : e1.equals(e2);
+			boolean eq = e1.getClass().isArray() ? Arrays.deepEquals(
+					new Object[] { e1 }, new Object[] { e2 }) : e1.equals(e2);
 
 			if (!eq)
 				return false;
@@ -481,9 +501,10 @@ public class CompositeDataSupport implements CompositeData, Serializable {
 	 */
 	@Override
 	public String toString() {
-		return new StringBuilder().append(this.getClass().getName()).append("(compositeType=")
-				.append(compositeType.toString()).append(",contents=").append(contentString())
-				.append(")").toString();
+		return new StringBuilder().append(this.getClass().getName()).append(
+				"(compositeType=").append(compositeType.toString()).append(
+						",contents=").append(contentString()).append(")")
+				.toString();
 	}
 
 	private String contentString() {

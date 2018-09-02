@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.orbutil.fsm;
@@ -100,13 +80,15 @@ public class FSMImpl implements FSM {
 
 	public void internalSetState(State nextState) {
 		if (debug) {
-			ORBUtility.dprint(this, "Calling internalSetState with nextState = " + nextState);
+			ORBUtility.dprint(this, "Calling internalSetState with nextState = "
+					+ nextState);
 		}
 
 		state = nextState;
 
 		if (debug) {
-			ORBUtility.dprint(this, "Exiting internalSetState with state = " + state);
+			ORBUtility.dprint(this, "Exiting internalSetState with state = "
+					+ state);
 		}
 	}
 }

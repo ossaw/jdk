@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.im;
@@ -102,14 +82,15 @@ public class InputMethodHighlight {
 	 * the style to null.
 	 * 
 	 * @param selected
-	 *            Whether the text range is selected
+	 *                 Whether the text range is selected
 	 * @param state
-	 *            The conversion state for the text range - RAW_TEXT or
-	 *            CONVERTED_TEXT
+	 *                 The conversion state for the text range - RAW_TEXT or
+	 *                 CONVERTED_TEXT
 	 * @see InputMethodHighlight#RAW_TEXT
 	 * @see InputMethodHighlight#CONVERTED_TEXT
 	 * @exception IllegalArgumentException
-	 *                if a state other than RAW_TEXT or CONVERTED_TEXT is given
+	 *                                     if a state other than RAW_TEXT or
+	 *                                     CONVERTED_TEXT is given
 	 */
 	public InputMethodHighlight(boolean selected, int state) {
 		this(selected, state, 0, null);
@@ -119,16 +100,17 @@ public class InputMethodHighlight {
 	 * Constructs an input method highlight record. The style is set to null.
 	 * 
 	 * @param selected
-	 *            Whether the text range is selected
+	 *                  Whether the text range is selected
 	 * @param state
-	 *            The conversion state for the text range - RAW_TEXT or
-	 *            CONVERTED_TEXT
+	 *                  The conversion state for the text range - RAW_TEXT or
+	 *                  CONVERTED_TEXT
 	 * @param variation
-	 *            The style variation for the text range
+	 *                  The style variation for the text range
 	 * @see InputMethodHighlight#RAW_TEXT
 	 * @see InputMethodHighlight#CONVERTED_TEXT
 	 * @exception IllegalArgumentException
-	 *                if a state other than RAW_TEXT or CONVERTED_TEXT is given
+	 *                                     if a state other than RAW_TEXT or
+	 *                                     CONVERTED_TEXT is given
 	 */
 	public InputMethodHighlight(boolean selected, int state, int variation) {
 		this(selected, state, variation, null);
@@ -139,25 +121,28 @@ public class InputMethodHighlight {
 	 * provided must be unmodifiable.
 	 * 
 	 * @param selected
-	 *            whether the text range is selected
+	 *                  whether the text range is selected
 	 * @param state
-	 *            the conversion state for the text range - RAW_TEXT or
-	 *            CONVERTED_TEXT
+	 *                  the conversion state for the text range - RAW_TEXT or
+	 *                  CONVERTED_TEXT
 	 * @param variation
-	 *            the variation for the text range
+	 *                  the variation for the text range
 	 * @param style
-	 *            the rendering style attributes for the text range, or null
+	 *                  the rendering style attributes for the text range, or
+	 *                  null
 	 * @see InputMethodHighlight#RAW_TEXT
 	 * @see InputMethodHighlight#CONVERTED_TEXT
 	 * @exception IllegalArgumentException
-	 *                if a state other than RAW_TEXT or CONVERTED_TEXT is given
+	 *                                     if a state other than RAW_TEXT or
+	 *                                     CONVERTED_TEXT is given
 	 * @since 1.3
 	 */
 	public InputMethodHighlight(boolean selected, int state, int variation,
 			Map<TextAttribute, ?> style) {
 		this.selected = selected;
 		if (!(state == RAW_TEXT || state == CONVERTED_TEXT)) {
-			throw new IllegalArgumentException("unknown input method highlight state");
+			throw new IllegalArgumentException(
+					"unknown input method highlight state");
 		}
 		this.state = state;
 		this.variation = variation;

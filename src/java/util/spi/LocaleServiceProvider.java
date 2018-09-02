@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.spi;
@@ -149,8 +129,7 @@ public abstract class LocaleServiceProvider {
 	 * Sole constructor. (For invocation by subclass constructors, typically
 	 * implicit.)
 	 */
-	protected LocaleServiceProvider() {
-	}
+	protected LocaleServiceProvider() {}
 
 	/**
 	 * Returns an array of all locales for which this locale service provider
@@ -187,11 +166,11 @@ public abstract class LocaleServiceProvider {
 	 * and in that case, extensions for numbering systems should be ignored.
 	 *
 	 * @param locale
-	 *            a {@code Locale} to be tested
+	 *               a {@code Locale} to be tested
 	 * @return {@code true} if the given {@code locale} is supported by this
 	 *         provider; {@code false} otherwise.
 	 * @throws NullPointerException
-	 *             if the given {@code locale} is {@code null}
+	 *                              if the given {@code locale} is {@code null}
 	 * @see Locale#hasExtensions()
 	 * @see Locale#stripExtensions()
 	 * @since 1.8

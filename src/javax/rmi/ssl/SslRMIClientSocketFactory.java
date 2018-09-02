@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.rmi.ssl;
@@ -76,7 +56,8 @@ import javax.net.ssl.SSLSocketFactory;
  * @see javax.rmi.ssl.SslRMIServerSocketFactory
  * @since 1.5
  */
-public class SslRMIClientSocketFactory implements RMIClientSocketFactory, Serializable {
+public class SslRMIClientSocketFactory implements RMIClientSocketFactory,
+		Serializable {
 
 	/**
 	 * <p>
@@ -126,11 +107,12 @@ public class SslRMIClientSocketFactory implements RMIClientSocketFactory, Serial
 		final SocketFactory sslSocketFactory = getDefaultClientSocketFactory();
 		// Create the SSLSocket
 		//
-		final SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(host, port);
+		final SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(
+				host, port);
 		// Set the SSLSocket Enabled Cipher Suites
 		//
-		final String enabledCipherSuites = System
-				.getProperty("javax.rmi.ssl.client.enabledCipherSuites");
+		final String enabledCipherSuites = System.getProperty(
+				"javax.rmi.ssl.client.enabledCipherSuites");
 		if (enabledCipherSuites != null) {
 			StringTokenizer st = new StringTokenizer(enabledCipherSuites, ",");
 			int tokens = st.countTokens();
@@ -141,12 +123,14 @@ public class SslRMIClientSocketFactory implements RMIClientSocketFactory, Serial
 			try {
 				sslSocket.setEnabledCipherSuites(enabledCipherSuitesList);
 			} catch (IllegalArgumentException e) {
-				throw (IOException) new IOException(e.getMessage()).initCause(e);
+				throw (IOException) new IOException(e.getMessage()).initCause(
+						e);
 			}
 		}
 		// Set the SSLSocket Enabled Protocols
 		//
-		final String enabledProtocols = System.getProperty("javax.rmi.ssl.client.enabledProtocols");
+		final String enabledProtocols = System.getProperty(
+				"javax.rmi.ssl.client.enabledProtocols");
 		if (enabledProtocols != null) {
 			StringTokenizer st = new StringTokenizer(enabledProtocols, ",");
 			int tokens = st.countTokens();
@@ -157,7 +141,8 @@ public class SslRMIClientSocketFactory implements RMIClientSocketFactory, Serial
 			try {
 				sslSocket.setEnabledProtocols(enabledProtocolsList);
 			} catch (IllegalArgumentException e) {
-				throw (IOException) new IOException(e.getMessage()).initCause(e);
+				throw (IOException) new IOException(e.getMessage()).initCause(
+						e);
 			}
 		}
 		// Return the preconfigured SSLSocket

@@ -1,39 +1,17 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996, 1997 - All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998 - All Rights Reserved
- *
- *   The original version of this source code and documentation is copyrighted
+ * The original version of this source code and documentation is copyrighted
  * and owned by Taligent, Inc., a wholly-owned subsidiary of IBM. These
  * materials are provided under terms of a License Agreement between Taligent
  * and Sun. This technology is protected by multiple US and International
  * patents. This notice and attribution to Taligent may not be removed.
- *   Taligent is a registered trademark of Taligent, Inc.
- *
+ * Taligent is a registered trademark of Taligent, Inc.
  */
 
 package java.text;
@@ -78,7 +56,7 @@ public class ParsePosition {
 	 * Set the current parse position.
 	 *
 	 * @param index
-	 *            the current parse position
+	 *              the current parse position
 	 */
 	public void setIndex(int index) {
 		this.index = index;
@@ -88,7 +66,7 @@ public class ParsePosition {
 	 * Create a new ParsePosition with the given initial index.
 	 *
 	 * @param index
-	 *            initial index
+	 *              initial index
 	 */
 	public ParsePosition(int index) {
 		this.index = index;
@@ -100,7 +78,7 @@ public class ParsePosition {
 	 * value is -1 if this is not set.
 	 *
 	 * @param ei
-	 *            the index at which an error occurred
+	 *           the index at which an error occurred
 	 * @since 1.2
 	 */
 	public void setErrorIndex(int ei) {
@@ -145,6 +123,7 @@ public class ParsePosition {
 	 * @return a string representation of this object
 	 */
 	public String toString() {
-		return getClass().getName() + "[index=" + index + ",errorIndex=" + errorIndex + ']';
+		return getClass().getName() + "[index=" + index + ",errorIndex="
+				+ errorIndex + ']';
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -40,8 +20,10 @@ public interface SunJmxMBeanServer extends MBeanServer {
 	 * Return the MBeanInstantiator associated to this MBeanServer.
 	 * 
 	 * @exception UnsupportedOperationException
-	 *                if {@link MBeanServerInterceptor}s are not enabled on this
-	 *                object.
+	 *                                          if
+	 *                                          {@link MBeanServerInterceptor}s
+	 *                                          are not enabled on this
+	 *                                          object.
 	 * @see #interceptorsEnabled
 	 */
 	public MBeanInstantiator getMBeanInstantiator();
@@ -61,8 +43,10 @@ public interface SunJmxMBeanServer extends MBeanServer {
 	 * Return the MBeanServerInterceptor.
 	 * 
 	 * @exception UnsupportedOperationException
-	 *                if {@link MBeanServerInterceptor}s are not enabled on this
-	 *                object.
+	 *                                          if
+	 *                                          {@link MBeanServerInterceptor}s
+	 *                                          are not enabled on this
+	 *                                          object.
 	 * @see #interceptorsEnabled
 	 **/
 	public MBeanServer getMBeanServerInterceptor();
@@ -71,8 +55,10 @@ public interface SunJmxMBeanServer extends MBeanServer {
 	 * Set the MBeanServerInterceptor.
 	 * 
 	 * @exception UnsupportedOperationException
-	 *                if {@link MBeanServerInterceptor}s are not enabled on this
-	 *                object.
+	 *                                          if
+	 *                                          {@link MBeanServerInterceptor}s
+	 *                                          are not enabled on this
+	 *                                          object.
 	 * @see #interceptorsEnabled
 	 **/
 	public void setMBeanServerInterceptor(MBeanServer interceptor);

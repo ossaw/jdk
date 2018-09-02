@@ -50,7 +50,8 @@ public class KeyUtils {
 	 * @param os
 	 * @throws XMLSecurityException
 	 */
-	public static void prinoutKeyInfo(KeyInfo ki, PrintStream os) throws XMLSecurityException {
+	public static void prinoutKeyInfo(KeyInfo ki, PrintStream os)
+			throws XMLSecurityException {
 
 		for (int i = 0; i < ki.lengthKeyName(); i++) {
 			KeyName x = ki.itemKeyName(i);
@@ -75,8 +76,10 @@ public class KeyUtils {
 		for (int i = 0; i < ki.lengthX509Data(); i++) {
 			X509Data x = ki.itemX509Data(i);
 
-			os.println("X509Data(" + i + ")=\"" + (x.containsCertificate() ? "Certificate " : "")
-					+ (x.containsIssuerSerial() ? "IssuerSerial " : "") + "\"");
+			os.println("X509Data(" + i + ")=\"" + (x.containsCertificate()
+					? "Certificate "
+					: "") + (x.containsIssuerSerial() ? "IssuerSerial " : "")
+					+ "\"");
 		}
 	}
 }

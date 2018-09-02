@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi.spi;
@@ -55,14 +35,16 @@ public abstract class MidiFileReader {
 	 * not support this, this method may fail with an {@code IOException}.
 	 *
 	 * @param stream
-	 *            the input stream from which file format information should be
-	 *            extracted
+	 *               the input stream from which file format information should
+	 *               be
+	 *               extracted
 	 * @return a {@code MidiFileFormat} object describing the MIDI file format
 	 * @throws InvalidMidiDataException
-	 *             if the stream does not point to valid MIDI file data
-	 *             recognized by the system
+	 *                                  if the stream does not point to valid
+	 *                                  MIDI file data
+	 *                                  recognized by the system
 	 * @throws IOException
-	 *             if an I/O exception occurs
+	 *                                  if an I/O exception occurs
 	 * @see InputStream#markSupported
 	 * @see InputStream#mark
 	 */
@@ -77,10 +59,11 @@ public abstract class MidiFileReader {
 	 *            the URL from which file format information should be extracted
 	 * @return a {@code MidiFileFormat} object describing the MIDI file format
 	 * @throws InvalidMidiDataException
-	 *             if the URL does not point to valid MIDI file data recognized
-	 *             by the system
+	 *                                  if the URL does not point to valid MIDI
+	 *                                  file data recognized
+	 *                                  by the system
 	 * @throws IOException
-	 *             if an I/O exception occurs
+	 *                                  if an I/O exception occurs
 	 */
 	public abstract MidiFileFormat getMidiFileFormat(URL url)
 			throws InvalidMidiDataException, IOException;
@@ -90,14 +73,15 @@ public abstract class MidiFileReader {
 	 * {@code File} must point to valid MIDI file data.
 	 *
 	 * @param file
-	 *            the {@code File} from which file format information should be
-	 *            extracted
+	 *             the {@code File} from which file format information should be
+	 *             extracted
 	 * @return a {@code MidiFileFormat} object describing the MIDI file format
 	 * @throws InvalidMidiDataException
-	 *             if the {@code File} does not point to valid MIDI file data
-	 *             recognized by the system
+	 *                                  if the {@code File} does not point to
+	 *                                  valid MIDI file data
+	 *                                  recognized by the system
 	 * @throws IOException
-	 *             if an I/O exception occurs
+	 *                                  if an I/O exception occurs
 	 */
 	public abstract MidiFileFormat getMidiFileFormat(File file)
 			throws InvalidMidiDataException, IOException;
@@ -112,15 +96,16 @@ public abstract class MidiFileReader {
 	 * not support this, this method may fail with an IOException.
 	 *
 	 * @param stream
-	 *            the input stream from which the {@code Sequence} should be
-	 *            constructed
+	 *               the input stream from which the {@code Sequence} should be
+	 *               constructed
 	 * @return a {@code Sequence} object based on the MIDI file data contained
 	 *         in the input stream.
 	 * @throws InvalidMidiDataException
-	 *             if the stream does not point to valid MIDI file data
-	 *             recognized by the system
+	 *                                  if the stream does not point to valid
+	 *                                  MIDI file data
+	 *                                  recognized by the system
 	 * @throws IOException
-	 *             if an I/O exception occurs
+	 *                                  if an I/O exception occurs
 	 * @see InputStream#markSupported
 	 * @see InputStream#mark
 	 */
@@ -136,27 +121,31 @@ public abstract class MidiFileReader {
 	 * @return a {@code Sequence} object based on the MIDI file data pointed to
 	 *         by the URL
 	 * @throws InvalidMidiDataException
-	 *             if the URL does not point to valid MIDI file data recognized
-	 *             by the system
+	 *                                  if the URL does not point to valid MIDI
+	 *                                  file data recognized
+	 *                                  by the system
 	 * @throws IOException
-	 *             if an I/O exception occurs
+	 *                                  if an I/O exception occurs
 	 */
-	public abstract Sequence getSequence(URL url) throws InvalidMidiDataException, IOException;
+	public abstract Sequence getSequence(URL url)
+			throws InvalidMidiDataException, IOException;
 
 	/**
 	 * Obtains a MIDI sequence from the {@code File} provided. The {@code File}
 	 * must point to valid MIDI file data.
 	 *
 	 * @param file
-	 *            the {@code File} from which the {@code Sequence} should be
-	 *            constructed
+	 *             the {@code File} from which the {@code Sequence} should be
+	 *             constructed
 	 * @return a {@code Sequence} object based on the MIDI file data pointed to
 	 *         by the {@code File}
 	 * @throws InvalidMidiDataException
-	 *             if the {@code File} does not point to valid MIDI file data
-	 *             recognized by the system
+	 *                                  if the {@code File} does not point to
+	 *                                  valid MIDI file data
+	 *                                  recognized by the system
 	 * @throws IOException
-	 *             if an I/O exception occurs
+	 *                                  if an I/O exception occurs
 	 */
-	public abstract Sequence getSequence(File file) throws InvalidMidiDataException, IOException;
+	public abstract Sequence getSequence(File file)
+			throws InvalidMidiDataException, IOException;
 }

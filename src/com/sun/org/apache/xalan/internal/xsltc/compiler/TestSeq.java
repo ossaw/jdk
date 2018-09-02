@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -102,13 +100,15 @@ final class TestSeq {
 		final StringBuffer result = new StringBuffer();
 
 		for (int i = 0; i < count; i++) {
-			final LocationPathPattern pattern = (LocationPathPattern) _patterns.elementAt(i);
+			final LocationPathPattern pattern = (LocationPathPattern) _patterns
+					.elementAt(i);
 
 			if (i == 0) {
-				result.append("Testseq for kernel ").append(_kernelType).append('\n');
+				result.append("Testseq for kernel ").append(_kernelType).append(
+						'\n');
 			}
-			result.append("   pattern ").append(i).append(": ").append(pattern.toString())
-					.append('\n');
+			result.append("   pattern ").append(i).append(": ").append(pattern
+					.toString()).append('\n');
 		}
 		return result.toString();
 	}
@@ -150,7 +150,8 @@ final class TestSeq {
 
 		final int count = _patterns.size();
 		for (int i = 0; i < count; i++) {
-			final LocationPathPattern pattern = (LocationPathPattern) _patterns.elementAt(i);
+			final LocationPathPattern pattern = (LocationPathPattern) _patterns
+					.elementAt(i);
 
 			// Reduce this pattern
 			pattern.reduceKernelPattern();
@@ -176,7 +177,8 @@ final class TestSeq {
 			templates.put(_default, this);
 		}
 		for (int i = 0; i < _patterns.size(); i++) {
-			final LocationPathPattern pattern = (LocationPathPattern) _patterns.elementAt(i);
+			final LocationPathPattern pattern = (LocationPathPattern) _patterns
+					.elementAt(i);
 			templates.put(pattern.getTemplate(), this);
 		}
 	}
@@ -202,8 +204,8 @@ final class TestSeq {
 	 * lowest priority. Note that since patterns can be share by multiple test
 	 * sequences, instruction lists must be copied before backpatching.
 	 */
-	public InstructionHandle compile(ClassGenerator classGen, MethodGenerator methodGen,
-			InstructionHandle continuation) {
+	public InstructionHandle compile(ClassGenerator classGen,
+			MethodGenerator methodGen, InstructionHandle continuation) {
 		// Returned cached value if already compiled
 		if (_start != null) {
 			return _start;
@@ -216,7 +218,8 @@ final class TestSeq {
 		}
 
 		// Init handle to jump when all patterns failed
-		InstructionHandle fail = (_default == null) ? continuation : getTemplateHandle(_default);
+		InstructionHandle fail = (_default == null) ? continuation
+				: getTemplateHandle(_default);
 
 		// Compile all patterns in reverse order
 		for (int n = count - 1; n >= 0; n--) {

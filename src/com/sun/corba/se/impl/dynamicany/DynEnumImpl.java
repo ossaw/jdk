@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.dynamicany;
@@ -147,7 +127,8 @@ public class DynEnumImpl extends DynAnyBasicImpl implements DynEnum {
 	// whose IDL identifier is passed in the value parameter.
 	// If value contains a string that is not a valid IDL identifier
 	// for the corresponding enumerated type, the operation raises InvalidValue.
-	public void set_as_string(String value) throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
+	public void set_as_string(String value)
+			throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
 		if (status == STATUS_DESTROYED) {
 			throw wrapper.dynAnyDestroyed();
 		}
@@ -172,7 +153,8 @@ public class DynEnumImpl extends DynAnyBasicImpl implements DynEnum {
 	// Sets the value of the DynEnum as the enumerated values ordinal value.
 	// If value contains a value that is outside the range of ordinal values
 	// for the corresponding enumerated type, the operation raises InvalidValue.
-	public void set_as_ulong(int value) throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
+	public void set_as_ulong(int value)
+			throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
 		if (status == STATUS_DESTROYED) {
 			throw wrapper.dynAnyDestroyed();
 		}

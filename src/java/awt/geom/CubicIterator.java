@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.geom;
@@ -89,7 +69,8 @@ class CubicIterator implements PathIterator {
 	 */
 	public int currentSegment(float[] coords) {
 		if (isDone()) {
-			throw new NoSuchElementException("cubic iterator iterator out of bounds");
+			throw new NoSuchElementException(
+					"cubic iterator iterator out of bounds");
 		}
 		int type;
 		if (index == 0) {
@@ -129,7 +110,8 @@ class CubicIterator implements PathIterator {
 	 */
 	public int currentSegment(double[] coords) {
 		if (isDone()) {
-			throw new NoSuchElementException("cubic iterator iterator out of bounds");
+			throw new NoSuchElementException(
+					"cubic iterator iterator out of bounds");
 		}
 		int type;
 		if (index == 0) {

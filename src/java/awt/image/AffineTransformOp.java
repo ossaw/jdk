@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -98,14 +78,14 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 	 * TYPE_NEAREST_NEIGHBOR}.
 	 *
 	 * @param xform
-	 *            The <CODE>AffineTransform</CODE> to use for the operation.
+	 *              The <CODE>AffineTransform</CODE> to use for the operation.
 	 *
 	 * @param hints
-	 *            The <CODE>RenderingHints</CODE> object used to specify the
-	 *            interpolation type for the operation.
+	 *              The <CODE>RenderingHints</CODE> object used to specify the
+	 *              interpolation type for the operation.
 	 *
 	 * @throws ImagingOpException
-	 *             if the transform is non-invertible.
+	 *                            if the transform is non-invertible.
 	 * @see java.awt.RenderingHints#KEY_INTERPOLATION
 	 * @see java.awt.RenderingHints#KEY_RENDERING
 	 */
@@ -140,25 +120,29 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 	 * and the interpolation type.
 	 *
 	 * @param xform
-	 *            The <CODE>AffineTransform</CODE> to use for the operation.
+	 *                          The <CODE>AffineTransform</CODE> to use for the
+	 *                          operation.
 	 * @param interpolationType
-	 *            One of the integer interpolation type constants defined by
-	 *            this class: {@link #TYPE_NEAREST_NEIGHBOR
-	 *            TYPE_NEAREST_NEIGHBOR}, {@link #TYPE_BILINEAR TYPE_BILINEAR},
-	 *            {@link #TYPE_BICUBIC TYPE_BICUBIC}.
+	 *                          One of the integer interpolation type constants
+	 *                          defined by
+	 *                          this class: {@link #TYPE_NEAREST_NEIGHBOR
+	 *                          TYPE_NEAREST_NEIGHBOR}, {@link #TYPE_BILINEAR
+	 *                          TYPE_BILINEAR},
+	 *                          {@link #TYPE_BICUBIC TYPE_BICUBIC}.
 	 * @throws ImagingOpException
-	 *             if the transform is non-invertible.
+	 *                            if the transform is non-invertible.
 	 */
 	public AffineTransformOp(AffineTransform xform, int interpolationType) {
 		validateTransform(xform);
 		this.xform = (AffineTransform) xform.clone();
 		switch (interpolationType) {
-		case TYPE_NEAREST_NEIGHBOR:
-		case TYPE_BILINEAR:
-		case TYPE_BICUBIC:
-			break;
-		default:
-			throw new IllegalArgumentException("Unknown interpolation type: " + interpolationType);
+			case TYPE_NEAREST_NEIGHBOR:
+			case TYPE_BILINEAR:
+			case TYPE_BICUBIC:
+				break;
+			default:
+				throw new IllegalArgumentException(
+						"Unknown interpolation type: " + interpolationType);
 		}
 		this.interpolationType = interpolationType;
 	}
@@ -202,12 +186,16 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 	 *
 	 * @return The filtered <CODE>BufferedImage</CODE>.
 	 * @throws IllegalArgumentException
-	 *             if <code>src</code> and <code>dst</code> are the same
+	 *                                  if <code>src</code> and <code>dst</code>
+	 *                                  are the same
 	 * @throws ImagingOpException
-	 *             if the image cannot be transformed because of a
-	 *             data-processing error that might be caused by an invalid
-	 *             image format, tile format, or image-processing operation, or
-	 *             any other unsupported operation.
+	 *                                  if the image cannot be transformed
+	 *                                  because of a
+	 *                                  data-processing error that might be
+	 *                                  caused by an invalid
+	 *                                  image format, tile format, or
+	 *                                  image-processing operation, or
+	 *                                  any other unsupported operation.
 	 */
 	public final BufferedImage filter(BufferedImage src, BufferedImage dst) {
 
@@ -215,8 +203,8 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 			throw new NullPointerException("src image is null");
 		}
 		if (src == dst) {
-			throw new IllegalArgumentException(
-					"src image cannot be the " + "same as the dst image");
+			throw new IllegalArgumentException("src image cannot be the "
+					+ "same as the dst image");
 		}
 
 		boolean needToConvert = false;
@@ -230,30 +218,37 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 			origDst = dst;
 		} else {
 			dstCM = dst.getColorModel();
-			if (srcCM.getColorSpace().getType() != dstCM.getColorSpace().getType()) {
+			if (srcCM.getColorSpace().getType() != dstCM.getColorSpace()
+					.getType()) {
 				int type = xform.getType();
-				boolean needTrans = ((type
-						& (xform.TYPE_MASK_ROTATION | xform.TYPE_GENERAL_TRANSFORM)) != 0);
-				if (!needTrans && type != xform.TYPE_TRANSLATION && type != xform.TYPE_IDENTITY) {
+				boolean needTrans = ((type & (xform.TYPE_MASK_ROTATION
+						| xform.TYPE_GENERAL_TRANSFORM)) != 0);
+				if (!needTrans && type != xform.TYPE_TRANSLATION
+						&& type != xform.TYPE_IDENTITY) {
 					double[] mtx = new double[4];
 					xform.getMatrix(mtx);
 					// Check out the matrix. A non-integral scale will force
 					// ARGB
 					// since the edge conditions can't be guaranteed.
-					needTrans = (mtx[0] != (int) mtx[0] || mtx[3] != (int) mtx[3]);
+					needTrans = (mtx[0] != (int) mtx[0]
+							|| mtx[3] != (int) mtx[3]);
 				}
 
-				if (needTrans && srcCM.getTransparency() == Transparency.OPAQUE) {
+				if (needTrans && srcCM
+						.getTransparency() == Transparency.OPAQUE) {
 					// Need to convert first
 					ColorConvertOp ccop = new ColorConvertOp(hints);
 					BufferedImage tmpSrc = null;
 					int sw = src.getWidth();
 					int sh = src.getHeight();
 					if (dstCM.getTransparency() == Transparency.OPAQUE) {
-						tmpSrc = new BufferedImage(sw, sh, BufferedImage.TYPE_INT_ARGB);
+						tmpSrc = new BufferedImage(sw, sh,
+								BufferedImage.TYPE_INT_ARGB);
 					} else {
-						WritableRaster r = dstCM.createCompatibleWritableRaster(sw, sh);
-						tmpSrc = new BufferedImage(dstCM, r, dstCM.isAlphaPremultiplied(), null);
+						WritableRaster r = dstCM.createCompatibleWritableRaster(
+								sw, sh);
+						tmpSrc = new BufferedImage(dstCM, r, dstCM
+								.isAlphaPremultiplied(), null);
 					}
 					src = ccop.filter(src, tmpSrc);
 				} else {
@@ -264,9 +259,10 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 
 		}
 
-		if (interpolationType != TYPE_NEAREST_NEIGHBOR
-				&& dst.getColorModel() instanceof IndexColorModel) {
-			dst = new BufferedImage(dst.getWidth(), dst.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		if (interpolationType != TYPE_NEAREST_NEIGHBOR && dst
+				.getColorModel() instanceof IndexColorModel) {
+			dst = new BufferedImage(dst.getWidth(), dst.getHeight(),
+					BufferedImage.TYPE_INT_ARGB);
 		}
 		if (ImagingLib.filter(this, src, dst) == null) {
 			throw new ImagingOpException("Unable to transform src image");
@@ -316,10 +312,13 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 	 * @return The transformed <CODE>Raster</CODE>.
 	 *
 	 * @throws ImagingOpException
-	 *             if the raster cannot be transformed because of a
-	 *             data-processing error that might be caused by an invalid
-	 *             image format, tile format, or image-processing operation, or
-	 *             any other unsupported operation.
+	 *                            if the raster cannot be transformed because of
+	 *                            a
+	 *                            data-processing error that might be caused by
+	 *                            an invalid
+	 *                            image format, tile format, or image-processing
+	 *                            operation, or
+	 *                            any other unsupported operation.
 	 */
 	public final WritableRaster filter(Raster src, WritableRaster dst) {
 		if (src == null) {
@@ -329,12 +328,13 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 			dst = createCompatibleDestRaster(src);
 		}
 		if (src == dst) {
-			throw new IllegalArgumentException(
-					"src image cannot be the " + "same as the dst image");
+			throw new IllegalArgumentException("src image cannot be the "
+					+ "same as the dst image");
 		}
 		if (src.getNumBands() != dst.getNumBands()) {
-			throw new IllegalArgumentException("Number of src bands (" + src.getNumBands()
-					+ ") does not match number of " + " dst bands (" + dst.getNumBands() + ")");
+			throw new IllegalArgumentException("Number of src bands (" + src
+					.getNumBands() + ") does not match number of "
+					+ " dst bands (" + dst.getNumBands() + ")");
 		}
 
 		if (ImagingLib.filter(this, src, dst) == null) {
@@ -397,7 +397,8 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 			}
 		}
 
-		return new Rectangle2D.Float(fminX, fminY, fmaxX - fminX, fmaxY - fminY);
+		return new Rectangle2D.Float(fminX, fminY, fmaxX - fminX, fmaxY
+				- fminY);
 	}
 
 	/**
@@ -410,14 +411,15 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 	 * source <CODE>ColorModel</CODE> is opaque.
 	 *
 	 * @param src
-	 *            The <CODE>BufferedImage</CODE> to be transformed.
+	 *               The <CODE>BufferedImage</CODE> to be transformed.
 	 * @param destCM
-	 *            <CODE>ColorModel</CODE> of the destination. If null, an
-	 *            appropriate <CODE>ColorModel</CODE> is used.
+	 *               <CODE>ColorModel</CODE> of the destination. If null, an
+	 *               appropriate <CODE>ColorModel</CODE> is used.
 	 *
 	 * @return The zeroed destination image.
 	 */
-	public BufferedImage createCompatibleDestImage(BufferedImage src, ColorModel destCM) {
+	public BufferedImage createCompatibleDestImage(BufferedImage src,
+			ColorModel destCM) {
 		BufferedImage image;
 		Rectangle r = getBounds2D(src).getBounds();
 
@@ -428,26 +430,29 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 		int w = r.x + r.width;
 		int h = r.y + r.height;
 		if (w <= 0) {
-			throw new RasterFormatException(
-					"Transformed width (" + w + ") is less than or equal to 0.");
+			throw new RasterFormatException("Transformed width (" + w
+					+ ") is less than or equal to 0.");
 		}
 		if (h <= 0) {
-			throw new RasterFormatException(
-					"Transformed height (" + h + ") is less than or equal to 0.");
+			throw new RasterFormatException("Transformed height (" + h
+					+ ") is less than or equal to 0.");
 		}
 
 		if (destCM == null) {
 			ColorModel cm = src.getColorModel();
-			if (interpolationType != TYPE_NEAREST_NEIGHBOR && (cm instanceof IndexColorModel
-					|| cm.getTransparency() == Transparency.OPAQUE)) {
+			if (interpolationType != TYPE_NEAREST_NEIGHBOR
+					&& (cm instanceof IndexColorModel || cm
+							.getTransparency() == Transparency.OPAQUE)) {
 				image = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 			} else {
-				image = new BufferedImage(cm, src.getRaster().createCompatibleWritableRaster(w, h),
-						cm.isAlphaPremultiplied(), null);
+				image = new BufferedImage(cm, src.getRaster()
+						.createCompatibleWritableRaster(w, h), cm
+								.isAlphaPremultiplied(), null);
 			}
 		} else {
-			image = new BufferedImage(destCM, destCM.createCompatibleWritableRaster(w, h),
-					destCM.isAlphaPremultiplied(), null);
+			image = new BufferedImage(destCM, destCM
+					.createCompatibleWritableRaster(w, h), destCM
+							.isAlphaPremultiplied(), null);
 		}
 
 		return image;
@@ -466,8 +471,8 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 	public WritableRaster createCompatibleDestRaster(Raster src) {
 		Rectangle2D r = getBounds2D(src);
 
-		return src.createCompatibleWritableRaster((int) r.getX(), (int) r.getY(),
-				(int) r.getWidth(), (int) r.getHeight());
+		return src.createCompatibleWritableRaster((int) r.getX(), (int) r
+				.getY(), (int) r.getWidth(), (int) r.getHeight());
 	}
 
 	/**
@@ -476,9 +481,9 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 	 * return value.
 	 *
 	 * @param srcPt
-	 *            The <code>Point2D</code> that represents the source point.
+	 *              The <code>Point2D</code> that represents the source point.
 	 * @param dstPt
-	 *            The <CODE>Point2D</CODE> in which to store the result.
+	 *              The <CODE>Point2D</CODE> in which to store the result.
 	 *
 	 * @return The <CODE>Point2D</CODE> in the destination that corresponds to
 	 *         the specified point in the source.
@@ -505,18 +510,19 @@ public class AffineTransformOp implements BufferedImageOp, RasterOp {
 		if (hints == null) {
 			Object val;
 			switch (interpolationType) {
-			case TYPE_NEAREST_NEIGHBOR:
-				val = RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR;
-				break;
-			case TYPE_BILINEAR:
-				val = RenderingHints.VALUE_INTERPOLATION_BILINEAR;
-				break;
-			case TYPE_BICUBIC:
-				val = RenderingHints.VALUE_INTERPOLATION_BICUBIC;
-				break;
-			default:
-				// Should never get here
-				throw new InternalError("Unknown interpolation type " + interpolationType);
+				case TYPE_NEAREST_NEIGHBOR:
+					val = RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR;
+					break;
+				case TYPE_BILINEAR:
+					val = RenderingHints.VALUE_INTERPOLATION_BILINEAR;
+					break;
+				case TYPE_BICUBIC:
+					val = RenderingHints.VALUE_INTERPOLATION_BICUBIC;
+					break;
+				default:
+					// Should never get here
+					throw new InternalError("Unknown interpolation type "
+							+ interpolationType);
 
 			}
 			hints = new RenderingHints(RenderingHints.KEY_INTERPOLATION, val);

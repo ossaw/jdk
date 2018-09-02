@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.parsers;
@@ -122,9 +102,11 @@ public abstract class SAXParserFactory {
 	 * @return A new instance of a SAXParserFactory.
 	 *
 	 * @throws FactoryConfigurationError
-	 *             in case of {@linkplain java.util.ServiceConfigurationError
-	 *             service configuration error} or if the implementation is not
-	 *             available or cannot be instantiated.
+	 *                                   in case of
+	 *                                   {@linkplain java.util.ServiceConfigurationError
+	 *                                   service configuration error} or if the
+	 *                                   implementation is not
+	 *                                   available or cannot be instantiated.
 	 */
 
 	public static SAXParserFactory newInstance() {
@@ -166,30 +148,35 @@ public abstract class SAXParserFactory {
 	 * </pre>
 	 *
 	 * @param factoryClassName
-	 *            fully qualified factory class name that provides
-	 *            implementation of
-	 *            <code>javax.xml.parsers.SAXParserFactory</code>.
+	 *                         fully qualified factory class name that provides
+	 *                         implementation of
+	 *                         <code>javax.xml.parsers.SAXParserFactory</code>.
 	 *
 	 * @param classLoader
-	 *            <code>ClassLoader</code> used to load the factory class. If
-	 *            <code>null</code> current <code>Thread</code>'s context
-	 *            classLoader is used to load the factory class.
+	 *                         <code>ClassLoader</code> used to load the factory
+	 *                         class. If
+	 *                         <code>null</code> current <code>Thread</code>'s
+	 *                         context
+	 *                         classLoader is used to load the factory class.
 	 *
 	 * @return New instance of a <code>SAXParserFactory</code>
 	 *
 	 * @throws FactoryConfigurationError
-	 *             if <code>factoryClassName</code> is <code>null</code>, or the
-	 *             factory class cannot be loaded, instantiated.
+	 *                                   if <code>factoryClassName</code> is
+	 *                                   <code>null</code>, or the
+	 *                                   factory class cannot be loaded,
+	 *                                   instantiated.
 	 *
 	 * @see #newInstance()
 	 *
 	 * @since 1.6
 	 */
-	public static SAXParserFactory newInstance(String factoryClassName, ClassLoader classLoader) {
+	public static SAXParserFactory newInstance(String factoryClassName,
+			ClassLoader classLoader) {
 		// do not fallback if given classloader can't find the class, throw
 		// exception
-		return FactoryFinder.newInstance(SAXParserFactory.class, factoryClassName, classLoader,
-				false);
+		return FactoryFinder.newInstance(SAXParserFactory.class,
+				factoryClassName, classLoader, false);
 	}
 
 	/**
@@ -201,13 +188,15 @@ public abstract class SAXParserFactory {
 	 * @return A new instance of a SAXParser.
 	 *
 	 * @throws ParserConfigurationException
-	 *             if a parser cannot be created which satisfies the requested
-	 *             configuration.
+	 *                                      if a parser cannot be created which
+	 *                                      satisfies the requested
+	 *                                      configuration.
 	 * @throws SAXException
-	 *             for SAX errors.
+	 *                                      for SAX errors.
 	 */
 
-	public abstract SAXParser newSAXParser() throws ParserConfigurationException, SAXException;
+	public abstract SAXParser newSAXParser()
+			throws ParserConfigurationException, SAXException;
 
 	/**
 	 * Specifies that the parser produced by this code will provide support for
@@ -215,8 +204,9 @@ public abstract class SAXParserFactory {
 	 * .
 	 *
 	 * @param awareness
-	 *            true if the parser produced by this code will provide support
-	 *            for XML namespaces; false otherwise.
+	 *                  true if the parser produced by this code will provide
+	 *                  support
+	 *                  for XML namespaces; false otherwise.
 	 */
 
 	public void setNamespaceAware(boolean awareness) {
@@ -245,8 +235,8 @@ public abstract class SAXParserFactory {
 	 * </p>
 	 *
 	 * @param validating
-	 *            true if the parser produced by this code will validate
-	 *            documents as they are parsed; false otherwise.
+	 *                   true if the parser produced by this code will validate
+	 *                   documents as they are parsed; false otherwise.
 	 */
 
 	public void setValidating(boolean validating) {
@@ -306,26 +296,31 @@ public abstract class SAXParserFactory {
 	 * </ul>
 	 *
 	 * @param name
-	 *            The name of the feature to be set.
+	 *              The name of the feature to be set.
 	 * @param value
-	 *            The value of the feature to be set.
+	 *              The value of the feature to be set.
 	 *
 	 * @throws ParserConfigurationException
-	 *             if a parser cannot be created which satisfies the requested
-	 *             configuration.
+	 *                                      if a parser cannot be created which
+	 *                                      satisfies the requested
+	 *                                      configuration.
 	 * @throws SAXNotRecognizedException
-	 *             When the underlying XMLReader does not recognize the property
-	 *             name.
+	 *                                      When the underlying XMLReader does
+	 *                                      not recognize the property
+	 *                                      name.
 	 * @throws SAXNotSupportedException
-	 *             When the underlying XMLReader recognizes the property name
-	 *             but doesn't support the property.
+	 *                                      When the underlying XMLReader
+	 *                                      recognizes the property name
+	 *                                      but doesn't support the property.
 	 * @throws NullPointerException
-	 *             If the <code>name</code> parameter is null.
+	 *                                      If the <code>name</code> parameter
+	 *                                      is null.
 	 *
 	 * @see org.xml.sax.XMLReader#setFeature
 	 */
-	public abstract void setFeature(String name, boolean value) throws ParserConfigurationException,
-			SAXNotRecognizedException, SAXNotSupportedException;
+	public abstract void setFeature(String name, boolean value)
+			throws ParserConfigurationException, SAXNotRecognizedException,
+			SAXNotSupportedException;
 
 	/**
 	 *
@@ -335,24 +330,28 @@ public abstract class SAXParserFactory {
 	 * </p>
 	 *
 	 * @param name
-	 *            The name of the property to be retrieved.
+	 *             The name of the property to be retrieved.
 	 *
 	 * @return Value of the requested property.
 	 *
 	 * @throws ParserConfigurationException
-	 *             if a parser cannot be created which satisfies the requested
-	 *             configuration.
+	 *                                      if a parser cannot be created which
+	 *                                      satisfies the requested
+	 *                                      configuration.
 	 * @throws SAXNotRecognizedException
-	 *             When the underlying XMLReader does not recognize the property
-	 *             name.
+	 *                                      When the underlying XMLReader does
+	 *                                      not recognize the property
+	 *                                      name.
 	 * @throws SAXNotSupportedException
-	 *             When the underlying XMLReader recognizes the property name
-	 *             but doesn't support the property.
+	 *                                      When the underlying XMLReader
+	 *                                      recognizes the property name
+	 *                                      but doesn't support the property.
 	 *
 	 * @see org.xml.sax.XMLReader#getProperty
 	 */
-	public abstract boolean getFeature(String name) throws ParserConfigurationException,
-			SAXNotRecognizedException, SAXNotSupportedException;
+	public abstract boolean getFeature(String name)
+			throws ParserConfigurationException, SAXNotRecognizedException,
+			SAXNotSupportedException;
 
 	/**
 	 * Gets the {@link Schema} object specified through the
@@ -360,7 +359,8 @@ public abstract class SAXParserFactory {
 	 *
 	 *
 	 * @throws UnsupportedOperationException
-	 *             When implementation does not override this method
+	 *                                       When implementation does not
+	 *                                       override this method
 	 *
 	 * @return the {@link Schema} object that was last set through the
 	 *         {@link #setSchema(Schema)} method, or null if the method was not
@@ -369,9 +369,11 @@ public abstract class SAXParserFactory {
 	 * @since 1.5
 	 */
 	public Schema getSchema() {
-		throw new UnsupportedOperationException("This parser does not support specification \""
-				+ this.getClass().getPackage().getSpecificationTitle() + "\" version \""
-				+ this.getClass().getPackage().getSpecificationVersion() + "\"");
+		throw new UnsupportedOperationException(
+				"This parser does not support specification \"" + this
+						.getClass().getPackage().getSpecificationTitle()
+						+ "\" version \"" + this.getClass().getPackage()
+								.getSpecificationVersion() + "\"");
 	}
 
 	/**
@@ -426,18 +428,21 @@ public abstract class SAXParserFactory {
 	 * </p>
 	 *
 	 * @param schema
-	 *            <code>Schema</code> to use, <code>null</code> to remove a
-	 *            schema.
+	 *               <code>Schema</code> to use, <code>null</code> to remove a
+	 *               schema.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             When implementation does not override this method
+	 *                                       When implementation does not
+	 *                                       override this method
 	 *
 	 * @since 1.5
 	 */
 	public void setSchema(Schema schema) {
-		throw new UnsupportedOperationException("This parser does not support specification \""
-				+ this.getClass().getPackage().getSpecificationTitle() + "\" version \""
-				+ this.getClass().getPackage().getSpecificationVersion() + "\"");
+		throw new UnsupportedOperationException(
+				"This parser does not support specification \"" + this
+						.getClass().getPackage().getSpecificationTitle()
+						+ "\" version \"" + this.getClass().getPackage()
+								.getSpecificationVersion() + "\"");
 	}
 
 	/**
@@ -456,19 +461,20 @@ public abstract class SAXParserFactory {
 	 * </p>
 	 *
 	 * @param state
-	 *            Set XInclude processing to <code>true</code> or
-	 *            <code>false</code>
+	 *              Set XInclude processing to <code>true</code> or
+	 *              <code>false</code>
 	 *
 	 * @throws UnsupportedOperationException
-	 *             When implementation does not override this method
+	 *                                       When implementation does not
+	 *                                       override this method
 	 *
 	 * @since 1.5
 	 */
 	public void setXIncludeAware(final boolean state) {
 		if (state) {
-			throw new UnsupportedOperationException(
-					" setXIncludeAware " + "is not supported on this JAXP"
-							+ " implementation or earlier: " + this.getClass());
+			throw new UnsupportedOperationException(" setXIncludeAware "
+					+ "is not supported on this JAXP"
+					+ " implementation or earlier: " + this.getClass());
 		}
 	}
 
@@ -480,13 +486,16 @@ public abstract class SAXParserFactory {
 	 * @return current state of XInclude processing
 	 *
 	 * @throws UnsupportedOperationException
-	 *             When implementation does not override this method
+	 *                                       When implementation does not
+	 *                                       override this method
 	 *
 	 * @since 1.5
 	 */
 	public boolean isXIncludeAware() {
-		throw new UnsupportedOperationException("This parser does not support specification \""
-				+ this.getClass().getPackage().getSpecificationTitle() + "\" version \""
-				+ this.getClass().getPackage().getSpecificationVersion() + "\"");
+		throw new UnsupportedOperationException(
+				"This parser does not support specification \"" + this
+						.getClass().getPackage().getSpecificationTitle()
+						+ "\" version \"" + this.getClass().getPackage()
+								.getSpecificationVersion() + "\"");
 	}
 }

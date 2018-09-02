@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.orb;
@@ -126,10 +105,8 @@ import com.sun.corba.se.spi.legacy.connection.LegacyServerSocketEndPointInfo;
 
 /*
  * The restricted singleton ORB implementation.
- *
  * For now, this class must implement just enough functionality to be
  * used as a factory for immutable TypeCode instances.
- *
  * See ORBImpl.java for the real ORB implementation.
  */
 public class ORBSingleton extends ORB {
@@ -138,37 +115,39 @@ public class ORBSingleton extends ORB {
 	private static PresentationManager.StubFactoryFactory staticStubFactoryFactory = PresentationDefaults
 			.getStaticStubFactoryFactory();
 
-	public void set_parameters(Properties props) {
-	}
+	public void set_parameters(Properties props) {}
 
-	protected void set_parameters(Applet app, Properties props) {
-	}
+	protected void set_parameters(Applet app, Properties props) {}
 
-	protected void set_parameters(String params[], Properties props) {
-	}
+	protected void set_parameters(String params[], Properties props) {}
 
 	public OutputStream create_output_stream() {
 		return sun.corba.OutputStreamFactory.newEncapsOutputStream(this);
 	}
 
-	public TypeCode create_struct_tc(String id, String name, StructMember[] members) {
+	public TypeCode create_struct_tc(String id, String name,
+			StructMember[] members) {
 		return new TypeCodeImpl(this, TCKind._tk_struct, id, name, members);
 	}
 
-	public TypeCode create_union_tc(String id, String name, TypeCode discriminator_type,
-			UnionMember[] members) {
-		return new TypeCodeImpl(this, TCKind._tk_union, id, name, discriminator_type, members);
+	public TypeCode create_union_tc(String id, String name,
+			TypeCode discriminator_type, UnionMember[] members) {
+		return new TypeCodeImpl(this, TCKind._tk_union, id, name,
+				discriminator_type, members);
 	}
 
 	public TypeCode create_enum_tc(String id, String name, String[] members) {
 		return new TypeCodeImpl(this, TCKind._tk_enum, id, name, members);
 	}
 
-	public TypeCode create_alias_tc(String id, String name, TypeCode original_type) {
-		return new TypeCodeImpl(this, TCKind._tk_alias, id, name, original_type);
+	public TypeCode create_alias_tc(String id, String name,
+			TypeCode original_type) {
+		return new TypeCodeImpl(this, TCKind._tk_alias, id, name,
+				original_type);
 	}
 
-	public TypeCode create_exception_tc(String id, String name, StructMember[] members) {
+	public TypeCode create_exception_tc(String id, String name,
+			StructMember[] members) {
 		return new TypeCodeImpl(this, TCKind._tk_except, id, name, members);
 	}
 
@@ -200,7 +179,8 @@ public class ORBSingleton extends ORB {
 		return new TypeCodeImpl(this, TCKind._tk_native, id, name);
 	}
 
-	public org.omg.CORBA.TypeCode create_abstract_interface_tc(String id, String name) {
+	public org.omg.CORBA.TypeCode create_abstract_interface_tc(String id,
+			String name) {
 		return new TypeCodeImpl(this, TCKind._tk_abstract_interface, id, name);
 	}
 
@@ -210,18 +190,21 @@ public class ORBSingleton extends ORB {
 
 	// orbos 98-01-18: Objects By Value -- begin
 
-	public org.omg.CORBA.TypeCode create_value_tc(String id, String name, short type_modifier,
-			TypeCode concrete_base, ValueMember[] members) {
-		return new TypeCodeImpl(this, TCKind._tk_value, id, name, type_modifier, concrete_base,
-				members);
+	public org.omg.CORBA.TypeCode create_value_tc(String id, String name,
+			short type_modifier, TypeCode concrete_base,
+			ValueMember[] members) {
+		return new TypeCodeImpl(this, TCKind._tk_value, id, name, type_modifier,
+				concrete_base, members);
 	}
 
 	public org.omg.CORBA.TypeCode create_recursive_tc(String id) {
 		return new TypeCodeImpl(this, id);
 	}
 
-	public org.omg.CORBA.TypeCode create_value_box_tc(String id, String name, TypeCode boxed_type) {
-		return new TypeCodeImpl(this, TCKind._tk_value_box, id, name, boxed_type);
+	public org.omg.CORBA.TypeCode create_value_box_tc(String id, String name,
+			TypeCode boxed_type) {
+		return new TypeCodeImpl(this, TCKind._tk_value_box, id, name,
+				boxed_type);
 	}
 
 	public TypeCode get_primitive_tc(TCKind tckind) {
@@ -243,11 +226,13 @@ public class ORBSingleton extends ORB {
 		return new NVListImpl(this, count);
 	}
 
-	public org.omg.CORBA.NVList create_operation_list(org.omg.CORBA.Object oper) {
+	public org.omg.CORBA.NVList create_operation_list(
+			org.omg.CORBA.Object oper) {
 		throw wrapper.genericNoImpl();
 	}
 
-	public org.omg.CORBA.NamedValue create_named_value(String s, Any any, int flags) {
+	public org.omg.CORBA.NamedValue create_named_value(String s, Any any,
+			int flags) {
 		return new NamedValueImpl(this, s, any, flags);
 	}
 
@@ -279,11 +264,13 @@ public class ORBSingleton extends ORB {
 		throw wrapper.genericNoImpl();
 	}
 
-	public org.omg.CORBA.Object resolve_initial_references(String identifier) throws InvalidName {
+	public org.omg.CORBA.Object resolve_initial_references(String identifier)
+			throws InvalidName {
 		throw wrapper.genericNoImpl();
 	}
 
-	public void register_initial_reference(String id, org.omg.CORBA.Object obj) throws InvalidName {
+	public void register_initial_reference(String id, org.omg.CORBA.Object obj)
+			throws InvalidName {
 		throw wrapper.genericNoImpl();
 	}
 
@@ -311,7 +298,8 @@ public class ORBSingleton extends ORB {
 		throw new SecurityException("ORBSingleton: access denied");
 	}
 
-	public java.rmi.Remote string_to_remote(String s) throws java.rmi.RemoteException {
+	public java.rmi.Remote string_to_remote(String s)
+			throws java.rmi.RemoteException {
 		throw new SecurityException("ORBSingleton: access denied");
 	}
 
@@ -351,8 +339,8 @@ public class ORBSingleton extends ORB {
 		throw new SecurityException("ORBSingleton: access denied");
 	}
 
-	public org.omg.CORBA.portable.ValueFactory register_value_factory(String repositoryID,
-			org.omg.CORBA.portable.ValueFactory factory) {
+	public org.omg.CORBA.portable.ValueFactory register_value_factory(
+			String repositoryID, org.omg.CORBA.portable.ValueFactory factory) {
 		throw new SecurityException("ORBSingleton: access denied");
 	}
 
@@ -360,7 +348,8 @@ public class ORBSingleton extends ORB {
 		throw new SecurityException("ORBSingleton: access denied");
 	}
 
-	public org.omg.CORBA.portable.ValueFactory lookup_value_factory(String repositoryID) {
+	public org.omg.CORBA.portable.ValueFactory lookup_value_factory(
+			String repositoryID) {
 		throw new SecurityException("ORBSingleton: access denied");
 	}
 
@@ -499,15 +488,13 @@ public class ORBSingleton extends ORB {
 		return null;
 	}
 
-	public void setPersistentServerId(int id) {
-	}
+	public void setPersistentServerId(int id) {}
 
 	public TypeCodeImpl getTypeCodeForClass(Class c) {
 		return null;
 	}
 
-	public void setTypeCodeForClass(Class c, TypeCodeImpl tcimpl) {
-	}
+	public void setTypeCodeForClass(Class c, TypeCodeImpl tcimpl) {}
 
 	public boolean alwaysSendCodeSetServiceContext() {
 		return true;
@@ -517,38 +504,32 @@ public class ORBSingleton extends ORB {
 		return false;
 	}
 
-	public void notifyORB() {
-	}
+	public void notifyORB() {}
 
 	public PIHandler getPIHandler() {
 		return null;
 	}
 
-	public void checkShutdownState() {
-	}
+	public void checkShutdownState() {}
 
-	public void startingDispatch() {
-	}
+	public void startingDispatch() {}
 
-	public void finishedDispatch() {
-	}
+	public void finishedDispatch() {}
 
-	public void registerInitialReference(String id, Closure closure) {
-	}
+	public void registerInitialReference(String id, Closure closure) {}
 
 	public ORBData getORBData() {
 		return getFullORB().getORBData();
 	}
 
-	public void setClientDelegateFactory(ClientDelegateFactory factory) {
-	}
+	public void setClientDelegateFactory(ClientDelegateFactory factory) {}
 
 	public ClientDelegateFactory getClientDelegateFactory() {
 		return getFullORB().getClientDelegateFactory();
 	}
 
-	public void setCorbaContactInfoListFactory(CorbaContactInfoListFactory factory) {
-	}
+	public void setCorbaContactInfoListFactory(
+			CorbaContactInfoListFactory factory) {}
 
 	public CorbaContactInfoListFactory getCorbaContactInfoListFactory() {
 		return getFullORB().getCorbaContactInfoListFactory();
@@ -558,8 +539,7 @@ public class ORBSingleton extends ORB {
 		return null;
 	}
 
-	public void setINSDelegate(CorbaServerRequestDispatcher sdel) {
-	}
+	public void setINSDelegate(CorbaServerRequestDispatcher sdel) {}
 
 	public TaggedComponentFactoryFinder getTaggedComponentFactoryFinder() {
 		return getFullORB().getTaggedComponentFactoryFinder();
@@ -581,15 +561,13 @@ public class ORBSingleton extends ORB {
 		throw new SecurityException("ORBSingleton: access denied");
 	}
 
-	public void handleBadServerId(ObjectKey okey) {
-	}
+	public void handleBadServerId(ObjectKey okey) {}
 
 	public OAInvocationInfo peekInvocationInfo() {
 		return null;
 	}
 
-	public void pushInvocationInfo(OAInvocationInfo info) {
-	}
+	public void pushInvocationInfo(OAInvocationInfo info) {}
 
 	public OAInvocationInfo popInvocationInfo() {
 		return null;
@@ -599,8 +577,7 @@ public class ORBSingleton extends ORB {
 		return null;
 	}
 
-	public void releaseOrDecrementInvocationInfo() {
-	}
+	public void releaseOrDecrementInvocationInfo() {}
 
 	public ClientInvocationInfo getInvocationInfo() {
 		return null;
@@ -610,37 +587,31 @@ public class ORBSingleton extends ORB {
 		return null;
 	}
 
-	public void setResolver(Resolver resolver) {
-	}
+	public void setResolver(Resolver resolver) {}
 
 	public Resolver getResolver() {
 		return null;
 	}
 
-	public void setLocalResolver(LocalResolver resolver) {
-	}
+	public void setLocalResolver(LocalResolver resolver) {}
 
 	public LocalResolver getLocalResolver() {
 		return null;
 	}
 
-	public void setURLOperation(Operation stringToObject) {
-	}
+	public void setURLOperation(Operation stringToObject) {}
 
 	// NOTE: REMOVE THIS METHOD ONCE WE HAVE A ORT BASED ORBD
-	public void setBadServerIdHandler(BadServerIdHandler handler) {
-	}
+	public void setBadServerIdHandler(BadServerIdHandler handler) {}
 
 	// NOTE: REMOVE THIS METHOD ONCE WE HAVE A ORT BASED ORBD
-	public void initBadServerIdHandler() {
-	}
+	public void initBadServerIdHandler() {}
 
 	public Selector getSelector(int x) {
 		return null;
 	}
 
-	public void setThreadPoolManager(ThreadPoolManager mgr) {
-	}
+	public void setThreadPoolManager(ThreadPoolManager mgr) {}
 
 	public ThreadPoolManager getThreadPoolManager() {
 		return null;

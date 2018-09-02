@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.text.html.parser;
@@ -50,8 +30,7 @@ public final class AttributeList implements DTDConstants, Serializable {
 	public String value;
 	public AttributeList next;
 
-	AttributeList() {
-	}
+	AttributeList() {}
 
 	/**
 	 * Create an attribute list element.
@@ -63,8 +42,8 @@ public final class AttributeList implements DTDConstants, Serializable {
 	/**
 	 * Create an attribute list element.
 	 */
-	public AttributeList(String name, int type, int modifier, String value, Vector<?> values,
-			AttributeList next) {
+	public AttributeList(String name, int type, int modifier, String value,
+			Vector<?> values, AttributeList next) {
 		this.name = name;
 		this.type = type;
 		this.modifier = modifier;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -44,8 +24,8 @@ class DerivedColor extends Color {
 	private final int aOffset;
 	private int argbValue;
 
-	DerivedColor(String uiDefaultParentName, float hOffset, float sOffset, float bOffset,
-			int aOffset) {
+	DerivedColor(String uiDefaultParentName, float hOffset, float sOffset,
+			float bOffset, int aOffset) {
 		super(0);
 		this.uiDefaultParentName = uiDefaultParentName;
 		this.hOffset = hOffset;
@@ -80,20 +60,23 @@ class DerivedColor extends Color {
 	public void rederiveColor() {
 		Color src = UIManager.getColor(uiDefaultParentName);
 		if (src != null) {
-			float[] tmp = Color.RGBtoHSB(src.getRed(), src.getGreen(), src.getBlue(), null);
+			float[] tmp = Color.RGBtoHSB(src.getRed(), src.getGreen(), src
+					.getBlue(), null);
 			// apply offsets
 			tmp[0] = clamp(tmp[0] + hOffset);
 			tmp[1] = clamp(tmp[1] + sOffset);
 			tmp[2] = clamp(tmp[2] + bOffset);
 			int alpha = clamp(src.getAlpha() + aOffset);
-			argbValue = (Color.HSBtoRGB(tmp[0], tmp[1], tmp[2]) & 0xFFFFFF) | (alpha << 24);
+			argbValue = (Color.HSBtoRGB(tmp[0], tmp[1], tmp[2]) & 0xFFFFFF)
+					| (alpha << 24);
 		} else {
 			float[] tmp = new float[3];
 			tmp[0] = clamp(hOffset);
 			tmp[1] = clamp(sOffset);
 			tmp[2] = clamp(bOffset);
 			int alpha = clamp(aOffset);
-			argbValue = (Color.HSBtoRGB(tmp[0], tmp[1], tmp[2]) & 0xFFFFFF) | (alpha << 24);
+			argbValue = (Color.HSBtoRGB(tmp[0], tmp[1], tmp[2]) & 0xFFFFFF)
+					| (alpha << 24);
 		}
 	}
 
@@ -138,9 +121,12 @@ class DerivedColor extends Color {
 	@Override
 	public int hashCode() {
 		int result = uiDefaultParentName.hashCode();
-		result = 31 * result + hOffset != +0.0f ? Float.floatToIntBits(hOffset) : 0;
-		result = 31 * result + sOffset != +0.0f ? Float.floatToIntBits(sOffset) : 0;
-		result = 31 * result + bOffset != +0.0f ? Float.floatToIntBits(bOffset) : 0;
+		result = 31 * result + hOffset != +0.0f ? Float.floatToIntBits(hOffset)
+				: 0;
+		result = 31 * result + sOffset != +0.0f ? Float.floatToIntBits(sOffset)
+				: 0;
+		result = 31 * result + bOffset != +0.0f ? Float.floatToIntBits(bOffset)
+				: 0;
 		result = 31 * result + aOffset;
 		return result;
 	}
@@ -174,16 +160,19 @@ class DerivedColor extends Color {
 	@Override
 	public String toString() {
 		Color src = UIManager.getColor(uiDefaultParentName);
-		String s = "DerivedColor(color=" + getRed() + "," + getGreen() + "," + getBlue()
-				+ " parent=" + uiDefaultParentName + " offsets=" + getHueOffset() + ","
-				+ getSaturationOffset() + "," + getBrightnessOffset() + "," + getAlphaOffset();
+		String s = "DerivedColor(color=" + getRed() + "," + getGreen() + ","
+				+ getBlue() + " parent=" + uiDefaultParentName + " offsets="
+				+ getHueOffset() + "," + getSaturationOffset() + ","
+				+ getBrightnessOffset() + "," + getAlphaOffset();
 		return src == null ? s
-				: s + " pColor=" + src.getRed() + "," + src.getGreen() + "," + src.getBlue();
+				: s + " pColor=" + src.getRed() + "," + src.getGreen() + ","
+						+ src.getBlue();
 	}
 
-	static class UIResource extends DerivedColor implements javax.swing.plaf.UIResource {
-		UIResource(String uiDefaultParentName, float hOffset, float sOffset, float bOffset,
-				int aOffset) {
+	static class UIResource extends DerivedColor implements
+			javax.swing.plaf.UIResource {
+		UIResource(String uiDefaultParentName, float hOffset, float sOffset,
+				float bOffset, int aOffset) {
 			super(uiDefaultParentName, hOffset, sOffset, bOffset, aOffset);
 		}
 

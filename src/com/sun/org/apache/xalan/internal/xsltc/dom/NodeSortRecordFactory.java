@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,8 +54,8 @@ public class NodeSortRecordFactory {
 	 * @deprecated This constructor is no longer used in generated code. It
 	 *             exists only for backwards compatibility.
 	 */
-	public NodeSortRecordFactory(DOM dom, String className, Translet translet, String order[],
-			String type[]) throws TransletException {
+	public NodeSortRecordFactory(DOM dom, String className, Translet translet,
+			String order[], String type[]) throws TransletException {
 		this(dom, className, translet, order, type, null, null);
 	}
 
@@ -69,8 +66,9 @@ public class NodeSortRecordFactory {
 	 * class), and the translet parameter is needed for methods called by this
 	 * object.
 	 */
-	public NodeSortRecordFactory(DOM dom, String className, Translet translet, String order[],
-			String type[], String lang[], String caseOrder[]) throws TransletException {
+	public NodeSortRecordFactory(DOM dom, String className, Translet translet,
+			String order[], String type[], String lang[], String caseOrder[])
+			throws TransletException {
 		try {
 			_dom = dom;
 			_className = className;
@@ -123,8 +121,8 @@ public class NodeSortRecordFactory {
 				collators[i] = Collator.getInstance(locales[i]);
 			}
 
-			_sortSettings = new SortSettings((AbstractTranslet) translet, iOrder, iType, locales,
-					collators, caseOrder);
+			_sortSettings = new SortSettings((AbstractTranslet) translet,
+					iOrder, iType, locales, collators, caseOrder);
 		} catch (ClassNotFoundException e) {
 			throw new TransletException(e);
 		}
@@ -135,8 +133,9 @@ public class NodeSortRecordFactory {
 	 * sub-class is passed to us in the constructor.
 	 */
 	public NodeSortRecord makeNodeSortRecord(int node, int last)
-			throws ExceptionInInitializerError, LinkageError, IllegalAccessException,
-			InstantiationException, SecurityException, TransletException {
+			throws ExceptionInInitializerError, LinkageError,
+			IllegalAccessException, InstantiationException, SecurityException,
+			TransletException {
 
 		final NodeSortRecord sortRecord = (NodeSortRecord) _class.newInstance();
 		sortRecord.initialize(node, last, _dom, _sortSettings);

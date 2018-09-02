@@ -10,14 +10,16 @@ package org.omg.PortableServer;
 abstract public class ForwardRequestHelper {
 	private static String _id = "IDL:omg.org/PortableServer/ForwardRequest:1.0";
 
-	public static void insert(org.omg.CORBA.Any a, org.omg.PortableServer.ForwardRequest that) {
+	public static void insert(org.omg.CORBA.Any a,
+			org.omg.PortableServer.ForwardRequest that) {
 		org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
 		a.type(type());
 		write(out, that);
 		a.read_value(out.create_input_stream(), type());
 	}
 
-	public static org.omg.PortableServer.ForwardRequest extract(org.omg.CORBA.Any a) {
+	public static org.omg.PortableServer.ForwardRequest extract(
+			org.omg.CORBA.Any a) {
 		return read(a.create_input_stream());
 	}
 
@@ -29,17 +31,18 @@ abstract public class ForwardRequestHelper {
 			synchronized (org.omg.CORBA.TypeCode.class) {
 				if (__typeCode == null) {
 					if (__active) {
-						return org.omg.CORBA.ORB.init().create_recursive_tc(_id);
+						return org.omg.CORBA.ORB.init().create_recursive_tc(
+								_id);
 					}
 					__active = true;
 					org.omg.CORBA.StructMember[] _members0 = new org.omg.CORBA.StructMember[1];
 					org.omg.CORBA.TypeCode _tcOf_members0 = null;
 					_tcOf_members0 = org.omg.CORBA.ObjectHelper.type();
-					_members0[0] = new org.omg.CORBA.StructMember("forward_reference",
-							_tcOf_members0, null);
+					_members0[0] = new org.omg.CORBA.StructMember(
+							"forward_reference", _tcOf_members0, null);
 					__typeCode = org.omg.CORBA.ORB.init().create_exception_tc(
-							org.omg.PortableServer.ForwardRequestHelper.id(), "ForwardRequest",
-							_members0);
+							org.omg.PortableServer.ForwardRequestHelper.id(),
+							"ForwardRequest", _members0);
 					__active = false;
 				}
 			}

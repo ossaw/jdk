@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset.spi;
@@ -97,15 +77,18 @@ public class SyncProviderException extends java.sql.SQLException {
 	 * <code>SyncResolver</code> instance.
 	 *
 	 * @param syncResolver
-	 *            the <code>SyncResolver</code> instance used to to process the
-	 *            synchronization conflicts
+	 *                     the <code>SyncResolver</code> instance used to to
+	 *                     process the
+	 *                     synchronization conflicts
 	 * @throws IllegalArgumentException
-	 *             if the <code>SyncResolver</code> object is <code>null</code>.
+	 *                                  if the <code>SyncResolver</code> object
+	 *                                  is <code>null</code>.
 	 */
 	public SyncProviderException(SyncResolver syncResolver) {
 		if (syncResolver == null) {
-			throw new IllegalArgumentException("Cannot instantiate a SyncProviderException "
-					+ "with a null SyncResolver object");
+			throw new IllegalArgumentException(
+					"Cannot instantiate a SyncProviderException "
+							+ "with a null SyncResolver object");
 		} else {
 			this.syncResolver = syncResolver;
 		}
@@ -151,15 +134,18 @@ public class SyncProviderException extends java.sql.SQLException {
 	 * implementation of the <code>SyncResolver</code> interface.
 	 *
 	 * @param syncResolver
-	 *            the <code>SyncResolver</code> object to be set; cannot be
-	 *            <code>null</code>
+	 *                     the <code>SyncResolver</code> object to be set;
+	 *                     cannot be
+	 *                     <code>null</code>
 	 * @throws IllegalArgumentException
-	 *             if the <code>SyncResolver</code> object is <code>null</code>.
+	 *                                  if the <code>SyncResolver</code> object
+	 *                                  is <code>null</code>.
 	 * @see #getSyncResolver
 	 */
 	public void setSyncResolver(SyncResolver syncResolver) {
 		if (syncResolver == null) {
-			throw new IllegalArgumentException("Cannot set a null SyncResolver " + "object");
+			throw new IllegalArgumentException("Cannot set a null SyncResolver "
+					+ "object");
 		} else {
 			this.syncResolver = syncResolver;
 		}

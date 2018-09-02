@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.attribute.standard;
@@ -162,18 +142,19 @@ public class JobState extends EnumSyntax implements PrintJobAttribute {
 	 * Construct a new job state enumeration value with the given integer value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected JobState(int value) {
 		super(value);
 	}
 
-	private static final String[] myStringTable = { "unknown", null, null, "pending",
-			"pending-held", "processing", "processing-stopped", "canceled", "aborted",
-			"completed" };
+	private static final String[] myStringTable = { "unknown", null, null,
+			"pending", "pending-held", "processing", "processing-stopped",
+			"canceled", "aborted", "completed" };
 
-	private static final JobState[] myEnumValueTable = { UNKNOWN, null, null, PENDING, PENDING_HELD,
-			PROCESSING, PROCESSING_STOPPED, CANCELED, ABORTED, COMPLETED };
+	private static final JobState[] myEnumValueTable = { UNKNOWN, null, null,
+			PENDING, PENDING_HELD, PROCESSING, PROCESSING_STOPPED, CANCELED,
+			ABORTED, COMPLETED };
 
 	/**
 	 * Returns the string table for class JobState.

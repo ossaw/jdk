@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -110,7 +108,8 @@ final class ForEach extends Instruction {
 
 			// <xsl:sort> cannot be applied to a result tree - issue warning
 			if (sortObjects.size() > 0) {
-				ErrorMsg msg = new ErrorMsg(ErrorMsg.RESULT_TREE_SORT_ERR, this);
+				ErrorMsg msg = new ErrorMsg(ErrorMsg.RESULT_TREE_SORT_ERR,
+						this);
 				getParser().reportError(WARNING, msg);
 			}
 
@@ -124,7 +123,8 @@ final class ForEach extends Instruction {
 		} else {
 			// Compile node iterator
 			if (sortObjects.size() > 0) {
-				Sort.translateSortIterator(classGen, methodGen, _select, sortObjects);
+				Sort.translateSortIterator(classGen, methodGen, _select,
+						sortObjects);
 			} else {
 				_select.translate(classGen, methodGen);
 			}
@@ -173,7 +173,8 @@ final class ForEach extends Instruction {
 	 * : (code for <xsl:for-each> contents) : Iterate: node = iterator.next();
 	 * if (node != END) goto Loop
 	 */
-	public void initializeVariables(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void initializeVariables(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		final int n = elementCount();
 		for (int i = 0; i < n; i++) {
 			final SyntaxTreeNode child = getContents().get(i);

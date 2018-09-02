@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.remote.security;
@@ -115,8 +95,9 @@ public class FileLoginModule implements LoginModule {
 
 	// Location of the default password file
 	private static final String DEFAULT_PASSWORD_FILE_NAME = AccessController
-			.doPrivileged(new GetPropertyAction("java.home")) + File.separatorChar + "lib"
-			+ File.separatorChar + "management" + File.separatorChar
+			.doPrivileged(new GetPropertyAction("java.home"))
+			+ File.separatorChar + "lib" + File.separatorChar + "management"
+			+ File.separatorChar
 			+ ConnectorBootstrap.DefaultValues.PASSWORD_FILE_NAME;
 
 	// Key to retrieve the stored username
@@ -126,8 +107,8 @@ public class FileLoginModule implements LoginModule {
 	private static final String PASSWORD_KEY = "javax.security.auth.login.password";
 
 	// Log messages
-	private static final ClassLogger logger = new ClassLogger("javax.management.remote.misc",
-			"FileLoginModule");
+	private static final ClassLogger logger = new ClassLogger(
+			"javax.management.remote.misc", "FileLoginModule");
 
 	// Configurable options
 	private boolean useFirstPass = false;
@@ -159,15 +140,17 @@ public class FileLoginModule implements LoginModule {
 	 * Initialize this <code>LoginModule</code>.
 	 *
 	 * @param subject
-	 *            the <code>Subject</code> to be authenticated.
+	 *                        the <code>Subject</code> to be authenticated.
 	 * @param callbackHandler
-	 *            a <code>CallbackHandler</code> to acquire the user's name and
-	 *            password.
+	 *                        a <code>CallbackHandler</code> to acquire the
+	 *                        user's name and
+	 *                        password.
 	 * @param sharedState
-	 *            shared <code>LoginModule</code> state.
+	 *                        shared <code>LoginModule</code> state.
 	 * @param options
-	 *            options specified in the login <code>Configuration</code> for
-	 *            this particular <code>LoginModule</code>.
+	 *                        options specified in the login
+	 *                        <code>Configuration</code> for
+	 *                        this particular <code>LoginModule</code>.
 	 */
 	public void initialize(Subject subject, CallbackHandler callbackHandler,
 			Map<String, ?> sharedState, Map<String, ?> options) {
@@ -178,8 +161,10 @@ public class FileLoginModule implements LoginModule {
 		this.options = options;
 
 		// initialize any configured options
-		tryFirstPass = "true".equalsIgnoreCase((String) options.get("tryFirstPass"));
-		useFirstPass = "true".equalsIgnoreCase((String) options.get("useFirstPass"));
+		tryFirstPass = "true".equalsIgnoreCase((String) options.get(
+				"tryFirstPass"));
+		useFirstPass = "true".equalsIgnoreCase((String) options.get(
+				"useFirstPass"));
 		storePass = "true".equalsIgnoreCase((String) options.get("storePass"));
 		clearPass = "true".equalsIgnoreCase((String) options.get("clearPass"));
 
@@ -212,10 +197,11 @@ public class FileLoginModule implements LoginModule {
 	 * @return true always, since this <code>LoginModule</code> should not be
 	 *         ignored.
 	 * @exception FailedLoginException
-	 *                if the authentication fails.
+	 *                                 if the authentication fails.
 	 * @exception LoginException
-	 *                if this <code>LoginModule</code> is unable to perform the
-	 *                authentication.
+	 *                                 if this <code>LoginModule</code> is
+	 *                                 unable to perform the
+	 *                                 authentication.
 	 */
 	public boolean login() throws LoginException {
 
@@ -223,16 +209,19 @@ public class FileLoginModule implements LoginModule {
 			loadPasswordFile();
 		} catch (IOException ioe) {
 			LoginException le = new LoginException(
-					"Error: unable to load the password file: " + passwordFileDisplayName);
+					"Error: unable to load the password file: "
+							+ passwordFileDisplayName);
 			throw EnvHelp.initCause(le, ioe);
 		}
 
 		if (userCredentials == null) {
-			throw new LoginException("Error: unable to locate the users' credentials.");
+			throw new LoginException(
+					"Error: unable to locate the users' credentials.");
 		}
 
 		if (logger.debugOn()) {
-			logger.debug("login", "Using password file: " + passwordFileDisplayName);
+			logger.debug("login", "Using password file: "
+					+ passwordFileDisplayName);
 		}
 
 		// attempt the authentication
@@ -246,14 +235,16 @@ public class FileLoginModule implements LoginModule {
 				// authentication succeeded
 				succeeded = true;
 				if (logger.debugOn()) {
-					logger.debug("login", "Authentication using cached password has succeeded");
+					logger.debug("login",
+							"Authentication using cached password has succeeded");
 				}
 				return true;
 
 			} catch (LoginException le) {
 				// authentication failed -- try again below by prompting
 				cleanState();
-				logger.debug("login", "Authentication using cached password has failed");
+				logger.debug("login",
+						"Authentication using cached password has failed");
 			}
 
 		} else if (useFirstPass) {
@@ -266,14 +257,16 @@ public class FileLoginModule implements LoginModule {
 				// authentication succeeded
 				succeeded = true;
 				if (logger.debugOn()) {
-					logger.debug("login", "Authentication using cached password has succeeded");
+					logger.debug("login",
+							"Authentication using cached password has succeeded");
 				}
 				return true;
 
 			} catch (LoginException le) {
 				// authentication failed
 				cleanState();
-				logger.debug("login", "Authentication using cached password has failed");
+				logger.debug("login",
+						"Authentication using cached password has failed");
 
 				throw le;
 			}
@@ -319,7 +312,7 @@ public class FileLoginModule implements LoginModule {
 	 * removes any state that was originally saved.
 	 *
 	 * @exception LoginException
-	 *                if the commit fails
+	 *                           if the commit fails
 	 * @return true if this LoginModule's own login and commit attempts
 	 *         succeeded, or false otherwise.
 	 */
@@ -338,7 +331,8 @@ public class FileLoginModule implements LoginModule {
 			}
 
 			if (logger.debugOn()) {
-				logger.debug("commit", "Authentication has completed successfully");
+				logger.debug("commit",
+						"Authentication has completed successfully");
 			}
 		}
 		// in any case, clean out state
@@ -362,14 +356,15 @@ public class FileLoginModule implements LoginModule {
 	 * was originally saved.
 	 *
 	 * @exception LoginException
-	 *                if the abort fails.
+	 *                           if the abort fails.
 	 * @return false if this LoginModule's own login and/or commit attempts
 	 *         failed, and true otherwise.
 	 */
 	public boolean abort() throws LoginException {
 
 		if (logger.debugOn()) {
-			logger.debug("abort", "Authentication has not completed successfully");
+			logger.debug("abort",
+					"Authentication has not completed successfully");
 		}
 
 		if (succeeded == false) {
@@ -396,7 +391,7 @@ public class FileLoginModule implements LoginModule {
 	 * <code>commit</code> method.
 	 *
 	 * @exception LoginException
-	 *                if the logout fails.
+	 *                           if the logout fails.
 	 * @return true in all cases since this <code>LoginModule</code> should not
 	 *         be ignored.
 	 */
@@ -424,11 +419,13 @@ public class FileLoginModule implements LoginModule {
 	 * Attempt authentication
 	 *
 	 * @param usePasswdFromSharedState
-	 *            a flag to tell this method whether to retrieve the password
-	 *            from the sharedState.
+	 *                                 a flag to tell this method whether to
+	 *                                 retrieve the password
+	 *                                 from the sharedState.
 	 */
 	@SuppressWarnings("unchecked") // sharedState used as Map<String,Object>
-	private void attemptAuthentication(boolean usePasswdFromSharedState) throws LoginException {
+	private void attemptAuthentication(boolean usePasswdFromSharedState)
+			throws LoginException {
 
 		// get the username and password
 		getUsernamePassword(usePasswdFromSharedState);
@@ -448,8 +445,8 @@ public class FileLoginModule implements LoginModule {
 
 		// Save the username and password in the shared state
 		// only if authentication succeeded
-		if (storePass && !sharedState.containsKey(USERNAME_KEY)
-				&& !sharedState.containsKey(PASSWORD_KEY)) {
+		if (storePass && !sharedState.containsKey(USERNAME_KEY) && !sharedState
+				.containsKey(PASSWORD_KEY)) {
 			sharedState.put(USERNAME_KEY, username);
 			sharedState.put(PASSWORD_KEY, password);
 		}
@@ -458,7 +455,8 @@ public class FileLoginModule implements LoginModule {
 		user = new JMXPrincipal(username);
 
 		if (logger.debugOn()) {
-			logger.debug("login", "User '" + username + "' successfully validated");
+			logger.debug("login", "User '" + username
+					+ "' successfully validated");
 		}
 	}
 
@@ -473,7 +471,8 @@ public class FileLoginModule implements LoginModule {
 			if (userSuppliedPasswordFile || hasJavaHomePermission) {
 				throw e;
 			} else {
-				final FilePermission fp = new FilePermission(passwordFileDisplayName, "read");
+				final FilePermission fp = new FilePermission(
+						passwordFileDisplayName, "read");
 				AccessControlException ace = new AccessControlException(
 						"access denied " + fp.toString());
 				ace.setStackTrace(e.getStackTrace());
@@ -503,10 +502,12 @@ public class FileLoginModule implements LoginModule {
 	 * use/tryFirstPass.
 	 *
 	 * @param usePasswdFromSharedState
-	 *            boolean that tells this method whether to retrieve the
-	 *            password from the sharedState.
+	 *                                 boolean that tells this method whether to
+	 *                                 retrieve the
+	 *                                 password from the sharedState.
 	 */
-	private void getUsernamePassword(boolean usePasswdFromSharedState) throws LoginException {
+	private void getUsernamePassword(boolean usePasswdFromSharedState)
+			throws LoginException {
 
 		if (usePasswdFromSharedState) {
 			// use the password saved by the first module in the stack
@@ -527,7 +528,8 @@ public class FileLoginModule implements LoginModule {
 		try {
 			callbackHandler.handle(callbacks);
 			username = ((NameCallback) callbacks[0]).getName();
-			char[] tmpPassword = ((PasswordCallback) callbacks[1]).getPassword();
+			char[] tmpPassword = ((PasswordCallback) callbacks[1])
+					.getPassword();
 			password = new char[tmpPassword.length];
 			System.arraycopy(tmpPassword, 0, password, 0, tmpPassword.length);
 			((PasswordCallback) callbacks[1]).clearPassword();
@@ -536,8 +538,9 @@ public class FileLoginModule implements LoginModule {
 			LoginException le = new LoginException(ioe.toString());
 			throw EnvHelp.initCause(le, ioe);
 		} catch (UnsupportedCallbackException uce) {
-			LoginException le = new LoginException("Error: " + uce.getCallback().toString()
-					+ " not available to garner authentication " + "information from the user");
+			LoginException le = new LoginException("Error: " + uce.getCallback()
+					.toString() + " not available to garner authentication "
+					+ "information from the user");
 			throw EnvHelp.initCause(le, uce);
 		}
 	}

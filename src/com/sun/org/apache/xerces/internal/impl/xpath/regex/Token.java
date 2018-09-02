@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -121,7 +119,8 @@ class Token implements java.io.Serializable {
 		Token.token_spaces.addRange(' ', ' ');
 
 		Token.token_not_0to9 = Token.complementRanges(Token.token_0to9);
-		Token.token_not_wordchars = Token.complementRanges(Token.token_wordchars);
+		Token.token_not_wordchars = Token.complementRanges(
+				Token.token_wordchars);
 		Token.token_not_spaces = Token.complementRanges(Token.token_spaces);
 	}
 
@@ -207,14 +206,15 @@ class Token implements java.io.Serializable {
 		return new Token.StringToken(Token.STRING, str, 0);
 	}
 
-	static Token.ModifierToken createModifierGroup(Token child, int add, int mask) {
+	static Token.ModifierToken createModifierGroup(Token child, int add,
+			int mask) {
 		if (COUNTTOKENS)
 			Token.tokens++;
 		return new Token.ModifierToken(child, add, mask);
 	}
 
-	static Token.ConditionToken createCondition(int refno, Token condition, Token yespat,
-			Token nopat) {
+	static Token.ConditionToken createCondition(int refno, Token condition,
+			Token yespat, Token nopat) {
 		if (COUNTTOKENS)
 			Token.tokens++;
 		return new Token.ConditionToken(refno, condition, yespat, nopat);
@@ -311,128 +311,130 @@ class Token implements java.io.Serializable {
 	 */
 	final int getMinLength() {
 		switch (this.type) {
-		case CONCAT:
-			int sum = 0;
-			for (int i = 0; i < this.size(); i++)
-				sum += this.getChild(i).getMinLength();
-			return sum;
+			case CONCAT:
+				int sum = 0;
+				for (int i = 0; i < this.size(); i++)
+					sum += this.getChild(i).getMinLength();
+				return sum;
 
-		case CONDITION:
-		case UNION:
-			if (this.size() == 0)
+			case CONDITION:
+			case UNION:
+				if (this.size() == 0)
+					return 0;
+				int ret = this.getChild(0).getMinLength();
+				for (int i = 1; i < this.size(); i++) {
+					int min = this.getChild(i).getMinLength();
+					if (min < ret)
+						ret = min;
+				}
+				return ret;
+
+			case CLOSURE:
+			case NONGREEDYCLOSURE:
+				if (this.getMin() >= 0)
+					return this.getMin() * this.getChild(0).getMinLength();
 				return 0;
-			int ret = this.getChild(0).getMinLength();
-			for (int i = 1; i < this.size(); i++) {
-				int min = this.getChild(i).getMinLength();
-				if (min < ret)
-					ret = min;
-			}
-			return ret;
 
-		case CLOSURE:
-		case NONGREEDYCLOSURE:
-			if (this.getMin() >= 0)
-				return this.getMin() * this.getChild(0).getMinLength();
-			return 0;
+			case EMPTY:
+			case ANCHOR:
+				return 0;
 
-		case EMPTY:
-		case ANCHOR:
-			return 0;
+			case DOT:
+			case CHAR:
+			case RANGE:
+			case NRANGE:
+				return 1;
 
-		case DOT:
-		case CHAR:
-		case RANGE:
-		case NRANGE:
-			return 1;
+			case INDEPENDENT:
+			case PAREN:
+			case MODIFIERGROUP:
+				return this.getChild(0).getMinLength();
 
-		case INDEPENDENT:
-		case PAREN:
-		case MODIFIERGROUP:
-			return this.getChild(0).getMinLength();
+			case BACKREFERENCE:
+				return 0; // *******
 
-		case BACKREFERENCE:
-			return 0; // *******
+			case STRING:
+				return this.getString().length();
 
-		case STRING:
-			return this.getString().length();
+			case LOOKAHEAD:
+			case NEGATIVELOOKAHEAD:
+			case LOOKBEHIND:
+			case NEGATIVELOOKBEHIND:
+				return 0; // ***** Really?
 
-		case LOOKAHEAD:
-		case NEGATIVELOOKAHEAD:
-		case LOOKBEHIND:
-		case NEGATIVELOOKBEHIND:
-			return 0; // ***** Really?
-
-		default:
-			throw new RuntimeException("Token#getMinLength(): Invalid Type: " + this.type);
+			default:
+				throw new RuntimeException(
+						"Token#getMinLength(): Invalid Type: " + this.type);
 		}
 	}
 
 	final int getMaxLength() {
 		switch (this.type) {
-		case CONCAT:
-			int sum = 0;
-			for (int i = 0; i < this.size(); i++) {
-				int d = this.getChild(i).getMaxLength();
-				if (d < 0)
-					return -1;
-				sum += d;
-			}
-			return sum;
-
-		case CONDITION:
-		case UNION:
-			if (this.size() == 0)
-				return 0;
-			int ret = this.getChild(0).getMaxLength();
-			for (int i = 1; ret >= 0 && i < this.size(); i++) {
-				int max = this.getChild(i).getMaxLength();
-				if (max < 0) { // infinity
-					ret = -1;
-					break;
+			case CONCAT:
+				int sum = 0;
+				for (int i = 0; i < this.size(); i++) {
+					int d = this.getChild(i).getMaxLength();
+					if (d < 0)
+						return -1;
+					sum += d;
 				}
-				if (max > ret)
-					ret = max;
-			}
-			return ret;
+				return sum;
 
-		case CLOSURE:
-		case NONGREEDYCLOSURE:
-			if (this.getMax() >= 0)
-				// When this.child.getMaxLength() < 0,
-				// this returns minus value
-				return this.getMax() * this.getChild(0).getMaxLength();
-			return -1;
+			case CONDITION:
+			case UNION:
+				if (this.size() == 0)
+					return 0;
+				int ret = this.getChild(0).getMaxLength();
+				for (int i = 1; ret >= 0 && i < this.size(); i++) {
+					int max = this.getChild(i).getMaxLength();
+					if (max < 0) { // infinity
+						ret = -1;
+						break;
+					}
+					if (max > ret)
+						ret = max;
+				}
+				return ret;
 
-		case EMPTY:
-		case ANCHOR:
-			return 0;
+			case CLOSURE:
+			case NONGREEDYCLOSURE:
+				if (this.getMax() >= 0)
+					// When this.child.getMaxLength() < 0,
+					// this returns minus value
+					return this.getMax() * this.getChild(0).getMaxLength();
+				return -1;
 
-		case CHAR:
-			return 1;
-		case DOT:
-		case RANGE:
-		case NRANGE:
-			return 2;
+			case EMPTY:
+			case ANCHOR:
+				return 0;
 
-		case INDEPENDENT:
-		case PAREN:
-		case MODIFIERGROUP:
-			return this.getChild(0).getMaxLength();
+			case CHAR:
+				return 1;
+			case DOT:
+			case RANGE:
+			case NRANGE:
+				return 2;
 
-		case BACKREFERENCE:
-			return -1; // ******
+			case INDEPENDENT:
+			case PAREN:
+			case MODIFIERGROUP:
+				return this.getChild(0).getMaxLength();
 
-		case STRING:
-			return this.getString().length();
+			case BACKREFERENCE:
+				return -1; // ******
 
-		case LOOKAHEAD:
-		case NEGATIVELOOKAHEAD:
-		case LOOKBEHIND:
-		case NEGATIVELOOKBEHIND:
-			return 0; // ***** Really?
+			case STRING:
+				return this.getString().length();
 
-		default:
-			throw new RuntimeException("Token#getMaxLength(): Invalid Type: " + this.type);
+			case LOOKAHEAD:
+			case NEGATIVELOOKAHEAD:
+			case LOOKBEHIND:
+			case NEGATIVELOOKBEHIND:
+				return 0; // ***** Really?
+
+			default:
+				throw new RuntimeException(
+						"Token#getMaxLength(): Invalid Type: " + this.type);
 		}
 	}
 
@@ -446,108 +448,118 @@ class Token implements java.io.Serializable {
 
 	final int analyzeFirstCharacter(RangeToken result, int options) {
 		switch (this.type) {
-		case CONCAT:
-			int ret = FC_CONTINUE;
-			for (int i = 0; i < this.size(); i++)
-				if ((ret = this.getChild(i).analyzeFirstCharacter(result, options)) != FC_CONTINUE)
-					break;
-			return ret;
+			case CONCAT:
+				int ret = FC_CONTINUE;
+				for (int i = 0; i < this.size(); i++)
+					if ((ret = this.getChild(i).analyzeFirstCharacter(result,
+							options)) != FC_CONTINUE)
+						break;
+				return ret;
 
-		case UNION:
-			if (this.size() == 0)
+			case UNION:
+				if (this.size() == 0)
+					return FC_CONTINUE;
+				/*
+				 * a|b|c -> FC_TERMINAL a|.|c -> FC_ANY a|b| -> FC_CONTINUE
+				 */
+				int ret2 = FC_CONTINUE;
+				boolean hasEmpty = false;
+				for (int i = 0; i < this.size(); i++) {
+					ret2 = this.getChild(i).analyzeFirstCharacter(result,
+							options);
+					if (ret2 == FC_ANY)
+						break;
+					else if (ret2 == FC_CONTINUE)
+						hasEmpty = true;
+				}
+				return hasEmpty ? FC_CONTINUE : ret2;
+
+			case CONDITION:
+				int ret3 = this.getChild(0).analyzeFirstCharacter(result,
+						options);
+				if (this.size() == 1)
+					return FC_CONTINUE;
+				if (ret3 == FC_ANY)
+					return ret3;
+				int ret4 = this.getChild(1).analyzeFirstCharacter(result,
+						options);
+				if (ret4 == FC_ANY)
+					return ret4;
+				return ret3 == FC_CONTINUE || ret4 == FC_CONTINUE ? FC_CONTINUE
+						: FC_TERMINAL;
+
+			case CLOSURE:
+			case NONGREEDYCLOSURE:
+				this.getChild(0).analyzeFirstCharacter(result, options);
 				return FC_CONTINUE;
-			/*
-			 * a|b|c -> FC_TERMINAL a|.|c -> FC_ANY a|b| -> FC_CONTINUE
-			 */
-			int ret2 = FC_CONTINUE;
-			boolean hasEmpty = false;
-			for (int i = 0; i < this.size(); i++) {
-				ret2 = this.getChild(i).analyzeFirstCharacter(result, options);
-				if (ret2 == FC_ANY)
-					break;
-				else if (ret2 == FC_CONTINUE)
-					hasEmpty = true;
-			}
-			return hasEmpty ? FC_CONTINUE : ret2;
 
-		case CONDITION:
-			int ret3 = this.getChild(0).analyzeFirstCharacter(result, options);
-			if (this.size() == 1)
+			case EMPTY:
+			case ANCHOR:
 				return FC_CONTINUE;
-			if (ret3 == FC_ANY)
-				return ret3;
-			int ret4 = this.getChild(1).analyzeFirstCharacter(result, options);
-			if (ret4 == FC_ANY)
-				return ret4;
-			return ret3 == FC_CONTINUE || ret4 == FC_CONTINUE ? FC_CONTINUE : FC_TERMINAL;
 
-		case CLOSURE:
-		case NONGREEDYCLOSURE:
-			this.getChild(0).analyzeFirstCharacter(result, options);
-			return FC_CONTINUE;
-
-		case EMPTY:
-		case ANCHOR:
-			return FC_CONTINUE;
-
-		case CHAR:
-			int ch = this.getChar();
-			result.addRange(ch, ch);
-			if (ch < 0x10000 && isSet(options, RegularExpression.IGNORE_CASE)) {
-				ch = Character.toUpperCase((char) ch);
+			case CHAR:
+				int ch = this.getChar();
 				result.addRange(ch, ch);
-				ch = Character.toLowerCase((char) ch);
-				result.addRange(ch, ch);
-			}
-			return FC_TERMINAL;
+				if (ch < 0x10000 && isSet(options,
+						RegularExpression.IGNORE_CASE)) {
+					ch = Character.toUpperCase((char) ch);
+					result.addRange(ch, ch);
+					ch = Character.toLowerCase((char) ch);
+					result.addRange(ch, ch);
+				}
+				return FC_TERMINAL;
 
-		case DOT:
-			return FC_ANY;
+			case DOT:
+				return FC_ANY;
 
-		case RANGE:
-			result.mergeRanges(this);
-			return FC_TERMINAL;
+			case RANGE:
+				result.mergeRanges(this);
+				return FC_TERMINAL;
 
-		case NRANGE: // ****
-			result.mergeRanges(Token.complementRanges(this));
-			return FC_TERMINAL;
+			case NRANGE: // ****
+				result.mergeRanges(Token.complementRanges(this));
+				return FC_TERMINAL;
 
-		case INDEPENDENT:
-		case PAREN:
-			return this.getChild(0).analyzeFirstCharacter(result, options);
+			case INDEPENDENT:
+			case PAREN:
+				return this.getChild(0).analyzeFirstCharacter(result, options);
 
-		case MODIFIERGROUP:
-			options |= ((ModifierToken) this).getOptions();
-			options &= ~((ModifierToken) this).getOptionsMask();
-			return this.getChild(0).analyzeFirstCharacter(result, options);
+			case MODIFIERGROUP:
+				options |= ((ModifierToken) this).getOptions();
+				options &= ~((ModifierToken) this).getOptionsMask();
+				return this.getChild(0).analyzeFirstCharacter(result, options);
 
-		case BACKREFERENCE:
-			result.addRange(0, UTF16_MAX); // **** We can not optimize.
-			return FC_ANY;
+			case BACKREFERENCE:
+				result.addRange(0, UTF16_MAX); // **** We can not optimize.
+				return FC_ANY;
 
-		case STRING:
-			int cha = this.getString().charAt(0);
-			int ch2;
-			if (REUtil.isHighSurrogate(cha) && this.getString().length() >= 2
-					&& REUtil.isLowSurrogate((ch2 = this.getString().charAt(1))))
-				cha = REUtil.composeFromSurrogates(cha, ch2);
-			result.addRange(cha, cha);
-			if (cha < 0x10000 && isSet(options, RegularExpression.IGNORE_CASE)) {
-				cha = Character.toUpperCase((char) cha);
+			case STRING:
+				int cha = this.getString().charAt(0);
+				int ch2;
+				if (REUtil.isHighSurrogate(cha) && this.getString()
+						.length() >= 2 && REUtil.isLowSurrogate((ch2 = this
+								.getString().charAt(1))))
+					cha = REUtil.composeFromSurrogates(cha, ch2);
 				result.addRange(cha, cha);
-				cha = Character.toLowerCase((char) cha);
-				result.addRange(cha, cha);
-			}
-			return FC_TERMINAL;
+				if (cha < 0x10000 && isSet(options,
+						RegularExpression.IGNORE_CASE)) {
+					cha = Character.toUpperCase((char) cha);
+					result.addRange(cha, cha);
+					cha = Character.toLowerCase((char) cha);
+					result.addRange(cha, cha);
+				}
+				return FC_TERMINAL;
 
-		case LOOKAHEAD:
-		case NEGATIVELOOKAHEAD:
-		case LOOKBEHIND:
-		case NEGATIVELOOKBEHIND:
-			return FC_CONTINUE;
+			case LOOKAHEAD:
+			case NEGATIVELOOKAHEAD:
+			case LOOKBEHIND:
+			case NEGATIVELOOKBEHIND:
+				return FC_CONTINUE;
 
-		default:
-			throw new RuntimeException("Token#analyzeHeadCharacter(): Invalid Type: " + this.type);
+			default:
+				throw new RuntimeException(
+						"Token#analyzeHeadCharacter(): Invalid Type: "
+								+ this.type);
 		}
 	}
 
@@ -568,12 +580,14 @@ class Token implements java.io.Serializable {
 		if (this.type == STRING)
 			mylength = this.getString().length();
 		else
-			throw new RuntimeException("Internal Error: Illegal type: " + this.type);
+			throw new RuntimeException("Internal Error: Illegal type: "
+					+ this.type);
 		int otherlength;
 		if (tok.type == STRING)
 			otherlength = tok.getString().length();
 		else
-			throw new RuntimeException("Internal Error: Illegal type: " + tok.type);
+			throw new RuntimeException("Internal Error: Illegal type: "
+					+ tok.type);
 		return mylength < otherlength;
 	}
 
@@ -581,78 +595,81 @@ class Token implements java.io.Serializable {
 		Token token = null;
 		int options = 0;
 
-		FixedStringContainer() {
-		}
+		FixedStringContainer() {}
 	}
 
 	final void findFixedString(FixedStringContainer container, int options) {
 		switch (this.type) {
-		case CONCAT:
-			Token prevToken = null;
-			int prevOptions = 0;
-			for (int i = 0; i < this.size(); i++) {
-				this.getChild(i).findFixedString(container, options);
-				if (prevToken == null || prevToken.isShorterThan(container.token)) {
-					prevToken = container.token;
-					prevOptions = container.options;
+			case CONCAT:
+				Token prevToken = null;
+				int prevOptions = 0;
+				for (int i = 0; i < this.size(); i++) {
+					this.getChild(i).findFixedString(container, options);
+					if (prevToken == null || prevToken.isShorterThan(
+							container.token)) {
+						prevToken = container.token;
+						prevOptions = container.options;
+					}
 				}
-			}
-			container.token = prevToken;
-			container.options = prevOptions;
-			return;
+				container.token = prevToken;
+				container.options = prevOptions;
+				return;
 
-		case UNION:
-		case CLOSURE:
-		case NONGREEDYCLOSURE:
-		case EMPTY:
-		case ANCHOR:
-		case RANGE:
-		case DOT:
-		case NRANGE:
-		case BACKREFERENCE:
-		case LOOKAHEAD:
-		case NEGATIVELOOKAHEAD:
-		case LOOKBEHIND:
-		case NEGATIVELOOKBEHIND:
-		case CONDITION:
-			container.token = null;
-			return;
+			case UNION:
+			case CLOSURE:
+			case NONGREEDYCLOSURE:
+			case EMPTY:
+			case ANCHOR:
+			case RANGE:
+			case DOT:
+			case NRANGE:
+			case BACKREFERENCE:
+			case LOOKAHEAD:
+			case NEGATIVELOOKAHEAD:
+			case LOOKBEHIND:
+			case NEGATIVELOOKBEHIND:
+			case CONDITION:
+				container.token = null;
+				return;
 
-		case CHAR: // Ignore CHAR tokens.
-			container.token = null; // **
-			return; // **
+			case CHAR: // Ignore CHAR tokens.
+				container.token = null; // **
+				return; // **
 
-		case STRING:
-			container.token = this;
-			container.options = options;
-			return;
+			case STRING:
+				container.token = this;
+				container.options = options;
+				return;
 
-		case INDEPENDENT:
-		case PAREN:
-			this.getChild(0).findFixedString(container, options);
-			return;
+			case INDEPENDENT:
+			case PAREN:
+				this.getChild(0).findFixedString(container, options);
+				return;
 
-		case MODIFIERGROUP:
-			options |= ((ModifierToken) this).getOptions();
-			options &= ~((ModifierToken) this).getOptionsMask();
-			this.getChild(0).findFixedString(container, options);
-			return;
+			case MODIFIERGROUP:
+				options |= ((ModifierToken) this).getOptions();
+				options &= ~((ModifierToken) this).getOptionsMask();
+				this.getChild(0).findFixedString(container, options);
+				return;
 
-		default:
-			throw new RuntimeException("Token#findFixedString(): Invalid Type: " + this.type);
+			default:
+				throw new RuntimeException(
+						"Token#findFixedString(): Invalid Type: " + this.type);
 		}
 	}
 
 	boolean match(int ch) {
-		throw new RuntimeException("NFAArrow#match(): Internal error: " + this.type);
+		throw new RuntimeException("NFAArrow#match(): Internal error: "
+				+ this.type);
 	}
 
 	// ------------------------------------------------------
 	private final static Map<String, Token> categories = new HashMap<>();
 	private final static Map<String, Token> categories2 = new HashMap<>();
-	private static final String[] categoryNames = { "Cn", "Lu", "Ll", "Lt", "Lm", "Lo", "Mn", "Me",
-			"Mc", "Nd", "Nl", "No", "Zs", "Zl", "Zp", "Cc", "Cf", null, "Co", "Cs", "Pd", "Ps",
-			"Pe", "Pc", "Po", "Sm", "Sc", "Sk", "So", // 28
+	private static final String[] categoryNames = { "Cn", "Lu", "Ll", "Lt",
+			"Lm", "Lo", "Mn", "Me", "Mc", "Nd", "Nl", "No", "Zs", "Zl", "Zp",
+			"Cc", "Cf", null, "Co", "Cs", "Pd", "Ps", "Pe", "Pc", "Po", "Sm",
+			"Sc", "Sk", "So", // 28
 			"Pi", "Pf", // 29, 30
 			"L", "M", "N", "Z", "C", "P", "S", // 31-37
 	};
@@ -669,58 +686,81 @@ class Token implements java.io.Serializable {
 	static final int CHAR_SYMBOL = 37;
 
 	// blockNames in UNICODE 3.1 that supported by XML Schema REC
-	private static final String[] blockNames = { /* 0000..007F; */ "Basic Latin",
-			/* 0080..00FF; */ "Latin-1 Supplement", /* 0100..017F; */ "Latin Extended-A",
-			/* 0180..024F; */ "Latin Extended-B", /* 0250..02AF; */ "IPA Extensions",
+	private static final String[] blockNames = {
+			/* 0000..007F; */ "Basic Latin",
+			/* 0080..00FF; */ "Latin-1 Supplement",
+			/* 0100..017F; */ "Latin Extended-A",
+			/* 0180..024F; */ "Latin Extended-B",
+			/* 0250..02AF; */ "IPA Extensions",
 			/* 02B0..02FF; */ "Spacing Modifier Letters",
-			/* 0300..036F; */ "Combining Diacritical Marks", /* 0370..03FF; */ "Greek",
-			/* 0400..04FF; */ "Cyrillic", /* 0530..058F; */ "Armenian",
-			/* 0590..05FF; */ "Hebrew", /* 0600..06FF; */ "Arabic",
-			/* 0700..074F; */ "Syriac", /* 0780..07BF; */ "Thaana",
-			/* 0900..097F; */ "Devanagari", /* 0980..09FF; */ "Bengali",
-			/* 0A00..0A7F; */ "Gurmukhi", /* 0A80..0AFF; */ "Gujarati",
-			/* 0B00..0B7F; */ "Oriya", /* 0B80..0BFF; */ "Tamil",
-			/* 0C00..0C7F; */ "Telugu", /* 0C80..0CFF; */ "Kannada",
-			/* 0D00..0D7F; */ "Malayalam", /* 0D80..0DFF; */ "Sinhala",
-			/* 0E00..0E7F; */ "Thai", /* 0E80..0EFF; */ "Lao", /* 0F00..0FFF; */ "Tibetan",
-			/* 1000..109F; */ "Myanmar", /* 10A0..10FF; */ "Georgian",
-			/* 1100..11FF; */ "Hangul Jamo", /* 1200..137F; */ "Ethiopic",
-			/* 13A0..13FF; */ "Cherokee", /* 1400..167F; */ "Unified Canadian Aboriginal Syllabics",
-			/* 1680..169F; */ "Ogham", /* 16A0..16FF; */ "Runic",
-			/* 1780..17FF; */ "Khmer", /* 1800..18AF; */ "Mongolian",
-			/* 1E00..1EFF; */ "Latin Extended Additional", /* 1F00..1FFF; */ "Greek Extended",
+			/* 0300..036F; */ "Combining Diacritical Marks",
+			/* 0370..03FF; */ "Greek", /* 0400..04FF; */ "Cyrillic",
+			/* 0530..058F; */ "Armenian", /* 0590..05FF; */ "Hebrew",
+			/* 0600..06FF; */ "Arabic", /* 0700..074F; */ "Syriac",
+			/* 0780..07BF; */ "Thaana", /* 0900..097F; */ "Devanagari",
+			/* 0980..09FF; */ "Bengali", /* 0A00..0A7F; */ "Gurmukhi",
+			/* 0A80..0AFF; */ "Gujarati", /* 0B00..0B7F; */ "Oriya",
+			/* 0B80..0BFF; */ "Tamil", /* 0C00..0C7F; */ "Telugu",
+			/* 0C80..0CFF; */ "Kannada", /* 0D00..0D7F; */ "Malayalam",
+			/* 0D80..0DFF; */ "Sinhala", /* 0E00..0E7F; */ "Thai", /*
+																	 * 0E80..
+																	 * 0EFF;
+																	 */ "Lao",
+			/* 0F00..0FFF; */ "Tibetan", /* 1000..109F; */ "Myanmar",
+			/* 10A0..10FF; */ "Georgian", /* 1100..11FF; */ "Hangul Jamo",
+			/* 1200..137F; */ "Ethiopic", /* 13A0..13FF; */ "Cherokee",
+			/* 1400..167F; */ "Unified Canadian Aboriginal Syllabics",
+			/* 1680..169F; */ "Ogham", /* 16A0..16FF; */ "Runic", /*
+																	 * 1780..
+																	 * 17FF;
+																	 */ "Khmer",
+			/* 1800..18AF; */ "Mongolian",
+			/* 1E00..1EFF; */ "Latin Extended Additional",
+			/* 1F00..1FFF; */ "Greek Extended",
 			/* 2000..206F; */ "General Punctuation",
-			/* 2070..209F; */ "Superscripts and Subscripts", /* 20A0..20CF; */ "Currency Symbols",
-			/* 20D0..20FF; */ "Combining Marks for Symbols", /* 2100..214F; */ "Letterlike Symbols",
+			/* 2070..209F; */ "Superscripts and Subscripts",
+			/* 20A0..20CF; */ "Currency Symbols",
+			/* 20D0..20FF; */ "Combining Marks for Symbols",
+			/* 2100..214F; */ "Letterlike Symbols",
 			/* 2150..218F; */ "Number Forms", /* 2190..21FF; */ "Arrows",
-			/* 2200..22FF; */ "Mathematical Operators", /* 2300..23FF; */ "Miscellaneous Technical",
-			/* 2400..243F; */ "Control Pictures", /* 2440..245F; */ "Optical Character Recognition",
-			/* 2460..24FF; */ "Enclosed Alphanumerics", /* 2500..257F; */ "Box Drawing",
-			/* 2580..259F; */ "Block Elements", /* 25A0..25FF; */ "Geometric Shapes",
-			/* 2600..26FF; */ "Miscellaneous Symbols", /* 2700..27BF; */ "Dingbats",
-			/* 2800..28FF; */ "Braille Patterns", /* 2E80..2EFF; */ "CJK Radicals Supplement",
+			/* 2200..22FF; */ "Mathematical Operators",
+			/* 2300..23FF; */ "Miscellaneous Technical",
+			/* 2400..243F; */ "Control Pictures",
+			/* 2440..245F; */ "Optical Character Recognition",
+			/* 2460..24FF; */ "Enclosed Alphanumerics",
+			/* 2500..257F; */ "Box Drawing", /* 2580..259F; */ "Block Elements",
+			/* 25A0..25FF; */ "Geometric Shapes",
+			/* 2600..26FF; */ "Miscellaneous Symbols",
+			/* 2700..27BF; */ "Dingbats", /* 2800..28FF; */ "Braille Patterns",
+			/* 2E80..2EFF; */ "CJK Radicals Supplement",
 			/* 2F00..2FDF; */ "Kangxi Radicals",
 			/* 2FF0..2FFF; */ "Ideographic Description Characters",
-			/* 3000..303F; */ "CJK Symbols and Punctuation", /* 3040..309F; */ "Hiragana",
-			/* 30A0..30FF; */ "Katakana", /* 3100..312F; */ "Bopomofo",
-			/* 3130..318F; */ "Hangul Compatibility Jamo", /* 3190..319F; */ "Kanbun",
-			/* 31A0..31BF; */ "Bopomofo Extended",
+			/* 3000..303F; */ "CJK Symbols and Punctuation",
+			/* 3040..309F; */ "Hiragana", /* 30A0..30FF; */ "Katakana",
+			/* 3100..312F; */ "Bopomofo",
+			/* 3130..318F; */ "Hangul Compatibility Jamo",
+			/* 3190..319F; */ "Kanbun", /* 31A0..31BF; */ "Bopomofo Extended",
 			/* 3200..32FF; */ "Enclosed CJK Letters and Months",
 			/* 3300..33FF; */ "CJK Compatibility",
 			/* 3400..4DB5; */ "CJK Unified Ideographs Extension A",
-			/* 4E00..9FFF; */ "CJK Unified Ideographs", /* A000..A48F; */ "Yi Syllables",
-			/* A490..A4CF; */ "Yi Radicals", /* AC00..D7A3; */ "Hangul Syllables",
-			/* E000..F8FF; */ "Private Use", /* F900..FAFF; */ "CJK Compatibility Ideographs",
+			/* 4E00..9FFF; */ "CJK Unified Ideographs",
+			/* A000..A48F; */ "Yi Syllables", /* A490..A4CF; */ "Yi Radicals",
+			/* AC00..D7A3; */ "Hangul Syllables",
+			/* E000..F8FF; */ "Private Use",
+			/* F900..FAFF; */ "CJK Compatibility Ideographs",
 			/* FB00..FB4F; */ "Alphabetic Presentation Forms",
 			/* FB50..FDFF; */ "Arabic Presentation Forms-A",
-			/* FE20..FE2F; */ "Combining Half Marks", /* FE30..FE4F; */ "CJK Compatibility Forms",
+			/* FE20..FE2F; */ "Combining Half Marks",
+			/* FE30..FE4F; */ "CJK Compatibility Forms",
 			/* FE50..FE6F; */ "Small Form Variants",
-			/* FE70..FEFE; */ "Arabic Presentation Forms-B", /* FEFF..FEFF; */ "Specials",
+			/* FE70..FEFE; */ "Arabic Presentation Forms-B",
+			/* FEFF..FEFF; */ "Specials",
 			/* FF00..FFEF; */ "Halfwidth and Fullwidth Forms",
 			// missing Specials add manually
 			/* 10300..1032F; */ "Old Italic", // 84
 			/* 10330..1034F; */ "Gothic", /* 10400..1044F; */ "Deseret",
-			/* 1D000..1D0FF; */ "Byzantine Musical Symbols", /* 1D100..1D1FF; */ "Musical Symbols",
+			/* 1D000..1D0FF; */ "Byzantine Musical Symbols",
+			/* 1D100..1D1FF; */ "Musical Symbols",
 			/* 1D400..1D7FF; */ "Mathematical Alphanumeric Symbols",
 			/* 20000..2A6D6; */ "CJK Unified Ideographs Extension B",
 			/* 2F800..2FA1F; */ "CJK Compatibility Ideographs Supplement",
@@ -744,8 +784,9 @@ class Token implements java.io.Serializable {
 			+ "\uAC00\uD7A3\uE000\uF8FF\uF900\uFAFF\uFB00\uFB4F\uFB50\uFDFF"
 			+ "\uFE20\uFE2F\uFE30\uFE4F\uFE50\uFE6F\uFE70\uFEFE\uFEFF\uFEFF\uFF00\uFFEF";
 	static final int[] nonBMPBlockRanges = { 0x10300, 0x1032F, // 84
-			0x10330, 0x1034F, 0x10400, 0x1044F, 0x1D000, 0x1D0FF, 0x1D100, 0x1D1FF, 0x1D400,
-			0x1D7FF, 0x20000, 0x2A6D6, 0x2F800, 0x2FA1F, 0xE0000, 0xE007F };
+			0x10330, 0x1034F, 0x10400, 0x1044F, 0x1D000, 0x1D0FF, 0x1D100,
+			0x1D1FF, 0x1D400, 0x1D7FF, 0x20000, 0x2A6D6, 0x2F800, 0x2FA1F,
+			0xE0000, 0xE007F };
 	private static final int NONBMP_BLOCK_START = 84;
 
 	static protected RangeToken getRange(String name, boolean positive) {
@@ -758,67 +799,69 @@ class Token implements java.io.Serializable {
 				int type;
 				for (int i = 0; i < 0x10000; i++) {
 					type = Character.getType((char) i);
-					if (type == Character.START_PUNCTUATION || type == Character.END_PUNCTUATION) {
+					if (type == Character.START_PUNCTUATION
+							|| type == Character.END_PUNCTUATION) {
 						// build table of Pi values
-						if (i == 0x00AB || i == 0x2018 || i == 0x201B || i == 0x201C || i == 0x201F
-								|| i == 0x2039) {
+						if (i == 0x00AB || i == 0x2018 || i == 0x201B
+								|| i == 0x201C || i == 0x201F || i == 0x2039) {
 							type = CHAR_INIT_QUOTE;
 						}
 						// build table of Pf values
-						if (i == 0x00BB || i == 0x2019 || i == 0x201D || i == 0x203A) {
+						if (i == 0x00BB || i == 0x2019 || i == 0x201D
+								|| i == 0x203A) {
 							type = CHAR_FINAL_QUOTE;
 						}
 					}
 					ranges[type].addRange(i, i);
 					switch (type) {
-					case Character.UPPERCASE_LETTER:
-					case Character.LOWERCASE_LETTER:
-					case Character.TITLECASE_LETTER:
-					case Character.MODIFIER_LETTER:
-					case Character.OTHER_LETTER:
-						type = CHAR_LETTER;
-						break;
-					case Character.NON_SPACING_MARK:
-					case Character.COMBINING_SPACING_MARK:
-					case Character.ENCLOSING_MARK:
-						type = CHAR_MARK;
-						break;
-					case Character.DECIMAL_DIGIT_NUMBER:
-					case Character.LETTER_NUMBER:
-					case Character.OTHER_NUMBER:
-						type = CHAR_NUMBER;
-						break;
-					case Character.SPACE_SEPARATOR:
-					case Character.LINE_SEPARATOR:
-					case Character.PARAGRAPH_SEPARATOR:
-						type = CHAR_SEPARATOR;
-						break;
-					case Character.CONTROL:
-					case Character.FORMAT:
-					case Character.SURROGATE:
-					case Character.PRIVATE_USE:
-					case Character.UNASSIGNED:
-						type = CHAR_OTHER;
-						break;
-					case Character.CONNECTOR_PUNCTUATION:
-					case Character.DASH_PUNCTUATION:
-					case Character.START_PUNCTUATION:
-					case Character.END_PUNCTUATION:
-					case CHAR_INIT_QUOTE:
-					case CHAR_FINAL_QUOTE:
-					case Character.OTHER_PUNCTUATION:
-						type = CHAR_PUNCTUATION;
-						break;
-					case Character.MATH_SYMBOL:
-					case Character.CURRENCY_SYMBOL:
-					case Character.MODIFIER_SYMBOL:
-					case Character.OTHER_SYMBOL:
-						type = CHAR_SYMBOL;
-						break;
-					default:
-						throw new RuntimeException(
-								"org.apache.xerces.utils.regex.Token#getRange(): Unknown Unicode category: "
-										+ type);
+						case Character.UPPERCASE_LETTER:
+						case Character.LOWERCASE_LETTER:
+						case Character.TITLECASE_LETTER:
+						case Character.MODIFIER_LETTER:
+						case Character.OTHER_LETTER:
+							type = CHAR_LETTER;
+							break;
+						case Character.NON_SPACING_MARK:
+						case Character.COMBINING_SPACING_MARK:
+						case Character.ENCLOSING_MARK:
+							type = CHAR_MARK;
+							break;
+						case Character.DECIMAL_DIGIT_NUMBER:
+						case Character.LETTER_NUMBER:
+						case Character.OTHER_NUMBER:
+							type = CHAR_NUMBER;
+							break;
+						case Character.SPACE_SEPARATOR:
+						case Character.LINE_SEPARATOR:
+						case Character.PARAGRAPH_SEPARATOR:
+							type = CHAR_SEPARATOR;
+							break;
+						case Character.CONTROL:
+						case Character.FORMAT:
+						case Character.SURROGATE:
+						case Character.PRIVATE_USE:
+						case Character.UNASSIGNED:
+							type = CHAR_OTHER;
+							break;
+						case Character.CONNECTOR_PUNCTUATION:
+						case Character.DASH_PUNCTUATION:
+						case Character.START_PUNCTUATION:
+						case Character.END_PUNCTUATION:
+						case CHAR_INIT_QUOTE:
+						case CHAR_FINAL_QUOTE:
+						case Character.OTHER_PUNCTUATION:
+							type = CHAR_PUNCTUATION;
+							break;
+						case Character.MATH_SYMBOL:
+						case Character.CURRENCY_SYMBOL:
+						case Character.MODIFIER_SYMBOL:
+						case Character.OTHER_SYMBOL:
+							type = CHAR_SYMBOL;
+							break;
+						default:
+							throw new RuntimeException(
+									"org.apache.xerces.utils.regex.Token#getRange(): Unknown Unicode category: "
+											+ type);
 					}
 					ranges[type].addRange(i, i);
 				} // for all characters
@@ -830,8 +873,8 @@ class Token implements java.io.Serializable {
 							ranges[i].addRange(0x10000, Token.UTF16_MAX);
 						}
 						Token.categories.put(Token.categoryNames[i], ranges[i]);
-						Token.categories2.put(Token.categoryNames[i],
-								Token.complementRanges(ranges[i]));
+						Token.categories2.put(Token.categoryNames[i], Token
+								.complementRanges(ranges[i]));
 					}
 				}
 				// REVISIT: do we really need to support block names as in
@@ -893,21 +936,24 @@ class Token implements java.io.Serializable {
 				isalpha.mergeRanges(ranges[Character.LOWERCASE_LETTER]); // Ll
 				isalpha.mergeRanges(ranges[Character.OTHER_LETTER]); // Lo
 				Token.categories.put("IsAlpha", isalpha);
-				Token.categories2.put("IsAlpha", Token.complementRanges(isalpha));
+				Token.categories2.put("IsAlpha", Token.complementRanges(
+						isalpha));
 				Token.registerNonXS("IsAlpha");
 
 				Token isalnum = Token.createRange();
 				isalnum.mergeRanges(isalpha); // Lu Ll Lo
 				isalnum.mergeRanges(ranges[Character.DECIMAL_DIGIT_NUMBER]); // Nd
 				Token.categories.put("IsAlnum", isalnum);
-				Token.categories2.put("IsAlnum", Token.complementRanges(isalnum));
+				Token.categories2.put("IsAlnum", Token.complementRanges(
+						isalnum));
 				Token.registerNonXS("IsAlnum");
 
 				Token isspace = Token.createRange();
 				isspace.mergeRanges(Token.token_spaces);
 				isspace.mergeRanges(ranges[CHAR_SEPARATOR]); // Z
 				Token.categories.put("IsSpace", isspace);
-				Token.categories2.put("IsSpace", Token.complementRanges(isspace));
+				Token.categories2.put("IsSpace", Token.complementRanges(
+						isspace));
 				Token.registerNonXS("IsSpace");
 
 				Token isword = Token.createRange();
@@ -920,13 +966,15 @@ class Token implements java.io.Serializable {
 				Token isascii = Token.createRange();
 				isascii.addRange(0, 127);
 				Token.categories.put("IsASCII", isascii);
-				Token.categories2.put("IsASCII", Token.complementRanges(isascii));
+				Token.categories2.put("IsASCII", Token.complementRanges(
+						isascii));
 				Token.registerNonXS("IsASCII");
 
 				Token isnotgraph = Token.createRange();
 				isnotgraph.mergeRanges(ranges[CHAR_OTHER]);
 				isnotgraph.addRange(' ', ' ');
-				Token.categories.put("IsGraph", Token.complementRanges(isnotgraph));
+				Token.categories.put("IsGraph", Token.complementRanges(
+						isnotgraph));
 				Token.categories2.put("IsGraph", isnotgraph);
 				Token.registerNonXS("IsGraph");
 
@@ -934,7 +982,8 @@ class Token implements java.io.Serializable {
 				isxdigit.addRange('0', '9');
 				isxdigit.addRange('A', 'F');
 				isxdigit.addRange('a', 'f');
-				Token.categories.put("IsXDigit", Token.complementRanges(isxdigit));
+				Token.categories.put("IsXDigit", Token.complementRanges(
+						isxdigit));
 				Token.categories2.put("IsXDigit", isxdigit);
 				Token.registerNonXS("IsXDigit");
 
@@ -985,14 +1034,16 @@ class Token implements java.io.Serializable {
 		return tok;
 	}
 
-	static protected RangeToken getRange(String name, boolean positive, boolean xs) {
+	static protected RangeToken getRange(String name, boolean positive,
+			boolean xs) {
 		RangeToken range = Token.getRange(name, positive);
 		if (xs && range != null && Token.isRegisterNonXS(name))
 			range = null;
 		return range;
 	}
 
-	static final Set<String> nonxs = Collections.synchronizedSet(new HashSet<>());
+	static final Set<String> nonxs = Collections.synchronizedSet(
+			new HashSet<>());
 
 	/**
 	 * This method is called by only getRange(). So this method need not
@@ -1006,7 +1057,8 @@ class Token implements java.io.Serializable {
 		return Token.nonxs.contains(name);
 	}
 
-	private static void setAlias(String newName, String name, boolean positive) {
+	private static void setAlias(String newName, String name,
+			boolean positive) {
 		Token t1 = (Token) Token.categories.get(name);
 		Token t2 = (Token) Token.categories2.get(name);
 		if (positive) {
@@ -1021,7 +1073,7 @@ class Token implements java.io.Serializable {
 	// ------------------------------------------------------
 
 	static final String viramaString = "\u094D"// ;DEVANAGARI SIGN
-												// VIRAMA;Mn;9;ON;;;;;N;;;;;
+			// VIRAMA;Mn;9;ON;;;;;N;;;;;
 			+ "\u09CD"// ;BENGALI SIGN VIRAMA;Mn;9;ON;;;;;N;;;;;
 			+ "\u0A4D"// ;GURMUKHI SIGN VIRAMA;Mn;9;ON;;;;;N;;;;;
 			+ "\u0ACD"// ;GUJARATI SIGN VIRAMA;Mn;9;ON;;;;;N;;;;;
@@ -1148,13 +1200,15 @@ class Token implements java.io.Serializable {
 
 		public String toString(int options) {
 			String ret;
-			if (this.child2.type == CLOSURE && this.child2.getChild(0) == this.child) {
+			if (this.child2.type == CLOSURE && this.child2.getChild(
+					0) == this.child) {
 				ret = this.child.toString(options) + "+";
-			} else if (this.child2.type == NONGREEDYCLOSURE
-					&& this.child2.getChild(0) == this.child) {
+			} else if (this.child2.type == NONGREEDYCLOSURE && this.child2
+					.getChild(0) == this.child) {
 				ret = this.child.toString(options) + "+?";
 			} else
-				ret = this.child.toString(options) + this.child2.toString(options);
+				ret = this.child.toString(options) + this.child2.toString(
+						options);
 			return ret;
 		}
 	}
@@ -1180,54 +1234,57 @@ class Token implements java.io.Serializable {
 		public String toString(int options) {
 			String ret;
 			switch (this.type) {
-			case CHAR:
-				switch (this.chardata) {
-				case '|':
-				case '*':
-				case '+':
-				case '?':
-				case '(':
-				case ')':
-				case '.':
-				case '[':
-				case '{':
-				case '\\':
-					ret = "\\" + (char) this.chardata;
+				case CHAR:
+					switch (this.chardata) {
+						case '|':
+						case '*':
+						case '+':
+						case '?':
+						case '(':
+						case ')':
+						case '.':
+						case '[':
+						case '{':
+						case '\\':
+							ret = "\\" + (char) this.chardata;
+							break;
+						case '\f':
+							ret = "\\f";
+							break;
+						case '\n':
+							ret = "\\n";
+							break;
+						case '\r':
+							ret = "\\r";
+							break;
+						case '\t':
+							ret = "\\t";
+							break;
+						case 0x1b:
+							ret = "\\e";
+							break;
+						// case 0x0b: ret = "\\v"; break;
+						default:
+							if (this.chardata >= 0x10000) {
+								String pre = "0" + Integer.toHexString(
+										this.chardata);
+								ret = "\\v" + pre.substring(pre.length() - 6,
+										pre.length());
+							} else
+								ret = "" + (char) this.chardata;
+					}
 					break;
-				case '\f':
-					ret = "\\f";
-					break;
-				case '\n':
-					ret = "\\n";
-					break;
-				case '\r':
-					ret = "\\r";
-					break;
-				case '\t':
-					ret = "\\t";
-					break;
-				case 0x1b:
-					ret = "\\e";
-					break;
-				// case 0x0b: ret = "\\v"; break;
-				default:
-					if (this.chardata >= 0x10000) {
-						String pre = "0" + Integer.toHexString(this.chardata);
-						ret = "\\v" + pre.substring(pre.length() - 6, pre.length());
-					} else
+
+				case ANCHOR:
+					if (this == Token.token_linebeginning
+							|| this == Token.token_lineend)
 						ret = "" + (char) this.chardata;
-				}
-				break;
+					else
+						ret = "\\" + (char) this.chardata;
+					break;
 
-			case ANCHOR:
-				if (this == Token.token_linebeginning || this == Token.token_lineend)
-					ret = "" + (char) this.chardata;
-				else
-					ret = "\\" + (char) this.chardata;
-				break;
-
-			default:
-				ret = null;
+				default:
+					ret = null;
 			}
 			return ret;
 		}
@@ -1236,7 +1293,8 @@ class Token implements java.io.Serializable {
 			if (this.type == CHAR) {
 				return ch == this.chardata;
 			} else
-				throw new RuntimeException("NFAArrow#match(): Internal error: " + this.type);
+				throw new RuntimeException("NFAArrow#match(): Internal error: "
+						+ this.type);
 		}
 	}
 
@@ -1288,28 +1346,33 @@ class Token implements java.io.Serializable {
 				if (this.getMin() < 0 && this.getMax() < 0) {
 					ret = this.child.toString(options) + "*";
 				} else if (this.getMin() == this.getMax()) {
-					ret = this.child.toString(options) + "{" + this.getMin() + "}";
-				} else if (this.getMin() >= 0 && this.getMax() >= 0) {
-					ret = this.child.toString(options) + "{" + this.getMin() + "," + this.getMax()
+					ret = this.child.toString(options) + "{" + this.getMin()
 							+ "}";
+				} else if (this.getMin() >= 0 && this.getMax() >= 0) {
+					ret = this.child.toString(options) + "{" + this.getMin()
+							+ "," + this.getMax() + "}";
 				} else if (this.getMin() >= 0 && this.getMax() < 0) {
-					ret = this.child.toString(options) + "{" + this.getMin() + ",}";
+					ret = this.child.toString(options) + "{" + this.getMin()
+							+ ",}";
 				} else
-					throw new RuntimeException(
-							"Token#toString(): CLOSURE " + this.getMin() + ", " + this.getMax());
+					throw new RuntimeException("Token#toString(): CLOSURE "
+							+ this.getMin() + ", " + this.getMax());
 			} else {
 				if (this.getMin() < 0 && this.getMax() < 0) {
 					ret = this.child.toString(options) + "*?";
 				} else if (this.getMin() == this.getMax()) {
-					ret = this.child.toString(options) + "{" + this.getMin() + "}?";
-				} else if (this.getMin() >= 0 && this.getMax() >= 0) {
-					ret = this.child.toString(options) + "{" + this.getMin() + "," + this.getMax()
+					ret = this.child.toString(options) + "{" + this.getMin()
 							+ "}?";
+				} else if (this.getMin() >= 0 && this.getMax() >= 0) {
+					ret = this.child.toString(options) + "{" + this.getMin()
+							+ "," + this.getMax() + "}?";
 				} else if (this.getMin() >= 0 && this.getMax() < 0) {
-					ret = this.child.toString(options) + "{" + this.getMin() + ",}?";
+					ret = this.child.toString(options) + "{" + this.getMin()
+							+ ",}?";
 				} else
-					throw new RuntimeException("Token#toString(): NONGREEDYCLOSURE " + this.getMin()
-							+ ", " + this.getMax());
+					throw new RuntimeException(
+							"Token#toString(): NONGREEDYCLOSURE " + this
+									.getMin() + ", " + this.getMax());
 			}
 			return ret;
 		}
@@ -1346,29 +1409,29 @@ class Token implements java.io.Serializable {
 		public String toString(int options) {
 			String ret = null;
 			switch (this.type) {
-			case PAREN:
-				if (this.parennumber == 0) {
-					ret = "(?:" + this.child.toString(options) + ")";
-				} else {
-					ret = "(" + this.child.toString(options) + ")";
-				}
-				break;
+				case PAREN:
+					if (this.parennumber == 0) {
+						ret = "(?:" + this.child.toString(options) + ")";
+					} else {
+						ret = "(" + this.child.toString(options) + ")";
+					}
+					break;
 
-			case LOOKAHEAD:
-				ret = "(?=" + this.child.toString(options) + ")";
-				break;
-			case NEGATIVELOOKAHEAD:
-				ret = "(?!" + this.child.toString(options) + ")";
-				break;
-			case LOOKBEHIND:
-				ret = "(?<=" + this.child.toString(options) + ")";
-				break;
-			case NEGATIVELOOKBEHIND:
-				ret = "(?<!" + this.child.toString(options) + ")";
-				break;
-			case INDEPENDENT:
-				ret = "(?>" + this.child.toString(options) + ")";
-				break;
+				case LOOKAHEAD:
+					ret = "(?=" + this.child.toString(options) + ")";
+					break;
+				case NEGATIVELOOKAHEAD:
+					ret = "(?!" + this.child.toString(options) + ")";
+					break;
+				case LOOKBEHIND:
+					ret = "(?<=" + this.child.toString(options) + ")";
+					break;
+				case NEGATIVELOOKBEHIND:
+					ret = "(?<!" + this.child.toString(options) + ")";
+					break;
+				case INDEPENDENT:
+					ret = "(?>" + this.child.toString(options) + ")";
+					break;
 			}
 			return ret;
 		}
@@ -1460,8 +1523,10 @@ class Token implements java.io.Serializable {
 		}
 
 		public String toString(int options) {
-			return "(?" + (this.add == 0 ? "" : REUtil.createOptionString(this.add))
-					+ (this.mask == 0 ? "" : REUtil.createOptionString(this.mask)) + ":"
+			return "(?" + (this.add == 0 ? ""
+					: REUtil.createOptionString(this.add)) + (this.mask == 0
+							? ""
+							: REUtil.createOptionString(this.mask)) + ":"
 					+ this.child.toString(options) + ")";
 		}
 	}
@@ -1477,7 +1542,7 @@ class Token implements java.io.Serializable {
 
 		/**
 		 * @serialField children
-		 *                  Vector children
+		 *              Vector children
 		 */
 		private static final ObjectStreamField[] serialPersistentFields = new ObjectStreamField[] {
 				new ObjectStreamField("children", Vector.class), };
@@ -1517,7 +1582,8 @@ class Token implements java.io.Serializable {
 			// System.err.println("Merge '"+previous+"' and '"+tok+"'.");
 
 			StringBuilder buffer;
-			int nextMaxLength = (tok.type == CHAR ? 2 : tok.getString().length());
+			int nextMaxLength = (tok.type == CHAR ? 2
+					: tok.getString().length());
 			if (previous.type == CHAR) { // Replace previous token by STRING
 				buffer = new StringBuilder(2 + nextMaxLength);
 				int ch = previous.getChar();
@@ -1528,7 +1594,8 @@ class Token implements java.io.Serializable {
 				previous = Token.createString(null);
 				this.children.set(size - 1, previous);
 			} else { // STRING
-				buffer = new StringBuilder(previous.getString().length() + nextMaxLength);
+				buffer = new StringBuilder(previous.getString().length()
+						+ nextMaxLength);
 				buffer.append(previous.getString());
 			}
 
@@ -1564,14 +1631,16 @@ class Token implements java.io.Serializable {
 					Token ch2 = this.getChild(1);
 					if (ch2.type == CLOSURE && ch2.getChild(0) == ch) {
 						ret = ch.toString(options) + "+";
-					} else if (ch2.type == NONGREEDYCLOSURE && ch2.getChild(0) == ch) {
+					} else if (ch2.type == NONGREEDYCLOSURE && ch2.getChild(
+							0) == ch) {
 						ret = ch.toString(options) + "+?";
 					} else
 						ret = ch.toString(options) + ch2.toString(options);
 				} else {
 					StringBuilder sb = new StringBuilder();
 					for (int i = 0; i < this.children.size(); i++) {
-						sb.append(((Token) this.children.get(i)).toString(options));
+						sb.append(((Token) this.children.get(i)).toString(
+								options));
 					}
 					ret = new String(sb);
 				}
@@ -1579,7 +1648,8 @@ class Token implements java.io.Serializable {
 			}
 			if (this.children.size() == 2 && this.getChild(1).type == EMPTY) {
 				ret = this.getChild(0).toString(options) + "?";
-			} else if (this.children.size() == 2 && this.getChild(0).type == EMPTY) {
+			} else if (this.children.size() == 2 && this.getChild(
+					0).type == EMPTY) {
 				ret = this.getChild(1).toString(options) + "??";
 			} else {
 				StringBuilder sb = new StringBuilder();
@@ -1599,7 +1669,8 @@ class Token implements java.io.Serializable {
 		 */
 		private void writeObject(ObjectOutputStream out) throws IOException {
 			// Convert List to Vector
-			Vector<Token> vChildren = (children == null) ? null : new Vector<>(children);
+			Vector<Token> vChildren = (children == null) ? null
+					: new Vector<>(children);
 
 			// Write serialized fields
 			ObjectOutputStream.PutField pf = out.putFields();
@@ -1608,7 +1679,8 @@ class Token implements java.io.Serializable {
 		}
 
 		@SuppressWarnings("unchecked")
-		private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+		private void readObject(ObjectInputStream in) throws IOException,
+				ClassNotFoundException {
 			// We have to read serialized fields first.
 			ObjectInputStream.GetField gf = in.readFields();
 			Vector<Token> vChildren = (Vector<Token>) gf.get("children", null);

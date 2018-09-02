@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.geom;
@@ -69,19 +49,18 @@ public abstract class Point2D implements Cloneable {
 		 * 
 		 * @since 1.2
 		 */
-		public Float() {
-		}
+		public Float() {}
 
 		/**
 		 * Constructs and initializes a <code>Point2D</code> with the specified
 		 * coordinates.
 		 *
 		 * @param x
-		 *            the X coordinate of the newly constructed
-		 *            <code>Point2D</code>
+		 *          the X coordinate of the newly constructed
+		 *          <code>Point2D</code>
 		 * @param y
-		 *            the Y coordinate of the newly constructed
-		 *            <code>Point2D</code>
+		 *          the Y coordinate of the newly constructed
+		 *          <code>Point2D</code>
 		 * @since 1.2
 		 */
 		public Float(float x, float y) {
@@ -122,9 +101,9 @@ public abstract class Point2D implements Cloneable {
 		 * <code>float</code> coordinates.
 		 *
 		 * @param x
-		 *            the new X coordinate of this {@code Point2D}
+		 *          the new X coordinate of this {@code Point2D}
 		 * @param y
-		 *            the new Y coordinate of this {@code Point2D}
+		 *          the new Y coordinate of this {@code Point2D}
 		 * @since 1.2
 		 */
 		public void setLocation(float x, float y) {
@@ -178,19 +157,18 @@ public abstract class Point2D implements Cloneable {
 		 * 
 		 * @since 1.2
 		 */
-		public Double() {
-		}
+		public Double() {}
 
 		/**
 		 * Constructs and initializes a <code>Point2D</code> with the specified
 		 * coordinates.
 		 *
 		 * @param x
-		 *            the X coordinate of the newly constructed
-		 *            <code>Point2D</code>
+		 *          the X coordinate of the newly constructed
+		 *          <code>Point2D</code>
 		 * @param y
-		 *            the Y coordinate of the newly constructed
-		 *            <code>Point2D</code>
+		 *          the Y coordinate of the newly constructed
+		 *          <code>Point2D</code>
 		 * @since 1.2
 		 */
 		public Double(double x, double y) {
@@ -254,8 +232,7 @@ public abstract class Point2D implements Cloneable {
 	 * @see java.awt.Point
 	 * @since 1.2
 	 */
-	protected Point2D() {
-	}
+	protected Point2D() {}
 
 	/**
 	 * Returns the X coordinate of this <code>Point2D</code> in
@@ -280,9 +257,9 @@ public abstract class Point2D implements Cloneable {
 	 * <code>double</code> coordinates.
 	 *
 	 * @param x
-	 *            the new X coordinate of this {@code Point2D}
+	 *          the new X coordinate of this {@code Point2D}
 	 * @param y
-	 *            the new Y coordinate of this {@code Point2D}
+	 *          the new Y coordinate of this {@code Point2D}
 	 * @since 1.2
 	 */
 	public abstract void setLocation(double x, double y);
@@ -292,8 +269,8 @@ public abstract class Point2D implements Cloneable {
 	 * the specified <code>Point2D</code> object.
 	 * 
 	 * @param p
-	 *            the specified <code>Point2D</code> to which to set this
-	 *            <code>Point2D</code>
+	 *          the specified <code>Point2D</code> to which to set this
+	 *          <code>Point2D</code>
 	 * @since 1.2
 	 */
 	public void setLocation(Point2D p) {
@@ -304,18 +281,19 @@ public abstract class Point2D implements Cloneable {
 	 * Returns the square of the distance between two points.
 	 *
 	 * @param x1
-	 *            the X coordinate of the first specified point
+	 *           the X coordinate of the first specified point
 	 * @param y1
-	 *            the Y coordinate of the first specified point
+	 *           the Y coordinate of the first specified point
 	 * @param x2
-	 *            the X coordinate of the second specified point
+	 *           the X coordinate of the second specified point
 	 * @param y2
-	 *            the Y coordinate of the second specified point
+	 *           the Y coordinate of the second specified point
 	 * @return the square of the distance between the two sets of specified
 	 *         coordinates.
 	 * @since 1.2
 	 */
-	public static double distanceSq(double x1, double y1, double x2, double y2) {
+	public static double distanceSq(double x1, double y1, double x2,
+			double y2) {
 		x1 -= x2;
 		y1 -= y2;
 		return (x1 * x1 + y1 * y1);
@@ -325,13 +303,13 @@ public abstract class Point2D implements Cloneable {
 	 * Returns the distance between two points.
 	 *
 	 * @param x1
-	 *            the X coordinate of the first specified point
+	 *           the X coordinate of the first specified point
 	 * @param y1
-	 *            the Y coordinate of the first specified point
+	 *           the Y coordinate of the first specified point
 	 * @param x2
-	 *            the X coordinate of the second specified point
+	 *           the X coordinate of the second specified point
 	 * @param y2
-	 *            the Y coordinate of the second specified point
+	 *           the Y coordinate of the second specified point
 	 * @return the distance between the two sets of specified coordinates.
 	 * @since 1.2
 	 */
@@ -346,11 +324,11 @@ public abstract class Point2D implements Cloneable {
 	 * specified point.
 	 *
 	 * @param px
-	 *            the X coordinate of the specified point to be measured against
-	 *            this <code>Point2D</code>
+	 *           the X coordinate of the specified point to be measured against
+	 *           this <code>Point2D</code>
 	 * @param py
-	 *            the Y coordinate of the specified point to be measured against
-	 *            this <code>Point2D</code>
+	 *           the Y coordinate of the specified point to be measured against
+	 *           this <code>Point2D</code>
 	 * @return the square of the distance between this <code>Point2D</code> and
 	 *         the specified point.
 	 * @since 1.2
@@ -366,8 +344,8 @@ public abstract class Point2D implements Cloneable {
 	 * specified <code>Point2D</code>.
 	 *
 	 * @param pt
-	 *            the specified point to be measured against this
-	 *            <code>Point2D</code>
+	 *           the specified point to be measured against this
+	 *           <code>Point2D</code>
 	 * @return the square of the distance between this <code>Point2D</code> to a
 	 *         specified <code>Point2D</code>.
 	 * @since 1.2
@@ -382,11 +360,11 @@ public abstract class Point2D implements Cloneable {
 	 * Returns the distance from this <code>Point2D</code> to a specified point.
 	 *
 	 * @param px
-	 *            the X coordinate of the specified point to be measured against
-	 *            this <code>Point2D</code>
+	 *           the X coordinate of the specified point to be measured against
+	 *           this <code>Point2D</code>
 	 * @param py
-	 *            the Y coordinate of the specified point to be measured against
-	 *            this <code>Point2D</code>
+	 *           the Y coordinate of the specified point to be measured against
+	 *           this <code>Point2D</code>
 	 * @return the distance between this <code>Point2D</code> and a specified
 	 *         point.
 	 * @since 1.2
@@ -402,8 +380,8 @@ public abstract class Point2D implements Cloneable {
 	 * <code>Point2D</code>.
 	 *
 	 * @param pt
-	 *            the specified point to be measured against this
-	 *            <code>Point2D</code>
+	 *           the specified point to be measured against this
+	 *           <code>Point2D</code>
 	 * @return the distance between this <code>Point2D</code> and the specified
 	 *         <code>Point2D</code>.
 	 * @since 1.2
@@ -420,7 +398,7 @@ public abstract class Point2D implements Cloneable {
 	 * 
 	 * @return a clone of this instance.
 	 * @exception OutOfMemoryError
-	 *                if there is not enough memory.
+	 *                             if there is not enough memory.
 	 * @see java.lang.Cloneable
 	 * @since 1.2
 	 */

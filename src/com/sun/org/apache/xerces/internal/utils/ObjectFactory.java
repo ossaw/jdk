@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -142,21 +139,22 @@ public final class ObjectFactory {
 	/**
 	 * Create an instance of a class using the specified ClassLoader
 	 */
-	public static Object newInstance(String className, ClassLoader cl, boolean doFallback)
-			throws ConfigurationError {
+	public static Object newInstance(String className, ClassLoader cl,
+			boolean doFallback) throws ConfigurationError {
 		// assert(className != null);
 		try {
 			Class providerClass = findProviderClass(className, cl, doFallback);
 			Object instance = providerClass.newInstance();
 			if (DEBUG)
-				debugPrintln(
-						"created new instance of " + providerClass + " using ClassLoader: " + cl);
+				debugPrintln("created new instance of " + providerClass
+						+ " using ClassLoader: " + cl);
 			return instance;
 		} catch (ClassNotFoundException x) {
-			throw new ConfigurationError("Provider " + className + " not found", x);
+			throw new ConfigurationError("Provider " + className + " not found",
+					x);
 		} catch (Exception x) {
-			throw new ConfigurationError(
-					"Provider " + className + " could not be instantiated: " + x, x);
+			throw new ConfigurationError("Provider " + className
+					+ " could not be instantiated: " + x, x);
 		}
 	}
 
@@ -172,14 +170,16 @@ public final class ObjectFactory {
 	/**
 	 * Find a Class using the specified ClassLoader
 	 */
-	public static Class findProviderClass(String className, ClassLoader cl, boolean doFallback)
-			throws ClassNotFoundException, ConfigurationError {
+	public static Class findProviderClass(String className, ClassLoader cl,
+			boolean doFallback) throws ClassNotFoundException,
+			ConfigurationError {
 		// throw security exception if the calling thread is not allowed to
 		// access the package
 		// restrict the access to package as speicified in java.security policy
 		SecurityManager security = System.getSecurityManager();
 		if (security != null) {
-			if (className.startsWith(JAXP_INTERNAL) || className.startsWith(STAX_INTERNAL)) {
+			if (className.startsWith(JAXP_INTERNAL) || className.startsWith(
+					STAX_INTERNAL)) {
 				cl = null;
 			} else {
 				final int lastDot = className.lastIndexOf(".");
@@ -192,7 +192,8 @@ public final class ObjectFactory {
 		Class providerClass;
 		if (cl == null) {
 			// use the bootstrap ClassLoader.
-			providerClass = Class.forName(className, false, ObjectFactory.class.getClassLoader());
+			providerClass = Class.forName(className, false, ObjectFactory.class
+					.getClassLoader());
 		} else {
 			try {
 				providerClass = cl.loadClass(className);

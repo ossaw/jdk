@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.directory;
@@ -51,7 +31,6 @@ import javax.naming.NamingException;
  * <p> The serialized form of an AttributeModificationException object consists
  * of the serialized fields of its NamingException superclass, followed by an
  * array of ModificationItem objects.
- *
  */
 
 public class AttributeModificationException extends NamingException {
@@ -67,8 +46,9 @@ public class AttributeModificationException extends NamingException {
 	 * explanation. All other fields are set to null.
 	 *
 	 * @param explanation
-	 *            Possibly null additional detail about this exception. If null,
-	 *            this exception has no detail message.
+	 *                    Possibly null additional detail about this exception.
+	 *                    If null,
+	 *                    this exception has no detail message.
 	 * 
 	 * @see java.lang.Throwable#getMessage
 	 */
@@ -92,7 +72,7 @@ public class AttributeModificationException extends NamingException {
 	 * originally submitted to modifyAttributes() were executed.
 	 * 
 	 * @param e
-	 *            The possibly null list of unexecuted modifications.
+	 *          The possibly null list of unexecuted modifications.
 	 * @see #getUnexecutedModifications
 	 */
 	public void setUnexecutedModifications(ModificationItem[] e) {

@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -60,9 +35,9 @@ import java.util.function.Function;
  * @since 1.5
  * @author Doug Lea
  * @param <K>
- *            the type of keys maintained by this map
+ *        the type of keys maintained by this map
  * @param <V>
- *            the type of mapped values
+ *        the type of mapped values
  */
 public interface ConcurrentMap<K, V> extends Map<K, V> {
 
@@ -76,9 +51,9 @@ public interface ConcurrentMap<K, V> extends Map<K, V> {
 	 *           implementation.
 	 *
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
@@ -107,7 +82,7 @@ public interface ConcurrentMap<K, V> extends Map<K, V> {
 	 *           entries.
 	 *
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
@@ -146,25 +121,29 @@ public interface ConcurrentMap<K, V> extends Map<K, V> {
 	 *           inappropriate default provided in {@code Map}.
 	 *
 	 * @param key
-	 *            key with which the specified value is to be associated
+	 *              key with which the specified value is to be associated
 	 * @param value
-	 *            value to be associated with the specified key
+	 *              value to be associated with the specified key
 	 * @return the previous value associated with the specified key, or
 	 *         {@code null} if there was no mapping for the key. (A {@code null}
 	 *         return can also indicate that the map previously associated
 	 *         {@code null} with the key, if the implementation supports null
 	 *         values.)
 	 * @throws UnsupportedOperationException
-	 *             if the {@code put} operation is not supported by this map
+	 *                                       if the {@code put} operation is not
+	 *                                       supported by this map
 	 * @throws ClassCastException
-	 *             if the class of the specified key or value prevents it from
-	 *             being stored in this map
+	 *                                       if the class of the specified key
+	 *                                       or value prevents it from
+	 *                                       being stored in this map
 	 * @throws NullPointerException
-	 *             if the specified key or value is null, and this map does not
-	 *             permit null keys or values
+	 *                                       if the specified key or value is
+	 *                                       null, and this map does not
+	 *                                       permit null keys or values
 	 * @throws IllegalArgumentException
-	 *             if some property of the specified key or value prevents it
-	 *             from being stored in this map
+	 *                                       if some property of the specified
+	 *                                       key or value prevents it
+	 *                                       from being stored in this map
 	 */
 	V putIfAbsent(K key, V value);
 
@@ -188,21 +167,26 @@ public interface ConcurrentMap<K, V> extends Map<K, V> {
 	 *           inappropriate default provided in {@code Map}.
 	 *
 	 * @param key
-	 *            key with which the specified value is associated
+	 *              key with which the specified value is associated
 	 * @param value
-	 *            value expected to be associated with the specified key
+	 *              value expected to be associated with the specified key
 	 * @return {@code true} if the value was removed
 	 * @throws UnsupportedOperationException
-	 *             if the {@code remove} operation is not supported by this map
+	 *                                       if the {@code remove} operation is
+	 *                                       not supported by this map
 	 * @throws ClassCastException
-	 *             if the key or value is of an inappropriate type for this map
-	 *             (<a href="../Collection.html#optional-restrictions">optional
-	 *             </a>)
+	 *                                       if the key or value is of an
+	 *                                       inappropriate type for this map
+	 *                                       (<a href=
+	 *                                       "../Collection.html#optional-restrictions">optional
+	 *                                       </a>)
 	 * @throws NullPointerException
-	 *             if the specified key or value is null, and this map does not
-	 *             permit null keys or values (
-	 *             <a href="../Collection.html#optional-restrictions">optional
-	 *             </a>)
+	 *                                       if the specified key or value is
+	 *                                       null, and this map does not
+	 *                                       permit null keys or values (
+	 *                                       <a href=
+	 *                                       "../Collection.html#optional-restrictions">optional
+	 *                                       </a>)
 	 */
 	boolean remove(Object key, Object value);
 
@@ -226,23 +210,27 @@ public interface ConcurrentMap<K, V> extends Map<K, V> {
 	 *           inappropriate default provided in {@code Map}.
 	 *
 	 * @param key
-	 *            key with which the specified value is associated
+	 *                 key with which the specified value is associated
 	 * @param oldValue
-	 *            value expected to be associated with the specified key
+	 *                 value expected to be associated with the specified key
 	 * @param newValue
-	 *            value to be associated with the specified key
+	 *                 value to be associated with the specified key
 	 * @return {@code true} if the value was replaced
 	 * @throws UnsupportedOperationException
-	 *             if the {@code put} operation is not supported by this map
+	 *                                       if the {@code put} operation is not
+	 *                                       supported by this map
 	 * @throws ClassCastException
-	 *             if the class of a specified key or value prevents it from
-	 *             being stored in this map
+	 *                                       if the class of a specified key or
+	 *                                       value prevents it from
+	 *                                       being stored in this map
 	 * @throws NullPointerException
-	 *             if a specified key or value is null, and this map does not
-	 *             permit null keys or values
+	 *                                       if a specified key or value is
+	 *                                       null, and this map does not
+	 *                                       permit null keys or values
 	 * @throws IllegalArgumentException
-	 *             if some property of a specified key or value prevents it from
-	 *             being stored in this map
+	 *                                       if some property of a specified key
+	 *                                       or value prevents it from
+	 *                                       being stored in this map
 	 */
 	boolean replace(K key, V oldValue, V newValue);
 
@@ -265,25 +253,29 @@ public interface ConcurrentMap<K, V> extends Map<K, V> {
 	 *           inappropriate default provided in {@code Map}.
 	 *
 	 * @param key
-	 *            key with which the specified value is associated
+	 *              key with which the specified value is associated
 	 * @param value
-	 *            value to be associated with the specified key
+	 *              value to be associated with the specified key
 	 * @return the previous value associated with the specified key, or
 	 *         {@code null} if there was no mapping for the key. (A {@code null}
 	 *         return can also indicate that the map previously associated
 	 *         {@code null} with the key, if the implementation supports null
 	 *         values.)
 	 * @throws UnsupportedOperationException
-	 *             if the {@code put} operation is not supported by this map
+	 *                                       if the {@code put} operation is not
+	 *                                       supported by this map
 	 * @throws ClassCastException
-	 *             if the class of the specified key or value prevents it from
-	 *             being stored in this map
+	 *                                       if the class of the specified key
+	 *                                       or value prevents it from
+	 *                                       being stored in this map
 	 * @throws NullPointerException
-	 *             if the specified key or value is null, and this map does not
-	 *             permit null keys or values
+	 *                                       if the specified key or value is
+	 *                                       null, and this map does not
+	 *                                       permit null keys or values
 	 * @throws IllegalArgumentException
-	 *             if some property of the specified key or value prevents it
-	 *             from being stored in this map
+	 *                                       if some property of the specified
+	 *                                       key or value prevents it
+	 *                                       from being stored in this map
 	 */
 	V replace(K key, V value);
 
@@ -317,17 +309,18 @@ public interface ConcurrentMap<K, V> extends Map<K, V> {
 	 *           implementation.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
-	default void replaceAll(BiFunction<? super K, ? super V, ? extends V> function) {
+	default void replaceAll(
+			BiFunction<? super K, ? super V, ? extends V> function) {
 		Objects.requireNonNull(function);
 		forEach((k, v) -> {
 			while (!replace(k, v, function.apply(k, v))) {
@@ -369,19 +362,22 @@ public interface ConcurrentMap<K, V> extends Map<K, V> {
 	 *           implementation.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
-	default V computeIfAbsent(K key, Function<? super K, ? extends V> mappingFunction) {
+	default V computeIfAbsent(K key,
+			Function<? super K, ? extends V> mappingFunction) {
 		Objects.requireNonNull(mappingFunction);
 		V v, newValue;
-		return ((v = get(key)) == null && (newValue = mappingFunction.apply(key)) != null
-				&& (v = putIfAbsent(key, newValue)) == null) ? newValue : v;
+		return ((v = get(key)) == null && (newValue = mappingFunction.apply(
+				key)) != null && (v = putIfAbsent(key, newValue)) == null)
+						? newValue
+						: v;
 	}
 
 	/**
@@ -416,11 +412,11 @@ public interface ConcurrentMap<K, V> extends Map<K, V> {
 	 *           implementation.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
@@ -476,15 +472,16 @@ public interface ConcurrentMap<K, V> extends Map<K, V> {
 	 *           implementation.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override
-	default V compute(K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
+	default V compute(K key,
+			BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
 		Objects.requireNonNull(remappingFunction);
 		V oldValue = get(key);
 		for (;;) {
@@ -560,11 +557,11 @@ public interface ConcurrentMap<K, V> extends Map<K, V> {
 	 *           implementation.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @since 1.8
 	 */
 	@Override

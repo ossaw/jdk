@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -84,14 +64,12 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 
 	/*
 	 * The most significant 64 bits of this UUID.
-	 *
 	 * @serial
 	 */
 	private final long mostSigBits;
 
 	/*
 	 * The least significant 64 bits of this UUID.
-	 *
 	 * @serial
 	 */
 	private final long leastSigBits;
@@ -128,10 +106,10 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * the {@code UUID}.
 	 *
 	 * @param mostSigBits
-	 *            The most significant bits of the {@code UUID}
+	 *                     The most significant bits of the {@code UUID}
 	 *
 	 * @param leastSigBits
-	 *            The least significant bits of the {@code UUID}
+	 *                     The least significant bits of the {@code UUID}
 	 */
 	public UUID(long mostSigBits, long leastSigBits) {
 		this.mostSigBits = mostSigBits;
@@ -163,7 +141,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * the specified byte array.
 	 *
 	 * @param name
-	 *            A byte array to be used to construct a {@code UUID}
+	 *             A byte array to be used to construct a {@code UUID}
 	 *
 	 * @return A {@code UUID} generated from the specified array
 	 */
@@ -187,13 +165,14 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * described in the {@link #toString} method.
 	 *
 	 * @param name
-	 *            A string that specifies a {@code UUID}
+	 *             A string that specifies a {@code UUID}
 	 *
 	 * @return A {@code UUID} with the specified value
 	 *
 	 * @throws IllegalArgumentException
-	 *             If name does not conform to the string representation as
-	 *             described in {@link #toString}
+	 *                                  If name does not conform to the string
+	 *                                  representation as
+	 *                                  described in {@link #toString}
 	 *
 	 */
 	public static UUID fromString(String name) {
@@ -277,7 +256,8 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 		// 1 0 - The IETF aka Leach-Salz variant (used by this class)
 		// 1 1 0 Reserved, Microsoft backward compatibility
 		// 1 1 1 Reserved for future definition.
-		return (int) ((leastSigBits >>> (64 - (leastSigBits >>> 62))) & (leastSigBits >> 63));
+		return (int) ((leastSigBits >>> (64 - (leastSigBits >>> 62)))
+				& (leastSigBits >> 63));
 	}
 
 	/**
@@ -294,7 +274,8 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * method throws UnsupportedOperationException.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If this UUID is not a version 1 UUID
+	 *                                       If this UUID is not a version 1
+	 *                                       UUID
 	 * @return The timestamp of this {@code UUID}.
 	 */
 	public long timestamp() {
@@ -302,8 +283,8 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 			throw new UnsupportedOperationException("Not a time-based UUID");
 		}
 
-		return (mostSigBits & 0x0FFFL) << 48 | ((mostSigBits >> 16) & 0x0FFFFL) << 32
-				| mostSigBits >>> 32;
+		return (mostSigBits & 0x0FFFL) << 48 | ((mostSigBits >> 16)
+				& 0x0FFFFL) << 32 | mostSigBits >>> 32;
 	}
 
 	/**
@@ -322,7 +303,8 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * @return The clock sequence of this {@code UUID}
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If this UUID is not a version 1 UUID
+	 *                                       If this UUID is not a version 1
+	 *                                       UUID
 	 */
 	public int clockSequence() {
 		if (version() != 1) {
@@ -348,7 +330,8 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * @return The node value of this {@code UUID}
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If this UUID is not a version 1 UUID
+	 *                                       If this UUID is not a version 1
+	 *                                       UUID
 	 */
 	public long node() {
 		if (version() != 1) {
@@ -390,9 +373,10 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 	 * @return A string representation of this {@code UUID}
 	 */
 	public String toString() {
-		return (digits(mostSigBits >> 32, 8) + "-" + digits(mostSigBits >> 16, 4) + "-"
-				+ digits(mostSigBits, 4) + "-" + digits(leastSigBits >> 48, 4) + "-"
-				+ digits(leastSigBits, 12));
+		return (digits(mostSigBits >> 32, 8) + "-" + digits(mostSigBits >> 16,
+				4) + "-" + digits(mostSigBits, 4) + "-" + digits(
+						leastSigBits >> 48, 4) + "-" + digits(leastSigBits,
+								12));
 	}
 
 	/** Returns val represented by the specified number of hex digits. */
@@ -426,7 +410,8 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 		if ((null == obj) || (obj.getClass() != UUID.class))
 			return false;
 		UUID id = (UUID) obj;
-		return (mostSigBits == id.mostSigBits && leastSigBits == id.leastSigBits);
+		return (mostSigBits == id.mostSigBits
+				&& leastSigBits == id.leastSigBits);
 	}
 
 	// Comparison Operations
@@ -451,6 +436,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
 		return (this.mostSigBits < val.mostSigBits ? -1
 				: (this.mostSigBits > val.mostSigBits ? 1
 						: (this.leastSigBits < val.leastSigBits ? -1
-								: (this.leastSigBits > val.leastSigBits ? 1 : 0))));
+								: (this.leastSigBits > val.leastSigBits ? 1
+										: 0))));
 	}
 }

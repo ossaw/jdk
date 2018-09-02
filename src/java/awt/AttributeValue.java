@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -28,7 +8,8 @@ package java.awt;
 import sun.util.logging.PlatformLogger;
 
 abstract class AttributeValue {
-	private static final PlatformLogger log = PlatformLogger.getLogger("java.awt.AttributeValue");
+	private static final PlatformLogger log = PlatformLogger.getLogger(
+			"java.awt.AttributeValue");
 	private final int value;
 	private final String[] names;
 

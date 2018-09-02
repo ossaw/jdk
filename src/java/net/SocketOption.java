@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -37,7 +17,7 @@ package java.net;
  * methods to set and query the channel's socket options.
  *
  * @param <T>
- *            The type of the socket option value.
+ *        The type of the socket option value.
  *
  * @since 1.7
  *

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -98,7 +78,7 @@ public interface AccessibleAction {
 	 * Returns a description of the specified action of the object.
 	 *
 	 * @param i
-	 *            zero-based index of the actions
+	 *          zero-based index of the actions
 	 * @return a String description of the action
 	 * @see #getAccessibleActionCount
 	 */
@@ -108,7 +88,7 @@ public interface AccessibleAction {
 	 * Performs the specified Action on the object
 	 *
 	 * @param i
-	 *            zero-based index of actions
+	 *          zero-based index of actions
 	 * @return true if the action was performed; otherwise false.
 	 * @see #getAccessibleActionCount
 	 */

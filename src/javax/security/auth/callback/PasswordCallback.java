@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.callback;
@@ -60,15 +40,17 @@ public class PasswordCallback implements Callback, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param prompt
-	 *            the prompt used to request the password.
-	 *            <p>
+	 *               the prompt used to request the password.
+	 *               <p>
 	 *
 	 * @param echoOn
-	 *            true if the password should be displayed as it is being typed.
+	 *               true if the password should be displayed as it is being
+	 *               typed.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if {@code prompt} is null or if {@code prompt} has a
-	 *                length of 0.
+	 *                                     if {@code prompt} is null or if
+	 *                                     {@code prompt} has a
+	 *                                     length of 0.
 	 */
 	public PasswordCallback(String prompt, boolean echoOn) {
 		if (prompt == null || prompt.length() == 0)
@@ -110,7 +92,7 @@ public class PasswordCallback implements Callback, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param password
-	 *            the retrieved password, which may be null.
+	 *                 the retrieved password, which may be null.
 	 *
 	 * @see #getPassword
 	 */

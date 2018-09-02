@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -55,7 +52,7 @@ final class Text extends Instruction {
 	 * Create text syntax tree node.
 	 * 
 	 * @param text
-	 *            is the text to put in the node.
+	 *             is the text to put in the node.
 	 */
 	public Text(String text) {
 		_text = text;
@@ -75,7 +72,7 @@ final class Text extends Instruction {
 	 * existing text (using string concatenation, so use only when needed).
 	 * 
 	 * @param text
-	 *            is the text to wrap inside this node.
+	 *             is the text to wrap inside this node.
 	 */
 	protected void setText(String text) {
 		if (_text == null)
@@ -160,7 +157,8 @@ final class Text extends Instruction {
 
 		if (!_ignore) {
 			// Turn off character escaping if so is wanted.
-			final int esc = cpg.addInterfaceMethodref(OUTPUT_HANDLER, "setEscaping", "(Z)Z");
+			final int esc = cpg.addInterfaceMethodref(OUTPUT_HANDLER,
+					"setEscaping", "(Z)Z");
 			if (!_escaping) {
 				il.append(methodGen.loadHandler());
 				il.append(new PUSH(cpg, false));
@@ -172,13 +170,13 @@ final class Text extends Instruction {
 			// Call characters(String) or characters(char[],int,int), as
 			// appropriate.
 			if (!canLoadAsArrayOffsetLength()) {
-				final int characters = cpg.addInterfaceMethodref(OUTPUT_HANDLER, "characters",
-						"(" + STRING_SIG + ")V");
+				final int characters = cpg.addInterfaceMethodref(OUTPUT_HANDLER,
+						"characters", "(" + STRING_SIG + ")V");
 				il.append(new PUSH(cpg, _text));
 				il.append(new INVOKEINTERFACE(characters, 2));
 			} else {
-				final int characters = cpg.addInterfaceMethodref(OUTPUT_HANDLER, "characters",
-						"([CII)V");
+				final int characters = cpg.addInterfaceMethodref(OUTPUT_HANDLER,
+						"characters", "([CII)V");
 				loadAsArrayOffsetLength(classGen, methodGen);
 				il.append(new INVOKEINTERFACE(characters, 4));
 			}
@@ -224,7 +222,8 @@ final class Text extends Instruction {
 	 * 
 	 * @see #canLoadArrayOffsetLength()
 	 */
-	public void loadAsArrayOffsetLength(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void loadAsArrayOffsetLength(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = methodGen.getInstructionList();
 		final XSLTC xsltc = classGen.getParser().getXSLTC();
@@ -233,10 +232,11 @@ final class Text extends Instruction {
 		// that is to be stored in char arrays.
 		final int offset = xsltc.addCharacterData(_text);
 		final int length = _text.length();
-		String charDataFieldName = STATIC_CHAR_DATA_FIELD + (xsltc.getCharacterDataCount() - 1);
+		String charDataFieldName = STATIC_CHAR_DATA_FIELD + (xsltc
+				.getCharacterDataCount() - 1);
 
-		il.append(new GETSTATIC(cpg.addFieldref(xsltc.getClassName(), charDataFieldName,
-				STATIC_CHAR_DATA_FIELD_SIG)));
+		il.append(new GETSTATIC(cpg.addFieldref(xsltc.getClassName(),
+				charDataFieldName, STATIC_CHAR_DATA_FIELD_SIG)));
 		il.append(new PUSH(cpg, offset));
 		il.append(new PUSH(cpg, _text.length()));
 	}

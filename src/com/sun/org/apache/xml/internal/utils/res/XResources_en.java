@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,7 +20,7 @@
 package com.sun.org.apache.xml.internal.utils.res;
 
 //
-//  LangResources_en.properties
+// LangResources_en.properties
 //
 
 /**
@@ -33,16 +30,17 @@ package com.sun.org.apache.xml.internal.utils.res;
  */
 public class XResources_en extends XResourceBundle {
 
-	private static final Object[][] _contents = new Object[][] { { "ui_language", "en" },
-			{ "help_language", "en" }, { "language", "en" },
-			{ "alphabet",
-					new CharArrayWrapper(new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
-							'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',
-							'X', 'Y', 'Z' }) },
-			{ "tradAlphabet",
-					new CharArrayWrapper(new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
-							'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',
-							'X', 'Y', 'Z' }) },
+	private static final Object[][] _contents = new Object[][] { {
+			"ui_language", "en" }, { "help_language", "en" }, { "language",
+					"en" }, { "alphabet", new CharArrayWrapper(new char[] { 'A',
+							'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+							'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+							'V', 'W', 'X', 'Y', 'Z' }) }, { "tradAlphabet",
+									new CharArrayWrapper(new char[] { 'A', 'B',
+											'C', 'D', 'E', 'F', 'G', 'H', 'I',
+											'J', 'K', 'L', 'M', 'N', 'O', 'P',
+											'Q', 'R', 'S', 'T', 'U', 'V', 'W',
+											'X', 'Y', 'Z' }) },
 
 			// language orientation
 			{ "orientation", "LeftToRight" },

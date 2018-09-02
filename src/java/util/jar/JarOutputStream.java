@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.jar;
@@ -53,7 +33,7 @@ public class JarOutputStream extends ZipOutputStream {
 	 * @param man
 	 *            the optional <code>Manifest</code>
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                        if an I/O error has occurred
 	 */
 	public JarOutputStream(OutputStream out, Manifest man) throws IOException {
 		super(out);
@@ -72,7 +52,7 @@ public class JarOutputStream extends ZipOutputStream {
 	 * @param out
 	 *            the actual output stream
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                        if an I/O error has occurred
 	 */
 	public JarOutputStream(OutputStream out) throws IOException {
 		super(out);
@@ -86,11 +66,11 @@ public class JarOutputStream extends ZipOutputStream {
 	 * no set modification time.
 	 *
 	 * @param ze
-	 *            the ZIP/JAR entry to be written
+	 *           the ZIP/JAR entry to be written
 	 * @exception ZipException
-	 *                if a ZIP error has occurred
+	 *                         if a ZIP error has occurred
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                         if an I/O error has occurred
 	 */
 	public void putNextEntry(ZipEntry ze) throws IOException {
 		if (firstEntry) {
@@ -141,7 +121,8 @@ public class JarOutputStream extends ZipOutputStream {
 	 * bytes are assumed to be in Intel (little-endian) byte order.
 	 */
 	private static int get16(byte[] b, int off) {
-		return Byte.toUnsignedInt(b[off]) | (Byte.toUnsignedInt(b[off + 1]) << 8);
+		return Byte.toUnsignedInt(b[off]) | (Byte.toUnsignedInt(b[off
+				+ 1]) << 8);
 	}
 
 	/*

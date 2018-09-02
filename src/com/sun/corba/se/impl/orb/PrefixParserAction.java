@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.orb;
@@ -45,11 +25,12 @@ public class PrefixParserAction extends ParserActionBase {
 	private Class componentType;
 	private ORBUtilSystemException wrapper;
 
-	public PrefixParserAction(String propertyName, Operation operation, String fieldName,
-			Class componentType) {
+	public PrefixParserAction(String propertyName, Operation operation,
+			String fieldName, Class componentType) {
 		super(propertyName, true, operation, fieldName);
 		this.componentType = componentType;
-		this.wrapper = ORBUtilSystemException.get(CORBALogDomains.ORB_LIFECYCLE);
+		this.wrapper = ORBUtilSystemException.get(
+				CORBALogDomains.ORB_LIFECYCLE);
 	}
 
 	/**
@@ -91,8 +72,8 @@ public class PrefixParserAction extends ParserActionBase {
 			try {
 				result = Array.newInstance(componentType, size);
 			} catch (Throwable thr) {
-				throw wrapper.couldNotCreateArray(thr, getPropertyName(), componentType,
-						new Integer(size));
+				throw wrapper.couldNotCreateArray(thr, getPropertyName(),
+						componentType, new Integer(size));
 			}
 
 			Iterator iter2 = matches.iterator();
@@ -103,8 +84,9 @@ public class PrefixParserAction extends ParserActionBase {
 				try {
 					Array.set(result, ctr, obj);
 				} catch (Throwable thr) {
-					throw wrapper.couldNotSetArray(thr, getPropertyName(), new Integer(ctr),
-							componentType, new Integer(size), obj.toString());
+					throw wrapper.couldNotSetArray(thr, getPropertyName(),
+							new Integer(ctr), componentType, new Integer(size),
+							obj.toString());
 				}
 				ctr++;
 			}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.javadoc;
@@ -91,7 +71,7 @@ public interface MethodDoc extends ExecutableMemberDoc {
 	 * <i>implement</i> the other.
 	 *
 	 * @param meth
-	 *            the other method to examine
+	 *             the other method to examine
 	 * @return <tt>true</tt> if this method overrides the other
 	 * @since 1.5
 	 */

@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- * (C) Copyright IBM Corp. 1999,  All rights reserved.
+ * (C) Copyright IBM Corp. 1999, All rights reserved.
  */
 package java.awt.font;
 
@@ -90,9 +69,9 @@ final class StyledParagraph {
 	 * Create a new StyledParagraph over the given styled text.
 	 * 
 	 * @param aci
-	 *            an iterator over the text
+	 *              an iterator over the text
 	 * @param chars
-	 *            the characters extracted from aci
+	 *              the characters extracted from aci
 	 */
 	public StyledParagraph(AttributedCharacterIterator aci, char[] chars) {
 
@@ -128,7 +107,8 @@ final class StyledParagraph {
 		// of the paragraph. 'this' is used as a dummy value
 		// in the Vector.
 		if (decorations != null) {
-			decorationStarts = addToVector(this, length, decorations, decorationStarts);
+			decorationStarts = addToVector(this, length, decorations,
+					decorationStarts);
 		}
 		if (fonts != null) {
 			fontStarts = addToVector(this, length, fonts, fontStarts);
@@ -152,19 +132,22 @@ final class StyledParagraph {
 	 * may create a new paragraph.
 	 * 
 	 * @param aci
-	 *            an iterator over the text. The text should be the same as the
-	 *            text used to create (or most recently update) oldParagraph,
-	 *            with the exception of inserting a single character at
-	 *            insertPos.
+	 *                     an iterator over the text. The text should be the
+	 *                     same as the
+	 *                     text used to create (or most recently update)
+	 *                     oldParagraph,
+	 *                     with the exception of inserting a single character at
+	 *                     insertPos.
 	 * @param chars
-	 *            the characters in aci
+	 *                     the characters in aci
 	 * @param insertPos
-	 *            the index of the new character in aci
+	 *                     the index of the new character in aci
 	 * @param oldParagraph
-	 *            a StyledParagraph for the text in aci before the insertion
+	 *                     a StyledParagraph for the text in aci before the
+	 *                     insertion
 	 */
-	public static StyledParagraph insertChar(AttributedCharacterIterator aci, char[] chars,
-			int insertPos, StyledParagraph oldParagraph) {
+	public static StyledParagraph insertChar(AttributedCharacterIterator aci,
+			char[] chars, int insertPos, StyledParagraph oldParagraph) {
 
 		// If the styles at insertPos match those at insertPos-1,
 		// oldParagraph will be reused. Otherwise we create a new
@@ -173,7 +156,8 @@ final class StyledParagraph {
 		char ch = aci.setIndex(insertPos);
 		int relativePos = Math.max(insertPos - aci.getBeginIndex() - 1, 0);
 
-		Map<? extends Attribute, ?> attributes = addInputMethodAttrs(aci.getAttributes());
+		Map<? extends Attribute, ?> attributes = addInputMethodAttrs(aci
+				.getAttributes());
 		Decoration d = Decoration.getDecoration(attributes);
 		if (!oldParagraph.getDecorationAt(relativePos).equals(d)) {
 			return new StyledParagraph(aci, chars);
@@ -191,10 +175,12 @@ final class StyledParagraph {
 		// insert into existing paragraph
 		oldParagraph.length += 1;
 		if (oldParagraph.decorations != null) {
-			insertInto(relativePos, oldParagraph.decorationStarts, oldParagraph.decorations.size());
+			insertInto(relativePos, oldParagraph.decorationStarts,
+					oldParagraph.decorations.size());
 		}
 		if (oldParagraph.fonts != null) {
-			insertInto(relativePos, oldParagraph.fontStarts, oldParagraph.fonts.size());
+			insertInto(relativePos, oldParagraph.fontStarts, oldParagraph.fonts
+					.size());
 		}
 		return oldParagraph;
 	}
@@ -217,19 +203,22 @@ final class StyledParagraph {
 	 * may create a new paragraph.
 	 * 
 	 * @param aci
-	 *            an iterator over the text. The text should be the same as the
-	 *            text used to create (or most recently update) oldParagraph,
-	 *            with the exception of deleting a single character at
-	 *            deletePos.
+	 *                     an iterator over the text. The text should be the
+	 *                     same as the
+	 *                     text used to create (or most recently update)
+	 *                     oldParagraph,
+	 *                     with the exception of deleting a single character at
+	 *                     deletePos.
 	 * @param chars
-	 *            the characters in aci
+	 *                     the characters in aci
 	 * @param deletePos
-	 *            the index where a character was removed
+	 *                     the index where a character was removed
 	 * @param oldParagraph
-	 *            a StyledParagraph for the text in aci before the insertion
+	 *                     a StyledParagraph for the text in aci before the
+	 *                     insertion
 	 */
-	public static StyledParagraph deleteChar(AttributedCharacterIterator aci, char[] chars,
-			int deletePos, StyledParagraph oldParagraph) {
+	public static StyledParagraph deleteChar(AttributedCharacterIterator aci,
+			char[] chars, int deletePos, StyledParagraph oldParagraph) {
 
 		// We will reuse oldParagraph unless there was a length-1 run
 		// at deletePos. We could do more work and check the individual
@@ -242,17 +231,20 @@ final class StyledParagraph {
 		}
 
 		if (oldParagraph.getRunLimit(deletePos) == deletePos + 1) {
-			if (deletePos == 0 || oldParagraph.getRunLimit(deletePos - 1) == deletePos) {
+			if (deletePos == 0 || oldParagraph.getRunLimit(deletePos
+					- 1) == deletePos) {
 				return new StyledParagraph(aci, chars);
 			}
 		}
 
 		oldParagraph.length -= 1;
 		if (oldParagraph.decorations != null) {
-			deleteFrom(deletePos, oldParagraph.decorationStarts, oldParagraph.decorations.size());
+			deleteFrom(deletePos, oldParagraph.decorationStarts,
+					oldParagraph.decorations.size());
 		}
 		if (oldParagraph.fonts != null) {
-			deleteFrom(deletePos, oldParagraph.fontStarts, oldParagraph.fonts.size());
+			deleteFrom(deletePos, oldParagraph.fontStarts, oldParagraph.fonts
+					.size());
 		}
 		return oldParagraph;
 	}
@@ -262,7 +254,7 @@ final class StyledParagraph {
 	 * Dcoration than at the given index.
 	 * 
 	 * @param index
-	 *            a valid index in the paragraph
+	 *              a valid index in the paragraph
 	 * @return the first index where there is a change in attributes from those
 	 *         at index
 	 */
@@ -288,7 +280,7 @@ final class StyledParagraph {
 	 * Return the Decoration in effect at the given index.
 	 * 
 	 * @param index
-	 *            a valid index in the paragraph
+	 *              a valid index in the paragraph
 	 * @return the Decoration at index.
 	 */
 	public Decoration getDecorationAt(int index) {
@@ -308,7 +300,7 @@ final class StyledParagraph {
 	 * client must test the type of the return value to determine what it is.
 	 * 
 	 * @param index
-	 *            a valid index in the paragraph
+	 *              a valid index in the paragraph
 	 * @return the Font or GraphicAttribute at index.
 	 */
 	public Object getFontOrGraphicAt(int index) {
@@ -342,7 +334,8 @@ final class StyledParagraph {
 	 * a new array is created and returned.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static int[] addToVector(Object obj, int index, Vector v, int[] starts) {
+	private static int[] addToVector(Object obj, int index, Vector v,
+			int[] starts) {
 
 		if (!v.lastElement().equals(obj)) {
 			v.addElement(obj);
@@ -363,7 +356,8 @@ final class StyledParagraph {
 	private void addDecoration(Decoration d, int index) {
 
 		if (decorations != null) {
-			decorationStarts = addToVector(d, index, decorations, decorationStarts);
+			decorationStarts = addToVector(d, index, decorations,
+					decorationStarts);
 		} else if (decoration == null) {
 			decoration = d;
 		} else {
@@ -404,12 +398,13 @@ final class StyledParagraph {
 	 * Resolve the given chars into Fonts using FontResolver, then add font runs
 	 * for each.
 	 */
-	private void addFonts(char[] chars, Map<? extends Attribute, ?> attributes, int start,
-			int limit) {
+	private void addFonts(char[] chars, Map<? extends Attribute, ?> attributes,
+			int start, int limit) {
 
 		FontResolver resolver = FontResolver.getInstance();
 		CodePointIterator iter = CodePointIterator.create(chars, start, limit);
-		for (int runStart = iter.charIndex(); runStart < limit; runStart = iter.charIndex()) {
+		for (int runStart = iter.charIndex(); runStart < limit; runStart = iter
+				.charIndex()) {
 			int fontIndex = resolver.nextFontRunIndex(iter);
 			addFont(resolver.getFont(fontIndex, attributes), runStart);
 		}
@@ -419,7 +414,8 @@ final class StyledParagraph {
 	 * Return a Map with entries from oldStyles, as well as input method
 	 * entries, if any.
 	 */
-	static Map<? extends Attribute, ?> addInputMethodAttrs(Map<? extends Attribute, ?> oldStyles) {
+	static Map<? extends Attribute, ?> addInputMethodAttrs(
+			Map<? extends Attribute, ?> oldStyles) {
 
 		Object value = oldStyles.get(TextAttribute.INPUT_METHOD_HIGHLIGHT);
 
@@ -444,7 +440,8 @@ final class StyledParagraph {
 				}
 
 				if (imStyles != null) {
-					HashMap<Attribute, Object> newStyles = new HashMap<>(5, (float) 0.9);
+					HashMap<Attribute, Object> newStyles = new HashMap<>(5,
+							(float) 0.9);
 					newStyles.putAll(oldStyles);
 
 					newStyles.putAll(imStyles);
@@ -463,7 +460,8 @@ final class StyledParagraph {
 	 * attributes does not contain a GraphicAttribute, Font, or Font family
 	 * entry this method returns null.
 	 */
-	private static Object getGraphicOrFont(Map<? extends Attribute, ?> attributes) {
+	private static Object getGraphicOrFont(
+			Map<? extends Attribute, ?> attributes) {
 
 		Object value = attributes.get(TextAttribute.CHAR_REPLACEMENT);
 		if (value != null) {

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,9 +34,12 @@ import com.sun.org.apache.xerces.internal.xs.datatypes.XSFloat;
 public class FloatDV extends TypeValidator {
 
 	public short getAllowedFacets() {
-		return (XSSimpleTypeDecl.FACET_PATTERN | XSSimpleTypeDecl.FACET_WHITESPACE
-				| XSSimpleTypeDecl.FACET_ENUMERATION | XSSimpleTypeDecl.FACET_MAXINCLUSIVE
-				| XSSimpleTypeDecl.FACET_MININCLUSIVE | XSSimpleTypeDecl.FACET_MAXEXCLUSIVE
+		return (XSSimpleTypeDecl.FACET_PATTERN
+				| XSSimpleTypeDecl.FACET_WHITESPACE
+				| XSSimpleTypeDecl.FACET_ENUMERATION
+				| XSSimpleTypeDecl.FACET_MAXINCLUSIVE
+				| XSSimpleTypeDecl.FACET_MININCLUSIVE
+				| XSSimpleTypeDecl.FACET_MAXEXCLUSIVE
 				| XSSimpleTypeDecl.FACET_MINEXCLUSIVE);
 	}// getAllowedFacets()
 
@@ -118,8 +118,8 @@ public class FloatDV extends TypeValidator {
 			}
 
 			if (value == val.value) {
-				return (value != 0.0f
-						|| (Float.floatToIntBits(value) == Float.floatToIntBits(val.value)));
+				return (value != 0.0f || (Float.floatToIntBits(value) == Float
+						.floatToIntBits(val.value)));
 			}
 
 			if (value != value && val.value != val.value)
@@ -215,7 +215,8 @@ public class FloatDV extends TypeValidator {
 							chars[edp - 1] = chars[nzp];
 							chars[edp] = '.';
 							// move other digits (non-zero) to the right of '.'
-							for (int i = nzp + 1, j = edp + 1; i < len; i++, j++)
+							for (int i = nzp + 1, j = edp
+									+ 1; i < len; i++, j++)
 								chars[j] = chars[i];
 							// adjust the length
 							len -= nzp - edp;

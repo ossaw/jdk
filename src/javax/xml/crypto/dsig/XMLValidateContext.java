@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: XMLValidateContext.java,v 1.8 2005/05/10 16:03:49 mullan Exp $
@@ -61,5 +41,4 @@ import javax.xml.crypto.XMLCryptoContext;
  * @see XMLSignature#validate(XMLValidateContext)
  * @see Reference#validate(XMLValidateContext)
  */
-public interface XMLValidateContext extends XMLCryptoContext {
-}
+public interface XMLValidateContext extends XMLCryptoContext {}

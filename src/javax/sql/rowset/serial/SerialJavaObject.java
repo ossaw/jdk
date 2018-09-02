@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset.serial;
@@ -74,7 +54,7 @@ public class SerialJavaObject implements Serializable, Cloneable {
 	 * @param obj
 	 *            the Java <code>Object</code> to be serialized
 	 * @throws SerialException
-	 *             if the object is found not to be serializable
+	 *                         if the object is found not to be serializable
 	 */
 	public SerialJavaObject(Object obj) throws SerialException {
 
@@ -97,8 +77,8 @@ public class SerialJavaObject implements Serializable, Cloneable {
 		fields = c.getFields();
 
 		if (hasStaticFields(fields)) {
-			throw new SerialException(
-					"Located static fields in " + "object instance. Cannot serialize");
+			throw new SerialException("Located static fields in "
+					+ "object instance. Cannot serialize");
 		}
 
 		this.obj = obj;
@@ -111,7 +91,7 @@ public class SerialJavaObject implements Serializable, Cloneable {
 	 * @return a copy of this <code>SerialJavaObject</code> object as an
 	 *         <code>Object</code> in the Java programming language
 	 * @throws SerialException
-	 *             if the instance is corrupt
+	 *                         if the instance is corrupt
 	 */
 	public Object getObject() throws SerialException {
 		return this.obj;
@@ -123,15 +103,20 @@ public class SerialJavaObject implements Serializable, Cloneable {
 	 *
 	 * @return an array of <code>Field</code> objects
 	 * @throws SerialException
-	 *             if an error is encountered accessing the serialized object
+	 *                           if an error is encountered accessing the
+	 *                           serialized object
 	 * @throws SecurityException
-	 *             If a security manager, <i>s</i>, is present and the caller's
-	 *             class loader is not the same as or an ancestor of the class
-	 *             loader for the class of the {@linkplain #getObject object}
-	 *             being serialized and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the package of that
-	 *             class.
+	 *                           If a security manager, <i>s</i>, is present and
+	 *                           the caller's
+	 *                           class loader is not the same as or an ancestor
+	 *                           of the class
+	 *                           loader for the class of the
+	 *                           {@linkplain #getObject object}
+	 *                           being serialized and invocation of
+	 *                           {@link SecurityManager#checkPackageAccess
+	 *                           s.checkPackageAccess()} denies access to the
+	 *                           package of that
+	 *                           class.
 	 * @see Class#getFields
 	 */
 	@CallerSensitive
@@ -153,8 +138,8 @@ public class SerialJavaObject implements Serializable, Cloneable {
 			}
 			return c.getFields();
 		} else {
-			throw new SerialException(
-					"SerialJavaObject does not contain" + " a serialized object instance");
+			throw new SerialException("SerialJavaObject does not contain"
+					+ " a serialized object instance");
 		}
 	}
 
@@ -177,7 +162,7 @@ public class SerialJavaObject implements Serializable, Cloneable {
 	 * {@code SerialJavaObject} object that is identical to this object
 	 *
 	 * @param o
-	 *            The object to compare this {@code SerialJavaObject} against
+	 *          The object to compare this {@code SerialJavaObject} against
 	 *
 	 * @return {@code true} if the given object represents a
 	 *         {@code SerialJavaObject} equivalent to this SerialJavaObject,
@@ -239,11 +224,13 @@ public class SerialJavaObject implements Serializable, Cloneable {
 	 * readObject is called to restore the state of the {@code SerialJavaObject}
 	 * from a stream.
 	 */
-	private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 
 		ObjectInputStream.GetField fields1 = s.readFields();
 		@SuppressWarnings("unchecked")
-		Vector<RowSetWarning> tmp = (Vector<RowSetWarning>) fields1.get("chain", null);
+		Vector<RowSetWarning> tmp = (Vector<RowSetWarning>) fields1.get("chain",
+				null);
 		if (tmp != null)
 			chain = new Vector<>(tmp);
 
@@ -251,8 +238,8 @@ public class SerialJavaObject implements Serializable, Cloneable {
 		if (obj != null) {
 			fields = obj.getClass().getFields();
 			if (hasStaticFields(fields))
-				throw new IOException(
-						"Located static fields in " + "object instance. Cannot serialize");
+				throw new IOException("Located static fields in "
+						+ "object instance. Cannot serialize");
 		} else {
 			throw new IOException("Object cannot be null!");
 		}

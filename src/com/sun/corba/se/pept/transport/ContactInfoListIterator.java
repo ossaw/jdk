@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.pept.transport;
@@ -46,9 +26,10 @@ public interface ContactInfoListIterator extends Iterator {
 	 * invocations.
 	 *
 	 * @param contactInfo
-	 *            The {@link com.sun.corba.se.pept.transport.ContactInfo
-	 *            ContactInfo} obtained from this iterator which resulted in a
-	 *            successful invocation.
+	 *                    The {@link com.sun.corba.se.pept.transport.ContactInfo
+	 *                    ContactInfo} obtained from this iterator which
+	 *                    resulted in a
+	 *                    successful invocation.
 	 */
 	public void reportSuccess(ContactInfo contactInfo);
 
@@ -57,14 +38,17 @@ public interface ContactInfoListIterator extends Iterator {
 	 * invocations.
 	 *
 	 * @param contactInfo
-	 *            The {@link com.sun.corba.se.pept.transport.ContactInfo
-	 *            ContactInfo} in effect when an invocation exception occurs.
+	 *                    The {@link com.sun.corba.se.pept.transport.ContactInfo
+	 *                    ContactInfo} in effect when an invocation exception
+	 *                    occurs.
 	 * @param exception
-	 *            The {@link java.lang.RuntimeException RuntimeException}.
+	 *                    The {@link java.lang.RuntimeException
+	 *                    RuntimeException}.
 	 *
 	 * @return Returns true if the request should be retried.
 	 */
-	public boolean reportException(ContactInfo contactInfo, RuntimeException exception);
+	public boolean reportException(ContactInfo contactInfo,
+			RuntimeException exception);
 
 	/**
 	 * The exception to report to the presentation block.

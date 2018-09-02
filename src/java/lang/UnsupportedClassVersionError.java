@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -48,7 +28,7 @@ public class UnsupportedClassVersionError extends ClassFormatError {
 	 * detail message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public UnsupportedClassVersionError(String s) {
 		super(s);

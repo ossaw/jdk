@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: XSLTTransformParameterSpec.java,v 1.4 2005/05/10 16:40:18 mullan Exp $
@@ -53,7 +33,8 @@ import javax.xml.crypto.XMLStructure;
  * @since 1.6
  * @see Transform
  */
-public final class XSLTTransformParameterSpec implements TransformParameterSpec {
+public final class XSLTTransformParameterSpec implements
+		TransformParameterSpec {
 	private XMLStructure stylesheet;
 
 	/**
@@ -61,9 +42,10 @@ public final class XSLTTransformParameterSpec implements TransformParameterSpec 
 	 * stylesheet.
 	 *
 	 * @param stylesheet
-	 *            the XSLT stylesheet to be used
+	 *                   the XSLT stylesheet to be used
 	 * @throws NullPointerException
-	 *             if <code>stylesheet</code> is <code>null</code>
+	 *                              if <code>stylesheet</code> is
+	 *                              <code>null</code>
 	 */
 	public XSLTTransformParameterSpec(XMLStructure stylesheet) {
 		if (stylesheet == null) {

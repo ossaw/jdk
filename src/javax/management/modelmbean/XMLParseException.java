@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 2000, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
- * @author    IBM Corp.
- *
- * Copyright IBM Corp. 1999-2000.  All rights reserved.
+ * @author IBM Corp.
+ * Copyright IBM Corp. 1999-2000. All rights reserved.
  */
 
 package javax.management.modelmbean;
@@ -106,7 +85,7 @@ public class XMLParseException extends Exception {
 	 * Constructor taking a string.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public XMLParseException(String s) {
 		super("XML Parse Exception: " + s);
@@ -116,9 +95,9 @@ public class XMLParseException extends Exception {
 	 * Constructor taking a string and an exception.
 	 *
 	 * @param e
-	 *            the nested exception.
+	 *          the nested exception.
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public XMLParseException(Exception e, String s) {
 		super("XML Parse Exception: " + s + ":" + e.toString());
@@ -128,7 +107,8 @@ public class XMLParseException extends Exception {
 	 * Deserializes an {@link XMLParseException} from an
 	 * {@link ObjectInputStream}.
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		// New serial form ignores extra field "msgStr"
 		in.defaultReadObject();
 	}

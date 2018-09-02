@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -70,7 +50,8 @@ public class MetalCheckBoxIcon implements Icon, UIResource, Serializable {
 				} else {
 					g.setColor(MetalLookAndFeel.getControlShadow());
 					g.fillRect(x, y, controlSize - 1, controlSize - 1);
-					MetalUtils.drawPressed3DBorder(g, x, y, controlSize, controlSize);
+					MetalUtils.drawPressed3DBorder(g, x, y, controlSize,
+							controlSize);
 				}
 			} else if (!cb.isBorderPaintedFlat()) {
 				MetalUtils.drawFlush3DBorder(g, x, y, controlSize, controlSize);

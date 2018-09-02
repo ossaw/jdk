@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -56,7 +36,8 @@ import java.io.Serializable;
  * @author Hans Muller
  * @since 1.4
  */
-public class SpinnerListModel extends AbstractSpinnerModel implements Serializable {
+public class SpinnerListModel extends AbstractSpinnerModel implements
+		Serializable {
 	private List list;
 	private int index;
 
@@ -68,9 +49,10 @@ public class SpinnerListModel extends AbstractSpinnerModel implements Serializab
 	 * <code>IllegalArugmentException</code> is thrown.
 	 *
 	 * @param values
-	 *            the sequence this model represents
+	 *               the sequence this model represents
 	 * @throws IllegalArgumentException
-	 *             if <code>values</code> is <code>null</code> or zero size
+	 *                                  if <code>values</code> is
+	 *                                  <code>null</code> or zero size
 	 */
 	public SpinnerListModel(List<?> values) {
 		if (values == null || values.size() == 0) {
@@ -88,9 +70,10 @@ public class SpinnerListModel extends AbstractSpinnerModel implements Serializab
 	 * has zero length, an <code>IllegalArgumentException</code> is thrown.
 	 *
 	 * @param values
-	 *            the sequence this model represents
+	 *               the sequence this model represents
 	 * @throws IllegalArgumentException
-	 *             if <code>values</code> is <code>null</code> or zero length
+	 *                                  if <code>values</code> is
+	 *                                  <code>null</code> or zero length
 	 */
 	public SpinnerListModel(Object[] values) {
 		if (values == null || values.length == 0) {
@@ -128,9 +111,10 @@ public class SpinnerListModel extends AbstractSpinnerModel implements Serializab
 	 * equal to the current list.
 	 *
 	 * @param list
-	 *            the sequence that this model represents
+	 *             the sequence that this model represents
 	 * @throws IllegalArgumentException
-	 *             if <code>list</code> is <code>null</code> or zero length
+	 *                                  if <code>list</code> is
+	 *                                  <code>null</code> or zero length
 	 * @see #getList
 	 */
 	public void setList(List<?> list) {
@@ -171,7 +155,7 @@ public class SpinnerListModel extends AbstractSpinnerModel implements Serializab
 	 * @param elt
 	 *            the sequence element that will be model's current value
 	 * @throws IllegalArgumentException
-	 *             if the specified value isn't allowed
+	 *                                  if the specified value isn't allowed
 	 * @see SpinnerModel#setValue
 	 * @see #getValue
 	 */
@@ -215,7 +199,7 @@ public class SpinnerListModel extends AbstractSpinnerModel implements Serializab
 	 * Returns the next object that starts with <code>substring</code>.
 	 *
 	 * @param substring
-	 *            the string to be matched
+	 *                  the string to be matched
 	 * @return the match
 	 */
 	Object findNextMatch(String substring) {

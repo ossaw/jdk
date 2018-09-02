@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,8 +41,8 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
 	/**
 	 * Construct an attribute node.
 	 */
-	public PSVIAttrNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName,
-			String localName) {
+	public PSVIAttrNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI,
+			String qualifiedName, String localName) {
 		super(ownerDocument, namespaceURI, qualifiedName, localName);
 	}
 
@@ -209,7 +206,7 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
 	 * Copy PSVI properties from another psvi item.
 	 *
 	 * @param attr
-	 *            the source of attribute PSVI items
+	 *             the source of attribute PSVI items
 	 */
 	public void setPSVI(AttributePSVI attr) {
 		this.fDeclaration = attr.getAttributeDeclaration();
@@ -228,7 +225,6 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xs.ItemPSVI#getActualNormalizedValue()
 	 */
@@ -238,7 +234,6 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see com.sun.org.apache.xerces.internal.xs.ItemPSVI#
 	 * getActualNormalizedValueType()
 	 */
@@ -248,7 +243,6 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see com.sun.org.apache.xerces.internal.xs.ItemPSVI#getItemValueTypes()
 	 */
 	public ShortList getItemValueTypes() {
@@ -262,7 +256,8 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
 		throw new NotSerializableException(getClass().getName());
 	}
 
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		throw new NotSerializableException(getClass().getName());
 	}
 }

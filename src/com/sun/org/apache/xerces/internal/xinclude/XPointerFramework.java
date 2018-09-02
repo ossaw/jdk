@@ -4,43 +4,34 @@
  */
 /*
  * The Apache Software License, Version 1.1
- *
- *
- * Copyright (c) 2001-2003 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001-2003 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Xerces" and "Apache Software Foundation" must
- *    not be used to endorse or promote products derived from this
- *    software without prior written permission. For written
- *    permission, please contact apache@apache.org.
- *
+ * not be used to endorse or promote products derived from this
+ * software without prior written permission. For written
+ * permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    nor may "Apache" appear in their name, without prior written
- *    permission of the Apache Software Foundation.
- *
+ * nor may "Apache" appear in their name, without prior written
+ * permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -50,11 +41,10 @@
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
  * individuals on behalf of the Apache Software Foundation and was
  * originally based on software copyright (c) 1999, International
- * Business Machines, Inc., http://www.apache.org.  For more
+ * Business Machines, Inc., http://www.apache.org. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -116,10 +106,11 @@ public class XPointerFramework {
 		if (fDefaultXPointerSchema == null) {
 			getDefaultSchema();
 		}
-		if (fDefaultXPointerSchema.getXpointerSchemaName()
-				.equalsIgnoreCase(fSchemaPointerName[i])) {
+		if (fDefaultXPointerSchema.getXpointerSchemaName().equalsIgnoreCase(
+				fSchemaPointerName[i])) {
 			fDefaultXPointerSchema.reset();
-			fDefaultXPointerSchema.setXPointerSchemaPointer(fSchemaPointerURI[i]);
+			fDefaultXPointerSchema.setXPointerSchemaPointer(
+					fSchemaPointerURI[i]);
 			fCountSchemaName = ++i;
 			return getDefaultSchema();
 		}
@@ -132,9 +123,10 @@ public class XPointerFramework {
 
 		for (; fSchemaPointerName[i] != null; i++) {
 			for (int j = 0; j < fschemalength; j++) {
-				if (fSchemaPointerName[i]
-						.equalsIgnoreCase(fXPointerSchema[j].getXpointerSchemaName())) {
-					fXPointerSchema[j].setXPointerSchemaPointer(fSchemaPointerURI[i]);
+				if (fSchemaPointerName[i].equalsIgnoreCase(fXPointerSchema[j]
+						.getXpointerSchemaName())) {
+					fXPointerSchema[j].setXPointerSchemaPointer(
+							fSchemaPointerURI[i]);
 					fCountSchemaName = ++i;
 					return fXPointerSchema[j];
 				}
@@ -167,7 +159,8 @@ public class XPointerFramework {
 		if (index <= 0)
 			return;
 
-		fSchemaPointerName[schemapointerindex++] = fSchemaPointer.substring(0, index++).trim();
+		fSchemaPointerName[schemapointerindex++] = fSchemaPointer.substring(0,
+				index++).trim();
 		lastindex = index;
 		String tempURI = null;
 		count++;
@@ -180,7 +173,8 @@ public class XPointerFramework {
 				count--;
 			if (count == 0) {
 				tempURI = fSchemaPointer.substring(lastindex, index).trim();
-				fSchemaPointerURI[schemapointerURIindex++] = getEscapedURI(tempURI);
+				fSchemaPointerURI[schemapointerURIindex++] = getEscapedURI(
+						tempURI);
 				lastindex = index;
 				if ((index = fSchemaPointer.indexOf('(', lastindex)) != -1) {
 					fSchemaPointerName[schemapointerindex++] = fSchemaPointer

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -75,7 +72,7 @@ public class XIncludeParserConfiguration extends XML11Configuration {
 	 * Constructs a parser configuration using the specified symbol table.
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                    The symbol table to use.
 	 */
 	public XIncludeParserConfiguration(SymbolTable symbolTable) {
 		this(symbolTable, null, null);
@@ -87,11 +84,12 @@ public class XIncludeParserConfiguration extends XML11Configuration {
 	 * <p>
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                    The symbol table to use.
 	 * @param grammarPool
-	 *            The grammar pool to use.
+	 *                    The grammar pool to use.
 	 */
-	public XIncludeParserConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
+	public XIncludeParserConfiguration(SymbolTable symbolTable,
+			XMLGrammarPool grammarPool) {
 		this(symbolTable, grammarPool, null);
 	} // <init>(SymbolTable,XMLGrammarPool)
 
@@ -101,14 +99,14 @@ public class XIncludeParserConfiguration extends XML11Configuration {
 	 * <p>
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                       The symbol table to use.
 	 * @param grammarPool
-	 *            The grammar pool to use.
+	 *                       The grammar pool to use.
 	 * @param parentSettings
-	 *            The parent settings.
+	 *                       The parent settings.
 	 */
-	public XIncludeParserConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool,
-			XMLComponentManager parentSettings) {
+	public XIncludeParserConfiguration(SymbolTable symbolTable,
+			XMLGrammarPool grammarPool, XMLComponentManager parentSettings) {
 		super(symbolTable, grammarPool, parentSettings);
 
 		fXIncludeHandler = new XIncludeHandler();
@@ -119,7 +117,8 @@ public class XIncludeParserConfiguration extends XML11Configuration {
 		addRecognizedFeatures(recognizedFeatures);
 
 		// add default recognized properties
-		final String[] recognizedProperties = { XINCLUDE_HANDLER, NAMESPACE_CONTEXT };
+		final String[] recognizedProperties = { XINCLUDE_HANDLER,
+				NAMESPACE_CONTEXT };
 		addRecognizedProperties(recognizedProperties);
 
 		setFeature(ALLOW_UE_AND_NOTATION_EVENTS, true);
@@ -209,7 +208,8 @@ public class XIncludeParserConfiguration extends XML11Configuration {
 
 	} // configureXML11Pipeline()
 
-	public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
+	public void setProperty(String propertyId, Object value)
+			throws XMLConfigurationException {
 
 		if (propertyId.equals(XINCLUDE_HANDLER)) {
 		}

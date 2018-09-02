@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.logging;
@@ -52,8 +32,7 @@ class Logging implements LoggingMXBean {
 	 * Constructor of Logging which is the implementation class of
 	 * LoggingMXBean.
 	 */
-	Logging() {
-	}
+	Logging() {}
 
 	public List<String> getLoggerNames() {
 		Enumeration<String> loggers = logManager.getLoggerNames();
@@ -88,7 +67,8 @@ class Logging implements LoggingMXBean {
 
 		Logger logger = logManager.getLogger(loggerName);
 		if (logger == null) {
-			throw new IllegalArgumentException("Logger " + loggerName + "does not exist");
+			throw new IllegalArgumentException("Logger " + loggerName
+					+ "does not exist");
 		}
 
 		Level level = null;
@@ -96,7 +76,8 @@ class Logging implements LoggingMXBean {
 			// parse will throw IAE if logLevel is invalid
 			level = Level.findLevel(levelName);
 			if (level == null) {
-				throw new IllegalArgumentException("Unknown level \"" + levelName + "\"");
+				throw new IllegalArgumentException("Unknown level \""
+						+ levelName + "\"");
 			}
 		}
 

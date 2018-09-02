@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,7 +40,7 @@ final class SimpleAttributeValue extends AttributeValue {
 	 * Creates a new simple attribute value.
 	 * 
 	 * @param value
-	 *            the attribute value.
+	 *              the attribute value.
 	 */
 	public SimpleAttributeValue(String value) {
 		_value = value;
@@ -53,7 +50,7 @@ final class SimpleAttributeValue extends AttributeValue {
 	 * Returns this attribute value's type (String).
 	 * 
 	 * @param stable
-	 *            The compiler/parser's symbol table
+	 *               The compiler/parser's symbol table
 	 */
 	public Type typeCheck(SymbolTable stable) throws TypeCheckError {
 		return _type = Type.String;
@@ -72,9 +69,9 @@ final class SimpleAttributeValue extends AttributeValue {
 	 * attribute value onto the JVM's stack.
 	 * 
 	 * @param classGen
-	 *            BCEL Java class generator
+	 *                  BCEL Java class generator
 	 * @param methodGen
-	 *            BCEL Java method generator
+	 *                  BCEL Java method generator
 	 */
 	public void translate(ClassGenerator classGen, MethodGenerator methodGen) {
 		final ConstantPoolGen cpg = classGen.getConstantPool();

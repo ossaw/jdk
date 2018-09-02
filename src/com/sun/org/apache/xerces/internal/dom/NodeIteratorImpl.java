@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -95,8 +92,8 @@ public class NodeIteratorImpl implements NodeIterator {
 	//
 
 	/** Public constructor */
-	public NodeIteratorImpl(DocumentImpl document, Node root, int whatToShow, NodeFilter nodeFilter,
-			boolean entityReferenceExpansion) {
+	public NodeIteratorImpl(DocumentImpl document, Node root, int whatToShow,
+			NodeFilter nodeFilter, boolean entityReferenceExpansion) {
 		fDocument = document;
 		fRoot = root;
 		fCurrentNode = null;
@@ -138,8 +135,10 @@ public class NodeIteratorImpl implements NodeIterator {
 	public Node nextNode() {
 
 		if (fDetach) {
-			throw new DOMException(DOMException.INVALID_STATE_ERR, DOMMessageFormatter
-					.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "INVALID_STATE_ERR", null));
+			throw new DOMException(DOMException.INVALID_STATE_ERR,
+					DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN, "INVALID_STATE_ERR",
+							null));
 		}
 
 		// if root is null there is no next node.
@@ -157,8 +156,8 @@ public class NodeIteratorImpl implements NodeIterator {
 				nextNode = fCurrentNode;
 			} else {
 				// else get the next node via depth-first
-				if (!fEntityReferenceExpansion && nextNode != null
-						&& nextNode.getNodeType() == Node.ENTITY_REFERENCE_NODE) {
+				if (!fEntityReferenceExpansion && nextNode != null && nextNode
+						.getNodeType() == Node.ENTITY_REFERENCE_NODE) {
 					nextNode = nextNode(nextNode, false);
 				} else {
 					nextNode = nextNode(nextNode, true);
@@ -196,8 +195,10 @@ public class NodeIteratorImpl implements NodeIterator {
 	public Node previousNode() {
 
 		if (fDetach) {
-			throw new DOMException(DOMException.INVALID_STATE_ERR, DOMMessageFormatter
-					.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "INVALID_STATE_ERR", null));
+			throw new DOMException(DOMException.INVALID_STATE_ERR,
+					DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN, "INVALID_STATE_ERR",
+							null));
 		}
 
 		// if the root is null, or the current node is null, return null.
@@ -333,8 +334,9 @@ public class NodeIteratorImpl implements NodeIterator {
 		}
 
 		// if sibling has children, keep getting last child of child.
-		if (result.hasChildNodes() && !(!fEntityReferenceExpansion && result != null
-				&& result.getNodeType() == Node.ENTITY_REFERENCE_NODE))
+		if (result.hasChildNodes() && !(!fEntityReferenceExpansion
+				&& result != null && result
+						.getNodeType() == Node.ENTITY_REFERENCE_NODE))
 
 		{
 			while (result.hasChildNodes()) {

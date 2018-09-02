@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: StringToStringTable.java,v 1.2.4.1 2005/09/15 08:15:56 suresh_emailid Exp $
+ * $Id: StringToStringTable.java,v 1.2.4.1 2005/09/15 08:15:56 suresh_emailid
+ * Exp $
  */
 package com.sun.org.apache.xml.internal.utils;
 
@@ -57,7 +55,7 @@ public class StringToStringTable {
 	 * Construct a StringToStringTable, using the given block size.
 	 *
 	 * @param blocksize
-	 *            Size of blocks to allocate
+	 *                  Size of blocks to allocate
 	 */
 	public StringToStringTable(int blocksize) {
 
@@ -80,9 +78,9 @@ public class StringToStringTable {
 	 * the array and the values in the odd.
 	 *
 	 * @param key
-	 *            String to add to the list
+	 *              String to add to the list
 	 * @param value
-	 *            Value of the string
+	 *              Value of the string
 	 */
 	public final void put(String key, String value) {
 
@@ -134,7 +132,8 @@ public class StringToStringTable {
 		for (int i = 0; i < m_firstFree; i += 2) {
 			if (m_map[i].equals(key)) {
 				if ((i + 2) < m_firstFree)
-					System.arraycopy(m_map, i + 2, m_map, i, m_firstFree - (i + 2));
+					System.arraycopy(m_map, i + 2, m_map, i, m_firstFree - (i
+							+ 2));
 
 				m_firstFree -= 2;
 				m_map[m_firstFree] = null;
@@ -188,7 +187,7 @@ public class StringToStringTable {
 	 * Get the nth element.
 	 *
 	 * @param i
-	 *            index of the string to look up.
+	 *          index of the string to look up.
 	 *
 	 * @return The string at the given index.
 	 */

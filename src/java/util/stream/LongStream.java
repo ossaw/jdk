@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -62,8 +42,8 @@ import java.util.function.Supplier;
  * <pre>
  * {
  * 	&#64;code
- * 	long sum = widgets.stream().filter(w -> w.getColor() == RED).mapToLong(w -> w.getWeight())
- * 			.sum();
+ * 	long sum = widgets.stream().filter(w -> w.getColor() == RED).mapToLong(
+ * 			w -> w.getWeight()).sum();
  * }
  * </pre>
  *
@@ -87,12 +67,15 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * operation</a>.
 	 *
 	 * @param predicate
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            predicate to apply to each element to determine if it should
-	 *            be included
+	 *                  a
+	 *                  <a href=
+	 *                  "package-summary.html#NonInterference">non-interfering
+	 *                  </a>,
+	 *                  <a href=
+	 *                  "package-summary.html#Statelessness">stateless</a>
+	 *                  predicate to apply to each element to determine if it
+	 *                  should
+	 *                  be included
 	 * @return the new stream
 	 */
 	LongStream filter(LongPredicate predicate);
@@ -106,11 +89,12 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * operation</a>.
 	 *
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element
 	 * @return the new stream
 	 */
 	LongStream map(LongUnaryOperator mapper);
@@ -123,14 +107,15 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * This is an <a href="package-summary.html#StreamOps"> intermediate
 	 * operation</a>.
 	 *
-	 * @param <U>
-	 *            the element type of the new stream
+	 * @param        <U>
+	 *               the element type of the new stream
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element
 	 * @return the new stream
 	 */
 	<U> Stream<U> mapToObj(LongFunction<? extends U> mapper);
@@ -144,11 +129,12 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * operation</a>.
 	 *
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element
 	 * @return the new stream
 	 */
 	IntStream mapToInt(LongToIntFunction mapper);
@@ -162,11 +148,12 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * operation</a>.
 	 *
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element
 	 * @return the new stream
 	 */
 	DoubleStream mapToDouble(LongToDoubleFunction mapper);
@@ -184,12 +171,13 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * operation</a>.
 	 *
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element which produces a
-	 *            {@code LongStream} of new values
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element which produces a
+	 *               {@code LongStream} of new values
 	 * @return the new stream
 	 * @see Stream#flatMap(Function)
 	 */
@@ -249,9 +237,10 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 *          </pre>
 	 *
 	 * @param action
-	 *            a <a href="package-summary.html#NonInterference"> non-
-	 *            interfering</a> action to perform on the elements as they are
-	 *            consumed from the stream
+	 *               a <a href="package-summary.html#NonInterference"> non-
+	 *               interfering</a> action to perform on the elements as they
+	 *               are
+	 *               consumed from the stream
 	 * @return the new stream
 	 */
 	LongStream peek(LongConsumer action);
@@ -280,10 +269,10 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 *          {@link #sequential()} may improve performance.
 	 *
 	 * @param maxSize
-	 *            the number of elements the stream should be limited to
+	 *                the number of elements the stream should be limited to
 	 * @return the new stream
 	 * @throws IllegalArgumentException
-	 *             if {@code maxSize} is negative
+	 *                                  if {@code maxSize} is negative
 	 */
 	LongStream limit(long maxSize);
 
@@ -313,10 +302,10 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 *          {@link #sequential()} may improve performance.
 	 *
 	 * @param n
-	 *            the number of leading elements to skip
+	 *          the number of leading elements to skip
 	 * @return the new stream
 	 * @throws IllegalArgumentException
-	 *             if {@code n} is negative
+	 *                                  if {@code n} is negative
 	 */
 	LongStream skip(long n);
 
@@ -336,8 +325,8 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * required synchronization.
 	 *
 	 * @param action
-	 *            a <a href="package-summary.html#NonInterference"> non-
-	 *            interfering</a> action to perform on the elements
+	 *               a <a href="package-summary.html#NonInterference"> non-
+	 *               interfering</a> action to perform on the elements
 	 */
 	void forEach(LongConsumer action);
 
@@ -351,8 +340,8 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * .
 	 *
 	 * @param action
-	 *            a <a href="package-summary.html#NonInterference"> non-
-	 *            interfering</a> action to perform on the elements
+	 *               a <a href="package-summary.html#NonInterference"> non-
+	 *               interfering</a> action to perform on the elements
 	 * @see #forEach(LongConsumer)
 	 */
 	void forEachOrdered(LongConsumer action);
@@ -421,14 +410,17 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 *          of data races.
 	 *
 	 * @param identity
-	 *            the identity value for the accumulating function
+	 *                 the identity value for the accumulating function
 	 * @param op
-	 *            an
-	 *            <a href="package-summary.html#Associativity">associative</a>,
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function for combining two values
+	 *                 an
+	 *                 <a href=
+	 *                 "package-summary.html#Associativity">associative</a>,
+	 *                 <a href=
+	 *                 "package-summary.html#NonInterference">non-interfering
+	 *                 </a>,
+	 *                 <a href=
+	 *                 "package-summary.html#Statelessness">stateless</a>
+	 *                 function for combining two values
 	 * @return the result of the reduction
 	 * @see #sum()
 	 * @see #min()
@@ -471,12 +463,12 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * .
 	 *
 	 * @param op
-	 *            an
-	 *            <a href="package-summary.html#Associativity">associative</a>,
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function for combining two values
+	 *           an
+	 *           <a href="package-summary.html#Associativity">associative</a>,
+	 *           <a href="package-summary.html#NonInterference">non-interfering
+	 *           </a>,
+	 *           <a href="package-summary.html#Statelessness">stateless</a>
+	 *           function for combining two values
 	 * @return the result of the reduction
 	 * @see #reduce(long, LongBinaryOperator)
 	 */
@@ -508,31 +500,42 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * This is a <a href="package-summary.html#StreamOps">terminal operation</a>
 	 * .
 	 *
-	 * @param <R>
-	 *            type of the result
+	 * @param             <R>
+	 *                    type of the result
 	 * @param supplier
-	 *            a function that creates a new result container. For a parallel
-	 *            execution, this function may be called multiple times and must
-	 *            return a fresh value each time.
+	 *                    a function that creates a new result container. For a
+	 *                    parallel
+	 *                    execution, this function may be called multiple times
+	 *                    and must
+	 *                    return a fresh value each time.
 	 * @param accumulator
-	 *            an
-	 *            <a href="package-summary.html#Associativity">associative</a>,
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function for incorporating an additional element into a result
+	 *                    an
+	 *                    <a href=
+	 *                    "package-summary.html#Associativity">associative</a>,
+	 *                    <a href=
+	 *                    "package-summary.html#NonInterference">non-interfering
+	 *                    </a>,
+	 *                    <a href=
+	 *                    "package-summary.html#Statelessness">stateless</a>
+	 *                    function for incorporating an additional element into
+	 *                    a result
 	 * @param combiner
-	 *            an
-	 *            <a href="package-summary.html#Associativity">associative</a>,
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function for combining two values, which must be compatible
-	 *            with the accumulator function
+	 *                    an
+	 *                    <a href=
+	 *                    "package-summary.html#Associativity">associative</a>,
+	 *                    <a href=
+	 *                    "package-summary.html#NonInterference">non-interfering
+	 *                    </a>,
+	 *                    <a href=
+	 *                    "package-summary.html#Statelessness">stateless</a>
+	 *                    function for combining two values, which must be
+	 *                    compatible
+	 *                    with the accumulator function
 	 * @return the result of the reduction
 	 * @see Stream#collect(Supplier, BiConsumer, BiConsumer)
 	 */
-	<R> R collect(Supplier<R> supplier, ObjLongConsumer<R> accumulator, BiConsumer<R, R> combiner);
+	<R> R collect(Supplier<R> supplier, ObjLongConsumer<R> accumulator,
+			BiConsumer<R, R> combiner);
 
 	/**
 	 * Returns the sum of elements in this stream. This is a special case of a
@@ -657,11 +660,13 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 *          the predicate over the elements of the stream (for some x P(x)).
 	 *
 	 * @param predicate
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            predicate to apply to elements of this stream
+	 *                  a
+	 *                  <a href=
+	 *                  "package-summary.html#NonInterference">non-interfering
+	 *                  </a>,
+	 *                  <a href=
+	 *                  "package-summary.html#Statelessness">stateless</a>
+	 *                  predicate to apply to elements of this stream
 	 * @return {@code true} if any elements of the stream match the provided
 	 *         predicate, otherwise {@code false}
 	 */
@@ -681,14 +686,16 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 *          the predicate over the elements of the stream (for all x P(x)).
 	 *          If the stream is empty, the quantification is said to be
 	 *          <em>vacuously
-	 * satisfied</em> and is always {@code true} (regardless of P(x)).
+	 *          satisfied</em> and is always {@code true} (regardless of P(x)).
 	 *
 	 * @param predicate
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            predicate to apply to elements of this stream
+	 *                  a
+	 *                  <a href=
+	 *                  "package-summary.html#NonInterference">non-interfering
+	 *                  </a>,
+	 *                  <a href=
+	 *                  "package-summary.html#Statelessness">stateless</a>
+	 *                  predicate to apply to elements of this stream
 	 * @return {@code true} if either all elements of the stream match the
 	 *         provided predicate or the stream is empty, otherwise
 	 *         {@code false}
@@ -712,11 +719,13 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 *          P(x).
 	 *
 	 * @param predicate
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            predicate to apply to elements of this stream
+	 *                  a
+	 *                  <a href=
+	 *                  "package-summary.html#NonInterference">non-interfering
+	 *                  </a>,
+	 *                  <a href=
+	 *                  "package-summary.html#Statelessness">stateless</a>
+	 *                  predicate to apply to elements of this stream
 	 * @return {@code true} if either no elements of the stream match the
 	 *         provided predicate or the stream is empty, otherwise
 	 *         {@code false}
@@ -813,18 +822,20 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * @return an empty sequential stream
 	 */
 	public static LongStream empty() {
-		return StreamSupport.longStream(Spliterators.emptyLongSpliterator(), false);
+		return StreamSupport.longStream(Spliterators.emptyLongSpliterator(),
+				false);
 	}
 
 	/**
 	 * Returns a sequential {@code LongStream} containing a single element.
 	 *
 	 * @param t
-	 *            the single element
+	 *          the single element
 	 * @return a singleton sequential stream
 	 */
 	public static LongStream of(long t) {
-		return StreamSupport.longStream(new Streams.LongStreamBuilderImpl(t), false);
+		return StreamSupport.longStream(new Streams.LongStreamBuilderImpl(t),
+				false);
 	}
 
 	/**
@@ -832,7 +843,7 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * values.
 	 *
 	 * @param values
-	 *            the elements of the new stream
+	 *               the elements of the new stream
 	 * @return the new stream
 	 */
 	public static LongStream of(long... values) {
@@ -852,13 +863,15 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * element at position {@code n - 1}.
 	 *
 	 * @param seed
-	 *            the initial element
+	 *             the initial element
 	 * @param f
-	 *            a function to be applied to to the previous element to produce
-	 *            a new element
+	 *             a function to be applied to to the previous element to
+	 *             produce
+	 *             a new element
 	 * @return a new sequential {@code LongStream}
 	 */
-	public static LongStream iterate(final long seed, final LongUnaryOperator f) {
+	public static LongStream iterate(final long seed,
+			final LongUnaryOperator f) {
 		Objects.requireNonNull(f);
 		final PrimitiveIterator.OfLong iterator = new PrimitiveIterator.OfLong() {
 			long t = seed;
@@ -875,8 +888,9 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 				return v;
 			}
 		};
-		return StreamSupport.longStream(Spliterators.spliteratorUnknownSize(iterator,
-				Spliterator.ORDERED | Spliterator.IMMUTABLE | Spliterator.NONNULL), false);
+		return StreamSupport.longStream(Spliterators.spliteratorUnknownSize(
+				iterator, Spliterator.ORDERED | Spliterator.IMMUTABLE
+						| Spliterator.NONNULL), false);
 	}
 
 	/**
@@ -885,14 +899,14 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 * generating constant streams, streams of random elements, etc.
 	 *
 	 * @param s
-	 *            the {@code LongSupplier} for generated elements
+	 *          the {@code LongSupplier} for generated elements
 	 * @return a new infinite sequential unordered {@code LongStream}
 	 */
 	public static LongStream generate(LongSupplier s) {
 		Objects.requireNonNull(s);
 		return StreamSupport.longStream(
-				new StreamSpliterators.InfiniteSupplyingSpliterator.OfLong(Long.MAX_VALUE, s),
-				false);
+				new StreamSpliterators.InfiniteSupplyingSpliterator.OfLong(
+						Long.MAX_VALUE, s), false);
 	}
 
 	/**
@@ -912,13 +926,14 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 *          </pre>
 	 *
 	 * @param startInclusive
-	 *            the (inclusive) initial value
+	 *                       the (inclusive) initial value
 	 * @param endExclusive
-	 *            the exclusive upper bound
+	 *                       the exclusive upper bound
 	 * @return a sequential {@code LongStream} for the range of {@code long}
 	 *         elements
 	 */
-	public static LongStream range(long startInclusive, final long endExclusive) {
+	public static LongStream range(long startInclusive,
+			final long endExclusive) {
 		if (startInclusive >= endExclusive) {
 			return empty();
 		} else if (endExclusive - startInclusive < 0) {
@@ -926,11 +941,12 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 			// Split the range in two and concatenate
 			// Note: if the range is [Long.MIN_VALUE, Long.MAX_VALUE) then
 			// the lower range, [Long.MIN_VALUE, 0) will be further split in two
-			long m = startInclusive + Long.divideUnsigned(endExclusive - startInclusive, 2) + 1;
+			long m = startInclusive + Long.divideUnsigned(endExclusive
+					- startInclusive, 2) + 1;
 			return concat(range(startInclusive, m), range(m, endExclusive));
 		} else {
-			return StreamSupport.longStream(
-					new Streams.RangeLongSpliterator(startInclusive, endExclusive, false), false);
+			return StreamSupport.longStream(new Streams.RangeLongSpliterator(
+					startInclusive, endExclusive, false), false);
 		}
 	}
 
@@ -951,13 +967,14 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 *          </pre>
 	 *
 	 * @param startInclusive
-	 *            the (inclusive) initial value
+	 *                       the (inclusive) initial value
 	 * @param endInclusive
-	 *            the inclusive upper bound
+	 *                       the inclusive upper bound
 	 * @return a sequential {@code LongStream} for the range of {@code long}
 	 *         elements
 	 */
-	public static LongStream rangeClosed(long startInclusive, final long endInclusive) {
+	public static LongStream rangeClosed(long startInclusive,
+			final long endInclusive) {
 		if (startInclusive > endInclusive) {
 			return empty();
 		} else if (endInclusive - startInclusive + 1 <= 0) {
@@ -966,11 +983,13 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 			// Note: if the range is [Long.MIN_VALUE, Long.MAX_VALUE] then
 			// the lower range, [Long.MIN_VALUE, 0), and upper range,
 			// [0, Long.MAX_VALUE], will both be further split in two
-			long m = startInclusive + Long.divideUnsigned(endInclusive - startInclusive, 2) + 1;
-			return concat(range(startInclusive, m), rangeClosed(m, endInclusive));
+			long m = startInclusive + Long.divideUnsigned(endInclusive
+					- startInclusive, 2) + 1;
+			return concat(range(startInclusive, m), rangeClosed(m,
+					endInclusive));
 		} else {
-			return StreamSupport.longStream(
-					new Streams.RangeLongSpliterator(startInclusive, endInclusive, true), false);
+			return StreamSupport.longStream(new Streams.RangeLongSpliterator(
+					startInclusive, endInclusive, true), false);
 		}
 	}
 
@@ -988,18 +1007,19 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 	 *           {@code StackOverflowException}.
 	 *
 	 * @param a
-	 *            the first stream
+	 *          the first stream
 	 * @param b
-	 *            the second stream
+	 *          the second stream
 	 * @return the concatenation of the two input streams
 	 */
 	public static LongStream concat(LongStream a, LongStream b) {
 		Objects.requireNonNull(a);
 		Objects.requireNonNull(b);
 
-		Spliterator.OfLong split = new Streams.ConcatSpliterator.OfLong(a.spliterator(),
-				b.spliterator());
-		LongStream stream = StreamSupport.longStream(split, a.isParallel() || b.isParallel());
+		Spliterator.OfLong split = new Streams.ConcatSpliterator.OfLong(a
+				.spliterator(), b.spliterator());
+		LongStream stream = StreamSupport.longStream(split, a.isParallel() || b
+				.isParallel());
 		return stream.onClose(Streams.composedClose(a, b));
 	}
 
@@ -1023,8 +1043,9 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 		 * Adds an element to the stream being built.
 		 *
 		 * @throws IllegalStateException
-		 *             if the builder has already transitioned to the built
-		 *             state
+		 *                               if the builder has already transitioned
+		 *                               to the built
+		 *                               state
 		 */
 		@Override
 		void accept(long t);
@@ -1042,11 +1063,12 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 		 *           </pre>
 		 *
 		 * @param t
-		 *            the element to add
+		 *          the element to add
 		 * @return {@code this} builder
 		 * @throws IllegalStateException
-		 *             if the builder has already transitioned to the built
-		 *             state
+		 *                               if the builder has already transitioned
+		 *                               to the built
+		 *                               state
 		 */
 		default Builder add(long t) {
 			accept(t);
@@ -1060,8 +1082,9 @@ public interface LongStream extends BaseStream<Long, LongStream> {
 		 *
 		 * @return the built stream
 		 * @throws IllegalStateException
-		 *             if the builder has already transitioned to the built
-		 *             state
+		 *                               if the builder has already transitioned
+		 *                               to the built
+		 *                               state
 		 */
 		LongStream build();
 	}

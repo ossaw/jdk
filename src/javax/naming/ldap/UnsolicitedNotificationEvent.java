@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.ldap;
@@ -53,11 +33,12 @@ public class UnsolicitedNotificationEvent extends java.util.EventObject {
 	 * Constructs a new instance of <tt>UnsolicitedNotificationEvent</tt>.
 	 *
 	 * @param src
-	 *            The non-null source that fired the event.
+	 *               The non-null source that fired the event.
 	 * @param notice
-	 *            The non-null unsolicited notification.
+	 *               The non-null unsolicited notification.
 	 */
-	public UnsolicitedNotificationEvent(Object src, UnsolicitedNotification notice) {
+	public UnsolicitedNotificationEvent(Object src,
+			UnsolicitedNotification notice) {
 		super(src);
 		this.notice = notice;
 	}
@@ -77,8 +58,8 @@ public class UnsolicitedNotificationEvent extends java.util.EventObject {
 	 * this event.
 	 * 
 	 * @param listener
-	 *            The non-null listener on which to invoke
-	 *            <tt>notificationReceived</tt>.
+	 *                 The non-null listener on which to invoke
+	 *                 <tt>notificationReceived</tt>.
 	 */
 	public void dispatch(UnsolicitedNotificationListener listener) {
 		listener.notificationReceived(this);

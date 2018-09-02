@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -61,8 +58,7 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	/**
 	 * Create an XObject.
 	 */
-	public XObject() {
-	}
+	public XObject() {}
 
 	/**
 	 * Create an XObject.
@@ -83,13 +79,14 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * For support of literal objects in xpaths.
 	 *
 	 * @param xctxt
-	 *            The XPath execution context.
+	 *              The XPath execution context.
 	 *
 	 * @return This object.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		return this;
 	}
 
@@ -100,11 +97,11 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * will cause the nodeset to be cached.
 	 *
 	 * @param allowRelease
-	 *            true if it is OK for detach to release this iterator for
-	 *            pooling.
+	 *                     true if it is OK for detach to release this iterator
+	 *                     for
+	 *                     pooling.
 	 */
-	public void allowDetachToRelease(boolean allowRelease) {
-	}
+	public void allowDetachToRelease(boolean allowRelease) {}
 
 	/**
 	 * Detaches the <code>DTMIterator</code> from the set which it iterated
@@ -113,8 +110,7 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * <code>nextNode</code> or <code>previousNode</code> will raise a runtime
 	 * exception.
 	 */
-	public void detach() {
-	}
+	public void detach() {}
 
 	/**
 	 * Forces the object to release it's resources. This is more harsh than
@@ -133,8 +129,7 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	/**
 	 * Reset for fresh reuse.
 	 */
-	public void reset() {
-	}
+	public void reset() {}
 
 	/**
 	 * Directly call the characters method on the passed ContentHandler for the
@@ -142,7 +137,7 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * may well occur for a single call to this method.
 	 *
 	 * @param ch
-	 *            A non-null reference to a ContentHandler.
+	 *           A non-null reference to a ContentHandler.
 	 *
 	 * @throws org.xml.sax.SAXException
 	 */
@@ -171,9 +166,9 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * NodeLists, and NodeIterators to the XSLT stylesheet as node-sets.
 	 *
 	 * @param val
-	 *            The java object which this object will wrap.
+	 *              The java object which this object will wrap.
 	 * @param xctxt
-	 *            The XPath context.
+	 *              The XPath context.
 	 *
 	 * @return the right XObject based on the type of the object passed.
 	 */
@@ -233,13 +228,14 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 */
 	public double num() throws javax.xml.transform.TransformerException {
 
-		error(XPATHErrorResources.ER_CANT_CONVERT_TO_NUMBER, new Object[] { getTypeString() }); // "Can
-																								// not
-																								// convert
-																								// "+getTypeString()+"
-																								// to
-																								// a
-																								// number");
+		error(XPATHErrorResources.ER_CANT_CONVERT_TO_NUMBER, new Object[] {
+				getTypeString() }); // "Can
+																										// not
+																										// convert
+																										// "+getTypeString()+"
+																										// to
+																										// a
+																										// number");
 
 		return 0.0;
 	}
@@ -251,7 +247,8 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * @return numeric value of the string conversion from the next node in the
 	 *         NodeSetDTM, or NAN if no node was found
 	 */
-	public double numWithSideEffects() throws javax.xml.transform.TransformerException {
+	public double numWithSideEffects()
+			throws javax.xml.transform.TransformerException {
 		return num();
 	}
 
@@ -264,13 +261,14 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 */
 	public boolean bool() throws javax.xml.transform.TransformerException {
 
-		error(XPATHErrorResources.ER_CANT_CONVERT_TO_NUMBER, new Object[] { getTypeString() }); // "Can
-																								// not
-																								// convert
-																								// "+getTypeString()+"
-																								// to
-																								// a
-																								// number");
+		error(XPATHErrorResources.ER_CANT_CONVERT_TO_NUMBER, new Object[] {
+				getTypeString() }); // "Can
+																										// not
+																										// convert
+																										// "+getTypeString()+"
+																										// to
+																										// a
+																										// number");
 
 		return false;
 	}
@@ -281,7 +279,8 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 *
 	 * @return True if there is a next node in the nodeset
 	 */
-	public boolean boolWithSideEffects() throws javax.xml.transform.TransformerException {
+	public boolean boolWithSideEffects()
+			throws javax.xml.transform.TransformerException {
 		return bool();
 	}
 
@@ -317,7 +316,7 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * Cast result object to a result tree fragment.
 	 *
 	 * @param support
-	 *            XPath context to use for the conversion
+	 *                XPath context to use for the conversion
 	 *
 	 * @return the objec as a result tree fragment.
 	 */
@@ -341,7 +340,7 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * Cast result object to a result tree fragment.
 	 *
 	 * @param support
-	 *            XPath context to use for the conversion
+	 *                XPath context to use for the conversion
 	 *
 	 * @return the objec as a result tree fragment.
 	 */
@@ -401,13 +400,14 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 */
 	public DTMIterator iter() throws javax.xml.transform.TransformerException {
 
-		error(XPATHErrorResources.ER_CANT_CONVERT_TO_NODELIST, new Object[] { getTypeString() }); // "Can
-																									// not
-																									// convert
-																									// "+getTypeString()+"
-																									// to
-																									// a
-																									// NodeList!");
+		error(XPATHErrorResources.ER_CANT_CONVERT_TO_NODELIST, new Object[] {
+				getTypeString() }); // "Can
+																											// not
+																											// convert
+																											// "+getTypeString()+"
+																											// to
+																											// a
+																											// NodeList!");
 
 		return null;
 	}
@@ -428,15 +428,17 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public NodeIterator nodeset() throws javax.xml.transform.TransformerException {
+	public NodeIterator nodeset()
+			throws javax.xml.transform.TransformerException {
 
-		error(XPATHErrorResources.ER_CANT_CONVERT_TO_NODELIST, new Object[] { getTypeString() }); // "Can
-																									// not
-																									// convert
-																									// "+getTypeString()+"
-																									// to
-																									// a
-																									// NodeList!");
+		error(XPATHErrorResources.ER_CANT_CONVERT_TO_NODELIST, new Object[] {
+				getTypeString() }); // "Can
+																											// not
+																											// convert
+																											// "+getTypeString()+"
+																											// to
+																											// a
+																											// NodeList!");
 
 		return null;
 	}
@@ -450,13 +452,14 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 */
 	public NodeList nodelist() throws javax.xml.transform.TransformerException {
 
-		error(XPATHErrorResources.ER_CANT_CONVERT_TO_NODELIST, new Object[] { getTypeString() }); // "Can
-																									// not
-																									// convert
-																									// "+getTypeString()+"
-																									// to
-																									// a
-																									// NodeList!");
+		error(XPATHErrorResources.ER_CANT_CONVERT_TO_NODELIST, new Object[] {
+				getTypeString() }); // "Can
+																											// not
+																											// convert
+																											// "+getTypeString()+"
+																											// to
+																											// a
+																											// NodeList!");
 
 		return null;
 	}
@@ -468,12 +471,13 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public NodeSetDTM mutableNodeset() throws javax.xml.transform.TransformerException {
+	public NodeSetDTM mutableNodeset()
+			throws javax.xml.transform.TransformerException {
 
 		error(XPATHErrorResources.ER_CANT_CONVERT_TO_MUTABLENODELIST,
 				new Object[] { getTypeString() }); // "Can not convert
-													// "+getTypeString()+" to a
-													// NodeSetDTM!");
+																													// "+getTypeString()+" to a
+																													// NodeSetDTM!");
 
 		return (NodeSetDTM) m_obj;
 	}
@@ -482,9 +486,9 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * Cast object to type t.
 	 *
 	 * @param t
-	 *            Type of object to cast this to
+	 *                Type of object to cast this to
 	 * @param support
-	 *            XPath context to use for the conversion
+	 *                XPath context to use for the conversion
 	 *
 	 * @return This object as the given type t
 	 *
@@ -496,37 +500,37 @@ public class XObject extends Expression implements Serializable, Cloneable {
 		Object result;
 
 		switch (t) {
-		case CLASS_STRING:
-			result = str();
-			break;
-		case CLASS_NUMBER:
-			result = new Double(num());
-			break;
-		case CLASS_NODESET:
-			result = iter();
-			break;
-		case CLASS_BOOLEAN:
-			result = new Boolean(bool());
-			break;
-		case CLASS_UNKNOWN:
-			result = m_obj;
-			break;
+			case CLASS_STRING:
+				result = str();
+				break;
+			case CLASS_NUMBER:
+				result = new Double(num());
+				break;
+			case CLASS_NODESET:
+				result = iter();
+				break;
+			case CLASS_BOOLEAN:
+				result = new Boolean(bool());
+				break;
+			case CLASS_UNKNOWN:
+				result = m_obj;
+				break;
 
-		// %TBD% What to do here?
-		// case CLASS_RTREEFRAG :
-		// result = rtree(support);
-		// break;
-		default:
-			error(XPATHErrorResources.ER_CANT_CONVERT_TO_TYPE,
-					new Object[] { getTypeString(), Integer.toString(t) }); // "Can
-																			// not
-																			// convert
-																			// "+getTypeString()+"
-																			// to
-																			// a
-																			// type#"+t);
+			// %TBD% What to do here?
+			// case CLASS_RTREEFRAG :
+			// result = rtree(support);
+			// break;
+			default:
+				error(XPATHErrorResources.ER_CANT_CONVERT_TO_TYPE,
+						new Object[] { getTypeString(), Integer.toString(t) }); // "Can
+																																	// not
+																																	// convert
+																																	// "+getTypeString()+"
+																																	// to
+																																	// a
+																																	// type#"+t);
 
-			result = null;
+				result = null;
 		}
 
 		return result;
@@ -536,13 +540,14 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * Tell if one object is less than the other.
 	 *
 	 * @param obj2
-	 *            Object to compare this to
+	 *             Object to compare this to
 	 *
 	 * @return True if this object is less than the given object
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public boolean lessThan(XObject obj2) throws javax.xml.transform.TransformerException {
+	public boolean lessThan(XObject obj2)
+			throws javax.xml.transform.TransformerException {
 
 		// In order to handle the 'all' semantics of
 		// nodeset comparisons, we always call the
@@ -559,13 +564,14 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * Tell if one object is less than or equal to the other.
 	 *
 	 * @param obj2
-	 *            Object to compare this to
+	 *             Object to compare this to
 	 *
 	 * @return True if this object is less than or equal to the given object
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public boolean lessThanOrEqual(XObject obj2) throws javax.xml.transform.TransformerException {
+	public boolean lessThanOrEqual(XObject obj2)
+			throws javax.xml.transform.TransformerException {
 
 		// In order to handle the 'all' semantics of
 		// nodeset comparisons, we always call the
@@ -582,13 +588,14 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * Tell if one object is greater than the other.
 	 *
 	 * @param obj2
-	 *            Object to compare this to
+	 *             Object to compare this to
 	 *
 	 * @return True if this object is greater than the given object
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public boolean greaterThan(XObject obj2) throws javax.xml.transform.TransformerException {
+	public boolean greaterThan(XObject obj2)
+			throws javax.xml.transform.TransformerException {
 
 		// In order to handle the 'all' semantics of
 		// nodeset comparisons, we always call the
@@ -605,7 +612,7 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * Tell if one object is greater than or equal to the other.
 	 *
 	 * @param obj2
-	 *            Object to compare this to
+	 *             Object to compare this to
 	 *
 	 * @return True if this object is greater than or equal to the given object
 	 *
@@ -629,7 +636,7 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * Tell if two objects are functionally equal.
 	 *
 	 * @param obj2
-	 *            Object to compare this to
+	 *             Object to compare this to
 	 *
 	 * @return True if this object is equal to the given object
 	 *
@@ -654,13 +661,14 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * Tell if two objects are functionally not equal.
 	 *
 	 * @param obj2
-	 *            Object to compare this to
+	 *             Object to compare this to
 	 *
 	 * @return True if this object is not equal to the given object
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public boolean notEquals(XObject obj2) throws javax.xml.transform.TransformerException {
+	public boolean notEquals(XObject obj2)
+			throws javax.xml.transform.TransformerException {
 
 		// In order to handle the 'all' semantics of
 		// nodeset comparisons, we always call the
@@ -679,7 +687,8 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	protected void error(String msg) throws javax.xml.transform.TransformerException {
+	protected void error(String msg)
+			throws javax.xml.transform.TransformerException {
 		error(msg, null);
 	}
 
@@ -687,9 +696,9 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * Tell the user of an error, and probably throw an exception.
 	 *
 	 * @param msg
-	 *            Error message to issue
+	 *             Error message to issue
 	 * @param args
-	 *            Arguments to use in the message
+	 *             Arguments to use in the message
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -723,7 +732,8 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 * 
 	 * @return The string this wraps or the empty string if null
 	 */
-	public void appendToFsb(com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb) {
+	public void appendToFsb(
+			com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb) {
 		fsb.append(str());
 	}
 
@@ -732,7 +742,8 @@ public class XObject extends Expression implements Serializable, Cloneable {
 	 *      XPathVisitor)
 	 */
 	public void callVisitors(ExpressionOwner owner, XPathVisitor visitor) {
-		assertion(false, "callVisitors should not be called for this object!!!");
+		assertion(false,
+				"callVisitors should not be called for this object!!!");
 	}
 
 	/**

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xalan.internal.utils;
@@ -38,10 +18,10 @@ public final class XMLSecurityPropertyManager extends FeaturePropertyBase {
 	 * Properties managed by the security property manager
 	 */
 	public static enum Property {
-		ACCESS_EXTERNAL_DTD(XMLConstants.ACCESS_EXTERNAL_DTD,
-				XalanConstants.EXTERNAL_ACCESS_DEFAULT), ACCESS_EXTERNAL_STYLESHEET(
-						XMLConstants.ACCESS_EXTERNAL_STYLESHEET,
-						XalanConstants.EXTERNAL_ACCESS_DEFAULT);
+	ACCESS_EXTERNAL_DTD(XMLConstants.ACCESS_EXTERNAL_DTD,
+			XalanConstants.EXTERNAL_ACCESS_DEFAULT), ACCESS_EXTERNAL_STYLESHEET(
+					XMLConstants.ACCESS_EXTERNAL_STYLESHEET,
+					XalanConstants.EXTERNAL_ACCESS_DEFAULT);
 
 		final String name;
 		final String defaultValue;
@@ -76,7 +56,7 @@ public final class XMLSecurityPropertyManager extends FeaturePropertyBase {
 	 * Get the index by property name
 	 * 
 	 * @param propertyName
-	 *            property name
+	 *                     property name
 	 * @return the index of the property if found; return -1 if not
 	 */
 	public int getIndex(String propertyName) {
@@ -93,7 +73,8 @@ public final class XMLSecurityPropertyManager extends FeaturePropertyBase {
 	 * Read from system properties, or those in jaxp.properties
 	 */
 	private void readSystemProperties() {
-		getSystemProperty(Property.ACCESS_EXTERNAL_DTD, XalanConstants.SP_ACCESS_EXTERNAL_DTD);
+		getSystemProperty(Property.ACCESS_EXTERNAL_DTD,
+				XalanConstants.SP_ACCESS_EXTERNAL_DTD);
 		getSystemProperty(Property.ACCESS_EXTERNAL_STYLESHEET,
 				XalanConstants.SP_ACCESS_EXTERNAL_STYLESHEET);
 	}

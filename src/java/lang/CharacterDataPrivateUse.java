@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -37,7 +17,8 @@ class CharacterDataPrivateUse extends CharacterData {
 	}
 
 	int getType(int ch) {
-		return (ch & 0xFFFE) == 0xFFFE ? Character.UNASSIGNED : Character.PRIVATE_USE;
+		return (ch & 0xFFFE) == 0xFFFE ? Character.UNASSIGNED
+				: Character.PRIVATE_USE;
 	}
 
 	boolean isJavaIdentifierStart(int ch) {
@@ -95,6 +76,5 @@ class CharacterDataPrivateUse extends CharacterData {
 
 	static final CharacterData instance = new CharacterDataPrivateUse();
 
-	private CharacterDataPrivateUse() {
-	};
+	private CharacterDataPrivateUse() {};
 }

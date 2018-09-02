@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf;
@@ -35,7 +15,8 @@ import javax.swing.JComponent;
  * @author Scott Violet
  * @since 1.3
  */
-public class ComponentInputMapUIResource extends ComponentInputMap implements UIResource {
+public class ComponentInputMapUIResource extends ComponentInputMap implements
+		UIResource {
 	public ComponentInputMapUIResource(JComponent component) {
 		super(component);
 	}

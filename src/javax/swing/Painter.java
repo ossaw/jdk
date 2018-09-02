@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -121,13 +101,13 @@ public interface Painter<T> {
 	 * </p>
 	 *
 	 * @param g
-	 *            The Graphics2D to render to. This must not be null.
+	 *               The Graphics2D to render to. This must not be null.
 	 * @param object
-	 *            an optional configuration parameter. This may be null.
+	 *               an optional configuration parameter. This may be null.
 	 * @param width
-	 *            width of the area to paint.
+	 *               width of the area to paint.
 	 * @param height
-	 *            height of the area to paint.
+	 *               height of the area to paint.
 	 */
 	public void paint(Graphics2D g, T object, int width, int height);
 }

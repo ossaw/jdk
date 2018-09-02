@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print;
@@ -135,8 +115,9 @@ class MimeType implements Serializable, Cloneable {
 		}
 
 		public boolean equals(Object o) {
-			return (o != null && o instanceof Map.Entry && getKey().equals(((Map.Entry) o).getKey())
-					&& getValue().equals(((Map.Entry) o).getValue()));
+			return (o != null && o instanceof Map.Entry && getKey().equals(
+					((Map.Entry) o).getKey()) && getValue().equals(
+							((Map.Entry) o).getValue()));
 		}
 
 		public int hashCode() {
@@ -199,13 +180,16 @@ class MimeType implements Serializable, Cloneable {
 	 * is converted into canonical form and stored internally.
 	 *
 	 * @param s
-	 *            MIME media type string.
+	 *          MIME media type string.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>s</CODE> is null.
+	 *                                     (unchecked exception) Thrown if
+	 *                                     <CODE>s</CODE> is null.
 	 * @exception IllegalArgumentException
-	 *                (unchecked exception) Thrown if <CODE>s</CODE> does not
-	 *                obey the syntax for a MIME media type string.
+	 *                                     (unchecked exception) Thrown if
+	 *                                     <CODE>s</CODE> does not
+	 *                                     obey the syntax for a MIME media type
+	 *                                     string.
 	 */
 	public MimeType(String s) {
 		parse(s);
@@ -283,8 +267,8 @@ class MimeType implements Serializable, Cloneable {
 	 *         otherwise.
 	 */
 	public boolean equals(Object obj) {
-		return (obj != null && obj instanceof MimeType
-				&& getStringValue().equals(((MimeType) obj).getStringValue()));
+		return (obj != null && obj instanceof MimeType && getStringValue()
+				.equals(((MimeType) obj).getStringValue()));
 	}
 
 	/**
@@ -355,112 +339,118 @@ class MimeType implements Serializable, Cloneable {
 			char c;
 			while (state >= 0) {
 				switch (state) {
-				// Looking for a token, quoted string, or tspecial
-				case 0:
-					if (myCurrentIndex >= mySourceLength) {
-						myLexemeType = EOF_LEXEME;
-						myLexemeBeginIndex = mySourceLength;
-						myLexemeEndIndex = mySourceLength;
-						state = -1;
-					} else if (Character.isWhitespace(c = mySource.charAt(myCurrentIndex++))) {
-						state = 0;
-					} else if (c == '\"') {
-						myLexemeType = QUOTED_STRING_LEXEME;
-						myLexemeBeginIndex = myCurrentIndex;
-						state = 1;
-					} else if (c == '(') {
-						++commentLevel;
-						state = 3;
-					} else if (c == '/' || c == ';' || c == '=' || c == ')' || c == '<' || c == '>'
-							|| c == '@' || c == ',' || c == ':' || c == '\\' || c == '[' || c == ']'
-							|| c == '?') {
-						myLexemeType = TSPECIAL_LEXEME;
-						myLexemeBeginIndex = myCurrentIndex - 1;
-						myLexemeEndIndex = myCurrentIndex;
-						state = -1;
-					} else {
-						myLexemeType = TOKEN_LEXEME;
-						myLexemeBeginIndex = myCurrentIndex - 1;
-						state = 5;
-					}
-					break;
-				// In a quoted string
-				case 1:
-					if (myCurrentIndex >= mySourceLength) {
-						myLexemeType = ILLEGAL_LEXEME;
-						myLexemeBeginIndex = mySourceLength;
-						myLexemeEndIndex = mySourceLength;
-						state = -1;
-					} else if ((c = mySource.charAt(myCurrentIndex++)) == '\"') {
-						myLexemeEndIndex = myCurrentIndex - 1;
-						state = -1;
-					} else if (c == '\\') {
-						state = 2;
-					} else {
-						state = 1;
-					}
-					break;
-				// In a quoted string, backslash seen
-				case 2:
-					if (myCurrentIndex >= mySourceLength) {
-						myLexemeType = ILLEGAL_LEXEME;
-						myLexemeBeginIndex = mySourceLength;
-						myLexemeEndIndex = mySourceLength;
-						state = -1;
-					} else {
-						++myCurrentIndex;
-						state = 1;
-					}
-					break;
-				// In a comment
-				case 3:
-					if (myCurrentIndex >= mySourceLength) {
-						myLexemeType = ILLEGAL_LEXEME;
-						myLexemeBeginIndex = mySourceLength;
-						myLexemeEndIndex = mySourceLength;
-						state = -1;
-					} else if ((c = mySource.charAt(myCurrentIndex++)) == '(') {
-						++commentLevel;
-						state = 3;
-					} else if (c == ')') {
-						--commentLevel;
-						state = commentLevel == 0 ? 0 : 3;
-					} else if (c == '\\') {
-						state = 4;
-					} else {
-						state = 3;
-					}
-					break;
-				// In a comment, backslash seen
-				case 4:
-					if (myCurrentIndex >= mySourceLength) {
-						myLexemeType = ILLEGAL_LEXEME;
-						myLexemeBeginIndex = mySourceLength;
-						myLexemeEndIndex = mySourceLength;
-						state = -1;
-					} else {
-						++myCurrentIndex;
-						state = 3;
-					}
-					break;
-				// In a token
-				case 5:
-					if (myCurrentIndex >= mySourceLength) {
-						myLexemeEndIndex = myCurrentIndex;
-						state = -1;
-					} else if (Character.isWhitespace(c = mySource.charAt(myCurrentIndex++))) {
-						myLexemeEndIndex = myCurrentIndex - 1;
-						state = -1;
-					} else if (c == '\"' || c == '(' || c == '/' || c == ';' || c == '=' || c == ')'
-							|| c == '<' || c == '>' || c == '@' || c == ',' || c == ':' || c == '\\'
-							|| c == '[' || c == ']' || c == '?') {
-						--myCurrentIndex;
-						myLexemeEndIndex = myCurrentIndex;
-						state = -1;
-					} else {
-						state = 5;
-					}
-					break;
+					// Looking for a token, quoted string, or tspecial
+					case 0:
+						if (myCurrentIndex >= mySourceLength) {
+							myLexemeType = EOF_LEXEME;
+							myLexemeBeginIndex = mySourceLength;
+							myLexemeEndIndex = mySourceLength;
+							state = -1;
+						} else if (Character.isWhitespace(c = mySource.charAt(
+								myCurrentIndex++))) {
+							state = 0;
+						} else if (c == '\"') {
+							myLexemeType = QUOTED_STRING_LEXEME;
+							myLexemeBeginIndex = myCurrentIndex;
+							state = 1;
+						} else if (c == '(') {
+							++commentLevel;
+							state = 3;
+						} else if (c == '/' || c == ';' || c == '=' || c == ')'
+								|| c == '<' || c == '>' || c == '@' || c == ','
+								|| c == ':' || c == '\\' || c == '[' || c == ']'
+								|| c == '?') {
+							myLexemeType = TSPECIAL_LEXEME;
+							myLexemeBeginIndex = myCurrentIndex - 1;
+							myLexemeEndIndex = myCurrentIndex;
+							state = -1;
+						} else {
+							myLexemeType = TOKEN_LEXEME;
+							myLexemeBeginIndex = myCurrentIndex - 1;
+							state = 5;
+						}
+						break;
+					// In a quoted string
+					case 1:
+						if (myCurrentIndex >= mySourceLength) {
+							myLexemeType = ILLEGAL_LEXEME;
+							myLexemeBeginIndex = mySourceLength;
+							myLexemeEndIndex = mySourceLength;
+							state = -1;
+						} else if ((c = mySource.charAt(
+								myCurrentIndex++)) == '\"') {
+							myLexemeEndIndex = myCurrentIndex - 1;
+							state = -1;
+						} else if (c == '\\') {
+							state = 2;
+						} else {
+							state = 1;
+						}
+						break;
+					// In a quoted string, backslash seen
+					case 2:
+						if (myCurrentIndex >= mySourceLength) {
+							myLexemeType = ILLEGAL_LEXEME;
+							myLexemeBeginIndex = mySourceLength;
+							myLexemeEndIndex = mySourceLength;
+							state = -1;
+						} else {
+							++myCurrentIndex;
+							state = 1;
+						}
+						break;
+					// In a comment
+					case 3:
+						if (myCurrentIndex >= mySourceLength) {
+							myLexemeType = ILLEGAL_LEXEME;
+							myLexemeBeginIndex = mySourceLength;
+							myLexemeEndIndex = mySourceLength;
+							state = -1;
+						} else if ((c = mySource.charAt(
+								myCurrentIndex++)) == '(') {
+							++commentLevel;
+							state = 3;
+						} else if (c == ')') {
+							--commentLevel;
+							state = commentLevel == 0 ? 0 : 3;
+						} else if (c == '\\') {
+							state = 4;
+						} else {
+							state = 3;
+						}
+						break;
+					// In a comment, backslash seen
+					case 4:
+						if (myCurrentIndex >= mySourceLength) {
+							myLexemeType = ILLEGAL_LEXEME;
+							myLexemeBeginIndex = mySourceLength;
+							myLexemeEndIndex = mySourceLength;
+							state = -1;
+						} else {
+							++myCurrentIndex;
+							state = 3;
+						}
+						break;
+					// In a token
+					case 5:
+						if (myCurrentIndex >= mySourceLength) {
+							myLexemeEndIndex = myCurrentIndex;
+							state = -1;
+						} else if (Character.isWhitespace(c = mySource.charAt(
+								myCurrentIndex++))) {
+							myLexemeEndIndex = myCurrentIndex - 1;
+							state = -1;
+						} else if (c == '\"' || c == '(' || c == '/' || c == ';'
+								|| c == '=' || c == ')' || c == '<' || c == '>'
+								|| c == '@' || c == ',' || c == ':' || c == '\\'
+								|| c == '[' || c == ']' || c == '?') {
+							--myCurrentIndex;
+							myLexemeEndIndex = myCurrentIndex;
+							state = -1;
+						} else {
+							state = 5;
+						}
+						break;
 				}
 			}
 
@@ -536,13 +526,16 @@ class MimeType implements Serializable, Cloneable {
 	 * </UL>
 	 *
 	 * @param s
-	 *            MIME media type string.
+	 *          MIME media type string.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>s</CODE> is null.
+	 *                                     (unchecked exception) Thrown if
+	 *                                     <CODE>s</CODE> is null.
 	 * @exception IllegalArgumentException
-	 *                (unchecked exception) Thrown if <CODE>s</CODE> does not
-	 *                obey the syntax for a MIME media type string.
+	 *                                     (unchecked exception) Thrown if
+	 *                                     <CODE>s</CODE> does not
+	 *                                     obey the syntax for a MIME media type
+	 *                                     string.
 	 */
 	private void parse(String s) {
 		// Initialize.
@@ -565,8 +558,8 @@ class MimeType implements Serializable, Cloneable {
 			throw new IllegalArgumentException();
 		}
 		// Parse slash.
-		if (theLexer.getLexemeType() == TSPECIAL_LEXEME
-				&& theLexer.getLexemeFirstCharacter() == '/') {
+		if (theLexer.getLexemeType() == TSPECIAL_LEXEME && theLexer
+				.getLexemeFirstCharacter() == '/') {
 			theLexer.nextLexeme();
 		} else {
 			throw new IllegalArgumentException();
@@ -578,8 +571,8 @@ class MimeType implements Serializable, Cloneable {
 			throw new IllegalArgumentException();
 		}
 		// Parse zero or more parameters.
-		while (theLexer.getLexemeType() == TSPECIAL_LEXEME
-				&& theLexer.getLexemeFirstCharacter() == ';') {
+		while (theLexer.getLexemeType() == TSPECIAL_LEXEME && theLexer
+				.getLexemeFirstCharacter() == ';') {
 			// Parse semicolon.
 			theLexer.nextLexeme();
 
@@ -594,8 +587,8 @@ class MimeType implements Serializable, Cloneable {
 			}
 
 			// Parse equals.
-			if (theLexer.getLexemeType() == TSPECIAL_LEXEME
-					&& theLexer.getLexemeFirstCharacter() == '=') {
+			if (theLexer.getLexemeType() == TSPECIAL_LEXEME && theLexer
+					.getLexemeFirstCharacter() == '=') {
 				theLexer.nextLexeme();
 			} else {
 				throw new IllegalArgumentException();
@@ -604,13 +597,15 @@ class MimeType implements Serializable, Cloneable {
 			// Parse parameter value.
 			if (theLexer.getLexemeType() == TOKEN_LEXEME) {
 				String pv = theLexer.getLexeme();
-				thePieces.add(
-						mediaTypeIsText && parameterNameIsCharset ? toUnicodeLowerCase(pv) : pv);
+				thePieces.add(mediaTypeIsText && parameterNameIsCharset
+						? toUnicodeLowerCase(pv)
+						: pv);
 				theLexer.nextLexeme();
 			} else if (theLexer.getLexemeType() == QUOTED_STRING_LEXEME) {
 				String pv = removeBackslashes(theLexer.getLexeme());
-				thePieces.add(
-						mediaTypeIsText && parameterNameIsCharset ? toUnicodeLowerCase(pv) : pv);
+				thePieces.add(mediaTypeIsText && parameterNameIsCharset
+						? toUnicodeLowerCase(pv)
+						: pv);
 				theLexer.nextLexeme();
 			} else {
 				throw new IllegalArgumentException();

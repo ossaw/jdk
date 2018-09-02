@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -61,7 +41,8 @@ import java.io.*;
  * <pre>
  * {
  * 	&#64;code
- * 	Signature verificationEngine = Signature.getInstance(algorithm, provider);
+ * 	Signature verificationEngine = Signature.getInstance(algorithm,
+ * 			provider);
  * 	if (so.verify(publickey, verificationEngine))
  * 		try {
  * 			Object myobj = so.getObject();
@@ -140,21 +121,22 @@ public final class SignedObject implements Serializable {
 	 * engine.
 	 *
 	 * @param object
-	 *            the object to be signed.
+	 *                      the object to be signed.
 	 * @param signingKey
-	 *            the private key for signing.
+	 *                      the private key for signing.
 	 * @param signingEngine
-	 *            the signature signing engine.
+	 *                      the signature signing engine.
 	 *
 	 * @exception IOException
-	 *                if an error occurs during serialization
+	 *                                if an error occurs during serialization
 	 * @exception InvalidKeyException
-	 *                if the key is invalid.
+	 *                                if the key is invalid.
 	 * @exception SignatureException
-	 *                if signing fails.
+	 *                                if signing fails.
 	 */
-	public SignedObject(Serializable object, PrivateKey signingKey, Signature signingEngine)
-			throws IOException, InvalidKeyException, SignatureException {
+	public SignedObject(Serializable object, PrivateKey signingKey,
+			Signature signingEngine) throws IOException, InvalidKeyException,
+			SignatureException {
 		// creating a stream pipe-line, from a to b
 		ByteArrayOutputStream b = new ByteArrayOutputStream();
 		ObjectOutput a = new ObjectOutputStream(b);
@@ -177,9 +159,11 @@ public final class SignedObject implements Serializable {
 	 * @return the encapsulated object.
 	 *
 	 * @exception IOException
-	 *                if an error occurs during de-serialization
+	 *                                   if an error occurs during
+	 *                                   de-serialization
 	 * @exception ClassNotFoundException
-	 *                if an error occurs during de-serialization
+	 *                                   if an error occurs during
+	 *                                   de-serialization
 	 */
 	public Object getObject() throws IOException, ClassNotFoundException {
 		// creating a stream pipe-line, from b to a
@@ -217,19 +201,20 @@ public final class SignedObject implements Serializable {
 	 * designated verification engine.
 	 *
 	 * @param verificationKey
-	 *            the public key for verification.
+	 *                           the public key for verification.
 	 * @param verificationEngine
-	 *            the signature verification engine.
+	 *                           the signature verification engine.
 	 *
 	 * @exception SignatureException
-	 *                if signature verification failed.
+	 *                                if signature verification failed.
 	 * @exception InvalidKeyException
-	 *                if the verification key is invalid.
+	 *                                if the verification key is invalid.
 	 *
 	 * @return {@code true} if the signature is valid, {@code false} otherwise
 	 */
-	public boolean verify(PublicKey verificationKey, Signature verificationEngine)
-			throws InvalidKeyException, SignatureException {
+	public boolean verify(PublicKey verificationKey,
+			Signature verificationEngine) throws InvalidKeyException,
+			SignatureException {
 		verificationEngine.initVerify(verificationKey);
 		verificationEngine.update(this.content.clone());
 		return verificationEngine.verify(this.signature.clone());
@@ -238,13 +223,9 @@ public final class SignedObject implements Serializable {
 	/*
 	 * Signs the encapsulated object with the given signing key, using the
 	 * designated signature engine.
-	 *
 	 * @param signingKey the private key for signing.
-	 * 
 	 * @param signingEngine the signature signing engine.
-	 *
 	 * @exception InvalidKeyException if the key is invalid.
-	 * 
 	 * @exception SignatureException if signing fails.
 	 */
 	private void sign(PrivateKey signingKey, Signature signingEngine)

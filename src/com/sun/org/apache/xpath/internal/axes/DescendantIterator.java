@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -49,10 +46,11 @@ public class DescendantIterator extends LocPathIterator {
 	 * Create a DescendantIterator object.
 	 *
 	 * @param compiler
-	 *            A reference to the Compiler that contains the op map.
+	 *                 A reference to the Compiler that contains the op map.
 	 * @param opPos
-	 *            The position within the op map, which contains the location
-	 *            path expression for this itterator.
+	 *                 The position within the op map, which contains the
+	 *                 location
+	 *                 path expression for this itterator.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -109,12 +107,14 @@ public class DescendantIterator extends LocPathIterator {
 
 		int whatToShow = compiler.getWhatToShow(firstStepPos);
 
-		if ((0 == (whatToShow & (DTMFilter.SHOW_ATTRIBUTE | DTMFilter.SHOW_ELEMENT
-				| DTMFilter.SHOW_PROCESSING_INSTRUCTION))) || (whatToShow == DTMFilter.SHOW_ALL))
+		if ((0 == (whatToShow & (DTMFilter.SHOW_ATTRIBUTE
+				| DTMFilter.SHOW_ELEMENT
+				| DTMFilter.SHOW_PROCESSING_INSTRUCTION)))
+				|| (whatToShow == DTMFilter.SHOW_ALL))
 			initNodeTest(whatToShow);
 		else {
-			initNodeTest(whatToShow, compiler.getStepNS(firstStepPos),
-					compiler.getStepLocalName(firstStepPos));
+			initNodeTest(whatToShow, compiler.getStepNS(firstStepPos), compiler
+					.getStepLocalName(firstStepPos));
 		}
 		initPredicateInfo(compiler, firstStepPos);
 	}
@@ -156,8 +156,9 @@ public class DescendantIterator extends LocPathIterator {
 	 *         <code>null</code> if there are no more members in that set.
 	 *
 	 * @throws DOMException
-	 *             INVALID_STATE_ERR: Raised if this method is called after the
-	 *             <code>detach</code> method was invoked.
+	 *                      INVALID_STATE_ERR: Raised if this method is called
+	 *                      after the
+	 *                      <code>detach</code> method was invoked.
 	 */
 	public int nextNode() {
 		if (m_foundLast)
@@ -193,7 +194,8 @@ public class DescendantIterator extends LocPathIterator {
 				} else {
 					next = m_lastFetched = (DTM.NULL == m_lastFetched)
 							? m_traverser.first(m_context, m_extendedTypeID)
-							: m_traverser.next(m_context, m_lastFetched, m_extendedTypeID);
+							: m_traverser.next(m_context, m_lastFetched,
+									m_extendedTypeID);
 				}
 
 				if (DTM.NULL != next) {
@@ -225,7 +227,7 @@ public class DescendantIterator extends LocPathIterator {
 	 * Initialize the context values for this expression after it is cloned.
 	 *
 	 * @param context
-	 *            The XPath runtime context for this transformation.
+	 *                The XPath runtime context for this transformation.
 	 */
 	public void setRoot(int context, Object environment) {
 		super.setRoot(context, environment);
@@ -241,7 +243,8 @@ public class DescendantIterator extends LocPathIterator {
 			m_extendedTypeID = 0;
 		} else {
 			int type = getNodeTypeTest(what);
-			m_extendedTypeID = m_cdtm.getExpandedTypeID(namespace, localName, type);
+			m_extendedTypeID = m_cdtm.getExpandedTypeID(namespace, localName,
+					type);
 		}
 
 	}
@@ -254,10 +257,11 @@ public class DescendantIterator extends LocPathIterator {
 	 * </p>
 	 * 
 	 * @param xctxt
-	 *            The XPath runtime context.
+	 *              The XPath runtime context.
 	 * @return the first node out of the nodeset, or DTM.NULL.
 	 */
-	public int asNode(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public int asNode(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		if (getPredicateCount() > 0)
 			return super.asNode(xctxt);
 
@@ -279,7 +283,8 @@ public class DescendantIterator extends LocPathIterator {
 			return traverser.first(current);
 		} else {
 			int type = getNodeTypeTest(what);
-			int extendedType = dtm.getExpandedTypeID(namespace, localName, type);
+			int extendedType = dtm.getExpandedTypeID(namespace, localName,
+					type);
 			return traverser.first(current, extendedType);
 		}
 	}

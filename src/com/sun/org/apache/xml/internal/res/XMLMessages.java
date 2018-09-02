@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -52,7 +49,7 @@ public class XMLMessages {
 	 * Set the Locale object to use.
 	 *
 	 * @param locale
-	 *            non-null reference to Locale object.
+	 *               non-null reference to Locale object.
 	 */
 	public void setLocale(Locale locale) {
 		fLocale = locale;
@@ -72,10 +69,10 @@ public class XMLMessages {
 	 * localized to the given locale.
 	 *
 	 * @param msgKey
-	 *            The key for the message text.
+	 *               The key for the message text.
 	 * @param args
-	 *            The arguments to be used as replacement text in the message
-	 *            created.
+	 *               The arguments to be used as replacement text in the message
+	 *               created.
 	 *
 	 * @return The formatted message string.
 	 */
@@ -95,17 +92,18 @@ public class XMLMessages {
 	 * localized to the given locale.
 	 *
 	 * @param fResourceBundle
-	 *            The resource bundle to use.
+	 *                        The resource bundle to use.
 	 * @param msgKey
-	 *            The message key to use.
+	 *                        The message key to use.
 	 * @param args
-	 *            The arguments to be used as replacement text in the message
-	 *            created.
+	 *                        The arguments to be used as replacement text in
+	 *                        the message
+	 *                        created.
 	 *
 	 * @return The formatted message string.
 	 */
-	public static final String createMsg(ListResourceBundle fResourceBundle, String msgKey,
-			Object args[]) // throws Exception
+	public static final String createMsg(ListResourceBundle fResourceBundle,
+			String msgKey, Object args[]) // throws Exception
 	{
 
 		String fmsg = null;

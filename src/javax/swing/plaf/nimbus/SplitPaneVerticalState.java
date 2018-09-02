@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -35,6 +15,7 @@ class SplitPaneVerticalState extends State {
 	@Override
 	protected boolean isInState(JComponent c) {
 
-		return c instanceof JSplitPane && (((JSplitPane) c).getOrientation() == 1);
+		return c instanceof JSplitPane && (((JSplitPane) c)
+				.getOrientation() == 1);
 	}
 }

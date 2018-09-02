@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -83,9 +63,8 @@ public class JTextPane extends JEditorPane {
 		super();
 		EditorKit editorKit = createDefaultEditorKit();
 		String contentType = editorKit.getContentType();
-		if (contentType != null
-				&& getEditorKitClassNameForContentType(contentType) == defaultEditorKitMap
-						.get(contentType)) {
+		if (contentType != null && getEditorKitClassNameForContentType(
+				contentType) == defaultEditorKitMap.get(contentType)) {
 			setEditorKitForContentType(contentType, editorKit);
 		}
 		setEditorKit(editorKit);
@@ -123,9 +102,11 @@ public class JTextPane extends JEditorPane {
 	 * @param doc
 	 *            the document to display/edit
 	 * @exception IllegalArgumentException
-	 *                if <code>doc</code> can't be narrowed to a
-	 *                <code>StyledDocument</code> which is the required type of
-	 *                model for this text component
+	 *                                     if <code>doc</code> can't be narrowed
+	 *                                     to a
+	 *                                     <code>StyledDocument</code> which is
+	 *                                     the required type of
+	 *                                     model for this text component
 	 */
 	public void setDocument(Document doc) {
 		if (doc instanceof StyledDocument) {
@@ -165,7 +146,7 @@ public class JTextPane extends JEditorPane {
 	 * not editable, beep and return.
 	 *
 	 * @param content
-	 *            the content to replace the selection with
+	 *                the content to replace the selection with
 	 */
 	@Override
 	public void replaceSelection(String content) {
@@ -186,7 +167,8 @@ public class JTextPane extends JEditorPane {
 				int p1 = Math.max(caret.getDot(), caret.getMark());
 				AttributeSet attr = getInputAttributes().copyAttributes();
 				if (doc instanceof AbstractDocument) {
-					((AbstractDocument) doc).replace(p0, p1 - p0, content, attr);
+					((AbstractDocument) doc).replace(p0, p1 - p0, content,
+							attr);
 				} else {
 					if (p0 != p1) {
 						doc.remove(p0, p1 - p0);
@@ -223,7 +205,7 @@ public class JTextPane extends JEditorPane {
 	 * baseline, and 25 percent of the component to be below the baseline.
 	 *
 	 * @param c
-	 *            the component to insert
+	 *          the component to insert
 	 */
 	public void insertComponent(Component c) {
 		MutableAttributeSet inputAttributes = getInputAttributes();
@@ -240,7 +222,7 @@ public class JTextPane extends JEditorPane {
 	 * associated document as an attribute of one character of content.
 	 *
 	 * @param g
-	 *            the icon to insert
+	 *          the icon to insert
 	 * @see Icon
 	 */
 	public void insertIcon(Icon g) {
@@ -257,15 +239,19 @@ public class JTextPane extends JEditorPane {
 	 * an attribute specified in the parent.
 	 *
 	 * @param nm
-	 *            the name of the style (must be unique within the collection of
-	 *            named styles). The name may be <code>null</code> if the style
-	 *            is unnamed, but the caller is responsible for managing the
-	 *            reference returned as an unnamed style can't be fetched by
-	 *            name. An unnamed style may be useful for things like character
-	 *            attribute overrides such as found in a style run.
+	 *               the name of the style (must be unique within the collection
+	 *               of
+	 *               named styles). The name may be <code>null</code> if the
+	 *               style
+	 *               is unnamed, but the caller is responsible for managing the
+	 *               reference returned as an unnamed style can't be fetched by
+	 *               name. An unnamed style may be useful for things like
+	 *               character
+	 *               attribute overrides such as found in a style run.
 	 * @param parent
-	 *            the parent style. This may be <code>null</code> if unspecified
-	 *            attributes need not be resolved in some other style.
+	 *               the parent style. This may be <code>null</code> if
+	 *               unspecified
+	 *               attributes need not be resolved in some other style.
 	 * @return the new <code>Style</code>
 	 */
 	public Style addStyle(String nm, Style parent) {
@@ -278,7 +264,7 @@ public class JTextPane extends JEditorPane {
 	 * document.
 	 *
 	 * @param nm
-	 *            the name of the style to remove
+	 *           the name of the style to remove
 	 */
 	public void removeStyle(String nm) {
 		StyledDocument doc = getStyledDocument();
@@ -289,7 +275,7 @@ public class JTextPane extends JEditorPane {
 	 * Fetches a named non-<code>null</code> style previously added.
 	 *
 	 * @param nm
-	 *            the name of the style
+	 *           the name of the style
 	 * @return the <code>Style</code>
 	 */
 	public Style getStyle(String nm) {
@@ -305,8 +291,8 @@ public class JTextPane extends JEditorPane {
 	 * independent of the element hierarchy in the document.
 	 *
 	 * @param s
-	 *            the logical style to assign to the paragraph, or
-	 *            <code>null</code> for no style
+	 *          the logical style to assign to the paragraph, or
+	 *          <code>null</code> for no style
 	 */
 	public void setLogicalStyle(Style s) {
 		StyledDocument doc = getStyledDocument();
@@ -346,9 +332,9 @@ public class JTextPane extends JEditorPane {
 	 * defines the attributes for any new text that gets inserted.
 	 *
 	 * @param attr
-	 *            the attributes
+	 *                the attributes
 	 * @param replace
-	 *            if true, then replace the existing attributes first
+	 *                if true, then replace the existing attributes first
 	 */
 	public void setCharacterAttributes(AttributeSet attr, boolean replace) {
 		int p0 = getSelectionStart();
@@ -387,9 +373,9 @@ public class JTextPane extends JEditorPane {
 	 * current caret position.
 	 *
 	 * @param attr
-	 *            the non-<code>null</code> attributes
+	 *                the non-<code>null</code> attributes
 	 * @param replace
-	 *            if true, replace the existing attributes first
+	 *                if true, replace the existing attributes first
 	 */
 	public void setParagraphAttributes(AttributeSet attr, boolean replace) {
 		int p0 = getSelectionStart();
@@ -428,7 +414,7 @@ public class JTextPane extends JEditorPane {
 	 * Swing.
 	 *
 	 * @param s
-	 *            the output stream
+	 *          the output stream
 	 */
 	private void writeObject(ObjectOutputStream s) throws IOException {
 		s.defaultWriteObject();
@@ -460,7 +446,8 @@ public class JTextPane extends JEditorPane {
 	 * @param kit
 	 *            the desired editor behavior
 	 * @exception IllegalArgumentException
-	 *                if kit is not a <code>StyledEditorKit</code>
+	 *                                     if kit is not a
+	 *                                     <code>StyledEditorKit</code>
 	 */
 	public final void setEditorKit(EditorKit kit) {
 		if (kit instanceof StyledEditorKit) {

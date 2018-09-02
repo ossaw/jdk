@@ -75,7 +75,8 @@ public class StorageResolverException extends XMLSecurityException {
 	 * @param exArgs
 	 * @param originalException
 	 */
-	public StorageResolverException(String msgID, Object exArgs[], Exception originalException) {
+	public StorageResolverException(String msgID, Object exArgs[],
+			Exception originalException) {
 		super(msgID, exArgs, originalException);
 	}
 }

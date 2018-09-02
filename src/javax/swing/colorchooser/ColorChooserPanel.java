@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.colorchooser;
@@ -38,7 +18,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-final class ColorChooserPanel extends AbstractColorChooserPanel implements PropertyChangeListener {
+final class ColorChooserPanel extends AbstractColorChooserPanel implements
+		PropertyChangeListener {
 
 	private static final int MASK = 0xFF000000;
 	private final ColorModel model;
@@ -185,7 +166,8 @@ final class ColorChooserPanel extends AbstractColorChooserPanel implements Prope
 		if (model != null) {
 			Object object = event.getNewValue();
 			if (object instanceof Integer) {
-				int value = MASK & model.getSelectedColor().getRGB() | (Integer) object;
+				int value = MASK & model.getSelectedColor().getRGB()
+						| (Integer) object;
 				model.setSelectedColor(new Color(value, true));
 			}
 		}
@@ -196,11 +178,12 @@ final class ColorChooserPanel extends AbstractColorChooserPanel implements Prope
 	 * Allows to show context popup for all components recursively.
 	 *
 	 * @param component
-	 *            the root component of the tree
+	 *                  the root component of the tree
 	 * @param value
-	 *            whether or not the popup menu is inherited
+	 *                  whether or not the popup menu is inherited
 	 */
-	private static void setInheritsPopupMenu(JComponent component, boolean value) {
+	private static void setInheritsPopupMenu(JComponent component,
+			boolean value) {
 		component.setInheritsPopupMenu(value);
 		for (Object object : component.getComponents()) {
 			if (object instanceof JComponent) {

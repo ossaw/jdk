@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.pept.transport;
@@ -139,7 +119,7 @@ public interface Connection {
 	 * reclaiming idle <code>Connection</code>s.
 	 *
 	 * @param time
-	 *            - the "time" the <code>Connection</code> was last used.
+	 *             - the "time" the <code>Connection</code> was last used.
 	 */
 	public void setTimeStamp(long time);
 
@@ -168,7 +148,6 @@ public interface Connection {
 	 * Send the data encoded in {@link
 	 * com.sun.corba.se.pept.encoding.OutputObject OutputObject} on the
 	 * <code>Connection</code>.
-	 *
 	 * @param outputObject
 	 */
 	public void sendWithoutLock(OutputObject outputObject);

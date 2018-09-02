@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.wbmp;
@@ -104,7 +84,8 @@ public class WBMPImageWriter extends ImageWriter {
 		super.setOutput(output); // validates output
 		if (output != null) {
 			if (!(output instanceof ImageOutputStream))
-				throw new IllegalArgumentException(I18N.getString("WBMPImageWriter"));
+				throw new IllegalArgumentException(I18N.getString(
+						"WBMPImageWriter"));
 			this.stream = (ImageOutputStream) output;
 		} else
 			this.stream = null;
@@ -121,12 +102,13 @@ public class WBMPImageWriter extends ImageWriter {
 		return meta;
 	}
 
-	public IIOMetadata convertStreamMetadata(IIOMetadata inData, ImageWriteParam param) {
+	public IIOMetadata convertStreamMetadata(IIOMetadata inData,
+			ImageWriteParam param) {
 		return null;
 	}
 
-	public IIOMetadata convertImageMetadata(IIOMetadata metadata, ImageTypeSpecifier type,
-			ImageWriteParam param) {
+	public IIOMetadata convertImageMetadata(IIOMetadata metadata,
+			ImageTypeSpecifier type, ImageWriteParam param) {
 		return null;
 	}
 
@@ -134,15 +116,16 @@ public class WBMPImageWriter extends ImageWriter {
 		return true;
 	}
 
-	public void write(IIOMetadata streamMetadata, IIOImage image, ImageWriteParam param)
-			throws IOException {
+	public void write(IIOMetadata streamMetadata, IIOImage image,
+			ImageWriteParam param) throws IOException {
 
 		if (stream == null) {
 			throw new IllegalStateException(I18N.getString("WBMPImageWriter3"));
 		}
 
 		if (image == null) {
-			throw new IllegalArgumentException(I18N.getString("WBMPImageWriter4"));
+			throw new IllegalArgumentException(I18N.getString(
+					"WBMPImageWriter4"));
 		}
 
 		clearAbortRequest();
@@ -197,20 +180,24 @@ public class WBMPImageWriter extends ImageWriter {
 		// If the data are not formatted nominally then reformat.
 		if (sampleModel.getDataType() != DataBuffer.TYPE_BYTE
 				|| !(sampleModel instanceof MultiPixelPackedSampleModel)
-				|| ((MultiPixelPackedSampleModel) sampleModel).getDataBitOffset() != 0) {
-			destSM = new MultiPixelPackedSampleModel(DataBuffer.TYPE_BYTE, w, h, 1, w + 7 >> 3, 0);
+				|| ((MultiPixelPackedSampleModel) sampleModel)
+						.getDataBitOffset() != 0) {
+			destSM = new MultiPixelPackedSampleModel(DataBuffer.TYPE_BYTE, w, h,
+					1, w + 7 >> 3, 0);
 		}
 
 		if (!destinationRegion.equals(sourceRegion)) {
 			if (scaleX == 1 && scaleY == 1)
-				inputRaster = inputRaster.createChild(inputRaster.getMinX(), inputRaster.getMinY(),
-						w, h, minX, minY, null);
+				inputRaster = inputRaster.createChild(inputRaster.getMinX(),
+						inputRaster.getMinY(), w, h, minX, minY, null);
 			else {
-				WritableRaster ras = Raster.createWritableRaster(destSM, new Point(minX, minY));
+				WritableRaster ras = Raster.createWritableRaster(destSM,
+						new Point(minX, minY));
 
 				byte[] data = ((DataBufferByte) ras.getDataBuffer()).getData();
 
-				for (int j = minY, y = sourceRegion.y, k = 0; j < minY + h; j++, y += scaleY) {
+				for (int j = minY, y = sourceRegion.y, k = 0; j < minY
+						+ h; j++, y += scaleY) {
 
 					for (int i = 0, x = sourceRegion.x; i < w; i++, x += scaleX) {
 						int v = inputRaster.getSample(x, y, 0);
@@ -238,7 +225,8 @@ public class WBMPImageWriter extends ImageWriter {
 		}
 
 		// Get the line stride, bytes per row, and data array.
-		int lineStride = ((MultiPixelPackedSampleModel) destSM).getScanlineStride();
+		int lineStride = ((MultiPixelPackedSampleModel) destSM)
+				.getScanlineStride();
 		int bytesPerRow = (w + 7) / 8;
 		byte[] bdata = ((DataBufferByte) inputRaster.getDataBuffer()).getData();
 
@@ -296,8 +284,9 @@ public class WBMPImageWriter extends ImageWriter {
 
 	private void checkSampleModel(SampleModel sm) {
 		int type = sm.getDataType();
-		if (type < DataBuffer.TYPE_BYTE || type > DataBuffer.TYPE_INT || sm.getNumBands() != 1
-				|| sm.getSampleSize(0) != 1)
-			throw new IllegalArgumentException(I18N.getString("WBMPImageWriter2"));
+		if (type < DataBuffer.TYPE_BYTE || type > DataBuffer.TYPE_INT || sm
+				.getNumBands() != 1 || sm.getSampleSize(0) != 1)
+			throw new IllegalArgumentException(I18N.getString(
+					"WBMPImageWriter2"));
 	}
 }

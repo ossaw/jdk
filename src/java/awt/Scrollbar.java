@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -64,7 +44,8 @@ import javax.accessibility.*;
  * range:
  * <p>
  * <img src="doc-files/Scrollbar-2.gif" alt=
- * "Image shows horizontal slider with starting range of 0 and ending range of 300. The slider thumb is labeled 60."
+ * "Image shows horizontal slider with starting range of 0 and ending range of
+ * 300. The slider thumb is labeled 60."
  * style="float:center; margin: 7px 10px;">
  * <p>
  * The value range represented by the bubble in this example is the
@@ -341,7 +322,8 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * </table>
 	 *
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
 	public Scrollbar() throws HeadlessException {
@@ -356,12 +338,14 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * indicating a horizontal or vertical scroll bar, respectively.
 	 *
 	 * @param orientation
-	 *            indicates the orientation of the scroll bar
+	 *                    indicates the orientation of the scroll bar
 	 * @exception IllegalArgumentException
-	 *                when an illegal value for the <code>orientation</code>
-	 *                argument is supplied
+	 *                                     when an illegal value for the
+	 *                                     <code>orientation</code>
+	 *                                     argument is supplied
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                                     if GraphicsEnvironment.isHeadless()
+	 *                                     returns true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
 	public Scrollbar(int orientation) throws HeadlessException {
@@ -380,34 +364,38 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * constraints described in {@link #setValues(int, int, int, int)}.
 	 *
 	 * @param orientation
-	 *            indicates the orientation of the scroll bar.
+	 *                    indicates the orientation of the scroll bar.
 	 * @param value
-	 *            the initial value of the scroll bar
+	 *                    the initial value of the scroll bar
 	 * @param visible
-	 *            the visible amount of the scroll bar, typically represented by
-	 *            the size of the bubble
+	 *                    the visible amount of the scroll bar, typically
+	 *                    represented by
+	 *                    the size of the bubble
 	 * @param minimum
-	 *            the minimum value of the scroll bar
+	 *                    the minimum value of the scroll bar
 	 * @param maximum
-	 *            the maximum value of the scroll bar
+	 *                    the maximum value of the scroll bar
 	 * @exception IllegalArgumentException
-	 *                when an illegal value for the <code>orientation</code>
-	 *                argument is supplied
+	 *                                     when an illegal value for the
+	 *                                     <code>orientation</code>
+	 *                                     argument is supplied
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                                     if GraphicsEnvironment.isHeadless()
+	 *                                     returns true.
 	 * @see #setValues
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
-	public Scrollbar(int orientation, int value, int visible, int minimum, int maximum)
-			throws HeadlessException {
+	public Scrollbar(int orientation, int value, int visible, int minimum,
+			int maximum) throws HeadlessException {
 		GraphicsEnvironment.checkHeadless();
 		switch (orientation) {
-		case HORIZONTAL:
-		case VERTICAL:
-			this.orientation = orientation;
-			break;
-		default:
-			throw new IllegalArgumentException("illegal scrollbar orientation");
+			case HORIZONTAL:
+			case VERTICAL:
+				this.orientation = orientation;
+				break;
+			default:
+				throw new IllegalArgumentException(
+						"illegal scrollbar orientation");
 		}
 		setValues(value, visible, minimum, maximum);
 	}
@@ -451,13 +439,14 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * Sets the orientation for this scroll bar.
 	 *
 	 * @param orientation
-	 *            the orientation of this scroll bar, either
-	 *            <code>Scrollbar.HORIZONTAL</code> or
-	 *            <code>Scrollbar.VERTICAL</code>
+	 *                    the orientation of this scroll bar, either
+	 *                    <code>Scrollbar.HORIZONTAL</code> or
+	 *                    <code>Scrollbar.VERTICAL</code>
 	 * @see java.awt.Scrollbar#getOrientation
 	 * @exception IllegalArgumentException
-	 *                if the value supplied for <code>orientation</code> is not
-	 *                a legal value
+	 *                                     if the value supplied for
+	 *                                     <code>orientation</code> is not
+	 *                                     a legal value
 	 * @since JDK1.1
 	 */
 	public void setOrientation(int orientation) {
@@ -466,12 +455,13 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 				return;
 			}
 			switch (orientation) {
-			case HORIZONTAL:
-			case VERTICAL:
-				this.orientation = orientation;
-				break;
-			default:
-				throw new IllegalArgumentException("illegal scrollbar orientation");
+				case HORIZONTAL:
+				case VERTICAL:
+					this.orientation = orientation;
+					break;
+				default:
+					throw new IllegalArgumentException(
+							"illegal scrollbar orientation");
 			}
 			/* Create a new peer with the specified orientation. */
 			if (peer != null) {
@@ -481,7 +471,8 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 			}
 		}
 		if (accessibleContext != null) {
-			accessibleContext.firePropertyChange(AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
+			accessibleContext.firePropertyChange(
+					AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
 					((orientation == VERTICAL) ? AccessibleState.HORIZONTAL
 							: AccessibleState.VERTICAL),
 					((orientation == VERTICAL) ? AccessibleState.VERTICAL
@@ -516,7 +507,7 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * Calling this method does not fire an <code>AdjustmentEvent</code>.
 	 *
 	 * @param newValue
-	 *            the new value of the scroll bar
+	 *                 the new value of the scroll bar
 	 * @see java.awt.Scrollbar#setValues
 	 * @see java.awt.Scrollbar#getValue
 	 * @see java.awt.Scrollbar#getMinimum
@@ -557,7 +548,7 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * <code>Integer.MAX_VALUE - 1</code>.
 	 *
 	 * @param newMinimum
-	 *            the new minimum value for this scroll bar
+	 *                   the new minimum value for this scroll bar
 	 * @see java.awt.Scrollbar#setValues
 	 * @see java.awt.Scrollbar#setMaximum
 	 * @since JDK1.1
@@ -600,7 +591,7 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * <code>Integer.MIN_VALUE + 1</code>.
 	 *
 	 * @param newMaximum
-	 *            the new maximum value for this scroll bar
+	 *                   the new maximum value for this scroll bar
 	 * @see java.awt.Scrollbar#setValues
 	 * @see java.awt.Scrollbar#setMinimum
 	 * @since JDK1.1
@@ -681,7 +672,7 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * properties of a scroll bar, so that they are mutually consistent.
 	 *
 	 * @param newAmount
-	 *            the new visible amount
+	 *                  the new visible amount
 	 * @see java.awt.Scrollbar#getVisibleAmount
 	 * @see java.awt.Scrollbar#setValues
 	 * @since JDK1.1
@@ -706,8 +697,8 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * controls.
 	 *
 	 * @param v
-	 *            the amount by which to increment or decrement the scroll bar's
-	 *            value
+	 *          the amount by which to increment or decrement the scroll bar's
+	 *          value
 	 * @see java.awt.Scrollbar#getUnitIncrement
 	 * @since JDK1.1
 	 */
@@ -773,8 +764,8 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * of 1 being set.
 	 *
 	 * @param v
-	 *            the amount by which to increment or decrement the scroll bar's
-	 *            value
+	 *          the amount by which to increment or decrement the scroll bar's
+	 *          value
 	 * @see java.awt.Scrollbar#getBlockIncrement
 	 * @since JDK1.1
 	 */
@@ -846,13 +837,13 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * Calling this method does not fire an <code>AdjustmentEvent</code>.
 	 *
 	 * @param value
-	 *            is the position in the current window
+	 *                is the position in the current window
 	 * @param visible
-	 *            is the visible amount of the scroll bar
+	 *                is the visible amount of the scroll bar
 	 * @param minimum
-	 *            is the minimum value of the scroll bar
+	 *                is the minimum value of the scroll bar
 	 * @param maximum
-	 *            is the maximum value of the scroll bar
+	 *                is the maximum value of the scroll bar
 	 * @see #setMinimum
 	 * @see #setMaximum
 	 * @see #setVisibleAmount
@@ -899,8 +890,9 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 		}
 
 		if ((oldValue != value) && (accessibleContext != null)) {
-			accessibleContext.firePropertyChange(AccessibleContext.ACCESSIBLE_VALUE_PROPERTY,
-					Integer.valueOf(oldValue), Integer.valueOf(value));
+			accessibleContext.firePropertyChange(
+					AccessibleContext.ACCESSIBLE_VALUE_PROPERTY, Integer
+							.valueOf(oldValue), Integer.valueOf(value));
 		}
 	}
 
@@ -920,7 +912,7 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * Sets the <code>valueIsAdjusting</code> property.
 	 *
 	 * @param b
-	 *            new adjustment-in-progress status
+	 *          new adjustment-in-progress status
 	 * @see #getValueIsAdjusting
 	 * @since 1.4
 	 */
@@ -933,9 +925,10 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 		}
 
 		if ((oldValue != b) && (accessibleContext != null)) {
-			accessibleContext.firePropertyChange(AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
-					((oldValue) ? AccessibleState.BUSY : null),
-					((b) ? AccessibleState.BUSY : null));
+			accessibleContext.firePropertyChange(
+					AccessibleContext.ACCESSIBLE_STATE_PROPERTY, ((oldValue)
+							? AccessibleState.BUSY
+							: null), ((b) ? AccessibleState.BUSY : null));
 		}
 	}
 
@@ -948,7 +941,7 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the adjustment listener
+	 *          the adjustment listener
 	 * @see #removeAdjustmentListener
 	 * @see #getAdjustmentListeners
 	 * @see java.awt.event.AdjustmentEvent
@@ -972,7 +965,7 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the adjustment listener
+	 *          the adjustment listener
 	 * @see #addAdjustmentListener
 	 * @see #getAdjustmentListeners
 	 * @see java.awt.event.AdjustmentEvent
@@ -1014,22 +1007,25 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * listeners with the following code:
 	 *
 	 * <pre>
-	 * MouseListener[] mls = (MouseListener[]) (c.getListeners(MouseListener.class));
+	 * MouseListener[] mls = (MouseListener[]) (c.getListeners(
+	 * 		MouseListener.class));
 	 * </pre>
 	 *
 	 * If no such listeners exist, this method returns an empty array.
 	 *
 	 * @param listenerType
-	 *            the type of listeners requested; this parameter should specify
-	 *            an interface that descends from
-	 *            <code>java.util.EventListener</code>
+	 *                     the type of listeners requested; this parameter
+	 *                     should specify
+	 *                     an interface that descends from
+	 *                     <code>java.util.EventListener</code>
 	 * @return an array of all objects registered as <code><em>Foo</em>
 	 *         Listener</code>s on this component, or an empty array if no such
 	 *         listeners have been added
 	 * @exception ClassCastException
-	 *                if <code>listenerType</code> doesn't specify a class or
-	 *                interface that implements
-	 *                <code>java.util.EventListener</code>
+	 *                               if <code>listenerType</code> doesn't
+	 *                               specify a class or
+	 *                               interface that implements
+	 *                               <code>java.util.EventListener</code>
 	 *
 	 * @since 1.3
 	 */
@@ -1046,7 +1042,8 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	// REMIND: remove when filtering is done at lower level
 	boolean eventEnabled(AWTEvent e) {
 		if (e.id == AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED) {
-			if ((eventMask & AWTEvent.ADJUSTMENT_EVENT_MASK) != 0 || adjustmentListener != null) {
+			if ((eventMask & AWTEvent.ADJUSTMENT_EVENT_MASK) != 0
+					|| adjustmentListener != null) {
 				return true;
 			}
 			return false;
@@ -1064,7 +1061,7 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the event
+	 *          the event
 	 * @see java.awt.event.AdjustmentEvent
 	 * @see java.awt.Scrollbar#processAdjustmentEvent
 	 * @since JDK1.1
@@ -1094,7 +1091,7 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the adjustment event
+	 *          the adjustment event
 	 * @see java.awt.event.AdjustmentEvent
 	 * @see java.awt.event.AdjustmentListener
 	 * @see java.awt.Scrollbar#addAdjustmentListener
@@ -1118,8 +1115,9 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * @return the parameter string of this scroll bar
 	 */
 	protected String paramString() {
-		return super.paramString() + ",val=" + value + ",vis=" + visibleAmount + ",min=" + minimum
-				+ ",max=" + maximum + ((orientation == VERTICAL) ? ",vert" : ",horz")
+		return super.paramString() + ",val=" + value + ",vis=" + visibleAmount
+				+ ",min=" + minimum + ",max=" + maximum
+				+ ((orientation == VERTICAL) ? ",vert" : ",horz")
 				+ ",isAdjusting=" + isAdjusting;
 	}
 
@@ -1141,7 +1139,7 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * serialize them.
 	 *
 	 * @param s
-	 *            the <code>ObjectOutputStream</code> to write
+	 *          the <code>ObjectOutputStream</code> to write
 	 * @serialData <code>null</code> terminated sequence of 0 or more pairs; the
 	 *             pair consists of a <code>String</code> and an
 	 *             <code>Object</code>; the <code>String</code> indicates the
@@ -1166,15 +1164,17 @@ public class Scrollbar extends Component implements Adjustable, Accessible {
 	 * the <code>Scrollbar</code>. Unrecognized keys or values will be ignored.
 	 *
 	 * @param s
-	 *            the <code>ObjectInputStream</code> to read
+	 *          the <code>ObjectInputStream</code> to read
 	 * @exception HeadlessException
-	 *                if <code>GraphicsEnvironment.isHeadless</code> returns
-	 *                <code>true</code>
+	 *                              if
+	 *                              <code>GraphicsEnvironment.isHeadless</code>
+	 *                              returns
+	 *                              <code>true</code>
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @see #writeObject(ObjectOutputStream)
 	 */
-	private void readObject(ObjectInputStream s)
-			throws ClassNotFoundException, IOException, HeadlessException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException, HeadlessException {
 		GraphicsEnvironment.checkHeadless();
 		s.defaultReadObject();
 

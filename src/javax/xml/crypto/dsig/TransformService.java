@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: TransformService.java,v 1.6.4.1 2005/09/15 12:42:11 mullan Exp $
@@ -67,17 +47,20 @@ import sun.security.jca.GetInstance.Instance;
  * subclass as:
  * 
  * <pre>
- * put("TransformService." + Transform.XPATH2, "org.example.XPath2TransformService");
+ * put("TransformService." + Transform.XPATH2,
+ * 		"org.example.XPath2TransformService");
  * put("TransformService." + Transform.XPATH2 + " MechanismType", "DOM");
  * </pre>
  * 
  * <code>TransformService</code> implementations that support the DOM mechanism
  * type must abide by the DOM interoperability requirements defined in the
  * <a href=
- * "../../../../../technotes/guides/security/xmldsig/overview.html#DOM Mechanism Requirements"
+ * "../../../../../technotes/guides/security/xmldsig/overview.html#DOM Mechanism
+ * Requirements"
  * > DOM Mechanism Requirements</a> section of the API overview. See the
  * <a href=
- * "../../../../../technotes/guides/security/xmldsig/overview.html#Service Provider"
+ * "../../../../../technotes/guides/security/xmldsig/overview.html#Service
+ * Provider"
  * > Service Providers</a> section of the API overview for a list of standard
  * mechanism types.
  * <p>
@@ -123,8 +106,7 @@ public abstract class TransformService implements Transform {
 	/**
 	 * Default constructor, for invocation by subclasses.
 	 */
-	protected TransformService() {
-	}
+	protected TransformService() {}
 
 	/**
 	 * Returns a <code>TransformService</code> that supports the specified
@@ -145,21 +127,24 @@ public abstract class TransformService implements Transform {
 	 * {@link Security#getProviders() Security.getProviders()} method.
 	 *
 	 * @param algorithm
-	 *            the URI of the algorithm
+	 *                      the URI of the algorithm
 	 * @param mechanismType
-	 *            the type of the XML processing mechanism and representation
+	 *                      the type of the XML processing mechanism and
+	 *                      representation
 	 * @return a new <code>TransformService</code>
 	 * @throws NullPointerException
-	 *             if <code>algorithm</code> or <code>mechanismType</code> is
-	 *             <code>null</code>
+	 *                                  if <code>algorithm</code> or
+	 *                                  <code>mechanismType</code> is
+	 *                                  <code>null</code>
 	 * @throws NoSuchAlgorithmException
-	 *             if no <code>Provider</code> supports a
-	 *             <code>TransformService</code> implementation for the
-	 *             specified algorithm and mechanism type
+	 *                                  if no <code>Provider</code> supports a
+	 *                                  <code>TransformService</code>
+	 *                                  implementation for the
+	 *                                  specified algorithm and mechanism type
 	 * @see Provider
 	 */
-	public static TransformService getInstance(String algorithm, String mechanismType)
-			throws NoSuchAlgorithmException {
+	public static TransformService getInstance(String algorithm,
+			String mechanismType) throws NoSuchAlgorithmException {
 		if (mechanismType == null || algorithm == null) {
 			throw new NullPointerException();
 		}
@@ -167,11 +152,13 @@ public abstract class TransformService implements Transform {
 		if (mechanismType.equals("DOM")) {
 			dom = true;
 		}
-		List<Service> services = GetInstance.getServices("TransformService", algorithm);
+		List<Service> services = GetInstance.getServices("TransformService",
+				algorithm);
 		for (Iterator<Service> t = services.iterator(); t.hasNext();) {
 			Service s = t.next();
 			String value = s.getAttribute("MechanismType");
-			if ((value == null && dom) || (value != null && value.equals(mechanismType))) {
+			if ((value == null && dom) || (value != null && value.equals(
+					mechanismType))) {
 				Instance instance = GetInstance.getInstance(s, null);
 				TransformService ts = (TransformService) instance.impl;
 				ts.algorithm = algorithm;
@@ -180,8 +167,8 @@ public abstract class TransformService implements Transform {
 				return ts;
 			}
 		}
-		throw new NoSuchAlgorithmException(
-				algorithm + " algorithm and " + mechanismType + " mechanism not available");
+		throw new NoSuchAlgorithmException(algorithm + " algorithm and "
+				+ mechanismType + " mechanism not available");
 	}
 
 	/**
@@ -192,23 +179,30 @@ public abstract class TransformService implements Transform {
 	 * provider list.
 	 *
 	 * @param algorithm
-	 *            the URI of the algorithm
+	 *                      the URI of the algorithm
 	 * @param mechanismType
-	 *            the type of the XML processing mechanism and representation
+	 *                      the type of the XML processing mechanism and
+	 *                      representation
 	 * @param provider
-	 *            the <code>Provider</code> object
+	 *                      the <code>Provider</code> object
 	 * @return a new <code>TransformService</code>
 	 * @throws NullPointerException
-	 *             if <code>provider</code>, <code>algorithm</code>, or
-	 *             <code>mechanismType</code> is <code>null</code>
+	 *                                  if <code>provider</code>,
+	 *                                  <code>algorithm</code>, or
+	 *                                  <code>mechanismType</code> is
+	 *                                  <code>null</code>
 	 * @throws NoSuchAlgorithmException
-	 *             if a <code>TransformService</code> implementation for the
-	 *             specified algorithm and mechanism type is not available from
-	 *             the specified <code>Provider</code> object
+	 *                                  if a <code>TransformService</code>
+	 *                                  implementation for the
+	 *                                  specified algorithm and mechanism type
+	 *                                  is not available from
+	 *                                  the specified <code>Provider</code>
+	 *                                  object
 	 * @see Provider
 	 */
-	public static TransformService getInstance(String algorithm, String mechanismType,
-			Provider provider) throws NoSuchAlgorithmException {
+	public static TransformService getInstance(String algorithm,
+			String mechanismType, Provider provider)
+			throws NoSuchAlgorithmException {
 		if (mechanismType == null || algorithm == null || provider == null) {
 			throw new NullPointerException();
 		}
@@ -217,9 +211,11 @@ public abstract class TransformService implements Transform {
 		if (mechanismType.equals("DOM")) {
 			dom = true;
 		}
-		Service s = GetInstance.getService("TransformService", algorithm, provider);
+		Service s = GetInstance.getService("TransformService", algorithm,
+				provider);
 		String value = s.getAttribute("MechanismType");
-		if ((value == null && dom) || (value != null && value.equals(mechanismType))) {
+		if ((value == null && dom) || (value != null && value.equals(
+				mechanismType))) {
 			Instance instance = GetInstance.getInstance(s, null);
 			TransformService ts = (TransformService) instance.impl;
 			ts.algorithm = algorithm;
@@ -227,8 +223,8 @@ public abstract class TransformService implements Transform {
 			ts.provider = instance.provider;
 			return ts;
 		}
-		throw new NoSuchAlgorithmException(
-				algorithm + " algorithm and " + mechanismType + " mechanism not available");
+		throw new NoSuchAlgorithmException(algorithm + " algorithm and "
+				+ mechanismType + " mechanism not available");
 	}
 
 	/**
@@ -242,26 +238,33 @@ public abstract class TransformService implements Transform {
 	 * {@link Security#getProviders() Security.getProviders()} method.
 	 *
 	 * @param algorithm
-	 *            the URI of the algorithm
+	 *                      the URI of the algorithm
 	 * @param mechanismType
-	 *            the type of the XML processing mechanism and representation
+	 *                      the type of the XML processing mechanism and
+	 *                      representation
 	 * @param provider
-	 *            the string name of the provider
+	 *                      the string name of the provider
 	 * @return a new <code>TransformService</code>
 	 * @throws NoSuchProviderException
-	 *             if the specified provider is not registered in the security
-	 *             provider list
+	 *                                  if the specified provider is not
+	 *                                  registered in the security
+	 *                                  provider list
 	 * @throws NullPointerException
-	 *             if <code>provider</code>, <code>mechanismType</code>, or
-	 *             <code>algorithm</code> is <code>null</code>
+	 *                                  if <code>provider</code>,
+	 *                                  <code>mechanismType</code>, or
+	 *                                  <code>algorithm</code> is
+	 *                                  <code>null</code>
 	 * @throws NoSuchAlgorithmException
-	 *             if a <code>TransformService</code> implementation for the
-	 *             specified algorithm and mechanism type is not available from
-	 *             the specified provider
+	 *                                  if a <code>TransformService</code>
+	 *                                  implementation for the
+	 *                                  specified algorithm and mechanism type
+	 *                                  is not available from
+	 *                                  the specified provider
 	 * @see Provider
 	 */
-	public static TransformService getInstance(String algorithm, String mechanismType,
-			String provider) throws NoSuchAlgorithmException, NoSuchProviderException {
+	public static TransformService getInstance(String algorithm,
+			String mechanismType, String provider)
+			throws NoSuchAlgorithmException, NoSuchProviderException {
 		if (mechanismType == null || algorithm == null || provider == null) {
 			throw new NullPointerException();
 		} else if (provider.length() == 0) {
@@ -271,9 +274,11 @@ public abstract class TransformService implements Transform {
 		if (mechanismType.equals("DOM")) {
 			dom = true;
 		}
-		Service s = GetInstance.getService("TransformService", algorithm, provider);
+		Service s = GetInstance.getService("TransformService", algorithm,
+				provider);
 		String value = s.getAttribute("MechanismType");
-		if ((value == null && dom) || (value != null && value.equals(mechanismType))) {
+		if ((value == null && dom) || (value != null && value.equals(
+				mechanismType))) {
 			Instance instance = GetInstance.getInstance(s, null);
 			TransformService ts = (TransformService) instance.impl;
 			ts.algorithm = algorithm;
@@ -281,11 +286,12 @@ public abstract class TransformService implements Transform {
 			ts.provider = instance.provider;
 			return ts;
 		}
-		throw new NoSuchAlgorithmException(
-				algorithm + " algorithm and " + mechanismType + " mechanism not available");
+		throw new NoSuchAlgorithmException(algorithm + " algorithm and "
+				+ mechanismType + " mechanism not available");
 	}
 
-	private static class MechanismMapEntry implements Map.Entry<String, String> {
+	private static class MechanismMapEntry implements
+			Map.Entry<String, String> {
 		private final String mechanism;
 		private final String algorithm;
 		private final String key;
@@ -301,8 +307,9 @@ public abstract class TransformService implements Transform {
 				return false;
 			}
 			Map.Entry<?, ?> e = (Map.Entry<?, ?>) o;
-			return (getKey() == null ? e.getKey() == null : getKey().equals(e.getKey()))
-					&& (getValue() == null ? e.getValue() == null
+			return (getKey() == null ? e.getKey() == null
+					: getKey().equals(e.getKey())) && (getValue() == null ? e
+							.getValue() == null
 							: getValue().equals(e.getValue()));
 		}
 
@@ -363,10 +370,11 @@ public abstract class TransformService implements Transform {
 	 * initialize the <code>TransformService</code>.
 	 *
 	 * @param params
-	 *            the algorithm parameters (may be <code>null</code> if not
-	 *            required or optional)
+	 *               the algorithm parameters (may be <code>null</code> if not
+	 *               required or optional)
 	 * @throws InvalidAlgorithmParameterException
-	 *             if the specified parameters are invalid for this algorithm
+	 *                                            if the specified parameters
+	 *                                            are invalid for this algorithm
 	 */
 	public abstract void init(TransformParameterSpec params)
 			throws InvalidAlgorithmParameterException;
@@ -376,38 +384,47 @@ public abstract class TransformService implements Transform {
 	 * be marshalled, this method returns without throwing an exception.
 	 *
 	 * @param parent
-	 *            a mechanism-specific structure containing the parent node that
-	 *            the marshalled parameters should be appended to
+	 *                a mechanism-specific structure containing the parent node
+	 *                that
+	 *                the marshalled parameters should be appended to
 	 * @param context
-	 *            the <code>XMLCryptoContext</code> containing additional
-	 *            context (may be <code>null</code> if not applicable)
+	 *                the <code>XMLCryptoContext</code> containing additional
+	 *                context (may be <code>null</code> if not applicable)
 	 * @throws ClassCastException
-	 *             if the type of <code>parent</code> or <code>context</code> is
-	 *             not compatible with this <code>TransformService</code>
+	 *                              if the type of <code>parent</code> or
+	 *                              <code>context</code> is
+	 *                              not compatible with this
+	 *                              <code>TransformService</code>
 	 * @throws NullPointerException
-	 *             if <code>parent</code> is <code>null</code>
+	 *                              if <code>parent</code> is <code>null</code>
 	 * @throws MarshalException
-	 *             if the parameters cannot be marshalled
+	 *                              if the parameters cannot be marshalled
 	 */
-	public abstract void marshalParams(XMLStructure parent, XMLCryptoContext context)
-			throws MarshalException;
+	public abstract void marshalParams(XMLStructure parent,
+			XMLCryptoContext context) throws MarshalException;
 
 	/**
 	 * Initializes this <code>TransformService</code> with the specified
 	 * parameters and document context.
 	 *
 	 * @param parent
-	 *            a mechanism-specific structure containing the parent structure
+	 *                a mechanism-specific structure containing the parent
+	 *                structure
 	 * @param context
-	 *            the <code>XMLCryptoContext</code> containing additional
-	 *            context (may be <code>null</code> if not applicable)
+	 *                the <code>XMLCryptoContext</code> containing additional
+	 *                context (may be <code>null</code> if not applicable)
 	 * @throws ClassCastException
-	 *             if the type of <code>parent</code> or <code>context</code> is
-	 *             not compatible with this <code>TransformService</code>
+	 *                                            if the type of
+	 *                                            <code>parent</code> or
+	 *                                            <code>context</code> is
+	 *                                            not compatible with this
+	 *                                            <code>TransformService</code>
 	 * @throws NullPointerException
-	 *             if <code>parent</code> is <code>null</code>
+	 *                                            if <code>parent</code> is
+	 *                                            <code>null</code>
 	 * @throws InvalidAlgorithmParameterException
-	 *             if the specified parameters are invalid for this algorithm
+	 *                                            if the specified parameters
+	 *                                            are invalid for this algorithm
 	 */
 	public abstract void init(XMLStructure parent, XMLCryptoContext context)
 			throws InvalidAlgorithmParameterException;

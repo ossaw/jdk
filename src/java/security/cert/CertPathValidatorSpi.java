@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -57,8 +37,7 @@ public abstract class CertPathValidatorSpi {
 	/**
 	 * The default constructor.
 	 */
-	public CertPathValidatorSpi() {
-	}
+	public CertPathValidatorSpi() {}
 
 	/**
 	 * Validates the specified certification path using the specified algorithm
@@ -71,20 +50,24 @@ public abstract class CertPathValidatorSpi {
 	 * {@code CertPath} objects of type X.509.
 	 *
 	 * @param certPath
-	 *            the {@code CertPath} to be validated
+	 *                 the {@code CertPath} to be validated
 	 * @param params
-	 *            the algorithm parameters
+	 *                 the algorithm parameters
 	 * @return the result of the validation algorithm
 	 * @exception CertPathValidatorException
-	 *                if the {@code CertPath} does not validate
+	 *                                               if the {@code CertPath}
+	 *                                               does not validate
 	 * @exception InvalidAlgorithmParameterException
-	 *                if the specified parameters or the type of the specified
-	 *                {@code CertPath} are inappropriate for this
-	 *                {@code CertPathValidator}
+	 *                                               if the specified parameters
+	 *                                               or the type of the
+	 *                                               specified
+	 *                                               {@code CertPath} are
+	 *                                               inappropriate for this
+	 *                                               {@code CertPathValidator}
 	 */
 	public abstract CertPathValidatorResult engineValidate(CertPath certPath,
-			CertPathParameters params)
-			throws CertPathValidatorException, InvalidAlgorithmParameterException;
+			CertPathParameters params) throws CertPathValidatorException,
+			InvalidAlgorithmParameterException;
 
 	/**
 	 * Returns a {@code CertPathChecker} that this implementation uses to check
@@ -105,7 +88,7 @@ public abstract class CertPathValidatorSpi {
 	 * @return a {@code CertPathChecker} that this implementation uses to check
 	 *         the revocation status of certificates
 	 * @throws UnsupportedOperationException
-	 *             if this method is not supported
+	 *                                       if this method is not supported
 	 * @since 1.8
 	 */
 	public CertPathChecker engineGetRevocationChecker() {

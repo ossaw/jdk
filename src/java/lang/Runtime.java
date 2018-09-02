@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -59,8 +39,7 @@ public class Runtime {
 	}
 
 	/** Don't let anyone else instantiate this class */
-	private Runtime() {
-	}
+	private Runtime() {}
 
 	/**
 	 * Terminates the currently running Java virtual machine by initiating its
@@ -91,13 +70,14 @@ public class Runtime {
 	 * <p>
 	 *
 	 * @param status
-	 *            Termination status. By convention, a nonzero status code
-	 *            indicates abnormal termination.
+	 *               Termination status. By convention, a nonzero status code
+	 *               indicates abnormal termination.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager is present and its <tt>{@link
+	 *                           If a security manager is present and its
+	 *                           <tt>{@link
 	 *         SecurityManager#checkExit checkExit}</tt> method does not permit
-	 *             exiting with the specified status
+	 *                           exiting with the specified status
 	 *
 	 * @see java.lang.SecurityException
 	 * @see java.lang.SecurityManager#checkExit(int)
@@ -195,19 +175,23 @@ public class Runtime {
 	 * <p>
 	 *
 	 * @param hook
-	 *            An initialized but unstarted <tt>{@link Thread}</tt> object
+	 *             An initialized but unstarted <tt>{@link Thread}</tt> object
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the specified hook has already been registered, or if it
-	 *             can be determined that the hook is already running or has
-	 *             already been run
+	 *                                  If the specified hook has already been
+	 *                                  registered, or if it
+	 *                                  can be determined that the hook is
+	 *                                  already running or has
+	 *                                  already been run
 	 *
 	 * @throws IllegalStateException
-	 *             If the virtual machine is already in the process of shutting
-	 *             down
+	 *                                  If the virtual machine is already in the
+	 *                                  process of shutting
+	 *                                  down
 	 *
 	 * @throws SecurityException
-	 *             If a security manager is present and it denies <tt>
+	 *                                  If a security manager is present and it
+	 *                                  denies <tt>
 	 *             {@link RuntimePermission}("shutdownHooks")</tt>
 	 *
 	 * @see #removeShutdownHook
@@ -228,17 +212,19 @@ public class Runtime {
 	 * <p>
 	 *
 	 * @param hook
-	 *            the hook to remove
+	 *             the hook to remove
 	 * @return <tt>true</tt> if the specified hook had previously been
 	 *         registered and was successfully de-registered, <tt>false</tt>
 	 *         otherwise.
 	 *
 	 * @throws IllegalStateException
-	 *             If the virtual machine is already in the process of shutting
-	 *             down
+	 *                               If the virtual machine is already in the
+	 *                               process of shutting
+	 *                               down
 	 *
 	 * @throws SecurityException
-	 *             If a security manager is present and it denies <tt>
+	 *                               If a security manager is present and it
+	 *                               denies <tt>
 	 *             {@link RuntimePermission}("shutdownHooks")</tt>
 	 *
 	 * @see #addShutdownHook
@@ -267,17 +253,19 @@ public class Runtime {
 	 * <p>
 	 *
 	 * @param status
-	 *            Termination status. By convention, a nonzero status code
-	 *            indicates abnormal termination. If the <tt>{@link Runtime#exit
+	 *               Termination status. By convention, a nonzero status code
+	 *               indicates abnormal termination. If the
+	 *               <tt>{@link Runtime#exit
 	 *         exit}</tt> (equivalently, <tt>{@link System#exit(int)
 	 *         System.exit}</tt>) method has already been invoked then this
-	 *            status code will override the status code passed to that
-	 *            method.
+	 *               status code will override the status code passed to that
+	 *               method.
 	 *
 	 * @throws SecurityException
-	 *             If a security manager is present and its <tt>{@link
+	 *                           If a security manager is present and its
+	 *                           <tt>{@link
 	 *         SecurityManager#checkExit checkExit}</tt> method does not permit
-	 *             an exit with the specified status
+	 *                           an exit with the specified status
 	 *
 	 * @see #exit
 	 * @see #addShutdownHook
@@ -304,15 +292,16 @@ public class Runtime {
 	 * could result in a SecurityException.
 	 *
 	 * @param value
-	 *            true to enable finalization on exit, false to disable
+	 *              true to enable finalization on exit, false to disable
 	 * @deprecated This method is inherently unsafe. It may result in finalizers
 	 *             being called on live objects while other threads are
 	 *             concurrently manipulating those objects, resulting in erratic
 	 *             behavior or deadlock.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its <code>checkExit</code>
-	 *             method doesn't allow the exit.
+	 *                           if a security manager exists and its
+	 *                           <code>checkExit</code>
+	 *                           method doesn't allow the exit.
 	 *
 	 * @see java.lang.Runtime#exit(int)
 	 * @see java.lang.Runtime#gc()
@@ -341,23 +330,25 @@ public class Runtime {
 	 * <tt>{@link #exec(String, String[], File) exec}(command, null, null)</tt>.
 	 *
 	 * @param command
-	 *            a specified system command.
+	 *                a specified system command.
 	 *
 	 * @return A new {@link Process} object for managing the subprocess
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its
-	 *             {@link SecurityManager#checkExec checkExec} method doesn't
-	 *             allow creation of the subprocess
+	 *                                  If a security manager exists and its
+	 *                                  {@link SecurityManager#checkExec
+	 *                                  checkExec} method doesn't
+	 *                                  allow creation of the subprocess
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                  If an I/O error occurs
 	 *
 	 * @throws NullPointerException
-	 *             If <code>command</code> is <code>null</code>
+	 *                                  If <code>command</code> is
+	 *                                  <code>null</code>
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>command</code> is empty
+	 *                                  If <code>command</code> is empty
 	 *
 	 * @see #exec(String[], String[], File)
 	 * @see ProcessBuilder
@@ -377,30 +368,35 @@ public class Runtime {
 	 * <tt>{@link #exec(String, String[], File) exec}(command, envp, null)</tt>.
 	 *
 	 * @param command
-	 *            a specified system command.
+	 *                a specified system command.
 	 *
 	 * @param envp
-	 *            array of strings, each element of which has environment
-	 *            variable settings in the format <i>name</i>=<i>value</i>, or
-	 *            <tt>null</tt> if the subprocess should inherit the environment
-	 *            of the current process.
+	 *                array of strings, each element of which has environment
+	 *                variable settings in the format <i>name</i>=<i>value</i>,
+	 *                or
+	 *                <tt>null</tt> if the subprocess should inherit the
+	 *                environment
+	 *                of the current process.
 	 *
 	 * @return A new {@link Process} object for managing the subprocess
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its
-	 *             {@link SecurityManager#checkExec checkExec} method doesn't
-	 *             allow creation of the subprocess
+	 *                                  If a security manager exists and its
+	 *                                  {@link SecurityManager#checkExec
+	 *                                  checkExec} method doesn't
+	 *                                  allow creation of the subprocess
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                  If an I/O error occurs
 	 *
 	 * @throws NullPointerException
-	 *             If <code>command</code> is <code>null</code>, or one of the
-	 *             elements of <code>envp</code> is <code>null</code>
+	 *                                  If <code>command</code> is
+	 *                                  <code>null</code>, or one of the
+	 *                                  elements of <code>envp</code> is
+	 *                                  <code>null</code>
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>command</code> is empty
+	 *                                  If <code>command</code> is empty
 	 *
 	 * @see #exec(String[], String[], File)
 	 * @see ProcessBuilder
@@ -430,40 +426,47 @@ public class Runtime {
 	 * in the same order.
 	 *
 	 * @param command
-	 *            a specified system command.
+	 *                a specified system command.
 	 *
 	 * @param envp
-	 *            array of strings, each element of which has environment
-	 *            variable settings in the format <i>name</i>=<i>value</i>, or
-	 *            <tt>null</tt> if the subprocess should inherit the environment
-	 *            of the current process.
+	 *                array of strings, each element of which has environment
+	 *                variable settings in the format <i>name</i>=<i>value</i>,
+	 *                or
+	 *                <tt>null</tt> if the subprocess should inherit the
+	 *                environment
+	 *                of the current process.
 	 *
 	 * @param dir
-	 *            the working directory of the subprocess, or <tt>null</tt> if
-	 *            the subprocess should inherit the working directory of the
-	 *            current process.
+	 *                the working directory of the subprocess, or <tt>null</tt>
+	 *                if
+	 *                the subprocess should inherit the working directory of the
+	 *                current process.
 	 *
 	 * @return A new {@link Process} object for managing the subprocess
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its
-	 *             {@link SecurityManager#checkExec checkExec} method doesn't
-	 *             allow creation of the subprocess
+	 *                                  If a security manager exists and its
+	 *                                  {@link SecurityManager#checkExec
+	 *                                  checkExec} method doesn't
+	 *                                  allow creation of the subprocess
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                  If an I/O error occurs
 	 *
 	 * @throws NullPointerException
-	 *             If <code>command</code> is <code>null</code>, or one of the
-	 *             elements of <code>envp</code> is <code>null</code>
+	 *                                  If <code>command</code> is
+	 *                                  <code>null</code>, or one of the
+	 *                                  elements of <code>envp</code> is
+	 *                                  <code>null</code>
 	 *
 	 * @throws IllegalArgumentException
-	 *             If <code>command</code> is empty
+	 *                                  If <code>command</code> is empty
 	 *
 	 * @see ProcessBuilder
 	 * @since 1.3
 	 */
-	public Process exec(String command, String[] envp, File dir) throws IOException {
+	public Process exec(String command, String[] envp, File dir)
+			throws IOException {
 		if (command.length() == 0)
 			throw new IllegalArgumentException("Empty command");
 
@@ -484,25 +487,29 @@ public class Runtime {
 	 * .
 	 *
 	 * @param cmdarray
-	 *            array containing the command to call and its arguments.
+	 *                 array containing the command to call and its arguments.
 	 *
 	 * @return A new {@link Process} object for managing the subprocess
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its
-	 *             {@link SecurityManager#checkExec checkExec} method doesn't
-	 *             allow creation of the subprocess
+	 *                                   If a security manager exists and its
+	 *                                   {@link SecurityManager#checkExec
+	 *                                   checkExec} method doesn't
+	 *                                   allow creation of the subprocess
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                   If an I/O error occurs
 	 *
 	 * @throws NullPointerException
-	 *             If <code>cmdarray</code> is <code>null</code>, or one of the
-	 *             elements of <code>cmdarray</code> is <code>null</code>
+	 *                                   If <code>cmdarray</code> is
+	 *                                   <code>null</code>, or one of the
+	 *                                   elements of <code>cmdarray</code> is
+	 *                                   <code>null</code>
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If <code>cmdarray</code> is an empty array (has length
-	 *             <code>0</code>)
+	 *                                   If <code>cmdarray</code> is an empty
+	 *                                   array (has length
+	 *                                   <code>0</code>)
 	 *
 	 * @see ProcessBuilder
 	 */
@@ -522,32 +529,39 @@ public class Runtime {
 	 * .
 	 *
 	 * @param cmdarray
-	 *            array containing the command to call and its arguments.
+	 *                 array containing the command to call and its arguments.
 	 *
 	 * @param envp
-	 *            array of strings, each element of which has environment
-	 *            variable settings in the format <i>name</i>=<i>value</i>, or
-	 *            <tt>null</tt> if the subprocess should inherit the environment
-	 *            of the current process.
+	 *                 array of strings, each element of which has environment
+	 *                 variable settings in the format <i>name</i>=<i>value</i>,
+	 *                 or
+	 *                 <tt>null</tt> if the subprocess should inherit the
+	 *                 environment
+	 *                 of the current process.
 	 *
 	 * @return A new {@link Process} object for managing the subprocess
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its
-	 *             {@link SecurityManager#checkExec checkExec} method doesn't
-	 *             allow creation of the subprocess
+	 *                                   If a security manager exists and its
+	 *                                   {@link SecurityManager#checkExec
+	 *                                   checkExec} method doesn't
+	 *                                   allow creation of the subprocess
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                   If an I/O error occurs
 	 *
 	 * @throws NullPointerException
-	 *             If <code>cmdarray</code> is <code>null</code>, or one of the
-	 *             elements of <code>cmdarray</code> is <code>null</code>, or
-	 *             one of the elements of <code>envp</code> is <code>null</code>
+	 *                                   If <code>cmdarray</code> is
+	 *                                   <code>null</code>, or one of the
+	 *                                   elements of <code>cmdarray</code> is
+	 *                                   <code>null</code>, or
+	 *                                   one of the elements of
+	 *                                   <code>envp</code> is <code>null</code>
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If <code>cmdarray</code> is an empty array (has length
-	 *             <code>0</code>)
+	 *                                   If <code>cmdarray</code> is an empty
+	 *                                   array (has length
+	 *                                   <code>0</code>)
 	 *
 	 * @see ProcessBuilder
 	 */
@@ -611,43 +625,54 @@ public class Runtime {
 	 *
 	 *
 	 * @param cmdarray
-	 *            array containing the command to call and its arguments.
+	 *                 array containing the command to call and its arguments.
 	 *
 	 * @param envp
-	 *            array of strings, each element of which has environment
-	 *            variable settings in the format <i>name</i>=<i>value</i>, or
-	 *            <tt>null</tt> if the subprocess should inherit the environment
-	 *            of the current process.
+	 *                 array of strings, each element of which has environment
+	 *                 variable settings in the format <i>name</i>=<i>value</i>,
+	 *                 or
+	 *                 <tt>null</tt> if the subprocess should inherit the
+	 *                 environment
+	 *                 of the current process.
 	 *
 	 * @param dir
-	 *            the working directory of the subprocess, or <tt>null</tt> if
-	 *            the subprocess should inherit the working directory of the
-	 *            current process.
+	 *                 the working directory of the subprocess, or <tt>null</tt>
+	 *                 if
+	 *                 the subprocess should inherit the working directory of
+	 *                 the
+	 *                 current process.
 	 *
 	 * @return A new {@link Process} object for managing the subprocess
 	 *
 	 * @throws SecurityException
-	 *             If a security manager exists and its
-	 *             {@link SecurityManager#checkExec checkExec} method doesn't
-	 *             allow creation of the subprocess
+	 *                                   If a security manager exists and its
+	 *                                   {@link SecurityManager#checkExec
+	 *                                   checkExec} method doesn't
+	 *                                   allow creation of the subprocess
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                   If an I/O error occurs
 	 *
 	 * @throws NullPointerException
-	 *             If <code>cmdarray</code> is <code>null</code>, or one of the
-	 *             elements of <code>cmdarray</code> is <code>null</code>, or
-	 *             one of the elements of <code>envp</code> is <code>null</code>
+	 *                                   If <code>cmdarray</code> is
+	 *                                   <code>null</code>, or one of the
+	 *                                   elements of <code>cmdarray</code> is
+	 *                                   <code>null</code>, or
+	 *                                   one of the elements of
+	 *                                   <code>envp</code> is <code>null</code>
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If <code>cmdarray</code> is an empty array (has length
-	 *             <code>0</code>)
+	 *                                   If <code>cmdarray</code> is an empty
+	 *                                   array (has length
+	 *                                   <code>0</code>)
 	 *
 	 * @see ProcessBuilder
 	 * @since 1.3
 	 */
-	public Process exec(String[] cmdarray, String[] envp, File dir) throws IOException {
-		return new ProcessBuilder(cmdarray).environment(envp).directory(dir).start();
+	public Process exec(String[] cmdarray, String[] envp, File dir)
+			throws IOException {
+		return new ProcessBuilder(cmdarray).environment(envp).directory(dir)
+				.start();
 	}
 
 	/**
@@ -756,8 +781,8 @@ public class Runtime {
 	 * trace it is performing.
 	 *
 	 * @param on
-	 *            <code>true</code> to enable instruction tracing;
-	 *            <code>false</code> to disable this feature.
+	 *           <code>true</code> to enable instruction tracing;
+	 *           <code>false</code> to disable this feature.
 	 */
 	public native void traceInstructions(boolean on);
 
@@ -774,8 +799,8 @@ public class Runtime {
 	 * cease emitting per-call debugging information.
 	 *
 	 * @param on
-	 *            <code>true</code> to enable instruction tracing;
-	 *            <code>false</code> to disable this feature.
+	 *           <code>true</code> to enable instruction tracing;
+	 *           <code>false</code> to disable this feature.
 	 */
 	public native void traceMethodCalls(boolean on);
 
@@ -807,18 +832,23 @@ public class Runtime {
 	 * means of invoking this method.
 	 *
 	 * @param filename
-	 *            the file to load.
+	 *                 the file to load.
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                <code>checkLink</code> method doesn't allow loading of the
-	 *                specified dynamic library
+	 *                                 if a security manager exists and its
+	 *                                 <code>checkLink</code> method doesn't
+	 *                                 allow loading of the
+	 *                                 specified dynamic library
 	 * @exception UnsatisfiedLinkError
-	 *                if either the filename is not an absolute path name, the
-	 *                native library is not statically linked with the VM, or
-	 *                the library cannot be mapped to a native library image by
-	 *                the host system.
+	 *                                 if either the filename is not an absolute
+	 *                                 path name, the
+	 *                                 native library is not statically linked
+	 *                                 with the VM, or
+	 *                                 the library cannot be mapped to a native
+	 *                                 library image by
+	 *                                 the host system.
 	 * @exception NullPointerException
-	 *                if <code>filename</code> is <code>null</code>
+	 *                                 if <code>filename</code> is
+	 *                                 <code>null</code>
 	 * @see java.lang.Runtime#getRuntime()
 	 * @see java.lang.SecurityException
 	 * @see java.lang.SecurityManager#checkLink(java.lang.String)
@@ -876,18 +906,23 @@ public class Runtime {
 	 * second and subsequent calls are ignored.
 	 *
 	 * @param libname
-	 *            the name of the library.
+	 *                the name of the library.
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                <code>checkLink</code> method doesn't allow loading of the
-	 *                specified dynamic library
+	 *                                 if a security manager exists and its
+	 *                                 <code>checkLink</code> method doesn't
+	 *                                 allow loading of the
+	 *                                 specified dynamic library
 	 * @exception UnsatisfiedLinkError
-	 *                if either the libname argument contains a file path, the
-	 *                native library is not statically linked with the VM, or
-	 *                the library cannot be mapped to a native library image by
-	 *                the host system.
+	 *                                 if either the libname argument contains a
+	 *                                 file path, the
+	 *                                 native library is not statically linked
+	 *                                 with the VM, or
+	 *                                 the library cannot be mapped to a native
+	 *                                 library image by
+	 *                                 the host system.
 	 * @exception NullPointerException
-	 *                if <code>libname</code> is <code>null</code>
+	 *                                 if <code>libname</code> is
+	 *                                 <code>null</code>
 	 * @see java.lang.SecurityException
 	 * @see java.lang.SecurityManager#checkLink(java.lang.String)
 	 */
@@ -903,7 +938,8 @@ public class Runtime {
 		}
 		if (libname.indexOf((int) File.separatorChar) != -1) {
 			throw new UnsatisfiedLinkError(
-					"Directory separator should not appear in library name: " + libname);
+					"Directory separator should not appear in library name: "
+							+ libname);
 		}
 		ClassLoader.loadLibrary(fromClass, libname, false);
 	}
@@ -919,7 +955,7 @@ public class Runtime {
 	 * result.
 	 *
 	 * @param in
-	 *            InputStream to localize
+	 *           InputStream to localize
 	 * @return a localized input stream
 	 * @see java.io.InputStream
 	 * @see java.io.BufferedReader#BufferedReader(java.io.Reader)

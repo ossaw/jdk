@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.border;
 
@@ -53,17 +33,18 @@ public class MatteBorder extends EmptyBorder {
 	 * Creates a matte border with the specified insets and color.
 	 * 
 	 * @param top
-	 *            the top inset of the border
+	 *                   the top inset of the border
 	 * @param left
-	 *            the left inset of the border
+	 *                   the left inset of the border
 	 * @param bottom
-	 *            the bottom inset of the border
+	 *                   the bottom inset of the border
 	 * @param right
-	 *            the right inset of the border
+	 *                   the right inset of the border
 	 * @param matteColor
-	 *            the color rendered for the border
+	 *                   the color rendered for the border
 	 */
-	public MatteBorder(int top, int left, int bottom, int right, Color matteColor) {
+	public MatteBorder(int top, int left, int bottom, int right,
+			Color matteColor) {
 		super(top, left, bottom, right);
 		this.color = matteColor;
 	}
@@ -72,9 +53,9 @@ public class MatteBorder extends EmptyBorder {
 	 * Creates a matte border with the specified insets and color.
 	 * 
 	 * @param borderInsets
-	 *            the insets of the border
+	 *                     the insets of the border
 	 * @param matteColor
-	 *            the color rendered for the border
+	 *                     the color rendered for the border
 	 * @since 1.3
 	 */
 	public MatteBorder(Insets borderInsets, Color matteColor) {
@@ -86,17 +67,18 @@ public class MatteBorder extends EmptyBorder {
 	 * Creates a matte border with the specified insets and tile icon.
 	 * 
 	 * @param top
-	 *            the top inset of the border
+	 *                 the top inset of the border
 	 * @param left
-	 *            the left inset of the border
+	 *                 the left inset of the border
 	 * @param bottom
-	 *            the bottom inset of the border
+	 *                 the bottom inset of the border
 	 * @param right
-	 *            the right inset of the border
+	 *                 the right inset of the border
 	 * @param tileIcon
-	 *            the icon to be used for tiling the border
+	 *                 the icon to be used for tiling the border
 	 */
-	public MatteBorder(int top, int left, int bottom, int right, Icon tileIcon) {
+	public MatteBorder(int top, int left, int bottom, int right,
+			Icon tileIcon) {
 		super(top, left, bottom, right);
 		this.tileIcon = tileIcon;
 	}
@@ -105,9 +87,9 @@ public class MatteBorder extends EmptyBorder {
 	 * Creates a matte border with the specified insets and tile icon.
 	 * 
 	 * @param borderInsets
-	 *            the insets of the border
+	 *                     the insets of the border
 	 * @param tileIcon
-	 *            the icon to be used for tiling the border
+	 *                     the icon to be used for tiling the border
 	 * @since 1.3
 	 */
 	public MatteBorder(Insets borderInsets, Icon tileIcon) {
@@ -122,7 +104,7 @@ public class MatteBorder extends EmptyBorder {
 	 * right will be equal to the tile icon's width.
 	 * 
 	 * @param tileIcon
-	 *            the icon to be used for tiling the border
+	 *                 the icon to be used for tiling the border
 	 */
 	public MatteBorder(Icon tileIcon) {
 		this(-1, -1, -1, -1, tileIcon);
@@ -131,7 +113,8 @@ public class MatteBorder extends EmptyBorder {
 	/**
 	 * Paints the matte border.
 	 */
-	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+	public void paintBorder(Component c, Graphics g, int x, int y, int width,
+			int height) {
 		Insets insets = getBorderInsets(c);
 		Color oldColor = g.getColor();
 		g.translate(x, y);
@@ -145,26 +128,30 @@ public class MatteBorder extends EmptyBorder {
 			g.setColor(color);
 			g.fillRect(0, 0, width - insets.right, insets.top);
 			g.fillRect(0, insets.top, insets.left, height - insets.top);
-			g.fillRect(insets.left, height - insets.bottom, width - insets.left, insets.bottom);
-			g.fillRect(width - insets.right, 0, insets.right, height - insets.bottom);
+			g.fillRect(insets.left, height - insets.bottom, width - insets.left,
+					insets.bottom);
+			g.fillRect(width - insets.right, 0, insets.right, height
+					- insets.bottom);
 
 		} else if (tileIcon != null) {
 			int tileW = tileIcon.getIconWidth();
 			int tileH = tileIcon.getIconHeight();
-			paintEdge(c, g, 0, 0, width - insets.right, insets.top, tileW, tileH);
-			paintEdge(c, g, 0, insets.top, insets.left, height - insets.top, tileW, tileH);
-			paintEdge(c, g, insets.left, height - insets.bottom, width - insets.left, insets.bottom,
-					tileW, tileH);
-			paintEdge(c, g, width - insets.right, 0, insets.right, height - insets.bottom, tileW,
+			paintEdge(c, g, 0, 0, width - insets.right, insets.top, tileW,
 					tileH);
+			paintEdge(c, g, 0, insets.top, insets.left, height - insets.top,
+					tileW, tileH);
+			paintEdge(c, g, insets.left, height - insets.bottom, width
+					- insets.left, insets.bottom, tileW, tileH);
+			paintEdge(c, g, width - insets.right, 0, insets.right, height
+					- insets.bottom, tileW, tileH);
 		}
 		g.translate(-x, -y);
 		g.setColor(oldColor);
 
 	}
 
-	private void paintEdge(Component c, Graphics g, int x, int y, int width, int height, int tileW,
-			int tileH) {
+	private void paintEdge(Component c, Graphics g, int x, int y, int width,
+			int height, int tileW, int tileH) {
 		g = g.create(x, y, width, height);
 		int sY = -(y % tileH);
 		for (x = -(x % tileW); x < width; x += tileW) {
@@ -179,9 +166,9 @@ public class MatteBorder extends EmptyBorder {
 	 * Reinitialize the insets parameter with this Border's current Insets.
 	 * 
 	 * @param c
-	 *            the component for which this border insets value applies
+	 *               the component for which this border insets value applies
 	 * @param insets
-	 *            the object to be reinitialized
+	 *               the object to be reinitialized
 	 * @since 1.3
 	 */
 	public Insets getBorderInsets(Component c, Insets insets) {
@@ -199,7 +186,8 @@ public class MatteBorder extends EmptyBorder {
 
 	/* should be protected once api changes area allowed */
 	private Insets computeInsets(Insets insets) {
-		if (tileIcon != null && top == -1 && bottom == -1 && left == -1 && right == -1) {
+		if (tileIcon != null && top == -1 && bottom == -1 && left == -1
+				&& right == -1) {
 			int w = tileIcon.getIconWidth();
 			int h = tileIcon.getIconHeight();
 			insets.top = h;

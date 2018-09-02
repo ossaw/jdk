@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -63,8 +43,7 @@ public class LocalObject implements org.omg.CORBA.Object {
 	/**
 	 * Constructs a default <code>LocalObject</code> instance.
 	 */
-	public LocalObject() {
-	}
+	public LocalObject() {}
 
 	/**
 	 * <P>
@@ -80,7 +59,7 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * <P>
 	 *
 	 * @param that
-	 *            the object reference with which to check for equivalence
+	 *             the object reference with which to check for equivalence
 	 * @return <code>true</code> if this object reference is known to be
 	 *         equivalent to the given object reference. Note that
 	 *         <code>false</code> indicates only that the two object references
@@ -109,7 +88,8 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * <P>
 	 * 
 	 * @param maximum
-	 *            an <code>int</code> identifying maximum value of the hashcode
+	 *                an <code>int</code> identifying maximum value of the
+	 *                hashcode
 	 * @return this instance's hashcode
 	 */
 	public int _hash(int maximum) {
@@ -125,12 +105,13 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * <P>
 	 *
 	 * @param repository_id
-	 *            a <code>String</code>
+	 *                      a <code>String</code>
 	 * @return NO_IMPLEMENT because this is a locally constrained object and
 	 *         this method does not apply to local objects
 	 * @exception NO_IMPLEMENT
-	 *                because this is a locally constrained object and this
-	 *                method does not apply to local objects
+	 *                         because this is a locally constrained object and
+	 *                         this
+	 *                         method does not apply to local objects
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
 	 *      comments for unimplemented features</a>
 	 */
@@ -174,8 +155,9 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * <P>
 	 *
 	 * @param operation
-	 *            a <code>String</code> giving the name of an operation to be
-	 *            performed by the request that is returned
+	 *                  a <code>String</code> giving the name of an operation to
+	 *                  be
+	 *                  performed by the request that is returned
 	 * @return a <code>Request</code> object with the given operation
 	 * @exception NO_IMPLEMENT
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
@@ -192,24 +174,28 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * <P>
 	 *
 	 * @param ctx
-	 *            a <code>Context</code> object containing a list of properties
+	 *                  a <code>Context</code> object containing a list of
+	 *                  properties
 	 * @param operation
-	 *            the <code>String</code> representing the name of the method to
-	 *            be invoked
+	 *                  the <code>String</code> representing the name of the
+	 *                  method to
+	 *                  be invoked
 	 * @param arg_list
-	 *            an <code>NVList</code> containing the actual arguments to the
-	 *            method being invoked
+	 *                  an <code>NVList</code> containing the actual arguments
+	 *                  to the
+	 *                  method being invoked
 	 * @param result
-	 *            a <code>NamedValue</code> object to serve as a container for
-	 *            the method's return value
+	 *                  a <code>NamedValue</code> object to serve as a container
+	 *                  for
+	 *                  the method's return value
 	 * @return a new <code>Request</code> object initialized with the given
 	 *         arguments
 	 * @exception NO_IMPLEMENT
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
 	 *      comments for unimplemented features</a>
 	 */
-	public Request _create_request(Context ctx, String operation, NVList arg_list,
-			NamedValue result) {
+	public Request _create_request(Context ctx, String operation,
+			NVList arg_list, NamedValue result) {
 		throw new org.omg.CORBA.NO_IMPLEMENT(reason);
 	}
 
@@ -220,30 +206,36 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * <P>
 	 *
 	 * @param ctx
-	 *            a <code>Context</code> object containing a list of properties
+	 *                   a <code>Context</code> object containing a list of
+	 *                   properties
 	 * @param operation
-	 *            the name of the method to be invoked
+	 *                   the name of the method to be invoked
 	 * @param arg_list
-	 *            an <code>NVList</code> containing the actual arguments to the
-	 *            method being invoked
+	 *                   an <code>NVList</code> containing the actual arguments
+	 *                   to the
+	 *                   method being invoked
 	 * @param result
-	 *            a <code>NamedValue</code> object to serve as a container for
-	 *            the method's return value
+	 *                   a <code>NamedValue</code> object to serve as a
+	 *                   container for
+	 *                   the method's return value
 	 * @param exceptions
-	 *            an <code>ExceptionList</code> object containing a list of
-	 *            possible exceptions the method can throw
+	 *                   an <code>ExceptionList</code> object containing a list
+	 *                   of
+	 *                   possible exceptions the method can throw
 	 * @param contexts
-	 *            a <code>ContextList</code> object containing a list of context
-	 *            strings that need to be resolved and sent with the
-	 *            <code>Request</code> instance
+	 *                   a <code>ContextList</code> object containing a list of
+	 *                   context
+	 *                   strings that need to be resolved and sent with the
+	 *                   <code>Request</code> instance
 	 * @return the new <code>Request</code> object initialized with the given
 	 *         arguments
 	 * @exception NO_IMPLEMENT
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
 	 *      comments for unimplemented features</a>
 	 */
-	public Request _create_request(Context ctx, String operation, NVList arg_list,
-			NamedValue result, ExceptionList exceptions, ContextList contexts) {
+	public Request _create_request(Context ctx, String operation,
+			NVList arg_list, NamedValue result, ExceptionList exceptions,
+			ContextList contexts) {
 		throw new org.omg.CORBA.NO_IMPLEMENT(reason);
 	}
 
@@ -258,8 +250,9 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * @return NO_IMPLEMENT because this is a locally constrained object and
 	 *         this method does not apply to local objects
 	 * @exception NO_IMPLEMENT
-	 *                because this is a locally constrained object and this
-	 *                method does not apply to local objects
+	 *                         because this is a locally constrained object and
+	 *                         this
+	 *                         method does not apply to local objects
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
 	 *      comments for unimplemented features</a>
 	 */
@@ -313,12 +306,13 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * <P>
 	 * 
 	 * @param policy_type
-	 *            an <code>int</code>
+	 *                    an <code>int</code>
 	 * @return NO_IMPLEMENT because this is a locally constrained object and
 	 *         this method does not apply to local objects
 	 * @exception NO_IMPLEMENT
-	 *                because this is a locally constrained object and this
-	 *                method does not apply to local objects
+	 *                         because this is a locally constrained object and
+	 *                         this
+	 *                         method does not apply to local objects
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
 	 *      comments for unimplemented features</a>
 	 */
@@ -350,18 +344,20 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * method.
 	 *
 	 * @param policies
-	 *            an array
+	 *                 an array
 	 * @param set_add
-	 *            a flag
+	 *                 a flag
 	 * @return NO_IMPLEMENT because this is a locally constrained object and
 	 *         this method does not apply to local objects
 	 * @exception NO_IMPLEMENT
-	 *                because this is a locally constrained object and this
-	 *                method does not apply to local objects
+	 *                         because this is a locally constrained object and
+	 *                         this
+	 *                         method does not apply to local objects
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
 	 *      comments for unimplemented features</a>
 	 */
-	public org.omg.CORBA.Object _set_policy_override(org.omg.CORBA.Policy[] policies,
+	public org.omg.CORBA.Object _set_policy_override(
+			org.omg.CORBA.Policy[] policies,
 			org.omg.CORBA.SetOverrideType set_add) {
 		throw new org.omg.CORBA.NO_IMPLEMENT(reason);
 	}
@@ -390,18 +386,21 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * <P>
 	 * 
 	 * @param operation
-	 *            a <code>String</code> indicating which operation to preinvoke
+	 *                     a <code>String</code> indicating which operation to
+	 *                     preinvoke
 	 * @param expectedType
-	 *            the class of the type of operation mentioned above
+	 *                     the class of the type of operation mentioned above
 	 * @return NO_IMPLEMENT because this is a locally constrained object and
 	 *         this method does not apply to local objects
 	 * @exception NO_IMPLEMENT
-	 *                because this is a locally constrained object and this
-	 *                method does not apply to local object
+	 *                         because this is a locally constrained object and
+	 *                         this
+	 *                         method does not apply to local object
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
 	 *      comments for unimplemented features</a>
 	 */
-	public ServantObject _servant_preinvoke(String operation, Class expectedType) {
+	public ServantObject _servant_preinvoke(String operation,
+			Class expectedType) {
 		throw new org.omg.CORBA.NO_IMPLEMENT(reason);
 	}
 
@@ -412,7 +411,7 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * <P>
 	 * 
 	 * @param servant
-	 *            the servant object on which to post-invoke
+	 *                the servant object on which to post-invoke
 	 * @exception NO_IMPLEMENT
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
 	 *      comments for unimplemented features</a>
@@ -437,15 +436,16 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * <P>
 	 * 
 	 * @param operation
-	 *            the name of the operation being requested
+	 *                         the name of the operation being requested
 	 * @param responseExpected
-	 *            <code>true</code> if a response is expected,
-	 *            <code>false</code> if it is a one-way call
+	 *                         <code>true</code> if a response is expected,
+	 *                         <code>false</code> if it is a one-way call
 	 * @return NO_IMPLEMENT because this is a locally constrained object and
 	 *         this method does not apply to local objects
 	 * @exception NO_IMPLEMENT
-	 *                because this is a locally constrained object and this
-	 *                method does not apply to local objects
+	 *                         because this is a locally constrained object and
+	 *                         this
+	 *                         method does not apply to local objects
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
 	 *      comments for unimplemented features</a>
 	 */
@@ -469,27 +469,34 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * <P>
 	 * 
 	 * @param output
-	 *            the <code>OutputStream</code> to invoke
+	 *               the <code>OutputStream</code> to invoke
 	 * @return NO_IMPLEMENT because this is a locally constrained object and
 	 *         this method does not apply to local objects
 	 * @throws ApplicationException
-	 *             If an exception occurs, <code>_invoke</code> may throw an
-	 *             <code>ApplicationException</code> object which contains an
-	 *             <code>InputStream</code> from which the user exception state
-	 *             may be unmarshaled.
+	 *                              If an exception occurs, <code>_invoke</code>
+	 *                              may throw an
+	 *                              <code>ApplicationException</code> object
+	 *                              which contains an
+	 *                              <code>InputStream</code> from which the user
+	 *                              exception state
+	 *                              may be unmarshaled.
 	 * @throws RemarshalException
-	 *             If an exception occurs, <code>_invoke</code> may throw an
-	 *             <code>ApplicationException</code> object which contains an
-	 *             <code>InputStream</code> from which the user exception state
-	 *             may be unmarshaled.
+	 *                              If an exception occurs, <code>_invoke</code>
+	 *                              may throw an
+	 *                              <code>ApplicationException</code> object
+	 *                              which contains an
+	 *                              <code>InputStream</code> from which the user
+	 *                              exception state
+	 *                              may be unmarshaled.
 	 * @exception NO_IMPLEMENT
-	 *                because this is a locally constrained object and this
-	 *                method does not apply to local objects
+	 *                         because this is a locally constrained object and
+	 *                         this
+	 *                         method does not apply to local objects
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
 	 *      comments for unimplemented features</a>
 	 */
-	public InputStream _invoke(OutputStream output)
-			throws ApplicationException, RemarshalException {
+	public InputStream _invoke(OutputStream output) throws ApplicationException,
+			RemarshalException {
 		throw new org.omg.CORBA.NO_IMPLEMENT(reason);
 	}
 
@@ -507,7 +514,7 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * <P>
 	 * 
 	 * @param input
-	 *            the reply stream back to the ORB or null
+	 *              the reply stream back to the ORB or null
 	 * @exception NO_IMPLEMENT
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
 	 *      comments for unimplemented features</a>
@@ -527,8 +534,9 @@ public class LocalObject implements org.omg.CORBA.Object {
 	 * @return NO_IMPLEMENT because this is a locally constrained object and
 	 *         this method does not apply to local objects
 	 * @exception NO_IMPLEMENT
-	 *                because this is a locally constrained object and this
-	 *                method does not apply to local objects
+	 *                         because this is a locally constrained object and
+	 *                         this
+	 *                         method does not apply to local objects
 	 * @see <a href="package-summary.html#unimpl"><code>CORBA</code> package
 	 *      comments for unimplemented features</a>
 	 */

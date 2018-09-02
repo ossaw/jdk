@@ -1,37 +1,12 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- **********************************************************************
- **********************************************************************
- **********************************************************************
- *** COPYRIGHT (c) Eastman Kodak Company, 1997                      ***
- *** As  an unpublished  work pursuant to Title 17 of the United    ***
- *** States Code.  All rights reserved.                             ***
- **********************************************************************
- **********************************************************************
+ ********************************************************************** COPYRIGHT (c) Eastman Kodak Company, 1997 ***
+ *** As an unpublished work pursuant to Title 17 of the United ***
+ *** States Code. All rights reserved. ***
  **********************************************************************/
 
 package java.awt.color;
@@ -296,9 +271,9 @@ public abstract class ColorSpace implements java.io.Serializable {
 	 * components.
 	 * 
 	 * @param type
-	 *            one of the <CODE>ColorSpace</CODE> type constants
+	 *                      one of the <CODE>ColorSpace</CODE> type constants
 	 * @param numcomponents
-	 *            the number of components in the color space
+	 *                      the number of components in the color space
 	 */
 	protected ColorSpace(int type, int numcomponents) {
 		this.type = type;
@@ -310,9 +285,11 @@ public abstract class ColorSpace implements java.io.Serializable {
 	 * spaces.
 	 * 
 	 * @param colorspace
-	 *            a specific color space identified by one of the predefined
-	 *            class constants (e.g. CS_sRGB, CS_LINEAR_RGB, CS_CIEXYZ,
-	 *            CS_GRAY, or CS_PYCC)
+	 *                   a specific color space identified by one of the
+	 *                   predefined
+	 *                   class constants (e.g. CS_sRGB, CS_LINEAR_RGB,
+	 *                   CS_CIEXYZ,
+	 *                   CS_GRAY, or CS_PYCC)
 	 * @return the requested <CODE>ColorSpace</CODE> object
 	 */
 	// NOTE: This method may be called by privileged threads.
@@ -321,67 +298,72 @@ public abstract class ColorSpace implements java.io.Serializable {
 		ColorSpace theColorSpace;
 
 		switch (colorspace) {
-		case CS_sRGB:
-			synchronized (ColorSpace.class) {
-				if (sRGBspace == null) {
-					ICC_Profile theProfile = ICC_Profile.getInstance(CS_sRGB);
-					sRGBspace = new ICC_ColorSpace(theProfile);
+			case CS_sRGB:
+				synchronized (ColorSpace.class) {
+					if (sRGBspace == null) {
+						ICC_Profile theProfile = ICC_Profile.getInstance(
+								CS_sRGB);
+						sRGBspace = new ICC_ColorSpace(theProfile);
+					}
+
+					theColorSpace = sRGBspace;
 				}
+				break;
 
-				theColorSpace = sRGBspace;
-			}
-			break;
+			case CS_CIEXYZ:
+				synchronized (ColorSpace.class) {
+					if (XYZspace == null) {
+						ICC_Profile theProfile = ICC_Profile.getInstance(
+								CS_CIEXYZ);
+						XYZspace = new ICC_ColorSpace(theProfile);
+					}
 
-		case CS_CIEXYZ:
-			synchronized (ColorSpace.class) {
-				if (XYZspace == null) {
-					ICC_Profile theProfile = ICC_Profile.getInstance(CS_CIEXYZ);
-					XYZspace = new ICC_ColorSpace(theProfile);
+					theColorSpace = XYZspace;
 				}
+				break;
 
-				theColorSpace = XYZspace;
-			}
-			break;
+			case CS_PYCC:
+				synchronized (ColorSpace.class) {
+					if (PYCCspace == null) {
+						ICC_Profile theProfile = ICC_Profile.getInstance(
+								CS_PYCC);
+						PYCCspace = new ICC_ColorSpace(theProfile);
+					}
 
-		case CS_PYCC:
-			synchronized (ColorSpace.class) {
-				if (PYCCspace == null) {
-					ICC_Profile theProfile = ICC_Profile.getInstance(CS_PYCC);
-					PYCCspace = new ICC_ColorSpace(theProfile);
+					theColorSpace = PYCCspace;
 				}
+				break;
 
-				theColorSpace = PYCCspace;
-			}
-			break;
+			case CS_GRAY:
+				synchronized (ColorSpace.class) {
+					if (GRAYspace == null) {
+						ICC_Profile theProfile = ICC_Profile.getInstance(
+								CS_GRAY);
+						GRAYspace = new ICC_ColorSpace(theProfile);
+						/* to allow access from java.awt.ColorModel */
+						CMSManager.GRAYspace = GRAYspace;
+					}
 
-		case CS_GRAY:
-			synchronized (ColorSpace.class) {
-				if (GRAYspace == null) {
-					ICC_Profile theProfile = ICC_Profile.getInstance(CS_GRAY);
-					GRAYspace = new ICC_ColorSpace(theProfile);
-					/* to allow access from java.awt.ColorModel */
-					CMSManager.GRAYspace = GRAYspace;
+					theColorSpace = GRAYspace;
 				}
+				break;
 
-				theColorSpace = GRAYspace;
-			}
-			break;
+			case CS_LINEAR_RGB:
+				synchronized (ColorSpace.class) {
+					if (LINEAR_RGBspace == null) {
+						ICC_Profile theProfile = ICC_Profile.getInstance(
+								CS_LINEAR_RGB);
+						LINEAR_RGBspace = new ICC_ColorSpace(theProfile);
+						/* to allow access from java.awt.ColorModel */
+						CMSManager.LINEAR_RGBspace = LINEAR_RGBspace;
+					}
 
-		case CS_LINEAR_RGB:
-			synchronized (ColorSpace.class) {
-				if (LINEAR_RGBspace == null) {
-					ICC_Profile theProfile = ICC_Profile.getInstance(CS_LINEAR_RGB);
-					LINEAR_RGBspace = new ICC_ColorSpace(theProfile);
-					/* to allow access from java.awt.ColorModel */
-					CMSManager.LINEAR_RGBspace = LINEAR_RGBspace;
+					theColorSpace = LINEAR_RGBspace;
 				}
+				break;
 
-				theColorSpace = LINEAR_RGBspace;
-			}
-			break;
-
-		default:
-			throw new IllegalArgumentException("Unknown color space");
+			default:
+				throw new IllegalArgumentException("Unknown color space");
 		}
 
 		return theColorSpace;
@@ -414,12 +396,14 @@ public abstract class ColorSpace implements java.io.Serializable {
 	 * <p>
 	 * 
 	 * @param colorvalue
-	 *            a float array with length of at least the number of components
-	 *            in this ColorSpace
+	 *                   a float array with length of at least the number of
+	 *                   components
+	 *                   in this ColorSpace
 	 * @return a float array of length 3
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if array length is not at least the number of components in
-	 *             this ColorSpace
+	 *                                        if array length is not at least
+	 *                                        the number of components in
+	 *                                        this ColorSpace
 	 */
 	public abstract float[] toRGB(float[] colorvalue);
 
@@ -439,11 +423,11 @@ public abstract class ColorSpace implements java.io.Serializable {
 	 * <p>
 	 * 
 	 * @param rgbvalue
-	 *            a float array with length of at least 3
+	 *                 a float array with length of at least 3
 	 * @return a float array with length equal to the number of components in
 	 *         this ColorSpace
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if array length is not at least 3
+	 *                                        if array length is not at least 3
 	 */
 	public abstract float[] fromRGB(float[] rgbvalue);
 
@@ -466,12 +450,14 @@ public abstract class ColorSpace implements java.io.Serializable {
 	 * <p>
 	 * 
 	 * @param colorvalue
-	 *            a float array with length of at least the number of components
-	 *            in this ColorSpace
+	 *                   a float array with length of at least the number of
+	 *                   components
+	 *                   in this ColorSpace
 	 * @return a float array of length 3
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if array length is not at least the number of components in
-	 *             this ColorSpace.
+	 *                                        if array length is not at least
+	 *                                        the number of components in
+	 *                                        this ColorSpace.
 	 */
 	public abstract float[] toCIEXYZ(float[] colorvalue);
 
@@ -495,11 +481,11 @@ public abstract class ColorSpace implements java.io.Serializable {
 	 * <p>
 	 * 
 	 * @param colorvalue
-	 *            a float array with length of at least 3
+	 *                   a float array with length of at least 3
 	 * @return a float array with length equal to the number of components in
 	 *         this ColorSpace
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if array length is not at least 3
+	 *                                        if array length is not at least 3
 	 */
 	public abstract float[] fromCIEXYZ(float[] colorvalue);
 
@@ -534,56 +520,60 @@ public abstract class ColorSpace implements java.io.Serializable {
 	 *            the component index
 	 * @return the name of the component at the specified index
 	 * @throws IllegalArgumentException
-	 *             if <code>idx</code> is less than 0 or greater than
-	 *             numComponents - 1
+	 *                                  if <code>idx</code> is less than 0 or
+	 *                                  greater than
+	 *                                  numComponents - 1
 	 */
 	public String getName(int idx) {
 		/* REMIND - handle common cases here */
 		if ((idx < 0) || (idx > numComponents - 1)) {
-			throw new IllegalArgumentException("Component index out of range: " + idx);
+			throw new IllegalArgumentException("Component index out of range: "
+					+ idx);
 		}
 
 		if (compName == null) {
 			switch (type) {
-			case ColorSpace.TYPE_XYZ:
-				compName = new String[] { "X", "Y", "Z" };
-				break;
-			case ColorSpace.TYPE_Lab:
-				compName = new String[] { "L", "a", "b" };
-				break;
-			case ColorSpace.TYPE_Luv:
-				compName = new String[] { "L", "u", "v" };
-				break;
-			case ColorSpace.TYPE_YCbCr:
-				compName = new String[] { "Y", "Cb", "Cr" };
-				break;
-			case ColorSpace.TYPE_Yxy:
-				compName = new String[] { "Y", "x", "y" };
-				break;
-			case ColorSpace.TYPE_RGB:
-				compName = new String[] { "Red", "Green", "Blue" };
-				break;
-			case ColorSpace.TYPE_GRAY:
-				compName = new String[] { "Gray" };
-				break;
-			case ColorSpace.TYPE_HSV:
-				compName = new String[] { "Hue", "Saturation", "Value" };
-				break;
-			case ColorSpace.TYPE_HLS:
-				compName = new String[] { "Hue", "Lightness", "Saturation" };
-				break;
-			case ColorSpace.TYPE_CMYK:
-				compName = new String[] { "Cyan", "Magenta", "Yellow", "Black" };
-				break;
-			case ColorSpace.TYPE_CMY:
-				compName = new String[] { "Cyan", "Magenta", "Yellow" };
-				break;
-			default:
-				String[] tmp = new String[numComponents];
-				for (int i = 0; i < tmp.length; i++) {
-					tmp[i] = "Unnamed color component(" + i + ")";
-				}
-				compName = tmp;
+				case ColorSpace.TYPE_XYZ:
+					compName = new String[] { "X", "Y", "Z" };
+					break;
+				case ColorSpace.TYPE_Lab:
+					compName = new String[] { "L", "a", "b" };
+					break;
+				case ColorSpace.TYPE_Luv:
+					compName = new String[] { "L", "u", "v" };
+					break;
+				case ColorSpace.TYPE_YCbCr:
+					compName = new String[] { "Y", "Cb", "Cr" };
+					break;
+				case ColorSpace.TYPE_Yxy:
+					compName = new String[] { "Y", "x", "y" };
+					break;
+				case ColorSpace.TYPE_RGB:
+					compName = new String[] { "Red", "Green", "Blue" };
+					break;
+				case ColorSpace.TYPE_GRAY:
+					compName = new String[] { "Gray" };
+					break;
+				case ColorSpace.TYPE_HSV:
+					compName = new String[] { "Hue", "Saturation", "Value" };
+					break;
+				case ColorSpace.TYPE_HLS:
+					compName = new String[] { "Hue", "Lightness",
+							"Saturation" };
+					break;
+				case ColorSpace.TYPE_CMYK:
+					compName = new String[] { "Cyan", "Magenta", "Yellow",
+							"Black" };
+					break;
+				case ColorSpace.TYPE_CMY:
+					compName = new String[] { "Cyan", "Magenta", "Yellow" };
+					break;
+				default:
+					String[] tmp = new String[numComponents];
+					for (int i = 0; i < tmp.length; i++) {
+						tmp[i] = "Unnamed color component(" + i + ")";
+					}
+					compName = tmp;
 			}
 		}
 		return compName[idx];
@@ -595,15 +585,17 @@ public abstract class ColorSpace implements java.io.Serializable {
 	 * for all components. Subclasses should override this method if necessary.
 	 *
 	 * @param component
-	 *            the component index
+	 *                  the component index
 	 * @return the minimum normalized component value
 	 * @throws IllegalArgumentException
-	 *             if component is less than 0 or greater than numComponents - 1
+	 *                                  if component is less than 0 or greater
+	 *                                  than numComponents - 1
 	 * @since 1.4
 	 */
 	public float getMinValue(int component) {
 		if ((component < 0) || (component > numComponents - 1)) {
-			throw new IllegalArgumentException("Component index out of range: " + component);
+			throw new IllegalArgumentException("Component index out of range: "
+					+ component);
 		}
 		return 0.0f;
 	}
@@ -614,15 +606,17 @@ public abstract class ColorSpace implements java.io.Serializable {
 	 * for all components. Subclasses should override this method if necessary.
 	 *
 	 * @param component
-	 *            the component index
+	 *                  the component index
 	 * @return the maximum normalized component value
 	 * @throws IllegalArgumentException
-	 *             if component is less than 0 or greater than numComponents - 1
+	 *                                  if component is less than 0 or greater
+	 *                                  than numComponents - 1
 	 * @since 1.4
 	 */
 	public float getMaxValue(int component) {
 		if ((component < 0) || (component > numComponents - 1)) {
-			throw new IllegalArgumentException("Component index out of range: " + component);
+			throw new IllegalArgumentException("Component index out of range: "
+					+ component);
 		}
 		return 1.0f;
 	}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -94,7 +74,8 @@ import sun.util.logging.PlatformLogger;
  * 
  * <pre>
  * // this should be done at the beginning of an HTTP session
- * CookieHandler.setDefault(new CookieManager(new MyCookieStore(), new MyCookiePolicy()));
+ * CookieHandler.setDefault(new CookieManager(new MyCookieStore(),
+ * 		new MyCookiePolicy()));
  * </pre>
  * 
  * </blockquote>
@@ -105,7 +86,8 @@ import sun.util.logging.PlatformLogger;
  * // this should be done at the beginning of an HTTP session
  * CookieHandler.setDefault(new CookieManager());
  * // this can be done at any point of an HTTP session
- * ((CookieManager) CookieHandler.getDefault()).setCookiePolicy(new MyCookiePolicy());
+ * ((CookieManager) CookieHandler.getDefault()).setCookiePolicy(
+ * 		new MyCookiePolicy());
  * </pre>
  * 
  * </blockquote>
@@ -146,17 +128,22 @@ public class CookieManager extends CookieHandler {
 	 * policy.
 	 *
 	 * @param store
-	 *            a {@code CookieStore} to be used by cookie manager. if
-	 *            {@code null}, cookie manager will use a default one, which is
-	 *            an in-memory CookieStore implementation.
+	 *                     a {@code CookieStore} to be used by cookie manager.
+	 *                     if
+	 *                     {@code null}, cookie manager will use a default one,
+	 *                     which is
+	 *                     an in-memory CookieStore implementation.
 	 * @param cookiePolicy
-	 *            a {@code CookiePolicy} instance to be used by cookie manager
-	 *            as policy callback. if {@code null}, ACCEPT_ORIGINAL_SERVER
-	 *            will be used.
+	 *                     a {@code CookiePolicy} instance to be used by cookie
+	 *                     manager
+	 *                     as policy callback. if {@code null},
+	 *                     ACCEPT_ORIGINAL_SERVER
+	 *                     will be used.
 	 */
 	public CookieManager(CookieStore store, CookiePolicy cookiePolicy) {
 		// use default cookie policy if not specify one
-		policyCallback = (cookiePolicy == null) ? CookiePolicy.ACCEPT_ORIGINAL_SERVER
+		policyCallback = (cookiePolicy == null)
+				? CookiePolicy.ACCEPT_ORIGINAL_SERVER
 				: cookiePolicy;
 
 		// if not specify CookieStore to use, use default one
@@ -178,8 +165,9 @@ public class CookieManager extends CookieHandler {
 	 * set another cookie policy.
 	 *
 	 * @param cookiePolicy
-	 *            the cookie policy. Can be {@code null}, which has no effects
-	 *            on current cookie policy.
+	 *                     the cookie policy. Can be {@code null}, which has no
+	 *                     effects
+	 *                     on current cookie policy.
 	 */
 	public void setCookiePolicy(CookiePolicy cookiePolicy) {
 		if (cookiePolicy != null)
@@ -195,8 +183,8 @@ public class CookieManager extends CookieHandler {
 		return cookieJar;
 	}
 
-	public Map<String, List<String>> get(URI uri, Map<String, List<String>> requestHeaders)
-			throws IOException {
+	public Map<String, List<String>> get(URI uri,
+			Map<String, List<String>> requestHeaders) throws IOException {
 		// pre-condition check
 		if (uri == null || requestHeaders == null) {
 			throw new IllegalArgumentException("Argument is null");
@@ -217,11 +205,13 @@ public class CookieManager extends CookieHandler {
 			// apply path-matches rule (RFC 2965 sec. 3.3.4)
 			// and check for the possible "secure" tag (i.e. don't send
 			// 'secure' cookies over unsecure links)
-			if (pathMatches(path, cookie.getPath()) && (secureLink || !cookie.getSecure())) {
+			if (pathMatches(path, cookie.getPath()) && (secureLink || !cookie
+					.getSecure())) {
 				// Enforce httponly attribute
 				if (cookie.isHttpOnly()) {
 					String s = uri.getScheme();
-					if (!"http".equalsIgnoreCase(s) && !"https".equalsIgnoreCase(s)) {
+					if (!"http".equalsIgnoreCase(s) && !"https"
+							.equalsIgnoreCase(s)) {
 						continue;
 					}
 				}
@@ -248,7 +238,8 @@ public class CookieManager extends CookieHandler {
 		return Collections.unmodifiableMap(cookieMap);
 	}
 
-	public void put(URI uri, Map<String, List<String>> responseHeaders) throws IOException {
+	public void put(URI uri, Map<String, List<String>> responseHeaders)
+			throws IOException {
 		// pre-condition check
 		if (uri == null || responseHeaders == null) {
 			throw new IllegalArgumentException("Argument is null");
@@ -258,7 +249,8 @@ public class CookieManager extends CookieHandler {
 		if (cookieJar == null)
 			return;
 
-		PlatformLogger logger = PlatformLogger.getLogger("java.net.CookieManager");
+		PlatformLogger logger = PlatformLogger.getLogger(
+				"java.net.CookieManager");
 		for (String headerKey : responseHeaders.keySet()) {
 			// RFC 2965 3.2.2, key must be 'Set-Cookie2'
 			// we also accept 'Set-Cookie' here for backward compatibility
@@ -276,7 +268,8 @@ public class CookieManager extends CookieHandler {
 						// Bogus header, make an empty list and log the error
 						cookies = java.util.Collections.emptyList();
 						if (logger.isLoggable(PlatformLogger.Level.SEVERE)) {
-							logger.severe("Invalid cookie for " + uri + ": " + headerValue);
+							logger.severe("Invalid cookie for " + uri + ": "
+									+ headerValue);
 						}
 					}
 					for (HttpCookie cookie : cookies) {
@@ -311,7 +304,8 @@ public class CookieManager extends CookieHandler {
 						if (ports != null) {
 							int port = uri.getPort();
 							if (port == -1) {
-								port = "https".equals(uri.getScheme()) ? 443 : 80;
+								port = "https".equals(uri.getScheme()) ? 443
+										: 80;
 							}
 							if (ports.isEmpty()) {
 								// Empty port list means this should be

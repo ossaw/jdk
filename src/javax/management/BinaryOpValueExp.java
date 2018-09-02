@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -56,8 +36,7 @@ class BinaryOpValueExp extends QueryEval implements ValueExp {
 	/**
 	 * Basic Constructor.
 	 */
-	public BinaryOpValueExp() {
-	}
+	public BinaryOpValueExp() {}
 
 	/**
 	 * Creates a new BinaryOpValueExp using operator o applied on v1 and v2
@@ -94,8 +73,8 @@ class BinaryOpValueExp extends QueryEval implements ValueExp {
 	 * Applies the BinaryOpValueExp on a MBean.
 	 *
 	 * @param name
-	 *            The name of the MBean on which the BinaryOpValueExp will be
-	 *            applied.
+	 *             The name of the MBean on which the BinaryOpValueExp will be
+	 *             applied.
 	 *
 	 * @return The ValueExp.
 	 *
@@ -104,9 +83,9 @@ class BinaryOpValueExp extends QueryEval implements ValueExp {
 	 * @exception BadAttributeValueExpException
 	 * @exception InvalidApplicationException
 	 */
-	public ValueExp apply(ObjectName name)
-			throws BadStringOperationException, BadBinaryOpValueExpException,
-			BadAttributeValueExpException, InvalidApplicationException {
+	public ValueExp apply(ObjectName name) throws BadStringOperationException,
+			BadBinaryOpValueExpException, BadAttributeValueExpException,
+			InvalidApplicationException {
 		ValueExp val1 = exp1.apply(name);
 		ValueExp val2 = exp2.apply(name);
 		String sval1;
@@ -123,14 +102,14 @@ class BinaryOpValueExp extends QueryEval implements ValueExp {
 				lval2 = ((NumericValueExp) val2).longValue();
 
 				switch (op) {
-				case Query.PLUS:
-					return Query.value(lval1 + lval2);
-				case Query.TIMES:
-					return Query.value(lval1 * lval2);
-				case Query.MINUS:
-					return Query.value(lval1 - lval2);
-				case Query.DIV:
-					return Query.value(lval1 / lval2);
+					case Query.PLUS:
+						return Query.value(lval1 + lval2);
+					case Query.TIMES:
+						return Query.value(lval1 * lval2);
+					case Query.MINUS:
+						return Query.value(lval1 - lval2);
+					case Query.DIV:
+						return Query.value(lval1 / lval2);
 				}
 
 			} else {
@@ -138,14 +117,14 @@ class BinaryOpValueExp extends QueryEval implements ValueExp {
 				dval2 = ((NumericValueExp) val2).doubleValue();
 
 				switch (op) {
-				case Query.PLUS:
-					return Query.value(dval1 + dval2);
-				case Query.TIMES:
-					return Query.value(dval1 * dval2);
-				case Query.MINUS:
-					return Query.value(dval1 - dval2);
-				case Query.DIV:
-					return Query.value(dval1 / dval2);
+					case Query.PLUS:
+						return Query.value(dval1 + dval2);
+					case Query.TIMES:
+						return Query.value(dval1 * dval2);
+					case Query.MINUS:
+						return Query.value(dval1 - dval2);
+					case Query.DIV:
+						return Query.value(dval1 / dval2);
 				}
 			}
 		} else {
@@ -153,10 +132,10 @@ class BinaryOpValueExp extends QueryEval implements ValueExp {
 			sval2 = ((StringValueExp) val2).getValue();
 
 			switch (op) {
-			case Query.PLUS:
-				return new StringValueExp(sval1 + sval2);
-			default:
-				throw new BadStringOperationException(opString());
+				case Query.PLUS:
+					return new StringValueExp(sval1 + sval2);
+				default:
+					throw new BadStringOperationException(opString());
 			}
 		}
 
@@ -168,7 +147,8 @@ class BinaryOpValueExp extends QueryEval implements ValueExp {
 	 */
 	public String toString() {
 		try {
-			return parens(exp1, true) + " " + opString() + " " + parens(exp2, false);
+			return parens(exp1, true) + " " + opString() + " " + parens(exp2,
+					false);
 		} catch (BadBinaryOpValueExpException ex) {
 			return "invalid expression";
 		}
@@ -181,29 +161,26 @@ class BinaryOpValueExp extends QueryEval implements ValueExp {
 	 * Query.attr("C")). Then the original toString() logic would return A + B *
 	 * C. We check precedences in order to return (A + B) * C, which is the
 	 * meaning of the ValueExp.
-	 *
 	 * We need to add parentheses if the unparenthesized expression would be
 	 * parsed as a different ValueExp from the original. We cannot omit
 	 * parentheses even when mathematically the result would be equivalent,
 	 * because we do not know whether the numeric values will be integer or
 	 * floating-point. Addition and multiplication are associative for integers
 	 * but not always for floating-point.
-	 *
 	 * So the rule is that we omit parentheses if the ValueExp is (A op1 B) op2
 	 * C and the precedence of op1 is greater than or equal to that of op2; or
 	 * if the ValueExp is A op1 (B op2 C) and the precedence of op2 is greater
 	 * than that of op1. (There are two precedences: that of * and / is greater
 	 * than that of + and -.) The case of (A op1 B) op2 (C op3 D) applies each
 	 * rule in turn.
-	 *
 	 * The following examples show the rules in action. On the left, the
 	 * original ValueExp. On the right, the string representation.
-	 *
 	 * (A + B) + C A + B + C (A * B) + C A * B + C (A + B) * C (A + B) * C (A *
 	 * B) * C A * B * C A + (B + C) A + (B + C) A + (B * C) A + B * C A * (B +
 	 * C) A * (B + C) A * (B * C) A * (B * C)
 	 */
-	private String parens(ValueExp subexp, boolean left) throws BadBinaryOpValueExpException {
+	private String parens(ValueExp subexp, boolean left)
+			throws BadBinaryOpValueExpException {
 		boolean omit;
 		if (subexp instanceof BinaryOpValueExp) {
 			int subop = ((BinaryOpValueExp) subexp).op;
@@ -222,27 +199,27 @@ class BinaryOpValueExp extends QueryEval implements ValueExp {
 
 	private int precedence(int xop) throws BadBinaryOpValueExpException {
 		switch (xop) {
-		case Query.PLUS:
-		case Query.MINUS:
-			return 0;
-		case Query.TIMES:
-		case Query.DIV:
-			return 1;
-		default:
-			throw new BadBinaryOpValueExpException(this);
+			case Query.PLUS:
+			case Query.MINUS:
+				return 0;
+			case Query.TIMES:
+			case Query.DIV:
+				return 1;
+			default:
+				throw new BadBinaryOpValueExpException(this);
 		}
 	}
 
 	private String opString() throws BadBinaryOpValueExpException {
 		switch (op) {
-		case Query.PLUS:
-			return "+";
-		case Query.TIMES:
-			return "*";
-		case Query.MINUS:
-			return "-";
-		case Query.DIV:
-			return "/";
+			case Query.PLUS:
+				return "+";
+			case Query.TIMES:
+				return "*";
+			case Query.MINUS:
+				return "-";
+			case Query.DIV:
+				return "/";
 		}
 
 		throw new BadBinaryOpValueExpException(this);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.tools;
@@ -53,7 +33,6 @@ public class ToolProvider {
 
 	/*
 	 * Define the system property "sun.tools.ToolProvider" to enable debugging:
-	 *
 	 * java ... -Dsun.tools.ToolProvider ...
 	 */
 	static <T> T trace(Level level, Object reason) {
@@ -65,8 +44,9 @@ public class ToolProvider {
 				String cls = ToolProvider.class.getName();
 				if (st.length > 2) {
 					StackTraceElement frame = st[2];
-					method = String.format((Locale) null, "%s(%s:%s)", frame.getMethodName(),
-							frame.getFileName(), frame.getLineNumber());
+					method = String.format((Locale) null, "%s(%s:%s)", frame
+							.getMethodName(), frame.getFileName(), frame
+									.getLineNumber());
 					cls = frame.getClassName();
 				}
 				Logger logger = Logger.getLogger(loggerName);
@@ -78,8 +58,8 @@ public class ToolProvider {
 				}
 			}
 		} catch (SecurityException ex) {
-			System.err.format((Locale) null, "%s: %s; %s%n", ToolProvider.class.getName(), reason,
-					ex.getLocalizedMessage());
+			System.err.format((Locale) null, "%s: %s; %s%n", ToolProvider.class
+					.getName(), reason, ex.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -94,7 +74,8 @@ public class ToolProvider {
 	 *         compiler is provided
 	 */
 	public static JavaCompiler getSystemJavaCompiler() {
-		return instance().getSystemTool(JavaCompiler.class, defaultJavaCompilerName);
+		return instance().getSystemTool(JavaCompiler.class,
+				defaultJavaCompilerName);
 	}
 
 	private static final String defaultDocumentationToolName = "com.sun.tools.javadoc.api.JavadocTool";
@@ -107,7 +88,8 @@ public class ToolProvider {
 	 *         {@code null} if no documentation tool is provided
 	 */
 	public static DocumentationTool getSystemDocumentationTool() {
-		return instance().getSystemTool(DocumentationTool.class, defaultDocumentationToolName);
+		return instance().getSystemTool(DocumentationTool.class,
+				defaultDocumentationToolName);
 	}
 
 	/**
@@ -121,8 +103,8 @@ public class ToolProvider {
 	 */
 	public static ClassLoader getSystemToolClassLoader() {
 		try {
-			Class<? extends JavaCompiler> c = instance().getSystemToolClass(JavaCompiler.class,
-					defaultJavaCompilerName);
+			Class<? extends JavaCompiler> c = instance().getSystemToolClass(
+					JavaCompiler.class, defaultJavaCompilerName);
 			return c.getClassLoader();
 		} catch (Throwable e) {
 			return trace(WARNING, e);
@@ -145,8 +127,7 @@ public class ToolProvider {
 	// Use a weak reference to avoid keeping it around unnecessarily
 	private Reference<ClassLoader> refToolClassLoader = null;
 
-	private ToolProvider() {
-	}
+	private ToolProvider() {}
 
 	private <T> T getSystemTool(Class<T> clazz, String name) {
 		Class<? extends T> c = getSystemToolClass(clazz, name);
@@ -158,7 +139,8 @@ public class ToolProvider {
 		}
 	}
 
-	private <T> Class<? extends T> getSystemToolClass(Class<T> clazz, String name) {
+	private <T> Class<? extends T> getSystemToolClass(Class<T> clazz,
+			String name) {
 		Reference<Class<?>> refClass = toolClasses.get(name);
 		Class<?> c = (refClass == null ? null : refClass.get());
 		if (c == null) {
@@ -184,7 +166,8 @@ public class ToolProvider {
 
 			// if tool not on bootclasspath, look in default tools location
 			// (tools.jar)
-			ClassLoader cl = (refToolClassLoader == null ? null : refToolClassLoader.get());
+			ClassLoader cl = (refToolClassLoader == null ? null
+					: refToolClassLoader.get());
 			if (cl == null) {
 				File file = new File(System.getProperty("java.home"));
 				if (file.getName().equalsIgnoreCase("jre"))

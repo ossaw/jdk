@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -64,9 +44,9 @@ public class WriteAbortedException extends ObjectStreamException {
 	 * and the exception causing the abort.
 	 * 
 	 * @param s
-	 *            String describing the exception.
+	 *           String describing the exception.
 	 * @param ex
-	 *            Exception causing the abort.
+	 *           Exception causing the abort.
 	 */
 	public WriteAbortedException(String s, Exception ex) {
 		super(s);

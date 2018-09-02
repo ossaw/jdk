@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -80,7 +60,7 @@ public interface InterruptibleChannel extends Channel {
 	 * </p>
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public void close() throws IOException;
 

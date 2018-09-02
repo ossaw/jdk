@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp.internal;
 
@@ -56,7 +36,7 @@ public interface SnmpMsgProcessingSubSystem extends SnmpSubSystem {
 	 * Security sub system.
 	 * 
 	 * @param security
-	 *            The security sub system.
+	 *                 The security sub system.
 	 */
 	public void setSecuritySubSystem(SnmpSecuritySubSystem security);
 
@@ -71,28 +51,28 @@ public interface SnmpMsgProcessingSubSystem extends SnmpSubSystem {
 	 * This method is called when a call is received from the network.
 	 * 
 	 * @param model
-	 *            The model ID.
+	 *                The model ID.
 	 * @param factory
-	 *            The pdu factory to use to encode and decode pdu.
+	 *                The pdu factory to use to encode and decode pdu.
 	 * @return The object that will handle every steps of the receiving (mainly
 	 *         unmarshalling and security).
 	 */
-	public SnmpIncomingRequest getIncomingRequest(int model, SnmpPduFactory factory)
-			throws SnmpUnknownMsgProcModelException;
+	public SnmpIncomingRequest getIncomingRequest(int model,
+			SnmpPduFactory factory) throws SnmpUnknownMsgProcModelException;
 
 	/**
 	 * This method is called when a call is to be sent to the network. The sub
 	 * system routes the call to the dedicated model according to the model ID.
 	 * 
 	 * @param model
-	 *            The model ID.
+	 *                The model ID.
 	 * @param factory
-	 *            The pdu factory to use to encode and decode pdu.
+	 *                The pdu factory to use to encode and decode pdu.
 	 * @return The object that will handle every steps of the sending (mainly
 	 *         marshalling and security).
 	 */
-	public SnmpOutgoingRequest getOutgoingRequest(int model, SnmpPduFactory factory)
-			throws SnmpUnknownMsgProcModelException;
+	public SnmpOutgoingRequest getOutgoingRequest(int model,
+			SnmpPduFactory factory) throws SnmpUnknownMsgProcModelException;
 
 	/**
 	 * This method is called to instantiate a pdu according to the passed pdu
@@ -100,11 +80,11 @@ public interface SnmpMsgProcessingSubSystem extends SnmpSubSystem {
 	 * model according to the model ID.
 	 * 
 	 * @param model
-	 *            The model ID.
+	 *              The model ID.
 	 * @param p
-	 *            The request parameters.
+	 *              The request parameters.
 	 * @param type
-	 *            The pdu type.
+	 *              The pdu type.
 	 * @return The pdu.
 	 */
 	public SnmpPdu getRequestPdu(int model, SnmpParams p, int type)
@@ -115,14 +95,14 @@ public interface SnmpMsgProcessingSubSystem extends SnmpSubSystem {
 	 * system routes the call to the dedicated model according to the model ID.
 	 * 
 	 * @param model
-	 *            The model ID.
+	 *                The model ID.
 	 * @param factory
-	 *            The pdu factory to use to decode pdu.
+	 *                The pdu factory to use to decode pdu.
 	 * @return The object that will handle every steps of the receiving (mainly
 	 *         marshalling and security).
 	 */
-	public SnmpIncomingResponse getIncomingResponse(int model, SnmpPduFactory factory)
-			throws SnmpUnknownMsgProcModelException;
+	public SnmpIncomingResponse getIncomingResponse(int model,
+			SnmpPduFactory factory) throws SnmpUnknownMsgProcModelException;
 
 	/**
 	 * This method is called to encode a full scoped pdu that as not been
@@ -133,33 +113,34 @@ public interface SnmpMsgProcessingSubSystem extends SnmpSubSystem {
 	 * {@link com.sun.jmx.snmp.SnmpV3Message} class).
 	 * 
 	 * @param version
-	 *            The SNMP protocol version.
+	 *                         The SNMP protocol version.
 	 * @param msgID
-	 *            The SNMP message ID.
+	 *                         The SNMP message ID.
 	 * @param msgMaxSize
-	 *            The max message size.
+	 *                         The max message size.
 	 * @param msgFlags
-	 *            The message flags.
+	 *                         The message flags.
 	 * @param msgSecurityModel
-	 *            The message security model.
+	 *                         The message security model.
 	 * @param params
-	 *            The security parameters.
+	 *                         The security parameters.
 	 * @param contextEngineID
-	 *            The context engine ID.
+	 *                         The context engine ID.
 	 * @param contextName
-	 *            The context name.
+	 *                         The context name.
 	 * @param data
-	 *            The encoded data.
+	 *                         The encoded data.
 	 * @param dataLength
-	 *            The encoded data length.
+	 *                         The encoded data length.
 	 * @param outputBytes
-	 *            The buffer containing the encoded message.
+	 *                         The buffer containing the encoded message.
 	 * @return The encoded bytes number.
 	 */
-	public int encode(int version, int msgID, int msgMaxSize, byte msgFlags, int msgSecurityModel,
-			SnmpSecurityParameters params, byte[] contextEngineID, byte[] contextName, byte[] data,
-			int dataLength, byte[] outputBytes)
-			throws SnmpTooBigException, SnmpUnknownMsgProcModelException;
+	public int encode(int version, int msgID, int msgMaxSize, byte msgFlags,
+			int msgSecurityModel, SnmpSecurityParameters params,
+			byte[] contextEngineID, byte[] contextName, byte[] data,
+			int dataLength, byte[] outputBytes) throws SnmpTooBigException,
+			SnmpUnknownMsgProcModelException;
 
 	/**
 	 * This method is called to encode a full scoped pdu that as been encrypted.
@@ -170,26 +151,27 @@ public interface SnmpMsgProcessingSubSystem extends SnmpSubSystem {
 	 * {@link com.sun.jmx.snmp.SnmpV3Message} class).
 	 * 
 	 * @param version
-	 *            The SNMP protocol version.
+	 *                         The SNMP protocol version.
 	 * @param msgID
-	 *            The SNMP message ID.
+	 *                         The SNMP message ID.
 	 * @param msgMaxSize
-	 *            The max message size.
+	 *                         The max message size.
 	 * @param msgFlags
-	 *            The message flags.
+	 *                         The message flags.
 	 * @param msgSecurityModel
-	 *            The message security model.
+	 *                         The message security model.
 	 * @param params
-	 *            The security parameters.
+	 *                         The security parameters.
 	 * @param encryptedPdu
-	 *            The encrypted pdu.
+	 *                         The encrypted pdu.
 	 * @param outputBytes
-	 *            The buffer containing the encoded message.
+	 *                         The buffer containing the encoded message.
 	 * @return The encoded bytes number.
 	 */
 	public int encodePriv(int version, int msgID, int msgMaxSize, byte msgFlags,
-			int msgSecurityModel, SnmpSecurityParameters params, byte[] encryptedPdu,
-			byte[] outputBytes) throws SnmpTooBigException, SnmpUnknownMsgProcModelException;
+			int msgSecurityModel, SnmpSecurityParameters params,
+			byte[] encryptedPdu, byte[] outputBytes) throws SnmpTooBigException,
+			SnmpUnknownMsgProcModelException;
 
 	/**
 	 * This method returns a decoded scoped pdu. This method decodes only the
@@ -198,9 +180,9 @@ public interface SnmpMsgProcessingSubSystem extends SnmpSubSystem {
 	 * routed to the dedicated model according to the version value.
 	 * 
 	 * @param version
-	 *            The SNMP protocol version.
+	 *                The SNMP protocol version.
 	 * @param pdu
-	 *            The encoded pdu.
+	 *                The encoded pdu.
 	 * @return the partialy scoped pdu.
 	 */
 	public SnmpDecryptedPdu decode(int version, byte[] pdu)
@@ -213,11 +195,11 @@ public interface SnmpMsgProcessingSubSystem extends SnmpSubSystem {
 	 * routed to the dedicated model according to the version value.
 	 * 
 	 * @param version
-	 *            The SNMP protocol version.
+	 *                    The SNMP protocol version.
 	 * @param pdu
-	 *            The pdu to encode.
+	 *                    The pdu to encode.
 	 * @param outputBytes
-	 *            The partialy scoped pdu.
+	 *                    The partialy scoped pdu.
 	 * @return The encoded bytes number.
 	 */
 	public int encode(int version, SnmpDecryptedPdu pdu, byte[] outputBytes)

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util;
 
@@ -52,8 +32,8 @@ import java.util.stream.Collector;
  * <pre>
  * {
  * 	&#64;code
- * 	IntSummaryStatistics stats = people.stream()
- * 			.collect(Collectors.summarizingInt(Person::getDependents));
+ * 	IntSummaryStatistics stats = people.stream().collect(Collectors
+ * 			.summarizingInt(Person::getDependents));
  * }
  * </pre>
  *
@@ -82,14 +62,13 @@ public class IntSummaryStatistics implements IntConsumer {
 	 * {@code Integer.MAX_VALUE} min, {@code Integer.MIN_VALUE} max and zero
 	 * average.
 	 */
-	public IntSummaryStatistics() {
-	}
+	public IntSummaryStatistics() {}
 
 	/**
 	 * Records a new value into the summary information
 	 *
 	 * @param value
-	 *            the input value
+	 *              the input value
 	 */
 	@Override
 	public void accept(int value) {
@@ -103,9 +82,9 @@ public class IntSummaryStatistics implements IntConsumer {
 	 * Combines the state of another {@code IntSummaryStatistics} into this one.
 	 *
 	 * @param other
-	 *            another {@code IntSummaryStatistics}
+	 *              another {@code IntSummaryStatistics}
 	 * @throws NullPointerException
-	 *             if {@code other} is null
+	 *                              if {@code other} is null
 	 */
 	public void combine(IntSummaryStatistics other) {
 		count += other.count;
@@ -173,7 +152,7 @@ public class IntSummaryStatistics implements IntConsumer {
 	 */
 	public String toString() {
 		return String.format("%s{count=%d, sum=%d, min=%d, average=%f, max=%d}",
-				this.getClass().getSimpleName(), getCount(), getSum(), getMin(), getAverage(),
-				getMax());
+				this.getClass().getSimpleName(), getCount(), getSum(), getMin(),
+				getAverage(), getMax());
 	}
 }

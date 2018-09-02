@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.resolver;
@@ -56,7 +36,8 @@ public class ResolverDefault {
 	 * Return a resolver that relies on configured values of ORBInitRef for
 	 * data.
 	 */
-	public static Resolver makeORBInitRefResolver(Operation urlOperation, StringPair[] initRefs) {
+	public static Resolver makeORBInitRefResolver(Operation urlOperation,
+			StringPair[] initRefs) {
 		return new ORBInitRefResolverImpl(urlOperation, initRefs);
 	}
 
@@ -70,7 +51,8 @@ public class ResolverDefault {
 	 * implement a resolver. Obtains the necessary host and port information
 	 * from the ORB.
 	 */
-	public static Resolver makeBootstrapResolver(ORB orb, String host, int port) {
+	public static Resolver makeBootstrapResolver(ORB orb, String host,
+			int port) {
 		return new BootstrapResolverImpl(orb, host, port);
 	}
 
@@ -80,12 +62,15 @@ public class ResolverDefault {
 	 * returns first.resolve( name ) if that is not null, otherwise returns the
 	 * result of second.resolve( name ).
 	 */
-	public static Resolver makeCompositeResolver(Resolver first, Resolver second) {
+	public static Resolver makeCompositeResolver(Resolver first,
+			Resolver second) {
 		return new CompositeResolverImpl(first, second);
 	}
 
-	public static Operation makeINSURLOperation(ORB orb, Resolver bootstrapResolver) {
-		return new INSURLOperationImpl((com.sun.corba.se.spi.orb.ORB) orb, bootstrapResolver);
+	public static Operation makeINSURLOperation(ORB orb,
+			Resolver bootstrapResolver) {
+		return new INSURLOperationImpl((com.sun.corba.se.spi.orb.ORB) orb,
+				bootstrapResolver);
 	}
 
 	public static LocalResolver makeSplitLocalResolver(Resolver resolver,

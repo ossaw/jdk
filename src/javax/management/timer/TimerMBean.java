@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.timer;
@@ -29,8 +9,9 @@ package javax.management.timer;
 //
 import java.util.Date;
 import java.util.Vector;
-// NPCTE fix for bugId 4464388, esc 0,  MR , to be added after modification of jmx spec
-//import java.io.Serializable;
+// NPCTE fix for bugId 4464388, esc 0, MR , to be added after modification of
+// jmx spec
+// import java.io.Serializable;
 // end of NPCTE fix for bugId 4464388
 
 // jmx imports
@@ -85,30 +66,35 @@ public interface TimerMBean {
 	 * {@link java.util.Timer}.
 	 *
 	 * @param type
-	 *            The timer notification type.
+	 *                     The timer notification type.
 	 * @param message
-	 *            The timer notification detailed message.
+	 *                     The timer notification detailed message.
 	 * @param userData
-	 *            The timer notification user data object.
+	 *                     The timer notification user data object.
 	 * @param date
-	 *            The date when the notification occurs.
+	 *                     The date when the notification occurs.
 	 * @param period
-	 *            The period of the timer notification (in milliseconds).
+	 *                     The period of the timer notification (in
+	 *                     milliseconds).
 	 * @param nbOccurences
-	 *            The total number the timer notification will be emitted.
+	 *                     The total number the timer notification will be
+	 *                     emitted.
 	 * @param fixedRate
-	 *            If <code>true</code> and if the notification is periodic, the
-	 *            notification is scheduled with a <i>fixed-rate</i> execution
-	 *            scheme. If <code>false</code> and if the notification is
-	 *            periodic, the notification is scheduled with a
-	 *            <i>fixed-delay</i> execution scheme. Ignored if the
-	 *            notification is not periodic.
+	 *                     If <code>true</code> and if the notification is
+	 *                     periodic, the
+	 *                     notification is scheduled with a <i>fixed-rate</i>
+	 *                     execution
+	 *                     scheme. If <code>false</code> and if the notification
+	 *                     is
+	 *                     periodic, the notification is scheduled with a
+	 *                     <i>fixed-delay</i> execution scheme. Ignored if the
+	 *                     notification is not periodic.
 	 *
 	 * @return The identifier of the new created timer notification.
 	 *
 	 * @exception java.lang.IllegalArgumentException
-	 *                The date is {@code null} or the period or the number of
-	 *                occurrences is negative.
+	 *            The date is {@code null} or the period or the number of
+	 *            occurrences is negative.
 	 *
 	 * @see #addNotification(String, String, Object, Date, long, long)
 	 */
@@ -119,8 +105,8 @@ public interface TimerMBean {
 	// Date date, long period, long nbOccurences)
 	// end of NPCTE fix for bugId 4464388
 
-	public Integer addNotification(String type, String message, Object userData, Date date,
-			long period, long nbOccurences, boolean fixedRate)
+	public Integer addNotification(String type, String message, Object userData,
+			Date date, long period, long nbOccurences, boolean fixedRate)
 			throws java.lang.IllegalArgumentException;
 
 	/**
@@ -149,23 +135,25 @@ public interface TimerMBean {
 	 * instead.
 	 *
 	 * @param type
-	 *            The timer notification type.
+	 *                     The timer notification type.
 	 * @param message
-	 *            The timer notification detailed message.
+	 *                     The timer notification detailed message.
 	 * @param userData
-	 *            The timer notification user data object.
+	 *                     The timer notification user data object.
 	 * @param date
-	 *            The date when the notification occurs.
+	 *                     The date when the notification occurs.
 	 * @param period
-	 *            The period of the timer notification (in milliseconds).
+	 *                     The period of the timer notification (in
+	 *                     milliseconds).
 	 * @param nbOccurences
-	 *            The total number the timer notification will be emitted.
+	 *                     The total number the timer notification will be
+	 *                     emitted.
 	 *
 	 * @return The identifier of the new created timer notification.
 	 *
 	 * @exception java.lang.IllegalArgumentException
-	 *                The date is {@code null} or the period or the number of
-	 *                occurrences is negative.
+	 *            The date is {@code null} or the period or the number of
+	 *            occurrences is negative.
 	 *
 	 * @see #addNotification(String, String, Object, Date, long, long, boolean)
 	 */
@@ -176,8 +164,9 @@ public interface TimerMBean {
 	// Date date, long period)
 	// end of NPCTE fix for bugId 4464388 */
 
-	public Integer addNotification(String type, String message, Object userData, Date date,
-			long period, long nbOccurences) throws java.lang.IllegalArgumentException;
+	public Integer addNotification(String type, String message, Object userData,
+			Date date, long period, long nbOccurences)
+			throws java.lang.IllegalArgumentException;
 
 	/**
 	 * Creates a new timer notification with the specified <CODE>type</CODE>,
@@ -198,20 +187,20 @@ public interface TimerMBean {
 	 * subsequent ones are spaced as specified by the period parameter.
 	 *
 	 * @param type
-	 *            The timer notification type.
+	 *                 The timer notification type.
 	 * @param message
-	 *            The timer notification detailed message.
+	 *                 The timer notification detailed message.
 	 * @param userData
-	 *            The timer notification user data object.
+	 *                 The timer notification user data object.
 	 * @param date
-	 *            The date when the notification occurs.
+	 *                 The date when the notification occurs.
 	 * @param period
-	 *            The period of the timer notification (in milliseconds).
+	 *                 The period of the timer notification (in milliseconds).
 	 *
 	 * @return The identifier of the new created timer notification.
 	 *
 	 * @exception java.lang.IllegalArgumentException
-	 *                The date is {@code null} or the period is negative.
+	 *            The date is {@code null} or the period is negative.
 	 */
 	// NPCTE fix for bugId 4464388, esc 0, MR , to be added after modification
 	// of jmx spec
@@ -220,8 +209,8 @@ public interface TimerMBean {
 	// Date date, long period)
 	// end of NPCTE fix for bugId 4464388 */
 
-	public Integer addNotification(String type, String message, Object userData, Date date,
-			long period) throws java.lang.IllegalArgumentException;
+	public Integer addNotification(String type, String message, Object userData,
+			Date date, long period) throws java.lang.IllegalArgumentException;
 
 	/**
 	 * Creates a new timer notification with the specified <CODE>type</CODE>,
@@ -236,18 +225,18 @@ public interface TimerMBean {
 	 * current date and the notification is delivered immediately.
 	 *
 	 * @param type
-	 *            The timer notification type.
+	 *                 The timer notification type.
 	 * @param message
-	 *            The timer notification detailed message.
+	 *                 The timer notification detailed message.
 	 * @param userData
-	 *            The timer notification user data object.
+	 *                 The timer notification user data object.
 	 * @param date
-	 *            The date when the notification occurs.
+	 *                 The date when the notification occurs.
 	 *
 	 * @return The identifier of the new created timer notification.
 	 *
 	 * @exception java.lang.IllegalArgumentException
-	 *                The date is {@code null}.
+	 *            The date is {@code null}.
 	 */
 	// NPCTE fix for bugId 4464388, esc 0, MR, to be added after modification of
 	// jmx spec
@@ -256,20 +245,22 @@ public interface TimerMBean {
 	// throws java.lang.IllegalArgumentException {
 	// end of NPCTE fix for bugId 4464388
 
-	public Integer addNotification(String type, String message, Object userData, Date date)
-			throws java.lang.IllegalArgumentException;
+	public Integer addNotification(String type, String message, Object userData,
+			Date date) throws java.lang.IllegalArgumentException;
 
 	/**
 	 * Removes the timer notification corresponding to the specified identifier
 	 * from the list of notifications.
 	 *
 	 * @param id
-	 *            The timer notification identifier.
+	 *           The timer notification identifier.
 	 *
 	 * @exception InstanceNotFoundException
-	 *                The specified identifier does not correspond to any timer
-	 *                notification in the list of notifications of this timer
-	 *                MBean.
+	 *                                      The specified identifier does not
+	 *                                      correspond to any timer
+	 *                                      notification in the list of
+	 *                                      notifications of this timer
+	 *                                      MBean.
 	 */
 	public void removeNotification(Integer id) throws InstanceNotFoundException;
 
@@ -278,14 +269,17 @@ public interface TimerMBean {
 	 * from the list of notifications.
 	 *
 	 * @param type
-	 *            The timer notification type.
+	 *             The timer notification type.
 	 *
 	 * @exception InstanceNotFoundException
-	 *                The specified type does not correspond to any timer
-	 *                notification in the list of notifications of this timer
-	 *                MBean.
+	 *                                      The specified type does not
+	 *                                      correspond to any timer
+	 *                                      notification in the list of
+	 *                                      notifications of this timer
+	 *                                      MBean.
 	 */
-	public void removeNotifications(String type) throws InstanceNotFoundException;
+	public void removeNotifications(String type)
+			throws InstanceNotFoundException;
 
 	/**
 	 * Removes all the timer notifications from the list of notifications and
@@ -320,7 +314,7 @@ public interface TimerMBean {
 	 * specified type.
 	 *
 	 * @param type
-	 *            The timer notification type.
+	 *             The timer notification type.
 	 *
 	 * @return A vector of <CODE>Integer</CODE> objects containing all the
 	 *         identifiers of timer notifications with the specified
@@ -335,7 +329,7 @@ public interface TimerMBean {
 	 * identifier.
 	 *
 	 * @param id
-	 *            The timer notification identifier.
+	 *           The timer notification identifier.
 	 *
 	 * @return The timer notification type or null if the identifier is not
 	 *         mapped to any timer notification registered for this timer MBean.
@@ -347,7 +341,7 @@ public interface TimerMBean {
 	 * specified identifier.
 	 *
 	 * @param id
-	 *            The timer notification identifier.
+	 *           The timer notification identifier.
 	 *
 	 * @return The timer notification detailed message or null if the identifier
 	 *         is not mapped to any timer notification registered for this timer
@@ -360,7 +354,7 @@ public interface TimerMBean {
 	 * specified identifier.
 	 *
 	 * @param id
-	 *            The timer notification identifier.
+	 *           The timer notification identifier.
 	 *
 	 * @return The timer notification user data object or null if the identifier
 	 *         is not mapped to any timer notification registered for this timer
@@ -376,7 +370,7 @@ public interface TimerMBean {
 	 * Gets a copy of the date associated to a timer notification.
 	 *
 	 * @param id
-	 *            The timer notification identifier.
+	 *           The timer notification identifier.
 	 *
 	 * @return A copy of the date or null if the identifier is not mapped to any
 	 *         timer notification registered for this timer MBean.
@@ -388,7 +382,7 @@ public interface TimerMBean {
 	 * notification.
 	 *
 	 * @param id
-	 *            The timer notification identifier.
+	 *           The timer notification identifier.
 	 *
 	 * @return A copy of the period or null if the identifier is not mapped to
 	 *         any timer notification registered for this timer MBean.
@@ -400,7 +394,7 @@ public interface TimerMBean {
 	 * notification.
 	 *
 	 * @param id
-	 *            The timer notification identifier.
+	 *           The timer notification identifier.
 	 *
 	 * @return A copy of the remaining number of occurrences or null if the
 	 *         identifier is not mapped to any timer notification registered for
@@ -413,7 +407,7 @@ public interface TimerMBean {
 	 * executed at <i>fixed-delay</i> or at <i>fixed-rate</i>.
 	 *
 	 * @param id
-	 *            The timer notification identifier.
+	 *           The timer notification identifier.
 	 *
 	 * @return A copy of the flag indicating whether a periodic notification is
 	 *         executed at <i>fixed-delay</i> or at <i>fixed-rate</i>.
@@ -435,7 +429,7 @@ public interface TimerMBean {
 	 * not.
 	 *
 	 * @param value
-	 *            The past notifications sending on/off flag value.
+	 *              The past notifications sending on/off flag value.
 	 *
 	 * @see #getSendPastNotifications
 	 */

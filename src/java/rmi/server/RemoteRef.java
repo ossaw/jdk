@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.server;
@@ -59,21 +39,23 @@ public interface RemoteRef extends java.io.Externalizable {
 	 * the remote invocation throws an exception.
 	 *
 	 * @param obj
-	 *            the object that contains the RemoteRef (e.g., the RemoteStub
-	 *            for the object.
+	 *               the object that contains the RemoteRef (e.g., the
+	 *               RemoteStub
+	 *               for the object.
 	 * @param method
-	 *            the method to be invoked
+	 *               the method to be invoked
 	 * @param params
-	 *            the parameter list
+	 *               the parameter list
 	 * @param opnum
-	 *            a hash that may be used to represent the method
+	 *               a hash that may be used to represent the method
 	 * @return result of remote method invocation
 	 * @exception Exception
-	 *                if any exception occurs during remote method invocation
+	 *                      if any exception occurs during remote method
+	 *                      invocation
 	 * @since 1.2
 	 */
-	Object invoke(Remote obj, java.lang.reflect.Method method, Object[] params, long opnum)
-			throws Exception;
+	Object invoke(Remote obj, java.lang.reflect.Method method, Object[] params,
+			long opnum) throws Exception;
 
 	/**
 	 * Creates an appropriate call object for a new remote method invocation on
@@ -92,16 +74,16 @@ public interface RemoteRef extends java.io.Externalizable {
 	 *             value.
 	 *
 	 * @param obj
-	 *            remote stub through which to make call
+	 *              remote stub through which to make call
 	 * @param op
-	 *            array of stub operations
+	 *              array of stub operations
 	 * @param opnum
-	 *            operation number
+	 *              operation number
 	 * @param hash
-	 *            stub/skeleton interface hash
+	 *              stub/skeleton interface hash
 	 * @return call object representing remote call
 	 * @throws RemoteException
-	 *             if failed to initiate new remote call
+	 *                         if failed to initiate new remote call
 	 * @see #invoke(Remote,java.lang.reflect.Method,Object[],long)
 	 */
 	@Deprecated
@@ -127,9 +109,9 @@ public interface RemoteRef extends java.io.Externalizable {
 	 *             value.
 	 *
 	 * @param call
-	 *            object representing remote call
+	 *             object representing remote call
 	 * @throws Exception
-	 *             if any exception occurs during remote method
+	 *                   if any exception occurs during remote method
 	 * @see #invoke(Remote,java.lang.reflect.Method,Object[],long)
 	 */
 	@Deprecated
@@ -151,9 +133,9 @@ public interface RemoteRef extends java.io.Externalizable {
 	 *             value.
 	 *
 	 * @param call
-	 *            object representing remote call
+	 *             object representing remote call
 	 * @throws RemoteException
-	 *             if remote error occurs during call cleanup
+	 *                         if remote error occurs during call cleanup
 	 * @see #invoke(Remote,java.lang.reflect.Method,Object[],long)
 	 */
 	@Deprecated

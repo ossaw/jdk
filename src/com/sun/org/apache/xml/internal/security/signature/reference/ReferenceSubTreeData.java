@@ -108,8 +108,8 @@ public class ReferenceSubTreeData implements ReferenceNodeSetData {
 		 * Dereferences a same-document URI fragment.
 		 *
 		 * @param node
-		 *            the node (document or element) referenced by the URI
-		 *            fragment. If null, returns an empty set.
+		 *             the node (document or element) referenced by the URI
+		 *             fragment. If null, returns an empty set.
 		 * @return a set of nodes (minus any comment nodes)
 		 */
 		private List<Node> dereferenceSameDocumentURI(Node node) {
@@ -126,55 +126,59 @@ public class ReferenceSubTreeData implements ReferenceNodeSetData {
 		 * specified.
 		 *
 		 * @param node
-		 *            the node to traverse
+		 *                the node to traverse
 		 * @param nodeSet
-		 *            the set of nodes traversed so far
+		 *                the set of nodes traversed so far
 		 * @param the
-		 *            previous sibling node
+		 *                previous sibling node
 		 */
 		@SuppressWarnings("fallthrough")
-		private void nodeSetMinusCommentNodes(Node node, List<Node> nodeSet, Node prevSibling) {
+		private void nodeSetMinusCommentNodes(Node node, List<Node> nodeSet,
+				Node prevSibling) {
 			switch (node.getNodeType()) {
-			case Node.ELEMENT_NODE:
-				nodeSet.add(node);
-				NamedNodeMap attrs = node.getAttributes();
-				if (attrs != null) {
-					for (int i = 0, len = attrs.getLength(); i < len; i++) {
-						nodeSet.add(attrs.item(i));
-					}
-				}
-				Node pSibling = null;
-				for (Node child = node.getFirstChild(); child != null; child = child
-						.getNextSibling()) {
-					nodeSetMinusCommentNodes(child, nodeSet, pSibling);
-					pSibling = child;
-				}
-				break;
-			case Node.DOCUMENT_NODE:
-				pSibling = null;
-				for (Node child = node.getFirstChild(); child != null; child = child
-						.getNextSibling()) {
-					nodeSetMinusCommentNodes(child, nodeSet, pSibling);
-					pSibling = child;
-				}
-				break;
-			case Node.TEXT_NODE:
-			case Node.CDATA_SECTION_NODE:
-				// emulate XPath which only returns the first node in
-				// contiguous text/cdata nodes
-				if (prevSibling != null && (prevSibling.getNodeType() == Node.TEXT_NODE
-						|| prevSibling.getNodeType() == Node.CDATA_SECTION_NODE)) {
-					return;
-				}
-				nodeSet.add(node);
-				break;
-			case Node.PROCESSING_INSTRUCTION_NODE:
-				nodeSet.add(node);
-				break;
-			case Node.COMMENT_NODE:
-				if (withComments) {
+				case Node.ELEMENT_NODE:
 					nodeSet.add(node);
-				}
+					NamedNodeMap attrs = node.getAttributes();
+					if (attrs != null) {
+						for (int i = 0, len = attrs.getLength(); i < len; i++) {
+							nodeSet.add(attrs.item(i));
+						}
+					}
+					Node pSibling = null;
+					for (Node child = node
+							.getFirstChild(); child != null; child = child
+									.getNextSibling()) {
+						nodeSetMinusCommentNodes(child, nodeSet, pSibling);
+						pSibling = child;
+					}
+					break;
+				case Node.DOCUMENT_NODE:
+					pSibling = null;
+					for (Node child = node
+							.getFirstChild(); child != null; child = child
+									.getNextSibling()) {
+						nodeSetMinusCommentNodes(child, nodeSet, pSibling);
+						pSibling = child;
+					}
+					break;
+				case Node.TEXT_NODE:
+				case Node.CDATA_SECTION_NODE:
+					// emulate XPath which only returns the first node in
+					// contiguous text/cdata nodes
+					if (prevSibling != null && (prevSibling
+							.getNodeType() == Node.TEXT_NODE || prevSibling
+									.getNodeType() == Node.CDATA_SECTION_NODE)) {
+						return;
+					}
+					nodeSet.add(node);
+					break;
+				case Node.PROCESSING_INSTRUCTION_NODE:
+					nodeSet.add(node);
+					break;
+				case Node.COMMENT_NODE:
+					if (withComments) {
+						nodeSet.add(node);
+					}
 			}
 		}
 	}

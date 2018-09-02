@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -70,7 +50,7 @@ public class IllegalAccessException extends ReflectiveOperationException {
 	 * Constructs an <code>IllegalAccessException</code> with a detail message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public IllegalAccessException(String s) {
 		super(s);

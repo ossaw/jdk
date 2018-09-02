@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -79,7 +59,7 @@ public class ServerSocket implements java.io.Closeable {
 	 * Creates an unbound server socket.
 	 *
 	 * @exception IOException
-	 *                IO error when opening the socket.
+	 *                        IO error when opening the socket.
 	 * @revised 1.4
 	 */
 	public ServerSocket() throws IOException {
@@ -106,18 +86,22 @@ public class ServerSocket implements java.io.Closeable {
 	 *
 	 *
 	 * @param port
-	 *            the port number, or {@code 0} to use a port number that is
-	 *            automatically allocated.
+	 *             the port number, or {@code 0} to use a port number that is
+	 *             automatically allocated.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs when opening the socket.
+	 *                                     if an I/O error occurs when opening
+	 *                                     the socket.
 	 * @exception SecurityException
-	 *                if a security manager exists and its {@code checkListen}
-	 *                method doesn't allow the operation.
+	 *                                     if a security manager exists and its
+	 *                                     {@code checkListen}
+	 *                                     method doesn't allow the operation.
 	 * @exception IllegalArgumentException
-	 *                if the port parameter is outside the specified range of
-	 *                valid port values, which is between 0 and 65535,
-	 *                inclusive.
+	 *                                     if the port parameter is outside the
+	 *                                     specified range of
+	 *                                     valid port values, which is between 0
+	 *                                     and 65535,
+	 *                                     inclusive.
 	 *
 	 * @see java.net.SocketImpl
 	 * @see java.net.SocketImplFactory#createSocketImpl()
@@ -156,20 +140,25 @@ public class ServerSocket implements java.io.Closeable {
 	 * <P>
 	 *
 	 * @param port
-	 *            the port number, or {@code 0} to use a port number that is
-	 *            automatically allocated.
+	 *                the port number, or {@code 0} to use a port number that is
+	 *                automatically allocated.
 	 * @param backlog
-	 *            requested maximum length of the queue of incoming connections.
+	 *                requested maximum length of the queue of incoming
+	 *                connections.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs when opening the socket.
+	 *                                     if an I/O error occurs when opening
+	 *                                     the socket.
 	 * @exception SecurityException
-	 *                if a security manager exists and its {@code checkListen}
-	 *                method doesn't allow the operation.
+	 *                                     if a security manager exists and its
+	 *                                     {@code checkListen}
+	 *                                     method doesn't allow the operation.
 	 * @exception IllegalArgumentException
-	 *                if the port parameter is outside the specified range of
-	 *                valid port values, which is between 0 and 65535,
-	 *                inclusive.
+	 *                                     if the port parameter is outside the
+	 *                                     specified range of
+	 *                                     valid port values, which is between 0
+	 *                                     and 65535,
+	 *                                     inclusive.
 	 *
 	 * @see java.net.SocketImpl
 	 * @see java.net.SocketImplFactory#createSocketImpl()
@@ -205,33 +194,40 @@ public class ServerSocket implements java.io.Closeable {
 	 * <P>
 	 * 
 	 * @param port
-	 *            the port number, or {@code 0} to use a port number that is
-	 *            automatically allocated.
+	 *                 the port number, or {@code 0} to use a port number that
+	 *                 is
+	 *                 automatically allocated.
 	 * @param backlog
-	 *            requested maximum length of the queue of incoming connections.
+	 *                 requested maximum length of the queue of incoming
+	 *                 connections.
 	 * @param bindAddr
-	 *            the local InetAddress the server will bind to
+	 *                 the local InetAddress the server will bind to
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its {@code checkListen}
-	 *             method doesn't allow the operation.
+	 *                           if a security manager exists and its
+	 *                           {@code checkListen}
+	 *                           method doesn't allow the operation.
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs when opening the socket.
+	 *                           if an I/O error occurs when opening the socket.
 	 * @exception IllegalArgumentException
-	 *                if the port parameter is outside the specified range of
-	 *                valid port values, which is between 0 and 65535,
-	 *                inclusive.
+	 *                                     if the port parameter is outside the
+	 *                                     specified range of
+	 *                                     valid port values, which is between 0
+	 *                                     and 65535,
+	 *                                     inclusive.
 	 *
 	 * @see SocketOptions
 	 * @see SocketImpl
 	 * @see SecurityManager#checkListen
 	 * @since JDK1.1
 	 */
-	public ServerSocket(int port, int backlog, InetAddress bindAddr) throws IOException {
+	public ServerSocket(int port, int backlog, InetAddress bindAddr)
+			throws IOException {
 		setImpl();
 		if (port < 0 || port > 0xFFFF)
-			throw new IllegalArgumentException("Port value out of range: " + port);
+			throw new IllegalArgumentException("Port value out of range: "
+					+ port);
 		if (backlog < 1)
 			backlog = 50;
 		try {
@@ -251,7 +247,7 @@ public class ServerSocket implements java.io.Closeable {
 	 *
 	 * @return the {@code SocketImpl} attached to that ServerSocket.
 	 * @throws SocketException
-	 *             if creation fails.
+	 *                         if creation fails.
 	 * @since 1.4
 	 */
 	SocketImpl getImpl() throws SocketException {
@@ -266,12 +262,14 @@ public class ServerSocket implements java.io.Closeable {
 		// SocketImpl.connect() is a protected method, therefore we need to use
 		// getDeclaredMethod, therefore we need permission to access the member
 		try {
-			AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
-				public Void run() throws NoSuchMethodException {
-					impl.getClass().getDeclaredMethod("connect", SocketAddress.class, int.class);
-					return null;
-				}
-			});
+			AccessController.doPrivileged(
+					new PrivilegedExceptionAction<Void>() {
+						public Void run() throws NoSuchMethodException {
+							impl.getClass().getDeclaredMethod("connect",
+									SocketAddress.class, int.class);
+							return null;
+						}
+					});
 		} catch (java.security.PrivilegedActionException e) {
 			oldImpl = true;
 		}
@@ -294,7 +292,7 @@ public class ServerSocket implements java.io.Closeable {
 	 * Creates the socket implementation.
 	 *
 	 * @throws IOException
-	 *             if creation fails
+	 *                     if creation fails
 	 * @since 1.4
 	 */
 	void createImpl() throws SocketException {
@@ -318,16 +316,20 @@ public class ServerSocket implements java.io.Closeable {
 	 * <p>
 	 * 
 	 * @param endpoint
-	 *            The IP address and port number to bind to.
+	 *                 The IP address and port number to bind to.
 	 * @throws IOException
-	 *             if the bind operation fails, or if the socket is already
-	 *             bound.
+	 *                                  if the bind operation fails, or if the
+	 *                                  socket is already
+	 *                                  bound.
 	 * @throws SecurityException
-	 *             if a {@code SecurityManager} is present and its
-	 *             {@code checkListen} method doesn't allow the operation.
+	 *                                  if a {@code SecurityManager} is present
+	 *                                  and its
+	 *                                  {@code checkListen} method doesn't allow
+	 *                                  the operation.
 	 * @throws IllegalArgumentException
-	 *             if endpoint is a SocketAddress subclass not supported by this
-	 *             socket
+	 *                                  if endpoint is a SocketAddress subclass
+	 *                                  not supported by this
+	 *                                  socket
 	 * @since 1.4
 	 */
 	public void bind(SocketAddress endpoint) throws IOException {
@@ -350,18 +352,23 @@ public class ServerSocket implements java.io.Closeable {
 	 * an implementation specific default will be used.
 	 * 
 	 * @param endpoint
-	 *            The IP address and port number to bind to.
+	 *                 The IP address and port number to bind to.
 	 * @param backlog
-	 *            requested maximum length of the queue of incoming connections.
+	 *                 requested maximum length of the queue of incoming
+	 *                 connections.
 	 * @throws IOException
-	 *             if the bind operation fails, or if the socket is already
-	 *             bound.
+	 *                                  if the bind operation fails, or if the
+	 *                                  socket is already
+	 *                                  bound.
 	 * @throws SecurityException
-	 *             if a {@code SecurityManager} is present and its
-	 *             {@code checkListen} method doesn't allow the operation.
+	 *                                  if a {@code SecurityManager} is present
+	 *                                  and its
+	 *                                  {@code checkListen} method doesn't allow
+	 *                                  the operation.
 	 * @throws IllegalArgumentException
-	 *             if endpoint is a SocketAddress subclass not supported by this
-	 *             socket
+	 *                                  if endpoint is a SocketAddress subclass
+	 *                                  not supported by this
+	 *                                  socket
 	 * @since 1.4
 	 */
 	public void bind(SocketAddress endpoint, int backlog) throws IOException {
@@ -498,17 +505,22 @@ public class ServerSocket implements java.io.Closeable {
 	 * SecurityException.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs when waiting for a connection.
+	 *                                   if an I/O error occurs when waiting for
+	 *                                   a connection.
 	 * @exception SecurityException
-	 *                if a security manager exists and its {@code checkAccept}
-	 *                method doesn't allow the operation.
+	 *                                   if a security manager exists and its
+	 *                                   {@code checkAccept}
+	 *                                   method doesn't allow the operation.
 	 * @exception SocketTimeoutException
-	 *                if a timeout was previously set with setSoTimeout and the
-	 *                timeout has been reached.
-	 * @exception java.nio.channels.IllegalBlockingModeException
-	 *                if this socket has an associated channel, the channel is
-	 *                in non-blocking mode, and there is no connection ready to
-	 *                be accepted
+	 *                                   if a timeout was previously set with
+	 *                                   setSoTimeout and the
+	 *                                   timeout has been reached.
+	 * @exception                        java.nio.channels.IllegalBlockingModeException
+	 *                                   if this socket has an associated
+	 *                                   channel, the channel is
+	 *                                   in non-blocking mode, and there is no
+	 *                                   connection ready to
+	 *                                   be accepted
 	 *
 	 * @return the new Socket
 	 * @see SecurityManager#checkAccept
@@ -532,12 +544,13 @@ public class ServerSocket implements java.io.Closeable {
 	 * FooSocket will be connected to a client.
 	 *
 	 * @param s
-	 *            the Socket
-	 * @throws java.nio.channels.IllegalBlockingModeException
-	 *             if this socket has an associated channel, and the channel is
-	 *             in non-blocking mode
+	 *          the Socket
+	 * @throws             java.nio.channels.IllegalBlockingModeException
+	 *                     if this socket has an associated channel, and the
+	 *                     channel is
+	 *                     in non-blocking mode
 	 * @throws IOException
-	 *             if an I/O error occurs when waiting for a connection.
+	 *                     if an I/O error occurs when waiting for a connection.
 	 * @since JDK1.1
 	 * @revised 1.4
 	 * @spec JSR-51
@@ -558,7 +571,8 @@ public class ServerSocket implements java.io.Closeable {
 
 			SecurityManager security = System.getSecurityManager();
 			if (security != null) {
-				security.checkAccept(si.getInetAddress().getHostAddress(), si.getPort());
+				security.checkAccept(si.getInetAddress().getHostAddress(), si
+						.getPort());
 			}
 		} catch (IOException e) {
 			if (si != null)
@@ -586,7 +600,7 @@ public class ServerSocket implements java.io.Closeable {
 	 * well.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs when closing the socket.
+	 *                        if an I/O error occurs when closing the socket.
 	 * @revised 1.4
 	 * @spec JSR-51
 	 */
@@ -653,10 +667,11 @@ public class ServerSocket implements java.io.Closeable {
 	 * timeout of zero is interpreted as an infinite timeout.
 	 * 
 	 * @param timeout
-	 *            the specified timeout, in milliseconds
+	 *                the specified timeout, in milliseconds
 	 * @exception SocketException
-	 *                if there is an error in the underlying protocol, such as a
-	 *                TCP error.
+	 *                            if there is an error in the underlying
+	 *                            protocol, such as a
+	 *                            TCP error.
 	 * @since JDK1.1
 	 * @see #getSoTimeout()
 	 */
@@ -672,7 +687,7 @@ public class ServerSocket implements java.io.Closeable {
 	 * 
 	 * @return the {@link SocketOptions#SO_TIMEOUT SO_TIMEOUT} value
 	 * @exception IOException
-	 *                if an I/O error occurs
+	 *                        if an I/O error occurs
 	 * @since JDK1.1
 	 * @see #setSoTimeout(int)
 	 */
@@ -714,11 +729,12 @@ public class ServerSocket implements java.io.Closeable {
 	 * not defined.
 	 *
 	 * @param on
-	 *            whether to enable or disable the socket option
+	 *           whether to enable or disable the socket option
 	 * @exception SocketException
-	 *                if an error occurs enabling or disabling the
-	 *                {@link SocketOptions#SO_REUSEADDR SO_REUSEADDR} socket
-	 *                option, or the socket is closed.
+	 *                            if an error occurs enabling or disabling the
+	 *                            {@link SocketOptions#SO_REUSEADDR
+	 *                            SO_REUSEADDR} socket
+	 *                            option, or the socket is closed.
 	 * @since 1.4
 	 * @see #getReuseAddress()
 	 * @see #bind(SocketAddress)
@@ -737,15 +753,17 @@ public class ServerSocket implements java.io.Closeable {
 	 * @return a {@code boolean} indicating whether or not
 	 *         {@link SocketOptions#SO_REUSEADDR SO_REUSEADDR} is enabled.
 	 * @exception SocketException
-	 *                if there is an error in the underlying protocol, such as a
-	 *                TCP error.
+	 *                            if there is an error in the underlying
+	 *                            protocol, such as a
+	 *                            TCP error.
 	 * @since 1.4
 	 * @see #setReuseAddress(boolean)
 	 */
 	public boolean getReuseAddress() throws SocketException {
 		if (isClosed())
 			throw new SocketException("Socket is closed");
-		return ((Boolean) (getImpl().getOption(SocketOptions.SO_REUSEADDR))).booleanValue();
+		return ((Boolean) (getImpl().getOption(SocketOptions.SO_REUSEADDR)))
+				.booleanValue();
 	}
 
 	/**
@@ -769,7 +787,8 @@ public class ServerSocket implements java.io.Closeable {
 			in = InetAddress.getLoopbackAddress();
 		else
 			in = impl.getInetAddress();
-		return "ServerSocket[addr=" + in + ",localport=" + impl.getLocalPort() + "]";
+		return "ServerSocket[addr=" + in + ",localport=" + impl.getLocalPort()
+				+ "]";
 	}
 
 	void setBound() {
@@ -803,17 +822,20 @@ public class ServerSocket implements java.io.Closeable {
 	 * @param fac
 	 *            the desired factory.
 	 * @exception IOException
-	 *                if an I/O error occurs when setting the socket factory.
+	 *                              if an I/O error occurs when setting the
+	 *                              socket factory.
 	 * @exception SocketException
-	 *                if the factory has already been defined.
+	 *                              if the factory has already been defined.
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                {@code checkSetFactory} method doesn't allow the
-	 *                operation.
+	 *                              if a security manager exists and its
+	 *                              {@code checkSetFactory} method doesn't allow
+	 *                              the
+	 *                              operation.
 	 * @see java.net.SocketImplFactory#createSocketImpl()
 	 * @see SecurityManager#checkSetFactory
 	 */
-	public static synchronized void setSocketFactory(SocketImplFactory fac) throws IOException {
+	public static synchronized void setSocketFactory(SocketImplFactory fac)
+			throws IOException {
 		if (factory != null) {
 			throw new SocketException("factory already defined");
 		}
@@ -849,20 +871,22 @@ public class ServerSocket implements java.io.Closeable {
 	 * from this ServerSocket will be no larger than 64K bytes.
 	 *
 	 * @exception SocketException
-	 *                if there is an error in the underlying protocol, such as a
-	 *                TCP error.
+	 *                            if there is an error in the underlying
+	 *                            protocol, such as a
+	 *                            TCP error.
 	 *
 	 * @param size
-	 *            the size to which to set the receive buffer size. This value
-	 *            must be greater than 0.
+	 *             the size to which to set the receive buffer size. This value
+	 *             must be greater than 0.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if the value is 0 or is negative.
+	 *                                     if the value is 0 or is negative.
 	 *
 	 * @since 1.4
 	 * @see #getReceiveBufferSize
 	 */
-	public synchronized void setReceiveBufferSize(int size) throws SocketException {
+	public synchronized void setReceiveBufferSize(int size)
+			throws SocketException {
 		if (!(size > 0)) {
 			throw new IllegalArgumentException("negative receive size");
 		}
@@ -883,8 +907,9 @@ public class ServerSocket implements java.io.Closeable {
 	 * @return the value of the {@link SocketOptions#SO_RCVBUF SO_RCVBUF} option
 	 *         for this {@code Socket}.
 	 * @exception SocketException
-	 *                if there is an error in the underlying protocol, such as a
-	 *                TCP error.
+	 *                            if there is an error in the underlying
+	 *                            protocol, such as a
+	 *                            TCP error.
 	 * @see #setReceiveBufferSize(int)
 	 * @since 1.4
 	 */
@@ -927,20 +952,24 @@ public class ServerSocket implements java.io.Closeable {
 	 * socket to be created with the no-argument constructor.
 	 *
 	 * @param connectionTime
-	 *            An {@code int} expressing the relative importance of a short
-	 *            connection time
+	 *                       An {@code int} expressing the relative importance
+	 *                       of a short
+	 *                       connection time
 	 *
 	 * @param latency
-	 *            An {@code int} expressing the relative importance of low
-	 *            latency
+	 *                       An {@code int} expressing the relative importance
+	 *                       of low
+	 *                       latency
 	 *
 	 * @param bandwidth
-	 *            An {@code int} expressing the relative importance of high
-	 *            bandwidth
+	 *                       An {@code int} expressing the relative importance
+	 *                       of high
+	 *                       bandwidth
 	 *
 	 * @since 1.5
 	 */
-	public void setPerformancePreferences(int connectionTime, int latency, int bandwidth) {
+	public void setPerformancePreferences(int connectionTime, int latency,
+			int bandwidth) {
 		/* Not implemented yet */
 	}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.servicecontext;
@@ -76,7 +56,8 @@ public class ServiceContextRegistry {
 
 		Enumeration enumeration = scCollection.elements();
 		while (enumeration.hasMoreElements()) {
-			ServiceContextData scd = (ServiceContextData) (enumeration.nextElement());
+			ServiceContextData scd = (ServiceContextData) (enumeration
+					.nextElement());
 			if (scd.getId() == scId) {
 				if (ORB.ORBInitDebug)
 					dprint("Service context data found: " + scd);

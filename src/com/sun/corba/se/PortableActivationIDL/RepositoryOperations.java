@@ -28,7 +28,8 @@ public interface RepositoryOperations {
 	/**
 	 * get server definition
 	 */
-	com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDef getServer(String serverId)
+	com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDef getServer(
+			String serverId)
 			throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered;
 
 	/**
@@ -41,7 +42,8 @@ public interface RepositoryOperations {
 	 * Mark the server as being installed. Raises ServerAlreadyInstalled if the
 	 * server is currently marked as installed.
 	 */
-	void install(String serverId) throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered,
+	void install(String serverId)
+			throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered,
 			com.sun.corba.se.PortableActivationIDL.ServerAlreadyInstalled;
 
 	/**

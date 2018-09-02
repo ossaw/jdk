@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.directory;
@@ -156,11 +136,11 @@ public interface DirContext extends Context {
 	 * operational attributes.
 	 *
 	 * @param name
-	 *            the name of the object from which to retrieve attributes
+	 *             the name of the object from which to retrieve attributes
 	 * @return the set of attributes associated with <code>name</code>. Returns
 	 *         an empty attribute set if name has no attributes; never null.
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                         if a naming exception is encountered
 	 *
 	 * @see #getAttributes(String)
 	 * @see #getAttributes(Name, String[])
@@ -172,11 +152,11 @@ public interface DirContext extends Context {
 	 * {@link #getAttributes(Name)} for details.
 	 *
 	 * @param name
-	 *            the name of the object from which to retrieve attributes
+	 *             the name of the object from which to retrieve attributes
 	 * @return the set of attributes associated with <code>name</code>
 	 *
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                         if a naming exception is encountered
 	 */
 	public Attributes getAttributes(String name) throws NamingException;
 
@@ -200,34 +180,38 @@ public interface DirContext extends Context {
 	 * description.
 	 *
 	 * @param name
-	 *            the name of the object from which to retrieve attributes
+	 *                the name of the object from which to retrieve attributes
 	 * @param attrIds
-	 *            the identifiers of the attributes to retrieve. null indicates
-	 *            that all attributes should be retrieved; an empty array
-	 *            indicates that none should be retrieved.
+	 *                the identifiers of the attributes to retrieve. null
+	 *                indicates
+	 *                that all attributes should be retrieved; an empty array
+	 *                indicates that none should be retrieved.
 	 * @return the requested attributes; never null
 	 *
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                         if a naming exception is encountered
 	 */
-	public Attributes getAttributes(Name name, String[] attrIds) throws NamingException;
+	public Attributes getAttributes(Name name, String[] attrIds)
+			throws NamingException;
 
 	/**
 	 * Retrieves selected attributes associated with a named object. See
 	 * {@link #getAttributes(Name, String[])} for details.
 	 *
 	 * @param name
-	 *            The name of the object from which to retrieve attributes
+	 *                The name of the object from which to retrieve attributes
 	 * @param attrIds
-	 *            the identifiers of the attributes to retrieve. null indicates
-	 *            that all attributes should be retrieved; an empty array
-	 *            indicates that none should be retrieved.
+	 *                the identifiers of the attributes to retrieve. null
+	 *                indicates
+	 *                that all attributes should be retrieved; an empty array
+	 *                indicates that none should be retrieved.
 	 * @return the requested attributes; never null
 	 *
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                         if a naming exception is encountered
 	 */
-	public Attributes getAttributes(String name, String[] attrIds) throws NamingException;
+	public Attributes getAttributes(String name, String[] attrIds)
+			throws NamingException;
 
 	/**
 	 * This constant specifies to add an attribute with the specified values.
@@ -291,44 +275,52 @@ public interface DirContext extends Context {
 	 * performed atomically.
 	 *
 	 * @param name
-	 *            the name of the object whose attributes will be updated
+	 *               the name of the object whose attributes will be updated
 	 * @param mod_op
-	 *            the modification operation, one of: <code>ADD_ATTRIBUTE</code>
-	 *            , <code>REPLACE_ATTRIBUTE</code>,
-	 *            <code>REMOVE_ATTRIBUTE</code>.
+	 *               the modification operation, one of:
+	 *               <code>ADD_ATTRIBUTE</code>
+	 *               , <code>REPLACE_ATTRIBUTE</code>,
+	 *               <code>REMOVE_ATTRIBUTE</code>.
 	 * @param attrs
-	 *            the attributes to be used for the modification; may not be
-	 *            null
+	 *               the attributes to be used for the modification; may not be
+	 *               null
 	 *
 	 * @throws AttributeModificationException
-	 *             if the modification cannot be completed successfully
+	 *                                        if the modification cannot be
+	 *                                        completed successfully
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                        if a naming exception is
+	 *                                        encountered
 	 *
 	 * @see #modifyAttributes(Name, ModificationItem[])
 	 */
-	public void modifyAttributes(Name name, int mod_op, Attributes attrs) throws NamingException;
+	public void modifyAttributes(Name name, int mod_op, Attributes attrs)
+			throws NamingException;
 
 	/**
 	 * Modifies the attributes associated with a named object. See
 	 * {@link #modifyAttributes(Name, int, Attributes)} for details.
 	 *
 	 * @param name
-	 *            the name of the object whose attributes will be updated
+	 *               the name of the object whose attributes will be updated
 	 * @param mod_op
-	 *            the modification operation, one of: <code>ADD_ATTRIBUTE</code>
-	 *            , <code>REPLACE_ATTRIBUTE</code>,
-	 *            <code>REMOVE_ATTRIBUTE</code>.
+	 *               the modification operation, one of:
+	 *               <code>ADD_ATTRIBUTE</code>
+	 *               , <code>REPLACE_ATTRIBUTE</code>,
+	 *               <code>REMOVE_ATTRIBUTE</code>.
 	 * @param attrs
-	 *            the attributes to be used for the modification; may not be
-	 *            null
+	 *               the attributes to be used for the modification; may not be
+	 *               null
 	 *
 	 * @throws AttributeModificationException
-	 *             if the modification cannot be completed successfully
+	 *                                        if the modification cannot be
+	 *                                        completed successfully
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                        if a naming exception is
+	 *                                        encountered
 	 */
-	public void modifyAttributes(String name, int mod_op, Attributes attrs) throws NamingException;
+	public void modifyAttributes(String name, int mod_op, Attributes attrs)
+			throws NamingException;
 
 	/**
 	 * Modifies the attributes associated with a named object using an ordered
@@ -338,20 +330,23 @@ public interface DirContext extends Context {
 	 * performed atomically.
 	 *
 	 * @param name
-	 *            the name of the object whose attributes will be updated
+	 *             the name of the object whose attributes will be updated
 	 * @param mods
-	 *            an ordered sequence of modifications to be performed; may not
-	 *            be null
+	 *             an ordered sequence of modifications to be performed; may not
+	 *             be null
 	 *
 	 * @throws AttributeModificationException
-	 *             if the modifications cannot be completed successfully
+	 *                                        if the modifications cannot be
+	 *                                        completed successfully
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                        if a naming exception is
+	 *                                        encountered
 	 *
 	 * @see #modifyAttributes(Name, int, Attributes)
 	 * @see ModificationItem
 	 */
-	public void modifyAttributes(Name name, ModificationItem[] mods) throws NamingException;
+	public void modifyAttributes(Name name, ModificationItem[] mods)
+			throws NamingException;
 
 	/**
 	 * Modifies the attributes associated with a named object using an ordered
@@ -359,17 +354,20 @@ public interface DirContext extends Context {
 	 * {@link #modifyAttributes(Name, ModificationItem[])} for details.
 	 *
 	 * @param name
-	 *            the name of the object whose attributes will be updated
+	 *             the name of the object whose attributes will be updated
 	 * @param mods
-	 *            an ordered sequence of modifications to be performed; may not
-	 *            be null
+	 *             an ordered sequence of modifications to be performed; may not
+	 *             be null
 	 *
 	 * @throws AttributeModificationException
-	 *             if the modifications cannot be completed successfully
+	 *                                        if the modifications cannot be
+	 *                                        completed successfully
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                        if a naming exception is
+	 *                                        encountered
 	 */
-	public void modifyAttributes(String name, ModificationItem[] mods) throws NamingException;
+	public void modifyAttributes(String name, ModificationItem[] mods)
+			throws NamingException;
 
 	/**
 	 * Binds a name to an object, along with associated attributes. If
@@ -380,45 +378,49 @@ public interface DirContext extends Context {
 	 * associated with <tt>obj</tt> are ignored.
 	 *
 	 * @param name
-	 *            the name to bind; may not be empty
+	 *              the name to bind; may not be empty
 	 * @param obj
-	 *            the object to bind; possibly null
+	 *              the object to bind; possibly null
 	 * @param attrs
-	 *            the attributes to associate with the binding
+	 *              the attributes to associate with the binding
 	 *
 	 * @throws NameAlreadyBoundException
-	 *             if name is already bound
+	 *                                    if name is already bound
 	 * @throws InvalidAttributesException
-	 *             if some "mandatory" attributes of the binding are not
-	 *             supplied
+	 *                                    if some "mandatory" attributes of the
+	 *                                    binding are not
+	 *                                    supplied
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                    if a naming exception is encountered
 	 *
 	 * @see Context#bind(Name, Object)
 	 * @see #rebind(Name, Object, Attributes)
 	 */
-	public void bind(Name name, Object obj, Attributes attrs) throws NamingException;
+	public void bind(Name name, Object obj, Attributes attrs)
+			throws NamingException;
 
 	/**
 	 * Binds a name to an object, along with associated attributes. See
 	 * {@link #bind(Name, Object, Attributes)} for details.
 	 *
 	 * @param name
-	 *            the name to bind; may not be empty
+	 *              the name to bind; may not be empty
 	 * @param obj
-	 *            the object to bind; possibly null
+	 *              the object to bind; possibly null
 	 * @param attrs
-	 *            the attributes to associate with the binding
+	 *              the attributes to associate with the binding
 	 *
 	 * @throws NameAlreadyBoundException
-	 *             if name is already bound
+	 *                                    if name is already bound
 	 * @throws InvalidAttributesException
-	 *             if some "mandatory" attributes of the binding are not
-	 *             supplied
+	 *                                    if some "mandatory" attributes of the
+	 *                                    binding are not
+	 *                                    supplied
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                    if a naming exception is encountered
 	 */
-	public void bind(String name, Object obj, Attributes attrs) throws NamingException;
+	public void bind(String name, Object obj, Attributes attrs)
+			throws NamingException;
 
 	/**
 	 * Binds a name to an object, along with associated attributes, overwriting
@@ -433,22 +435,24 @@ public interface DirContext extends Context {
 	 * attributes of <tt>obj</tt> are ignored.
 	 *
 	 * @param name
-	 *            the name to bind; may not be empty
+	 *              the name to bind; may not be empty
 	 * @param obj
-	 *            the object to bind; possibly null
+	 *              the object to bind; possibly null
 	 * @param attrs
-	 *            the attributes to associate with the binding
+	 *              the attributes to associate with the binding
 	 *
 	 * @throws InvalidAttributesException
-	 *             if some "mandatory" attributes of the binding are not
-	 *             supplied
+	 *                                    if some "mandatory" attributes of the
+	 *                                    binding are not
+	 *                                    supplied
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                    if a naming exception is encountered
 	 *
 	 * @see Context#bind(Name, Object)
 	 * @see #bind(Name, Object, Attributes)
 	 */
-	public void rebind(Name name, Object obj, Attributes attrs) throws NamingException;
+	public void rebind(Name name, Object obj, Attributes attrs)
+			throws NamingException;
 
 	/**
 	 * Binds a name to an object, along with associated attributes, overwriting
@@ -456,19 +460,21 @@ public interface DirContext extends Context {
 	 * details.
 	 *
 	 * @param name
-	 *            the name to bind; may not be empty
+	 *              the name to bind; may not be empty
 	 * @param obj
-	 *            the object to bind; possibly null
+	 *              the object to bind; possibly null
 	 * @param attrs
-	 *            the attributes to associate with the binding
+	 *              the attributes to associate with the binding
 	 *
 	 * @throws InvalidAttributesException
-	 *             if some "mandatory" attributes of the binding are not
-	 *             supplied
+	 *                                    if some "mandatory" attributes of the
+	 *                                    binding are not
+	 *                                    supplied
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                    if a naming exception is encountered
 	 */
-	public void rebind(String name, Object obj, Attributes attrs) throws NamingException;
+	public void rebind(String name, Object obj, Attributes attrs)
+			throws NamingException;
 
 	/**
 	 * Creates and binds a new context, along with associated attributes. This
@@ -480,42 +486,46 @@ public interface DirContext extends Context {
 	 * <tt>Context.createSubcontext()</tt>.
 	 *
 	 * @param name
-	 *            the name of the context to create; may not be empty
+	 *              the name of the context to create; may not be empty
 	 * @param attrs
-	 *            the attributes to associate with the newly created context
+	 *              the attributes to associate with the newly created context
 	 * @return the newly created context
 	 *
 	 * @throws NameAlreadyBoundException
-	 *             if the name is already bound
+	 *                                    if the name is already bound
 	 * @throws InvalidAttributesException
-	 *             if <code>attrs</code> does not contain all the mandatory
-	 *             attributes required for creation
+	 *                                    if <code>attrs</code> does not contain
+	 *                                    all the mandatory
+	 *                                    attributes required for creation
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                    if a naming exception is encountered
 	 *
 	 * @see Context#createSubcontext(Name)
 	 */
-	public DirContext createSubcontext(Name name, Attributes attrs) throws NamingException;
+	public DirContext createSubcontext(Name name, Attributes attrs)
+			throws NamingException;
 
 	/**
 	 * Creates and binds a new context, along with associated attributes. See
 	 * {@link #createSubcontext(Name, Attributes)} for details.
 	 *
 	 * @param name
-	 *            the name of the context to create; may not be empty
+	 *              the name of the context to create; may not be empty
 	 * @param attrs
-	 *            the attributes to associate with the newly created context
+	 *              the attributes to associate with the newly created context
 	 * @return the newly created context
 	 *
 	 * @throws NameAlreadyBoundException
-	 *             if the name is already bound
+	 *                                    if the name is already bound
 	 * @throws InvalidAttributesException
-	 *             if <code>attrs</code> does not contain all the mandatory
-	 *             attributes required for creation
+	 *                                    if <code>attrs</code> does not contain
+	 *                                    all the mandatory
+	 *                                    attributes required for creation
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                    if a naming exception is encountered
 	 */
-	public DirContext createSubcontext(String name, Attributes attrs) throws NamingException;
+	public DirContext createSubcontext(String name, Attributes attrs)
+			throws NamingException;
 
 	// -------------------- schema operations
 
@@ -538,12 +548,13 @@ public interface DirContext extends Context {
 	 * modifications on the directory are dependent on the underlying directory.
 	 *
 	 * @param name
-	 *            the name of the object whose schema is to be retrieved
+	 *             the name of the object whose schema is to be retrieved
 	 * @return the schema associated with the context; never null
 	 * @throws OperationNotSupportedException
-	 *             if schema not supported
+	 *                                        if schema not supported
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                        if a naming exception is
+	 *                                        encountered
 	 */
 	public DirContext getSchema(Name name) throws NamingException;
 
@@ -552,12 +563,13 @@ public interface DirContext extends Context {
 	 * {@link #getSchema(Name)} for details.
 	 *
 	 * @param name
-	 *            the name of the object whose schema is to be retrieved
+	 *             the name of the object whose schema is to be retrieved
 	 * @return the schema associated with the context; never null
 	 * @throws OperationNotSupportedException
-	 *             if schema not supported
+	 *                                        if schema not supported
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                        if a naming exception is
+	 *                                        encountered
 	 */
 	public DirContext getSchema(String name) throws NamingException;
 
@@ -583,17 +595,19 @@ public interface DirContext extends Context {
 	 * object's class definitions.
 	 *
 	 * @param name
-	 *            the name of the object whose object class definition is to be
-	 *            retrieved
+	 *             the name of the object whose object class definition is to be
+	 *             retrieved
 	 * @return the <tt>DirContext</tt> containing the named object's class
 	 *         definitions; never null
 	 *
 	 * @throws OperationNotSupportedException
-	 *             if schema not supported
+	 *                                        if schema not supported
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                        if a naming exception is
+	 *                                        encountered
 	 */
-	public DirContext getSchemaClassDefinition(Name name) throws NamingException;
+	public DirContext getSchemaClassDefinition(Name name)
+			throws NamingException;
 
 	/**
 	 * Retrieves a context containing the schema objects of the named object's
@@ -601,17 +615,19 @@ public interface DirContext extends Context {
 	 * details.
 	 *
 	 * @param name
-	 *            the name of the object whose object class definition is to be
-	 *            retrieved
+	 *             the name of the object whose object class definition is to be
+	 *             retrieved
 	 * @return the <tt>DirContext</tt> containing the named object's class
 	 *         definitions; never null
 	 *
 	 * @throws OperationNotSupportedException
-	 *             if schema not supported
+	 *                                        if schema not supported
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                        if a naming exception is
+	 *                                        encountered
 	 */
-	public DirContext getSchemaClassDefinition(String name) throws NamingException;
+	public DirContext getSchemaClassDefinition(String name)
+			throws NamingException;
 
 	// -------------------- search operations
 
@@ -658,27 +674,31 @@ public interface DirContext extends Context {
 	 * description.
 	 *
 	 * @param name
-	 *            the name of the context to search
+	 *                           the name of the context to search
 	 * @param matchingAttributes
-	 *            the attributes to search for. If empty or null, all objects in
-	 *            the target context are returned.
+	 *                           the attributes to search for. If empty or null,
+	 *                           all objects in
+	 *                           the target context are returned.
 	 * @param attributesToReturn
-	 *            the attributes to return. null indicates that all attributes
-	 *            are to be returned; an empty array indicates that none are to
-	 *            be returned.
+	 *                           the attributes to return. null indicates that
+	 *                           all attributes
+	 *                           are to be returned; an empty array indicates
+	 *                           that none are to
+	 *                           be returned.
 	 * @return a non-null enumeration of <tt>SearchResult</tt> objects. Each
 	 *         <tt>SearchResult</tt> contains the attributes identified by
 	 *         <code>attributesToReturn</code> and the name of the corresponding
 	 *         object, named relative to the context named by <code>name</code>.
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                         if a naming exception is encountered
 	 *
 	 * @see SearchControls
 	 * @see SearchResult
 	 * @see #search(Name, String, Object[], SearchControls)
 	 */
-	public NamingEnumeration<SearchResult> search(Name name, Attributes matchingAttributes,
-			String[] attributesToReturn) throws NamingException;
+	public NamingEnumeration<SearchResult> search(Name name,
+			Attributes matchingAttributes, String[] attributesToReturn)
+			throws NamingException;
 
 	/**
 	 * Searches in a single context for objects that contain a specified set of
@@ -686,17 +706,18 @@ public interface DirContext extends Context {
 	 * {@link #search(Name, Attributes, String[])} for details.
 	 *
 	 * @param name
-	 *            the name of the context to search
+	 *                           the name of the context to search
 	 * @param matchingAttributes
-	 *            the attributes to search for
+	 *                           the attributes to search for
 	 * @param attributesToReturn
-	 *            the attributes to return
+	 *                           the attributes to return
 	 * @return a non-null enumeration of <tt>SearchResult</tt> objects
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                         if a naming exception is encountered
 	 */
-	public NamingEnumeration<SearchResult> search(String name, Attributes matchingAttributes,
-			String[] attributesToReturn) throws NamingException;
+	public NamingEnumeration<SearchResult> search(String name,
+			Attributes matchingAttributes, String[] attributesToReturn)
+			throws NamingException;
 
 	/**
 	 * Searches in a single context for objects that contain a specified set of
@@ -706,32 +727,32 @@ public interface DirContext extends Context {
 	 * See {@link #search(Name, Attributes, String[])} for a full description.
 	 *
 	 * @param name
-	 *            the name of the context to search
+	 *                           the name of the context to search
 	 * @param matchingAttributes
-	 *            the attributes to search for
+	 *                           the attributes to search for
 	 * @return an enumeration of <tt>SearchResult</tt> objects
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                         if a naming exception is encountered
 	 *
 	 * @see #search(Name, Attributes, String[])
 	 */
-	public NamingEnumeration<SearchResult> search(Name name, Attributes matchingAttributes)
-			throws NamingException;
+	public NamingEnumeration<SearchResult> search(Name name,
+			Attributes matchingAttributes) throws NamingException;
 
 	/**
 	 * Searches in a single context for objects that contain a specified set of
 	 * attributes. See {@link #search(Name, Attributes)} for details.
 	 *
 	 * @param name
-	 *            the name of the context to search
+	 *                           the name of the context to search
 	 * @param matchingAttributes
-	 *            the attributes to search for
+	 *                           the attributes to search for
 	 * @return an enumeration of <tt>SearchResult</tt> objects
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                         if a naming exception is encountered
 	 */
-	public NamingEnumeration<SearchResult> search(String name, Attributes matchingAttributes)
-			throws NamingException;
+	public NamingEnumeration<SearchResult> search(String name,
+			Attributes matchingAttributes) throws NamingException;
 
 	/**
 	 * Searches in the named context or object for entries that satisfy the
@@ -806,30 +827,34 @@ public interface DirContext extends Context {
 	 * description.
 	 *
 	 * @param name
-	 *            the name of the context or object to search
+	 *               the name of the context or object to search
 	 * @param filter
-	 *            the filter expression to use for the search; may not be null
+	 *               the filter expression to use for the search; may not be
+	 *               null
 	 * @param cons
-	 *            the search controls that control the search. If null, the
-	 *            default search controls are used (equivalent to
-	 *            <tt>(new SearchControls())</tt>).
+	 *               the search controls that control the search. If null, the
+	 *               default search controls are used (equivalent to
+	 *               <tt>(new SearchControls())</tt>).
 	 * @return an enumeration of <tt>SearchResult</tt>s of the objects that
 	 *         satisfy the filter; never null
 	 *
 	 * @throws InvalidSearchFilterException
-	 *             if the search filter specified is not supported or understood
-	 *             by the underlying directory
+	 *                                        if the search filter specified is
+	 *                                        not supported or understood
+	 *                                        by the underlying directory
 	 * @throws InvalidSearchControlsException
-	 *             if the search controls contain invalid settings
+	 *                                        if the search controls contain
+	 *                                        invalid settings
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                        if a naming exception is
+	 *                                        encountered
 	 *
 	 * @see #search(Name, String, Object[], SearchControls)
 	 * @see SearchControls
 	 * @see SearchResult
 	 */
-	public NamingEnumeration<SearchResult> search(Name name, String filter, SearchControls cons)
-			throws NamingException;
+	public NamingEnumeration<SearchResult> search(Name name, String filter,
+			SearchControls cons) throws NamingException;
 
 	/**
 	 * Searches in the named context or object for entries that satisfy the
@@ -837,26 +862,30 @@ public interface DirContext extends Context {
 	 * controls. See {@link #search(Name, String, SearchControls)} for details.
 	 *
 	 * @param name
-	 *            the name of the context or object to search
+	 *               the name of the context or object to search
 	 * @param filter
-	 *            the filter expression to use for the search; may not be null
+	 *               the filter expression to use for the search; may not be
+	 *               null
 	 * @param cons
-	 *            the search controls that control the search. If null, the
-	 *            default search controls are used (equivalent to
-	 *            <tt>(new SearchControls())</tt>).
+	 *               the search controls that control the search. If null, the
+	 *               default search controls are used (equivalent to
+	 *               <tt>(new SearchControls())</tt>).
 	 *
 	 * @return an enumeration of <tt>SearchResult</tt>s for the objects that
 	 *         satisfy the filter.
 	 * @throws InvalidSearchFilterException
-	 *             if the search filter specified is not supported or understood
-	 *             by the underlying directory
+	 *                                        if the search filter specified is
+	 *                                        not supported or understood
+	 *                                        by the underlying directory
 	 * @throws InvalidSearchControlsException
-	 *             if the search controls contain invalid settings
+	 *                                        if the search controls contain
+	 *                                        invalid settings
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                        if a naming exception is
+	 *                                        encountered
 	 */
-	public NamingEnumeration<SearchResult> search(String name, String filter, SearchControls cons)
-			throws NamingException;
+	public NamingEnumeration<SearchResult> search(String name, String filter,
+			SearchControls cons) throws NamingException;
 
 	/**
 	 * Searches in the named context or object for entries that satisfy the
@@ -922,40 +951,52 @@ public interface DirContext extends Context {
 	 * description.
 	 *
 	 * @param name
-	 *            the name of the context or object to search
+	 *                   the name of the context or object to search
 	 * @param filterExpr
-	 *            the filter expression to use for the search. The expression
-	 *            may contain variables of the form "<code>{i}</code>" where
-	 *            <code>i</code> is a nonnegative integer. May not be null.
+	 *                   the filter expression to use for the search. The
+	 *                   expression
+	 *                   may contain variables of the form "<code>{i}</code>"
+	 *                   where
+	 *                   <code>i</code> is a nonnegative integer. May not be
+	 *                   null.
 	 * @param filterArgs
-	 *            the array of arguments to substitute for the variables in
-	 *            <code>filterExpr</code>. The value of
-	 *            <code>filterArgs[i]</code> will replace each occurrence of
-	 *            "<code>{i}</code>". If null, equivalent to an empty array.
+	 *                   the array of arguments to substitute for the variables
+	 *                   in
+	 *                   <code>filterExpr</code>. The value of
+	 *                   <code>filterArgs[i]</code> will replace each occurrence
+	 *                   of
+	 *                   "<code>{i}</code>". If null, equivalent to an empty
+	 *                   array.
 	 * @param cons
-	 *            the search controls that control the search. If null, the
-	 *            default search controls are used (equivalent to
-	 *            <tt>(new SearchControls())</tt>).
+	 *                   the search controls that control the search. If null,
+	 *                   the
+	 *                   default search controls are used (equivalent to
+	 *                   <tt>(new SearchControls())</tt>).
 	 * @return an enumeration of <tt>SearchResult</tt>s of the objects that
 	 *         satisfy the filter; never null
 	 *
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <tt>filterExpr</tt> contains <code>{i}</code> expressions
-	 *             where <code>i</code> is outside the bounds of the array
-	 *             <code>filterArgs</code>
+	 *                                        if <tt>filterExpr</tt> contains
+	 *                                        <code>{i}</code> expressions
+	 *                                        where <code>i</code> is outside
+	 *                                        the bounds of the array
+	 *                                        <code>filterArgs</code>
 	 * @throws InvalidSearchControlsException
-	 *             if <tt>cons</tt> contains invalid settings
+	 *                                        if <tt>cons</tt> contains invalid
+	 *                                        settings
 	 * @throws InvalidSearchFilterException
-	 *             if <tt>filterExpr</tt> with <tt>filterArgs</tt> represents an
-	 *             invalid search filter
+	 *                                        if <tt>filterExpr</tt> with
+	 *                                        <tt>filterArgs</tt> represents an
+	 *                                        invalid search filter
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                        if a naming exception is
+	 *                                        encountered
 	 *
 	 * @see #search(Name, Attributes, String[])
 	 * @see java.text.MessageFormat
 	 */
-	public NamingEnumeration<SearchResult> search(Name name, String filterExpr, Object[] filterArgs,
-			SearchControls cons) throws NamingException;
+	public NamingEnumeration<SearchResult> search(Name name, String filterExpr,
+			Object[] filterArgs, SearchControls cons) throws NamingException;
 
 	/**
 	 * Searches in the named context or object for entries that satisfy the
@@ -964,35 +1005,48 @@ public interface DirContext extends Context {
 	 * details.
 	 *
 	 * @param name
-	 *            the name of the context or object to search
+	 *                   the name of the context or object to search
 	 * @param filterExpr
-	 *            the filter expression to use for the search. The expression
-	 *            may contain variables of the form "<code>{i}</code>" where
-	 *            <code>i</code> is a nonnegative integer. May not be null.
+	 *                   the filter expression to use for the search. The
+	 *                   expression
+	 *                   may contain variables of the form "<code>{i}</code>"
+	 *                   where
+	 *                   <code>i</code> is a nonnegative integer. May not be
+	 *                   null.
 	 * @param filterArgs
-	 *            the array of arguments to substitute for the variables in
-	 *            <code>filterExpr</code>. The value of
-	 *            <code>filterArgs[i]</code> will replace each occurrence of
-	 *            "<code>{i}</code>". If null, equivalent to an empty array.
+	 *                   the array of arguments to substitute for the variables
+	 *                   in
+	 *                   <code>filterExpr</code>. The value of
+	 *                   <code>filterArgs[i]</code> will replace each occurrence
+	 *                   of
+	 *                   "<code>{i}</code>". If null, equivalent to an empty
+	 *                   array.
 	 * @param cons
-	 *            the search controls that control the search. If null, the
-	 *            default search controls are used (equivalent to
-	 *            <tt>(new SearchControls())</tt>).
+	 *                   the search controls that control the search. If null,
+	 *                   the
+	 *                   default search controls are used (equivalent to
+	 *                   <tt>(new SearchControls())</tt>).
 	 * @return an enumeration of <tt>SearchResult</tt>s of the objects that
 	 *         satisfy the filter; never null
 	 *
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <tt>filterExpr</tt> contains <code>{i}</code> expressions
-	 *             where <code>i</code> is outside the bounds of the array
-	 *             <code>filterArgs</code>
+	 *                                        if <tt>filterExpr</tt> contains
+	 *                                        <code>{i}</code> expressions
+	 *                                        where <code>i</code> is outside
+	 *                                        the bounds of the array
+	 *                                        <code>filterArgs</code>
 	 * @throws InvalidSearchControlsException
-	 *             if <tt>cons</tt> contains invalid settings
+	 *                                        if <tt>cons</tt> contains invalid
+	 *                                        settings
 	 * @throws InvalidSearchFilterException
-	 *             if <tt>filterExpr</tt> with <tt>filterArgs</tt> represents an
-	 *             invalid search filter
+	 *                                        if <tt>filterExpr</tt> with
+	 *                                        <tt>filterArgs</tt> represents an
+	 *                                        invalid search filter
 	 * @throws NamingException
-	 *             if a naming exception is encountered
+	 *                                        if a naming exception is
+	 *                                        encountered
 	 */
-	public NamingEnumeration<SearchResult> search(String name, String filterExpr,
-			Object[] filterArgs, SearchControls cons) throws NamingException;
+	public NamingEnumeration<SearchResult> search(String name,
+			String filterExpr, Object[] filterArgs, SearchControls cons)
+			throws NamingException;
 }

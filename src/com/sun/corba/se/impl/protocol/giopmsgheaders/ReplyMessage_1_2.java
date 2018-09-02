@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol.giopmsgheaders;
@@ -54,7 +34,8 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class ReplyMessage_1_2 extends Message_1_2 implements ReplyMessage {
+public final class ReplyMessage_1_2 extends Message_1_2 implements
+		ReplyMessage {
 
 	// Instance variables
 
@@ -72,15 +53,17 @@ public final class ReplyMessage_1_2 extends Message_1_2 implements ReplyMessage 
 
 	ReplyMessage_1_2(ORB orb) {
 		this.orb = orb;
-		this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
+		this.wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_PROTOCOL);
 	}
 
-	ReplyMessage_1_2(ORB orb, int _request_id, int _reply_status, ServiceContexts _service_contexts,
-			IOR _ior) {
-		super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN, Message.GIOPReply,
-				0);
+	ReplyMessage_1_2(ORB orb, int _request_id, int _reply_status,
+			ServiceContexts _service_contexts, IOR _ior) {
+		super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN,
+				Message.GIOPReply, 0);
 		this.orb = orb;
-		this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
+		this.wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_PROTOCOL);
 		request_id = _request_id;
 		reply_status = _reply_status;
 		service_contexts = _service_contexts;
@@ -110,8 +93,8 @@ public final class ReplyMessage_1_2 extends Message_1_2 implements ReplyMessage 
 	}
 
 	public SystemException getSystemException(String message) {
-		return MessageBase.getSystemException(exClassName, minorCode, completionStatus, message,
-				wrapper);
+		return MessageBase.getSystemException(exClassName, minorCode,
+				completionStatus, message, wrapper);
 	}
 
 	public IOR getIOR() {
@@ -150,18 +133,19 @@ public final class ReplyMessage_1_2 extends Message_1_2 implements ReplyMessage 
 			int status = istream.read_long();
 
 			switch (status) {
-			case CompletionStatus._COMPLETED_YES:
-				this.completionStatus = CompletionStatus.COMPLETED_YES;
-				break;
-			case CompletionStatus._COMPLETED_NO:
-				this.completionStatus = CompletionStatus.COMPLETED_NO;
-				break;
-			case CompletionStatus._COMPLETED_MAYBE:
-				this.completionStatus = CompletionStatus.COMPLETED_MAYBE;
-				break;
-			default:
-				throw wrapper.badCompletionStatusInReply(CompletionStatus.COMPLETED_MAYBE,
-						new Integer(status));
+				case CompletionStatus._COMPLETED_YES:
+					this.completionStatus = CompletionStatus.COMPLETED_YES;
+					break;
+				case CompletionStatus._COMPLETED_NO:
+					this.completionStatus = CompletionStatus.COMPLETED_NO;
+					break;
+				case CompletionStatus._COMPLETED_MAYBE:
+					this.completionStatus = CompletionStatus.COMPLETED_MAYBE;
+					break;
+				default:
+					throw wrapper.badCompletionStatusInReply(
+							CompletionStatus.COMPLETED_MAYBE, new Integer(
+									status));
 			}
 
 		} else if (this.reply_status == USER_EXCEPTION) {
@@ -186,11 +170,12 @@ public final class ReplyMessage_1_2 extends Message_1_2 implements ReplyMessage 
 		ostream.write_ulong(this.request_id);
 		ostream.write_long(this.reply_status);
 		if (this.service_contexts != null) {
-			service_contexts.write((org.omg.CORBA_2_3.portable.OutputStream) ostream,
+			service_contexts.write(
+					(org.omg.CORBA_2_3.portable.OutputStream) ostream,
 					GIOPVersion.V1_2);
 		} else {
-			ServiceContexts
-					.writeNullServiceContext((org.omg.CORBA_2_3.portable.OutputStream) ostream);
+			ServiceContexts.writeNullServiceContext(
+					(org.omg.CORBA_2_3.portable.OutputStream) ostream);
 		}
 
 		// CORBA formal 00-11-0 15.4.2.2 GIOP 1.2 body must be
@@ -206,17 +191,18 @@ public final class ReplyMessage_1_2 extends Message_1_2 implements ReplyMessage 
 
 	public static void isValidReplyStatus(int replyStatus) {
 		switch (replyStatus) {
-		case NO_EXCEPTION:
-		case USER_EXCEPTION:
-		case SYSTEM_EXCEPTION:
-		case LOCATION_FORWARD:
-		case LOCATION_FORWARD_PERM:
-		case NEEDS_ADDRESSING_MODE:
-			break;
-		default:
-			ORBUtilSystemException localWrapper = ORBUtilSystemException
-					.get(CORBALogDomains.RPC_PROTOCOL);
-			throw localWrapper.illegalReplyStatus(CompletionStatus.COMPLETED_MAYBE);
+			case NO_EXCEPTION:
+			case USER_EXCEPTION:
+			case SYSTEM_EXCEPTION:
+			case LOCATION_FORWARD:
+			case LOCATION_FORWARD_PERM:
+			case NEEDS_ADDRESSING_MODE:
+				break;
+			default:
+				ORBUtilSystemException localWrapper = ORBUtilSystemException
+						.get(CORBALogDomains.RPC_PROTOCOL);
+				throw localWrapper.illegalReplyStatus(
+						CompletionStatus.COMPLETED_MAYBE);
 		}
 	}
 

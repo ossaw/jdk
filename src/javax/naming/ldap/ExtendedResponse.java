@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.ldap;
@@ -62,7 +42,8 @@ package javax.naming.ldap;
  * </blockquote> A program would use then these classes as follows: <blockquote>
  * 
  * <pre>
- * GetTimeResponse resp = (GetTimeResponse) ectx.extendedOperation(new GetTimeRequest());
+ * GetTimeResponse resp = (GetTimeResponse) ectx.extendedOperation(
+ * 		new GetTimeRequest());
  * java.util.Date now = resp.getDate();
  * </pre>
  * 

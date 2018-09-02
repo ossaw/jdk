@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: XMLStringFactoryDefault.java,v 1.2.4.1 2005/09/15 08:16:03 suresh_emailid Exp $
+ * $Id: XMLStringFactoryDefault.java,v 1.2.4.1 2005/09/15 08:16:03
+ * suresh_emailid Exp $
  */
 package com.sun.org.apache.xml.internal.utils;
 
@@ -35,7 +33,7 @@ public class XMLStringFactoryDefault extends XMLStringFactory {
 	 *
 	 *
 	 * @param string
-	 *            Java String reference, which must be non-null.
+	 *               Java String reference, which must be non-null.
 	 *
 	 * @return An XMLString object that wraps the String reference.
 	 */
@@ -48,11 +46,11 @@ public class XMLStringFactoryDefault extends XMLStringFactory {
 	 *
 	 *
 	 * @param fsb
-	 *            FastStringBuffer reference, which must be non-null.
+	 *               FastStringBuffer reference, which must be non-null.
 	 * @param start
-	 *            The start position in the array.
+	 *               The start position in the array.
 	 * @param length
-	 *            The number of characters to read from the array.
+	 *               The number of characters to read from the array.
 	 *
 	 * @return An XMLString object that wraps the FastStringBuffer reference.
 	 */
@@ -65,11 +63,11 @@ public class XMLStringFactoryDefault extends XMLStringFactory {
 	 *
 	 *
 	 * @param string
-	 *            FastStringBuffer reference, which must be non-null.
+	 *               FastStringBuffer reference, which must be non-null.
 	 * @param start
-	 *            The start position in the array.
+	 *               The start position in the array.
 	 * @param length
-	 *            The number of characters to read from the array.
+	 *               The number of characters to read from the array.
 	 *
 	 * @return An XMLString object that wraps the FastStringBuffer reference.
 	 */

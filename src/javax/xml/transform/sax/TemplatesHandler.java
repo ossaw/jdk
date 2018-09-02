@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform.sax;
@@ -56,7 +36,7 @@ public interface TemplatesHandler extends ContentHandler {
 	 * stylesheet. This must be called before the startDocument event.
 	 *
 	 * @param systemID
-	 *            Base URI for this stylesheet.
+	 *                 Base URI for this stylesheet.
 	 */
 	public void setSystemId(String systemID);
 

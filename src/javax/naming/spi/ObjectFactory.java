@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.spi;
@@ -139,23 +119,29 @@ public interface ObjectFactory {
 	 * <p>
 	 *
 	 * @param obj
-	 *            The possibly null object containing location or reference
-	 *            information that can be used in creating an object.
+	 *                    The possibly null object containing location or
+	 *                    reference
+	 *                    information that can be used in creating an object.
 	 * @param name
-	 *            The name of this object relative to <code>nameCtx</code>, or
-	 *            null if no name is specified.
+	 *                    The name of this object relative to
+	 *                    <code>nameCtx</code>, or
+	 *                    null if no name is specified.
 	 * @param nameCtx
-	 *            The context relative to which the <code>name</code> parameter
-	 *            is specified, or null if <code>name</code> is relative to the
-	 *            default initial context.
+	 *                    The context relative to which the <code>name</code>
+	 *                    parameter
+	 *                    is specified, or null if <code>name</code> is relative
+	 *                    to the
+	 *                    default initial context.
 	 * @param environment
-	 *            The possibly null environment that is used in creating the
-	 *            object.
+	 *                    The possibly null environment that is used in creating
+	 *                    the
+	 *                    object.
 	 * @return The object created; null if an object cannot be created.
 	 * @exception Exception
-	 *                if this object factory encountered an exception while
-	 *                attempting to create an object, and no other object
-	 *                factories are to be tried.
+	 *                      if this object factory encountered an exception
+	 *                      while
+	 *                      attempting to create an object, and no other object
+	 *                      factories are to be tried.
 	 *
 	 * @see NamingManager#getObjectInstance
 	 * @see NamingManager#getURLContext

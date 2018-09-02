@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: SerializableLocatorImpl.java,v 1.2.4.1 2005/09/15 08:15:54 suresh_emailid Exp $
+ * $Id: SerializableLocatorImpl.java,v 1.2.4.1 2005/09/15 08:15:54
+ * suresh_emailid Exp $
  */
 package com.sun.org.apache.xml.internal.utils;
 
@@ -38,7 +36,8 @@ package com.sun.org.apache.xml.internal.utils;
  * @since XalanJ2
  * @author Joe Kesselman
  */
-public class SerializableLocatorImpl implements org.xml.sax.Locator, java.io.Serializable
+public class SerializableLocatorImpl implements org.xml.sax.Locator,
+		java.io.Serializable
 
 {
 	static final long serialVersionUID = -2660312888446371460L;
@@ -54,8 +53,7 @@ public class SerializableLocatorImpl implements org.xml.sax.Locator, java.io.Ser
 	 * provided.
 	 * </p>
 	 */
-	public SerializableLocatorImpl() {
-	}
+	public SerializableLocatorImpl() {}
 
 	/**
 	 * Copy constructor.
@@ -67,7 +65,7 @@ public class SerializableLocatorImpl implements org.xml.sax.Locator, java.io.Ser
 	 * </p>
 	 *
 	 * @param locator
-	 *            The locator to copy.
+	 *                The locator to copy.
 	 */
 	public SerializableLocatorImpl(org.xml.sax.Locator locator) {
 		setPublicId(locator.getPublicId());
@@ -132,7 +130,7 @@ public class SerializableLocatorImpl implements org.xml.sax.Locator, java.io.Ser
 	 * Set the public identifier for this locator.
 	 *
 	 * @param publicId
-	 *            The new public identifier, or null if none is available.
+	 *                 The new public identifier, or null if none is available.
 	 * @see #getPublicId
 	 */
 	public void setPublicId(String publicId) {
@@ -143,7 +141,7 @@ public class SerializableLocatorImpl implements org.xml.sax.Locator, java.io.Ser
 	 * Set the system identifier for this locator.
 	 *
 	 * @param systemId
-	 *            The new system identifier, or null if none is available.
+	 *                 The new system identifier, or null if none is available.
 	 * @see #getSystemId
 	 */
 	public void setSystemId(String systemId) {
@@ -154,7 +152,7 @@ public class SerializableLocatorImpl implements org.xml.sax.Locator, java.io.Ser
 	 * Set the line number for this locator (1-based).
 	 *
 	 * @param lineNumber
-	 *            The line number, or -1 if none is available.
+	 *                   The line number, or -1 if none is available.
 	 * @see #getLineNumber
 	 */
 	public void setLineNumber(int lineNumber) {
@@ -165,7 +163,7 @@ public class SerializableLocatorImpl implements org.xml.sax.Locator, java.io.Ser
 	 * Set the column number for this locator (1-based).
 	 *
 	 * @param columnNumber
-	 *            The column number, or -1 if none is available.
+	 *                     The column number, or -1 if none is available.
 	 * @see #getColumnNumber
 	 */
 	public void setColumnNumber(int columnNumber) {

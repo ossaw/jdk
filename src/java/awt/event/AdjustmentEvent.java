@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -155,19 +135,21 @@ public class AdjustmentEvent extends AWTEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            The <code>Adjustable</code> object where the event originated
+	 *               The <code>Adjustable</code> object where the event
+	 *               originated
 	 * @param id
-	 *            An integer indicating the type of event. For information on
-	 *            allowable values, see the class description for
-	 *            {@link AdjustmentEvent}
+	 *               An integer indicating the type of event. For information on
+	 *               allowable values, see the class description for
+	 *               {@link AdjustmentEvent}
 	 * @param type
-	 *            An integer indicating the adjustment type. For information on
-	 *            allowable values, see the class description for
-	 *            {@link AdjustmentEvent}
+	 *               An integer indicating the adjustment type. For information
+	 *               on
+	 *               allowable values, see the class description for
+	 *               {@link AdjustmentEvent}
 	 * @param value
-	 *            The current value of the adjustment
+	 *               The current value of the adjustment
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see #getSource()
 	 * @see #getID()
 	 * @see #getAdjustmentType()
@@ -185,23 +167,27 @@ public class AdjustmentEvent extends AWTEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            The <code>Adjustable</code> object where the event originated
+	 *                    The <code>Adjustable</code> object where the event
+	 *                    originated
 	 * @param id
-	 *            An integer indicating the type of event. For information on
-	 *            allowable values, see the class description for
-	 *            {@link AdjustmentEvent}
+	 *                    An integer indicating the type of event. For
+	 *                    information on
+	 *                    allowable values, see the class description for
+	 *                    {@link AdjustmentEvent}
 	 * @param type
-	 *            An integer indicating the adjustment type. For information on
-	 *            allowable values, see the class description for
-	 *            {@link AdjustmentEvent}
+	 *                    An integer indicating the adjustment type. For
+	 *                    information on
+	 *                    allowable values, see the class description for
+	 *                    {@link AdjustmentEvent}
 	 * @param value
-	 *            The current value of the adjustment
+	 *                    The current value of the adjustment
 	 * @param isAdjusting
-	 *            A boolean that equals <code>true</code> if the event is one of
-	 *            a series of multiple adjusting events, otherwise
-	 *            <code>false</code>
+	 *                    A boolean that equals <code>true</code> if the event
+	 *                    is one of
+	 *                    a series of multiple adjusting events, otherwise
+	 *                    <code>false</code>
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @since 1.4
 	 * @see #getSource()
 	 * @see #getID()
@@ -209,7 +195,8 @@ public class AdjustmentEvent extends AWTEvent {
 	 * @see #getValue()
 	 * @see #getValueIsAdjusting()
 	 */
-	public AdjustmentEvent(Adjustable source, int id, int type, int value, boolean isAdjusting) {
+	public AdjustmentEvent(Adjustable source, int id, int type, int value,
+			boolean isAdjusting) {
 		super(source, id);
 		adjustable = source;
 		this.adjustmentType = type;
@@ -266,33 +253,33 @@ public class AdjustmentEvent extends AWTEvent {
 	public String paramString() {
 		String typeStr;
 		switch (id) {
-		case ADJUSTMENT_VALUE_CHANGED:
-			typeStr = "ADJUSTMENT_VALUE_CHANGED";
-			break;
-		default:
-			typeStr = "unknown type";
+			case ADJUSTMENT_VALUE_CHANGED:
+				typeStr = "ADJUSTMENT_VALUE_CHANGED";
+				break;
+			default:
+				typeStr = "unknown type";
 		}
 		String adjTypeStr;
 		switch (adjustmentType) {
-		case UNIT_INCREMENT:
-			adjTypeStr = "UNIT_INCREMENT";
-			break;
-		case UNIT_DECREMENT:
-			adjTypeStr = "UNIT_DECREMENT";
-			break;
-		case BLOCK_INCREMENT:
-			adjTypeStr = "BLOCK_INCREMENT";
-			break;
-		case BLOCK_DECREMENT:
-			adjTypeStr = "BLOCK_DECREMENT";
-			break;
-		case TRACK:
-			adjTypeStr = "TRACK";
-			break;
-		default:
-			adjTypeStr = "unknown type";
+			case UNIT_INCREMENT:
+				adjTypeStr = "UNIT_INCREMENT";
+				break;
+			case UNIT_DECREMENT:
+				adjTypeStr = "UNIT_DECREMENT";
+				break;
+			case BLOCK_INCREMENT:
+				adjTypeStr = "BLOCK_INCREMENT";
+				break;
+			case BLOCK_DECREMENT:
+				adjTypeStr = "BLOCK_DECREMENT";
+				break;
+			case TRACK:
+				adjTypeStr = "TRACK";
+				break;
+			default:
+				adjTypeStr = "unknown type";
 		}
-		return typeStr + ",adjType=" + adjTypeStr + ",value=" + value + ",isAdjusting="
-				+ isAdjusting;
+		return typeStr + ",adjType=" + adjTypeStr + ",value=" + value
+				+ ",isAdjusting=" + isAdjusting;
 	}
 }

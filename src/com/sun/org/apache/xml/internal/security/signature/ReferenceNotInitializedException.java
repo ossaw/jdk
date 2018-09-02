@@ -70,7 +70,8 @@ public class ReferenceNotInitializedException extends XMLSignatureException {
 	 * @param msgID
 	 * @param originalException
 	 */
-	public ReferenceNotInitializedException(String msgID, Exception originalException) {
+	public ReferenceNotInitializedException(String msgID,
+			Exception originalException) {
 		super(msgID, originalException);
 	}
 

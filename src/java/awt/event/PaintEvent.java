@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -88,15 +68,16 @@ public class PaintEvent extends ComponentEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            The object where the event originated
+	 *                   The object where the event originated
 	 * @param id
-	 *            The integer that identifies the event type. For information on
-	 *            allowable values, see the class description for
-	 *            {@link PaintEvent}
+	 *                   The integer that identifies the event type. For
+	 *                   information on
+	 *                   allowable values, see the class description for
+	 *                   {@link PaintEvent}
 	 * @param updateRect
-	 *            The rectangle area which needs to be repainted
+	 *                   The rectangle area which needs to be repainted
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see #getSource()
 	 * @see #getID()
 	 * @see #getUpdateRect()
@@ -119,7 +100,7 @@ public class PaintEvent extends ComponentEvent {
 	 * response to this event.
 	 * 
 	 * @param updateRect
-	 *            the rectangle area which needs to be repainted
+	 *                   the rectangle area which needs to be repainted
 	 */
 	public void setUpdateRect(Rectangle updateRect) {
 		this.updateRect = updateRect;
@@ -128,15 +109,16 @@ public class PaintEvent extends ComponentEvent {
 	public String paramString() {
 		String typeStr;
 		switch (id) {
-		case PAINT:
-			typeStr = "PAINT";
-			break;
-		case UPDATE:
-			typeStr = "UPDATE";
-			break;
-		default:
-			typeStr = "unknown type";
+			case PAINT:
+				typeStr = "PAINT";
+				break;
+			case UPDATE:
+				typeStr = "UPDATE";
+				break;
+			default:
+				typeStr = "unknown type";
 		}
-		return typeStr + ",updateRect=" + (updateRect != null ? updateRect.toString() : "null");
+		return typeStr + ",updateRect=" + (updateRect != null ? updateRect
+				.toString() : "null");
 	}
 }

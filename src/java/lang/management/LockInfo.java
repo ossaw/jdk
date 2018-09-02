@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.management;
@@ -61,14 +41,17 @@ public class LockInfo {
 	 * Constructs a <tt>LockInfo</tt> object.
 	 *
 	 * @param className
-	 *            the fully qualified name of the class of the lock object.
+	 *                         the fully qualified name of the class of the lock
+	 *                         object.
 	 * @param identityHashCode
-	 *            the {@link System#identityHashCode identity hash code} of the
-	 *            lock object.
+	 *                         the {@link System#identityHashCode identity hash
+	 *                         code} of the
+	 *                         lock object.
 	 */
 	public LockInfo(String className, int identityHashCode) {
 		if (className == null) {
-			throw new NullPointerException("Parameter className cannot be null");
+			throw new NullPointerException(
+					"Parameter className cannot be null");
 		}
 		this.className = className;
 		this.identityHashCode = identityHashCode;
@@ -122,11 +105,12 @@ public class LockInfo {
 	 * </blockquote>
 	 *
 	 * @param cd
-	 *            {@code CompositeData} representing a {@code LockInfo}
+	 *           {@code CompositeData} representing a {@code LockInfo}
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code cd} does not represent a {@code LockInfo} with the
-	 *             attributes described above.
+	 *                                  if {@code cd} does not represent a
+	 *                                  {@code LockInfo} with the
+	 *                                  attributes described above.
 	 * @return a {@code LockInfo} object represented by {@code cd} if {@code cd}
 	 *         is not {@code null}; {@code null} otherwise.
 	 *
@@ -152,7 +136,8 @@ public class LockInfo {
 	 * equals to the value of: <blockquote>
 	 * 
 	 * <pre>
-	 * lock.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(lock))
+	 * lock.getClass().getName() + '@' + Integer.toHexString(System
+	 * 		.identityHashCode(lock))
 	 * </pre>
 	 * 
 	 * </blockquote> where <tt>lock</tt> is the lock object.

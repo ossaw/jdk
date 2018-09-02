@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -96,10 +76,11 @@ public class PolicyQualifierInfo {
 	 * bytes. The encoded byte array is copied on construction.
 	 *
 	 * @param encoded
-	 *            a byte array containing the qualifier in DER encoding
+	 *                a byte array containing the qualifier in DER encoding
 	 * @exception IOException
-	 *                thrown if the byte array does not represent a valid and
-	 *                parsable policy qualifier
+	 *                        thrown if the byte array does not represent a
+	 *                        valid and
+	 *                        parsable policy qualifier
 	 */
 	public PolicyQualifierInfo(byte[] encoded) throws IOException {
 		mEncoded = encoded.clone();
@@ -166,7 +147,8 @@ public class PolicyQualifierInfo {
 		StringBuffer sb = new StringBuffer();
 		sb.append("PolicyQualifierInfo: [\n");
 		sb.append("  qualifierID: " + mId + "\n");
-		sb.append("  qualifier: " + (mData == null ? "null" : enc.encodeBuffer(mData)) + "\n");
+		sb.append("  qualifier: " + (mData == null ? "null"
+				: enc.encodeBuffer(mData)) + "\n");
 		sb.append("]");
 		pqiString = sb.toString();
 		return pqiString;

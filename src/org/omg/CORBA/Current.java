@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -44,6 +24,5 @@ package org.omg.CORBA;
  * July 17, 1999 12:26:21 AM PDT.
  */
 
-public interface Current
-		extends CurrentOperations, org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {
-} // interface Current
+public interface Current extends CurrentOperations, org.omg.CORBA.Object,
+		org.omg.CORBA.portable.IDLEntity {} // interface Current

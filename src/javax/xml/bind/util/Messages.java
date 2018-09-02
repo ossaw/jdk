@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.util;
@@ -44,7 +24,8 @@ class Messages {
 		return format(property, new Object[] { arg1, arg2 });
 	}
 
-	static String format(String property, Object arg1, Object arg2, Object arg3) {
+	static String format(String property, Object arg1, Object arg2,
+			Object arg3) {
 		return format(property, new Object[] { arg1, arg2, arg3 });
 	}
 
@@ -52,7 +33,8 @@ class Messages {
 
 	/** Loads a string resource and formats it with specified arguments. */
 	static String format(String property, Object[] args) {
-		String text = ResourceBundle.getBundle(Messages.class.getName()).getString(property);
+		String text = ResourceBundle.getBundle(Messages.class.getName())
+				.getString(property);
 		return MessageFormat.format(text, args);
 	}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.beans;
 
@@ -64,9 +44,7 @@ import static sun.reflect.misc.ReflectUtil.isPackageAccessible;
  * contains <em>meta</em> objects that describe the way
  * classes should express their state in terms of their
  * own public APIs.
- *
  * @see java.beans.Intropector
- *
  * @author Philip Milne
  * @author Steve Langley
  */
@@ -75,9 +53,8 @@ class MetaData {
 	static final class NullPersistenceDelegate extends PersistenceDelegate {
 		// Note this will be called by all classes when they reach the
 		// top of their superclass chain.
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
-		}
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {}
 
 		protected Expression instantiate(Object oldInstance, Encoder out) {
 			return null;
@@ -101,12 +78,13 @@ class MetaData {
 
 		protected Expression instantiate(Object oldInstance, Encoder out) {
 			Enum<?> e = (Enum<?>) oldInstance;
-			return new Expression(e, Enum.class, "valueOf",
-					new Object[] { e.getDeclaringClass(), e.name() });
+			return new Expression(e, Enum.class, "valueOf", new Object[] { e
+					.getDeclaringClass(), e.name() });
 		}
 	}
 
-	static final class PrimitivePersistenceDelegate extends PersistenceDelegate {
+	static final class PrimitivePersistenceDelegate extends
+			PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
 			return oldInstance.equals(newInstance);
 		}
@@ -119,24 +97,27 @@ class MetaData {
 
 	static final class ArrayPersistenceDelegate extends PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
-			return (newInstance != null && oldInstance.getClass() == newInstance.getClass() && // Also
-																								// ensures
-																								// the
-																								// subtype
-																								// is
-																								// correct.
-					Array.getLength(oldInstance) == Array.getLength(newInstance));
+			return (newInstance != null && oldInstance.getClass() == newInstance
+					.getClass() && // Also
+																										// ensures
+																										// the
+																										// subtype
+																										// is
+																										// correct.
+					Array.getLength(oldInstance) == Array.getLength(
+							newInstance));
 		}
 
 		protected Expression instantiate(Object oldInstance, Encoder out) {
 			// System.out.println("instantiate: " + type + " " + oldInstance);
 			Class<?> oldClass = oldInstance.getClass();
-			return new Expression(oldInstance, Array.class, "newInstance", new Object[] {
-					oldClass.getComponentType(), new Integer(Array.getLength(oldInstance)) });
+			return new Expression(oldInstance, Array.class, "newInstance",
+					new Object[] { oldClass.getComponentType(), new Integer(
+							Array.getLength(oldInstance)) });
 		}
 
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			int n = Array.getLength(oldInstance);
 			for (int i = 0; i < n; i++) {
 				Object index = new Integer(i);
@@ -144,8 +125,10 @@ class MetaData {
 				// Object[]{oldInstance, index});
 				// Expression newGetExp = new Expression(Array.class, "get", new
 				// Object[]{newInstance, index});
-				Expression oldGetExp = new Expression(oldInstance, "get", new Object[] { index });
-				Expression newGetExp = new Expression(newInstance, "get", new Object[] { index });
+				Expression oldGetExp = new Expression(oldInstance, "get",
+						new Object[] { index });
+				Expression newGetExp = new Expression(newInstance, "get",
+						new Object[] { index });
 				try {
 					Object oldValue = oldGetExp.getValue();
 					Object newValue = newGetExp.getValue();
@@ -155,8 +138,8 @@ class MetaData {
 						// + actualGetExp);
 						// invokeStatement(Array.class, "set", new
 						// Object[]{oldInstance, index, oldValue}, out);
-						DefaultPersistenceDelegate.invokeStatement(oldInstance, "set",
-								new Object[] { index, oldValue }, out);
+						DefaultPersistenceDelegate.invokeStatement(oldInstance,
+								"set", new Object[] { index, oldValue }, out);
 					}
 				} catch (Exception e) {
 					// System.err.println("Warning:: failed to write: " +
@@ -188,15 +171,18 @@ class MetaData {
 					args.setSize(4);
 					args.add(eh.getListenerMethodName());
 				}
-				return new Expression(oldInstance, EventHandler.class, "create", args.toArray());
+				return new Expression(oldInstance, EventHandler.class, "create",
+						args.toArray());
 			}
-			return new Expression(oldInstance, java.lang.reflect.Proxy.class, "newProxyInstance",
-					new Object[] { type.getClassLoader(), type.getInterfaces(), ih });
+			return new Expression(oldInstance, java.lang.reflect.Proxy.class,
+					"newProxyInstance", new Object[] { type.getClassLoader(),
+							type.getInterfaces(), ih });
 		}
 	}
 
 	// Strings
-	static final class java_lang_String_PersistenceDelegate extends PersistenceDelegate {
+	static final class java_lang_String_PersistenceDelegate extends
+			PersistenceDelegate {
 		protected Expression instantiate(Object oldInstance, Encoder out) {
 			return null;
 		}
@@ -208,7 +194,8 @@ class MetaData {
 	}
 
 	// Classes
-	static final class java_lang_Class_PersistenceDelegate extends PersistenceDelegate {
+	static final class java_lang_Class_PersistenceDelegate extends
+			PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
 			return oldInstance.equals(newInstance);
 		}
@@ -221,18 +208,22 @@ class MetaData {
 			if (c.isPrimitive()) {
 				Field field = null;
 				try {
-					field = PrimitiveWrapperMap.getType(c.getName()).getDeclaredField("TYPE");
+					field = PrimitiveWrapperMap.getType(c.getName())
+							.getDeclaredField("TYPE");
 				} catch (NoSuchFieldException ex) {
 					System.err.println("Unknown primitive type: " + c);
 				}
-				return new Expression(oldInstance, field, "get", new Object[] { null });
+				return new Expression(oldInstance, field, "get", new Object[] {
+						null });
 			} else if (oldInstance == String.class) {
-				return new Expression(oldInstance, "", "getClass", new Object[] {});
+				return new Expression(oldInstance, "", "getClass",
+						new Object[] {});
 			} else if (oldInstance == Class.class) {
-				return new Expression(oldInstance, String.class, "getClass", new Object[] {});
+				return new Expression(oldInstance, String.class, "getClass",
+						new Object[] {});
 			} else {
-				Expression newInstance = new Expression(oldInstance, Class.class, "forName",
-						new Object[] { c.getName() });
+				Expression newInstance = new Expression(oldInstance,
+						Class.class, "forName", new Object[] { c.getName() });
 				newInstance.loader = c.getClassLoader();
 				return newInstance;
 			}
@@ -240,28 +231,31 @@ class MetaData {
 	}
 
 	// Fields
-	static final class java_lang_reflect_Field_PersistenceDelegate extends PersistenceDelegate {
+	static final class java_lang_reflect_Field_PersistenceDelegate extends
+			PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
 			return oldInstance.equals(newInstance);
 		}
 
 		protected Expression instantiate(Object oldInstance, Encoder out) {
 			Field f = (Field) oldInstance;
-			return new Expression(oldInstance, f.getDeclaringClass(), "getField",
-					new Object[] { f.getName() });
+			return new Expression(oldInstance, f.getDeclaringClass(),
+					"getField", new Object[] { f.getName() });
 		}
 	}
 
 	// Methods
-	static final class java_lang_reflect_Method_PersistenceDelegate extends PersistenceDelegate {
+	static final class java_lang_reflect_Method_PersistenceDelegate extends
+			PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
 			return oldInstance.equals(newInstance);
 		}
 
 		protected Expression instantiate(Object oldInstance, Encoder out) {
 			Method m = (Method) oldInstance;
-			return new Expression(oldInstance, m.getDeclaringClass(), "getMethod",
-					new Object[] { m.getName(), m.getParameterTypes() });
+			return new Expression(oldInstance, m.getDeclaringClass(),
+					"getMethod", new Object[] { m.getName(), m
+							.getParameterTypes() });
 		}
 	}
 
@@ -275,7 +269,8 @@ class MetaData {
 	 *
 	 * @author Sergey A. Malenkov
 	 */
-	static class java_util_Date_PersistenceDelegate extends PersistenceDelegate {
+	static class java_util_Date_PersistenceDelegate extends
+			PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
 			if (!super.mutatesTo(oldInstance, newInstance)) {
 				return false;
@@ -288,7 +283,8 @@ class MetaData {
 
 		protected Expression instantiate(Object oldInstance, Encoder out) {
 			Date date = (Date) oldInstance;
-			return new Expression(date, date.getClass(), "new", new Object[] { date.getTime() });
+			return new Expression(date, date.getClass(), "new", new Object[] {
+					date.getTime() });
 		}
 	}
 
@@ -298,8 +294,8 @@ class MetaData {
 	 *
 	 * @author Sergey A. Malenkov
 	 */
-	static final class java_sql_Timestamp_PersistenceDelegate
-			extends java_util_Date_PersistenceDelegate {
+	static final class java_sql_Timestamp_PersistenceDelegate extends
+			java_util_Date_PersistenceDelegate {
 		private static final Method getNanosMethod = getNanosMethod();
 
 		private static Method getNanosMethod() {
@@ -333,12 +329,13 @@ class MetaData {
 			}
 		}
 
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			// assumes oldInstance and newInstance are Timestamps
 			int nanos = getNanos(oldInstance);
 			if (nanos != getNanos(newInstance)) {
-				out.writeStatement(new Statement(oldInstance, "setNanos", new Object[] { nanos }));
+				out.writeStatement(new Statement(oldInstance, "setNanos",
+						new Object[] { nanos }));
 			}
 		}
 	}
@@ -364,7 +361,8 @@ class MetaData {
 	 *
 	 * @author Sergey A. Malenkov
 	 */
-	private static abstract class java_util_Collections extends PersistenceDelegate {
+	private static abstract class java_util_Collections extends
+			PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
 			if (!super.mutatesTo(oldInstance, newInstance)) {
 				return false;
@@ -378,68 +376,78 @@ class MetaData {
 			return (oldC.size() == newC.size()) && oldC.containsAll(newC);
 		}
 
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			// do not initialize these custom collections in default way
 		}
 
-		static final class EmptyList_PersistenceDelegate extends java_util_Collections {
+		static final class EmptyList_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
-				return new Expression(oldInstance, Collections.class, "emptyList", null);
+				return new Expression(oldInstance, Collections.class,
+						"emptyList", null);
 			}
 		}
 
-		static final class EmptySet_PersistenceDelegate extends java_util_Collections {
+		static final class EmptySet_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
-				return new Expression(oldInstance, Collections.class, "emptySet", null);
+				return new Expression(oldInstance, Collections.class,
+						"emptySet", null);
 			}
 		}
 
-		static final class EmptyMap_PersistenceDelegate extends java_util_Collections {
+		static final class EmptyMap_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
-				return new Expression(oldInstance, Collections.class, "emptyMap", null);
+				return new Expression(oldInstance, Collections.class,
+						"emptyMap", null);
 			}
 		}
 
-		static final class SingletonList_PersistenceDelegate extends java_util_Collections {
+		static final class SingletonList_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				List<?> list = (List<?>) oldInstance;
-				return new Expression(oldInstance, Collections.class, "singletonList",
-						new Object[] { list.get(0) });
+				return new Expression(oldInstance, Collections.class,
+						"singletonList", new Object[] { list.get(0) });
 			}
 		}
 
-		static final class SingletonSet_PersistenceDelegate extends java_util_Collections {
+		static final class SingletonSet_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Set<?> set = (Set<?>) oldInstance;
-				return new Expression(oldInstance, Collections.class, "singleton",
-						new Object[] { set.iterator().next() });
+				return new Expression(oldInstance, Collections.class,
+						"singleton", new Object[] { set.iterator().next() });
 			}
 		}
 
-		static final class SingletonMap_PersistenceDelegate extends java_util_Collections {
+		static final class SingletonMap_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Map<?, ?> map = (Map<?, ?>) oldInstance;
 				Object key = map.keySet().iterator().next();
-				return new Expression(oldInstance, Collections.class, "singletonMap",
-						new Object[] { key, map.get(key) });
+				return new Expression(oldInstance, Collections.class,
+						"singletonMap", new Object[] { key, map.get(key) });
 			}
 		}
 
-		static final class UnmodifiableCollection_PersistenceDelegate
-				extends java_util_Collections {
+		static final class UnmodifiableCollection_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				List<?> list = new ArrayList<>((Collection<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "unmodifiableCollection",
-						new Object[] { list });
+				return new Expression(oldInstance, Collections.class,
+						"unmodifiableCollection", new Object[] { list });
 			}
 		}
 
-		static final class UnmodifiableList_PersistenceDelegate extends java_util_Collections {
+		static final class UnmodifiableList_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				List<?> list = new LinkedList<>((Collection<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "unmodifiableList",
-						new Object[] { list });
+				return new Expression(oldInstance, Collections.class,
+						"unmodifiableList", new Object[] { list });
 			}
 		}
 
@@ -447,57 +455,63 @@ class MetaData {
 				extends java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				List<?> list = new ArrayList<>((Collection<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "unmodifiableList",
-						new Object[] { list });
+				return new Expression(oldInstance, Collections.class,
+						"unmodifiableList", new Object[] { list });
 			}
 		}
 
-		static final class UnmodifiableSet_PersistenceDelegate extends java_util_Collections {
+		static final class UnmodifiableSet_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Set<?> set = new HashSet<>((Set<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "unmodifiableSet",
-						new Object[] { set });
+				return new Expression(oldInstance, Collections.class,
+						"unmodifiableSet", new Object[] { set });
 			}
 		}
 
-		static final class UnmodifiableSortedSet_PersistenceDelegate extends java_util_Collections {
+		static final class UnmodifiableSortedSet_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				SortedSet<?> set = new TreeSet<>((SortedSet<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "unmodifiableSortedSet",
-						new Object[] { set });
+				return new Expression(oldInstance, Collections.class,
+						"unmodifiableSortedSet", new Object[] { set });
 			}
 		}
 
-		static final class UnmodifiableMap_PersistenceDelegate extends java_util_Collections {
+		static final class UnmodifiableMap_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Map<?, ?> map = new HashMap<>((Map<?, ?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "unmodifiableMap",
-						new Object[] { map });
+				return new Expression(oldInstance, Collections.class,
+						"unmodifiableMap", new Object[] { map });
 			}
 		}
 
-		static final class UnmodifiableSortedMap_PersistenceDelegate extends java_util_Collections {
+		static final class UnmodifiableSortedMap_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
-				SortedMap<?, ?> map = new TreeMap<>((SortedMap<?, ?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "unmodifiableSortedMap",
-						new Object[] { map });
+				SortedMap<?, ?> map = new TreeMap<>(
+						(SortedMap<?, ?>) oldInstance);
+				return new Expression(oldInstance, Collections.class,
+						"unmodifiableSortedMap", new Object[] { map });
 			}
 		}
 
-		static final class SynchronizedCollection_PersistenceDelegate
-				extends java_util_Collections {
+		static final class SynchronizedCollection_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				List<?> list = new ArrayList<>((Collection<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "synchronizedCollection",
-						new Object[] { list });
+				return new Expression(oldInstance, Collections.class,
+						"synchronizedCollection", new Object[] { list });
 			}
 		}
 
-		static final class SynchronizedList_PersistenceDelegate extends java_util_Collections {
+		static final class SynchronizedList_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				List<?> list = new LinkedList<>((Collection<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "synchronizedList",
-						new Object[] { list });
+				return new Expression(oldInstance, Collections.class,
+						"synchronizedList", new Object[] { list });
 			}
 		}
 
@@ -505,115 +519,128 @@ class MetaData {
 				extends java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				List<?> list = new ArrayList<>((Collection<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "synchronizedList",
-						new Object[] { list });
+				return new Expression(oldInstance, Collections.class,
+						"synchronizedList", new Object[] { list });
 			}
 		}
 
-		static final class SynchronizedSet_PersistenceDelegate extends java_util_Collections {
+		static final class SynchronizedSet_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Set<?> set = new HashSet<>((Set<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "synchronizedSet",
-						new Object[] { set });
+				return new Expression(oldInstance, Collections.class,
+						"synchronizedSet", new Object[] { set });
 			}
 		}
 
-		static final class SynchronizedSortedSet_PersistenceDelegate extends java_util_Collections {
+		static final class SynchronizedSortedSet_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				SortedSet<?> set = new TreeSet<>((SortedSet<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "synchronizedSortedSet",
-						new Object[] { set });
+				return new Expression(oldInstance, Collections.class,
+						"synchronizedSortedSet", new Object[] { set });
 			}
 		}
 
-		static final class SynchronizedMap_PersistenceDelegate extends java_util_Collections {
+		static final class SynchronizedMap_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Map<?, ?> map = new HashMap<>((Map<?, ?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "synchronizedMap",
-						new Object[] { map });
+				return new Expression(oldInstance, Collections.class,
+						"synchronizedMap", new Object[] { map });
 			}
 		}
 
-		static final class SynchronizedSortedMap_PersistenceDelegate extends java_util_Collections {
+		static final class SynchronizedSortedMap_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
-				SortedMap<?, ?> map = new TreeMap<>((SortedMap<?, ?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "synchronizedSortedMap",
-						new Object[] { map });
+				SortedMap<?, ?> map = new TreeMap<>(
+						(SortedMap<?, ?>) oldInstance);
+				return new Expression(oldInstance, Collections.class,
+						"synchronizedSortedMap", new Object[] { map });
 			}
 		}
 
-		static final class CheckedCollection_PersistenceDelegate extends java_util_Collections {
+		static final class CheckedCollection_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Object type = MetaData.getPrivateFieldValue(oldInstance,
 						"java.util.Collections$CheckedCollection.type");
 				List<?> list = new ArrayList<>((Collection<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "checkedCollection",
-						new Object[] { list, type });
+				return new Expression(oldInstance, Collections.class,
+						"checkedCollection", new Object[] { list, type });
 			}
 		}
 
-		static final class CheckedList_PersistenceDelegate extends java_util_Collections {
+		static final class CheckedList_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Object type = MetaData.getPrivateFieldValue(oldInstance,
 						"java.util.Collections$CheckedCollection.type");
 				List<?> list = new LinkedList<>((Collection<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "checkedList",
-						new Object[] { list, type });
+				return new Expression(oldInstance, Collections.class,
+						"checkedList", new Object[] { list, type });
 			}
 		}
 
-		static final class CheckedRandomAccessList_PersistenceDelegate
-				extends java_util_Collections {
+		static final class CheckedRandomAccessList_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Object type = MetaData.getPrivateFieldValue(oldInstance,
 						"java.util.Collections$CheckedCollection.type");
 				List<?> list = new ArrayList<>((Collection<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "checkedList",
-						new Object[] { list, type });
+				return new Expression(oldInstance, Collections.class,
+						"checkedList", new Object[] { list, type });
 			}
 		}
 
-		static final class CheckedSet_PersistenceDelegate extends java_util_Collections {
+		static final class CheckedSet_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Object type = MetaData.getPrivateFieldValue(oldInstance,
 						"java.util.Collections$CheckedCollection.type");
 				Set<?> set = new HashSet<>((Set<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "checkedSet",
-						new Object[] { set, type });
+				return new Expression(oldInstance, Collections.class,
+						"checkedSet", new Object[] { set, type });
 			}
 		}
 
-		static final class CheckedSortedSet_PersistenceDelegate extends java_util_Collections {
+		static final class CheckedSortedSet_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Object type = MetaData.getPrivateFieldValue(oldInstance,
 						"java.util.Collections$CheckedCollection.type");
 				SortedSet<?> set = new TreeSet<>((SortedSet<?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "checkedSortedSet",
-						new Object[] { set, type });
+				return new Expression(oldInstance, Collections.class,
+						"checkedSortedSet", new Object[] { set, type });
 			}
 		}
 
-		static final class CheckedMap_PersistenceDelegate extends java_util_Collections {
+		static final class CheckedMap_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Object keyType = MetaData.getPrivateFieldValue(oldInstance,
 						"java.util.Collections$CheckedMap.keyType");
 				Object valueType = MetaData.getPrivateFieldValue(oldInstance,
 						"java.util.Collections$CheckedMap.valueType");
 				Map<?, ?> map = new HashMap<>((Map<?, ?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "checkedMap",
-						new Object[] { map, keyType, valueType });
+				return new Expression(oldInstance, Collections.class,
+						"checkedMap", new Object[] { map, keyType, valueType });
 			}
 		}
 
-		static final class CheckedSortedMap_PersistenceDelegate extends java_util_Collections {
+		static final class CheckedSortedMap_PersistenceDelegate extends
+				java_util_Collections {
 			protected Expression instantiate(Object oldInstance, Encoder out) {
 				Object keyType = MetaData.getPrivateFieldValue(oldInstance,
 						"java.util.Collections$CheckedMap.keyType");
 				Object valueType = MetaData.getPrivateFieldValue(oldInstance,
 						"java.util.Collections$CheckedMap.valueType");
-				SortedMap<?, ?> map = new TreeMap<>((SortedMap<?, ?>) oldInstance);
-				return new Expression(oldInstance, Collections.class, "checkedSortedMap",
-						new Object[] { map, keyType, valueType });
+				SortedMap<?, ?> map = new TreeMap<>(
+						(SortedMap<?, ?>) oldInstance);
+				return new Expression(oldInstance, Collections.class,
+						"checkedSortedMap", new Object[] { map, keyType,
+								valueType });
 			}
 		}
 	}
@@ -623,10 +650,11 @@ class MetaData {
 	 *
 	 * @author Sergey A. Malenkov
 	 */
-	static final class java_util_EnumMap_PersistenceDelegate extends PersistenceDelegate {
+	static final class java_util_EnumMap_PersistenceDelegate extends
+			PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
-			return super.mutatesTo(oldInstance, newInstance)
-					&& (getType(oldInstance) == getType(newInstance));
+			return super.mutatesTo(oldInstance, newInstance) && (getType(
+					oldInstance) == getType(newInstance));
 		}
 
 		protected Expression instantiate(Object oldInstance, Encoder out) {
@@ -635,7 +663,8 @@ class MetaData {
 		}
 
 		private static Object getType(Object instance) {
-			return MetaData.getPrivateFieldValue(instance, "java.util.EnumMap.keyType");
+			return MetaData.getPrivateFieldValue(instance,
+					"java.util.EnumMap.keyType");
 		}
 	}
 
@@ -644,10 +673,11 @@ class MetaData {
 	 *
 	 * @author Sergey A. Malenkov
 	 */
-	static final class java_util_EnumSet_PersistenceDelegate extends PersistenceDelegate {
+	static final class java_util_EnumSet_PersistenceDelegate extends
+			PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
-			return super.mutatesTo(oldInstance, newInstance)
-					&& (getType(oldInstance) == getType(newInstance));
+			return super.mutatesTo(oldInstance, newInstance) && (getType(
+					oldInstance) == getType(newInstance));
 		}
 
 		protected Expression instantiate(Object oldInstance, Encoder out) {
@@ -656,14 +686,16 @@ class MetaData {
 		}
 
 		private static Object getType(Object instance) {
-			return MetaData.getPrivateFieldValue(instance, "java.util.EnumSet.elementType");
+			return MetaData.getPrivateFieldValue(instance,
+					"java.util.EnumSet.elementType");
 		}
 	}
 
 	// Collection
-	static class java_util_Collection_PersistenceDelegate extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static class java_util_Collection_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			java.util.Collection<?> oldO = (java.util.Collection) oldInstance;
 			java.util.Collection<?> newO = (java.util.Collection) newInstance;
 
@@ -671,15 +703,17 @@ class MetaData {
 				invokeStatement(oldInstance, "clear", new Object[] {}, out);
 			}
 			for (Iterator<?> i = oldO.iterator(); i.hasNext();) {
-				invokeStatement(oldInstance, "add", new Object[] { i.next() }, out);
+				invokeStatement(oldInstance, "add", new Object[] { i.next() },
+						out);
 			}
 		}
 	}
 
 	// List
-	static class java_util_List_PersistenceDelegate extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static class java_util_List_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			java.util.List<?> oldO = (java.util.List<?>) oldInstance;
 			java.util.List<?> newO = (java.util.List<?>) newInstance;
 			int oldSize = oldO.size();
@@ -691,29 +725,34 @@ class MetaData {
 			for (int i = 0; i < newSize; i++) {
 				Object index = new Integer(i);
 
-				Expression oldGetExp = new Expression(oldInstance, "get", new Object[] { index });
-				Expression newGetExp = new Expression(newInstance, "get", new Object[] { index });
+				Expression oldGetExp = new Expression(oldInstance, "get",
+						new Object[] { index });
+				Expression newGetExp = new Expression(newInstance, "get",
+						new Object[] { index });
 				try {
 					Object oldValue = oldGetExp.getValue();
 					Object newValue = newGetExp.getValue();
 					out.writeExpression(oldGetExp);
 					if (!Objects.equals(newValue, out.get(oldValue))) {
-						invokeStatement(oldInstance, "set", new Object[] { index, oldValue }, out);
+						invokeStatement(oldInstance, "set", new Object[] {
+								index, oldValue }, out);
 					}
 				} catch (Exception e) {
 					out.getExceptionListener().exceptionThrown(e);
 				}
 			}
 			for (int i = newSize; i < oldSize; i++) {
-				invokeStatement(oldInstance, "add", new Object[] { oldO.get(i) }, out);
+				invokeStatement(oldInstance, "add", new Object[] { oldO.get(
+						i) }, out);
 			}
 		}
 	}
 
 	// Map
-	static class java_util_Map_PersistenceDelegate extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static class java_util_Map_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			// System.out.println("Initializing: " + newInstance);
 			java.util.Map<?, ?> oldMap = (java.util.Map) oldInstance;
 			java.util.Map<?, ?> newMap = (java.util.Map) newInstance;
@@ -723,24 +762,30 @@ class MetaData {
 				for (Object newKey : newMap.keySet().toArray()) {
 					// PENDING: This "key" is not in the right environment.
 					if (!oldMap.containsKey(newKey)) {
-						invokeStatement(oldInstance, "remove", new Object[] { newKey }, out);
+						invokeStatement(oldInstance, "remove", new Object[] {
+								newKey }, out);
 					}
 				}
 			}
 			// Add the new elements.
 			for (Object oldKey : oldMap.keySet()) {
-				Expression oldGetExp = new Expression(oldInstance, "get", new Object[] { oldKey });
+				Expression oldGetExp = new Expression(oldInstance, "get",
+						new Object[] { oldKey });
 				// Pending: should use newKey.
-				Expression newGetExp = new Expression(newInstance, "get", new Object[] { oldKey });
+				Expression newGetExp = new Expression(newInstance, "get",
+						new Object[] { oldKey });
 				try {
 					Object oldValue = oldGetExp.getValue();
 					Object newValue = newGetExp.getValue();
 					out.writeExpression(oldGetExp);
 					if (!Objects.equals(newValue, out.get(oldValue))) {
-						invokeStatement(oldInstance, "put", new Object[] { oldKey, oldValue }, out);
-					} else if ((newValue == null) && !newMap.containsKey(oldKey)) {
+						invokeStatement(oldInstance, "put", new Object[] {
+								oldKey, oldValue }, out);
+					} else if ((newValue == null) && !newMap.containsKey(
+							oldKey)) {
 						// put oldValue(=null?) if oldKey is absent in newMap
-						invokeStatement(oldInstance, "put", new Object[] { oldKey, oldValue }, out);
+						invokeStatement(oldInstance, "put", new Object[] {
+								oldKey, oldValue }, out);
 					}
 				} catch (Exception e) {
 					out.getExceptionListener().exceptionThrown(e);
@@ -749,26 +794,21 @@ class MetaData {
 		}
 	}
 
-	static final class java_util_AbstractCollection_PersistenceDelegate
-			extends java_util_Collection_PersistenceDelegate {
-	}
+	static final class java_util_AbstractCollection_PersistenceDelegate extends
+			java_util_Collection_PersistenceDelegate {}
 
-	static final class java_util_AbstractList_PersistenceDelegate
-			extends java_util_List_PersistenceDelegate {
-	}
+	static final class java_util_AbstractList_PersistenceDelegate extends
+			java_util_List_PersistenceDelegate {}
 
-	static final class java_util_AbstractMap_PersistenceDelegate
-			extends java_util_Map_PersistenceDelegate {
-	}
+	static final class java_util_AbstractMap_PersistenceDelegate extends
+			java_util_Map_PersistenceDelegate {}
 
-	static final class java_util_Hashtable_PersistenceDelegate
-			extends java_util_Map_PersistenceDelegate {
-	}
+	static final class java_util_Hashtable_PersistenceDelegate extends
+			java_util_Map_PersistenceDelegate {}
 
 	// Beans
 	static final class java_beans_beancontext_BeanContextSupport_PersistenceDelegate
-			extends java_util_Collection_PersistenceDelegate {
-	}
+			extends java_util_Collection_PersistenceDelegate {}
 
 	// AWT
 
@@ -779,14 +819,16 @@ class MetaData {
 	 *
 	 * @author Sergey A. Malenkov
 	 */
-	static final class java_awt_Insets_PersistenceDelegate extends PersistenceDelegate {
+	static final class java_awt_Insets_PersistenceDelegate extends
+			PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
 			return oldInstance.equals(newInstance);
 		}
 
 		protected Expression instantiate(Object oldInstance, Encoder out) {
 			Insets insets = (Insets) oldInstance;
-			Object[] args = new Object[] { insets.top, insets.left, insets.bottom, insets.right, };
+			Object[] args = new Object[] { insets.top, insets.left,
+					insets.bottom, insets.right, };
 			return new Expression(insets, insets.getClass(), "new", args);
 		}
 	}
@@ -798,7 +840,8 @@ class MetaData {
 	 *
 	 * @author Sergey A. Malenkov
 	 */
-	static final class java_awt_Font_PersistenceDelegate extends PersistenceDelegate {
+	static final class java_awt_Font_PersistenceDelegate extends
+			PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
 			return oldInstance.equals(newInstance);
 		}
@@ -849,12 +892,15 @@ class MetaData {
 			}
 			Class<?> type = font.getClass();
 			if (count == clone.size()) {
-				return new Expression(font, type, "new", new Object[] { family, style, size });
+				return new Expression(font, type, "new", new Object[] { family,
+						style, size });
 			}
 			if (type == Font.class) {
-				return new Expression(font, type, "getFont", new Object[] { clone });
+				return new Expression(font, type, "getFont", new Object[] {
+						clone });
 			}
-			return new Expression(font, type, "new", new Object[] { Font.getFont(clone) });
+			return new Expression(font, type, "new", new Object[] { Font
+					.getFont(clone) });
 		}
 	}
 
@@ -865,7 +911,8 @@ class MetaData {
 	 *
 	 * @author Sergey A. Malenkov
 	 */
-	static final class java_awt_AWTKeyStroke_PersistenceDelegate extends PersistenceDelegate {
+	static final class java_awt_AWTKeyStroke_PersistenceDelegate extends
+			PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
 			return oldInstance.equals(newInstance);
 		}
@@ -884,13 +931,15 @@ class MetaData {
 						: new Object[] { code, mask, onKeyRelease };
 			} else if (code == KeyEvent.VK_UNDEFINED) {
 				if (!onKeyRelease) {
-					args = (mask == 0) ? new Object[] { ch } : new Object[] { ch, mask };
+					args = (mask == 0) ? new Object[] { ch }
+							: new Object[] { ch, mask };
 				} else if (mask == 0) {
 					args = new Object[] { ch, onKeyRelease };
 				}
 			}
 			if (args == null) {
-				throw new IllegalStateException("Unsupported KeyStroke: " + key);
+				throw new IllegalStateException("Unsupported KeyStroke: "
+						+ key);
 			}
 			Class<?> type = key.getClass();
 			String name = type.getName();
@@ -905,7 +954,8 @@ class MetaData {
 
 	static class StaticFieldsPersistenceDelegate extends PersistenceDelegate {
 		protected void installFields(Encoder out, Class<?> cls) {
-			if (Modifier.isPublic(cls.getModifiers()) && isPackageAccessible(cls)) {
+			if (Modifier.isPublic(cls.getModifiers()) && isPackageAccessible(
+					cls)) {
 				Field fields[] = cls.getFields();
 				for (int i = 0; i < fields.length; i++) {
 					Field field = fields[i];
@@ -913,7 +963,8 @@ class MetaData {
 					// preserved
 					// by wrapping.
 					if (Object.class.isAssignableFrom(field.getType())) {
-						out.writeExpression(new Expression(field, "get", new Object[] { null }));
+						out.writeExpression(new Expression(field, "get",
+								new Object[] { null }));
 					}
 				}
 			}
@@ -933,32 +984,33 @@ class MetaData {
 	}
 
 	// SystemColor
-	static final class java_awt_SystemColor_PersistenceDelegate
-			extends StaticFieldsPersistenceDelegate {
-	}
+	static final class java_awt_SystemColor_PersistenceDelegate extends
+			StaticFieldsPersistenceDelegate {}
 
 	// TextAttribute
-	static final class java_awt_font_TextAttribute_PersistenceDelegate
-			extends StaticFieldsPersistenceDelegate {
-	}
+	static final class java_awt_font_TextAttribute_PersistenceDelegate extends
+			StaticFieldsPersistenceDelegate {}
 
 	// MenuShortcut
-	static final class java_awt_MenuShortcut_PersistenceDelegate extends PersistenceDelegate {
+	static final class java_awt_MenuShortcut_PersistenceDelegate extends
+			PersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
 			return oldInstance.equals(newInstance);
 		}
 
 		protected Expression instantiate(Object oldInstance, Encoder out) {
 			java.awt.MenuShortcut m = (java.awt.MenuShortcut) oldInstance;
-			return new Expression(oldInstance, m.getClass(), "new", new Object[] {
-					new Integer(m.getKey()), Boolean.valueOf(m.usesShiftModifier()) });
+			return new Expression(oldInstance, m.getClass(), "new",
+					new Object[] { new Integer(m.getKey()), Boolean.valueOf(m
+							.usesShiftModifier()) });
 		}
 	}
 
 	// Component
-	static final class java_awt_Component_PersistenceDelegate extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static final class java_awt_Component_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			java.awt.Component c = (java.awt.Component) oldInstance;
 			java.awt.Component c2 = (java.awt.Component) newInstance;
@@ -967,22 +1019,27 @@ class MetaData {
 			// null to defined values after the Windows are made visible -
 			// special case them for now.
 			if (!(oldInstance instanceof java.awt.Window)) {
-				Object oldBackground = c.isBackgroundSet() ? c.getBackground() : null;
-				Object newBackground = c2.isBackgroundSet() ? c2.getBackground() : null;
+				Object oldBackground = c.isBackgroundSet() ? c.getBackground()
+						: null;
+				Object newBackground = c2.isBackgroundSet() ? c2.getBackground()
+						: null;
 				if (!Objects.equals(oldBackground, newBackground)) {
-					invokeStatement(oldInstance, "setBackground", new Object[] { oldBackground },
-							out);
+					invokeStatement(oldInstance, "setBackground", new Object[] {
+							oldBackground }, out);
 				}
-				Object oldForeground = c.isForegroundSet() ? c.getForeground() : null;
-				Object newForeground = c2.isForegroundSet() ? c2.getForeground() : null;
+				Object oldForeground = c.isForegroundSet() ? c.getForeground()
+						: null;
+				Object newForeground = c2.isForegroundSet() ? c2.getForeground()
+						: null;
 				if (!Objects.equals(oldForeground, newForeground)) {
-					invokeStatement(oldInstance, "setForeground", new Object[] { oldForeground },
-							out);
+					invokeStatement(oldInstance, "setForeground", new Object[] {
+							oldForeground }, out);
 				}
 				Object oldFont = c.isFontSet() ? c.getFont() : null;
 				Object newFont = c2.isFontSet() ? c2.getFont() : null;
 				if (!Objects.equals(oldFont, newFont)) {
-					invokeStatement(oldInstance, "setFont", new Object[] { oldFont }, out);
+					invokeStatement(oldInstance, "setFont", new Object[] {
+							oldFont }, out);
 				}
 			}
 
@@ -990,24 +1047,28 @@ class MetaData {
 			java.awt.Container p = c.getParent();
 			if (p == null || p.getLayout() == null) {
 				// Use the most concise construct.
-				boolean locationCorrect = c.getLocation().equals(c2.getLocation());
+				boolean locationCorrect = c.getLocation().equals(c2
+						.getLocation());
 				boolean sizeCorrect = c.getSize().equals(c2.getSize());
 				if (!locationCorrect && !sizeCorrect) {
-					invokeStatement(oldInstance, "setBounds", new Object[] { c.getBounds() }, out);
+					invokeStatement(oldInstance, "setBounds", new Object[] { c
+							.getBounds() }, out);
 				} else if (!locationCorrect) {
-					invokeStatement(oldInstance, "setLocation", new Object[] { c.getLocation() },
-							out);
+					invokeStatement(oldInstance, "setLocation", new Object[] { c
+							.getLocation() }, out);
 				} else if (!sizeCorrect) {
-					invokeStatement(oldInstance, "setSize", new Object[] { c.getSize() }, out);
+					invokeStatement(oldInstance, "setSize", new Object[] { c
+							.getSize() }, out);
 				}
 			}
 		}
 	}
 
 	// Container
-	static final class java_awt_Container_PersistenceDelegate extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static final class java_awt_Container_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			// Ignore the children of a JScrollPane.
 			// Pending(milne) find a better way to do this.
@@ -1017,21 +1078,25 @@ class MetaData {
 			java.awt.Container oldC = (java.awt.Container) oldInstance;
 			java.awt.Component[] oldChildren = oldC.getComponents();
 			java.awt.Container newC = (java.awt.Container) newInstance;
-			java.awt.Component[] newChildren = (newC == null) ? new java.awt.Component[0]
+			java.awt.Component[] newChildren = (newC == null)
+					? new java.awt.Component[0]
 					: newC.getComponents();
 
 			BorderLayout layout = (oldC.getLayout() instanceof BorderLayout)
-					? (BorderLayout) oldC.getLayout() : null;
+					? (BorderLayout) oldC.getLayout()
+					: null;
 
 			JLayeredPane oldLayeredPane = (oldInstance instanceof JLayeredPane)
-					? (JLayeredPane) oldInstance : null;
+					? (JLayeredPane) oldInstance
+					: null;
 
 			// Pending. Assume all the new children are unaltered.
 			for (int i = newChildren.length; i < oldChildren.length; i++) {
-				Object[] args = (layout != null)
-						? new Object[] { oldChildren[i], layout.getConstraints(oldChildren[i]) }
-						: (oldLayeredPane != null) ? new Object[] { oldChildren[i],
-								oldLayeredPane.getLayer(oldChildren[i]), Integer.valueOf(-1) }
+				Object[] args = (layout != null) ? new Object[] {
+						oldChildren[i], layout.getConstraints(oldChildren[i]) }
+						: (oldLayeredPane != null) ? new Object[] {
+								oldChildren[i], oldLayeredPane.getLayer(
+										oldChildren[i]), Integer.valueOf(-1) }
 								: new Object[] { oldChildren[i] };
 
 				invokeStatement(oldInstance, "add", args, out);
@@ -1040,53 +1105,61 @@ class MetaData {
 	}
 
 	// Choice
-	static final class java_awt_Choice_PersistenceDelegate extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static final class java_awt_Choice_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			java.awt.Choice m = (java.awt.Choice) oldInstance;
 			java.awt.Choice n = (java.awt.Choice) newInstance;
 			for (int i = n.getItemCount(); i < m.getItemCount(); i++) {
-				invokeStatement(oldInstance, "add", new Object[] { m.getItem(i) }, out);
+				invokeStatement(oldInstance, "add", new Object[] { m.getItem(
+						i) }, out);
 			}
 		}
 	}
 
 	// Menu
-	static final class java_awt_Menu_PersistenceDelegate extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static final class java_awt_Menu_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			java.awt.Menu m = (java.awt.Menu) oldInstance;
 			java.awt.Menu n = (java.awt.Menu) newInstance;
 			for (int i = n.getItemCount(); i < m.getItemCount(); i++) {
-				invokeStatement(oldInstance, "add", new Object[] { m.getItem(i) }, out);
+				invokeStatement(oldInstance, "add", new Object[] { m.getItem(
+						i) }, out);
 			}
 		}
 	}
 
 	// MenuBar
-	static final class java_awt_MenuBar_PersistenceDelegate extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static final class java_awt_MenuBar_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			java.awt.MenuBar m = (java.awt.MenuBar) oldInstance;
 			java.awt.MenuBar n = (java.awt.MenuBar) newInstance;
 			for (int i = n.getMenuCount(); i < m.getMenuCount(); i++) {
-				invokeStatement(oldInstance, "add", new Object[] { m.getMenu(i) }, out);
+				invokeStatement(oldInstance, "add", new Object[] { m.getMenu(
+						i) }, out);
 			}
 		}
 	}
 
 	// List
-	static final class java_awt_List_PersistenceDelegate extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static final class java_awt_List_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			java.awt.List m = (java.awt.List) oldInstance;
 			java.awt.List n = (java.awt.List) newInstance;
 			for (int i = n.getItemCount(); i < m.getItemCount(); i++) {
-				invokeStatement(oldInstance, "add", new Object[] { m.getItem(i) }, out);
+				invokeStatement(oldInstance, "add", new Object[] { m.getItem(
+						i) }, out);
 			}
 		}
 	}
@@ -1094,15 +1167,17 @@ class MetaData {
 	// LayoutManagers
 
 	// BorderLayout
-	static final class java_awt_BorderLayout_PersistenceDelegate
-			extends DefaultPersistenceDelegate {
-		private static final String[] CONSTRAINTS = { BorderLayout.NORTH, BorderLayout.SOUTH,
-				BorderLayout.EAST, BorderLayout.WEST, BorderLayout.CENTER, BorderLayout.PAGE_START,
-				BorderLayout.PAGE_END, BorderLayout.LINE_START, BorderLayout.LINE_END, };
+	static final class java_awt_BorderLayout_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		private static final String[] CONSTRAINTS = { BorderLayout.NORTH,
+				BorderLayout.SOUTH, BorderLayout.EAST, BorderLayout.WEST,
+				BorderLayout.CENTER, BorderLayout.PAGE_START,
+				BorderLayout.PAGE_END, BorderLayout.LINE_START,
+				BorderLayout.LINE_END, };
 
 		@Override
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			BorderLayout oldLayout = (BorderLayout) oldInstance;
 			BorderLayout newLayout = (BorderLayout) newInstance;
@@ -1119,22 +1194,26 @@ class MetaData {
 	}
 
 	// CardLayout
-	static final class java_awt_CardLayout_PersistenceDelegate extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static final class java_awt_CardLayout_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			if (getVector(newInstance).isEmpty()) {
 				for (Object card : getVector(oldInstance)) {
-					Object[] args = {
-							MetaData.getPrivateFieldValue(card, "java.awt.CardLayout$Card.name"),
-							MetaData.getPrivateFieldValue(card, "java.awt.CardLayout$Card.comp") };
-					invokeStatement(oldInstance, "addLayoutComponent", args, out);
+					Object[] args = { MetaData.getPrivateFieldValue(card,
+							"java.awt.CardLayout$Card.name"), MetaData
+									.getPrivateFieldValue(card,
+											"java.awt.CardLayout$Card.comp") };
+					invokeStatement(oldInstance, "addLayoutComponent", args,
+							out);
 				}
 			}
 		}
 
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
-			return super.mutatesTo(oldInstance, newInstance) && getVector(newInstance).isEmpty();
+			return super.mutatesTo(oldInstance, newInstance) && getVector(
+					newInstance).isEmpty();
 		}
 
 		private static Vector<?> getVector(Object instance) {
@@ -1144,21 +1223,24 @@ class MetaData {
 	}
 
 	// GridBagLayout
-	static final class java_awt_GridBagLayout_PersistenceDelegate
-			extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static final class java_awt_GridBagLayout_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			if (getHashtable(newInstance).isEmpty()) {
-				for (Map.Entry<?, ?> entry : getHashtable(oldInstance).entrySet()) {
+				for (Map.Entry<?, ?> entry : getHashtable(oldInstance)
+						.entrySet()) {
 					Object[] args = { entry.getKey(), entry.getValue() };
-					invokeStatement(oldInstance, "addLayoutComponent", args, out);
+					invokeStatement(oldInstance, "addLayoutComponent", args,
+							out);
 				}
 			}
 		}
 
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
-			return super.mutatesTo(oldInstance, newInstance) && getHashtable(newInstance).isEmpty();
+			return super.mutatesTo(oldInstance, newInstance) && getHashtable(
+					newInstance).isEmpty();
 		}
 
 		private static Hashtable<?, ?> getHashtable(Object instance) {
@@ -1172,9 +1254,10 @@ class MetaData {
 	// JFrame (If we do this for Window instead of JFrame, the setVisible call
 	// will be issued before we have added all the children to the JFrame and
 	// will appear blank).
-	static final class javax_swing_JFrame_PersistenceDelegate extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static final class javax_swing_JFrame_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			java.awt.Window oldC = (java.awt.Window) oldInstance;
 			java.awt.Window newC = (java.awt.Window) newInstance;
@@ -1184,8 +1267,8 @@ class MetaData {
 				// false means: don't execute this statement at write time.
 				boolean executeStatements = out.executeStatements;
 				out.executeStatements = false;
-				invokeStatement(oldInstance, "setVisible", new Object[] { Boolean.valueOf(oldV) },
-						out);
+				invokeStatement(oldInstance, "setVisible", new Object[] {
+						Boolean.valueOf(oldV) }, out);
 				out.executeStatements = executeStatements;
 			}
 		}
@@ -1194,17 +1277,17 @@ class MetaData {
 	// Models
 
 	// DefaultListModel
-	static final class javax_swing_DefaultListModel_PersistenceDelegate
-			extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static final class javax_swing_DefaultListModel_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			// Note, the "size" property will be set here.
 			super.initialize(type, oldInstance, newInstance, out);
 			javax.swing.DefaultListModel<?> m = (javax.swing.DefaultListModel<?>) oldInstance;
 			javax.swing.DefaultListModel<?> n = (javax.swing.DefaultListModel<?>) newInstance;
 			for (int i = n.getSize(); i < m.getSize(); i++) {
 				invokeStatement(oldInstance, "add", // Can also use
-													// "addElement".
+						// "addElement".
 						new Object[] { m.getElementAt(i) }, out);
 			}
 		}
@@ -1213,12 +1296,13 @@ class MetaData {
 	// DefaultComboBoxModel
 	static final class javax_swing_DefaultComboBoxModel_PersistenceDelegate
 			extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			javax.swing.DefaultComboBoxModel<?> m = (javax.swing.DefaultComboBoxModel<?>) oldInstance;
 			for (int i = 0; i < m.getSize(); i++) {
-				invokeStatement(oldInstance, "addElement", new Object[] { m.getElementAt(i) }, out);
+				invokeStatement(oldInstance, "addElement", new Object[] { m
+						.getElementAt(i) }, out);
 			}
 		}
 	}
@@ -1226,44 +1310,48 @@ class MetaData {
 	// DefaultMutableTreeNode
 	static final class javax_swing_tree_DefaultMutableTreeNode_PersistenceDelegate
 			extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			javax.swing.tree.DefaultMutableTreeNode m = (javax.swing.tree.DefaultMutableTreeNode) oldInstance;
 			javax.swing.tree.DefaultMutableTreeNode n = (javax.swing.tree.DefaultMutableTreeNode) newInstance;
 			for (int i = n.getChildCount(); i < m.getChildCount(); i++) {
-				invokeStatement(oldInstance, "add", new Object[] { m.getChildAt(i) }, out);
+				invokeStatement(oldInstance, "add", new Object[] { m.getChildAt(
+						i) }, out);
 			}
 		}
 	}
 
 	// ToolTipManager
-	static final class javax_swing_ToolTipManager_PersistenceDelegate extends PersistenceDelegate {
+	static final class javax_swing_ToolTipManager_PersistenceDelegate extends
+			PersistenceDelegate {
 		protected Expression instantiate(Object oldInstance, Encoder out) {
-			return new Expression(oldInstance, javax.swing.ToolTipManager.class, "sharedInstance",
-					new Object[] {});
+			return new Expression(oldInstance, javax.swing.ToolTipManager.class,
+					"sharedInstance", new Object[] {});
 		}
 	}
 
 	// JTabbedPane
-	static final class javax_swing_JTabbedPane_PersistenceDelegate
-			extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static final class javax_swing_JTabbedPane_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			javax.swing.JTabbedPane p = (javax.swing.JTabbedPane) oldInstance;
 			for (int i = 0; i < p.getTabCount(); i++) {
-				invokeStatement(oldInstance, "addTab",
-						new Object[] { p.getTitleAt(i), p.getIconAt(i), p.getComponentAt(i) }, out);
+				invokeStatement(oldInstance, "addTab", new Object[] { p
+						.getTitleAt(i), p.getIconAt(i), p.getComponentAt(i) },
+						out);
 			}
 		}
 	}
 
 	// Box
-	static final class javax_swing_Box_PersistenceDelegate extends DefaultPersistenceDelegate {
+	static final class javax_swing_Box_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
 		protected boolean mutatesTo(Object oldInstance, Object newInstance) {
-			return super.mutatesTo(oldInstance, newInstance)
-					&& getAxis(oldInstance).equals(getAxis(newInstance));
+			return super.mutatesTo(oldInstance, newInstance) && getAxis(
+					oldInstance).equals(getAxis(newInstance));
 		}
 
 		protected Expression instantiate(Object oldInstance, Encoder out) {
@@ -1284,9 +1372,10 @@ class MetaData {
 	// Container will return all of the sub menu items that
 	// need to be added to the menu item.
 	// Not so for JMenu apparently.
-	static final class javax_swing_JMenu_PersistenceDelegate extends DefaultPersistenceDelegate {
-		protected void initialize(Class<?> type, Object oldInstance, Object newInstance,
-				Encoder out) {
+	static final class javax_swing_JMenu_PersistenceDelegate extends
+			DefaultPersistenceDelegate {
+		protected void initialize(Class<?> type, Object oldInstance,
+				Object newInstance, Encoder out) {
 			super.initialize(type, oldInstance, newInstance, out);
 			javax.swing.JMenu m = (javax.swing.JMenu) oldInstance;
 			java.awt.Component[] c = m.getMenuComponents();
@@ -1312,8 +1401,8 @@ class MetaData {
 			if (object == null) {
 				object = border.getMatteColor();
 			}
-			Object[] args = new Object[] { insets.top, insets.left, insets.bottom, insets.right,
-					object, };
+			Object[] args = new Object[] { insets.top, insets.left,
+					insets.bottom, insets.right, object, };
 			return new Expression(border, border.getClass(), "new", args);
 		}
 	}
@@ -1366,11 +1455,13 @@ class MetaData {
 
 	static {
 
-		internalPersistenceDelegates.put("java.net.URI", new PrimitivePersistenceDelegate());
+		internalPersistenceDelegates.put("java.net.URI",
+				new PrimitivePersistenceDelegate());
 
 		// it is possible because MatteBorder is assignable from
 		// MatteBorderUIResource
-		internalPersistenceDelegates.put("javax.swing.plaf.BorderUIResource$MatteBorderUIResource",
+		internalPersistenceDelegates.put(
+				"javax.swing.plaf.BorderUIResource$MatteBorderUIResource",
 				new javax_swing_border_MatteBorder_PersistenceDelegate());
 
 		// it is possible because FontUIResource is supported by
@@ -1383,8 +1474,10 @@ class MetaData {
 		internalPersistenceDelegates.put("javax.swing.KeyStroke",
 				new java_awt_AWTKeyStroke_PersistenceDelegate());
 
-		internalPersistenceDelegates.put("java.sql.Date", new java_util_Date_PersistenceDelegate());
-		internalPersistenceDelegates.put("java.sql.Time", new java_util_Date_PersistenceDelegate());
+		internalPersistenceDelegates.put("java.sql.Date",
+				new java_util_Date_PersistenceDelegate());
+		internalPersistenceDelegates.put("java.sql.Time",
+				new java_util_Date_PersistenceDelegate());
 
 		internalPersistenceDelegates.put("java.util.JumboEnumSet",
 				new java_util_EnumSet_PersistenceDelegate());
@@ -1393,7 +1486,8 @@ class MetaData {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public synchronized static PersistenceDelegate getPersistenceDelegate(Class type) {
+	public synchronized static PersistenceDelegate getPersistenceDelegate(
+			Class type) {
 		if (type == null) {
 			return nullPersistenceDelegate;
 		}
@@ -1433,11 +1527,12 @@ class MetaData {
 			if (pd != null) {
 				return pd;
 			}
-			internalPersistenceDelegates.put(typeName, defaultPersistenceDelegate);
+			internalPersistenceDelegates.put(typeName,
+					defaultPersistenceDelegate);
 			try {
 				String name = type.getName();
-				Class c = Class.forName(
-						"java.beans.MetaData$" + name.replace('.', '_') + "_PersistenceDelegate");
+				Class c = Class.forName("java.beans.MetaData$" + name.replace(
+						'.', '_') + "_PersistenceDelegate");
 				pd = (PersistenceDelegate) c.newInstance();
 				internalPersistenceDelegates.put(typeName, pd);
 			} catch (ClassNotFoundException e) {
@@ -1459,7 +1554,8 @@ class MetaData {
 		int length = 0;
 		for (Constructor<?> constructor : type.getConstructors()) {
 			String[] value = getAnnotationValue(constructor);
-			if ((value != null) && (length < value.length) && isValid(constructor, value)) {
+			if ((value != null) && (length < value.length) && isValid(
+					constructor, value)) {
 				names = value;
 				length = value.length;
 			}
@@ -1468,7 +1564,8 @@ class MetaData {
 	}
 
 	private static String[] getAnnotationValue(Constructor<?> constructor) {
-		ConstructorProperties annotation = constructor.getAnnotation(ConstructorProperties.class);
+		ConstructorProperties annotation = constructor.getAnnotation(
+				ConstructorProperties.class);
 		return (annotation != null) ? annotation.value() : null;
 	}
 
@@ -1487,7 +1584,8 @@ class MetaData {
 
 	private static Object getBeanAttribute(Class<?> type, String attribute) {
 		try {
-			return Introspector.getBeanInfo(type).getBeanDescriptor().getValue(attribute);
+			return Introspector.getBeanInfo(type).getBeanDescriptor().getValue(
+					attribute);
 		} catch (IntrospectionException exception) {
 			return null;
 		}
@@ -1499,25 +1597,30 @@ class MetaData {
 			int index = name.lastIndexOf('.');
 			final String className = name.substring(0, index);
 			final String fieldName = name.substring(1 + index);
-			field = AccessController.doPrivileged(new PrivilegedAction<Field>() {
-				public Field run() {
-					try {
-						Field field = Class.forName(className).getDeclaredField(fieldName);
-						field.setAccessible(true);
-						return field;
-					} catch (ClassNotFoundException exception) {
-						throw new IllegalStateException("Could not find class", exception);
-					} catch (NoSuchFieldException exception) {
-						throw new IllegalStateException("Could not find field", exception);
-					}
-				}
-			});
+			field = AccessController.doPrivileged(
+					new PrivilegedAction<Field>() {
+						public Field run() {
+							try {
+								Field field = Class.forName(className)
+										.getDeclaredField(fieldName);
+								field.setAccessible(true);
+								return field;
+							} catch (ClassNotFoundException exception) {
+								throw new IllegalStateException(
+										"Could not find class", exception);
+							} catch (NoSuchFieldException exception) {
+								throw new IllegalStateException(
+										"Could not find field", exception);
+							}
+						}
+					});
 			fields.put(name, field);
 		}
 		try {
 			return field.get(instance);
 		} catch (IllegalAccessException exception) {
-			throw new IllegalStateException("Could not get value of the field", exception);
+			throw new IllegalStateException("Could not get value of the field",
+					exception);
 		}
 	}
 }

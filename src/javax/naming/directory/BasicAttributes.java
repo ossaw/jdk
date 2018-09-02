@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.directory;
@@ -84,8 +64,7 @@ public class BasicAttributes implements Attributes {
 	 * identifiers is significant when subsequently retrieving or adding
 	 * attributes.
 	 */
-	public BasicAttributes() {
-	}
+	public BasicAttributes() {}
 
 	/**
 	 * Constructs a new instance of Attributes. If <code>ignoreCase</code> is
@@ -93,9 +72,11 @@ public class BasicAttributes implements Attributes {
 	 * the case is significant.
 	 * 
 	 * @param ignoreCase
-	 *            true means this attribute set will ignore the case of its
-	 *            attribute identifiers when retrieving or adding attributes;
-	 *            false means case is respected.
+	 *                   true means this attribute set will ignore the case of
+	 *                   its
+	 *                   attribute identifiers when retrieving or adding
+	 *                   attributes;
+	 *                   false means case is respected.
 	 */
 	public BasicAttributes(boolean ignoreCase) {
 		this.ignoreCase = ignoreCase;
@@ -108,10 +89,10 @@ public class BasicAttributes implements Attributes {
 	 * retrieving or adding attributes.
 	 * 
 	 * @param attrID
-	 *            non-null The id of the attribute to add.
+	 *               non-null The id of the attribute to add.
 	 * @param val
-	 *            The value of the attribute to add. If null, a null value is
-	 *            added to the attribute.
+	 *               The value of the attribute to add. If null, a null value is
+	 *               added to the attribute.
 	 */
 	public BasicAttributes(String attrID, Object val) {
 		this();
@@ -125,16 +106,21 @@ public class BasicAttributes implements Attributes {
 	 * identifiers is ignored; otherwise the case is significant.
 	 * 
 	 * @param attrID
-	 *            non-null The id of the attribute to add. If this attribute set
-	 *            ignores the character case of its attribute ids, the case of
-	 *            attrID is ignored.
+	 *                   non-null The id of the attribute to add. If this
+	 *                   attribute set
+	 *                   ignores the character case of its attribute ids, the
+	 *                   case of
+	 *                   attrID is ignored.
 	 * @param val
-	 *            The value of the attribute to add. If null, a null value is
-	 *            added to the attribute.
+	 *                   The value of the attribute to add. If null, a null
+	 *                   value is
+	 *                   added to the attribute.
 	 * @param ignoreCase
-	 *            true means this attribute set will ignore the case of its
-	 *            attribute identifiers when retrieving or adding attributes;
-	 *            false means case is respected.
+	 *                   true means this attribute set will ignore the case of
+	 *                   its
+	 *                   attribute identifiers when retrieving or adding
+	 *                   attributes;
+	 *                   false means case is respected.
 	 */
 	public BasicAttributes(String attrID, Object val, boolean ignoreCase) {
 		this(ignoreCase);
@@ -162,7 +148,8 @@ public class BasicAttributes implements Attributes {
 	}
 
 	public Attribute get(String attrID) {
-		Attribute attr = attrs.get(ignoreCase ? attrID.toLowerCase(Locale.ENGLISH) : attrID);
+		Attribute attr = attrs.get(ignoreCase ? attrID.toLowerCase(
+				Locale.ENGLISH) : attrID);
 		return (attr);
 	}
 
@@ -285,7 +272,8 @@ public class BasicAttributes implements Attributes {
 	 *             number of attributes in the set (an int), and then the
 	 *             individual Attribute objects.
 	 */
-	private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
+	private void writeObject(java.io.ObjectOutputStream s)
+			throws java.io.IOException {
 		s.defaultWriteObject(); // write out the ignoreCase flag
 		s.writeInt(attrs.size());
 		Enumeration<Attribute> attrEnum = attrs.elements();
@@ -303,7 +291,7 @@ public class BasicAttributes implements Attributes {
 		int n = s.readInt(); // number of attributes
 		attrs = (n >= 1) ? new Hashtable<String, Attribute>(n * 2)
 				: new Hashtable<String, Attribute>(2); // can't have initial
-														// size of 0 (grrr...)
+																													// size of 0 (grrr...)
 		while (--n >= 0) {
 			put((Attribute) s.readObject());
 		}

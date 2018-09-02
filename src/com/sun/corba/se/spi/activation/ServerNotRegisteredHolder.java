@@ -8,11 +8,11 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public final class ServerNotRegisteredHolder implements org.omg.CORBA.portable.Streamable {
+public final class ServerNotRegisteredHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public com.sun.corba.se.spi.activation.ServerNotRegistered value = null;
 
-	public ServerNotRegisteredHolder() {
-	}
+	public ServerNotRegisteredHolder() {}
 
 	public ServerNotRegisteredHolder(
 			com.sun.corba.se.spi.activation.ServerNotRegistered initialValue) {
@@ -20,11 +20,13 @@ public final class ServerNotRegisteredHolder implements org.omg.CORBA.portable.S
 	}
 
 	public void _read(org.omg.CORBA.portable.InputStream i) {
-		value = com.sun.corba.se.spi.activation.ServerNotRegisteredHelper.read(i);
+		value = com.sun.corba.se.spi.activation.ServerNotRegisteredHelper.read(
+				i);
 	}
 
 	public void _write(org.omg.CORBA.portable.OutputStream o) {
-		com.sun.corba.se.spi.activation.ServerNotRegisteredHelper.write(o, value);
+		com.sun.corba.se.spi.activation.ServerNotRegisteredHelper.write(o,
+				value);
 	}
 
 	public org.omg.CORBA.TypeCode _type() {

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -96,8 +93,8 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
 	}
 
 	public String getType(String uri, String localName) {
-		return uri.equals(XMLSymbols.EMPTY_STRING) ? fAttributes.getType(null, localName)
-				: fAttributes.getType(uri, localName);
+		return uri.equals(XMLSymbols.EMPTY_STRING) ? fAttributes.getType(null,
+				localName) : fAttributes.getType(uri, localName);
 	}
 
 	public String getValue(int i) {
@@ -109,8 +106,8 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
 	}
 
 	public String getValue(String uri, String localName) {
-		return uri.equals(XMLSymbols.EMPTY_STRING) ? fAttributes.getValue(null, localName)
-				: fAttributes.getValue(uri, localName);
+		return uri.equals(XMLSymbols.EMPTY_STRING) ? fAttributes.getValue(null,
+				localName) : fAttributes.getValue(uri, localName);
 	}
 
 	public int getIndex(String qName) {
@@ -118,8 +115,8 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
 	}
 
 	public int getIndex(String uri, String localPart) {
-		return uri.equals(XMLSymbols.EMPTY_STRING) ? fAttributes.getIndex(null, localPart)
-				: fAttributes.getIndex(uri, localPart);
+		return uri.equals(XMLSymbols.EMPTY_STRING) ? fAttributes.getIndex(null,
+				localPart) : fAttributes.getIndex(uri, localPart);
 	}
 
 	/*
@@ -130,8 +127,8 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
 		if (index < 0 || index >= fAttributes.getLength()) {
 			throw new ArrayIndexOutOfBoundsException(index);
 		}
-		return Boolean.TRUE
-				.equals(fAttributes.getAugmentations(index).getItem(Constants.ATTRIBUTE_DECLARED));
+		return Boolean.TRUE.equals(fAttributes.getAugmentations(index).getItem(
+				Constants.ATTRIBUTE_DECLARED));
 	}
 
 	public boolean isDeclared(String qName) {
@@ -139,8 +136,8 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
 		if (index == -1) {
 			throw new IllegalArgumentException(qName);
 		}
-		return Boolean.TRUE
-				.equals(fAttributes.getAugmentations(index).getItem(Constants.ATTRIBUTE_DECLARED));
+		return Boolean.TRUE.equals(fAttributes.getAugmentations(index).getItem(
+				Constants.ATTRIBUTE_DECLARED));
 	}
 
 	public boolean isDeclared(String uri, String localName) {
@@ -148,8 +145,8 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
 		if (index == -1) {
 			throw new IllegalArgumentException(localName);
 		}
-		return Boolean.TRUE
-				.equals(fAttributes.getAugmentations(index).getItem(Constants.ATTRIBUTE_DECLARED));
+		return Boolean.TRUE.equals(fAttributes.getAugmentations(index).getItem(
+				Constants.ATTRIBUTE_DECLARED));
 	}
 
 	public boolean isSpecified(int index) {

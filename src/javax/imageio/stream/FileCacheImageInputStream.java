@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.stream;
@@ -81,20 +61,25 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
 	 * <code>File.createTempFile</code> for details).
 	 *
 	 * @param stream
-	 *            an <code>InputStream</code> to read from.
+	 *                 an <code>InputStream</code> to read from.
 	 * @param cacheDir
-	 *            a <code>File</code> indicating where the cache file should be
-	 *            created, or <code>null</code> to use the system directory.
+	 *                 a <code>File</code> indicating where the cache file
+	 *                 should be
+	 *                 created, or <code>null</code> to use the system
+	 *                 directory.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>stream</code> is <code>null</code>.
+	 *                                     if <code>stream</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>cacheDir</code> is non-<code>null</code> but is
-	 *                not a directory.
+	 *                                     if <code>cacheDir</code> is
+	 *                                     non-<code>null</code> but is
+	 *                                     not a directory.
 	 * @exception IOException
-	 *                if a cache file cannot be created.
+	 *                                     if a cache file cannot be created.
 	 */
-	public FileCacheImageInputStream(InputStream stream, File cacheDir) throws IOException {
+	public FileCacheImageInputStream(InputStream stream, File cacheDir)
+			throws IOException {
 		if (stream == null) {
 			throw new IllegalArgumentException("stream == null!");
 		}
@@ -105,7 +90,8 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
 		if (cacheDir == null)
 			this.cacheFile = Files.createTempFile("imageio", ".tmp").toFile();
 		else
-			this.cacheFile = Files.createTempFile(cacheDir.toPath(), "imageio", ".tmp").toFile();
+			this.cacheFile = Files.createTempFile(cacheDir.toPath(), "imageio",
+					".tmp").toFile();
 		this.cache = new RandomAccessFile(cacheFile, "rw");
 
 		this.closeAction = StreamCloser.createCloseAction(this);
@@ -140,7 +126,8 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
 		while (len > 0) {
 			// Copy a buffer's worth of data from the source to the cache
 			// BUFFER_LENGTH will always fit into an int so this is safe
-			int nbytes = stream.read(buf, 0, (int) Math.min(len, (long) BUFFER_LENGTH));
+			int nbytes = stream.read(buf, 0, (int) Math.min(len,
+					(long) BUFFER_LENGTH));
 			if (nbytes == -1) {
 				foundEOF = true;
 				return length;
@@ -243,7 +230,7 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
 	 * the cache file. The source <code>InputStream</code> is not closed.
 	 *
 	 * @exception IOException
-	 *                if an error occurs.
+	 *                        if an error occurs.
 	 */
 	public void close() throws IOException {
 		super.close();

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.openmbean;
@@ -52,8 +32,8 @@ import sun.reflect.misc.ReflectUtil;
  *
  * @since 1.5
  */
-public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
-		implements OpenMBeanAttributeInfo {
+public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo implements
+		OpenMBeanAttributeInfo {
 
 	/* Serial version */
 	static final long serialVersionUID = -4867215622149721849L;
@@ -96,33 +76,36 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 	 * description}, and the specified read/write access properties.
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                    cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                    cannot be a null or empty string.
 	 *
 	 * @param openType
-	 *            cannot be null.
+	 *                    cannot be null.
 	 *
 	 * @param isReadable
-	 *            {@code true} if the attribute has a getter exposed for
-	 *            management.
+	 *                    {@code true} if the attribute has a getter exposed for
+	 *                    management.
 	 *
 	 * @param isWritable
-	 *            {@code true} if the attribute has a setter exposed for
-	 *            management.
+	 *                    {@code true} if the attribute has a setter exposed for
+	 *                    management.
 	 *
 	 * @param isIs
-	 *            {@code true} if the attribute's getter is of the form
-	 *            <tt>is<i>XXX</i></tt>.
+	 *                    {@code true} if the attribute's getter is of the form
+	 *                    <tt>is<i>XXX</i></tt>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string, or {@code openType} is null.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string, or
+	 *                                  {@code openType} is null.
 	 */
-	public OpenMBeanAttributeInfoSupport(String name, String description, OpenType<?> openType,
-			boolean isReadable, boolean isWritable, boolean isIs) {
-		this(name, description, openType, isReadable, isWritable, isIs, (Descriptor) null);
+	public OpenMBeanAttributeInfoSupport(String name, String description,
+			OpenType<?> openType, boolean isReadable, boolean isWritable,
+			boolean isIs) {
+		this(name, description, openType, isReadable, isWritable, isIs,
+				(Descriptor) null);
 	}
 
 	/**
@@ -139,46 +122,52 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 	 * <a href="package-summary.html#constraints"> package description</a>.
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                    cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                    cannot be a null or empty string.
 	 *
 	 * @param openType
-	 *            cannot be null.
+	 *                    cannot be null.
 	 *
 	 * @param isReadable
-	 *            {@code true} if the attribute has a getter exposed for
-	 *            management.
+	 *                    {@code true} if the attribute has a getter exposed for
+	 *                    management.
 	 *
 	 * @param isWritable
-	 *            {@code true} if the attribute has a setter exposed for
-	 *            management.
+	 *                    {@code true} if the attribute has a setter exposed for
+	 *                    management.
 	 *
 	 * @param isIs
-	 *            {@code true} if the attribute's getter is of the form
-	 *            <tt>is<i>XXX</i></tt>.
+	 *                    {@code true} if the attribute's getter is of the form
+	 *                    <tt>is<i>XXX</i></tt>.
 	 *
 	 * @param descriptor
-	 *            The descriptor for the attribute. This may be null which is
-	 *            equivalent to an empty descriptor.
+	 *                    The descriptor for the attribute. This may be null
+	 *                    which is
+	 *                    equivalent to an empty descriptor.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string, or {@code openType} is null, or
-	 *             the descriptor entries are invalid as described in the
-	 *             <a href="package-summary.html#constraints">package
-	 *             description</a>.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string, or
+	 *                                  {@code openType} is null, or
+	 *                                  the descriptor entries are invalid as
+	 *                                  described in the
+	 *                                  <a href=
+	 *                                  "package-summary.html#constraints">package
+	 *                                  description</a>.
 	 *
 	 * @since 1.6
 	 */
-	public OpenMBeanAttributeInfoSupport(String name, String description, OpenType<?> openType,
-			boolean isReadable, boolean isWritable, boolean isIs, Descriptor descriptor) {
+	public OpenMBeanAttributeInfoSupport(String name, String description,
+			OpenType<?> openType, boolean isReadable, boolean isWritable,
+			boolean isIs, Descriptor descriptor) {
 		// Construct parent's state
 		//
-		super(name, (openType == null) ? null : openType.getClassName(), description, isReadable,
-				isWritable, isIs, ImmutableDescriptor.union(descriptor,
-						(openType == null) ? null : openType.getDescriptor()));
+		super(name, (openType == null) ? null : openType.getClassName(),
+				description, isReadable, isWritable, isIs, ImmutableDescriptor
+						.union(descriptor, (openType == null) ? null
+								: openType.getDescriptor()));
 
 		// Initialize this instance's specific state
 		//
@@ -204,51 +193,60 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 	 * specified read/write access properties.
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                     cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                     cannot be a null or empty string.
 	 *
 	 * @param openType
-	 *            cannot be null.
+	 *                     cannot be null.
 	 *
 	 * @param isReadable
-	 *            {@code true} if the attribute has a getter exposed for
-	 *            management.
+	 *                     {@code true} if the attribute has a getter exposed
+	 *                     for
+	 *                     management.
 	 *
 	 * @param isWritable
-	 *            {@code true} if the attribute has a setter exposed for
-	 *            management.
+	 *                     {@code true} if the attribute has a setter exposed
+	 *                     for
+	 *                     management.
 	 *
 	 * @param isIs
-	 *            {@code true} if the attribute's getter is of the form
-	 *            <tt>is<i>XXX</i></tt>.
+	 *                     {@code true} if the attribute's getter is of the form
+	 *                     <tt>is<i>XXX</i></tt>.
 	 *
 	 * @param defaultValue
-	 *            must be a valid value for the {@code
-	 * openType} specified for this attribute; default value not supported for
-	 *            {@code ArrayType} and {@code TabularType}; can be null, in
-	 *            which case it means that no default value is set.
+	 *                     must be a valid value for the {@code
+	 * openType}        specified for this attribute; default value not
+	 *                     supported for
+	 *                     {@code ArrayType} and {@code TabularType}; can be
+	 *                     null, in
+	 *                     which case it means that no default value is set.
 	 *
-	 * @param <T>
-	 *            allows the compiler to check that the {@code defaultValue}, if
-	 *            non-null, has the correct Java type for the given
-	 *            {@code openType}.
+	 * @param              <T>
+	 *                     allows the compiler to check that the
+	 *                     {@code defaultValue}, if
+	 *                     non-null, has the correct Java type for the given
+	 *                     {@code openType}.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string, or {@code openType} is null.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string, or
+	 *                                  {@code openType} is null.
 	 *
 	 * @throws OpenDataException
-	 *             if {@code defaultValue} is not a valid value for the
-	 *             specified {@code openType}, or {@code
-	 * defaultValue} is non null and {@code openType} is an {@code
-	 * ArrayType} or a {@code TabularType}.
+	 *                                  if {@code defaultValue} is not a valid
+	 *                                  value for the
+	 *                                  specified {@code openType}, or {@code
+	 * defaultValue}                 is non null and {@code openType} is an
+	 *                                  {@code
+	 * ArrayType}                    or a {@code TabularType}.
 	 */
-	public <T> OpenMBeanAttributeInfoSupport(String name, String description, OpenType<T> openType,
-			boolean isReadable, boolean isWritable, boolean isIs, T defaultValue)
-			throws OpenDataException {
-		this(name, description, openType, isReadable, isWritable, isIs, defaultValue, (T[]) null);
+	public <T> OpenMBeanAttributeInfoSupport(String name, String description,
+			OpenType<T> openType, boolean isReadable, boolean isWritable,
+			boolean isIs, T defaultValue) throws OpenDataException {
+		this(name, description, openType, isReadable, isWritable, isIs,
+				defaultValue, (T[]) null);
 	}
 
 	/**
@@ -266,63 +264,81 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 	 * </p>
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                     cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                     cannot be a null or empty string.
 	 *
 	 * @param openType
-	 *            cannot be null.
+	 *                     cannot be null.
 	 *
 	 * @param isReadable
-	 *            {@code true} if the attribute has a getter exposed for
-	 *            management.
+	 *                     {@code true} if the attribute has a getter exposed
+	 *                     for
+	 *                     management.
 	 *
 	 * @param isWritable
-	 *            {@code true} if the attribute has a setter exposed for
-	 *            management.
+	 *                     {@code true} if the attribute has a setter exposed
+	 *                     for
+	 *                     management.
 	 *
 	 * @param isIs
-	 *            {@code true} if the attribute's getter is of the form
-	 *            <tt>is<i>XXX</i></tt>.
+	 *                     {@code true} if the attribute's getter is of the form
+	 *                     <tt>is<i>XXX</i></tt>.
 	 *
 	 * @param defaultValue
-	 *            must be a valid value for the {@code
-	 * openType} specified for this attribute; default value not supported for
-	 *            {@code ArrayType} and {@code TabularType}; can be null, in
-	 *            which case it means that no default value is set.
+	 *                     must be a valid value for the {@code
+	 * openType}        specified for this attribute; default value not
+	 *                     supported for
+	 *                     {@code ArrayType} and {@code TabularType}; can be
+	 *                     null, in
+	 *                     which case it means that no default value is set.
 	 *
 	 * @param legalValues
-	 *            each contained value must be valid for the {@code openType}
-	 *            specified for this attribute; legal values not supported for
-	 *            {@code ArrayType} and {@code TabularType}; can be null or
-	 *            empty.
+	 *                     each contained value must be valid for the
+	 *                     {@code openType}
+	 *                     specified for this attribute; legal values not
+	 *                     supported for
+	 *                     {@code ArrayType} and {@code TabularType}; can be
+	 *                     null or
+	 *                     empty.
 	 *
-	 * @param <T>
-	 *            allows the compiler to check that the {@code
-	 * defaultValue} and {@code legalValues}, if non-null, have the correct Java
-	 *            type for the given {@code openType}.
+	 * @param              <T>
+	 *                     allows the compiler to check that the {@code
+	 * defaultValue}    and {@code legalValues}, if non-null, have the
+	 *                     correct Java
+	 *                     type for the given {@code openType}.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string, or {@code openType} is null.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string, or
+	 *                                  {@code openType} is null.
 	 *
 	 * @throws OpenDataException
-	 *             if {@code defaultValue} is not a valid value for the
-	 *             specified {@code openType}, or one value in
-	 *             {@code legalValues} is not valid for the specified {@code
-	 * openType}, or {@code defaultValue} is non null and {@code
-	 * openType} is an {@code ArrayType} or a {@code TabularType}, or
-	 *             {@code legalValues} is non null and non empty and {@code
-	 * openType} is an {@code ArrayType} or a {@code TabularType}, or
-	 *             {@code legalValues} is non null and non empty and {@code
-	 * defaultValue} is not contained in {@code legalValues}.
+	 *                                  if {@code defaultValue} is not a valid
+	 *                                  value for the
+	 *                                  specified {@code openType}, or one value
+	 *                                  in
+	 *                                  {@code legalValues} is not valid for the
+	 *                                  specified {@code
+	 * openType}                     , or {@code defaultValue} is non null
+	 *                                  and {@code
+	 * openType}                     is an {@code ArrayType} or a
+	 *                                  {@code TabularType}, or
+	 *                                  {@code legalValues} is non null and non
+	 *                                  empty and {@code
+	 * openType}                     is an {@code ArrayType} or a
+	 *                                  {@code TabularType}, or
+	 *                                  {@code legalValues} is non null and non
+	 *                                  empty and {@code
+	 * defaultValue}                 is not contained in {@code legalValues}.
 	 */
-	public <T> OpenMBeanAttributeInfoSupport(String name, String description, OpenType<T> openType,
-			boolean isReadable, boolean isWritable, boolean isIs, T defaultValue, T[] legalValues)
+	public <T> OpenMBeanAttributeInfoSupport(String name, String description,
+			OpenType<T> openType, boolean isReadable, boolean isWritable,
+			boolean isIs, T defaultValue, T[] legalValues)
 			throws OpenDataException {
-		this(name, description, openType, isReadable, isWritable, isIs, defaultValue, legalValues,
-				null, null);
+		this(name, description, openType, isReadable, isWritable, isIs,
+				defaultValue, legalValues, null, null);
 	}
 
 	/**
@@ -335,78 +351,103 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 	 * type whose values are {@code Comparable}.
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                     cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                     cannot be a null or empty string.
 	 *
 	 * @param openType
-	 *            cannot be null.
+	 *                     cannot be null.
 	 *
 	 * @param isReadable
-	 *            {@code true} if the attribute has a getter exposed for
-	 *            management.
+	 *                     {@code true} if the attribute has a getter exposed
+	 *                     for
+	 *                     management.
 	 *
 	 * @param isWritable
-	 *            {@code true} if the attribute has a setter exposed for
-	 *            management.
+	 *                     {@code true} if the attribute has a setter exposed
+	 *                     for
+	 *                     management.
 	 *
 	 * @param isIs
-	 *            {@code true} if the attribute's getter is of the form
-	 *            <tt>is<i>XXX</i></tt>.
+	 *                     {@code true} if the attribute's getter is of the form
+	 *                     <tt>is<i>XXX</i></tt>.
 	 *
 	 * @param defaultValue
-	 *            must be a valid value for the {@code
-	 * openType} specified for this attribute; default value not supported for
-	 *            {@code ArrayType} and {@code TabularType}; can be null, in
-	 *            which case it means that no default value is set.
+	 *                     must be a valid value for the {@code
+	 * openType}        specified for this attribute; default value not
+	 *                     supported for
+	 *                     {@code ArrayType} and {@code TabularType}; can be
+	 *                     null, in
+	 *                     which case it means that no default value is set.
 	 *
 	 * @param minValue
-	 *            must be valid for the {@code openType} specified for this
-	 *            attribute; can be null, in which case it means that no minimal
-	 *            value is set.
+	 *                     must be valid for the {@code openType} specified for
+	 *                     this
+	 *                     attribute; can be null, in which case it means that
+	 *                     no minimal
+	 *                     value is set.
 	 *
 	 * @param maxValue
-	 *            must be valid for the {@code openType} specified for this
-	 *            attribute; can be null, in which case it means that no maximal
-	 *            value is set.
+	 *                     must be valid for the {@code openType} specified for
+	 *                     this
+	 *                     attribute; can be null, in which case it means that
+	 *                     no maximal
+	 *                     value is set.
 	 *
-	 * @param <T>
-	 *            allows the compiler to check that the {@code
-	 * defaultValue}, {@code minValue}, and {@code maxValue}, if non-null, have
-	 *            the correct Java type for the given {@code
-	 * openType}.
+	 * @param              <T>
+	 *                     allows the compiler to check that the {@code
+	 * defaultValue}    , {@code minValue}, and {@code maxValue}, if
+	 *                     non-null, have
+	 *                     the correct Java type for the given {@code
+	 * openType}        .
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string, or {@code openType} is null.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string, or
+	 *                                  {@code openType} is null.
 	 *
 	 * @throws OpenDataException
-	 *             if {@code defaultValue}, {@code
-	 * minValue} or {@code maxValue} is not a valid value for the specified
-	 *             {@code openType}, or {@code defaultValue} is non null and
-	 *             {@code openType} is an {@code ArrayType} or a {@code
-	 * TabularType}, or both {@code minValue} and {@code maxValue} are non-null
-	 *             and {@code minValue.compareTo(maxValue) > 0} is {@code
-	 * true}, or both {@code defaultValue} and {@code minValue} are non-null and
-	 *             {@code minValue.compareTo(defaultValue) > 0} is {@code true},
-	 *             or both {@code defaultValue} and {@code maxValue} are
-	 *             non-null and {@code defaultValue.compareTo(maxValue) > 0} is
-	 *             {@code true}.
+	 *                                  if {@code defaultValue}, {@code
+	 * minValue}                     or {@code maxValue} is not a valid value
+	 *                                  for the specified
+	 *                                  {@code openType}, or
+	 *                                  {@code defaultValue} is non null and
+	 *                                  {@code openType} is an {@code ArrayType}
+	 *                                  or a {@code
+	 * TabularType}                  , or both {@code minValue} and
+	 *                                  {@code maxValue} are non-null
+	 *                                  and
+	 *                                  {@code minValue.compareTo(maxValue) > 0}
+	 *                                  is {@code
+	 * true}                         , or both {@code defaultValue} and
+	 *                                  {@code minValue} are non-null and
+	 *                                  {@code minValue.compareTo(defaultValue) > 0}
+	 *                                  is {@code true},
+	 *                                  or both {@code defaultValue} and
+	 *                                  {@code maxValue} are
+	 *                                  non-null and
+	 *                                  {@code defaultValue.compareTo(maxValue) > 0}
+	 *                                  is
+	 *                                  {@code true}.
 	 */
-	public <T> OpenMBeanAttributeInfoSupport(String name, String description, OpenType<T> openType,
-			boolean isReadable, boolean isWritable, boolean isIs, T defaultValue,
-			Comparable<T> minValue, Comparable<T> maxValue) throws OpenDataException {
-		this(name, description, openType, isReadable, isWritable, isIs, defaultValue, null,
-				minValue, maxValue);
+	public <T> OpenMBeanAttributeInfoSupport(String name, String description,
+			OpenType<T> openType, boolean isReadable, boolean isWritable,
+			boolean isIs, T defaultValue, Comparable<T> minValue,
+			Comparable<T> maxValue) throws OpenDataException {
+		this(name, description, openType, isReadable, isWritable, isIs,
+				defaultValue, null, minValue, maxValue);
 	}
 
-	private <T> OpenMBeanAttributeInfoSupport(String name, String description, OpenType<T> openType,
-			boolean isReadable, boolean isWritable, boolean isIs, T defaultValue, T[] legalValues,
-			Comparable<T> minValue, Comparable<T> maxValue) throws OpenDataException {
-		super(name, (openType == null) ? null : openType.getClassName(), description, isReadable,
-				isWritable, isIs,
-				makeDescriptor(openType, defaultValue, legalValues, minValue, maxValue));
+	private <T> OpenMBeanAttributeInfoSupport(String name, String description,
+			OpenType<T> openType, boolean isReadable, boolean isWritable,
+			boolean isIs, T defaultValue, T[] legalValues,
+			Comparable<T> minValue, Comparable<T> maxValue)
+			throws OpenDataException {
+		super(name, (openType == null) ? null : openType.getClassName(),
+				description, isReadable, isWritable, isIs, makeDescriptor(
+						openType, defaultValue, legalValues, minValue,
+						maxValue));
 
 		this.openType = openType;
 
@@ -434,9 +475,10 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 			Set<Object> xlegalValues = cast(legalValues);
 			Comparable<Object> xminValue = cast(minValue);
 			Comparable<Object> xmaxValue = cast(maxValue);
-			return new OpenMBeanAttributeInfoSupport(name, description, openType, isReadable(),
-					isWritable(), isIs(),
-					makeDescriptor(xopenType, defaultValue, xlegalValues, xminValue, xmaxValue));
+			return new OpenMBeanAttributeInfoSupport(name, description,
+					openType, isReadable(), isWritable(), isIs(),
+					makeDescriptor(xopenType, defaultValue, xlegalValues,
+							xminValue, xmaxValue));
 		} else
 			return this;
 	}
@@ -449,22 +491,25 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 		if (info.getName() == null || info.getName().trim().equals(""))
 			throw new IllegalArgumentException("Name cannot be null or empty");
 
-		if (info.getDescription() == null || info.getDescription().trim().equals(""))
-			throw new IllegalArgumentException("Description cannot be null or empty");
+		if (info.getDescription() == null || info.getDescription().trim()
+				.equals(""))
+			throw new IllegalArgumentException(
+					"Description cannot be null or empty");
 
 		// Check and initialize defaultValue
 		//
 		if (info.hasDefaultValue()) {
 			// Default value not supported for ArrayType and TabularType
 			// Cast to Object because "OpenType<T> instanceof" is illegal
-			if (openType.isArray() || (Object) openType instanceof TabularType) {
-				throw new OpenDataException(
-						"Default value not supported " + "for ArrayType and TabularType");
+			if (openType.isArray()
+					|| (Object) openType instanceof TabularType) {
+				throw new OpenDataException("Default value not supported "
+						+ "for ArrayType and TabularType");
 			}
 			// Check defaultValue's class
 			if (!openType.isValue(info.getDefaultValue())) {
-				final String msg = "Argument defaultValue's class [\""
-						+ info.getDefaultValue().getClass().getName()
+				final String msg = "Argument defaultValue's class [\"" + info
+						.getDefaultValue().getClass().getName()
 						+ "\"] does not match the one defined in openType[\""
 						+ openType.getClassName() + "\"]";
 				throw new OpenDataException(msg);
@@ -473,20 +518,23 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 
 		// Check that we don't have both legalValues and min or max
 		//
-		if (info.hasLegalValues() && (info.hasMinValue() || info.hasMaxValue())) {
-			throw new OpenDataException(
-					"cannot have both legalValue and " + "minValue or maxValue");
+		if (info.hasLegalValues() && (info.hasMinValue() || info
+				.hasMaxValue())) {
+			throw new OpenDataException("cannot have both legalValue and "
+					+ "minValue or maxValue");
 		}
 
 		// Check minValue and maxValue
 		if (info.hasMinValue() && !openType.isValue(info.getMinValue())) {
-			final String msg = "Type of minValue [" + info.getMinValue().getClass().getName()
-					+ "] does not match OpenType [" + openType.getClassName() + "]";
+			final String msg = "Type of minValue [" + info.getMinValue()
+					.getClass().getName() + "] does not match OpenType ["
+					+ openType.getClassName() + "]";
 			throw new OpenDataException(msg);
 		}
 		if (info.hasMaxValue() && !openType.isValue(info.getMaxValue())) {
-			final String msg = "Type of maxValue [" + info.getMaxValue().getClass().getName()
-					+ "] does not match OpenType [" + openType.getClassName() + "]";
+			final String msg = "Type of maxValue [" + info.getMaxValue()
+					.getClass().getName() + "] does not match OpenType ["
+					+ openType.getClassName() + "]";
 			throw new OpenDataException(msg);
 		}
 
@@ -494,21 +542,24 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 		//
 		if (info.hasDefaultValue()) {
 			Object defaultValue = info.getDefaultValue();
-			if (info.hasLegalValues() && !info.getLegalValues().contains(defaultValue)) {
-				throw new OpenDataException("defaultValue is not contained " + "in legalValues");
+			if (info.hasLegalValues() && !info.getLegalValues().contains(
+					defaultValue)) {
+				throw new OpenDataException("defaultValue is not contained "
+						+ "in legalValues");
 			}
 
 			// Check that minValue <= defaultValue <= maxValue
 			//
 			if (info.hasMinValue()) {
 				if (compare(info.getMinValue(), defaultValue) > 0) {
-					throw new OpenDataException(
-							"minValue cannot be greater " + "than defaultValue");
+					throw new OpenDataException("minValue cannot be greater "
+							+ "than defaultValue");
 				}
 			}
 			if (info.hasMaxValue()) {
 				if (compare(info.getMaxValue(), defaultValue) < 0) {
-					throw new OpenDataException("maxValue cannot be less " + "than defaultValue");
+					throw new OpenDataException("maxValue cannot be less "
+							+ "than defaultValue");
 				}
 			}
 		}
@@ -517,9 +568,10 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 		//
 		if (info.hasLegalValues()) {
 			// legalValues not supported for TabularType and arrays
-			if ((Object) openType instanceof TabularType || openType.isArray()) {
-				throw new OpenDataException(
-						"Legal values not supported " + "for TabularType and arrays");
+			if ((Object) openType instanceof TabularType || openType
+					.isArray()) {
+				throw new OpenDataException("Legal values not supported "
+						+ "for TabularType and arrays");
 			}
 			// Check legalValues are valid with openType
 			for (Object v : info.getLegalValues()) {
@@ -536,7 +588,8 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 		//
 		if (info.hasMinValue() && info.hasMaxValue()) {
 			if (compare(info.getMinValue(), info.getMaxValue()) > 0) {
-				throw new OpenDataException("minValue cannot be greater " + "than maxValue");
+				throw new OpenDataException("minValue cannot be greater "
+						+ "than maxValue");
 			}
 		}
 
@@ -547,8 +600,8 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 		return ((Comparable) x).compareTo(y);
 	}
 
-	static <T> Descriptor makeDescriptor(OpenType<T> openType, T defaultValue, T[] legalValues,
-			Comparable<T> minValue, Comparable<T> maxValue) {
+	static <T> Descriptor makeDescriptor(OpenType<T> openType, T defaultValue,
+			T[] legalValues, Comparable<T> minValue, Comparable<T> maxValue) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (defaultValue != null)
 			map.put("defaultValue", defaultValue);
@@ -571,8 +624,9 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 		}
 	}
 
-	static <T> Descriptor makeDescriptor(OpenType<T> openType, T defaultValue, Set<T> legalValues,
-			Comparable<T> minValue, Comparable<T> maxValue) {
+	static <T> Descriptor makeDescriptor(OpenType<T> openType, T defaultValue,
+			Set<T> legalValues, Comparable<T> minValue,
+			Comparable<T> maxValue) {
 		T[] legals;
 		if (legalValues == null)
 			legals = null;
@@ -580,7 +634,8 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 			legals = cast(new Object[legalValues.size()]);
 			legalValues.toArray(legals);
 		}
-		return makeDescriptor(openType, defaultValue, legals, minValue, maxValue);
+		return makeDescriptor(openType, defaultValue, legals, minValue,
+				maxValue);
 	}
 
 	static <T> T valueFrom(Descriptor d, String name, OpenType<T> openType) {
@@ -590,13 +645,14 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 		try {
 			return convertFrom(x, openType);
 		} catch (Exception e) {
-			final String msg = "Cannot convert descriptor field " + name + "  to "
-					+ openType.getTypeName();
+			final String msg = "Cannot convert descriptor field " + name
+					+ "  to " + openType.getTypeName();
 			throw EnvHelp.initCause(new IllegalArgumentException(msg), e);
 		}
 	}
 
-	static <T> Set<T> valuesFrom(Descriptor d, String name, OpenType<T> openType) {
+	static <T> Set<T> valuesFrom(Descriptor d, String name,
+			OpenType<T> openType) {
 		Object x = d.getFieldValue(name);
 		if (x == null)
 			return null;
@@ -616,8 +672,9 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 		} else if (x instanceof Object[]) {
 			coll = Arrays.asList((Object[]) x);
 		} else {
-			final String msg = "Descriptor value for " + name + " must be a Set or " + "an array: "
-					+ x.getClass().getName();
+			final String msg = "Descriptor value for " + name
+					+ " must be a Set or " + "an array: " + x.getClass()
+							.getName();
 			throw new IllegalArgumentException(msg);
 		}
 
@@ -627,17 +684,19 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 		return result;
 	}
 
-	static <T> Comparable<?> comparableValueFrom(Descriptor d, String name, OpenType<T> openType) {
+	static <T> Comparable<?> comparableValueFrom(Descriptor d, String name,
+			OpenType<T> openType) {
 		T t = valueFrom(d, name, openType);
 		if (t == null || t instanceof Comparable<?>)
 			return (Comparable<?>) t;
-		final String msg = "Descriptor field " + name + " with value " + t + " is not Comparable";
+		final String msg = "Descriptor field " + name + " with value " + t
+				+ " is not Comparable";
 		throw new IllegalArgumentException(msg);
 	}
 
 	private static <T> T convertFrom(Object x, OpenType<T> openType) {
 		if (openType.isValue(x)) {
-			T t = OpenMBeanAttributeInfoSupport.<T> cast(x);
+			T t = OpenMBeanAttributeInfoSupport.<T>cast(x);
 			return t;
 		}
 		return convertFromStrings(x, openType);
@@ -648,8 +707,8 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 			return convertFromStringArray(x, openType);
 		else if (x instanceof String)
 			return convertFromString((String) x, openType);
-		final String msg = "Cannot convert value " + x + " of type " + x.getClass().getName()
-				+ " to type " + openType.getTypeName();
+		final String msg = "Cannot convert value " + x + " of type " + x
+				.getClass().getName() + " to type " + openType.getTypeName();
 		throw new IllegalArgumentException(msg);
 	}
 
@@ -671,16 +730,19 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 			// was checked before by
 			// ReflectUtil.checkPackageAccess(openType.safeGetClassName());
 			valueOf = c.getMethod("valueOf", String.class);
-			if (!Modifier.isStatic(valueOf.getModifiers()) || valueOf.getReturnType() != c)
+			if (!Modifier.isStatic(valueOf.getModifiers()) || valueOf
+					.getReturnType() != c)
 				valueOf = null;
 		} catch (NoSuchMethodException e) {
 			valueOf = null;
 		}
 		if (valueOf != null) {
 			try {
-				return c.cast(MethodUtil.invoke(valueOf, null, new Object[] { s }));
+				return c.cast(MethodUtil.invoke(valueOf, null, new Object[] {
+						s }));
 			} catch (Exception e) {
-				final String msg = "Could not convert \"" + s + "\" using method: " + valueOf;
+				final String msg = "Could not convert \"" + s
+						+ "\" using method: " + valueOf;
 				throw new IllegalArgumentException(msg, e);
 			}
 		}
@@ -700,13 +762,14 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 			try {
 				return con.newInstance(s);
 			} catch (Exception e) {
-				final String msg = "Could not convert \"" + s + "\" using constructor: " + con;
+				final String msg = "Could not convert \"" + s
+						+ "\" using constructor: " + con;
 				throw new IllegalArgumentException(msg, e);
 			}
 		}
 
-		throw new IllegalArgumentException(
-				"Don't know how to convert " + "string to " + openType.getTypeName());
+		throw new IllegalArgumentException("Don't know how to convert "
+				+ "string to " + openType.getTypeName());
 	}
 
 	/*
@@ -715,7 +778,8 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 	 * desired array has n dimensions, so must the String array. We will convert
 	 * element by element from String to desired component type.
 	 */
-	private static <T> T convertFromStringArray(Object x, OpenType<T> openType) {
+	private static <T> T convertFromStringArray(Object x,
+			OpenType<T> openType) {
 		ArrayType<?> arrayType = (ArrayType<?>) openType;
 		OpenType<?> baseType = arrayType.getElementOpenType();
 		int dim = arrayType.getDimension();
@@ -731,8 +795,10 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 			// early
 			ReflectUtil.checkPackageAccess(baseClassName);
 
-			stringArrayClass = Class.forName(squareBrackets + "Ljava.lang.String;");
-			targetArrayClass = Class.forName(squareBrackets + "L" + baseClassName + ";");
+			stringArrayClass = Class.forName(squareBrackets
+					+ "Ljava.lang.String;");
+			targetArrayClass = Class.forName(squareBrackets + "L"
+					+ baseClassName + ";");
 		} catch (ClassNotFoundException e) {
 			throw new NoClassDefFoundError(e.toString()); // can't happen
 		}
@@ -754,13 +820,14 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 			}
 		}
 		int n = Array.getLength(x);
-		Object[] targetArray = (Object[]) Array.newInstance(targetArrayClass.getComponentType(), n);
+		Object[] targetArray = (Object[]) Array.newInstance(targetArrayClass
+				.getComponentType(), n);
 		for (int i = 0; i < n; i++) {
 			Object stringish = Array.get(x, i); // String or String[] etc
 			Object converted = convertFromStrings(stringish, componentOpenType);
 			Array.set(targetArray, i, converted);
 		}
-		return OpenMBeanAttributeInfoSupport.<T> cast(targetArray);
+		return OpenMBeanAttributeInfoSupport.<T>cast(targetArray);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -894,10 +961,12 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 	static boolean isValue(OpenMBeanParameterInfo info, Object obj) {
 		if (info.hasDefaultValue() && obj == null)
 			return true;
-		return info.getOpenType().isValue(obj)
-				&& (!info.hasLegalValues() || info.getLegalValues().contains(obj))
-				&& (!info.hasMinValue() || ((Comparable) info.getMinValue()).compareTo(obj) <= 0)
-				&& (!info.hasMaxValue() || ((Comparable) info.getMaxValue()).compareTo(obj) >= 0);
+		return info.getOpenType().isValue(obj) && (!info.hasLegalValues()
+				|| info.getLegalValues().contains(obj)) && (!info.hasMinValue()
+						|| ((Comparable) info.getMinValue()).compareTo(
+								obj) <= 0) && (!info.hasMaxValue()
+										|| ((Comparable) info.getMaxValue())
+												.compareTo(obj) >= 0);
 	}
 
 	/* *** Commodity methods from java.lang.Object *** */
@@ -941,8 +1010,9 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 
 		OpenMBeanAttributeInfo other = (OpenMBeanAttributeInfo) obj;
 
-		return this.isReadable() == other.isReadable() && this.isWritable() == other.isWritable()
-				&& this.isIs() == other.isIs() && equal(this, other);
+		return this.isReadable() == other.isReadable() && this
+				.isWritable() == other.isWritable() && this.isIs() == other
+						.isIs() && equal(this, other);
 	}
 
 	static boolean equal(OpenMBeanParameterInfo x1, OpenMBeanParameterInfo x2) {
@@ -956,15 +1026,16 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 		} else if (x2 instanceof DescriptorRead)
 			return false;
 
-		return x1.getName().equals(x2.getName()) && x1.getOpenType().equals(x2.getOpenType())
-				&& (x1.hasDefaultValue() ? x1.getDefaultValue().equals(x2.getDefaultValue())
-						: !x2.hasDefaultValue())
+		return x1.getName().equals(x2.getName()) && x1.getOpenType().equals(x2
+				.getOpenType()) && (x1.hasDefaultValue() ? x1.getDefaultValue()
+						.equals(x2.getDefaultValue()) : !x2.hasDefaultValue())
 				&& (x1.hasMinValue() ? x1.getMinValue().equals(x2.getMinValue())
-						: !x2.hasMinValue())
-				&& (x1.hasMaxValue() ? x1.getMaxValue().equals(x2.getMaxValue())
-						: !x2.hasMaxValue())
-				&& (x1.hasLegalValues() ? x1.getLegalValues().equals(x2.getLegalValues())
-						: !x2.hasLegalValues());
+						: !x2.hasMinValue()) && (x1.hasMaxValue() ? x1
+								.getMaxValue().equals(x2.getMaxValue())
+								: !x2.hasMaxValue()) && (x1.hasLegalValues()
+										? x1.getLegalValues().equals(x2
+												.getLegalValues())
+										: !x2.hasLegalValues());
 	}
 
 	/**
@@ -1066,11 +1137,14 @@ public class OpenMBeanAttributeInfoSupport extends MBeanAttributeInfo
 	}
 
 	static String toString(OpenMBeanParameterInfo info) {
-		Descriptor d = (info instanceof DescriptorRead) ? ((DescriptorRead) info).getDescriptor()
+		Descriptor d = (info instanceof DescriptorRead)
+				? ((DescriptorRead) info).getDescriptor()
 				: null;
-		return info.getClass().getName() + "(name=" + info.getName() + ",openType="
-				+ info.getOpenType() + ",default=" + info.getDefaultValue() + ",minValue="
-				+ info.getMinValue() + ",maxValue=" + info.getMaxValue() + ",legalValues="
-				+ info.getLegalValues() + ((d == null) ? "" : ",descriptor=" + d) + ")";
+		return info.getClass().getName() + "(name=" + info.getName()
+				+ ",openType=" + info.getOpenType() + ",default=" + info
+						.getDefaultValue() + ",minValue=" + info.getMinValue()
+				+ ",maxValue=" + info.getMaxValue() + ",legalValues=" + info
+						.getLegalValues() + ((d == null) ? ""
+								: ",descriptor=" + d) + ")";
 	}
 }

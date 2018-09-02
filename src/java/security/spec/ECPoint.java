@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.security.spec;
 
@@ -56,11 +36,11 @@ public class ECPoint {
 	 * affine y-coordinate {@code y}.
 	 * 
 	 * @param x
-	 *            the affine x-coordinate.
+	 *          the affine x-coordinate.
 	 * @param y
-	 *            the affine y-coordinate.
+	 *          the affine y-coordinate.
 	 * @exception NullPointerException
-	 *                if {@code x} or {@code y} is null.
+	 *                                 if {@code x} or {@code y} is null.
 	 */
 	public ECPoint(BigInteger x, BigInteger y) {
 		if ((x == null) || (y == null)) {
@@ -105,7 +85,8 @@ public class ECPoint {
 		if (this == POINT_INFINITY)
 			return false;
 		if (obj instanceof ECPoint) {
-			return ((x.equals(((ECPoint) obj).x)) && (y.equals(((ECPoint) obj).y)));
+			return ((x.equals(((ECPoint) obj).x)) && (y.equals(
+					((ECPoint) obj).y)));
 		}
 		return false;
 	}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.event;
@@ -53,12 +33,13 @@ public interface IIOWriteWarningListener extends EventListener {
 	 * or take any other action it chooses.
 	 *
 	 * @param source
-	 *            the <code>ImageWriter</code> object calling this method.
+	 *                   the <code>ImageWriter</code> object calling this
+	 *                   method.
 	 * @param imageIndex
-	 *            the index, starting with 0, of the image generating the
-	 *            warning.
+	 *                   the index, starting with 0, of the image generating the
+	 *                   warning.
 	 * @param warning
-	 *            a <code>String</code> containing the warning.
+	 *                   a <code>String</code> containing the warning.
 	 */
 	void warningOccurred(ImageWriter source, int imageIndex, String warning);
 }

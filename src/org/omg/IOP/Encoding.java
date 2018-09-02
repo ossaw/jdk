@@ -25,8 +25,7 @@ public final class Encoding implements org.omg.CORBA.portable.IDLEntity {
 	 */
 	public byte minor_version = (byte) 0;
 
-	public Encoding() {
-	} // ctor
+	public Encoding() {} // ctor
 
 	public Encoding(short _format, byte _major_version, byte _minor_version) {
 		format = _format;

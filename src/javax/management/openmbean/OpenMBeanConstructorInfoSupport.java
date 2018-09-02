@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.openmbean;
@@ -64,21 +44,23 @@ public class OpenMBeanConstructorInfoSupport extends MBeanConstructorInfo
 	 * </p>
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                    cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                    cannot be a null or empty string.
 	 *
 	 * @param signature
-	 *            can be null or empty if there are no parameters to describe.
+	 *                    can be null or empty if there are no parameters to
+	 *                    describe.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string.
 	 *
 	 * @throws ArrayStoreException
-	 *             If {@code signature} is not an array of instances of a
-	 *             subclass of {@code MBeanParameterInfo}.
+	 *                                  If {@code signature} is not an array of
+	 *                                  instances of a
+	 *                                  subclass of {@code MBeanParameterInfo}.
 	 */
 	public OpenMBeanConstructorInfoSupport(String name, String description,
 			OpenMBeanParameterInfo[] signature) {
@@ -100,47 +82,53 @@ public class OpenMBeanConstructorInfoSupport extends MBeanConstructorInfo
 	 * </p>
 	 *
 	 * @param name
-	 *            cannot be a null or empty string.
+	 *                    cannot be a null or empty string.
 	 *
 	 * @param description
-	 *            cannot be a null or empty string.
+	 *                    cannot be a null or empty string.
 	 *
 	 * @param signature
-	 *            can be null or empty if there are no parameters to describe.
+	 *                    can be null or empty if there are no parameters to
+	 *                    describe.
 	 *
 	 * @param descriptor
-	 *            The descriptor for the constructor. This may be null which is
-	 *            equivalent to an empty descriptor.
+	 *                    The descriptor for the constructor. This may be null
+	 *                    which is
+	 *                    equivalent to an empty descriptor.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code name} or {@code
-	 * description} are null or empty string.
+	 *                                  if {@code name} or {@code
+	 * description}                  are null or empty string.
 	 *
 	 * @throws ArrayStoreException
-	 *             If {@code signature} is not an array of instances of a
-	 *             subclass of {@code MBeanParameterInfo}.
+	 *                                  If {@code signature} is not an array of
+	 *                                  instances of a
+	 *                                  subclass of {@code MBeanParameterInfo}.
 	 *
 	 * @since 1.6
 	 */
 	public OpenMBeanConstructorInfoSupport(String name, String description,
 			OpenMBeanParameterInfo[] signature, Descriptor descriptor) {
 		super(name, description, arrayCopyCast(signature), // may throw an
-															// ArrayStoreException
+				// ArrayStoreException
 				descriptor);
 
 		// check parameters that should not be null or empty
 		// (unfortunately it is not done in superclass :-( ! )
 		//
 		if (name == null || name.trim().equals("")) {
-			throw new IllegalArgumentException("Argument name cannot be " + "null or empty");
+			throw new IllegalArgumentException("Argument name cannot be "
+					+ "null or empty");
 		}
 		if (description == null || description.trim().equals("")) {
-			throw new IllegalArgumentException("Argument description cannot " + "be null or empty");
+			throw new IllegalArgumentException("Argument description cannot "
+					+ "be null or empty");
 		}
 
 	}
 
-	private static MBeanParameterInfo[] arrayCopyCast(OpenMBeanParameterInfo[] src) {
+	private static MBeanParameterInfo[] arrayCopyCast(
+			OpenMBeanParameterInfo[] src) {
 		if (src == null)
 			return null;
 
@@ -303,10 +291,13 @@ public class OpenMBeanConstructorInfoSupport extends MBeanConstructorInfo
 		// 1st call to toString())
 		//
 		if (myToString == null) {
-			myToString = new StringBuilder().append(this.getClass().getName()).append("(name=")
-					.append(this.getName()).append(",signature=")
-					.append(Arrays.asList(this.getSignature()).toString()).append(",descriptor=")
-					.append(this.getDescriptor()).append(")").toString();
+			myToString = new StringBuilder().append(this.getClass().getName())
+					.append("(name=").append(this.getName()).append(
+							",signature=").append(Arrays.asList(this
+									.getSignature()).toString()).append(
+											",descriptor=").append(this
+													.getDescriptor()).append(
+															")").toString();
 		}
 
 		// return always the same string representation for this

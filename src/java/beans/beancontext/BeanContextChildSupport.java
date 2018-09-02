@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans.beancontext;
@@ -56,8 +36,8 @@ import java.io.Serializable;
  * @see java.beans.beancontext.BeanContextChild
  */
 
-public class BeanContextChildSupport
-		implements BeanContextChild, BeanContextServicesListener, Serializable {
+public class BeanContextChildSupport implements BeanContextChild,
+		BeanContextServicesListener, Serializable {
 
 	static final long serialVersionUID = 6328947014421475877L;
 
@@ -98,12 +78,13 @@ public class BeanContextChildSupport
 	 * <code>BeanContextChildSupport</code>.
 	 * 
 	 * @param bc
-	 *            the new value to be assigned to the <code>BeanContext</code>
-	 *            property
+	 *           the new value to be assigned to the <code>BeanContext</code>
+	 *           property
 	 * @throws PropertyVetoException
-	 *             if the change is rejected
+	 *                               if the change is rejected
 	 */
-	public synchronized void setBeanContext(BeanContext bc) throws PropertyVetoException {
+	public synchronized void setBeanContext(BeanContext bc)
+			throws PropertyVetoException {
 		if (bc == beanContext)
 			return;
 
@@ -112,9 +93,10 @@ public class BeanContextChildSupport
 
 		if (!rejectedSetBCOnce) {
 			if (rejectedSetBCOnce = !validatePendingSetBeanContext(bc)) {
-				throw new PropertyVetoException("setBeanContext() change rejected:",
-						new PropertyChangeEvent(beanContextChildPeer, "beanContext", oldValue,
-								newValue));
+				throw new PropertyVetoException(
+						"setBeanContext() change rejected:",
+						new PropertyChangeEvent(beanContextChildPeer,
+								"beanContext", oldValue, newValue));
 			}
 
 			try {
@@ -157,11 +139,12 @@ public class BeanContextChildSupport
 	 * no action is taken.
 	 *
 	 * @param name
-	 *            The name of the property to listen on
+	 *             The name of the property to listen on
 	 * @param pcl
-	 *            The <code>PropertyChangeListener</code> to be added
+	 *             The <code>PropertyChangeListener</code> to be added
 	 */
-	public void addPropertyChangeListener(String name, PropertyChangeListener pcl) {
+	public void addPropertyChangeListener(String name,
+			PropertyChangeListener pcl) {
 		pcSupport.addPropertyChangeListener(name, pcl);
 	}
 
@@ -174,11 +157,12 @@ public class BeanContextChildSupport
 	 * specified property, no exception is thrown and no action is taken.
 	 *
 	 * @param name
-	 *            The name of the property that was listened on
+	 *             The name of the property that was listened on
 	 * @param pcl
-	 *            The PropertyChangeListener to be removed
+	 *             The PropertyChangeListener to be removed
 	 */
-	public void removePropertyChangeListener(String name, PropertyChangeListener pcl) {
+	public void removePropertyChangeListener(String name,
+			PropertyChangeListener pcl) {
 		pcSupport.removePropertyChangeListener(name, pcl);
 	}
 
@@ -190,11 +174,12 @@ public class BeanContextChildSupport
 	 * no action is taken.
 	 *
 	 * @param name
-	 *            The name of the property to listen on
+	 *             The name of the property to listen on
 	 * @param vcl
-	 *            The <code>VetoableChangeListener</code> to be added
+	 *             The <code>VetoableChangeListener</code> to be added
 	 */
-	public void addVetoableChangeListener(String name, VetoableChangeListener vcl) {
+	public void addVetoableChangeListener(String name,
+			VetoableChangeListener vcl) {
 		vcSupport.addVetoableChangeListener(name, vcl);
 	}
 
@@ -207,11 +192,12 @@ public class BeanContextChildSupport
 	 * property, no exception is thrown and no action is taken.
 	 *
 	 * @param name
-	 *            The name of the property that was listened on
+	 *             The name of the property that was listened on
 	 * @param vcl
-	 *            The <code>VetoableChangeListener</code> to be removed
+	 *             The <code>VetoableChangeListener</code> to be removed
 	 */
-	public void removeVetoableChangeListener(String name, VetoableChangeListener vcl) {
+	public void removeVetoableChangeListener(String name,
+			VetoableChangeListener vcl) {
 		vcSupport.removeVetoableChangeListener(name, vcl);
 	}
 
@@ -222,11 +208,10 @@ public class BeanContextChildSupport
 	 * behaviors.
 	 * 
 	 * @param bcsre
-	 *            The <code>BeanContextServiceRevokedEvent</code> fired as a
-	 *            result of a service being revoked
+	 *              The <code>BeanContextServiceRevokedEvent</code> fired as a
+	 *              result of a service being revoked
 	 */
-	public void serviceRevoked(BeanContextServiceRevokedEvent bcsre) {
-	}
+	public void serviceRevoked(BeanContextServiceRevokedEvent bcsre) {}
 
 	/**
 	 * A new service is available from the nesting BeanContext.
@@ -235,12 +220,11 @@ public class BeanContextChildSupport
 	 * behaviors
 	 * 
 	 * @param bcsae
-	 *            The BeanContextServiceAvailableEvent fired as a result of a
-	 *            service becoming available
+	 *              The BeanContextServiceAvailableEvent fired as a result of a
+	 *              service becoming available
 	 *
 	 */
-	public void serviceAvailable(BeanContextServiceAvailableEvent bcsae) {
-	}
+	public void serviceAvailable(BeanContextServiceAvailableEvent bcsae) {}
 
 	/**
 	 * Gets the <tt>BeanContextChild</tt> associated with this
@@ -266,13 +250,14 @@ public class BeanContextChildSupport
 	 * fired if old and new are equal and non-null.
 	 * 
 	 * @param name
-	 *            The programmatic name of the property that was changed
+	 *                 The programmatic name of the property that was changed
 	 * @param oldValue
-	 *            The old value of the property
+	 *                 The old value of the property
 	 * @param newValue
-	 *            The new value of the property
+	 *                 The new value of the property
 	 */
-	public void firePropertyChange(String name, Object oldValue, Object newValue) {
+	public void firePropertyChange(String name, Object oldValue,
+			Object newValue) {
 		pcSupport.firePropertyChange(name, oldValue, newValue);
 	}
 
@@ -286,19 +271,21 @@ public class BeanContextChildSupport
 	 * <P>
 	 * 
 	 * @param name
-	 *            The programmatic name of the property that is about to change
+	 *                 The programmatic name of the property that is about to
+	 *                 change
 	 *
 	 * @param oldValue
-	 *            The old value of the property
+	 *                 The old value of the property
 	 * @param newValue
-	 *            - The new value of the property
+	 *                 - The new value of the property
 	 *
 	 * @throws PropertyVetoException
-	 *             if the recipient wishes the property change to be rolled
-	 *             back.
+	 *                               if the recipient wishes the property change
+	 *                               to be rolled
+	 *                               back.
 	 */
-	public void fireVetoableChange(String name, Object oldValue, Object newValue)
-			throws PropertyVetoException {
+	public void fireVetoableChange(String name, Object oldValue,
+			Object newValue) throws PropertyVetoException {
 		vcSupport.fireVetoableChange(name, oldValue, newValue);
 	}
 
@@ -308,8 +295,8 @@ public class BeanContextChildSupport
 	 * setBeanContext to throw PropertyVetoException.
 	 * 
 	 * @param newValue
-	 *            the new value that has been requested for the BeanContext
-	 *            property
+	 *                 the new value that has been requested for the BeanContext
+	 *                 property
 	 * @return <code>true</code> if the change operation is to be vetoed
 	 */
 	public boolean validatePendingSetBeanContext(BeanContext newValue) {
@@ -348,8 +335,10 @@ public class BeanContextChildSupport
 		 * serializable.
 		 */
 
-		if (!equals(beanContextChildPeer) && !(beanContextChildPeer instanceof Serializable))
-			throw new IOException("BeanContextChildSupport beanContextChildPeer not Serializable");
+		if (!equals(beanContextChildPeer)
+				&& !(beanContextChildPeer instanceof Serializable))
+			throw new IOException(
+					"BeanContextChildSupport beanContextChildPeer not Serializable");
 
 		else
 			oos.defaultWriteObject();
@@ -361,7 +350,8 @@ public class BeanContextChildSupport
 	 * fully restore any resources obtained from the new nesting BeanContext
 	 */
 
-	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream ois) throws IOException,
+			ClassNotFoundException {
 		ois.defaultReadObject();
 	}
 

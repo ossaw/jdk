@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,8 +43,7 @@ public class Match implements Cloneable {
 	/**
 	 * Creates an instance.
 	 */
-	public Match() {
-	}
+	public Match() {}
 
 	/**
 	 *
@@ -140,14 +136,15 @@ public class Match implements Cloneable {
 	 * expression group.
 	 *
 	 * @param index
-	 *            Less than <code>getNumberOfGroups()</code>.
+	 *              Less than <code>getNumberOfGroups()</code>.
 	 */
 	public int getBeginning(int index) {
 		if (this.beginpos == null)
 			throw new IllegalStateException("A result is not set.");
 		if (index < 0 || this.nofgroups <= index)
 			throw new IllegalArgumentException(
-					"The parameter must be less than " + this.nofgroups + ": " + index);
+					"The parameter must be less than " + this.nofgroups + ": "
+							+ index);
 		return this.beginpos[index];
 	}
 
@@ -156,14 +153,15 @@ public class Match implements Cloneable {
 	 * expression group.
 	 *
 	 * @param index
-	 *            Less than <code>getNumberOfGroups()</code>.
+	 *              Less than <code>getNumberOfGroups()</code>.
 	 */
 	public int getEnd(int index) {
 		if (this.endpos == null)
 			throw new IllegalStateException("A result is not set.");
 		if (index < 0 || this.nofgroups <= index)
 			throw new IllegalArgumentException(
-					"The parameter must be less than " + this.nofgroups + ": " + index);
+					"The parameter must be less than " + this.nofgroups + ": "
+							+ index);
 		return this.endpos[index];
 	}
 
@@ -172,14 +170,15 @@ public class Match implements Cloneable {
 	 * expression group.
 	 *
 	 * @param index
-	 *            Less than <code>getNumberOfGroups()</code>.
+	 *              Less than <code>getNumberOfGroups()</code>.
 	 */
 	public String getCapturedText(int index) {
 		if (this.beginpos == null)
 			throw new IllegalStateException("match() has never been called.");
 		if (index < 0 || this.nofgroups <= index)
 			throw new IllegalArgumentException(
-					"The parameter must be less than " + this.nofgroups + ": " + index);
+					"The parameter must be less than " + this.nofgroups + ": "
+							+ index);
 		String ret;
 		int begin = this.beginpos[index], end = this.endpos[index];
 		if (begin < 0 || end < 0)

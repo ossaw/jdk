@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -74,10 +49,10 @@ import java.util.function.Consumer;
  * @since 1.5
  * @author Doug Lea
  * @param <E>
- *            the type of elements held in this collection
+ *        the type of elements held in this collection
  */
-public class LinkedBlockingQueue<E> extends AbstractQueue<E>
-		implements BlockingQueue<E>, java.io.Serializable {
+public class LinkedBlockingQueue<E> extends AbstractQueue<E> implements
+		BlockingQueue<E>, java.io.Serializable {
 	private static final long serialVersionUID = -6903933977591709194L;
 
 	/*
@@ -91,15 +66,12 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 	 * have been entered since the signal. And symmetrically for takes
 	 * signalling puts. Operations such as remove(Object) and iterators acquire
 	 * both locks.
-	 *
 	 * Visibility between writers and readers is provided as follows:
-	 *
 	 * Whenever an element is enqueued, the putLock is acquired and count
 	 * updated. A subsequent reader guarantees visibility to the enqueued Node
 	 * by either acquiring the putLock (via fullyLock) or by acquiring the
 	 * takeLock, and then reading n = count.get(); this gives visibility to the
 	 * first n items.
-	 *
 	 * To implement weakly consistent iterators, it appears we need to keep all
 	 * Nodes GC-reachable from a predecessor dequeued Node. That would cause two
 	 * problems: - allow a rogue Iterator to cause unbounded memory retention -
@@ -189,7 +161,7 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 	 * Links node at end of queue.
 	 *
 	 * @param node
-	 *            the node
+	 *             the node
 	 */
 	private void enqueue(Node<E> node) {
 		// assert putLock.isHeldByCurrentThread();
@@ -250,9 +222,10 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 	 * Creates a {@code LinkedBlockingQueue} with the given (fixed) capacity.
 	 *
 	 * @param capacity
-	 *            the capacity of this queue
+	 *                 the capacity of this queue
 	 * @throws IllegalArgumentException
-	 *             if {@code capacity} is not greater than zero
+	 *                                  if {@code capacity} is not greater than
+	 *                                  zero
 	 */
 	public LinkedBlockingQueue(int capacity) {
 		if (capacity <= 0)
@@ -267,9 +240,10 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 	 * collection, added in traversal order of the collection's iterator.
 	 *
 	 * @param c
-	 *            the collection of elements to initially contain
+	 *          the collection of elements to initially contain
 	 * @throws NullPointerException
-	 *             if the specified collection or any of its elements are null
+	 *                              if the specified collection or any of its
+	 *                              elements are null
 	 */
 	public LinkedBlockingQueue(Collection<? extends E> c) {
 		this(Integer.MAX_VALUE);
@@ -325,9 +299,9 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 	 * necessary for space to become available.
 	 *
 	 * @throws InterruptedException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
 	public void put(E e) throws InterruptedException {
 		if (e == null)
@@ -369,11 +343,12 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 	 * @return {@code true} if successful, or {@code false} if the specified
 	 *         waiting time elapses before space is available
 	 * @throws InterruptedException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 */
-	public boolean offer(E e, long timeout, TimeUnit unit) throws InterruptedException {
+	public boolean offer(E e, long timeout, TimeUnit unit)
+			throws InterruptedException {
 
 		if (e == null)
 			throw new NullPointerException();
@@ -409,7 +384,7 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 	 * only by throwing an exception.
 	 *
 	 * @throws NullPointerException
-	 *             if the specified element is null
+	 *                              if the specified element is null
 	 */
 	public boolean offer(E e) {
 		if (e == null)
@@ -545,7 +520,7 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 	 * equivalently, if this queue changed as a result of the call).
 	 *
 	 * @param o
-	 *            element to be removed from this queue, if present
+	 *          element to be removed from this queue, if present
 	 * @return {@code true} if this queue changed as a result of the call
 	 */
 	public boolean remove(Object o) {
@@ -571,7 +546,7 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 	 * least one element {@code e} such that {@code o.equals(e)}.
 	 *
 	 * @param o
-	 *            object to be checked for containment in this queue
+	 *          object to be checked for containment in this queue
 	 * @return {@code true} if this queue contains the specified element
 	 */
 	public boolean contains(Object o) {
@@ -650,15 +625,17 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 	 * {@code toArray()}.
 	 *
 	 * @param a
-	 *            the array into which the elements of the queue are to be
-	 *            stored, if it is big enough; otherwise, a new array of the
-	 *            same runtime type is allocated for this purpose
+	 *          the array into which the elements of the queue are to be
+	 *          stored, if it is big enough; otherwise, a new array of the
+	 *          same runtime type is allocated for this purpose
 	 * @return an array containing all of the elements in this queue
 	 * @throws ArrayStoreException
-	 *             if the runtime type of the specified array is not a supertype
-	 *             of the runtime type of every element in this queue
+	 *                              if the runtime type of the specified array
+	 *                              is not a supertype
+	 *                              of the runtime type of every element in this
+	 *                              queue
 	 * @throws NullPointerException
-	 *             if the specified array is null
+	 *                              if the specified array is null
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T[] toArray(T[] a) {
@@ -666,8 +643,8 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 		try {
 			int size = count.get();
 			if (a.length < size)
-				a = (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(),
-						size);
+				a = (T[]) java.lang.reflect.Array.newInstance(a.getClass()
+						.getComponentType(), size);
 
 			int k = 0;
 			for (Node<E> p = head.next; p != null; p = p.next)
@@ -724,13 +701,13 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 
 	/**
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public int drainTo(Collection<? super E> c) {
 		return drainTo(c, Integer.MAX_VALUE);
@@ -738,13 +715,13 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 
 	/**
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public int drainTo(Collection<? super E> c, int maxElements) {
 		if (c == null)
@@ -901,8 +878,8 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 			final LinkedBlockingQueue<E> q = this.queue;
 			int b = batch;
 			int n = (b <= 0) ? 1 : (b >= MAX_BATCH) ? MAX_BATCH : b + 1;
-			if (!exhausted && ((h = current) != null || (h = q.head.next) != null)
-					&& h.next != null) {
+			if (!exhausted && ((h = current) != null
+					|| (h = q.head.next) != null) && h.next != null) {
 				Object[] a = new Object[n];
 				int i = 0;
 				Node<E> p = current;
@@ -924,8 +901,8 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 					est = 0L;
 				if (i > 0) {
 					batch = i;
-					return Spliterators.spliterator(a, 0, i,
-							Spliterator.ORDERED | Spliterator.NONNULL | Spliterator.CONCURRENT);
+					return Spliterators.spliterator(a, 0, i, Spliterator.ORDERED
+							| Spliterator.NONNULL | Spliterator.CONCURRENT);
 				}
 			}
 			return null;
@@ -989,7 +966,8 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 		}
 
 		public int characteristics() {
-			return Spliterator.ORDERED | Spliterator.NONNULL | Spliterator.CONCURRENT;
+			return Spliterator.ORDERED | Spliterator.NONNULL
+					| Spliterator.CONCURRENT;
 		}
 	}
 
@@ -1018,14 +996,15 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 	 * Saves this queue to a stream (that is, serializes it).
 	 *
 	 * @param s
-	 *            the stream
+	 *          the stream
 	 * @throws java.io.IOException
-	 *             if an I/O error occurs
+	 *         if an I/O error occurs
 	 * @serialData The capacity is emitted (int), followed by all of its
 	 *             elements (each an {@code Object}) in the proper order,
 	 *             followed by a null
 	 */
-	private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
+	private void writeObject(java.io.ObjectOutputStream s)
+			throws java.io.IOException {
 
 		fullyLock();
 		try {
@@ -1047,11 +1026,12 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 	 * Reconstitutes this queue from a stream (that is, deserializes it).
 	 * 
 	 * @param s
-	 *            the stream
+	 *          the stream
 	 * @throws ClassNotFoundException
-	 *             if the class of a serialized object could not be found
-	 * @throws java.io.IOException
-	 *             if an I/O error occurs
+	 *                                if the class of a serialized object could
+	 *                                not be found
+	 * @throws                        java.io.IOException
+	 *                                if an I/O error occurs
 	 */
 	private void readObject(java.io.ObjectInputStream s)
 			throws java.io.IOException, ClassNotFoundException {

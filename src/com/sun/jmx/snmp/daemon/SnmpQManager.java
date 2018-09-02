@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -152,7 +151,8 @@ class SendQ extends Vector<SnmpInformRequest> {
 		}
 	}
 
-	public synchronized Vector<SnmpInformRequest> getAllOutstandingRequest(long margin) {
+	public synchronized Vector<SnmpInformRequest> getAllOutstandingRequest(
+			long margin) {
 		int i;
 		Vector<SnmpInformRequest> outreq = new Vector<>();
 		while (true) {
@@ -178,9 +178,9 @@ class SendQ extends Vector<SnmpInformRequest> {
 	public synchronized void waitOnThisQueue(long time) {
 		if (time == 0 && !isEmpty()) {
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpQManager.class.getName(),
-						"waitOnThisQueue",
-						"[" + Thread.currentThread().toString() + "]:"
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpQManager.class
+						.getName(), "waitOnThisQueue", "[" + Thread
+								.currentThread().toString() + "]:"
 								+ "Fatal BUG :: Blocking on newq permenantly. But size = "
 								+ size());
 			}
@@ -274,9 +274,9 @@ class WaitQ extends Vector<SnmpInformRequest> {
 	public synchronized void waitOnThisQueue(long time) {
 		if (time == 0 && !isEmpty()) {
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpQManager.class.getName(),
-						"waitOnThisQueue",
-						"[" + Thread.currentThread().toString() + "]:"
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpQManager.class
+						.getName(), "waitOnThisQueue", "[" + Thread
+								.currentThread().toString() + "]:"
 								+ "Fatal BUG :: Blocking on waitq permenantly. But size = "
 								+ size());
 			}

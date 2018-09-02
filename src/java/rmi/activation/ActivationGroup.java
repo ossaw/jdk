@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.activation;
@@ -96,8 +76,8 @@ import sun.security.action.GetIntegerAction;
  * @see ActivationGroupID
  * @since 1.2
  */
-public abstract class ActivationGroup extends UnicastRemoteObject
-		implements ActivationInstantiator {
+public abstract class ActivationGroup extends UnicastRemoteObject implements
+		ActivationInstantiator {
 	/**
 	 * @serial the group's identifier
 	 */
@@ -131,15 +111,17 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 	 * <code>java.rmi.server.UnicastRemoteObject</code>.
 	 *
 	 * @param groupID
-	 *            the group's identifier
+	 *                the group's identifier
 	 * @throws RemoteException
-	 *             if this group could not be exported
+	 *                                       if this group could not be exported
 	 * @throws UnsupportedOperationException
-	 *             if and only if activation is not supported by this
-	 *             implementation
+	 *                                       if and only if activation is not
+	 *                                       supported by this
+	 *                                       implementation
 	 * @since 1.2
 	 */
-	protected ActivationGroup(ActivationGroupID groupID) throws RemoteException {
+	protected ActivationGroup(ActivationGroupID groupID)
+			throws RemoteException {
 		// call super constructor to export the object
 		super();
 		this.groupID = groupID;
@@ -177,19 +159,20 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 	 * <p>
 	 *
 	 * @param id
-	 *            the object's activation identifier
+	 *           the object's activation identifier
 	 * @return true if the object was successfully deactivated; otherwise
 	 *         returns false.
 	 * @exception UnknownObjectException
-	 *                if object is unknown (may already be inactive)
+	 *                                   if object is unknown (may already be
+	 *                                   inactive)
 	 * @exception RemoteException
-	 *                if call informing monitor fails
+	 *                                   if call informing monitor fails
 	 * @exception ActivationException
-	 *                if group is inactive
+	 *                                   if group is inactive
 	 * @since 1.2
 	 */
-	public boolean inactiveObject(ActivationID id)
-			throws ActivationException, UnknownObjectException, RemoteException {
+	public boolean inactiveObject(ActivationID id) throws ActivationException,
+			UnknownObjectException, RemoteException {
 		getMonitor().inactiveObject(id);
 		return true;
 	}
@@ -207,11 +190,11 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 	 * @param obj
 	 *            the remote object implementation
 	 * @exception UnknownObjectException
-	 *                if object is not registered
+	 *                                   if object is not registered
 	 * @exception RemoteException
-	 *                if call informing monitor fails
+	 *                                   if call informing monitor fails
 	 * @exception ActivationException
-	 *                if group is inactive
+	 *                                   if group is inactive
 	 * @since 1.2
 	 */
 	public abstract void activeObject(ActivationID id, Remote obj)
@@ -268,29 +251,36 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 	 * group until the group becomes inactive.
 	 *
 	 * @param id
-	 *            the activation group's identifier
+	 *                    the activation group's identifier
 	 * @param desc
-	 *            the activation group's descriptor
+	 *                    the activation group's descriptor
 	 * @param incarnation
-	 *            the group's incarnation number (zero on group's initial
-	 *            creation)
+	 *                    the group's incarnation number (zero on group's
+	 *                    initial
+	 *                    creation)
 	 * @return the activation group for the VM
 	 * @exception ActivationException
-	 *                if group already exists or if error occurs during group
-	 *                creation
+	 *                                          if group already exists or if
+	 *                                          error occurs during group
+	 *                                          creation
 	 * @exception SecurityException
-	 *                if permission to create group is denied. (Note: The
-	 *                default implementation of the security manager
-	 *                <code>checkSetFactory</code> method requires the
-	 *                RuntimePermission "setFactory")
+	 *                                          if permission to create group is
+	 *                                          denied. (Note: The
+	 *                                          default implementation of the
+	 *                                          security manager
+	 *                                          <code>checkSetFactory</code>
+	 *                                          method requires the
+	 *                                          RuntimePermission "setFactory")
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @see SecurityManager#checkSetFactory
 	 * @since 1.2
 	 */
 	public static synchronized ActivationGroup createGroup(ActivationGroupID id,
-			final ActivationGroupDesc desc, long incarnation) throws ActivationException {
+			final ActivationGroupDesc desc, long incarnation)
+			throws ActivationException {
 		SecurityManager security = System.getSecurityManager();
 		if (security != null)
 			security.checkSetFactory();
@@ -299,7 +289,8 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 			throw new ActivationException("group already exists");
 
 		if (canCreate == false)
-			throw new ActivationException("group deactivated and " + "cannot be recreated");
+			throw new ActivationException("group deactivated and "
+					+ "cannot be recreated");
 
 		try {
 			// load group's class
@@ -312,30 +303,37 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 			} else {
 				Class<?> cl0;
 				try {
-					cl0 = RMIClassLoader.loadClass(desc.getLocation(), groupClassName);
+					cl0 = RMIClassLoader.loadClass(desc.getLocation(),
+							groupClassName);
 				} catch (Exception ex) {
-					throw new ActivationException("Could not load group implementation class", ex);
+					throw new ActivationException(
+							"Could not load group implementation class", ex);
 				}
 				if (ActivationGroup.class.isAssignableFrom(cl0)) {
 					cl = cl0.asSubclass(ActivationGroup.class);
 				} else {
-					throw new ActivationException("group not correct class: " + cl0.getName());
+					throw new ActivationException("group not correct class: "
+							+ cl0.getName());
 				}
 			}
 
 			// create group
 			Constructor<? extends ActivationGroup> constructor = cl
-					.getConstructor(ActivationGroupID.class, MarshalledObject.class);
-			ActivationGroup newGroup = constructor.newInstance(id, desc.getData());
+					.getConstructor(ActivationGroupID.class,
+							MarshalledObject.class);
+			ActivationGroup newGroup = constructor.newInstance(id, desc
+					.getData());
 			currSystem = id.getSystem();
 			newGroup.incarnation = incarnation;
-			newGroup.monitor = currSystem.activeGroup(id, newGroup, incarnation);
+			newGroup.monitor = currSystem.activeGroup(id, newGroup,
+					incarnation);
 			currGroup = newGroup;
 			currGroupID = id;
 			canCreate = false;
 		} catch (InvocationTargetException e) {
 			e.getTargetException().printStackTrace();
-			throw new ActivationException("exception in group constructor", e.getTargetException());
+			throw new ActivationException("exception in group constructor", e
+					.getTargetException());
 
 		} catch (ActivationException e) {
 			throw e;
@@ -352,8 +350,9 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 	 * group is currently active for this VM.
 	 * 
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @return the activation group's identifier
 	 * @since 1.2
 	 */
@@ -369,11 +368,14 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 	 *
 	 * @return the activation group identifier
 	 * @exception ActivationException
-	 *                if error occurs during group creation, if security manager
-	 *                is not set, or if the group has already been created and
-	 *                deactivated.
+	 *                                if error occurs during group creation, if
+	 *                                security manager
+	 *                                is not set, or if the group has already
+	 *                                been created and
+	 *                                deactivated.
 	 */
-	static synchronized ActivationGroupID internalCurrentGroupID() throws ActivationException {
+	static synchronized ActivationGroupID internalCurrentGroupID()
+			throws ActivationException {
 		if (currGroupID == null)
 			throw new ActivationException("nonexistent group");
 
@@ -396,22 +398,29 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 	 * SecurityException.
 	 *
 	 * @param system
-	 *            remote reference to the <code>ActivationSystem</code>
+	 *               remote reference to the <code>ActivationSystem</code>
 	 * @exception ActivationException
-	 *                if activation system is already set
+	 *                                          if activation system is already
+	 *                                          set
 	 * @exception SecurityException
-	 *                if permission to set the activation system is denied.
-	 *                (Note: The default implementation of the security manager
-	 *                <code>checkSetFactory</code> method requires the
-	 *                RuntimePermission "setFactory")
+	 *                                          if permission to set the
+	 *                                          activation system is denied.
+	 *                                          (Note: The default
+	 *                                          implementation of the security
+	 *                                          manager
+	 *                                          <code>checkSetFactory</code>
+	 *                                          method requires the
+	 *                                          RuntimePermission "setFactory")
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @see #getSystem
 	 * @see SecurityManager#checkSetFactory
 	 * @since 1.2
 	 */
-	public static synchronized void setSystem(ActivationSystem system) throws ActivationException {
+	public static synchronized void setSystem(ActivationSystem system)
+			throws ActivationException {
 		SecurityManager security = System.getSecurityManager();
 		if (security != null)
 			security.checkSetFactory();
@@ -435,23 +444,28 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 	 *
 	 * @return the activation system for the VM/group
 	 * @exception ActivationException
-	 *                if activation system cannot be obtained or is not bound
-	 *                (means that it is not running)
+	 *                                          if activation system cannot be
+	 *                                          obtained or is not bound
+	 *                                          (means that it is not running)
 	 * @exception UnsupportedOperationException
-	 *                if and only if activation is not supported by this
-	 *                implementation
+	 *                                          if and only if activation is not
+	 *                                          supported by this
+	 *                                          implementation
 	 * @see #setSystem
 	 * @since 1.2
 	 */
-	public static synchronized ActivationSystem getSystem() throws ActivationException {
+	public static synchronized ActivationSystem getSystem()
+			throws ActivationException {
 		if (currSystem == null) {
 			try {
 				int port = AccessController.doPrivileged(new GetIntegerAction(
-						"java.rmi.activation.port", ActivationSystem.SYSTEM_PORT));
-				currSystem = (ActivationSystem) Naming
-						.lookup("//:" + port + "/java.rmi.activation.ActivationSystem");
+						"java.rmi.activation.port",
+						ActivationSystem.SYSTEM_PORT));
+				currSystem = (ActivationSystem) Naming.lookup("//:" + port
+						+ "/java.rmi.activation.ActivationSystem");
 			} catch (Exception e) {
-				throw new ActivationException("unable to obtain ActivationSystem", e);
+				throw new ActivationException(
+						"unable to obtain ActivationSystem", e);
 			}
 		}
 		return currSystem;
@@ -463,19 +477,20 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 	 * simply forwarded to the group's <code>ActivationMonitor</code>.
 	 *
 	 * @param id
-	 *            the object's identifier
+	 *             the object's identifier
 	 * @param mobj
-	 *            a marshalled object containing the remote object's stub
+	 *             a marshalled object containing the remote object's stub
 	 * @exception UnknownObjectException
-	 *                if object is not registered
+	 *                                   if object is not registered
 	 * @exception RemoteException
-	 *                if call informing monitor fails
+	 *                                   if call informing monitor fails
 	 * @exception ActivationException
-	 *                if an activation error occurs
+	 *                                   if an activation error occurs
 	 * @since 1.2
 	 */
-	protected void activeObject(ActivationID id, MarshalledObject<? extends Remote> mobj)
-			throws ActivationException, UnknownObjectException, RemoteException {
+	protected void activeObject(ActivationID id,
+			MarshalledObject<? extends Remote> mobj) throws ActivationException,
+			UnknownObjectException, RemoteException {
 		getMonitor().activeObject(id, mobj);
 	}
 
@@ -486,12 +501,13 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 	 * current group for the VM is set to null.
 	 *
 	 * @exception UnknownGroupException
-	 *                if group is not registered
+	 *                                  if group is not registered
 	 * @exception RemoteException
-	 *                if call informing monitor fails
+	 *                                  if call informing monitor fails
 	 * @since 1.2
 	 */
-	protected void inactiveGroup() throws UnknownGroupException, RemoteException {
+	protected void inactiveGroup() throws UnknownGroupException,
+			RemoteException {
 		try {
 			getMonitor().inactiveGroup(groupID, incarnation);
 		} finally {
@@ -524,9 +540,10 @@ public abstract class ActivationGroup extends UnicastRemoteObject
 	 * Returns the current group for the VM.
 	 * 
 	 * @exception ActivationException
-	 *                if current group is null (not active)
+	 *                                if current group is null (not active)
 	 */
-	static synchronized ActivationGroup currentGroup() throws ActivationException {
+	static synchronized ActivationGroup currentGroup()
+			throws ActivationException {
 		if (currGroup == null) {
 			throw new ActivationException("group is not active");
 		}

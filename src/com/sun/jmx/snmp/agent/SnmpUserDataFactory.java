@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.agent;
@@ -89,22 +69,26 @@ public interface SnmpUserDataFactory {
 	 * This method is called just after the SnmpPduPacket has been decoded.
 	 *
 	 * @param requestPdu
-	 *            The SnmpPduPacket received from the SNMP manager. <b>This
-	 *            parameter is owned by the SNMP framework and must be
-	 *            considered as transient.</b> If you wish to keep some of its
-	 *            content after this method returns (by storing it in the
-	 *            returned object for instance) you should clone that
-	 *            information.
+	 *                   The SnmpPduPacket received from the SNMP manager.
+	 *                   <b>This
+	 *                   parameter is owned by the SNMP framework and must be
+	 *                   considered as transient.</b> If you wish to keep some
+	 *                   of its
+	 *                   content after this method returns (by storing it in the
+	 *                   returned object for instance) you should clone that
+	 *                   information.
 	 *
 	 * @return A newly allocated user-data contextual object, or
 	 *         <code>null</code>
 	 * @exception SnmpStatusException
-	 *                If an SnmpStatusException is thrown, the request will be
-	 *                aborted.
+	 *                                If an SnmpStatusException is thrown, the
+	 *                                request will be
+	 *                                aborted.
 	 *
 	 * @since 1.5
 	 **/
-	public Object allocateUserData(SnmpPdu requestPdu) throws SnmpStatusException;
+	public Object allocateUserData(SnmpPdu requestPdu)
+			throws SnmpStatusException;
 
 	/**
 	 * Called by the <CODE>SnmpAdaptorServer</CODE> adaptor. Release a
@@ -115,19 +99,26 @@ public interface SnmpUserDataFactory {
 	 * creating the contextual object.
 	 *
 	 * @param userData
-	 *            The contextual object being released.
+	 *                    The contextual object being released.
 	 * @param responsePdu
-	 *            The SnmpPduPacket that will be sent back to the SNMP manager.
-	 *            <b>This parameter is owned by the SNMP framework and must be
-	 *            considered as transient.</b> If you wish to keep some of its
-	 *            content after this method returns you should clone that
-	 *            information.
+	 *                    The SnmpPduPacket that will be sent back to the SNMP
+	 *                    manager.
+	 *                    <b>This parameter is owned by the SNMP framework and
+	 *                    must be
+	 *                    considered as transient.</b> If you wish to keep some
+	 *                    of its
+	 *                    content after this method returns you should clone
+	 *                    that
+	 *                    information.
 	 *
 	 * @exception SnmpStatusException
-	 *                If an SnmpStatusException is thrown, the responsePdu is
-	 *                dropped and nothing is returned to to the manager.
+	 *                                If an SnmpStatusException is thrown, the
+	 *                                responsePdu is
+	 *                                dropped and nothing is returned to to the
+	 *                                manager.
 	 *
 	 * @since 1.5
 	 **/
-	public void releaseUserData(Object userData, SnmpPdu responsePdu) throws SnmpStatusException;
+	public void releaseUserData(Object userData, SnmpPdu responsePdu)
+			throws SnmpStatusException;
 }

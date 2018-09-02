@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -92,17 +72,18 @@ public class ReplicateScaleFilter extends ImageFilter {
 	 * Image as specified by the width and height parameters.
 	 * 
 	 * @param width
-	 *            the target width to scale the image
+	 *               the target width to scale the image
 	 * @param height
-	 *            the target height to scale the image
+	 *               the target height to scale the image
 	 * @throws IllegalArgumentException
-	 *             if <code>width</code> equals zero or <code>height</code>
-	 *             equals zero
+	 *                                  if <code>width</code> equals zero or
+	 *                                  <code>height</code>
+	 *                                  equals zero
 	 */
 	public ReplicateScaleFilter(int width, int height) {
 		if (width == 0 || height == 0) {
-			throw new IllegalArgumentException(
-					"Width (" + width + ") and height (" + height + ") must be non-zero");
+			throw new IllegalArgumentException("Width (" + width
+					+ ") and height (" + height + ") must be non-zero");
 		}
 		destWidth = width;
 		destHeight = height;
@@ -182,8 +163,8 @@ public class ReplicateScaleFilter extends ImageFilter {
 	 * image should avoid calling this method directly since that operation
 	 * could interfere with the filtering operation.
 	 */
-	public void setPixels(int x, int y, int w, int h, ColorModel model, byte pixels[], int off,
-			int scansize) {
+	public void setPixels(int x, int y, int w, int h, ColorModel model,
+			byte pixels[], int off, int scansize) {
 		if (srcrows == null || srccols == null) {
 			calculateMaps();
 		}
@@ -204,7 +185,8 @@ public class ReplicateScaleFilter extends ImageFilter {
 				outpix[dx] = pixels[srcoff + sx - x];
 			}
 			if (dx > dx1) {
-				consumer.setPixels(dx1, dy, dx - dx1, 1, model, outpix, dx1, destWidth);
+				consumer.setPixels(dx1, dy, dx - dx1, 1, model, outpix, dx1,
+						destWidth);
 			}
 		}
 	}
@@ -220,8 +202,8 @@ public class ReplicateScaleFilter extends ImageFilter {
 	 * image should avoid calling this method directly since that operation
 	 * could interfere with the filtering operation.
 	 */
-	public void setPixels(int x, int y, int w, int h, ColorModel model, int pixels[], int off,
-			int scansize) {
+	public void setPixels(int x, int y, int w, int h, ColorModel model,
+			int pixels[], int off, int scansize) {
 		if (srcrows == null || srccols == null) {
 			calculateMaps();
 		}
@@ -242,7 +224,8 @@ public class ReplicateScaleFilter extends ImageFilter {
 				outpix[dx] = pixels[srcoff + sx - x];
 			}
 			if (dx > dx1) {
-				consumer.setPixels(dx1, dy, dx - dx1, 1, model, outpix, dx1, destWidth);
+				consumer.setPixels(dx1, dy, dx - dx1, 1, model, outpix, dx1,
+						destWidth);
 			}
 		}
 	}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -92,19 +72,19 @@ abstract class CharacterData {
 			return CharacterDataLatin1.instance;
 		} else {
 			switch (ch >>> 16) { // plane 00-16
-			case (0):
-				return CharacterData00.instance;
-			case (1):
-				return CharacterData01.instance;
-			case (2):
-				return CharacterData02.instance;
-			case (14):
-				return CharacterData0E.instance;
-			case (15): // Private Use
-			case (16): // Private Use
-				return CharacterDataPrivateUse.instance;
-			default:
-				return CharacterDataUndefined.instance;
+				case (0):
+					return CharacterData00.instance;
+				case (1):
+					return CharacterData01.instance;
+				case (2):
+					return CharacterData02.instance;
+				case (14):
+					return CharacterData0E.instance;
+				case (15): // Private Use
+				case (16): // Private Use
+					return CharacterDataPrivateUse.instance;
+				default:
+					return CharacterDataUndefined.instance;
 			}
 		}
 	}

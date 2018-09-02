@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -64,8 +44,7 @@ final class ThreadGroupContext {
 	private BeanInfoFinder beanInfoFinder;
 	private PropertyEditorFinder propertyEditorFinder;
 
-	private ThreadGroupContext() {
-	}
+	private ThreadGroupContext() {}
 
 	boolean isDesignTime() {
 		return this.isDesignTime;
@@ -86,7 +65,8 @@ final class ThreadGroupContext {
 	}
 
 	BeanInfo getBeanInfo(Class<?> type) {
-		return (this.beanInfoCache != null) ? this.beanInfoCache.get(type) : null;
+		return (this.beanInfoCache != null) ? this.beanInfoCache.get(type)
+				: null;
 	}
 
 	BeanInfo putBeanInfo(Class<?> type, BeanInfo info) {

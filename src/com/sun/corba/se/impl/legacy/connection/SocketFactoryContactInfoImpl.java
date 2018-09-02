@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.legacy.connection;
@@ -39,7 +19,8 @@ import com.sun.corba.se.impl.transport.SocketOrChannelContactInfoImpl;
 /**
  * @author Harold Carr
  */
-public class SocketFactoryContactInfoImpl extends SocketOrChannelContactInfoImpl {
+public class SocketFactoryContactInfoImpl extends
+		SocketOrChannelContactInfoImpl {
 	protected ORBUtilSystemException wrapper;
 	protected SocketInfo socketInfo;
 
@@ -47,19 +28,20 @@ public class SocketFactoryContactInfoImpl extends SocketOrChannelContactInfoImpl
 	// See SocketOrChannelAcceptorImpl.createMessageMediator
 	// See SocketFactoryContactInfoImpl.constructor()
 	// See SocketOrChannelContactInfoImpl.constructor()
-	public SocketFactoryContactInfoImpl() {
-	}
+	public SocketFactoryContactInfoImpl() {}
 
-	public SocketFactoryContactInfoImpl(ORB orb, CorbaContactInfoList contactInfoList,
-			IOR effectiveTargetIOR, short addressingDisposition, SocketInfo cookie) {
+	public SocketFactoryContactInfoImpl(ORB orb,
+			CorbaContactInfoList contactInfoList, IOR effectiveTargetIOR,
+			short addressingDisposition, SocketInfo cookie) {
 		super(orb, contactInfoList);
 		this.effectiveTargetIOR = effectiveTargetIOR;
 		this.addressingDisposition = addressingDisposition;
 
-		wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_TRANSPORT);
+		wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_TRANSPORT);
 
-		socketInfo = orb.getORBData().getLegacySocketFactory().getEndPointInfo(orb,
-				effectiveTargetIOR, cookie);
+		socketInfo = orb.getORBData().getLegacySocketFactory().getEndPointInfo(
+				orb, effectiveTargetIOR, cookie);
 
 		socketType = socketInfo.getType();
 		hostname = socketInfo.getHost();
@@ -72,9 +54,10 @@ public class SocketFactoryContactInfoImpl extends SocketOrChannelContactInfoImpl
 	//
 
 	public Connection createConnection() {
-		Connection connection = new SocketFactoryConnectionImpl(orb, this,
-				orb.getORBData().connectionSocketUseSelectThreadToWait(),
-				orb.getORBData().connectionSocketUseWorkerThreadForEvent());
+		Connection connection = new SocketFactoryConnectionImpl(orb, this, orb
+				.getORBData().connectionSocketUseSelectThreadToWait(), orb
+						.getORBData()
+						.connectionSocketUseWorkerThreadForEvent());
 		return connection;
 	}
 
@@ -84,7 +67,8 @@ public class SocketFactoryContactInfoImpl extends SocketOrChannelContactInfoImpl
 	//
 
 	public String toString() {
-		return "SocketFactoryContactInfoImpl[" + socketType + " " + hostname + " " + port + "]";
+		return "SocketFactoryContactInfoImpl[" + socketType + " " + hostname
+				+ " " + port + "]";
 	}
 }
 

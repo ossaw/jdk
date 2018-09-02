@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.sasl;
@@ -58,7 +38,7 @@ public class SaslException extends IOException {
 	 * message. The root exception is null.
 	 * 
 	 * @param detail
-	 *            A possibly null string containing details of the exception.
+	 *               A possibly null string containing details of the exception.
 	 *
 	 * @see java.lang.Throwable#getMessage
 	 */
@@ -76,9 +56,9 @@ public class SaslException extends IOException {
 	 * by the callback handler.
 	 *
 	 * @param detail
-	 *            A possibly null string containing details of the exception.
+	 *               A possibly null string containing details of the exception.
 	 * @param ex
-	 *            A possibly null root exception that caused this exception.
+	 *               A possibly null root exception that caused this exception.
 	 *
 	 * @see java.lang.Throwable#getMessage
 	 * @see #getCause

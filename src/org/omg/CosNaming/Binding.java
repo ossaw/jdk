@@ -14,8 +14,7 @@ public final class Binding implements org.omg.CORBA.portable.IDLEntity {
 	// name
 	public org.omg.CosNaming.BindingType binding_type = null;
 
-	public Binding() {
-	} // ctor
+	public Binding() {} // ctor
 
 	public Binding(org.omg.CosNaming.NameComponent[] _binding_name,
 			org.omg.CosNaming.BindingType _binding_type) {

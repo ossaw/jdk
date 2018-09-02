@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.reflect;
@@ -41,9 +21,11 @@ public interface GenericDeclaration extends AnnotatedElement {
 	 * @return an array of {@code TypeVariable} objects that represent the type
 	 *         variables declared by this generic declaration
 	 * @throws GenericSignatureFormatError
-	 *             if the generic signature of this generic declaration does not
-	 *             conform to the format specified in <cite>The Java&trade;
-	 *             Virtual Machine Specification</cite>
+	 *                                     if the generic signature of this
+	 *                                     generic declaration does not
+	 *                                     conform to the format specified in
+	 *                                     <cite>The Java&trade;
+	 *                                     Virtual Machine Specification</cite>
 	 */
 	public TypeVariable<?>[] getTypeParameters();
 }

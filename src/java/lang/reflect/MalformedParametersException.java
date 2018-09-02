@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.reflect;
@@ -57,14 +37,13 @@ public class MalformedParametersException extends RuntimeException {
 	/**
 	 * Create a {@code MalformedParametersException} with an empty reason.
 	 */
-	public MalformedParametersException() {
-	}
+	public MalformedParametersException() {}
 
 	/**
 	 * Create a {@code MalformedParametersException}.
 	 *
 	 * @param reason
-	 *            The reason for the exception.
+	 *               The reason for the exception.
 	 */
 	public MalformedParametersException(String reason) {
 		super(reason);

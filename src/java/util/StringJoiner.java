@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util;
 
@@ -100,10 +80,11 @@ public final class StringJoiner {
 	 * unless {@code setEmptyValue} has first been called.
 	 *
 	 * @param delimiter
-	 *            the sequence of characters to be used between each element
-	 *            added to the {@code StringJoiner} value
+	 *                  the sequence of characters to be used between each
+	 *                  element
+	 *                  added to the {@code StringJoiner} value
 	 * @throws NullPointerException
-	 *             if {@code delimiter} is {@code null}
+	 *                              if {@code delimiter} is {@code null}
 	 */
 	public StringJoiner(CharSequence delimiter) {
 		this(delimiter, "", "");
@@ -118,17 +99,20 @@ public final class StringJoiner {
 	 * {@code setEmptyValue} has first been called.
 	 *
 	 * @param delimiter
-	 *            the sequence of characters to be used between each element
-	 *            added to the {@code StringJoiner}
+	 *                  the sequence of characters to be used between each
+	 *                  element
+	 *                  added to the {@code StringJoiner}
 	 * @param prefix
-	 *            the sequence of characters to be used at the beginning
+	 *                  the sequence of characters to be used at the beginning
 	 * @param suffix
-	 *            the sequence of characters to be used at the end
+	 *                  the sequence of characters to be used at the end
 	 * @throws NullPointerException
-	 *             if {@code prefix}, {@code delimiter}, or {@code suffix} is
-	 *             {@code null}
+	 *                              if {@code prefix}, {@code delimiter}, or
+	 *                              {@code suffix} is
+	 *                              {@code null}
 	 */
-	public StringJoiner(CharSequence delimiter, CharSequence prefix, CharSequence suffix) {
+	public StringJoiner(CharSequence delimiter, CharSequence prefix,
+			CharSequence suffix) {
 		Objects.requireNonNull(prefix, "The prefix must not be null");
 		Objects.requireNonNull(delimiter, "The delimiter must not be null");
 		Objects.requireNonNull(suffix, "The suffix must not be null");
@@ -148,15 +132,16 @@ public final class StringJoiner {
 	 * the element(s) added correspond to the empty {@code String}.
 	 *
 	 * @param emptyValue
-	 *            the characters to return as the value of an empty
-	 *            {@code StringJoiner}
+	 *                   the characters to return as the value of an empty
+	 *                   {@code StringJoiner}
 	 * @return this {@code StringJoiner} itself so the calls may be chained
 	 * @throws NullPointerException
-	 *             when the {@code emptyValue} parameter is {@code null}
+	 *                              when the {@code emptyValue} parameter is
+	 *                              {@code null}
 	 */
 	public StringJoiner setEmptyValue(CharSequence emptyValue) {
-		this.emptyValue = Objects.requireNonNull(emptyValue, "The empty value must not be null")
-				.toString();
+		this.emptyValue = Objects.requireNonNull(emptyValue,
+				"The empty value must not be null").toString();
 		return this;
 	}
 
@@ -191,7 +176,7 @@ public final class StringJoiner {
 	 * then {@code "null"} is added.
 	 *
 	 * @param newElement
-	 *            The element to add
+	 *                   The element to add
 	 * @return a reference to this {@code StringJoiner}
 	 */
 	public StringJoiner add(CharSequence newElement) {
@@ -216,10 +201,11 @@ public final class StringJoiner {
 	 * single element.
 	 *
 	 * @param other
-	 *            The {@code StringJoiner} whose contents should be merged into
-	 *            this one
+	 *              The {@code StringJoiner} whose contents should be merged
+	 *              into
+	 *              this one
 	 * @throws NullPointerException
-	 *             if the other {@code StringJoiner} is null
+	 *                              if the other {@code StringJoiner} is null
 	 * @return This {@code StringJoiner}
 	 */
 	public StringJoiner merge(StringJoiner other) {
@@ -257,6 +243,7 @@ public final class StringJoiner {
 		// Remember that we never actually append the suffix unless we return
 		// the full (present) value or some sub-string or length of it, so that
 		// we can add on more if we need to.
-		return (value != null ? value.length() + suffix.length() : emptyValue.length());
+		return (value != null ? value.length() + suffix.length()
+				: emptyValue.length());
 	}
 }

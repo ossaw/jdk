@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -115,8 +95,9 @@ public class NamingException extends Exception {
 	 * fields are set to null.
 	 *
 	 * @param explanation
-	 *            A possibly null string containing additional detail about this
-	 *            exception.
+	 *                    A possibly null string containing additional detail
+	 *                    about this
+	 *                    exception.
 	 * @see java.lang.Throwable#getMessage
 	 */
 	public NamingException(String explanation) {
@@ -200,8 +181,8 @@ public class NamingException extends Exception {
 	 * vice versa.
 	 *
 	 * @param name
-	 *            The possibly null name to set resolved name to. If null, it
-	 *            sets the resolved name field to null.
+	 *             The possibly null name to set resolved name to. If null, it
+	 *             sets the resolved name field to null.
 	 * @see #getResolvedName
 	 */
 	public void setResolvedName(Name name) {
@@ -224,8 +205,8 @@ public class NamingException extends Exception {
 	 * vice versa.
 	 * 
 	 * @param name
-	 *            The possibly null name to set remaining name to. If null, it
-	 *            sets the remaining name field to null.
+	 *             The possibly null name to set remaining name to. If null, it
+	 *             sets the remaining name field to null.
 	 * @see #getRemainingName
 	 * @see #appendRemainingName
 	 * @see #appendRemainingComponent
@@ -253,8 +234,9 @@ public class NamingException extends Exception {
 	 * Add name as the last component in remaining name.
 	 * 
 	 * @param name
-	 *            The component to add. If name is null, this method does not do
-	 *            anything.
+	 *             The component to add. If name is null, this method does not
+	 *             do
+	 *             anything.
 	 * @see #setRemainingName
 	 * @see #getRemainingName
 	 * @see #appendRemainingName
@@ -283,8 +265,8 @@ public class NamingException extends Exception {
 	 * name field in this NamingException and vice versa.
 	 * 
 	 * @param name
-	 *            The possibly null name containing ordered components to add.
-	 *            If name is null, this method does not do anything.
+	 *             The possibly null name containing ordered components to add.
+	 *             If name is null, this method does not do anything.
 	 * @see #setRemainingName
 	 * @see #getRemainingName
 	 * @see #appendRemainingComponent
@@ -335,9 +317,9 @@ public class NamingException extends Exception {
 	 * recording this information.
 	 *
 	 * @param e
-	 *            The possibly null exception that caused the naming operation
-	 *            to fail. If null, it means this naming exception has no root
-	 *            cause.
+	 *          The possibly null exception that caused the naming operation
+	 *          to fail. If null, it means this naming exception has no root
+	 *          cause.
 	 * @see #getRootCause
 	 * @see #rootException
 	 * @see #initCause
@@ -369,15 +351,17 @@ public class NamingException extends Exception {
 	 * This method may be called at most once.
 	 *
 	 * @param cause
-	 *            the cause, which is saved for later retrieval by the
-	 *            {@link #getCause()} method. A <tt>null</tt> value indicates
-	 *            that the cause is nonexistent or unknown.
+	 *              the cause, which is saved for later retrieval by the
+	 *              {@link #getCause()} method. A <tt>null</tt> value indicates
+	 *              that the cause is nonexistent or unknown.
 	 * @return a reference to this <code>NamingException</code> instance.
 	 * @throws IllegalArgumentException
-	 *             if <code>cause</code> is this exception. (A throwable cannot
-	 *             be its own cause.)
+	 *                                  if <code>cause</code> is this exception.
+	 *                                  (A throwable cannot
+	 *                                  be its own cause.)
 	 * @throws IllegalStateException
-	 *             if this method has already been called on this exception.
+	 *                                  if this method has already been called
+	 *                                  on this exception.
 	 * @see #getCause
 	 * @since 1.4
 	 */
@@ -418,8 +402,9 @@ public class NamingException extends Exception {
 	 * meant to be interpreted programmatically.
 	 *
 	 * @param detail
-	 *            If true, include details about the resolved object in addition
-	 *            to the other information.
+	 *               If true, include details about the resolved object in
+	 *               addition
+	 *               to the other information.
 	 * @return The non-null string containing the string representation.
 	 */
 	public String toString(boolean detail) {

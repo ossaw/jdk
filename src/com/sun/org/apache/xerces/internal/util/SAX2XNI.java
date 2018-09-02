@@ -4,43 +4,34 @@
  */
 /*
  * The Apache Software License, Version 1.1
- *
- *
- * Copyright (c) 2000-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 2000-2002 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Xerces" and "Apache Software Foundation" must
- *    not be used to endorse or promote products derived from this
- *    software without prior written permission. For written
- *    permission, please contact apache@apache.org.
- *
+ * not be used to endorse or promote products derived from this
+ * software without prior written permission. For written
+ * permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    nor may "Apache" appear in their name, without prior written
- *    permission of the Apache Software Foundation.
- *
+ * nor may "Apache" appear in their name, without prior written
+ * permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -50,11 +41,10 @@
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
  * individuals on behalf of the Apache Software Foundation and was
  * originally based on software copyright (c) 1999, International
- * Business Machines, Inc., http://www.apache.org.  For more
+ * Business Machines, Inc., http://www.apache.org. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -130,16 +120,18 @@ public class SAX2XNI implements ContentHandler, XMLDocumentSource {
 		}
 	}
 
-	public void startElement(String uri, String local, String qname, Attributes att)
-			throws SAXException {
+	public void startElement(String uri, String local, String qname,
+			Attributes att) throws SAXException {
 		try {
-			fCore.startElement(createQName(uri, local, qname), createAttributes(att), null);
+			fCore.startElement(createQName(uri, local, qname), createAttributes(
+					att), null);
 		} catch (WrappedSAXException e) {
 			throw e.exception;
 		}
 	}
 
-	public void endElement(String uri, String local, String qname) throws SAXException {
+	public void endElement(String uri, String local, String qname)
+			throws SAXException {
 		try {
 			fCore.endElement(createQName(uri, local, qname), null);
 		} catch (WrappedSAXException e) {
@@ -147,7 +139,8 @@ public class SAX2XNI implements ContentHandler, XMLDocumentSource {
 		}
 	}
 
-	public void characters(char[] buf, int offset, int len) throws SAXException {
+	public void characters(char[] buf, int offset, int len)
+			throws SAXException {
 		try {
 			fCore.characters(new XMLString(buf, offset, len), null);
 		} catch (WrappedSAXException e) {
@@ -155,7 +148,8 @@ public class SAX2XNI implements ContentHandler, XMLDocumentSource {
 		}
 	}
 
-	public void ignorableWhitespace(char[] buf, int offset, int len) throws SAXException {
+	public void ignorableWhitespace(char[] buf, int offset, int len)
+			throws SAXException {
 		try {
 			fCore.ignorableWhitespace(new XMLString(buf, offset, len), null);
 		} catch (WrappedSAXException e) {
@@ -172,16 +166,17 @@ public class SAX2XNI implements ContentHandler, XMLDocumentSource {
 		nsContext.popContext();
 	}
 
-	public void processingInstruction(String target, String data) throws SAXException {
+	public void processingInstruction(String target, String data)
+			throws SAXException {
 		try {
-			fCore.processingInstruction(symbolize(target), createXMLString(data), null);
+			fCore.processingInstruction(symbolize(target), createXMLString(
+					data), null);
 		} catch (WrappedSAXException e) {
 			throw e.exception;
 		}
 	}
 
-	public void skippedEntity(String name) {
-	}
+	public void skippedEntity(String name) {}
 
 	private Locator locator;
 
@@ -213,7 +208,8 @@ public class SAX2XNI implements ContentHandler, XMLDocumentSource {
 		if (uri != null && uri.length() == 0)
 			uri = null; // XNI uses null whereas SAX uses the empty string
 
-		return new QName(symbolize(prefix), symbolize(local), symbolize(raw), symbolize(uri));
+		return new QName(symbolize(prefix), symbolize(local), symbolize(raw),
+				symbolize(uri));
 	}
 
 	/** Symbolizes the specified string. */
@@ -240,8 +236,8 @@ public class SAX2XNI implements ContentHandler, XMLDocumentSource {
 		xa.removeAllAttributes();
 		int len = att.getLength();
 		for (int i = 0; i < len; i++)
-			xa.addAttribute(createQName(att.getURI(i), att.getLocalName(i), att.getQName(i)),
-					att.getType(i), att.getValue(i));
+			xa.addAttribute(createQName(att.getURI(i), att.getLocalName(i), att
+					.getQName(i)), att.getType(i), att.getValue(i));
 		return xa;
 	}
 }

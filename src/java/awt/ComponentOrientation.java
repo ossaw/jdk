@@ -1,37 +1,15 @@
 /*
  * Copyright (c) 1998, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright IBM Corp. 1998 - All Rights Reserved
- *
  * The original version of this source code and documentation is copyrighted
  * and owned by IBM, Inc. These materials are provided under terms of a
  * License Agreement between IBM and Sun. This technology is protected by
  * multiple US and International patents. This notice and attribution to IBM
  * may not be removed.
- *
  */
 
 package java.awt;
@@ -114,7 +92,8 @@ public final class ComponentOrientation implements java.io.Serializable {
 	 * Items run right to left and lines flow top to bottom Examples: Arabic,
 	 * Hebrew.
 	 */
-	public static final ComponentOrientation RIGHT_TO_LEFT = new ComponentOrientation(HORIZ_BIT);
+	public static final ComponentOrientation RIGHT_TO_LEFT = new ComponentOrientation(
+			HORIZ_BIT);
 
 	/**
 	 * Indicates that a component's orientation has not been set. To preserve
@@ -146,7 +125,7 @@ public final class ComponentOrientation implements java.io.Serializable {
 	 * Returns the orientation that is appropriate for the given locale.
 	 * 
 	 * @param locale
-	 *            the specified locale
+	 *               the specified locale
 	 */
 	public static ComponentOrientation getOrientation(Locale locale) {
 		// A more flexible implementation would consult a ResourceBundle
@@ -154,7 +133,8 @@ public final class ComponentOrientation implements java.io.Serializable {
 		// are introduced however, the flexiblity isn't really needed.
 		// So we choose efficiency instead.
 		String lang = locale.getLanguage();
-		if ("iw".equals(lang) || "ar".equals(lang) || "fa".equals(lang) || "ur".equals(lang)) {
+		if ("iw".equals(lang) || "ar".equals(lang) || "fa".equals(lang) || "ur"
+				.equals(lang)) {
 			return RIGHT_TO_LEFT;
 		} else {
 			return LEFT_TO_RIGHT;

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,15 +36,15 @@ import com.sun.org.apache.xpath.internal.res.XPATHErrorResources;
  * Serves as common interface for axes Walkers, and stores common state
  * variables.
  */
-public class AxesWalker extends PredicatedNodeTest
-		implements Cloneable, PathComponent, ExpressionOwner {
+public class AxesWalker extends PredicatedNodeTest implements Cloneable,
+		PathComponent, ExpressionOwner {
 	static final long serialVersionUID = -2966031951306601247L;
 
 	/**
 	 * Construct an AxesWalker using a LocPathIterator.
 	 *
 	 * @param locPathIterator
-	 *            non-null reference to the parent iterator.
+	 *                        non-null reference to the parent iterator.
 	 */
 	public AxesWalker(LocPathIterator locPathIterator, int axis) {
 		super(locPathIterator);
@@ -62,12 +59,13 @@ public class AxesWalker extends PredicatedNodeTest
 	 * Initialize an AxesWalker during the parse of the XPath expression.
 	 *
 	 * @param compiler
-	 *            The Compiler object that has information about this walker in
-	 *            the op map.
+	 *                 The Compiler object that has information about this
+	 *                 walker in
+	 *                 the op map.
 	 * @param opPos
-	 *            The op code position of this location step.
+	 *                 The op code position of this location step.
 	 * @param stepType
-	 *            The type of location step.
+	 *                 The type of location step.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -104,11 +102,12 @@ public class AxesWalker extends PredicatedNodeTest
 	 * already cloned version.
 	 *
 	 * @param cloneOwner
-	 *            non-null reference to the cloned location path iterator to
-	 *            which this clone will be added.
+	 *                   non-null reference to the cloned location path iterator
+	 *                   to
+	 *                   which this clone will be added.
 	 * @param cloneList
-	 *            non-null vector of sources in odd elements, and the
-	 *            corresponding clones in even vectors.
+	 *                   non-null vector of sources in odd elements, and the
+	 *                   corresponding clones in even vectors.
 	 *
 	 * @return non-null clone, which may be a new clone, or may be a clone
 	 *         contained on the cloneList.
@@ -135,7 +134,8 @@ public class AxesWalker extends PredicatedNodeTest
 		// recursive infinate loop.
 		if (null != cloneList) {
 			if (null != m_prevWalker)
-				clone.m_prevWalker = m_prevWalker.cloneDeep(cloneOwner, cloneList);
+				clone.m_prevWalker = m_prevWalker.cloneDeep(cloneOwner,
+						cloneList);
 		} else {
 			if (null != m_nextWalker)
 				clone.m_nextWalker.m_prevWalker = clone;
@@ -147,10 +147,10 @@ public class AxesWalker extends PredicatedNodeTest
 	 * Find a clone that corresponds to the key argument.
 	 *
 	 * @param key
-	 *            The original AxesWalker for which there may be a clone.
+	 *                  The original AxesWalker for which there may be a clone.
 	 * @param cloneList
-	 *            vector of sources in odd elements, and the corresponding
-	 *            clones in even vectors, may be null.
+	 *                  vector of sources in odd elements, and the corresponding
+	 *                  clones in even vectors, may be null.
 	 *
 	 * @return A clone that corresponds to the key, or null if key not found.
 	 */
@@ -206,7 +206,7 @@ public class AxesWalker extends PredicatedNodeTest
 	 * interface).
 	 *
 	 * @param root
-	 *            The context node of this step.
+	 *             The context node of this step.
 	 */
 	public void setRoot(int root) {
 		// %OPT% Get this directly from the lpi.
@@ -219,18 +219,18 @@ public class AxesWalker extends PredicatedNodeTest
 		m_currentNode = root;
 
 		if (DTM.NULL == root) {
-			throw new RuntimeException(XSLMessages
-					.createXPATHMessage(XPATHErrorResources.ER_SETTING_WALKER_ROOT_TO_NULL, null)); // "\n
-																									// !!!!
-																									// Error!
-																									// Setting
-																									// the
-																									// root
-																									// of
-																									// a
-																									// walker
-																									// to
-																									// null!!!");
+			throw new RuntimeException(XSLMessages.createXPATHMessage(
+					XPATHErrorResources.ER_SETTING_WALKER_ROOT_TO_NULL, null)); // "\n
+																																			// !!!!
+																																			// Error!
+																																			// Setting
+																																			// the
+																																			// root
+																																			// of
+																																			// a
+																																			// walker
+																																			// to
+																																			// null!!!");
 		}
 
 		resetProximityPositions();
@@ -259,7 +259,7 @@ public class AxesWalker extends PredicatedNodeTest
 	 *
 	 *
 	 * @param walker
-	 *            Reference to AxesWalker derivative, or may be null.
+	 *               Reference to AxesWalker derivative, or may be null.
 	 */
 	public void setNextWalker(AxesWalker walker) {
 		m_nextWalker = walker;
@@ -280,8 +280,8 @@ public class AxesWalker extends PredicatedNodeTest
 	 *
 	 *
 	 * @param walker
-	 *            Reference to previous walker reference in the location step
-	 *            chain, or null.
+	 *               Reference to previous walker reference in the location step
+	 *               chain, or null.
 	 */
 	public void setPrevWalker(AxesWalker walker) {
 		m_prevWalker = walker;
@@ -303,7 +303,7 @@ public class AxesWalker extends PredicatedNodeTest
 	 * diagnostic purposes.
 	 *
 	 * @param n
-	 *            Node to return, or null.
+	 *          Node to return, or null.
 	 *
 	 * @return The argument.
 	 */
@@ -395,7 +395,7 @@ public class AxesWalker extends PredicatedNodeTest
 	 *
 	 *
 	 * @param xctxt
-	 *            XPath runtime context.
+	 *              XPath runtime context.
 	 *
 	 * @return the index of the last node that can be itterated to.
 	 */
@@ -492,10 +492,11 @@ public class AxesWalker extends PredicatedNodeTest
 	 * called.
 	 *
 	 * @param owner
-	 *            The owner of the visitor, where that path may be rewritten if
-	 *            needed.
+	 *                The owner of the visitor, where that path may be rewritten
+	 *                if
+	 *                needed.
 	 * @param visitor
-	 *            The visitor whose appropriate method will be called.
+	 *                The visitor whose appropriate method will be called.
 	 */
 	public void callVisitors(ExpressionOwner owner, XPathVisitor visitor) {
 		if (visitor.visitStep(owner, this)) {

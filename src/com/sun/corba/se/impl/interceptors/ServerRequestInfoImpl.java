@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.impl.interceptors;
 
@@ -70,7 +50,8 @@ import java.util.*;
  * Implementation of the ServerRequestInfo interface as specified in
  * orbos/99-12-02 section 5.4.3.
  */
-public final class ServerRequestInfoImpl extends RequestInfoImpl implements ServerRequestInfo {
+public final class ServerRequestInfoImpl extends RequestInfoImpl implements
+		ServerRequestInfo {
 	// The available constants for startingPointCall
 	static final int CALL_RECEIVE_REQUEST_SERVICE_CONTEXT = 0;
 
@@ -168,8 +149,7 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 	}
 
 	/*
-	 **********************************************************************
-	 * Access protection
+	 ********************************************************************** Access protection
 	 **********************************************************************/
 
 	// Method IDs for all methods in ServerRequestInfo. This allows for a
@@ -177,7 +157,8 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 	protected static final int MID_SENDING_EXCEPTION = MID_RI_LAST + 1;
 	protected static final int MID_OBJECT_ID = MID_RI_LAST + 2;
 	protected static final int MID_ADAPTER_ID = MID_RI_LAST + 3;
-	protected static final int MID_TARGET_MOST_DERIVED_INTERFACE = MID_RI_LAST + 4;
+	protected static final int MID_TARGET_MOST_DERIVED_INTERFACE = MID_RI_LAST
+			+ 4;
 	protected static final int MID_GET_SERVER_POLICY = MID_RI_LAST + 5;
 	protected static final int MID_SET_SLOT = MID_RI_LAST + 6;
 	protected static final int MID_TARGET_IS_A = MID_RI_LAST + 7;
@@ -204,37 +185,49 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 			//
 			// { r_rsc, r_req, s_rep, s_exc, s_oth }
 			// RequestInfo methods:
-			/* request_id */ { true, true, true, true, true },
-			/* operation */ { true, true, true, true, true },
-			/* arguments */ { false, true, true, false, false },
-			/* exceptions */ { false, true, true, true, true },
-			/* contexts */ { false, true, true, true, true },
+			/* request_id */ { true, true, true, true, true }, /* operation */ {
+					true, true, true, true, true }, /* arguments */ { false,
+							true, true, false, false }, /* exceptions */ {
+									false, true, true, true, true }, /*
+																		 * contexts
+																		 */ {
+											false, true, true, true, true },
 			/* operation_context */ { false, true, true, false, false },
-			/* result */ { false, false, true, false, false },
-			/* response_expected */ { true, true, true, true, true },
-			/* sync_scope */ { true, true, true, true, true },
-			/* reply_status */ { false, false, true, true, true },
-			/* forward_reference */ { false, false, false, false, true },
-			/* get_slot */ { true, true, true, true, true },
-			/* get_request_service_context */ { true, true, true, true, true },
-			/* get_reply_service_context */ { false, false, true, true, true },
+			/* result */ { false, false, true, false, false }, /*
+																 * response_expected
+																 */ { true,
+					true, true, true, true }, /* sync_scope */ { true, true,
+							true, true, true }, /* reply_status */ { false,
+									false, true, true, true }, /*
+																 * forward_reference
+																 */ { false,
+											false, false, false, true },
+			/* get_slot */ { true, true, true, true, true }, /*
+																 * get_request_service_context
+																 */ { true,
+					true, true, true, true }, /* get_reply_service_context */ {
+							false, false, true, true, true },
 			//
 			// ServerRequestInfo methods::
 			/* sending_exception */ { false, false, false, true, false },
 			/* object_id */ { false, true, true, true, true },
-			/* adapter_id */ { false, true, true, true, true },
-			/* target_most_derived_inte... */ { false, true, false, false, false },
-			/* get_server_policy */ { true, true, true, true, true },
-			/* set_slot */ { true, true, true, true, true },
-			/* target_is_a */ { false, true, false, false, false },
-			/* add_reply_service_context */ { true, true, true, true, true },
-			/* orb_id */ { false, true, true, true, true },
-			/* server_id */ { false, true, true, true, true },
-			/* adapter_name */ { false, true, true, true, true } };
+			/* adapter_id */ { false, true, true, true, true }, /*
+																 * target_most_derived_inte
+																 * ...
+																 */ { false,
+					true, false, false, false }, /* get_server_policy */ { true,
+							true, true, true, true }, /* set_slot */ { true,
+									true, true, true, true },
+			/* target_is_a */ { false, true, false, false, false }, /*
+																	 * add_reply_service_context
+																	 */ { true,
+					true, true, true, true }, /* orb_id */ { false, true, true,
+							true, true }, /* server_id */ { false, true, true,
+									true, true }, /* adapter_name */ { false,
+											true, true, true, true } };
 
 	/*
-	 **********************************************************************
-	 * Public interfaces
+	 ********************************************************************** Public interfaces
 	 **********************************************************************/
 
 	/**
@@ -413,7 +406,8 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 	/**
 	 * Allows Interceptors to add service contexts to the request.
 	 */
-	public void add_reply_service_context(ServiceContext service_context, boolean replace) {
+	public void add_reply_service_context(ServiceContext service_context,
+			boolean replace) {
 		// access is currently valid for all states:
 		// checkAccess( MID_ADD_REPLY_SERVICE_CONTEXT );
 
@@ -432,7 +426,8 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 
 			// This is during and ending point, so we now have enough
 			// information to add the reply service context.
-			addServiceContext(cachedReplyServiceContexts, scs, service_context, replace);
+			addServiceContext(cachedReplyServiceContexts, scs, service_context,
+					replace);
 		}
 
 		// We enqueue all adds for the following reasons:
@@ -469,9 +464,7 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 	// 3. Define entries in the validCall[][] table for interception points.
 
 	/*
-	 **********************************************************************
-	 * Public RequestInfo interfaces
-	 *
+	 ********************************************************************** Public RequestInfo interfaces
 	 * These are implemented here because they have differing implementations
 	 * depending on whether this is a client or a server request info object.
 	 **********************************************************************/
@@ -617,8 +610,8 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 			cachedRequestServiceContexts = new HashMap();
 		}
 
-		return getServiceContext(cachedRequestServiceContexts, request.getRequestServiceContexts(),
-				id);
+		return getServiceContext(cachedRequestServiceContexts, request
+				.getRequestServiceContexts(), id);
 	}
 
 	/**
@@ -631,12 +624,12 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 			cachedReplyServiceContexts = new HashMap();
 		}
 
-		return getServiceContext(cachedReplyServiceContexts, replyMessage.getServiceContexts(), id);
+		return getServiceContext(cachedReplyServiceContexts, replyMessage
+				.getServiceContexts(), id);
 	}
 
 	/*
-	 **********************************************************************
-	 * Private-scope classes and methods
+	 ********************************************************************** Private-scope classes and methods
 	 **********************************************************************/
 
 	// A command encapsulating a request to add a reply service context.
@@ -665,8 +658,8 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 				if (addReply.replace) {
 					addReplyServiceContextQueue.set(i, addReply);
 				} else {
-					throw stdWrapper
-							.serviceContextAddFailed(new Integer(cmd.service_context.context_id));
+					throw stdWrapper.serviceContextAddFailed(new Integer(
+							cmd.service_context.context_id));
 				}
 				break;
 			}
@@ -678,8 +671,7 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 	}
 
 	/*
-	 **********************************************************************
-	 * Package and protected-scope methods
+	 ********************************************************************** Package and protected-scope methods
 	 **********************************************************************/
 
 	/**
@@ -693,13 +685,15 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 		// If we are transitioning to ending point, we will now have a pointer
 		// to the reply service contexts, so we can execute all queued
 		// add reply service context requests.
-		if ((executionPoint == EXECUTION_POINT_ENDING) && (addReplyServiceContextQueue != null)) {
+		if ((executionPoint == EXECUTION_POINT_ENDING)
+				&& (addReplyServiceContextQueue != null)) {
 			int size = addReplyServiceContextQueue.size();
 			for (int i = 0; i < size; i++) {
 				AddReplyServiceContextCommand addReply = (AddReplyServiceContextCommand) addReplyServiceContextQueue
 						.get(i);
 				try {
-					add_reply_service_context(addReply.service_context, addReply.replace);
+					add_reply_service_context(addReply.service_context,
+							addReply.replace);
 				} catch (BAD_INV_ORDER e) {
 					// _REVISIT_ The only way this can happen is if during
 					// rrsc or rr, the interceptor tried to add with
@@ -719,8 +713,8 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 	/**
 	 * Stores the various sources of information used for this info object.
 	 */
-	protected void setInfo(CorbaMessageMediator request, ObjectAdapter oa, byte[] objectId,
-			ObjectKeyTemplate oktemp) {
+	protected void setInfo(CorbaMessageMediator request, ObjectAdapter oa,
+			byte[] objectId, ObjectKeyTemplate oktemp) {
 		this.request = request;
 		this.objectId = objectId;
 		this.oktemp = oktemp;
@@ -770,7 +764,8 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 	/**
 	 * Stores the various sources of information used for this info object.
 	 */
-	protected void setInfo(java.lang.Object servant, String targetMostDerivedInterface) {
+	protected void setInfo(java.lang.Object servant,
+			String targetMostDerivedInterface) {
 		this.servant = servant;
 		this.targetMostDerivedInterface = targetMostDerivedInterface;
 		this.isDynamic = (servant instanceof org.omg.PortableServer.DynamicImplementation)
@@ -791,17 +786,17 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 	protected void setReplyStatus(short replyStatus) {
 		super.setReplyStatus(replyStatus);
 		switch (replyStatus) {
-		case SUCCESSFUL.value:
-			endingPointCall = CALL_SEND_REPLY;
-			break;
-		case SYSTEM_EXCEPTION.value:
-		case USER_EXCEPTION.value:
-			endingPointCall = CALL_SEND_EXCEPTION;
-			break;
-		case LOCATION_FORWARD.value:
-		case TRANSPORT_RETRY.value:
-			endingPointCall = CALL_SEND_OTHER;
-			break;
+			case SUCCESSFUL.value:
+				endingPointCall = CALL_SEND_REPLY;
+				break;
+			case SYSTEM_EXCEPTION.value:
+			case USER_EXCEPTION.value:
+				endingPointCall = CALL_SEND_EXCEPTION;
+				break;
+			case LOCATION_FORWARD.value:
+			case TRANSPORT_RETRY.value:
+				endingPointCall = CALL_SEND_OTHER;
+				break;
 		}
 	}
 
@@ -844,25 +839,25 @@ public final class ServerRequestInfoImpl extends RequestInfoImpl implements Serv
 		// validCall table:
 		int validCallIndex = 0;
 		switch (currentExecutionPoint) {
-		case EXECUTION_POINT_STARTING:
-			validCallIndex = 0;
-			break;
-		case EXECUTION_POINT_INTERMEDIATE:
-			validCallIndex = 1;
-			break;
-		case EXECUTION_POINT_ENDING:
-			switch (endingPointCall) {
-			case CALL_SEND_REPLY:
-				validCallIndex = 2;
+			case EXECUTION_POINT_STARTING:
+				validCallIndex = 0;
 				break;
-			case CALL_SEND_EXCEPTION:
-				validCallIndex = 3;
+			case EXECUTION_POINT_INTERMEDIATE:
+				validCallIndex = 1;
 				break;
-			case CALL_SEND_OTHER:
-				validCallIndex = 4;
+			case EXECUTION_POINT_ENDING:
+				switch (endingPointCall) {
+					case CALL_SEND_REPLY:
+						validCallIndex = 2;
+						break;
+					case CALL_SEND_EXCEPTION:
+						validCallIndex = 3;
+						break;
+					case CALL_SEND_OTHER:
+						validCallIndex = 4;
+						break;
+				}
 				break;
-			}
-			break;
 		}
 
 		// Check the validCall table:

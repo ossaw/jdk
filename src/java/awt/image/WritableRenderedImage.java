@@ -1,36 +1,13 @@
 /*
  * Copyright (c) 1997, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
-/* ****************************************************************
- ******************************************************************
- ******************************************************************
- *** COPYRIGHT (c) Eastman Kodak Company, 1997
- *** As  an unpublished  work pursuant to Title 17 of the United
- *** States Code.  All rights reserved.
- ******************************************************************
- ******************************************************************
+/*
+ * ****************************************************************
+ ****************************************************************** COPYRIGHT (c) Eastman Kodak Company, 1997
+ *** As an unpublished work pursuant to Title 17 of the United
+ *** States Code. All rights reserved.
  ******************************************************************/
 
 package java.awt.image;
@@ -71,7 +48,7 @@ public interface WritableRenderedImage extends RenderedImage {
 	 * multiple notifications.
 	 * 
 	 * @param to
-	 *            the specified <code>TileObserver</code>
+	 *           the specified <code>TileObserver</code>
 	 */
 	public void addTileObserver(TileObserver to);
 
@@ -81,7 +58,7 @@ public interface WritableRenderedImage extends RenderedImage {
 	 * registered for one fewer.
 	 * 
 	 * @param to
-	 *            the specified <code>TileObserver</code>
+	 *           the specified <code>TileObserver</code>
 	 */
 	public void removeTileObserver(TileObserver to);
 
@@ -93,9 +70,9 @@ public interface WritableRenderedImage extends RenderedImage {
 	 * writer.
 	 *
 	 * @param tileX
-	 *            the X index of the tile.
+	 *              the X index of the tile.
 	 * @param tileY
-	 *            the Y index of the tile.
+	 *              the Y index of the tile.
 	 * @return a writable tile.
 	 */
 	public WritableRaster getWritableTile(int tileX, int tileY);
@@ -111,9 +88,9 @@ public interface WritableRenderedImage extends RenderedImage {
 	 * writers.
 	 *
 	 * @param tileX
-	 *            the X index of the tile.
+	 *              the X index of the tile.
 	 * @param tileY
-	 *            the Y index of the tile.
+	 *              the Y index of the tile.
 	 */
 	public void releaseWritableTile(int tileX, int tileY);
 
@@ -121,9 +98,9 @@ public interface WritableRenderedImage extends RenderedImage {
 	 * Returns whether a tile is currently checked out for writing.
 	 *
 	 * @param tileX
-	 *            the X index of the tile.
+	 *              the X index of the tile.
 	 * @param tileY
-	 *            the Y index of the tile.
+	 *              the Y index of the tile.
 	 * @return <code>true</code> if specified tile is checked out for writing;
 	 *         <code>false</code> otherwise.
 	 */
@@ -153,7 +130,7 @@ public interface WritableRenderedImage extends RenderedImage {
 	 * The operation is clipped to the bounds of the WritableRenderedImage.
 	 * 
 	 * @param r
-	 *            the specified <code>Raster</code>
+	 *          the specified <code>Raster</code>
 	 */
 	public void setData(Raster r);
 

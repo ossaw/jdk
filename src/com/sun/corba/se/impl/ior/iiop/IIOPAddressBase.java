@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior.iiop;
@@ -66,7 +46,8 @@ abstract class IIOPAddressBase implements IIOPAddress {
 
 		IIOPAddress other = (IIOPAddress) obj;
 
-		return getHost().equals(other.getHost()) && (getPort() == other.getPort());
+		return getHost().equals(other.getHost()) && (getPort() == other
+				.getPort());
 	}
 
 	public int hashCode() {

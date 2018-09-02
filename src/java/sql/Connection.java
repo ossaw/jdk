@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -98,8 +78,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 *
 	 * @return a new default <code>Statement</code> object
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed connection
 	 */
 	Statement createStatement() throws SQLException;
 
@@ -133,8 +114,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * @return a new default <code>PreparedStatement</code> object containing
 	 *         the pre-compiled SQL statement
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed connection
 	 */
 	PreparedStatement prepareStatement(String sql) throws SQLException;
 
@@ -165,8 +147,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * @return a new default <code>CallableStatement</code> object containing
 	 *         the pre-compiled SQL statement
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed connection
 	 */
 	CallableStatement prepareCall(String sql) throws SQLException;
 
@@ -181,8 +164,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 *            placeholders
 	 * @return the native form of this statement
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed connection
 	 */
 	String nativeSQL(String sql) throws SQLException;
 
@@ -214,12 +198,14 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * changed, the call is a no-op.
 	 *
 	 * @param autoCommit
-	 *            <code>true</code> to enable auto-commit mode;
-	 *            <code>false</code> to disable it
+	 *                   <code>true</code> to enable auto-commit mode;
+	 *                   <code>false</code> to disable it
 	 * @exception SQLException
-	 *                if a database access error occurs, setAutoCommit(true) is
-	 *                called while participating in a distributed transaction,
-	 *                or this method is called on a closed connection
+	 *                         if a database access error occurs,
+	 *                         setAutoCommit(true) is
+	 *                         called while participating in a distributed
+	 *                         transaction,
+	 *                         or this method is called on a closed connection
 	 * @see #getAutoCommit
 	 */
 	void setAutoCommit(boolean autoCommit) throws SQLException;
@@ -231,8 +217,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * @return the current state of this <code>Connection</code> object's
 	 *         auto-commit mode
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed connection
 	 * @see #setAutoCommit
 	 */
 	boolean getAutoCommit() throws SQLException;
@@ -244,10 +231,13 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * auto-commit mode has been disabled.
 	 *
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                while participating in a distributed transaction, if this
-	 *                method is called on a closed connection or this
-	 *                <code>Connection</code> object is in auto-commit mode
+	 *                         if a database access error occurs, this method is
+	 *                         called
+	 *                         while participating in a distributed transaction,
+	 *                         if this
+	 *                         method is called on a closed connection or this
+	 *                         <code>Connection</code> object is in auto-commit
+	 *                         mode
 	 * @see #setAutoCommit
 	 */
 	void commit() throws SQLException;
@@ -258,10 +248,13 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * This method should be used only when auto-commit mode has been disabled.
 	 *
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                while participating in a distributed transaction, this
-	 *                method is called on a closed connection or this
-	 *                <code>Connection</code> object is in auto-commit mode
+	 *                         if a database access error occurs, this method is
+	 *                         called
+	 *                         while participating in a distributed transaction,
+	 *                         this
+	 *                         method is called on a closed connection or this
+	 *                         <code>Connection</code> object is in auto-commit
+	 *                         mode
 	 * @see #setAutoCommit
 	 */
 	void rollback() throws SQLException;
@@ -281,7 +274,7 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * <P>
 	 *
 	 * @exception SQLException
-	 *                SQLException if a database access error occurs
+	 *                         SQLException if a database access error occurs
 	 */
 	void close() throws SQLException;
 
@@ -300,7 +293,7 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * @return <code>true</code> if this <code>Connection</code> object is
 	 *         closed; <code>false</code> if it is still open
 	 * @exception SQLException
-	 *                if a database access error occurs
+	 *                         if a database access error occurs
 	 */
 	boolean isClosed() throws SQLException;
 
@@ -317,8 +310,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * @return a <code>DatabaseMetaData</code> object for this
 	 *         <code>Connection</code> object
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed connection
 	 */
 	DatabaseMetaData getMetaData() throws SQLException;
 
@@ -330,12 +324,15 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * <B>Note:</B> This method cannot be called during a transaction.
 	 *
 	 * @param readOnly
-	 *            <code>true</code> enables read-only mode; <code>false</code>
-	 *            disables it
+	 *                 <code>true</code> enables read-only mode;
+	 *                 <code>false</code>
+	 *                 disables it
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                on a closed connection or this method is called during a
-	 *                transaction
+	 *                         if a database access error occurs, this method is
+	 *                         called
+	 *                         on a closed connection or this method is called
+	 *                         during a
+	 *                         transaction
 	 */
 	void setReadOnly(boolean readOnly) throws SQLException;
 
@@ -346,8 +343,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * @return <code>true</code> if this <code>Connection</code> object is
 	 *         read-only; <code>false</code> otherwise
 	 * @exception SQLException
-	 *                SQLException if a database access error occurs or this
-	 *                method is called on a closed connection
+	 *                         SQLException if a database access error occurs or
+	 *                         this
+	 *                         method is called on a closed connection
 	 */
 	boolean isReadOnly() throws SQLException;
 
@@ -366,11 +364,13 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * before a {@code Statement} is created or prepared.
 	 *
 	 * @param catalog
-	 *            the name of a catalog (subspace in this
-	 *            <code>Connection</code> object's database) in which to work
+	 *                the name of a catalog (subspace in this
+	 *                <code>Connection</code> object's database) in which to
+	 *                work
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed connection
 	 * @see #getCatalog
 	 */
 	void setCatalog(String catalog) throws SQLException;
@@ -380,8 +380,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 *
 	 * @return the current catalog name or <code>null</code> if there is none
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed connection
 	 * @see #setCatalog
 	 */
 	String getCatalog() throws SQLException;
@@ -439,17 +440,19 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * implementation-defined.
 	 *
 	 * @param level
-	 *            one of the following <code>Connection</code> constants:
-	 *            <code>Connection.TRANSACTION_READ_UNCOMMITTED</code>,
-	 *            <code>Connection.TRANSACTION_READ_COMMITTED</code>,
-	 *            <code>Connection.TRANSACTION_REPEATABLE_READ</code>, or
-	 *            <code>Connection.TRANSACTION_SERIALIZABLE</code>. (Note that
-	 *            <code>Connection.TRANSACTION_NONE</code> cannot be used
-	 *            because it specifies that transactions are not supported.)
+	 *              one of the following <code>Connection</code> constants:
+	 *              <code>Connection.TRANSACTION_READ_UNCOMMITTED</code>,
+	 *              <code>Connection.TRANSACTION_READ_COMMITTED</code>,
+	 *              <code>Connection.TRANSACTION_REPEATABLE_READ</code>, or
+	 *              <code>Connection.TRANSACTION_SERIALIZABLE</code>. (Note that
+	 *              <code>Connection.TRANSACTION_NONE</code> cannot be used
+	 *              because it specifies that transactions are not supported.)
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                on a closed connection or the given parameter is not one
-	 *                of the <code>Connection</code> constants
+	 *                         if a database access error occurs, this method is
+	 *                         called
+	 *                         on a closed connection or the given parameter is
+	 *                         not one
+	 *                         of the <code>Connection</code> constants
 	 * @see DatabaseMetaData#supportsTransactionIsolationLevel
 	 * @see #getTransactionIsolation
 	 */
@@ -467,8 +470,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 *         <code>Connection.TRANSACTION_SERIALIZABLE</code>, or
 	 *         <code>Connection.TRANSACTION_NONE</code>.
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed connection
 	 * @see #setTransactionIsolation
 	 */
 	int getTransactionIsolation() throws SQLException;
@@ -489,8 +493,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * @return the first <code>SQLWarning</code> object or <code>null</code> if
 	 *         there are none
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed connection
 	 * @see SQLWarning
 	 */
 	SQLWarning getWarnings() throws SQLException;
@@ -502,8 +507,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * <code>Connection</code> object.
 	 *
 	 * @exception SQLException
-	 *                SQLException if a database access error occurs or this
-	 *                method is called on a closed connection
+	 *                         SQLException if a database access error occurs or
+	 *                         this
+	 *                         method is called on a closed connection
 	 */
 	void clearWarnings() throws SQLException;
 
@@ -518,29 +524,36 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * {@link #getHoldability}.
 	 *
 	 * @param resultSetType
-	 *            a result set type; one of
-	 *            <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-	 *            <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-	 *            <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+	 *                             a result set type; one of
+	 *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+	 *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>,
+	 *                             or
+	 *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
 	 * @param resultSetConcurrency
-	 *            a concurrency type; one of
-	 *            <code>ResultSet.CONCUR_READ_ONLY</code> or
-	 *            <code>ResultSet.CONCUR_UPDATABLE</code>
+	 *                             a concurrency type; one of
+	 *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
+	 *                             <code>ResultSet.CONCUR_UPDATABLE</code>
 	 * @return a new <code>Statement</code> object that will generate
 	 *         <code>ResultSet</code> objects with the given type and
 	 *         concurrency
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                on a closed connection or the given parameters are not
-	 *                <code>ResultSet</code> constants indicating type and
-	 *                concurrency
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            on a closed connection or the
+	 *                                            given parameters are not
+	 *                                            <code>ResultSet</code>
+	 *                                            constants indicating type and
+	 *                                            concurrency
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method or this
-	 *                method is not supported for the specified result set type
-	 *                and result set concurrency.
+	 *                                            if the JDBC driver does not
+	 *                                            support this method or this
+	 *                                            method is not supported for
+	 *                                            the specified result set type
+	 *                                            and result set concurrency.
 	 * @since 1.2
 	 */
-	Statement createStatement(int resultSetType, int resultSetConcurrency) throws SQLException;
+	Statement createStatement(int resultSetType, int resultSetConcurrency)
+			throws SQLException;
 
 	/**
 	 *
@@ -552,34 +565,42 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * {@link #getHoldability}.
 	 *
 	 * @param sql
-	 *            a <code>String</code> object that is the SQL statement to be
-	 *            sent to the database; may contain one or more '?' IN
-	 *            parameters
+	 *                             a <code>String</code> object that is the SQL
+	 *                             statement to be
+	 *                             sent to the database; may contain one or more
+	 *                             '?' IN
+	 *                             parameters
 	 * @param resultSetType
-	 *            a result set type; one of
-	 *            <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-	 *            <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-	 *            <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+	 *                             a result set type; one of
+	 *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+	 *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>,
+	 *                             or
+	 *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
 	 * @param resultSetConcurrency
-	 *            a concurrency type; one of
-	 *            <code>ResultSet.CONCUR_READ_ONLY</code> or
-	 *            <code>ResultSet.CONCUR_UPDATABLE</code>
+	 *                             a concurrency type; one of
+	 *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
+	 *                             <code>ResultSet.CONCUR_UPDATABLE</code>
 	 * @return a new PreparedStatement object containing the pre-compiled SQL
 	 *         statement that will produce <code>ResultSet</code> objects with
 	 *         the given type and concurrency
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                on a closed connection or the given parameters are not
-	 *                <code>ResultSet</code> constants indicating type and
-	 *                concurrency
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            on a closed connection or the
+	 *                                            given parameters are not
+	 *                                            <code>ResultSet</code>
+	 *                                            constants indicating type and
+	 *                                            concurrency
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method or this
-	 *                method is not supported for the specified result set type
-	 *                and result set concurrency.
+	 *                                            if the JDBC driver does not
+	 *                                            support this method or this
+	 *                                            method is not supported for
+	 *                                            the specified result set type
+	 *                                            and result set concurrency.
 	 * @since 1.2
 	 */
-	PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency)
-			throws SQLException;
+	PreparedStatement prepareStatement(String sql, int resultSetType,
+			int resultSetConcurrency) throws SQLException;
 
 	/**
 	 * Creates a <code>CallableStatement</code> object that will generate
@@ -590,34 +611,42 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * {@link #getHoldability}.
 	 *
 	 * @param sql
-	 *            a <code>String</code> object that is the SQL statement to be
-	 *            sent to the database; may contain on or more '?' parameters
+	 *                             a <code>String</code> object that is the SQL
+	 *                             statement to be
+	 *                             sent to the database; may contain on or more
+	 *                             '?' parameters
 	 * @param resultSetType
-	 *            a result set type; one of
-	 *            <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-	 *            <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-	 *            <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+	 *                             a result set type; one of
+	 *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+	 *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>,
+	 *                             or
+	 *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
 	 * @param resultSetConcurrency
-	 *            a concurrency type; one of
-	 *            <code>ResultSet.CONCUR_READ_ONLY</code> or
-	 *            <code>ResultSet.CONCUR_UPDATABLE</code>
+	 *                             a concurrency type; one of
+	 *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
+	 *                             <code>ResultSet.CONCUR_UPDATABLE</code>
 	 * @return a new <code>CallableStatement</code> object containing the
 	 *         pre-compiled SQL statement that will produce
 	 *         <code>ResultSet</code> objects with the given type and
 	 *         concurrency
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                on a closed connection or the given parameters are not
-	 *                <code>ResultSet</code> constants indicating type and
-	 *                concurrency
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            on a closed connection or the
+	 *                                            given parameters are not
+	 *                                            <code>ResultSet</code>
+	 *                                            constants indicating type and
+	 *                                            concurrency
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method or this
-	 *                method is not supported for the specified result set type
-	 *                and result set concurrency.
+	 *                                            if the JDBC driver does not
+	 *                                            support this method or this
+	 *                                            method is not supported for
+	 *                                            the specified result set type
+	 *                                            and result set concurrency.
 	 * @since 1.2
 	 */
-	CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency)
-			throws SQLException;
+	CallableStatement prepareCall(String sql, int resultSetType,
+			int resultSetConcurrency) throws SQLException;
 
 	/**
 	 * Retrieves the <code>Map</code> object associated with this
@@ -638,10 +667,13 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * @return the <code>java.util.Map</code> object associated with this
 	 *         <code>Connection</code> object
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed connection
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 * @see #setTypeMap
 	 */
@@ -667,11 +699,15 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 *            replacement for this <code>Connection</code> object's default
 	 *            type map
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                on a closed connection or the given parameter is not a
-	 *                <code>java.util.Map</code> object
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            on a closed connection or the
+	 *                                            given parameter is not a
+	 *                                            <code>java.util.Map</code>
+	 *                                            object
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.2
 	 * @see #getTypeMap
 	 */
@@ -686,15 +722,18 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * determined by invoking {@link DatabaseMetaData#getResultSetHoldability}.
 	 *
 	 * @param holdability
-	 *            a <code>ResultSet</code> holdability constant; one of
-	 *            <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
-	 *            <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
+	 *                    a <code>ResultSet</code> holdability constant; one of
+	 *                    <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
+	 *                    <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
 	 * @throws SQLException
-	 *             if a database access occurs, this method is called on a
-	 *             closed connection, or the given parameter is not a
-	 *             <code>ResultSet</code> constant indicating holdability
+	 *                      if a database access occurs, this method is called
+	 *                      on a
+	 *                      closed connection, or the given parameter is not a
+	 *                      <code>ResultSet</code> constant indicating
+	 *                      holdability
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the given holdability is not supported
+	 *                                            if the given holdability is
+	 *                                            not supported
 	 * @see #getHoldability
 	 * @see DatabaseMetaData#getResultSetHoldability
 	 * @see ResultSet
@@ -710,8 +749,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 *         <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
 	 *         <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
 	 * @throws SQLException
-	 *             if a database access error occurs or this method is called on
-	 *             a closed connection
+	 *                      if a database access error occurs or this method is
+	 *                      called on
+	 *                      a closed connection
 	 * @see #setHoldability
 	 * @see DatabaseMetaData#getResultSetHoldability
 	 * @see ResultSet
@@ -729,13 +769,18 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 *
 	 * @return the new <code>Savepoint</code> object
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                while participating in a distributed transaction, this
-	 *                method is called on a closed connection or this
-	 *                <code>Connection</code> object is currently in auto-commit
-	 *                mode
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            while participating in a
+	 *                                            distributed transaction, this
+	 *                                            method is called on a closed
+	 *                                            connection or this
+	 *                                            <code>Connection</code> object
+	 *                                            is currently in auto-commit
+	 *                                            mode
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see Savepoint
 	 * @since 1.4
 	 */
@@ -750,16 +795,21 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * transaction will be started at this newly created savepoint.
 	 *
 	 * @param name
-	 *            a <code>String</code> containing the name of the savepoint
+	 *             a <code>String</code> containing the name of the savepoint
 	 * @return the new <code>Savepoint</code> object
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                while participating in a distributed transaction, this
-	 *                method is called on a closed connection or this
-	 *                <code>Connection</code> object is currently in auto-commit
-	 *                mode
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            while participating in a
+	 *                                            distributed transaction, this
+	 *                                            method is called on a closed
+	 *                                            connection or this
+	 *                                            <code>Connection</code> object
+	 *                                            is currently in auto-commit
+	 *                                            mode
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see Savepoint
 	 * @since 1.4
 	 */
@@ -772,16 +822,22 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * This method should be used only when auto-commit has been disabled.
 	 *
 	 * @param savepoint
-	 *            the <code>Savepoint</code> object to roll back to
+	 *                  the <code>Savepoint</code> object to roll back to
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                while participating in a distributed transaction, this
-	 *                method is called on a closed connection, the
-	 *                <code>Savepoint</code> object is no longer valid, or this
-	 *                <code>Connection</code> object is currently in auto-commit
-	 *                mode
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            while participating in a
+	 *                                            distributed transaction, this
+	 *                                            method is called on a closed
+	 *                                            connection, the
+	 *                                            <code>Savepoint</code> object
+	 *                                            is no longer valid, or this
+	 *                                            <code>Connection</code> object
+	 *                                            is currently in auto-commit
+	 *                                            mode
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see Savepoint
 	 * @see #rollback
 	 * @since 1.4
@@ -795,13 +851,18 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * <code>SQLException</code> to be thrown.
 	 *
 	 * @param savepoint
-	 *            the <code>Savepoint</code> object to be removed
+	 *                  the <code>Savepoint</code> object to be removed
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                on a closed connection or the given <code>Savepoint</code>
-	 *                object is not a valid savepoint in the current transaction
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            on a closed connection or the
+	 *                                            given <code>Savepoint</code>
+	 *                                            object is not a valid
+	 *                                            savepoint in the current
+	 *                                            transaction
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @since 1.4
 	 */
 	void releaseSavepoint(Savepoint savepoint) throws SQLException;
@@ -814,35 +875,46 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * holdability to be overridden.
 	 *
 	 * @param resultSetType
-	 *            one of the following <code>ResultSet</code> constants:
-	 *            <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-	 *            <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-	 *            <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+	 *                             one of the following <code>ResultSet</code>
+	 *                             constants:
+	 *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+	 *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>,
+	 *                             or
+	 *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
 	 * @param resultSetConcurrency
-	 *            one of the following <code>ResultSet</code> constants:
-	 *            <code>ResultSet.CONCUR_READ_ONLY</code> or
-	 *            <code>ResultSet.CONCUR_UPDATABLE</code>
+	 *                             one of the following <code>ResultSet</code>
+	 *                             constants:
+	 *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
+	 *                             <code>ResultSet.CONCUR_UPDATABLE</code>
 	 * @param resultSetHoldability
-	 *            one of the following <code>ResultSet</code> constants:
-	 *            <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
-	 *            <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
+	 *                             one of the following <code>ResultSet</code>
+	 *                             constants:
+	 *                             <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code>
+	 *                             or
+	 *                             <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
 	 * @return a new <code>Statement</code> object that will generate
 	 *         <code>ResultSet</code> objects with the given type, concurrency,
 	 *         and holdability
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                on a closed connection or the given parameters are not
-	 *                <code>ResultSet</code> constants indicating type,
-	 *                concurrency, and holdability
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            on a closed connection or the
+	 *                                            given parameters are not
+	 *                                            <code>ResultSet</code>
+	 *                                            constants indicating type,
+	 *                                            concurrency, and holdability
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method or this
-	 *                method is not supported for the specified result set type,
-	 *                result set holdability and result set concurrency.
+	 *                                            if the JDBC driver does not
+	 *                                            support this method or this
+	 *                                            method is not supported for
+	 *                                            the specified result set type,
+	 *                                            result set holdability and
+	 *                                            result set concurrency.
 	 * @see ResultSet
 	 * @since 1.4
 	 */
-	Statement createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability)
-			throws SQLException;
+	Statement createStatement(int resultSetType, int resultSetConcurrency,
+			int resultSetHoldability) throws SQLException;
 
 	/**
 	 * Creates a <code>PreparedStatement</code> object that will generate
@@ -854,40 +926,54 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * holdability to be overridden.
 	 *
 	 * @param sql
-	 *            a <code>String</code> object that is the SQL statement to be
-	 *            sent to the database; may contain one or more '?' IN
-	 *            parameters
+	 *                             a <code>String</code> object that is the SQL
+	 *                             statement to be
+	 *                             sent to the database; may contain one or more
+	 *                             '?' IN
+	 *                             parameters
 	 * @param resultSetType
-	 *            one of the following <code>ResultSet</code> constants:
-	 *            <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-	 *            <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-	 *            <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+	 *                             one of the following <code>ResultSet</code>
+	 *                             constants:
+	 *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+	 *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>,
+	 *                             or
+	 *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
 	 * @param resultSetConcurrency
-	 *            one of the following <code>ResultSet</code> constants:
-	 *            <code>ResultSet.CONCUR_READ_ONLY</code> or
-	 *            <code>ResultSet.CONCUR_UPDATABLE</code>
+	 *                             one of the following <code>ResultSet</code>
+	 *                             constants:
+	 *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
+	 *                             <code>ResultSet.CONCUR_UPDATABLE</code>
 	 * @param resultSetHoldability
-	 *            one of the following <code>ResultSet</code> constants:
-	 *            <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
-	 *            <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
+	 *                             one of the following <code>ResultSet</code>
+	 *                             constants:
+	 *                             <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code>
+	 *                             or
+	 *                             <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
 	 * @return a new <code>PreparedStatement</code> object, containing the
 	 *         pre-compiled SQL statement, that will generate
 	 *         <code>ResultSet</code> objects with the given type, concurrency,
 	 *         and holdability
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                on a closed connection or the given parameters are not
-	 *                <code>ResultSet</code> constants indicating type,
-	 *                concurrency, and holdability
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            on a closed connection or the
+	 *                                            given parameters are not
+	 *                                            <code>ResultSet</code>
+	 *                                            constants indicating type,
+	 *                                            concurrency, and holdability
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method or this
-	 *                method is not supported for the specified result set type,
-	 *                result set holdability and result set concurrency.
+	 *                                            if the JDBC driver does not
+	 *                                            support this method or this
+	 *                                            method is not supported for
+	 *                                            the specified result set type,
+	 *                                            result set holdability and
+	 *                                            result set concurrency.
 	 * @see ResultSet
 	 * @since 1.4
 	 */
-	PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency,
-			int resultSetHoldability) throws SQLException;
+	PreparedStatement prepareStatement(String sql, int resultSetType,
+			int resultSetConcurrency, int resultSetHoldability)
+			throws SQLException;
 
 	/**
 	 * Creates a <code>CallableStatement</code> object that will generate
@@ -897,39 +983,53 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * holdability to be overridden.
 	 *
 	 * @param sql
-	 *            a <code>String</code> object that is the SQL statement to be
-	 *            sent to the database; may contain on or more '?' parameters
+	 *                             a <code>String</code> object that is the SQL
+	 *                             statement to be
+	 *                             sent to the database; may contain on or more
+	 *                             '?' parameters
 	 * @param resultSetType
-	 *            one of the following <code>ResultSet</code> constants:
-	 *            <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-	 *            <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-	 *            <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+	 *                             one of the following <code>ResultSet</code>
+	 *                             constants:
+	 *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+	 *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>,
+	 *                             or
+	 *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
 	 * @param resultSetConcurrency
-	 *            one of the following <code>ResultSet</code> constants:
-	 *            <code>ResultSet.CONCUR_READ_ONLY</code> or
-	 *            <code>ResultSet.CONCUR_UPDATABLE</code>
+	 *                             one of the following <code>ResultSet</code>
+	 *                             constants:
+	 *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
+	 *                             <code>ResultSet.CONCUR_UPDATABLE</code>
 	 * @param resultSetHoldability
-	 *            one of the following <code>ResultSet</code> constants:
-	 *            <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
-	 *            <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
+	 *                             one of the following <code>ResultSet</code>
+	 *                             constants:
+	 *                             <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code>
+	 *                             or
+	 *                             <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
 	 * @return a new <code>CallableStatement</code> object, containing the
 	 *         pre-compiled SQL statement, that will generate
 	 *         <code>ResultSet</code> objects with the given type, concurrency,
 	 *         and holdability
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                on a closed connection or the given parameters are not
-	 *                <code>ResultSet</code> constants indicating type,
-	 *                concurrency, and holdability
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            on a closed connection or the
+	 *                                            given parameters are not
+	 *                                            <code>ResultSet</code>
+	 *                                            constants indicating type,
+	 *                                            concurrency, and holdability
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method or this
-	 *                method is not supported for the specified result set type,
-	 *                result set holdability and result set concurrency.
+	 *                                            if the JDBC driver does not
+	 *                                            support this method or this
+	 *                                            method is not supported for
+	 *                                            the specified result set type,
+	 *                                            result set holdability and
+	 *                                            result set concurrency.
 	 * @see ResultSet
 	 * @since 1.4
 	 */
-	CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency,
-			int resultSetHoldability) throws SQLException;
+	CallableStatement prepareCall(String sql, int resultSetType,
+			int resultSetConcurrency, int resultSetHoldability)
+			throws SQLException;
 
 	/**
 	 * Creates a default <code>PreparedStatement</code> object that has the
@@ -955,26 +1055,36 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * {@link #getHoldability}.
 	 *
 	 * @param sql
-	 *            an SQL statement that may contain one or more '?' IN parameter
-	 *            placeholders
+	 *                          an SQL statement that may contain one or more
+	 *                          '?' IN parameter
+	 *                          placeholders
 	 * @param autoGeneratedKeys
-	 *            a flag indicating whether auto-generated keys should be
-	 *            returned; one of <code>Statement.RETURN_GENERATED_KEYS</code>
-	 *            or <code>Statement.NO_GENERATED_KEYS</code>
+	 *                          a flag indicating whether auto-generated keys
+	 *                          should be
+	 *                          returned; one of
+	 *                          <code>Statement.RETURN_GENERATED_KEYS</code>
+	 *                          or <code>Statement.NO_GENERATED_KEYS</code>
 	 * @return a new <code>PreparedStatement</code> object, containing the
 	 *         pre-compiled SQL statement, that will have the capability of
 	 *         returning auto-generated keys
 	 * @exception SQLException
-	 *                if a database access error occurs, this method is called
-	 *                on a closed connection or the given parameter is not a
-	 *                <code>Statement</code> constant indicating whether
-	 *                auto-generated keys should be returned
+	 *                                            if a database access error
+	 *                                            occurs, this method is called
+	 *                                            on a closed connection or the
+	 *                                            given parameter is not a
+	 *                                            <code>Statement</code>
+	 *                                            constant indicating whether
+	 *                                            auto-generated keys should be
+	 *                                            returned
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method with a
-	 *                constant of Statement.RETURN_GENERATED_KEYS
+	 *                                            if the JDBC driver does not
+	 *                                            support this method with a
+	 *                                            constant of
+	 *                                            Statement.RETURN_GENERATED_KEYS
 	 * @since 1.4
 	 */
-	PreparedStatement prepareStatement(String sql, int autoGeneratedKeys) throws SQLException;
+	PreparedStatement prepareStatement(String sql, int autoGeneratedKeys)
+			throws SQLException;
 
 	/**
 	 * Creates a default <code>PreparedStatement</code> object capable of
@@ -1005,24 +1115,30 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * {@link #getHoldability}.
 	 *
 	 * @param sql
-	 *            an SQL statement that may contain one or more '?' IN parameter
-	 *            placeholders
+	 *                      an SQL statement that may contain one or more '?' IN
+	 *                      parameter
+	 *                      placeholders
 	 * @param columnIndexes
-	 *            an array of column indexes indicating the columns that should
-	 *            be returned from the inserted row or rows
+	 *                      an array of column indexes indicating the columns
+	 *                      that should
+	 *                      be returned from the inserted row or rows
 	 * @return a new <code>PreparedStatement</code> object, containing the
 	 *         pre-compiled statement, that is capable of returning the
 	 *         auto-generated keys designated by the given array of column
 	 *         indexes
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed connection
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 *
 	 * @since 1.4
 	 */
-	PreparedStatement prepareStatement(String sql, int columnIndexes[]) throws SQLException;
+	PreparedStatement prepareStatement(String sql, int columnIndexes[])
+			throws SQLException;
 
 	/**
 	 * Creates a default <code>PreparedStatement</code> object capable of
@@ -1053,23 +1169,29 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * {@link #getHoldability}.
 	 *
 	 * @param sql
-	 *            an SQL statement that may contain one or more '?' IN parameter
-	 *            placeholders
+	 *                    an SQL statement that may contain one or more '?' IN
+	 *                    parameter
+	 *                    placeholders
 	 * @param columnNames
-	 *            an array of column names indicating the columns that should be
-	 *            returned from the inserted row or rows
+	 *                    an array of column names indicating the columns that
+	 *                    should be
+	 *                    returned from the inserted row or rows
 	 * @return a new <code>PreparedStatement</code> object, containing the
 	 *         pre-compiled statement, that is capable of returning the
 	 *         auto-generated keys designated by the given array of column names
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                                            if a database access error
+	 *                                            occurs or this method is
+	 *                                            called
+	 *                                            on a closed connection
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 *
 	 * @since 1.4
 	 */
-	PreparedStatement prepareStatement(String sql, String columnNames[]) throws SQLException;
+	PreparedStatement prepareStatement(String sql, String columnNames[])
+			throws SQLException;
 
 	/**
 	 * Constructs an object that implements the <code>Clob</code> interface. The
@@ -1080,11 +1202,14 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * 
 	 * @return An object that implements the <code>Clob</code> interface
 	 * @throws SQLException
-	 *             if an object that implements the <code>Clob</code> interface
-	 *             can not be constructed, this method is called on a closed
-	 *             connection or a database access error occurs.
+	 *                      if an object that implements the <code>Clob</code>
+	 *                      interface
+	 *                      can not be constructed, this method is called on a
+	 *                      closed
+	 *                      connection or a database access error occurs.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this data type
+	 *                                            if the JDBC driver does not
+	 *                                            support this data type
 	 *
 	 * @since 1.6
 	 */
@@ -1099,11 +1224,14 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * 
 	 * @return An object that implements the <code>Blob</code> interface
 	 * @throws SQLException
-	 *             if an object that implements the <code>Blob</code> interface
-	 *             can not be constructed, this method is called on a closed
-	 *             connection or a database access error occurs.
+	 *                      if an object that implements the <code>Blob</code>
+	 *                      interface
+	 *                      can not be constructed, this method is called on a
+	 *                      closed
+	 *                      connection or a database access error occurs.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this data type
+	 *                                            if the JDBC driver does not
+	 *                                            support this data type
 	 *
 	 * @since 1.6
 	 */
@@ -1118,11 +1246,14 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * 
 	 * @return An object that implements the <code>NClob</code> interface
 	 * @throws SQLException
-	 *             if an object that implements the <code>NClob</code> interface
-	 *             can not be constructed, this method is called on a closed
-	 *             connection or a database access error occurs.
+	 *                      if an object that implements the <code>NClob</code>
+	 *                      interface
+	 *                      can not be constructed, this method is called on a
+	 *                      closed
+	 *                      connection or a database access error occurs.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this data type
+	 *                                            if the JDBC driver does not
+	 *                                            support this data type
 	 *
 	 * @since 1.6
 	 */
@@ -1137,11 +1268,13 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * 
 	 * @return An object that implements the <code>SQLXML</code> interface
 	 * @throws SQLException
-	 *             if an object that implements the <code>SQLXML</code>
-	 *             interface can not be constructed, this method is called on a
-	 *             closed connection or a database access error occurs.
+	 *                      if an object that implements the <code>SQLXML</code>
+	 *                      interface can not be constructed, this method is
+	 *                      called on a
+	 *                      closed connection or a database access error occurs.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this data type
+	 *                                            if the JDBC driver does not
+	 *                                            support this data type
 	 * @since 1.6
 	 */
 	SQLXML createSQLXML() throws SQLException;
@@ -1156,16 +1289,21 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * executed in the context of the current transaction.
 	 *
 	 * @param timeout
-	 *            - The time in seconds to wait for the database operation used
-	 *            to validate the connection to complete. If the timeout period
-	 *            expires before the operation completes, this method returns
-	 *            false. A value of 0 indicates a timeout is not applied to the
-	 *            database operation.
-	 *            <p>
+	 *                - The time in seconds to wait for the database operation
+	 *                used
+	 *                to validate the connection to complete. If the timeout
+	 *                period
+	 *                expires before the operation completes, this method
+	 *                returns
+	 *                false. A value of 0 indicates a timeout is not applied to
+	 *                the
+	 *                database operation.
+	 *                <p>
 	 * @return true if the connection is valid, false otherwise
 	 * @exception SQLException
-	 *                if the value supplied for <code>timeout</code> is less
-	 *                then 0
+	 *                         if the value supplied for <code>timeout</code> is
+	 *                         less
+	 *                         then 0
 	 * @since 1.6
 	 *
 	 * @see java.sql.DatabaseMetaData#getClientInfoProperties
@@ -1216,16 +1354,20 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * <p>
 	 * 
 	 * @param name
-	 *            The name of the client info property to set
+	 *              The name of the client info property to set
 	 * @param value
-	 *            The value to set the client info property to. If the value is
-	 *            null, the current value of the specified property is cleared.
-	 *            <p>
+	 *              The value to set the client info property to. If the value
+	 *              is
+	 *              null, the current value of the specified property is
+	 *              cleared.
+	 *              <p>
 	 * @throws SQLClientInfoException
-	 *             if the database server returns an error while setting the
-	 *             client info value on the database server or this method is
-	 *             called on a closed connection
-	 *             <p>
+	 *                                if the database server returns an error
+	 *                                while setting the
+	 *                                client info value on the database server
+	 *                                or this method is
+	 *                                called on a closed connection
+	 *                                <p>
 	 * @since 1.6
 	 */
 	void setClientInfo(String name, String value) throws SQLClientInfoException;
@@ -1251,16 +1393,18 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * <p>
 	 *
 	 * @param properties
-	 *            the list of client info properties to set
-	 *            <p>
+	 *                   the list of client info properties to set
+	 *                   <p>
 	 * @see java.sql.Connection#setClientInfo(String, String)
 	 *      setClientInfo(String, String)
 	 * @since 1.6
 	 *        <p>
 	 * @throws SQLClientInfoException
-	 *             if the database server returns an error while setting the
-	 *             clientInfo values on the database server or this method is
-	 *             called on a closed connection
+	 *                                if the database server returns an error
+	 *                                while setting the
+	 *                                clientInfo values on the database server
+	 *                                or this method is
+	 *                                called on a closed connection
 	 *
 	 */
 	void setClientInfo(Properties properties) throws SQLClientInfoException;
@@ -1278,15 +1422,17 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * <p>
 	 * 
 	 * @param name
-	 *            The name of the client info property to retrieve
-	 *            <p>
+	 *             The name of the client info property to retrieve
+	 *             <p>
 	 * @return The value of the client info property specified
 	 *         <p>
 	 * @throws SQLException
-	 *             if the database server returns an error when fetching the
-	 *             client info value from the database or this method is called
-	 *             on a closed connection
-	 *             <p>
+	 *                      if the database server returns an error when
+	 *                      fetching the
+	 *                      client info value from the database or this method
+	 *                      is called
+	 *                      on a closed connection
+	 *                      <p>
 	 * @since 1.6
 	 *
 	 * @see java.sql.DatabaseMetaData#getClientInfoProperties
@@ -1305,10 +1451,12 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 *         the driver.
 	 *         <p>
 	 * @throws SQLException
-	 *             if the database server returns an error when fetching the
-	 *             client info values from the database or this method is called
-	 *             on a closed connection
-	 *             <p>
+	 *                      if the database server returns an error when
+	 *                      fetching the
+	 *                      client info values from the database or this method
+	 *                      is called
+	 *                      on a closed connection
+	 *                      <p>
 	 * @since 1.6
 	 */
 	Properties getClientInfo() throws SQLException;
@@ -1330,21 +1478,28 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * thrown or the driver supports the resulting conversion.
 	 *
 	 * @param typeName
-	 *            the SQL name of the type the elements of the array map to. The
-	 *            typeName is a database-specific name which may be the name of
-	 *            a built-in type, a user-defined type or a standard SQL type
-	 *            supported by this database. This is the value returned by
-	 *            <code>Array.getBaseTypeName</code>
+	 *                 the SQL name of the type the elements of the array map
+	 *                 to. The
+	 *                 typeName is a database-specific name which may be the
+	 *                 name of
+	 *                 a built-in type, a user-defined type or a standard SQL
+	 *                 type
+	 *                 supported by this database. This is the value returned by
+	 *                 <code>Array.getBaseTypeName</code>
 	 * @param elements
-	 *            the elements that populate the returned object
+	 *                 the elements that populate the returned object
 	 * @return an Array object whose elements map to the specified SQL type
 	 * @throws SQLException
-	 *             if a database error occurs, the JDBC type is not appropriate
-	 *             for the typeName and the conversion is not supported, the
-	 *             typeName is null or this method is called on a closed
-	 *             connection
+	 *                                         if a database error occurs, the
+	 *                                         JDBC type is not appropriate
+	 *                                         for the typeName and the
+	 *                                         conversion is not supported, the
+	 *                                         typeName is null or this method
+	 *                                         is called on a closed
+	 *                                         connection
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the JDBC driver does not support this data type
+	 *                                         if the JDBC driver does not
+	 *                                         support this data type
 	 * @since 1.6
 	 */
 	Array createArrayOf(String typeName, Object[] elements) throws SQLException;
@@ -1353,24 +1508,29 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * Factory method for creating Struct objects.
 	 *
 	 * @param typeName
-	 *            the SQL type name of the SQL structured type that this
-	 *            <code>Struct</code> object maps to. The typeName is the name
-	 *            of a user-defined type that has been defined for this
-	 *            database. It is the value returned by
-	 *            <code>Struct.getSQLTypeName</code>.
+	 *                   the SQL type name of the SQL structured type that this
+	 *                   <code>Struct</code> object maps to. The typeName is the
+	 *                   name
+	 *                   of a user-defined type that has been defined for this
+	 *                   database. It is the value returned by
+	 *                   <code>Struct.getSQLTypeName</code>.
 	 * 
 	 * @param attributes
-	 *            the attributes that populate the returned object
+	 *                   the attributes that populate the returned object
 	 * @return a Struct object that maps to the given SQL type and is populated
 	 *         with the given attributes
 	 * @throws SQLException
-	 *             if a database error occurs, the typeName is null or this
-	 *             method is called on a closed connection
+	 *                                         if a database error occurs, the
+	 *                                         typeName is null or this
+	 *                                         method is called on a closed
+	 *                                         connection
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the JDBC driver does not support this data type
+	 *                                         if the JDBC driver does not
+	 *                                         support this data type
 	 * @since 1.6
 	 */
-	Struct createStruct(String typeName, Object[] attributes) throws SQLException;
+	Struct createStruct(String typeName, Object[] attributes)
+			throws SQLException;
 
 	// --------------------------JDBC 4.1 -----------------------------
 
@@ -1388,10 +1548,11 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * {@code Statement} is created or prepared.
 	 *
 	 * @param schema
-	 *            the name of a schema in which to work
+	 *               the name of a schema in which to work
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed connection
 	 * @see #getSchema
 	 * @since 1.7
 	 */
@@ -1402,8 +1563,9 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 *
 	 * @return the current schema name or <code>null</code> if there is none
 	 * @exception SQLException
-	 *                if a database access error occurs or this method is called
-	 *                on a closed connection
+	 *                         if a database access error occurs or this method
+	 *                         is called
+	 *                         on a closed connection
 	 * @see #setSchema
 	 * @since 1.7
 	 */
@@ -1435,15 +1597,16 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * <code>java.lang.SecurityException</code>.
 	 * 
 	 * @param executor
-	 *            The <code>Executor</code> implementation which will be used by
-	 *            <code>abort</code>.
+	 *                 The <code>Executor</code> implementation which will be
+	 *                 used by
+	 *                 <code>abort</code>.
 	 * @throws java.sql.SQLException
-	 *             if a database access error occurs or the {@code executor} is
-	 *             {@code null},
+	 *         if a database access error occurs or the {@code executor} is
+	 *         {@code null},
 	 * @throws java.lang.SecurityException
-	 *             if a security manager exists and its
-	 *             <code>checkPermission</code> method denies calling
-	 *             <code>abort</code>
+	 *         if a security manager exists and its
+	 *         <code>checkPermission</code> method denies calling
+	 *         <code>abort</code>
 	 * @see SecurityManager#checkPermission
 	 * @see Executor
 	 * @since 1.7
@@ -1511,25 +1674,32 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * a <code>java.lang.SecurityException</code>.
 	 *
 	 * @param executor
-	 *            The <code>Executor</code> implementation which will be used by
-	 *            <code>setNetworkTimeout</code>.
+	 *                     The <code>Executor</code> implementation which will
+	 *                     be used by
+	 *                     <code>setNetworkTimeout</code>.
 	 * @param milliseconds
-	 *            The time in milliseconds to wait for the database operation to
-	 *            complete. If the JDBC driver does not support milliseconds,
-	 *            the JDBC driver will round the value up to the nearest second.
-	 *            If the timeout period expires before the operation completes,
-	 *            a SQLException will be thrown. A value of 0 indicates that
-	 *            there is not timeout for database operations.
+	 *                     The time in milliseconds to wait for the database
+	 *                     operation to
+	 *                     complete. If the JDBC driver does not support
+	 *                     milliseconds,
+	 *                     the JDBC driver will round the value up to the
+	 *                     nearest second.
+	 *                     If the timeout period expires before the operation
+	 *                     completes,
+	 *                     a SQLException will be thrown. A value of 0 indicates
+	 *                     that
+	 *                     there is not timeout for database operations.
 	 * @throws java.sql.SQLException
-	 *             if a database access error occurs, this method is called on a
-	 *             closed connection, the {@code executor} is {@code null}, or
-	 *             the value specified for <code>seconds</code> is less than 0.
+	 *         if a database access error occurs, this method is called on a
+	 *         closed connection, the {@code executor} is {@code null}, or
+	 *         the value specified for <code>seconds</code> is less than 0.
 	 * @throws java.lang.SecurityException
-	 *             if a security manager exists and its
-	 *             <code>checkPermission</code> method denies calling
-	 *             <code>setNetworkTimeout</code>.
+	 *         if a security manager exists and its
+	 *         <code>checkPermission</code> method denies calling
+	 *         <code>setNetworkTimeout</code>.
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see SecurityManager#checkPermission
 	 * @see Statement#setQueryTimeout
 	 * @see #getNetworkTimeout
@@ -1537,7 +1707,8 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * @see Executor
 	 * @since 1.7
 	 */
-	void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException;
+	void setNetworkTimeout(Executor executor, int milliseconds)
+			throws SQLException;
 
 	/**
 	 * Retrieves the number of milliseconds the driver will wait for a database
@@ -1547,10 +1718,12 @@ public interface Connection extends Wrapper, AutoCloseable {
 	 * @return the current timeout limit in milliseconds; zero means there is no
 	 *         limit
 	 * @throws SQLException
-	 *             if a database access error occurs or this method is called on
-	 *             a closed <code>Connection</code>
+	 *                      if a database access error occurs or this method is
+	 *                      called on
+	 *                      a closed <code>Connection</code>
 	 * @exception SQLFeatureNotSupportedException
-	 *                if the JDBC driver does not support this method
+	 *                                            if the JDBC driver does not
+	 *                                            support this method
 	 * @see #setNetworkTimeout
 	 * @since 1.7
 	 */

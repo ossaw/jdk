@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp.internal;
 
@@ -125,10 +105,11 @@ public interface SnmpIncomingRequest {
 	 * byte array.
 	 *
 	 * @param outputBytes
-	 *            An array to receive the resulting encoding.
+	 *                    An array to receive the resulting encoding.
 	 *
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                If the result does not fit into the specified array.
+	 *                                           If the result does not fit into
+	 *                                           the specified array.
 	 */
 	public int encodeMessage(byte[] outputBytes) throws SnmpTooBigException;
 
@@ -137,15 +118,18 @@ public interface SnmpIncomingRequest {
 	 * message.
 	 *
 	 * @param inputBytes
-	 *            The bytes to be decoded.
+	 *                   The bytes to be decoded.
 	 *
 	 * @exception SnmpStatusException
-	 *                If the specified bytes are not a valid encoding or if the
-	 *                security applied to this request failed and no report is
-	 *                to be sent (typically trap PDU).
+	 *                                If the specified bytes are not a valid
+	 *                                encoding or if the
+	 *                                security applied to this request failed
+	 *                                and no report is
+	 *                                to be sent (typically trap PDU).
 	 */
-	public void decodeMessage(byte[] inputBytes, int byteCount, InetAddress address, int port)
-			throws SnmpStatusException, SnmpUnknownSecModelException, SnmpBadSecurityLevelException;
+	public void decodeMessage(byte[] inputBytes, int byteCount,
+			InetAddress address, int port) throws SnmpStatusException,
+			SnmpUnknownSecModelException, SnmpBadSecurityLevelException;
 
 	/**
 	 * Initializes the response to send with the passed Pdu.
@@ -154,17 +138,21 @@ public interface SnmpIncomingRequest {
 	 * throws an exception.
 	 *
 	 * @param p
-	 *            The PDU to be encoded.
+	 *                      The PDU to be encoded.
 	 * @param maxDataLength
-	 *            The maximum length permitted for the data field.
+	 *                      The maximum length permitted for the data field.
 	 *
 	 * @exception SnmpStatusException
-	 *                If the specified <CODE>pdu</CODE> is not valid.
+	 *                                           If the specified
+	 *                                           <CODE>pdu</CODE> is not valid.
 	 * @exception SnmpTooBigException
-	 *                If the resulting encoding does not fit into
-	 *                <CODE>maxDataLength</CODE> bytes.
+	 *                                           If the resulting encoding does
+	 *                                           not fit into
+	 *                                           <CODE>maxDataLength</CODE>
+	 *                                           bytes.
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                If the encoding exceeds <CODE>maxDataLength</CODE>.
+	 *                                           If the encoding exceeds
+	 *                                           <CODE>maxDataLength</CODE>.
 	 */
 	public SnmpMsg encodeSnmpPdu(SnmpPdu p, int maxDataLength)
 			throws SnmpStatusException, SnmpTooBigException;
@@ -176,7 +164,7 @@ public interface SnmpIncomingRequest {
 	 *
 	 * @return The resulting PDU.
 	 * @exception SnmpStatusException
-	 *                If the encoding is not valid.
+	 *                                If the encoding is not valid.
 	 */
 	public SnmpPdu decodeSnmpPdu() throws SnmpStatusException;
 

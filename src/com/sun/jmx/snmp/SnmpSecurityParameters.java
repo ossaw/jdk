@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp;
 
@@ -44,7 +24,7 @@ public interface SnmpSecurityParameters {
 	 * BER encoding of security parameters.
 	 * 
 	 * @param outputBytes
-	 *            Array to fill.
+	 *                    Array to fill.
 	 * @return Encoded parameters length.
 	 */
 	int encode(byte[] outputBytes) throws SnmpTooBigException;
@@ -53,7 +33,7 @@ public interface SnmpSecurityParameters {
 	 * BER decoding of security parameters.
 	 * 
 	 * @param params
-	 *            Encoded parameters.
+	 *               Encoded parameters.
 	 */
 	void decode(byte[] params) throws SnmpStatusException;
 

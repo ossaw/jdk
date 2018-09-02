@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.oa.poa;
@@ -54,8 +34,9 @@ final class ImplicitActivationPolicyImpl extends org.omg.CORBA.LocalObject
 	private ImplicitActivationPolicyValue value;
 
 	public String toString() {
-		return "ImplicitActivationPolicy["
-				+ ((value.value() == ImplicitActivationPolicyValue._IMPLICIT_ACTIVATION)
-						? "IMPLICIT_ACTIVATION" : "NO_IMPLICIT_ACTIVATION" + "]");
+		return "ImplicitActivationPolicy[" + ((value
+				.value() == ImplicitActivationPolicyValue._IMPLICIT_ACTIVATION)
+						? "IMPLICIT_ACTIVATION"
+						: "NO_IMPLICIT_ACTIVATION" + "]");
 	}
 }

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -61,8 +58,9 @@ public abstract class DTMAxisTraverser {
 	 * self node. <\p>
 	 *
 	 * @param context
-	 *            The context node of this traversal. This is the point that the
-	 *            traversal starts from.
+	 *                The context node of this traversal. This is the point that
+	 *                the
+	 *                traversal starts from.
 	 * @return the first node in the traversal.
 	 */
 	public int first(int context) {
@@ -79,10 +77,12 @@ public abstract class DTMAxisTraverser {
 	 * self node. <\p>
 	 *
 	 * @param context
-	 *            The context node of this traversal. This is the point of
-	 *            origin for the traversal -- its "root node" or starting point.
+	 *                       The context node of this traversal. This is the
+	 *                       point of
+	 *                       origin for the traversal -- its "root node" or
+	 *                       starting point.
 	 * @param extendedTypeID
-	 *            The extended type ID that must match.
+	 *                       The extended type ID that must match.
 	 *
 	 * @return the first node in the traversal.
 	 */
@@ -94,15 +94,20 @@ public abstract class DTMAxisTraverser {
 	 * Traverse to the next node after the current node.
 	 *
 	 * @param context
-	 *            The context node of this traversal. This is the point of
-	 *            origin for the traversal -- its "root node" or starting point.
+	 *                The context node of this traversal. This is the point of
+	 *                origin for the traversal -- its "root node" or starting
+	 *                point.
 	 * @param current
-	 *            The current node of the traversal. This is the last known
-	 *            location in the traversal, typically the node-handle returned
-	 *            by the previous traversal step. For the first traversal step,
-	 *            context should be set equal to current. Note that in order to
-	 *            test whether context is in the set, you must use the first()
-	 *            method instead.
+	 *                The current node of the traversal. This is the last known
+	 *                location in the traversal, typically the node-handle
+	 *                returned
+	 *                by the previous traversal step. For the first traversal
+	 *                step,
+	 *                context should be set equal to current. Note that in order
+	 *                to
+	 *                test whether context is in the set, you must use the
+	 *                first()
+	 *                method instead.
 	 *
 	 * @return the next node in the iteration, or DTM.NULL.
 	 * @see #first(int)
@@ -114,17 +119,24 @@ public abstract class DTMAxisTraverser {
 	 * extended type ID.
 	 *
 	 * @param context
-	 *            The context node of this traversal. This is the point of
-	 *            origin for the traversal -- its "root node" or starting point.
+	 *                       The context node of this traversal. This is the
+	 *                       point of
+	 *                       origin for the traversal -- its "root node" or
+	 *                       starting point.
 	 * @param current
-	 *            The current node of the traversal. This is the last known
-	 *            location in the traversal, typically the node-handle returned
-	 *            by the previous traversal step. For the first traversal step,
-	 *            context should be set equal to current. Note that in order to
-	 *            test whether context is in the set, you must use the first()
-	 *            method instead.
+	 *                       The current node of the traversal. This is the last
+	 *                       known
+	 *                       location in the traversal, typically the
+	 *                       node-handle returned
+	 *                       by the previous traversal step. For the first
+	 *                       traversal step,
+	 *                       context should be set equal to current. Note that
+	 *                       in order to
+	 *                       test whether context is in the set, you must use
+	 *                       the first()
+	 *                       method instead.
 	 * @param extendedTypeID
-	 *            The extended type ID that must match.
+	 *                       The extended type ID that must match.
 	 *
 	 * @return the next node in the iteration, or DTM.NULL.
 	 * @see #first(int,int)

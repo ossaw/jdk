@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.annotation;
@@ -44,14 +24,11 @@ import java.lang.annotation.Target;
  * For example, with the following class definitions:
  *
  * <pre>
- * class Animal {
- * }
+ * class Animal {}
  * 
- * class Dog extends Animal {
- * }
+ * class Dog extends Animal {}
  * 
- * class Cat extends Animal {
- * }
+ * class Cat extends Animal {}
  * </pre>
  *
  * <p>
@@ -64,14 +41,11 @@ import java.lang.annotation.Target;
  * 
  * <pre>
  * &#64;XmlSeeAlso({ Dog.class, Cat.class })
- * class Animal {
- * }
+ * class Animal {}
  * 
- * class Dog extends Animal {
- * }
+ * class Dog extends Animal {}
  * 
- * class Cat extends Animal {
- * }
+ * class Cat extends Animal {}
  * </pre>
  *
  * <p>

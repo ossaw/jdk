@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.corba;
@@ -34,7 +13,8 @@ package com.sun.corba.se.impl.corba;
 abstract public class TypeCodeImplHelper {
 	private static String _id = "IDL:omg.org/CORBA/TypeCode:1.0";
 
-	public static void insert(org.omg.CORBA.Any a, org.omg.CORBA.TypeCode that) {
+	public static void insert(org.omg.CORBA.Any a,
+			org.omg.CORBA.TypeCode that) {
 		org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
 		a.type(type());
 		write(out, that);
@@ -49,8 +29,8 @@ abstract public class TypeCodeImplHelper {
 
 	synchronized public static org.omg.CORBA.TypeCode type() {
 		if (__typeCode == null) {
-			__typeCode = org.omg.CORBA.ORB.init()
-					.get_primitive_tc(org.omg.CORBA.TCKind.tk_TypeCode);
+			__typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(
+					org.omg.CORBA.TCKind.tk_TypeCode);
 		}
 		return __typeCode;
 	}
@@ -59,7 +39,8 @@ abstract public class TypeCodeImplHelper {
 		return _id;
 	}
 
-	public static org.omg.CORBA.TypeCode read(org.omg.CORBA.portable.InputStream istream) {
+	public static org.omg.CORBA.TypeCode read(
+			org.omg.CORBA.portable.InputStream istream) {
 		return istream.read_TypeCode();
 	}
 
@@ -68,7 +49,8 @@ abstract public class TypeCodeImplHelper {
 		ostream.write_TypeCode(value);
 	}
 
-	public static void write(org.omg.CORBA.portable.OutputStream ostream, TypeCodeImpl value) {
+	public static void write(org.omg.CORBA.portable.OutputStream ostream,
+			TypeCodeImpl value) {
 		ostream.write_TypeCode(value);
 	}
 

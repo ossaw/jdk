@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -105,8 +102,8 @@ public class TreeWalkerImpl implements TreeWalker {
 	/** Return the current Node. */
 	public void setCurrentNode(Node node) {
 		if (node == null) {
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-					"NOT_SUPPORTED_ERR", null);
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR", null);
 			throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
 		}
 
@@ -419,7 +416,8 @@ public class TreeWalkerImpl implements TreeWalker {
 		if (node == null)
 			return null;
 
-		if (!fEntityReferenceExpansion && node.getNodeType() == Node.ENTITY_REFERENCE_NODE)
+		if (!fEntityReferenceExpansion && node
+				.getNodeType() == Node.ENTITY_REFERENCE_NODE)
 			return null;
 		Node newNode = node.getFirstChild();
 		if (newNode == null)
@@ -452,7 +450,8 @@ public class TreeWalkerImpl implements TreeWalker {
 		if (node == null)
 			return null;
 
-		if (!fEntityReferenceExpansion && node.getNodeType() == Node.ENTITY_REFERENCE_NODE)
+		if (!fEntityReferenceExpansion && node
+				.getNodeType() == Node.ENTITY_REFERENCE_NODE)
 			return null;
 
 		Node newNode = node.getLastChild();

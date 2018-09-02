@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.orbutil.fsm;
@@ -50,11 +30,9 @@ public class StateImpl extends NameBase implements State {
 		inputToGuardedActions = new HashMap();
 	}
 
-	public void preAction(FSM fsm) {
-	}
+	public void preAction(FSM fsm) {}
 
-	public void postAction(FSM fsm) {
-	}
+	public void postAction(FSM fsm) {}
 
 	// Methods for use only by StateEngineImpl.
 

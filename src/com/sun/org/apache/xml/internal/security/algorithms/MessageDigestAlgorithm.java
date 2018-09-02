@@ -43,12 +43,14 @@ public class MessageDigestAlgorithm extends Algorithm {
 	public static final String ALGO_ID_DIGEST_NOT_RECOMMENDED_MD5 = Constants.MoreAlgorithmsSpecNS
 			+ "md5";
 	/** Digest - Required SHA1 */
-	public static final String ALGO_ID_DIGEST_SHA1 = Constants.SignatureSpecNS + "sha1";
+	public static final String ALGO_ID_DIGEST_SHA1 = Constants.SignatureSpecNS
+			+ "sha1";
 	/** Message Digest - RECOMMENDED SHA256 */
 	public static final String ALGO_ID_DIGEST_SHA256 = EncryptionConstants.EncryptionSpecNS
 			+ "sha256";
 	/** Message Digest - OPTIONAL SHA384 */
-	public static final String ALGO_ID_DIGEST_SHA384 = Constants.MoreAlgorithmsSpecNS + "sha384";
+	public static final String ALGO_ID_DIGEST_SHA384 = Constants.MoreAlgorithmsSpecNS
+			+ "sha384";
 	/** Message Digest - OPTIONAL SHA512 */
 	public static final String ALGO_ID_DIGEST_SHA512 = EncryptionConstants.EncryptionSpecNS
 			+ "sha512";
@@ -66,7 +68,8 @@ public class MessageDigestAlgorithm extends Algorithm {
 	 * @param doc
 	 * @param algorithmURI
 	 */
-	private MessageDigestAlgorithm(Document doc, String algorithmURI) throws XMLSignatureException {
+	private MessageDigestAlgorithm(Document doc, String algorithmURI)
+			throws XMLSignatureException {
 		super(doc, algorithmURI);
 
 		algorithm = getDigestInstance(algorithmURI);
@@ -81,8 +84,8 @@ public class MessageDigestAlgorithm extends Algorithm {
 	 *         digest
 	 * @throws XMLSignatureException
 	 */
-	public static MessageDigestAlgorithm getInstance(Document doc, String algorithmURI)
-			throws XMLSignatureException {
+	public static MessageDigestAlgorithm getInstance(Document doc,
+			String algorithmURI) throws XMLSignatureException {
 		return new MessageDigestAlgorithm(doc, algorithmURI);
 	}
 
@@ -106,11 +109,13 @@ public class MessageDigestAlgorithm extends Algorithm {
 		} catch (java.security.NoSuchAlgorithmException ex) {
 			Object[] exArgs = { algorithmID, ex.getLocalizedMessage() };
 
-			throw new XMLSignatureException("algorithms.NoSuchAlgorithm", exArgs);
+			throw new XMLSignatureException("algorithms.NoSuchAlgorithm",
+					exArgs);
 		} catch (NoSuchProviderException ex) {
 			Object[] exArgs = { algorithmID, ex.getLocalizedMessage() };
 
-			throw new XMLSignatureException("algorithms.NoSuchAlgorithm", exArgs);
+			throw new XMLSignatureException("algorithms.NoSuchAlgorithm",
+					exArgs);
 		}
 
 		return md;
@@ -174,7 +179,8 @@ public class MessageDigestAlgorithm extends Algorithm {
 	 *         method
 	 * @throws java.security.DigestException
 	 */
-	public int digest(byte buf[], int offset, int len) throws java.security.DigestException {
+	public int digest(byte buf[], int offset, int len)
+			throws java.security.DigestException {
 		return algorithm.digest(buf, offset, len);
 	}
 

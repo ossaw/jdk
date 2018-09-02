@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.attachment;
@@ -129,7 +109,8 @@ public abstract class AttachmentUnmarshaller {
 	 * @return a {@link DataHandler} that represents the MIME attachment.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the attachment for the given cid is not found.
+	 *                                  if the attachment for the given cid is
+	 *                                  not found.
 	 */
 	public abstract DataHandler getAttachmentAsDataHandler(String cid);
 
@@ -151,7 +132,8 @@ public abstract class AttachmentUnmarshaller {
 	 * @return byte[] representation of attachment identified by cid.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the attachment for the given cid is not found.
+	 *                                  if the attachment for the given cid is
+	 *                                  not found.
 	 */
 	public abstract byte[] getAttachmentAsByteArray(String cid);
 

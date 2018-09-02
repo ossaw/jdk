@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -82,7 +62,8 @@ public class MetalRadioButtonUI extends BasicRadioButtonUI {
 		if (!defaults_initialized) {
 			focusColor = UIManager.getColor(getPropertyPrefix() + "focus");
 			selectColor = UIManager.getColor(getPropertyPrefix() + "select");
-			disabledTextColor = UIManager.getColor(getPropertyPrefix() + "disabledText");
+			disabledTextColor = UIManager.getColor(getPropertyPrefix()
+					+ "disabledText");
 			defaults_initialized = true;
 		}
 		LookAndFeel.installProperty(b, "opaque", Boolean.TRUE);
@@ -140,9 +121,11 @@ public class MetalRadioButtonUI extends BasicRadioButtonUI {
 		Icon disabledIcon = null;
 
 		String text = SwingUtilities.layoutCompoundLabel(c, fm, b.getText(),
-				altIcon != null ? altIcon : getDefaultIcon(), b.getVerticalAlignment(),
-				b.getHorizontalAlignment(), b.getVerticalTextPosition(),
-				b.getHorizontalTextPosition(), viewRect, iconRect, textRect, b.getIconTextGap());
+				altIcon != null ? altIcon : getDefaultIcon(), b
+						.getVerticalAlignment(), b.getHorizontalAlignment(), b
+								.getVerticalTextPosition(), b
+										.getHorizontalTextPosition(), viewRect,
+				iconRect, textRect, b.getIconTextGap());
 
 		// fill background
 		if (c.isOpaque()) {
@@ -202,10 +185,11 @@ public class MetalRadioButtonUI extends BasicRadioButtonUI {
 					// *** paint the text disabled
 					g.setColor(getDisabledTextColor());
 				}
-				SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemIndex, textRect.x,
-						textRect.y + fm.getAscent());
+				SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemIndex,
+						textRect.x, textRect.y + fm.getAscent());
 			}
-			if (b.hasFocus() && b.isFocusPainted() && textRect.width > 0 && textRect.height > 0) {
+			if (b.hasFocus() && b.isFocusPainted() && textRect.width > 0
+					&& textRect.height > 0) {
 				paintFocus(g, textRect, size);
 			}
 		}

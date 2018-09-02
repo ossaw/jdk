@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -60,17 +40,17 @@ import javax.annotation.processing.SupportedSourceVersion;
  * of default methods in this situation.
  *
  * @param <R>
- *            the return type of this visitor's methods
+ *        the return type of this visitor's methods
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
+ *        the type of the additional parameter to this visitor's methods.
  *
  * @see AbstractAnnotationValueVisitor6
  * @see AbstractAnnotationValueVisitor7
  * @since 1.8
  */
 @SupportedSourceVersion(RELEASE_8)
-public abstract class AbstractAnnotationValueVisitor8<R, P>
-		extends AbstractAnnotationValueVisitor7<R, P> {
+public abstract class AbstractAnnotationValueVisitor8<R, P> extends
+		AbstractAnnotationValueVisitor7<R, P> {
 
 	/**
 	 * Constructor for concrete subclasses to call.

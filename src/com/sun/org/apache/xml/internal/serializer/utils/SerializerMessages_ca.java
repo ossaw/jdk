@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: SerializerMessages_ca.java,v 1.1.4.1 2005/09/08 11:03:11 suresh_emailid Exp $
+ * $Id: SerializerMessages_ca.java,v 1.1.4.1 2005/09/08 11:03:11 suresh_emailid
+ * Exp $
  */
 
 package com.sun.org.apache.xml.internal.serializer.utils;
@@ -44,7 +42,8 @@ public class SerializerMessages_ca extends ListResourceBundle {
 
 				{ MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO, "Buffer size <=0" },
 
-				{ MsgKey.ER_INVALID_UTF16_SURROGATE, "Invalid UTF-16 surrogate detected: {0} ?" },
+				{ MsgKey.ER_INVALID_UTF16_SURROGATE,
+						"Invalid UTF-16 surrogate detected: {0} ?" },
 
 				{ MsgKey.ER_OIERROR, "IO error" },
 
@@ -54,7 +53,8 @@ public class SerializerMessages_ca extends ListResourceBundle {
 				{ MsgKey.ER_NAMESPACE_PREFIX,
 						"Namespace for prefix ''{0}'' has not been declared." },
 
-				{ MsgKey.ER_STRAY_ATTRIBUTE, "Attribute ''{0}'' outside of element." },
+				{ MsgKey.ER_STRAY_ATTRIBUTE,
+						"Attribute ''{0}'' outside of element." },
 
 				{ MsgKey.ER_STRAY_NAMESPACE,
 						"Namespace declaration ''{0}''=''{1}'' outside of element." },
@@ -70,24 +70,32 @@ public class SerializerMessages_ca extends ListResourceBundle {
 
 				{ MsgKey.ER_INVALID_PORT, "Invalid port number" },
 
-				{ MsgKey.ER_PORT_WHEN_HOST_NULL, "Port cannot be set when host is null" },
+				{ MsgKey.ER_PORT_WHEN_HOST_NULL,
+						"Port cannot be set when host is null" },
 
-				{ MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED, "Host is not a well formed address" },
+				{ MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED,
+						"Host is not a well formed address" },
 
-				{ MsgKey.ER_SCHEME_NOT_CONFORMANT, "The scheme is not conformant." },
+				{ MsgKey.ER_SCHEME_NOT_CONFORMANT,
+						"The scheme is not conformant." },
 
-				{ MsgKey.ER_SCHEME_FROM_NULL_STRING, "Cannot set scheme from null string" },
+				{ MsgKey.ER_SCHEME_FROM_NULL_STRING,
+						"Cannot set scheme from null string" },
 
 				{ MsgKey.ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
 						"Path contains invalid escape sequence" },
 
-				{ MsgKey.ER_PATH_INVALID_CHAR, "Path contains invalid character: {0}" },
+				{ MsgKey.ER_PATH_INVALID_CHAR,
+						"Path contains invalid character: {0}" },
 
-				{ MsgKey.ER_FRAG_INVALID_CHAR, "Fragment contains invalid character" },
+				{ MsgKey.ER_FRAG_INVALID_CHAR,
+						"Fragment contains invalid character" },
 
-				{ MsgKey.ER_FRAG_WHEN_PATH_NULL, "Fragment cannot be set when path is null" },
+				{ MsgKey.ER_FRAG_WHEN_PATH_NULL,
+						"Fragment cannot be set when path is null" },
 
-				{ MsgKey.ER_FRAG_FOR_GENERIC_URI, "Fragment can only be set for a generic URI" },
+				{ MsgKey.ER_FRAG_FOR_GENERIC_URI,
+						"Fragment can only be set for a generic URI" },
 
 				{ MsgKey.ER_NO_SCHEME_IN_URI, "No scheme found in URI" },
 

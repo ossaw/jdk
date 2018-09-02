@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -62,19 +42,21 @@ final class ConditionalSpecialCasing {
 			// # Conditional mappings
 			// #
 			// ================================================================================
-			new Entry(0x03A3, new char[] { 0x03C2 }, new char[] { 0x03A3 }, null, FINAL_CASED), // #
-																								// GREEK
-																								// CAPITAL
-																								// LETTER
-																								// SIGMA
-			new Entry(0x0130, new char[] { 0x0069, 0x0307 }, new char[] { 0x0130 }, null, 0), // #
-																								// LATIN
-																								// CAPITAL
-																								// LETTER
-																								// I
-																								// WITH
-																								// DOT
-																								// ABOVE
+			new Entry(0x03A3, new char[] { 0x03C2 }, new char[] { 0x03A3 },
+					null, FINAL_CASED), // #
+			// GREEK
+			// CAPITAL
+			// LETTER
+			// SIGMA
+			new Entry(0x0130, new char[] { 0x0069, 0x0307 }, new char[] {
+					0x0130 }, null, 0), // #
+			// LATIN
+			// CAPITAL
+			// LETTER
+			// I
+			// WITH
+			// DOT
+			// ABOVE
 
 			// #
 			// ================================================================================
@@ -82,70 +64,79 @@ final class ConditionalSpecialCasing {
 			// #
 			// ================================================================================
 			// # Lithuanian
-			new Entry(0x0307, new char[] { 0x0307 }, new char[] {}, "lt", AFTER_SOFT_DOTTED), // #
-																								// COMBINING
-																								// DOT
-																								// ABOVE
-			new Entry(0x0049, new char[] { 0x0069, 0x0307 }, new char[] { 0x0049 }, "lt",
-					MORE_ABOVE), // # LATIN CAPITAL LETTER I
-			new Entry(0x004A, new char[] { 0x006A, 0x0307 }, new char[] { 0x004A }, "lt",
-					MORE_ABOVE), // # LATIN CAPITAL LETTER J
-			new Entry(0x012E, new char[] { 0x012F, 0x0307 }, new char[] { 0x012E }, "lt",
-					MORE_ABOVE), // # LATIN CAPITAL LETTER I WITH OGONEK
-			new Entry(0x00CC, new char[] { 0x0069, 0x0307, 0x0300 }, new char[] { 0x00CC }, "lt",
-					0), // # LATIN CAPITAL LETTER I WITH GRAVE
-			new Entry(0x00CD, new char[] { 0x0069, 0x0307, 0x0301 }, new char[] { 0x00CD }, "lt",
-					0), // # LATIN CAPITAL LETTER I WITH ACUTE
-			new Entry(0x0128, new char[] { 0x0069, 0x0307, 0x0303 }, new char[] { 0x0128 }, "lt",
-					0), // # LATIN CAPITAL LETTER I WITH TILDE
+			new Entry(0x0307, new char[] { 0x0307 }, new char[] {}, "lt",
+					AFTER_SOFT_DOTTED), // #
+			// COMBINING
+			// DOT
+			// ABOVE
+			new Entry(0x0049, new char[] { 0x0069, 0x0307 }, new char[] {
+					0x0049 }, "lt", MORE_ABOVE), // # LATIN CAPITAL LETTER I
+			new Entry(0x004A, new char[] { 0x006A, 0x0307 }, new char[] {
+					0x004A }, "lt", MORE_ABOVE), // # LATIN CAPITAL LETTER J
+			new Entry(0x012E, new char[] { 0x012F, 0x0307 }, new char[] {
+					0x012E }, "lt", MORE_ABOVE), // # LATIN CAPITAL LETTER I WITH OGONEK
+			new Entry(0x00CC, new char[] { 0x0069, 0x0307, 0x0300 },
+					new char[] { 0x00CC }, "lt", 0), // # LATIN CAPITAL LETTER I WITH GRAVE
+			new Entry(0x00CD, new char[] { 0x0069, 0x0307, 0x0301 },
+					new char[] { 0x00CD }, "lt", 0), // # LATIN CAPITAL LETTER I WITH ACUTE
+			new Entry(0x0128, new char[] { 0x0069, 0x0307, 0x0303 },
+					new char[] { 0x0128 }, "lt", 0), // # LATIN CAPITAL LETTER I WITH TILDE
 
 			// #
 			// ================================================================================
 			// # Turkish and Azeri
-			new Entry(0x0130, new char[] { 0x0069 }, new char[] { 0x0130 }, "tr", 0), // #
-																						// LATIN
-																						// CAPITAL
-																						// LETTER
-																						// I
-																						// WITH
-																						// DOT
-																						// ABOVE
-			new Entry(0x0130, new char[] { 0x0069 }, new char[] { 0x0130 }, "az", 0), // #
-																						// LATIN
-																						// CAPITAL
-																						// LETTER
-																						// I
-																						// WITH
-																						// DOT
-																						// ABOVE
-			new Entry(0x0307, new char[] {}, new char[] { 0x0307 }, "tr", AFTER_I), // #
-																					// COMBINING
-																					// DOT
-																					// ABOVE
-			new Entry(0x0307, new char[] {}, new char[] { 0x0307 }, "az", AFTER_I), // #
-																					// COMBINING
-																					// DOT
-																					// ABOVE
-			new Entry(0x0049, new char[] { 0x0131 }, new char[] { 0x0049 }, "tr", NOT_BEFORE_DOT), // #
-																									// LATIN
-																									// CAPITAL
-																									// LETTER
-																									// I
-			new Entry(0x0049, new char[] { 0x0131 }, new char[] { 0x0049 }, "az", NOT_BEFORE_DOT), // #
-																									// LATIN
-																									// CAPITAL
-																									// LETTER
-																									// I
-			new Entry(0x0069, new char[] { 0x0069 }, new char[] { 0x0130 }, "tr", 0), // #
-																						// LATIN
-																						// SMALL
-																						// LETTER
-																						// I
-			new Entry(0x0069, new char[] { 0x0069 }, new char[] { 0x0130 }, "az", 0) // #
-																						// LATIN
-																						// SMALL
-																						// LETTER
-																						// I
+			new Entry(0x0130, new char[] { 0x0069 }, new char[] { 0x0130 },
+					"tr", 0), // #
+			// LATIN
+			// CAPITAL
+			// LETTER
+			// I
+			// WITH
+			// DOT
+			// ABOVE
+			new Entry(0x0130, new char[] { 0x0069 }, new char[] { 0x0130 },
+					"az", 0), // #
+			// LATIN
+			// CAPITAL
+			// LETTER
+			// I
+			// WITH
+			// DOT
+			// ABOVE
+			new Entry(0x0307, new char[] {}, new char[] { 0x0307 }, "tr",
+					AFTER_I), // #
+			// COMBINING
+			// DOT
+			// ABOVE
+			new Entry(0x0307, new char[] {}, new char[] { 0x0307 }, "az",
+					AFTER_I), // #
+			// COMBINING
+			// DOT
+			// ABOVE
+			new Entry(0x0049, new char[] { 0x0131 }, new char[] { 0x0049 },
+					"tr", NOT_BEFORE_DOT), // #
+			// LATIN
+			// CAPITAL
+			// LETTER
+			// I
+			new Entry(0x0049, new char[] { 0x0131 }, new char[] { 0x0049 },
+					"az", NOT_BEFORE_DOT), // #
+			// LATIN
+			// CAPITAL
+			// LETTER
+			// I
+			new Entry(0x0069, new char[] { 0x0069 }, new char[] { 0x0130 },
+					"tr", 0), // #
+			// LATIN
+			// SMALL
+			// LETTER
+			// I
+			new Entry(0x0069, new char[] { 0x0069 }, new char[] { 0x0130 },
+					"az", 0) // #
+																								// LATIN
+																								// SMALL
+																								// LETTER
+																								// I
 	};
 
 	// A hash table that contains the above entries
@@ -207,8 +198,10 @@ final class ConditionalSpecialCasing {
 		}
 	}
 
-	private static char[] lookUpTable(String src, int index, Locale locale, boolean bLowerCasing) {
-		HashSet<Entry> set = entryTable.get(new Integer(src.codePointAt(index)));
+	private static char[] lookUpTable(String src, int index, Locale locale,
+			boolean bLowerCasing) {
+		HashSet<Entry> set = entryTable.get(new Integer(src.codePointAt(
+				index)));
 		char[] ret = null;
 
 		if (set != null) {
@@ -217,9 +210,11 @@ final class ConditionalSpecialCasing {
 			while (iter.hasNext()) {
 				Entry entry = iter.next();
 				String conditionLang = entry.getLanguage();
-				if (((conditionLang == null) || (conditionLang.equals(currentLang)))
-						&& isConditionMet(src, index, locale, entry.getCondition())) {
-					ret = bLowerCasing ? entry.getLowerCase() : entry.getUpperCase();
+				if (((conditionLang == null) || (conditionLang.equals(
+						currentLang))) && isConditionMet(src, index, locale,
+								entry.getCondition())) {
+					ret = bLowerCasing ? entry.getLowerCase()
+							: entry.getUpperCase();
 					if (conditionLang != null) {
 						break;
 					}
@@ -230,25 +225,26 @@ final class ConditionalSpecialCasing {
 		return ret;
 	}
 
-	private static boolean isConditionMet(String src, int index, Locale locale, int condition) {
+	private static boolean isConditionMet(String src, int index, Locale locale,
+			int condition) {
 		switch (condition) {
-		case FINAL_CASED:
-			return isFinalCased(src, index, locale);
+			case FINAL_CASED:
+				return isFinalCased(src, index, locale);
 
-		case AFTER_SOFT_DOTTED:
-			return isAfterSoftDotted(src, index);
+			case AFTER_SOFT_DOTTED:
+				return isAfterSoftDotted(src, index);
 
-		case MORE_ABOVE:
-			return isMoreAbove(src, index);
+			case MORE_ABOVE:
+				return isMoreAbove(src, index);
 
-		case AFTER_I:
-			return isAfterI(src, index);
+			case AFTER_I:
+				return isAfterI(src, index);
 
-		case NOT_BEFORE_DOT:
-			return !isBeforeDot(src, index);
+			case NOT_BEFORE_DOT:
+				return !isBeforeDot(src, index);
 
-		default:
-			return true;
+			default:
+				return true;
 		}
 	}
 
@@ -267,15 +263,17 @@ final class ConditionalSpecialCasing {
 		int ch;
 
 		// Look for a preceding 'cased' letter
-		for (int i = index; (i >= 0) && !wordBoundary.isBoundary(i); i -= Character.charCount(ch)) {
+		for (int i = index; (i >= 0) && !wordBoundary.isBoundary(
+				i); i -= Character.charCount(ch)) {
 
 			ch = src.codePointBefore(i);
 			if (isCased(ch)) {
 
 				int len = src.length();
 				// Check that there is no 'cased' letter after the index
-				for (i = index + Character.charCount(src.codePointAt(index)); (i < len)
-						&& !wordBoundary.isBoundary(i); i += Character.charCount(ch)) {
+				for (i = index + Character.charCount(src.codePointAt(
+						index)); (i < len) && !wordBoundary.isBoundary(
+								i); i += Character.charCount(ch)) {
 
 					ch = src.codePointAt(i);
 					if (isCased(ch)) {
@@ -365,8 +363,8 @@ final class ConditionalSpecialCasing {
 		int len = src.length();
 
 		// Look for a following ABOVE combining class character
-		for (int i = index + Character.charCount(src.codePointAt(index)); i < len; i += Character
-				.charCount(ch)) {
+		for (int i = index + Character.charCount(src.codePointAt(
+				index)); i < len; i += Character.charCount(ch)) {
 
 			ch = src.codePointAt(i);
 			cc = Normalizer.getCombiningClass(ch);
@@ -397,8 +395,8 @@ final class ConditionalSpecialCasing {
 		int len = src.length();
 
 		// Look for a following COMBINING DOT ABOVE
-		for (int i = index + Character.charCount(src.codePointAt(index)); i < len; i += Character
-				.charCount(ch)) {
+		for (int i = index + Character.charCount(src.codePointAt(
+				index)); i < len; i += Character.charCount(ch)) {
 
 			ch = src.codePointAt(i);
 
@@ -427,7 +425,8 @@ final class ConditionalSpecialCasing {
 	 */
 	private static boolean isCased(int ch) {
 		int type = Character.getType(ch);
-		if (type == Character.LOWERCASE_LETTER || type == Character.UPPERCASE_LETTER
+		if (type == Character.LOWERCASE_LETTER
+				|| type == Character.UPPERCASE_LETTER
 				|| type == Character.TITLECASE_LETTER) {
 			return true;
 		} else {
@@ -470,20 +469,20 @@ final class ConditionalSpecialCasing {
 
 	private static boolean isSoftDotted(int ch) {
 		switch (ch) {
-		case 0x0069: // Soft_Dotted # L& LATIN SMALL LETTER I
-		case 0x006A: // Soft_Dotted # L& LATIN SMALL LETTER J
-		case 0x012F: // Soft_Dotted # L& LATIN SMALL LETTER I WITH OGONEK
-		case 0x0268: // Soft_Dotted # L& LATIN SMALL LETTER I WITH STROKE
-		case 0x0456: // Soft_Dotted # L& CYRILLIC SMALL LETTER
-						// BYELORUSSIAN-UKRAINIAN I
-		case 0x0458: // Soft_Dotted # L& CYRILLIC SMALL LETTER JE
-		case 0x1D62: // Soft_Dotted # L& LATIN SUBSCRIPT SMALL LETTER I
-		case 0x1E2D: // Soft_Dotted # L& LATIN SMALL LETTER I WITH TILDE BELOW
-		case 0x1ECB: // Soft_Dotted # L& LATIN SMALL LETTER I WITH DOT BELOW
-		case 0x2071: // Soft_Dotted # L& SUPERSCRIPT LATIN SMALL LETTER I
-			return true;
-		default:
-			return false;
+			case 0x0069: // Soft_Dotted # L& LATIN SMALL LETTER I
+			case 0x006A: // Soft_Dotted # L& LATIN SMALL LETTER J
+			case 0x012F: // Soft_Dotted # L& LATIN SMALL LETTER I WITH OGONEK
+			case 0x0268: // Soft_Dotted # L& LATIN SMALL LETTER I WITH STROKE
+			case 0x0456: // Soft_Dotted # L& CYRILLIC SMALL LETTER
+							// BYELORUSSIAN-UKRAINIAN I
+			case 0x0458: // Soft_Dotted # L& CYRILLIC SMALL LETTER JE
+			case 0x1D62: // Soft_Dotted # L& LATIN SUBSCRIPT SMALL LETTER I
+			case 0x1E2D: // Soft_Dotted # L& LATIN SMALL LETTER I WITH TILDE BELOW
+			case 0x1ECB: // Soft_Dotted # L& LATIN SMALL LETTER I WITH DOT BELOW
+			case 0x2071: // Soft_Dotted # L& SUPERSCRIPT LATIN SMALL LETTER I
+				return true;
+			default:
+				return false;
 		}
 	}
 

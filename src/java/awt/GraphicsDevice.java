@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -49,7 +29,8 @@ import sun.awt.SunToolkit;
  * <pre>
  * {
  * 	&#64;code
- * 	GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+ * 	GraphicsEnvironment ge = GraphicsEnvironment
+ * 			.getLocalGraphicsEnvironment();
  * 	GraphicsDevice[] gs = ge.getScreenDevices();
  * 	for (int j = 0; j < gs.length; j++) {
  * 		GraphicsDevice gd = gs[j];
@@ -80,8 +61,8 @@ public abstract class GraphicsDevice {
 	private Window fullScreenWindow;
 	private AppContext fullScreenAppContext; // tracks which AppContext
 												// created the FS window
-	// this lock is used for making synchronous changes to the AppContext's
-	// current full screen window
+												// this lock is used for making synchronous changes to the AppContext's
+												// current full screen window
 	private final Object fsAppContextLock = new Object();
 
 	private Rectangle windowedModeBounds;
@@ -94,8 +75,7 @@ public abstract class GraphicsDevice {
 	 * @see GraphicsEnvironment#getDefaultScreenDevice
 	 * @see GraphicsConfiguration#getDevice
 	 */
-	protected GraphicsDevice() {
-	}
+	protected GraphicsDevice() {}
 
 	/**
 	 * Device is a raster screen.
@@ -203,7 +183,8 @@ public abstract class GraphicsDevice {
 	 *         defined in the specified <code>GraphicsConfigTemplate</code>.
 	 * @see GraphicsConfigTemplate
 	 */
-	public GraphicsConfiguration getBestConfiguration(GraphicsConfigTemplate gct) {
+	public GraphicsConfiguration getBestConfiguration(
+			GraphicsConfigTemplate gct) {
 		GraphicsConfiguration[] configs = getConfigurations();
 		return gct.getBestConfiguration(configs);
 	}
@@ -268,11 +249,11 @@ public abstract class GraphicsDevice {
 	 * restored to their original state.
 	 *
 	 * @param w
-	 *            a window to use as the full-screen window; {@code null} if
-	 *            returning to windowed mode. Some platforms expect the
-	 *            fullscreen window to be a top-level component (i.e., a
-	 *            {@code Frame}); therefore it is preferable to use a
-	 *            {@code Frame} here rather than a {@code Window}.
+	 *          a window to use as the full-screen window; {@code null} if
+	 *          returning to windowed mode. Some platforms expect the
+	 *          fullscreen window to be a top-level component (i.e., a
+	 *          {@code Frame}); therefore it is preferable to use a
+	 *          {@code Frame} here rather than a {@code Window}.
 	 *
 	 * @see #isFullScreenSupported
 	 * @see #getFullScreenWindow
@@ -294,12 +275,14 @@ public abstract class GraphicsDevice {
 			}
 			if (!w.isOpaque()) {
 				Color bgColor = w.getBackground();
-				bgColor = new Color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), 255);
+				bgColor = new Color(bgColor.getRed(), bgColor.getGreen(),
+						bgColor.getBlue(), 255);
 				w.setBackground(bgColor);
 			}
 			// Check if this window is in fullscreen mode on another device.
 			final GraphicsConfiguration gc = w.getGraphicsConfiguration();
-			if (gc != null && gc.getDevice() != this && gc.getDevice().getFullScreenWindow() == w) {
+			if (gc != null && gc.getDevice() != this && gc.getDevice()
+					.getFullScreenWindow() == w) {
 				gc.getDevice().setFullScreenWindow(null);
 			}
 		}
@@ -335,8 +318,8 @@ public abstract class GraphicsDevice {
 				// setBounds() will reset a GC, if it was set incorrectly.
 				fullScreenWindow.setGraphicsConfiguration(gc);
 			}
-			fullScreenWindow.setBounds(screenBounds.x, screenBounds.y, screenBounds.width,
-					screenBounds.height);
+			fullScreenWindow.setBounds(screenBounds.x, screenBounds.y,
+					screenBounds.width, screenBounds.height);
 			fullScreenWindow.setVisible(true);
 			fullScreenWindow.toFront();
 		}
@@ -423,14 +406,19 @@ public abstract class GraphicsDevice {
 	 * </pre>
 	 *
 	 * @param dm
-	 *            The new display mode of this graphics device.
+	 *           The new display mode of this graphics device.
 	 * @exception IllegalArgumentException
-	 *                if the <code>DisplayMode</code> supplied is
-	 *                <code>null</code>, or is not available in the array
-	 *                returned by <code>getDisplayModes</code>
+	 *                                          if the <code>DisplayMode</code>
+	 *                                          supplied is
+	 *                                          <code>null</code>, or is not
+	 *                                          available in the array
+	 *                                          returned by
+	 *                                          <code>getDisplayModes</code>
 	 * @exception UnsupportedOperationException
-	 *                if <code>isDisplayChangeSupported</code> returns
-	 *                <code>false</code>
+	 *                                          if
+	 *                                          <code>isDisplayChangeSupported</code>
+	 *                                          returns
+	 *                                          <code>false</code>
 	 * @see #getDisplayMode
 	 * @see #getDisplayModes
 	 * @see #isDisplayChangeSupported
@@ -506,19 +494,20 @@ public abstract class GraphicsDevice {
 	 * graphics device.
 	 *
 	 * @param translucencyKind
-	 *            a kind of translucency support
+	 *                         a kind of translucency support
 	 * @return whether the given translucency kind is supported
 	 *
 	 * @since 1.7
 	 */
-	public boolean isWindowTranslucencySupported(WindowTranslucency translucencyKind) {
+	public boolean isWindowTranslucencySupported(
+			WindowTranslucency translucencyKind) {
 		switch (translucencyKind) {
-		case PERPIXEL_TRANSPARENT:
-			return isWindowShapingSupported();
-		case TRANSLUCENT:
-			return isWindowOpacitySupported();
-		case PERPIXEL_TRANSLUCENT:
-			return isWindowPerpixelTranslucencySupported();
+			case PERPIXEL_TRANSPARENT:
+				return isWindowShapingSupported();
+			case TRANSLUCENT:
+				return isWindowOpacitySupported();
+			case PERPIXEL_TRANSLUCENT:
+				return isWindowPerpixelTranslucencySupported();
 		}
 		return false;
 	}

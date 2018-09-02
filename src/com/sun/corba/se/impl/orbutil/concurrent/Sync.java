@@ -1,41 +1,19 @@
 /*
  * Copyright (c) 2001, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
-  File: Sync.java
-
-  Originally written by Doug Lea and released into the public domain.
-  This may be used for any purposes whatsoever without acknowledgment.
-  Thanks for the assistance and support of Sun Microsystems Labs,
-  and everyone contributing, testing, and using this code.
-
-  History:
-  Date       Who                What
-  11Jun1998  dl               Create public version
-   5Aug1998  dl               Added some convenient time constants
-*/
+ * File: Sync.java
+ * Originally written by Doug Lea and released into the public domain.
+ * This may be used for any purposes whatsoever without acknowledgment.
+ * Thanks for the assistance and support of Sun Microsystems Labs,
+ * and everyone contributing, testing, and using this code.
+ * History:
+ * Date Who What
+ * 11Jun1998 dl Create public version
+ * 5Aug1998 dl Added some convenient time constants
+ */
 
 package com.sun.corba.se.impl.orbutil.concurrent;
 
@@ -320,11 +298,11 @@ public interface Sync {
 	 * <p>
 	 * 
 	 * @param msecs
-	 *            the number of milleseconds to wait. An argument less than or
-	 *            equal to zero means not to wait at all. However, this may
-	 *            still require access to a synchronization lock, which can
-	 *            impose unbounded delay if there is a lot of contention among
-	 *            threads.
+	 *              the number of milleseconds to wait. An argument less than or
+	 *              equal to zero means not to wait at all. However, this may
+	 *              still require access to a synchronization lock, which can
+	 *              impose unbounded delay if there is a lot of contention among
+	 *              threads.
 	 * @return true if acquired
 	 **/
 

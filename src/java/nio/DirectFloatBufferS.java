@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -43,7 +23,8 @@ class DirectFloatBufferS
 	protected static final Unsafe unsafe = Bits.unsafe();
 
 	// Cached array base offset
-	private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(float[].class);
+	private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(
+			float[].class);
 
 	// Cached unaligned-access capability
 	protected static final boolean unaligned = Bits.unaligned();
@@ -88,14 +69,14 @@ class DirectFloatBufferS
 	}
 
 	public FloatBuffer duplicate() {
-		return new DirectFloatBufferS(this, this.markValue(), this.position(), this.limit(),
-				this.capacity(), 0);
+		return new DirectFloatBufferS(this, this.markValue(), this.position(),
+				this.limit(), this.capacity(), 0);
 	}
 
 	public FloatBuffer asReadOnlyBuffer() {
 
-		return new DirectFloatBufferRS(this, this.markValue(), this.position(), this.limit(),
-				this.capacity(), 0);
+		return new DirectFloatBufferRS(this, this.markValue(), this.position(),
+				this.limit(), this.capacity(), 0);
 
 	}
 
@@ -108,11 +89,13 @@ class DirectFloatBufferS
 	}
 
 	public float get() {
-		return Float.intBitsToFloat(Bits.swap(unsafe.getInt(ix(nextGetIndex()))));
+		return Float.intBitsToFloat(Bits.swap(unsafe.getInt(ix(
+				nextGetIndex()))));
 	}
 
 	public float get(int i) {
-		return Float.intBitsToFloat(Bits.swap(unsafe.getInt(ix(checkIndex(i)))));
+		return Float.intBitsToFloat(Bits.swap(unsafe.getInt(ix(checkIndex(
+				i)))));
 	}
 
 	public FloatBuffer get(float[] dst, int offset, int length) {
@@ -127,11 +110,12 @@ class DirectFloatBufferS
 				throw new BufferUnderflowException();
 
 			if (order() != ByteOrder.nativeOrder())
-				Bits.copyToIntArray(ix(pos), dst, (long) offset << 2, (long) length << 2);
+				Bits.copyToIntArray(ix(pos), dst, (long) offset << 2,
+						(long) length << 2);
 			else
 
-				Bits.copyToArray(ix(pos), dst, arrayBaseOffset, (long) offset << 2,
-						(long) length << 2);
+				Bits.copyToArray(ix(pos), dst, arrayBaseOffset,
+						(long) offset << 2, (long) length << 2);
 			position(pos + length);
 		} else {
 			super.get(dst, offset, length);
@@ -142,7 +126,8 @@ class DirectFloatBufferS
 
 	public FloatBuffer put(float x) {
 
-		unsafe.putInt(ix(nextPutIndex()), Bits.swap(Float.floatToRawIntBits(x)));
+		unsafe.putInt(ix(nextPutIndex()), Bits.swap(Float.floatToRawIntBits(
+				x)));
 		return this;
 
 	}
@@ -205,11 +190,12 @@ class DirectFloatBufferS
 				throw new BufferOverflowException();
 
 			if (order() != ByteOrder.nativeOrder())
-				Bits.copyFromIntArray(src, (long) offset << 2, ix(pos), (long) length << 2);
+				Bits.copyFromIntArray(src, (long) offset << 2, ix(pos),
+						(long) length << 2);
 			else
 
-				Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 2, ix(pos),
-						(long) length << 2);
+				Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 2, ix(
+						pos), (long) length << 2);
 			position(pos + length);
 		} else {
 			super.put(src, offset, length);
@@ -243,7 +229,8 @@ class DirectFloatBufferS
 
 	public ByteOrder order() {
 
-		return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN) ? ByteOrder.LITTLE_ENDIAN
+		return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN)
+				? ByteOrder.LITTLE_ENDIAN
 				: ByteOrder.BIG_ENDIAN);
 
 	}

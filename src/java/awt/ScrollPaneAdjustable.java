@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -152,11 +132,13 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 		if (!GraphicsEnvironment.isHeadless()) {
 			initIDs();
 		}
-		AWTAccessor.setScrollPaneAdjustableAccessor(new AWTAccessor.ScrollPaneAdjustableAccessor() {
-			public void setTypedValue(final ScrollPaneAdjustable adj, final int v, final int type) {
-				adj.setTypedValue(v, type);
-			}
-		});
+		AWTAccessor.setScrollPaneAdjustableAccessor(
+				new AWTAccessor.ScrollPaneAdjustableAccessor() {
+					public void setTypedValue(final ScrollPaneAdjustable adj,
+							final int v, final int type) {
+						adj.setTypedValue(v, type);
+					}
+				});
 	}
 
 	/**
@@ -170,13 +152,14 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 	 * this class.
 	 * 
 	 * @param sp
-	 *            <code>ScrollPane</code>
+	 *                    <code>ScrollPane</code>
 	 * @param l
-	 *            <code>AdjustmentListener</code> to add upon creation.
+	 *                    <code>AdjustmentListener</code> to add upon creation.
 	 * @param orientation
-	 *            specifies which scrollbar this object represents, can be
-	 *            either <code>Adjustable.HORIZONTAL</code> or
-	 *            <code>Adjustable.VERTICAL</code>.
+	 *                    specifies which scrollbar this object represents, can
+	 *                    be
+	 *                    either <code>Adjustable.HORIZONTAL</code> or
+	 *                    <code>Adjustable.VERTICAL</code>.
 	 */
 	ScrollPaneAdjustable(ScrollPane sp, AdjustmentListener l, int orientation) {
 		this.sp = sp;
@@ -217,7 +200,7 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 	 * <code>Adjustable</code> interface.
 	 *
 	 * @throws AWTError
-	 *             Always throws an error when called.
+	 *                  Always throws an error when called.
 	 */
 	public void setMinimum(int min) {
 		throw new AWTError(SCROLLPANE_ONLY);
@@ -235,7 +218,7 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 	 * <code>Adjustable</code> interface.
 	 *
 	 * @throws AWTError
-	 *             Always throws an error when called.
+	 *                  Always throws an error when called.
 	 */
 	public void setMaximum(int max) {
 		throw new AWTError(SCROLLPANE_ONLY);
@@ -273,7 +256,7 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 	 * <code>Adjustable</code> interface.
 	 *
 	 * @throws AWTError
-	 *             Always throws an error when called.
+	 *                  Always throws an error when called.
 	 */
 	public void setVisibleAmount(int v) {
 		throw new AWTError(SCROLLPANE_ONLY);
@@ -287,14 +270,15 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 	 * Sets the <code>valueIsAdjusting</code> property.
 	 *
 	 * @param b
-	 *            new adjustment-in-progress status
+	 *          new adjustment-in-progress status
 	 * @see #getValueIsAdjusting
 	 * @since 1.4
 	 */
 	public void setValueIsAdjusting(boolean b) {
 		if (isAdjusting != b) {
 			isAdjusting = b;
-			AdjustmentEvent e = new AdjustmentEvent(this, AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED,
+			AdjustmentEvent e = new AdjustmentEvent(this,
+					AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED,
 					AdjustmentEvent.TRACK, value, b);
 			adjustmentListener.adjustmentValueChanged(e);
 		}
@@ -319,7 +303,7 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 	 * appropriate.
 	 *
 	 * @param v
-	 *            the new value of the scrollbar
+	 *          the new value of the scrollbar
 	 */
 	public void setValue(int v) {
 		setTypedValue(v, AdjustmentEvent.TRACK);
@@ -334,9 +318,9 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 	 * specified type and value.
 	 *
 	 * @param v
-	 *            the new value of the scrollbar
+	 *             the new value of the scrollbar
 	 * @param type
-	 *            the type of the scrolling operation occurred
+	 *             the type of the scrolling operation occurred
 	 */
 	private void setTypedValue(int v, int type) {
 		v = Math.max(v, minimum);
@@ -347,8 +331,9 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 			// Synchronously notify the listeners so that they are
 			// guaranteed to be up-to-date with the Adjustable before
 			// it is mutated again.
-			AdjustmentEvent e = new AdjustmentEvent(this, AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED,
-					type, value, isAdjusting);
+			AdjustmentEvent e = new AdjustmentEvent(this,
+					AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED, type, value,
+					isAdjusting);
 			adjustmentListener.adjustmentValueChanged(e);
 		}
 	}
@@ -366,7 +351,7 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the adjustment listener.
+	 *          the adjustment listener.
 	 * @see #removeAdjustmentListener
 	 * @see #getAdjustmentListeners
 	 * @see java.awt.event.AdjustmentListener
@@ -389,7 +374,7 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the adjustment listener.
+	 *          the adjustment listener.
 	 * @see #addAdjustmentListener
 	 * @see #getAdjustmentListeners
 	 * @see java.awt.event.AdjustmentListener
@@ -418,8 +403,8 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 	 * @since 1.4
 	 */
 	public synchronized AdjustmentListener[] getAdjustmentListeners() {
-		return (AdjustmentListener[]) (AWTEventMulticaster.getListeners(adjustmentListener,
-				AdjustmentListener.class));
+		return (AdjustmentListener[]) (AWTEventMulticaster.getListeners(
+				adjustmentListener, AdjustmentListener.class));
 	}
 
 	/**
@@ -440,8 +425,9 @@ public class ScrollPaneAdjustable implements Adjustable, Serializable {
 	 * @return the parameter string of this scrollbar.
 	 */
 	public String paramString() {
-		return ((orientation == Adjustable.VERTICAL ? "vertical," : "horizontal,") + "[0.."
-				+ maximum + "]" + ",val=" + value + ",vis=" + visibleAmount + ",unit="
-				+ unitIncrement + ",block=" + blockIncrement + ",isAdjusting=" + isAdjusting);
+		return ((orientation == Adjustable.VERTICAL ? "vertical,"
+				: "horizontal,") + "[0.." + maximum + "]" + ",val=" + value
+				+ ",vis=" + visibleAmount + ",unit=" + unitIncrement + ",block="
+				+ blockIncrement + ",isAdjusting=" + isAdjusting);
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.rmi.server;
 
@@ -133,7 +113,7 @@ public final class ObjID implements Serializable {
 	 * any <code>ObjID</code>s generated via the no-arg constructor.
 	 *
 	 * @param objNum
-	 *            object number for well-known object identifier
+	 *               object number for well-known object identifier
 	 */
 	public ObjID(int objNum) {
 		space = new UID((short) 0);
@@ -163,7 +143,8 @@ public final class ObjID implements Serializable {
 	 *            <code>ObjID</code> to
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs while performing this operation
+	 *                     if an I/O error occurs while performing this
+	 *                     operation
 	 */
 	public void write(ObjectOutput out) throws IOException {
 		out.writeLong(objNum);
@@ -183,13 +164,14 @@ public final class ObjID implements Serializable {
 	 * space identifier that were read from the stream.
 	 *
 	 * @param in
-	 *            the <code>ObjectInput</code> instance to read
-	 *            <code>ObjID</code> from
+	 *           the <code>ObjectInput</code> instance to read
+	 *           <code>ObjID</code> from
 	 *
 	 * @return unmarshalled <code>ObjID</code> instance
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs while performing this operation
+	 *                     if an I/O error occurs while performing this
+	 *                     operation
 	 */
 	public static ObjID read(ObjectInput in) throws IOException {
 		long num = in.readLong();
@@ -244,8 +226,8 @@ public final class ObjID implements Serializable {
 	}
 
 	private static boolean useRandomIDs() {
-		String value = AccessController
-				.doPrivileged(new GetPropertyAction("java.rmi.server.randomIDs"));
+		String value = AccessController.doPrivileged(new GetPropertyAction(
+				"java.rmi.server.randomIDs"));
 		return value == null ? true : Boolean.parseBoolean(value);
 	}
 }

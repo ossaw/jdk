@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.stream;
@@ -52,12 +32,12 @@ public class IIOByteBuffer {
 	 * array, offset, and length.
 	 *
 	 * @param data
-	 *            a byte array.
+	 *               a byte array.
 	 * @param offset
-	 *            an int offset within the array.
+	 *               an int offset within the array.
 	 * @param length
-	 *            an int specifying the length of the data of interest within
-	 *            byte array, in bytes.
+	 *               an int specifying the length of the data of interest within
+	 *               byte array, in bytes.
 	 */
 	public IIOByteBuffer(byte[] data, int offset, int length) {
 		this.data = data;
@@ -85,7 +65,7 @@ public class IIOByteBuffer {
 	 * the <code>getData</code> method.
 	 *
 	 * @param data
-	 *            a byte array reference containing the new data value.
+	 *             a byte array reference containing the new data value.
 	 *
 	 * @see #getData
 	 */
@@ -112,7 +92,7 @@ public class IIOByteBuffer {
 	 * <code>getOffset</code> method.
 	 *
 	 * @param offset
-	 *            an int containing the new offset value.
+	 *               an int containing the new offset value.
 	 *
 	 * @see #getOffset
 	 */
@@ -139,7 +119,7 @@ public class IIOByteBuffer {
 	 * <code>getLength</code> method.
 	 *
 	 * @param length
-	 *            an int containing the new length value.
+	 *               an int containing the new length value.
 	 *
 	 * @see #getLength
 	 */

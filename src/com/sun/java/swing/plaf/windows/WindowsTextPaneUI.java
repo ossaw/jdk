@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -44,7 +24,7 @@ public class WindowsTextPaneUI extends BasicTextPaneUI {
 	 * Creates a UI for a JTextPane.
 	 *
 	 * @param c
-	 *            the styled text component
+	 *          the styled text component
 	 * @return the UI
 	 */
 	public static ComponentUI createUI(JComponent c) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio;
@@ -189,8 +169,7 @@ public class ImageReadParam extends IIOParam {
 	/**
 	 * Constructs an <code>ImageReadParam</code>.
 	 */
-	public ImageReadParam() {
-	}
+	public ImageReadParam() {}
 
 	// Comment inherited
 	public void setDestinationType(ImageTypeSpecifier destinationType) {
@@ -220,7 +199,8 @@ public class ImageReadParam extends IIOParam {
 	 * not, the reader will throw an <code>IIOException</code>.
 	 *
 	 * @param destination
-	 *            the BufferedImage to be written to, or <code>null</code>.
+	 *                    the BufferedImage to be written to, or
+	 *                    <code>null</code>.
 	 *
 	 * @see #getDestination
 	 */
@@ -265,11 +245,12 @@ public class ImageReadParam extends IIOParam {
 	 * method may be used to automate this test.
 	 *
 	 * @param destinationBands
-	 *            an array of integer band indices to be used.
+	 *                         an array of integer band indices to be used.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>destinationBands</code> contains a negative or
-	 *                duplicate value.
+	 *                                     if <code>destinationBands</code>
+	 *                                     contains a negative or
+	 *                                     duplicate value.
 	 *
 	 * @see #getDestinationBands
 	 * @see #getSourceBands
@@ -287,7 +268,8 @@ public class ImageReadParam extends IIOParam {
 				}
 				for (int j = i + 1; j < numBands; j++) {
 					if (band == destinationBands[j]) {
-						throw new IllegalArgumentException("Duplicate band value!");
+						throw new IllegalArgumentException(
+								"Duplicate band value!");
 					}
 				}
 			}
@@ -351,22 +333,26 @@ public class ImageReadParam extends IIOParam {
 	 * for <code>size</code>.
 	 *
 	 * @param size
-	 *            a <code>Dimension</code> indicating the desired width and
-	 *            height.
+	 *             a <code>Dimension</code> indicating the desired width and
+	 *             height.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if either the width or the height is negative or 0.
+	 *                                          if either the width or the
+	 *                                          height is negative or 0.
 	 * @exception UnsupportedOperationException
-	 *                if image resizing is not supported by this plug-in.
+	 *                                          if image resizing is not
+	 *                                          supported by this plug-in.
 	 *
 	 * @see #getSourceRenderSize
 	 * @see ImageReader#getWidth
 	 * @see ImageReader#getHeight
 	 * @see ImageReader#getAspectRatio
 	 */
-	public void setSourceRenderSize(Dimension size) throws UnsupportedOperationException {
+	public void setSourceRenderSize(Dimension size)
+			throws UnsupportedOperationException {
 		if (!canSetSourceRenderSize()) {
-			throw new UnsupportedOperationException("Can't set source render size!");
+			throw new UnsupportedOperationException(
+					"Can't set source render size!");
 		}
 
 		if (size == null) {
@@ -391,7 +377,8 @@ public class ImageReadParam extends IIOParam {
 	 * @see #setSourceRenderSize
 	 */
 	public Dimension getSourceRenderSize() {
-		return (sourceRenderSize == null) ? null : (Dimension) sourceRenderSize.clone();
+		return (sourceRenderSize == null) ? null
+				: (Dimension) sourceRenderSize.clone();
 	}
 
 	/**
@@ -424,16 +411,20 @@ public class ImageReadParam extends IIOParam {
 	 * <code>setSourceProgressivePasses(0, Integer.MAX_VALUE)</code>.
 	 *
 	 * @param minPass
-	 *            the index of the first pass to be decoded.
+	 *                  the index of the first pass to be decoded.
 	 * @param numPasses
-	 *            the maximum number of passes to be decoded.
+	 *                  the maximum number of passes to be decoded.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>minPass</code> is negative,
-	 *                <code>numPasses</code> is negative or 0, or
-	 *                <code>numPasses</code> is smaller than
-	 *                <code>Integer.MAX_VALUE</code> but <code>minPass +
-	 * numPasses - 1</code> is greater than <code>INTEGER.MAX_VALUE</code>.
+	 *                                     if <code>minPass</code> is negative,
+	 *                                     <code>numPasses</code> is negative or
+	 *                                     0, or
+	 *                                     <code>numPasses</code> is smaller
+	 *                                     than
+	 *                                     <code>Integer.MAX_VALUE</code> but
+	 *                                     <code>minPass +
+	 * numPasses - 1</code>             is greater than
+	 *                                     <code>INTEGER.MAX_VALUE</code>.
 	 *
 	 * @see #getSourceMinProgressivePass
 	 * @see #getSourceMaxProgressivePass
@@ -445,8 +436,10 @@ public class ImageReadParam extends IIOParam {
 		if (numPasses <= 0) {
 			throw new IllegalArgumentException("numPasses <= 0!");
 		}
-		if ((numPasses != Integer.MAX_VALUE) && (((minPass + numPasses - 1) & 0x80000000) != 0)) {
-			throw new IllegalArgumentException("minPass + numPasses - 1 > INTEGER.MAX_VALUE!");
+		if ((numPasses != Integer.MAX_VALUE) && (((minPass + numPasses - 1)
+				& 0x80000000) != 0)) {
+			throw new IllegalArgumentException(
+					"minPass + numPasses - 1 > INTEGER.MAX_VALUE!");
 		}
 
 		this.minProgressivePass = minPass;

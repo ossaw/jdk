@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.event;
 
@@ -45,8 +25,8 @@ public class PopupMenuEvent extends EventObject {
 	 * Constructs a PopupMenuEvent object.
 	 *
 	 * @param source
-	 *            the Object that originated the event (typically
-	 *            <code>this</code>)
+	 *               the Object that originated the event (typically
+	 *               <code>this</code>)
 	 */
 	public PopupMenuEvent(Object source) {
 		super(source);

@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,8 +17,8 @@
  */
 
 // Aug 21, 2000:
-//   Fixed bug in isElement and made HTMLdtd public.
-//   Contributed by Eric SCHAEFFER" <eschaeffer@posterconseil.com>
+// Fixed bug in isElement and made HTMLdtd public.
+// Contributed by Eric SCHAEFFER" <eschaeffer@posterconseil.com>
 
 package com.sun.org.apache.xml.internal.serialize;
 
@@ -152,7 +150,7 @@ public final class HTMLdtd {
 	 * defines as empty in the DTD, not by the document syntax.
 	 *
 	 * @param tagName
-	 *            The element tag name (upper case)
+	 *                The element tag name (upper case)
 	 * @return True if element is empty
 	 */
 	public static boolean isEmptyTag(String tagName) {
@@ -165,7 +163,7 @@ public final class HTMLdtd {
 	 * report an error.
 	 *
 	 * @param tagName
-	 *            The element tag name (upper case)
+	 *                The element tag name (upper case)
 	 * @return True if element content
 	 */
 	public static boolean isElementContent(String tagName) {
@@ -178,7 +176,7 @@ public final class HTMLdtd {
 	 * space.
 	 *
 	 * @param tagName
-	 *            The element tag name (upper case)
+	 *                The element tag name (upper case)
 	 * @return True if element's text content preserves spaces
 	 */
 	public static boolean isPreserveSpace(String tagName) {
@@ -191,7 +189,7 @@ public final class HTMLdtd {
 	 * example, <tt>LI</tt> is most often not closed.
 	 *
 	 * @param tagName
-	 *            The element tag name (upper case)
+	 *                The element tag name (upper case)
 	 * @return True if closing tag implied
 	 */
 	public static boolean isOptionalClosing(String tagName) {
@@ -203,7 +201,7 @@ public final class HTMLdtd {
 	 * example, <tt>LI</tt> should not print the closing tag.
 	 *
 	 * @param tagName
-	 *            The element tag name (upper case)
+	 *                The element tag name (upper case)
 	 * @return True if only opening tag should be printed
 	 */
 	public static boolean isOnlyOpening(String tagName) {
@@ -217,9 +215,9 @@ public final class HTMLdtd {
 	 * opening <tt>BODY</tt> will close the previously open <tt>HEAD</tt>.
 	 *
 	 * @param tagName
-	 *            The newly opened element
+	 *                The newly opened element
 	 * @param openTag
-	 *            The already opened element
+	 *                The already opened element
 	 * @return True if closing tag closes opening tag
 	 */
 	public static boolean isClosing(String tagName, String openTag) {
@@ -233,12 +231,14 @@ public final class HTMLdtd {
 		if (openTag.equalsIgnoreCase("DT") || openTag.equalsIgnoreCase("DD"))
 			return isElement(tagName, CLOSE_DD_DT);
 		// LI and OPTION close themselves
-		if (openTag.equalsIgnoreCase("LI") || openTag.equalsIgnoreCase("OPTION"))
+		if (openTag.equalsIgnoreCase("LI") || openTag.equalsIgnoreCase(
+				"OPTION"))
 			return isElement(tagName, CLOSE_SELF);
 		// Each of these table sections closes all the others
-		if (openTag.equalsIgnoreCase("THEAD") || openTag.equalsIgnoreCase("TFOOT")
-				|| openTag.equalsIgnoreCase("TBODY") || openTag.equalsIgnoreCase("TR")
-				|| openTag.equalsIgnoreCase("COLGROUP"))
+		if (openTag.equalsIgnoreCase("THEAD") || openTag.equalsIgnoreCase(
+				"TFOOT") || openTag.equalsIgnoreCase("TBODY") || openTag
+						.equalsIgnoreCase("TR") || openTag.equalsIgnoreCase(
+								"COLGROUP"))
 			return isElement(tagName, CLOSE_TABLE);
 		// TD closes TH and TH closes TD
 		if (openTag.equalsIgnoreCase("TH") || openTag.equalsIgnoreCase("TD"))
@@ -252,13 +252,14 @@ public final class HTMLdtd {
 	 * attributes.
 	 *
 	 * @param tagName
-	 *            The element's tag name
+	 *                 The element's tag name
 	 * @param attrName
-	 *            The attribute's name
+	 *                 The attribute's name
 	 */
 	public static boolean isURI(String tagName, String attrName) {
 		// Stupid checks.
-		return (attrName.equalsIgnoreCase("href") || attrName.equalsIgnoreCase("src"));
+		return (attrName.equalsIgnoreCase("href") || attrName.equalsIgnoreCase(
+				"src"));
 	}
 
 	/**
@@ -267,9 +268,9 @@ public final class HTMLdtd {
 	 * they exist, such as selected (OPTION/INPUT).
 	 *
 	 * @param tagName
-	 *            The element's tag name
+	 *                 The element's tag name
 	 * @param attrName
-	 *            The attribute's name
+	 *                 The attribute's name
 	 */
 	public static boolean isBoolean(String tagName, String attrName) {
 		String[] attrNames;
@@ -289,7 +290,7 @@ public final class HTMLdtd {
 	 * returns EOF (-1).
 	 *
 	 * @param name
-	 *            Name of character reference
+	 *             Name of character reference
 	 * @return Character code or EOF (-1)
 	 */
 	public static int charFromName(String name) {
@@ -309,7 +310,7 @@ public final class HTMLdtd {
 	 * such character value was defined, return null.
 	 *
 	 * @param value
-	 *            Character value of entity
+	 *              Character value of entity
 	 * @return Entity's name or null
 	 */
 	public static String fromChar(int value) {
@@ -346,9 +347,10 @@ public final class HTMLdtd {
 			_byChar = new HashMap<>();
 			is = HTMLdtd.class.getResourceAsStream(ENTITIES_RESOURCE);
 			if (is == null) {
-				throw new RuntimeException(
-						DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
-								"ResourceNotFound", new Object[] { ENTITIES_RESOURCE }));
+				throw new RuntimeException(DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.SERIALIZER_DOMAIN,
+						"ResourceNotFound", new Object[] {
+								ENTITIES_RESOURCE }));
 			}
 			reader = new BufferedReader(new InputStreamReader(is, "ASCII"));
 			line = reader.readLine();
@@ -397,9 +399,9 @@ public final class HTMLdtd {
 	 * example of a character reference.
 	 *
 	 * @param name
-	 *            The entity's name
+	 *              The entity's name
 	 * @param value
-	 *            The entity's value
+	 *              The entity's value
 	 */
 	private static void defineEntity(String name, char value) {
 		if (_byName.get(name) == null) {
@@ -493,14 +495,15 @@ public final class HTMLdtd {
 		defineBoolean("FRAME", "noresize");
 		defineBoolean("HR", "noshade");
 		defineBoolean("IMAGE", "ismap");
-		defineBoolean("INPUT",
-				new String[] { "defaultchecked", "checked", "readonly", "disabled" });
+		defineBoolean("INPUT", new String[] { "defaultchecked", "checked",
+				"readonly", "disabled" });
 		defineBoolean("LINK", "link");
 		defineBoolean("MENU", "compact");
 		defineBoolean("OBJECT", "declare");
 		defineBoolean("OL", "compact");
 		defineBoolean("OPTGROUP", "disabled");
-		defineBoolean("OPTION", new String[] { "default-selected", "selected", "disabled" });
+		defineBoolean("OPTION", new String[] { "default-selected", "selected",
+				"disabled" });
 		defineBoolean("SCRIPT", "defer");
 		defineBoolean("SELECT", new String[] { "multiple", "disabled" });
 		defineBoolean("STYLE", "disabled");

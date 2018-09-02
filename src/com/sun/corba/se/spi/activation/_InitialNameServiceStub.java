@@ -12,7 +12,8 @@ public class _InitialNameServiceStub extends org.omg.CORBA.portable.ObjectImpl
 		implements com.sun.corba.se.spi.activation.InitialNameService {
 
 	// bind initial name
-	public void bind(String name, org.omg.CORBA.Object obj, boolean isPersistant)
+	public void bind(String name, org.omg.CORBA.Object obj,
+			boolean isPersistant)
 			throws com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBound {
 		org.omg.CORBA.portable.InputStream $in = null;
 		try {
@@ -25,7 +26,8 @@ public class _InitialNameServiceStub extends org.omg.CORBA.portable.ObjectImpl
 		} catch (org.omg.CORBA.portable.ApplicationException $ex) {
 			$in = $ex.getInputStream();
 			String _id = $ex.getId();
-			if (_id.equals("IDL:activation/InitialNameService/NameAlreadyBound:1.0"))
+			if (_id.equals(
+					"IDL:activation/InitialNameService/NameAlreadyBound:1.0"))
 				throw com.sun.corba.se.spi.activation.InitialNameServicePackage.NameAlreadyBoundHelper
 						.read($in);
 			else
@@ -44,7 +46,8 @@ public class _InitialNameServiceStub extends org.omg.CORBA.portable.ObjectImpl
 		return (String[]) __ids.clone();
 	}
 
-	private void readObject(java.io.ObjectInputStream s) throws java.io.IOException {
+	private void readObject(java.io.ObjectInputStream s)
+			throws java.io.IOException {
 		String str = s.readUTF();
 		String[] args = null;
 		java.util.Properties props = null;
@@ -59,7 +62,8 @@ public class _InitialNameServiceStub extends org.omg.CORBA.portable.ObjectImpl
 		}
 	}
 
-	private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
+	private void writeObject(java.io.ObjectOutputStream s)
+			throws java.io.IOException {
 		String[] args = null;
 		java.util.Properties props = null;
 		org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, props);

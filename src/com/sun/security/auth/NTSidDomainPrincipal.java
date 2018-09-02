@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth;
@@ -56,11 +36,13 @@ public class NTSidDomainPrincipal extends NTSid {
 	 * <p>
 	 *
 	 * @param name
-	 *            a string version of the Windows NT SID for this user's domain.
-	 *            <p>
+	 *             a string version of the Windows NT SID for this user's
+	 *             domain.
+	 *             <p>
 	 *
 	 * @exception NullPointerException
-	 *                if the <code>name</code> is <code>null</code>.
+	 *                                 if the <code>name</code> is
+	 *                                 <code>null</code>.
 	 */
 	public NTSidDomainPrincipal(String name) {
 		super(name);
@@ -75,8 +57,10 @@ public class NTSidDomainPrincipal extends NTSid {
 	 *         .
 	 */
 	public String toString() {
-		java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
-				.getString("NTSidDomainPrincipal.name", "sun.security.util.AuthResources"));
+		java.text.MessageFormat form = new java.text.MessageFormat(
+				sun.security.util.ResourcesMgr.getString(
+						"NTSidDomainPrincipal.name",
+						"sun.security.util.AuthResources"));
 		Object[] source = { getName() };
 		return form.format(source);
 	}
@@ -90,8 +74,8 @@ public class NTSidDomainPrincipal extends NTSid {
 	 * <p>
 	 *
 	 * @param o
-	 *            Object to be compared for equality with this
-	 *            <code>NTSidDomainPrincipal</code>.
+	 *          Object to be compared for equality with this
+	 *          <code>NTSidDomainPrincipal</code>.
 	 *
 	 * @return true if the specified Object is equal equal to this
 	 *         <code>NTSidDomainPrincipal</code>.

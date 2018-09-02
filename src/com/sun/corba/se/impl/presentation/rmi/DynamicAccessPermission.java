@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.presentation.rmi;
@@ -41,7 +21,7 @@ public final class DynamicAccessPermission extends BasicPermission {
 	 * Creates a new DynamicAccessPermission with the specified name.
 	 * 
 	 * @param name
-	 *            the name of the DynamicAccessPermission.
+	 *             the name of the DynamicAccessPermission.
 	 */
 	public DynamicAccessPermission(String name) {
 		super(name);
@@ -53,9 +33,9 @@ public final class DynamicAccessPermission extends BasicPermission {
 	 * String is currently unused and should be null.
 	 *
 	 * @param name
-	 *            the name of the DynamicAccessPermission.
+	 *                the name of the DynamicAccessPermission.
 	 * @param actions
-	 *            should be null.
+	 *                should be null.
 	 */
 	public DynamicAccessPermission(String name, String actions) {
 		super(name, actions);

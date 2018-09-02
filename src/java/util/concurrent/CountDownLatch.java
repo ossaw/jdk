@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -200,10 +175,11 @@ public class CountDownLatch {
 	 * Constructs a {@code CountDownLatch} initialized with the given count.
 	 *
 	 * @param count
-	 *            the number of times {@link #countDown} must be invoked before
-	 *            threads can pass through {@link #await}
+	 *              the number of times {@link #countDown} must be invoked
+	 *              before
+	 *              threads can pass through {@link #await}
 	 * @throws IllegalArgumentException
-	 *             if {@code count} is negative
+	 *                                  if {@code count} is negative
 	 */
 	public CountDownLatch(int count) {
 		if (count < 0)
@@ -239,7 +215,8 @@ public class CountDownLatch {
 	 * interrupted status is cleared.
 	 *
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted while waiting
+	 *                              if the current thread is interrupted while
+	 *                              waiting
 	 */
 	public void await() throws InterruptedException {
 		sync.acquireSharedInterruptibly(1);
@@ -285,15 +262,17 @@ public class CountDownLatch {
 	 * wait at all.
 	 *
 	 * @param timeout
-	 *            the maximum time to wait
+	 *                the maximum time to wait
 	 * @param unit
-	 *            the time unit of the {@code timeout} argument
+	 *                the time unit of the {@code timeout} argument
 	 * @return {@code true} if the count reached zero and {@code false} if the
 	 *         waiting time elapsed before the count reached zero
 	 * @throws InterruptedException
-	 *             if the current thread is interrupted while waiting
+	 *                              if the current thread is interrupted while
+	 *                              waiting
 	 */
-	public boolean await(long timeout, TimeUnit unit) throws InterruptedException {
+	public boolean await(long timeout, TimeUnit unit)
+			throws InterruptedException {
 		return sync.tryAcquireSharedNanos(1, unit.toNanos(timeout));
 	}
 

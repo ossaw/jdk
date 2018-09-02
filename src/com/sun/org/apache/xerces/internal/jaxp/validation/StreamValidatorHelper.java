@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -108,25 +105,30 @@ final class StreamValidatorHelper implements ValidatorHelper {
 
 	private ValidatorHandlerImpl handler = null;
 
-	public StreamValidatorHelper(XMLSchemaValidatorComponentManager componentManager) {
+	public StreamValidatorHelper(
+			XMLSchemaValidatorComponentManager componentManager) {
 		fComponentManager = componentManager;
 		fSchemaValidator = (com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator) fComponentManager
 				.getProperty(SCHEMA_VALIDATOR);
 	}
 
-	public void validate(Source source, Result result) throws SAXException, IOException {
+	public void validate(Source source, Result result) throws SAXException,
+			IOException {
 		if (result == null || result instanceof StreamResult) {
 			final StreamSource streamSource = (StreamSource) source;
 			TransformerHandler identityTransformerHandler;
 
 			if (result != null) {
 				try {
-					SAXTransformerFactory tf = fComponentManager
-							.getFeature(Constants.ORACLE_FEATURE_SERVICE_MECHANISM)
-									? (SAXTransformerFactory) SAXTransformerFactory.newInstance()
-									: (SAXTransformerFactory) TransformerFactory.newInstance(
-											DEFAULT_TRANSFORMER_IMPL,
-											StreamValidatorHelper.class.getClassLoader());
+					SAXTransformerFactory tf = fComponentManager.getFeature(
+							Constants.ORACLE_FEATURE_SERVICE_MECHANISM)
+									? (SAXTransformerFactory) SAXTransformerFactory
+											.newInstance()
+									: (SAXTransformerFactory) TransformerFactory
+											.newInstance(
+													DEFAULT_TRANSFORMER_IMPL,
+													StreamValidatorHelper.class
+															.getClassLoader());
 					identityTransformerHandler = tf.newTransformerHandler();
 				} catch (TransformerConfigurationException e) {
 					throw new TransformerFactoryConfigurationError(e);
@@ -137,8 +139,8 @@ final class StreamValidatorHelper implements ValidatorHelper {
 				identityTransformerHandler.setResult(result);
 			}
 
-			XMLInputSource input = new XMLInputSource(streamSource.getPublicId(),
-					streamSource.getSystemId(), null);
+			XMLInputSource input = new XMLInputSource(streamSource
+					.getPublicId(), streamSource.getSystemId(), null);
 			input.setByteStream(streamSource.getInputStream());
 			input.setCharacterStream(streamSource.getReader());
 
@@ -146,15 +148,18 @@ final class StreamValidatorHelper implements ValidatorHelper {
 			// one, if we
 			// haven't created one before or if the previous one was garbage
 			// collected.
-			XMLParserConfiguration config = (XMLParserConfiguration) fConfiguration.get();
+			XMLParserConfiguration config = (XMLParserConfiguration) fConfiguration
+					.get();
 			if (config == null) {
 				config = initialize();
 			}
 			// If settings have changed on the component manager, refresh the
 			// error handler and entity resolver.
 			else if (fComponentManager.getFeature(PARSER_SETTINGS)) {
-				config.setProperty(ENTITY_RESOLVER, fComponentManager.getProperty(ENTITY_RESOLVER));
-				config.setProperty(ERROR_HANDLER, fComponentManager.getProperty(ERROR_HANDLER));
+				config.setProperty(ENTITY_RESOLVER, fComponentManager
+						.getProperty(ENTITY_RESOLVER));
+				config.setProperty(ERROR_HANDLER, fComponentManager.getProperty(
+						ERROR_HANDLER));
 			}
 
 			// prepare for parse
@@ -170,36 +175,46 @@ final class StreamValidatorHelper implements ValidatorHelper {
 			}
 			return;
 		}
-		throw new IllegalArgumentException(JAXPValidationMessageFormatter.formatMessage(
-				fComponentManager.getLocale(), "SourceResultMismatch",
-				new Object[] { source.getClass().getName(), result.getClass().getName() }));
+		throw new IllegalArgumentException(JAXPValidationMessageFormatter
+				.formatMessage(fComponentManager.getLocale(),
+						"SourceResultMismatch", new Object[] { source.getClass()
+								.getName(), result.getClass().getName() }));
 	}
 
 	private XMLParserConfiguration initialize() {
 		XML11Configuration config = new XML11Configuration();
-		if (fComponentManager.getFeature(XMLConstants.FEATURE_SECURE_PROCESSING)) {
+		if (fComponentManager.getFeature(
+				XMLConstants.FEATURE_SECURE_PROCESSING)) {
 			config.setProperty(SECURITY_MANAGER, new XMLSecurityManager());
 		}
-		config.setProperty(ENTITY_RESOLVER, fComponentManager.getProperty(ENTITY_RESOLVER));
-		config.setProperty(ERROR_HANDLER, fComponentManager.getProperty(ERROR_HANDLER));
+		config.setProperty(ENTITY_RESOLVER, fComponentManager.getProperty(
+				ENTITY_RESOLVER));
+		config.setProperty(ERROR_HANDLER, fComponentManager.getProperty(
+				ERROR_HANDLER));
 		XMLErrorReporter errorReporter = (XMLErrorReporter) fComponentManager
 				.getProperty(ERROR_REPORTER);
 		config.setProperty(ERROR_REPORTER, errorReporter);
 		// add message formatters
-		if (errorReporter.getMessageFormatter(XMLMessageFormatter.XML_DOMAIN) == null) {
+		if (errorReporter.getMessageFormatter(
+				XMLMessageFormatter.XML_DOMAIN) == null) {
 			XMLMessageFormatter xmft = new XMLMessageFormatter();
-			errorReporter.putMessageFormatter(XMLMessageFormatter.XML_DOMAIN, xmft);
-			errorReporter.putMessageFormatter(XMLMessageFormatter.XMLNS_DOMAIN, xmft);
+			errorReporter.putMessageFormatter(XMLMessageFormatter.XML_DOMAIN,
+					xmft);
+			errorReporter.putMessageFormatter(XMLMessageFormatter.XMLNS_DOMAIN,
+					xmft);
 		}
-		config.setProperty(SYMBOL_TABLE, fComponentManager.getProperty(SYMBOL_TABLE));
-		config.setProperty(VALIDATION_MANAGER, fComponentManager.getProperty(VALIDATION_MANAGER));
+		config.setProperty(SYMBOL_TABLE, fComponentManager.getProperty(
+				SYMBOL_TABLE));
+		config.setProperty(VALIDATION_MANAGER, fComponentManager.getProperty(
+				VALIDATION_MANAGER));
 		config.setDocumentHandler(fSchemaValidator);
 		config.setDTDHandler(null);
 		config.setDTDContentModelHandler(null);
 		config.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER,
-				fComponentManager.getProperty(Constants.XML_SECURITY_PROPERTY_MANAGER));
-		config.setProperty(Constants.SECURITY_MANAGER,
-				fComponentManager.getProperty(Constants.SECURITY_MANAGER));
+				fComponentManager.getProperty(
+						Constants.XML_SECURITY_PROPERTY_MANAGER));
+		config.setProperty(Constants.SECURITY_MANAGER, fComponentManager
+				.getProperty(Constants.SECURITY_MANAGER));
 		fConfiguration = new SoftReference(config);
 		return config;
 	}

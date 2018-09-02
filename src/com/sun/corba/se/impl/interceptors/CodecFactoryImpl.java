@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.interceptors;
@@ -42,7 +22,8 @@ import org.omg.CORBA.LocalObject;
  * CodecFactoryImpl is the implementation of the Codec Factory, as described in
  * orbos/99-12-02.
  */
-public final class CodecFactoryImpl extends org.omg.CORBA.LocalObject implements CodecFactory {
+public final class CodecFactoryImpl extends org.omg.CORBA.LocalObject implements
+		CodecFactory {
 	// The ORB that created this Codec Factory
 	private ORB orb;
 	private ORBUtilSystemException wrapper;
@@ -80,8 +61,9 @@ public final class CodecFactoryImpl extends org.omg.CORBA.LocalObject implements
 	 * 1.(MAX_MINOR_VERSION_SUPPORTED).
 	 *
 	 * @exception UnknownEncoding
-	 *                Thrown if this factory cannot create a Codec of the given
-	 *                encoding.
+	 *                            Thrown if this factory cannot create a Codec
+	 *                            of the given
+	 *                            encoding.
 	 */
 	public Codec create_codec(Encoding enc) throws UnknownEncoding {
 		if (enc == null)
@@ -90,8 +72,10 @@ public final class CodecFactoryImpl extends org.omg.CORBA.LocalObject implements
 		Codec result = null;
 
 		// This is the only format we can currently create codecs for:
-		if ((enc.format == ENCODING_CDR_ENCAPS.value) && (enc.major_version == 1)) {
-			if ((enc.minor_version >= 0) && (enc.minor_version <= MAX_MINOR_VERSION_SUPPORTED)) {
+		if ((enc.format == ENCODING_CDR_ENCAPS.value)
+				&& (enc.major_version == 1)) {
+			if ((enc.minor_version >= 0)
+					&& (enc.minor_version <= MAX_MINOR_VERSION_SUPPORTED)) {
 				result = codecs[enc.minor_version];
 			}
 		}

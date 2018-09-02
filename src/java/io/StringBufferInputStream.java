@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -66,7 +46,7 @@ public class StringBufferInputStream extends InputStream {
 	 * Creates a string input stream to read data from the specified string.
 	 *
 	 * @param s
-	 *            the underlying input buffer.
+	 *          the underlying input buffer.
 	 */
 	public StringBufferInputStream(String s) {
 		this.buffer = s;
@@ -111,8 +91,8 @@ public class StringBufferInputStream extends InputStream {
 	public synchronized int read(byte b[], int off, int len) {
 		if (b == null) {
 			throw new NullPointerException();
-		} else if ((off < 0) || (off > b.length) || (len < 0) || ((off + len) > b.length)
-				|| ((off + len) < 0)) {
+		} else if ((off < 0) || (off > b.length) || (len < 0) || ((off
+				+ len) > b.length) || ((off + len) < 0)) {
 			throw new IndexOutOfBoundsException();
 		}
 		if (pos >= count) {
@@ -138,7 +118,7 @@ public class StringBufferInputStream extends InputStream {
 	 * might be skipped if the end of the input stream is reached.
 	 *
 	 * @param n
-	 *            the number of bytes to be skipped.
+	 *          the number of bytes to be skipped.
 	 * @return the actual number of bytes skipped.
 	 */
 	public synchronized long skip(long n) {

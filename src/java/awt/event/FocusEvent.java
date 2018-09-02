@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -130,26 +110,30 @@ public class FocusEvent extends ComponentEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            The <code>Component</code> that originated the event
+	 *                  The <code>Component</code> that originated the event
 	 * @param id
-	 *            An integer indicating the type of event. For information on
-	 *            allowable values, see the class description for
-	 *            {@link FocusEvent}
+	 *                  An integer indicating the type of event. For information
+	 *                  on
+	 *                  allowable values, see the class description for
+	 *                  {@link FocusEvent}
 	 * @param temporary
-	 *            Equals <code>true</code> if the focus change is temporary;
-	 *            <code>false</code> otherwise
+	 *                  Equals <code>true</code> if the focus change is
+	 *                  temporary;
+	 *                  <code>false</code> otherwise
 	 * @param opposite
-	 *            The other Component involved in the focus change, or
-	 *            <code>null</code>
+	 *                  The other Component involved in the focus change, or
+	 *                  <code>null</code>
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> equals {@code null}
+	 *                                  if <code>source</code> equals
+	 *                                  {@code null}
 	 * @see #getSource()
 	 * @see #getID()
 	 * @see #isTemporary()
 	 * @see #getOppositeComponent()
 	 * @since 1.4
 	 */
-	public FocusEvent(Component source, int id, boolean temporary, Component opposite) {
+	public FocusEvent(Component source, int id, boolean temporary,
+			Component opposite) {
 		super(source, id);
 		this.temporary = temporary;
 		this.opposite = opposite;
@@ -163,16 +147,19 @@ public class FocusEvent extends ComponentEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            The <code>Component</code> that originated the event
+	 *                  The <code>Component</code> that originated the event
 	 * @param id
-	 *            An integer indicating the type of event. For information on
-	 *            allowable values, see the class description for
-	 *            {@link FocusEvent}
+	 *                  An integer indicating the type of event. For information
+	 *                  on
+	 *                  allowable values, see the class description for
+	 *                  {@link FocusEvent}
 	 * @param temporary
-	 *            Equals <code>true</code> if the focus change is temporary;
-	 *            <code>false</code> otherwise
+	 *                  Equals <code>true</code> if the focus change is
+	 *                  temporary;
+	 *                  <code>false</code> otherwise
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> equals {@code null}
+	 *                                  if <code>source</code> equals
+	 *                                  {@code null}
 	 * @see #getSource()
 	 * @see #getID()
 	 * @see #isTemporary()
@@ -189,13 +176,14 @@ public class FocusEvent extends ComponentEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            The <code>Component</code> that originated the event
+	 *               The <code>Component</code> that originated the event
 	 * @param id
-	 *            An integer indicating the type of event. For information on
-	 *            allowable values, see the class description for
-	 *            {@link FocusEvent}
+	 *               An integer indicating the type of event. For information on
+	 *               allowable values, see the class description for
+	 *               {@link FocusEvent}
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> equals {@code null}
+	 *                                  if <code>source</code> equals
+	 *                                  {@code null}
 	 * @see #getSource()
 	 * @see #getID()
 	 */
@@ -229,8 +217,8 @@ public class FocusEvent extends ComponentEvent {
 			return null;
 		}
 
-		return (SunToolkit.targetToAppContext(opposite) == AppContext.getAppContext()) ? opposite
-				: null;
+		return (SunToolkit.targetToAppContext(opposite) == AppContext
+				.getAppContext()) ? opposite : null;
 	}
 
 	/**
@@ -242,17 +230,17 @@ public class FocusEvent extends ComponentEvent {
 	public String paramString() {
 		String typeStr;
 		switch (id) {
-		case FOCUS_GAINED:
-			typeStr = "FOCUS_GAINED";
-			break;
-		case FOCUS_LOST:
-			typeStr = "FOCUS_LOST";
-			break;
-		default:
-			typeStr = "unknown type";
+			case FOCUS_GAINED:
+				typeStr = "FOCUS_GAINED";
+				break;
+			case FOCUS_LOST:
+				typeStr = "FOCUS_LOST";
+				break;
+			default:
+				typeStr = "unknown type";
 		}
-		return typeStr + (temporary ? ",temporary" : ",permanent") + ",opposite="
-				+ getOppositeComponent();
+		return typeStr + (temporary ? ",temporary" : ",permanent")
+				+ ",opposite=" + getOppositeComponent();
 	}
 
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol;
@@ -47,15 +27,16 @@ public class JIDLLocalCRDImpl extends LocalClientRequestDispatcherBase {
 
 	protected ServantObject servant;
 
-	public ServantObject servant_preinvoke(org.omg.CORBA.Object self, String operation,
-			Class expectedType) {
+	public ServantObject servant_preinvoke(org.omg.CORBA.Object self,
+			String operation, Class expectedType) {
 		if (!checkForCompatibleServant(servant, expectedType))
 			return null;
 
 		return servant;
 	}
 
-	public void servant_postinvoke(org.omg.CORBA.Object self, ServantObject servant) {
+	public void servant_postinvoke(org.omg.CORBA.Object self,
+			ServantObject servant) {
 		// NO-OP
 	}
 

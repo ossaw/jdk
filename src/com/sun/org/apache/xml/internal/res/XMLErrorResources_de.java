@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,39 +30,30 @@ public class XMLErrorResources_de extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Xalan Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 */
 
 	/**
@@ -185,7 +173,8 @@ public class XMLErrorResources_de extends ListResourceBundle {
 
 			{ ER_FUNCTION_NOT_SUPPORTED, "Funktion nicht unterst\u00FCtzt." },
 
-			{ ER_CANNOT_OVERWRITE_CAUSE, "Ursache kann nicht \u00FCberschrieben werden" },
+			{ ER_CANNOT_OVERWRITE_CAUSE,
+					"Ursache kann nicht \u00FCberschrieben werden" },
 
 			{ ER_NO_DEFAULT_IMPL, "Keine Standardimplementierung gefunden " },
 
@@ -194,15 +183,19 @@ public class XMLErrorResources_de extends ListResourceBundle {
 
 			{ ER_OFFSET_BIGGER_THAN_SLOT, "Offset gr\u00F6\u00DFer als Slot" },
 
-			{ ER_COROUTINE_NOT_AVAIL, "Coroutine nicht verf\u00FCgbar; ID={0}" },
+			{ ER_COROUTINE_NOT_AVAIL,
+					"Coroutine nicht verf\u00FCgbar; ID={0}" },
 
-			{ ER_COROUTINE_CO_EXIT, "CoroutineManager hat co_exit()-Anforderung erhalten" },
+			{ ER_COROUTINE_CO_EXIT,
+					"CoroutineManager hat co_exit()-Anforderung erhalten" },
 
-			{ ER_COJOINROUTINESET_FAILED, "co_joinCoroutineSet() nicht erfolgreich" },
+			{ ER_COJOINROUTINESET_FAILED,
+					"co_joinCoroutineSet() nicht erfolgreich" },
 
 			{ ER_COROUTINE_PARAM, "Coroutine-Parameterfehler ({0})" },
 
-			{ ER_PARSER_DOTERMINATE_ANSWERS, "\nUNEXPECTED: Parser doTerminate antwortet {0}" },
+			{ ER_PARSER_DOTERMINATE_ANSWERS,
+					"\nUNEXPECTED: Parser doTerminate antwortet {0}" },
 
 			{ ER_NO_PARSE_CALL_WHILE_PARSING,
 					"\"parse\" darf w\u00E4hrend des Parsing nicht aufgerufen werden" },
@@ -213,26 +206,32 @@ public class XMLErrorResources_de extends ListResourceBundle {
 			{ ER_ITERATOR_AXIS_NOT_IMPLEMENTED,
 					"Fehler: Iterator f\u00FCr Achse {0} nicht implementiert " },
 
-			{ ER_ITERATOR_CLONE_NOT_SUPPORTED, "Iteratorclone nicht unterst\u00FCtzt" },
+			{ ER_ITERATOR_CLONE_NOT_SUPPORTED,
+					"Iteratorclone nicht unterst\u00FCtzt" },
 
 			{ ER_UNKNOWN_AXIS_TYPE, "Unbekannter Achsendurchlauftyp: {0}" },
 
-			{ ER_AXIS_NOT_SUPPORTED, "Achsen-Traverser nicht unterst\u00FCtzt: {0}" },
+			{ ER_AXIS_NOT_SUPPORTED,
+					"Achsen-Traverser nicht unterst\u00FCtzt: {0}" },
 
 			{ ER_NO_DTMIDS_AVAIL, "Keine weiteren DTM-IDs verf\u00FCgbar" },
 
 			{ ER_NOT_SUPPORTED, "Nicht unterst\u00FCtzt: {0}" },
 
-			{ ER_NODE_NON_NULL, "Knoten darf nicht null sein f\u00FCr getDTMHandleFromNode" },
+			{ ER_NODE_NON_NULL,
+					"Knoten darf nicht null sein f\u00FCr getDTMHandleFromNode" },
 
-			{ ER_COULD_NOT_RESOLVE_NODE, "Knoten konnte nicht in Handle aufgel\u00F6st werden" },
+			{ ER_COULD_NOT_RESOLVE_NODE,
+					"Knoten konnte nicht in Handle aufgel\u00F6st werden" },
 
 			{ ER_STARTPARSE_WHILE_PARSING,
 					"\"startParse\" darf w\u00E4hrend des Parsing nicht aufgerufen werden" },
 
-			{ ER_STARTPARSE_NEEDS_SAXPARSER, "startParse erfordert einen SAXParser ungleich null" },
+			{ ER_STARTPARSE_NEEDS_SAXPARSER,
+					"startParse erfordert einen SAXParser ungleich null" },
 
-			{ ER_COULD_NOT_INIT_PARSER, "Parser konnte nicht initialisiert werden mit" },
+			{ ER_COULD_NOT_INIT_PARSER,
+					"Parser konnte nicht initialisiert werden mit" },
 
 			{ ER_EXCEPTION_CREATING_POOL,
 					"Ausnahme beim Erstellen einer neuen Instanz f\u00FCr Pool" },
@@ -246,16 +245,19 @@ public class XMLErrorResources_de extends ListResourceBundle {
 
 			{ ER_NO_SCHEME_INURI, "Kein Schema gefunden in URI" },
 
-			{ ER_PATH_INVALID_CHAR, "Pfad enth\u00E4lt ung\u00FCltiges Zeichen: {0}" },
+			{ ER_PATH_INVALID_CHAR,
+					"Pfad enth\u00E4lt ung\u00FCltiges Zeichen: {0}" },
 
 			{ ER_SCHEME_FROM_NULL_STRING,
 					"Schema kann nicht von Nullzeichenfolge festgelegt werden" },
 
 			{ ER_SCHEME_NOT_CONFORMANT, "Schema ist nicht konform." },
 
-			{ ER_HOST_ADDRESS_NOT_WELLFORMED, "Host ist keine wohlgeformte Adresse" },
+			{ ER_HOST_ADDRESS_NOT_WELLFORMED,
+					"Host ist keine wohlgeformte Adresse" },
 
-			{ ER_PORT_WHEN_HOST_NULL, "Port kann nicht festgelegt werden, wenn der Host null ist" },
+			{ ER_PORT_WHEN_HOST_NULL,
+					"Port kann nicht festgelegt werden, wenn der Host null ist" },
 
 			{ ER_INVALID_PORT, "Ung\u00FCltige Portnummer" },
 
@@ -265,14 +267,16 @@ public class XMLErrorResources_de extends ListResourceBundle {
 			{ ER_FRAG_WHEN_PATH_NULL,
 					"Fragment kann nicht festgelegt werden, wenn der Pfad null ist" },
 
-			{ ER_FRAG_INVALID_CHAR, "Fragment enth\u00E4lt ein ung\u00FCltiges Zeichen" },
+			{ ER_FRAG_INVALID_CHAR,
+					"Fragment enth\u00E4lt ein ung\u00FCltiges Zeichen" },
 
 			{ ER_PARSER_IN_USE, "Parser wird bereits verwendet" },
 
 			{ ER_CANNOT_CHANGE_WHILE_PARSING,
 					"{0} {1} kann w\u00E4hrend Parsing nicht ge\u00E4ndert werden" },
 
-			{ ER_SELF_CAUSATION_NOT_PERMITTED, "Selbstkausalit\u00E4t nicht zul\u00E4ssig" },
+			{ ER_SELF_CAUSATION_NOT_PERMITTED,
+					"Selbstkausalit\u00E4t nicht zul\u00E4ssig" },
 
 			{ ER_NO_USERINFO_IF_NO_HOST,
 					"Benutzerinformationen k\u00F6nnen nicht angegeben werden, wenn der Host nicht angegeben wurde" },
@@ -294,9 +298,11 @@ public class XMLErrorResources_de extends ListResourceBundle {
 			{ ER_INCRSAXSRCFILTER_NOT_RESTARTABLE,
 					"IncrementalSAXSource_Filter kann derzeit nicht neu gestartet werden" },
 
-			{ ER_XMLRDR_NOT_BEFORE_STARTPARSE, "XMLReader nicht vor startParse-Anforderung" },
+			{ ER_XMLRDR_NOT_BEFORE_STARTPARSE,
+					"XMLReader nicht vor startParse-Anforderung" },
 
-			{ ER_AXIS_TRAVERSER_NOT_SUPPORTED, "Achsen-Traverser nicht unterst\u00FCtzt: {0}" },
+			{ ER_AXIS_TRAVERSER_NOT_SUPPORTED,
+					"Achsen-Traverser nicht unterst\u00FCtzt: {0}" },
 
 			{ ER_ERRORHANDLER_CREATED_WITH_NULL_PRINTWRITER,
 					"ListingErrorHandler mit Null-PrintWriter erstellt." },
@@ -305,7 +311,8 @@ public class XMLErrorResources_de extends ListResourceBundle {
 
 			{ ER_LOCATION_UNKNOWN, "Fehlerposition unbekannt" },
 
-			{ ER_PREFIX_MUST_RESOLVE, "Pr\u00E4fix muss in Namespace aufgel\u00F6st werden: {0}" },
+			{ ER_PREFIX_MUST_RESOLVE,
+					"Pr\u00E4fix muss in Namespace aufgel\u00F6st werden: {0}" },
 
 			{ ER_CREATEDOCUMENT_NOT_SUPPORTED,
 					"createDocument() nicht in XPathContext unterst\u00FCtzt." },
@@ -329,33 +336,40 @@ public class XMLErrorResources_de extends ListResourceBundle {
 			// The localname is the portion after the optional colon; the
 			// message indicates
 			// that there is a problem with that part of the QNAME.
-			{ ER_ARG_LOCALNAME_INVALID, "Localname in QNAME muss ein g\u00FCltiger NCName sein" },
+			{ ER_ARG_LOCALNAME_INVALID,
+					"Localname in QNAME muss ein g\u00FCltiger NCName sein" },
 
 			// Note to translators: A QNAME has the syntactic form
 			// [NCName:]NCName
 			// The prefix is the portion before the optional colon; the message
 			// indicates
 			// that there is a problem with that part of the QNAME.
-			{ ER_ARG_PREFIX_INVALID, "Pr\u00E4fix in QNAME muss ein g\u00FCltiger NCName sein" },
+			{ ER_ARG_PREFIX_INVALID,
+					"Pr\u00E4fix in QNAME muss ein g\u00FCltiger NCName sein" },
 
-			{ ER_NAME_CANT_START_WITH_COLON, "Name darf nicht mit einem Doppelpunkt beginnen" },
+			{ ER_NAME_CANT_START_WITH_COLON,
+					"Name darf nicht mit einem Doppelpunkt beginnen" },
 
 			{ "BAD_CODE",
 					"Parameter f\u00FCr createMessage war au\u00DFerhalb des g\u00FCltigen Bereichs" },
-			{ "FORMAT_FAILED", "Ausnahme bei messageFormat-Aufruf ausgel\u00F6st" },
-			{ "line", "Zeilennummer" }, { "column", "Spaltennummer" },
+			{ "FORMAT_FAILED",
+					"Ausnahme bei messageFormat-Aufruf ausgel\u00F6st" }, {
+							"line", "Zeilennummer" }, { "column",
+									"Spaltennummer" },
 
 			{ ER_SERIALIZER_NOT_CONTENTHANDLER,
 					"Serializer-Klasse \"{0}\" implementiert org.xml.sax.ContentHandler nicht." },
 
-			{ ER_RESOURCE_COULD_NOT_FIND, "Ressource [ {0} ] konnte nicht gefunden werden.\n {1}" },
+			{ ER_RESOURCE_COULD_NOT_FIND,
+					"Ressource [ {0} ] konnte nicht gefunden werden.\n {1}" },
 
 			{ ER_RESOURCE_COULD_NOT_LOAD,
 					"Ressource [ {0} ] konnte nicht geladen werden: {1} \n {2} \t {3}" },
 
 			{ ER_BUFFER_SIZE_LESSTHAN_ZERO, "Puffergr\u00F6\u00DFe <=0" },
 
-			{ ER_INVALID_UTF16_SURROGATE, "Ung\u00FCltige UTF-16-Ersetzung festgestellt: {0}?" },
+			{ ER_INVALID_UTF16_SURROGATE,
+					"Ung\u00FCltige UTF-16-Ersetzung festgestellt: {0}?" },
 
 			{ ER_OIERROR, "I/O-Fehler" },
 
@@ -375,7 +389,8 @@ public class XMLErrorResources_de extends ListResourceBundle {
 			 * attribute in a place other than on an element. The substitution
 			 * text specifies the name of the attribute.
 			 */
-			{ ER_STRAY_ATTRIBUTE, "Attribut \"{0}\" au\u00DFerhalb des Elements." },
+			{ ER_STRAY_ATTRIBUTE,
+					"Attribut \"{0}\" au\u00DFerhalb des Elements." },
 
 			/*
 			 * Note to translators: As with the preceding message, a namespace
@@ -384,7 +399,8 @@ public class XMLErrorResources_de extends ListResourceBundle {
 			 * prefix and {1} is the URI that was being used in the erroneous
 			 * namespace declaration.
 			 */
-			{ ER_STRAY_NAMESPACE, "Namespace-Deklaration {0}={1} au\u00DFerhalb des Elements." },
+			{ ER_STRAY_NAMESPACE,
+					"Namespace-Deklaration {0}={1} au\u00DFerhalb des Elements." },
 
 			{ ER_COULD_NOT_LOAD_RESOURCE,
 					"\"{0}\" konnte nicht geladen werden (CLASSPATH pr\u00FCfen). Die Standardwerte werden verwendet" },

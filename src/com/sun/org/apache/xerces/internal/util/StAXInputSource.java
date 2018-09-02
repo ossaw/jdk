@@ -4,14 +4,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,10 +43,12 @@ public final class StAXInputSource extends XMLInputSource {
 		this(source, false);
 	}
 
-	public StAXInputSource(XMLStreamReader source, boolean consumeRemainingContent) {
+	public StAXInputSource(XMLStreamReader source,
+			boolean consumeRemainingContent) {
 		super(null, source.getLocation().getSystemId(), null);
 		if (source == null) {
-			throw new IllegalArgumentException("XMLStreamReader parameter cannot be null.");
+			throw new IllegalArgumentException(
+					"XMLStreamReader parameter cannot be null.");
 		}
 		fStreamReader = source;
 		fEventReader = null;
@@ -59,10 +59,12 @@ public final class StAXInputSource extends XMLInputSource {
 		this(source, false);
 	}
 
-	public StAXInputSource(XMLEventReader source, boolean consumeRemainingContent) {
+	public StAXInputSource(XMLEventReader source,
+			boolean consumeRemainingContent) {
 		super(null, getEventReaderSystemId(source), null);
 		if (source == null) {
-			throw new IllegalArgumentException("XMLEventReader parameter cannot be null.");
+			throw new IllegalArgumentException(
+					"XMLEventReader parameter cannot be null.");
 		}
 		fStreamReader = null;
 		fEventReader = source;
@@ -82,7 +84,8 @@ public final class StAXInputSource extends XMLInputSource {
 	}
 
 	public void setSystemId(String systemId) {
-		throw new UnsupportedOperationException("Cannot set the system ID on a StAXInputSource");
+		throw new UnsupportedOperationException(
+				"Cannot set the system ID on a StAXInputSource");
 	}
 
 	private static String getEventReaderSystemId(XMLEventReader reader) {

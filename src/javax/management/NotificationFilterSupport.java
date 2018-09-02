@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -74,11 +54,12 @@ public class NotificationFilterSupport implements NotificationFilter {
 	 * <CODE>true</CODE>.
 	 *
 	 * @param notification
-	 *            The notification to be sent.
+	 *                     The notification to be sent.
 	 * @return <CODE>true</CODE> if the notification should be sent to the
 	 *         listener, <CODE>false</CODE> otherwise.
 	 */
-	public synchronized boolean isNotificationEnabled(Notification notification) {
+	public synchronized boolean isNotificationEnabled(
+			Notification notification) {
 
 		String type = notification.getType();
 
@@ -122,11 +103,12 @@ public class NotificationFilterSupport implements NotificationFilter {
 	 * </CODE></BLOCKQUOTE> will no match any notification type.
 	 *
 	 * @param prefix
-	 *            The prefix.
+	 *               The prefix.
 	 * @exception java.lang.IllegalArgumentException
-	 *                The prefix parameter is null.
+	 *            The prefix parameter is null.
 	 */
-	public synchronized void enableType(String prefix) throws IllegalArgumentException {
+	public synchronized void enableType(String prefix)
+			throws IllegalArgumentException {
 
 		if (prefix == null) {
 			throw new IllegalArgumentException("The prefix cannot be null.");
@@ -142,7 +124,7 @@ public class NotificationFilterSupport implements NotificationFilter {
 	 * this method has no effect.
 	 *
 	 * @param prefix
-	 *            The prefix.
+	 *               The prefix.
 	 */
 	public synchronized void disableType(String prefix) {
 		enabledTypes.remove(prefix);

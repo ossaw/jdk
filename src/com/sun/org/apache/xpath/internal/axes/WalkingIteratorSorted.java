@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: WalkingIteratorSorted.java,v 1.2.4.1 2005/09/14 19:45:23 jeffsuttor Exp $
+ * $Id: WalkingIteratorSorted.java,v 1.2.4.1 2005/09/14 19:45:23 jeffsuttor Exp
+ * $
  */
 package com.sun.org.apache.xpath.internal.axes;
 
@@ -47,7 +45,8 @@ public class WalkingIteratorSorted extends WalkingIterator {
 	 * Create a WalkingIteratorSorted object.
 	 *
 	 * @param nscontext
-	 *            The namespace context for this iterator, should be OK if null.
+	 *                  The namespace context for this iterator, should be OK if
+	 *                  null.
 	 */
 	public WalkingIteratorSorted(PrefixResolver nscontext) {
 		super(nscontext);
@@ -59,17 +58,21 @@ public class WalkingIteratorSorted extends WalkingIterator {
 	 * expressions.
 	 *
 	 * @param compiler
-	 *            The Compiler which is creating this expression.
+	 *                          The Compiler which is creating this expression.
 	 * @param opPos
-	 *            The position of this iterator in the opcode list from the
-	 *            compiler.
+	 *                          The position of this iterator in the opcode list
+	 *                          from the
+	 *                          compiler.
 	 * @param shouldLoadWalkers
-	 *            True if walkers should be loaded, or false if this is a
-	 *            derived iterator and it doesn't wish to load child walkers.
+	 *                          True if walkers should be loaded, or false if
+	 *                          this is a
+	 *                          derived iterator and it doesn't wish to load
+	 *                          child walkers.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	WalkingIteratorSorted(Compiler compiler, int opPos, int analysis, boolean shouldLoadWalkers)
+	WalkingIteratorSorted(Compiler compiler, int opPos, int analysis,
+			boolean shouldLoadWalkers)
 			throws javax.xml.transform.TransformerException {
 		super(compiler, opPos, analysis, shouldLoadWalkers);
 	}
@@ -101,8 +104,8 @@ public class WalkingIteratorSorted extends WalkingIterator {
 				int axis = walker.getAxis();
 
 				if (walker.isDocOrdered()) {
-					boolean isSimpleDownAxis = ((axis == Axis.CHILD) || (axis == Axis.SELF)
-							|| (axis == Axis.ROOT));
+					boolean isSimpleDownAxis = ((axis == Axis.CHILD)
+							|| (axis == Axis.SELF) || (axis == Axis.ROOT));
 					// Catching the filtered list here is only OK because
 					// FilterExprWalker#isDocOrdered() did the right thing.
 					if (isSimpleDownAxis || (axis == -1))
@@ -111,7 +114,8 @@ public class WalkingIteratorSorted extends WalkingIterator {
 						boolean isLastWalker = (null == walker.getNextWalker());
 						if (isLastWalker) {
 							if (walker.isDocOrdered()
-									&& (axis == Axis.DESCENDANT || axis == Axis.DESCENDANTORSELF
+									&& (axis == Axis.DESCENDANT
+											|| axis == Axis.DESCENDANTORSELF
 											|| axis == Axis.DESCENDANTSFROMROOT
 											|| axis == Axis.DESCENDANTSORSELFFROMROOT)
 									|| (axis == Axis.ATTRIBUTE))
@@ -180,13 +184,13 @@ public class WalkingIteratorSorted extends WalkingIterator {
 	 * This function is used to perform some extra analysis of the iterator.
 	 *
 	 * @param vars
-	 *            List of QNames that correspond to variables. This list should
-	 *            be searched backwards for the first qualified name that
-	 *            corresponds to the variable reference qname. The position of
-	 *            the QName in the vector from the start of the vector will be
-	 *            its position in the stack frame (but variables above the
-	 *            globalsTop value will need to be offset to the current stack
-	 *            frame).
+	 *             List of QNames that correspond to variables. This list should
+	 *             be searched backwards for the first qualified name that
+	 *             corresponds to the variable reference qname. The position of
+	 *             the QName in the vector from the start of the vector will be
+	 *             its position in the stack frame (but variables above the
+	 *             globalsTop value will need to be offset to the current stack
+	 *             frame).
 	 */
 	public void fixupVariables(java.util.Vector vars, int globalsSize) {
 		super.fixupVariables(vars, globalsSize);

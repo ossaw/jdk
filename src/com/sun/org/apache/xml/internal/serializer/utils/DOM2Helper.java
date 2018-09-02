@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -61,8 +58,7 @@ public final class DOM2Helper {
 	/**
 	 * Construct an instance.
 	 */
-	public DOM2Helper() {
-	}
+	public DOM2Helper() {}
 
 	/**
 	 * Returns the local name of the given node, as defined by the XML
@@ -71,7 +67,7 @@ public final class DOM2Helper {
 	 * node name.
 	 *
 	 * @param n
-	 *            Node to be examined
+	 *          Node to be examined
 	 *
 	 * @return String containing the local name, or null if the node was not
 	 *         assigned a Namespace.
@@ -92,7 +88,7 @@ public final class DOM2Helper {
 	 * com.sun.org.apache.xml.internal.utils.DOMHelper
 	 *
 	 * @param n
-	 *            the node to be examined.
+	 *          the node to be examined.
 	 *
 	 * @return String containing the Local Name
 	 */
@@ -114,7 +110,7 @@ public final class DOM2Helper {
 	 * TODO: Reconcile with getLocalNameOfNode.
 	 *
 	 * @param n
-	 *            Node to be examined
+	 *          Node to be examined
 	 *
 	 * @return String containing the Namespace URI bound to this DOM node at the
 	 *         time the Node was created.

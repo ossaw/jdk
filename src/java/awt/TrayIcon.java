@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -101,7 +81,6 @@ public class TrayIcon {
 
 	/*
 	 * The tray icon's AccessControlContext.
-	 *
 	 * Unlike the acc in Component, this field is made final because TrayIcon is
 	 * not serializable.
 	 */
@@ -112,7 +91,8 @@ public class TrayIcon {
 	 */
 	final AccessControlContext getAccessControlContext() {
 		if (acc == null) {
-			throw new SecurityException("TrayIcon is missing AccessControlContext");
+			throw new SecurityException(
+					"TrayIcon is missing AccessControlContext");
 		}
 		return acc;
 	}
@@ -134,7 +114,8 @@ public class TrayIcon {
 		});
 	}
 
-	private TrayIcon() throws UnsupportedOperationException, HeadlessException, SecurityException {
+	private TrayIcon() throws UnsupportedOperationException, HeadlessException,
+			SecurityException {
 		SystemTray.checkSystemTrayAllowed();
 		if (GraphicsEnvironment.isHeadless()) {
 			throw new HeadlessException();
@@ -149,16 +130,21 @@ public class TrayIcon {
 	 * Creates a <code>TrayIcon</code> with the specified image.
 	 *
 	 * @param image
-	 *            the <code>Image</code> to be used
+	 *              the <code>Image</code> to be used
 	 * @throws IllegalArgumentException
-	 *             if <code>image</code> is <code>null</code>
+	 *                                       if <code>image</code> is
+	 *                                       <code>null</code>
 	 * @throws UnsupportedOperationException
-	 *             if the system tray isn't supported by the current platform
+	 *                                       if the system tray isn't supported
+	 *                                       by the current platform
 	 * @throws HeadlessException
-	 *             if {@code GraphicsEnvironment.isHeadless()} returns
-	 *             {@code true}
+	 *                                       if
+	 *                                       {@code GraphicsEnvironment.isHeadless()}
+	 *                                       returns
+	 *                                       {@code true}
 	 * @throws SecurityException
-	 *             if {@code accessSystemTray} permission is not granted
+	 *                                       if {@code accessSystemTray}
+	 *                                       permission is not granted
 	 * @see SystemTray#add(TrayIcon)
 	 * @see TrayIcon#TrayIcon(Image, String, PopupMenu)
 	 * @see TrayIcon#TrayIcon(Image, String)
@@ -168,7 +154,8 @@ public class TrayIcon {
 	public TrayIcon(Image image) {
 		this();
 		if (image == null) {
-			throw new IllegalArgumentException("creating TrayIcon with null Image");
+			throw new IllegalArgumentException(
+					"creating TrayIcon with null Image");
 		}
 		setImage(image);
 	}
@@ -178,19 +165,24 @@ public class TrayIcon {
 	 * text.
 	 *
 	 * @param image
-	 *            the <code>Image</code> to be used
+	 *                the <code>Image</code> to be used
 	 * @param tooltip
-	 *            the string to be used as tooltip text; if the value is
-	 *            <code>null</code> no tooltip is shown
+	 *                the string to be used as tooltip text; if the value is
+	 *                <code>null</code> no tooltip is shown
 	 * @throws IllegalArgumentException
-	 *             if <code>image</code> is <code>null</code>
+	 *                                       if <code>image</code> is
+	 *                                       <code>null</code>
 	 * @throws UnsupportedOperationException
-	 *             if the system tray isn't supported by the current platform
+	 *                                       if the system tray isn't supported
+	 *                                       by the current platform
 	 * @throws HeadlessException
-	 *             if {@code GraphicsEnvironment.isHeadless()} returns
-	 *             {@code true}
+	 *                                       if
+	 *                                       {@code GraphicsEnvironment.isHeadless()}
+	 *                                       returns
+	 *                                       {@code true}
 	 * @throws SecurityException
-	 *             if {@code accessSystemTray} permission is not granted
+	 *                                       if {@code accessSystemTray}
+	 *                                       permission is not granted
 	 * @see SystemTray#add(TrayIcon)
 	 * @see TrayIcon#TrayIcon(Image)
 	 * @see TrayIcon#TrayIcon(Image, String, PopupMenu)
@@ -207,22 +199,27 @@ public class TrayIcon {
 	 * popup menu.
 	 *
 	 * @param image
-	 *            the <code>Image</code> to be used
+	 *                the <code>Image</code> to be used
 	 * @param tooltip
-	 *            the string to be used as tooltip text; if the value is
-	 *            <code>null</code> no tooltip is shown
+	 *                the string to be used as tooltip text; if the value is
+	 *                <code>null</code> no tooltip is shown
 	 * @param popup
-	 *            the menu to be used for the tray icon's popup menu; if the
-	 *            value is <code>null</code> no popup menu is shown
+	 *                the menu to be used for the tray icon's popup menu; if the
+	 *                value is <code>null</code> no popup menu is shown
 	 * @throws IllegalArgumentException
-	 *             if <code>image</code> is <code>null</code>
+	 *                                       if <code>image</code> is
+	 *                                       <code>null</code>
 	 * @throws UnsupportedOperationException
-	 *             if the system tray isn't supported by the current platform
+	 *                                       if the system tray isn't supported
+	 *                                       by the current platform
 	 * @throws HeadlessException
-	 *             if {@code GraphicsEnvironment.isHeadless()} returns
-	 *             {@code true}
+	 *                                       if
+	 *                                       {@code GraphicsEnvironment.isHeadless()}
+	 *                                       returns
+	 *                                       {@code true}
 	 * @throws SecurityException
-	 *             if {@code accessSystemTray} permission is not granted
+	 *                                       if {@code accessSystemTray}
+	 *                                       permission is not granted
 	 * @see SystemTray#add(TrayIcon)
 	 * @see TrayIcon#TrayIcon(Image, String)
 	 * @see TrayIcon#TrayIcon(Image)
@@ -255,9 +252,9 @@ public class TrayIcon {
 	 * no effect.
 	 *
 	 * @throws NullPointerException
-	 *             if <code>image</code> is <code>null</code>
+	 *                              if <code>image</code> is <code>null</code>
 	 * @param image
-	 *            the non-null <code>Image</code> to be used
+	 *              the non-null <code>Image</code> to be used
 	 * @see #getImage
 	 * @see Image
 	 * @see SystemTray#add(TrayIcon)
@@ -308,11 +305,12 @@ public class TrayIcon {
 	 * systems, a native version of the menu may be displayed.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the {@code popup} is already set for another
-	 *             {@code TrayIcon}
+	 *                                  if the {@code popup} is already set for
+	 *                                  another
+	 *                                  {@code TrayIcon}
 	 * @param popup
-	 *            a <code>PopupMenu</code> or <code>null</code> to remove any
-	 *            popup menu
+	 *              a <code>PopupMenu</code> or <code>null</code> to remove any
+	 *              popup menu
 	 * @see #getPopupMenu
 	 */
 	public void setPopupMenu(PopupMenu popup) {
@@ -353,8 +351,9 @@ public class TrayIcon {
 	 * the number of characters that may be displayed is platform-dependent.
 	 *
 	 * @param tooltip
-	 *            the string for the tooltip; if the value is <code>null</code>
-	 *            no tooltip is shown
+	 *                the string for the tooltip; if the value is
+	 *                <code>null</code>
+	 *                no tooltip is shown
 	 * @see #getToolTip
 	 */
 	public void setToolTip(String tooltip) {
@@ -391,8 +390,9 @@ public class TrayIcon {
 	 * fit the tray icon space.
 	 *
 	 * @param autosize
-	 *            <code>true</code> to auto-size the image, <code>false</code>
-	 *            otherwise
+	 *                 <code>true</code> to auto-size the image,
+	 *                 <code>false</code>
+	 *                 otherwise
 	 * @see #isImageAutoSize
 	 */
 	public void setImageAutoSize(boolean autosize) {
@@ -432,7 +432,7 @@ public class TrayIcon {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param listener
-	 *            the mouse listener
+	 *                 the mouse listener
 	 * @see java.awt.event.MouseEvent
 	 * @see java.awt.event.MouseListener
 	 * @see #removeMouseListener(MouseListener)
@@ -453,7 +453,7 @@ public class TrayIcon {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param listener
-	 *            the mouse listener
+	 *                 the mouse listener
 	 * @see java.awt.event.MouseEvent
 	 * @see java.awt.event.MouseListener
 	 * @see #addMouseListener(MouseListener)
@@ -479,7 +479,8 @@ public class TrayIcon {
 	 * @see java.awt.event.MouseListener
 	 */
 	public synchronized MouseListener[] getMouseListeners() {
-		return AWTEventMulticaster.getListeners(mouseListener, MouseListener.class);
+		return AWTEventMulticaster.getListeners(mouseListener,
+				MouseListener.class);
 	}
 
 	/**
@@ -498,17 +499,19 @@ public class TrayIcon {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param listener
-	 *            the mouse listener
+	 *                 the mouse listener
 	 * @see java.awt.event.MouseEvent
 	 * @see java.awt.event.MouseMotionListener
 	 * @see #removeMouseMotionListener(MouseMotionListener)
 	 * @see #getMouseMotionListeners
 	 */
-	public synchronized void addMouseMotionListener(MouseMotionListener listener) {
+	public synchronized void addMouseMotionListener(
+			MouseMotionListener listener) {
 		if (listener == null) {
 			return;
 		}
-		mouseMotionListener = AWTEventMulticaster.add(mouseMotionListener, listener);
+		mouseMotionListener = AWTEventMulticaster.add(mouseMotionListener,
+				listener);
 	}
 
 	/**
@@ -519,17 +522,19 @@ public class TrayIcon {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param listener
-	 *            the mouse listener
+	 *                 the mouse listener
 	 * @see java.awt.event.MouseEvent
 	 * @see java.awt.event.MouseMotionListener
 	 * @see #addMouseMotionListener(MouseMotionListener)
 	 * @see #getMouseMotionListeners
 	 */
-	public synchronized void removeMouseMotionListener(MouseMotionListener listener) {
+	public synchronized void removeMouseMotionListener(
+			MouseMotionListener listener) {
 		if (listener == null) {
 			return;
 		}
-		mouseMotionListener = AWTEventMulticaster.remove(mouseMotionListener, listener);
+		mouseMotionListener = AWTEventMulticaster.remove(mouseMotionListener,
+				listener);
 	}
 
 	/**
@@ -545,7 +550,8 @@ public class TrayIcon {
 	 * @see java.awt.event.MouseMotionListener
 	 */
 	public synchronized MouseMotionListener[] getMouseMotionListeners() {
-		return AWTEventMulticaster.getListeners(mouseMotionListener, MouseMotionListener.class);
+		return AWTEventMulticaster.getListeners(mouseMotionListener,
+				MouseMotionListener.class);
 	}
 
 	/**
@@ -564,7 +570,7 @@ public class TrayIcon {
 	 * default, this action command is set to <code>null</code>.
 	 *
 	 * @param command
-	 *            a string used to set the tray icon's action command.
+	 *                a string used to set the tray icon's action command.
 	 * @see java.awt.event.ActionEvent
 	 * @see #addActionListener(ActionListener)
 	 * @see #getActionCommand
@@ -586,7 +592,7 @@ public class TrayIcon {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param listener
-	 *            the action listener
+	 *                 the action listener
 	 * @see #removeActionListener
 	 * @see #getActionListeners
 	 * @see java.awt.event.ActionListener
@@ -607,7 +613,7 @@ public class TrayIcon {
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param listener
-	 *            the action listener
+	 *                 the action listener
 	 * @see java.awt.event.ActionEvent
 	 * @see java.awt.event.ActionListener
 	 * @see #addActionListener(ActionListener)
@@ -634,7 +640,8 @@ public class TrayIcon {
 	 * @see java.awt.event.ActionListener
 	 */
 	public synchronized ActionListener[] getActionListeners() {
-		return AWTEventMulticaster.getListeners(actionListener, ActionListener.class);
+		return AWTEventMulticaster.getListeners(actionListener,
+				ActionListener.class);
 	}
 
 	/**
@@ -675,18 +682,21 @@ public class TrayIcon {
 	 * <strong>Note:</strong> Some platforms may not support showing a message.
 	 *
 	 * @param caption
-	 *            the caption displayed above the text, usually in bold; may be
-	 *            <code>null</code>
+	 *                    the caption displayed above the text, usually in bold;
+	 *                    may be
+	 *                    <code>null</code>
 	 * @param text
-	 *            the text displayed for the particular message; may be
-	 *            <code>null</code>
+	 *                    the text displayed for the particular message; may be
+	 *                    <code>null</code>
 	 * @param messageType
-	 *            an enum indicating the message type
+	 *                    an enum indicating the message type
 	 * @throws NullPointerException
-	 *             if both <code>caption</code> and <code>text</code> are
-	 *             <code>null</code>
+	 *                              if both <code>caption</code> and
+	 *                              <code>text</code> are
+	 *                              <code>null</code>
 	 */
-	public void displayMessage(String caption, String text, MessageType messageType) {
+	public void displayMessage(String caption, String text,
+			MessageType messageType) {
 		if (caption == null && text == null) {
 			throw new NullPointerException(
 					"displaying the message with both caption and text being null");
@@ -721,9 +731,11 @@ public class TrayIcon {
 			if (peer == null) {
 				Toolkit toolkit = Toolkit.getDefaultToolkit();
 				if (toolkit instanceof SunToolkit) {
-					peer = ((SunToolkit) Toolkit.getDefaultToolkit()).createTrayIcon(this);
+					peer = ((SunToolkit) Toolkit.getDefaultToolkit())
+							.createTrayIcon(this);
 				} else if (toolkit instanceof HeadlessToolkit) {
-					peer = ((HeadlessToolkit) Toolkit.getDefaultToolkit()).createTrayIcon(this);
+					peer = ((HeadlessToolkit) Toolkit.getDefaultToolkit())
+							.createTrayIcon(this);
 				}
 			}
 		}
@@ -758,16 +770,16 @@ public class TrayIcon {
 	void processEvent(AWTEvent e) {
 		if (e instanceof MouseEvent) {
 			switch (e.getID()) {
-			case MouseEvent.MOUSE_PRESSED:
-			case MouseEvent.MOUSE_RELEASED:
-			case MouseEvent.MOUSE_CLICKED:
-				processMouseEvent((MouseEvent) e);
-				break;
-			case MouseEvent.MOUSE_MOVED:
-				processMouseMotionEvent((MouseEvent) e);
-				break;
-			default:
-				return;
+				case MouseEvent.MOUSE_PRESSED:
+				case MouseEvent.MOUSE_RELEASED:
+				case MouseEvent.MOUSE_CLICKED:
+					processMouseEvent((MouseEvent) e);
+					break;
+				case MouseEvent.MOUSE_MOVED:
+					processMouseMotionEvent((MouseEvent) e);
+					break;
+				default:
+					return;
 			}
 		} else if (e instanceof ActionEvent) {
 			processActionEvent((ActionEvent) e);
@@ -780,17 +792,17 @@ public class TrayIcon {
 		if (listener != null) {
 			int id = e.getID();
 			switch (id) {
-			case MouseEvent.MOUSE_PRESSED:
-				listener.mousePressed(e);
-				break;
-			case MouseEvent.MOUSE_RELEASED:
-				listener.mouseReleased(e);
-				break;
-			case MouseEvent.MOUSE_CLICKED:
-				listener.mouseClicked(e);
-				break;
-			default:
-				return;
+				case MouseEvent.MOUSE_PRESSED:
+					listener.mousePressed(e);
+					break;
+				case MouseEvent.MOUSE_RELEASED:
+					listener.mouseReleased(e);
+					break;
+				case MouseEvent.MOUSE_CLICKED:
+					listener.mouseClicked(e);
+					break;
+				default:
+					return;
 			}
 		}
 	}

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,49 +31,37 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 
 	/*
 	 * General notes to translators:
-	 *
 	 * This file contains error and warning messages related to XPath Error
 	 * Handling.
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 * 8) The context node is the node in the document with respect to which an
 	 * XPath expression is being evaluated.
-	 *
 	 * 9) An iterator is an object that traverses nodes in the tree, one at a
 	 * time.
-	 *
 	 * 10) NCName is an XML term used to describe a name that does not contain a
 	 * colon (a "no-colon name").
-	 *
 	 * 11) QName is an XML term meaning "qualified name".
 	 */
 
@@ -283,14 +268,17 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 			{ ER_CURRENT_NOT_ALLOWED_IN_MATCH,
 					"Funktionen current() \u00E4r inte till\u00E5ten i ett matchningsm\u00F6nster!" },
 
-			{ ER_CURRENT_TAKES_NO_ARGS, "Funktionen current() tar inte emot argument!" },
+			{ ER_CURRENT_TAKES_NO_ARGS,
+					"Funktionen current() tar inte emot argument!" },
 
 			{ ER_DOCUMENT_REPLACED,
 					"Implementeringen av funktionen document() har inte ersatts av com.sun.org.apache.xalan.internal.xslt.FuncDocument!" },
 
-			{ ER_CONTEXT_HAS_NO_OWNERDOC, "context har inget \u00E4gardokument!" },
+			{ ER_CONTEXT_HAS_NO_OWNERDOC,
+					"context har inget \u00E4gardokument!" },
 
-			{ ER_LOCALNAME_HAS_TOO_MANY_ARGS, "local-name() har f\u00F6r m\u00E5nga argument." },
+			{ ER_LOCALNAME_HAS_TOO_MANY_ARGS,
+					"local-name() har f\u00F6r m\u00E5nga argument." },
 
 			{ ER_NAMESPACEURI_HAS_TOO_MANY_ARGS,
 					"namespace-uri() har f\u00F6r m\u00E5nga argument." },
@@ -298,16 +286,20 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 			{ ER_NORMALIZESPACE_HAS_TOO_MANY_ARGS,
 					"normalize-space() har f\u00F6r m\u00E5nga argument." },
 
-			{ ER_NUMBER_HAS_TOO_MANY_ARGS, "number() har f\u00F6r m\u00E5nga argument." },
+			{ ER_NUMBER_HAS_TOO_MANY_ARGS,
+					"number() har f\u00F6r m\u00E5nga argument." },
 
-			{ ER_NAME_HAS_TOO_MANY_ARGS, "name() har f\u00F6r m\u00E5nga argument." },
+			{ ER_NAME_HAS_TOO_MANY_ARGS,
+					"name() har f\u00F6r m\u00E5nga argument." },
 
-			{ ER_STRING_HAS_TOO_MANY_ARGS, "string() har f\u00F6r m\u00E5nga argument." },
+			{ ER_STRING_HAS_TOO_MANY_ARGS,
+					"string() har f\u00F6r m\u00E5nga argument." },
 
 			{ ER_STRINGLENGTH_HAS_TOO_MANY_ARGS,
 					"string-length() har f\u00F6r m\u00E5nga argument." },
 
-			{ ER_TRANSLATE_TAKES_3_ARGS, "Funktionen translate() tar emot tre argument!" },
+			{ ER_TRANSLATE_TAKES_3_ARGS,
+					"Funktionen translate() tar emot tre argument!" },
 
 			{ ER_UNPARSEDENTITYURI_TAKES_1_ARG,
 					"Funktionen unparsed-entity-uri borde ta emot ett argument!" },
@@ -317,23 +309,29 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 
 			{ ER_UNKNOWN_AXIS, "ok\u00E4nd axel: {0}" },
 
-			{ ER_UNKNOWN_MATCH_OPERATION, "ok\u00E4nd matchnings\u00E5tg\u00E4rd!" },
+			{ ER_UNKNOWN_MATCH_OPERATION,
+					"ok\u00E4nd matchnings\u00E5tg\u00E4rd!" },
 
 			{ ER_INCORRECT_ARG_LENGTH,
 					"Felaktig argumentl\u00E4ngd p\u00E5 nodtest f\u00F6r processing-instruction()!" },
 
-			{ ER_CANT_CONVERT_TO_NUMBER, "Kan inte konvertera {0} till ett tal" },
+			{ ER_CANT_CONVERT_TO_NUMBER,
+					"Kan inte konvertera {0} till ett tal" },
 
-			{ ER_CANT_CONVERT_TO_NODELIST, "Kan inte konvertera {0} till NodeList!" },
+			{ ER_CANT_CONVERT_TO_NODELIST,
+					"Kan inte konvertera {0} till NodeList!" },
 
-			{ ER_CANT_CONVERT_TO_MUTABLENODELIST, "Kan inte konvertera {0} till NodeSetDTM!" },
+			{ ER_CANT_CONVERT_TO_MUTABLENODELIST,
+					"Kan inte konvertera {0} till NodeSetDTM!" },
 
-			{ ER_CANT_CONVERT_TO_TYPE, "Kan inte konvertera {0} till type#{1}" },
+			{ ER_CANT_CONVERT_TO_TYPE,
+					"Kan inte konvertera {0} till type#{1}" },
 
 			{ ER_EXPECTED_MATCH_PATTERN,
 					"F\u00F6rv\u00E4ntat matchningsm\u00F6nster i getMatchScore!" },
 
-			{ ER_COULDNOT_GET_VAR_NAMED, "Kunde inte h\u00E4mta variabeln {0}" },
+			{ ER_COULDNOT_GET_VAR_NAMED,
+					"Kunde inte h\u00E4mta variabeln {0}" },
 
 			{ ER_UNKNOWN_OPCODE, "FEL! Ok\u00E4nd op-kod: {0}" },
 
@@ -347,7 +345,8 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 
 			{ ER_EMPTY_EXPRESSION, "Tomt uttryck!" },
 
-			{ ER_EXPECTED_BUT_FOUND, "F\u00F6rv\u00E4ntade {0}, men hittade: {1}" },
+			{ ER_EXPECTED_BUT_FOUND,
+					"F\u00F6rv\u00E4ntade {0}, men hittade: {1}" },
 
 			{ ER_INCORRECT_PROGRAMMER_ASSERTION,
 					"Programmerarens utsaga \u00E4r inte korrekt! - {0}" },
@@ -371,7 +370,8 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 			{ ER_PATTERN_LITERAL_NEEDS_BE_QUOTED,
 					"M\u00F6nsterlitteralen ({0}) m\u00E5ste omges av citattecken!" },
 
-			{ ER_COULDNOT_BE_FORMATTED_TO_NUMBER, "{0} kunde inte formateras till ett tal!" },
+			{ ER_COULDNOT_BE_FORMATTED_TO_NUMBER,
+					"{0} kunde inte formateras till ett tal!" },
 
 			{ ER_COULDNOT_CREATE_XMLPROCESSORLIAISON,
 					"Kunde inte skapa XML TransformerFactory Liaison: {0}" },
@@ -392,7 +392,8 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 
 			{ ER_KEY_HAS_TOO_MANY_ARGS, "key() har felaktigt antal argument." },
 
-			{ ER_COUNT_TAKES_1_ARG, "Funktionen count borde ta emot ett argument!" },
+			{ ER_COUNT_TAKES_1_ARG,
+					"Funktionen count borde ta emot ett argument!" },
 
 			{ ER_COULDNOT_FIND_FUNCTION, "Hittade inte funktionen: {0}" },
 
@@ -404,27 +405,34 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 			{ ER_CANNOT_WRITE_TO_EMPTYNODELISTIMPL,
 					"Programmerarfel: kan inte skriva till EmptyNodeList." },
 
-			{ ER_SETDOMFACTORY_NOT_SUPPORTED, "setDOMFactory st\u00F6ds inte i XPathContext!" },
+			{ ER_SETDOMFACTORY_NOT_SUPPORTED,
+					"setDOMFactory st\u00F6ds inte i XPathContext!" },
 
-			{ ER_PREFIX_MUST_RESOLVE, "Prefix m\u00E5ste matchas till en namnrymd: {0}" },
+			{ ER_PREFIX_MUST_RESOLVE,
+					"Prefix m\u00E5ste matchas till en namnrymd: {0}" },
 
 			{ ER_PARSE_NOT_SUPPORTED,
 					"tolkning (InputSource-k\u00E4lla) st\u00F6ds inte i XPathContext! Kan inte \u00F6ppna {0}" },
 
-			{ ER_SAX_API_NOT_HANDLED, "SAX API-tecken(char ch[]... hanteras inte av DTM!" },
+			{ ER_SAX_API_NOT_HANDLED,
+					"SAX API-tecken(char ch[]... hanteras inte av DTM!" },
 
 			{ ER_IGNORABLE_WHITESPACE_NOT_HANDLED,
 					"ignorableWhitespace(char ch[]... hanteras inte av DTM!" },
 
-			{ ER_DTM_CANNOT_HANDLE_NODES, "DTMLiaison kan inte hantera noder av typ {0}" },
+			{ ER_DTM_CANNOT_HANDLE_NODES,
+					"DTMLiaison kan inte hantera noder av typ {0}" },
 
-			{ ER_XERCES_CANNOT_HANDLE_NODES, "DOM2Helper kan inte hantera noder av typ {0}" },
+			{ ER_XERCES_CANNOT_HANDLE_NODES,
+					"DOM2Helper kan inte hantera noder av typ {0}" },
 
-			{ ER_XERCES_PARSE_ERROR_DETAILS, "Fel i DOM2Helper.parse: SystemID - {0} rad - {1}" },
+			{ ER_XERCES_PARSE_ERROR_DETAILS,
+					"Fel i DOM2Helper.parse: SystemID - {0} rad - {1}" },
 
 			{ ER_XERCES_PARSE_ERROR, "Fel i DOM2Helper.parse" },
 
-			{ ER_INVALID_UTF16_SURROGATE, "Ogiltigt UTF-16-surrogat uppt\u00E4ckt: {0} ?" },
+			{ ER_INVALID_UTF16_SURROGATE,
+					"Ogiltigt UTF-16-surrogat uppt\u00E4ckt: {0} ?" },
 
 			{ ER_OIERROR, "IO-fel" },
 
@@ -436,15 +444,18 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 
 			{ ER_CANNOT_DEAL_XPATH_TYPE, "Kan inte hantera XPath-typ: {0}" },
 
-			{ ER_NODESET_NOT_MUTABLE, "Detta NodeSet \u00E4r of\u00F6r\u00E4nderligt" },
+			{ ER_NODESET_NOT_MUTABLE,
+					"Detta NodeSet \u00E4r of\u00F6r\u00E4nderligt" },
 
-			{ ER_NODESETDTM_NOT_MUTABLE, "Detta NodeSetDTM \u00E4r of\u00F6r\u00E4nderligt" },
+			{ ER_NODESETDTM_NOT_MUTABLE,
+					"Detta NodeSetDTM \u00E4r of\u00F6r\u00E4nderligt" },
 
 			{ ER_VAR_NOT_RESOLVABLE, "Variabeln kan inte matchas: {0}" },
 
 			{ ER_NULL_ERROR_HANDLER, "Felhanterare med v\u00E4rde null" },
 
-			{ ER_PROG_ASSERT_UNKNOWN_OPCODE, "Programmerarens utsaga: ok\u00E4nd op-kod: {0}" },
+			{ ER_PROG_ASSERT_UNKNOWN_OPCODE,
+					"Programmerarens utsaga: ok\u00E4nd op-kod: {0}" },
 
 			{ ER_ZERO_OR_ONE, "0 eller 1" },
 
@@ -495,7 +506,8 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 			{ ER_NODESETDTM_CANNOT_ITERATE,
 					"Detta NodeSetDTM kan inte iterera till en tidigare nod!" },
 
-			{ ER_NODESET_CANNOT_ITERATE, "Detta NodeSet kan inte iterera till en tidigare nod!" },
+			{ ER_NODESET_CANNOT_ITERATE,
+					"Detta NodeSet kan inte iterera till en tidigare nod!" },
 
 			{ ER_NODESETDTM_CANNOT_INDEX,
 					"Detta NodeSetDTM kan inte utf\u00F6ra funktioner som indexerar eller r\u00E4knar!" },
@@ -607,7 +619,8 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 			{ ER_INCOMPATIBLE_TYPES,
 					"XPathResult i XPath-uttrycket ''{0}'' inneh\u00E5ller XPathResultType {1} som inte kan tvingas till angiven XPathResultType {2}." },
 
-			{ ER_NULL_RESOLVER, "Kan inte matcha prefix med prefixmatchning som \u00E4r null." },
+			{ ER_NULL_RESOLVER,
+					"Kan inte matcha prefix med prefixmatchning som \u00E4r null." },
 
 			// Note to translators: The substitution text is the name of a data
 			// type. The
@@ -656,7 +669,8 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 
 			/** Field ER_UNSUPPORTED_RETURN_TYPE */
 
-			{ ER_UNSUPPORTED_RETURN_TYPE, "Det finns inget st\u00F6d f\u00F6r returtypen: {0}" },
+			{ ER_UNSUPPORTED_RETURN_TYPE,
+					"Det finns inget st\u00F6d f\u00F6r returtypen: {0}" },
 
 			/** Field ER_SOURCE_RETURN_TYPE_CANNOT_BE_NULL */
 
@@ -723,7 +737,8 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 			{ WG_LOCALE_NAME_NOT_HANDLED,
 					"spr\u00E5kkonventionsnamnet i funktionen format-number har \u00E4nnu inte hanterats!" },
 
-			{ WG_PROPERTY_NOT_SUPPORTED, "XSL-egenskapen st\u00F6ds inte: {0}" },
+			{ WG_PROPERTY_NOT_SUPPORTED,
+					"XSL-egenskapen st\u00F6ds inte: {0}" },
 
 			{ WG_DONT_DO_ANYTHING_WITH_NS,
 					"G\u00F6r f\u00F6r n\u00E4rvarande inte n\u00E5gonting med namnrymden {0} i egenskap: {1}" },
@@ -743,7 +758,8 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 
 			{ WG_CANNOT_MAKE_URL_FROM, "Kan inte skapa URL fr\u00E5n: {0}" },
 
-			{ WG_EXPAND_ENTITIES_NOT_SUPPORTED, "Alternativet -E st\u00F6ds inte i DTM-parser" },
+			{ WG_EXPAND_ENTITIES_NOT_SUPPORTED,
+					"Alternativet -E st\u00F6ds inte i DTM-parser" },
 
 			{ WG_ILLEGAL_VARIABLE_REFERENCE,
 					"VariableReference angiven f\u00F6r variabel som \u00E4r utanf\u00F6r kontext eller som saknar definition! Namn = {0}" },
@@ -751,24 +767,32 @@ public class XPATHErrorResources_sv extends ListResourceBundle {
 			{ WG_UNSUPPORTED_ENCODING, "Kodning utan st\u00F6d: {0}" },
 
 			// Other miscellaneous text used inside the code...
-			{ "ui_language", "en" }, { "help_language", "en" }, { "language", "en" },
-			{ "BAD_CODE",
-					"Parameter f\u00F6r createMessage ligger utanf\u00F6r gr\u00E4nsv\u00E4rdet" },
+			{ "ui_language", "en" }, { "help_language", "en" }, { "language",
+					"en" }, { "BAD_CODE",
+							"Parameter f\u00F6r createMessage ligger utanf\u00F6r gr\u00E4nsv\u00E4rdet" },
 			{ "FORMAT_FAILED", "Undantag utl\u00F6st vid messageFormat-anrop" },
-			{ "version", ">>>>>>> Xalan version " }, { "version2", "<<<<<<<" }, { "yes", "ja" },
-			{ "line", "Rad nr" }, { "column", "Kolumn nr" },
-			{ "xsldone", "XSLProcessor: utf\u00F6rd" }, { "xpath_option", "xpath-alternativ: " },
-			{ "optionIN", "   [-in inputXMLURL]" },
-			{ "optionSelect", "   [-select xpath-uttryck]" },
-			{ "optionMatch", "   [-match matchningsm\u00F6nster (f\u00F6r matchningsdiagnostik)]" },
-			{ "optionAnyExpr", "Eller bara ett xpath-uttryck skapar en diagnostikdump" },
-			{ "noParsermsg1", "XSL-processen utf\u00F6rdes inte." },
-			{ "noParsermsg2", "** Hittade inte parser **" },
-			{ "noParsermsg3", "Kontrollera klass\u00F6kv\u00E4gen." },
+			{ "version", ">>>>>>> Xalan version " }, { "version2", "<<<<<<<" },
+			{ "yes", "ja" }, { "line", "Rad nr" }, { "column", "Kolumn nr" }, {
+					"xsldone", "XSLProcessor: utf\u00F6rd" }, { "xpath_option",
+							"xpath-alternativ: " }, { "optionIN",
+									"   [-in inputXMLURL]" }, { "optionSelect",
+											"   [-select xpath-uttryck]" }, {
+													"optionMatch",
+													"   [-match matchningsm\u00F6nster (f\u00F6r matchningsdiagnostik)]" },
+			{ "optionAnyExpr",
+					"Eller bara ett xpath-uttryck skapar en diagnostikdump" }, {
+							"noParsermsg1",
+							"XSL-processen utf\u00F6rdes inte." }, {
+									"noParsermsg2",
+									"** Hittade inte parser **" }, {
+											"noParsermsg3",
+											"Kontrollera klass\u00F6kv\u00E4gen." },
 			{ "noParsermsg4",
 					"Om du inte har IBMs XML Parser f\u00F6r Java kan du ladda ned den fr\u00E5n" },
-			{ "noParsermsg5", "IBMs AlphaWorks: http://www.alphaworks.ibm.com/formula/xml" },
-			{ "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" }, { "three", "3" }
+			{ "noParsermsg5",
+					"IBMs AlphaWorks: http://www.alphaworks.ibm.com/formula/xml" },
+			{ "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" },
+			{ "three", "3" }
 
 	};
 

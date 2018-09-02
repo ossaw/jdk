@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -76,8 +56,7 @@ public abstract class AbstractSequentialList<E> extends AbstractList<E> {
 	 * Sole constructor. (For invocation by subclass constructors, typically
 	 * implicit.)
 	 */
-	protected AbstractSequentialList() {
-	}
+	protected AbstractSequentialList() {}
 
 	/**
 	 * Returns the element at the specified position in this list.
@@ -88,7 +67,7 @@ public abstract class AbstractSequentialList<E> extends AbstractList<E> {
 	 * using <tt>ListIterator.next</tt> and returns it.
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public E get(int index) {
 		try {
@@ -114,15 +93,15 @@ public abstract class AbstractSequentialList<E> extends AbstractList<E> {
 	 * implement the <tt>set</tt> operation.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public E set(int index, E element) {
 		try {
@@ -152,15 +131,15 @@ public abstract class AbstractSequentialList<E> extends AbstractList<E> {
 	 * implement the <tt>add</tt> operation.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public void add(int index, E element) {
 		try {
@@ -186,9 +165,9 @@ public abstract class AbstractSequentialList<E> extends AbstractList<E> {
 	 * implement the <tt>remove</tt> operation.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public E remove(int index) {
 		try {
@@ -228,15 +207,15 @@ public abstract class AbstractSequentialList<E> extends AbstractList<E> {
 	 * operation.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClassCastException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public boolean addAll(int index, Collection<? extends E> c) {
 		try {
@@ -272,12 +251,12 @@ public abstract class AbstractSequentialList<E> extends AbstractList<E> {
 	 * sequence).
 	 *
 	 * @param index
-	 *            index of first element to be returned from the list iterator
-	 *            (by a call to the <code>next</code> method)
+	 *              index of first element to be returned from the list iterator
+	 *              (by a call to the <code>next</code> method)
 	 * @return a list iterator over the elements in this list (in proper
 	 *         sequence)
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public abstract ListIterator<E> listIterator(int index);
 }

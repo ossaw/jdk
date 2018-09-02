@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -66,7 +63,7 @@ public interface ContextNodeList {
 	 * are not cached by default.
 	 *
 	 * @param b
-	 *            true if the nodes should be cached.
+	 *          true if the nodes should be cached.
 	 */
 	public void setShouldCacheNodes(boolean b);
 
@@ -77,8 +74,8 @@ public interface ContextNodeList {
 	 * end.
 	 *
 	 * @param index
-	 *            The index to run to, or -1 if the iterator should be run to
-	 *            the end.
+	 *              The index to run to, or -1 if the iterator should be run to
+	 *              the end.
 	 */
 	public void runTo(int index);
 
@@ -86,7 +83,7 @@ public interface ContextNodeList {
 	 * Set the current position in the node set.
 	 * 
 	 * @param i
-	 *            Must be a valid index.
+	 *          Must be a valid index.
 	 */
 	public void setCurrentPos(int i);
 
@@ -138,7 +135,7 @@ public interface ContextNodeList {
 	 *
 	 *
 	 * @param last
-	 *            the index of the last node in this list.
+	 *             the index of the last node in this list.
 	 */
 	public void setLast(int last);
 }

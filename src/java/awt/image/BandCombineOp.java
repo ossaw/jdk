@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -77,10 +57,11 @@ public class BandCombineOp implements RasterOp {
 	 * <CODE>RenderingHints</CODE> argument can be null.
 	 *
 	 * @param matrix
-	 *            The matrix to use for the band combine operation.
+	 *               The matrix to use for the band combine operation.
 	 * @param hints
-	 *            The <CODE>RenderingHints</CODE> object for this operation. Not
-	 *            currently used so it can be null.
+	 *               The <CODE>RenderingHints</CODE> object for this operation.
+	 *               Not
+	 *               currently used so it can be null.
 	 */
 	public BandCombineOp(float[][] matrix, RenderingHints hints) {
 		nrows = matrix.length;
@@ -132,22 +113,23 @@ public class BandCombineOp implements RasterOp {
 	 * @return The filtered <CODE>Raster</CODE>.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the number of bands in the source or destination is
-	 *             incompatible with the matrix.
+	 *                                  If the number of bands in the source or
+	 *                                  destination is
+	 *                                  incompatible with the matrix.
 	 */
 	public WritableRaster filter(Raster src, WritableRaster dst) {
 		int nBands = src.getNumBands();
 		if (ncols != nBands && ncols != (nBands + 1)) {
-			throw new IllegalArgumentException("Number of columns in the " + "matrix (" + ncols
-					+ ") must be equal to the number" + " of bands ([+1]) in src (" + nBands
-					+ ").");
+			throw new IllegalArgumentException("Number of columns in the "
+					+ "matrix (" + ncols + ") must be equal to the number"
+					+ " of bands ([+1]) in src (" + nBands + ").");
 		}
 		if (dst == null) {
 			dst = createCompatibleDestRaster(src);
 		} else if (nrows != dst.getNumBands()) {
-			throw new IllegalArgumentException(
-					"Number of rows in the " + "matrix (" + nrows + ") must be equal to the number"
-							+ " of bands ([+1]) in dst (" + nBands + ").");
+			throw new IllegalArgumentException("Number of rows in the "
+					+ "matrix (" + nrows + ") must be equal to the number"
+					+ " of bands ([+1]) in dst (" + nBands + ").");
 		}
 
 		if (ImagingLib.filter(this, src, dst) != null) {
@@ -215,8 +197,9 @@ public class BandCombineOp implements RasterOp {
 	 *         bounding box.
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the number of bands in the source is incompatible with the
-	 *             matrix.
+	 *                                  If the number of bands in the source is
+	 *                                  incompatible with the
+	 *                                  matrix.
 	 */
 	public final Rectangle2D getBounds2D(Raster src) {
 		return src.getBounds();
@@ -236,15 +219,15 @@ public class BandCombineOp implements RasterOp {
 	public WritableRaster createCompatibleDestRaster(Raster src) {
 		int nBands = src.getNumBands();
 		if ((ncols != nBands) && (ncols != (nBands + 1))) {
-			throw new IllegalArgumentException("Number of columns in the " + "matrix (" + ncols
-					+ ") must be equal to the number" + " of bands ([+1]) in src (" + nBands
-					+ ").");
+			throw new IllegalArgumentException("Number of columns in the "
+					+ "matrix (" + ncols + ") must be equal to the number"
+					+ " of bands ([+1]) in src (" + nBands + ").");
 		}
 		if (src.getNumBands() == nrows) {
 			return src.createCompatibleWritableRaster();
 		} else {
-			throw new IllegalArgumentException(
-					"Don't know how to create a " + " compatible Raster with " + nrows + " bands.");
+			throw new IllegalArgumentException("Don't know how to create a "
+					+ " compatible Raster with " + nrows + " bands.");
 		}
 	}
 
@@ -256,10 +239,10 @@ public class BandCombineOp implements RasterOp {
 	 * <CODE>srcPt</CODE>.
 	 *
 	 * @param srcPt
-	 *            The <code>Point2D</code> that represents the point in the
-	 *            source <code>Raster</code>
+	 *              The <code>Point2D</code> that represents the point in the
+	 *              source <code>Raster</code>
 	 * @param dstPt
-	 *            The <CODE>Point2D</CODE> in which to store the result.
+	 *              The <CODE>Point2D</CODE> in which to store the result.
 	 *
 	 * @return The <CODE>Point2D</CODE> in the destination image that
 	 *         corresponds to the specified point in the source image.

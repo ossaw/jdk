@@ -42,7 +42,7 @@ public interface Serializer {
 	 * <code>Element</code>.
 	 *
 	 * @param element
-	 *            the <code>Element</code> to serialize.
+	 *                the <code>Element</code> to serialize.
 	 * @return the <code>byte[]</code> representation of the serilaized
 	 *         <code>Element</code>.
 	 * @throws Exception
@@ -54,7 +54,7 @@ public interface Serializer {
 	 * <code>NodeList</code>.
 	 *
 	 * @param content
-	 *            the <code>NodeList</code> to serialize.
+	 *                the <code>NodeList</code> to serialize.
 	 * @return the <code>byte[]</code> representation of the serialized
 	 *         <code>NodeList</code>.
 	 * @throws Exception

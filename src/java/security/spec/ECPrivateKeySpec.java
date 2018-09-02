@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.security.spec;
 
@@ -46,11 +26,11 @@ public class ECPrivateKeySpec implements KeySpec {
 	 * Creates a new ECPrivateKeySpec with the specified parameter values.
 	 * 
 	 * @param s
-	 *            the private value.
+	 *               the private value.
 	 * @param params
-	 *            the associated elliptic curve domain parameters.
+	 *               the associated elliptic curve domain parameters.
 	 * @exception NullPointerException
-	 *                if {@code s} or {@code params} is null.
+	 *                                 if {@code s} or {@code params} is null.
 	 */
 	public ECPrivateKeySpec(BigInteger s, ECParameterSpec params) {
 		if (s == null) {

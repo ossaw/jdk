@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -42,7 +22,8 @@ import java.awt.image.ColorModel;
  *
  * Image src = getImage("doc:///demo/images/duke/T1.gif");
  * ImageFilter colorfilter = new RedBlueSwapFilter();
- * Image img = createImage(new FilteredImageSource(src.getSource(), colorfilter));
+ * Image img = createImage(new FilteredImageSource(src.getSource(),
+ * 		colorfilter));
  *
  * </pre>
  *
@@ -59,9 +40,9 @@ public class FilteredImageSource implements ImageProducer {
 	 * filter object.
 	 * 
 	 * @param orig
-	 *            the specified <code>ImageProducer</code>
+	 *             the specified <code>ImageProducer</code>
 	 * @param imgf
-	 *            the specified <code>ImageFilter</code>
+	 *             the specified <code>ImageFilter</code>
 	 * @see ImageFilter
 	 * @see java.awt.Component#createImage
 	 */
@@ -87,7 +68,7 @@ public class FilteredImageSource implements ImageProducer {
 	 * code, and its behavior if called from user code is unspecified.
 	 *
 	 * @param ic
-	 *            the consumer for the filtered image
+	 *           the consumer for the filtered image
 	 * @see ImageConsumer
 	 */
 	public synchronized void addConsumer(ImageConsumer ic) {
@@ -111,7 +92,7 @@ public class FilteredImageSource implements ImageProducer {
 	 * code, and its behavior if called from user code is unspecified.
 	 *
 	 * @param ic
-	 *            the specified <code>ImageConsumer</code>
+	 *           the specified <code>ImageConsumer</code>
 	 * @return true if the ImageConsumer is on the list; false otherwise
 	 * @see ImageConsumer
 	 */
@@ -159,7 +140,7 @@ public class FilteredImageSource implements ImageProducer {
 	 * code, and its behavior if called from user code is unspecified.
 	 *
 	 * @param ic
-	 *            the consumer for the filtered image
+	 *           the consumer for the filtered image
 	 * @see ImageConsumer
 	 */
 	public void startProduction(ImageConsumer ic) {

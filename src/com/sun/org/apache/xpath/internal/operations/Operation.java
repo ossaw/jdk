@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,13 +50,13 @@ public class Operation extends Expression implements ExpressionOwner {
 	 * indexes at stylesheet build time.
 	 * 
 	 * @param vars
-	 *            List of QNames that correspond to variables. This list should
-	 *            be searched backwards for the first qualified name that
-	 *            corresponds to the variable reference qname. The position of
-	 *            the QName in the vector from the start of the vector will be
-	 *            its position in the stack frame (but variables above the
-	 *            globalsTop value will need to be offset to the current stack
-	 *            frame).
+	 *             List of QNames that correspond to variables. This list should
+	 *             be searched backwards for the first qualified name that
+	 *             corresponds to the variable reference qname. The position of
+	 *             the QName in the vector from the start of the vector will be
+	 *             its position in the stack frame (but variables above the
+	 *             globalsTop value will need to be offset to the current stack
+	 *             frame).
 	 */
 	public void fixupVariables(java.util.Vector vars, int globalsSize) {
 		m_left.fixupVariables(vars, globalsSize);
@@ -88,9 +85,9 @@ public class Operation extends Expression implements ExpressionOwner {
 	 *
 	 *
 	 * @param l
-	 *            The left expression operand.
+	 *          The left expression operand.
 	 * @param r
-	 *            The right expression operand.
+	 *          The right expression operand.
 	 */
 	public void setLeftRight(Expression l, Expression r) {
 		m_left = l;
@@ -105,13 +102,14 @@ public class Operation extends Expression implements ExpressionOwner {
 	 *
 	 *
 	 * @param xctxt
-	 *            The runtime execution context.
+	 *              The runtime execution context.
 	 *
 	 * @return The XObject result of the operation.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 
 		XObject left = m_left.execute(xctxt, true);
 		XObject right = m_right.execute(xctxt, true);
@@ -127,9 +125,9 @@ public class Operation extends Expression implements ExpressionOwner {
 	 *
 	 *
 	 * @param left
-	 *            non-null reference to the evaluated left operand.
+	 *              non-null reference to the evaluated left operand.
 	 * @param right
-	 *            non-null reference to the evaluated right operand.
+	 *              non-null reference to the evaluated right operand.
 	 *
 	 * @return non-null reference to the XObject that represents the result of
 	 *         the operation.

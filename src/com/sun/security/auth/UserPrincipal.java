@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth;
@@ -58,9 +38,10 @@ public final class UserPrincipal implements Principal, java.io.Serializable {
 	 * Creates a principal.
 	 *
 	 * @param name
-	 *            The principal's string name.
+	 *             The principal's string name.
 	 * @exception NullPointerException
-	 *                If the <code>name</code> is <code>null</code>.
+	 *                                 If the <code>name</code> is
+	 *                                 <code>null</code>.
 	 */
 	public UserPrincipal(String name) {
 		if (name == null) {
@@ -73,7 +54,7 @@ public final class UserPrincipal implements Principal, java.io.Serializable {
 	 * Compares this principal to the specified object.
 	 *
 	 * @param object
-	 *            The object to compare this principal against.
+	 *               The object to compare this principal against.
 	 * @return true if they are equal; false otherwise.
 	 */
 	public boolean equals(Object object) {

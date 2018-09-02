@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -34,11 +14,11 @@ package org.omg.CORBA;
  * GMT+00:00
  */
 
-public final class LongLongSeqHolder implements org.omg.CORBA.portable.Streamable {
+public final class LongLongSeqHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public long value[] = null;
 
-	public LongLongSeqHolder() {
-	}
+	public LongLongSeqHolder() {}
 
 	public LongLongSeqHolder(long[] initialValue) {
 		value = initialValue;

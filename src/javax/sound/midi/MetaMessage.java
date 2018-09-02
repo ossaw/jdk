@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi;
@@ -93,21 +73,25 @@ public class MetaMessage extends MidiMessage {
 	 * method.
 	 *
 	 * @param type
-	 *            meta-message type (must be less than 128)
+	 *               meta-message type (must be less than 128)
 	 * @param data
-	 *            the data bytes in the MIDI message
+	 *               the data bytes in the MIDI message
 	 * @param length
-	 *            an amount of bytes in the {@code data} byte array; it should
-	 *            be non-negative and less than or equal to {@code data.length}
+	 *               an amount of bytes in the {@code data} byte array; it
+	 *               should
+	 *               be non-negative and less than or equal to
+	 *               {@code data.length}
 	 * @throws InvalidMidiDataException
-	 *             if the parameter values do not specify a valid MIDI meta
-	 *             message
+	 *                                  if the parameter values do not specify a
+	 *                                  valid MIDI meta
+	 *                                  message
 	 * @see #setMessage(int, byte[], int)
 	 * @see #getType()
 	 * @see #getData()
 	 * @since 1.7
 	 */
-	public MetaMessage(int type, byte[] data, int length) throws InvalidMidiDataException {
+	public MetaMessage(int type, byte[] data, int length)
+			throws InvalidMidiDataException {
 		super(null);
 		setMessage(type, data, length); // can throw InvalidMidiDataException
 	}
@@ -116,8 +100,9 @@ public class MetaMessage extends MidiMessage {
 	 * Constructs a new <code>MetaMessage</code>.
 	 * 
 	 * @param data
-	 *            an array of bytes containing the complete message. The message
-	 *            data may be changed using the <code>setMessage</code> method.
+	 *             an array of bytes containing the complete message. The
+	 *             message
+	 *             data may be changed using the <code>setMessage</code> method.
 	 * @see #setMessage
 	 */
 	protected MetaMessage(byte[] data) {
@@ -147,22 +132,26 @@ public class MetaMessage extends MidiMessage {
 	 * type of <code>MetaMessage</code> is not considered a data byte.
 	 *
 	 * @param type
-	 *            meta-message type (must be less than 128)
+	 *               meta-message type (must be less than 128)
 	 * @param data
-	 *            the data bytes in the MIDI message
+	 *               the data bytes in the MIDI message
 	 * @param length
-	 *            the number of bytes in the <code>data</code> byte array
+	 *               the number of bytes in the <code>data</code> byte array
 	 * @throws InvalidMidiDataException
-	 *             if the parameter values do not specify a valid MIDI meta
-	 *             message
+	 *                                  if the parameter values do not specify a
+	 *                                  valid MIDI meta
+	 *                                  message
 	 */
-	public void setMessage(int type, byte[] data, int length) throws InvalidMidiDataException {
+	public void setMessage(int type, byte[] data, int length)
+			throws InvalidMidiDataException {
 
 		if (type >= 128 || type < 0) {
-			throw new InvalidMidiDataException("Invalid meta event with type " + type);
+			throw new InvalidMidiDataException("Invalid meta event with type "
+					+ type);
 		}
 		if ((length > 0 && length > data.length) || length < 0) {
-			throw new InvalidMidiDataException("length out of bounds: " + length);
+			throw new InvalidMidiDataException("length out of bounds: "
+					+ length);
 		}
 
 		this.length = 2 + getVarIntLength(length) + length;
@@ -173,7 +162,8 @@ public class MetaMessage extends MidiMessage {
 		this.data[1] = (byte) type; // MetaMessage type
 		writeVarInt(this.data, 2, length); // write the length as a variable int
 		if (length > 0) {
-			System.arraycopy(data, 0, this.data, this.length - this.dataLength, this.dataLength);
+			System.arraycopy(data, 0, this.data, this.length - this.dataLength,
+					this.dataLength);
 		}
 	}
 
@@ -202,7 +192,8 @@ public class MetaMessage extends MidiMessage {
 	 */
 	public byte[] getData() {
 		byte[] returnedArray = new byte[dataLength];
-		System.arraycopy(data, (length - dataLength), returnedArray, 0, dataLength);
+		System.arraycopy(data, (length - dataLength), returnedArray, 0,
+				dataLength);
 		return returnedArray;
 	}
 

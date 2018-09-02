@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset.spi;
@@ -57,17 +37,20 @@ public interface XmlWriter extends RowSetWriter {
 	 * <code>XmlWriter</code> object.
 	 *
 	 * @param caller
-	 *            the <code>WebRowSet</code> instance to be written, for which
-	 *            this <code>XmlWriter</code> object is the writer
+	 *               the <code>WebRowSet</code> instance to be written, for
+	 *               which
+	 *               this <code>XmlWriter</code> object is the writer
 	 * @param writer
-	 *            the <code>java.io.Writer</code> object that serves as the
-	 *            output stream for writing <code>caller</code> as an XML
-	 *            document
+	 *               the <code>java.io.Writer</code> object that serves as the
+	 *               output stream for writing <code>caller</code> as an XML
+	 *               document
 	 * @throws SQLException
-	 *             if a database access error occurs or this
-	 *             <code>XmlWriter</code> object is not the writer for the given
-	 *             <code>WebRowSet</code> object
+	 *                      if a database access error occurs or this
+	 *                      <code>XmlWriter</code> object is not the writer for
+	 *                      the given
+	 *                      <code>WebRowSet</code> object
 	 */
-	public void writeXML(WebRowSet caller, java.io.Writer writer) throws SQLException;
+	public void writeXML(WebRowSet caller, java.io.Writer writer)
+			throws SQLException;
 
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -308,15 +288,18 @@ public class Thread implements Runnable {
 	 * not lose ownership of any monitors.
 	 *
 	 * @param millis
-	 *            the length of time to sleep in milliseconds
+	 *               the length of time to sleep in milliseconds
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the value of {@code millis} is negative
+	 *                                  if the value of {@code millis} is
+	 *                                  negative
 	 *
 	 * @throws InterruptedException
-	 *             if any thread has interrupted the current thread. The
-	 *             <i>interrupted status</i> of the current thread is cleared
-	 *             when this exception is thrown.
+	 *                                  if any thread has interrupted the
+	 *                                  current thread. The
+	 *                                  <i>interrupted status</i> of the current
+	 *                                  thread is cleared
+	 *                                  when this exception is thrown.
 	 */
 	public static native void sleep(long millis) throws InterruptedException;
 
@@ -328,27 +311,33 @@ public class Thread implements Runnable {
 	 * monitors.
 	 *
 	 * @param millis
-	 *            the length of time to sleep in milliseconds
+	 *               the length of time to sleep in milliseconds
 	 *
 	 * @param nanos
-	 *            {@code 0-999999} additional nanoseconds to sleep
+	 *               {@code 0-999999} additional nanoseconds to sleep
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the value of {@code millis} is negative, or the value of
-	 *             {@code nanos} is not in the range {@code 0-999999}
+	 *                                  if the value of {@code millis} is
+	 *                                  negative, or the value of
+	 *                                  {@code nanos} is not in the range
+	 *                                  {@code 0-999999}
 	 *
 	 * @throws InterruptedException
-	 *             if any thread has interrupted the current thread. The
-	 *             <i>interrupted status</i> of the current thread is cleared
-	 *             when this exception is thrown.
+	 *                                  if any thread has interrupted the
+	 *                                  current thread. The
+	 *                                  <i>interrupted status</i> of the current
+	 *                                  thread is cleared
+	 *                                  when this exception is thrown.
 	 */
-	public static void sleep(long millis, int nanos) throws InterruptedException {
+	public static void sleep(long millis, int nanos)
+			throws InterruptedException {
 		if (millis < 0) {
 			throw new IllegalArgumentException("timeout value is negative");
 		}
 
 		if (nanos < 0 || nanos > 999999) {
-			throw new IllegalArgumentException("nanosecond timeout value out of range");
+			throw new IllegalArgumentException(
+					"nanosecond timeout value out of range");
 		}
 
 		if (nanos >= 500000 || (nanos != 0 && millis == 0)) {
@@ -363,7 +352,8 @@ public class Thread implements Runnable {
 	 * 
 	 * @see #init(ThreadGroup,Runnable,String,long,AccessControlContext,boolean)
 	 */
-	private void init(ThreadGroup g, Runnable target, String name, long stackSize) {
+	private void init(ThreadGroup g, Runnable target, String name,
+			long stackSize) {
 		init(g, target, name, stackSize, null, true);
 	}
 
@@ -371,23 +361,26 @@ public class Thread implements Runnable {
 	 * Initializes a Thread.
 	 *
 	 * @param g
-	 *            the Thread group
+	 *                            the Thread group
 	 * @param target
-	 *            the object whose run() method gets called
+	 *                            the object whose run() method gets called
 	 * @param name
-	 *            the name of the new Thread
+	 *                            the name of the new Thread
 	 * @param stackSize
-	 *            the desired stack size for the new thread, or zero to indicate
-	 *            that this parameter is to be ignored.
+	 *                            the desired stack size for the new thread, or
+	 *                            zero to indicate
+	 *                            that this parameter is to be ignored.
 	 * @param acc
-	 *            the AccessControlContext to inherit, or
-	 *            AccessController.getContext() if null
+	 *                            the AccessControlContext to inherit, or
+	 *                            AccessController.getContext() if null
 	 * @param inheritThreadLocals
-	 *            if {@code true}, inherit initial values for inheritable
-	 *            thread-locals from the constructing thread
+	 *                            if {@code true}, inherit initial values for
+	 *                            inheritable
+	 *                            thread-locals from the constructing thread
 	 */
-	private void init(ThreadGroup g, Runnable target, String name, long stackSize,
-			AccessControlContext acc, boolean inheritThreadLocals) {
+	private void init(ThreadGroup g, Runnable target, String name,
+			long stackSize, AccessControlContext acc,
+			boolean inheritThreadLocals) {
 		if (name == null) {
 			throw new NullPointerException("name cannot be null");
 		}
@@ -440,12 +433,13 @@ public class Thread implements Runnable {
 			this.contextClassLoader = parent.getContextClassLoader();
 		else
 			this.contextClassLoader = parent.contextClassLoader;
-		this.inheritedAccessControlContext = acc != null ? acc : AccessController.getContext();
+		this.inheritedAccessControlContext = acc != null ? acc
+				: AccessController.getContext();
 		this.target = target;
 		setPriority(priority);
 		if (inheritThreadLocals && parent.inheritableThreadLocals != null)
-			this.inheritableThreadLocals = ThreadLocal
-					.createInheritedMap(parent.inheritableThreadLocals);
+			this.inheritableThreadLocals = ThreadLocal.createInheritedMap(
+					parent.inheritableThreadLocals);
 		/* Stash the specified stack size in case the VM cares */
 		this.stackSize = stackSize;
 
@@ -458,7 +452,7 @@ public class Thread implements Runnable {
 	 * cloned. Construct a new Thread instead.
 	 *
 	 * @throws CloneNotSupportedException
-	 *             always
+	 *                                    always
 	 */
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
@@ -484,9 +478,10 @@ public class Thread implements Runnable {
 	 * <i>n</i>, where <i>n</i> is an integer.
 	 *
 	 * @param target
-	 *            the object whose {@code run} method is invoked when this
-	 *            thread is started. If {@code null}, this classes {@code run}
-	 *            method does nothing.
+	 *               the object whose {@code run} method is invoked when this
+	 *               thread is started. If {@code null}, this classes
+	 *               {@code run}
+	 *               method does nothing.
 	 */
 	public Thread(Runnable target) {
 		init(null, target, "Thread-" + nextThreadNum(), 0);
@@ -508,22 +503,25 @@ public class Thread implements Runnable {
 	 * <i>n</i>, where <i>n</i> is an integer.
 	 *
 	 * @param group
-	 *            the thread group. If {@code null} and there is a security
-	 *            manager, the group is determined by
-	 *            {@linkplain SecurityManager#getThreadGroup
-	 *            SecurityManager.getThreadGroup()}. If there is not a security
-	 *            manager or {@code
+	 *               the thread group. If {@code null} and there is a security
+	 *               manager, the group is determined by
+	 *               {@linkplain SecurityManager#getThreadGroup
+	 *               SecurityManager.getThreadGroup()}. If there is not a
+	 *               security
+	 *               manager or {@code
 	 *         SecurityManager.getThreadGroup()} returns {@code null}, the group
-	 *            is set to the current thread's thread group.
+	 *               is set to the current thread's thread group.
 	 *
 	 * @param target
-	 *            the object whose {@code run} method is invoked when this
-	 *            thread is started. If {@code null}, this thread's run method
-	 *            is invoked.
+	 *               the object whose {@code run} method is invoked when this
+	 *               thread is started. If {@code null}, this thread's run
+	 *               method
+	 *               is invoked.
 	 *
 	 * @throws SecurityException
-	 *             if the current thread cannot create a thread in the specified
-	 *             thread group
+	 *                           if the current thread cannot create a thread in
+	 *                           the specified
+	 *                           thread group
 	 */
 	public Thread(ThreadGroup group, Runnable target) {
 		init(group, target, "Thread-" + nextThreadNum(), 0);
@@ -535,7 +533,7 @@ public class Thread implements Runnable {
 	 * {@code (null, null, name)}.
 	 *
 	 * @param name
-	 *            the name of the new thread
+	 *             the name of the new thread
 	 */
 	public Thread(String name) {
 		init(null, null, name, 0);
@@ -547,20 +545,22 @@ public class Thread implements Runnable {
 	 * {@code (group, null, name)}.
 	 *
 	 * @param group
-	 *            the thread group. If {@code null} and there is a security
-	 *            manager, the group is determined by
-	 *            {@linkplain SecurityManager#getThreadGroup
-	 *            SecurityManager.getThreadGroup()}. If there is not a security
-	 *            manager or {@code
+	 *              the thread group. If {@code null} and there is a security
+	 *              manager, the group is determined by
+	 *              {@linkplain SecurityManager#getThreadGroup
+	 *              SecurityManager.getThreadGroup()}. If there is not a
+	 *              security
+	 *              manager or {@code
 	 *         SecurityManager.getThreadGroup()} returns {@code null}, the group
-	 *            is set to the current thread's thread group.
+	 *              is set to the current thread's thread group.
 	 *
 	 * @param name
-	 *            the name of the new thread
+	 *              the name of the new thread
 	 *
 	 * @throws SecurityException
-	 *             if the current thread cannot create a thread in the specified
-	 *             thread group
+	 *                           if the current thread cannot create a thread in
+	 *                           the specified
+	 *                           thread group
 	 */
 	public Thread(ThreadGroup group, String name) {
 		init(group, null, name, 0);
@@ -572,12 +572,13 @@ public class Thread implements Runnable {
 	 * {@code (null, target, name)}.
 	 *
 	 * @param target
-	 *            the object whose {@code run} method is invoked when this
-	 *            thread is started. If {@code null}, this thread's run method
-	 *            is invoked.
+	 *               the object whose {@code run} method is invoked when this
+	 *               thread is started. If {@code null}, this thread's run
+	 *               method
+	 *               is invoked.
 	 *
 	 * @param name
-	 *            the name of the new thread
+	 *               the name of the new thread
 	 */
 	public Thread(Runnable target, String name) {
 		init(null, target, name, 0);
@@ -613,26 +614,30 @@ public class Thread implements Runnable {
 	 * change whether or not a thread is a daemon.
 	 *
 	 * @param group
-	 *            the thread group. If {@code null} and there is a security
-	 *            manager, the group is determined by
-	 *            {@linkplain SecurityManager#getThreadGroup
-	 *            SecurityManager.getThreadGroup()}. If there is not a security
-	 *            manager or {@code
+	 *               the thread group. If {@code null} and there is a security
+	 *               manager, the group is determined by
+	 *               {@linkplain SecurityManager#getThreadGroup
+	 *               SecurityManager.getThreadGroup()}. If there is not a
+	 *               security
+	 *               manager or {@code
 	 *         SecurityManager.getThreadGroup()} returns {@code null}, the group
-	 *            is set to the current thread's thread group.
+	 *               is set to the current thread's thread group.
 	 *
 	 * @param target
-	 *            the object whose {@code run} method is invoked when this
-	 *            thread is started. If {@code null}, this thread's run method
-	 *            is invoked.
+	 *               the object whose {@code run} method is invoked when this
+	 *               thread is started. If {@code null}, this thread's run
+	 *               method
+	 *               is invoked.
 	 *
 	 * @param name
-	 *            the name of the new thread
+	 *               the name of the new thread
 	 *
 	 * @throws SecurityException
-	 *             if the current thread cannot create a thread in the specified
-	 *             thread group or cannot override the context class loader
-	 *             methods.
+	 *                           if the current thread cannot create a thread in
+	 *                           the specified
+	 *                           thread group or cannot override the context
+	 *                           class loader
+	 *                           methods.
 	 */
 	public Thread(ThreadGroup group, Runnable target, String name) {
 		init(group, target, name, 0);
@@ -693,33 +698,39 @@ public class Thread implements Runnable {
 	 *
 	 *
 	 * @param group
-	 *            the thread group. If {@code null} and there is a security
-	 *            manager, the group is determined by
-	 *            {@linkplain SecurityManager#getThreadGroup
-	 *            SecurityManager.getThreadGroup()}. If there is not a security
-	 *            manager or {@code
+	 *                  the thread group. If {@code null} and there is a
+	 *                  security
+	 *                  manager, the group is determined by
+	 *                  {@linkplain SecurityManager#getThreadGroup
+	 *                  SecurityManager.getThreadGroup()}. If there is not a
+	 *                  security
+	 *                  manager or {@code
 	 *         SecurityManager.getThreadGroup()} returns {@code null}, the group
-	 *            is set to the current thread's thread group.
+	 *                  is set to the current thread's thread group.
 	 *
 	 * @param target
-	 *            the object whose {@code run} method is invoked when this
-	 *            thread is started. If {@code null}, this thread's run method
-	 *            is invoked.
+	 *                  the object whose {@code run} method is invoked when this
+	 *                  thread is started. If {@code null}, this thread's run
+	 *                  method
+	 *                  is invoked.
 	 *
 	 * @param name
-	 *            the name of the new thread
+	 *                  the name of the new thread
 	 *
 	 * @param stackSize
-	 *            the desired stack size for the new thread, or zero to indicate
-	 *            that this parameter is to be ignored.
+	 *                  the desired stack size for the new thread, or zero to
+	 *                  indicate
+	 *                  that this parameter is to be ignored.
 	 *
 	 * @throws SecurityException
-	 *             if the current thread cannot create a thread in the specified
-	 *             thread group
+	 *                           if the current thread cannot create a thread in
+	 *                           the specified
+	 *                           thread group
 	 *
 	 * @since 1.4
 	 */
-	public Thread(ThreadGroup group, Runnable target, String name, long stackSize) {
+	public Thread(ThreadGroup group, Runnable target, String name,
+			long stackSize) {
 		init(group, target, name, stackSize);
 	}
 
@@ -735,7 +746,7 @@ public class Thread implements Runnable {
 	 * thread may not be restarted once it has completed execution.
 	 *
 	 * @exception IllegalThreadStateException
-	 *                if the thread was already started.
+	 *                                        if the thread was already started.
 	 * @see #run()
 	 * @see #stop()
 	 */
@@ -848,7 +859,8 @@ public class Thread implements Runnable {
 	 * uncaught exception is an instance of <code>ThreadDeath</code>.
 	 *
 	 * @exception SecurityException
-	 *                if the current thread cannot modify this thread.
+	 *                              if the current thread cannot modify this
+	 *                              thread.
 	 * @see #interrupt()
 	 * @see #checkAccess()
 	 * @see #run()
@@ -883,7 +895,8 @@ public class Thread implements Runnable {
 		if (security != null) {
 			checkAccess();
 			if (this != Thread.currentThread()) {
-				security.checkPermission(SecurityConstants.STOP_THREAD_PERMISSION);
+				security.checkPermission(
+						SecurityConstants.STOP_THREAD_PERMISSION);
 			}
 		}
 		// A zero status value corresponds to "NEW", it can't change to
@@ -958,7 +971,7 @@ public class Thread implements Runnable {
 	 * Interrupting a thread that is not alive need not have any effect.
 	 *
 	 * @throws SecurityException
-	 *             if the current thread cannot modify this thread
+	 *                           if the current thread cannot modify this thread
 	 *
 	 * @revised 6.0
 	 * @spec JSR-51
@@ -1039,7 +1052,7 @@ public class Thread implements Runnable {
 	 *             > Why are Thread.stop, Thread.suspend and Thread.resume
 	 *             Deprecated?</a>.
 	 * @throws NoSuchMethodError
-	 *             always
+	 *                           always
 	 */
 	@Deprecated
 	public void destroy() {
@@ -1066,7 +1079,8 @@ public class Thread implements Runnable {
 	 * unless and until it is resumed.
 	 *
 	 * @exception SecurityException
-	 *                if the current thread cannot modify this thread.
+	 *                              if the current thread cannot modify this
+	 *                              thread.
 	 * @see #checkAccess
 	 * @deprecated This method has been deprecated, as it is inherently
 	 *             deadlock-prone. If the target thread holds a lock on the
@@ -1098,7 +1112,8 @@ public class Thread implements Runnable {
 	 * make progress in its execution.
 	 *
 	 * @exception SecurityException
-	 *                if the current thread cannot modify this thread.
+	 *                              if the current thread cannot modify this
+	 *                              thread.
 	 * @see #checkAccess
 	 * @see #suspend()
 	 * @deprecated This method exists solely for use with {@link #suspend},
@@ -1126,12 +1141,14 @@ public class Thread implements Runnable {
 	 * the thread's thread group.
 	 *
 	 * @param newPriority
-	 *            priority to set this thread to
+	 *                    priority to set this thread to
 	 * @exception IllegalArgumentException
-	 *                If the priority is not in the range
-	 *                <code>MIN_PRIORITY</code> to <code>MAX_PRIORITY</code>.
+	 *                                     If the priority is not in the range
+	 *                                     <code>MIN_PRIORITY</code> to
+	 *                                     <code>MAX_PRIORITY</code>.
 	 * @exception SecurityException
-	 *                if the current thread cannot modify this thread.
+	 *                                     if the current thread cannot modify
+	 *                                     this thread.
 	 * @see #getPriority
 	 * @see #checkAccess()
 	 * @see #getThreadGroup()
@@ -1172,9 +1189,10 @@ public class Thread implements Runnable {
 	 * <code>SecurityException</code>.
 	 *
 	 * @param name
-	 *            the new name for this thread.
+	 *             the new name for this thread.
 	 * @exception SecurityException
-	 *                if the current thread cannot modify this thread.
+	 *                              if the current thread cannot modify this
+	 *                              thread.
 	 * @see #getName
 	 * @see #checkAccess()
 	 */
@@ -1250,13 +1268,15 @@ public class Thread implements Runnable {
 	 * the method only be used for debugging and monitoring purposes.
 	 *
 	 * @param tarray
-	 *            an array into which to put the list of threads
+	 *               an array into which to put the list of threads
 	 *
 	 * @return the number of threads put into the array
 	 *
 	 * @throws SecurityException
-	 *             if {@link java.lang.ThreadGroup#checkAccess} determines that
-	 *             the current thread cannot access its thread group
+	 *                           if {@link java.lang.ThreadGroup#checkAccess}
+	 *                           determines that
+	 *                           the current thread cannot access its thread
+	 *                           group
 	 */
 	public static int enumerate(Thread tarray[]) {
 		return currentThread().getThreadGroup().enumerate(tarray);
@@ -1268,7 +1288,7 @@ public class Thread implements Runnable {
 	 *
 	 * @return the number of stack frames in this thread.
 	 * @exception IllegalThreadStateException
-	 *                if this thread is not suspended.
+	 *                                        if this thread is not suspended.
 	 * @deprecated The definition of this call depends on {@link #suspend},
 	 *             which is deprecated. Further, the results of this call were
 	 *             never well-defined.
@@ -1288,17 +1308,21 @@ public class Thread implements Runnable {
 	 * instances.
 	 *
 	 * @param millis
-	 *            the time to wait in milliseconds
+	 *               the time to wait in milliseconds
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the value of {@code millis} is negative
+	 *                                  if the value of {@code millis} is
+	 *                                  negative
 	 *
 	 * @throws InterruptedException
-	 *             if any thread has interrupted the current thread. The
-	 *             <i>interrupted status</i> of the current thread is cleared
-	 *             when this exception is thrown.
+	 *                                  if any thread has interrupted the
+	 *                                  current thread. The
+	 *                                  <i>interrupted status</i> of the current
+	 *                                  thread is cleared
+	 *                                  when this exception is thrown.
 	 */
-	public final synchronized void join(long millis) throws InterruptedException {
+	public final synchronized void join(long millis)
+			throws InterruptedException {
 		long base = System.currentTimeMillis();
 		long now = 0;
 
@@ -1334,28 +1358,34 @@ public class Thread implements Runnable {
 	 * instances.
 	 *
 	 * @param millis
-	 *            the time to wait in milliseconds
+	 *               the time to wait in milliseconds
 	 *
 	 * @param nanos
-	 *            {@code 0-999999} additional nanoseconds to wait
+	 *               {@code 0-999999} additional nanoseconds to wait
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the value of {@code millis} is negative, or the value of
-	 *             {@code nanos} is not in the range {@code 0-999999}
+	 *                                  if the value of {@code millis} is
+	 *                                  negative, or the value of
+	 *                                  {@code nanos} is not in the range
+	 *                                  {@code 0-999999}
 	 *
 	 * @throws InterruptedException
-	 *             if any thread has interrupted the current thread. The
-	 *             <i>interrupted status</i> of the current thread is cleared
-	 *             when this exception is thrown.
+	 *                                  if any thread has interrupted the
+	 *                                  current thread. The
+	 *                                  <i>interrupted status</i> of the current
+	 *                                  thread is cleared
+	 *                                  when this exception is thrown.
 	 */
-	public final synchronized void join(long millis, int nanos) throws InterruptedException {
+	public final synchronized void join(long millis, int nanos)
+			throws InterruptedException {
 
 		if (millis < 0) {
 			throw new IllegalArgumentException("timeout value is negative");
 		}
 
 		if (nanos < 0 || nanos > 999999) {
-			throw new IllegalArgumentException("nanosecond timeout value out of range");
+			throw new IllegalArgumentException(
+					"nanosecond timeout value out of range");
 		}
 
 		if (nanos >= 500000 || (nanos != 0 && millis == 0)) {
@@ -1375,9 +1405,11 @@ public class Thread implements Runnable {
 	 * <blockquote> {@linkplain #join(long) join}{@code (0)} </blockquote>
 	 *
 	 * @throws InterruptedException
-	 *             if any thread has interrupted the current thread. The
-	 *             <i>interrupted status</i> of the current thread is cleared
-	 *             when this exception is thrown.
+	 *                              if any thread has interrupted the current
+	 *                              thread. The
+	 *                              <i>interrupted status</i> of the current
+	 *                              thread is cleared
+	 *                              when this exception is thrown.
 	 */
 	public final void join() throws InterruptedException {
 		join(0);
@@ -1402,14 +1434,16 @@ public class Thread implements Runnable {
 	 * This method must be invoked before the thread is started.
 	 *
 	 * @param on
-	 *            if {@code true}, marks this thread as a daemon thread
+	 *           if {@code true}, marks this thread as a daemon thread
 	 *
 	 * @throws IllegalThreadStateException
-	 *             if this thread is {@linkplain #isAlive alive}
+	 *                                     if this thread is
+	 *                                     {@linkplain #isAlive alive}
 	 *
 	 * @throws SecurityException
-	 *             if {@link #checkAccess} determines that the current thread
-	 *             cannot modify this thread
+	 *                                     if {@link #checkAccess} determines
+	 *                                     that the current thread
+	 *                                     cannot modify this thread
 	 */
 	public final void setDaemon(boolean on) {
 		checkAccess();
@@ -1439,8 +1473,9 @@ public class Thread implements Runnable {
 	 * <code>SecurityException</code>.
 	 *
 	 * @exception SecurityException
-	 *                if the current thread is not allowed to access this
-	 *                thread.
+	 *                              if the current thread is not allowed to
+	 *                              access this
+	 *                              thread.
 	 * @see SecurityManager#checkAccess(Thread)
 	 */
 	public final void checkAccess() {
@@ -1459,7 +1494,8 @@ public class Thread implements Runnable {
 	public String toString() {
 		ThreadGroup group = getThreadGroup();
 		if (group != null) {
-			return "Thread[" + getName() + "," + getPriority() + "," + group.getName() + "]";
+			return "Thread[" + getName() + "," + getPriority() + "," + group
+					.getName() + "]";
 		} else {
 			return "Thread[" + getName() + "," + getPriority() + "," + "" + "]";
 		}
@@ -1488,7 +1524,8 @@ public class Thread implements Runnable {
 	 *         bootstrap class loader)
 	 *
 	 * @throws SecurityException
-	 *             if the current thread cannot get the context ClassLoader
+	 *                           if the current thread cannot get the context
+	 *                           ClassLoader
 	 *
 	 * @since 1.2
 	 */
@@ -1498,7 +1535,8 @@ public class Thread implements Runnable {
 			return null;
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
-			ClassLoader.checkClassLoaderPermission(contextClassLoader, Reflection.getCallerClass());
+			ClassLoader.checkClassLoaderPermission(contextClassLoader,
+					Reflection.getCallerClass());
 		}
 		return contextClassLoader;
 	}
@@ -1519,12 +1557,13 @@ public class Thread implements Runnable {
 	 * ClassLoader is permitted.
 	 *
 	 * @param cl
-	 *            the context ClassLoader for this Thread, or null indicating
-	 *            the system class loader (or, failing that, the bootstrap class
-	 *            loader)
+	 *           the context ClassLoader for this Thread, or null indicating
+	 *           the system class loader (or, failing that, the bootstrap class
+	 *           loader)
 	 *
 	 * @throws SecurityException
-	 *             if the current thread cannot set the context ClassLoader
+	 *                           if the current thread cannot set the context
+	 *                           ClassLoader
 	 *
 	 * @since 1.2
 	 */
@@ -1551,7 +1590,7 @@ public class Thread implements Runnable {
 	 * @param obj
 	 *            the object on which to test lock ownership
 	 * @throws NullPointerException
-	 *             if obj is <tt>null</tt>
+	 *                              if obj is <tt>null</tt>
 	 * @return <tt>true</tt> if the current thread holds the monitor lock on the
 	 *         specified object.
 	 * @since 1.4
@@ -1586,8 +1625,10 @@ public class Thread implements Runnable {
 	 *         frame.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its <tt>checkPermission</tt>
-	 *             method doesn't allow getting the stack trace of thread.
+	 *                           if a security manager exists and its
+	 *                           <tt>checkPermission</tt>
+	 *                           method doesn't allow getting the stack trace of
+	 *                           thread.
 	 * @see SecurityManager#checkPermission
 	 * @see RuntimePermission
 	 * @see Throwable#getStackTrace
@@ -1599,14 +1640,16 @@ public class Thread implements Runnable {
 			// check for getStackTrace permission
 			SecurityManager security = System.getSecurityManager();
 			if (security != null) {
-				security.checkPermission(SecurityConstants.GET_STACK_TRACE_PERMISSION);
+				security.checkPermission(
+						SecurityConstants.GET_STACK_TRACE_PERMISSION);
 			}
 			// optimization so we do not call into the vm for threads that
 			// have not yet started or have terminated
 			if (!isAlive()) {
 				return EMPTY_STACK_TRACE;
 			}
-			StackTraceElement[][] stackTraceArray = dumpThreads(new Thread[] { this });
+			StackTraceElement[][] stackTraceArray = dumpThreads(new Thread[] {
+					this });
 			StackTraceElement[] stackTrace = stackTraceArray[0];
 			// a thread that was alive during the previous isAlive call may have
 			// since terminated, therefore not having a stacktrace.
@@ -1646,8 +1689,10 @@ public class Thread implements Runnable {
 	 *         corresponding thread.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its <tt>checkPermission</tt>
-	 *             method doesn't allow getting the stack trace of thread.
+	 *                           if a security manager exists and its
+	 *                           <tt>checkPermission</tt>
+	 *                           method doesn't allow getting the stack trace of
+	 *                           thread.
 	 * @see #getStackTrace
 	 * @see SecurityManager#checkPermission
 	 * @see RuntimePermission
@@ -1659,8 +1704,10 @@ public class Thread implements Runnable {
 		// check for getStackTrace permission
 		SecurityManager security = System.getSecurityManager();
 		if (security != null) {
-			security.checkPermission(SecurityConstants.GET_STACK_TRACE_PERMISSION);
-			security.checkPermission(SecurityConstants.MODIFY_THREADGROUP_PERMISSION);
+			security.checkPermission(
+					SecurityConstants.GET_STACK_TRACE_PERMISSION);
+			security.checkPermission(
+					SecurityConstants.MODIFY_THREADGROUP_PERMISSION);
 		}
 
 		// Get a snapshot of the list of all threads
@@ -1720,24 +1767,28 @@ public class Thread implements Runnable {
 	 * subclass overrides any of the methods, false otherwise.
 	 */
 	private static boolean auditSubclass(final Class<?> subcl) {
-		Boolean result = AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
-			public Boolean run() {
-				for (Class<?> cl = subcl; cl != Thread.class; cl = cl.getSuperclass()) {
-					try {
-						cl.getDeclaredMethod("getContextClassLoader", new Class<?>[0]);
-						return Boolean.TRUE;
-					} catch (NoSuchMethodException ex) {
+		Boolean result = AccessController.doPrivileged(
+				new PrivilegedAction<Boolean>() {
+					public Boolean run() {
+						for (Class<?> cl = subcl; cl != Thread.class; cl = cl
+								.getSuperclass()) {
+							try {
+								cl.getDeclaredMethod("getContextClassLoader",
+										new Class<?>[0]);
+								return Boolean.TRUE;
+							} catch (NoSuchMethodException ex) {
+							}
+							try {
+								Class<?>[] params = { ClassLoader.class };
+								cl.getDeclaredMethod("setContextClassLoader",
+										params);
+								return Boolean.TRUE;
+							} catch (NoSuchMethodException ex) {
+							}
+						}
+						return Boolean.FALSE;
 					}
-					try {
-						Class<?>[] params = { ClassLoader.class };
-						cl.getDeclaredMethod("setContextClassLoader", params);
-						return Boolean.TRUE;
-					} catch (NoSuchMethodException ex) {
-					}
-				}
-				return Boolean.FALSE;
-			}
-		});
+				});
 		return result.booleanValue();
 	}
 
@@ -1895,9 +1946,9 @@ public class Thread implements Runnable {
 		 * Virtual Machine.
 		 * 
 		 * @param t
-		 *            the thread
+		 *          the thread
 		 * @param e
-		 *            the exception
+		 *          the exception
 		 */
 		void uncaughtException(Thread t, Throwable e);
 	}
@@ -1933,11 +1984,12 @@ public class Thread implements Runnable {
 	 * recursion.
 	 *
 	 * @param eh
-	 *            the object to use as the default uncaught exception handler.
-	 *            If <tt>null</tt> then there is no default handler.
+	 *           the object to use as the default uncaught exception handler.
+	 *           If <tt>null</tt> then there is no default handler.
 	 *
 	 * @throws SecurityException
-	 *             if a security manager is present and it denies <tt>
+	 *                           if a security manager is present and it denies
+	 *                           <tt>
 	 *             {@link RuntimePermission}
 	 *         (&quot;setDefaultUncaughtExceptionHandler&quot;)</tt>
 	 *
@@ -1946,10 +1998,12 @@ public class Thread implements Runnable {
 	 * @see ThreadGroup#uncaughtException
 	 * @since 1.5
 	 */
-	public static void setDefaultUncaughtExceptionHandler(UncaughtExceptionHandler eh) {
+	public static void setDefaultUncaughtExceptionHandler(
+			UncaughtExceptionHandler eh) {
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
-			sm.checkPermission(new RuntimePermission("setDefaultUncaughtExceptionHandler"));
+			sm.checkPermission(new RuntimePermission(
+					"setDefaultUncaughtExceptionHandler"));
 		}
 
 		defaultUncaughtExceptionHandler = eh;
@@ -1979,7 +2033,8 @@ public class Thread implements Runnable {
 	 * @return the uncaught exception handler for this thread
 	 */
 	public UncaughtExceptionHandler getUncaughtExceptionHandler() {
-		return uncaughtExceptionHandler != null ? uncaughtExceptionHandler : group;
+		return uncaughtExceptionHandler != null ? uncaughtExceptionHandler
+				: group;
 	}
 
 	/**
@@ -1992,10 +2047,11 @@ public class Thread implements Runnable {
 	 * handler.
 	 * 
 	 * @param eh
-	 *            the object to use as this thread's uncaught exception handler.
-	 *            If <tt>null</tt> then this thread has no explicit handler.
+	 *           the object to use as this thread's uncaught exception handler.
+	 *           If <tt>null</tt> then this thread has no explicit handler.
 	 * @throws SecurityException
-	 *             if the current thread is not allowed to modify this thread.
+	 *                           if the current thread is not allowed to modify
+	 *                           this thread.
 	 * @see #setDefaultUncaughtExceptionHandler
 	 * @see ThreadGroup#uncaughtException
 	 * @since 1.5
@@ -2065,7 +2121,8 @@ public class Thread implements Runnable {
 
 			if (obj instanceof WeakClassKey) {
 				Object referent = get();
-				return (referent != null) && (referent == ((WeakClassKey) obj).get());
+				return (referent != null) && (referent == ((WeakClassKey) obj)
+						.get());
 			} else {
 				return false;
 			}

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.spec;
@@ -61,26 +41,31 @@ public class RSAOtherPrimeInfo {
 	 * and crtCoefficient as defined in PKCS#1.
 	 *
 	 * @param prime
-	 *            the prime factor of n.
+	 *                       the prime factor of n.
 	 * @param primeExponent
-	 *            the exponent.
+	 *                       the exponent.
 	 * @param crtCoefficient
-	 *            the Chinese Remainder Theorem coefficient.
+	 *                       the Chinese Remainder Theorem coefficient.
 	 * @exception NullPointerException
-	 *                if any of the parameters, i.e. {@code prime},
-	 *                {@code primeExponent}, {@code crtCoefficient}, is null.
+	 *                                 if any of the parameters, i.e.
+	 *                                 {@code prime},
+	 *                                 {@code primeExponent},
+	 *                                 {@code crtCoefficient}, is null.
 	 *
 	 */
 	public RSAOtherPrimeInfo(BigInteger prime, BigInteger primeExponent,
 			BigInteger crtCoefficient) {
 		if (prime == null) {
-			throw new NullPointerException("the prime parameter must be " + "non-null");
+			throw new NullPointerException("the prime parameter must be "
+					+ "non-null");
 		}
 		if (primeExponent == null) {
-			throw new NullPointerException("the primeExponent parameter " + "must be non-null");
+			throw new NullPointerException("the primeExponent parameter "
+					+ "must be non-null");
 		}
 		if (crtCoefficient == null) {
-			throw new NullPointerException("the crtCoefficient parameter " + "must be non-null");
+			throw new NullPointerException("the crtCoefficient parameter "
+					+ "must be non-null");
 		}
 		this.prime = prime;
 		this.primeExponent = primeExponent;

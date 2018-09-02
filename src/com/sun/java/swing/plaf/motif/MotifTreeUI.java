@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.motif;
@@ -64,7 +44,8 @@ public class MotifTreeUI extends BasicTreeUI {
 
 	// BasicTreeUI overrides
 
-	protected void paintVerticalLine(Graphics g, JComponent c, int x, int top, int bottom) {
+	protected void paintVerticalLine(Graphics g, JComponent c, int x, int top,
+			int bottom) {
 		if (tree.getComponentOrientation().isLeftToRight()) {
 			g.fillRect(x, top, 2, bottom - top + 2);
 		} else {
@@ -72,7 +53,8 @@ public class MotifTreeUI extends BasicTreeUI {
 		}
 	}
 
-	protected void paintHorizontalLine(Graphics g, JComponent c, int y, int left, int right) {
+	protected void paintHorizontalLine(Graphics g, JComponent c, int y,
+			int left, int right) {
 		g.fillRect(left, y, right - left + 1, 2);
 	}
 
@@ -115,7 +97,8 @@ public class MotifTreeUI extends BasicTreeUI {
 			g.fillRect(x + 1, y + 1, SIZE - 2, SIZE - 2);
 
 			g.setColor(fg);
-			g.drawLine(x + 3, y + HALF_SIZE - 1, x + SIZE - 4, y + HALF_SIZE - 1);
+			g.drawLine(x + 3, y + HALF_SIZE - 1, x + SIZE - 4, y + HALF_SIZE
+					- 1);
 			g.drawLine(x + 3, y + HALF_SIZE, x + SIZE - 4, y + HALF_SIZE);
 		}
 
@@ -144,7 +127,8 @@ public class MotifTreeUI extends BasicTreeUI {
 
 		public void paintIcon(Component c, Graphics g, int x, int y) {
 			super.paintIcon(c, g, x, y);
-			g.drawLine(x + HALF_SIZE - 1, y + 3, x + HALF_SIZE - 1, y + (SIZE - 4));
+			g.drawLine(x + HALF_SIZE - 1, y + 3, x + HALF_SIZE - 1, y + (SIZE
+					- 4));
 			g.drawLine(x + HALF_SIZE, y + 3, x + HALF_SIZE, y + (SIZE - 4));
 		}
 	}

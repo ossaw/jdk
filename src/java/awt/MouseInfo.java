@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -40,8 +20,7 @@ public class MouseInfo {
 	/**
 	 * Private constructor to prevent instantiation.
 	 */
-	private MouseInfo() {
-	}
+	private MouseInfo() {}
 
 	/**
 	 * Returns a <code>PointerInfo</code> instance that represents the current
@@ -61,11 +40,13 @@ public class MouseInfo {
 	 * object. This may result in a <code>SecurityException</code>.
 	 *
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                <code>checkPermission</code> method doesn't allow the
-	 *                operation
+	 *                              if a security manager exists and its
+	 *                              <code>checkPermission</code> method doesn't
+	 *                              allow the
+	 *                              operation
 	 * @see GraphicsConfiguration
 	 * @see SecurityManager#checkPermission
 	 * @see java.awt.AWTPermission
@@ -79,12 +60,15 @@ public class MouseInfo {
 
 		SecurityManager security = System.getSecurityManager();
 		if (security != null) {
-			security.checkPermission(SecurityConstants.AWT.WATCH_MOUSE_PERMISSION);
+			security.checkPermission(
+					SecurityConstants.AWT.WATCH_MOUSE_PERMISSION);
 		}
 
 		Point point = new Point(0, 0);
-		int deviceNum = Toolkit.getDefaultToolkit().getMouseInfoPeer().fillPointWithCoords(point);
-		GraphicsDevice[] gds = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+		int deviceNum = Toolkit.getDefaultToolkit().getMouseInfoPeer()
+				.fillPointWithCoords(point);
+		GraphicsDevice[] gds = GraphicsEnvironment.getLocalGraphicsEnvironment()
+				.getScreenDevices();
 		PointerInfo retval = null;
 		if (areScreenDevicesIndependent(gds)) {
 			retval = new PointerInfo(gds[deviceNum], point);
@@ -116,7 +100,8 @@ public class MouseInfo {
 	 * returns <code>-1</code>.
 	 *
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true
 	 * @return number of buttons on the mouse
 	 * @since 1.5
 	 */
@@ -124,7 +109,8 @@ public class MouseInfo {
 		if (GraphicsEnvironment.isHeadless()) {
 			throw new HeadlessException();
 		}
-		Object prop = Toolkit.getDefaultToolkit().getDesktopProperty("awt.mouse.numButtons");
+		Object prop = Toolkit.getDefaultToolkit().getDesktopProperty(
+				"awt.mouse.numButtons");
 		if (prop instanceof Integer) {
 			return ((Integer) prop).intValue();
 		}

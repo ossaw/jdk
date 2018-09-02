@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -54,7 +52,8 @@ public class DOMWSFilter implements DTMWSFilter {
 	 * the <code>StripFilter</code> interface.
 	 *
 	 * @param translet
-	 *            A translet that also implements the StripFilter interface.
+	 *                 A translet that also implements the StripFilter
+	 *                 interface.
 	 *
 	 * @see com.sun.org.apache.xml.internal.dtm.DTMWSFilter
 	 * @see com.sun.org.apache.xalan.internal.xsltc.StripFilter
@@ -75,9 +74,9 @@ public class DOMWSFilter implements DTMWSFilter {
 	 * from user code.
 	 *
 	 * @param node
-	 *            int handle of the node.
+	 *             int handle of the node.
 	 * @param dtm
-	 *            the DTM that owns this node
+	 *             the DTM that owns this node
 	 * @return one of <code>NOTSTRIP</code>, <code>STRIP</code> or
 	 *         <code>INHERIT</code>.
 	 */
@@ -95,8 +94,9 @@ public class DOMWSFilter implements DTMWSFilter {
 				} else {
 					mapping = m_mappings.get(dtm);
 					if (mapping == null) {
-						mapping = mappableDOM.getMapping(m_translet.getNamesArray(),
-								m_translet.getUrisArray(), m_translet.getTypesArray());
+						mapping = mappableDOM.getMapping(m_translet
+								.getNamesArray(), m_translet.getUrisArray(),
+								m_translet.getTypesArray());
 						m_mappings.put(dtm, mapping);
 						m_currentDTM = dtm;
 						m_currentMapping = mapping;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.beans;
 
@@ -36,7 +16,7 @@ public interface ExceptionListener {
 	 * This method is called when a recoverable exception has been caught.
 	 *
 	 * @param e
-	 *            The exception that was caught.
+	 *          The exception that was caught.
 	 *
 	 */
 	public void exceptionThrown(Exception e);

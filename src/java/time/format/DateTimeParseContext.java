@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2008-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -117,7 +86,7 @@ final class DateTimeParseContext {
 	 * Creates a new instance of the context.
 	 *
 	 * @param formatter
-	 *            the formatter controlling the parse, not null
+	 *                  the formatter controlling the parse, not null
 	 */
 	DateTimeParseContext(DateTimeFormatter formatter) {
 		super();
@@ -190,7 +159,8 @@ final class DateTimeParseContext {
 	 * Sets whether the parsing is case sensitive or not.
 	 *
 	 * @param caseSensitive
-	 *            changes the parsing to be case sensitive or not from now on
+	 *                      changes the parsing to be case sensitive or not from
+	 *                      now on
 	 */
 	void setCaseSensitive(boolean caseSensitive) {
 		this.caseSensitive = caseSensitive;
@@ -202,20 +172,21 @@ final class DateTimeParseContext {
 	 * {@link #isCaseSensitive()}.
 	 *
 	 * @param cs1
-	 *            the first character sequence, not null
+	 *                the first character sequence, not null
 	 * @param offset1
-	 *            the offset into the first sequence, valid
+	 *                the offset into the first sequence, valid
 	 * @param cs2
-	 *            the second character sequence, not null
+	 *                the second character sequence, not null
 	 * @param offset2
-	 *            the offset into the second sequence, valid
+	 *                the offset into the second sequence, valid
 	 * @param length
-	 *            the length to check, valid
+	 *                the length to check, valid
 	 * @return true if equal
 	 */
-	boolean subSequenceEquals(CharSequence cs1, int offset1, CharSequence cs2, int offset2,
-			int length) {
-		if (offset1 + length > cs1.length() || offset2 + length > cs2.length()) {
+	boolean subSequenceEquals(CharSequence cs1, int offset1, CharSequence cs2,
+			int offset2, int length) {
+		if (offset1 + length > cs1.length() || offset2 + length > cs2
+				.length()) {
 			return false;
 		}
 		if (isCaseSensitive()) {
@@ -230,8 +201,9 @@ final class DateTimeParseContext {
 			for (int i = 0; i < length; i++) {
 				char ch1 = cs1.charAt(offset1 + i);
 				char ch2 = cs2.charAt(offset2 + i);
-				if (ch1 != ch2 && Character.toUpperCase(ch1) != Character.toUpperCase(ch2)
-						&& Character.toLowerCase(ch1) != Character.toLowerCase(ch2)) {
+				if (ch1 != ch2 && Character.toUpperCase(ch1) != Character
+						.toUpperCase(ch2) && Character.toLowerCase(
+								ch1) != Character.toLowerCase(ch2)) {
 					return false;
 				}
 			}
@@ -259,14 +231,14 @@ final class DateTimeParseContext {
 	 * Compares two characters ignoring case.
 	 *
 	 * @param c1
-	 *            the first
+	 *           the first
 	 * @param c2
-	 *            the second
+	 *           the second
 	 * @return true if equal
 	 */
 	static boolean charEqualsIgnoreCase(char c1, char c2) {
-		return c1 == c2 || Character.toUpperCase(c1) == Character.toUpperCase(c2)
-				|| Character.toLowerCase(c1) == Character.toLowerCase(c2);
+		return c1 == c2 || Character.toUpperCase(c1) == Character.toUpperCase(
+				c2) || Character.toLowerCase(c1) == Character.toLowerCase(c2);
 	}
 
 	// -----------------------------------------------------------------------
@@ -285,7 +257,7 @@ final class DateTimeParseContext {
 	 * Sets whether parsing is strict or lenient.
 	 *
 	 * @param strict
-	 *            changes the parsing to be strict or lenient from now on
+	 *               changes the parsing to be strict or lenient from now on
 	 */
 	void setStrict(boolean strict) {
 		this.strict = strict;
@@ -303,7 +275,7 @@ final class DateTimeParseContext {
 	 * Ends the parsing of an optional segment of the input.
 	 *
 	 * @param successful
-	 *            whether the optional segment was successfully parsed
+	 *                   whether the optional segment was successfully parsed
 	 */
 	void endOptional(boolean successful) {
 		if (successful) {
@@ -337,7 +309,8 @@ final class DateTimeParseContext {
 	 *
 	 * @return the result of the parse, not null
 	 */
-	TemporalAccessor toResolved(ResolverStyle resolverStyle, Set<TemporalField> resolverFields) {
+	TemporalAccessor toResolved(ResolverStyle resolverStyle,
+			Set<TemporalField> resolverFields) {
 		Parsed parsed = currentParsed();
 		parsed.chrono = getEffectiveChronology();
 		parsed.zone = (parsed.zone != null ? parsed.zone : formatter.getZone());
@@ -354,7 +327,7 @@ final class DateTimeParseContext {
 	 * set to 50, or the hour to 1000.
 	 *
 	 * @param field
-	 *            the field to query from the map, null returns null
+	 *              the field to query from the map, null returns null
 	 * @return the value mapped to the specified field, null if field was not
 	 *         parsed
 	 */
@@ -369,19 +342,21 @@ final class DateTimeParseContext {
 	 * be out of range for the field - no checks are performed.
 	 *
 	 * @param field
-	 *            the field to set in the field-value map, not null
+	 *                   the field to set in the field-value map, not null
 	 * @param value
-	 *            the value to set in the field-value map
+	 *                   the value to set in the field-value map
 	 * @param errorPos
-	 *            the position of the field being parsed
+	 *                   the position of the field being parsed
 	 * @param successPos
-	 *            the position after the field being parsed
+	 *                   the position after the field being parsed
 	 * @return the new position
 	 */
-	int setParsedField(TemporalField field, long value, int errorPos, int successPos) {
+	int setParsedField(TemporalField field, long value, int errorPos,
+			int successPos) {
 		Objects.requireNonNull(field, "field");
 		Long old = currentParsed().fieldValues.put(field, value);
-		return (old != null && old.longValue() != value) ? ~errorPos : successPos;
+		return (old != null && old.longValue() != value) ? ~errorPos
+				: successPos;
 	}
 
 	/**
@@ -395,7 +370,7 @@ final class DateTimeParseContext {
 	 * notified of future changes.
 	 *
 	 * @param chrono
-	 *            the parsed chronology, not null
+	 *               the parsed chronology, not null
 	 */
 	void setParsed(Chronology chrono) {
 		Objects.requireNonNull(chrono, "chrono");
@@ -416,7 +391,8 @@ final class DateTimeParseContext {
 	 * the Chronology changes.
 	 * 
 	 * @param listener
-	 *            a Consumer<Chronology> to be called when Chronology changes
+	 *                 a Consumer<Chronology> to be called when Chronology
+	 *                 changes
 	 */
 	void addChronoChangedListener(Consumer<Chronology> listener) {
 		if (chronoListeners == null) {
@@ -432,7 +408,7 @@ final class DateTimeParseContext {
 	 * other than ensuring it is not null.
 	 *
 	 * @param zone
-	 *            the parsed zone, not null
+	 *             the parsed zone, not null
 	 */
 	void setParsed(ZoneId zone) {
 		Objects.requireNonNull(zone, "zone");

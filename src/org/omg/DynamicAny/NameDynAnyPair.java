@@ -20,8 +20,7 @@ public final class NameDynAnyPair implements org.omg.CORBA.portable.IDLEntity {
 	 */
 	public org.omg.DynamicAny.DynAny value = null;
 
-	public NameDynAnyPair() {
-	} // ctor
+	public NameDynAnyPair() {} // ctor
 
 	public NameDynAnyPair(String _id, org.omg.DynamicAny.DynAny _value) {
 		id = _id;

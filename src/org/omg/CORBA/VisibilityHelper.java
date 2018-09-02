@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -52,9 +32,11 @@ abstract public class VisibilityHelper {
 
 	synchronized public static org.omg.CORBA.TypeCode type() {
 		if (__typeCode == null) {
-			__typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_short);
-			__typeCode = org.omg.CORBA.ORB.init()
-					.create_alias_tc(org.omg.CORBA.VisibilityHelper.id(), "Visibility", __typeCode);
+			__typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(
+					org.omg.CORBA.TCKind.tk_short);
+			__typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
+					org.omg.CORBA.VisibilityHelper.id(), "Visibility",
+					__typeCode);
 		}
 		return __typeCode;
 	}
@@ -69,7 +51,8 @@ abstract public class VisibilityHelper {
 		return value;
 	}
 
-	public static void write(org.omg.CORBA.portable.OutputStream ostream, short value) {
+	public static void write(org.omg.CORBA.portable.OutputStream ostream,
+			short value) {
 		ostream.write_short(value);
 	}
 

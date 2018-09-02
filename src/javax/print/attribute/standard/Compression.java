@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -73,15 +53,17 @@ public class Compression extends EnumSyntax implements DocAttribute {
 	 * value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected Compression(int value) {
 		super(value);
 	}
 
-	private static final String[] myStringTable = { "none", "deflate", "gzip", "compress" };
+	private static final String[] myStringTable = { "none", "deflate", "gzip",
+			"compress" };
 
-	private static final Compression[] myEnumValueTable = { NONE, DEFLATE, GZIP, COMPRESS };
+	private static final Compression[] myEnumValueTable = { NONE, DEFLATE, GZIP,
+			COMPRESS };
 
 	/**
 	 * Returns the string table for class Compression.

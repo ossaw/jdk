@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -145,8 +125,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class SheetCollate extends EnumSyntax
-		implements DocAttribute, PrintRequestAttribute, PrintJobAttribute {
+public final class SheetCollate extends EnumSyntax implements DocAttribute,
+		PrintRequestAttribute, PrintJobAttribute {
 
 	private static final long serialVersionUID = 7080587914259873003L;
 
@@ -167,7 +147,7 @@ public final class SheetCollate extends EnumSyntax
 	 * value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected SheetCollate(int value) {
 		super(value);
@@ -175,7 +155,8 @@ public final class SheetCollate extends EnumSyntax
 
 	private static final String[] myStringTable = { "uncollated", "collated" };
 
-	private static final SheetCollate[] myEnumValueTable = { UNCOLLATED, COLLATED };
+	private static final SheetCollate[] myEnumValueTable = { UNCOLLATED,
+			COLLATED };
 
 	/**
 	 * Returns the string table for class SheetCollate.

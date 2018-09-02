@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.logging;
@@ -144,7 +124,7 @@ public class SimpleFormatter extends Formatter {
 	 * and format the message field.
 	 *
 	 * @param record
-	 *            the log record to be formatted.
+	 *               the log record to be formatted.
 	 * @return a formatted log record
 	 */
 	public synchronized String format(LogRecord record) {
@@ -168,7 +148,7 @@ public class SimpleFormatter extends Formatter {
 			pw.close();
 			throwable = sw.toString();
 		}
-		return String.format(format, dat, source, record.getLoggerName(),
-				record.getLevel().getLocalizedLevelName(), message, throwable);
+		return String.format(format, dat, source, record.getLoggerName(), record
+				.getLevel().getLocalizedLevelName(), message, throwable);
 	}
 }

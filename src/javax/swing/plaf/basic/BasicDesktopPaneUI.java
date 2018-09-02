@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -104,8 +84,7 @@ public class BasicDesktopPaneUI extends DesktopPaneUI {
 		return new BasicDesktopPaneUI();
 	}
 
-	public BasicDesktopPaneUI() {
-	}
+	public BasicDesktopPaneUI() {}
 
 	public void installUI(JComponent c) {
 		desktop = (JDesktopPane) c;
@@ -125,14 +104,14 @@ public class BasicDesktopPaneUI extends DesktopPaneUI {
 	}
 
 	protected void installDefaults() {
-		if (desktop.getBackground() == null || desktop.getBackground() instanceof UIResource) {
+		if (desktop.getBackground() == null || desktop
+				.getBackground() instanceof UIResource) {
 			desktop.setBackground(UIManager.getColor("Desktop.background"));
 		}
 		LookAndFeel.installProperty(desktop, "opaque", Boolean.TRUE);
 	}
 
-	protected void uninstallDefaults() {
-	}
+	protected void uninstallDefaults() {}
 
 	/**
 	 * Installs the <code>PropertyChangeListener</code> returned from
@@ -178,12 +157,13 @@ public class BasicDesktopPaneUI extends DesktopPaneUI {
 	protected void installKeyboardActions() {
 		InputMap inputMap = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		if (inputMap != null) {
-			SwingUtilities.replaceUIInputMap(desktop, JComponent.WHEN_IN_FOCUSED_WINDOW, inputMap);
+			SwingUtilities.replaceUIInputMap(desktop,
+					JComponent.WHEN_IN_FOCUSED_WINDOW, inputMap);
 		}
 		inputMap = getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 		if (inputMap != null) {
-			SwingUtilities.replaceUIInputMap(desktop, JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT,
-					inputMap);
+			SwingUtilities.replaceUIInputMap(desktop,
+					JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, inputMap);
 		}
 
 		LazyActionMap.installLazyActionMap(desktop, BasicDesktopPaneUI.class,
@@ -191,17 +171,16 @@ public class BasicDesktopPaneUI extends DesktopPaneUI {
 		registerKeyboardActions();
 	}
 
-	protected void registerKeyboardActions() {
-	}
+	protected void registerKeyboardActions() {}
 
-	protected void unregisterKeyboardActions() {
-	}
+	protected void unregisterKeyboardActions() {}
 
 	InputMap getInputMap(int condition) {
 		if (condition == JComponent.WHEN_IN_FOCUSED_WINDOW) {
 			return createInputMap(condition);
 		} else if (condition == JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT) {
-			return (InputMap) DefaultLookup.get(desktop, this, "Desktop.ancestorInputMap");
+			return (InputMap) DefaultLookup.get(desktop, this,
+					"Desktop.ancestorInputMap");
 		}
 		return null;
 	}
@@ -242,14 +221,14 @@ public class BasicDesktopPaneUI extends DesktopPaneUI {
 
 	protected void uninstallKeyboardActions() {
 		unregisterKeyboardActions();
-		SwingUtilities.replaceUIInputMap(desktop, JComponent.WHEN_IN_FOCUSED_WINDOW, null);
-		SwingUtilities.replaceUIInputMap(desktop, JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT,
-				null);
+		SwingUtilities.replaceUIInputMap(desktop,
+				JComponent.WHEN_IN_FOCUSED_WINDOW, null);
+		SwingUtilities.replaceUIInputMap(desktop,
+				JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, null);
 		SwingUtilities.replaceUIActionMap(desktop, null);
 	}
 
-	public void paint(Graphics g, JComponent c) {
-	}
+	public void paint(Graphics g, JComponent c) {}
 
 	@Override
 	public Dimension getPreferredSize(JComponent c) {
@@ -297,8 +276,8 @@ public class BasicDesktopPaneUI extends DesktopPaneUI {
 	/**
 	 * The default DesktopManager installed by the UI.
 	 */
-	private class BasicDesktopManager extends DefaultDesktopManager implements UIResource {
-	}
+	private class BasicDesktopManager extends DefaultDesktopManager implements
+			UIResource {}
 
 	private static class Actions extends UIAction {
 		private static String CLOSE = "close";
@@ -338,10 +317,12 @@ public class BasicDesktopPaneUI extends DesktopPaneUI {
 			JDesktopPane dp = (JDesktopPane) e.getSource();
 			String key = getName();
 
-			if (CLOSE == key || MAXIMIZE == key || MINIMIZE == key || RESTORE == key) {
+			if (CLOSE == key || MAXIMIZE == key || MINIMIZE == key
+					|| RESTORE == key) {
 				setState(dp, key);
 			} else if (ESCAPE == key) {
-				if (sourceFrame == dp.getSelectedFrame() && focusOwner != null) {
+				if (sourceFrame == dp.getSelectedFrame()
+						&& focusOwner != null) {
 					focusOwner.requestFocus();
 				}
 				moving = false;
@@ -356,20 +337,23 @@ public class BasicDesktopPaneUI extends DesktopPaneUI {
 				moving = (key == MOVE) ? true : false;
 				resizing = (key == RESIZE) ? true : false;
 
-				focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+				focusOwner = KeyboardFocusManager
+						.getCurrentKeyboardFocusManager().getFocusOwner();
 				if (!SwingUtilities.isDescendingFrom(focusOwner, sourceFrame)) {
 					focusOwner = null;
 				}
 				sourceFrame.requestFocus();
 			} else if (LEFT == key || RIGHT == key || UP == key || DOWN == key
-					|| SHRINK_RIGHT == key || SHRINK_LEFT == key || SHRINK_UP == key
-					|| SHRINK_DOWN == key) {
+					|| SHRINK_RIGHT == key || SHRINK_LEFT == key
+					|| SHRINK_UP == key || SHRINK_DOWN == key) {
 				JInternalFrame c = dp.getSelectedFrame();
-				if (sourceFrame == null || c != sourceFrame || KeyboardFocusManager
-						.getCurrentKeyboardFocusManager().getFocusOwner() != sourceFrame) {
+				if (sourceFrame == null || c != sourceFrame
+						|| KeyboardFocusManager.getCurrentKeyboardFocusManager()
+								.getFocusOwner() != sourceFrame) {
 					return;
 				}
-				Insets minOnScreenInsets = UIManager.getInsets("Desktop.minOnScreenInsets");
+				Insets minOnScreenInsets = UIManager.getInsets(
+						"Desktop.minOnScreenInsets");
 				Dimension size = c.getSize();
 				Dimension minSize = c.getMinimumSize();
 				int dpWidth = dp.getWidth();
@@ -378,44 +362,47 @@ public class BasicDesktopPaneUI extends DesktopPaneUI {
 				Point loc = c.getLocation();
 				if (LEFT == key) {
 					if (moving) {
-						c.setLocation(
-								loc.x + size.width - MOVE_RESIZE_INCREMENT < minOnScreenInsets.right
+						c.setLocation(loc.x + size.width
+								- MOVE_RESIZE_INCREMENT < minOnScreenInsets.right
 										? -size.width + minOnScreenInsets.right
-										: loc.x - MOVE_RESIZE_INCREMENT,
-								loc.y);
+										: loc.x - MOVE_RESIZE_INCREMENT, loc.y);
 					} else if (resizing) {
 						c.setLocation(loc.x - MOVE_RESIZE_INCREMENT, loc.y);
-						c.setSize(size.width + MOVE_RESIZE_INCREMENT, size.height);
+						c.setSize(size.width + MOVE_RESIZE_INCREMENT,
+								size.height);
 					}
 				} else if (RIGHT == key) {
 					if (moving) {
-						c.setLocation(
-								loc.x + MOVE_RESIZE_INCREMENT > dpWidth - minOnScreenInsets.left
-										? dpWidth - minOnScreenInsets.left
-										: loc.x + MOVE_RESIZE_INCREMENT,
-								loc.y);
+						c.setLocation(loc.x + MOVE_RESIZE_INCREMENT > dpWidth
+								- minOnScreenInsets.left ? dpWidth
+										- minOnScreenInsets.left
+										: loc.x + MOVE_RESIZE_INCREMENT, loc.y);
 					} else if (resizing) {
-						c.setSize(size.width + MOVE_RESIZE_INCREMENT, size.height);
+						c.setSize(size.width + MOVE_RESIZE_INCREMENT,
+								size.height);
 					}
 				} else if (UP == key) {
 					if (moving) {
-						c.setLocation(loc.x,
-								loc.y + size.height
-										- MOVE_RESIZE_INCREMENT < minOnScreenInsets.bottom
-												? -size.height + minOnScreenInsets.bottom
-												: loc.y - MOVE_RESIZE_INCREMENT);
+						c.setLocation(loc.x, loc.y + size.height
+								- MOVE_RESIZE_INCREMENT < minOnScreenInsets.bottom
+										? -size.height
+												+ minOnScreenInsets.bottom
+										: loc.y - MOVE_RESIZE_INCREMENT);
 					} else if (resizing) {
 						c.setLocation(loc.x, loc.y - MOVE_RESIZE_INCREMENT);
-						c.setSize(size.width, size.height + MOVE_RESIZE_INCREMENT);
+						c.setSize(size.width, size.height
+								+ MOVE_RESIZE_INCREMENT);
 					}
 				} else if (DOWN == key) {
 					if (moving) {
-						c.setLocation(loc.x,
-								loc.y + MOVE_RESIZE_INCREMENT > dpHeight - minOnScreenInsets.top
-										? dpHeight - minOnScreenInsets.top
-										: loc.y + MOVE_RESIZE_INCREMENT);
+						c.setLocation(loc.x, loc.y
+								+ MOVE_RESIZE_INCREMENT > dpHeight
+										- minOnScreenInsets.top ? dpHeight
+												- minOnScreenInsets.top
+												: loc.y + MOVE_RESIZE_INCREMENT);
 					} else if (resizing) {
-						c.setSize(size.width, size.height + MOVE_RESIZE_INCREMENT);
+						c.setSize(size.width, size.height
+								+ MOVE_RESIZE_INCREMENT);
 					}
 				} else if (SHRINK_LEFT == key && resizing) {
 					// Make sure we don't resize less than minimum size.
@@ -447,21 +434,24 @@ public class BasicDesktopPaneUI extends DesktopPaneUI {
 					c.setSize(size.width - delta, size.height);
 				} else if (SHRINK_UP == key && resizing) {
 					// Make sure we don't resize less than minimum size.
-					if (minSize.height < (size.height - MOVE_RESIZE_INCREMENT)) {
+					if (minSize.height < (size.height
+							- MOVE_RESIZE_INCREMENT)) {
 						delta = MOVE_RESIZE_INCREMENT;
 					} else {
 						delta = size.height - minSize.height;
 					}
 
 					// Ensure that we keep the internal frame on the desktop.
-					if (loc.y + size.height - delta < minOnScreenInsets.bottom) {
+					if (loc.y + size.height
+							- delta < minOnScreenInsets.bottom) {
 						delta = loc.y + size.height - minOnScreenInsets.bottom;
 					}
 
 					c.setSize(size.width, size.height - delta);
 				} else if (SHRINK_DOWN == key && resizing) {
 					// Make sure we don't resize less than minimum size.
-					if (minSize.height < (size.height - MOVE_RESIZE_INCREMENT)) {
+					if (minSize.height < (size.height
+							- MOVE_RESIZE_INCREMENT)) {
 						delta = MOVE_RESIZE_INCREMENT;
 					} else {
 						delta = size.height - minSize.height;
@@ -485,17 +475,21 @@ public class BasicDesktopPaneUI extends DesktopPaneUI {
 				Container cycleRoot = dp.getFocusCycleRootAncestor();
 
 				if (cycleRoot != null) {
-					FocusTraversalPolicy policy = cycleRoot.getFocusTraversalPolicy();
-					if (policy != null && policy instanceof SortingFocusTraversalPolicy) {
+					FocusTraversalPolicy policy = cycleRoot
+							.getFocusTraversalPolicy();
+					if (policy != null
+							&& policy instanceof SortingFocusTraversalPolicy) {
 						SortingFocusTraversalPolicy sPolicy = (SortingFocusTraversalPolicy) policy;
 						boolean idc = sPolicy.getImplicitDownCycleTraversal();
 						try {
 							sPolicy.setImplicitDownCycleTraversal(false);
 							if (moveForward) {
-								KeyboardFocusManager.getCurrentKeyboardFocusManager()
+								KeyboardFocusManager
+										.getCurrentKeyboardFocusManager()
 										.focusNextComponent(dp);
 							} else {
-								KeyboardFocusManager.getCurrentKeyboardFocusManager()
+								KeyboardFocusManager
+										.getCurrentKeyboardFocusManager()
 										.focusPreviousComponent(dp);
 							}
 						} finally {
@@ -567,7 +561,8 @@ public class BasicDesktopPaneUI extends DesktopPaneUI {
 			if (sender instanceof JDesktopPane) {
 				JDesktopPane dp = (JDesktopPane) sender;
 				String action = getName();
-				if (action == Actions.NEXT_FRAME || action == Actions.PREVIOUS_FRAME) {
+				if (action == Actions.NEXT_FRAME
+						|| action == Actions.PREVIOUS_FRAME) {
 					return true;
 				}
 				JInternalFrame iFrame = dp.getSelectedFrame();

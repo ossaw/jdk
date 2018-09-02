@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.tools;
@@ -78,12 +58,14 @@ public interface FileObject {
 	 *
 	 * @return an InputStream
 	 * @throws IllegalStateException
-	 *             if this file object was opened for writing and does not
-	 *             support reading
+	 *                                       if this file object was opened for
+	 *                                       writing and does not
+	 *                                       support reading
 	 * @throws UnsupportedOperationException
-	 *             if this kind of file object does not support byte access
+	 *                                       if this kind of file object does
+	 *                                       not support byte access
 	 * @throws IOException
-	 *             if an I/O error occurred
+	 *                                       if an I/O error occurred
 	 */
 	InputStream openInputStream() throws IOException;
 
@@ -92,12 +74,14 @@ public interface FileObject {
 	 *
 	 * @return an OutputStream
 	 * @throws IllegalStateException
-	 *             if this file object was opened for reading and does not
-	 *             support writing
+	 *                                       if this file object was opened for
+	 *                                       reading and does not
+	 *                                       support writing
 	 * @throws UnsupportedOperationException
-	 *             if this kind of file object does not support byte access
+	 *                                       if this kind of file object does
+	 *                                       not support byte access
 	 * @throws IOException
-	 *             if an I/O error occurred
+	 *                                       if an I/O error occurred
 	 */
 	OutputStream openOutputStream() throws IOException;
 
@@ -108,15 +92,17 @@ public interface FileObject {
 	 * {@code ignoreEncodingErrors} is true.
 	 *
 	 * @param ignoreEncodingErrors
-	 *            ignore encoding errors if true
+	 *                             ignore encoding errors if true
 	 * @return a Reader
 	 * @throws IllegalStateException
-	 *             if this file object was opened for writing and does not
-	 *             support reading
+	 *                                       if this file object was opened for
+	 *                                       writing and does not
+	 *                                       support reading
 	 * @throws UnsupportedOperationException
-	 *             if this kind of file object does not support character access
+	 *                                       if this kind of file object does
+	 *                                       not support character access
 	 * @throws IOException
-	 *             if an I/O error occurred
+	 *                                       if an I/O error occurred
 	 */
 	Reader openReader(boolean ignoreEncodingErrors) throws IOException;
 
@@ -127,29 +113,34 @@ public interface FileObject {
 	 * {@code ignoreEncodingErrors} is true.
 	 *
 	 * @param ignoreEncodingErrors
-	 *            ignore encoding errors if true
+	 *                             ignore encoding errors if true
 	 * @return a CharSequence if available; {@code null} otherwise
 	 * @throws IllegalStateException
-	 *             if this file object was opened for writing and does not
-	 *             support reading
+	 *                                       if this file object was opened for
+	 *                                       writing and does not
+	 *                                       support reading
 	 * @throws UnsupportedOperationException
-	 *             if this kind of file object does not support character access
+	 *                                       if this kind of file object does
+	 *                                       not support character access
 	 * @throws IOException
-	 *             if an I/O error occurred
+	 *                                       if an I/O error occurred
 	 */
-	CharSequence getCharContent(boolean ignoreEncodingErrors) throws IOException;
+	CharSequence getCharContent(boolean ignoreEncodingErrors)
+			throws IOException;
 
 	/**
 	 * Gets a Writer for this file object.
 	 *
 	 * @return a Writer
 	 * @throws IllegalStateException
-	 *             if this file object was opened for reading and does not
-	 *             support writing
+	 *                                       if this file object was opened for
+	 *                                       reading and does not
+	 *                                       support writing
 	 * @throws UnsupportedOperationException
-	 *             if this kind of file object does not support character access
+	 *                                       if this kind of file object does
+	 *                                       not support character access
 	 * @throws IOException
-	 *             if an I/O error occurred
+	 *                                       if an I/O error occurred
 	 */
 	Writer openWriter() throws IOException;
 

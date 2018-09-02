@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.tools;
 
@@ -46,42 +26,53 @@ public interface DocumentationTool extends Tool, OptionChecker {
 	 * , and {@link StandardLocation#PLATFORM_CLASS_PATH}.
 	 *
 	 * @param out
-	 *            a Writer for additional output from the tool; use
-	 *            {@code System.err} if {@code null}
+	 *                           a Writer for additional output from the tool;
+	 *                           use
+	 *                           {@code System.err} if {@code null}
 	 *
 	 * @param fileManager
-	 *            a file manager; if {@code null} use the tool's standard
-	 *            filemanager
+	 *                           a file manager; if {@code null} use the tool's
+	 *                           standard
+	 *                           filemanager
 	 *
 	 * @param diagnosticListener
-	 *            a diagnostic listener; if {@code null} use the tool's default
-	 *            method for reporting diagnostics
+	 *                           a diagnostic listener; if {@code null} use the
+	 *                           tool's default
+	 *                           method for reporting diagnostics
 	 *
 	 * @param docletClass
-	 *            a class providing the necessary methods required of a doclet
+	 *                           a class providing the necessary methods
+	 *                           required of a doclet
 	 *
 	 * @param options
-	 *            documentation tool options and doclet options, {@code null}
-	 *            means no options
+	 *                           documentation tool options and doclet options,
+	 *                           {@code null}
+	 *                           means no options
 	 *
 	 * @param compilationUnits
-	 *            the compilation units to compile, {@code
-	 * null} means no compilation units
+	 *                           the compilation units to compile, {@code
+	 * null}                  means no compilation units
 	 *
 	 * @return an object representing the compilation
 	 *
 	 * @throws RuntimeException
-	 *             if an unrecoverable error occurred in a user supplied
-	 *             component. The {@linkplain Throwable#getCause() cause} will
-	 *             be the error in user code.
+	 *                                  if an unrecoverable error occurred in a
+	 *                                  user supplied
+	 *                                  component. The
+	 *                                  {@linkplain Throwable#getCause() cause}
+	 *                                  will
+	 *                                  be the error in user code.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if any of the given compilation units are of other kind than
-	 *             {@linkplain JavaFileObject.Kind#SOURCE source}
+	 *                                  if any of the given compilation units
+	 *                                  are of other kind than
+	 *                                  {@linkplain JavaFileObject.Kind#SOURCE
+	 *                                  source}
 	 */
 	DocumentationTask getTask(Writer out, JavaFileManager fileManager,
-			DiagnosticListener<? super JavaFileObject> diagnosticListener, Class<?> docletClass,
-			Iterable<String> options, Iterable<? extends JavaFileObject> compilationUnits);
+			DiagnosticListener<? super JavaFileObject> diagnosticListener,
+			Class<?> docletClass, Iterable<String> options,
+			Iterable<? extends JavaFileObject> compilationUnits);
 
 	/**
 	 * Gets a new instance of the standard file manager implementation for this
@@ -95,23 +86,28 @@ public interface DocumentationTool extends Tool, OptionChecker {
 	 * manager must be usable with other tools.
 	 *
 	 * @param diagnosticListener
-	 *            a diagnostic listener for non-fatal diagnostics; if
-	 *            {@code null} use the compiler's default method for reporting
-	 *            diagnostics
+	 *                           a diagnostic listener for non-fatal
+	 *                           diagnostics; if
+	 *                           {@code null} use the compiler's default method
+	 *                           for reporting
+	 *                           diagnostics
 	 *
 	 * @param locale
-	 *            the locale to apply when formatting diagnostics; {@code null}
-	 *            means the {@linkplain Locale#getDefault() default locale}.
+	 *                           the locale to apply when formatting
+	 *                           diagnostics; {@code null}
+	 *                           means the {@linkplain Locale#getDefault()
+	 *                           default locale}.
 	 *
 	 * @param charset
-	 *            the character set used for decoding bytes; if {@code null} use
-	 *            the platform default
+	 *                           the character set used for decoding bytes; if
+	 *                           {@code null} use
+	 *                           the platform default
 	 *
 	 * @return the standard file manager
 	 */
 	StandardJavaFileManager getStandardFileManager(
-			DiagnosticListener<? super JavaFileObject> diagnosticListener, Locale locale,
-			Charset charset);
+			DiagnosticListener<? super JavaFileObject> diagnosticListener,
+			Locale locale, Charset charset);
 
 	/**
 	 * Interface representing a future for a documentation task. The task has
@@ -129,9 +125,9 @@ public interface DocumentationTool extends Tool, OptionChecker {
 		 * localized data.
 		 *
 		 * @param locale
-		 *            the locale to apply; {@code null} means apply no locale
+		 *               the locale to apply; {@code null} means apply no locale
 		 * @throws IllegalStateException
-		 *             if the task has started
+		 *                               if the task has started
 		 */
 		void setLocale(Locale locale);
 
@@ -143,12 +139,14 @@ public interface DocumentationTool extends Tool, OptionChecker {
 		 *         false otherwise
 		 *
 		 * @throws RuntimeException
-		 *             if an unrecoverable error occurred in a user-supplied
-		 *             component. The {@linkplain Throwable#getCause() cause}
-		 *             will be the error in user code.
+		 *                               if an unrecoverable error occurred in a
+		 *                               user-supplied
+		 *                               component. The
+		 *                               {@linkplain Throwable#getCause() cause}
+		 *                               will be the error in user code.
 		 *
 		 * @throws IllegalStateException
-		 *             if called more than once
+		 *                               if called more than once
 		 */
 		Boolean call();
 	}
@@ -180,10 +178,10 @@ public interface DocumentationTool extends Tool, OptionChecker {
 
 		public boolean isOutputLocation() {
 			switch (this) {
-			case DOCUMENTATION_OUTPUT:
-				return true;
-			default:
-				return false;
+				case DOCUMENTATION_OUTPUT:
+					return true;
+				default:
+					return false;
 			}
 		}
 	}

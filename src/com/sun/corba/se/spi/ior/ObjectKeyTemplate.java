@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.ior;
@@ -71,5 +51,6 @@ public interface ObjectKeyTemplate extends Writeable {
 
 	public void write(ObjectId objectId, OutputStream os);
 
-	public CorbaServerRequestDispatcher getServerRequestDispatcher(ORB orb, ObjectId id);
+	public CorbaServerRequestDispatcher getServerRequestDispatcher(ORB orb,
+			ObjectId id);
 }

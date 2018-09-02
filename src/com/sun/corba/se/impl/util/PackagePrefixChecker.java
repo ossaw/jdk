@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.impl.util;
 
@@ -57,8 +37,9 @@ public final class PackagePrefixChecker {
 	public static boolean hasOffendingPrefix(String p) {
 		return (p.startsWith("java.") || p.equals("java")
 		// || p.startsWith("com.sun.") || p.equals("com.sun")
-				|| p.startsWith("net.jini.") || p.equals("net.jini") || p.startsWith("jini.")
-				|| p.equals("jini") || p.startsWith("javax.") || p.equals("javax"));
+				|| p.startsWith("net.jini.") || p.equals("net.jini") || p
+						.startsWith("jini.") || p.equals("jini") || p
+								.startsWith("javax.") || p.equals("javax"));
 	}
 
 	public static boolean hasBeenPrefixed(String p) {

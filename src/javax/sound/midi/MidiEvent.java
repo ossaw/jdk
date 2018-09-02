@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi;
@@ -58,9 +38,9 @@ public class MidiEvent {
 	 * Constructs a new <code>MidiEvent</code>.
 	 * 
 	 * @param message
-	 *            the MIDI message contained in the event
+	 *                the MIDI message contained in the event
 	 * @param tick
-	 *            the time-stamp for the event, in MIDI ticks
+	 *                the time-stamp for the event, in MIDI ticks
 	 */
 	public MidiEvent(MidiMessage message, long tick) {
 
@@ -81,7 +61,7 @@ public class MidiEvent {
 	 * Sets the time-stamp for the event, in MIDI ticks
 	 * 
 	 * @param tick
-	 *            the new time-stamp, in MIDI ticks
+	 *             the new time-stamp, in MIDI ticks
 	 */
 	public void setTick(long tick) {
 		this.tick = tick;

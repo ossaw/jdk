@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -45,7 +25,7 @@ public class CommunicationException extends NamingException {
 	 * supplied.
 	 *
 	 * @param explanation
-	 *            Additional detail about this exception.
+	 *                    Additional detail about this exception.
 	 * @see java.lang.Throwable#getMessage
 	 */
 	public CommunicationException(String explanation) {

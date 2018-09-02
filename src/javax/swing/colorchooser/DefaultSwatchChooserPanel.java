@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.colorchooser;
@@ -63,7 +43,8 @@ class DefaultSwatchChooserPanel extends AbstractColorChooserPanel {
 	}
 
 	public String getDisplayName() {
-		return UIManager.getString("ColorChooser.swatchesNameText", getLocale());
+		return UIManager.getString("ColorChooser.swatchesNameText",
+				getLocale());
 	}
 
 	/**
@@ -135,18 +116,21 @@ class DefaultSwatchChooserPanel extends AbstractColorChooserPanel {
 
 	protected void buildChooser() {
 
-		String recentStr = UIManager.getString("ColorChooser.swatchesRecentText", getLocale());
+		String recentStr = UIManager.getString(
+				"ColorChooser.swatchesRecentText", getLocale());
 
 		GridBagLayout gb = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
 		JPanel superHolder = new JPanel(gb);
 
 		swatchPanel = new MainSwatchPanel();
-		swatchPanel.putClientProperty(AccessibleContext.ACCESSIBLE_NAME_PROPERTY, getDisplayName());
+		swatchPanel.putClientProperty(
+				AccessibleContext.ACCESSIBLE_NAME_PROPERTY, getDisplayName());
 		swatchPanel.setInheritsPopupMenu(true);
 
 		recentSwatchPanel = new RecentSwatchPanel();
-		recentSwatchPanel.putClientProperty(AccessibleContext.ACCESSIBLE_NAME_PROPERTY, recentStr);
+		recentSwatchPanel.putClientProperty(
+				AccessibleContext.ACCESSIBLE_NAME_PROPERTY, recentStr);
 
 		mainSwatchKeyListener = new MainSwatchKeyListener();
 		mainSwatchListener = new MainSwatchListener();
@@ -237,8 +221,10 @@ class DefaultSwatchChooserPanel extends AbstractColorChooserPanel {
 	class RecentSwatchListener extends MouseAdapter implements Serializable {
 		public void mousePressed(MouseEvent e) {
 			if (isEnabled()) {
-				Color color = recentSwatchPanel.getColorForLocation(e.getX(), e.getY());
-				recentSwatchPanel.setSelectedColorFromLocation(e.getX(), e.getY());
+				Color color = recentSwatchPanel.getColorForLocation(e.getX(), e
+						.getY());
+				recentSwatchPanel.setSelectedColorFromLocation(e.getX(), e
+						.getY());
 				setSelectedColor(color);
 				recentSwatchPanel.requestFocusInWindow();
 			}
@@ -248,7 +234,8 @@ class DefaultSwatchChooserPanel extends AbstractColorChooserPanel {
 	class MainSwatchListener extends MouseAdapter implements Serializable {
 		public void mousePressed(MouseEvent e) {
 			if (isEnabled()) {
-				Color color = swatchPanel.getColorForLocation(e.getX(), e.getY());
+				Color color = swatchPanel.getColorForLocation(e.getX(), e
+						.getY());
 				setSelectedColor(color);
 				swatchPanel.setSelectedColorFromLocation(e.getX(), e.getY());
 				recentSwatchPanel.setMostRecentColor(color);
@@ -292,49 +279,51 @@ class SwatchPanel extends JPanel {
 			public void keyPressed(KeyEvent e) {
 				int typed = e.getKeyCode();
 				switch (typed) {
-				case KeyEvent.VK_UP:
-					if (selRow > 0) {
-						selRow--;
+					case KeyEvent.VK_UP:
+						if (selRow > 0) {
+							selRow--;
+							repaint();
+						}
+						break;
+					case KeyEvent.VK_DOWN:
+						if (selRow < numSwatches.height - 1) {
+							selRow++;
+							repaint();
+						}
+						break;
+					case KeyEvent.VK_LEFT:
+						if (selCol > 0 && SwatchPanel.this
+								.getComponentOrientation().isLeftToRight()) {
+							selCol--;
+							repaint();
+						} else if (selCol < numSwatches.width - 1
+								&& !SwatchPanel.this.getComponentOrientation()
+										.isLeftToRight()) {
+							selCol++;
+							repaint();
+						}
+						break;
+					case KeyEvent.VK_RIGHT:
+						if (selCol < numSwatches.width - 1 && SwatchPanel.this
+								.getComponentOrientation().isLeftToRight()) {
+							selCol++;
+							repaint();
+						} else if (selCol > 0 && !SwatchPanel.this
+								.getComponentOrientation().isLeftToRight()) {
+							selCol--;
+							repaint();
+						}
+						break;
+					case KeyEvent.VK_HOME:
+						selCol = 0;
+						selRow = 0;
 						repaint();
-					}
-					break;
-				case KeyEvent.VK_DOWN:
-					if (selRow < numSwatches.height - 1) {
-						selRow++;
+						break;
+					case KeyEvent.VK_END:
+						selCol = numSwatches.width - 1;
+						selRow = numSwatches.height - 1;
 						repaint();
-					}
-					break;
-				case KeyEvent.VK_LEFT:
-					if (selCol > 0 && SwatchPanel.this.getComponentOrientation().isLeftToRight()) {
-						selCol--;
-						repaint();
-					} else if (selCol < numSwatches.width - 1
-							&& !SwatchPanel.this.getComponentOrientation().isLeftToRight()) {
-						selCol++;
-						repaint();
-					}
-					break;
-				case KeyEvent.VK_RIGHT:
-					if (selCol < numSwatches.width - 1
-							&& SwatchPanel.this.getComponentOrientation().isLeftToRight()) {
-						selCol++;
-						repaint();
-					} else if (selCol > 0
-							&& !SwatchPanel.this.getComponentOrientation().isLeftToRight()) {
-						selCol--;
-						repaint();
-					}
-					break;
-				case KeyEvent.VK_HOME:
-					selCol = 0;
-					selRow = 0;
-					repaint();
-					break;
-				case KeyEvent.VK_END:
-					selCol = numSwatches.width - 1;
-					selRow = numSwatches.height - 1;
-					repaint();
-					break;
+						break;
 				}
 			}
 		});
@@ -358,30 +347,34 @@ class SwatchPanel extends JPanel {
 				g.setColor(c);
 				int x;
 				if (!this.getComponentOrientation().isLeftToRight()) {
-					x = (numSwatches.width - column - 1) * (swatchSize.width + gap.width);
+					x = (numSwatches.width - column - 1) * (swatchSize.width
+							+ gap.width);
 				} else {
 					x = column * (swatchSize.width + gap.width);
 				}
 				g.fillRect(x, y, swatchSize.width, swatchSize.height);
 				g.setColor(Color.black);
-				g.drawLine(x + swatchSize.width - 1, y, x + swatchSize.width - 1,
-						y + swatchSize.height - 1);
-				g.drawLine(x, y + swatchSize.height - 1, x + swatchSize.width - 1,
-						y + swatchSize.height - 1);
+				g.drawLine(x + swatchSize.width - 1, y, x + swatchSize.width
+						- 1, y + swatchSize.height - 1);
+				g.drawLine(x, y + swatchSize.height - 1, x + swatchSize.width
+						- 1, y + swatchSize.height - 1);
 
 				if (selRow == row && selCol == column && this.isFocusOwner()) {
-					Color c2 = new Color(c.getRed() < 125 ? 255 : 0, c.getGreen() < 125 ? 255 : 0,
-							c.getBlue() < 125 ? 255 : 0);
+					Color c2 = new Color(c.getRed() < 125 ? 255 : 0, c
+							.getGreen() < 125 ? 255 : 0, c.getBlue() < 125 ? 255
+									: 0);
 					g.setColor(c2);
 
 					g.drawLine(x, y, x + swatchSize.width - 1, y);
 					g.drawLine(x, y, x, y + swatchSize.height - 1);
-					g.drawLine(x + swatchSize.width - 1, y, x + swatchSize.width - 1,
-							y + swatchSize.height - 1);
-					g.drawLine(x, y + swatchSize.height - 1, x + swatchSize.width - 1,
-							y + swatchSize.height - 1);
-					g.drawLine(x, y, x + swatchSize.width - 1, y + swatchSize.height - 1);
-					g.drawLine(x, y + swatchSize.height - 1, x + swatchSize.width - 1, y);
+					g.drawLine(x + swatchSize.width - 1, y, x + swatchSize.width
+							- 1, y + swatchSize.height - 1);
+					g.drawLine(x, y + swatchSize.height - 1, x
+							+ swatchSize.width - 1, y + swatchSize.height - 1);
+					g.drawLine(x, y, x + swatchSize.width - 1, y
+							+ swatchSize.height - 1);
+					g.drawLine(x, y + swatchSize.height - 1, x
+							+ swatchSize.width - 1, y);
 				}
 			}
 		}
@@ -399,7 +392,8 @@ class SwatchPanel extends JPanel {
 
 	public String getToolTipText(MouseEvent e) {
 		Color color = getColorForLocation(e.getX(), e.getY());
-		return color.getRed() + ", " + color.getGreen() + ", " + color.getBlue();
+		return color.getRed() + ", " + color.getGreen() + ", " + color
+				.getBlue();
 	}
 
 	public void setSelectedColorFromLocation(int x, int y) {
@@ -433,14 +427,15 @@ class SwatchPanel extends JPanel {
 
 class RecentSwatchPanel extends SwatchPanel {
 	protected void initValues() {
-		swatchSize = UIManager.getDimension("ColorChooser.swatchesRecentSwatchSize", getLocale());
+		swatchSize = UIManager.getDimension(
+				"ColorChooser.swatchesRecentSwatchSize", getLocale());
 		numSwatches = new Dimension(5, 7);
 		gap = new Dimension(1, 1);
 	}
 
 	protected void initColors() {
-		Color defaultRecentColor = UIManager.getColor("ColorChooser.swatchesDefaultRecentColor",
-				getLocale());
+		Color defaultRecentColor = UIManager.getColor(
+				"ColorChooser.swatchesDefaultRecentColor", getLocale());
 		int numColors = numSwatches.width * numSwatches.height;
 
 		colors = new Color[numColors];
@@ -461,7 +456,8 @@ class RecentSwatchPanel extends SwatchPanel {
 class MainSwatchPanel extends SwatchPanel {
 
 	protected void initValues() {
-		swatchSize = UIManager.getDimension("ColorChooser.swatchesSwatchSize", getLocale());
+		swatchSize = UIManager.getDimension("ColorChooser.swatchesSwatchSize",
+				getLocale());
 		numSwatches = new Dimension(31, 9);
 		gap = new Dimension(1, 1);
 	}
@@ -480,58 +476,75 @@ class MainSwatchPanel extends SwatchPanel {
 	private int[] initRawValues() {
 
 		int[] rawValues = { 255, 255, 255, // first row.
-				204, 255, 255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204,
-				255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 255, 204, 255, 255,
-				204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204,
-				255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 255, 204, 204, 255, 204, 204, 255,
-				204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204,
-				255, 204, 204, 255, 204, 204, 204, 204, // second row.
-				153, 255, 255, 153, 204, 255, 153, 153, 255, 153, 153, 255, 153, 153, 255, 153, 153,
-				255, 153, 153, 255, 153, 153, 255, 153, 153, 255, 204, 153, 255, 255, 153, 255, 255,
-				153, 204, 255, 153, 153, 255, 153, 153, 255, 153, 153, 255, 153, 153, 255, 153, 153,
-				255, 153, 153, 255, 153, 153, 255, 204, 153, 255, 255, 153, 204, 255, 153, 153, 255,
-				153, 153, 255, 153, 153, 255, 153, 153, 255, 153, 153, 255, 153, 153, 255, 153, 153,
-				255, 153, 153, 255, 204, 204, 204, 204, // third row
-				102, 255, 255, 102, 204, 255, 102, 153, 255, 102, 102, 255, 102, 102, 255, 102, 102,
-				255, 102, 102, 255, 102, 102, 255, 153, 102, 255, 204, 102, 255, 255, 102, 255, 255,
-				102, 204, 255, 102, 153, 255, 102, 102, 255, 102, 102, 255, 102, 102, 255, 102, 102,
-				255, 102, 102, 255, 153, 102, 255, 204, 102, 255, 255, 102, 204, 255, 102, 153, 255,
-				102, 102, 255, 102, 102, 255, 102, 102, 255, 102, 102, 255, 102, 102, 255, 102, 102,
-				255, 153, 102, 255, 204, 153, 153, 153, // fourth row
-				51, 255, 255, 51, 204, 255, 51, 153, 255, 51, 102, 255, 51, 51, 255, 51, 51, 255,
-				51, 51, 255, 102, 51, 255, 153, 51, 255, 204, 51, 255, 255, 51, 255, 255, 51, 204,
-				255, 51, 153, 255, 51, 102, 255, 51, 51, 255, 51, 51, 255, 51, 51, 255, 102, 51,
-				255, 153, 51, 255, 204, 51, 255, 255, 51, 204, 255, 51, 153, 255, 51, 102, 255, 51,
-				51, 255, 51, 51, 255, 51, 51, 255, 51, 51, 255, 102, 51, 255, 153, 51, 255, 204,
-				153, 153, 153, // Fifth row
-				0, 255, 255, 0, 204, 255, 0, 153, 255, 0, 102, 255, 0, 51, 255, 0, 0, 255, 51, 0,
-				255, 102, 0, 255, 153, 0, 255, 204, 0, 255, 255, 0, 255, 255, 0, 204, 255, 0, 153,
-				255, 0, 102, 255, 0, 51, 255, 0, 0, 255, 51, 0, 255, 102, 0, 255, 153, 0, 255, 204,
-				0, 255, 255, 0, 204, 255, 0, 153, 255, 0, 102, 255, 0, 51, 255, 0, 0, 255, 0, 0,
-				255, 51, 0, 255, 102, 0, 255, 153, 0, 255, 204, 102, 102, 102, // sixth
-																				// row
-				0, 204, 204, 0, 204, 204, 0, 153, 204, 0, 102, 204, 0, 51, 204, 0, 0, 204, 51, 0,
-				204, 102, 0, 204, 153, 0, 204, 204, 0, 204, 204, 0, 204, 204, 0, 204, 204, 0, 153,
-				204, 0, 102, 204, 0, 51, 204, 0, 0, 204, 51, 0, 204, 102, 0, 204, 153, 0, 204, 204,
-				0, 204, 204, 0, 204, 204, 0, 153, 204, 0, 102, 204, 0, 51, 204, 0, 0, 204, 0, 0,
-				204, 51, 0, 204, 102, 0, 204, 153, 0, 204, 204, 102, 102, 102, // seventh
-																				// row
-				0, 153, 153, 0, 153, 153, 0, 153, 153, 0, 102, 153, 0, 51, 153, 0, 0, 153, 51, 0,
-				153, 102, 0, 153, 153, 0, 153, 153, 0, 153, 153, 0, 153, 153, 0, 153, 153, 0, 153,
-				153, 0, 102, 153, 0, 51, 153, 0, 0, 153, 51, 0, 153, 102, 0, 153, 153, 0, 153, 153,
-				0, 153, 153, 0, 153, 153, 0, 153, 153, 0, 102, 153, 0, 51, 153, 0, 0, 153, 0, 0,
-				153, 51, 0, 153, 102, 0, 153, 153, 0, 153, 153, 51, 51, 51, // eigth
-																			// row
-				0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 51, 102, 0, 0, 102, 51, 0,
-				102, 102, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 102,
-				102, 0, 102, 102, 0, 51, 102, 0, 0, 102, 51, 0, 102, 102, 0, 102, 102, 0, 102, 102,
-				0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 51, 102, 0, 0, 102, 0, 0,
-				102, 51, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 0, 0, // ninth
-																			// row
-				0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 0, 51, 51, 0, 51, 51, 0,
-				51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51,
-				0, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0,
-				51, 51, 0, 0, 51, 0, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 51, 51, 51 };
+				204, 255, 255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 204,
+				204, 255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204,
+				255, 204, 204, 255, 255, 204, 255, 255, 204, 204, 255, 204, 204,
+				255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204, 255,
+				204, 204, 255, 204, 204, 255, 204, 204, 255, 255, 204, 204, 255,
+				204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 204,
+				204, 255, 204, 204, 255, 204, 204, 255, 204, 204, 255, 204, 204,
+				204, 204, // second row.
+				153, 255, 255, 153, 204, 255, 153, 153, 255, 153, 153, 255, 153,
+				153, 255, 153, 153, 255, 153, 153, 255, 153, 153, 255, 153, 153,
+				255, 204, 153, 255, 255, 153, 255, 255, 153, 204, 255, 153, 153,
+				255, 153, 153, 255, 153, 153, 255, 153, 153, 255, 153, 153, 255,
+				153, 153, 255, 153, 153, 255, 204, 153, 255, 255, 153, 204, 255,
+				153, 153, 255, 153, 153, 255, 153, 153, 255, 153, 153, 255, 153,
+				153, 255, 153, 153, 255, 153, 153, 255, 153, 153, 255, 204, 204,
+				204, 204, // third row
+				102, 255, 255, 102, 204, 255, 102, 153, 255, 102, 102, 255, 102,
+				102, 255, 102, 102, 255, 102, 102, 255, 102, 102, 255, 153, 102,
+				255, 204, 102, 255, 255, 102, 255, 255, 102, 204, 255, 102, 153,
+				255, 102, 102, 255, 102, 102, 255, 102, 102, 255, 102, 102, 255,
+				102, 102, 255, 153, 102, 255, 204, 102, 255, 255, 102, 204, 255,
+				102, 153, 255, 102, 102, 255, 102, 102, 255, 102, 102, 255, 102,
+				102, 255, 102, 102, 255, 102, 102, 255, 153, 102, 255, 204, 153,
+				153, 153, // fourth row
+				51, 255, 255, 51, 204, 255, 51, 153, 255, 51, 102, 255, 51, 51,
+				255, 51, 51, 255, 51, 51, 255, 102, 51, 255, 153, 51, 255, 204,
+				51, 255, 255, 51, 255, 255, 51, 204, 255, 51, 153, 255, 51, 102,
+				255, 51, 51, 255, 51, 51, 255, 51, 51, 255, 102, 51, 255, 153,
+				51, 255, 204, 51, 255, 255, 51, 204, 255, 51, 153, 255, 51, 102,
+				255, 51, 51, 255, 51, 51, 255, 51, 51, 255, 51, 51, 255, 102,
+				51, 255, 153, 51, 255, 204, 153, 153, 153, // Fifth row
+				0, 255, 255, 0, 204, 255, 0, 153, 255, 0, 102, 255, 0, 51, 255,
+				0, 0, 255, 51, 0, 255, 102, 0, 255, 153, 0, 255, 204, 0, 255,
+				255, 0, 255, 255, 0, 204, 255, 0, 153, 255, 0, 102, 255, 0, 51,
+				255, 0, 0, 255, 51, 0, 255, 102, 0, 255, 153, 0, 255, 204, 0,
+				255, 255, 0, 204, 255, 0, 153, 255, 0, 102, 255, 0, 51, 255, 0,
+				0, 255, 0, 0, 255, 51, 0, 255, 102, 0, 255, 153, 0, 255, 204,
+				102, 102, 102, // sixth
+				// row
+				0, 204, 204, 0, 204, 204, 0, 153, 204, 0, 102, 204, 0, 51, 204,
+				0, 0, 204, 51, 0, 204, 102, 0, 204, 153, 0, 204, 204, 0, 204,
+				204, 0, 204, 204, 0, 204, 204, 0, 153, 204, 0, 102, 204, 0, 51,
+				204, 0, 0, 204, 51, 0, 204, 102, 0, 204, 153, 0, 204, 204, 0,
+				204, 204, 0, 204, 204, 0, 153, 204, 0, 102, 204, 0, 51, 204, 0,
+				0, 204, 0, 0, 204, 51, 0, 204, 102, 0, 204, 153, 0, 204, 204,
+				102, 102, 102, // seventh
+				// row
+				0, 153, 153, 0, 153, 153, 0, 153, 153, 0, 102, 153, 0, 51, 153,
+				0, 0, 153, 51, 0, 153, 102, 0, 153, 153, 0, 153, 153, 0, 153,
+				153, 0, 153, 153, 0, 153, 153, 0, 153, 153, 0, 102, 153, 0, 51,
+				153, 0, 0, 153, 51, 0, 153, 102, 0, 153, 153, 0, 153, 153, 0,
+				153, 153, 0, 153, 153, 0, 153, 153, 0, 102, 153, 0, 51, 153, 0,
+				0, 153, 0, 0, 153, 51, 0, 153, 102, 0, 153, 153, 0, 153, 153,
+				51, 51, 51, // eigth
+				// row
+				0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 51, 102,
+				0, 0, 102, 51, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 102,
+				102, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 51,
+				102, 0, 0, 102, 51, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0,
+				102, 102, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0, 51, 102, 0,
+				0, 102, 0, 0, 102, 51, 0, 102, 102, 0, 102, 102, 0, 102, 102, 0,
+				0, 0, // ninth
+				// row
+				0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 0, 51,
+				51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0,
+				51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 0, 51, 51, 0, 51,
+				51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0,
+				51, 51, 0, 0, 51, 0, 0, 51, 51, 0, 51, 51, 0, 51, 51, 0, 51, 51,
+				51, 51, 51 };
 		return rawValues;
 	}
 }

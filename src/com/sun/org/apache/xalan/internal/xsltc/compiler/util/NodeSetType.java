@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,8 +39,7 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.FlowList;
  * @author Santiago Pericas-Geertsen
  */
 public final class NodeSetType extends Type {
-	protected NodeSetType() {
-	}
+	protected NodeSetType() {}
 
 	public String toString() {
 		return "node-set";
@@ -58,7 +54,8 @@ public final class NodeSetType extends Type {
 	}
 
 	public com.sun.org.apache.bcel.internal.generic.Type toJCType() {
-		return new com.sun.org.apache.bcel.internal.generic.ObjectType(NODE_ITERATOR);
+		return new com.sun.org.apache.bcel.internal.generic.ObjectType(
+				NODE_ITERATOR);
 	}
 
 	/**
@@ -68,7 +65,8 @@ public final class NodeSetType extends Type {
 	 *
 	 * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, Type type) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			Type type) {
 		if (type == Type.String) {
 			translateTo(classGen, methodGen, (StringType) type);
 		} else if (type == Type.Boolean) {
@@ -82,7 +80,8 @@ public final class NodeSetType extends Type {
 		} else if (type == Type.Object) {
 			translateTo(classGen, methodGen, (ObjectType) type);
 		} else {
-			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), type.toString());
+			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
+					toString(), type.toString());
 			classGen.getParser().reportError(Constants.FATAL, err);
 		}
 	}
@@ -91,7 +90,8 @@ public final class NodeSetType extends Type {
 	 * Translates an external Java Class into an internal type. Expects the Java
 	 * object on the stack, pushes the internal type
 	 */
-	public void translateFrom(ClassGenerator classGen, MethodGenerator methodGen, Class clazz) {
+	public void translateFrom(ClassGenerator classGen,
+			MethodGenerator methodGen, Class clazz) {
 
 		InstructionList il = methodGen.getInstructionList();
 		ConstantPoolGen cpg = classGen.getConstantPool();
@@ -102,8 +102,9 @@ public final class NodeSetType extends Type {
 			// the stack.
 			il.append(classGen.loadTranslet()); // push translet onto stack
 			il.append(methodGen.loadDOM()); // push DOM onto stack
-			final int convert = cpg.addMethodref(BASIS_LIBRARY_CLASS, "nodeList2Iterator",
-					"(" + "Lorg/w3c/dom/NodeList;" + TRANSLET_INTF_SIG + DOM_INTF_SIG + ")"
+			final int convert = cpg.addMethodref(BASIS_LIBRARY_CLASS,
+					"nodeList2Iterator", "(" + "Lorg/w3c/dom/NodeList;"
+							+ TRANSLET_INTF_SIG + DOM_INTF_SIG + ")"
 							+ NODE_ITERATOR_SIG);
 			il.append(new INVOKESTATIC(convert));
 		} else if (clazz.getName().equals("org.w3c.dom.Node")) {
@@ -112,12 +113,14 @@ public final class NodeSetType extends Type {
 			// Iterator on the stack.
 			il.append(classGen.loadTranslet()); // push translet onto stack
 			il.append(methodGen.loadDOM()); // push DOM onto stack
-			final int convert = cpg.addMethodref(BASIS_LIBRARY_CLASS, "node2Iterator",
-					"(" + "Lorg/w3c/dom/Node;" + TRANSLET_INTF_SIG + DOM_INTF_SIG + ")"
+			final int convert = cpg.addMethodref(BASIS_LIBRARY_CLASS,
+					"node2Iterator", "(" + "Lorg/w3c/dom/Node;"
+							+ TRANSLET_INTF_SIG + DOM_INTF_SIG + ")"
 							+ NODE_ITERATOR_SIG);
 			il.append(new INVOKESTATIC(convert));
 		} else {
-			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), clazz.getName());
+			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
+					toString(), clazz.getName());
 			classGen.getParser().reportError(Constants.FATAL, err);
 		}
 	}
@@ -129,7 +132,8 @@ public final class NodeSetType extends Type {
 	 *
 	 * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, BooleanType type) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			BooleanType type) {
 		final InstructionList il = methodGen.getInstructionList();
 		FlowList falsel = translateToDesynthesized(classGen, methodGen, type);
 		il.append(ICONST_1);
@@ -144,7 +148,8 @@ public final class NodeSetType extends Type {
 	 *
 	 * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, StringType type) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			StringType type) {
 		final InstructionList il = methodGen.getInstructionList();
 		getFirstNode(classGen, methodGen);
 		il.append(DUP);
@@ -162,7 +167,8 @@ public final class NodeSetType extends Type {
 	 *
 	 * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, RealType type) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			RealType type) {
 		translateTo(classGen, methodGen, Type.String);
 		Type.String.translateTo(classGen, methodGen, Type.Real);
 	}
@@ -172,7 +178,8 @@ public final class NodeSetType extends Type {
 	 *
 	 * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, NodeType type) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			NodeType type) {
 		getFirstNode(classGen, methodGen);
 	}
 
@@ -181,7 +188,8 @@ public final class NodeSetType extends Type {
 	 *
 	 * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, ObjectType type) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			ObjectType type) {
 		methodGen.getInstructionList().append(NOP);
 	}
 
@@ -192,8 +200,8 @@ public final class NodeSetType extends Type {
 	 *
 	 * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateToDesynthesized
 	 */
-	public FlowList translateToDesynthesized(ClassGenerator classGen, MethodGenerator methodGen,
-			BooleanType type) {
+	public FlowList translateToDesynthesized(ClassGenerator classGen,
+			MethodGenerator methodGen, BooleanType type) {
 		final InstructionList il = methodGen.getInstructionList();
 		getFirstNode(classGen, methodGen);
 		return new FlowList(il.append(new IFLT(null)));
@@ -215,7 +223,8 @@ public final class NodeSetType extends Type {
 	 * Expects a node-set on the stack and pushes an object of the appropriate
 	 * type after coercion.
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, Class clazz) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			Class clazz) {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = methodGen.getInstructionList();
 		final String className = clazz.getName();
@@ -224,15 +233,18 @@ public final class NodeSetType extends Type {
 		il.append(SWAP);
 
 		if (className.equals("org.w3c.dom.Node")) {
-			int index = cpg.addInterfaceMethodref(DOM_INTF, MAKE_NODE, MAKE_NODE_SIG2);
+			int index = cpg.addInterfaceMethodref(DOM_INTF, MAKE_NODE,
+					MAKE_NODE_SIG2);
 			il.append(new INVOKEINTERFACE(index, 2));
-		} else if (className.equals("org.w3c.dom.NodeList")
-				|| className.equals("java.lang.Object")) {
-			int index = cpg.addInterfaceMethodref(DOM_INTF, MAKE_NODE_LIST, MAKE_NODE_LIST_SIG2);
+		} else if (className.equals("org.w3c.dom.NodeList") || className.equals(
+				"java.lang.Object")) {
+			int index = cpg.addInterfaceMethodref(DOM_INTF, MAKE_NODE_LIST,
+					MAKE_NODE_LIST_SIG2);
 			il.append(new INVOKEINTERFACE(index, 2));
 		} else if (className.equals("java.lang.String")) {
 			int next = cpg.addInterfaceMethodref(NODE_ITERATOR, "next", "()I");
-			int index = cpg.addInterfaceMethodref(DOM_INTF, GET_NODE_VALUE, "(I)" + STRING_SIG);
+			int index = cpg.addInterfaceMethodref(DOM_INTF, GET_NODE_VALUE,
+					"(I)" + STRING_SIG);
 
 			// Get next node from the iterator
 			il.append(new INVOKEINTERFACE(next, 1));
@@ -240,7 +252,8 @@ public final class NodeSetType extends Type {
 			il.append(new INVOKEINTERFACE(index, 2));
 
 		} else {
-			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), className);
+			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
+					toString(), className);
 			classGen.getParser().reportError(Constants.FATAL, err);
 		}
 	}
@@ -249,23 +262,27 @@ public final class NodeSetType extends Type {
 	 * Some type conversions require gettting the first node from the node-set.
 	 * This function is defined to avoid code repetition.
 	 */
-	private void getFirstNode(ClassGenerator classGen, MethodGenerator methodGen) {
+	private void getFirstNode(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = methodGen.getInstructionList();
-		il.append(new INVOKEINTERFACE(cpg.addInterfaceMethodref(NODE_ITERATOR, NEXT, NEXT_SIG), 1));
+		il.append(new INVOKEINTERFACE(cpg.addInterfaceMethodref(NODE_ITERATOR,
+				NEXT, NEXT_SIG), 1));
 	}
 
 	/**
 	 * Translates an object of this type to its boxed representation.
 	 */
-	public void translateBox(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void translateBox(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		translateTo(classGen, methodGen, Type.Reference);
 	}
 
 	/**
 	 * Translates an object of this type to its unboxed representation.
 	 */
-	public void translateUnBox(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void translateUnBox(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		methodGen.getInstructionList().append(NOP);
 	}
 

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,7 +43,7 @@ public class XNumber extends XObject {
 	 * Construct a XNodeSet object.
 	 *
 	 * @param d
-	 *            Value of the object
+	 *          Value of the object
 	 */
 	public XNumber(double d) {
 		super();
@@ -103,7 +100,8 @@ public class XNumber extends XObject {
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public double num(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public double num(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 
 		return m_val;
 	}
@@ -321,17 +319,19 @@ public class XNumber extends XObject {
 		int nDigits = e - 2;
 
 		if (exp >= nDigits)
-			return sign + s.substring(0, 1) + s.substring(2, e) + zeros(exp - nDigits);
+			return sign + s.substring(0, 1) + s.substring(2, e) + zeros(exp
+					- nDigits);
 
 		// Eliminate trailing 0's - bugzilla 14241
 		while (s.charAt(e - 1) == '0')
 			e--;
 
 		if (exp > 0)
-			return sign + s.substring(0, 1) + s.substring(2, 2 + exp) + "."
-					+ s.substring(2 + exp, e);
+			return sign + s.substring(0, 1) + s.substring(2, 2 + exp) + "." + s
+					.substring(2 + exp, e);
 
-		return sign + "0." + zeros(-1 - exp) + s.substring(0, 1) + s.substring(2, e);
+		return sign + "0." + zeros(-1 - exp) + s.substring(0, 1) + s.substring(
+				2, e);
 	}
 
 	/**
@@ -339,7 +339,7 @@ public class XNumber extends XObject {
 	 *
 	 *
 	 * @param n
-	 *            Length of the string to be returned
+	 *          Length of the string to be returned
 	 *
 	 * @return a string of '0' with the given length
 	 */
@@ -372,7 +372,7 @@ public class XNumber extends XObject {
 	 * Tell if two objects are functionally equal.
 	 *
 	 * @param obj2
-	 *            Object to compare this to
+	 *             Object to compare this to
 	 *
 	 * @return true if the two objects are equal
 	 *
@@ -392,7 +392,8 @@ public class XNumber extends XObject {
 			else
 				return m_val == obj2.num();
 		} catch (javax.xml.transform.TransformerException te) {
-			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(te);
+			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
+					te);
 		}
 	}
 

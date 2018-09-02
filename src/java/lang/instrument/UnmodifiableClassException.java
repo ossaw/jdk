@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.instrument;
@@ -50,7 +30,7 @@ public class UnmodifiableClassException extends Exception {
 	 * detail message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public UnmodifiableClassException(String s) {
 		super(s);

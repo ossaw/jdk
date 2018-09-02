@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -85,14 +65,15 @@ abstract class AbstractSpinedBuffer {
 	 * Construct with a specified initial capacity.
 	 *
 	 * @param initialCapacity
-	 *            The minimum expected number of elements
+	 *                        The minimum expected number of elements
 	 */
 	protected AbstractSpinedBuffer(int initialCapacity) {
 		if (initialCapacity < 0)
-			throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
+			throw new IllegalArgumentException("Illegal Capacity: "
+					+ initialCapacity);
 
-		this.initialChunkPower = Math.max(MIN_CHUNK_POWER,
-				Integer.SIZE - Integer.numberOfLeadingZeros(initialCapacity - 1));
+		this.initialChunkPower = Math.max(MIN_CHUNK_POWER, Integer.SIZE
+				- Integer.numberOfLeadingZeros(initialCapacity - 1));
 	}
 
 	/**
@@ -106,7 +87,8 @@ abstract class AbstractSpinedBuffer {
 	 * How many elements are currently in the buffer?
 	 */
 	public long count() {
-		return (spineIndex == 0) ? elementIndex : priorElementCount[spineIndex] + elementIndex;
+		return (spineIndex == 0) ? elementIndex
+				: priorElementCount[spineIndex] + elementIndex;
 	}
 
 	/**
@@ -114,7 +96,8 @@ abstract class AbstractSpinedBuffer {
 	 */
 	protected int chunkSize(int n) {
 		int power = (n == 0 || n == 1) ? initialChunkPower
-				: Math.min(initialChunkPower + n - 1, AbstractSpinedBuffer.MAX_CHUNK_POWER);
+				: Math.min(initialChunkPower + n - 1,
+						AbstractSpinedBuffer.MAX_CHUNK_POWER);
 		return 1 << power;
 	}
 

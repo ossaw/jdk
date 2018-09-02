@@ -5,13 +5,10 @@
 
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -67,7 +64,7 @@ public final class XSLTCSource implements Source {
 	 * it can receive it through ContentHandler/LexicalHandler interfaces.
 	 * 
 	 * @param systemId
-	 *            The system Id for this Source
+	 *                 The system Id for this Source
 	 */
 	public void setSystemId(String systemId) {
 		_systemId = systemId;
@@ -119,13 +116,15 @@ public final class XSLTCSource implements Source {
 				wsfilter = new DOMWSFilter(translet);
 			}
 
-			boolean hasIdCall = (translet != null) ? translet.hasIdCall() : false;
+			boolean hasIdCall = (translet != null) ? translet.hasIdCall()
+					: false;
 
 			if (dtmManager == null) {
 				dtmManager = XSLTCDTMManager.newInstance();
 			}
 
-			idom = (SAXImpl) dtmManager.getDTM(source, true, wsfilter, false, false, hasIdCall);
+			idom = (SAXImpl) dtmManager.getDTM(source, true, wsfilter, false,
+					false, hasIdCall);
 
 			String systemId = getSystemId();
 			if (systemId != null) {

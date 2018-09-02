@@ -72,7 +72,8 @@ public class FuncHere extends Function {
 	 * @throws javax.xml.transform.TransformerException
 	 */
 	@Override
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 
 		Node xpathOwnerNode = (Node) xctxt.getOwnerObject();
 
@@ -94,11 +95,13 @@ public class FuncHere extends Function {
 			// check whether currentNode and the node containing the XPath
 			// expression
 			// are in the same document
-			Document currentDoc = XMLUtils.getOwnerDocument(dtm.getNode(currentNode));
+			Document currentDoc = XMLUtils.getOwnerDocument(dtm.getNode(
+					currentNode));
 			Document xpathOwnerDoc = XMLUtils.getOwnerDocument(xpathOwnerNode);
 
 			if (currentDoc != xpathOwnerDoc) {
-				throw new TransformerException(I18n.translate("xpath.funcHere.documentsDiffer"));
+				throw new TransformerException(I18n.translate(
+						"xpath.funcHere.documentsDiffer"));
 			}
 		}
 
@@ -110,27 +113,27 @@ public class FuncHere extends Function {
 
 			switch (dtm.getNodeType(xpathOwnerNodeDTM)) {
 
-			case Node.ATTRIBUTE_NODE:
-			case Node.PROCESSING_INSTRUCTION_NODE: {
-				// returns a node-set containing the attribute / processing
-				// instruction node
-				hereNode = xpathOwnerNodeDTM;
+				case Node.ATTRIBUTE_NODE:
+				case Node.PROCESSING_INSTRUCTION_NODE: {
+					// returns a node-set containing the attribute / processing
+					// instruction node
+					hereNode = xpathOwnerNodeDTM;
 
-				nodeSet.addNode(hereNode);
+					nodeSet.addNode(hereNode);
 
-				break;
-			}
-			case Node.TEXT_NODE: {
-				// returns a node-set containing the parent element of the
-				// text node that directly bears the XPath expression
-				hereNode = dtm.getParent(xpathOwnerNodeDTM);
+					break;
+				}
+				case Node.TEXT_NODE: {
+					// returns a node-set containing the parent element of the
+					// text node that directly bears the XPath expression
+					hereNode = dtm.getParent(xpathOwnerNodeDTM);
 
-				nodeSet.addNode(hereNode);
+					nodeSet.addNode(hereNode);
 
-				break;
-			}
-			default:
-				break;
+					break;
+				}
+				default:
+					break;
 			}
 		}
 

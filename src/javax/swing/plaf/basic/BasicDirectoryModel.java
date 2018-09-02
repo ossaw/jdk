@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -40,8 +20,8 @@ import sun.awt.shell.ShellFolder;
  *
  * @author Jeff Dinkins
  */
-public class BasicDirectoryModel extends AbstractListModel<Object>
-		implements PropertyChangeListener {
+public class BasicDirectoryModel extends AbstractListModel<Object> implements
+		PropertyChangeListener {
 
 	private JFileChooser filechooser = null;
 	// PENDING(jeff) pick the size more sensibly
@@ -145,10 +125,11 @@ public class BasicDirectoryModel extends AbstractListModel<Object>
 	 * Renames a file in the underlying file system.
 	 *
 	 * @param oldFile
-	 *            a <code>File</code> object representing the existing file
+	 *                a <code>File</code> object representing the existing file
 	 * @param newFile
-	 *            a <code>File</code> object representing the desired new file
-	 *            name
+	 *                a <code>File</code> object representing the desired new
+	 *                file
+	 *                name
 	 * @return <code>true</code> if rename succeeded, otherwise
 	 *         <code>false</code>
 	 * @since 1.4
@@ -187,14 +168,12 @@ public class BasicDirectoryModel extends AbstractListModel<Object>
 	/**
 	 * Obsolete - not used.
 	 */
-	public void intervalAdded(ListDataEvent e) {
-	}
+	public void intervalAdded(ListDataEvent e) {}
 
 	/**
 	 * Obsolete - not used.
 	 */
-	public void intervalRemoved(ListDataEvent e) {
-	}
+	public void intervalRemoved(ListDataEvent e) {}
 
 	protected void sort(Vector<? extends File> v) {
 		ShellFolder.sort(v);
@@ -203,7 +182,8 @@ public class BasicDirectoryModel extends AbstractListModel<Object>
 	// Obsolete - not used
 	protected boolean lt(File a, File b) {
 		// First ignore case when comparing
-		int diff = a.getName().toLowerCase().compareTo(b.getName().toLowerCase());
+		int diff = a.getName().toLowerCase().compareTo(b.getName()
+				.toLowerCase());
 		if (diff != 0) {
 			return diff < 0;
 		} else {
@@ -235,7 +215,8 @@ public class BasicDirectoryModel extends AbstractListModel<Object>
 				return;
 			}
 
-			File[] list = fileSystem.getFiles(currentDirectory, filechooser.isFileHidingEnabled());
+			File[] list = fileSystem.getFiles(currentDirectory, filechooser
+					.isFileHidingEnabled());
 
 			if (isInterrupted()) {
 				return;
@@ -273,8 +254,8 @@ public class BasicDirectoryModel extends AbstractListModel<Object>
 			// To avoid loads of synchronizations with Invoker and improve
 			// performance we
 			// execute the whole block on the COM thread
-			DoChangeContents doChangeContents = ShellFolder
-					.invoke(new Callable<DoChangeContents>() {
+			DoChangeContents doChangeContents = ShellFolder.invoke(
+					new Callable<DoChangeContents>() {
 						public DoChangeContents call() {
 							int newSize = newFileCache.size();
 							int oldSize = fileCache.size();
@@ -284,10 +265,12 @@ public class BasicDirectoryModel extends AbstractListModel<Object>
 								int start = oldSize;
 								int end = newSize;
 								for (int i = 0; i < oldSize; i++) {
-									if (!newFileCache.get(i).equals(fileCache.get(i))) {
+									if (!newFileCache.get(i).equals(fileCache
+											.get(i))) {
 										start = i;
 										for (int j = i; j < newSize; j++) {
-											if (newFileCache.get(j).equals(fileCache.get(i))) {
+											if (newFileCache.get(j).equals(
+													fileCache.get(i))) {
 												end = j;
 												break;
 											}
@@ -295,39 +278,46 @@ public class BasicDirectoryModel extends AbstractListModel<Object>
 										break;
 									}
 								}
-								if (start >= 0 && end > start && newFileCache.subList(end, newSize)
-										.equals(fileCache.subList(start, oldSize))) {
+								if (start >= 0 && end > start && newFileCache
+										.subList(end, newSize).equals(fileCache
+												.subList(start, oldSize))) {
 									if (isInterrupted()) {
 										return null;
 									}
-									return new DoChangeContents(newFileCache.subList(start, end),
-											start, null, 0, fid);
+									return new DoChangeContents(newFileCache
+											.subList(start, end), start, null,
+											0, fid);
 								}
 							} else if (newSize < oldSize) {
 								// see if interval is removed
 								int start = -1;
 								int end = -1;
 								for (int i = 0; i < newSize; i++) {
-									if (!newFileCache.get(i).equals(fileCache.get(i))) {
+									if (!newFileCache.get(i).equals(fileCache
+											.get(i))) {
 										start = i;
 										end = i + oldSize - newSize;
 										break;
 									}
 								}
-								if (start >= 0 && end > start && fileCache.subList(end, oldSize)
-										.equals(newFileCache.subList(start, newSize))) {
+								if (start >= 0 && end > start && fileCache
+										.subList(end, oldSize).equals(
+												newFileCache.subList(start,
+														newSize))) {
 									if (isInterrupted()) {
 										return null;
 									}
 									return new DoChangeContents(null, 0,
-											new Vector(fileCache.subList(start, end)), start, fid);
+											new Vector(fileCache.subList(start,
+													end)), start, fid);
 								}
 							}
 							if (!fileCache.equals(newFileCache)) {
 								if (isInterrupted()) {
 									cancelRunnables(runnables);
 								}
-								return new DoChangeContents(newFileCache, 0, fileCache, 0, fid);
+								return new DoChangeContents(newFileCache, 0,
+										fileCache, 0, fid);
 							}
 							return null;
 						}
@@ -358,7 +348,7 @@ public class BasicDirectoryModel extends AbstractListModel<Object>
 	 * no action is performed.
 	 *
 	 * @param listener
-	 *            the property change listener to be added
+	 *                 the property change listener to be added
 	 *
 	 * @see #removePropertyChangeListener
 	 * @see #getPropertyChangeListeners
@@ -378,7 +368,7 @@ public class BasicDirectoryModel extends AbstractListModel<Object>
 	 * If listener is null, no exception is thrown and no action is performed.
 	 *
 	 * @param listener
-	 *            the PropertyChangeListener to be removed
+	 *                 the PropertyChangeListener to be removed
 	 *
 	 * @see #addPropertyChangeListener
 	 * @see #getPropertyChangeListeners
@@ -419,15 +409,16 @@ public class BasicDirectoryModel extends AbstractListModel<Object>
 	 * PropertyChangeListeners.
 	 *
 	 * @param propertyName
-	 *            the property whose value has changed
+	 *                     the property whose value has changed
 	 * @param oldValue
-	 *            the property's previous value
+	 *                     the property's previous value
 	 * @param newValue
-	 *            the property's new value
+	 *                     the property's new value
 	 *
 	 * @since 1.6
 	 */
-	protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
+	protected void firePropertyChange(String propertyName, Object oldValue,
+			Object newValue) {
 		if (changeSupport != null) {
 			changeSupport.firePropertyChange(propertyName, oldValue, newValue);
 		}
@@ -461,8 +452,8 @@ public class BasicDirectoryModel extends AbstractListModel<Object>
 		private int addStart = 0;
 		private int remStart = 0;
 
-		public DoChangeContents(List<File> addFiles, int addStart, List<File> remFiles,
-				int remStart, int fid) {
+		public DoChangeContents(List<File> addFiles, int addStart,
+				List<File> remFiles, int remStart, int fid) {
 			this.addFiles = addFiles;
 			this.addStart = addStart;
 			this.remFiles = remFiles;
@@ -489,9 +480,12 @@ public class BasicDirectoryModel extends AbstractListModel<Object>
 					directories = null;
 				}
 				if (remSize > 0 && addSize == 0) {
-					fireIntervalRemoved(BasicDirectoryModel.this, remStart, remStart + remSize - 1);
-				} else if (addSize > 0 && remSize == 0 && addStart + addSize <= fileCache.size()) {
-					fireIntervalAdded(BasicDirectoryModel.this, addStart, addStart + addSize - 1);
+					fireIntervalRemoved(BasicDirectoryModel.this, remStart,
+							remStart + remSize - 1);
+				} else if (addSize > 0 && remSize == 0 && addStart
+						+ addSize <= fileCache.size()) {
+					fireIntervalAdded(BasicDirectoryModel.this, addStart,
+							addStart + addSize - 1);
 				} else {
 					fireContentsChanged();
 				}

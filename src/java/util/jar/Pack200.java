@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.jar;
 
@@ -108,8 +88,7 @@ import java.beans.PropertyChangeListener;
  * @since 1.5
  */
 public abstract class Pack200 {
-	private Pack200() {
-	} // prevent instantiation
+	private Pack200() {} // prevent instantiation
 
 	// Static methods of the Pack200 class.
 	/**
@@ -585,7 +564,7 @@ public abstract class Pack200 {
 		 * @param out
 		 *            an OutputStream
 		 * @exception IOException
-		 *                if an error is encountered.
+		 *                        if an error is encountered.
 		 */
 		void pack(JarFile in, OutputStream out) throws IOException;
 
@@ -605,7 +584,7 @@ public abstract class Pack200 {
 		 * @param out
 		 *            an OutputStream
 		 * @exception IOException
-		 *                if an error is encountered.
+		 *                        if an error is encountered.
 		 */
 		void pack(JarInputStream in, OutputStream out) throws IOException;
 
@@ -627,7 +606,7 @@ public abstract class Pack200 {
 		 * @see #properties
 		 * @see #PROGRESS
 		 * @param listener
-		 *            An object to be invoked when a property is changed.
+		 *                 An object to be invoked when a property is changed.
 		 * @deprecated The dependency on {@code PropertyChangeListener} creates
 		 *             a significant impediment to future modularization of the
 		 *             Java platform. This method will be removed in a future
@@ -636,8 +615,8 @@ public abstract class Pack200 {
 		 *             PROGRESS} property instead.
 		 */
 		@Deprecated
-		default void addPropertyChangeListener(PropertyChangeListener listener) {
-		}
+		default void addPropertyChangeListener(
+				PropertyChangeListener listener) {}
 
 		/**
 		 * Remove a listener for PropertyChange events, added by the
@@ -656,15 +635,15 @@ public abstract class Pack200 {
 		 *
 		 * @see #addPropertyChangeListener
 		 * @param listener
-		 *            The PropertyChange listener to be removed.
+		 *                 The PropertyChange listener to be removed.
 		 * @deprecated The dependency on {@code PropertyChangeListener} creates
 		 *             a significant impediment to future modularization of the
 		 *             Java platform. This method will be removed in a future
 		 *             release.
 		 */
 		@Deprecated
-		default void removePropertyChangeListener(PropertyChangeListener listener) {
-		}
+		default void removePropertyChangeListener(
+				PropertyChangeListener listener) {}
 	}
 
 	/**
@@ -764,7 +743,7 @@ public abstract class Pack200 {
 		 * @param out
 		 *            a JarOutputStream.
 		 * @exception IOException
-		 *                if an error is encountered.
+		 *                        if an error is encountered.
 		 */
 		void unpack(InputStream in, JarOutputStream out) throws IOException;
 
@@ -779,7 +758,7 @@ public abstract class Pack200 {
 		 * @param out
 		 *            a JarOutputStream.
 		 * @exception IOException
-		 *                if an error is encountered.
+		 *                        if an error is encountered.
 		 */
 		void unpack(File in, JarOutputStream out) throws IOException;
 
@@ -801,7 +780,7 @@ public abstract class Pack200 {
 		 * @see #properties
 		 * @see #PROGRESS
 		 * @param listener
-		 *            An object to be invoked when a property is changed.
+		 *                 An object to be invoked when a property is changed.
 		 * @deprecated The dependency on {@code PropertyChangeListener} creates
 		 *             a significant impediment to future modularization of the
 		 *             Java platform. This method will be removed in a future
@@ -810,8 +789,8 @@ public abstract class Pack200 {
 		 *             PROGRESS} property instead.
 		 */
 		@Deprecated
-		default void addPropertyChangeListener(PropertyChangeListener listener) {
-		}
+		default void addPropertyChangeListener(
+				PropertyChangeListener listener) {}
 
 		/**
 		 * Remove a listener for PropertyChange events, added by the
@@ -830,15 +809,15 @@ public abstract class Pack200 {
 		 *
 		 * @see #addPropertyChangeListener
 		 * @param listener
-		 *            The PropertyChange listener to be removed.
+		 *                 The PropertyChange listener to be removed.
 		 * @deprecated The dependency on {@code PropertyChangeListener} creates
 		 *             a significant impediment to future modularization of the
 		 *             Java platform. This method will be removed in a future
 		 *             release.
 		 */
 		@Deprecated
-		default void removePropertyChangeListener(PropertyChangeListener listener) {
-		}
+		default void removePropertyChangeListener(
+				PropertyChangeListener listener) {}
 	}
 
 	// Private stuff....
@@ -852,11 +831,12 @@ public abstract class Pack200 {
 	private synchronized static Object newInstance(String prop) {
 		String implName = "(unknown)";
 		try {
-			Class<?> impl = (PACK_PROVIDER.equals(prop)) ? packerImpl : unpackerImpl;
+			Class<?> impl = (PACK_PROVIDER.equals(prop)) ? packerImpl
+					: unpackerImpl;
 			if (impl == null) {
 				// The first time, we must decide which class to use.
-				implName = java.security.AccessController
-						.doPrivileged(new sun.security.action.GetPropertyAction(prop, ""));
+				implName = java.security.AccessController.doPrivileged(
+						new sun.security.action.GetPropertyAction(prop, ""));
 				if (implName != null && !implName.equals(""))
 					impl = Class.forName(implName);
 				else if (PACK_PROVIDER.equals(prop))
@@ -867,14 +847,17 @@ public abstract class Pack200 {
 			// We have a class. Now instantiate it.
 			return impl.newInstance();
 		} catch (ClassNotFoundException e) {
-			throw new Error("Class not found: " + implName + ":\ncheck property " + prop
-					+ " in your properties file.", e);
+			throw new Error("Class not found: " + implName
+					+ ":\ncheck property " + prop + " in your properties file.",
+					e);
 		} catch (InstantiationException e) {
-			throw new Error("Could not instantiate: " + implName + ":\ncheck property " + prop
-					+ " in your properties file.", e);
+			throw new Error("Could not instantiate: " + implName
+					+ ":\ncheck property " + prop + " in your properties file.",
+					e);
 		} catch (IllegalAccessException e) {
-			throw new Error("Cannot access class: " + implName + ":\ncheck property " + prop
-					+ " in your properties file.", e);
+			throw new Error("Cannot access class: " + implName
+					+ ":\ncheck property " + prop + " in your properties file.",
+					e);
 		}
 	}
 

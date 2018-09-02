@@ -7,13 +7,10 @@
 /*
  * Copyright 2001-2004 The Apache Software Foundation or its licensors,
  * as applicable.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,7 +40,7 @@ public class Namespaces {
 	 * the name has no prefix.
 	 *
 	 * @param element
-	 *            The QName of an element.
+	 *                The QName of an element.
 	 * @return The prefix part of the element name.
 	 */
 	public static String getPrefix(Element element) {
@@ -62,7 +59,7 @@ public class Namespaces {
 	 * has no prefix.
 	 *
 	 * @param element
-	 *            The QName of an element.
+	 *                The QName of an element.
 	 * @return The local part of a QName.
 	 */
 	public static String getLocalName(Element element) {
@@ -80,9 +77,9 @@ public class Namespaces {
 	 * context node.
 	 *
 	 * @param node
-	 *            The context node.
+	 *               The context node.
 	 * @param prefix
-	 *            The prefix.
+	 *               The prefix.
 	 * @return The namespace URI associated with the prefix, or null if no
 	 *         namespace declaration exists for the prefix.
 	 */
@@ -109,7 +106,7 @@ public class Namespaces {
 	 * Returns the namespace URI for the namespace to which the element belongs.
 	 *
 	 * @param element
-	 *            The element.
+	 *                The element.
 	 * @return The namespace URI associated with the namespace of the element,
 	 *         or null if no namespace declaration exists for it.
 	 */

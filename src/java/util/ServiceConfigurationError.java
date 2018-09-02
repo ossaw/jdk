@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -74,11 +54,11 @@ public class ServiceConfigurationError extends Error {
 	 * Constructs a new instance with the specified message and cause.
 	 *
 	 * @param msg
-	 *            The message, or <tt>null</tt> if there is no message
+	 *              The message, or <tt>null</tt> if there is no message
 	 *
 	 * @param cause
-	 *            The cause, or <tt>null</tt> if the cause is nonexistent or
-	 *            unknown
+	 *              The cause, or <tt>null</tt> if the cause is nonexistent or
+	 *              unknown
 	 */
 	public ServiceConfigurationError(String msg, Throwable cause) {
 		super(msg, cause);

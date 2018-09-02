@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.presentation.rmi;
@@ -40,11 +20,12 @@ import com.sun.corba.se.spi.logging.CORBALogDomains;
 import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 
 public class StubFactoryFactoryStaticImpl extends StubFactoryFactoryBase {
-	private ORBUtilSystemException wrapper = ORBUtilSystemException
-			.get(CORBALogDomains.RPC_PRESENTATION);
+	private ORBUtilSystemException wrapper = ORBUtilSystemException.get(
+			CORBALogDomains.RPC_PRESENTATION);
 
-	public PresentationManager.StubFactory createStubFactory(String className, boolean isIDLStub,
-			String remoteCodeBase, Class expectedClass, ClassLoader classLoader) {
+	public PresentationManager.StubFactory createStubFactory(String className,
+			boolean isIDLStub, String remoteCodeBase, Class expectedClass,
+			ClassLoader classLoader) {
 		String stubName = null;
 
 		if (isIDLStub)
@@ -52,7 +33,8 @@ public class StubFactoryFactoryStaticImpl extends StubFactoryFactoryBase {
 		else
 			stubName = Utility.stubNameForCompiler(className);
 
-		ClassLoader expectedTypeClassLoader = (expectedClass == null ? classLoader
+		ClassLoader expectedTypeClassLoader = (expectedClass == null
+				? classLoader
 				: expectedClass.getClassLoader());
 
 		// The old code was optimized to try to guess which way to load classes
@@ -73,14 +55,18 @@ public class StubFactoryFactoryStaticImpl extends StubFactoryFactoryBase {
 		Class clz = null;
 
 		try {
-			clz = Util.loadClass(firstStubName, remoteCodeBase, expectedTypeClassLoader);
+			clz = Util.loadClass(firstStubName, remoteCodeBase,
+					expectedTypeClassLoader);
 		} catch (ClassNotFoundException e1) {
 			// log only at FINE level
-			wrapper.classNotFound1(CompletionStatus.COMPLETED_MAYBE, e1, firstStubName);
+			wrapper.classNotFound1(CompletionStatus.COMPLETED_MAYBE, e1,
+					firstStubName);
 			try {
-				clz = Util.loadClass(secondStubName, remoteCodeBase, expectedTypeClassLoader);
+				clz = Util.loadClass(secondStubName, remoteCodeBase,
+						expectedTypeClassLoader);
 			} catch (ClassNotFoundException e2) {
-				throw wrapper.classNotFound2(CompletionStatus.COMPLETED_MAYBE, e2, secondStubName);
+				throw wrapper.classNotFound2(CompletionStatus.COMPLETED_MAYBE,
+						e2, secondStubName);
 			}
 		}
 
@@ -88,7 +74,8 @@ public class StubFactoryFactoryStaticImpl extends StubFactoryFactoryBase {
 		// algorithm always produce a valid class if the setup is correct?
 		// Does the OMG standard algorithm need to be changed to include
 		// this step?
-		if ((clz == null) || ((expectedClass != null) && !expectedClass.isAssignableFrom(clz))) {
+		if ((clz == null) || ((expectedClass != null) && !expectedClass
+				.isAssignableFrom(clz))) {
 			try {
 				ClassLoader cl = Thread.currentThread().getContextClassLoader();
 				if (cl == null)
@@ -117,12 +104,12 @@ public class StubFactoryFactoryStaticImpl extends StubFactoryFactoryBase {
 				// _REVISIT_ The spec does not specify a loadingContext
 				// parameter for
 				// the following call. Would it be useful to pass one?
-				tieClass = Utility.loadClassForClass(className, Util.getCodebase(cls), null, cls,
-						cls.getClassLoader());
+				tieClass = Utility.loadClassForClass(className, Util
+						.getCodebase(cls), null, cls, cls.getClassLoader());
 				return (Tie) tieClass.newInstance();
 			} catch (Exception err) {
-				tieClass = Utility.loadClassForClass(
-						PackagePrefixChecker.packagePrefix() + className, Util.getCodebase(cls),
+				tieClass = Utility.loadClassForClass(PackagePrefixChecker
+						.packagePrefix() + className, Util.getCodebase(cls),
 						null, cls, cls.getClassLoader());
 				return (Tie) tieClass.newInstance();
 			}

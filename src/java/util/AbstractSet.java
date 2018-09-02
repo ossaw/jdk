@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -48,7 +28,7 @@ package java.util;
  * Framework</a>.
  *
  * @param <E>
- *            the type of elements maintained by this set
+ *        the type of elements maintained by this set
  *
  * @author Josh Bloch
  * @author Neal Gafter
@@ -58,13 +38,13 @@ package java.util;
  * @since 1.2
  */
 
-public abstract class AbstractSet<E> extends AbstractCollection<E> implements Set<E> {
+public abstract class AbstractSet<E> extends AbstractCollection<E> implements
+		Set<E> {
 	/**
 	 * Sole constructor. (For invocation by subclass constructors, typically
 	 * implicit.)
 	 */
-	protected AbstractSet() {
-	}
+	protected AbstractSet() {}
 
 	// Comparison and hashing
 
@@ -82,7 +62,7 @@ public abstract class AbstractSet<E> extends AbstractCollection<E> implements Se
 	 * false. If so, it returns <tt>containsAll((Collection) o)</tt>.
 	 *
 	 * @param o
-	 *            object to be compared for equality with this set
+	 *          object to be compared for equality with this set
 	 * @return <tt>true</tt> if the specified object is equal to this set
 	 */
 	public boolean equals(Object o) {
@@ -154,20 +134,27 @@ public abstract class AbstractSet<E> extends AbstractCollection<E> implements Se
 	 * <tt>iterator</tt> method does not implement the <tt>remove</tt> method.
 	 *
 	 * @param c
-	 *            collection containing elements to be removed from this set
+	 *          collection containing elements to be removed from this set
 	 * @return <tt>true</tt> if this set changed as a result of the call
 	 * @throws UnsupportedOperationException
-	 *             if the <tt>removeAll</tt> operation is not supported by this
-	 *             set
+	 *                                       if the <tt>removeAll</tt> operation
+	 *                                       is not supported by this
+	 *                                       set
 	 * @throws ClassCastException
-	 *             if the class of an element of this set is incompatible with
-	 *             the specified collection (
-	 *             <a href="Collection.html#optional-restrictions">optional</a>)
+	 *                                       if the class of an element of this
+	 *                                       set is incompatible with
+	 *                                       the specified collection (
+	 *                                       <a href=
+	 *                                       "Collection.html#optional-restrictions">optional</a>)
 	 * @throws NullPointerException
-	 *             if this set contains a null element and the specified
-	 *             collection does not permit null elements (
-	 *             <a href="Collection.html#optional-restrictions">optional</a>
-	 *             ), or if the specified collection is null
+	 *                                       if this set contains a null element
+	 *                                       and the specified
+	 *                                       collection does not permit null
+	 *                                       elements (
+	 *                                       <a href=
+	 *                                       "Collection.html#optional-restrictions">optional</a>
+	 *                                       ), or if the specified collection
+	 *                                       is null
 	 * @see #remove(Object)
 	 * @see #contains(Object)
 	 */

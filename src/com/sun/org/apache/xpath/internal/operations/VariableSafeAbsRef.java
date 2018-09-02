@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -51,7 +48,7 @@ public class VariableSafeAbsRef extends Variable {
 	 *
 	 *
 	 * @param xctxt
-	 *            The runtime execution context.
+	 *              The runtime execution context.
 	 *
 	 * @return The evaluated variable, or an empty nodeset if not found.
 	 *
@@ -62,7 +59,8 @@ public class VariableSafeAbsRef extends Variable {
 		XNodeSet xns = (XNodeSet) super.execute(xctxt, destructiveOK);
 		DTMManager dtmMgr = xctxt.getDTMManager();
 		int context = xctxt.getContextNode();
-		if (dtmMgr.getDTM(xns.getRoot()).getDocument() != dtmMgr.getDTM(context).getDocument()) {
+		if (dtmMgr.getDTM(xns.getRoot()).getDocument() != dtmMgr.getDTM(context)
+				.getDocument()) {
 			Expression expr = (Expression) xns.getContainedIter();
 			xns = (XNodeSet) expr.asIterator(xctxt, context);
 		}

@@ -71,9 +71,9 @@ public class ResolverDirectHTTP extends ResourceResolverSpi {
 			.getLogger(ResolverDirectHTTP.class.getName());
 
 	/** Field properties[] */
-	private static final String properties[] = { "http.proxy.host", "http.proxy.port",
-			"http.proxy.username", "http.proxy.password", "http.basic.username",
-			"http.basic.password" };
+	private static final String properties[] = { "http.proxy.host",
+			"http.proxy.port", "http.proxy.username", "http.proxy.password",
+			"http.basic.username", "http.basic.password" };
 
 	/** Field HttpProxyHost */
 	private static final int HttpProxyHost = 0;
@@ -133,10 +133,12 @@ public class ResolverDirectHTTP extends ResourceResolverSpi {
 					urlConnection = openConnection(url);
 
 					String password = user + ":" + pass;
-					String encodedPassword = Base64.encode(password.getBytes("ISO-8859-1"));
+					String encodedPassword = Base64.encode(password.getBytes(
+							"ISO-8859-1"));
 
 					// set authentication property in the http header
-					urlConnection.setRequestProperty("Authorization", "Basic " + encodedPassword);
+					urlConnection.setRequestProperty("Authorization", "Basic "
+							+ encodedPassword);
 				}
 			}
 
@@ -153,28 +155,29 @@ public class ResolverDirectHTTP extends ResourceResolverSpi {
 			}
 
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE,
-						"Fetched " + summarized + " bytes from URI " + uriNew.toString());
+				log.log(java.util.logging.Level.FINE, "Fetched " + summarized
+						+ " bytes from URI " + uriNew.toString());
 			}
 
-			XMLSignatureInput result = new XMLSignatureInput(baos.toByteArray());
+			XMLSignatureInput result = new XMLSignatureInput(baos
+					.toByteArray());
 
 			result.setSourceURI(uriNew.toString());
 			result.setMIMEType(mimeType);
 
 			return result;
 		} catch (URISyntaxException ex) {
-			throw new ResourceResolverException("generic.EmptyMessage", ex, context.attr,
-					context.baseUri);
+			throw new ResourceResolverException("generic.EmptyMessage", ex,
+					context.attr, context.baseUri);
 		} catch (MalformedURLException ex) {
-			throw new ResourceResolverException("generic.EmptyMessage", ex, context.attr,
-					context.baseUri);
+			throw new ResourceResolverException("generic.EmptyMessage", ex,
+					context.attr, context.baseUri);
 		} catch (IOException ex) {
-			throw new ResourceResolverException("generic.EmptyMessage", ex, context.attr,
-					context.baseUri);
+			throw new ResourceResolverException("generic.EmptyMessage", ex,
+					context.attr, context.baseUri);
 		} catch (IllegalArgumentException e) {
-			throw new ResourceResolverException("generic.EmptyMessage", e, context.attr,
-					context.baseUri);
+			throw new ResourceResolverException("generic.EmptyMessage", e,
+					context.attr, context.baseUri);
 		}
 	}
 
@@ -192,7 +195,8 @@ public class ResolverDirectHTTP extends ResourceResolverSpi {
 		Proxy proxy = null;
 		if ((proxyHostProp != null) && (proxyPortProp != null)) {
 			int port = Integer.parseInt(proxyPortProp);
-			proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHostProp, port));
+			proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(
+					proxyHostProp, port));
 		}
 
 		URLConnection urlConnection;
@@ -201,9 +205,11 @@ public class ResolverDirectHTTP extends ResourceResolverSpi {
 
 			if ((proxyUser != null) && (proxyPass != null)) {
 				String password = proxyUser + ":" + proxyPass;
-				String authString = "Basic " + Base64.encode(password.getBytes("ISO-8859-1"));
+				String authString = "Basic " + Base64.encode(password.getBytes(
+						"ISO-8859-1"));
 
-				urlConnection.setRequestProperty("Proxy-Authorization", authString);
+				urlConnection.setRequestProperty("Proxy-Authorization",
+						authString);
 			}
 		} else {
 			urlConnection = url.openConnection();
@@ -222,25 +228,29 @@ public class ResolverDirectHTTP extends ResourceResolverSpi {
 	public boolean engineCanResolveURI(ResourceResolverContext context) {
 		if (context.uriToResolve == null) {
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE, "quick fail, uri == null");
+				log.log(java.util.logging.Level.FINE,
+						"quick fail, uri == null");
 			}
 			return false;
 		}
 
-		if (context.uriToResolve.equals("") || (context.uriToResolve.charAt(0) == '#')) {
+		if (context.uriToResolve.equals("") || (context.uriToResolve.charAt(
+				0) == '#')) {
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE, "quick fail for empty URIs and local ones");
+				log.log(java.util.logging.Level.FINE,
+						"quick fail for empty URIs and local ones");
 			}
 			return false;
 		}
 
 		if (log.isLoggable(java.util.logging.Level.FINE)) {
 			log.log(java.util.logging.Level.FINE,
-					"I was asked whether I can resolve " + context.uriToResolve);
+					"I was asked whether I can resolve "
+							+ context.uriToResolve);
 		}
 
-		if (context.uriToResolve.startsWith("http:")
-				|| (context.baseUri != null && context.baseUri.startsWith("http:"))) {
+		if (context.uriToResolve.startsWith("http:") || (context.baseUri != null
+				&& context.baseUri.startsWith("http:"))) {
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
 				log.log(java.util.logging.Level.FINE,
 						"I state that I can resolve " + context.uriToResolve);
@@ -263,7 +273,8 @@ public class ResolverDirectHTTP extends ResourceResolverSpi {
 		return ResolverDirectHTTP.properties.clone();
 	}
 
-	private static URI getNewURI(String uri, String baseURI) throws URISyntaxException {
+	private static URI getNewURI(String uri, String baseURI)
+			throws URISyntaxException {
 		URI newUri = null;
 		if (baseURI == null || "".equals(baseURI)) {
 			newUri = new URI(uri);
@@ -273,7 +284,8 @@ public class ResolverDirectHTTP extends ResourceResolverSpi {
 
 		// if the URI contains a fragment, ignore it
 		if (newUri.getFragment() != null) {
-			URI uriNewNoFrag = new URI(newUri.getScheme(), newUri.getSchemeSpecificPart(), null);
+			URI uriNewNoFrag = new URI(newUri.getScheme(), newUri
+					.getSchemeSpecificPart(), null);
 			return uriNewNoFrag;
 		}
 		return newUri;

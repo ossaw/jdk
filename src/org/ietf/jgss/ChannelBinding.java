@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.ietf.jgss;
@@ -89,26 +69,34 @@ public class ChannelBinding {
 	 * application does not want to specify.
 	 *
 	 * @param initAddr
-	 *            the address of the context initiator. <code>null</code> value
-	 *            can be supplied to indicate that the application does not want
-	 *            to set this value.
+	 *                   the address of the context initiator. <code>null</code>
+	 *                   value
+	 *                   can be supplied to indicate that the application does
+	 *                   not want
+	 *                   to set this value.
 	 * @param acceptAddr
-	 *            the address of the context acceptor. <code>null</code> value
-	 *            can be supplied to indicate that the application does not want
-	 *            to set this value.
+	 *                   the address of the context acceptor. <code>null</code>
+	 *                   value
+	 *                   can be supplied to indicate that the application does
+	 *                   not want
+	 *                   to set this value.
 	 * @param appData
-	 *            application supplied data to be used as part of the channel
-	 *            bindings. <code>null</code> value can be supplied to indicate
-	 *            that the application does not want to set this value.
+	 *                   application supplied data to be used as part of the
+	 *                   channel
+	 *                   bindings. <code>null</code> value can be supplied to
+	 *                   indicate
+	 *                   that the application does not want to set this value.
 	 */
-	public ChannelBinding(InetAddress initAddr, InetAddress acceptAddr, byte[] appData) {
+	public ChannelBinding(InetAddress initAddr, InetAddress acceptAddr,
+			byte[] appData) {
 
 		initiator = initAddr;
 		acceptor = acceptAddr;
 
 		if (appData != null) {
 			this.appData = new byte[appData.length];
-			java.lang.System.arraycopy(appData, 0, this.appData, 0, appData.length);
+			java.lang.System.arraycopy(appData, 0, this.appData, 0,
+					appData.length);
 		}
 	}
 
@@ -116,8 +104,9 @@ public class ChannelBinding {
 	 * Creates a ChannelBinding object without any addressing information.
 	 *
 	 * @param appData
-	 *            application supplied data to be used as part of the channel
-	 *            bindings.
+	 *                application supplied data to be used as part of the
+	 *                channel
+	 *                bindings.
 	 */
 	public ChannelBinding(byte[] appData) {
 		this(null, null, appData);
@@ -179,14 +168,15 @@ public class ChannelBinding {
 
 		ChannelBinding cb = (ChannelBinding) obj;
 
-		if ((initiator != null && cb.initiator == null)
-				|| (initiator == null && cb.initiator != null))
+		if ((initiator != null && cb.initiator == null) || (initiator == null
+				&& cb.initiator != null))
 			return false;
 
 		if (initiator != null && !initiator.equals(cb.initiator))
 			return false;
 
-		if ((acceptor != null && cb.acceptor == null) || (acceptor == null && cb.acceptor != null))
+		if ((acceptor != null && cb.acceptor == null) || (acceptor == null
+				&& cb.acceptor != null))
 			return false;
 
 		if (acceptor != null && !acceptor.equals(cb.acceptor))

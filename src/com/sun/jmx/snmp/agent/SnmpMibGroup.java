@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.agent;
@@ -106,10 +86,11 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 	 * Checks whether the given OID arc identifies a variable (scalar object).
 	 *
 	 * @exception If
-	 *                the given `arc' does not identify any variable in this
-	 *                group, throws an SnmpStatusException.
+	 *               the given `arc' does not identify any variable in this
+	 *               group, throws an SnmpStatusException.
 	 */
-	public void validateVarId(long arc, Object userData) throws SnmpStatusException {
+	public void validateVarId(long arc, Object userData)
+			throws SnmpStatusException {
 		if (isVariable(arc) == false) {
 			throw new SnmpStatusException(SnmpStatusException.noSuchObject);
 		}
@@ -168,16 +149,18 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 	 * <p>
 	 *
 	 * @param req
-	 *            The sub-request that must be handled by this node.
+	 *              The sub-request that must be handled by this node.
 	 *
 	 * @param depth
-	 *            The depth reached in the OID tree.
+	 *              The depth reached in the OID tree.
 	 *
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing the MIB node.
+	 *                                An error occurred while accessing the MIB
+	 *                                node.
 	 */
 	@Override
-	abstract public void get(SnmpMibSubRequest req, int depth) throws SnmpStatusException;
+	abstract public void get(SnmpMibSubRequest req, int depth)
+			throws SnmpStatusException;
 
 	/**
 	 * Generic handling of the <CODE>set</CODE> operation.
@@ -202,16 +185,18 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 	 * <p>
 	 *
 	 * @param req
-	 *            The sub-request that must be handled by this node.
+	 *              The sub-request that must be handled by this node.
 	 *
 	 * @param depth
-	 *            The depth reached in the OID tree.
+	 *              The depth reached in the OID tree.
 	 *
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing the MIB node.
+	 *                                An error occurred while accessing the MIB
+	 *                                node.
 	 */
 	@Override
-	abstract public void set(SnmpMibSubRequest req, int depth) throws SnmpStatusException;
+	abstract public void set(SnmpMibSubRequest req, int depth)
+			throws SnmpStatusException;
 
 	/**
 	 * Generic handling of the <CODE>check</CODE> operation.
@@ -238,24 +223,25 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 	 * <p>
 	 *
 	 * @param req
-	 *            The sub-request that must be handled by this node.
+	 *              The sub-request that must be handled by this node.
 	 *
 	 * @param depth
-	 *            The depth reached in the OID tree.
+	 *              The depth reached in the OID tree.
 	 *
 	 * @exception SnmpStatusException
-	 *                An error occurred while accessing the MIB node.
+	 *                                An error occurred while accessing the MIB
+	 *                                node.
 	 */
 	@Override
-	abstract public void check(SnmpMibSubRequest req, int depth) throws SnmpStatusException;
+	abstract public void check(SnmpMibSubRequest req, int depth)
+			throws SnmpStatusException;
 
 	// --------------------------------------------------------------------
 	// If we reach this node, we are below the root OID, so we just
 	// return.
 	// --------------------------------------------------------------------
 	@Override
-	public void getRootOid(Vector<Integer> result) {
-	}
+	public void getRootOid(Vector<Integer> result) {}
 
 	// -------------------------------------------------------------------
 	// PACKAGE METHODS
@@ -322,15 +308,16 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 	 * internally. You shouldn't ever call it directly.
 	 *
 	 * @param oid
-	 *            The oid of the node being registered.
+	 *               The oid of the node being registered.
 	 * @param cursor
-	 *            The position reached in the oid.
+	 *               The position reached in the oid.
 	 * @param node
-	 *            The node being registered.
+	 *               The node being registered.
 	 *
 	 */
 	@Override
-	void registerNode(long[] oid, int cursor, SnmpMibNode node) throws IllegalAccessException {
+	void registerNode(long[] oid, int cursor, SnmpMibNode node)
+			throws IllegalAccessException {
 		super.registerNode(oid, cursor, node);
 		if (cursor < 0)
 			return;
@@ -345,8 +332,8 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 	// see comments in SnmpMibNode
 	// -------------------------------------------------------------------
 	@Override
-	void findHandlingNode(SnmpVarBind varbind, long[] oid, int depth, SnmpRequestTree handlers)
-			throws SnmpStatusException {
+	void findHandlingNode(SnmpVarBind varbind, long[] oid, int depth,
+			SnmpRequestTree handlers) throws SnmpStatusException {
 
 		int length = oid.length;
 
@@ -381,18 +368,21 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 
 			// The trailing .0 is missing in the OID
 			if (depth + 2 > length) {
-				throw new SnmpStatusException(SnmpStatusException.noSuchInstance);
+				throw new SnmpStatusException(
+						SnmpStatusException.noSuchInstance);
 			}
 
 			// There are too many arcs left in the OID (there should remain
 			// a single trailing .0)
 			if (depth + 2 < length) {
-				throw new SnmpStatusException(SnmpStatusException.noSuchInstance);
+				throw new SnmpStatusException(
+						SnmpStatusException.noSuchInstance);
 			}
 
 			// The last trailing arc is not .0
 			if (oid[depth + 1] != 0L) {
-				throw new SnmpStatusException(SnmpStatusException.noSuchInstance);
+				throw new SnmpStatusException(
+						SnmpStatusException.noSuchInstance);
 			}
 
 			// It's one of our variable, register this node.
@@ -404,8 +394,9 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 	// See comments in SnmpMibNode.
 	// -------------------------------------------------------------------
 	@Override
-	long[] findNextHandlingNode(SnmpVarBind varbind, long[] oid, int pos, int depth,
-			SnmpRequestTree handlers, AcmChecker checker) throws SnmpStatusException {
+	long[] findNextHandlingNode(SnmpVarBind varbind, long[] oid, int pos,
+			int depth, SnmpRequestTree handlers, AcmChecker checker)
+			throws SnmpStatusException {
 
 		int length = oid.length;
 		SnmpMibNode node = null;
@@ -426,7 +417,8 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 		// XXX Revisit: this works but it is somewhat convoluted. Just setting
 		// arc to -1 would work too.
 		if (pos >= length)
-			return super.findNextHandlingNode(varbind, oid, pos, depth, handlers, checker);
+			return super.findNextHandlingNode(varbind, oid, pos, depth,
+					handlers, checker);
 
 		// Ok, we've got the arc.
 		long arc = oid[pos];
@@ -446,10 +438,11 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 				// Forward to the table
 				checker.add(depth, arc);
 				try {
-					result = table.findNextHandlingNode(varbind, oid, pos + 1, depth + 1, handlers,
-							checker);
+					result = table.findNextHandlingNode(varbind, oid, pos + 1,
+							depth + 1, handlers, checker);
 				} catch (SnmpStatusException ex) {
-					throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+					throw new SnmpStatusException(
+							SnmpStatusException.noSuchObject);
 				} finally {
 					checker.remove(depth);
 				}
@@ -474,7 +467,8 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 					try {
 						checker.checkCurrentOid();
 					} catch (SnmpStatusException e) {
-						throw new SnmpStatusException(SnmpStatusException.noSuchObject);
+						throw new SnmpStatusException(
+								SnmpStatusException.noSuchObject);
 					} finally {
 						checker.remove(depth, 2);
 					}
@@ -505,8 +499,8 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 				if (child != null) {
 					checker.add(depth, arc);
 					try {
-						result = child.findNextHandlingNode(varbind, oid, pos + 1, depth + 1,
-								handlers, checker);
+						result = child.findNextHandlingNode(varbind, oid, pos
+								+ 1, depth + 1, handlers, checker);
 						result[depth] = arc;
 						return result;
 					} finally {
@@ -526,7 +520,8 @@ public abstract class SnmpMibGroup extends SnmpMibOid implements Serializable {
 			//
 			long[] newOid = new long[1];
 			newOid[0] = getNextVarId(arc, data, pduVersion);
-			return findNextHandlingNode(varbind, newOid, 0, depth, handlers, checker);
+			return findNextHandlingNode(varbind, newOid, 0, depth, handlers,
+					checker);
 		}
 	}
 

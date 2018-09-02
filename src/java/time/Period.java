@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2008-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -153,7 +122,7 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * The set of supported units.
 	 */
 	private static final List<TemporalUnit> SUPPORTED_UNITS = Collections
-			.unmodifiableList(Arrays.<TemporalUnit> asList(YEARS, MONTHS, DAYS));
+			.unmodifiableList(Arrays.<TemporalUnit>asList(YEARS, MONTHS, DAYS));
 
 	/**
 	 * The number of years.
@@ -176,7 +145,7 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * units will be zero.
 	 *
 	 * @param years
-	 *            the number of years, positive or negative
+	 *              the number of years, positive or negative
 	 * @return the period of years, not null
 	 */
 	public static Period ofYears(int years) {
@@ -190,7 +159,7 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * units will be zero.
 	 *
 	 * @param months
-	 *            the number of months, positive or negative
+	 *               the number of months, positive or negative
 	 * @return the period of months, not null
 	 */
 	public static Period ofMonths(int months) {
@@ -205,7 +174,7 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * zero.
 	 *
 	 * @param weeks
-	 *            the number of weeks, positive or negative
+	 *              the number of weeks, positive or negative
 	 * @return the period, with the input weeks converted to days, not null
 	 */
 	public static Period ofWeeks(int weeks) {
@@ -219,7 +188,7 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * units will be zero.
 	 *
 	 * @param days
-	 *            the number of days, positive or negative
+	 *             the number of days, positive or negative
 	 * @return the period of days, not null
 	 */
 	public static Period ofDays(int days) {
@@ -233,11 +202,11 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This creates an instance based on years, months and days.
 	 *
 	 * @param years
-	 *            the amount of years, may be negative
+	 *               the amount of years, may be negative
 	 * @param months
-	 *            the amount of months, may be negative
+	 *               the amount of months, may be negative
 	 * @param days
-	 *            the amount of days, may be negative
+	 *               the amount of days, may be negative
 	 * @return the period of years, months and days, not null
 	 */
 	public static Period of(int years, int months, int days) {
@@ -262,20 +231,23 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * chronology.
 	 *
 	 * @param amount
-	 *            the temporal amount to convert, not null
+	 *               the temporal amount to convert, not null
 	 * @return the equivalent period, not null
 	 * @throws DateTimeException
-	 *             if unable to convert to a {@code Period}
+	 *                             if unable to convert to a {@code Period}
 	 * @throws ArithmeticException
-	 *             if the amount of years, months or days exceeds an int
+	 *                             if the amount of years, months or days
+	 *                             exceeds an int
 	 */
 	public static Period from(TemporalAmount amount) {
 		if (amount instanceof Period) {
 			return (Period) amount;
 		}
 		if (amount instanceof ChronoPeriod) {
-			if (IsoChronology.INSTANCE.equals(((ChronoPeriod) amount).getChronology()) == false) {
-				throw new DateTimeException("Period requires ISO chronology: " + amount);
+			if (IsoChronology.INSTANCE.equals(((ChronoPeriod) amount)
+					.getChronology()) == false) {
+				throw new DateTimeException("Period requires ISO chronology: "
+						+ amount);
 			}
 		}
 		Objects.requireNonNull(amount, "amount");
@@ -291,7 +263,8 @@ public final class Period implements ChronoPeriod, Serializable {
 			} else if (unit == ChronoUnit.DAYS) {
 				days = Math.toIntExact(unitAmount);
 			} else {
-				throw new DateTimeException("Unit must be Years, Months or Days, but was " + unit);
+				throw new DateTimeException(
+						"Unit must be Years, Months or Days, but was " + unit);
 			}
 		}
 		return create(years, months, days);
@@ -334,10 +307,10 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * </pre>
 	 *
 	 * @param text
-	 *            the text to parse, not null
+	 *             the text to parse, not null
 	 * @return the parsed period, not null
 	 * @throws DateTimeParseException
-	 *             if the text cannot be parsed to a period
+	 *                                if the text cannot be parsed to a period
 	 */
 	public static Period parse(CharSequence text) {
 		Objects.requireNonNull(text, "text");
@@ -348,7 +321,8 @@ public final class Period implements ChronoPeriod, Serializable {
 			String monthMatch = matcher.group(3);
 			String weekMatch = matcher.group(4);
 			String dayMatch = matcher.group(5);
-			if (yearMatch != null || monthMatch != null || dayMatch != null || weekMatch != null) {
+			if (yearMatch != null || monthMatch != null || dayMatch != null
+					|| weekMatch != null) {
 				try {
 					int years = parseNumber(text, yearMatch, negate);
 					int months = parseNumber(text, monthMatch, negate);
@@ -357,12 +331,13 @@ public final class Period implements ChronoPeriod, Serializable {
 					days = Math.addExact(days, Math.multiplyExact(weeks, 7));
 					return create(years, months, days);
 				} catch (NumberFormatException ex) {
-					throw new DateTimeParseException("Text cannot be parsed to a Period", text, 0,
-							ex);
+					throw new DateTimeParseException(
+							"Text cannot be parsed to a Period", text, 0, ex);
 				}
 			}
 		}
-		throw new DateTimeParseException("Text cannot be parsed to a Period", text, 0);
+		throw new DateTimeParseException("Text cannot be parsed to a Period",
+				text, 0);
 	}
 
 	private static int parseNumber(CharSequence text, String str, int negate) {
@@ -373,7 +348,8 @@ public final class Period implements ChronoPeriod, Serializable {
 		try {
 			return Math.multiplyExact(val, negate);
 		} catch (ArithmeticException ex) {
-			throw new DateTimeParseException("Text cannot be parsed to a Period", text, 0, ex);
+			throw new DateTimeParseException(
+					"Text cannot be parsed to a Period", text, 0, ex);
 		}
 	}
 
@@ -395,13 +371,14 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * day.
 	 *
 	 * @param startDateInclusive
-	 *            the start date, inclusive, not null
+	 *                           the start date, inclusive, not null
 	 * @param endDateExclusive
-	 *            the end date, exclusive, not null
+	 *                           the end date, exclusive, not null
 	 * @return the period between this date and the end date, not null
 	 * @see ChronoLocalDate#until(ChronoLocalDate)
 	 */
-	public static Period between(LocalDate startDateInclusive, LocalDate endDateExclusive) {
+	public static Period between(LocalDate startDateInclusive,
+			LocalDate endDateExclusive) {
 		return startDateInclusive.until(endDateExclusive);
 	}
 
@@ -410,11 +387,11 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * Creates an instance.
 	 *
 	 * @param years
-	 *            the amount
+	 *               the amount
 	 * @param months
-	 *            the amount
+	 *               the amount
 	 * @param days
-	 *            the amount
+	 *               the amount
 	 */
 	private static Period create(int years, int months, int days) {
 		if ((years | months | days) == 0) {
@@ -427,11 +404,11 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * Constructor.
 	 *
 	 * @param years
-	 *            the amount
+	 *               the amount
 	 * @param months
-	 *            the amount
+	 *               the amount
 	 * @param days
-	 *            the amount
+	 *               the amount
 	 */
 	private Period(int years, int months, int days) {
 		this.years = years;
@@ -448,12 +425,12 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * {@link ChronoUnit#DAYS DAYS}. All other units throw an exception.
 	 *
 	 * @param unit
-	 *            the {@code TemporalUnit} for which to return the value
+	 *             the {@code TemporalUnit} for which to return the value
 	 * @return the long value of the unit
 	 * @throws DateTimeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported
+	 *                                          if the unit is not supported
 	 */
 	@Override
 	public long get(TemporalUnit unit) {
@@ -464,7 +441,8 @@ public final class Period implements ChronoPeriod, Serializable {
 		} else if (unit == ChronoUnit.DAYS) {
 			return getDays();
 		} else {
-			throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
+			throw new UnsupportedTemporalTypeException("Unsupported unit: "
+					+ unit);
 		}
 	}
 
@@ -580,7 +558,7 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param years
-	 *            the years to represent, may be negative
+	 *              the years to represent, may be negative
 	 * @return a {@code Period} based on this period with the requested years,
 	 *         not null
 	 */
@@ -604,7 +582,7 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param months
-	 *            the months to represent, may be negative
+	 *               the months to represent, may be negative
 	 * @return a {@code Period} based on this period with the requested months,
 	 *         not null
 	 */
@@ -624,7 +602,7 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param days
-	 *            the days to represent, may be negative
+	 *             the days to represent, may be negative
 	 * @return a {@code Period} based on this period with the requested days,
 	 *         not null
 	 */
@@ -651,19 +629,20 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToAdd
-	 *            the amount to add, not null
+	 *                    the amount to add, not null
 	 * @return a {@code Period} based on this period with the requested period
 	 *         added, not null
 	 * @throws DateTimeException
-	 *             if the specified amount has a non-ISO chronology or contains
-	 *             an invalid unit
+	 *                             if the specified amount has a non-ISO
+	 *                             chronology or contains
+	 *                             an invalid unit
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	public Period plus(TemporalAmount amountToAdd) {
 		Period isoAmount = Period.from(amountToAdd);
-		return create(Math.addExact(years, isoAmount.years),
-				Math.addExact(months, isoAmount.months), Math.addExact(days, isoAmount.days));
+		return create(Math.addExact(years, isoAmount.years), Math.addExact(
+				months, isoAmount.months), Math.addExact(days, isoAmount.days));
 	}
 
 	/**
@@ -677,17 +656,18 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param yearsToAdd
-	 *            the years to add, positive or negative
+	 *                   the years to add, positive or negative
 	 * @return a {@code Period} based on this period with the specified years
 	 *         added, not null
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	public Period plusYears(long yearsToAdd) {
 		if (yearsToAdd == 0) {
 			return this;
 		}
-		return create(Math.toIntExact(Math.addExact(years, yearsToAdd)), months, days);
+		return create(Math.toIntExact(Math.addExact(years, yearsToAdd)), months,
+				days);
 	}
 
 	/**
@@ -701,17 +681,18 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param monthsToAdd
-	 *            the months to add, positive or negative
+	 *                    the months to add, positive or negative
 	 * @return a {@code Period} based on this period with the specified months
 	 *         added, not null
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	public Period plusMonths(long monthsToAdd) {
 		if (monthsToAdd == 0) {
 			return this;
 		}
-		return create(years, Math.toIntExact(Math.addExact(months, monthsToAdd)), days);
+		return create(years, Math.toIntExact(Math.addExact(months,
+				monthsToAdd)), days);
 	}
 
 	/**
@@ -725,17 +706,18 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param daysToAdd
-	 *            the days to add, positive or negative
+	 *                  the days to add, positive or negative
 	 * @return a {@code Period} based on this period with the specified days
 	 *         added, not null
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	public Period plusDays(long daysToAdd) {
 		if (daysToAdd == 0) {
 			return this;
 		}
-		return create(years, months, Math.toIntExact(Math.addExact(days, daysToAdd)));
+		return create(years, months, Math.toIntExact(Math.addExact(days,
+				daysToAdd)));
 	}
 
 	// -----------------------------------------------------------------------
@@ -754,20 +736,21 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param amountToSubtract
-	 *            the amount to subtract, not null
+	 *                         the amount to subtract, not null
 	 * @return a {@code Period} based on this period with the requested period
 	 *         subtracted, not null
 	 * @throws DateTimeException
-	 *             if the specified amount has a non-ISO chronology or contains
-	 *             an invalid unit
+	 *                             if the specified amount has a non-ISO
+	 *                             chronology or contains
+	 *                             an invalid unit
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	public Period minus(TemporalAmount amountToSubtract) {
 		Period isoAmount = Period.from(amountToSubtract);
-		return create(Math.subtractExact(years, isoAmount.years),
-				Math.subtractExact(months, isoAmount.months),
-				Math.subtractExact(days, isoAmount.days));
+		return create(Math.subtractExact(years, isoAmount.years), Math
+				.subtractExact(months, isoAmount.months), Math.subtractExact(
+						days, isoAmount.days));
 	}
 
 	/**
@@ -781,15 +764,15 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param yearsToSubtract
-	 *            the years to subtract, positive or negative
+	 *                        the years to subtract, positive or negative
 	 * @return a {@code Period} based on this period with the specified years
 	 *         subtracted, not null
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	public Period minusYears(long yearsToSubtract) {
-		return (yearsToSubtract == Long.MIN_VALUE ? plusYears(Long.MAX_VALUE).plusYears(1)
-				: plusYears(-yearsToSubtract));
+		return (yearsToSubtract == Long.MIN_VALUE ? plusYears(Long.MAX_VALUE)
+				.plusYears(1) : plusYears(-yearsToSubtract));
 	}
 
 	/**
@@ -803,15 +786,15 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param monthsToSubtract
-	 *            the years to subtract, positive or negative
+	 *                         the years to subtract, positive or negative
 	 * @return a {@code Period} based on this period with the specified months
 	 *         subtracted, not null
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	public Period minusMonths(long monthsToSubtract) {
-		return (monthsToSubtract == Long.MIN_VALUE ? plusMonths(Long.MAX_VALUE).plusMonths(1)
-				: plusMonths(-monthsToSubtract));
+		return (monthsToSubtract == Long.MIN_VALUE ? plusMonths(Long.MAX_VALUE)
+				.plusMonths(1) : plusMonths(-monthsToSubtract));
 	}
 
 	/**
@@ -825,15 +808,15 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param daysToSubtract
-	 *            the months to subtract, positive or negative
+	 *                       the months to subtract, positive or negative
 	 * @return a {@code Period} based on this period with the specified days
 	 *         subtracted, not null
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	public Period minusDays(long daysToSubtract) {
-		return (daysToSubtract == Long.MIN_VALUE ? plusDays(Long.MAX_VALUE).plusDays(1)
-				: plusDays(-daysToSubtract));
+		return (daysToSubtract == Long.MIN_VALUE ? plusDays(Long.MAX_VALUE)
+				.plusDays(1) : plusDays(-daysToSubtract));
 	}
 
 	// -----------------------------------------------------------------------
@@ -847,18 +830,18 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * "6 years, -9 months and 12 days". No normalization is performed.
 	 *
 	 * @param scalar
-	 *            the scalar to multiply by, not null
+	 *               the scalar to multiply by, not null
 	 * @return a {@code Period} based on this period with the amounts multiplied
 	 *         by the scalar, not null
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	public Period multipliedBy(int scalar) {
 		if (this == ZERO || scalar == 1) {
 			return this;
 		}
-		return create(Math.multiplyExact(years, scalar), Math.multiplyExact(months, scalar),
-				Math.multiplyExact(days, scalar));
+		return create(Math.multiplyExact(years, scalar), Math.multiplyExact(
+				months, scalar), Math.multiplyExact(days, scalar));
 	}
 
 	/**
@@ -872,8 +855,9 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * @return a {@code Period} based on this period with the amounts negated,
 	 *         not null
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs, which only happens if one of the
-	 *             units has the value {@code Long.MIN_VALUE}
+	 *                             if numeric overflow occurs, which only
+	 *                             happens if one of the
+	 *                             units has the value {@code Long.MIN_VALUE}
 	 */
 	public Period negated() {
 		return multipliedBy(-1);
@@ -898,7 +882,7 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * @return a {@code Period} based on this period with excess months
 	 *         normalized to years, not null
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	public Period normalized() {
 		long totalMonths = toTotalMonths();
@@ -956,12 +940,12 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param temporal
-	 *            the temporal object to adjust, not null
+	 *                 the temporal object to adjust, not null
 	 * @return an object of the same type with the adjustment made, not null
 	 * @throws DateTimeException
-	 *             if unable to add
+	 *                             if unable to add
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public Temporal addTo(Temporal temporal) {
@@ -1013,12 +997,12 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * This instance is immutable and unaffected by this method call.
 	 *
 	 * @param temporal
-	 *            the temporal object to adjust, not null
+	 *                 the temporal object to adjust, not null
 	 * @return an object of the same type with the adjustment made, not null
 	 * @throws DateTimeException
-	 *             if unable to subtract
+	 *                             if unable to subtract
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	@Override
 	public Temporal subtractFrom(Temporal temporal) {
@@ -1044,10 +1028,13 @@ public final class Period implements ChronoPeriod, Serializable {
 	 */
 	private void validateChrono(TemporalAccessor temporal) {
 		Objects.requireNonNull(temporal, "temporal");
-		Chronology temporalChrono = temporal.query(TemporalQueries.chronology());
-		if (temporalChrono != null && IsoChronology.INSTANCE.equals(temporalChrono) == false) {
+		Chronology temporalChrono = temporal.query(TemporalQueries
+				.chronology());
+		if (temporalChrono != null && IsoChronology.INSTANCE.equals(
+				temporalChrono) == false) {
 			throw new DateTimeException(
-					"Chronology mismatch, expected: ISO, actual: " + temporalChrono.getId());
+					"Chronology mismatch, expected: ISO, actual: "
+							+ temporalChrono.getId());
 		}
 	}
 
@@ -1071,7 +1058,8 @@ public final class Period implements ChronoPeriod, Serializable {
 		}
 		if (obj instanceof Period) {
 			Period other = (Period) obj;
-			return years == other.years && months == other.months && days == other.days;
+			return years == other.years && months == other.months
+					&& days == other.days;
 		}
 		return false;
 	}
@@ -1083,7 +1071,8 @@ public final class Period implements ChronoPeriod, Serializable {
 	 */
 	@Override
 	public int hashCode() {
-		return years + Integer.rotateLeft(months, 8) + Integer.rotateLeft(days, 16);
+		return years + Integer.rotateLeft(months, 8) + Integer.rotateLeft(days,
+				16);
 	}
 
 	// -----------------------------------------------------------------------
@@ -1140,12 +1129,13 @@ public final class Period implements ChronoPeriod, Serializable {
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws java.io.InvalidObjectException
-	 *             always
+	 *         always
 	 */
 	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 
 	void writeExternal(DataOutput out) throws IOException {

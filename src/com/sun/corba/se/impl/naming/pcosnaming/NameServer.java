@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.naming.pcosnaming;
@@ -60,13 +40,14 @@ public class NameServer {
 		// create the ORB Object
 		java.util.Properties props = System.getProperties();
 		props.put(ORBConstants.SERVER_ID_PROPERTY, "1000");
-		props.put("org.omg.CORBA.ORBClass", "com.sun.corba.se.impl.orb.ORBImpl");
+		props.put("org.omg.CORBA.ORBClass",
+				"com.sun.corba.se.impl.orb.ORBImpl");
 		orb = (ORB) org.omg.CORBA.ORB.init(args, props);
 
 		// set up the database directory
 		String dbDirName = props.getProperty(ORBConstants.DB_DIR_PROPERTY)
-				+ props.getProperty("file.separator") + dbName
-				+ props.getProperty("file.separator");
+				+ props.getProperty("file.separator") + dbName + props
+						.getProperty("file.separator");
 
 		dbDir = new File(dbDirName);
 		if (!dbDir.exists())
@@ -81,8 +62,9 @@ public class NameServer {
 
 			// add root naming context to initial naming
 			NamingContext rootContext = ns.initialNamingContext();
-			InitialNameService ins = InitialNameServiceHelper
-					.narrow(orb.resolve_initial_references(ORBConstants.INITIAL_NAME_SERVICE_NAME));
+			InitialNameService ins = InitialNameServiceHelper.narrow(orb
+					.resolve_initial_references(
+							ORBConstants.INITIAL_NAME_SERVICE_NAME));
 			ins.bind("NameService", rootContext, true);
 			System.out.println(CorbaResourceUtil.getText("pnameserv.success"));
 

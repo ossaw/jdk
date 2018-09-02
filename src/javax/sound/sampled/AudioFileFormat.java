@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled;
@@ -133,19 +113,20 @@ public class AudioFileFormat {
 	 * information about an audio file or about supported audio file formats.
 	 * 
 	 * @param type
-	 *            the type of the audio file
+	 *                    the type of the audio file
 	 * @param byteLength
-	 *            the length of the file in bytes, or
-	 *            <code>AudioSystem.NOT_SPECIFIED</code>
+	 *                    the length of the file in bytes, or
+	 *                    <code>AudioSystem.NOT_SPECIFIED</code>
 	 * @param format
-	 *            the format of the audio data contained in the file
+	 *                    the format of the audio data contained in the file
 	 * @param frameLength
-	 *            the audio data length in sample frames, or
-	 *            <code>AudioSystem.NOT_SPECIFIED</code>
+	 *                    the audio data length in sample frames, or
+	 *                    <code>AudioSystem.NOT_SPECIFIED</code>
 	 *
 	 * @see #getType
 	 */
-	protected AudioFileFormat(Type type, int byteLength, AudioFormat format, int frameLength) {
+	protected AudioFileFormat(Type type, int byteLength, AudioFormat format,
+			int frameLength) {
 
 		this.type = type;
 		this.byteLength = byteLength;
@@ -160,12 +141,12 @@ public class AudioFileFormat {
 	 * file.
 	 * 
 	 * @param type
-	 *            the type of the audio file
+	 *                    the type of the audio file
 	 * @param format
-	 *            the format of the audio data contained in the file
+	 *                    the format of the audio data contained in the file
 	 * @param frameLength
-	 *            the audio data length in sample frames, or
-	 *            <code>AudioSystem.NOT_SPECIFIED</code>
+	 *                    the audio data length in sample frames, or
+	 *                    <code>AudioSystem.NOT_SPECIFIED</code>
 	 */
 	public AudioFileFormat(Type type, AudioFormat format, int frameLength) {
 
@@ -179,14 +160,15 @@ public class AudioFileFormat {
 	 * to prevent any changes to it.
 	 *
 	 * @param type
-	 *            the type of the audio file
+	 *                    the type of the audio file
 	 * @param format
-	 *            the format of the audio data contained in the file
+	 *                    the format of the audio data contained in the file
 	 * @param frameLength
-	 *            the audio data length in sample frames, or
-	 *            <code>AudioSystem.NOT_SPECIFIED</code>
+	 *                    the audio data length in sample frames, or
+	 *                    <code>AudioSystem.NOT_SPECIFIED</code>
 	 * @param properties
-	 *            a <code>Map&lt;String,Object&gt;</code> object with properties
+	 *                    a <code>Map&lt;String,Object&gt;</code> object with
+	 *                    properties
 	 *
 	 * @since 1.5
 	 */
@@ -299,7 +281,8 @@ public class AudioFileFormat {
 		// $$fb2002-11-01: fix for 4672864: AudioFileFormat.toString() throws
 		// unexpected NullPointerException
 		if (type != null) {
-			buf.append(type.toString() + " (." + type.getExtension() + ") file");
+			buf.append(type.toString() + " (." + type.getExtension()
+					+ ") file");
 		} else {
 			buf.append("unknown file format");
 		}
@@ -368,10 +351,10 @@ public class AudioFileFormat {
 		 * Constructs a file type.
 		 * 
 		 * @param name
-		 *            the string that names the file type
+		 *                  the string that names the file type
 		 * @param extension
-		 *            the string that commonly marks the file type without
-		 *            leading dot.
+		 *                  the string that commonly marks the file type without
+		 *                  leading dot.
 		 */
 		public Type(String name, String extension) {
 

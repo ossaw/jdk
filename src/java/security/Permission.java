@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -71,7 +51,7 @@ public abstract class Permission implements Guard, java.io.Serializable {
 	 * Constructs a permission with the specified name.
 	 *
 	 * @param name
-	 *            name of the Permission object being created.
+	 *             name of the Permission object being created.
 	 *
 	 */
 
@@ -86,11 +66,12 @@ public abstract class Permission implements Guard, java.io.Serializable {
 	 * is granted. Otherwise, throws a SecurityException.
 	 *
 	 * @param object
-	 *            the object being guarded (currently ignored).
+	 *               the object being guarded (currently ignored).
 	 *
 	 * @throws SecurityException
-	 *             if a security manager exists and its {@code checkPermission}
-	 *             method doesn't allow access.
+	 *                           if a security manager exists and its
+	 *                           {@code checkPermission}
+	 *                           method doesn't allow access.
 	 *
 	 * @see Guard
 	 * @see GuardedObject
@@ -116,7 +97,7 @@ public abstract class Permission implements Guard, java.io.Serializable {
 	 * that is known to be valid in the current execution context.
 	 *
 	 * @param permission
-	 *            the permission to check against.
+	 *                   the permission to check against.
 	 *
 	 * @return true if the specified permission is implied by this object, false
 	 *         if not.
@@ -221,7 +202,8 @@ public abstract class Permission implements Guard, java.io.Serializable {
 		if ((actions == null) || (actions.length() == 0)) { // OPTIONAL
 			return "(\"" + getClass().getName() + "\" \"" + name + "\")";
 		} else {
-			return "(\"" + getClass().getName() + "\" \"" + name + "\" \"" + actions + "\")";
+			return "(\"" + getClass().getName() + "\" \"" + name + "\" \""
+					+ actions + "\")";
 		}
 	}
 }

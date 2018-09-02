@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -51,7 +48,7 @@ public class FuncLast extends Function {
 	 * Get the position in the current context node list.
 	 *
 	 * @param xctxt
-	 *            non-null reference to XPath runtime context.
+	 *              non-null reference to XPath runtime context.
 	 *
 	 * @return The number of nodes in the list.
 	 *
@@ -83,12 +80,13 @@ public class FuncLast extends Function {
 	 * Execute the function. The function must return a valid object.
 	 * 
 	 * @param xctxt
-	 *            The current execution context.
+	 *              The current execution context.
 	 * @return A valid XObject.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		XNumber xnum = new XNumber((double) getCountOfContextNodeList(xctxt));
 		// System.out.println("last: "+xnum.num());
 		return xnum;

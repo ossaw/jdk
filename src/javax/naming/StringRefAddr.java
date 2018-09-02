@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -63,10 +43,11 @@ public class StringRefAddr extends RefAddr {
 	 * contents.
 	 *
 	 * @param addrType
-	 *            A non-null string describing the type of the address.
+	 *                 A non-null string describing the type of the address.
 	 * @param addr
-	 *            The possibly null contents of the address in the form of a
-	 *            string.
+	 *                 The possibly null contents of the address in the form of
+	 *                 a
+	 *                 string.
 	 */
 	public StringRefAddr(String addrType, String addr) {
 		super(addrType);

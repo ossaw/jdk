@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -42,8 +22,8 @@ import sun.swing.table.*;
  * @author Philip Milne
  * @since 1.7
  */
-public class SynthTableHeaderUI extends BasicTableHeaderUI
-		implements PropertyChangeListener, SynthUI {
+public class SynthTableHeaderUI extends BasicTableHeaderUI implements
+		PropertyChangeListener, SynthUI {
 
 	//
 	// Instance Variables
@@ -57,7 +37,7 @@ public class SynthTableHeaderUI extends BasicTableHeaderUI
 	 * Creates a new UI object for the given component.
 	 *
 	 * @param h
-	 *            component to create UI object for
+	 *          component to create UI object for
 	 * @return the UI object
 	 */
 	public static ComponentUI createUI(JComponent h) {
@@ -133,9 +113,9 @@ public class SynthTableHeaderUI extends BasicTableHeaderUI
 	 * Look and Feel rendering code should reside in the {@code paint} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -143,8 +123,8 @@ public class SynthTableHeaderUI extends BasicTableHeaderUI
 		SynthContext context = getContext(c);
 
 		SynthLookAndFeel.update(context, g);
-		context.getPainter().paintTableHeaderBackground(context, g, 0, 0, c.getWidth(),
-				c.getHeight());
+		context.getPainter().paintTableHeaderBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight());
 		paint(context, g);
 		context.dispose();
 	}
@@ -156,9 +136,9 @@ public class SynthTableHeaderUI extends BasicTableHeaderUI
 	 * the {@link #paint(SynthContext,Graphics)} method.
 	 *
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *          the {@code Graphics} object used for painting
 	 * @param c
-	 *            the component being painted
+	 *          the component being painted
 	 * @see #paint(SynthContext,Graphics)
 	 */
 	@Override
@@ -173,9 +153,9 @@ public class SynthTableHeaderUI extends BasicTableHeaderUI
 	 * Paints the specified component.
 	 *
 	 * @param context
-	 *            context for the component being painted
+	 *                context for the component being painted
 	 * @param g
-	 *            the {@code Graphics} object used for painting
+	 *                the {@code Graphics} object used for painting
 	 * @see #update(Graphics,JComponent)
 	 */
 	protected void paint(SynthContext context, Graphics g) {
@@ -186,7 +166,8 @@ public class SynthTableHeaderUI extends BasicTableHeaderUI
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
 		context.getPainter().paintTableHeaderBorder(context, g, x, y, w, h);
 	}
 
@@ -231,14 +212,15 @@ public class SynthTableHeaderUI extends BasicTableHeaderUI
 		}
 
 		@Override
-		public Component getTableCellRendererComponent(JTable table, Object value,
-				boolean isSelected, boolean hasFocus, int row, int column) {
+		public Component getTableCellRendererComponent(JTable table,
+				Object value, boolean isSelected, boolean hasFocus, int row,
+				int column) {
 
 			boolean hasRollover = (column == getRolloverColumn());
 			if (isSelected || hasRollover || hasFocus) {
-				SynthLookAndFeel.setSelectedUI(
-						(SynthLabelUI) SynthLookAndFeel.getUIOfType(getUI(), SynthLabelUI.class),
-						isSelected, hasFocus, table.isEnabled(), hasRollover);
+				SynthLookAndFeel.setSelectedUI((SynthLabelUI) SynthLookAndFeel
+						.getUIOfType(getUI(), SynthLabelUI.class), isSelected,
+						hasFocus, table.isEnabled(), hasRollover);
 			} else {
 				SynthLookAndFeel.resetSelectedUI();
 			}
@@ -248,28 +230,30 @@ public class SynthTableHeaderUI extends BasicTableHeaderUI
 			// so that different rendering can be done for the header based on
 			// sorted state.
 			RowSorter rs = table == null ? null : table.getRowSorter();
-			java.util.List<? extends RowSorter.SortKey> sortKeys = rs == null ? null
+			java.util.List<? extends RowSorter.SortKey> sortKeys = rs == null
+					? null
 					: rs.getSortKeys();
-			if (sortKeys != null && sortKeys.size() > 0
-					&& sortKeys.get(0).getColumn() == table.convertColumnIndexToModel(column)) {
+			if (sortKeys != null && sortKeys.size() > 0 && sortKeys.get(0)
+					.getColumn() == table.convertColumnIndexToModel(column)) {
 				switch (sortKeys.get(0).getSortOrder()) {
-				case ASCENDING:
-					putClientProperty("Table.sortOrder", "ASCENDING");
-					break;
-				case DESCENDING:
-					putClientProperty("Table.sortOrder", "DESCENDING");
-					break;
-				case UNSORTED:
-					putClientProperty("Table.sortOrder", "UNSORTED");
-					break;
-				default:
-					throw new AssertionError("Cannot happen");
+					case ASCENDING:
+						putClientProperty("Table.sortOrder", "ASCENDING");
+						break;
+					case DESCENDING:
+						putClientProperty("Table.sortOrder", "DESCENDING");
+						break;
+					case UNSORTED:
+						putClientProperty("Table.sortOrder", "UNSORTED");
+						break;
+					default:
+						throw new AssertionError("Cannot happen");
 				}
 			} else {
 				putClientProperty("Table.sortOrder", "UNSORTED");
 			}
 
-			super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			super.getTableCellRendererComponent(table, value, isSelected,
+					hasFocus, row, column);
 
 			return this;
 		}

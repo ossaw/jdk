@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package org.omg.CORBA.portable;
@@ -52,7 +31,7 @@ public interface ValueFactory {
 	 * specific value factory.
 	 * 
 	 * @param is
-	 *            an InputStream object--from which the value will be read.
+	 *           an InputStream object--from which the value will be read.
 	 * @return a Serializable object--the value read off of "is" Input stream.
 	 */
 	Serializable read_value(org.omg.CORBA_2_3.portable.InputStream is);

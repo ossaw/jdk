@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -103,11 +83,11 @@ public class ByteArrayInputStream extends InputStream {
 	 * offset.
 	 *
 	 * @param buf
-	 *            the input buffer.
+	 *               the input buffer.
 	 * @param offset
-	 *            the offset in the buffer of the first byte to read.
+	 *               the offset in the buffer of the first byte to read.
 	 * @param length
-	 *            the maximum number of bytes to read from the buffer.
+	 *               the maximum number of bytes to read from the buffer.
 	 */
 	public ByteArrayInputStream(byte buf[], int offset, int length) {
 		this.buf = buf;
@@ -155,11 +135,14 @@ public class ByteArrayInputStream extends InputStream {
 	 *         <code>-1</code> if there is no more data because the end of the
 	 *         stream has been reached.
 	 * @exception NullPointerException
-	 *                If <code>b</code> is <code>null</code>.
+	 *                                      If <code>b</code> is
+	 *                                      <code>null</code>.
 	 * @exception IndexOutOfBoundsException
-	 *                If <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>len</code> is greater than
-	 *                <code>b.length - off</code>
+	 *                                      If <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>len</code> is
+	 *                                      greater than
+	 *                                      <code>b.length - off</code>
 	 */
 	public synchronized int read(byte b[], int off, int len) {
 		if (b == null) {
@@ -192,7 +175,7 @@ public class ByteArrayInputStream extends InputStream {
 	 * added into <code>pos</code> and <code>k</code> is returned.
 	 *
 	 * @param n
-	 *            the number of bytes to be skipped.
+	 *          the number of bytes to be skipped.
 	 * @return the actual number of bytes skipped.
 	 */
 	public synchronized long skip(long n) {
@@ -261,7 +244,6 @@ public class ByteArrayInputStream extends InputStream {
 	 * this class can be called after the stream has been closed without
 	 * generating an <tt>IOException</tt>.
 	 */
-	public void close() throws IOException {
-	}
+	public void close() throws IOException {}
 
 }

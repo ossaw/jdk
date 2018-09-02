@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -56,11 +36,14 @@ public abstract class AlgorithmParametersSpi {
 	 * {@code paramSpec}.
 	 *
 	 * @param paramSpec
-	 *            the parameter specification.
+	 *                  the parameter specification.
 	 *
 	 * @exception InvalidParameterSpecException
-	 *                if the given parameter specification is inappropriate for
-	 *                the initialization of this parameter object.
+	 *                                          if the given parameter
+	 *                                          specification is inappropriate
+	 *                                          for
+	 *                                          the initialization of this
+	 *                                          parameter object.
 	 */
 	protected abstract void engineInit(AlgorithmParameterSpec paramSpec)
 			throws InvalidParameterSpecException;
@@ -72,10 +55,10 @@ public abstract class AlgorithmParametersSpi {
 	 * parameters exists.
 	 *
 	 * @param params
-	 *            the encoded parameters.
+	 *               the encoded parameters.
 	 *
 	 * @exception IOException
-	 *                on decoding errors
+	 *                        on decoding errors
 	 */
 	protected abstract void engineInit(byte[] params) throws IOException;
 
@@ -86,15 +69,16 @@ public abstract class AlgorithmParametersSpi {
 	 * ASN.1, if an ASN.1 specification for these parameters exists.
 	 *
 	 * @param params
-	 *            the encoded parameters.
+	 *               the encoded parameters.
 	 *
 	 * @param format
-	 *            the name of the decoding format.
+	 *               the name of the decoding format.
 	 *
 	 * @exception IOException
-	 *                on decoding errors
+	 *                        on decoding errors
 	 */
-	protected abstract void engineInit(byte[] params, String format) throws IOException;
+	protected abstract void engineInit(byte[] params, String format)
+			throws IOException;
 
 	/**
 	 * Returns a (transparent) specification of this parameters object.
@@ -103,18 +87,20 @@ public abstract class AlgorithmParametersSpi {
 	 * {@code DSAParameterSpec.class}, to indicate that the parameters should be
 	 * returned in an instance of the {@code DSAParameterSpec} class.
 	 *
-	 * @param <T>
-	 *            the type of the parameter specification to be returned
+	 * @param           <T>
+	 *                  the type of the parameter specification to be returned
 	 *
 	 * @param paramSpec
-	 *            the specification class in which the parameters should be
-	 *            returned.
+	 *                  the specification class in which the parameters should
+	 *                  be
+	 *                  returned.
 	 *
 	 * @return the parameter specification.
 	 *
 	 * @exception InvalidParameterSpecException
-	 *                if the requested parameter specification is inappropriate
-	 *                for this parameter object.
+	 *                                          if the requested parameter
+	 *                                          specification is inappropriate
+	 *                                          for this parameter object.
 	 */
 	protected abstract <T extends AlgorithmParameterSpec> T engineGetParameterSpec(
 			Class<T> paramSpec) throws InvalidParameterSpecException;
@@ -127,7 +113,7 @@ public abstract class AlgorithmParametersSpi {
 	 * @return the parameters encoded using their primary encoding format.
 	 *
 	 * @exception IOException
-	 *                on encoding errors.
+	 *                        on encoding errors.
 	 */
 	protected abstract byte[] engineGetEncoded() throws IOException;
 
@@ -138,14 +124,15 @@ public abstract class AlgorithmParametersSpi {
 	 * exists.
 	 *
 	 * @param format
-	 *            the name of the encoding format.
+	 *               the name of the encoding format.
 	 *
 	 * @return the parameters encoded using the specified encoding scheme.
 	 *
 	 * @exception IOException
-	 *                on encoding errors.
+	 *                        on encoding errors.
 	 */
-	protected abstract byte[] engineGetEncoded(String format) throws IOException;
+	protected abstract byte[] engineGetEncoded(String format)
+			throws IOException;
 
 	/**
 	 * Returns a formatted string describing the parameters.

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -81,13 +61,15 @@ abstract class Effect {
 	 *            applied to it
 	 * @return The result of appl
 	 */
-	abstract BufferedImage applyEffect(BufferedImage src, BufferedImage dst, int w, int h);
+	abstract BufferedImage applyEffect(BufferedImage src, BufferedImage dst,
+			int w, int h);
 
 	// =================================================================================================================
 	// Static data cache
 
 	protected static ArrayCache getArrayCache() {
-		ArrayCache cache = (ArrayCache) AppContext.getAppContext().get(ArrayCache.class);
+		ArrayCache cache = (ArrayCache) AppContext.getAppContext().get(
+				ArrayCache.class);
 		if (cache == null) {
 			cache = new ArrayCache();
 			AppContext.getAppContext().put(ArrayCache.class, cache);
@@ -103,7 +85,8 @@ abstract class Effect {
 
 		protected int[] getTmpIntArray(int size) {
 			int[] tmp;
-			if (tmpIntArray == null || (tmp = tmpIntArray.get()) == null || tmp.length < size) {
+			if (tmpIntArray == null || (tmp = tmpIntArray.get()) == null
+					|| tmp.length < size) {
 				// create new array
 				tmp = new int[size];
 				tmpIntArray = new SoftReference<int[]>(tmp);
@@ -113,7 +96,8 @@ abstract class Effect {
 
 		protected byte[] getTmpByteArray1(int size) {
 			byte[] tmp;
-			if (tmpByteArray1 == null || (tmp = tmpByteArray1.get()) == null || tmp.length < size) {
+			if (tmpByteArray1 == null || (tmp = tmpByteArray1.get()) == null
+					|| tmp.length < size) {
 				// create new array
 				tmp = new byte[size];
 				tmpByteArray1 = new SoftReference<byte[]>(tmp);
@@ -123,7 +107,8 @@ abstract class Effect {
 
 		protected byte[] getTmpByteArray2(int size) {
 			byte[] tmp;
-			if (tmpByteArray2 == null || (tmp = tmpByteArray2.get()) == null || tmp.length < size) {
+			if (tmpByteArray2 == null || (tmp = tmpByteArray2.get()) == null
+					|| tmp.length < size) {
 				// create new array
 				tmp = new byte[size];
 				tmpByteArray2 = new SoftReference<byte[]>(tmp);
@@ -133,7 +118,8 @@ abstract class Effect {
 
 		protected byte[] getTmpByteArray3(int size) {
 			byte[] tmp;
-			if (tmpByteArray3 == null || (tmp = tmpByteArray3.get()) == null || tmp.length < size) {
+			if (tmpByteArray3 == null || (tmp = tmpByteArray3.get()) == null
+					|| tmp.length < size) {
 				// create new array
 				tmp = new byte[size];
 				tmpByteArray3 = new SoftReference<byte[]>(tmp);

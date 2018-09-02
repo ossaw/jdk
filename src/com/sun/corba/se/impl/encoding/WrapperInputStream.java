@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.encoding;
@@ -313,7 +293,8 @@ public class WrapperInputStream extends org.omg.CORBA_2_3.portable.InputStream
 		while (i.hasNext()) {
 			Integer pos = (Integer) i.next();
 			TypeCodeImpl tci = (TypeCodeImpl) typeMap.get(pos);
-			System.out.println("  key = " + pos.intValue() + ", value = " + tci.description());
+			System.out.println("  key = " + pos.intValue() + ", value = " + tci
+					.description());
 		}
 		System.out.println("}");
 	}

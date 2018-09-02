@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -82,7 +62,8 @@ import javax.swing.plaf.synth.SynthConstants;
  * </pre>
  */
 public abstract class State<T extends JComponent> {
-	static final Map<String, StandardState> standardStates = new HashMap<String, StandardState>(7);
+	static final Map<String, StandardState> standardStates = new HashMap<String, StandardState>(
+			7);
 	static final State Enabled = new StandardState(SynthConstants.ENABLED);
 	static final State MouseOver = new StandardState(SynthConstants.MOUSE_OVER);
 	static final State Pressed = new StandardState(SynthConstants.PRESSED);
@@ -112,10 +93,10 @@ public abstract class State<T extends JComponent> {
 	 * </pre>
 	 *
 	 * @param name
-	 *            a simple user friendly name for the state, such as
-	 *            "Indeterminate" or "EmbeddedPanel" or "Blurred". It is
-	 *            customary to use camel case, with the first letter
-	 *            capitalized.
+	 *             a simple user friendly name for the state, such as
+	 *             "Indeterminate" or "EmbeddedPanel" or "Blurred". It is
+	 *             customary to use camel case, with the first letter
+	 *             capitalized.
 	 */
 	protected State(String name) {
 		this.name = name;
@@ -175,7 +156,7 @@ public abstract class State<T extends JComponent> {
 	 * </pre>
 	 *
 	 * @param c
-	 *            the JComponent to test. This will never be null.
+	 *          the JComponent to test. This will never be null.
 	 * @return true if <code>c</code> is in the custom state represented by this
 	 *         <code>State</code> instance
 	 */
@@ -236,7 +217,8 @@ public abstract class State<T extends JComponent> {
 					buffer.append("+");
 				buffer.append("Focused");
 			}
-			if ((state & SynthConstants.MOUSE_OVER) == SynthConstants.MOUSE_OVER) {
+			if ((state
+					& SynthConstants.MOUSE_OVER) == SynthConstants.MOUSE_OVER) {
 				if (buffer.length() > 0)
 					buffer.append("+");
 				buffer.append("MouseOver");

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,7 +44,7 @@ public class FilterExprWalker extends AxesWalker {
 	 * Construct a FilterExprWalker using a LocPathIterator.
 	 *
 	 * @param locPathIterator
-	 *            non-null reference to the parent iterator.
+	 *                        non-null reference to the parent iterator.
 	 */
 	public FilterExprWalker(WalkingIterator locPathIterator) {
 		super(locPathIterator, Axis.FILTEREDLIST);
@@ -57,11 +54,11 @@ public class FilterExprWalker extends AxesWalker {
 	 * Init a FilterExprWalker.
 	 *
 	 * @param compiler
-	 *            non-null reference to the Compiler that is constructing.
+	 *                 non-null reference to the Compiler that is constructing.
 	 * @param opPos
-	 *            positive opcode position for this step.
+	 *                 positive opcode position for this step.
 	 * @param stepType
-	 *            The type of step.
+	 *                 The type of step.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -72,23 +69,23 @@ public class FilterExprWalker extends AxesWalker {
 
 		// Smooth over an anomily in the opcode map...
 		switch (stepType) {
-		case OpCodes.OP_FUNCTION:
-		case OpCodes.OP_EXTFUNCTION:
-			m_mustHardReset = true;
-		case OpCodes.OP_GROUP:
-		case OpCodes.OP_VARIABLE:
-			m_expr = compiler.compile(opPos);
-			m_expr.exprSetParent(this);
-			// if((OpCodes.OP_FUNCTION == stepType) && (m_expr instanceof
-			// com.sun.org.apache.xalan.internal.templates.FuncKey))
-			if (m_expr instanceof com.sun.org.apache.xpath.internal.operations.Variable) {
-				// hack/temp workaround
-				m_canDetachNodeset = false;
-			}
-			break;
-		default:
-			m_expr = compiler.compile(opPos + 2);
-			m_expr.exprSetParent(this);
+			case OpCodes.OP_FUNCTION:
+			case OpCodes.OP_EXTFUNCTION:
+				m_mustHardReset = true;
+			case OpCodes.OP_GROUP:
+			case OpCodes.OP_VARIABLE:
+				m_expr = compiler.compile(opPos);
+				m_expr.exprSetParent(this);
+				// if((OpCodes.OP_FUNCTION == stepType) && (m_expr instanceof
+				// com.sun.org.apache.xalan.internal.templates.FuncKey))
+				if (m_expr instanceof com.sun.org.apache.xpath.internal.operations.Variable) {
+					// hack/temp workaround
+					m_canDetachNodeset = false;
+				}
+				break;
+			default:
+				m_expr = compiler.compile(opPos + 2);
+				m_expr.exprSetParent(this);
 		}
 		// if(m_expr instanceof WalkingIterator)
 		// {
@@ -122,15 +119,16 @@ public class FilterExprWalker extends AxesWalker {
 	 * Set the root node of the TreeWalker.
 	 *
 	 * @param root
-	 *            non-null reference to the root, or starting point of the
-	 *            query.
+	 *             non-null reference to the root, or starting point of the
+	 *             query.
 	 */
 	public void setRoot(int root) {
 
 		super.setRoot(root);
 
-		m_exprObj = FilterExprIteratorSimple.executeFilterExpr(root, m_lpi.getXPathContext(),
-				m_lpi.getPrefixResolver(), m_lpi.getIsTopLevel(), m_lpi.m_stackFrame, m_expr);
+		m_exprObj = FilterExprIteratorSimple.executeFilterExpr(root, m_lpi
+				.getXPathContext(), m_lpi.getPrefixResolver(), m_lpi
+						.getIsTopLevel(), m_lpi.m_stackFrame, m_expr);
 
 	}
 
@@ -158,7 +156,7 @@ public class FilterExprWalker extends AxesWalker {
 	 * FilterExprWalkers don't need to, and shouldn't, do a node test.
 	 * 
 	 * @param n
-	 *            The node to check to see if it passes the filter or not.
+	 *          The node to check to see if it passes the filter or not.
 	 * @return a constant to determine whether the node is accepted, rejected,
 	 *         or skipped, as defined above .
 	 */
@@ -202,7 +200,7 @@ public class FilterExprWalker extends AxesWalker {
 	 *
 	 *
 	 * @param xctxt
-	 *            XPath runtime context.
+	 *              XPath runtime context.
 	 *
 	 * @return the index of the last node that can be itterated to.
 	 */
@@ -228,13 +226,13 @@ public class FilterExprWalker extends AxesWalker {
 	 * indexes at stylesheet build time.
 	 * 
 	 * @param vars
-	 *            List of QNames that correspond to variables. This list should
-	 *            be searched backwards for the first qualified name that
-	 *            corresponds to the variable reference qname. The position of
-	 *            the QName in the vector from the start of the vector will be
-	 *            its position in the stack frame (but variables above the
-	 *            globalsTop value will need to be offset to the current stack
-	 *            frame).
+	 *             List of QNames that correspond to variables. This list should
+	 *             be searched backwards for the first qualified name that
+	 *             corresponds to the variable reference qname. The position of
+	 *             the QName in the vector from the start of the vector will be
+	 *             its position in the stack frame (but variables above the
+	 *             globalsTop value will need to be offset to the current stack
+	 *             frame).
 	 */
 	public void fixupVariables(java.util.Vector vars, int globalsSize) {
 		super.fixupVariables(vars, globalsSize);
@@ -312,7 +310,7 @@ public class FilterExprWalker extends AxesWalker {
 	 * called.
 	 *
 	 * @param visitor
-	 *            The visitor whose appropriate method will be called.
+	 *                The visitor whose appropriate method will be called.
 	 */
 	public void callPredicateVisitors(XPathVisitor visitor) {
 		m_expr.callVisitors(new filterExprOwner(), visitor);

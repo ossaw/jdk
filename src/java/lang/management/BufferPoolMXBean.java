@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.management;
@@ -39,7 +19,8 @@ package java.lang.management;
  * pools of buffers as follows:
  * 
  * <pre>
- * List&lt;BufferPoolMXBean&gt; pools = ManagementFactory.getPlatformMXBeans(BufferPoolMXBean.class);
+ * List&lt;BufferPoolMXBean&gt; pools = ManagementFactory.getPlatformMXBeans(
+ * 		BufferPoolMXBean.class);
  * </pre>
  *
  * <p>

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -73,10 +53,10 @@ abstract public class ContentHandler {
 	 * object from it.
 	 *
 	 * @param urlc
-	 *            a URL connection.
+	 *             a URL connection.
 	 * @return the object read by the {@code ContentHandler}.
 	 * @exception IOException
-	 *                if an I/O error occurs while reading the object.
+	 *                        if an I/O error occurs while reading the object.
 	 */
 	abstract public Object getContent(URLConnection urlc) throws IOException;
 
@@ -89,18 +69,19 @@ abstract public class ContentHandler {
 	 * screen the return type for a match of the suggested types.
 	 *
 	 * @param urlc
-	 *            a URL connection.
+	 *                a URL connection.
 	 * @param classes
-	 *            an array of types requested
+	 *                an array of types requested
 	 * @return the object read by the {@code ContentHandler} that is the first
 	 *         match of the suggested types. null if none of the requested are
 	 *         supported.
 	 * @exception IOException
-	 *                if an I/O error occurs while reading the object.
+	 *                        if an I/O error occurs while reading the object.
 	 * @since 1.3
 	 */
 	@SuppressWarnings("rawtypes")
-	public Object getContent(URLConnection urlc, Class[] classes) throws IOException {
+	public Object getContent(URLConnection urlc, Class[] classes)
+			throws IOException {
 		Object obj = getContent(urlc);
 
 		for (int i = 0; i < classes.length; i++) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -94,34 +74,44 @@ public class ProgressMonitor implements Accessible {
 	 * a rectangular bar as the process nears completion.
 	 *
 	 * @param parentComponent
-	 *            the parent component for the dialog box
+	 *                        the parent component for the dialog box
 	 * @param message
-	 *            a descriptive message that will be shown to the user to
-	 *            indicate what operation is being monitored. This does not
-	 *            change as the operation progresses. See the message parameters
-	 *            to methods in {@link JOptionPane#message} for the range of
-	 *            values.
+	 *                        a descriptive message that will be shown to the
+	 *                        user to
+	 *                        indicate what operation is being monitored. This
+	 *                        does not
+	 *                        change as the operation progresses. See the
+	 *                        message parameters
+	 *                        to methods in {@link JOptionPane#message} for the
+	 *                        range of
+	 *                        values.
 	 * @param note
-	 *            a short note describing the state of the operation. As the
-	 *            operation progresses, you can call setNote to change the note
-	 *            displayed. This is used, for example, in operations that
-	 *            iterate through a list of files to show the name of the file
-	 *            being processes. If note is initially null, there will be no
-	 *            note line in the dialog box and setNote will be ineffective
+	 *                        a short note describing the state of the
+	 *                        operation. As the
+	 *                        operation progresses, you can call setNote to
+	 *                        change the note
+	 *                        displayed. This is used, for example, in
+	 *                        operations that
+	 *                        iterate through a list of files to show the name
+	 *                        of the file
+	 *                        being processes. If note is initially null, there
+	 *                        will be no
+	 *                        note line in the dialog box and setNote will be
+	 *                        ineffective
 	 * @param min
-	 *            the lower bound of the range
+	 *                        the lower bound of the range
 	 * @param max
-	 *            the upper bound of the range
+	 *                        the upper bound of the range
 	 * @see JDialog
 	 * @see JOptionPane
 	 */
-	public ProgressMonitor(Component parentComponent, Object message, String note, int min,
-			int max) {
+	public ProgressMonitor(Component parentComponent, Object message,
+			String note, int min, int max) {
 		this(parentComponent, message, note, min, max, null);
 	}
 
-	private ProgressMonitor(Component parentComponent, Object message, String note, int min,
-			int max, ProgressMonitor group) {
+	private ProgressMonitor(Component parentComponent, Object message,
+			String note, int min, int max, ProgressMonitor group) {
 		this.min = min;
 		this.max = max;
 		this.parentComponent = parentComponent;
@@ -142,7 +132,8 @@ public class ProgressMonitor implements Accessible {
 
 	private class ProgressOptionPane extends JOptionPane {
 		ProgressOptionPane(Object messageList) {
-			super(messageList, JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, null,
+			super(messageList, JOptionPane.INFORMATION_MESSAGE,
+					JOptionPane.DEFAULT_OPTION, null,
 					ProgressMonitor.this.cancelOption, null);
 		}
 
@@ -192,9 +183,11 @@ public class ProgressMonitor implements Accessible {
 
 			addPropertyChangeListener(new PropertyChangeListener() {
 				public void propertyChange(PropertyChangeEvent event) {
-					if (dialog.isVisible() && event.getSource() == ProgressOptionPane.this
-							&& (event.getPropertyName().equals(VALUE_PROPERTY)
-									|| event.getPropertyName().equals(INPUT_VALUE_PROPERTY))) {
+					if (dialog.isVisible() && event
+							.getSource() == ProgressOptionPane.this && (event
+									.getPropertyName().equals(VALUE_PROPERTY)
+									|| event.getPropertyName().equals(
+											INPUT_VALUE_PROPERTY))) {
 						dialog.setVisible(false);
 						dialog.dispose();
 					}
@@ -231,8 +224,8 @@ public class ProgressMonitor implements Accessible {
 	 * value is &gt;= the maximum, the progress monitor is closed.
 	 * 
 	 * @param nv
-	 *            an int specifying the current value, between the maximum and
-	 *            minimum specified for this component
+	 *           an int specifying the current value, between the maximum and
+	 *           minimum specified for this component
 	 * @see #setMinimum
 	 * @see #setMaximum
 	 * @see #close
@@ -249,7 +242,8 @@ public class ProgressMonitor implements Accessible {
 				if (dT >= millisToDecideToPopup) {
 					int predictedCompletionTime;
 					if (nv > min) {
-						predictedCompletionTime = (int) (dT * (max - min) / (nv - min));
+						predictedCompletionTime = (int) (dT * (max - min) / (nv
+								- min));
 					} else {
 						predictedCompletionTime = millisToPopup;
 					}
@@ -260,9 +254,10 @@ public class ProgressMonitor implements Accessible {
 						myBar.setValue(nv);
 						if (note != null)
 							noteLabel = new JLabel(note);
-						pane = new ProgressOptionPane(new Object[] { message, noteLabel, myBar });
-						dialog = pane.createDialog(parentComponent,
-								UIManager.getString("ProgressMonitor.progressText"));
+						pane = new ProgressOptionPane(new Object[] { message,
+								noteLabel, myBar });
+						dialog = pane.createDialog(parentComponent, UIManager
+								.getString("ProgressMonitor.progressText"));
 						dialog.show();
 					}
 				}
@@ -299,7 +294,7 @@ public class ProgressMonitor implements Accessible {
 	 * Specifies the minimum value.
 	 *
 	 * @param m
-	 *            an int specifying the minimum value
+	 *          an int specifying the minimum value
 	 * @see #getMinimum
 	 */
 	public void setMinimum(int m) {
@@ -323,7 +318,7 @@ public class ProgressMonitor implements Accessible {
 	 * Specifies the maximum value.
 	 *
 	 * @param m
-	 *            an int specifying the maximum value
+	 *          an int specifying the maximum value
 	 * @see #getMaximum
 	 */
 	public void setMaximum(int m) {
@@ -340,7 +335,8 @@ public class ProgressMonitor implements Accessible {
 		if (pane == null)
 			return false;
 		Object v = pane.getValue();
-		return ((v != null) && (cancelOption.length == 1) && (v.equals(cancelOption[0])));
+		return ((v != null) && (cancelOption.length == 1) && (v.equals(
+				cancelOption[0])));
 	}
 
 	/**
@@ -348,7 +344,8 @@ public class ProgressMonitor implements Accessible {
 	 * popup a progress monitor.
 	 *
 	 * @param millisToDecideToPopup
-	 *            an int specifying the time to wait, in milliseconds
+	 *                              an int specifying the time to wait, in
+	 *                              milliseconds
 	 * @see #getMillisToDecideToPopup
 	 */
 	public void setMillisToDecideToPopup(int millisToDecideToPopup) {
@@ -371,7 +368,7 @@ public class ProgressMonitor implements Accessible {
 	 * displayed.)
 	 *
 	 * @param millisToPopup
-	 *            an int specifying the time in milliseconds
+	 *                      an int specifying the time in milliseconds
 	 * @see #getMillisToPopup
 	 */
 	public void setMillisToPopup(int millisToPopup) {
@@ -393,7 +390,7 @@ public class ProgressMonitor implements Accessible {
 	 * copied during a multiple-file copy.
 	 *
 	 * @param note
-	 *            a String specifying the note to display
+	 *             a String specifying the note to display
 	 * @see #getNote
 	 */
 	public void setNote(String note) {
@@ -447,7 +444,8 @@ public class ProgressMonitor implements Accessible {
 			// to add a listener to until the ProgressOptionPane
 			// is created.
 			if (accessibleContext instanceof AccessibleProgressMonitor) {
-				((AccessibleProgressMonitor) accessibleContext).optionPaneCreated();
+				((AccessibleProgressMonitor) accessibleContext)
+						.optionPaneCreated();
 			}
 		}
 		return accessibleContext;
@@ -465,14 +463,11 @@ public class ProgressMonitor implements Accessible {
 		/*
 		 * The accessibility hierarchy for ProgressMonitor is a flattened
 		 * version of the ProgressOptionPane component hierarchy.
-		 *
 		 * The ProgressOptionPane component hierarchy is: JDialog
 		 * ProgressOptionPane JPanel JPanel JLabel JLabel JProgressBar
-		 *
 		 * The AccessibleProgessMonitor accessibility hierarchy is:
 		 * AccessibleJDialog AccessibleProgressMonitor AccessibleJLabel
 		 * AccessibleJLabel AccessibleJProgressBar
-		 *
 		 * The abstraction presented to assitive technologies by the
 		 * AccessibleProgressMonitor is that a dialog contains a progress
 		 * monitor with three children: a message, a note label and a progress
@@ -484,15 +479,13 @@ public class ProgressMonitor implements Accessible {
 		/**
 		 * AccessibleProgressMonitor constructor
 		 */
-		protected AccessibleProgressMonitor() {
-		}
+		protected AccessibleProgressMonitor() {}
 
 		/*
 		 * Initializes the AccessibleContext now that the ProgressOptionPane has
 		 * been created. Because the ProgressMonitor is not a Component
 		 * implementing the Accessible interface, an AccessibleContext must be
 		 * synthesized from the ProgressOptionPane and its children.
-		 *
 		 * For other AWT and Swing classes, the inner class that implements
 		 * accessibility for the class extends the inner class that implements
 		 * implements accessibility for the super class.
@@ -500,7 +493,8 @@ public class ProgressMonitor implements Accessible {
 		 * must therefore delegate calls to the AccessibleJOptionPane.
 		 */
 		private void optionPaneCreated() {
-			accessibleJOptionPane = ((ProgressOptionPane) pane).getAccessibleJOptionPane();
+			accessibleJOptionPane = ((ProgressOptionPane) pane)
+					.getAccessibleJOptionPane();
 
 			// add a listener for progress bar ChangeEvents
 			if (myBar != null) {
@@ -517,9 +511,9 @@ public class ProgressMonitor implements Accessible {
 		 * Invoked when the target of the listener has changed its state.
 		 *
 		 * @param e
-		 *            a <code>ChangeEvent</code> object. Must not be null.
+		 *          a <code>ChangeEvent</code> object. Must not be null.
 		 * @throws NullPointerException
-		 *             if the parameter is null.
+		 *                              if the parameter is null.
 		 */
 		public void stateChanged(ChangeEvent e) {
 			if (e == null) {
@@ -528,7 +522,8 @@ public class ProgressMonitor implements Accessible {
 			if (myBar != null) {
 				// the progress bar value changed
 				Object newModelValue = myBar.getValue();
-				firePropertyChange(ACCESSIBLE_VALUE_PROPERTY, oldModelValue, newModelValue);
+				firePropertyChange(ACCESSIBLE_VALUE_PROPERTY, oldModelValue,
+						newModelValue);
 				oldModelValue = newModelValue;
 			}
 		}
@@ -537,11 +532,11 @@ public class ProgressMonitor implements Accessible {
 		 * This method gets called when a bound property is changed.
 		 *
 		 * @param e
-		 *            A <code>PropertyChangeEvent</code> object describing the
-		 *            event source and the property that has changed. Must not
-		 *            be null.
+		 *          A <code>PropertyChangeEvent</code> object describing the
+		 *          event source and the property that has changed. Must not
+		 *          be null.
 		 * @throws NullPointerException
-		 *             if the parameter is null.
+		 *                              if the parameter is null.
 		 */
 		public void propertyChange(PropertyChangeEvent e) {
 			if (e.getSource() == noteLabel && e.getPropertyName() == "text") {
@@ -703,7 +698,7 @@ public class ProgressMonitor implements Accessible {
 		 * and so on.
 		 *
 		 * @param i
-		 *            zero-based index of child
+		 *          zero-based index of child
 		 * @return the Accessible child of the object
 		 * @see #getAccessibleChildrenCount
 		 */
@@ -739,10 +734,14 @@ public class ProgressMonitor implements Accessible {
 		 *         locale, the locale of its parent is returned.
 		 *
 		 * @exception IllegalComponentStateException
-		 *                If the Component does not have its own locale and has
-		 *                not yet been added to a containment hierarchy such
-		 *                that the locale can be determined from the containing
-		 *                parent.
+		 *                                           If the Component does not
+		 *                                           have its own locale and has
+		 *                                           not yet been added to a
+		 *                                           containment hierarchy such
+		 *                                           that the locale can be
+		 *                                           determined from the
+		 *                                           containing
+		 *                                           parent.
 		 */
 		public Locale getLocale() throws IllegalComponentStateException {
 			if (accessibleJOptionPane != null) {
@@ -818,7 +817,7 @@ public class ProgressMonitor implements Accessible {
 		 * returns -1.
 		 *
 		 * @param p
-		 *            the Point in local coordinates
+		 *          the Point in local coordinates
 		 * @return the zero-based index of the character under Point p; if Point
 		 *         is invalid return -1.
 		 */
@@ -827,7 +826,8 @@ public class ProgressMonitor implements Accessible {
 			if (at != null && sameWindowAncestor(pane, noteLabel)) {
 				// convert point from the option pane bounds
 				// to the note label bounds.
-				Point noteLabelPoint = SwingUtilities.convertPoint(pane, p, noteLabel);
+				Point noteLabelPoint = SwingUtilities.convertPoint(pane, p,
+						noteLabel);
 				if (noteLabelPoint != null) {
 					return at.getIndexAtPoint(noteLabelPoint);
 				}
@@ -841,7 +841,7 @@ public class ProgressMonitor implements Accessible {
 		 * index is invalid an empty rectangle is returned.
 		 *
 		 * @param i
-		 *            the index into the String
+		 *          the index into the String
 		 * @return the screen coordinates of the character's bounding box, if
 		 *         index is invalid return an empty rectangle.
 		 */
@@ -851,7 +851,8 @@ public class ProgressMonitor implements Accessible {
 				// return rectangle in the option pane bounds
 				Rectangle noteLabelRect = at.getCharacterBounds(i);
 				if (noteLabelRect != null) {
-					return SwingUtilities.convertRectangle(noteLabel, noteLabelRect, pane);
+					return SwingUtilities.convertRectangle(noteLabel,
+							noteLabelRect, pane);
 				}
 			}
 			return null;
@@ -865,7 +866,8 @@ public class ProgressMonitor implements Accessible {
 			if (src == null || dest == null) {
 				return false;
 			}
-			return SwingUtilities.getWindowAncestor(src) == SwingUtilities.getWindowAncestor(dest);
+			return SwingUtilities.getWindowAncestor(src) == SwingUtilities
+					.getWindowAncestor(dest);
 		}
 
 		/**
@@ -901,9 +903,9 @@ public class ProgressMonitor implements Accessible {
 		 * Returns the String at a given index.
 		 *
 		 * @param part
-		 *            the CHARACTER, WORD, or SENTENCE to retrieve
+		 *              the CHARACTER, WORD, or SENTENCE to retrieve
 		 * @param index
-		 *            an index within the text
+		 *              an index within the text
 		 * @return the letter, word, or sentence
 		 */
 		public String getAtIndex(int part, int index) {
@@ -918,9 +920,9 @@ public class ProgressMonitor implements Accessible {
 		 * Returns the String after a given index.
 		 *
 		 * @param part
-		 *            the CHARACTER, WORD, or SENTENCE to retrieve
+		 *              the CHARACTER, WORD, or SENTENCE to retrieve
 		 * @param index
-		 *            an index within the text
+		 *              an index within the text
 		 * @return the letter, word, or sentence
 		 */
 		public String getAfterIndex(int part, int index) {
@@ -935,9 +937,9 @@ public class ProgressMonitor implements Accessible {
 		 * Returns the String before a given index.
 		 *
 		 * @param part
-		 *            the CHARACTER, WORD, or SENTENCE to retrieve
+		 *              the CHARACTER, WORD, or SENTENCE to retrieve
 		 * @param index
-		 *            an index within the text
+		 *              an index within the text
 		 * @return the letter, word, or sentence
 		 */
 		public String getBeforeIndex(int part, int index) {
@@ -952,7 +954,7 @@ public class ProgressMonitor implements Accessible {
 		 * Returns the AttributeSet for a given character at a given index
 		 *
 		 * @param i
-		 *            the zero-based index into the text
+		 *          the zero-based index into the text
 		 * @return the AttributeSet of the character
 		 */
 		public AttributeSet getCharacterAttribute(int i) {

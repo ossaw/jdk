@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol.giopmsgheaders;
@@ -37,7 +17,8 @@ import com.sun.corba.se.spi.ior.ObjectKey;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class LocateRequestMessage_1_1 extends Message_1_1 implements LocateRequestMessage {
+public final class LocateRequestMessage_1_1 extends Message_1_1 implements
+		LocateRequestMessage {
 
 	// Instance variables
 

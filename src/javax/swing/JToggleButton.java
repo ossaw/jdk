@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -90,7 +70,7 @@ public class JToggleButton extends AbstractButton implements Accessible {
 	 * but no text.
 	 *
 	 * @param icon
-	 *            the image that the button should display
+	 *             the image that the button should display
 	 */
 	public JToggleButton(Icon icon) {
 		this(null, icon, false);
@@ -101,10 +81,10 @@ public class JToggleButton extends AbstractButton implements Accessible {
 	 * no text.
 	 *
 	 * @param icon
-	 *            the image that the button should display
+	 *                 the image that the button should display
 	 * @param selected
-	 *            if true, the button is initially selected; otherwise, the
-	 *            button is initially unselected
+	 *                 if true, the button is initially selected; otherwise, the
+	 *                 button is initially unselected
 	 */
 	public JToggleButton(Icon icon, boolean selected) {
 		this(null, icon, selected);
@@ -114,7 +94,7 @@ public class JToggleButton extends AbstractButton implements Accessible {
 	 * Creates an unselected toggle button with the specified text.
 	 *
 	 * @param text
-	 *            the string displayed on the toggle button
+	 *             the string displayed on the toggle button
 	 */
 	public JToggleButton(String text) {
 		this(text, null, false);
@@ -124,10 +104,10 @@ public class JToggleButton extends AbstractButton implements Accessible {
 	 * Creates a toggle button with the specified text and selection state.
 	 *
 	 * @param text
-	 *            the string displayed on the toggle button
+	 *                 the string displayed on the toggle button
 	 * @param selected
-	 *            if true, the button is initially selected; otherwise, the
-	 *            button is initially unselected
+	 *                 if true, the button is initially selected; otherwise, the
+	 *                 button is initially unselected
 	 */
 	public JToggleButton(String text, boolean selected) {
 		this(text, null, selected);
@@ -149,9 +129,9 @@ public class JToggleButton extends AbstractButton implements Accessible {
 	 * is initially unselected.
 	 *
 	 * @param text
-	 *            the string displayed on the button
+	 *             the string displayed on the button
 	 * @param icon
-	 *            the image that the button should display
+	 *             the image that the button should display
 	 */
 	public JToggleButton(String text, Icon icon) {
 		this(text, icon, false);
@@ -162,12 +142,12 @@ public class JToggleButton extends AbstractButton implements Accessible {
 	 * state.
 	 *
 	 * @param text
-	 *            the text of the toggle button
+	 *                 the text of the toggle button
 	 * @param icon
-	 *            the image that the button should display
+	 *                 the image that the button should display
 	 * @param selected
-	 *            if true, the button is initially selected; otherwise, the
-	 *            button is initially unselected
+	 *                 if true, the button is initially selected; otherwise, the
+	 *                 button is initially unselected
 	 */
 	public JToggleButton(String text, Icon icon, boolean selected) {
 		// Create the model
@@ -226,8 +206,7 @@ public class JToggleButton extends AbstractButton implements Accessible {
 		/**
 		 * Creates a new ToggleButton Model
 		 */
-		public ToggleButtonModel() {
-		}
+		public ToggleButtonModel() {}
 
 		/**
 		 * Checks if the button is selected.
@@ -244,8 +223,8 @@ public class JToggleButton extends AbstractButton implements Accessible {
 		 * Sets the selected state of the button.
 		 * 
 		 * @param b
-		 *            true selects the toggle button, false deselects the toggle
-		 *            button.
+		 *          true selects the toggle button, false deselects the toggle
+		 *          button.
 		 */
 		public void setSelected(boolean b) {
 			ButtonGroup group = getGroup();
@@ -269,8 +248,10 @@ public class JToggleButton extends AbstractButton implements Accessible {
 			fireStateChanged();
 
 			// Send ItemEvent
-			fireItemStateChanged(new ItemEvent(this, ItemEvent.ITEM_STATE_CHANGED, this,
-					this.isSelected() ? ItemEvent.SELECTED : ItemEvent.DESELECTED));
+			fireItemStateChanged(new ItemEvent(this,
+					ItemEvent.ITEM_STATE_CHANGED, this, this.isSelected()
+							? ItemEvent.SELECTED
+							: ItemEvent.DESELECTED));
 
 		}
 
@@ -302,8 +283,9 @@ public class JToggleButton extends AbstractButton implements Accessible {
 				} else if (currentEvent instanceof ActionEvent) {
 					modifiers = ((ActionEvent) currentEvent).getModifiers();
 				}
-				fireActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED,
-						getActionCommand(), EventQueue.getMostRecentEventTime(), modifiers));
+				fireActionPerformed(new ActionEvent(this,
+						ActionEvent.ACTION_PERFORMED, getActionCommand(),
+						EventQueue.getMostRecentEventTime(), modifiers));
 			}
 
 		}
@@ -392,8 +374,8 @@ public class JToggleButton extends AbstractButton implements Accessible {
 							AccessibleState.CHECKED);
 				} else {
 					JToggleButton.this.accessibleContext.firePropertyChange(
-							AccessibleContext.ACCESSIBLE_STATE_PROPERTY, AccessibleState.CHECKED,
-							null);
+							AccessibleContext.ACCESSIBLE_STATE_PROPERTY,
+							AccessibleState.CHECKED, null);
 				}
 			}
 		}

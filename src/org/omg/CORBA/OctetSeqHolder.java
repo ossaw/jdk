@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -37,8 +17,7 @@ package org.omg.CORBA;
 public final class OctetSeqHolder implements org.omg.CORBA.portable.Streamable {
 	public byte value[] = null;
 
-	public OctetSeqHolder() {
-	}
+	public OctetSeqHolder() {}
 
 	public OctetSeqHolder(byte[] initialValue) {
 		value = initialValue;

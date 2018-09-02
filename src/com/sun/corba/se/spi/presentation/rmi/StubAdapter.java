@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.presentation.rmi;
@@ -44,7 +24,8 @@ import org.omg.CORBA.ORB;
 import com.sun.corba.se.spi.logging.CORBALogDomains;
 import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 
-// XXX Getting rid of this requires introducing an ObjectAdapterManager abstraction
+// XXX Getting rid of this requires introducing an ObjectAdapterManager
+// abstraction
 // as an interface into the OA framework.
 import com.sun.corba.se.impl.oa.poa.POAManagerImpl;
 
@@ -57,15 +38,14 @@ import com.sun.corba.se.impl.oa.poa.POAManagerImpl;
  * am left with this ugly class.
  */
 public abstract class StubAdapter {
-	private StubAdapter() {
-	}
+	private StubAdapter() {}
 
-	private static ORBUtilSystemException wrapper = ORBUtilSystemException
-			.get(CORBALogDomains.RPC_PRESENTATION);
+	private static ORBUtilSystemException wrapper = ORBUtilSystemException.get(
+			CORBALogDomains.RPC_PRESENTATION);
 
 	public static boolean isStubClass(Class cls) {
-		return (ObjectImpl.class.isAssignableFrom(cls))
-				|| (DynamicStub.class.isAssignableFrom(cls));
+		return (ObjectImpl.class.isAssignableFrom(cls)) || (DynamicStub.class
+				.isAssignableFrom(cls));
 	}
 
 	public static boolean isStub(Object stub) {
@@ -164,7 +144,8 @@ public abstract class StubAdapter {
 			throw wrapper.getTypeIdsRequiresStub();
 	}
 
-	public static void connect(Object stub, ORB orb) throws java.rmi.RemoteException {
+	public static void connect(Object stub, ORB orb)
+			throws java.rmi.RemoteException {
 		if (stub instanceof DynamicStub)
 			((DynamicStub) stub).connect((com.sun.corba.se.spi.orb.ORB) orb);
 		else if (stub instanceof javax.rmi.CORBA.Stub)
@@ -184,7 +165,8 @@ public abstract class StubAdapter {
 			throw wrapper.isLocalRequiresStub();
 	}
 
-	public static OutputStream request(Object stub, String operation, boolean responseExpected) {
+	public static OutputStream request(Object stub, String operation,
+			boolean responseExpected) {
 		if (stub instanceof DynamicStub)
 			return ((DynamicStub) stub).request(operation, responseExpected);
 		else if (stub instanceof ObjectImpl)

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.logging;
@@ -87,7 +67,8 @@ public class SocketHandler extends StreamHandler {
 
 		setLevel(manager.getLevelProperty(cname + ".level", Level.ALL));
 		setFilter(manager.getFilterProperty(cname + ".filter", null));
-		setFormatter(manager.getFormatterProperty(cname + ".formatter", new XMLFormatter()));
+		setFormatter(manager.getFormatterProperty(cname + ".formatter",
+				new XMLFormatter()));
 		try {
 			setEncoding(manager.getStringProperty(cname + ".encoding", null));
 		} catch (Exception ex) {
@@ -107,10 +88,12 @@ public class SocketHandler extends StreamHandler {
 	 * properties (or their defaults).
 	 * 
 	 * @throws IllegalArgumentException
-	 *             if the host or port are invalid or are not specified as
-	 *             LogManager properties.
+	 *                                  if the host or port are invalid or are
+	 *                                  not specified as
+	 *                                  LogManager properties.
 	 * @throws IOException
-	 *             if we are unable to connect to the target host and port.
+	 *                                  if we are unable to connect to the
+	 *                                  target host and port.
 	 */
 	public SocketHandler() throws IOException {
 		// We are going to use the logging defaults.
@@ -120,7 +103,8 @@ public class SocketHandler extends StreamHandler {
 		try {
 			connect();
 		} catch (IOException ix) {
-			System.err.println("SocketHandler: connect failed to " + host + ":" + port);
+			System.err.println("SocketHandler: connect failed to " + host + ":"
+					+ port);
 			throw ix;
 		}
 		sealed = true;
@@ -135,14 +119,15 @@ public class SocketHandler extends StreamHandler {
 	 * String then the localhost is used.
 	 *
 	 * @param host
-	 *            target host.
+	 *             target host.
 	 * @param port
-	 *            target port.
+	 *             target port.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the host or port are invalid.
+	 *                                  if the host or port are invalid.
 	 * @throws IOException
-	 *             if we are unable to connect to the target host and port.
+	 *                                  if we are unable to connect to the
+	 *                                  target host and port.
 	 */
 	public SocketHandler(String host, int port) throws IOException {
 		sealed = false;
@@ -173,8 +158,9 @@ public class SocketHandler extends StreamHandler {
 	 * Close this output stream.
 	 *
 	 * @exception SecurityException
-	 *                if a security manager exists and if the caller does not
-	 *                have <tt>LoggingPermission("control")</tt>.
+	 *                              if a security manager exists and if the
+	 *                              caller does not
+	 *                              have <tt>LoggingPermission("control")</tt>.
 	 */
 	@Override
 	public synchronized void close() throws SecurityException {
@@ -193,8 +179,8 @@ public class SocketHandler extends StreamHandler {
 	 * Format and publish a <tt>LogRecord</tt>.
 	 *
 	 * @param record
-	 *            description of the log event. A null record is silently
-	 *            ignored and is not published
+	 *               description of the log event. A null record is silently
+	 *               ignored and is not published
 	 */
 	@Override
 	public synchronized void publish(LogRecord record) {

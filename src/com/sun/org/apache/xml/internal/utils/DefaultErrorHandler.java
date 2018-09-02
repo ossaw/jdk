@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: DefaultErrorHandler.java,v 1.2.4.1 2005/09/15 08:15:43 suresh_emailid Exp $
+ * $Id: DefaultErrorHandler.java,v 1.2.4.1 2005/09/15 08:15:43 suresh_emailid
+ * Exp $
  */
 package com.sun.org.apache.xml.internal.utils;
 
@@ -96,9 +94,11 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The warning information encapsulated in a SAX parse exception.
+	 *                  The warning information encapsulated in a SAX parse
+	 *                  exception.
 	 * @throws SAXException
-	 *             Any SAX exception, possibly wrapping another exception.
+	 *                      Any SAX exception, possibly wrapping another
+	 *                      exception.
 	 */
 	public void warning(SAXParseException exception) throws SAXException {
 		printLocation(m_pw, exception);
@@ -124,9 +124,11 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The error information encapsulated in a SAX parse exception.
+	 *                  The error information encapsulated in a SAX parse
+	 *                  exception.
 	 * @throws SAXException
-	 *             Any SAX exception, possibly wrapping another exception.
+	 *                      Any SAX exception, possibly wrapping another
+	 *                      exception.
 	 */
 	public void error(SAXParseException exception) throws SAXException {
 		// printLocation(exception);
@@ -153,9 +155,11 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The error information encapsulated in a SAX parse exception.
+	 *                  The error information encapsulated in a SAX parse
+	 *                  exception.
 	 * @throws SAXException
-	 *             Any SAX exception, possibly wrapping another exception.
+	 *                      Any SAX exception, possibly wrapping another
+	 *                      exception.
 	 */
 	public void fatalError(SAXParseException exception) throws SAXException {
 		// printLocation(exception);
@@ -180,12 +184,14 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The warning information encapsulated in a SAX parse exception.
+	 *                  The warning information encapsulated in a SAX parse
+	 *                  exception.
 	 * @throws javax.xml.transform.TransformerException
-	 *             Any SAX exception, possibly wrapping another exception.
+	 *         Any SAX exception, possibly wrapping another exception.
 	 * @see javax.xml.transform.TransformerException
 	 */
-	public void warning(TransformerException exception) throws TransformerException {
+	public void warning(TransformerException exception)
+			throws TransformerException {
 		printLocation(m_pw, exception);
 
 		m_pw.println(exception.getMessage());
@@ -210,12 +216,14 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The error information encapsulated in a SAX parse exception.
+	 *                  The error information encapsulated in a SAX parse
+	 *                  exception.
 	 * @throws javax.xml.transform.TransformerException
-	 *             Any SAX exception, possibly wrapping another exception.
+	 *         Any SAX exception, possibly wrapping another exception.
 	 * @see javax.xml.transform.TransformerException
 	 */
-	public void error(TransformerException exception) throws TransformerException {
+	public void error(TransformerException exception)
+			throws TransformerException {
 		// If the m_throwExceptionOnError flag is true, rethrow the exception.
 		// Otherwise report the error to System.err.
 		if (m_throwExceptionOnError)
@@ -244,12 +252,14 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener {
 	 * </p>
 	 *
 	 * @param exception
-	 *            The error information encapsulated in a SAX parse exception.
+	 *                  The error information encapsulated in a SAX parse
+	 *                  exception.
 	 * @throws javax.xml.transform.TransformerException
-	 *             Any SAX exception, possibly wrapping another exception.
+	 *         Any SAX exception, possibly wrapping another exception.
 	 * @see javax.xml.transform.TransformerException
 	 */
-	public void fatalError(TransformerException exception) throws TransformerException {
+	public void fatalError(TransformerException exception)
+			throws TransformerException {
 		// If the m_throwExceptionOnError flag is true, rethrow the exception.
 		// Otherwise report the error to System.err.
 		if (m_throwExceptionOnError)
@@ -270,7 +280,8 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener {
 			if (cause instanceof SAXParseException) {
 				locator = new SAXSourceLocator((SAXParseException) cause);
 			} else if (cause instanceof TransformerException) {
-				SourceLocator causeLocator = ((TransformerException) cause).getLocator();
+				SourceLocator causeLocator = ((TransformerException) cause)
+						.getLocator();
 				if (null != causeLocator)
 					locator = causeLocator;
 			}
@@ -286,7 +297,8 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener {
 		exception.setLocator(locator);
 	}
 
-	public static void printLocation(PrintStream pw, TransformerException exception) {
+	public static void printLocation(PrintStream pw,
+			TransformerException exception) {
 		printLocation(new PrintWriter(pw), exception);
 	}
 
@@ -304,7 +316,8 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener {
 			if (cause instanceof SAXParseException) {
 				locator = new SAXSourceLocator((SAXParseException) cause);
 			} else if (cause instanceof TransformerException) {
-				SourceLocator causeLocator = ((TransformerException) cause).getLocator();
+				SourceLocator causeLocator = ((TransformerException) cause)
+						.getLocator();
 				if (null != causeLocator)
 					locator = causeLocator;
 			}
@@ -322,14 +335,16 @@ public class DefaultErrorHandler implements ErrorHandler, ErrorListener {
 			// m_pw.println("Parser fatal error: "+exception.getMessage());
 			String id = (null != locator.getPublicId()) ? locator.getPublicId()
 					: (null != locator.getSystemId()) ? locator.getSystemId()
-							: XMLMessages.createXMLMessage(XMLErrorResources.ER_SYSTEMID_UNKNOWN,
+							: XMLMessages.createXMLMessage(
+									XMLErrorResources.ER_SYSTEMID_UNKNOWN,
 									null); // "SystemId Unknown";
 
 			pw.print(id + "; " + XMLMessages.createXMLMessage("line", null)
-					+ locator.getLineNumber() + "; " + XMLMessages.createXMLMessage("column", null)
-					+ locator.getColumnNumber() + "; ");
+					+ locator.getLineNumber() + "; " + XMLMessages
+							.createXMLMessage("column", null) + locator
+									.getColumnNumber() + "; ");
 		} else
-			pw.print("(" + XMLMessages.createXMLMessage(XMLErrorResources.ER_LOCATION_UNKNOWN, null)
-					+ ")");
+			pw.print("(" + XMLMessages.createXMLMessage(
+					XMLErrorResources.ER_LOCATION_UNKNOWN, null) + ")");
 	}
 }

@@ -49,8 +49,7 @@ public class StorageResolver {
 	 * Constructor StorageResolver
 	 *
 	 */
-	public StorageResolver() {
-	}
+	public StorageResolver() {}
 
 	/**
 	 * Constructor StorageResolver
@@ -91,7 +90,8 @@ public class StorageResolver {
 		try {
 			this.add(new KeyStoreResolver(keyStore));
 		} catch (StorageResolverException ex) {
-			log.log(java.util.logging.Level.SEVERE, "Could not add KeyStore because of: ", ex);
+			log.log(java.util.logging.Level.SEVERE,
+					"Could not add KeyStore because of: ", ex);
 		}
 	}
 
@@ -171,7 +171,8 @@ public class StorageResolver {
 		 * Method remove
 		 */
 		public void remove() {
-			throw new UnsupportedOperationException("Can't remove keys from KeyStore");
+			throw new UnsupportedOperationException(
+					"Can't remove keys from KeyStore");
 		}
 
 		// Find the next storage with at least one element and return its

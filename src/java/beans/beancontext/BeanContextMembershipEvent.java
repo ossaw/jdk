@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans.beancontext;
@@ -59,11 +39,11 @@ public class BeanContextMembershipEvent extends BeanContextEvent {
 	 * Contruct a BeanContextMembershipEvent
 	 *
 	 * @param bc
-	 *            The BeanContext source
+	 *                The BeanContext source
 	 * @param changes
-	 *            The Children affected
+	 *                The Children affected
 	 * @throws NullPointerException
-	 *             if <CODE>changes</CODE> is <CODE>null</CODE>
+	 *                              if <CODE>changes</CODE> is <CODE>null</CODE>
 	 */
 
 	@SuppressWarnings("rawtypes")
@@ -81,18 +61,20 @@ public class BeanContextMembershipEvent extends BeanContextEvent {
 	 * Contruct a BeanContextMembershipEvent
 	 *
 	 * @param bc
-	 *            The BeanContext source
+	 *                The BeanContext source
 	 * @param changes
-	 *            The Children effected
+	 *                The Children effected
 	 * @exception NullPointerException
-	 *                if changes associated with this event are null.
+	 *                                 if changes associated with this event are
+	 *                                 null.
 	 */
 
 	public BeanContextMembershipEvent(BeanContext bc, Object[] changes) {
 		super(bc);
 
 		if (changes == null)
-			throw new NullPointerException("BeanContextMembershipEvent:  changes is null.");
+			throw new NullPointerException(
+					"BeanContextMembershipEvent:  changes is null.");
 
 		children = Arrays.asList(changes);
 	}
@@ -111,7 +93,7 @@ public class BeanContextMembershipEvent extends BeanContextEvent {
 	 * 
 	 * @return <code>true</code> if affected, <code>false</code> if not
 	 * @param child
-	 *            the object to check for being affected
+	 *              the object to check for being affected
 	 */
 	public boolean contains(Object child) {
 		return children.contains(child);

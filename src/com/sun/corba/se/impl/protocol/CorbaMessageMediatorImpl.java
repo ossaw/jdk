@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol;
@@ -130,8 +110,8 @@ import com.sun.corba.se.impl.protocol.giopmsgheaders.RequestMessage_1_2;
 /**
  * @author Harold Carr
  */
-public class CorbaMessageMediatorImpl
-		implements CorbaMessageMediator, CorbaProtocolHandler, MessageHandler {
+public class CorbaMessageMediatorImpl implements CorbaMessageMediator,
+		CorbaProtocolHandler, MessageHandler {
 	protected ORB orb;
 	protected ORBUtilSystemException wrapper;
 	protected InterceptorsSystemException interceptorWrapper;
@@ -164,21 +144,24 @@ public class CorbaMessageMediatorImpl
 	// Client-side constructor.
 	//
 
-	public CorbaMessageMediatorImpl(ORB orb, ContactInfo contactInfo, Connection connection,
-			GIOPVersion giopVersion, IOR ior, int requestId, short addrDisposition,
-			String operationName, boolean isOneWay) {
+	public CorbaMessageMediatorImpl(ORB orb, ContactInfo contactInfo,
+			Connection connection, GIOPVersion giopVersion, IOR ior,
+			int requestId, short addrDisposition, String operationName,
+			boolean isOneWay) {
 		this(orb, connection);
 
 		this.contactInfo = (CorbaContactInfo) contactInfo;
 		this.addrDisposition = addrDisposition;
 
 		streamFormatVersion = getStreamFormatVersionForThisRequest(
-				((CorbaContactInfo) this.contactInfo).getEffectiveTargetIOR(), giopVersion);
+				((CorbaContactInfo) this.contactInfo).getEffectiveTargetIOR(),
+				giopVersion);
 		streamFormatVersionSet = true;
 
-		requestHeader = (RequestMessage) MessageBase.createRequest(this.orb, giopVersion,
-				ORBUtility.getEncodingVersion(orb, ior), requestId, !isOneWay,
-				((CorbaContactInfo) this.contactInfo).getEffectiveTargetIOR(), this.addrDisposition,
+		requestHeader = (RequestMessage) MessageBase.createRequest(this.orb,
+				giopVersion, ORBUtility.getEncodingVersion(orb, ior), requestId,
+				!isOneWay, ((CorbaContactInfo) this.contactInfo)
+						.getEffectiveTargetIOR(), this.addrDisposition,
 				operationName, new ServiceContexts(orb), null);
 	}
 
@@ -189,7 +172,8 @@ public class CorbaMessageMediatorImpl
 	public CorbaMessageMediatorImpl(ORB orb, Connection connection) {
 		this.orb = orb;
 		this.connection = (CorbaConnection) connection;
-		this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
+		this.wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_PROTOCOL);
 		this.interceptorWrapper = InterceptorsSystemException.get(orb,
 				CORBALogDomains.RPC_PROTOCOL);
 	}
@@ -201,8 +185,8 @@ public class CorbaMessageMediatorImpl
 	// Note: in some cases (e.g., a reply message) this message
 	// mediator will only be used for dispatch. Then the original
 	// request side mediator will take over.
-	public CorbaMessageMediatorImpl(ORB orb, CorbaConnection connection, Message dispatchHeader,
-			ByteBuffer byteBuffer) {
+	public CorbaMessageMediatorImpl(ORB orb, CorbaConnection connection,
+			Message dispatchHeader, ByteBuffer byteBuffer) {
 		this(orb, connection);
 		this.dispatchHeader = dispatchHeader;
 		this.dispatchByteBuffer = byteBuffer;
@@ -329,29 +313,33 @@ public class CorbaMessageMediatorImpl
 	}
 
 	public void sendCancelRequestIfFinalFragmentNotSent() {
-		if ((!sentFullMessage()) && sentFragment() && (!cancelRequestAlreadySent)) {
+		if ((!sentFullMessage()) && sentFragment()
+				&& (!cancelRequestAlreadySent)) {
 			try {
 				if (orb.subcontractDebugFlag) {
-					dprint(".sendCancelRequestIfFinalFragmentNotSent->: " + opAndId(this));
+					dprint(".sendCancelRequestIfFinalFragmentNotSent->: "
+							+ opAndId(this));
 				}
-				connection.sendCancelRequestWithLock(getGIOPVersion(), getRequestId());
+				connection.sendCancelRequestWithLock(getGIOPVersion(),
+						getRequestId());
 				// Case: first a location forward, then a marshaling
 				// exception (e.g., non-serializable object). Only
 				// send cancel once.
 				cancelRequestAlreadySent = true;
 			} catch (IOException e) {
 				if (orb.subcontractDebugFlag) {
-					dprint(".sendCancelRequestIfFinalFragmentNotSent: !ERROR : " + opAndId(this),
-							e);
+					dprint(".sendCancelRequestIfFinalFragmentNotSent: !ERROR : "
+							+ opAndId(this), e);
 				}
 
 				// REVISIT: we could attempt to send a final incomplete
 				// fragment in this case.
-				throw interceptorWrapper
-						.ioexceptionDuringCancelRequest(CompletionStatus.COMPLETED_MAYBE, e);
+				throw interceptorWrapper.ioexceptionDuringCancelRequest(
+						CompletionStatus.COMPLETED_MAYBE, e);
 			} finally {
 				if (orb.subcontractDebugFlag) {
-					dprint(".sendCancelRequestIfFinalFragmentNotSent<-: " + opAndId(this));
+					dprint(".sendCancelRequestIfFinalFragmentNotSent<-: "
+							+ opAndId(this));
 				}
 			}
 		}
@@ -495,12 +483,14 @@ public class CorbaMessageMediatorImpl
 
 	public boolean isLocationForwardReply() {
 		return ((replyHeader.getReplyStatus() == ReplyMessage.LOCATION_FORWARD)
-				|| (replyHeader.getReplyStatus() == ReplyMessage.LOCATION_FORWARD_PERM));
+				|| (replyHeader
+						.getReplyStatus() == ReplyMessage.LOCATION_FORWARD_PERM));
 		// return replyHeader.getReplyStatus() == ReplyMessage.LOCATION_FORWARD;
 	}
 
 	public boolean isDifferentAddrDispositionRequestedReply() {
-		return replyHeader.getReplyStatus() == ReplyMessage.NEEDS_ADDRESSING_MODE;
+		return replyHeader
+				.getReplyStatus() == ReplyMessage.NEEDS_ADDRESSING_MODE;
 	}
 
 	public short getAddrDispositionReply() {
@@ -548,7 +538,8 @@ public class CorbaMessageMediatorImpl
 	public org.omg.CORBA.portable.OutputStream createExceptionReply() {
 		// Note: relies on side-effect of setting mediator output field.
 		// REVISIT - cast - need interface
-		getProtocolHandler().createUserExceptionResponse(this, (ServiceContexts) null);
+		getProtocolHandler().createUserExceptionResponse(this,
+				(ServiceContexts) null);
 		return (OutputStream) getOutputObject();
 	}
 
@@ -577,14 +568,17 @@ public class CorbaMessageMediatorImpl
 		_executePIInResponseConstructor = b;
 	}
 
-	private byte getStreamFormatVersionForThisRequest(IOR ior, GIOPVersion giopVersion) {
+	private byte getStreamFormatVersionForThisRequest(IOR ior,
+			GIOPVersion giopVersion) {
 
 		byte localMaxVersion = ORBUtility.getMaxStreamFormatVersion();
 
-		IOR effectiveTargetIOR = ((CorbaContactInfo) this.contactInfo).getEffectiveTargetIOR();
-		IIOPProfileTemplate temp = (IIOPProfileTemplate) effectiveTargetIOR.getProfile()
-				.getTaggedProfileTemplate();
-		Iterator iter = temp.iteratorById(TAG_RMI_CUSTOM_MAX_STREAM_FORMAT.value);
+		IOR effectiveTargetIOR = ((CorbaContactInfo) this.contactInfo)
+				.getEffectiveTargetIOR();
+		IIOPProfileTemplate temp = (IIOPProfileTemplate) effectiveTargetIOR
+				.getProfile().getTaggedProfileTemplate();
+		Iterator iter = temp.iteratorById(
+				TAG_RMI_CUSTOM_MAX_STREAM_FORMAT.value);
 		if (!iter.hasNext()) {
 			// Didn't have the max stream format version tagged
 			// component.
@@ -640,11 +634,11 @@ public class CorbaMessageMediatorImpl
 			isThreadDone = true;
 
 			// First unregister current registration.
-			orb.getTransportManager().getSelector(0)
-					.unregisterForEvent(getConnection().getEventHandler());
+			orb.getTransportManager().getSelector(0).unregisterForEvent(
+					getConnection().getEventHandler());
 			// Have another thread become the reader.
-			orb.getTransportManager().getSelector(0)
-					.registerForEvent(getConnection().getEventHandler());
+			orb.getTransportManager().getSelector(0).registerForEvent(
+					getConnection().getEventHandler());
 		}
 	}
 
@@ -668,11 +662,14 @@ public class CorbaMessageMediatorImpl
 			// REVISIT: not-OO:
 			String requestId = "?";
 			if (header instanceof RequestMessage) {
-				requestId = new Integer(((RequestMessage) header).getRequestId()).toString();
+				requestId = new Integer(((RequestMessage) header)
+						.getRequestId()).toString();
 			} else if (header instanceof ReplyMessage) {
-				requestId = new Integer(((ReplyMessage) header).getRequestId()).toString();
+				requestId = new Integer(((ReplyMessage) header).getRequestId())
+						.toString();
 			} else if (header instanceof FragmentMessage_1_2) {
-				requestId = new Integer(((FragmentMessage_1_2) header).getRequestId()).toString();
+				requestId = new Integer(((FragmentMessage_1_2) header)
+						.getRequestId()).toString();
 			}
 			dprint(".resumeSelect: id/" + requestId + " " + getConnection());
 
@@ -686,7 +683,8 @@ public class CorbaMessageMediatorImpl
 		// indefinitely in
 		// this thread.
 		EventHandler eventHandler = getConnection().getEventHandler();
-		orb.getTransportManager().getSelector(0).registerInterestOps(eventHandler);
+		orb.getTransportManager().getSelector(0).registerInterestOps(
+				eventHandler);
 
 		if (transportDebug()) {
 			dprint(".resumeSelect:<-");
@@ -698,13 +696,14 @@ public class CorbaMessageMediatorImpl
 		// into base PlugInFactory. Get via connection (either ContactInfo
 		// or Acceptor).
 		if (getConnection().getContactInfo() != null) {
-			inputObject = (CDRInputObject) getConnection().getContactInfo().createInputObject(orb,
-					this);
+			inputObject = (CDRInputObject) getConnection().getContactInfo()
+					.createInputObject(orb, this);
 		} else if (getConnection().getAcceptor() != null) {
-			inputObject = (CDRInputObject) getConnection().getAcceptor().createInputObject(orb,
-					this);
+			inputObject = (CDRInputObject) getConnection().getAcceptor()
+					.createInputObject(orb, this);
 		} else {
-			throw new RuntimeException("CorbaMessageMediatorImpl.setInputObject");
+			throw new RuntimeException(
+					"CorbaMessageMediatorImpl.setInputObject");
 		}
 		inputObject.setMessageMediator(this);
 		setInputObject(inputObject);
@@ -714,7 +713,8 @@ public class CorbaMessageMediatorImpl
 		// This will end up using the MessageMediator associated with
 		// the original request instead of the current mediator (which
 		// need to be constructed to hold the dispatchBuffer and connection).
-		connection.getResponseWaitingRoom().responseReceived((InputObject) inputObject);
+		connection.getResponseWaitingRoom().responseReceived(
+				(InputObject) inputObject);
 	}
 
 	// This handles message types for which we don't create classes.
@@ -723,33 +723,37 @@ public class CorbaMessageMediatorImpl
 			messageHeader = header;
 
 			if (transportDebug())
-				dprint(".handleInput->: " + MessageBase.typeToString(header.getType()));
+				dprint(".handleInput->: " + MessageBase.typeToString(header
+						.getType()));
 
 			setWorkThenReadOrResumeSelect(header);
 
 			switch (header.getType()) {
-			case Message.GIOPCloseConnection:
-				if (transportDebug()) {
-					dprint(".handleInput: CloseConnection: purging");
-				}
-				connection.purgeCalls(wrapper.connectionRebind(), true, false);
-				break;
-			case Message.GIOPMessageError:
-				if (transportDebug()) {
-					dprint(".handleInput: MessageError: purging");
-				}
-				connection.purgeCalls(wrapper.recvMsgError(), true, false);
-				break;
-			default:
-				if (transportDebug()) {
-					dprint(".handleInput: ERROR: " + MessageBase.typeToString(header.getType()));
-				}
-				throw wrapper.badGiopRequestType();
+				case Message.GIOPCloseConnection:
+					if (transportDebug()) {
+						dprint(".handleInput: CloseConnection: purging");
+					}
+					connection.purgeCalls(wrapper.connectionRebind(), true,
+							false);
+					break;
+				case Message.GIOPMessageError:
+					if (transportDebug()) {
+						dprint(".handleInput: MessageError: purging");
+					}
+					connection.purgeCalls(wrapper.recvMsgError(), true, false);
+					break;
+				default:
+					if (transportDebug()) {
+						dprint(".handleInput: ERROR: " + MessageBase
+								.typeToString(header.getType()));
+					}
+					throw wrapper.badGiopRequestType();
 			}
 			releaseByteBufferToPool();
 		} finally {
 			if (transportDebug()) {
-				dprint(".handleInput<-: " + MessageBase.typeToString(header.getType()));
+				dprint(".handleInput<-: " + MessageBase.typeToString(header
+						.getType()));
 			}
 		}
 	}
@@ -808,7 +812,8 @@ public class CorbaMessageMediatorImpl
 				setInputObject();
 
 				if (transportDebug())
-					dprint(".REQUEST 1.2->: id/" + header.getRequestId() + ": " + header);
+					dprint(".REQUEST 1.2->: id/" + header.getRequestId() + ": "
+							+ header);
 
 				// NOTE: in the old code this used to be done conditionally:
 				// if (header.moreFragmentsToFollow()).
@@ -828,13 +833,15 @@ public class CorbaMessageMediatorImpl
 			getProtocolHandler().handleRequest(header, this);
 		} catch (Throwable t) {
 			if (transportDebug())
-				dprint(".REQUEST 1.2: id/" + header.getRequestId() + ": !!ERROR!!: " + header, t);
+				dprint(".REQUEST 1.2: id/" + header.getRequestId()
+						+ ": !!ERROR!!: " + header, t);
 			// Mask the exception from thread.;
 		} finally {
 			connection.serverRequestMapRemove(header.getRequestId());
 
 			if (transportDebug())
-				dprint(".REQUEST 1.2<-: id/" + header.getRequestId() + ": " + header);
+				dprint(".REQUEST 1.2<-: id/" + header.getRequestId() + ": "
+						+ header);
 		}
 	}
 
@@ -922,8 +929,9 @@ public class CorbaMessageMediatorImpl
 				header.unmarshalRequestID(dispatchByteBuffer);
 
 				if (transportDebug()) {
-					dprint(".REPLY 1.2->: id/" + +header.getRequestId() + ": more?: "
-							+ header.moreFragmentsToFollow() + ": " + header);
+					dprint(".REPLY 1.2->: id/" + +header.getRequestId()
+							+ ": more?: " + header.moreFragmentsToFollow()
+							+ ": " + header);
 				}
 
 				setInputObject();
@@ -934,15 +942,18 @@ public class CorbaMessageMediatorImpl
 			}
 		} catch (Throwable t) {
 			if (transportDebug())
-				dprint(".REPLY 1.2: id/" + header.getRequestId() + ": !!ERROR!!: " + header, t);
+				dprint(".REPLY 1.2: id/" + header.getRequestId()
+						+ ": !!ERROR!!: " + header, t);
 			// Mask the exception from thread.;
 		} finally {
 			if (transportDebug())
-				dprint(".REPLY 1.2<-: id/" + header.getRequestId() + ": " + header);
+				dprint(".REPLY 1.2<-: id/" + header.getRequestId() + ": "
+						+ header);
 		}
 	}
 
-	public void handleInput(LocateRequestMessage_1_0 header) throws IOException {
+	public void handleInput(LocateRequestMessage_1_0 header)
+			throws IOException {
 		try {
 			if (transportDebug())
 				dprint(".LOCATE_REQUEST 1.0->: " + header);
@@ -964,7 +975,8 @@ public class CorbaMessageMediatorImpl
 
 	}
 
-	public void handleInput(LocateRequestMessage_1_1 header) throws IOException {
+	public void handleInput(LocateRequestMessage_1_1 header)
+			throws IOException {
 		try {
 			if (transportDebug())
 				dprint(".LOCATE_REQUEST 1.1->: " + header);
@@ -985,7 +997,8 @@ public class CorbaMessageMediatorImpl
 		}
 	}
 
-	public void handleInput(LocateRequestMessage_1_2 header) throws IOException {
+	public void handleInput(LocateRequestMessage_1_2 header)
+			throws IOException {
 		try {
 			try {
 				messageHeader = header;
@@ -994,7 +1007,8 @@ public class CorbaMessageMediatorImpl
 				setInputObject();
 
 				if (transportDebug())
-					dprint(".LOCATE_REQUEST 1.2->: id/" + header.getRequestId() + ": " + header);
+					dprint(".LOCATE_REQUEST 1.2->: id/" + header.getRequestId()
+							+ ": " + header);
 
 				if (header.moreFragmentsToFollow()) {
 					connection.serverRequestMapPut(header.getRequestId(), this);
@@ -1005,12 +1019,13 @@ public class CorbaMessageMediatorImpl
 			getProtocolHandler().handleRequest(header, this);
 		} catch (Throwable t) {
 			if (transportDebug())
-				dprint(".LOCATE_REQUEST 1.2: id/" + header.getRequestId() + ": !!ERROR!!: "
-						+ header, t);
+				dprint(".LOCATE_REQUEST 1.2: id/" + header.getRequestId()
+						+ ": !!ERROR!!: " + header, t);
 			// Mask the exception from thread.;
 		} finally {
 			if (transportDebug())
-				dprint(".LOCATE_REQUEST 1.2<-: id/" + header.getRequestId() + ": " + header);
+				dprint(".LOCATE_REQUEST 1.2<-: id/" + header.getRequestId()
+						+ ": " + header);
 		}
 	}
 
@@ -1070,7 +1085,8 @@ public class CorbaMessageMediatorImpl
 				setInputObject();
 
 				if (transportDebug())
-					dprint(".LOCATE_REPLY 1.2->: id/" + header.getRequestId() + ": " + header);
+					dprint(".LOCATE_REPLY 1.2->: id/" + header.getRequestId()
+							+ ": " + header);
 
 				signalResponseReceived();
 			} finally {
@@ -1078,20 +1094,21 @@ public class CorbaMessageMediatorImpl
 			}
 		} catch (Throwable t) {
 			if (transportDebug())
-				dprint(".LOCATE_REPLY 1.2: id/" + header.getRequestId() + ": !!ERROR!!: " + header,
-						t);
+				dprint(".LOCATE_REPLY 1.2: id/" + header.getRequestId()
+						+ ": !!ERROR!!: " + header, t);
 			// Mask the exception from thread.;
 		} finally {
 			if (transportDebug())
-				dprint(".LOCATE_REPLY 1.2<-: id/" + header.getRequestId() + ": " + header);
+				dprint(".LOCATE_REPLY 1.2<-: id/" + header.getRequestId() + ": "
+						+ header);
 		}
 	}
 
 	public void handleInput(FragmentMessage_1_1 header) throws IOException {
 		try {
 			if (transportDebug()) {
-				dprint(".FRAGMENT 1.1->: " + "more?: " + header.moreFragmentsToFollow() + ": "
-						+ header);
+				dprint(".FRAGMENT 1.1->: " + "more?: " + header
+						.moreFragmentsToFollow() + ": " + header);
 			}
 			try {
 				messageHeader = header;
@@ -1125,7 +1142,8 @@ public class CorbaMessageMediatorImpl
 					return;
 				}
 
-				inputObject.getBufferManager().processFragment(dispatchByteBuffer, header);
+				inputObject.getBufferManager().processFragment(
+						dispatchByteBuffer, header);
 
 				if (!header.moreFragmentsToFollow()) {
 					if (connection.isServer()) {
@@ -1162,17 +1180,20 @@ public class CorbaMessageMediatorImpl
 				header.unmarshalRequestID(dispatchByteBuffer);
 
 				if (transportDebug()) {
-					dprint(".FRAGMENT 1.2->: id/" + header.getRequestId() + ": more?: "
-							+ header.moreFragmentsToFollow() + ": " + header);
+					dprint(".FRAGMENT 1.2->: id/" + header.getRequestId()
+							+ ": more?: " + header.moreFragmentsToFollow()
+							+ ": " + header);
 				}
 
 				MessageMediator mediator = null;
 				InputObject inputObject = null;
 
 				if (connection.isServer()) {
-					mediator = connection.serverRequestMapGet(header.getRequestId());
+					mediator = connection.serverRequestMapGet(header
+							.getRequestId());
 				} else {
-					mediator = connection.clientRequestMapGet(header.getRequestId());
+					mediator = connection.clientRequestMapGet(header
+							.getRequestId());
 				}
 				if (mediator != null) {
 					inputObject = mediator.getInputObject();
@@ -1207,11 +1228,13 @@ public class CorbaMessageMediatorImpl
 			}
 		} catch (Throwable t) {
 			if (transportDebug())
-				dprint(".FRAGMENT 1.2: id/" + header.getRequestId() + ": !!ERROR!!: " + header, t);
+				dprint(".FRAGMENT 1.2: id/" + header.getRequestId()
+						+ ": !!ERROR!!: " + header, t);
 			// Mask the exception from thread.;
 		} finally {
 			if (transportDebug())
-				dprint(".FRAGMENT 1.2<-: id/" + header.getRequestId() + ": " + header);
+				dprint(".FRAGMENT 1.2<-: id/" + header.getRequestId() + ": "
+						+ header);
 		}
 	}
 
@@ -1225,8 +1248,8 @@ public class CorbaMessageMediatorImpl
 				inputObject.unmarshalHeader();
 
 				if (transportDebug())
-					dprint(".CANCEL->: id/" + header.getRequestId() + ": " + header.getGIOPVersion()
-							+ ": " + header);
+					dprint(".CANCEL->: id/" + header.getRequestId() + ": "
+							+ header.getGIOPVersion() + ": " + header);
 
 				processCancelRequest(header.getRequestId());
 				releaseByteBufferToPool();
@@ -1235,12 +1258,13 @@ public class CorbaMessageMediatorImpl
 			}
 		} catch (Throwable t) {
 			if (transportDebug())
-				dprint(".CANCEL: id/" + header.getRequestId() + ": !!ERROR!!: " + header, t);
+				dprint(".CANCEL: id/" + header.getRequestId() + ": !!ERROR!!: "
+						+ header, t);
 			// Mask the exception from thread.;
 		} finally {
 			if (transportDebug())
-				dprint(".CANCEL<-: id/" + header.getRequestId() + ": " + header.getGIOPVersion()
-						+ ": " + header);
+				dprint(".CANCEL<-: id/" + header.getRequestId() + ": " + header
+						.getGIOPVersion() + ": " + header);
 		}
 	}
 
@@ -1250,7 +1274,8 @@ public class CorbaMessageMediatorImpl
 	}
 
 	private void throwNotImplemented(String msg) {
-		throw new RuntimeException("CorbaMessageMediatorImpl: not implemented " + msg);
+		throw new RuntimeException("CorbaMessageMediatorImpl: not implemented "
+				+ msg);
 	}
 
 	private void dprint(String msg, Throwable t) {
@@ -1279,11 +1304,8 @@ public class CorbaMessageMediatorImpl
 
 		/*
 		 * CancelRequest processing logic :
-		 *
 		 * - find the request with matching requestId
-		 *
 		 * - call cancelProcessing() in BufferManagerRead [BMR]
-		 *
 		 * - the hope is that worker thread would call BMR.underflow() to wait
 		 * for more fragments to come in. When BMR.underflow() is called, if a
 		 * CancelRequest had already arrived, the worker thread would throw
@@ -1292,12 +1314,10 @@ public class CorbaMessageMediatorImpl
 		 * thread would check to see if a CancelRequest had arrived and if so
 		 * throw a ThreadDeath or it will continue to process the received
 		 * fragment.
-		 *
 		 * - if all the fragments had been received prior to CancelRequest then
 		 * the worker thread would never block in BMR.underflow(). So, setting
 		 * the abort flag in BMR has no effect. The request processing will
 		 * complete normally.
-		 *
 		 * - in the case where the server has received enough fragments to start
 		 * processing the request and the server sends out an early reply. In
 		 * such a case if the CancelRequest arrives after the reply has been
@@ -1382,7 +1402,8 @@ public class CorbaMessageMediatorImpl
 	// spi.protocol.CorbaProtocolHandler
 	//
 
-	public void handleRequest(RequestMessage msg, CorbaMessageMediator messageMediator) {
+	public void handleRequest(RequestMessage msg,
+			CorbaMessageMediator messageMediator) {
 		try {
 			beginRequest(messageMediator);
 			try {
@@ -1405,7 +1426,8 @@ public class CorbaMessageMediatorImpl
 		}
 	}
 
-	public void handleRequest(LocateRequestMessage msg, CorbaMessageMediator messageMediator) {
+	public void handleRequest(LocateRequestMessage msg,
+			CorbaMessageMediator messageMediator) {
 		try {
 			beginRequest(messageMediator);
 			try {
@@ -1430,9 +1452,11 @@ public class CorbaMessageMediatorImpl
 		connection.serverRequestProcessingBegins();
 	}
 
-	private void dispatchError(CorbaMessageMediator messageMediator, String msg, Throwable t) {
+	private void dispatchError(CorbaMessageMediator messageMediator, String msg,
+			Throwable t) {
 		if (orb.subcontractDebugFlag) {
-			dprint(".handleRequest: " + opAndId(messageMediator) + ": !!ERROR!!: " + msg, t);
+			dprint(".handleRequest: " + opAndId(messageMediator)
+					+ ": !!ERROR!!: " + msg, t);
 		}
 		// REVISIT - this makes hcks sendTwoObjects fail
 		// messageMediator.getConnection().close();
@@ -1440,10 +1464,12 @@ public class CorbaMessageMediatorImpl
 
 	private void sendResponse(CorbaMessageMediator messageMediator) {
 		if (orb.subcontractDebugFlag) {
-			dprint(".handleRequest: " + opAndId(messageMediator) + ": sending response");
+			dprint(".handleRequest: " + opAndId(messageMediator)
+					+ ": sending response");
 		}
 		// REVISIT - type and location
-		CDROutputObject outputObject = (CDROutputObject) messageMediator.getOutputObject();
+		CDROutputObject outputObject = (CDROutputObject) messageMediator
+				.getOutputObject();
 		if (outputObject != null) {
 			// REVISIT - can be null for TRANSIENT below.
 			outputObject.finishSendingMessage();
@@ -1475,7 +1501,8 @@ public class CorbaMessageMediatorImpl
 				dprint(".endRequest: IOException:" + ex.getMessage(), ex);
 			}
 		} finally {
-			((CorbaConnection) messageMediator.getConnection()).serverRequestProcessingEnds();
+			((CorbaConnection) messageMediator.getConnection())
+					.serverRequestProcessingEnds();
 		}
 	}
 
@@ -1491,14 +1518,15 @@ public class CorbaMessageMediatorImpl
 		ObjectKey okey = messageMediator.getObjectKey();
 		if (orb.subcontractDebugFlag) {
 			ObjectKeyTemplate oktemp = okey.getTemplate();
-			dprint(".handleRequest: " + opAndId(messageMediator) + ": dispatching to scid: "
-					+ oktemp.getSubcontractId());
+			dprint(".handleRequest: " + opAndId(messageMediator)
+					+ ": dispatching to scid: " + oktemp.getSubcontractId());
 		}
 
 		CorbaServerRequestDispatcher sc = okey.getServerRequestDispatcher(orb);
 
 		if (orb.subcontractDebugFlag) {
-			dprint(".handleRequest: " + opAndId(messageMediator) + ": dispatching to sc: " + sc);
+			dprint(".handleRequest: " + opAndId(messageMediator)
+					+ ": dispatching to sc: " + sc);
 		}
 
 		if (sc == null) {
@@ -1522,14 +1550,17 @@ public class CorbaMessageMediatorImpl
 
 	protected void handleLocateRequest(CorbaMessageMediator messageMediator) {
 		ORB orb = (ORB) messageMediator.getBroker();
-		LocateRequestMessage msg = (LocateRequestMessage) messageMediator.getDispatchHeader();
+		LocateRequestMessage msg = (LocateRequestMessage) messageMediator
+				.getDispatchHeader();
 		IOR ior = null;
 		LocateReplyMessage reply = null;
 		short addrDisp = -1;
 
 		try {
-			((CDRInputObject) messageMediator.getInputObject()).unmarshalHeader();
-			CorbaServerRequestDispatcher sc = msg.getObjectKey().getServerRequestDispatcher(orb);
+			((CDRInputObject) messageMediator.getInputObject())
+					.unmarshalHeader();
+			CorbaServerRequestDispatcher sc = msg.getObjectKey()
+					.getServerRequestDispatcher(orb);
 			if (sc == null) {
 				return;
 			}
@@ -1553,8 +1584,8 @@ public class CorbaMessageMediatorImpl
 			// create a response containing the expected target
 			// addressing disposition.
 
-			reply = MessageBase.createLocateReply(orb, msg.getGIOPVersion(),
-					msg.getEncodingVersion(), msg.getRequestId(),
+			reply = MessageBase.createLocateReply(orb, msg.getGIOPVersion(), msg
+					.getEncodingVersion(), msg.getRequestId(),
 					LocateReplyMessage.LOC_NEEDS_ADDRESSING_MODE, null);
 
 			addrDisp = ex.expectedAddrDisp();
@@ -1571,12 +1602,13 @@ public class CorbaMessageMediatorImpl
 			// This handles OBJECT_NOT_EXIST exceptions thrown in
 			// the subcontract or obj manager. Send back UNKNOWN_OBJECT.
 
-			reply = MessageBase.createLocateReply(orb, msg.getGIOPVersion(),
-					msg.getEncodingVersion(), msg.getRequestId(), LocateReplyMessage.UNKNOWN_OBJECT,
-					null);
+			reply = MessageBase.createLocateReply(orb, msg.getGIOPVersion(), msg
+					.getEncodingVersion(), msg.getRequestId(),
+					LocateReplyMessage.UNKNOWN_OBJECT, null);
 		}
 
-		CDROutputObject outputObject = createAppropriateOutputObject(messageMediator, msg, reply);
+		CDROutputObject outputObject = createAppropriateOutputObject(
+				messageMediator, msg, reply);
 		messageMediator.setOutputObject(outputObject);
 		outputObject.setMessageMediator(messageMediator);
 
@@ -1590,8 +1622,9 @@ public class CorbaMessageMediatorImpl
 		}
 	}
 
-	private CDROutputObject createAppropriateOutputObject(CorbaMessageMediator messageMediator,
-			Message msg, LocateReplyMessage reply) {
+	private CDROutputObject createAppropriateOutputObject(
+			CorbaMessageMediator messageMediator, Message msg,
+			LocateReplyMessage reply) {
 		CDROutputObject outputObject;
 
 		if (msg.getGIOPVersion().lessThan(GIOPVersion.V1_2)) {
@@ -1609,11 +1642,12 @@ public class CorbaMessageMediatorImpl
 		return outputObject;
 	}
 
-	public void handleThrowableDuringServerDispatch(CorbaMessageMediator messageMediator,
-			Throwable throwable, CompletionStatus completionStatus) {
+	public void handleThrowableDuringServerDispatch(
+			CorbaMessageMediator messageMediator, Throwable throwable,
+			CompletionStatus completionStatus) {
 		if (((ORB) messageMediator.getBroker()).subcontractDebugFlag) {
-			dprint(".handleThrowableDuringServerDispatch: " + opAndId(messageMediator) + ": "
-					+ throwable);
+			dprint(".handleThrowableDuringServerDispatch: " + opAndId(
+					messageMediator) + ": " + throwable);
 		}
 
 		// If we haven't unmarshaled the header, we probably don't
@@ -1627,22 +1661,25 @@ public class CorbaMessageMediatorImpl
 		 * if (! ((CDRInputObject)messageMediator.getInputObject())
 		 * .unmarshaledHeader()) { return; }
 		 */
-		handleThrowableDuringServerDispatch(messageMediator, throwable, completionStatus, 1);
+		handleThrowableDuringServerDispatch(messageMediator, throwable,
+				completionStatus, 1);
 	}
 
 	// REVISIT - catch and ignore RequestCanceledException.
 
-	protected void handleThrowableDuringServerDispatch(CorbaMessageMediator messageMediator,
-			Throwable throwable, CompletionStatus completionStatus, int iteration) {
+	protected void handleThrowableDuringServerDispatch(
+			CorbaMessageMediator messageMediator, Throwable throwable,
+			CompletionStatus completionStatus, int iteration) {
 		if (iteration > 10) {
 			if (((ORB) messageMediator.getBroker()).subcontractDebugFlag) {
-				dprint(".handleThrowableDuringServerDispatch: " + opAndId(messageMediator)
-						+ ": cannot handle: " + throwable);
+				dprint(".handleThrowableDuringServerDispatch: " + opAndId(
+						messageMediator) + ": cannot handle: " + throwable);
 			}
 
 			// REVISIT - should we close connection?
 			RuntimeException rte = new RuntimeException(
-					"handleThrowableDuringServerDispatch: " + "cannot create response.");
+					"handleThrowableDuringServerDispatch: "
+							+ "cannot create response.");
 			rte.initCause(throwable);
 			throw rte;
 		}
@@ -1662,7 +1699,8 @@ public class CorbaMessageMediatorImpl
 
 			// Else.
 
-			SystemException sex = convertThrowableToSystemException(throwable, completionStatus);
+			SystemException sex = convertThrowableToSystemException(throwable,
+					completionStatus);
 
 			createSystemExceptionResponse(messageMediator, sex, null);
 			return;
@@ -1673,14 +1711,14 @@ public class CorbaMessageMediatorImpl
 			// the exception, so we end up back here.
 			// Report the changed exception.
 
-			handleThrowableDuringServerDispatch(messageMediator, throwable2, completionStatus,
-					iteration + 1);
+			handleThrowableDuringServerDispatch(messageMediator, throwable2,
+					completionStatus, iteration + 1);
 			return;
 		}
 	}
 
-	protected SystemException convertThrowableToSystemException(Throwable throwable,
-			CompletionStatus completionStatus) {
+	protected SystemException convertThrowableToSystemException(
+			Throwable throwable, CompletionStatus completionStatus) {
 		if (throwable instanceof SystemException) {
 			return (SystemException) throwable;
 		}
@@ -1707,10 +1745,12 @@ public class CorbaMessageMediatorImpl
 		// If user code throws a non-SystemException report it generically.
 		//
 
-		return wrapper.runtimeexception(CompletionStatus.COMPLETED_MAYBE, throwable);
+		return wrapper.runtimeexception(CompletionStatus.COMPLETED_MAYBE,
+				throwable);
 	}
 
-	protected void handleAddressingDisposition(CorbaMessageMediator messageMediator,
+	protected void handleAddressingDisposition(
+			CorbaMessageMediator messageMediator,
 			AddressingDispositionException ex) {
 
 		short addrDisp = -1;
@@ -1720,65 +1760,74 @@ public class CorbaMessageMediatorImpl
 		// Respond with expected target addressing disposition.
 
 		switch (messageMediator.getRequestHeader().getType()) {
-		case Message.GIOPRequest:
-			ReplyMessage replyHeader = MessageBase.createReply((ORB) messageMediator.getBroker(),
-					messageMediator.getGIOPVersion(), messageMediator.getEncodingVersion(),
-					messageMediator.getRequestId(), ReplyMessage.NEEDS_ADDRESSING_MODE, null, null);
-			// REVISIT: via acceptor factory.
-			CDROutputObject outputObject = sun.corba.OutputStreamFactory.newCDROutputObject(
-					(ORB) messageMediator.getBroker(), this, messageMediator.getGIOPVersion(),
-					(CorbaConnection) messageMediator.getConnection(), replyHeader,
-					ORBConstants.STREAM_FORMAT_VERSION_1);
-			messageMediator.setOutputObject(outputObject);
-			outputObject.setMessageMediator(messageMediator);
-			replyHeader.write(outputObject);
-			AddressingDispositionHelper.write(outputObject, ex.expectedAddrDisp());
-			return;
+			case Message.GIOPRequest:
+				ReplyMessage replyHeader = MessageBase.createReply(
+						(ORB) messageMediator.getBroker(), messageMediator
+								.getGIOPVersion(), messageMediator
+										.getEncodingVersion(), messageMediator
+												.getRequestId(),
+						ReplyMessage.NEEDS_ADDRESSING_MODE, null, null);
+				// REVISIT: via acceptor factory.
+				CDROutputObject outputObject = sun.corba.OutputStreamFactory
+						.newCDROutputObject((ORB) messageMediator.getBroker(),
+								this, messageMediator.getGIOPVersion(),
+								(CorbaConnection) messageMediator
+										.getConnection(), replyHeader,
+								ORBConstants.STREAM_FORMAT_VERSION_1);
+				messageMediator.setOutputObject(outputObject);
+				outputObject.setMessageMediator(messageMediator);
+				replyHeader.write(outputObject);
+				AddressingDispositionHelper.write(outputObject, ex
+						.expectedAddrDisp());
+				return;
 
-		case Message.GIOPLocateRequest:
-			LocateReplyMessage locateReplyHeader = MessageBase.createLocateReply(
-					(ORB) messageMediator.getBroker(), messageMediator.getGIOPVersion(),
-					messageMediator.getEncodingVersion(), messageMediator.getRequestId(),
-					LocateReplyMessage.LOC_NEEDS_ADDRESSING_MODE, null);
+			case Message.GIOPLocateRequest:
+				LocateReplyMessage locateReplyHeader = MessageBase
+						.createLocateReply((ORB) messageMediator.getBroker(),
+								messageMediator.getGIOPVersion(),
+								messageMediator.getEncodingVersion(),
+								messageMediator.getRequestId(),
+								LocateReplyMessage.LOC_NEEDS_ADDRESSING_MODE,
+								null);
 
-			addrDisp = ex.expectedAddrDisp();
+				addrDisp = ex.expectedAddrDisp();
 
-			// REVISIT: via acceptor factory.
-			outputObject = createAppropriateOutputObject(messageMediator,
-					messageMediator.getRequestHeader(), locateReplyHeader);
-			messageMediator.setOutputObject(outputObject);
-			outputObject.setMessageMediator(messageMediator);
-			locateReplyHeader.write(outputObject);
-			IOR ior = null;
-			if (ior != null) {
-				ior.write(outputObject);
-			}
-			if (addrDisp != -1) {
-				AddressingDispositionHelper.write(outputObject, addrDisp);
-			}
-			return;
+				// REVISIT: via acceptor factory.
+				outputObject = createAppropriateOutputObject(messageMediator,
+						messageMediator.getRequestHeader(), locateReplyHeader);
+				messageMediator.setOutputObject(outputObject);
+				outputObject.setMessageMediator(messageMediator);
+				locateReplyHeader.write(outputObject);
+				IOR ior = null;
+				if (ior != null) {
+					ior.write(outputObject);
+				}
+				if (addrDisp != -1) {
+					AddressingDispositionHelper.write(outputObject, addrDisp);
+				}
+				return;
 		}
 	}
 
-	public CorbaMessageMediator createResponse(CorbaMessageMediator messageMediator,
-			ServiceContexts svc) {
+	public CorbaMessageMediator createResponse(
+			CorbaMessageMediator messageMediator, ServiceContexts svc) {
 		// REVISIT: ignore service contexts during framework transition.
 		// They are set in SubcontractResponseHandler to the wrong connection.
 		// Then they would be set again here and a duplicate contexts
 		// exception occurs.
-		return createResponseHelper(messageMediator,
-				getServiceContextsForReply(messageMediator, null));
+		return createResponseHelper(messageMediator, getServiceContextsForReply(
+				messageMediator, null));
 	}
 
-	public CorbaMessageMediator createUserExceptionResponse(CorbaMessageMediator messageMediator,
-			ServiceContexts svc) {
+	public CorbaMessageMediator createUserExceptionResponse(
+			CorbaMessageMediator messageMediator, ServiceContexts svc) {
 		// REVISIT - same as above
-		return createResponseHelper(messageMediator,
-				getServiceContextsForReply(messageMediator, null), true);
+		return createResponseHelper(messageMediator, getServiceContextsForReply(
+				messageMediator, null), true);
 	}
 
-	public CorbaMessageMediator createUnknownExceptionResponse(CorbaMessageMediator messageMediator,
-			UnknownException ex) {
+	public CorbaMessageMediator createUnknownExceptionResponse(
+			CorbaMessageMediator messageMediator, UnknownException ex) {
 		// NOTE: This service context container gets augmented in
 		// tail call.
 		ServiceContexts contexts = null;
@@ -1789,8 +1838,9 @@ public class CorbaMessageMediatorImpl
 		return createSystemExceptionResponse(messageMediator, sys, contexts);
 	}
 
-	public CorbaMessageMediator createSystemExceptionResponse(CorbaMessageMediator messageMediator,
-			SystemException ex, ServiceContexts svc) {
+	public CorbaMessageMediator createSystemExceptionResponse(
+			CorbaMessageMediator messageMediator, SystemException ex,
+			ServiceContexts svc) {
 		if (messageMediator.getConnection() != null) {
 			// It is possible that fragments of response have already been
 			// sent. Then an error may occur (e.g. marshaling error like
@@ -1802,7 +1852,8 @@ public class CorbaMessageMediatorImpl
 
 			// REVISIT: Impl - make interface method to do the following.
 			CorbaMessageMediatorImpl mediator = (CorbaMessageMediatorImpl) ((CorbaConnection) messageMediator
-					.getConnection()).serverRequestMapGet(messageMediator.getRequestId());
+					.getConnection()).serverRequestMapGet(messageMediator
+							.getRequestId());
 
 			OutputObject existingOutputObject = null;
 			if (mediator != null) {
@@ -1827,14 +1878,18 @@ public class CorbaMessageMediatorImpl
 			// is called in the when creating the response below
 			// but we do not currently write the SystemException into the
 			// response until after the ending point is called.
-			((ORB) messageMediator.getBroker()).getPIHandler().setServerPIInfo(ex);
+			((ORB) messageMediator.getBroker()).getPIHandler().setServerPIInfo(
+					ex);
 		}
 
-		if (((ORB) messageMediator.getBroker()).subcontractDebugFlag && ex != null) {
-			dprint(".createSystemExceptionResponse: " + opAndId(messageMediator), ex);
+		if (((ORB) messageMediator.getBroker()).subcontractDebugFlag
+				&& ex != null) {
+			dprint(".createSystemExceptionResponse: " + opAndId(
+					messageMediator), ex);
 		}
 
-		ServiceContexts serviceContexts = getServiceContextsForReply(messageMediator, svc);
+		ServiceContexts serviceContexts = getServiceContextsForReply(
+				messageMediator, svc);
 
 		// NOTE: We MUST add the service context before creating
 		// the response since service contexts are written to the
@@ -1842,20 +1897,21 @@ public class CorbaMessageMediatorImpl
 
 		addExceptionDetailMessage(messageMediator, ex, serviceContexts);
 
-		CorbaMessageMediator response = createResponseHelper(messageMediator, serviceContexts,
-				false);
+		CorbaMessageMediator response = createResponseHelper(messageMediator,
+				serviceContexts, false);
 
 		// NOTE: From here on, it is too late to add more service contexts.
 		// They have already been serialized to the stream (and maybe fragments
 		// sent).
 
-		ORBUtility.writeSystemException(ex, (OutputStream) response.getOutputObject());
+		ORBUtility.writeSystemException(ex, (OutputStream) response
+				.getOutputObject());
 
 		return response;
 	}
 
-	private void addExceptionDetailMessage(CorbaMessageMediator mediator, SystemException ex,
-			ServiceContexts serviceContexts) {
+	private void addExceptionDetailMessage(CorbaMessageMediator mediator,
+			SystemException ex, ServiceContexts serviceContexts) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		PrintWriter pw = new PrintWriter(baos);
 		ex.printStackTrace(pw);
@@ -1869,43 +1925,49 @@ public class CorbaMessageMediatorImpl
 		serviceContexts.put(serviceContext);
 	}
 
-	public CorbaMessageMediator createLocationForward(CorbaMessageMediator messageMediator, IOR ior,
+	public CorbaMessageMediator createLocationForward(
+			CorbaMessageMediator messageMediator, IOR ior,
 			ServiceContexts svc) {
-		ReplyMessage reply = MessageBase.createReply((ORB) messageMediator.getBroker(),
-				messageMediator.getGIOPVersion(), messageMediator.getEncodingVersion(),
-				messageMediator.getRequestId(), ReplyMessage.LOCATION_FORWARD,
-				getServiceContextsForReply(messageMediator, svc), ior);
+		ReplyMessage reply = MessageBase.createReply((ORB) messageMediator
+				.getBroker(), messageMediator.getGIOPVersion(), messageMediator
+						.getEncodingVersion(), messageMediator.getRequestId(),
+				ReplyMessage.LOCATION_FORWARD, getServiceContextsForReply(
+						messageMediator, svc), ior);
 
 		return createResponseHelper(messageMediator, reply, ior);
 	}
 
-	protected CorbaMessageMediator createResponseHelper(CorbaMessageMediator messageMediator,
-			ServiceContexts svc) {
-		ReplyMessage message = MessageBase.createReply((ORB) messageMediator.getBroker(),
-				messageMediator.getGIOPVersion(), messageMediator.getEncodingVersion(),
-				messageMediator.getRequestId(), ReplyMessage.NO_EXCEPTION, svc, null);
+	protected CorbaMessageMediator createResponseHelper(
+			CorbaMessageMediator messageMediator, ServiceContexts svc) {
+		ReplyMessage message = MessageBase.createReply((ORB) messageMediator
+				.getBroker(), messageMediator.getGIOPVersion(), messageMediator
+						.getEncodingVersion(), messageMediator.getRequestId(),
+				ReplyMessage.NO_EXCEPTION, svc, null);
 		return createResponseHelper(messageMediator, message, null);
 	}
 
-	protected CorbaMessageMediator createResponseHelper(CorbaMessageMediator messageMediator,
-			ServiceContexts svc, boolean user) {
-		ReplyMessage message = MessageBase.createReply((ORB) messageMediator.getBroker(),
-				messageMediator.getGIOPVersion(), messageMediator.getEncodingVersion(),
-				messageMediator.getRequestId(),
-				user ? ReplyMessage.USER_EXCEPTION : ReplyMessage.SYSTEM_EXCEPTION, svc, null);
+	protected CorbaMessageMediator createResponseHelper(
+			CorbaMessageMediator messageMediator, ServiceContexts svc,
+			boolean user) {
+		ReplyMessage message = MessageBase.createReply((ORB) messageMediator
+				.getBroker(), messageMediator.getGIOPVersion(), messageMediator
+						.getEncodingVersion(), messageMediator.getRequestId(),
+				user ? ReplyMessage.USER_EXCEPTION
+						: ReplyMessage.SYSTEM_EXCEPTION, svc, null);
 		return createResponseHelper(messageMediator, message, null);
 	}
 
 	// REVISIT - IOR arg is ignored.
-	protected CorbaMessageMediator createResponseHelper(CorbaMessageMediator messageMediator,
-			ReplyMessage reply, IOR ior) {
+	protected CorbaMessageMediator createResponseHelper(
+			CorbaMessageMediator messageMediator, ReplyMessage reply, IOR ior) {
 		// REVISIT - these should be invoked from subcontract.
 		runServantPostInvoke(messageMediator);
 		runInterceptors(messageMediator, reply);
 		runRemoveThreadInfo(messageMediator);
 
 		if (((ORB) messageMediator.getBroker()).subcontractDebugFlag) {
-			dprint(".createResponseHelper: " + opAndId(messageMediator) + ": " + reply);
+			dprint(".createResponseHelper: " + opAndId(messageMediator) + ": "
+					+ reply);
 		}
 
 		messageMediator.setReplyHeader(reply);
@@ -1914,19 +1976,23 @@ public class CorbaMessageMediatorImpl
 		// REVISIT = do not use null.
 		//
 		if (messageMediator.getConnection() == null) {
-			replyOutputObject = sun.corba.OutputStreamFactory.newCDROutputObject(orb,
-					messageMediator, messageMediator.getReplyHeader(),
-					messageMediator.getStreamFormatVersion(), BufferManagerFactory.GROW);
+			replyOutputObject = sun.corba.OutputStreamFactory
+					.newCDROutputObject(orb, messageMediator, messageMediator
+							.getReplyHeader(), messageMediator
+									.getStreamFormatVersion(),
+							BufferManagerFactory.GROW);
 		} else {
 			replyOutputObject = messageMediator.getConnection().getAcceptor()
-					.createOutputObject(messageMediator.getBroker(), messageMediator);
+					.createOutputObject(messageMediator.getBroker(),
+							messageMediator);
 		}
 		messageMediator.setOutputObject(replyOutputObject);
 		messageMediator.getOutputObject().setMessageMediator(messageMediator);
 
 		reply.write((OutputStream) messageMediator.getOutputObject());
 		if (reply.getIOR() != null) {
-			reply.getIOR().write((OutputStream) messageMediator.getOutputObject());
+			reply.getIOR().write((OutputStream) messageMediator
+					.getOutputObject());
 		}
 		// REVISIT - not necessary?
 		// messageMediator.this.replyIOR = reply.getIOR();
@@ -1952,7 +2018,8 @@ public class CorbaMessageMediatorImpl
 			// to incorrectly access poa current (which will be the wrong
 			// one or an empty stack.
 			messageMediator.setExecuteReturnServantInResponseConstructor(false);
-			messageMediator.setExecuteRemoveThreadInfoInResponseConstructor(true);
+			messageMediator.setExecuteRemoveThreadInfoInResponseConstructor(
+					true);
 
 			try {
 				orb = (ORB) messageMediator.getBroker();
@@ -1976,17 +2043,20 @@ public class CorbaMessageMediatorImpl
 		}
 	}
 
-	protected void runInterceptors(CorbaMessageMediator messageMediator, ReplyMessage reply) {
+	protected void runInterceptors(CorbaMessageMediator messageMediator,
+			ReplyMessage reply) {
 		if (messageMediator.executePIInResponseConstructor()) {
 			// Invoke server request ending interception points (send_*):
 			// Note: this may end up with a SystemException or an internal
 			// Runtime ForwardRequest
-			((ORB) messageMediator.getBroker()).getPIHandler().invokeServerPIEndingPoint(reply);
+			((ORB) messageMediator.getBroker()).getPIHandler()
+					.invokeServerPIEndingPoint(reply);
 
 			// Note this will be executed even if a ForwardRequest or
 			// SystemException is thrown by a Portable Interceptors ending
 			// point since we end up in this constructor again anyway.
-			((ORB) messageMediator.getBroker()).getPIHandler().cleanupServerPIRequest();
+			((ORB) messageMediator.getBroker()).getPIHandler()
+					.cleanupServerPIRequest();
 
 			// See createSystemExceptionResponse for why this is necesary.
 			messageMediator.setExecutePIInResponseConstructor(false);
@@ -1997,17 +2067,19 @@ public class CorbaMessageMediatorImpl
 		// Once you get here then the final reply is available (i.e.,
 		// postinvoke and interceptors have completed.
 		if (messageMediator.executeRemoveThreadInfoInResponseConstructor()) {
-			messageMediator.setExecuteRemoveThreadInfoInResponseConstructor(false);
+			messageMediator.setExecuteRemoveThreadInfoInResponseConstructor(
+					false);
 			((ORB) messageMediator.getBroker()).popInvocationInfo();
 		}
 	}
 
-	protected ServiceContexts getServiceContextsForReply(CorbaMessageMediator messageMediator,
-			ServiceContexts contexts) {
+	protected ServiceContexts getServiceContextsForReply(
+			CorbaMessageMediator messageMediator, ServiceContexts contexts) {
 		CorbaConnection c = (CorbaConnection) messageMediator.getConnection();
 
 		if (((ORB) messageMediator.getBroker()).subcontractDebugFlag) {
-			dprint(".getServiceContextsForReply: " + opAndId(messageMediator) + ": " + c);
+			dprint(".getServiceContextsForReply: " + opAndId(messageMediator)
+					+ ": " + c);
 		}
 
 		if (contexts == null) {
@@ -2027,7 +2099,8 @@ public class CorbaMessageMediatorImpl
 			contexts.put(scsc);
 
 			if (((ORB) messageMediator.getBroker()).subcontractDebugFlag)
-				dprint(".getServiceContextsForReply: " + opAndId(messageMediator)
+				dprint(".getServiceContextsForReply: " + opAndId(
+						messageMediator)
 						+ ": added SendingContextServiceContext");
 		}
 
@@ -2057,7 +2130,8 @@ public class CorbaMessageMediatorImpl
 			if (transportDebug()) {
 				int bbId = System.identityHashCode(dispatchByteBuffer);
 				StringBuffer sb = new StringBuffer();
-				sb.append(".handleInput: releasing ByteBuffer (" + bbId + ") to ByteBufferPool");
+				sb.append(".handleInput: releasing ByteBuffer (" + bbId
+						+ ") to ByteBufferPool");
 				dprint(sb.toString());
 			}
 		}

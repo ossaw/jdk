@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -51,8 +31,9 @@ public interface Referenceable {
 	 *
 	 * @return The non-null Reference of this object.
 	 * @exception NamingException
-	 *                If a naming exception was encountered while retrieving the
-	 *                reference.
+	 *                            If a naming exception was encountered while
+	 *                            retrieving the
+	 *                            reference.
 	 */
 	Reference getReference() throws NamingException;
 }

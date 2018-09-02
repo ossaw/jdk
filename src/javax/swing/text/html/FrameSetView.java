@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.html;
 
@@ -56,7 +36,7 @@ class FrameSetView extends javax.swing.text.BoxView {
 	 * Constructs a FrameSetView for the given element.
 	 *
 	 * @param elem
-	 *            the element that this view is responsible for
+	 *             the element that this view is responsible for
 	 */
 	public FrameSetView(Element elem, int axis) {
 		super(elem, axis);
@@ -121,8 +101,8 @@ class FrameSetView extends javax.swing.text.BoxView {
 
 			if (children[i].endsWith("*")) {
 				if (children[i].length() > 1) {
-					relativeChildren[i] = Integer
-							.parseInt(children[i].substring(0, children[i].length() - 1));
+					relativeChildren[i] = Integer.parseInt(children[i]
+							.substring(0, children[i].length() - 1));
 					relativeTotals += relativeChildren[i];
 				} else {
 					relativeChildren[i] = 1;
@@ -138,7 +118,8 @@ class FrameSetView extends javax.swing.text.BoxView {
 		if (percentTotals > 100) {
 			for (int i = 0; i < percentChildren.length; i++) {
 				if (percentChildren[i] > 0) {
-					percentChildren[i] = (percentChildren[i] * 100) / percentTotals;
+					percentChildren[i] = (percentChildren[i] * 100)
+							/ percentTotals;
 				}
 			}
 			percentTotals = 100;
@@ -152,21 +133,25 @@ class FrameSetView extends javax.swing.text.BoxView {
 	 * axis.
 	 *
 	 * @param targetSpan
-	 *            the total span given to the view, which would be used to
-	 *            layout the children
+	 *                   the total span given to the view, which would be used
+	 *                   to
+	 *                   layout the children
 	 * @param axis
-	 *            the axis being layed out
+	 *                   the axis being layed out
 	 * @param offsets
-	 *            the offsets from the origin of the view for each of the child
-	 *            views; this is a return value and is filled in by the
-	 *            implementation of this method
+	 *                   the offsets from the origin of the view for each of the
+	 *                   child
+	 *                   views; this is a return value and is filled in by the
+	 *                   implementation of this method
 	 * @param spans
-	 *            the span of each child view; this is a return value and is
-	 *            filled in by the implementation of this method
+	 *                   the span of each child view; this is a return value and
+	 *                   is
+	 *                   filled in by the implementation of this method
 	 * @return the offset and span for each child view in the offsets and spans
 	 *         parameters
 	 */
-	protected void layoutMajorAxis(int targetSpan, int axis, int[] offsets, int[] spans) {
+	protected void layoutMajorAxis(int targetSpan, int axis, int[] offsets,
+			int[] spans) {
 		if (children == null) {
 			init();
 		}
@@ -184,8 +169,8 @@ class FrameSetView extends javax.swing.text.BoxView {
 		for (int i = 0, sIndex = 0; i < n; i++) {
 			View v = getView(i);
 			if ((v instanceof FrameView) || (v instanceof FrameSetView)) {
-				reqs[i] = new SizeRequirements((int) v.getMinimumSpan(axis), span[sIndex],
-						(int) v.getMaximumSpan(axis), 0.5f);
+				reqs[i] = new SizeRequirements((int) v.getMinimumSpan(axis),
+						span[sIndex], (int) v.getMaximumSpan(axis), 0.5f);
 				sIndex++;
 			} else {
 				int min = (int) v.getMinimumSpan(axis);
@@ -239,7 +224,8 @@ class FrameSetView extends javax.swing.text.BoxView {
 		if (remainingSpace > 0 && relativeTotals > 0) {
 			for (int i = 0; i < span.length; i++) {
 				if (relativeChildren[i] > 0) {
-					span[i] = (remainingSpace * relativeChildren[i]) / relativeTotals;
+					span[i] = (remainingSpace * relativeChildren[i])
+							/ relativeTotals;
 				}
 			}
 		} else if (remainingSpace > 0) {
@@ -273,7 +259,8 @@ class FrameSetView extends javax.swing.text.BoxView {
 				// whole
 				// and then scale them appropriately for the correct size
 				tempPercents[i] = ((float) span[i] / vTotal) * 100.00f;
-				span[i] = (int) (((float) targetSpan * tempPercents[i]) / 100.00f);
+				span[i] = (int) (((float) targetSpan * tempPercents[i])
+						/ 100.00f);
 				remainingSpace -= span[i];
 			}
 

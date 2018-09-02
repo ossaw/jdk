@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled;
@@ -179,23 +159,27 @@ public class AudioFormat {
 	 * description}.
 	 * 
 	 * @param encoding
-	 *            the audio encoding technique
+	 *                         the audio encoding technique
 	 * @param sampleRate
-	 *            the number of samples per second
+	 *                         the number of samples per second
 	 * @param sampleSizeInBits
-	 *            the number of bits in each sample
+	 *                         the number of bits in each sample
 	 * @param channels
-	 *            the number of channels (1 for mono, 2 for stereo, and so on)
+	 *                         the number of channels (1 for mono, 2 for stereo,
+	 *                         and so on)
 	 * @param frameSize
-	 *            the number of bytes in each frame
+	 *                         the number of bytes in each frame
 	 * @param frameRate
-	 *            the number of frames per second
+	 *                         the number of frames per second
 	 * @param bigEndian
-	 *            indicates whether the data for a single sample is stored in
-	 *            big-endian byte order (<code>false</code> means little-endian)
+	 *                         indicates whether the data for a single sample is
+	 *                         stored in
+	 *                         big-endian byte order (<code>false</code> means
+	 *                         little-endian)
 	 */
-	public AudioFormat(Encoding encoding, float sampleRate, int sampleSizeInBits, int channels,
-			int frameSize, float frameRate, boolean bigEndian) {
+	public AudioFormat(Encoding encoding, float sampleRate,
+			int sampleSizeInBits, int channels, int frameSize, float frameRate,
+			boolean bigEndian) {
 
 		this.encoding = encoding;
 		this.sampleRate = sampleRate;
@@ -214,29 +198,35 @@ public class AudioFormat {
 	 * description}.
 	 * 
 	 * @param encoding
-	 *            the audio encoding technique
+	 *                         the audio encoding technique
 	 * @param sampleRate
-	 *            the number of samples per second
+	 *                         the number of samples per second
 	 * @param sampleSizeInBits
-	 *            the number of bits in each sample
+	 *                         the number of bits in each sample
 	 * @param channels
-	 *            the number of channels (1 for mono, 2 for stereo, and so on)
+	 *                         the number of channels (1 for mono, 2 for stereo,
+	 *                         and so on)
 	 * @param frameSize
-	 *            the number of bytes in each frame
+	 *                         the number of bytes in each frame
 	 * @param frameRate
-	 *            the number of frames per second
+	 *                         the number of frames per second
 	 * @param bigEndian
-	 *            indicates whether the data for a single sample is stored in
-	 *            big-endian byte order (<code>false</code> means little-endian)
+	 *                         indicates whether the data for a single sample is
+	 *                         stored in
+	 *                         big-endian byte order (<code>false</code> means
+	 *                         little-endian)
 	 * @param properties
-	 *            a <code>Map&lt;String,Object&gt;</code> object containing
-	 *            format properties
+	 *                         a <code>Map&lt;String,Object&gt;</code> object
+	 *                         containing
+	 *                         format properties
 	 *
 	 * @since 1.5
 	 */
-	public AudioFormat(Encoding encoding, float sampleRate, int sampleSizeInBits, int channels,
-			int frameSize, float frameRate, boolean bigEndian, Map<String, Object> properties) {
-		this(encoding, sampleRate, sampleSizeInBits, channels, frameSize, frameRate, bigEndian);
+	public AudioFormat(Encoding encoding, float sampleRate,
+			int sampleSizeInBits, int channels, int frameSize, float frameRate,
+			boolean bigEndian, Map<String, Object> properties) {
+		this(encoding, sampleRate, sampleSizeInBits, channels, frameSize,
+				frameRate, bigEndian);
 		this.properties = new HashMap<String, Object>(properties);
 	}
 
@@ -247,22 +237,25 @@ public class AudioFormat {
 	 * sample rate.
 	 *
 	 * @param sampleRate
-	 *            the number of samples per second
+	 *                         the number of samples per second
 	 * @param sampleSizeInBits
-	 *            the number of bits in each sample
+	 *                         the number of bits in each sample
 	 * @param channels
-	 *            the number of channels (1 for mono, 2 for stereo, and so on)
+	 *                         the number of channels (1 for mono, 2 for stereo,
+	 *                         and so on)
 	 * @param signed
-	 *            indicates whether the data is signed or unsigned
+	 *                         indicates whether the data is signed or unsigned
 	 * @param bigEndian
-	 *            indicates whether the data for a single sample is stored in
-	 *            big-endian byte order (<code>false</code> means little-endian)
+	 *                         indicates whether the data for a single sample is
+	 *                         stored in
+	 *                         big-endian byte order (<code>false</code> means
+	 *                         little-endian)
 	 */
-	public AudioFormat(float sampleRate, int sampleSizeInBits, int channels, boolean signed,
-			boolean bigEndian) {
+	public AudioFormat(float sampleRate, int sampleSizeInBits, int channels,
+			boolean signed, boolean bigEndian) {
 
-		this((signed == true ? Encoding.PCM_SIGNED : Encoding.PCM_UNSIGNED), sampleRate,
-				sampleSizeInBits, channels,
+		this((signed == true ? Encoding.PCM_SIGNED : Encoding.PCM_UNSIGNED),
+				sampleRate, sampleSizeInBits, channels,
 				(channels == AudioSystem.NOT_SPECIFIED
 						|| sampleSizeInBits == AudioSystem.NOT_SPECIFIED)
 								? AudioSystem.NOT_SPECIFIED
@@ -455,23 +448,25 @@ public class AudioFormat {
 	 * is greater than one byte.
 	 *
 	 * @param format
-	 *            format to test for match
+	 *               format to test for match
 	 * @return {@code true} if this format matches the one specified,
 	 *         {@code false} otherwise.
 	 */
 	public boolean matches(AudioFormat format) {
-		if (format.getEncoding().equals(getEncoding())
-				&& (format.getChannels() == AudioSystem.NOT_SPECIFIED
-						|| format.getChannels() == getChannels())
-				&& (format.getSampleRate() == (float) AudioSystem.NOT_SPECIFIED
-						|| format.getSampleRate() == getSampleRate())
+		if (format.getEncoding().equals(getEncoding()) && (format
+				.getChannels() == AudioSystem.NOT_SPECIFIED || format
+						.getChannels() == getChannels()) && (format
+								.getSampleRate() == (float) AudioSystem.NOT_SPECIFIED
+								|| format.getSampleRate() == getSampleRate())
 				&& (format.getSampleSizeInBits() == AudioSystem.NOT_SPECIFIED
-						|| format.getSampleSizeInBits() == getSampleSizeInBits())
+						|| format
+								.getSampleSizeInBits() == getSampleSizeInBits())
 				&& (format.getFrameRate() == (float) AudioSystem.NOT_SPECIFIED
-						|| format.getFrameRate() == getFrameRate())
-				&& (format.getFrameSize() == AudioSystem.NOT_SPECIFIED
-						|| format.getFrameSize() == getFrameSize())
-				&& (getSampleSizeInBits() <= 8 || format.isBigEndian() == isBigEndian())) {
+						|| format.getFrameRate() == getFrameRate()) && (format
+								.getFrameSize() == AudioSystem.NOT_SPECIFIED
+								|| format.getFrameSize() == getFrameSize())
+				&& (getSampleSizeInBits() <= 8 || format
+						.isBigEndian() == isBigEndian())) {
 			return true;
 		}
 		return false;
@@ -534,9 +529,8 @@ public class AudioFormat {
 		}
 
 		String sEndian = "";
-		if ((getEncoding().equals(Encoding.PCM_SIGNED)
-				|| getEncoding().equals(Encoding.PCM_UNSIGNED))
-				&& ((getSampleSizeInBits() > 8)
+		if ((getEncoding().equals(Encoding.PCM_SIGNED) || getEncoding().equals(
+				Encoding.PCM_UNSIGNED)) && ((getSampleSizeInBits() > 8)
 						|| (getSampleSizeInBits() == AudioSystem.NOT_SPECIFIED))) {
 			if (isBigEndian()) {
 				sEndian = "big-endian";
@@ -545,8 +539,8 @@ public class AudioFormat {
 			}
 		}
 
-		return sEncoding + sSampleRate + sSampleSizeInBits + sChannels + sFrameSize + sFrameRate
-				+ sEndian;
+		return sEncoding + sSampleRate + sSampleSizeInBits + sChannels
+				+ sFrameSize + sFrameRate + sEndian;
 
 	}
 
@@ -594,7 +588,8 @@ public class AudioFormat {
 		/**
 		 * Specifies unsigned, linear PCM data.
 		 */
-		public static final Encoding PCM_UNSIGNED = new Encoding("PCM_UNSIGNED");
+		public static final Encoding PCM_UNSIGNED = new Encoding(
+				"PCM_UNSIGNED");
 
 		/**
 		 * Specifies floating-point PCM data.
@@ -626,7 +621,7 @@ public class AudioFormat {
 		 * Constructs a new encoding.
 		 * 
 		 * @param name
-		 *            the name of the new type of encoding
+		 *             the name of the new type of encoding
 		 */
 		public Encoding(String name) {
 			this.name = name;

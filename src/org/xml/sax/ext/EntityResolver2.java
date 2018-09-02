@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // EntityResolver2.java - Extended SAX entity resolver.
@@ -138,24 +118,29 @@ public interface EntityResolver2 extends EntityResolver {
 	 * </p>
 	 *
 	 * @param name
-	 *            Identifies the document root element. This name comes from a
-	 *            DOCTYPE declaration (where available) or from the actual root
-	 *            element.
+	 *                Identifies the document root element. This name comes from
+	 *                a
+	 *                DOCTYPE declaration (where available) or from the actual
+	 *                root
+	 *                element.
 	 * @param baseURI
-	 *            The document's base URI, serving as an additional hint for
-	 *            selecting the external subset. This is always an absolute URI,
-	 *            unless it is null because the XMLReader was given an
-	 *            InputSource without one.
+	 *                The document's base URI, serving as an additional hint for
+	 *                selecting the external subset. This is always an absolute
+	 *                URI,
+	 *                unless it is null because the XMLReader was given an
+	 *                InputSource without one.
 	 *
 	 * @return An InputSource object describing the new external subset to be
 	 *         used by the parser, or null to indicate that no external subset
 	 *         is provided.
 	 *
 	 * @exception SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *                         Any SAX exception, possibly wrapping another
+	 *                         exception.
 	 * @exception IOException
-	 *                Probably indicating a failure to create a new InputStream
-	 *                or Reader, or an illegal URL.
+	 *                         Probably indicating a failure to create a new
+	 *                         InputStream
+	 *                         or Reader, or an illegal URL.
 	 */
 	public InputSource getExternalSubset(String name, String baseURI)
 			throws SAXException, IOException;
@@ -189,26 +174,35 @@ public interface EntityResolver2 extends EntityResolver {
 	 * </p>
 	 *
 	 * @param name
-	 *            Identifies the external entity being resolved. Either "[dtd]"
-	 *            for the external subset, or a name starting with "%" to
-	 *            indicate a parameter entity, or else the name of a general
-	 *            entity. This is never null when invoked by a SAX2 parser.
+	 *                 Identifies the external entity being resolved. Either
+	 *                 "[dtd]"
+	 *                 for the external subset, or a name starting with "%" to
+	 *                 indicate a parameter entity, or else the name of a
+	 *                 general
+	 *                 entity. This is never null when invoked by a SAX2 parser.
 	 * @param publicId
-	 *            The public identifier of the external entity being referenced
-	 *            (normalized as required by the XML specification), or null if
-	 *            none was supplied.
+	 *                 The public identifier of the external entity being
+	 *                 referenced
+	 *                 (normalized as required by the XML specification), or
+	 *                 null if
+	 *                 none was supplied.
 	 * @param baseURI
-	 *            The URI with respect to which relative systemIDs are
-	 *            interpreted. This is always an absolute URI, unless it is null
-	 *            (likely because the XMLReader was given an InputSource without
-	 *            one). This URI is defined by the XML specification to be the
-	 *            one associated with the "&lt;" starting the relevant
-	 *            declaration.
+	 *                 The URI with respect to which relative systemIDs are
+	 *                 interpreted. This is always an absolute URI, unless it is
+	 *                 null
+	 *                 (likely because the XMLReader was given an InputSource
+	 *                 without
+	 *                 one). This URI is defined by the XML specification to be
+	 *                 the
+	 *                 one associated with the "&lt;" starting the relevant
+	 *                 declaration.
 	 * @param systemId
-	 *            The system identifier of the external entity being referenced;
-	 *            either a relative or absolute URI. This is never null when
-	 *            invoked by a SAX2 parser; only declared entities, and any
-	 *            external subset, are resolved by such parsers.
+	 *                 The system identifier of the external entity being
+	 *                 referenced;
+	 *                 either a relative or absolute URI. This is never null
+	 *                 when
+	 *                 invoked by a SAX2 parser; only declared entities, and any
+	 *                 external subset, are resolved by such parsers.
 	 *
 	 * @return An InputSource object describing the new input source to be used
 	 *         by the parser. Returning null directs the parser to resolve the
@@ -216,11 +210,13 @@ public interface EntityResolver2 extends EntityResolver {
 	 *         URI.
 	 *
 	 * @exception SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *                         Any SAX exception, possibly wrapping another
+	 *                         exception.
 	 * @exception IOException
-	 *                Probably indicating a failure to create a new InputStream
-	 *                or Reader, or an illegal URL.
+	 *                         Probably indicating a failure to create a new
+	 *                         InputStream
+	 *                         or Reader, or an illegal URL.
 	 */
-	public InputSource resolveEntity(String name, String publicId, String baseURI, String systemId)
-			throws SAXException, IOException;
+	public InputSource resolveEntity(String name, String publicId,
+			String baseURI, String systemId) throws SAXException, IOException;
 }

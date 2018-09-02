@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -110,7 +107,8 @@ final class Whitespace extends TopLevelElement {
 		 * For sorting rules depending on priority
 		 */
 		public int compareTo(WhitespaceRule other) {
-			return _priority < other._priority ? -1 : _priority > other._priority ? 1 : 0;
+			return _priority < other._priority ? -1
+					: _priority > other._priority ? 1 : 0;
 		}
 
 		public int getAction() {
@@ -140,7 +138,8 @@ final class Whitespace extends TopLevelElement {
 	 */
 	public void parseContents(Parser parser) {
 		// Determine if this is an xsl:strip- or preserve-space element
-		_action = _qname.getLocalPart().endsWith("strip-space") ? STRIP_SPACE : PRESERVE_SPACE;
+		_action = _qname.getLocalPart().endsWith("strip-space") ? STRIP_SPACE
+				: PRESERVE_SPACE;
 
 		// Determine the import precedence
 		_importPrecedence = parser.getCurrentImportPrecedence();
@@ -165,7 +164,8 @@ final class Whitespace extends TopLevelElement {
 			if (col != -1) {
 				namespace = lookupNamespace(token.substring(0, col));
 				if (namespace != null) {
-					elements.append(namespace).append(':').append(token.substring(col + 1));
+					elements.append(namespace).append(':').append(token
+							.substring(col + 1));
 				} else {
 					elements.append(token);
 				}
@@ -188,7 +188,8 @@ final class Whitespace extends TopLevelElement {
 		// Go through each element and instanciate strip/preserve-object
 		final StringTokenizer list = new StringTokenizer(_elementList);
 		while (list.hasMoreElements()) {
-			rules.add(new WhitespaceRule(_action, list.nextToken(), _importPrecedence));
+			rules.add(new WhitespaceRule(_action, list.nextToken(),
+					_importPrecedence));
 		}
 		return rules;
 	}
@@ -197,7 +198,8 @@ final class Whitespace extends TopLevelElement {
 	 * Scans through the rules vector and looks for a rule of higher priority
 	 * that contradicts the current rule.
 	 */
-	private static WhitespaceRule findContradictingRule(Vector rules, WhitespaceRule rule) {
+	private static WhitespaceRule findContradictingRule(Vector rules,
+			WhitespaceRule rule) {
 		for (int i = 0; i < rules.size(); i++) {
 			// Get the next rule in the prioritized list
 			WhitespaceRule currentRule = (WhitespaceRule) rules.elementAt(i);
@@ -212,19 +214,20 @@ final class Whitespace extends TopLevelElement {
 			 * have different action then this rule will never win.
 			 */
 			switch (currentRule.getStrength()) {
-			case RULE_ALL:
-				return currentRule;
-
-			case RULE_ELEMENT:
-				if (!rule.getElement().equals(currentRule.getElement())) {
-					break;
-				}
-				// intentional fall-through
-			case RULE_NAMESPACE:
-				if (rule.getNamespace().equals(currentRule.getNamespace())) {
+				case RULE_ALL:
 					return currentRule;
-				}
-				break;
+
+				case RULE_ELEMENT:
+					if (!rule.getElement().equals(currentRule.getElement())) {
+						break;
+					}
+					// intentional fall-through
+				case RULE_NAMESPACE:
+					if (rule.getNamespace().equals(currentRule
+							.getNamespace())) {
+						return currentRule;
+					}
+					break;
 			}
 		}
 		return null;
@@ -297,7 +300,8 @@ final class Whitespace extends TopLevelElement {
 		return defaultAction;
 	}
 
-	public static void compileStripSpace(BranchHandle strip[], int sCount, InstructionList il) {
+	public static void compileStripSpace(BranchHandle strip[], int sCount,
+			InstructionList il) {
 		final InstructionHandle target = il.append(ICONST_1);
 		il.append(IRETURN);
 		for (int i = 0; i < sCount; i++) {
@@ -325,22 +329,25 @@ final class Whitespace extends TopLevelElement {
 	/**
 	 * Compiles the predicate method
 	 */
-	private static void compilePredicate(Vector rules, int defaultAction, ClassGenerator classGen) {
+	private static void compilePredicate(Vector rules, int defaultAction,
+			ClassGenerator classGen) {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = new InstructionList();
 		final XSLTC xsltc = classGen.getParser().getXSLTC();
 
 		// private boolean Translet.stripSpace(int type) - cannot be static
-		final MethodGenerator stripSpace = new MethodGenerator(ACC_PUBLIC | ACC_FINAL,
+		final MethodGenerator stripSpace = new MethodGenerator(ACC_PUBLIC
+				| ACC_FINAL,
 				com.sun.org.apache.bcel.internal.generic.Type.BOOLEAN,
-				new com.sun.org.apache.bcel.internal.generic.Type[] {
-						Util.getJCRefType(DOM_INTF_SIG),
+				new com.sun.org.apache.bcel.internal.generic.Type[] { Util
+						.getJCRefType(DOM_INTF_SIG),
 						com.sun.org.apache.bcel.internal.generic.Type.INT,
 						com.sun.org.apache.bcel.internal.generic.Type.INT },
-				new String[] { "dom", "node", "type" }, "stripSpace", classGen.getClassName(), il,
-				cpg);
+				new String[] { "dom", "node", "type" }, "stripSpace", classGen
+						.getClassName(), il, cpg);
 
-		classGen.addInterface("com/sun/org/apache/xalan/internal/xsltc/StripFilter");
+		classGen.addInterface(
+				"com/sun/org/apache/xalan/internal/xsltc/StripFilter");
 
 		final int paramDom = stripSpace.getLocalIndex("dom");
 		final int paramCurrent = stripSpace.getLocalIndex("node");
@@ -357,8 +364,8 @@ final class Whitespace extends TopLevelElement {
 			WhitespaceRule rule = (WhitespaceRule) rules.elementAt(i);
 
 			// Returns the namespace for a node in the DOM
-			final int gns = cpg.addInterfaceMethodref(DOM_INTF, "getNamespaceName",
-					"(I)Ljava/lang/String;");
+			final int gns = cpg.addInterfaceMethodref(DOM_INTF,
+					"getNamespaceName", "(I)Ljava/lang/String;");
 
 			final int strcmp = cpg.addMethodref("java/lang/String", "compareTo",
 					"(Ljava/lang/String;)I");
@@ -384,7 +391,8 @@ final class Whitespace extends TopLevelElement {
 				final Parser parser = classGen.getParser();
 				QName qname;
 				if (rule.getNamespace() != Constants.EMPTYSTRING)
-					qname = parser.getQName(rule.getNamespace(), null, rule.getElement());
+					qname = parser.getQName(rule.getNamespace(), null, rule
+							.getElement());
 				else
 					qname = parser.getQName(rule.getElement());
 
@@ -415,22 +423,25 @@ final class Whitespace extends TopLevelElement {
 	/**
 	 * Compiles the predicate method
 	 */
-	private static void compileDefault(int defaultAction, ClassGenerator classGen) {
+	private static void compileDefault(int defaultAction,
+			ClassGenerator classGen) {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = new InstructionList();
 		final XSLTC xsltc = classGen.getParser().getXSLTC();
 
 		// private boolean Translet.stripSpace(int type) - cannot be static
-		final MethodGenerator stripSpace = new MethodGenerator(ACC_PUBLIC | ACC_FINAL,
+		final MethodGenerator stripSpace = new MethodGenerator(ACC_PUBLIC
+				| ACC_FINAL,
 				com.sun.org.apache.bcel.internal.generic.Type.BOOLEAN,
-				new com.sun.org.apache.bcel.internal.generic.Type[] {
-						Util.getJCRefType(DOM_INTF_SIG),
+				new com.sun.org.apache.bcel.internal.generic.Type[] { Util
+						.getJCRefType(DOM_INTF_SIG),
 						com.sun.org.apache.bcel.internal.generic.Type.INT,
 						com.sun.org.apache.bcel.internal.generic.Type.INT },
-				new String[] { "dom", "node", "type" }, "stripSpace", classGen.getClassName(), il,
-				cpg);
+				new String[] { "dom", "node", "type" }, "stripSpace", classGen
+						.getClassName(), il, cpg);
 
-		classGen.addInterface("com/sun/org/apache/xalan/internal/xsltc/StripFilter");
+		classGen.addInterface(
+				"com/sun/org/apache/xalan/internal/xsltc/StripFilter");
 
 		if (defaultAction == STRIP_SPACE)
 			il.append(ICONST_1);
@@ -477,7 +488,8 @@ final class Whitespace extends TopLevelElement {
 	 * Used with quicksort method above
 	 */
 	private static int partition(Vector rules, int p, int r) {
-		final WhitespaceRule x = (WhitespaceRule) rules.elementAt((p + r) >>> 1);
+		final WhitespaceRule x = (WhitespaceRule) rules.elementAt((p
+				+ r) >>> 1);
 		int i = p - 1, j = r + 1;
 		while (true) {
 			while (x.compareTo((WhitespaceRule) rules.elementAt(--j)) < 0) {
@@ -504,6 +516,5 @@ final class Whitespace extends TopLevelElement {
 	/**
 	 * This method should not produce any code
 	 */
-	public void translate(ClassGenerator classGen, MethodGenerator methodGen) {
-	}
+	public void translate(ClassGenerator classGen, MethodGenerator methodGen) {}
 }

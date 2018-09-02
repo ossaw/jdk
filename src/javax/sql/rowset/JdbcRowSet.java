@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset;
@@ -142,8 +122,9 @@ public interface JdbcRowSet extends RowSet, Joinable {
 	 * @return <code>true</code> if deleted rows are visible; <code>false</code>
 	 *         otherwise
 	 * @exception SQLException
-	 *                if a rowset implementation is unable to to determine
-	 *                whether rows marked for deletion remain visible
+	 *                         if a rowset implementation is unable to to
+	 *                         determine
+	 *                         whether rows marked for deletion remain visible
 	 * @see #setShowDeleted
 	 */
 	public boolean getShowDeleted() throws SQLException;
@@ -161,11 +142,12 @@ public interface JdbcRowSet extends RowSet, Joinable {
 	 * as implementation-defined and does not represent standard behavior.
 	 *
 	 * @param b
-	 *            <code>true</code> if deleted rows should be shown;
-	 *            <code>false</code> otherwise
+	 *          <code>true</code> if deleted rows should be shown;
+	 *          <code>false</code> otherwise
 	 * @exception SQLException
-	 *                if a rowset implementation is unable to to reset whether
-	 *                deleted rows should be visible
+	 *                         if a rowset implementation is unable to to reset
+	 *                         whether
+	 *                         deleted rows should be visible
 	 * @see #getShowDeleted
 	 */
 	public void setShowDeleted(boolean b) throws SQLException;
@@ -198,8 +180,9 @@ public interface JdbcRowSet extends RowSet, Joinable {
 	 *         <code>JdbcRowSet</code> object or <code>null</code> if there are
 	 *         none
 	 * @throws SQLException
-	 *             if this method is called on a closed <code>JdbcRowSet</code>
-	 *             object
+	 *                      if this method is called on a closed
+	 *                      <code>JdbcRowSet</code>
+	 *                      object
 	 * @see RowSetWarning
 	 */
 	public RowSetWarning getRowSetWarnings() throws SQLException;
@@ -216,8 +199,10 @@ public interface JdbcRowSet extends RowSet, Joinable {
 	 * This method should be used only when auto-commit mode has been disabled.
 	 *
 	 * @throws SQLException
-	 *             if a database access error occurs or this Connection object
-	 *             within this <code>JdbcRowSet</code> is in auto-commit mode
+	 *                      if a database access error occurs or this Connection
+	 *                      object
+	 *                      within this <code>JdbcRowSet</code> is in
+	 *                      auto-commit mode
 	 * @see java.sql.Connection#setAutoCommit
 	 */
 	public void commit() throws SQLException;
@@ -238,7 +223,7 @@ public interface JdbcRowSet extends RowSet, Joinable {
 	 *
 	 * @return {@code true} if auto-commit is enabled; {@code false} otherwise
 	 * @throws SQLException
-	 *             if a database access error occurs
+	 *                      if a database access error occurs
 	 * @see java.sql.Connection#getAutoCommit()
 	 */
 	public boolean getAutoCommit() throws SQLException;
@@ -254,10 +239,11 @@ public interface JdbcRowSet extends RowSet, Joinable {
 	 * object.
 	 * 
 	 * @param autoCommit
-	 *            {@code true} to enable auto-commit; {@code false} to disable
-	 *            auto-commit
+	 *                   {@code true} to enable auto-commit; {@code false} to
+	 *                   disable
+	 *                   auto-commit
 	 * @throws SQLException
-	 *             if a database access error occurs
+	 *                      if a database access error occurs
 	 * @see java.sql.Connection#setAutoCommit(boolean)
 	 */
 	public void setAutoCommit(boolean autoCommit) throws SQLException;
@@ -270,9 +256,9 @@ public interface JdbcRowSet extends RowSet, Joinable {
 	 * This method should be used only when auto-commit mode has been disabled.
 	 *
 	 * @throws SQLException
-	 *             if a database access error occurs or this
-	 *             <code>Connection</code> object within this
-	 *             <code>JdbcRowSet</code> is in auto-commit mode.
+	 *                      if a database access error occurs or this
+	 *                      <code>Connection</code> object within this
+	 *                      <code>JdbcRowSet</code> is in auto-commit mode.
 	 * @see #rollback(Savepoint)
 	 */
 	public void rollback() throws SQLException;
@@ -286,11 +272,11 @@ public interface JdbcRowSet extends RowSet, Joinable {
 	 * auto-commit mode has been disabled.
 	 * 
 	 * @param s
-	 *            The {@code Savepoint} to rollback to
+	 *          The {@code Savepoint} to rollback to
 	 * @throws SQLException
-	 *             if a database access error occurs or this
-	 *             <code>Connection</code> object within this
-	 *             <code>JdbcRowSet</code> is in auto-commit mode.
+	 *                      if a database access error occurs or this
+	 *                      <code>Connection</code> object within this
+	 *                      <code>JdbcRowSet</code> is in auto-commit mode.
 	 * @see #rollback
 	 */
 	public void rollback(Savepoint s) throws SQLException;

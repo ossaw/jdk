@@ -1,40 +1,18 @@
 /*
  * Copyright (c) 2001, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
-  File: Mutex.java
-
-  Originally written by Doug Lea and released into the public domain.
-  This may be used for any purposes whatsoever without acknowledgment.
-  Thanks for the assistance and support of Sun Microsystems Labs,
-  and everyone contributing, testing, and using this code.
-
-  History:
-  Date       Who                What
-  11Jun1998  dl               Create public version
-*/
+ * File: Mutex.java
+ * Originally written by Doug Lea and released into the public domain.
+ * This may be used for any purposes whatsoever without acknowledgment.
+ * Thanks for the assistance and support of Sun Microsystems Labs,
+ * and everyone contributing, testing, and using this code.
+ * History:
+ * Date Who What
+ * 11Jun1998 dl Create public version
+ */
 
 package com.sun.corba.se.impl.orbutil.concurrent;
 
@@ -55,84 +33,95 @@ package com.sun.corba.se.impl.orbutil.concurrent;
  * acquire/release pairs do not occur in the same method or
  * code block. For example, you can use them for hand-over-hand
  * locking across the nodes of a linked list. This allows
- * extremely fine-grained locking,  and so increases
+ * extremely fine-grained locking, and so increases
  * potential concurrency, at the cost of additional complexity and
  * overhead that would normally make this worthwhile only in cases of
  * extreme contention.
+ * 
  * <pre>
  * class Node {
- *   Object item;
- *   Node next;
- *   Mutex lock = new Mutex(); // each node keeps its own lock
+ * 	Object item;
+ * 	Node next;
+ * 	Mutex lock = new Mutex(); // each node keeps its own lock
  *
- *   Node(Object x, Node n) { item = x; next = n; }
+ * 	Node(Object x, Node n) {
+ * 		item = x;
+ * 		next = n;
+ * 	}
  * }
  *
  * class List {
- *    protected Node head; // pointer to first node of list
+ * 	protected Node head; // pointer to first node of list
  *
- *    // Use plain java synchronization to protect head field.
- *    //  (We could instead use a Mutex here too but there is no
- *    //  reason to do so.)
- *    protected synchronized Node getHead() { return head; }
+ * 	// Use plain java synchronization to protect head field.
+ * 	//  (We could instead use a Mutex here too but there is no
+ * 	//  reason to do so.)
+ * 	protected synchronized Node getHead() {
+ * 		return head;
+ * 	}
  *
- *    boolean search(Object x) throws InterruptedException {
- *      Node p = getHead();
- *      if (p == null) return false;
+ * 	boolean search(Object x) throws InterruptedException {
+ * 		Node p = getHead();
+ * 		if (p == null)
+ * 			return false;
  *
- *      //  (This could be made more compact, but for clarity of illustration,
- *      //  all of the cases that can arise are handled separately.)
+ * 		//  (This could be made more compact, but for clarity of illustration,
+ * 		//  all of the cases that can arise are handled separately.)
  *
- *      p.lock.acquire();              // Prime loop by acquiring first lock.
- *                                     //    (If the acquire fails due to
- *                                     //    interrupt, the method will throw
- *                                     //    InterruptedException now,
- *                                     //    so there is no need for any
- *                                     //    further cleanup.)
- *      for (;;) {
- *        if (x.equals(p.item)) {
- *          p.lock.release();          // release current before return
- *          return true;
- *        }
- *        else {
- *          Node nextp = p.next;
- *          if (nextp == null) {
- *            p.lock.release();       // release final lock that was held
- *            return false;
- *          }
- *          else {
- *            try {
- *              nextp.lock.acquire(); // get next lock before releasing current
- *            }
- *            catch (InterruptedException ex) {
- *              p.lock.release();    // also release current if acquire fails
- *              throw ex;
- *            }
- *            p.lock.release();      // release old lock now that new one held
- *            p = nextp;
- *          }
- *        }
- *      }
- *    }
+ * 		p.lock.acquire(); // Prime loop by acquiring first lock.
+ * 							//    (If the acquire fails due to
+ * 							//    interrupt, the method will throw
+ * 							//    InterruptedException now,
+ * 							//    so there is no need for any
+ * 							//    further cleanup.)
+ * 		for (;;) {
+ * 			if (x.equals(p.item)) {
+ * 				p.lock.release(); // release current before return
+ * 				return true;
+ * 			} else {
+ * 				Node nextp = p.next;
+ * 				if (nextp == null) {
+ * 					p.lock.release(); // release final lock that was held
+ * 					return false;
+ * 				} else {
+ * 					try {
+ * 						nextp.lock.acquire(); // get next lock before releasing current
+ * 					} catch (InterruptedException ex) {
+ * 						p.lock.release(); // also release current if acquire fails
+ * 						throw ex;
+ * 					}
+ * 					p.lock.release(); // release old lock now that new one held
+ * 					p = nextp;
+ * 				}
+ * 			}
+ * 		}
+ * 	}
  *
- *    synchronized void add(Object x) { // simple prepend
- *      // The use of `synchronized'  here protects only head field.
- *      // The method does not need to wait out other traversers
- *      // who have already made it past head.
+ * 	synchronized void add(Object x) { // simple prepend
+ * 		// The use of `synchronized'  here protects only head field.
+ * 		// The method does not need to wait out other traversers
+ * 		// who have already made it past head.
  *
- *      head = new Node(x, head);
- *    }
+ * 		head = new Node(x, head);
+ * 	}
  *
- *    // ...  other similar traversal and update methods ...
+ * 	// ...  other similar traversal and update methods ...
  * }
  * </pre>
  * <p>
- * <p>This version adds some debugging capability: it will detect an attempt by a thread
- * that holds the lock to acquire it for a second time, and also an attempt by a thread that
+ * <p>
+ * This version adds some debugging capability: it will detect an attempt by a
+ * thread
+ * that holds the lock to acquire it for a second time, and also an attempt by a
+ * thread that
  * does not hold the mutex to release it.
+ * 
  * @see Semaphore
- * <p>[<a href="http://gee.cs.oswego.edu/dl/classes/EDU/oswego/cs/dl/util/concurrent/intro.html"> Introduction to this package. </a>]
-**/
+ *      <p>
+ *      [<a href=
+ *      "http://gee.cs.oswego.edu/dl/classes/EDU/oswego/cs/dl/util/concurrent/intro.html">
+ *      Introduction to this package. </a>]
+ **/
 
 import org.omg.CORBA.INTERNAL;
 
@@ -148,7 +137,8 @@ public class DebugMutex implements Sync {
 		synchronized (this) {
 			Thread thr = Thread.currentThread();
 			if (holder_ == thr)
-				throw new INTERNAL("Attempt to acquire Mutex by thread holding the Mutex");
+				throw new INTERNAL(
+						"Attempt to acquire Mutex by thread holding the Mutex");
 
 			try {
 				while (inuse_)
@@ -165,7 +155,8 @@ public class DebugMutex implements Sync {
 	public synchronized void release() {
 		Thread thr = Thread.currentThread();
 		if (thr != holder_)
-			throw new INTERNAL("Attempt to release Mutex by thread not holding the Mutex");
+			throw new INTERNAL(
+					"Attempt to release Mutex by thread not holding the Mutex");
 		holder_ = null;
 		inuse_ = false;
 		notify();
@@ -194,7 +185,8 @@ public class DebugMutex implements Sync {
 							holder_ = thr;
 							return true;
 						} else {
-							waitTime = msecs - (System.currentTimeMillis() - start);
+							waitTime = msecs - (System.currentTimeMillis()
+									- start);
 							if (waitTime <= 0)
 								return false;
 						}

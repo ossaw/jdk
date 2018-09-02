@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,7 +34,7 @@ public class Or extends Operation {
 	 * method for optimization purposes.
 	 *
 	 * @param xctxt
-	 *            The runtime execution context.
+	 *              The runtime execution context.
 	 *
 	 * @return {@link com.sun.org.apache.xpath.internal.objects.XBoolean#S_TRUE}
 	 *         or
@@ -46,7 +43,8 @@ public class Or extends Operation {
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 
 		XObject expr1 = m_left.execute(xctxt);
 
@@ -62,13 +60,14 @@ public class Or extends Operation {
 	 * Evaluate this operation directly to a boolean.
 	 *
 	 * @param xctxt
-	 *            The runtime execution context.
+	 *              The runtime execution context.
 	 *
 	 * @return The result of the operation as a boolean.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public boolean bool(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public boolean bool(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		return (m_left.bool(xctxt) || m_right.bool(xctxt));
 	}
 

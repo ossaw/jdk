@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -45,7 +25,7 @@ public class UnknownFormatFlagsException extends IllegalFormatException {
 	 * Constructs an instance of this class with the specified flags.
 	 *
 	 * @param f
-	 *            The set of format flags which contain an unknown flag
+	 *          The set of format flags which contain an unknown flag
 	 */
 	public UnknownFormatFlagsException(String f) {
 		if (f == null)

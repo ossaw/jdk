@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.annotation.processing;
@@ -73,8 +53,7 @@ import java.io.IOException;
  * 
  * <pre>
  * &#64;Generate
- * public class UserSource {
- * }
+ * public class UserSource {}
  * </pre>
  * 
  * </blockquote>
@@ -85,7 +64,8 @@ import java.io.IOException;
  * <blockquote>
  * 
  * <pre>
- * filer.createSourceFile("GeneratedFromUserSource", eltUtils.getTypeElement("UserSource"));
+ * filer.createSourceFile("GeneratedFromUserSource", eltUtils.getTypeElement(
+ * 		"UserSource"));
  * </pre>
  * 
  * </blockquote>
@@ -164,21 +144,27 @@ public interface Filer {
 	 * source version} being used for this run.
 	 *
 	 * @param name
-	 *            canonical (fully qualified) name of the principal type being
-	 *            declared in this file or a package name followed by
-	 *            {@code ".package-info"} for a package information file
+	 *                            canonical (fully qualified) name of the
+	 *                            principal type being
+	 *                            declared in this file or a package name
+	 *                            followed by
+	 *                            {@code ".package-info"} for a package
+	 *                            information file
 	 * @param originatingElements
-	 *            type or package elements causally associated with the creation
-	 *            of this file, may be elided or {@code null}
+	 *                            type or package elements causally associated
+	 *                            with the creation
+	 *                            of this file, may be elided or {@code null}
 	 * @return a {@code JavaFileObject} to write the new source file
 	 * @throws FilerException
-	 *             if the same pathname has already been created, the same type
-	 *             has already been created, or the name is not valid for a type
+	 *                        if the same pathname has already been created, the
+	 *                        same type
+	 *                        has already been created, or the name is not valid
+	 *                        for a type
 	 * @throws IOException
-	 *             if the file cannot be created
+	 *                        if the file cannot be created
 	 */
-	JavaFileObject createSourceFile(CharSequence name, Element... originatingElements)
-			throws IOException;
+	JavaFileObject createSourceFile(CharSequence name,
+			Element... originatingElements) throws IOException;
 
 	/**
 	 * Creates a new class file, and returns an object to allow writing to it.
@@ -196,21 +182,26 @@ public interface Filer {
 	 * source version} being used for this run.
 	 *
 	 * @param name
-	 *            binary name of the type being written or a package name
-	 *            followed by {@code ".package-info"} for a package information
-	 *            file
+	 *                            binary name of the type being written or a
+	 *                            package name
+	 *                            followed by {@code ".package-info"} for a
+	 *                            package information
+	 *                            file
 	 * @param originatingElements
-	 *            type or package elements causally associated with the creation
-	 *            of this file, may be elided or {@code null}
+	 *                            type or package elements causally associated
+	 *                            with the creation
+	 *                            of this file, may be elided or {@code null}
 	 * @return a {@code JavaFileObject} to write the new class file
 	 * @throws FilerException
-	 *             if the same pathname has already been created, the same type
-	 *             has already been created, or the name is not valid for a type
+	 *                        if the same pathname has already been created, the
+	 *                        same type
+	 *                        has already been created, or the name is not valid
+	 *                        for a type
 	 * @throws IOException
-	 *             if the file cannot be created
+	 *                        if the file cannot be created
 	 */
-	JavaFileObject createClassFile(CharSequence name, Element... originatingElements)
-			throws IOException;
+	JavaFileObject createClassFile(CharSequence name,
+			Element... originatingElements) throws IOException;
 
 	/**
 	 * Creates a new auxiliary resource file for writing and returns a file
@@ -229,27 +220,31 @@ public interface Filer {
 	 * full pathname of a new source file or new class file.
 	 *
 	 * @param location
-	 *            location of the new file
+	 *                            location of the new file
 	 * @param pkg
-	 *            package relative to which the file should be named, or the
-	 *            empty string if none
+	 *                            package relative to which the file should be
+	 *                            named, or the
+	 *                            empty string if none
 	 * @param relativeName
-	 *            final pathname components of the file
+	 *                            final pathname components of the file
 	 * @param originatingElements
-	 *            type or package elements causally associated with the creation
-	 *            of this file, may be elided or {@code null}
+	 *                            type or package elements causally associated
+	 *                            with the creation
+	 *                            of this file, may be elided or {@code null}
 	 * @return a {@code FileObject} to write the new resource
 	 * @throws IOException
-	 *             if the file cannot be created
+	 *                                  if the file cannot be created
 	 * @throws FilerException
-	 *             if the same pathname has already been created
+	 *                                  if the same pathname has already been
+	 *                                  created
 	 * @throws IllegalArgumentException
-	 *             for an unsupported location
+	 *                                  for an unsupported location
 	 * @throws IllegalArgumentException
-	 *             if {@code relativeName} is not relative
+	 *                                  if {@code relativeName} is not relative
 	 */
-	FileObject createResource(JavaFileManager.Location location, CharSequence pkg,
-			CharSequence relativeName, Element... originatingElements) throws IOException;
+	FileObject createResource(JavaFileManager.Location location,
+			CharSequence pkg, CharSequence relativeName,
+			Element... originatingElements) throws IOException;
 
 	/**
 	 * Returns an object for reading an existing resource. The locations
@@ -257,21 +252,23 @@ public interface Filer {
 	 * {@link StandardLocation#SOURCE_OUTPUT SOURCE_OUTPUT} must be supported.
 	 *
 	 * @param location
-	 *            location of the file
+	 *                     location of the file
 	 * @param pkg
-	 *            package relative to which the file should be searched, or the
-	 *            empty string if none
+	 *                     package relative to which the file should be
+	 *                     searched, or the
+	 *                     empty string if none
 	 * @param relativeName
-	 *            final pathname components of the file
+	 *                     final pathname components of the file
 	 * @return an object to read the file
 	 * @throws FilerException
-	 *             if the same pathname has already been opened for writing
+	 *                                  if the same pathname has already been
+	 *                                  opened for writing
 	 * @throws IOException
-	 *             if the file cannot be opened
+	 *                                  if the file cannot be opened
 	 * @throws IllegalArgumentException
-	 *             for an unsupported location
+	 *                                  for an unsupported location
 	 * @throws IllegalArgumentException
-	 *             if {@code relativeName} is not relative
+	 *                                  if {@code relativeName} is not relative
 	 */
 	FileObject getResource(JavaFileManager.Location location, CharSequence pkg,
 			CharSequence relativeName) throws IOException;

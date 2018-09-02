@@ -4,13 +4,10 @@
 
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,7 +36,8 @@ public final class Constants {
 	// Constants
 	//
 	// Schema Types:
-	public static final String NS_XMLSCHEMA = "http://www.w3.org/2001/XMLSchema".intern();
+	public static final String NS_XMLSCHEMA = "http://www.w3.org/2001/XMLSchema"
+			.intern();
 	public static final String NS_DTD = "http://www.w3.org/TR/REC-xml".intern();
 
 	// Schema features
@@ -244,7 +242,8 @@ public final class Constants {
 	 * JDK maxOccur limit; Note that the existing system property
 	 * "maxOccurLimit" with no prefix is still observed
 	 */
-	public static final String JDK_MAX_OCCUR_LIMIT = ORACLE_JAXP_PROPERTY_PREFIX + "maxOccurLimit";
+	public static final String JDK_MAX_OCCUR_LIMIT = ORACLE_JAXP_PROPERTY_PREFIX
+			+ "maxOccurLimit";
 
 	/**
 	 * JDK total entity size limit
@@ -273,7 +272,8 @@ public final class Constants {
 	/**
 	 * JDK maximum XML name limit
 	 */
-	public static final String JDK_XML_NAME_LIMIT = ORACLE_JAXP_PROPERTY_PREFIX + "maxXMLNameLimit";
+	public static final String JDK_XML_NAME_LIMIT = ORACLE_JAXP_PROPERTY_PREFIX
+			+ "maxXMLNameLimit";
 
 	/**
 	 * JDK maxElementDepth limit
@@ -749,51 +749,60 @@ public final class Constants {
 	// private
 
 	/** SAX features. */
-	private static final String[] fgSAXFeatures = { NAMESPACES_FEATURE, NAMESPACE_PREFIXES_FEATURE,
-			STRING_INTERNING_FEATURE, VALIDATION_FEATURE, EXTERNAL_GENERAL_ENTITIES_FEATURE,
+	private static final String[] fgSAXFeatures = { NAMESPACES_FEATURE,
+			NAMESPACE_PREFIXES_FEATURE, STRING_INTERNING_FEATURE,
+			VALIDATION_FEATURE, EXTERNAL_GENERAL_ENTITIES_FEATURE,
 			EXTERNAL_PARAMETER_ENTITIES_FEATURE, };
 
 	/** SAX properties. */
-	private static final String[] fgSAXProperties = { DECLARATION_HANDLER_PROPERTY,
-			LEXICAL_HANDLER_PROPERTY, DOM_NODE_PROPERTY, XML_STRING_PROPERTY, };
+	private static final String[] fgSAXProperties = {
+			DECLARATION_HANDLER_PROPERTY, LEXICAL_HANDLER_PROPERTY,
+			DOM_NODE_PROPERTY, XML_STRING_PROPERTY, };
 
 	/** Xerces features. */
 	private static final String[] fgXercesFeatures = {
 
-			SCHEMA_VALIDATION_FEATURE, SCHEMA_FULL_CHECKING, DYNAMIC_VALIDATION_FEATURE,
-			WARN_ON_DUPLICATE_ATTDEF_FEATURE, WARN_ON_UNDECLARED_ELEMDEF_FEATURE,
-			ALLOW_JAVA_ENCODINGS_FEATURE, CONTINUE_AFTER_FATAL_ERROR_FEATURE,
-			LOAD_DTD_GRAMMAR_FEATURE, LOAD_EXTERNAL_DTD_FEATURE,
+			SCHEMA_VALIDATION_FEATURE, SCHEMA_FULL_CHECKING,
+			DYNAMIC_VALIDATION_FEATURE, WARN_ON_DUPLICATE_ATTDEF_FEATURE,
+			WARN_ON_UNDECLARED_ELEMDEF_FEATURE, ALLOW_JAVA_ENCODINGS_FEATURE,
+			CONTINUE_AFTER_FATAL_ERROR_FEATURE, LOAD_DTD_GRAMMAR_FEATURE,
+			LOAD_EXTERNAL_DTD_FEATURE,
 			// DEFER_NODE_EXPANSION_FEATURE,
-			CREATE_ENTITY_REF_NODES_FEATURE, XINCLUDE_AWARE, INCLUDE_IGNORABLE_WHITESPACE,
+			CREATE_ENTITY_REF_NODES_FEATURE, XINCLUDE_AWARE,
+			INCLUDE_IGNORABLE_WHITESPACE,
 			// GRAMMAR_ACCESS_FEATURE,
 			DEFAULT_ATTRIBUTE_VALUES_FEATURE, VALIDATE_CONTENT_MODELS_FEATURE,
-			VALIDATE_DATATYPES_FEATURE, BALANCE_SYNTAX_TREES, NOTIFY_CHAR_REFS_FEATURE,
-			NOTIFY_BUILTIN_REFS_FEATURE, DISALLOW_DOCTYPE_DECL_FEATURE,
-			STANDARD_URI_CONFORMANT_FEATURE, GENERATE_SYNTHETIC_ANNOTATIONS_FEATURE,
-			VALIDATE_ANNOTATIONS_FEATURE, HONOUR_ALL_SCHEMALOCATIONS_FEATURE, XINCLUDE_FEATURE,
-			XINCLUDE_FIXUP_BASE_URIS_FEATURE, XINCLUDE_FIXUP_LANGUAGE_FEATURE,
-			NAMESPACE_GROWTH_FEATURE, TOLERATE_DUPLICATES_FEATURE, };
+			VALIDATE_DATATYPES_FEATURE, BALANCE_SYNTAX_TREES,
+			NOTIFY_CHAR_REFS_FEATURE, NOTIFY_BUILTIN_REFS_FEATURE,
+			DISALLOW_DOCTYPE_DECL_FEATURE, STANDARD_URI_CONFORMANT_FEATURE,
+			GENERATE_SYNTHETIC_ANNOTATIONS_FEATURE,
+			VALIDATE_ANNOTATIONS_FEATURE, HONOUR_ALL_SCHEMALOCATIONS_FEATURE,
+			XINCLUDE_FEATURE, XINCLUDE_FIXUP_BASE_URIS_FEATURE,
+			XINCLUDE_FIXUP_LANGUAGE_FEATURE, NAMESPACE_GROWTH_FEATURE,
+			TOLERATE_DUPLICATES_FEATURE, };
 
 	/** Xerces properties. */
-	private static final String[] fgXercesProperties = { CURRENT_ELEMENT_NODE_PROPERTY,
-			DOCUMENT_CLASS_NAME_PROPERTY, SYMBOL_TABLE_PROPERTY, ERROR_HANDLER_PROPERTY,
-			ERROR_REPORTER_PROPERTY, ENTITY_MANAGER_PROPERTY, ENTITY_RESOLVER_PROPERTY,
-			XMLGRAMMAR_POOL_PROPERTY, DATATYPE_VALIDATOR_FACTORY_PROPERTY,
-			DOCUMENT_SCANNER_PROPERTY, DTD_SCANNER_PROPERTY, VALIDATOR_PROPERTY, SCHEMA_LOCATION,
-			SCHEMA_NONS_LOCATION, VALIDATION_MANAGER_PROPERTY, BUFFER_SIZE_PROPERTY,
-			SECURITY_MANAGER_PROPERTY, LOCALE_PROPERTY, SCHEMA_DV_FACTORY_PROPERTY, };
+	private static final String[] fgXercesProperties = {
+			CURRENT_ELEMENT_NODE_PROPERTY, DOCUMENT_CLASS_NAME_PROPERTY,
+			SYMBOL_TABLE_PROPERTY, ERROR_HANDLER_PROPERTY,
+			ERROR_REPORTER_PROPERTY, ENTITY_MANAGER_PROPERTY,
+			ENTITY_RESOLVER_PROPERTY, XMLGRAMMAR_POOL_PROPERTY,
+			DATATYPE_VALIDATOR_FACTORY_PROPERTY, DOCUMENT_SCANNER_PROPERTY,
+			DTD_SCANNER_PROPERTY, VALIDATOR_PROPERTY, SCHEMA_LOCATION,
+			SCHEMA_NONS_LOCATION, VALIDATION_MANAGER_PROPERTY,
+			BUFFER_SIZE_PROPERTY, SECURITY_MANAGER_PROPERTY, LOCALE_PROPERTY,
+			SCHEMA_DV_FACTORY_PROPERTY, };
 
 	/** Empty enumeration. */
-	private static final Enumeration fgEmptyEnumeration = new ArrayEnumeration(new Object[] {});
+	private static final Enumeration fgEmptyEnumeration = new ArrayEnumeration(
+			new Object[] {});
 
 	//
 	// Constructors
 	//
 
 	/** This class cannot be instantiated. */
-	private Constants() {
-	}
+	private Constants() {}
 
 	//
 	// Public methods
@@ -803,47 +812,45 @@ public final class Constants {
 
 	/** Returns an enumeration of the SAX features. */
 	public static Enumeration getSAXFeatures() {
-		return fgSAXFeatures.length > 0 ? new ArrayEnumeration(fgSAXFeatures) : fgEmptyEnumeration;
+		return fgSAXFeatures.length > 0 ? new ArrayEnumeration(fgSAXFeatures)
+				: fgEmptyEnumeration;
 	} // getSAXFeatures():Enumeration
 
 	/** Returns an enumeration of the SAX properties. */
 	public static Enumeration getSAXProperties() {
-		return fgSAXProperties.length > 0 ? new ArrayEnumeration(fgSAXProperties)
-				: fgEmptyEnumeration;
+		return fgSAXProperties.length > 0 ? new ArrayEnumeration(
+				fgSAXProperties) : fgEmptyEnumeration;
 	} // getSAXProperties():Enumeration
 
 	// xerces
 
 	/** Returns an enumeration of the Xerces features. */
 	public static Enumeration getXercesFeatures() {
-		return fgXercesFeatures.length > 0 ? new ArrayEnumeration(fgXercesFeatures)
-				: fgEmptyEnumeration;
+		return fgXercesFeatures.length > 0 ? new ArrayEnumeration(
+				fgXercesFeatures) : fgEmptyEnumeration;
 	} // getXercesFeatures():Enumeration
 
 	/** Returns an enumeration of the Xerces properties. */
 	public static Enumeration getXercesProperties() {
-		return fgXercesProperties.length > 0 ? new ArrayEnumeration(fgXercesProperties)
-				: fgEmptyEnumeration;
+		return fgXercesProperties.length > 0 ? new ArrayEnumeration(
+				fgXercesProperties) : fgEmptyEnumeration;
 	} // getXercesProperties():Enumeration
 
 	/*
 	 * Check the version of the current JDK against that specified in the
 	 * parameter
-	 *
 	 * There is a proposal to change the java version string to:
 	 * MAJOR.MINOR.FU.CPU.PSU-BUILDNUMBER_BUGIDNUMBER_OPTIONAL This method would
 	 * work with both the current format and that proposed
-	 *
 	 * @param compareTo a JDK version to be compared to
-	 * 
 	 * @return true if the current version is the same or above that represented
 	 * by the parameter
 	 */
 	public static boolean isJavaVersionAtLeast(int compareTo) {
 		String javaVersion = SecuritySupport.getSystemProperty("java.version");
 		String versions[] = javaVersion.split("\\.", 3);
-		if (Integer.parseInt(versions[0]) >= compareTo
-				|| Integer.parseInt(versions[1]) >= compareTo) {
+		if (Integer.parseInt(versions[0]) >= compareTo || Integer.parseInt(
+				versions[1]) >= compareTo) {
 			return true;
 		}
 		return false;
@@ -899,7 +906,7 @@ public final class Constants {
 		 *
 		 * @return the next element of this enumeration.
 		 * @exception NoSuchElementException
-		 *                if no more elements exist.
+		 *                                   if no more elements exist.
 		 * @since JDK1.0
 		 */
 		public Object nextElement() {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -75,8 +55,7 @@ class Autoscroller implements ActionListener {
 		sharedInstance._processMouseDragged(e);
 	}
 
-	Autoscroller() {
-	}
+	Autoscroller() {}
 
 	/**
 	 * Starts the timer targeting the passed in component.
@@ -88,9 +67,10 @@ class Autoscroller implements ActionListener {
 			_stop(component);
 		}
 		component = c;
-		event = new MouseEvent(component, e.getID(), e.getWhen(), e.getModifiers(),
-				e.getX() + screenLocation.x, e.getY() + screenLocation.y, e.getXOnScreen(),
-				e.getYOnScreen(), e.getClickCount(), e.isPopupTrigger(), MouseEvent.NOBUTTON);
+		event = new MouseEvent(component, e.getID(), e.getWhen(), e
+				.getModifiers(), e.getX() + screenLocation.x, e.getY()
+						+ screenLocation.y, e.getXOnScreen(), e.getYOnScreen(),
+				e.getClickCount(), e.isPopupTrigger(), MouseEvent.NOBUTTON);
 
 		if (timer == null) {
 			timer = new Timer(100, this);
@@ -160,9 +140,10 @@ class Autoscroller implements ActionListener {
 		}
 		Point screenLocation = component.getLocationOnScreen();
 		MouseEvent e = new MouseEvent(component, event.getID(), event.getWhen(),
-				event.getModifiers(), event.getX() - screenLocation.x,
-				event.getY() - screenLocation.y, event.getXOnScreen(), event.getYOnScreen(),
-				event.getClickCount(), event.isPopupTrigger(), MouseEvent.NOBUTTON);
+				event.getModifiers(), event.getX() - screenLocation.x, event
+						.getY() - screenLocation.y, event.getXOnScreen(), event
+								.getYOnScreen(), event.getClickCount(), event
+										.isPopupTrigger(), MouseEvent.NOBUTTON);
 		component.superProcessMouseMotionEvent(e);
 	}
 

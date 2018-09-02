@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.util;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.util;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -107,7 +99,7 @@ public class InstructionFinder {
 
 	/**
 	 * @param il
-	 *            instruction list to search for given patterns
+	 *           instruction list to search for given patterns
 	 */
 	public InstructionFinder(InstructionList il) {
 		this.il = il;
@@ -135,7 +127,7 @@ public class InstructionFinder {
 	 * Map symbolic instruction names like "getfield" to a single character.
 	 *
 	 * @param pattern
-	 *            instruction pattern in lower case
+	 *                instruction pattern in lower case
 	 * @return encoded string for a pattern such as "BranchInstruction".
 	 */
 	private static final String mapName(String pattern) {
@@ -157,7 +149,7 @@ public class InstructionFinder {
 	 * ignored.
 	 *
 	 * @param pattern
-	 *            The pattern to compile
+	 *                The pattern to compile
 	 * @return translated regular expression string
 	 */
 	private static final String compilePattern(String pattern) {
@@ -171,7 +163,8 @@ public class InstructionFinder {
 			if (Character.isLetterOrDigit(ch)) {
 				StringBuffer name = new StringBuffer();
 
-				while ((Character.isLetterOrDigit(ch) || ch == '_') && i < size) {
+				while ((Character.isLetterOrDigit(ch) || ch == '_')
+						&& i < size) {
 					name.append(ch);
 
 					if (++i < size)
@@ -226,12 +219,14 @@ public class InstructionFinder {
 	 * call search() again, because the matches are cached.
 	 *
 	 * @param pattern
-	 *            the instruction pattern to search for, where case is ignored
+	 *                   the instruction pattern to search for, where case is
+	 *                   ignored
 	 * @param from
-	 *            where to start the search in the instruction list
+	 *                   where to start the search in the instruction list
 	 * @param constraint
-	 *            optional CodeConstraint to check the found code pattern for
-	 *            user-defined constraints
+	 *                   optional CodeConstraint to check the found code pattern
+	 *                   for
+	 *                   user-defined constraints
 	 * @return iterator of matches where e.nextElement() returns an array of
 	 *         instruction handles describing the matched area
 	 */
@@ -248,13 +243,14 @@ public class InstructionFinder {
 		}
 
 		if (start == -1)
-			throw new ClassGenException(
-					"Instruction handle " + from + " not found in instruction list.");
+			throw new ClassGenException("Instruction handle " + from
+					+ " not found in instruction list.");
 		try {
 			RE regex = new RE(search);
 			ArrayList matches = new ArrayList();
 
-			while (start < il_string.length() && regex.match(il_string, start)) {
+			while (start < il_string.length() && regex.match(il_string,
+					start)) {
 				int startExpr = regex.getParenStart(0);
 				int endExpr = regex.getParenEnd(0);
 				int lenExpr = regex.getParenLength(0);
@@ -278,7 +274,8 @@ public class InstructionFinder {
 	 * Start search beginning from the start of the given instruction list.
 	 *
 	 * @param pattern
-	 *            the instruction pattern to search for, where case is ignored
+	 *                the instruction pattern to search for, where case is
+	 *                ignored
 	 * @return iterator of matches where e.nextElement() returns an array of
 	 *         instruction handles describing the matched area
 	 */
@@ -290,9 +287,10 @@ public class InstructionFinder {
 	 * Start search beginning from `from'.
 	 *
 	 * @param pattern
-	 *            the instruction pattern to search for, where case is ignored
+	 *                the instruction pattern to search for, where case is
+	 *                ignored
 	 * @param from
-	 *            where to start the search in the instruction list
+	 *                where to start the search in the instruction list
 	 * @return iterator of matches where e.nextElement() returns an array of
 	 *         instruction handles describing the matched area
 	 */
@@ -305,9 +303,9 @@ public class InstructionFinder {
 	 * Check found matches with the constraint object.
 	 *
 	 * @param pattern
-	 *            the instruction pattern to search for, case is ignored
+	 *                   the instruction pattern to search for, case is ignored
 	 * @param constraint
-	 *            constraints to be checked on matching code
+	 *                   constraints to be checked on matching code
 	 * @return instruction handle or `null' if the match failed
 	 */
 	public final Iterator search(String pattern, CodeConstraint constraint) {
@@ -337,7 +335,7 @@ public class InstructionFinder {
 	public interface CodeConstraint {
 		/**
 		 * @param match
-		 *            array of instructions matching the requested pattern
+		 *              array of instructions matching the requested pattern
 		 * @return true if the matched area is really useful
 		 */
 		public boolean checkCode(InstructionHandle[] match);
@@ -348,7 +346,8 @@ public class InstructionFinder {
 	static {
 		map.put("arithmeticinstruction",
 				"(irem|lrem|iand|ior|ineg|isub|lneg|fneg|fmul|ldiv|fadd|lxor|frem|idiv|land|ixor|ishr|fsub|lshl|fdiv|iadd|lor|dmul|lsub|ishl|imul|lmul|lushr|dneg|iushr|lshr|ddiv|drem|dadd|ladd|dsub)");
-		map.put("invokeinstruction", "(invokevirtual|invokeinterface|invokestatic|invokespecial)");
+		map.put("invokeinstruction",
+				"(invokevirtual|invokeinterface|invokestatic|invokespecial)");
 		map.put("arrayinstruction",
 				"(baload|aastore|saload|caload|fastore|lastore|iaload|castore|iastore|aaload|bastore|sastore|faload|laload|daload|dastore)");
 		map.put("gotoinstruction", "(goto|goto_w)");
@@ -360,22 +359,28 @@ public class InstructionFinder {
 		map.put("fieldinstruction", "(getfield|putstatic|getstatic|putfield)");
 		map.put("cpinstruction",
 				"(ldc2_w|invokeinterface|multianewarray|putstatic|instanceof|getstatic|checkcast|getfield|invokespecial|ldc_w|invokestatic|invokevirtual|putfield|ldc|new|anewarray)");
-		map.put("stackinstruction", "(dup2|swap|dup2_x2|pop|pop2|dup|dup2_x1|dup_x2|dup_x1)");
+		map.put("stackinstruction",
+				"(dup2|swap|dup2_x2|pop|pop2|dup|dup2_x1|dup_x2|dup_x1)");
 		map.put("branchinstruction",
 				"(ifle|if_acmpne|if_icmpeq|if_acmpeq|ifnonnull|goto_w|iflt|ifnull|if_icmpne|tableswitch|if_icmple|ifeq|if_icmplt|jsr_w|if_icmpgt|ifgt|jsr|goto|ifne|ifge|lookupswitch|if_icmpge)");
-		map.put("returninstruction", "(lreturn|ireturn|freturn|dreturn|areturn|return)");
+		map.put("returninstruction",
+				"(lreturn|ireturn|freturn|dreturn|areturn|return)");
 		map.put("storeinstruction", "(istore|fstore|dstore|astore|lstore)");
 		map.put("select", "(tableswitch|lookupswitch)");
 		map.put("ifinstruction",
 				"(ifeq|ifgt|if_icmpne|if_icmpeq|ifge|ifnull|ifne|if_icmple|if_icmpge|if_acmpeq|if_icmplt|if_acmpne|ifnonnull|iflt|if_icmpgt|ifle)");
 		map.put("jsrinstruction", "(jsr|jsr_w)");
-		map.put("variablelengthinstruction", "(tableswitch|jsr|goto|lookupswitch)");
+		map.put("variablelengthinstruction",
+				"(tableswitch|jsr|goto|lookupswitch)");
 		map.put("unconditionalbranch", "(goto|jsr|jsr_w|athrow|goto_w)");
-		map.put("constantpushinstruction", "(dconst|bipush|sipush|fconst|iconst|lconst)");
+		map.put("constantpushinstruction",
+				"(dconst|bipush|sipush|fconst|iconst|lconst)");
 		map.put("typedinstruction",
 				"(imul|lsub|aload|fload|lor|new|aaload|fcmpg|iand|iaload|lrem|idiv|d2l|isub|dcmpg|dastore|ret|f2d|f2i|drem|iinc|i2c|checkcast|frem|lreturn|astore|lushr|daload|dneg|fastore|istore|lshl|ldiv|lstore|areturn|ishr|ldc_w|invokeinterface|aastore|lxor|ishl|l2d|i2f|return|faload|sipush|iushr|caload|instanceof|invokespecial|putfield|fmul|ireturn|laload|d2f|lneg|ixor|i2l|fdiv|lastore|multianewarray|i2b|getstatic|i2d|putstatic|fcmpl|saload|ladd|irem|dload|jsr_w|dconst|dcmpl|fsub|freturn|ldc|aconst_null|castore|lmul|ldc2_w|dadd|iconst|f2l|ddiv|dstore|land|jsr|anewarray|dmul|bipush|dsub|sastore|d2i|i2s|lshr|iadd|l2i|lload|bastore|fstore|fneg|iload|fadd|baload|fconst|ior|ineg|dreturn|l2f|lconst|getfield|invokevirtual|invokestatic|iastore)");
-		map.put("popinstruction", "(fstore|dstore|pop|pop2|astore|putstatic|istore|lstore)");
-		map.put("allocationinstruction", "(multianewarray|new|anewarray|newarray)");
+		map.put("popinstruction",
+				"(fstore|dstore|pop|pop2|astore|putstatic|istore|lstore)");
+		map.put("allocationinstruction",
+				"(multianewarray|new|anewarray|newarray)");
 		map.put("indexedinstruction",
 				"(lload|lstore|fload|ldc2_w|invokeinterface|multianewarray|astore|dload|putstatic|instanceof|getstatic|checkcast|getfield|invokespecial|dstore|istore|iinc|ldc_w|ret|fstore|invokestatic|iload|putfield|invokevirtual|ldc|new|aload|anewarray)");
 		map.put("pushinstruction",
@@ -392,28 +397,38 @@ public class InstructionFinder {
 				"(ifle|if_acmpne|if_icmpeq|if_acmpeq|ifnonnull|goto_w|iflt|ifnull|if_icmpne|tableswitch|if_icmple|ifeq|if_icmplt|jsr_w|if_icmpgt|ifgt|jsr|goto|ifne|ifge|lookupswitch|if_icmpge)");
 
 		// Some aliases
-		map.put("if_icmp", "(if_icmpne|if_icmpeq|if_icmple|if_icmpge|if_icmplt|if_icmpgt)");
+		map.put("if_icmp",
+				"(if_icmpne|if_icmpeq|if_icmple|if_icmpge|if_icmplt|if_icmpgt)");
 		map.put("if_acmp", "(if_acmpeq|if_acmpne)");
 		map.put("if", "(ifeq|ifne|iflt|ifge|ifgt|ifle)");
 
 		// Precompile some aliases first
-		map.put("iconst", precompile(Constants.ICONST_0, Constants.ICONST_5, Constants.ICONST_M1));
-		map.put("lconst", new String(new char[] { '(', makeChar(Constants.LCONST_0), '|',
-				makeChar(Constants.LCONST_1), ')' }));
-		map.put("dconst", new String(new char[] { '(', makeChar(Constants.DCONST_0), '|',
-				makeChar(Constants.DCONST_1), ')' }));
-		map.put("fconst", new String(new char[] { '(', makeChar(Constants.FCONST_0), '|',
-				makeChar(Constants.FCONST_1), ')' }));
+		map.put("iconst", precompile(Constants.ICONST_0, Constants.ICONST_5,
+				Constants.ICONST_M1));
+		map.put("lconst", new String(new char[] { '(', makeChar(
+				Constants.LCONST_0), '|', makeChar(Constants.LCONST_1), ')' }));
+		map.put("dconst", new String(new char[] { '(', makeChar(
+				Constants.DCONST_0), '|', makeChar(Constants.DCONST_1), ')' }));
+		map.put("fconst", new String(new char[] { '(', makeChar(
+				Constants.FCONST_0), '|', makeChar(Constants.FCONST_1), ')' }));
 
-		map.put("iload", precompile(Constants.ILOAD_0, Constants.ILOAD_3, Constants.ILOAD));
-		map.put("dload", precompile(Constants.DLOAD_0, Constants.DLOAD_3, Constants.DLOAD));
-		map.put("fload", precompile(Constants.FLOAD_0, Constants.FLOAD_3, Constants.FLOAD));
-		map.put("aload", precompile(Constants.ALOAD_0, Constants.ALOAD_3, Constants.ALOAD));
+		map.put("iload", precompile(Constants.ILOAD_0, Constants.ILOAD_3,
+				Constants.ILOAD));
+		map.put("dload", precompile(Constants.DLOAD_0, Constants.DLOAD_3,
+				Constants.DLOAD));
+		map.put("fload", precompile(Constants.FLOAD_0, Constants.FLOAD_3,
+				Constants.FLOAD));
+		map.put("aload", precompile(Constants.ALOAD_0, Constants.ALOAD_3,
+				Constants.ALOAD));
 
-		map.put("istore", precompile(Constants.ISTORE_0, Constants.ISTORE_3, Constants.ISTORE));
-		map.put("dstore", precompile(Constants.DSTORE_0, Constants.DSTORE_3, Constants.DSTORE));
-		map.put("fstore", precompile(Constants.FSTORE_0, Constants.FSTORE_3, Constants.FSTORE));
-		map.put("astore", precompile(Constants.ASTORE_0, Constants.ASTORE_3, Constants.ASTORE));
+		map.put("istore", precompile(Constants.ISTORE_0, Constants.ISTORE_3,
+				Constants.ISTORE));
+		map.put("dstore", precompile(Constants.DSTORE_0, Constants.DSTORE_3,
+				Constants.DSTORE));
+		map.put("fstore", precompile(Constants.FSTORE_0, Constants.FSTORE_3,
+				Constants.FSTORE));
+		map.put("astore", precompile(Constants.ASTORE_0, Constants.ASTORE_3,
+				Constants.ASTORE));
 
 		// Compile strings
 
@@ -466,7 +481,8 @@ public class InstructionFinder {
 		return pattern2string(pattern, true);
 	}
 
-	private static final String pattern2string(String pattern, boolean make_string) {
+	private static final String pattern2string(String pattern,
+			boolean make_string) {
 		StringBuffer buf = new StringBuffer();
 
 		for (int i = 0; i < pattern.length(); i++) {

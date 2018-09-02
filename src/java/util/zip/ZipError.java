@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.zip;
@@ -38,7 +18,7 @@ public class ZipError extends InternalError {
 	 * Constructs a ZipError with the given detail message.
 	 * 
 	 * @param s
-	 *            the {@code String} containing a detail message
+	 *          the {@code String} containing a detail message
 	 */
 	public ZipError(String s) {
 		super(s);

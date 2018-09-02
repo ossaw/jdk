@@ -58,8 +58,9 @@ public class TransformEnvelopedSignature extends TransformSpi {
 	/**
 	 * @inheritDoc
 	 */
-	protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, OutputStream os,
-			Transform transformObject) throws TransformationException {
+	protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
+			OutputStream os, Transform transformObject)
+			throws TransformationException {
 		/**
 		 * If the actual input is an octet stream, then the application MUST
 		 * convert the octet stream to an XPath node-set suitable for use by
@@ -91,12 +92,13 @@ public class TransformEnvelopedSignature extends TransformSpi {
 		boolean found = false;
 
 		while (true) {
-			if (signatureElement == null || signatureElement.getNodeType() == Node.DOCUMENT_NODE) {
+			if (signatureElement == null || signatureElement
+					.getNodeType() == Node.DOCUMENT_NODE) {
 				break;
 			}
 			Element el = (Element) signatureElement;
-			if (el.getNamespaceURI().equals(Constants.SignatureSpecNS)
-					&& el.getLocalName().equals(Constants._TAG_SIGNATURE)) {
+			if (el.getNamespaceURI().equals(Constants.SignatureSpecNS) && el
+					.getLocalName().equals(Constants._TAG_SIGNATURE)) {
 				found = true;
 				break;
 			}

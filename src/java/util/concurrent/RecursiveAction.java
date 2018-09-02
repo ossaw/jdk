@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -68,7 +43,8 @@ package java.util.concurrent;
  * 				sortSequentially(lo, hi);
  * 			else {
  * 				int mid = (lo + hi) >>> 1;
- * 				invokeAll(new SortTask(array, lo, mid), new SortTask(array, mid, hi));
+ * 				invokeAll(new SortTask(array, lo, mid), new SortTask(array,
+ * 						mid, hi));
  * 				merge(lo, mid, hi);
  * 			}
  * 		}
@@ -83,7 +59,8 @@ package java.util.concurrent;
  * 		void merge(int lo, int mid, int hi) {
  * 			long[] buf = Arrays.copyOfRange(array, lo, mid);
  * 			for (int i = 0, j = lo, k = mid; i < buf.length; j++)
- * 				array[j] = (k == hi || buf[i] < array[k]) ? buf[i++] : array[k++];
+ * 				array[j] = (k == hi || buf[i] < array[k]) ? buf[i++]
+ * 						: array[k++];
  * 		}
  * 	}
  * }
@@ -112,7 +89,8 @@ package java.util.concurrent;
  * 					array[i]++;
  * 			} else {
  * 				int mid = (lo + hi) >>> 1;
- * 				invokeAll(new IncrementTask(array, lo, mid), new IncrementTask(array, mid, hi));
+ * 				invokeAll(new IncrementTask(array, lo, mid),
+ * 						new IncrementTask(array, mid, hi));
  * 			}
  * 		}
  * 	}
@@ -204,8 +182,7 @@ public abstract class RecursiveAction extends ForkJoinTask<Void> {
 	/**
 	 * Requires null completion value.
 	 */
-	protected final void setRawResult(Void mustBeNull) {
-	}
+	protected final void setRawResult(Void mustBeNull) {}
 
 	/**
 	 * Implements execution conventions for RecursiveActions.

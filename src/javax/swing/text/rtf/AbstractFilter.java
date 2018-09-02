@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.rtf;
 
@@ -88,7 +68,7 @@ abstract class AbstractFilter extends OutputStream {
 	 * are processed.
 	 *
 	 * @param in
-	 *            An InputStream providing text.
+	 *           An InputStream providing text.
 	 */
 	public void readFromStream(InputStream in) throws IOException {
 		byte buf[];
@@ -187,8 +167,8 @@ abstract class AbstractFilter extends OutputStream {
 	 * them via <code>write(char)</code>.
 	 *
 	 * @param s
-	 *            The string of non-special characters written to the
-	 *            OutputStream.
+	 *          The string of non-special characters written to the
+	 *          OutputStream.
 	 */
 	public void write(String s) throws IOException {
 		int index, length;
@@ -204,7 +184,7 @@ abstract class AbstractFilter extends OutputStream {
 	 * single (non-special) character.
 	 *
 	 * @param ch
-	 *            The character written to the OutputStream.
+	 *           The character written to the OutputStream.
 	 */
 	protected abstract void write(char ch) throws IOException;
 
@@ -213,7 +193,7 @@ abstract class AbstractFilter extends OutputStream {
 	 * single special byte. No translation is performed on specials.
 	 *
 	 * @param b
-	 *            The byte written to the OutputStream.
+	 *          The byte written to the OutputStream.
 	 */
 	protected abstract void writeSpecial(int b) throws IOException;
 }

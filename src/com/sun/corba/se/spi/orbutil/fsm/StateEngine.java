@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.orbutil.fsm;
@@ -49,14 +29,14 @@ public interface StateEngine {
 	 * only be called before done(). An attempt to call it after done() results
 	 * in an IllegalStateException.
 	 */
-	public StateEngine add(State oldState, Input input, Guard guard, Action action, State newState)
-			throws IllegalStateException;
+	public StateEngine add(State oldState, Input input, Guard guard,
+			Action action, State newState) throws IllegalStateException;
 
 	/**
 	 * Add a transition with a guard that always evaluates to true.
 	 */
-	public StateEngine add(State oldState, Input input, Action action, State newState)
-			throws IllegalStateException;
+	public StateEngine add(State oldState, Input input, Action action,
+			State newState) throws IllegalStateException;
 
 	/**
 	 * Set the default transition and action for a state. This transition will
@@ -72,7 +52,8 @@ public interface StateEngine {
 	 * Equivalent to setDefault( oldState, act, newState ) where act is an
 	 * action that does nothing.
 	 */
-	public StateEngine setDefault(State oldState, State newState) throws IllegalStateException;
+	public StateEngine setDefault(State oldState, State newState)
+			throws IllegalStateException;
 
 	/**
 	 * Euaivalent to setDefault( oldState, oldState )

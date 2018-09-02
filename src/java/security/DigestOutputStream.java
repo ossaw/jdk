@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -66,10 +46,10 @@ public class DigestOutputStream extends FilterOutputStream {
 	 * message digest.
 	 *
 	 * @param stream
-	 *            the output stream.
+	 *               the output stream.
 	 *
 	 * @param digest
-	 *            the message digest to associate with this stream.
+	 *               the message digest to associate with this stream.
 	 */
 	public DigestOutputStream(OutputStream stream, MessageDigest digest) {
 		super(stream);
@@ -90,7 +70,7 @@ public class DigestOutputStream extends FilterOutputStream {
 	 * Associates the specified message digest with this stream.
 	 *
 	 * @param digest
-	 *            the message digest to be associated with this stream.
+	 *               the message digest to be associated with this stream.
 	 * @see #getMessageDigest()
 	 */
 	public void setMessageDigest(MessageDigest digest) {
@@ -106,11 +86,11 @@ public class DigestOutputStream extends FilterOutputStream {
 	 * to the output stream, blocking until the byte is actually written.
 	 *
 	 * @param b
-	 *            the byte to be used for updating and writing to the output
-	 *            stream.
+	 *          the byte to be used for updating and writing to the output
+	 *          stream.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see MessageDigest#update(byte)
 	 */
@@ -143,7 +123,7 @@ public class DigestOutputStream extends FilterOutputStream {
 	 *            {@code b}, starting at offset {@code off}.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @see MessageDigest#update(byte[], int, int)
 	 */
@@ -160,7 +140,7 @@ public class DigestOutputStream extends FilterOutputStream {
 	 * message digest. But when it is off, the message digest is not updated.
 	 *
 	 * @param on
-	 *            true to turn the digest function on, false to turn it off.
+	 *           true to turn the digest function on, false to turn it off.
 	 */
 	public void on(boolean on) {
 		this.on = on;

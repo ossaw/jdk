@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2017, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.activation;
@@ -105,11 +85,13 @@ public class ActivationID implements Serializable {
 	 * <code>ActivationID</code> is globally unique.
 	 *
 	 * @param activator
-	 *            reference to the activator responsible for activating the
-	 *            object
+	 *                  reference to the activator responsible for activating
+	 *                  the
+	 *                  object
 	 * @throws UnsupportedOperationException
-	 *             if and only if activation is not supported by this
-	 *             implementation
+	 *                                       if and only if activation is not
+	 *                                       supported by this
+	 *                                       implementation
 	 * @since 1.2
 	 */
 	public ActivationID(Activator activator) {
@@ -120,27 +102,31 @@ public class ActivationID implements Serializable {
 	 * Activate the object for this id.
 	 *
 	 * @param force
-	 *            if true, forces the activator to contact the group when
-	 *            activating the object (instead of returning a cached
-	 *            reference); if false, returning a cached value is acceptable.
+	 *              if true, forces the activator to contact the group when
+	 *              activating the object (instead of returning a cached
+	 *              reference); if false, returning a cached value is
+	 *              acceptable.
 	 * @return the reference to the active remote object
 	 * @exception ActivationException
-	 *                if activation fails
+	 *                                   if activation fails
 	 * @exception UnknownObjectException
-	 *                if the object is unknown
+	 *                                   if the object is unknown
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                   if remote call fails
 	 * @since 1.2
 	 */
-	public Remote activate(boolean force)
-			throws ActivationException, UnknownObjectException, RemoteException {
+	public Remote activate(boolean force) throws ActivationException,
+			UnknownObjectException, RemoteException {
 		try {
-			MarshalledObject<? extends Remote> mobj = activator.activate(this, force);
-			return AccessController.doPrivileged(new PrivilegedExceptionAction<Remote>() {
-				public Remote run() throws IOException, ClassNotFoundException {
-					return mobj.get();
-				}
-			}, NOPERMS_ACC);
+			MarshalledObject<? extends Remote> mobj = activator.activate(this,
+					force);
+			return AccessController.doPrivileged(
+					new PrivilegedExceptionAction<Remote>() {
+						public Remote run() throws IOException,
+								ClassNotFoundException {
+							return mobj.get();
+						}
+					}, NOPERMS_ACC);
 		} catch (PrivilegedActionException pae) {
 			Exception ex = pae.getException();
 			if (ex instanceof RemoteException) {
@@ -230,7 +216,8 @@ public class ActivationID implements Serializable {
 	 *             <code>writeObject</code> method <b>serialData</b>
 	 *             specification.
 	 **/
-	private void writeObject(ObjectOutputStream out) throws IOException, ClassNotFoundException {
+	private void writeObject(ObjectOutputStream out) throws IOException,
+			ClassNotFoundException {
 		out.writeObject(uid);
 
 		RemoteRef ref;
@@ -239,7 +226,8 @@ public class ActivationID implements Serializable {
 		} else if (Proxy.isProxyClass(activator.getClass())) {
 			InvocationHandler handler = Proxy.getInvocationHandler(activator);
 			if (!(handler instanceof RemoteObjectInvocationHandler)) {
-				throw new InvalidObjectException("unexpected invocation handler");
+				throw new InvalidObjectException(
+						"unexpected invocation handler");
 			}
 			ref = ((RemoteObjectInvocationHandler) handler).getRef();
 
@@ -286,24 +274,26 @@ public class ActivationID implements Serializable {
 	 * that external ref type name, in which case the <code>RemoteRef</code>
 	 * will be an instance of that implementation-specific class.
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		uid = (UID) in.readObject();
 
 		try {
-			Class<? extends RemoteRef> refClass = Class
-					.forName(RemoteRef.packagePrefix + "." + in.readUTF())
-					.asSubclass(RemoteRef.class);
+			Class<? extends RemoteRef> refClass = Class.forName(
+					RemoteRef.packagePrefix + "." + in.readUTF()).asSubclass(
+							RemoteRef.class);
 			RemoteRef ref = refClass.newInstance();
 			ref.readExternal(in);
-			activator = (Activator) Proxy.newProxyInstance(null, new Class<?>[] { Activator.class },
+			activator = (Activator) Proxy.newProxyInstance(null,
+					new Class<?>[] { Activator.class },
 					new RemoteObjectInvocationHandler(ref));
 
 		} catch (InstantiationException e) {
-			throw (IOException) new InvalidObjectException("Unable to create remote reference")
-					.initCause(e);
+			throw (IOException) new InvalidObjectException(
+					"Unable to create remote reference").initCause(e);
 		} catch (IllegalAccessException e) {
-			throw (IOException) new InvalidObjectException("Unable to create remote reference")
-					.initCause(e);
+			throw (IOException) new InvalidObjectException(
+					"Unable to create remote reference").initCause(e);
 		}
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.impl.encoding;
 
@@ -92,8 +72,8 @@ public class BufferManagerWriteCollect extends BufferManagerWrite {
 		// each time.
 
 		// XREVISIT - Downcast
-		FragmentMessage header = ((CDROutputObject) outputObject).getMessageHeader()
-				.createFragmentMessage();
+		FragmentMessage header = ((CDROutputObject) outputObject)
+				.getMessageHeader().createFragmentMessage();
 
 		header.write((CDROutputObject) outputObject);
 	}
@@ -105,7 +85,8 @@ public class BufferManagerWriteCollect extends BufferManagerWrite {
 
 		Iterator bufs = iterator();
 
-		Connection conn = ((OutputObject) outputObject).getMessageMediator().getConnection();
+		Connection conn = ((OutputObject) outputObject).getMessageMediator()
+				.getConnection();
 
 		// With the collect strategy, we must lock the connection
 		// while fragments are being sent. This is so that there are

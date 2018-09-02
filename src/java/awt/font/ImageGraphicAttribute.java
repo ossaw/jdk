@@ -1,41 +1,18 @@
 /*
  * Copyright (c) 1998, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996 - 1997, All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998, All Rights Reserved
- *
  * The original version of this source code and documentation is
  * copyrighted and owned by Taligent, Inc., a wholly-owned subsidiary
  * of IBM. These materials are provided under terms of a License
  * Agreement between Taligent and Sun. This technology is protected
  * by multiple US and International patents.
- *
  * This notice and attribution to Taligent may not be removed.
  * Taligent is a registered trademark of Taligent, Inc.
- *
  */
 
 package java.awt.font;
@@ -62,12 +39,12 @@ public final class ImageGraphicAttribute extends GraphicAttribute {
 	 * {@link Image}. The origin is at (0,&nbsp;0).
 	 * 
 	 * @param image
-	 *            the <code>Image</code> rendered by this
-	 *            <code>ImageGraphicAttribute</code>. This object keeps a
-	 *            reference to <code>image</code>.
+	 *                  the <code>Image</code> rendered by this
+	 *                  <code>ImageGraphicAttribute</code>. This object keeps a
+	 *                  reference to <code>image</code>.
 	 * @param alignment
-	 *            one of the alignments from this
-	 *            <code>ImageGraphicAttribute</code>
+	 *                  one of the alignments from this
+	 *                  <code>ImageGraphicAttribute</code>
 	 */
 	public ImageGraphicAttribute(Image image, int alignment) {
 
@@ -81,22 +58,25 @@ public final class ImageGraphicAttribute extends GraphicAttribute {
 	 * the <code>ImageGraphicAttribute</code> within the text.
 	 * 
 	 * @param image
-	 *            the <code>Image</code> rendered by this
-	 *            <code>ImageGraphicAttribute</code>. This object keeps a
-	 *            reference to <code>image</code>.
+	 *                  the <code>Image</code> rendered by this
+	 *                  <code>ImageGraphicAttribute</code>. This object keeps a
+	 *                  reference to <code>image</code>.
 	 * @param alignment
-	 *            one of the alignments from this
-	 *            <code>ImageGraphicAttribute</code>
+	 *                  one of the alignments from this
+	 *                  <code>ImageGraphicAttribute</code>
 	 * @param originX
-	 *            the X coordinate of the point within the <code>Image</code>
-	 *            that appears at the origin of the
-	 *            <code>ImageGraphicAttribute</code> in the text line.
+	 *                  the X coordinate of the point within the
+	 *                  <code>Image</code>
+	 *                  that appears at the origin of the
+	 *                  <code>ImageGraphicAttribute</code> in the text line.
 	 * @param originY
-	 *            the Y coordinate of the point within the <code>Image</code>
-	 *            that appears at the origin of the
-	 *            <code>ImageGraphicAttribute</code> in the text line.
+	 *                  the Y coordinate of the point within the
+	 *                  <code>Image</code>
+	 *                  that appears at the origin of the
+	 *                  <code>ImageGraphicAttribute</code> in the text line.
 	 */
-	public ImageGraphicAttribute(Image image, int alignment, float originX, float originY) {
+	public ImageGraphicAttribute(Image image, int alignment, float originX,
+			float originY) {
 
 		super(alignment);
 
@@ -160,7 +140,8 @@ public final class ImageGraphicAttribute extends GraphicAttribute {
 	 */
 	public Rectangle2D getBounds() {
 
-		return new Rectangle2D.Float(-fOriginX, -fOriginY, fImageWidth, fImageHeight);
+		return new Rectangle2D.Float(-fOriginX, -fOriginY, fImageWidth,
+				fImageHeight);
 	}
 
 	/**
@@ -168,7 +149,8 @@ public final class ImageGraphicAttribute extends GraphicAttribute {
 	 */
 	public void draw(Graphics2D graphics, float x, float y) {
 
-		graphics.drawImage(fImage, (int) (x - fOriginX), (int) (y - fOriginY), null);
+		graphics.drawImage(fImage, (int) (x - fOriginX), (int) (y - fOriginY),
+				null);
 	}
 
 	/**

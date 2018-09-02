@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.text;
@@ -123,7 +103,8 @@ class CalendarBuilder {
 		}
 
 		if (weekDate) {
-			int weekOfYear = isSet(WEEK_OF_YEAR) ? field[MAX_FIELD + WEEK_OF_YEAR] : 1;
+			int weekOfYear = isSet(WEEK_OF_YEAR) ? field[MAX_FIELD
+					+ WEEK_OF_YEAR] : 1;
 			int dayOfWeek = isSet(DAY_OF_WEEK) ? field[MAX_FIELD + DAY_OF_WEEK]
 					: cal.getFirstDayOfWeek();
 			if (!isValidDayOfWeek(dayOfWeek) && cal.isLenient()) {
@@ -139,7 +120,8 @@ class CalendarBuilder {
 				}
 				dayOfWeek = toCalendarDayOfWeek(dayOfWeek);
 			}
-			cal.setWeekDate(field[MAX_FIELD + WEEK_YEAR], weekOfYear, dayOfWeek);
+			cal.setWeekDate(field[MAX_FIELD + WEEK_YEAR], weekOfYear,
+					dayOfWeek);
 		}
 		return cal;
 	}
@@ -149,7 +131,8 @@ class CalendarBuilder {
 		sb.append("CalendarBuilder:[");
 		for (int i = 0; i < field.length; i++) {
 			if (isSet(i)) {
-				sb.append(i).append('=').append(field[MAX_FIELD + i]).append(',');
+				sb.append(i).append('=').append(field[MAX_FIELD + i]).append(
+						',');
 			}
 		}
 		int lastIndex = sb.length() - 1;

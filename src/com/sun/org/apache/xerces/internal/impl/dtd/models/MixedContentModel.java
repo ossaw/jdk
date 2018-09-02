@@ -4,43 +4,34 @@
  */
 /*
  * The Apache Software License, Version 1.1
- *
- *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Xerces" and "Apache Software Foundation" must
- *    not be used to endorse or promote products derived from this
- *    software without prior written permission. For written
- *    permission, please contact apache@apache.org.
- *
+ * not be used to endorse or promote products derived from this
+ * software without prior written permission. For written
+ * permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    nor may "Apache" appear in their name, without prior written
- *    permission of the Apache Software Foundation.
- *
+ * nor may "Apache" appear in their name, without prior written
+ * permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -50,11 +41,10 @@
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
  * individuals on behalf of the Apache Software Foundation and was
  * originally based on software copyright (c) 1999, International
- * Business Machines, Inc., http://www.apache.org.  For more
+ * Business Machines, Inc., http://www.apache.org. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -115,18 +105,18 @@ public class MixedContentModel implements ContentModelValidator {
 	 * Constructs a mixed content model.
 	 *
 	 * @param children
-	 *            The list of allowed children.
+	 *                 The list of allowed children.
 	 * @param type
-	 *            The list of the types of the children.
+	 *                 The list of the types of the children.
 	 * @param offset
-	 *            The start offset position in the children.
+	 *                 The start offset position in the children.
 	 * @param length
-	 *            The child count.
+	 *                 The child count.
 	 * @param ordered
-	 *            True if content must be ordered.
+	 *                 True if content must be ordered.
 	 */
-	public MixedContentModel(QName[] children, int[] type, int offset, int length,
-			boolean ordered) {
+	public MixedContentModel(QName[] children, int[] type, int offset,
+			int length, boolean ordered) {
 		// Make our own copy now, which is exactly the right size
 		fCount = length;
 		fChildren = new QName[fCount];
@@ -154,14 +144,15 @@ public class MixedContentModel implements ContentModelValidator {
 	 * confirmed.
 	 *
 	 * @param children
-	 *            The children of this element. Each integer is an index within
-	 *            the <code>StringPool</code> of the child element name. An
-	 *            index of -1 is used to indicate an occurrence of
-	 *            non-whitespace character data.
+	 *                 The children of this element. Each integer is an index
+	 *                 within
+	 *                 the <code>StringPool</code> of the child element name. An
+	 *                 index of -1 is used to indicate an occurrence of
+	 *                 non-whitespace character data.
 	 * @param offset
-	 *            Offset into the array where the children starts.
+	 *                 Offset into the array where the children starts.
 	 * @param length
-	 *            The number of entries in the <code>children</code> array.
+	 *                 The number of entries in the <code>children</code> array.
 	 *
 	 * @return The value -1 if fully valid, else the 0 based index of the child
 	 *         that first failed. If the value returned is equal to the number
@@ -185,7 +176,8 @@ public class MixedContentModel implements ContentModelValidator {
 				// element must match
 				int type = fChildrenType[inIndex];
 				if (type == XMLContentSpec.CONTENTSPECNODE_LEAF) {
-					if (fChildren[inIndex].rawname != children[offset + outIndex].rawname) {
+					if (fChildren[inIndex].rawname != children[offset
+							+ outIndex].rawname) {
 						return outIndex;
 					}
 				} else if (type == XMLContentSpec.CONTENTSPECNODE_ANY) {

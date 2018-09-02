@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,8 +41,7 @@ public class XNodeSet extends NodeSequence {
 	/**
 	 * Default constructor for derived objects.
 	 */
-	protected XNodeSet() {
-	}
+	protected XNodeSet() {}
 
 	/**
 	 * Construct a XNodeSet object.
@@ -99,7 +95,7 @@ public class XNodeSet extends NodeSequence {
 	 * Construct a XNodeSet object for one node.
 	 *
 	 * @param n
-	 *            Node to add to the new XNodeSet object
+	 *          Node to add to the new XNodeSet object
 	 */
 	public XNodeSet(int n, DTMManager dtmMgr) {
 
@@ -136,7 +132,7 @@ public class XNodeSet extends NodeSequence {
 	 * Get numeric value of the string conversion from a single node.
 	 *
 	 * @param n
-	 *            Node to convert
+	 *          Node to convert
 	 *
 	 * @return numeric value of the string conversion from a single node.
 	 */
@@ -193,7 +189,7 @@ public class XNodeSet extends NodeSequence {
 	 * Get the string conversion from a single node.
 	 *
 	 * @param n
-	 *            Node to convert
+	 *          Node to convert
 	 *
 	 * @return the string conversion from a single node.
 	 */
@@ -213,7 +209,7 @@ public class XNodeSet extends NodeSequence {
 	 * may well occur for a single call to this method.
 	 *
 	 * @param ch
-	 *            A non-null reference to a ContentHandler.
+	 *           A non-null reference to a ContentHandler.
 	 *
 	 * @throws org.xml.sax.SAXException
 	 */
@@ -234,7 +230,8 @@ public class XNodeSet extends NodeSequence {
 	 */
 	public XMLString xstr() {
 		int node = item(0);
-		return (node != DTM.NULL) ? getStringFromNode(node) : XString.EMPTYSTRING;
+		return (node != DTM.NULL) ? getStringFromNode(node)
+				: XString.EMPTYSTRING;
 	}
 
 	/**
@@ -242,7 +239,8 @@ public class XNodeSet extends NodeSequence {
 	 *
 	 * @return The string this wraps or the empty string if null
 	 */
-	public void appendToFsb(com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb) {
+	public void appendToFsb(
+			com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb) {
 		XString xstring = (XString) xstr();
 		xstring.appendToFsb(fsb);
 	}
@@ -306,8 +304,10 @@ public class XNodeSet extends NodeSequence {
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public NodeIterator nodeset() throws javax.xml.transform.TransformerException {
-		return new com.sun.org.apache.xml.internal.dtm.ref.DTMNodeIterator(iter());
+	public NodeIterator nodeset()
+			throws javax.xml.transform.TransformerException {
+		return new com.sun.org.apache.xml.internal.dtm.ref.DTMNodeIterator(
+				iter());
 	}
 
 	/**
@@ -350,8 +350,7 @@ public class XNodeSet extends NodeSequence {
 		return this;
 	}
 
-	public void release(DTMIterator iter) {
-	}
+	public void release(DTMIterator iter) {}
 
 	/**
 	 * Cast result object to a nodelist.
@@ -426,9 +425,9 @@ public class XNodeSet extends NodeSequence {
 	 * Tell if one object is less than the other.
 	 *
 	 * @param obj2
-	 *            Object to compare this nodeset to
+	 *                   Object to compare this nodeset to
 	 * @param comparator
-	 *            Comparator to use
+	 *                   Comparator to use
 	 *
 	 * @return See the comments below for each object type comparison
 	 *
@@ -484,7 +483,8 @@ public class XNodeSet extends NodeSequence {
 					int n = node2Strings.size();
 
 					for (int i = 0; i < n; i++) {
-						if (comparator.compareStrings(s1, (XMLString) node2Strings.elementAt(i))) {
+						if (comparator.compareStrings(s1,
+								(XMLString) node2Strings.elementAt(i))) {
 							result = true;
 
 							break;
@@ -578,13 +578,14 @@ public class XNodeSet extends NodeSequence {
 	 * Tell if one object is less than the other.
 	 *
 	 * @param obj2
-	 *            object to compare this nodeset to
+	 *             object to compare this nodeset to
 	 *
 	 * @return see this.compare(...)
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public boolean lessThan(XObject obj2) throws javax.xml.transform.TransformerException {
+	public boolean lessThan(XObject obj2)
+			throws javax.xml.transform.TransformerException {
 		return compare(obj2, S_LT);
 	}
 
@@ -592,13 +593,14 @@ public class XNodeSet extends NodeSequence {
 	 * Tell if one object is less than or equal to the other.
 	 *
 	 * @param obj2
-	 *            object to compare this nodeset to
+	 *             object to compare this nodeset to
 	 *
 	 * @return see this.compare(...)
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public boolean lessThanOrEqual(XObject obj2) throws javax.xml.transform.TransformerException {
+	public boolean lessThanOrEqual(XObject obj2)
+			throws javax.xml.transform.TransformerException {
 		return compare(obj2, S_LTE);
 	}
 
@@ -606,13 +608,14 @@ public class XNodeSet extends NodeSequence {
 	 * Tell if one object is less than the other.
 	 *
 	 * @param obj2
-	 *            object to compare this nodeset to
+	 *             object to compare this nodeset to
 	 *
 	 * @return see this.compare(...)
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public boolean greaterThan(XObject obj2) throws javax.xml.transform.TransformerException {
+	public boolean greaterThan(XObject obj2)
+			throws javax.xml.transform.TransformerException {
 		return compare(obj2, S_GT);
 	}
 
@@ -620,7 +623,7 @@ public class XNodeSet extends NodeSequence {
 	 * Tell if one object is less than the other.
 	 *
 	 * @param obj2
-	 *            object to compare this nodeset to
+	 *             object to compare this nodeset to
 	 *
 	 * @return see this.compare(...)
 	 *
@@ -635,7 +638,7 @@ public class XNodeSet extends NodeSequence {
 	 * Tell if two objects are functionally equal.
 	 *
 	 * @param obj2
-	 *            object to compare this nodeset to
+	 *             object to compare this nodeset to
 	 *
 	 * @return see this.compare(...)
 	 *
@@ -645,7 +648,8 @@ public class XNodeSet extends NodeSequence {
 		try {
 			return compare(obj2, S_EQ);
 		} catch (javax.xml.transform.TransformerException te) {
-			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(te);
+			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
+					te);
 		}
 	}
 
@@ -653,13 +657,14 @@ public class XNodeSet extends NodeSequence {
 	 * Tell if two objects are functionally not equal.
 	 *
 	 * @param obj2
-	 *            object to compare this nodeset to
+	 *             object to compare this nodeset to
 	 *
 	 * @return see this.compare(...)
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public boolean notEquals(XObject obj2) throws javax.xml.transform.TransformerException {
+	public boolean notEquals(XObject obj2)
+			throws javax.xml.transform.TransformerException {
 		return compare(obj2, S_NEQ);
 	}
 }
@@ -674,9 +679,9 @@ abstract class Comparator {
 	 *
 	 *
 	 * @param s1
-	 *            First string to compare
+	 *           First string to compare
 	 * @param s2
-	 *            Second String to compare
+	 *           Second String to compare
 	 *
 	 * @return Whether the strings are equal or not
 	 */
@@ -687,9 +692,9 @@ abstract class Comparator {
 	 *
 	 *
 	 * @param n1
-	 *            First number to compare
+	 *           First number to compare
 	 * @param n2
-	 *            Second number to compare
+	 *           Second number to compare
 	 *
 	 * @return Whether the numbers are equal or not
 	 */
@@ -706,9 +711,9 @@ class LessThanComparator extends Comparator {
 	 *
 	 *
 	 * @param s1
-	 *            First string to compare
+	 *           First string to compare
 	 * @param s2
-	 *            Second String to compare
+	 *           Second String to compare
 	 *
 	 * @return True if s1 is less than s2
 	 */
@@ -722,9 +727,9 @@ class LessThanComparator extends Comparator {
 	 *
 	 *
 	 * @param n1
-	 *            First number to compare
+	 *           First number to compare
 	 * @param n2
-	 *            Second number to compare
+	 *           Second number to compare
 	 *
 	 * @return true if n1 is less than n2
 	 */
@@ -743,9 +748,9 @@ class LessThanOrEqualComparator extends Comparator {
 	 *
 	 *
 	 * @param s1
-	 *            First string to compare
+	 *           First string to compare
 	 * @param s2
-	 *            Second String to compare
+	 *           Second String to compare
 	 *
 	 * @return true if s1 is less than or equal to s2
 	 */
@@ -759,9 +764,9 @@ class LessThanOrEqualComparator extends Comparator {
 	 *
 	 *
 	 * @param n1
-	 *            First number to compare
+	 *           First number to compare
 	 * @param n2
-	 *            Second number to compare
+	 *           Second number to compare
 	 *
 	 * @return true if n1 is less than or equal to n2
 	 */
@@ -780,9 +785,9 @@ class GreaterThanComparator extends Comparator {
 	 *
 	 *
 	 * @param s1
-	 *            First string to compare
+	 *           First string to compare
 	 * @param s2
-	 *            Second String to compare
+	 *           Second String to compare
 	 *
 	 * @return true if s1 is greater than s2
 	 */
@@ -796,9 +801,9 @@ class GreaterThanComparator extends Comparator {
 	 *
 	 *
 	 * @param n1
-	 *            First number to compare
+	 *           First number to compare
 	 * @param n2
-	 *            Second number to compare
+	 *           Second number to compare
 	 *
 	 * @return true if n1 is greater than n2
 	 */
@@ -817,9 +822,9 @@ class GreaterThanOrEqualComparator extends Comparator {
 	 *
 	 *
 	 * @param s1
-	 *            First string to compare
+	 *           First string to compare
 	 * @param s2
-	 *            Second String to compare
+	 *           Second String to compare
 	 *
 	 * @return true if s1 is greater than or equal to s2
 	 */
@@ -833,9 +838,9 @@ class GreaterThanOrEqualComparator extends Comparator {
 	 *
 	 *
 	 * @param n1
-	 *            First number to compare
+	 *           First number to compare
 	 * @param n2
-	 *            Second number to compare
+	 *           Second number to compare
 	 *
 	 * @return true if n1 is greater than or equal to n2
 	 */
@@ -854,9 +859,9 @@ class EqualComparator extends Comparator {
 	 *
 	 *
 	 * @param s1
-	 *            First string to compare
+	 *           First string to compare
 	 * @param s2
-	 *            Second String to compare
+	 *           Second String to compare
 	 *
 	 * @return true if s1 is equal to s2
 	 */
@@ -869,9 +874,9 @@ class EqualComparator extends Comparator {
 	 *
 	 *
 	 * @param n1
-	 *            First number to compare
+	 *           First number to compare
 	 * @param n2
-	 *            Second number to compare
+	 *           Second number to compare
 	 *
 	 * @return true if n1 is equal to n2
 	 */
@@ -890,9 +895,9 @@ class NotEqualComparator extends Comparator {
 	 *
 	 *
 	 * @param s1
-	 *            First string to compare
+	 *           First string to compare
 	 * @param s2
-	 *            Second String to compare
+	 *           Second String to compare
 	 *
 	 * @return true if s1 is not equal to s2
 	 */
@@ -905,9 +910,9 @@ class NotEqualComparator extends Comparator {
 	 *
 	 *
 	 * @param n1
-	 *            First number to compare
+	 *           First number to compare
 	 * @param n2
-	 *            Second number to compare
+	 *           Second number to compare
 	 *
 	 * @return true if n1 is not equal to n2
 	 */

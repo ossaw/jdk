@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -64,7 +44,8 @@ public class WindowsTreeUI extends BasicTreeUI {
 		if (tree != null && beginRow >= 0 && endRow < getRowCount(tree)) {
 			Rectangle visRect = tree.getVisibleRect();
 			if (beginRow == endRow) {
-				Rectangle scrollBounds = getPathBounds(tree, getPathForRow(tree, beginRow));
+				Rectangle scrollBounds = getPathBounds(tree, getPathForRow(tree,
+						beginRow));
 
 				if (scrollBounds != null) {
 					scrollBounds.x = visRect.x;
@@ -72,15 +53,19 @@ public class WindowsTreeUI extends BasicTreeUI {
 					tree.scrollRectToVisible(scrollBounds);
 				}
 			} else {
-				Rectangle beginRect = getPathBounds(tree, getPathForRow(tree, beginRow));
+				Rectangle beginRect = getPathBounds(tree, getPathForRow(tree,
+						beginRow));
 				if (beginRect != null) {
 					Rectangle testRect = beginRect;
 					int beginY = beginRect.y;
 					int maxY = beginY + visRect.height;
 
-					for (int counter = beginRow + 1; counter <= endRow; counter++) {
-						testRect = getPathBounds(tree, getPathForRow(tree, counter));
-						if (testRect != null && (testRect.y + testRect.height) > maxY) {
+					for (int counter = beginRow
+							+ 1; counter <= endRow; counter++) {
+						testRect = getPathBounds(tree, getPathForRow(tree,
+								counter));
+						if (testRect != null && (testRect.y
+								+ testRect.height) > maxY) {
 							counter = endRow;
 						}
 					}
@@ -192,9 +177,11 @@ public class WindowsTreeUI extends BasicTreeUI {
 		 * The foreground color is set based on the selection and the icon is
 		 * set based on on leaf and expanded.
 		 */
-		public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel,
-				boolean expanded, boolean leaf, int row, boolean hasFocus) {
-			super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+		public Component getTreeCellRendererComponent(JTree tree, Object value,
+				boolean sel, boolean expanded, boolean leaf, int row,
+				boolean hasFocus) {
+			super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf,
+					row, hasFocus);
 			// Windows displays the open icon when the tree item selected.
 			if (!tree.isEnabled()) {
 				setEnabled(false);

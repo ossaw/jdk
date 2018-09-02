@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth.callback;
@@ -63,21 +43,22 @@ public class TextCallbackHandler implements CallbackHandler {
 	 * applications to instantiate a CallbackHandler.
 	 * 
 	 */
-	public TextCallbackHandler() {
-	}
+	public TextCallbackHandler() {}
 
 	/**
 	 * Handles the specified set of callbacks.
 	 *
 	 * @param callbacks
-	 *            the callbacks to handle
+	 *                  the callbacks to handle
 	 * @throws IOException
-	 *             if an input or output error occurs.
+	 *                                      if an input or output error occurs.
 	 * @throws UnsupportedCallbackException
-	 *             if the callback is not an instance of NameCallback or
-	 *             PasswordCallback
+	 *                                      if the callback is not an instance
+	 *                                      of NameCallback or
+	 *                                      PasswordCallback
 	 */
-	public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
+	public void handle(Callback[] callbacks) throws IOException,
+			UnsupportedCallbackException {
 		ConfirmationCallback confirmation = null;
 
 		for (int i = 0; i < callbacks.length; i++) {
@@ -86,18 +67,18 @@ public class TextCallbackHandler implements CallbackHandler {
 
 				String text;
 				switch (tc.getMessageType()) {
-				case TextOutputCallback.INFORMATION:
-					text = "";
-					break;
-				case TextOutputCallback.WARNING:
-					text = "Warning: ";
-					break;
-				case TextOutputCallback.ERROR:
-					text = "Error: ";
-					break;
-				default:
-					throw new UnsupportedCallbackException(callbacks[i],
-							"Unrecognized message type");
+					case TextOutputCallback.INFORMATION:
+						text = "";
+						break;
+					case TextOutputCallback.WARNING:
+						text = "Warning: ";
+						break;
+					case TextOutputCallback.ERROR:
+						text = "Error: ";
+						break;
+					default:
+						throw new UnsupportedCallbackException(callbacks[i],
+								"Unrecognized message type");
 				}
 
 				String message = tc.getMessage();
@@ -114,7 +95,8 @@ public class TextCallbackHandler implements CallbackHandler {
 				if (nc.getDefaultName() == null) {
 					System.err.print(nc.getPrompt());
 				} else {
-					System.err.print(nc.getPrompt() + " [" + nc.getDefaultName() + "] ");
+					System.err.print(nc.getPrompt() + " [" + nc.getDefaultName()
+							+ "] ");
 				}
 				System.err.flush();
 
@@ -137,7 +119,8 @@ public class TextCallbackHandler implements CallbackHandler {
 				confirmation = (ConfirmationCallback) callbacks[i];
 
 			} else {
-				throw new UnsupportedCallbackException(callbacks[i], "Unrecognized Callback");
+				throw new UnsupportedCallbackException(callbacks[i],
+						"Unrecognized Callback");
 			}
 		}
 
@@ -149,7 +132,8 @@ public class TextCallbackHandler implements CallbackHandler {
 
 	/* Reads a line of input */
 	private String readLine() throws IOException {
-		String result = new BufferedReader(new InputStreamReader(System.in)).readLine();
+		String result = new BufferedReader(new InputStreamReader(System.in))
+				.readLine();
 		if (result == null) {
 			throw new IOException("Cannot read from System.in");
 		}
@@ -161,18 +145,18 @@ public class TextCallbackHandler implements CallbackHandler {
 		String prefix;
 		int messageType = confirmation.getMessageType();
 		switch (messageType) {
-		case ConfirmationCallback.WARNING:
-			prefix = "Warning: ";
-			break;
-		case ConfirmationCallback.ERROR:
-			prefix = "Error: ";
-			break;
-		case ConfirmationCallback.INFORMATION:
-			prefix = "";
-			break;
-		default:
-			throw new UnsupportedCallbackException(confirmation,
-					"Unrecognized message type: " + messageType);
+			case ConfirmationCallback.WARNING:
+				prefix = "Warning: ";
+				break;
+			case ConfirmationCallback.ERROR:
+				prefix = "Error: ";
+				break;
+			case ConfirmationCallback.INFORMATION:
+				prefix = "";
+				break;
+			default:
+				throw new UnsupportedCallbackException(confirmation,
+						"Unrecognized message type: " + messageType);
 		}
 
 		class OptionInfo {
@@ -188,29 +172,33 @@ public class TextCallbackHandler implements CallbackHandler {
 		OptionInfo[] options;
 		int optionType = confirmation.getOptionType();
 		switch (optionType) {
-		case ConfirmationCallback.YES_NO_OPTION:
-			options = new OptionInfo[] { new OptionInfo("Yes", ConfirmationCallback.YES),
-					new OptionInfo("No", ConfirmationCallback.NO) };
-			break;
-		case ConfirmationCallback.YES_NO_CANCEL_OPTION:
-			options = new OptionInfo[] { new OptionInfo("Yes", ConfirmationCallback.YES),
-					new OptionInfo("No", ConfirmationCallback.NO),
-					new OptionInfo("Cancel", ConfirmationCallback.CANCEL) };
-			break;
-		case ConfirmationCallback.OK_CANCEL_OPTION:
-			options = new OptionInfo[] { new OptionInfo("OK", ConfirmationCallback.OK),
-					new OptionInfo("Cancel", ConfirmationCallback.CANCEL) };
-			break;
-		case ConfirmationCallback.UNSPECIFIED_OPTION:
-			String[] optionStrings = confirmation.getOptions();
-			options = new OptionInfo[optionStrings.length];
-			for (int i = 0; i < options.length; i++) {
-				options[i] = new OptionInfo(optionStrings[i], i);
-			}
-			break;
-		default:
-			throw new UnsupportedCallbackException(confirmation,
-					"Unrecognized option type: " + optionType);
+			case ConfirmationCallback.YES_NO_OPTION:
+				options = new OptionInfo[] { new OptionInfo("Yes",
+						ConfirmationCallback.YES), new OptionInfo("No",
+								ConfirmationCallback.NO) };
+				break;
+			case ConfirmationCallback.YES_NO_CANCEL_OPTION:
+				options = new OptionInfo[] { new OptionInfo("Yes",
+						ConfirmationCallback.YES), new OptionInfo("No",
+								ConfirmationCallback.NO), new OptionInfo(
+										"Cancel",
+										ConfirmationCallback.CANCEL) };
+				break;
+			case ConfirmationCallback.OK_CANCEL_OPTION:
+				options = new OptionInfo[] { new OptionInfo("OK",
+						ConfirmationCallback.OK), new OptionInfo("Cancel",
+								ConfirmationCallback.CANCEL) };
+				break;
+			case ConfirmationCallback.UNSPECIFIED_OPTION:
+				String[] optionStrings = confirmation.getOptions();
+				options = new OptionInfo[optionStrings.length];
+				for (int i = 0; i < options.length; i++) {
+					options[i] = new OptionInfo(optionStrings[i], i);
+				}
+				break;
+			default:
+				throw new UnsupportedCallbackException(confirmation,
+						"Unrecognized option type: " + optionType);
 		}
 
 		int defaultOption = confirmation.getDefaultOption();
@@ -227,12 +215,13 @@ public class TextCallbackHandler implements CallbackHandler {
 		for (int i = 0; i < options.length; i++) {
 			if (optionType == ConfirmationCallback.UNSPECIFIED_OPTION) {
 				// defaultOption is an index into the options array
-				System.err.println(
-						i + ". " + options[i].name + (i == defaultOption ? " [default]" : ""));
+				System.err.println(i + ". " + options[i].name
+						+ (i == defaultOption ? " [default]" : ""));
 			} else {
 				// defaultOption is an option value
 				System.err.println(i + ". " + options[i].name
-						+ (options[i].value == defaultOption ? " [default]" : ""));
+						+ (options[i].value == defaultOption ? " [default]"
+								: ""));
 			}
 		}
 		System.err.print("Enter a number: ");

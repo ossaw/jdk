@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.lang.invoke;
 
@@ -78,52 +58,76 @@ import static sun.invoke.util.Wrapper.isWrapperType;
 	 * Meta-factory constructor.
 	 *
 	 * @param caller
-	 *            Stacked automatically by VM; represents a lookup context with
-	 *            the accessibility privileges of the caller.
+	 *                               Stacked automatically by VM; represents a
+	 *                               lookup context with
+	 *                               the accessibility privileges of the caller.
 	 * @param invokedType
-	 *            Stacked automatically by VM; the signature of the invoked
-	 *            method, which includes the expected static type of the
-	 *            returned lambda object, and the static types of the captured
-	 *            arguments for the lambda. In the event that the implementation
-	 *            method is an instance method, the first argument in the
-	 *            invocation signature will correspond to the receiver.
+	 *                               Stacked automatically by VM; the signature
+	 *                               of the invoked
+	 *                               method, which includes the expected static
+	 *                               type of the
+	 *                               returned lambda object, and the static
+	 *                               types of the captured
+	 *                               arguments for the lambda. In the event that
+	 *                               the implementation
+	 *                               method is an instance method, the first
+	 *                               argument in the
+	 *                               invocation signature will correspond to the
+	 *                               receiver.
 	 * @param samMethodName
-	 *            Name of the method in the functional interface to which the
-	 *            lambda or method reference is being converted, represented as
-	 *            a String.
+	 *                               Name of the method in the functional
+	 *                               interface to which the
+	 *                               lambda or method reference is being
+	 *                               converted, represented as
+	 *                               a String.
 	 * @param samMethodType
-	 *            Type of the method in the functional interface to which the
-	 *            lambda or method reference is being converted, represented as
-	 *            a MethodType.
+	 *                               Type of the method in the functional
+	 *                               interface to which the
+	 *                               lambda or method reference is being
+	 *                               converted, represented as
+	 *                               a MethodType.
 	 * @param implMethod
-	 *            The implementation method which should be called (with
-	 *            suitable adaptation of argument types, return types, and
-	 *            adjustment for captured arguments) when methods of the
-	 *            resulting functional interface instance are invoked.
+	 *                               The implementation method which should be
+	 *                               called (with
+	 *                               suitable adaptation of argument types,
+	 *                               return types, and
+	 *                               adjustment for captured arguments) when
+	 *                               methods of the
+	 *                               resulting functional interface instance are
+	 *                               invoked.
 	 * @param instantiatedMethodType
-	 *            The signature of the primary functional interface method after
-	 *            type variables are substituted with their instantiation from
-	 *            the capture site
+	 *                               The signature of the primary functional
+	 *                               interface method after
+	 *                               type variables are substituted with their
+	 *                               instantiation from
+	 *                               the capture site
 	 * @param isSerializable
-	 *            Should the lambda be made serializable? If set, either the
-	 *            target type or one of the additional SAM types must extend
-	 *            {@code Serializable}.
+	 *                               Should the lambda be made serializable? If
+	 *                               set, either the
+	 *                               target type or one of the additional SAM
+	 *                               types must extend
+	 *                               {@code Serializable}.
 	 * @param markerInterfaces
-	 *            Additional interfaces which the lambda object should
-	 *            implement.
+	 *                               Additional interfaces which the lambda
+	 *                               object should
+	 *                               implement.
 	 * @param additionalBridges
-	 *            Method types for additional signatures to be bridged to the
-	 *            implementation method
+	 *                               Method types for additional signatures to
+	 *                               be bridged to the
+	 *                               implementation method
 	 * @throws LambdaConversionException
-	 *             If any of the meta-factory protocol invariants are violated
+	 *                                   If any of the meta-factory protocol
+	 *                                   invariants are violated
 	 */
-	AbstractValidatingLambdaMetafactory(MethodHandles.Lookup caller, MethodType invokedType,
-			String samMethodName, MethodType samMethodType, MethodHandle implMethod,
-			MethodType instantiatedMethodType, boolean isSerializable, Class<?>[] markerInterfaces,
-			MethodType[] additionalBridges) throws LambdaConversionException {
+	AbstractValidatingLambdaMetafactory(MethodHandles.Lookup caller,
+			MethodType invokedType, String samMethodName,
+			MethodType samMethodType, MethodHandle implMethod,
+			MethodType instantiatedMethodType, boolean isSerializable,
+			Class<?>[] markerInterfaces, MethodType[] additionalBridges)
+			throws LambdaConversionException {
 		if ((caller.lookupModes() & MethodHandles.Lookup.PRIVATE) == 0) {
-			throw new LambdaConversionException(
-					String.format("Invalid caller: %s", caller.lookupClass().getName()));
+			throw new LambdaConversionException(String.format(
+					"Invalid caller: %s", caller.lookupClass().getName()));
 		}
 		this.targetClass = caller.lookupClass();
 		this.invokedType = invokedType;
@@ -147,14 +151,16 @@ import static sun.invoke.util.Wrapper.isWrapperType;
 		this.additionalBridges = additionalBridges;
 
 		if (!samBase.isInterface()) {
-			throw new LambdaConversionException(String
-					.format("Functional interface %s is not an interface", samBase.getName()));
+			throw new LambdaConversionException(String.format(
+					"Functional interface %s is not an interface", samBase
+							.getName()));
 		}
 
 		for (Class<?> c : markerInterfaces) {
 			if (!c.isInterface()) {
-				throw new LambdaConversionException(
-						String.format("Marker interface %s is not an interface", c.getName()));
+				throw new LambdaConversionException(String.format(
+						"Marker interface %s is not an interface", c
+								.getName()));
 			}
 		}
 	}
@@ -172,19 +178,19 @@ import static sun.invoke.util.Wrapper.isWrapperType;
 	 * Check the meta-factory arguments for errors
 	 * 
 	 * @throws LambdaConversionException
-	 *             if there are improper conversions
+	 *                                   if there are improper conversions
 	 */
 	void validateMetafactoryArgs() throws LambdaConversionException {
 		switch (implKind) {
-		case MethodHandleInfo.REF_invokeInterface:
-		case MethodHandleInfo.REF_invokeVirtual:
-		case MethodHandleInfo.REF_invokeStatic:
-		case MethodHandleInfo.REF_newInvokeSpecial:
-		case MethodHandleInfo.REF_invokeSpecial:
-			break;
-		default:
-			throw new LambdaConversionException(
-					String.format("Unsupported MethodHandle kind: %s", implInfo));
+			case MethodHandleInfo.REF_invokeInterface:
+			case MethodHandleInfo.REF_invokeVirtual:
+			case MethodHandleInfo.REF_invokeStatic:
+			case MethodHandleInfo.REF_newInvokeSpecial:
+			case MethodHandleInfo.REF_invokeSpecial:
+				break;
+			default:
+				throw new LambdaConversionException(String.format(
+						"Unsupported MethodHandle kind: %s", implInfo));
 		}
 
 		// Check arity: optional-receiver + captured + SAM == impl
@@ -196,14 +202,14 @@ import static sun.invoke.util.Wrapper.isWrapperType;
 		if (implArity + receiverArity != capturedArity + samArity) {
 			throw new LambdaConversionException(String.format(
 					"Incorrect number of parameters for %s method %s; %d captured parameters, %d functional interface method parameters, %d implementation parameters",
-					implIsInstanceMethod ? "instance" : "static", implInfo, capturedArity, samArity,
-					implArity));
+					implIsInstanceMethod ? "instance" : "static", implInfo,
+					capturedArity, samArity, implArity));
 		}
 		if (instantiatedArity != samArity) {
 			throw new LambdaConversionException(String.format(
 					"Incorrect number of parameters for %s method %s; %d instantiated parameters, %d functional interface method parameters",
-					implIsInstanceMethod ? "instance" : "static", implInfo, instantiatedArity,
-					samArity));
+					implIsInstanceMethod ? "instance" : "static", implInfo,
+					instantiatedArity, samArity));
 		}
 		for (MethodType bridgeMT : additionalBridges) {
 			if (bridgeMT.parameterCount() != samArity) {
@@ -242,8 +248,8 @@ import static sun.invoke.util.Wrapper.isWrapperType;
 			}
 
 			Class<?> implReceiverClass = implMethod.type().parameterType(0);
-			if (implReceiverClass != implDefiningClass
-					&& !implReceiverClass.isAssignableFrom(receiverClass)) {
+			if (implReceiverClass != implDefiningClass && !implReceiverClass
+					.isAssignableFrom(receiverClass)) {
 				throw new LambdaConversionException(String.format(
 						"Invalid receiver type %s; not a subtype of implementation receiver type %s",
 						receiverClass, implReceiverClass));
@@ -258,34 +264,37 @@ import static sun.invoke.util.Wrapper.isWrapperType;
 		final int implFromCaptured = capturedArity - capturedStart;
 		for (int i = 0; i < implFromCaptured; i++) {
 			Class<?> implParamType = implMethodType.parameterType(i);
-			Class<?> capturedParamType = invokedType.parameterType(i + capturedStart);
+			Class<?> capturedParamType = invokedType.parameterType(i
+					+ capturedStart);
 			if (!capturedParamType.equals(implParamType)) {
 				throw new LambdaConversionException(String.format(
-						"Type mismatch in captured lambda parameter %d: expecting %s, found %s", i,
-						capturedParamType, implParamType));
+						"Type mismatch in captured lambda parameter %d: expecting %s, found %s",
+						i, capturedParamType, implParamType));
 			}
 		}
 		// Check for adaptation match on SAM arguments
 		final int samOffset = samStart - implFromCaptured;
 		for (int i = implFromCaptured; i < implArity; i++) {
 			Class<?> implParamType = implMethodType.parameterType(i);
-			Class<?> instantiatedParamType = instantiatedMethodType.parameterType(i + samOffset);
+			Class<?> instantiatedParamType = instantiatedMethodType
+					.parameterType(i + samOffset);
 			if (!isAdaptableTo(instantiatedParamType, implParamType, true)) {
 				throw new LambdaConversionException(String.format(
-						"Type mismatch for lambda argument %d: %s is not convertible to %s", i,
-						instantiatedParamType, implParamType));
+						"Type mismatch for lambda argument %d: %s is not convertible to %s",
+						i, instantiatedParamType, implParamType));
 			}
 		}
 
 		// Adaptation match: return type
 		Class<?> expectedType = instantiatedMethodType.returnType();
 		Class<?> actualReturnType = (implKind == MethodHandleInfo.REF_newInvokeSpecial)
-				? implDefiningClass : implMethodType.returnType();
+				? implDefiningClass
+				: implMethodType.returnType();
 		Class<?> samReturnType = samMethodType.returnType();
 		if (!isAdaptableToAsReturn(actualReturnType, expectedType)) {
-			throw new LambdaConversionException(
-					String.format("Type mismatch for lambda return: %s is not convertible to %s",
-							actualReturnType, expectedType));
+			throw new LambdaConversionException(String.format(
+					"Type mismatch for lambda return: %s is not convertible to %s",
+					actualReturnType, expectedType));
 		}
 		if (!isAdaptableToAsReturnStrict(expectedType, samReturnType)) {
 			throw new LambdaConversionException(String.format(
@@ -293,7 +302,8 @@ import static sun.invoke.util.Wrapper.isWrapperType;
 					expectedType, samReturnType));
 		}
 		for (MethodType bridgeMT : additionalBridges) {
-			if (!isAdaptableToAsReturnStrict(expectedType, bridgeMT.returnType())) {
+			if (!isAdaptableToAsReturnStrict(expectedType, bridgeMT
+					.returnType())) {
 				throw new LambdaConversionException(String.format(
 						"Type mismatch for lambda expected return: %s is not convertible to %s",
 						expectedType, bridgeMT.returnType()));
@@ -305,15 +315,17 @@ import static sun.invoke.util.Wrapper.isWrapperType;
 	 * Check type adaptability for parameter types.
 	 * 
 	 * @param fromType
-	 *            Type to convert from
+	 *                 Type to convert from
 	 * @param toType
-	 *            Type to convert to
+	 *                 Type to convert to
 	 * @param strict
-	 *            If true, do strict checks, else allow that fromType may be
-	 *            parameterized
+	 *                 If true, do strict checks, else allow that fromType may
+	 *                 be
+	 *                 parameterized
 	 * @return True if 'fromType' can be passed to an argument of 'toType'
 	 */
-	private boolean isAdaptableTo(Class<?> fromType, Class<?> toType, boolean strict) {
+	private boolean isAdaptableTo(Class<?> fromType, Class<?> toType,
+			boolean strict) {
 		if (fromType.equals(toType)) {
 			return true;
 		}
@@ -331,8 +343,8 @@ import static sun.invoke.util.Wrapper.isWrapperType;
 			if (toType.isPrimitive()) {
 				// from reference to primitive: unboxing
 				Wrapper wfrom;
-				if (isWrapperType(fromType)
-						&& (wfrom = forWrapperType(fromType)).primitiveType().isPrimitive()) {
+				if (isWrapperType(fromType) && (wfrom = forWrapperType(
+						fromType)).primitiveType().isPrimitive()) {
 					// fromType is a primitive wrapper; unbox+widen
 					Wrapper wto = forPrimitiveType(toType);
 					return wto.isConvertibleFrom(wfrom);
@@ -355,11 +367,12 @@ import static sun.invoke.util.Wrapper.isWrapperType;
 	 * @return True if 'fromType' can be converted to 'toType'
 	 */
 	private boolean isAdaptableToAsReturn(Class<?> fromType, Class<?> toType) {
-		return toType.equals(void.class)
-				|| !fromType.equals(void.class) && isAdaptableTo(fromType, toType, false);
+		return toType.equals(void.class) || !fromType.equals(void.class)
+				&& isAdaptableTo(fromType, toType, false);
 	}
 
-	private boolean isAdaptableToAsReturnStrict(Class<?> fromType, Class<?> toType) {
+	private boolean isAdaptableToAsReturnStrict(Class<?> fromType,
+			Class<?> toType) {
 		if (fromType.equals(void.class))
 			return toType.equals(void.class);
 		return isAdaptableTo(fromType, toType, true);

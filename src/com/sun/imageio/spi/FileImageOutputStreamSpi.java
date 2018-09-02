@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.spi;
@@ -47,8 +27,8 @@ public class FileImageOutputStreamSpi extends ImageOutputStreamSpi {
 		return "Service provider that instantiates a FileImageOutputStream from a File";
 	}
 
-	public ImageOutputStream createOutputStreamInstance(Object output, boolean useCache,
-			File cacheDir) {
+	public ImageOutputStream createOutputStreamInstance(Object output,
+			boolean useCache, File cacheDir) {
 		if (output instanceof File) {
 			try {
 				return new FileImageOutputStream((File) output);

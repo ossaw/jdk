@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -90,11 +65,13 @@ public class LongAccumulator extends Striped64 implements Serializable {
 	 * element.
 	 * 
 	 * @param accumulatorFunction
-	 *            a side-effect-free function of two arguments
+	 *                            a side-effect-free function of two arguments
 	 * @param identity
-	 *            identity (initial value) for the accumulator function
+	 *                            identity (initial value) for the accumulator
+	 *                            function
 	 */
-	public LongAccumulator(LongBinaryOperator accumulatorFunction, long identity) {
+	public LongAccumulator(LongBinaryOperator accumulatorFunction,
+			long identity) {
 		this.function = accumulatorFunction;
 		base = this.identity = identity;
 	}
@@ -103,19 +80,19 @@ public class LongAccumulator extends Striped64 implements Serializable {
 	 * Updates with the given value.
 	 *
 	 * @param x
-	 *            the value
+	 *          the value
 	 */
 	public void accumulate(long x) {
 		Cell[] as;
 		long b, v, r;
 		int m;
 		Cell a;
-		if ((as = cells) != null
-				|| (r = function.applyAsLong(b = base, x)) != b && !casBase(b, r)) {
+		if ((as = cells) != null || (r = function.applyAsLong(b = base, x)) != b
+				&& !casBase(b, r)) {
 			boolean uncontended = true;
-			if (as == null || (m = as.length - 1) < 0 || (a = as[getProbe() & m]) == null
-					|| !(uncontended = (r = function.applyAsLong(v = a.value, x)) == v
-							|| a.cas(v, r)))
+			if (as == null || (m = as.length - 1) < 0 || (a = as[getProbe()
+					& m]) == null || !(uncontended = (r = function.applyAsLong(
+							v = a.value, x)) == v || a.cas(v, r)))
 				longAccumulate(x, function, uncontended);
 		}
 	}
@@ -290,11 +267,12 @@ public class LongAccumulator extends Striped64 implements Serializable {
 
 	/**
 	 * @param s
-	 *            the stream
+	 *          the stream
 	 * @throws java.io.InvalidObjectException
-	 *             always
+	 *         always
 	 */
-	private void readObject(java.io.ObjectInputStream s) throws java.io.InvalidObjectException {
+	private void readObject(java.io.ObjectInputStream s)
+			throws java.io.InvalidObjectException {
 		throw new java.io.InvalidObjectException("Proxy required");
 	}
 

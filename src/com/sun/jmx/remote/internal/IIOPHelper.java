@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2009, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.remote.internal;
@@ -38,13 +18,12 @@ import java.security.PrivilegedAction;
  */
 
 public final class IIOPHelper {
-	private IIOPHelper() {
-	}
+	private IIOPHelper() {}
 
 	// loads IIOPProxy implementation class if available
 	private static final String IMPL_CLASS = "com.sun.jmx.remote.protocol.iiop.IIOPProxyImpl";
-	private static final IIOPProxy proxy = AccessController
-			.doPrivileged(new PrivilegedAction<IIOPProxy>() {
+	private static final IIOPProxy proxy = AccessController.doPrivileged(
+			new PrivilegedAction<IIOPProxy>() {
 				public IIOPProxy run() {
 					try {
 						Class<?> c = Class.forName(IMPL_CLASS, true,
@@ -99,7 +78,8 @@ public final class IIOPHelper {
 	 * Returns the ORB associated with the given stub
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if the object does not support the operation that was invoked
+	 *                                       if the object does not support the
+	 *                                       operation that was invoked
 	 */
 	public static Object getOrb(Object stub) {
 		ensureAvailable();
@@ -111,7 +91,8 @@ public final class IIOPHelper {
 	 */
 	public static void connect(Object stub, Object orb) throws IOException {
 		if (proxy == null)
-			throw new IOException("Connection to ORB failed, RMI/IIOP not available");
+			throw new IOException(
+					"Connection to ORB failed, RMI/IIOP not available");
 		proxy.connect(stub, orb);
 	}
 
@@ -125,9 +106,11 @@ public final class IIOPHelper {
 	/**
 	 * Creates, and returns, a new ORB instance.
 	 */
-	public static Object createOrb(String[] args, Properties props) throws IOException {
+	public static Object createOrb(String[] args, Properties props)
+			throws IOException {
 		if (proxy == null)
-			throw new IOException("ORB initialization failed, RMI/IIOP not available");
+			throw new IOException(
+					"ORB initialization failed, RMI/IIOP not available");
 		return proxy.createOrb(args, props);
 	}
 
@@ -162,7 +145,8 @@ public final class IIOPHelper {
 	 */
 	public static void exportObject(Remote obj) throws IOException {
 		if (proxy == null)
-			throw new IOException("RMI object cannot be exported, RMI/IIOP not available");
+			throw new IOException(
+					"RMI object cannot be exported, RMI/IIOP not available");
 		proxy.exportObject(obj);
 	}
 

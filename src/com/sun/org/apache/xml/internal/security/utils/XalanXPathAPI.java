@@ -70,18 +70,19 @@ public class XalanXPathAPI implements XPathAPI {
 	 * resolved from the namespaceNode.
 	 *
 	 * @param contextNode
-	 *            The node to start searching from.
+	 *                      The node to start searching from.
 	 * @param xpathnode
 	 * @param str
 	 * @param namespaceNode
-	 *            The node from which prefixes in the XPath will be resolved to
-	 *            namespaces.
+	 *                      The node from which prefixes in the XPath will be
+	 *                      resolved to
+	 *                      namespaces.
 	 * @return A NodeIterator, should never be null.
 	 *
 	 * @throws TransformerException
 	 */
-	public NodeList selectNodeList(Node contextNode, Node xpathnode, String str, Node namespaceNode)
-			throws TransformerException {
+	public NodeList selectNodeList(Node contextNode, Node xpathnode, String str,
+			Node namespaceNode) throws TransformerException {
 
 		// Execute the XPath, and have it return the result
 		XObject list = eval(contextNode, xpathnode, str, namespaceNode);
@@ -95,17 +96,18 @@ public class XalanXPathAPI implements XPathAPI {
 	 * or not.
 	 * 
 	 * @param contextNode
-	 *            The node to start searching from.
+	 *                      The node to start searching from.
 	 * @param xpathnode
-	 *            The XPath node
+	 *                      The XPath node
 	 * @param str
-	 *            The XPath expression
+	 *                      The XPath expression
 	 * @param namespaceNode
-	 *            The node from which prefixes in the XPath will be resolved to
-	 *            namespaces.
+	 *                      The node from which prefixes in the XPath will be
+	 *                      resolved to
+	 *                      namespaces.
 	 */
-	public boolean evaluate(Node contextNode, Node xpathnode, String str, Node namespaceNode)
-			throws TransformerException {
+	public boolean evaluate(Node contextNode, Node xpathnode, String str,
+			Node namespaceNode) throws TransformerException {
 		XObject object = eval(contextNode, xpathnode, str, namespaceNode);
 		return object.bool();
 	}
@@ -123,8 +125,8 @@ public class XalanXPathAPI implements XPathAPI {
 		return installed;
 	}
 
-	private XObject eval(Node contextNode, Node xpathnode, String str, Node namespaceNode)
-			throws TransformerException {
+	private XObject eval(Node contextNode, Node xpathnode, String str,
+			Node namespaceNode) throws TransformerException {
 		if (context == null) {
 			context = new XPathContext(xpathnode);
 			context.setSecureProcessing(true);
@@ -137,8 +139,10 @@ public class XalanXPathAPI implements XPathAPI {
 		// better
 		// resolution space, given the simplicity of this sample code).
 		Node resolverNode = (namespaceNode.getNodeType() == Node.DOCUMENT_NODE)
-				? ((Document) namespaceNode).getDocumentElement() : namespaceNode;
-		PrefixResolverDefault prefixResolver = new PrefixResolverDefault(resolverNode);
+				? ((Document) namespaceNode).getDocumentElement()
+				: namespaceNode;
+		PrefixResolverDefault prefixResolver = new PrefixResolverDefault(
+				resolverNode);
 
 		if (!str.equals(xpathStr)) {
 			if (str.indexOf("here()") > 0) {
@@ -158,9 +162,10 @@ public class XalanXPathAPI implements XPathAPI {
 			throws TransformerException {
 		XPath xpath = null;
 		Class<?>[] classes = new Class<?>[] { String.class, SourceLocator.class,
-				PrefixResolver.class, int.class, ErrorListener.class, FunctionTable.class };
-		Object[] objects = new Object[] { str, null, prefixResolver, Integer.valueOf(XPath.SELECT),
-				null, funcTable };
+				PrefixResolver.class, int.class, ErrorListener.class,
+				FunctionTable.class };
+		Object[] objects = new Object[] { str, null, prefixResolver, Integer
+				.valueOf(XPath.SELECT), null, funcTable };
 		try {
 			Constructor<?> constructor = XPath.class.getConstructor(classes);
 			xpath = (XPath) constructor.newInstance(objects);
@@ -185,7 +190,8 @@ public class XalanXPathAPI implements XPathAPI {
 		 */
 		try {
 			Class<?>[] args = { String.class, Expression.class };
-			Method installFunction = FunctionTable.class.getMethod("installFunction", args);
+			Method installFunction = FunctionTable.class.getMethod(
+					"installFunction", args);
 			if ((installFunction.getModifiers() & Modifier.STATIC) != 0) {
 				Object[] params = { "here", new FuncHere() };
 				installFunction.invoke(null, params);
@@ -193,24 +199,28 @@ public class XalanXPathAPI implements XPathAPI {
 			}
 		} catch (Exception ex) {
 			log.log(java.util.logging.Level.FINE,
-					"Error installing function using the static installFunction method", ex);
+					"Error installing function using the static installFunction method",
+					ex);
 		}
 		if (!installed) {
 			try {
 				funcTable = new FunctionTable();
 				Class<?>[] args = { String.class, Class.class };
-				Method installFunction = FunctionTable.class.getMethod("installFunction", args);
+				Method installFunction = FunctionTable.class.getMethod(
+						"installFunction", args);
 				Object[] params = { "here", FuncHere.class };
 				installFunction.invoke(funcTable, params);
 				installed = true;
 			} catch (Exception ex) {
 				log.log(java.util.logging.Level.FINE,
-						"Error installing function using the static installFunction method", ex);
+						"Error installing function using the static installFunction method",
+						ex);
 			}
 		}
 		if (log.isLoggable(java.util.logging.Level.FINE)) {
 			if (installed) {
-				log.log(java.util.logging.Level.FINE, "Registered class " + FuncHere.class.getName()
+				log.log(java.util.logging.Level.FINE, "Registered class "
+						+ FuncHere.class.getName()
 						+ " for XPath function 'here()' function in internal table");
 			} else {
 				log.log(java.util.logging.Level.FINE,

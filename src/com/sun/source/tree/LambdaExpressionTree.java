@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.source.tree;
@@ -49,10 +29,10 @@ public interface LambdaExpressionTree extends ExpressionTree {
 	 */
 	@jdk.Exported
 	public enum BodyKind {
-		/** enum constant for expression lambdas */
-		EXPRESSION,
-		/** enum constant for statement lambdas */
-		STATEMENT;
+	/** enum constant for expression lambdas */
+	EXPRESSION,
+	/** enum constant for statement lambdas */
+	STATEMENT;
 	}
 
 	List<? extends VariableTree> getParameters();

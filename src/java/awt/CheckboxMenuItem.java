@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -42,7 +22,8 @@ import sun.awt.AWTAccessor;
  * <code>CheckBoxMenuItem</code>:
  * <p>
  * <img src="doc-files/MenuBar-1.gif" alt=
- * "Menu labeled Examples, containing items Basic, Simple, Check, and More Examples. The Check item is a CheckBoxMenuItem instance, in the off state."
+ * "Menu labeled Examples, containing items Basic, Simple, Check, and More
+ * Examples. The Check item is a CheckBoxMenuItem instance, in the off state."
  * style="float:center; margin: 7px 10px;">
  * <p>
  * The item labeled <code>Check</code> shows a check box menu item in its "off"
@@ -60,7 +41,8 @@ import sun.awt.AWTAccessor;
  * @see java.awt.event.ItemListener
  * @since JDK1.0
  */
-public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Accessible {
+public class CheckboxMenuItem extends MenuItem implements ItemSelectable,
+		Accessible {
 
 	static {
 		/* ensure that the necessary native libraries are loaded */
@@ -69,11 +51,12 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 			initIDs();
 		}
 
-		AWTAccessor.setCheckboxMenuItemAccessor(new AWTAccessor.CheckboxMenuItemAccessor() {
-			public boolean getState(CheckboxMenuItem cmi) {
-				return cmi.state;
-			}
-		});
+		AWTAccessor.setCheckboxMenuItemAccessor(
+				new AWTAccessor.CheckboxMenuItemAccessor() {
+					public boolean getState(CheckboxMenuItem cmi) {
+						return cmi.state;
+					}
+				});
 	}
 
 	/**
@@ -100,7 +83,8 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	 * initially set to "off."
 	 * 
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @since JDK1.1
 	 */
@@ -113,10 +97,11 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	 * is initially set to "off."
 	 * 
 	 * @param label
-	 *            a string label for the check box menu item, or
-	 *            <code>null</code> for an unlabeled menu item.
+	 *              a string label for the check box menu item, or
+	 *              <code>null</code> for an unlabeled menu item.
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 */
 	public CheckboxMenuItem(String label) throws HeadlessException {
@@ -127,17 +112,19 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	 * Create a check box menu item with the specified label and state.
 	 * 
 	 * @param label
-	 *            a string label for the check box menu item, or
-	 *            <code>null</code> for an unlabeled menu item.
+	 *              a string label for the check box menu item, or
+	 *              <code>null</code> for an unlabeled menu item.
 	 * @param state
-	 *            the initial state of the menu item, where <code>true</code>
-	 *            indicates "on" and <code>false</code> indicates "off."
+	 *              the initial state of the menu item, where <code>true</code>
+	 *              indicates "on" and <code>false</code> indicates "off."
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @since JDK1.1
 	 */
-	public CheckboxMenuItem(String label, boolean state) throws HeadlessException {
+	public CheckboxMenuItem(String label, boolean state)
+			throws HeadlessException {
 		super(label);
 		this.state = state;
 	}
@@ -192,8 +179,8 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	 * way to trigger an <code>ItemEvent</code> is by user interaction.
 	 *
 	 * @param b
-	 *            <code>true</code> if the check box menu item is on, otherwise
-	 *            <code>false</code>
+	 *          <code>true</code> if the check box menu item is on, otherwise
+	 *          <code>false</code>
 	 * @see #getState
 	 */
 	public synchronized void setState(boolean b) {
@@ -229,7 +216,7 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the item listener
+	 *          the item listener
 	 * @see #removeItemListener
 	 * @see #getItemListeners
 	 * @see #setState
@@ -254,7 +241,7 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	 * Threading Issues</a> for details on AWT's threading model.
 	 *
 	 * @param l
-	 *            the item listener
+	 *          the item listener
 	 * @see #addItemListener
 	 * @see #getItemListeners
 	 * @see java.awt.event.ItemEvent
@@ -298,22 +285,25 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	 * listeners with the following code:
 	 *
 	 * <pre>
-	 * ItemListener[] ils = (ItemListener[]) (c.getListeners(ItemListener.class));
+	 * ItemListener[] ils = (ItemListener[]) (c.getListeners(
+	 * 		ItemListener.class));
 	 * </pre>
 	 *
 	 * If no such listeners exist, this method returns an empty array.
 	 *
 	 * @param listenerType
-	 *            the type of listeners requested; this parameter should specify
-	 *            an interface that descends from
-	 *            <code>java.util.EventListener</code>
+	 *                     the type of listeners requested; this parameter
+	 *                     should specify
+	 *                     an interface that descends from
+	 *                     <code>java.util.EventListener</code>
 	 * @return an array of all objects registered as <code><em>Foo</em>
 	 *         Listener</code>s on this checkbox menuitem, or an empty array if
 	 *         no such listeners have been added
 	 * @exception ClassCastException
-	 *                if <code>listenerType</code> doesn't specify a class or
-	 *                interface that implements
-	 *                <code>java.util.EventListener</code>
+	 *                               if <code>listenerType</code> doesn't
+	 *                               specify a class or
+	 *                               interface that implements
+	 *                               <code>java.util.EventListener</code>
 	 *
 	 * @see #getItemListeners
 	 * @since 1.3
@@ -331,7 +321,8 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	// REMIND: remove when filtering is done at lower level
 	boolean eventEnabled(AWTEvent e) {
 		if (e.id == ItemEvent.ITEM_STATE_CHANGED) {
-			if ((eventMask & AWTEvent.ITEM_EVENT_MASK) != 0 || itemListener != null) {
+			if ((eventMask & AWTEvent.ITEM_EVENT_MASK) != 0
+					|| itemListener != null) {
 				return true;
 			}
 			return false;
@@ -351,7 +342,7 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the event
+	 *          the event
 	 * @see java.awt.event.ItemEvent
 	 * @see #processItemEvent
 	 * @since JDK1.1
@@ -380,7 +371,7 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	 * unspecified and may result in an exception.
 	 *
 	 * @param e
-	 *            the item event
+	 *          the item event
 	 * @see java.awt.event.ItemEvent
 	 * @see java.awt.event.ItemListener
 	 * @see #addItemListener
@@ -399,8 +390,10 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	 */
 	void doMenuEvent(long when, int modifiers) {
 		setState(!state);
-		Toolkit.getEventQueue().postEvent(new ItemEvent(this, ItemEvent.ITEM_STATE_CHANGED,
-				getLabel(), state ? ItemEvent.SELECTED : ItemEvent.DESELECTED));
+		Toolkit.getEventQueue().postEvent(new ItemEvent(this,
+				ItemEvent.ITEM_STATE_CHANGED, getLabel(), state
+						? ItemEvent.SELECTED
+						: ItemEvent.DESELECTED));
 	}
 
 	/**
@@ -422,7 +415,6 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 
 	/*
 	 * Serial Data Version
-	 * 
 	 * @serial
 	 */
 	private int checkboxMenuItemSerializedDataVersion = 1;
@@ -434,7 +426,7 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	 * is made to serialize them.
 	 *
 	 * @param s
-	 *            the <code>ObjectOutputStream</code> to write
+	 *          the <code>ObjectOutputStream</code> to write
 	 * @serialData <code>null</code> terminated sequence of 0 or more pairs; the
 	 *             pair consists of a <code>String</code> and an
 	 *             <code>Object</code>; the <code>String</code> indicates the
@@ -458,18 +450,14 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 	 * <code>null</code> adds a listener to receive item events fired by the
 	 * <code>Checkbox</code> menu item. Unrecognized keys or values will be
 	 * ignored.
-	 *
 	 * @param s the <code>ObjectInputStream</code> to read
-	 * 
 	 * @serial
-	 * 
 	 * @see removeActionListener()
-	 * 
 	 * @see addActionListener()
-	 * 
 	 * @see #writeObject
 	 */
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException {
 		s.defaultReadObject();
 
 		Object keyOrNull;
@@ -568,7 +556,7 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 		 * Return a description of the specified action of the object.
 		 *
 		 * @param i
-		 *            zero-based index of the actions
+		 *          zero-based index of the actions
 		 */
 		public String getAccessibleActionDescription(int i) {
 			return null; // To be fully implemented in a future release
@@ -578,7 +566,7 @@ public class CheckboxMenuItem extends MenuItem implements ItemSelectable, Access
 		 * Perform the specified Action on the object
 		 *
 		 * @param i
-		 *            zero-based index of actions
+		 *          zero-based index of actions
 		 * @return true if the action was performed; otherwise false.
 		 */
 		public boolean doAccessibleAction(int i) {

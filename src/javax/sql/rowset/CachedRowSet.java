@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset;
@@ -125,7 +105,8 @@ import javax.sql.rowset.spi.*;
  * <code>SyncProvider</code> object is the one specified.
  * 
  * <PRE>
- * CachedRowSetImpl crs2 = new CachedRowSetImpl("com.fred.providers.HighAvailabilityProvider");
+ * CachedRowSetImpl crs2 = new CachedRowSetImpl(
+ * 		"com.fred.providers.HighAvailabilityProvider");
  * </PRE>
  * 
  * <LI>Setting the <code>SyncProvider</code> using the <code>CachedRowSet</code>
@@ -666,12 +647,13 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * <code>ResultSet</code> object.
 	 *
 	 * @param data
-	 *            the <code>ResultSet</code> object containing the data to be
-	 *            read into this <code>CachedRowSet</code> object
+	 *             the <code>ResultSet</code> object containing the data to be
+	 *             read into this <code>CachedRowSet</code> object
 	 * @throws SQLException
-	 *             if a null <code>ResultSet</code> object is supplied or this
-	 *             <code>CachedRowSet</code> object cannot retrieve the
-	 *             associated <code>ResultSetMetaData</code> object
+	 *                      if a null <code>ResultSet</code> object is supplied
+	 *                      or this
+	 *                      <code>CachedRowSet</code> object cannot retrieve the
+	 *                      associated <code>ResultSetMetaData</code> object
 	 * @see #execute
 	 * @see java.sql.ResultSet
 	 * @see java.sql.ResultSetMetaData
@@ -699,12 +681,14 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * called to commit outstanding updates, those updates are lost.
 	 *
 	 * @param conn
-	 *            a standard JDBC <code>Connection</code> object with valid
-	 *            properties
+	 *             a standard JDBC <code>Connection</code> object with valid
+	 *             properties
 	 * @throws SQLException
-	 *             if an invalid <code>Connection</code> object is supplied or
-	 *             an error occurs in establishing the connection to the data
-	 *             source
+	 *                      if an invalid <code>Connection</code> object is
+	 *                      supplied or
+	 *                      an error occurs in establishing the connection to
+	 *                      the data
+	 *                      source
 	 * @see #populate
 	 * @see java.sql.Connection
 	 */
@@ -761,8 +745,9 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * <code>commit()</code> or <code>rollback()</code> methods as appropriate.
 	 *
 	 * @throws SyncProviderException
-	 *             if the underlying synchronization provider's writer fails to
-	 *             write the updates back to the data source
+	 *                               if the underlying synchronization
+	 *                               provider's writer fails to
+	 *                               write the updates back to the data source
 	 * @see #acceptChanges(java.sql.Connection)
 	 * @see javax.sql.RowSetWriter
 	 * @see javax.sql.rowset.spi.SyncFactory
@@ -832,8 +817,9 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * @param con
 	 *            a standard JDBC <code>Connection</code> object
 	 * @throws SyncProviderException
-	 *             if the underlying synchronization provider's writer fails to
-	 *             write the updates back to the data source
+	 *                               if the underlying synchronization
+	 *                               provider's writer fails to
+	 *                               write the updates back to the data source
 	 * @see #acceptChanges()
 	 * @see javax.sql.RowSetWriter
 	 * @see javax.sql.rowset.spi.SyncFactory
@@ -858,8 +844,10 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * should be fired to notify all registered listeners.
 	 *
 	 * @throws SQLException
-	 *             if an error occurs rolling back the current value of this
-	 *             <code>CachedRowSet</code> object to its previous value
+	 *                      if an error occurs rolling back the current value of
+	 *                      this
+	 *                      <code>CachedRowSet</code> object to its previous
+	 *                      value
 	 * @see javax.sql.RowSetListener#rowSetChanged
 	 */
 	public void restoreOriginal() throws SQLException;
@@ -891,8 +879,8 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * collector the rowset's Java VM resources.
 	 *
 	 * @throws SQLException
-	 *             if an error occurs flushing the contents of this
-	 *             <code>CachedRowSet</code> object
+	 *                      if an error occurs flushing the contents of this
+	 *                      <code>CachedRowSet</code> object
 	 * @see javax.sql.RowSetListener#rowSetChanged
 	 * @see java.sql.ResultSet#close
 	 */
@@ -914,9 +902,11 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * </ul>
 	 *
 	 * @throws SQLException
-	 *             if (1) the current row has not been deleted or (2) the cursor
-	 *             is on the insert row, before the first row, or after the last
-	 *             row
+	 *                      if (1) the current row has not been deleted or (2)
+	 *                      the cursor
+	 *                      is on the insert row, before the first row, or after
+	 *                      the last
+	 *                      row
 	 * @see javax.sql.rowset.CachedRowSet#undoInsert
 	 * @see java.sql.ResultSet#cancelRowUpdates
 	 */
@@ -939,9 +929,11 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * </ul>
 	 *
 	 * @throws SQLException
-	 *             if (1) the current row has not been inserted or (2) the
-	 *             cursor is before the first row, after the last row, or on the
-	 *             insert row
+	 *                      if (1) the current row has not been inserted or (2)
+	 *                      the
+	 *                      cursor is before the first row, after the last row,
+	 *                      or on the
+	 *                      insert row
 	 * @see javax.sql.rowset.CachedRowSet#undoDelete
 	 * @see java.sql.ResultSet#cancelRowUpdates
 	 */
@@ -960,8 +952,9 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * no effect until further modification to the rowset data has occurred.
 	 *
 	 * @throws SQLException
-	 *             if the cursor is before the first row or after the last row
-	 *             in in this <code>CachedRowSet</code> object
+	 *                      if the cursor is before the first row or after the
+	 *                      last row
+	 *                      in in this <code>CachedRowSet</code> object
 	 * @see #undoDelete
 	 * @see #undoInsert
 	 * @see java.sql.ResultSet#cancelRowUpdates
@@ -978,8 +971,9 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * @return <code>true</code> if the designated column has been visibly
 	 *         updated; <code>false</code> otherwise
 	 * @throws SQLException
-	 *             if the cursor is on the insert row, before the first row, or
-	 *             after the last row
+	 *                      if the cursor is on the insert row, before the first
+	 *                      row, or
+	 *                      after the last row
 	 * @see java.sql.DatabaseMetaData#updatesAreDetected
 	 */
 	public boolean columnUpdated(int idx) throws SQLException;
@@ -989,13 +983,15 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * <code>CachedRowSet</code> object has been updated.
 	 *
 	 * @param columnName
-	 *            a <code>String</code> object giving the name of the column to
-	 *            be checked for updates
+	 *                   a <code>String</code> object giving the name of the
+	 *                   column to
+	 *                   be checked for updates
 	 * @return <code>true</code> if the column has been visibly updated;
 	 *         <code>false</code> otherwise
 	 * @throws SQLException
-	 *             if the cursor is on the insert row, before the first row, or
-	 *             after the last row
+	 *                      if the cursor is on the insert row, before the first
+	 *                      row, or
+	 *                      after the last row
 	 * @see java.sql.DatabaseMetaData#updatesAreDetected
 	 */
 	public boolean columnUpdated(String columnName) throws SQLException;
@@ -1034,7 +1030,7 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * @return a <code>Collection</code> object that contains the values in each
 	 *         row in this <code>CachedRowSet</code> object
 	 * @throws SQLException
-	 *             if an error occurs generating the collection
+	 *                      if an error occurs generating the collection
 	 * @see #toCollection(int)
 	 * @see #toCollection(String)
 	 */
@@ -1058,13 +1054,15 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * <code>CachedRowSet</code> object.
 	 *
 	 * @param column
-	 *            an <code>int</code> indicating the column whose values are to
-	 *            be represented in a <code>Collection</code> object
+	 *               an <code>int</code> indicating the column whose values are
+	 *               to
+	 *               be represented in a <code>Collection</code> object
 	 * @return a <code>Collection</code> object that contains the values stored
 	 *         in the specified column of this <code>CachedRowSet</code> object
 	 * @throws SQLException
-	 *             if an error occurs generating the collection or an invalid
-	 *             column id is provided
+	 *                      if an error occurs generating the collection or an
+	 *                      invalid
+	 *                      column id is provided
 	 * @see #toCollection
 	 * @see #toCollection(String)
 	 */
@@ -1088,13 +1086,14 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * <code>CachedRowSet</code> object.
 	 *
 	 * @param column
-	 *            a <code>String</code> object giving the name of the column
-	 *            whose values are to be represented in a collection
+	 *               a <code>String</code> object giving the name of the column
+	 *               whose values are to be represented in a collection
 	 * @return a <code>Collection</code> object that contains the values stored
 	 *         in the specified column of this <code>CachedRowSet</code> object
 	 * @throws SQLException
-	 *             if an error occurs generating the collection or an invalid
-	 *             column id is provided
+	 *                      if an error occurs generating the collection or an
+	 *                      invalid
+	 *                      column id is provided
 	 * @see #toCollection
 	 * @see #toCollection(int)
 	 */
@@ -1110,8 +1109,8 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * 
 	 * <pre>
 	 * RowSetReader rowsetReader = null;
-	 * SyncProvider provider = SyncFactory
-	 * 		.getInstance("javax.sql.rowset.provider.RIOptimisticProvider");
+	 * SyncProvider provider = SyncFactory.getInstance(
+	 * 		"javax.sql.rowset.provider.RIOptimisticProvider");
 	 * if (provider instanceof RIOptimisticProvider) {
 	 * 	rowsetReader = provider.getRowSetReader();
 	 * }
@@ -1135,8 +1134,8 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * @return the <code>SyncProvider</code> object that was set when the rowset
 	 *         was instantiated, or if none was was set, the default provider
 	 * @throws SQLException
-	 *             if an error occurs while returning the
-	 *             <code>SyncProvider</code> object
+	 *                      if an error occurs while returning the
+	 *                      <code>SyncProvider</code> object
 	 * @see #setSyncProvider
 	 */
 	public SyncProvider getSyncProvider() throws SQLException;
@@ -1162,11 +1161,12 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * behavior of a disconnected rowset.
 	 *
 	 * @param provider
-	 *            a <code>String</code> object giving the fully qualified class
-	 *            name of a <code>SyncProvider</code> implementation
+	 *                 a <code>String</code> object giving the fully qualified
+	 *                 class
+	 *                 name of a <code>SyncProvider</code> implementation
 	 * @throws SQLException
-	 *             if an error occurs while attempting to reset the
-	 *             <code>SyncProvider</code> implementation
+	 *                      if an error occurs while attempting to reset the
+	 *                      <code>SyncProvider</code> implementation
 	 * @see #getSyncProvider
 	 */
 	public void setSyncProvider(String provider) throws SQLException;
@@ -1189,10 +1189,10 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * internally to pass the <code>RowSetMetaData</code> object to the rowset.
 	 *
 	 * @param md
-	 *            a <code>RowSetMetaData</code> object containing metadata about
-	 *            the columns in this <code>CachedRowSet</code> object
+	 *           a <code>RowSetMetaData</code> object containing metadata about
+	 *           the columns in this <code>CachedRowSet</code> object
 	 * @throws SQLException
-	 *             if invalid metadata is supplied to the rowset
+	 *                      if invalid metadata is supplied to the rowset
 	 */
 	public void setMetaData(RowSetMetaData md) throws SQLException;
 
@@ -1221,8 +1221,9 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * @return a <code>ResultSet</code> object that contains the original value
 	 *         for this <code>CachedRowSet</code> object
 	 * @throws SQLException
-	 *             if an error occurs producing the <code>ResultSet</code>
-	 *             object
+	 *                      if an error occurs producing the
+	 *                      <code>ResultSet</code>
+	 *                      object
 	 */
 	public ResultSet getOriginal() throws SQLException;
 
@@ -1240,7 +1241,7 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 *
 	 * @return the original result set of the row
 	 * @throws SQLException
-	 *             if there is no current row
+	 *                      if there is no current row
 	 * @see #setOriginalRow
 	 */
 	public ResultSet getOriginalRow() throws SQLException;
@@ -1256,8 +1257,9 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * A call to <code>setOriginalRow</code> is irreversible.
 	 *
 	 * @throws SQLException
-	 *             if there is no current row or an error is encountered
-	 *             resetting the contents of the original row
+	 *                      if there is no current row or an error is
+	 *                      encountered
+	 *                      resetting the contents of the original row
 	 * @see #getOriginalRow
 	 */
 	public void setOriginalRow() throws SQLException;
@@ -1273,7 +1275,7 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 *         the source of data for this <code>CachedRowSet</code> object or
 	 *         <code>null</code> if no name has been set for the table
 	 * @throws SQLException
-	 *             if an error is encountered returning the table name
+	 *                      if an error is encountered returning the table name
 	 * @see javax.sql.RowSetMetaData#getTableName
 	 */
 	public String getTableName() throws SQLException;
@@ -1291,12 +1293,15 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * the the name internally from the <code>RowSetMetaDataImpl</code> object.
 	 *
 	 * @param tabName
-	 *            a <code>String</code> object identifying the table from which
-	 *            this <code>CachedRowSet</code> object was derived; cannot be
-	 *            <code>null</code> but may be an empty string
+	 *                a <code>String</code> object identifying the table from
+	 *                which
+	 *                this <code>CachedRowSet</code> object was derived; cannot
+	 *                be
+	 *                <code>null</code> but may be an empty string
 	 * @throws SQLException
-	 *             if an error is encountered naming the table or <i>tabName</i>
-	 *             is <code>null</code>
+	 *                      if an error is encountered naming the table or
+	 *                      <i>tabName</i>
+	 *                      is <code>null</code>
 	 * @see javax.sql.RowSetMetaData#setTableName
 	 * @see javax.sql.RowSetWriter
 	 * @see javax.sql.rowset.spi.SyncProvider
@@ -1313,7 +1318,7 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 *         <code>CachedRowSet</code> object. This array should be empty if
 	 *         no columns are representative of a primary key.
 	 * @throws SQLException
-	 *             if this <code>CachedRowSet</code> object is empty
+	 *                      if this <code>CachedRowSet</code> object is empty
 	 * @see #setKeyColumns
 	 * @see Joinable#getMatchColumnIndexes
 	 * @see Joinable#getMatchColumnNames
@@ -1331,13 +1336,15 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * columns also become match columns.
 	 *
 	 * @param keys
-	 *            an array of <code>int</code> indicating the columns that form
-	 *            a primary key for this <code>CachedRowSet</code> object; every
-	 *            element in the array must be greater than <code>0</code> and
-	 *            less than or equal to the number of columns in this rowset
+	 *             an array of <code>int</code> indicating the columns that form
+	 *             a primary key for this <code>CachedRowSet</code> object;
+	 *             every
+	 *             element in the array must be greater than <code>0</code> and
+	 *             less than or equal to the number of columns in this rowset
 	 * @throws SQLException
-	 *             if any of the numbers in the given array are not valid for
-	 *             this rowset
+	 *                      if any of the numbers in the given array are not
+	 *                      valid for
+	 *                      this rowset
 	 * @see #getKeyColumns
 	 * @see Joinable#setMatchColumn(String)
 	 * @see Joinable#setMatchColumn(int)
@@ -1372,8 +1379,9 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 *         properties as this <code>CachedRowSet</code> object and that has
 	 *         a cursor over the same data
 	 * @throws SQLException
-	 *             if an error occurs or cloning is not supported in the
-	 *             underlying platform
+	 *                      if an error occurs or cloning is not supported in
+	 *                      the
+	 *                      underlying platform
 	 * @see javax.sql.RowSetEvent
 	 * @see javax.sql.RowSetListener
 	 */
@@ -1393,8 +1401,9 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 *         <code>CachedRowSet</code> object and is completely independent of
 	 *         this <code>CachedRowSet</code> object
 	 * @throws SQLException
-	 *             if an error occurs in generating the copy of the of this
-	 *             <code>CachedRowSet</code> object
+	 *                      if an error occurs in generating the copy of the of
+	 *                      this
+	 *                      <code>CachedRowSet</code> object
 	 * @see #createShared
 	 * @see #createCopySchema
 	 * @see #createCopyNoConstraints
@@ -1421,8 +1430,8 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * 
 	 * @return An empty copy of this {@code CachedRowSet} object
 	 * @throws SQLException
-	 *             if an error occurs in cloning the structure of this
-	 *             <code>CachedRowSet</code> object
+	 *                      if an error occurs in cloning the structure of this
+	 *                      <code>CachedRowSet</code> object
 	 * @see #createShared
 	 * @see #createCopySchema
 	 * @see #createCopyNoConstraints
@@ -1447,8 +1456,9 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 *         this <code>CachedRowSet</code> object and is completely
 	 *         independent of this <code>CachedRowSet</code> object
 	 * @throws SQLException
-	 *             if an error occurs in generating the copy of the of this
-	 *             <code>CachedRowSet</code> object
+	 *                      if an error occurs in generating the copy of the of
+	 *                      this
+	 *                      <code>CachedRowSet</code> object
 	 * @see #createCopy
 	 * @see #createShared
 	 * @see #createCopySchema
@@ -1470,7 +1480,7 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * @return RowSetWarning the first <code>RowSetWarning</code> object
 	 *         reported or null if there are none
 	 * @throws SQLException
-	 *             if this method is called on a closed RowSet
+	 *                      if this method is called on a closed RowSet
 	 * @see RowSetWarning
 	 */
 	public RowSetWarning getRowSetWarnings() throws SQLException;
@@ -1496,8 +1506,9 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * @return <code>true</code> if deleted rows are visible; <code>false</code>
 	 *         otherwise
 	 * @throws SQLException
-	 *             if a rowset implementation is unable to to determine whether
-	 *             rows marked for deletion are visible
+	 *                      if a rowset implementation is unable to to determine
+	 *                      whether
+	 *                      rows marked for deletion are visible
 	 * @see #setShowDeleted
 	 */
 	public boolean getShowDeleted() throws SQLException;
@@ -1516,11 +1527,12 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * behavior.
 	 *
 	 * @param b
-	 *            <code>true</code> if deleted rows should be shown;
-	 *            <code>false</code> otherwise
+	 *          <code>true</code> if deleted rows should be shown;
+	 *          <code>false</code> otherwise
 	 * @exception SQLException
-	 *                if a rowset implementation is unable to to reset whether
-	 *                deleted rows should be visible
+	 *                         if a rowset implementation is unable to to reset
+	 *                         whether
+	 *                         deleted rows should be visible
 	 * @see #getShowDeleted
 	 */
 	public void setShowDeleted(boolean b) throws SQLException;
@@ -1537,8 +1549,10 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * be used only when auto-commit mode has been disabled.
 	 *
 	 * @throws SQLException
-	 *             if a database access error occurs or this Connection object
-	 *             within this <code>CachedRowSet</code> is in auto-commit mode
+	 *                      if a database access error occurs or this Connection
+	 *                      object
+	 *                      within this <code>CachedRowSet</code> is in
+	 *                      auto-commit mode
 	 * @see java.sql.Connection#setAutoCommit
 	 */
 	public void commit() throws SQLException;
@@ -1552,8 +1566,10 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * used only when auto-commit mode has been disabled.
 	 *
 	 * @throws SQLException
-	 *             if a database access error occurs or this Connection object
-	 *             within this <code>CachedRowSet</code> is in auto-commit mode.
+	 *                      if a database access error occurs or this Connection
+	 *                      object
+	 *                      within this <code>CachedRowSet</code> is in
+	 *                      auto-commit mode.
 	 */
 	public void rollback() throws SQLException;
 
@@ -1567,10 +1583,12 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * only when auto-commit mode has been disabled.
 	 *
 	 * @param s
-	 *            A <code>Savepoint</code> transaction marker
+	 *          A <code>Savepoint</code> transaction marker
 	 * @throws SQLException
-	 *             if a database access error occurs or this Connection object
-	 *             within this <code>CachedRowSet</code> is in auto-commit mode.
+	 *                      if a database access error occurs or this Connection
+	 *                      object
+	 *                      within this <code>CachedRowSet</code> is in
+	 *                      auto-commit mode.
 	 */
 	public void rollback(Savepoint s) throws SQLException;
 
@@ -1597,17 +1615,21 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * The source of the event can be retrieved with the method event.getSource.
 	 *
 	 * @param event
-	 *            a <code>RowSetEvent</code> object that contains the
-	 *            <code>RowSet</code> object that is the source of the events
+	 *                a <code>RowSetEvent</code> object that contains the
+	 *                <code>RowSet</code> object that is the source of the
+	 *                events
 	 * @param numRows
-	 *            when populating, the number of rows interval on which the
-	 *            <code>CachedRowSet</code> populated should fire; the default
-	 *            value is zero; cannot be less than <code>fetchSize</code> or
-	 *            zero
+	 *                when populating, the number of rows interval on which the
+	 *                <code>CachedRowSet</code> populated should fire; the
+	 *                default
+	 *                value is zero; cannot be less than <code>fetchSize</code>
+	 *                or
+	 *                zero
 	 * @throws SQLException
-	 *             {@code numRows < 0 or numRows < getFetchSize() }
+	 *                      {@code numRows < 0 or numRows < getFetchSize() }
 	 */
-	public void rowSetPopulated(RowSetEvent event, int numRows) throws SQLException;
+	public void rowSetPopulated(RowSetEvent event, int numRows)
+			throws SQLException;
 
 	/**
 	 * Populates this <code>CachedRowSet</code> object with data from the given
@@ -1627,15 +1649,18 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * <code>ResultSet</code> object.
 	 *
 	 * @param startRow
-	 *            the position in the <code>ResultSet</code> from where to start
-	 *            populating the records in this <code>CachedRowSet</code>
+	 *                 the position in the <code>ResultSet</code> from where to
+	 *                 start
+	 *                 populating the records in this <code>CachedRowSet</code>
 	 * @param rs
-	 *            the <code>ResultSet</code> object containing the data to be
-	 *            read into this <code>CachedRowSet</code> object
+	 *                 the <code>ResultSet</code> object containing the data to
+	 *                 be
+	 *                 read into this <code>CachedRowSet</code> object
 	 * @throws SQLException
-	 *             if a null <code>ResultSet</code> object is supplied or this
-	 *             <code>CachedRowSet</code> object cannot retrieve the
-	 *             associated <code>ResultSetMetaData</code> object
+	 *                      if a null <code>ResultSet</code> object is supplied
+	 *                      or this
+	 *                      <code>CachedRowSet</code> object cannot retrieve the
+	 *                      associated <code>ResultSetMetaData</code> object
 	 * @see #execute
 	 * @see #populate(ResultSet)
 	 * @see java.sql.ResultSet
@@ -1652,10 +1677,11 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * the RowSet.
 	 *
 	 * @param size
-	 *            the page-size of the <code>CachedRowSet</code>
+	 *             the page-size of the <code>CachedRowSet</code>
 	 * @throws SQLException
-	 *             if an error occurs setting the <code>CachedRowSet</code> page
-	 *             size or if the page size is less than 0.
+	 *                      if an error occurs setting the
+	 *                      <code>CachedRowSet</code> page
+	 *                      size or if the page size is less than 0.
 	 */
 	public void setPageSize(int size) throws SQLException;
 
@@ -1674,8 +1700,9 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 *
 	 * @return true if more pages exist; false if this is the last page
 	 * @throws SQLException
-	 *             if an error occurs fetching the next page, or if this method
-	 *             is called prematurely before populate or execute.
+	 *                      if an error occurs fetching the next page, or if
+	 *                      this method
+	 *                      is called prematurely before populate or execute.
 	 */
 	public boolean nextPage() throws SQLException;
 
@@ -1689,8 +1716,10 @@ public interface CachedRowSet extends RowSet, Joinable {
 	 * @return true if the previous page is successfully retrieved; false if
 	 *         this is the first page.
 	 * @throws SQLException
-	 *             if an error occurs fetching the previous page, or if this
-	 *             method is called prematurely before populate or execute.
+	 *                      if an error occurs fetching the previous page, or if
+	 *                      this
+	 *                      method is called prematurely before populate or
+	 *                      execute.
 	 */
 	public boolean previousPage() throws SQLException;
 

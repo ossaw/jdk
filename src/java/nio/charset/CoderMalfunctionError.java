@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.charset;
@@ -41,7 +21,7 @@ public class CoderMalfunctionError extends Error {
 	 * Initializes an instance of this class.
 	 *
 	 * @param cause
-	 *            The unexpected exception that was thrown
+	 *              The unexpected exception that was thrown
 	 */
 	public CoderMalfunctionError(Exception cause) {
 		super(cause);

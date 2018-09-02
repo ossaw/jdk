@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd;
@@ -69,7 +49,7 @@ public interface DropTargetListener extends EventListener {
 	 * registered with this listener.
 	 *
 	 * @param dtde
-	 *            the <code>DropTargetDragEvent</code>
+	 *             the <code>DropTargetDragEvent</code>
 	 */
 
 	void dragEnter(DropTargetDragEvent dtde);
@@ -80,7 +60,7 @@ public interface DropTargetListener extends EventListener {
 	 * registered with this listener.
 	 *
 	 * @param dtde
-	 *            the <code>DropTargetDragEvent</code>
+	 *             the <code>DropTargetDragEvent</code>
 	 */
 
 	void dragOver(DropTargetDragEvent dtde);
@@ -90,7 +70,7 @@ public interface DropTargetListener extends EventListener {
 	 * <P>
 	 * 
 	 * @param dtde
-	 *            the <code>DropTargetDragEvent</code>
+	 *             the <code>DropTargetDragEvent</code>
 	 */
 
 	void dropActionChanged(DropTargetDragEvent dtde);
@@ -142,7 +122,7 @@ public interface DropTargetListener extends EventListener {
 	 * <P>
 	 * 
 	 * @param dtde
-	 *            the <code>DropTargetDropEvent</code>
+	 *             the <code>DropTargetDropEvent</code>
 	 */
 
 	void drop(DropTargetDropEvent dtde);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.soap;
@@ -56,9 +36,11 @@ public interface Node extends org.w3c.dom.Node {
 	 * children in which case a child <code>Text</code> node will be created.
 	 *
 	 * @exception IllegalStateException
-	 *                if the node is not a <code>Text</code> node and either has
-	 *                more than one child node or has a child node that is not a
-	 *                <code>Text</code> node.
+	 *                                  if the node is not a <code>Text</code>
+	 *                                  node and either has
+	 *                                  more than one child node or has a child
+	 *                                  node that is not a
+	 *                                  <code>Text</code> node.
 	 *
 	 * @since SAAJ 1.2
 	 */
@@ -69,12 +51,14 @@ public interface Node extends org.w3c.dom.Node {
 	 * <code>SOAPElement</code> object.
 	 *
 	 * @param parent
-	 *            the <code>SOAPElement</code> object to be set as the parent of
-	 *            this <code>Node</code> object
+	 *               the <code>SOAPElement</code> object to be set as the parent
+	 *               of
+	 *               this <code>Node</code> object
 	 *
 	 * @exception SOAPException
-	 *                if there is a problem in setting the parent to the given
-	 *                element
+	 *                          if there is a problem in setting the parent to
+	 *                          the given
+	 *                          element
 	 * @see #getParentElement
 	 */
 	public void setParentElement(SOAPElement parent) throws SOAPException;
@@ -89,7 +73,8 @@ public interface Node extends org.w3c.dom.Node {
 	 *         <code>Node</code> object is root
 	 *
 	 * @exception UnsupportedOperationException
-	 *                if the whole tree is not kept in memory
+	 *                                          if the whole tree is not kept in
+	 *                                          memory
 	 * @see #setParentElement
 	 */
 	public SOAPElement getParentElement();

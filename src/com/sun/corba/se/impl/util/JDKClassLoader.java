@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.util;
@@ -47,14 +26,15 @@ class JDKClassLoader {
 
 	private static final JDKClassLoaderCache classCache = new JDKClassLoaderCache();
 
-	private static final Bridge bridge = (Bridge) AccessController
-			.doPrivileged(new PrivilegedAction() {
+	private static final Bridge bridge = (Bridge) AccessController.doPrivileged(
+			new PrivilegedAction() {
 				public Object run() {
 					return Bridge.get();
 				}
 			});
 
-	static Class loadClass(Class aClass, String className) throws ClassNotFoundException {
+	static Class loadClass(Class aClass, String className)
+			throws ClassNotFoundException {
 
 		// Maintain the same error semantics as Class.forName()
 		if (className == null) {
@@ -118,7 +98,8 @@ class JDKClassLoader {
 		// A key currently consists of the class name as well as
 		// the latest user defined class loader, so it's fairly
 		// expensive to create.
-		public final Object createKey(String className, ClassLoader latestLoader) {
+		public final Object createKey(String className,
+				ClassLoader latestLoader) {
 			return new CacheKey(className, latestLoader);
 		}
 
@@ -129,7 +110,8 @@ class JDKClassLoader {
 		}
 
 		// Synchronized WeakHashMap
-		private final Map cache = Collections.synchronizedMap(new WeakHashMap());
+		private final Map cache = Collections.synchronizedMap(
+				new WeakHashMap());
 
 		// Cache result used to mark the caches when there is
 		// no way JDKClassLoader could succeed with the given
@@ -173,7 +155,8 @@ class JDKClassLoader {
 					// This way, at worst, our performance will
 					// be slower, but we know we'll do the correct
 					// loading.
-					return (className.equals(other.className) && loader == other.loader);
+					return (className.equals(other.className)
+							&& loader == other.loader);
 
 				} catch (ClassCastException cce) {
 					return false;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.ldap;
@@ -105,17 +85,21 @@ final public class SortResponseControl extends BasicControl {
 	 * Constructs a control to indicate the outcome of a sort request.
 	 *
 	 * @param id
-	 *            The control's object identifier string.
+	 *                    The control's object identifier string.
 	 * @param criticality
-	 *            The control's criticality.
+	 *                    The control's criticality.
 	 * @param value
-	 *            The control's ASN.1 BER encoded value. It is not cloned - any
-	 *            changes to value will affect the contents of the control.
+	 *                    The control's ASN.1 BER encoded value. It is not
+	 *                    cloned - any
+	 *                    changes to value will affect the contents of the
+	 *                    control.
 	 * @exception IOException
-	 *                if an error is encountered while decoding the control's
-	 *                value.
+	 *                        if an error is encountered while decoding the
+	 *                        control's
+	 *                        value.
 	 */
-	public SortResponseControl(String id, boolean criticality, byte[] value) throws IOException {
+	public SortResponseControl(String id, boolean criticality, byte[] value)
+			throws IOException {
 
 		super(id, criticality, value);
 

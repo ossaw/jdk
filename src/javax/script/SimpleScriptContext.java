@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.script;
@@ -103,31 +83,33 @@ public class SimpleScriptContext implements ScriptContext {
 	 * <code>Bindings</code> replaces the <code>globalScope</code> field.
 	 *
 	 * @param bindings
-	 *            The <code>Bindings</code> of attributes to set.
+	 *                 The <code>Bindings</code> of attributes to set.
 	 * @param scope
-	 *            The value of the scope in which the attributes are set.
+	 *                 The value of the scope in which the attributes are set.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if scope is invalid.
+	 *                                  if scope is invalid.
 	 * @throws NullPointerException
-	 *             if the value of scope is <code>ENGINE_SCOPE</code> and the
-	 *             specified <code>Bindings</code> is null.
+	 *                                  if the value of scope is
+	 *                                  <code>ENGINE_SCOPE</code> and the
+	 *                                  specified <code>Bindings</code> is null.
 	 */
 	public void setBindings(Bindings bindings, int scope) {
 
 		switch (scope) {
 
-		case ENGINE_SCOPE:
-			if (bindings == null) {
-				throw new NullPointerException("Engine scope cannot be null.");
-			}
-			engineScope = bindings;
-			break;
-		case GLOBAL_SCOPE:
-			globalScope = bindings;
-			break;
-		default:
-			throw new IllegalArgumentException("Invalid scope value.");
+			case ENGINE_SCOPE:
+				if (bindings == null) {
+					throw new NullPointerException(
+							"Engine scope cannot be null.");
+				}
+				engineScope = bindings;
+				break;
+			case GLOBAL_SCOPE:
+				globalScope = bindings;
+				break;
+			default:
+				throw new IllegalArgumentException("Invalid scope value.");
 		}
 	}
 
@@ -137,14 +119,14 @@ public class SimpleScriptContext implements ScriptContext {
 	 * numeric value of the scope parameter (lowest scope values first.)
 	 *
 	 * @param name
-	 *            The name of the the attribute to retrieve.
+	 *             The name of the the attribute to retrieve.
 	 * @return The value of the attribute in the lowest scope for which an
 	 *         attribute with the given name is defined. Returns null if no
 	 *         attribute with the name exists in any scope.
 	 * @throws NullPointerException
-	 *             if the name is null.
+	 *                                  if the name is null.
 	 * @throws IllegalArgumentException
-	 *             if the name is empty.
+	 *                                  if the name is empty.
 	 */
 	public Object getAttribute(String name) {
 		checkName(name);
@@ -161,32 +143,33 @@ public class SimpleScriptContext implements ScriptContext {
 	 * Gets the value of an attribute in a given scope.
 	 *
 	 * @param name
-	 *            The name of the attribute to retrieve.
+	 *              The name of the attribute to retrieve.
 	 * @param scope
-	 *            The scope in which to retrieve the attribute.
+	 *              The scope in which to retrieve the attribute.
 	 * @return The value of the attribute. Returns <code>null</code> is the name
 	 *         does not exist in the given scope.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the name is empty or if the value of scope is invalid.
+	 *                                  if the name is empty or if the value of
+	 *                                  scope is invalid.
 	 * @throws NullPointerException
-	 *             if the name is null.
+	 *                                  if the name is null.
 	 */
 	public Object getAttribute(String name, int scope) {
 		checkName(name);
 		switch (scope) {
 
-		case ENGINE_SCOPE:
-			return engineScope.get(name);
+			case ENGINE_SCOPE:
+				return engineScope.get(name);
 
-		case GLOBAL_SCOPE:
-			if (globalScope != null) {
-				return globalScope.get(name);
-			}
-			return null;
+			case GLOBAL_SCOPE:
+				if (globalScope != null) {
+					return globalScope.get(name);
+				}
+				return null;
 
-		default:
-			throw new IllegalArgumentException("Illegal scope value.");
+			default:
+				throw new IllegalArgumentException("Illegal scope value.");
 		}
 	}
 
@@ -194,34 +177,35 @@ public class SimpleScriptContext implements ScriptContext {
 	 * Remove an attribute in a given scope.
 	 *
 	 * @param name
-	 *            The name of the attribute to remove
+	 *              The name of the attribute to remove
 	 * @param scope
-	 *            The scope in which to remove the attribute
+	 *              The scope in which to remove the attribute
 	 *
 	 * @return The removed value.
 	 * @throws IllegalArgumentException
-	 *             if the name is empty or if the scope is invalid.
+	 *                                  if the name is empty or if the scope is
+	 *                                  invalid.
 	 * @throws NullPointerException
-	 *             if the name is null.
+	 *                                  if the name is null.
 	 */
 	public Object removeAttribute(String name, int scope) {
 		checkName(name);
 		switch (scope) {
 
-		case ENGINE_SCOPE:
-			if (getBindings(ENGINE_SCOPE) != null) {
-				return getBindings(ENGINE_SCOPE).remove(name);
-			}
-			return null;
+			case ENGINE_SCOPE:
+				if (getBindings(ENGINE_SCOPE) != null) {
+					return getBindings(ENGINE_SCOPE).remove(name);
+				}
+				return null;
 
-		case GLOBAL_SCOPE:
-			if (getBindings(GLOBAL_SCOPE) != null) {
-				return getBindings(GLOBAL_SCOPE).remove(name);
-			}
-			return null;
+			case GLOBAL_SCOPE:
+				if (getBindings(GLOBAL_SCOPE) != null) {
+					return getBindings(GLOBAL_SCOPE).remove(name);
+				}
+				return null;
 
-		default:
-			throw new IllegalArgumentException("Illegal scope value.");
+			default:
+				throw new IllegalArgumentException("Illegal scope value.");
 		}
 	}
 
@@ -229,33 +213,34 @@ public class SimpleScriptContext implements ScriptContext {
 	 * Sets the value of an attribute in a given scope.
 	 *
 	 * @param name
-	 *            The name of the attribute to set
+	 *              The name of the attribute to set
 	 * @param value
-	 *            The value of the attribute
+	 *              The value of the attribute
 	 * @param scope
-	 *            The scope in which to set the attribute
+	 *              The scope in which to set the attribute
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the name is empty or if the scope is invalid.
+	 *                                  if the name is empty or if the scope is
+	 *                                  invalid.
 	 * @throws NullPointerException
-	 *             if the name is null.
+	 *                                  if the name is null.
 	 */
 	public void setAttribute(String name, Object value, int scope) {
 		checkName(name);
 		switch (scope) {
 
-		case ENGINE_SCOPE:
-			engineScope.put(name, value);
-			return;
+			case ENGINE_SCOPE:
+				engineScope.put(name, value);
+				return;
 
-		case GLOBAL_SCOPE:
-			if (globalScope != null) {
-				globalScope.put(name, value);
-			}
-			return;
+			case GLOBAL_SCOPE:
+				if (globalScope != null) {
+					globalScope.put(name, value);
+				}
+				return;
 
-		default:
-			throw new IllegalArgumentException("Illegal scope value.");
+			default:
+				throw new IllegalArgumentException("Illegal scope value.");
 		}
 	}
 
@@ -293,13 +278,13 @@ public class SimpleScriptContext implements ScriptContext {
 	 * Get the lowest scope in which an attribute is defined.
 	 * 
 	 * @param name
-	 *            Name of the attribute .
+	 *             Name of the attribute .
 	 * @return The lowest scope. Returns -1 if no attribute with the given name
 	 *         is defined in any scope.
 	 * @throws NullPointerException
-	 *             if name is null.
+	 *                                  if name is null.
 	 * @throws IllegalArgumentException
-	 *             if name is empty.
+	 *                                  if name is empty.
 	 */
 	public int getAttributesScope(String name) {
 		checkName(name);
@@ -319,11 +304,11 @@ public class SimpleScriptContext implements ScriptContext {
 	 * <code>GLOBAL_SCOPE</code>.
 	 *
 	 * @param scope
-	 *            The specified scope
+	 *              The specified scope
 	 * @return The value of either the <code>engineScope</code> or
 	 *         <code>globalScope</code> field.
 	 * @throws IllegalArgumentException
-	 *             if the value of scope is invalid.
+	 *                                  if the value of scope is invalid.
 	 */
 	public Bindings getBindings(int scope) {
 		if (scope == ENGINE_SCOPE) {

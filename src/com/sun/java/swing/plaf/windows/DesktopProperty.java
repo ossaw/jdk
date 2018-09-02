@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2009, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.java.swing.plaf.windows;
 
@@ -126,9 +106,9 @@ public class DesktopProperty implements UIDefaults.ActiveValue {
 	 * Creates a DesktopProperty.
 	 *
 	 * @param key
-	 *            Key used in looking up desktop value.
+	 *                 Key used in looking up desktop value.
 	 * @param fallback
-	 *            Value used if desktop property is null.
+	 *                 Value used if desktop property is null.
 	 */
 	public DesktopProperty(String key, Object fallback) {
 		this.key = key;

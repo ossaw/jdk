@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth;
@@ -43,8 +23,8 @@ public class NTNumericCredential {
 	 * <p>
 	 *
 	 * @param token
-	 *            the Windows NT security token for this user.
-	 *            <p>
+	 *              the Windows NT security token for this user.
+	 *              <p>
 	 *
 	 */
 	public NTNumericCredential(long token) {
@@ -72,8 +52,10 @@ public class NTNumericCredential {
 	 * @return a string representation of this <code>NTNumericCredential</code>.
 	 */
 	public String toString() {
-		java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
-				.getString("NTNumericCredential.name", "sun.security.util.AuthResources"));
+		java.text.MessageFormat form = new java.text.MessageFormat(
+				sun.security.util.ResourcesMgr.getString(
+						"NTNumericCredential.name",
+						"sun.security.util.AuthResources"));
 		Object[] source = { Long.toString(impersonationToken) };
 		return form.format(source);
 	}
@@ -87,8 +69,8 @@ public class NTNumericCredential {
 	 * <p>
 	 *
 	 * @param o
-	 *            Object to be compared for equality with this
-	 *            <code>NTNumericCredential</code>.
+	 *          Object to be compared for equality with this
+	 *          <code>NTNumericCredential</code>.
 	 *
 	 * @return true if the specified Object is equal equal to this
 	 *         <code>NTNumericCredential</code>.

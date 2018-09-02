@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -30,7 +10,8 @@ import java.awt.image.*;
 import javax.swing.*;
 import javax.swing.Painter;
 
-final class SpinnerPanelSpinnerFormattedTextFieldPainter extends AbstractRegionPainter {
+final class SpinnerPanelSpinnerFormattedTextFieldPainter extends
+		AbstractRegionPainter {
 	// package private integers representing the available states that
 	// this painter will paint. These are used when creating a new instance
 	// of SpinnerPanelSpinnerFormattedTextFieldPainter to determine which
@@ -49,7 +30,8 @@ final class SpinnerPanelSpinnerFormattedTextFieldPainter extends AbstractRegionP
 	// layers
 	private Path2D path = new Path2D.Float();
 	private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
+	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
+			0, 0);
 	private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
 	// All Colors used for painting are stored here. Ideally, only those colors
@@ -57,34 +39,41 @@ final class SpinnerPanelSpinnerFormattedTextFieldPainter extends AbstractRegionP
 	// by a particular instance of SpinnerPanelSpinnerFormattedTextFieldPainter
 	// would be created. For the moment at least,
 	// however, all are created for each instance.
-	private Color color1 = decodeColor("nimbusBlueGrey", -0.6111111f, -0.110526316f, -0.74509805f,
-			-237);
-	private Color color2 = decodeColor("nimbusBlueGrey", -0.006944418f, -0.07187897f, 0.06666666f,
-			0);
-	private Color color3 = decodeColor("nimbusBlueGrey", 0.007936537f, -0.07703349f, 0.0745098f, 0);
-	private Color color4 = decodeColor("nimbusBlueGrey", 0.007936537f, -0.07968931f, 0.14509803f,
-			0);
-	private Color color5 = decodeColor("nimbusBlueGrey", 0.007936537f, -0.07856284f, 0.11372548f,
-			0);
-	private Color color6 = decodeColor("nimbusBase", 0.040395975f, -0.60315615f, 0.29411763f, 0);
-	private Color color7 = decodeColor("nimbusBase", 0.016586483f, -0.6051466f, 0.3490196f, 0);
-	private Color color8 = decodeColor("nimbusBlueGrey", -0.027777791f, -0.0965403f, -0.18431371f,
-			0);
-	private Color color9 = decodeColor("nimbusBlueGrey", 0.055555582f, -0.1048766f, -0.08f, 0);
-	private Color color10 = decodeColor("nimbusBlueGrey", 0.055555582f, -0.105624355f, 0.054901958f,
-			0);
-	private Color color11 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f, 0.25490195f, 0);
-	private Color color12 = decodeColor("nimbusBlueGrey", 0.055555582f, -0.105344966f, 0.011764705f,
-			0);
-	private Color color13 = decodeColor("nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
+	private Color color1 = decodeColor("nimbusBlueGrey", -0.6111111f,
+			-0.110526316f, -0.74509805f, -237);
+	private Color color2 = decodeColor("nimbusBlueGrey", -0.006944418f,
+			-0.07187897f, 0.06666666f, 0);
+	private Color color3 = decodeColor("nimbusBlueGrey", 0.007936537f,
+			-0.07703349f, 0.0745098f, 0);
+	private Color color4 = decodeColor("nimbusBlueGrey", 0.007936537f,
+			-0.07968931f, 0.14509803f, 0);
+	private Color color5 = decodeColor("nimbusBlueGrey", 0.007936537f,
+			-0.07856284f, 0.11372548f, 0);
+	private Color color6 = decodeColor("nimbusBase", 0.040395975f, -0.60315615f,
+			0.29411763f, 0);
+	private Color color7 = decodeColor("nimbusBase", 0.016586483f, -0.6051466f,
+			0.3490196f, 0);
+	private Color color8 = decodeColor("nimbusBlueGrey", -0.027777791f,
+			-0.0965403f, -0.18431371f, 0);
+	private Color color9 = decodeColor("nimbusBlueGrey", 0.055555582f,
+			-0.1048766f, -0.08f, 0);
+	private Color color10 = decodeColor("nimbusBlueGrey", 0.055555582f,
+			-0.105624355f, 0.054901958f, 0);
+	private Color color11 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f,
+			0.25490195f, 0);
+	private Color color12 = decodeColor("nimbusBlueGrey", 0.055555582f,
+			-0.105344966f, 0.011764705f, 0);
+	private Color color13 = decodeColor("nimbusLightBackground", 0.0f, 0.0f,
+			0.0f, 0);
 	private Color color14 = decodeColor("nimbusFocus", 0.0f, 0.0f, 0.0f, 0);
-	private Color color15 = decodeColor("nimbusBlueGrey", 0.055555582f, -0.1048766f, -0.05098039f,
-			0);
+	private Color color15 = decodeColor("nimbusBlueGrey", 0.055555582f,
+			-0.1048766f, -0.05098039f, 0);
 
 	// Array of current component colors, updated in each paint call
 	private Object[] componentColors;
 
-	public SpinnerPanelSpinnerFormattedTextFieldPainter(PaintContext ctx, int state) {
+	public SpinnerPanelSpinnerFormattedTextFieldPainter(PaintContext ctx,
+			int state) {
 		super();
 		this.state = state;
 		this.ctx = ctx;
@@ -99,21 +88,21 @@ final class SpinnerPanelSpinnerFormattedTextFieldPainter extends AbstractRegionP
 		// generate this entire method. Each state/bg/fg/border combo that has
 		// been painted gets its own KEY and paint method.
 		switch (state) {
-		case BACKGROUND_DISABLED:
-			paintBackgroundDisabled(g);
-			break;
-		case BACKGROUND_ENABLED:
-			paintBackgroundEnabled(g);
-			break;
-		case BACKGROUND_FOCUSED:
-			paintBackgroundFocused(g);
-			break;
-		case BACKGROUND_SELECTED:
-			paintBackgroundSelected(g);
-			break;
-		case BACKGROUND_SELECTED_FOCUSED:
-			paintBackgroundSelectedAndFocused(g);
-			break;
+			case BACKGROUND_DISABLED:
+				paintBackgroundDisabled(g);
+				break;
+			case BACKGROUND_ENABLED:
+				paintBackgroundEnabled(g);
+				break;
+			case BACKGROUND_FOCUSED:
+				paintBackgroundFocused(g);
+				break;
+			case BACKGROUND_SELECTED:
+				paintBackgroundSelected(g);
+				break;
+			case BACKGROUND_SELECTED_FOCUSED:
+				paintBackgroundSelectedAndFocused(g);
+				break;
 
 		}
 	}
@@ -272,9 +261,9 @@ final class SpinnerPanelSpinnerFormattedTextFieldPainter extends AbstractRegionP
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color2, decodeColor(color2, color3, 0.5f), color3 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
+						color2, decodeColor(color2, color3, 0.5f), color3 });
 	}
 
 	private Paint decodeGradient2(Shape s) {
@@ -283,9 +272,9 @@ final class SpinnerPanelSpinnerFormattedTextFieldPainter extends AbstractRegionP
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (1.0f * h) + y, (0.5f * w) + x, (0.0f * h) + y,
-				new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color4, decodeColor(color4, color5, 0.5f), color5 });
+		return decodeGradient((0.5f * w) + x, (1.0f * h) + y, (0.5f * w) + x,
+				(0.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
+						color4, decodeColor(color4, color5, 0.5f), color5 });
 	}
 
 	private Paint decodeGradient3(Shape s) {
@@ -294,9 +283,10 @@ final class SpinnerPanelSpinnerFormattedTextFieldPainter extends AbstractRegionP
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.49573863f, 0.99147725f },
-				new Color[] { color8, decodeColor(color8, color9, 0.5f), color9 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.49573863f, 0.99147725f },
+				new Color[] { color8, decodeColor(color8, color9, 0.5f),
+						color9 });
 	}
 
 	private Paint decodeGradient4(Shape s) {
@@ -305,9 +295,10 @@ final class SpinnerPanelSpinnerFormattedTextFieldPainter extends AbstractRegionP
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.1684492f, 1.0f },
-				new Color[] { color10, decodeColor(color10, color11, 0.5f), color11 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.1684492f, 1.0f },
+				new Color[] { color10, decodeColor(color10, color11, 0.5f),
+						color11 });
 	}
 
 	private Paint decodeGradient5(Shape s) {
@@ -316,9 +307,10 @@ final class SpinnerPanelSpinnerFormattedTextFieldPainter extends AbstractRegionP
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.49573863f, 0.99147725f },
-				new Color[] { color8, decodeColor(color8, color15, 0.5f), color15 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.49573863f, 0.99147725f },
+				new Color[] { color8, decodeColor(color8, color15, 0.5f),
+						color15 });
 	}
 
 }

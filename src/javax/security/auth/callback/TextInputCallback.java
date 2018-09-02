@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.callback;
@@ -59,11 +39,12 @@ public class TextInputCallback implements Callback, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param prompt
-	 *            the prompt used to request the information.
+	 *               the prompt used to request the information.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if {@code prompt} is null or if {@code prompt} has a
-	 *                length of 0.
+	 *                                     if {@code prompt} is null or if
+	 *                                     {@code prompt} has a
+	 *                                     length of 0.
 	 */
 	public TextInputCallback(String prompt) {
 		if (prompt == null || prompt.length() == 0)
@@ -78,17 +59,21 @@ public class TextInputCallback implements Callback, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param prompt
-	 *            the prompt used to request the information.
-	 *            <p>
+	 *                    the prompt used to request the information.
+	 *                    <p>
 	 *
 	 * @param defaultText
-	 *            the text to be used as the default text displayed with the
-	 *            prompt.
+	 *                    the text to be used as the default text displayed with
+	 *                    the
+	 *                    prompt.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if {@code prompt} is null, if {@code prompt} has a length
-	 *                of 0, if {@code defaultText} is null or if
-	 *                {@code defaultText} has a length of 0.
+	 *                                     if {@code prompt} is null, if
+	 *                                     {@code prompt} has a length
+	 *                                     of 0, if {@code defaultText} is null
+	 *                                     or if
+	 *                                     {@code defaultText} has a length of
+	 *                                     0.
 	 */
 	public TextInputCallback(String prompt, String defaultText) {
 		if (prompt == null || prompt.length() == 0 || defaultText == null
@@ -128,7 +113,7 @@ public class TextInputCallback implements Callback, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param text
-	 *            the retrieved text, which may be null.
+	 *             the retrieved text, which may be null.
 	 *
 	 * @see #getText
 	 */

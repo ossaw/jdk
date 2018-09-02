@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -45,7 +25,8 @@ final class SliderTrackPainter extends AbstractRegionPainter {
 	// layers
 	private Path2D path = new Path2D.Float();
 	private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
+	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
+			0, 0);
 	private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
 	// All Colors used for painting are stored here. Ideally, only those colors
@@ -53,24 +34,28 @@ final class SliderTrackPainter extends AbstractRegionPainter {
 	// by a particular instance of SliderTrackPainter would be created. For the
 	// moment at least,
 	// however, all are created for each instance.
-	private Color color1 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f, 0.25490195f, -245);
-	private Color color2 = decodeColor("nimbusBlueGrey", 0.0055555105f, -0.061265234f, 0.05098039f,
-			0);
-	private Color color3 = decodeColor("nimbusBlueGrey", 0.01010108f, -0.059835073f, 0.10588235f,
-			0);
-	private Color color4 = decodeColor("nimbusBlueGrey", -0.01111114f, -0.061982628f, 0.062745094f,
-			0);
-	private Color color5 = decodeColor("nimbusBlueGrey", -0.00505054f, -0.058639523f, 0.086274505f,
-			0);
-	private Color color6 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f, 0.25490195f, -111);
-	private Color color7 = decodeColor("nimbusBlueGrey", 0.0f, -0.034093194f, -0.12941176f, 0);
-	private Color color8 = decodeColor("nimbusBlueGrey", 0.01111114f, -0.023821115f, -0.06666666f,
-			0);
-	private Color color9 = decodeColor("nimbusBlueGrey", -0.008547008f, -0.03314536f, -0.086274505f,
-			0);
-	private Color color10 = decodeColor("nimbusBlueGrey", 0.004273474f, -0.040256046f,
-			-0.019607842f, 0);
-	private Color color11 = decodeColor("nimbusBlueGrey", 0.0f, -0.03626889f, 0.04705882f, 0);
+	private Color color1 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f,
+			0.25490195f, -245);
+	private Color color2 = decodeColor("nimbusBlueGrey", 0.0055555105f,
+			-0.061265234f, 0.05098039f, 0);
+	private Color color3 = decodeColor("nimbusBlueGrey", 0.01010108f,
+			-0.059835073f, 0.10588235f, 0);
+	private Color color4 = decodeColor("nimbusBlueGrey", -0.01111114f,
+			-0.061982628f, 0.062745094f, 0);
+	private Color color5 = decodeColor("nimbusBlueGrey", -0.00505054f,
+			-0.058639523f, 0.086274505f, 0);
+	private Color color6 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f,
+			0.25490195f, -111);
+	private Color color7 = decodeColor("nimbusBlueGrey", 0.0f, -0.034093194f,
+			-0.12941176f, 0);
+	private Color color8 = decodeColor("nimbusBlueGrey", 0.01111114f,
+			-0.023821115f, -0.06666666f, 0);
+	private Color color9 = decodeColor("nimbusBlueGrey", -0.008547008f,
+			-0.03314536f, -0.086274505f, 0);
+	private Color color10 = decodeColor("nimbusBlueGrey", 0.004273474f,
+			-0.040256046f, -0.019607842f, 0);
+	private Color color11 = decodeColor("nimbusBlueGrey", 0.0f, -0.03626889f,
+			0.04705882f, 0);
 
 	// Array of current component colors, updated in each paint call
 	private Object[] componentColors;
@@ -90,12 +75,12 @@ final class SliderTrackPainter extends AbstractRegionPainter {
 		// generate this entire method. Each state/bg/fg/border combo that has
 		// been painted gets its own KEY and paint method.
 		switch (state) {
-		case BACKGROUND_DISABLED:
-			paintBackgroundDisabled(g);
-			break;
-		case BACKGROUND_ENABLED:
-			paintBackgroundEnabled(g);
-			break;
+			case BACKGROUND_DISABLED:
+				paintBackgroundDisabled(g);
+				break;
+			case BACKGROUND_ENABLED:
+				paintBackgroundEnabled(g);
+				break;
 
 		}
 	}
@@ -182,9 +167,10 @@ final class SliderTrackPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.25f * w) + x, (0.07647059f * h) + y, (0.25f * w) + x,
-				(0.9117647f * h) + y, new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color2, decodeColor(color2, color3, 0.5f), color3 });
+		return decodeGradient((0.25f * w) + x, (0.07647059f * h) + y, (0.25f
+				* w) + x, (0.9117647f * h) + y, new float[] { 0.0f, 0.5f,
+						1.0f }, new Color[] { color2, decodeColor(color2,
+								color3, 0.5f), color3 });
 	}
 
 	private Paint decodeGradient2(Shape s) {
@@ -193,10 +179,11 @@ final class SliderTrackPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.25f * w) + x, (0.0f * h) + y, (0.25f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.13770053f, 0.27540106f, 0.63770056f, 1.0f },
-				new Color[] { color4, decodeColor(color4, color5, 0.5f), color5,
-						decodeColor(color5, color3, 0.5f), color3 });
+		return decodeGradient((0.25f * w) + x, (0.0f * h) + y, (0.25f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.13770053f, 0.27540106f,
+						0.63770056f, 1.0f }, new Color[] { color4, decodeColor(
+								color4, color5, 0.5f), color5, decodeColor(
+										color5, color3, 0.5f), color3 });
 	}
 
 	private Paint decodeGradient3(Shape s) {
@@ -205,9 +192,10 @@ final class SliderTrackPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.25f * w) + x, (0.07647059f * h) + y, (0.25f * w) + x,
-				(0.9117647f * h) + y, new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color7, decodeColor(color7, color8, 0.5f), color8 });
+		return decodeGradient((0.25f * w) + x, (0.07647059f * h) + y, (0.25f
+				* w) + x, (0.9117647f * h) + y, new float[] { 0.0f, 0.5f,
+						1.0f }, new Color[] { color7, decodeColor(color7,
+								color8, 0.5f), color8 });
 	}
 
 	private Paint decodeGradient4(Shape s) {
@@ -216,10 +204,11 @@ final class SliderTrackPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.25f * w) + x, (0.0f * h) + y, (0.25f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.13770053f, 0.27540106f, 0.4906417f, 0.7058824f },
-				new Color[] { color9, decodeColor(color9, color10, 0.5f), color10,
-						decodeColor(color10, color11, 0.5f), color11 });
+		return decodeGradient((0.25f * w) + x, (0.0f * h) + y, (0.25f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.13770053f, 0.27540106f,
+						0.4906417f, 0.7058824f }, new Color[] { color9,
+								decodeColor(color9, color10, 0.5f), color10,
+								decodeColor(color10, color11, 0.5f), color11 });
 	}
 
 }

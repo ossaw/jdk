@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.management;
@@ -34,7 +14,8 @@ package java.lang.management;
  * allows, and discusses the risks of granting code the permission.
  *
  * <table border=1 cellpadding=5 summary=
- * "Table shows permission target name, what the permission allows, and associated risks"
+ * "Table shows permission target name, what the permission allows, and
+ * associated risks"
  * >
  * <tr>
  * <th>Permission Target Name</th>
@@ -88,12 +69,14 @@ public final class ManagementPermission extends java.security.BasicPermission {
 	 * Constructs a ManagementPermission with the specified name.
 	 *
 	 * @param name
-	 *            Permission name. Must be either "monitor" or "control".
+	 *             Permission name. Must be either "monitor" or "control".
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                  if <code>name</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>name</code> is empty or invalid.
+	 *                                  if <code>name</code> is empty or
+	 *                                  invalid.
 	 */
 	public ManagementPermission(String name) {
 		super(name);
@@ -106,16 +89,19 @@ public final class ManagementPermission extends java.security.BasicPermission {
 	 * Constructs a new ManagementPermission object.
 	 *
 	 * @param name
-	 *            Permission name. Must be either "monitor" or "control".
+	 *                Permission name. Must be either "monitor" or "control".
 	 * @param actions
-	 *            Must be either null or the empty string.
+	 *                Must be either null or the empty string.
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                  if <code>name</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>name</code> is empty or if arguments are invalid.
+	 *                                  if <code>name</code> is empty or if
+	 *                                  arguments are invalid.
 	 */
-	public ManagementPermission(String name, String actions) throws IllegalArgumentException {
+	public ManagementPermission(String name, String actions)
+			throws IllegalArgumentException {
 		super(name);
 		if (!name.equals("control") && !name.equals("monitor")) {
 			throw new IllegalArgumentException("name: " + name);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -122,21 +102,25 @@ public class MBeanServerNotification extends Notification {
 	 * MBeans that caused the notification and the specified notification type.
 	 *
 	 * @param type
-	 *            A string denoting the type of the notification. Set it to one
-	 *            these values: {@link #REGISTRATION_NOTIFICATION},
-	 *            {@link #UNREGISTRATION_NOTIFICATION}.
+	 *                       A string denoting the type of the notification. Set
+	 *                       it to one
+	 *                       these values: {@link #REGISTRATION_NOTIFICATION},
+	 *                       {@link #UNREGISTRATION_NOTIFICATION}.
 	 * @param source
-	 *            The MBeanServerNotification object responsible for forwarding
-	 *            MBean server notification.
+	 *                       The MBeanServerNotification object responsible for
+	 *                       forwarding
+	 *                       MBean server notification.
 	 * @param sequenceNumber
-	 *            A sequence number that can be used to order received
-	 *            notifications.
+	 *                       A sequence number that can be used to order
+	 *                       received
+	 *                       notifications.
 	 * @param objectName
-	 *            The object name of the MBean that caused the notification.
+	 *                       The object name of the MBean that caused the
+	 *                       notification.
 	 *
 	 */
-	public MBeanServerNotification(String type, Object source, long sequenceNumber,
-			ObjectName objectName) {
+	public MBeanServerNotification(String type, Object source,
+			long sequenceNumber, ObjectName objectName) {
 		super(type, source, sequenceNumber);
 		this.objectName = objectName;
 	}

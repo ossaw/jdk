@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.soap;
@@ -76,7 +56,7 @@ public abstract class SOAPPart implements org.w3c.dom.Document, Node {
 	 * @return the <code>SOAPEnvelope</code> object for this
 	 *         <code>SOAPPart</code> object
 	 * @exception SOAPException
-	 *                if there is a SOAP error
+	 *                          if there is a SOAP error
 	 */
 	public abstract SOAPEnvelope getEnvelope() throws SOAPException;
 
@@ -113,11 +93,13 @@ public abstract class SOAPPart implements org.w3c.dom.Document, Node {
 	 * <code>String</code>.
 	 *
 	 * @param contentId
-	 *            a <code>String</code> giving the value of the MIME header
-	 *            "Content-Id"
+	 *                  a <code>String</code> giving the value of the MIME
+	 *                  header
+	 *                  "Content-Id"
 	 *
 	 * @exception IllegalArgumentException
-	 *                if there is a problem in setting the content id
+	 *                                     if there is a problem in setting the
+	 *                                     content id
 	 * @see #getContentId
 	 */
 	public void setContentId(String contentId) {
@@ -129,10 +111,12 @@ public abstract class SOAPPart implements org.w3c.dom.Document, Node {
 	 * <code>String</code>.
 	 *
 	 * @param contentLocation
-	 *            a <code>String</code> giving the value of the MIME header
-	 *            "Content-Location"
+	 *                        a <code>String</code> giving the value of the MIME
+	 *                        header
+	 *                        "Content-Location"
 	 * @exception IllegalArgumentException
-	 *                if there is a problem in setting the content location.
+	 *                                     if there is a problem in setting the
+	 *                                     content location.
 	 * @see #getContentLocation
 	 */
 	public void setContentLocation(String contentLocation) {
@@ -143,8 +127,9 @@ public abstract class SOAPPart implements org.w3c.dom.Document, Node {
 	 * Removes all MIME headers that match the given name.
 	 *
 	 * @param header
-	 *            a <code>String</code> giving the name of the MIME header(s) to
-	 *            be removed
+	 *               a <code>String</code> giving the name of the MIME header(s)
+	 *               to
+	 *               be removed
 	 */
 	public abstract void removeMimeHeader(String header);
 
@@ -160,7 +145,7 @@ public abstract class SOAPPart implements org.w3c.dom.Document, Node {
 	 * <code>String</code>.
 	 *
 	 * @param name
-	 *            the name of the header; example: "Content-Type"
+	 *             the name of the header; example: "Content-Type"
 	 * @return a <code>String</code> array giving all the values for the
 	 *         specified header
 	 * @see #setMimeHeader
@@ -178,18 +163,21 @@ public abstract class SOAPPart implements org.w3c.dom.Document, Node {
 	 * Note that RFC822 headers can contain only US-ASCII characters.
 	 *
 	 * @param name
-	 *            a <code>String</code> giving the header name for which to
-	 *            search
+	 *              a <code>String</code> giving the header name for which to
+	 *              search
 	 * @param value
-	 *            a <code>String</code> giving the value to be set. This value
-	 *            will be substituted for the current value(s) of the first
-	 *            header that is a match if there is one. If there is no match,
-	 *            this value will be the value for a new <code>MimeHeader</code>
-	 *            object.
+	 *              a <code>String</code> giving the value to be set. This value
+	 *              will be substituted for the current value(s) of the first
+	 *              header that is a match if there is one. If there is no
+	 *              match,
+	 *              this value will be the value for a new
+	 *              <code>MimeHeader</code>
+	 *              object.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if there was a problem with the specified mime header name
-	 *                or value
+	 *                                     if there was a problem with the
+	 *                                     specified mime header name
+	 *                                     or value
 	 * @see #getMimeHeader
 	 */
 	public abstract void setMimeHeader(String name, String value);
@@ -203,12 +191,13 @@ public abstract class SOAPPart implements org.w3c.dom.Document, Node {
 	 * Note that RFC822 headers can contain only US-ASCII characters.
 	 *
 	 * @param name
-	 *            a <code>String</code> giving the header name
+	 *              a <code>String</code> giving the header name
 	 * @param value
-	 *            a <code>String</code> giving the value to be set or added
+	 *              a <code>String</code> giving the value to be set or added
 	 * @exception IllegalArgumentException
-	 *                if there was a problem with the specified mime header name
-	 *                or value
+	 *                                     if there was a problem with the
+	 *                                     specified mime header name
+	 *                                     or value
 	 */
 	public abstract void addMimeHeader(String name, String value);
 
@@ -226,8 +215,8 @@ public abstract class SOAPPart implements org.w3c.dom.Document, Node {
 	 * given array.
 	 *
 	 * @param names
-	 *            a <code>String</code> array with the name(s) of the MIME
-	 *            headers to be returned
+	 *              a <code>String</code> array with the name(s) of the MIME
+	 *              headers to be returned
 	 * @return all of the MIME headers that match one of the names in the given
 	 *         array, returned as an <code>Iterator</code> object
 	 */
@@ -238,8 +227,8 @@ public abstract class SOAPPart implements org.w3c.dom.Document, Node {
 	 * name in the given array.
 	 *
 	 * @param names
-	 *            a <code>String</code> array with the name(s) of the MIME
-	 *            headers not to be returned
+	 *              a <code>String</code> array with the name(s) of the MIME
+	 *              headers not to be returned
 	 * @return all of the MIME headers in this <code>SOAPPart</code> object
 	 *         except those that match one of the names in the given array. The
 	 *         nonmatching MIME headers are returned as an <code>Iterator</code>
@@ -253,11 +242,11 @@ public abstract class SOAPPart implements org.w3c.dom.Document, Node {
 	 * contain a valid SOAP document.
 	 *
 	 * @param source
-	 *            the <code>javax.xml.transform.Source</code> object with the
-	 *            data to be set
+	 *               the <code>javax.xml.transform.Source</code> object with the
+	 *               data to be set
 	 *
 	 * @exception SOAPException
-	 *                if there is a problem in setting the source
+	 *                          if there is a problem in setting the source
 	 * @see #getContent
 	 */
 	public abstract void setContent(Source source) throws SOAPException;
@@ -269,8 +258,9 @@ public abstract class SOAPPart implements org.w3c.dom.Document, Node {
 	 * @return the content as a <code>javax.xml.transform.Source</code> object
 	 *
 	 * @exception SOAPException
-	 *                if the implementation cannot convert the specified
-	 *                <code>Source</code> object
+	 *                          if the implementation cannot convert the
+	 *                          specified
+	 *                          <code>Source</code> object
 	 * @see #setContent
 	 */
 	public abstract Source getContent() throws SOAPException;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.text;
@@ -103,7 +83,7 @@ public class ElementIterator implements Cloneable {
 	 * default root element of the document.
 	 *
 	 * @param document
-	 *            a Document.
+	 *                 a Document.
 	 */
 	public ElementIterator(Document document) {
 		root = document.getDefaultRootElement();
@@ -113,7 +93,7 @@ public class ElementIterator implements Cloneable {
 	 * Creates a new ElementIterator.
 	 *
 	 * @param root
-	 *            the root Element.
+	 *             the root Element.
 	 */
 	public ElementIterator(Element root) {
 		this.root = root;
@@ -312,7 +292,8 @@ public class ElementIterator implements Cloneable {
 			elementStack.push(top);
 			elem = item.getElement();
 			index = item.getIndex();
-			return ((index == -1) ? elem : getDeepestLeaf(elem.getElement(index)));
+			return ((index == -1) ? elem
+					: getDeepestLeaf(elem.getElement(index)));
 		}
 		// should never get here.
 		return null;

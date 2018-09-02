@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.orbutil;
@@ -28,8 +8,7 @@ package com.sun.corba.se.impl.orbutil;
 import com.sun.corba.se.impl.util.SUNVMCID;
 
 public class ORBConstants {
-	private ORBConstants() {
-	}
+	private ORBConstants() {}
 
 	public static final String STRINGIFY_PREFIX = "IOR:";
 
@@ -37,13 +16,10 @@ public class ORBConstants {
 	 * TAGS tag-request@omg.org FAQ on tags and tag allocation:
 	 * http://doc.omg.org/ptc/99-02-01. http://doc.omg.org/standard-tags
 	 * http://doc.omg.org/vendor-tags
-	 * 
 	 * Last update: 19th August 2003 (ptc/03-08-14)
-	 * 
 	 * // Legacy 1 profile tag 0x4f4e4300 ("ONC\x00") 1 profile tag 0x4e454f00
 	 * ("NEO\x00") 1 profile tag 0x434f4f4c ("COOL") 16 service tags 0x4e454f00
 	 * - 0x4e454f0f ("NEO\x00" - "NEO\x0f")
-	 * 
 	 * // Current 16 VMCID 0x5355xxxx ("SU\x00\x00" - "SU\xff\xff") 16 profile
 	 * tags 0x53554e00 - 0x53554e0f ("SUN\x00" - "SUN\x0f") 16 ORB Type IDs
 	 * 0x53554e00 - 0x53554e0f ("SUN\x00" - "SUN\x0f") 64 service tags
@@ -68,16 +44,19 @@ public class ORBConstants {
 	// Used by AS 7 for IIOP failover.
 	public static final int TAG_CONTAINER_ID = SUN_TAGGED_COMPONENT_ID_BASE + 0;
 	// Used by AS 8.1 for Request Partioning
-	public static final int TAG_REQUEST_PARTITIONING_ID = SUN_TAGGED_COMPONENT_ID_BASE + 1;
+	public static final int TAG_REQUEST_PARTITIONING_ID = SUN_TAGGED_COMPONENT_ID_BASE
+			+ 1;
 	// TaggedComponentId for Java serialization tagged component.
-	public static final int TAG_JAVA_SERIALIZATION_ID = SUN_TAGGED_COMPONENT_ID_BASE + 2;
+	public static final int TAG_JAVA_SERIALIZATION_ID = SUN_TAGGED_COMPONENT_ID_BASE
+			+ 2;
 
 	//
 	// Service Context Ids
 	//
 
 	// Used by AS 7 for IIOP failover.
-	public static final int CONTAINER_ID_SERVICE_CONTEXT = SUN_SERVICE_CONTEXT_ID_BASE + 0;
+	public static final int CONTAINER_ID_SERVICE_CONTEXT = SUN_SERVICE_CONTEXT_ID_BASE
+			+ 0;
 
 	// All Sun policies are allocated using the SUNVMCID, which is also
 	// used for minor codes. This allows 12 bits of offset, so
@@ -100,11 +79,14 @@ public class ORBConstants {
 	public static final int TRANSIENT_SCID = FIRST_POA_SCID;
 	public static final int PERSISTENT_SCID = makePersistent(TRANSIENT_SCID);
 	public static final int SC_TRANSIENT_SCID = FIRST_POA_SCID + 4;
-	public static final int SC_PERSISTENT_SCID = makePersistent(SC_TRANSIENT_SCID);
+	public static final int SC_PERSISTENT_SCID = makePersistent(
+			SC_TRANSIENT_SCID);
 	public static final int IISC_TRANSIENT_SCID = FIRST_POA_SCID + 8;
-	public static final int IISC_PERSISTENT_SCID = makePersistent(IISC_TRANSIENT_SCID);
+	public static final int IISC_PERSISTENT_SCID = makePersistent(
+			IISC_TRANSIENT_SCID);
 	public static final int MINSC_TRANSIENT_SCID = FIRST_POA_SCID + 12;
-	public static final int MINSC_PERSISTENT_SCID = makePersistent(MINSC_TRANSIENT_SCID);
+	public static final int MINSC_PERSISTENT_SCID = makePersistent(
+			MINSC_TRANSIENT_SCID);
 
 	public static boolean isTransient(int scid) {
 		return (scid & 2) == 0;
@@ -134,25 +116,32 @@ public class ORBConstants {
 	public static final String ORG_OMG_PREFIX = "org.omg.";
 	public static final String ORG_OMG_CORBA_PREFIX = "org.omg.CORBA.";
 
-	public static final String INITIAL_HOST_PROPERTY = ORG_OMG_CORBA_PREFIX + "ORBInitialHost";
-	public static final String INITIAL_PORT_PROPERTY = ORG_OMG_CORBA_PREFIX + "ORBInitialPort";
+	public static final String INITIAL_HOST_PROPERTY = ORG_OMG_CORBA_PREFIX
+			+ "ORBInitialHost";
+	public static final String INITIAL_PORT_PROPERTY = ORG_OMG_CORBA_PREFIX
+			+ "ORBInitialPort";
 	public static final String INITIAL_SERVICES_PROPERTY = ORG_OMG_CORBA_PREFIX
 			+ "ORBInitialServices";
 	public static final String DEFAULT_INIT_REF_PROPERTY = ORG_OMG_CORBA_PREFIX
 			+ "ORBDefaultInitRef";
-	public static final String ORB_INIT_REF_PROPERTY = ORG_OMG_CORBA_PREFIX + "ORBInitRef";
+	public static final String ORB_INIT_REF_PROPERTY = ORG_OMG_CORBA_PREFIX
+			+ "ORBInitRef";
 
 	// All of our proprietary properties must start with com.sun.CORBA
 	public static final String SUN_PREFIX = "com.sun.CORBA.";
 
 	// general properties
-	public static final String ALLOW_LOCAL_OPTIMIZATION = SUN_PREFIX + "ORBAllowLocalOptimization";
-	public static final String SERVER_PORT_PROPERTY = SUN_PREFIX + "ORBServerPort";
-	public static final String SERVER_HOST_PROPERTY = SUN_PREFIX + "ORBServerHost";
+	public static final String ALLOW_LOCAL_OPTIMIZATION = SUN_PREFIX
+			+ "ORBAllowLocalOptimization";
+	public static final String SERVER_PORT_PROPERTY = SUN_PREFIX
+			+ "ORBServerPort";
+	public static final String SERVER_HOST_PROPERTY = SUN_PREFIX
+			+ "ORBServerHost";
 	public static final String ORB_ID_PROPERTY = ORG_OMG_CORBA_PREFIX + "ORBId";
 	// This property is provided for backward compatibility reasons
 	public static final String OLD_ORB_ID_PROPERTY = SUN_PREFIX + "ORBid";
-	public static final String ORB_SERVER_ID_PROPERTY = ORG_OMG_CORBA_PREFIX + "ORBServerId";
+	public static final String ORB_SERVER_ID_PROPERTY = ORG_OMG_CORBA_PREFIX
+			+ "ORBServerId";
 	public static final String DEBUG_PROPERTY = SUN_PREFIX + "ORBDebug";
 	// Property for setting use of repository Ids during serialization.
 	public static final String USE_REP_ID = SUN_PREFIX + "ORBUseRepId";
@@ -164,12 +153,18 @@ public class ORBConstants {
 			+ "INTERNAL USE ONLY: listen on all interfaces";
 
 	// giop related properties - default settings in decimal form
-	public static final String GIOP_VERSION = SUN_PREFIX + "giop.ORBGIOPVersion";
-	public static final String GIOP_FRAGMENT_SIZE = SUN_PREFIX + "giop.ORBFragmentSize";
-	public static final String GIOP_BUFFER_SIZE = SUN_PREFIX + "giop.ORBBufferSize";
-	public static final String GIOP_11_BUFFMGR = SUN_PREFIX + "giop.ORBGIOP11BuffMgr";
-	public static final String GIOP_12_BUFFMGR = SUN_PREFIX + "giop.ORBGIOP12BuffMgr";
-	public static final String GIOP_TARGET_ADDRESSING = SUN_PREFIX + "giop.ORBTargetAddressing";
+	public static final String GIOP_VERSION = SUN_PREFIX
+			+ "giop.ORBGIOPVersion";
+	public static final String GIOP_FRAGMENT_SIZE = SUN_PREFIX
+			+ "giop.ORBFragmentSize";
+	public static final String GIOP_BUFFER_SIZE = SUN_PREFIX
+			+ "giop.ORBBufferSize";
+	public static final String GIOP_11_BUFFMGR = SUN_PREFIX
+			+ "giop.ORBGIOP11BuffMgr";
+	public static final String GIOP_12_BUFFMGR = SUN_PREFIX
+			+ "giop.ORBGIOP12BuffMgr";
+	public static final String GIOP_TARGET_ADDRESSING = SUN_PREFIX
+			+ "giop.ORBTargetAddressing";
 	public static final int GIOP_DEFAULT_FRAGMENT_SIZE = 1024;
 	public static final int GIOP_DEFAULT_BUFFER_SIZE = 1024;
 	public static final int DEFAULT_GIOP_11_BUFFMGR = 0; // Growing
@@ -198,7 +193,8 @@ public class ORBConstants {
 	// connection management properties
 	public static final String HIGH_WATER_MARK_PROPERTY = SUN_PREFIX
 			+ "connection.ORBHighWaterMark";
-	public static final String LOW_WATER_MARK_PROPERTY = SUN_PREFIX + "connection.ORBLowWaterMark";
+	public static final String LOW_WATER_MARK_PROPERTY = SUN_PREFIX
+			+ "connection.ORBLowWaterMark";
 	public static final String NUMBER_TO_RECLAIM_PROPERTY = SUN_PREFIX
 			+ "connection.ORBNumberToReclaim";
 
@@ -214,7 +210,8 @@ public class ORBConstants {
 
 	public static final String SOCKET_FACTORY_CLASS_PROPERTY = SUN_PREFIX
 			+ "transport.ORBSocketFactoryClass";
-	public static final String LISTEN_SOCKET_PROPERTY = SUN_PREFIX + "transport.ORBListenSocket";
+	public static final String LISTEN_SOCKET_PROPERTY = SUN_PREFIX
+			+ "transport.ORBListenSocket";
 	public static final String IOR_TO_SOCKET_INFO_CLASS_PROPERTY = SUN_PREFIX
 			+ "transport.ORBIORToSocketInfoClass";
 	public static final String IIOP_PRIMARY_TO_CONTACT_INFO_CLASS_PROPERTY = SUN_PREFIX
@@ -278,11 +275,14 @@ public class ORBConstants {
 	// POA related policies
 	public static final String PERSISTENT_SERVER_PORT_PROPERTY = SUN_PREFIX
 			+ "POA.ORBPersistentServerPort";
-	public static final String SERVER_ID_PROPERTY = SUN_PREFIX + "POA.ORBServerId";
+	public static final String SERVER_ID_PROPERTY = SUN_PREFIX
+			+ "POA.ORBServerId";
 	public static final String BAD_SERVER_ID_HANDLER_CLASS_PROPERTY = SUN_PREFIX
 			+ "POA.ORBBadServerIdHandlerClass";
-	public static final String ACTIVATED_PROPERTY = SUN_PREFIX + "POA.ORBActivated";
-	public static final String SERVER_NAME_PROPERTY = SUN_PREFIX + "POA.ORBServerName";
+	public static final String ACTIVATED_PROPERTY = SUN_PREFIX
+			+ "POA.ORBActivated";
+	public static final String SERVER_NAME_PROPERTY = SUN_PREFIX
+			+ "POA.ORBServerName";
 
 	// Server Properties; e.g. when properties passed to ORB activated
 	// servers
@@ -308,7 +308,8 @@ public class ORBConstants {
 
 	public static final String PI_ORB_INITIALIZER_CLASS_PREFIX = "org.omg.PortableInterceptor.ORBInitializerClass.";
 
-	public static final String USE_DYNAMIC_STUB_PROPERTY = SUN_PREFIX + "ORBUseDynamicStub";
+	public static final String USE_DYNAMIC_STUB_PROPERTY = SUN_PREFIX
+			+ "ORBUseDynamicStub";
 
 	public static final String DYNAMIC_STUB_FACTORY_FACTORY_CLASS = SUN_PREFIX
 			+ "ORBDynamicStubFactoryFactoryClass";
@@ -344,11 +345,15 @@ public class ORBConstants {
 	// These properties are never passed on ORB init: they are only passed to
 	// ORBD.
 
-	public static final String DB_DIR_PROPERTY = SUN_PREFIX + "activation.DbDir";
+	public static final String DB_DIR_PROPERTY = SUN_PREFIX
+			+ "activation.DbDir";
 	public static final String DB_PROPERTY = SUN_PREFIX + "activation.db";
-	public static final String ORBD_PORT_PROPERTY = SUN_PREFIX + "activation.Port";
-	public static final String SERVER_POLLING_TIME = SUN_PREFIX + "activation.ServerPollingTime";
-	public static final String SERVER_STARTUP_DELAY = SUN_PREFIX + "activation.ServerStartupDelay";
+	public static final String ORBD_PORT_PROPERTY = SUN_PREFIX
+			+ "activation.Port";
+	public static final String SERVER_POLLING_TIME = SUN_PREFIX
+			+ "activation.ServerPollingTime";
+	public static final String SERVER_STARTUP_DELAY = SUN_PREFIX
+			+ "activation.ServerStartupDelay";
 
 	public static final int DEFAULT_ACTIVATION_PORT = 1049;
 
@@ -432,7 +437,8 @@ public class ORBConstants {
 	// Use byte order markers in streams when applicable? This won't apply to
 	// GIOP 1.1 due to limitations in the CDR encoding.
 	public static final boolean DEFAULT_USE_BYTE_ORDER_MARKERS = true;
-	public static final String USE_BOMS = SUN_PREFIX + "codeset.UseByteOrderMarkers";
+	public static final String USE_BOMS = SUN_PREFIX
+			+ "codeset.UseByteOrderMarkers";
 
 	// Use byte order markers in encapsulations when applicable?
 	public static final boolean DEFAULT_USE_BYTE_ORDER_MARKERS_IN_ENCAPS = false;
@@ -466,7 +472,8 @@ public class ORBConstants {
 	// either of the following properties, but the above assignments
 	// are the only ones that won't get you into trouble.
 	public static final String CHAR_CODESETS = SUN_PREFIX + "codeset.charsets";
-	public static final String WCHAR_CODESETS = SUN_PREFIX + "codeset.wcharsets";
+	public static final String WCHAR_CODESETS = SUN_PREFIX
+			+ "codeset.wcharsets";
 
 	// Constants to make stream format version code easier to read
 	public static final byte STREAM_FORMAT_VERSION_1 = (byte) 1;

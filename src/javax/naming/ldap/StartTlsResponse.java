@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.ldap;
@@ -92,8 +72,7 @@ public abstract class StartTlsResponse implements ExtendedResponse {
 	 * Constructs a StartTLS extended response. A concrete subclass must have a
 	 * public no-arg constructor.
 	 */
-	protected StartTlsResponse() {
-	}
+	protected StartTlsResponse() {}
 
 	// ExtendedResponse methods
 
@@ -127,7 +106,8 @@ public abstract class StartTlsResponse implements ExtendedResponse {
 	 * private keys) are not available.
 	 *
 	 * @param suites
-	 *            The non-null list of names of all the cipher suites to enable.
+	 *               The non-null list of names of all the cipher suites to
+	 *               enable.
 	 * @see #negotiate
 	 */
 	public abstract void setEnabledCipherSuites(String[] suites);
@@ -140,7 +120,7 @@ public abstract class StartTlsResponse implements ExtendedResponse {
 	 * this method does not do anything.
 	 *
 	 * @param verifier
-	 *            The non-null hostname verifier callback.
+	 *                 The non-null hostname verifier callback.
 	 * @see #negotiate
 	 */
 	public abstract void setHostnameVerifier(HostnameVerifier verifier);
@@ -152,8 +132,9 @@ public abstract class StartTlsResponse implements ExtendedResponse {
 	 *
 	 * @return The negotiated SSL session
 	 * @throws IOException
-	 *             If an IO error was encountered while establishing the TLS
-	 *             session.
+	 *                     If an IO error was encountered while establishing the
+	 *                     TLS
+	 *                     session.
 	 * @see #setEnabledCipherSuites
 	 * @see #setHostnameVerifier
 	 */
@@ -182,24 +163,26 @@ public abstract class StartTlsResponse implements ExtendedResponse {
 	 * thrown. The underlying connection remains intact.
 	 *
 	 * @param factory
-	 *            The possibly null SSL socket factory to use. If null, the
-	 *            default SSL socket factory is used.
+	 *                The possibly null SSL socket factory to use. If null, the
+	 *                default SSL socket factory is used.
 	 * @return The negotiated SSL session
 	 * @throws IOException
-	 *             If an IO error was encountered while establishing the TLS
-	 *             session.
+	 *                     If an IO error was encountered while establishing the
+	 *                     TLS
+	 *                     session.
 	 * @see #setEnabledCipherSuites
 	 * @see #setHostnameVerifier
 	 */
-	public abstract SSLSession negotiate(SSLSocketFactory factory) throws IOException;
+	public abstract SSLSession negotiate(SSLSocketFactory factory)
+			throws IOException;
 
 	/**
 	 * Closes the TLS connection gracefully and reverts back to the underlying
 	 * connection.
 	 *
 	 * @throws IOException
-	 *             If an IO error was encountered while closing the TLS
-	 *             connection
+	 *                     If an IO error was encountered while closing the TLS
+	 *                     connection
 	 */
 	public abstract void close() throws IOException;
 

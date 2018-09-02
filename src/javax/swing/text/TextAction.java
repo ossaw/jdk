@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -59,7 +39,7 @@ public abstract class TextAction extends AbstractAction {
 	 * Creates a new JTextAction object.
 	 *
 	 * @param name
-	 *            the name of the action
+	 *             the name of the action
 	 */
 	public TextAction(String name) {
 		super(name);
@@ -71,7 +51,7 @@ public abstract class TextAction extends AbstractAction {
 	 * Otherwise, the last focused component is used.
 	 *
 	 * @param e
-	 *            the ActionEvent
+	 *          the ActionEvent
 	 * @return the component
 	 */
 	protected final JTextComponent getTextComponent(ActionEvent e) {
@@ -91,9 +71,9 @@ public abstract class TextAction extends AbstractAction {
 	 * list is used.
 	 *
 	 * @param list1
-	 *            the first list, may be empty but not <code>null</code>
+	 *              the first list, may be empty but not <code>null</code>
 	 * @param list2
-	 *            the second list, may be empty but not <code>null</code>
+	 *              the second list, may be empty but not <code>null</code>
 	 * @return the augmented list
 	 */
 	public static final Action[] augmentList(Action[] list1, Action[] list2) {

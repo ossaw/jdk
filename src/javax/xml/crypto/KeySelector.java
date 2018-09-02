@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: KeySelector.java,v 1.6 2005/05/10 15:47:42 mullan Exp $
@@ -89,44 +69,53 @@ public abstract class KeySelector {
 	/**
 	 * Default no-args constructor; intended for invocation by subclasses only.
 	 */
-	protected KeySelector() {
-	}
+	protected KeySelector() {}
 
 	/**
 	 * Attempts to find a key that satisfies the specified constraints.
 	 *
 	 * @param keyInfo
-	 *            a <code>KeyInfo</code> (may be <code>null</code>)
+	 *                a <code>KeyInfo</code> (may be <code>null</code>)
 	 * @param purpose
-	 *            the key's purpose ({@link Purpose#SIGN},
-	 *            {@link Purpose#VERIFY}, {@link Purpose#ENCRYPT}, or
-	 *            {@link Purpose#DECRYPT})
+	 *                the key's purpose ({@link Purpose#SIGN},
+	 *                {@link Purpose#VERIFY}, {@link Purpose#ENCRYPT}, or
+	 *                {@link Purpose#DECRYPT})
 	 * @param method
-	 *            the algorithm method that this key is to be used for. Only
-	 *            keys that are compatible with the algorithm and meet the
-	 *            constraints of the specified algorithm should be returned.
+	 *                the algorithm method that this key is to be used for. Only
+	 *                keys that are compatible with the algorithm and meet the
+	 *                constraints of the specified algorithm should be returned.
 	 * @param context
-	 *            an <code>XMLCryptoContext</code> that may contain useful
-	 *            information for finding an appropriate key. If this key
-	 *            selector supports resolving {@link RetrievalMethod} types, the
-	 *            context's <code>baseURI</code> and <code>dereferencer</code>
-	 *            parameters (if specified) should be used by the selector to
-	 *            resolve and dereference the URI.
+	 *                an <code>XMLCryptoContext</code> that may contain useful
+	 *                information for finding an appropriate key. If this key
+	 *                selector supports resolving {@link RetrievalMethod} types,
+	 *                the
+	 *                context's <code>baseURI</code> and
+	 *                <code>dereferencer</code>
+	 *                parameters (if specified) should be used by the selector
+	 *                to
+	 *                resolve and dereference the URI.
 	 * @return the result of the key selector
 	 * @throws KeySelectorException
-	 *             if an exceptional condition occurs while attempting to find a
-	 *             key. Note that an inability to find a key is not considered
-	 *             an exception (<code>null</code> should be returned in that
-	 *             case). However, an error condition (ex: network
-	 *             communications failure) that prevented the
-	 *             <code>KeySelector</code> from finding a potential key should
-	 *             be considered an exception.
+	 *                              if an exceptional condition occurs while
+	 *                              attempting to find a
+	 *                              key. Note that an inability to find a key is
+	 *                              not considered
+	 *                              an exception (<code>null</code> should be
+	 *                              returned in that
+	 *                              case). However, an error condition (ex:
+	 *                              network
+	 *                              communications failure) that prevented the
+	 *                              <code>KeySelector</code> from finding a
+	 *                              potential key should
+	 *                              be considered an exception.
 	 * @throws ClassCastException
-	 *             if the data type of <code>method</code> is not supported by
-	 *             this key selector
+	 *                              if the data type of <code>method</code> is
+	 *                              not supported by
+	 *                              this key selector
 	 */
 	public abstract KeySelectorResult select(KeyInfo keyInfo, Purpose purpose,
-			AlgorithmMethod method, XMLCryptoContext context) throws KeySelectorException;
+			AlgorithmMethod method, XMLCryptoContext context)
+			throws KeySelectorException;
 
 	/**
 	 * Returns a <code>KeySelector</code> that always selects the specified key,
@@ -136,7 +125,7 @@ public abstract class KeySelector {
 	 *            the sole key to be stored in the key selector
 	 * @return a key selector that always selects the specified key
 	 * @throws NullPointerException
-	 *             if <code>key</code> is <code>null</code>
+	 *                              if <code>key</code> is <code>null</code>
 	 */
 	public static KeySelector singletonKeySelector(Key key) {
 		return new SingletonKeySelector(key);
@@ -152,8 +141,9 @@ public abstract class KeySelector {
 			this.key = key;
 		}
 
-		public KeySelectorResult select(KeyInfo keyInfo, Purpose purpose, AlgorithmMethod method,
-				XMLCryptoContext context) throws KeySelectorException {
+		public KeySelectorResult select(KeyInfo keyInfo, Purpose purpose,
+				AlgorithmMethod method, XMLCryptoContext context)
+				throws KeySelectorException {
 
 			return new KeySelectorResult() {
 				public Key getKey() {

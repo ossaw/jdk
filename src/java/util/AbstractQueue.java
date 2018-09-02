@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -60,15 +35,15 @@ package java.util;
  * @since 1.5
  * @author Doug Lea
  * @param <E>
- *            the type of elements held in this collection
+ *        the type of elements held in this collection
  */
-public abstract class AbstractQueue<E> extends AbstractCollection<E> implements Queue<E> {
+public abstract class AbstractQueue<E> extends AbstractCollection<E> implements
+		Queue<E> {
 
 	/**
 	 * Constructor for use by subclasses.
 	 */
-	protected AbstractQueue() {
-	}
+	protected AbstractQueue() {}
 
 	/**
 	 * Inserts the specified element into this queue if it is possible to do so
@@ -81,20 +56,24 @@ public abstract class AbstractQueue<E> extends AbstractCollection<E> implements 
 	 * else throws an <tt>IllegalStateException</tt>.
 	 *
 	 * @param e
-	 *            the element to add
+	 *          the element to add
 	 * @return <tt>true</tt> (as specified by {@link Collection#add})
 	 * @throws IllegalStateException
-	 *             if the element cannot be added at this time due to capacity
-	 *             restrictions
+	 *                                  if the element cannot be added at this
+	 *                                  time due to capacity
+	 *                                  restrictions
 	 * @throws ClassCastException
-	 *             if the class of the specified element prevents it from being
-	 *             added to this queue
+	 *                                  if the class of the specified element
+	 *                                  prevents it from being
+	 *                                  added to this queue
 	 * @throws NullPointerException
-	 *             if the specified element is null and this queue does not
-	 *             permit null elements
+	 *                                  if the specified element is null and
+	 *                                  this queue does not
+	 *                                  permit null elements
 	 * @throws IllegalArgumentException
-	 *             if some property of this element prevents it from being added
-	 *             to this queue
+	 *                                  if some property of this element
+	 *                                  prevents it from being added
+	 *                                  to this queue
 	 */
 	public boolean add(E e) {
 		if (offer(e))
@@ -114,7 +93,7 @@ public abstract class AbstractQueue<E> extends AbstractCollection<E> implements 
 	 *
 	 * @return the head of this queue
 	 * @throws NoSuchElementException
-	 *             if this queue is empty
+	 *                                if this queue is empty
 	 */
 	public E remove() {
 		E x = poll();
@@ -135,7 +114,7 @@ public abstract class AbstractQueue<E> extends AbstractCollection<E> implements 
 	 *
 	 * @return the head of this queue
 	 * @throws NoSuchElementException
-	 *             if this queue is empty
+	 *                                if this queue is empty
 	 */
 	public E element() {
 		E x = peek();
@@ -174,22 +153,29 @@ public abstract class AbstractQueue<E> extends AbstractCollection<E> implements 
 	 * thrown.
 	 *
 	 * @param c
-	 *            collection containing elements to be added to this queue
+	 *          collection containing elements to be added to this queue
 	 * @return <tt>true</tt> if this queue changed as a result of the call
 	 * @throws ClassCastException
-	 *             if the class of an element of the specified collection
-	 *             prevents it from being added to this queue
+	 *                                  if the class of an element of the
+	 *                                  specified collection
+	 *                                  prevents it from being added to this
+	 *                                  queue
 	 * @throws NullPointerException
-	 *             if the specified collection contains a null element and this
-	 *             queue does not permit null elements, or if the specified
-	 *             collection is null
+	 *                                  if the specified collection contains a
+	 *                                  null element and this
+	 *                                  queue does not permit null elements, or
+	 *                                  if the specified
+	 *                                  collection is null
 	 * @throws IllegalArgumentException
-	 *             if some property of an element of the specified collection
-	 *             prevents it from being added to this queue, or if the
-	 *             specified collection is this queue
+	 *                                  if some property of an element of the
+	 *                                  specified collection
+	 *                                  prevents it from being added to this
+	 *                                  queue, or if the
+	 *                                  specified collection is this queue
 	 * @throws IllegalStateException
-	 *             if not all the elements can be added at this time due to
-	 *             insertion restrictions
+	 *                                  if not all the elements can be added at
+	 *                                  this time due to
+	 *                                  insertion restrictions
 	 * @see #add(Object)
 	 */
 	public boolean addAll(Collection<? extends E> c) {

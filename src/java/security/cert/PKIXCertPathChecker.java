@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -89,13 +69,13 @@ import java.util.Set;
  * @author Yassir Elley
  * @author Sean Mullan
  */
-public abstract class PKIXCertPathChecker implements CertPathChecker, Cloneable {
+public abstract class PKIXCertPathChecker implements CertPathChecker,
+		Cloneable {
 
 	/**
 	 * Default constructor.
 	 */
-	protected PKIXCertPathChecker() {
-	}
+	protected PKIXCertPathChecker() {}
 
 	/**
 	 * Initializes the internal state of this {@code PKIXCertPathChecker}.
@@ -106,18 +86,24 @@ public abstract class PKIXCertPathChecker implements CertPathChecker, Cloneable 
 	 * <b>may</b> support forward checking.
 	 *
 	 * @param forward
-	 *            the order that certificates are presented to the {@code check}
-	 *            method. If {@code true}, certificates are presented from
-	 *            target to most-trusted CA (forward); if {@code false}, from
-	 *            most-trusted CA to target (reverse).
+	 *                the order that certificates are presented to the
+	 *                {@code check}
+	 *                method. If {@code true}, certificates are presented from
+	 *                target to most-trusted CA (forward); if {@code false},
+	 *                from
+	 *                most-trusted CA to target (reverse).
 	 * @throws CertPathValidatorException
-	 *             if this {@code PKIXCertPathChecker} is unable to check
-	 *             certificates in the specified order; it should never be
-	 *             thrown if the forward flag is false since reverse checking
-	 *             must be supported
+	 *                                    if this {@code PKIXCertPathChecker} is
+	 *                                    unable to check
+	 *                                    certificates in the specified order;
+	 *                                    it should never be
+	 *                                    thrown if the forward flag is false
+	 *                                    since reverse checking
+	 *                                    must be supported
 	 */
 	@Override
-	public abstract void init(boolean forward) throws CertPathValidatorException;
+	public abstract void init(boolean forward)
+			throws CertPathValidatorException;
 
 	/**
 	 * Indicates if forward checking is supported. Forward checking refers to
@@ -158,14 +144,17 @@ public abstract class PKIXCertPathChecker implements CertPathChecker, Cloneable 
 	 * specified by the {@code init} method.
 	 *
 	 * @param cert
-	 *            the {@code Certificate} to be checked
+	 *                           the {@code Certificate} to be checked
 	 * @param unresolvedCritExts
-	 *            a {@code Collection} of OID strings representing the current
-	 *            set of unresolved critical extensions
+	 *                           a {@code Collection} of OID strings
+	 *                           representing the current
+	 *                           set of unresolved critical extensions
 	 * @exception CertPathValidatorException
-	 *                if the specified certificate does not pass the check
+	 *                                       if the specified certificate does
+	 *                                       not pass the check
 	 */
-	public abstract void check(Certificate cert, Collection<String> unresolvedCritExts)
+	public abstract void check(Certificate cert,
+			Collection<String> unresolvedCritExts)
 			throws CertPathValidatorException;
 
 	/**
@@ -177,7 +166,7 @@ public abstract class PKIXCertPathChecker implements CertPathChecker, Cloneable 
 	 */
 	@Override
 	public void check(Certificate cert) throws CertPathValidatorException {
-		check(cert, java.util.Collections.<String> emptySet());
+		check(cert, java.util.Collections.<String>emptySet());
 	}
 
 	/**

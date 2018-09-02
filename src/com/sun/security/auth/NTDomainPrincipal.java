@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth;
@@ -61,16 +41,18 @@ public class NTDomainPrincipal implements Principal, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param name
-	 *            the Windows NT domain name for this user.
-	 *            <p>
+	 *             the Windows NT domain name for this user.
+	 *             <p>
 	 *
 	 * @exception NullPointerException
-	 *                if the <code>name</code> is <code>null</code>.
+	 *                                 if the <code>name</code> is
+	 *                                 <code>null</code>.
 	 */
 	public NTDomainPrincipal(String name) {
 		if (name == null) {
 			java.text.MessageFormat form = new java.text.MessageFormat(
-					sun.security.util.ResourcesMgr.getString("invalid.null.input.value",
+					sun.security.util.ResourcesMgr.getString(
+							"invalid.null.input.value",
 							"sun.security.util.AuthResources"));
 			Object[] source = { "name" };
 			throw new NullPointerException(form.format(source));
@@ -99,8 +81,10 @@ public class NTDomainPrincipal implements Principal, java.io.Serializable {
 	 * @return a string representation of this <code>NTDomainPrincipal</code>.
 	 */
 	public String toString() {
-		java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
-				.getString("NTDomainPrincipal.name", "sun.security.util.AuthResources"));
+		java.text.MessageFormat form = new java.text.MessageFormat(
+				sun.security.util.ResourcesMgr.getString(
+						"NTDomainPrincipal.name",
+						"sun.security.util.AuthResources"));
 		Object[] source = { name };
 		return form.format(source);
 	}
@@ -114,8 +98,8 @@ public class NTDomainPrincipal implements Principal, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param o
-	 *            Object to be compared for equality with this
-	 *            <code>NTDomainPrincipal</code>.
+	 *          Object to be compared for equality with this
+	 *          <code>NTDomainPrincipal</code>.
 	 *
 	 * @return true if the specified Object is equal equal to this
 	 *         <code>NTDomainPrincipal</code>.

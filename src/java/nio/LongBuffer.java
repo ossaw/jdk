@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -266,7 +246,8 @@ package java.nio;
  * @since 1.4
  */
 
-public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer> {
+public abstract class LongBuffer extends Buffer implements
+		Comparable<LongBuffer> {
 
 	// These fields are declared here rather than in Heap-X-Buffer in order to
 	// reduce the number of virtual method invocations needed to access these
@@ -302,12 +283,13 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * {@link #arrayOffset array offset} will be zero.
 	 *
 	 * @param capacity
-	 *            The new buffer's capacity, in longs
+	 *                 The new buffer's capacity, in longs
 	 *
 	 * @return The new long buffer
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the <tt>capacity</tt> is a negative integer
+	 *                                  If the <tt>capacity</tt> is a negative
+	 *                                  integer
 	 */
 	public static LongBuffer allocate(int capacity) {
 		if (capacity < 0)
@@ -329,23 +311,24 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * </p>
 	 *
 	 * @param array
-	 *            The array that will back the new buffer
+	 *               The array that will back the new buffer
 	 *
 	 * @param offset
-	 *            The offset of the subarray to be used; must be non-negative
-	 *            and no larger than <tt>array.length</tt>. The new buffer's
-	 *            position will be set to this value.
+	 *               The offset of the subarray to be used; must be non-negative
+	 *               and no larger than <tt>array.length</tt>. The new buffer's
+	 *               position will be set to this value.
 	 *
 	 * @param length
-	 *            The length of the subarray to be used; must be non-negative
-	 *            and no larger than <tt>array.length - offset</tt>. The new
-	 *            buffer's limit will be set to <tt>offset + length</tt>.
+	 *               The length of the subarray to be used; must be non-negative
+	 *               and no larger than <tt>array.length - offset</tt>. The new
+	 *               buffer's limit will be set to <tt>offset + length</tt>.
 	 *
 	 * @return The new long buffer
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If the preconditions on the <tt>offset</tt> and
-	 *             <tt>length</tt> parameters do not hold
+	 *                                   If the preconditions on the
+	 *                                   <tt>offset</tt> and
+	 *                                   <tt>length</tt> parameters do not hold
 	 */
 	public static LongBuffer wrap(long[] array, int offset, int length) {
 		try {
@@ -368,7 +351,7 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * </p>
 	 *
 	 * @param array
-	 *            The array that will back this buffer
+	 *              The array that will back this buffer
 	 *
 	 * @return The new long buffer
 	 */
@@ -449,8 +432,9 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * @return The long at the buffer's current position
 	 *
 	 * @throws BufferUnderflowException
-	 *             If the buffer's current position is not smaller than its
-	 *             limit
+	 *                                  If the buffer's current position is not
+	 *                                  smaller than its
+	 *                                  limit
 	 */
 	public abstract long get();
 
@@ -463,16 +447,17 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * </p>
 	 *
 	 * @param l
-	 *            The long to be written
+	 *          The long to be written
 	 *
 	 * @return This buffer
 	 *
 	 * @throws BufferOverflowException
-	 *             If this buffer's current position is not smaller than its
-	 *             limit
+	 *                                 If this buffer's current position is not
+	 *                                 smaller than its
+	 *                                 limit
 	 *
 	 * @throws ReadOnlyBufferException
-	 *             If this buffer is read-only
+	 *                                 If this buffer is read-only
 	 */
 	public abstract LongBuffer put(long l);
 
@@ -480,13 +465,14 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * Absolute <i>get</i> method. Reads the long at the given index.
 	 *
 	 * @param index
-	 *            The index from which the long will be read
+	 *              The index from which the long will be read
 	 *
 	 * @return The long at the given index
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If <tt>index</tt> is negative or not smaller than the
-	 *             buffer's limit
+	 *                                   If <tt>index</tt> is negative or not
+	 *                                   smaller than the
+	 *                                   buffer's limit
 	 */
 	public abstract long get(int index);
 
@@ -498,19 +484,20 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * </p>
 	 *
 	 * @param index
-	 *            The index at which the long will be written
+	 *              The index at which the long will be written
 	 *
 	 * @param l
-	 *            The long value to be written
+	 *              The long value to be written
 	 *
 	 * @return This buffer
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If <tt>index</tt> is negative or not smaller than the
-	 *             buffer's limit
+	 *                                   If <tt>index</tt> is negative or not
+	 *                                   smaller than the
+	 *                                   buffer's limit
 	 *
 	 * @throws ReadOnlyBufferException
-	 *             If this buffer is read-only
+	 *                                   If this buffer is read-only
 	 */
 	public abstract LongBuffer put(int index, long l);
 
@@ -548,26 +535,30 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * buffer and it is potentially much more efficient.
 	 *
 	 * @param dst
-	 *            The array into which longs are to be written
+	 *               The array into which longs are to be written
 	 *
 	 * @param offset
-	 *            The offset within the array of the first long to be written;
-	 *            must be non-negative and no larger than <tt>dst.length</tt>
+	 *               The offset within the array of the first long to be
+	 *               written;
+	 *               must be non-negative and no larger than <tt>dst.length</tt>
 	 *
 	 * @param length
-	 *            The maximum number of longs to be written to the given array;
-	 *            must be non-negative and no larger than
-	 *            <tt>dst.length - offset</tt>
+	 *               The maximum number of longs to be written to the given
+	 *               array;
+	 *               must be non-negative and no larger than
+	 *               <tt>dst.length - offset</tt>
 	 *
 	 * @return This buffer
 	 *
 	 * @throws BufferUnderflowException
-	 *             If there are fewer than <tt>length</tt> longs remaining in
-	 *             this buffer
+	 *                                   If there are fewer than <tt>length</tt>
+	 *                                   longs remaining in
+	 *                                   this buffer
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If the preconditions on the <tt>offset</tt> and
-	 *             <tt>length</tt> parameters do not hold
+	 *                                   If the preconditions on the
+	 *                                   <tt>offset</tt> and
+	 *                                   <tt>length</tt> parameters do not hold
 	 */
 	public LongBuffer get(long[] dst, int offset, int length) {
 		checkBounds(offset, length, dst.length);
@@ -597,8 +588,9 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * @return This buffer
 	 *
 	 * @throws BufferUnderflowException
-	 *             If there are fewer than <tt>length</tt> longs remaining in
-	 *             this buffer
+	 *                                  If there are fewer than <tt>length</tt>
+	 *                                  longs remaining in
+	 *                                  this buffer
 	 */
 	public LongBuffer get(long[] dst) {
 		return get(dst, 0, dst.length);
@@ -641,14 +633,15 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * @return This buffer
 	 *
 	 * @throws BufferOverflowException
-	 *             If there is insufficient space in this buffer for the
-	 *             remaining longs in the source buffer
+	 *                                  If there is insufficient space in this
+	 *                                  buffer for the
+	 *                                  remaining longs in the source buffer
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the source buffer is this buffer
+	 *                                  If the source buffer is this buffer
 	 *
 	 * @throws ReadOnlyBufferException
-	 *             If this buffer is read-only
+	 *                                  If this buffer is read-only
 	 */
 	public LongBuffer put(LongBuffer src) {
 		if (src == this)
@@ -695,27 +688,32 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * and it is potentially much more efficient.
 	 *
 	 * @param src
-	 *            The array from which longs are to be read
+	 *               The array from which longs are to be read
 	 *
 	 * @param offset
-	 *            The offset within the array of the first long to be read; must
-	 *            be non-negative and no larger than <tt>array.length</tt>
+	 *               The offset within the array of the first long to be read;
+	 *               must
+	 *               be non-negative and no larger than <tt>array.length</tt>
 	 *
 	 * @param length
-	 *            The number of longs to be read from the given array; must be
-	 *            non-negative and no larger than <tt>array.length - offset</tt>
+	 *               The number of longs to be read from the given array; must
+	 *               be
+	 *               non-negative and no larger than
+	 *               <tt>array.length - offset</tt>
 	 *
 	 * @return This buffer
 	 *
 	 * @throws BufferOverflowException
-	 *             If there is insufficient space in this buffer
+	 *                                   If there is insufficient space in this
+	 *                                   buffer
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If the preconditions on the <tt>offset</tt> and
-	 *             <tt>length</tt> parameters do not hold
+	 *                                   If the preconditions on the
+	 *                                   <tt>offset</tt> and
+	 *                                   <tt>length</tt> parameters do not hold
 	 *
 	 * @throws ReadOnlyBufferException
-	 *             If this buffer is read-only
+	 *                                   If this buffer is read-only
 	 */
 	public LongBuffer put(long[] src, int offset, int length) {
 		checkBounds(offset, length, src.length);
@@ -745,10 +743,11 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * @return This buffer
 	 *
 	 * @throws BufferOverflowException
-	 *             If there is insufficient space in this buffer
+	 *                                 If there is insufficient space in this
+	 *                                 buffer
 	 *
 	 * @throws ReadOnlyBufferException
-	 *             If this buffer is read-only
+	 *                                 If this buffer is read-only
 	 */
 	public final LongBuffer put(long[] src) {
 		return put(src, 0, src.length);
@@ -787,10 +786,12 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * @return The array that backs this buffer
 	 *
 	 * @throws ReadOnlyBufferException
-	 *             If this buffer is backed by an array but is read-only
+	 *                                       If this buffer is backed by an
+	 *                                       array but is read-only
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If this buffer is not backed by an accessible array
+	 *                                       If this buffer is not backed by an
+	 *                                       accessible array
 	 */
 	public final long[] array() {
 		if (hb == null)
@@ -817,10 +818,12 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 *         buffer
 	 *
 	 * @throws ReadOnlyBufferException
-	 *             If this buffer is backed by an array but is read-only
+	 *                                       If this buffer is backed by an
+	 *                                       array but is read-only
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If this buffer is not backed by an accessible array
+	 *                                       If this buffer is not backed by an
+	 *                                       accessible array
 	 */
 	public final int arrayOffset() {
 		if (hb == null)
@@ -869,7 +872,7 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * @return This buffer
 	 *
 	 * @throws ReadOnlyBufferException
-	 *             If this buffer is read-only
+	 *                                 If this buffer is read-only
 	 */
 	public abstract LongBuffer compact();
 
@@ -965,7 +968,7 @@ public abstract class LongBuffer extends Buffer implements Comparable<LongBuffer
 	 * </p>
 	 *
 	 * @param ob
-	 *            The object to which this buffer is to be compared
+	 *           The object to which this buffer is to be compared
 	 *
 	 * @return <tt>true</tt> if, and only if, this buffer is equal to the given
 	 *         object

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,8 +61,7 @@ public class AttrNSImpl extends AttrImpl {
 	/*
 	 * Default constructor
 	 */
-	public AttrNSImpl() {
-	}
+	public AttrNSImpl() {}
 
 	/**
 	 * DOM2: Constructor for Namespace implementation.
@@ -83,7 +79,8 @@ public class AttrNSImpl extends AttrImpl {
 		// DOM Level 3: namespace URI is never empty string.
 		this.namespaceURI = namespaceURI;
 		if (namespaceURI != null) {
-			this.namespaceURI = (namespaceURI.length() == 0) ? null : namespaceURI;
+			this.namespaceURI = (namespaceURI.length() == 0) ? null
+					: namespaceURI;
 
 		}
 		int colon1 = qname.indexOf(':');
@@ -95,13 +92,14 @@ public class AttrNSImpl extends AttrImpl {
 			if (ownerDocument.errorChecking) {
 				ownerDocument.checkQName(null, localName);
 
-				if (qname.equals("xmlns")
-						&& (namespaceURI == null
-								|| !namespaceURI.equals(NamespaceContext.XMLNS_URI))
-						|| (namespaceURI != null && namespaceURI.equals(NamespaceContext.XMLNS_URI)
-								&& !qname.equals("xmlns"))) {
-					String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-							"NAMESPACE_ERR", null);
+				if (qname.equals("xmlns") && (namespaceURI == null
+						|| !namespaceURI.equals(NamespaceContext.XMLNS_URI))
+						|| (namespaceURI != null && namespaceURI.equals(
+								NamespaceContext.XMLNS_URI) && !qname.equals(
+										"xmlns"))) {
+					String msg = DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR",
+							null);
 					throw new DOMException(DOMException.NAMESPACE_ERR, msg);
 				}
 			}
@@ -114,8 +112,8 @@ public class AttrNSImpl extends AttrImpl {
 	}
 
 	// when local name is known
-	public AttrNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName,
-			String localName) {
+	public AttrNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI,
+			String qualifiedName, String localName) {
 		super(ownerDocument, qualifiedName);
 
 		this.localName = localName;
@@ -147,8 +145,8 @@ public class AttrNSImpl extends AttrImpl {
 	 * @param qualifiedName
 	 * @param localName
 	 */
-	public void setValues(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName,
-			String localName) {
+	public void setValues(CoreDocumentImpl ownerDocument, String namespaceURI,
+			String qualifiedName, String localName) {
 
 		super.textNode = null;
 		super.flags = 0;
@@ -223,12 +221,14 @@ public class AttrNSImpl extends AttrImpl {
 	 * <p>
 	 *
 	 * @param prefix
-	 *            The namespace prefix of this node, or null(empty string) if it
-	 *            is unspecified.
+	 *               The namespace prefix of this node, or null(empty string) if
+	 *               it
+	 *               is unspecified.
 	 *
 	 * @exception INVALID_CHARACTER_ERR
-	 *                Raised if the specified prefix contains an invalid
-	 *                character.
+	 *                                  Raised if the specified prefix contains
+	 *                                  an invalid
+	 *                                  character.
 	 * @exception DOMException
 	 * @since WD-DOM-Level-2-19990923
 	 */
@@ -238,38 +238,47 @@ public class AttrNSImpl extends AttrImpl {
 		}
 		if (ownerDocument().errorChecking) {
 			if (isReadOnly()) {
-				String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+				String msg = DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN,
 						"NO_MODIFICATION_ALLOWED_ERR", null);
-				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
+				throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
+						msg);
 			}
 			if (prefix != null && prefix.length() != 0) {
 
-				if (!CoreDocumentImpl.isXMLName(prefix, ownerDocument().isXML11Version())) {
-					String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+				if (!CoreDocumentImpl.isXMLName(prefix, ownerDocument()
+						.isXML11Version())) {
+					String msg = DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN,
 							"INVALID_CHARACTER_ERR", null);
-					throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
+					throw new DOMException(DOMException.INVALID_CHARACTER_ERR,
+							msg);
 				}
 				if (namespaceURI == null || prefix.indexOf(':') >= 0) {
-					String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-							"NAMESPACE_ERR", null);
+					String msg = DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR",
+							null);
 					throw new DOMException(DOMException.NAMESPACE_ERR, msg);
 
 				}
 				if (prefix.equals("xmlns")) {
 					if (!namespaceURI.equals(xmlnsURI)) {
 						String msg = DOMMessageFormatter.formatMessage(
-								DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR", null);
+								DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR",
+								null);
 						throw new DOMException(DOMException.NAMESPACE_ERR, msg);
 					}
 				} else if (prefix.equals("xml")) {
 					if (!namespaceURI.equals(xmlURI)) {
 						String msg = DOMMessageFormatter.formatMessage(
-								DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR", null);
+								DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR",
+								null);
 						throw new DOMException(DOMException.NAMESPACE_ERR, msg);
 					}
 				} else if (name.equals("xmlns")) {
-					String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-							"NAMESPACE_ERR", null);
+					String msg = DOMMessageFormatter.formatMessage(
+							DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR",
+							null);
 					throw new DOMException(DOMException.NAMESPACE_ERR, msg);
 				}
 			}
@@ -318,11 +327,11 @@ public class AttrNSImpl extends AttrImpl {
 	 * http://www.w3.org/TR/DOM-Level-3-Core/core.html#TypeInfo-isDerivedFrom
 	 *
 	 * @param ancestorNS
-	 *            The namspace of the ancestor type declaration
+	 *                     The namspace of the ancestor type declaration
 	 * @param ancestorName
-	 *            The name of the ancestor type declaration
+	 *                     The name of the ancestor type declaration
 	 * @param type
-	 *            The reference type definition
+	 *                     The reference type definition
 	 *
 	 * @return boolean True if the type is derived by restriciton for the
 	 *         reference type
@@ -331,8 +340,8 @@ public class AttrNSImpl extends AttrImpl {
 			int derivationMethod) {
 		if (type != null) {
 			if (type instanceof XSSimpleTypeDecl) {
-				return ((XSSimpleTypeDecl) type).isDOMDerivedFrom(typeNamespaceArg, typeNameArg,
-						derivationMethod);
+				return ((XSSimpleTypeDecl) type).isDOMDerivedFrom(
+						typeNamespaceArg, typeNameArg, derivationMethod);
 			}
 		}
 		return false;

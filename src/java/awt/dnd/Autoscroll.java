@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd;
@@ -70,8 +50,9 @@ public interface Autoscroll {
 	 * <P>
 	 * 
 	 * @param cursorLocn
-	 *            A <code>Point</code> indicating the location of the cursor
-	 *            that triggered this operation.
+	 *                   A <code>Point</code> indicating the location of the
+	 *                   cursor
+	 *                   that triggered this operation.
 	 */
 
 	public void autoscroll(Point cursorLocn);

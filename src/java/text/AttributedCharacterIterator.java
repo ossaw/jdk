@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.text;
@@ -105,13 +85,14 @@ public interface AttributedCharacterIterator extends CharacterIterator {
 		private String name;
 
 		// table of all instances in this class, used by readResolve
-		private static final Map<String, Attribute> instanceMap = new HashMap<>(7);
+		private static final Map<String, Attribute> instanceMap = new HashMap<>(
+				7);
 
 		/**
 		 * Constructs an {@code Attribute} with the given name.
 		 *
 		 * @param name
-		 *            the name of {@code Attribute}
+		 *             the name of {@code Attribute}
 		 */
 		protected Attribute(String name) {
 			this.name = name;
@@ -160,12 +141,14 @@ public interface AttributedCharacterIterator extends CharacterIterator {
 		 *
 		 * @return the resolved {@code Attribute} object
 		 * @throws InvalidObjectException
-		 *             if the object to resolve is not an instance of
-		 *             {@code Attribute}
+		 *                                if the object to resolve is not an
+		 *                                instance of
+		 *                                {@code Attribute}
 		 */
 		protected Object readResolve() throws InvalidObjectException {
 			if (this.getClass() != Attribute.class) {
-				throw new InvalidObjectException("subclass didn't correctly implement readResolve");
+				throw new InvalidObjectException(
+						"subclass didn't correctly implement readResolve");
 			}
 
 			Attribute instance = instanceMap.get(getName());
@@ -208,7 +191,8 @@ public interface AttributedCharacterIterator extends CharacterIterator {
 		 * 
 		 * @see Annotation
 		 */
-		public static final Attribute INPUT_METHOD_SEGMENT = new Attribute("input_method_segment");
+		public static final Attribute INPUT_METHOD_SEGMENT = new Attribute(
+				"input_method_segment");
 
 		// make sure the serial version doesn't change between compiler versions
 		private static final long serialVersionUID = -9142742483513960612L;
@@ -233,7 +217,7 @@ public interface AttributedCharacterIterator extends CharacterIterator {
 	 * given {@code attribute} containing the current character.
 	 *
 	 * @param attribute
-	 *            the desired attribute.
+	 *                  the desired attribute.
 	 * @return the index of the first character of the run
 	 */
 	public int getRunStart(Attribute attribute);
@@ -243,7 +227,7 @@ public interface AttributedCharacterIterator extends CharacterIterator {
 	 * given {@code attributes} containing the current character.
 	 *
 	 * @param attributes
-	 *            a set of the desired attributes.
+	 *                   a set of the desired attributes.
 	 * @return the index of the first character of the run
 	 */
 	public int getRunStart(Set<? extends Attribute> attributes);
@@ -266,7 +250,7 @@ public interface AttributedCharacterIterator extends CharacterIterator {
 	 * to the given {@code attribute} containing the current character.
 	 *
 	 * @param attribute
-	 *            the desired attribute
+	 *                  the desired attribute
 	 * @return the index of the first character following the run
 	 */
 	public int getRunLimit(Attribute attribute);
@@ -276,7 +260,7 @@ public interface AttributedCharacterIterator extends CharacterIterator {
 	 * to the given {@code attributes} containing the current character.
 	 *
 	 * @param attributes
-	 *            a set of the desired attributes
+	 *                   a set of the desired attributes
 	 * @return the index of the first character following the run
 	 */
 	public int getRunLimit(Set<? extends Attribute> attributes);
@@ -293,7 +277,7 @@ public interface AttributedCharacterIterator extends CharacterIterator {
 	 * character. Returns {@code null} if the {@code attribute} is not defined.
 	 *
 	 * @param attribute
-	 *            the desired attribute
+	 *                  the desired attribute
 	 * @return the value of the named {@code attribute} or {@code null}
 	 */
 	public Object getAttribute(Attribute attribute);

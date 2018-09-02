@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.im;
@@ -93,8 +73,8 @@ public interface InputMethodRequests {
 	 * or vertical orientation. The rectangle uses absolute screen coordinates.
 	 *
 	 * @param offset
-	 *            the offset within the composed text, if there is composed
-	 *            text; null otherwise
+	 *               the offset within the composed text, if there is composed
+	 *               text; null otherwise
 	 * @return a rectangle representing the screen location of the offset
 	 */
 	Rectangle getTextLocation(TextHitInfo offset);
@@ -110,9 +90,9 @@ public interface InputMethodRequests {
 	 * text.
 	 *
 	 * @param x
-	 *            the absolute x coordinate on screen
+	 *          the absolute x coordinate on screen
 	 * @param y
-	 *            the absolute y coordinate on screen
+	 *          the absolute y coordinate on screen
 	 * @return a text hit info describing the offset in the composed text.
 	 */
 	TextHitInfo getLocationOffset(int x, int y);
@@ -141,11 +121,12 @@ public interface InputMethodRequests {
 	 * null, all available attribute information should be made accessible.
 	 *
 	 * @param beginIndex
-	 *            the index of the first character
+	 *                   the index of the first character
 	 * @param endIndex
-	 *            the index of the character following the last character
+	 *                   the index of the character following the last character
 	 * @param attributes
-	 *            a list of attributes that the input method is interested in
+	 *                   a list of attributes that the input method is
+	 *                   interested in
 	 * @return an iterator providing access to the text and its attributes
 	 */
 	AttributedCharacterIterator getCommittedText(int beginIndex, int endIndex,
@@ -178,11 +159,13 @@ public interface InputMethodRequests {
 	 * null, all available attribute information should be made accessible.
 	 *
 	 * @param attributes
-	 *            a list of attributes that the input method is interested in
+	 *                   a list of attributes that the input method is
+	 *                   interested in
 	 * @return the latest committed text, or null when the "Undo Commit" feature
 	 *         is not supported
 	 */
-	AttributedCharacterIterator cancelLatestCommittedText(Attribute[] attributes);
+	AttributedCharacterIterator cancelLatestCommittedText(
+			Attribute[] attributes);
 
 	/**
 	 * Gets the currently selected text from the text editing component. This
@@ -201,7 +184,8 @@ public interface InputMethodRequests {
 	 * null, all available attribute information should be made accessible.
 	 *
 	 * @param attributes
-	 *            a list of attributes that the input method is interested in
+	 *                   a list of attributes that the input method is
+	 *                   interested in
 	 * @return the currently selected text
 	 */
 	AttributedCharacterIterator getSelectedText(Attribute[] attributes);

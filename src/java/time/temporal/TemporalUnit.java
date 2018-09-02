@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -164,7 +133,7 @@ public interface TemporalUnit {
 	 * {@link Temporal#plus(long, TemporalUnit)}.
 	 *
 	 * @param temporal
-	 *            the temporal object to check, not null
+	 *                 the temporal object to check, not null
 	 * @return true if the unit is supported
 	 */
 	default boolean isSupportedBy(Temporal temporal) {
@@ -174,7 +143,8 @@ public interface TemporalUnit {
 		if (temporal instanceof ChronoLocalDate) {
 			return isDateBased();
 		}
-		if (temporal instanceof ChronoLocalDateTime || temporal instanceof ChronoZonedDateTime) {
+		if (temporal instanceof ChronoLocalDateTime
+				|| temporal instanceof ChronoZonedDateTime) {
 			return true;
 		}
 		try {
@@ -223,17 +193,18 @@ public interface TemporalUnit {
 	 * adjusted copy of the original must be returned. This provides equivalent,
 	 * safe behavior for immutable and mutable implementations.
 	 *
-	 * @param <R>
-	 *            the type of the Temporal object
+	 * @param          <R>
+	 *                 the type of the Temporal object
 	 * @param temporal
-	 *            the temporal object to adjust, not null
+	 *                 the temporal object to adjust, not null
 	 * @param amount
-	 *            the amount of this unit to add, positive or negative
+	 *                 the amount of this unit to add, positive or negative
 	 * @return the adjusted temporal object, not null
 	 * @throws DateTimeException
-	 *             if the amount cannot be added
+	 *                                          if the amount cannot be added
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported by the temporal
+	 *                                          if the unit is not supported by
+	 *                                          the temporal
 	 */
 	<R extends Temporal> R addTo(R temporal, long amount);
 
@@ -287,20 +258,23 @@ public interface TemporalUnit {
 	 *           {@code temporal1Inclusive.until(temporal2Exclusive, this)}.
 	 *
 	 * @param temporal1Inclusive
-	 *            the base temporal object, not null
+	 *                           the base temporal object, not null
 	 * @param temporal2Exclusive
-	 *            the other temporal object, exclusive, not null
+	 *                           the other temporal object, exclusive, not null
 	 * @return the amount of time between temporal1Inclusive and
 	 *         temporal2Exclusive in terms of this unit; positive if
 	 *         temporal2Exclusive is later than temporal1Inclusive, negative if
 	 *         earlier
 	 * @throws DateTimeException
-	 *             if the amount cannot be calculated, or the end temporal
-	 *             cannot be converted to the same type as the start temporal
+	 *                                          if the amount cannot be
+	 *                                          calculated, or the end temporal
+	 *                                          cannot be converted to the same
+	 *                                          type as the start temporal
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the unit is not supported by the temporal
+	 *                                          if the unit is not supported by
+	 *                                          the temporal
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                                          if numeric overflow occurs
 	 */
 	long between(Temporal temporal1Inclusive, Temporal temporal2Exclusive);
 

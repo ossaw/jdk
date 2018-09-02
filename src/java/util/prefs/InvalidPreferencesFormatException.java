@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.prefs;
@@ -41,8 +21,8 @@ public class InvalidPreferencesFormatException extends Exception {
 	 * Constructs an InvalidPreferencesFormatException with the specified cause.
 	 *
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link Throwable#getCause()} method).
+	 *              the cause (which is saved for later retrieval by the
+	 *              {@link Throwable#getCause()} method).
 	 */
 	public InvalidPreferencesFormatException(Throwable cause) {
 		super(cause);
@@ -53,8 +33,8 @@ public class InvalidPreferencesFormatException extends Exception {
 	 * message.
 	 *
 	 * @param message
-	 *            the detail message. The detail message is saved for later
-	 *            retrieval by the {@link Throwable#getMessage()} method.
+	 *                the detail message. The detail message is saved for later
+	 *                retrieval by the {@link Throwable#getMessage()} method.
 	 */
 	public InvalidPreferencesFormatException(String message) {
 		super(message);
@@ -65,11 +45,11 @@ public class InvalidPreferencesFormatException extends Exception {
 	 * message and cause.
 	 *
 	 * @param message
-	 *            the detail message. The detail message is saved for later
-	 *            retrieval by the {@link Throwable#getMessage()} method.
+	 *                the detail message. The detail message is saved for later
+	 *                retrieval by the {@link Throwable#getMessage()} method.
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link Throwable#getCause()} method).
+	 *                the cause (which is saved for later retrieval by the
+	 *                {@link Throwable#getCause()} method).
 	 */
 	public InvalidPreferencesFormatException(String message, Throwable cause) {
 		super(message, cause);

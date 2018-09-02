@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -281,7 +261,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * Sets the L&amp;F object that renders this component.
 	 *
 	 * @param ui
-	 *            the <code>ViewportUI</code> L&amp;F object
+	 *           the <code>ViewportUI</code> L&amp;F object
 	 * @see UIDefaults#getUI
 	 * @beaninfo bound: true hidden: true attribute: visualUpdate true
 	 *           description: The UI object that implements the Component's
@@ -321,11 +301,11 @@ public class JViewport extends JComponent implements Accessible {
 	 * arguments are ignored.)
 	 *
 	 * @param child
-	 *            the lightweight <code>child</code> of the viewport
+	 *                    the lightweight <code>child</code> of the viewport
 	 * @param constraints
-	 *            the <code>constraints</code> to be respected
+	 *                    the <code>constraints</code> to be respected
 	 * @param index
-	 *            the index
+	 *                    the index
 	 * @see #setView
 	 */
 	protected void addImpl(Component child, Object constraints, int index) {
@@ -358,7 +338,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * scrolling will be confined to the viewport's bounds.
 	 *
 	 * @param contentRect
-	 *            the <code>Rectangle</code> to display
+	 *                    the <code>Rectangle</code> to display
 	 * @see JComponent#isValidateRoot
 	 * @see java.awt.Component#isValid
 	 * @see java.awt.Component#getPeer
@@ -377,8 +357,10 @@ public class JViewport extends JComponent implements Accessible {
 			}
 			int dx, dy;
 
-			dx = positionAdjustment(getWidth(), contentRect.width, contentRect.x);
-			dy = positionAdjustment(getHeight(), contentRect.height, contentRect.y);
+			dx = positionAdjustment(getWidth(), contentRect.width,
+					contentRect.x);
+			dy = positionAdjustment(getHeight(), contentRect.height,
+					contentRect.y);
 
 			if (dx != 0 || dy != 0) {
 				Point viewPosition = getViewPosition();
@@ -396,7 +378,8 @@ public class JViewport extends JComponent implements Accessible {
 				if (view.isValid()) {
 					if (getParent().getComponentOrientation().isLeftToRight()) {
 						if (viewPosition.x + extent.width > viewSize.width) {
-							viewPosition.x = Math.max(0, viewSize.width - extent.width);
+							viewPosition.x = Math.max(0, viewSize.width
+									- extent.width);
 						} else if (viewPosition.x < 0) {
 							viewPosition.x = 0;
 						}
@@ -404,12 +387,13 @@ public class JViewport extends JComponent implements Accessible {
 						if (extent.width > viewSize.width) {
 							viewPosition.x = viewSize.width - extent.width;
 						} else {
-							viewPosition.x = Math.max(0,
-									Math.min(viewSize.width - extent.width, viewPosition.x));
+							viewPosition.x = Math.max(0, Math.min(viewSize.width
+									- extent.width, viewPosition.x));
 						}
 					}
 					if (viewPosition.y + extent.height > viewSize.height) {
-						viewPosition.y = Math.max(0, viewSize.height - extent.height);
+						viewPosition.y = Math.max(0, viewSize.height
+								- extent.height);
 					} else if (viewPosition.y < 0) {
 						viewPosition.y = 0;
 					}
@@ -477,7 +461,8 @@ public class JViewport extends JComponent implements Accessible {
 	 * method is applicable to height also. The code assumes that
 	 * parentWidth/childWidth are positive and childAt can be negative.
 	 */
-	private int positionAdjustment(int parentWidth, int childWidth, int childAt) {
+	private int positionAdjustment(int parentWidth, int childWidth,
+			int childAt) {
 
 		// +-----+
 		// | --- | No Change
@@ -538,13 +523,14 @@ public class JViewport extends JComponent implements Accessible {
 	 * <code>JViewPort</code>.
 	 *
 	 * @param border
-	 *            the <code>Border</code> to set
+	 *               the <code>Border</code> to set
 	 * @exception IllegalArgumentException
-	 *                this method is not implemented
+	 *                                     this method is not implemented
 	 */
 	public final void setBorder(Border border) {
 		if (border != null) {
-			throw new IllegalArgumentException("JViewport.setBorder() not supported");
+			throw new IllegalArgumentException(
+					"JViewport.setBorder() not supported");
 		}
 	}
 
@@ -566,7 +552,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * are overwritten.
 	 *
 	 * @param insets
-	 *            the <code>Insets</code> object which can be reused
+	 *               the <code>Insets</code> object which can be reused
 	 * @return this viewports inset values
 	 * @see #getInsets
 	 * @beaninfo expert: true
@@ -651,7 +637,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * were curious.) </blockquote>
 	 *
 	 * @param g
-	 *            the <code>Graphics</code> context within which to paint
+	 *          the <code>Graphics</code> context within which to paint
 	 */
 	public void paint(Graphics g) {
 		int width = getWidth();
@@ -721,8 +707,8 @@ public class JViewport extends JComponent implements Accessible {
 			Rectangle clip = g.getClipBounds();
 			if (clip.width != width || clip.height != height) {
 				if (!isOpaque()) {
-					g.setClip(0, 0, Math.min(viewBounds.width, width),
-							Math.min(viewBounds.height, height));
+					g.setClip(0, 0, Math.min(viewBounds.width, width), Math.min(
+							viewBounds.height, height));
 				} else {
 					g.setClip(0, 0, width, height);
 				}
@@ -731,7 +717,8 @@ public class JViewport extends JComponent implements Accessible {
 				paintViaBackingStore(g);
 			}
 		} else {
-			if (!scrollUnderway || lastPaintPosition.equals(getViewLocation())) {
+			if (!scrollUnderway || lastPaintPosition.equals(
+					getViewLocation())) {
 				// No scrolling happened: repaint required area via backing
 				// store.
 				paintViaBackingStore(g);
@@ -746,7 +733,8 @@ public class JViewport extends JComponent implements Accessible {
 				Point newLocation = getViewLocation();
 				int dx = newLocation.x - lastPaintPosition.x;
 				int dy = newLocation.y - lastPaintPosition.y;
-				boolean canBlit = computeBlit(dx, dy, blitFrom, blitTo, blitSize, blitPaint);
+				boolean canBlit = computeBlit(dx, dy, blitFrom, blitTo,
+						blitSize, blitPaint);
 				if (!canBlit) {
 					// The image was either moved diagonally or
 					// moved by more than the image size: paint normally.
@@ -764,8 +752,8 @@ public class JViewport extends JComponent implements Accessible {
 					g.setClip(0, 0, width, height);
 					Graphics bsg = getBackingStoreGraphics(g);
 					try {
-						bsg.copyArea(blitFrom.x, blitFrom.y, blitSize.width, blitSize.height, bdx,
-								bdy);
+						bsg.copyArea(blitFrom.x, blitFrom.y, blitSize.width,
+								blitSize.height, bdx, bdy);
 
 						g.setClip(clip.x, clip.y, clip.width, clip.height);
 						// Paint the rest of the view; the part that has just
@@ -791,13 +779,13 @@ public class JViewport extends JComponent implements Accessible {
 	 * changed, fire a <code>StateChanged</code> event.
 	 *
 	 * @param x
-	 *            left edge of the origin
+	 *          left edge of the origin
 	 * @param y
-	 *            top edge of the origin
+	 *          top edge of the origin
 	 * @param w
-	 *            width in pixels
+	 *          width in pixels
 	 * @param h
-	 *            height in pixels
+	 *          height in pixels
 	 *
 	 * @see JComponent#reshape(int, int, int, int)
 	 */
@@ -819,12 +807,12 @@ public class JViewport extends JComponent implements Accessible {
 	 * want to change this mode to get maximum performance for your use case.
 	 *
 	 * @param mode
-	 *            one of the following values:
-	 *            <ul>
-	 *            <li>JViewport.BLIT_SCROLL_MODE
-	 *            <li>JViewport.BACKINGSTORE_SCROLL_MODE
-	 *            <li>JViewport.SIMPLE_SCROLL_MODE
-	 *            </ul>
+	 *             one of the following values:
+	 *             <ul>
+	 *             <li>JViewport.BLIT_SCROLL_MODE
+	 *             <li>JViewport.BACKINGSTORE_SCROLL_MODE
+	 *             <li>JViewport.SIMPLE_SCROLL_MODE
+	 *             </ul>
 	 *
 	 * @see #BLIT_SCROLL_MODE
 	 * @see #BACKINGSTORE_SCROLL_MODE
@@ -877,7 +865,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * the scroll.
 	 *
 	 * @param enabled
-	 *            if true, maintain an offscreen backing store
+	 *                if true, maintain an offscreen backing store
 	 *
 	 * @deprecated As of Java 2 platform v1.3, replaced by
 	 *             <code>setScrollMode()</code>.
@@ -893,7 +881,8 @@ public class JViewport extends JComponent implements Accessible {
 
 	private boolean isBlitting() {
 		Component view = getView();
-		return (scrollMode == BLIT_SCROLL_MODE) && (view instanceof JComponent) && view.isOpaque();
+		return (scrollMode == BLIT_SCROLL_MODE) && (view instanceof JComponent)
+				&& view.isOpaque();
 	}
 
 	/**
@@ -912,7 +901,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * <code>view</code>), which can be <code>null</code>.
 	 *
 	 * @param view
-	 *            the viewport's new lightweight child
+	 *             the viewport's new lightweight child
 	 *
 	 * @see #getView
 	 */
@@ -972,8 +961,9 @@ public class JViewport extends JComponent implements Accessible {
 	 * Sets the size of the view. A state changed event will be fired.
 	 *
 	 * @param newSize
-	 *            a <code>Dimension</code> object specifying the new size of the
-	 *            view
+	 *                a <code>Dimension</code> object specifying the new size of
+	 *                the
+	 *                view
 	 */
 	public void setViewSize(Dimension newSize) {
 		Component view = getView();
@@ -1014,7 +1004,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * the viewport, does nothing if there's no view.
 	 *
 	 * @param p
-	 *            a <code>Point</code> object giving the upper left coordinates
+	 *          a <code>Point</code> object giving the upper left coordinates
 	 */
 	public void setViewPosition(Point p) {
 		Component view = getView();
@@ -1057,14 +1047,16 @@ public class JViewport extends JComponent implements Accessible {
 						Graphics g = JComponent.safelyGetGraphics(this);
 						flushViewDirtyRegion(g, dirty);
 						view.setLocation(newX, newY);
-						Rectangle r = new Rectangle(0, 0, getWidth(),
-								Math.min(getHeight(), jview.getHeight()));
+						Rectangle r = new Rectangle(0, 0, getWidth(), Math.min(
+								getHeight(), jview.getHeight()));
 						g.setClip(r);
 						// Repaint the complete component if the blit succeeded
 						// and needsRepaintAfterBlit returns true.
-						repaintAll = (windowBlitPaint(g) && needsRepaintAfterBlit());
+						repaintAll = (windowBlitPaint(g)
+								&& needsRepaintAfterBlit());
 						g.dispose();
-						rm.notifyRepaintPerformed(this, r.x, r.y, r.width, r.height);
+						rm.notifyRepaintPerformed(this, r.x, r.y, r.width,
+								r.height);
 						rm.markCompletelyClean((JComponent) getParent());
 						rm.markCompletelyClean(this);
 						rm.markCompletelyClean(jview);
@@ -1107,22 +1099,22 @@ public class JViewport extends JComponent implements Accessible {
 	 * return the values required for the blit.
 	 *
 	 * @param dx
-	 *            the horizontal delta
+	 *                  the horizontal delta
 	 * @param dy
-	 *            the vertical delta
+	 *                  the vertical delta
 	 * @param blitFrom
-	 *            the <code>Point</code> we're blitting from
+	 *                  the <code>Point</code> we're blitting from
 	 * @param blitTo
-	 *            the <code>Point</code> we're blitting to
+	 *                  the <code>Point</code> we're blitting to
 	 * @param blitSize
-	 *            the <code>Dimension</code> of the area to blit
+	 *                  the <code>Dimension</code> of the area to blit
 	 * @param blitPaint
-	 *            the area to blit
+	 *                  the area to blit
 	 * @return true if the parameters are modified and we're ready to blit;
 	 *         false otherwise
 	 */
-	protected boolean computeBlit(int dx, int dy, Point blitFrom, Point blitTo, Dimension blitSize,
-			Rectangle blitPaint) {
+	protected boolean computeBlit(int dx, int dy, Point blitFrom, Point blitTo,
+			Dimension blitSize, Rectangle blitPaint) {
 		int dxAbs = Math.abs(dx);
 		int dyAbs = Math.abs(dy);
 		Dimension extentSize = getExtentSize();
@@ -1191,7 +1183,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * viewport that support "logical coordinates" will override this method.
 	 *
 	 * @param size
-	 *            a <code>Dimension</code> object using pixel coordinates
+	 *             a <code>Dimension</code> object using pixel coordinates
 	 * @return a <code>Dimension</code> object converted to view coordinates
 	 */
 	public Dimension toViewCoordinates(Dimension size) {
@@ -1203,7 +1195,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * viewport that support "logical coordinates" will override this method.
 	 *
 	 * @param p
-	 *            a <code>Point</code> object using pixel coordinates
+	 *          a <code>Point</code> object using pixel coordinates
 	 * @return a <code>Point</code> object converted to view coordinates
 	 */
 	public Point toViewCoordinates(Point p) {
@@ -1214,8 +1206,9 @@ public class JViewport extends JComponent implements Accessible {
 	 * Sets the size of the visible part of the view using view coordinates.
 	 *
 	 * @param newExtent
-	 *            a <code>Dimension</code> object specifying the size of the
-	 *            view
+	 *                  a <code>Dimension</code> object specifying the size of
+	 *                  the
+	 *                  view
 	 */
 	public void setExtentSize(Dimension newExtent) {
 		Dimension oldExtent = getExtentSize();
@@ -1235,7 +1228,8 @@ public class JViewport extends JComponent implements Accessible {
 	 * all JavaBeans&trade; has been added to the <code>java.beans</code>
 	 * package. Please see {@link java.beans.XMLEncoder}.
 	 */
-	protected class ViewListener extends ComponentAdapter implements Serializable {
+	protected class ViewListener extends ComponentAdapter implements
+			Serializable {
 		public void componentResized(ComponentEvent e) {
 			fireStateChanged();
 			revalidate();
@@ -1267,7 +1261,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * the view's size, position, or the viewport's extent size has changed.
 	 *
 	 * @param l
-	 *            the <code>ChangeListener</code> to add
+	 *          the <code>ChangeListener</code> to add
 	 * @see #removeChangeListener
 	 * @see #setViewPosition
 	 * @see #setViewSize
@@ -1282,7 +1276,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * time the views size, position, or the viewports extent size has changed.
 	 *
 	 * @param l
-	 *            the <code>ChangeListener</code> to remove
+	 *          the <code>ChangeListener</code> to remove
 	 * @see #addChangeListener
 	 */
 	public void removeChangeListener(ChangeListener l) {
@@ -1326,15 +1320,15 @@ public class JViewport extends JComponent implements Accessible {
 	 * paint is performed by the <code>RepaintManager</code>.
 	 *
 	 * @param tm
-	 *            maximum time in milliseconds before update
+	 *           maximum time in milliseconds before update
 	 * @param x
-	 *            the <code>x</code> coordinate (pixels over from left)
+	 *           the <code>x</code> coordinate (pixels over from left)
 	 * @param y
-	 *            the <code>y</code> coordinate (pixels down from top)
+	 *           the <code>y</code> coordinate (pixels down from top)
 	 * @param w
-	 *            the width
+	 *           the width
 	 * @param h
-	 *            the height
+	 *           the height
 	 * @see java.awt.Component#update(java.awt.Graphics)
 	 */
 	public void repaint(long tm, int x, int y, int w, int h) {
@@ -1356,12 +1350,14 @@ public class JViewport extends JComponent implements Accessible {
 	 */
 	protected String paramString() {
 		String isViewSizeSetString = (isViewSizeSet ? "true" : "false");
-		String lastPaintPositionString = (lastPaintPosition != null ? lastPaintPosition.toString()
+		String lastPaintPositionString = (lastPaintPosition != null
+				? lastPaintPosition.toString()
 				: "");
 		String scrollUnderwayString = (scrollUnderway ? "true" : "false");
 
-		return super.paramString() + ",isViewSizeSet=" + isViewSizeSetString + ",lastPaintPosition="
-				+ lastPaintPositionString + ",scrollUnderway=" + scrollUnderwayString;
+		return super.paramString() + ",isViewSizeSet=" + isViewSizeSetString
+				+ ",lastPaintPosition=" + lastPaintPositionString
+				+ ",scrollUnderway=" + scrollUnderwayString;
 	}
 
 	//
@@ -1374,13 +1370,14 @@ public class JViewport extends JComponent implements Accessible {
 	 * property is final).
 	 *
 	 * @param propertyName
-	 *            a string containing the property name
+	 *                     a string containing the property name
 	 * @param oldValue
-	 *            the old value of the property
+	 *                     the old value of the property
 	 * @param newValue
-	 *            the new value of the property
+	 *                     the new value of the property
 	 */
-	protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
+	protected void firePropertyChange(String propertyName, Object oldValue,
+			Object newValue) {
 		super.firePropertyChange(propertyName, oldValue, newValue);
 		if (propertyName.equals(EnableWindowBlit)) {
 			if (newValue != null) {
@@ -1407,7 +1404,8 @@ public class JViewport extends JComponent implements Accessible {
 		if (heavyParent != null) {
 			ComponentPeer peer = heavyParent.getPeer();
 
-			if (peer != null && peer.canDetermineObscurity() && !peer.isObscured()) {
+			if (peer != null && peer.canDetermineObscurity() && !peer
+					.isObscured()) {
 				// The peer says we aren't obscured, therefore we can assume
 				// that we won't later be messaged to paint a portion that
 				// we tried to blit that wasn't valid.
@@ -1440,7 +1438,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * to paint.
 	 *
 	 * @param g
-	 *            the <code>Graphics</code> context within which to paint
+	 *          the <code>Graphics</code> context within which to paint
 	 */
 	private void flushViewDirtyRegion(Graphics g, Rectangle dirty) {
 		JComponent view = (JComponent) getView();
@@ -1465,7 +1463,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * Used when blitting.
 	 *
 	 * @param g
-	 *            the <code>Graphics</code> context within which to paint
+	 *          the <code>Graphics</code> context within which to paint
 	 * @return true if blitting succeeded; otherwise false
 	 */
 	private boolean windowBlitPaint(Graphics g) {
@@ -1480,7 +1478,8 @@ public class JViewport extends JComponent implements Accessible {
 		RepaintManager rm = RepaintManager.currentManager(this);
 		JComponent view = (JComponent) getView();
 
-		if (lastPaintPosition == null || lastPaintPosition.equals(getViewLocation())) {
+		if (lastPaintPosition == null || lastPaintPosition.equals(
+				getViewLocation())) {
 			paintView(g);
 			retValue = false;
 		} else {
@@ -1494,7 +1493,8 @@ public class JViewport extends JComponent implements Accessible {
 			Point newLocation = getViewLocation();
 			int dx = newLocation.x - lastPaintPosition.x;
 			int dy = newLocation.y - lastPaintPosition.y;
-			boolean canBlit = computeBlit(dx, dy, blitFrom, blitTo, blitSize, blitPaint);
+			boolean canBlit = computeBlit(dx, dy, blitFrom, blitTo, blitSize,
+					blitPaint);
 			if (!canBlit) {
 				paintView(g);
 				retValue = false;
@@ -1505,8 +1505,9 @@ public class JViewport extends JComponent implements Accessible {
 				r.x -= view.getX();
 				r.y -= view.getY();
 
-				blitDoubleBuffered(view, g, r.x, r.y, r.width, r.height, blitFrom.x, blitFrom.y,
-						blitTo.x, blitTo.y, blitSize.width, blitSize.height);
+				blitDoubleBuffered(view, g, r.x, r.y, r.width, r.height,
+						blitFrom.x, blitFrom.y, blitTo.x, blitTo.y,
+						blitSize.width, blitSize.height);
 				retValue = true;
 			}
 		}
@@ -1522,9 +1523,9 @@ public class JViewport extends JComponent implements Accessible {
 	// not setDoubleBuffered(true) was invoked on the view.
 	//
 
-	private void blitDoubleBuffered(JComponent view, Graphics g, int clipX, int clipY, int clipW,
-			int clipH, int blitFromX, int blitFromY, int blitToX, int blitToY, int blitW,
-			int blitH) {
+	private void blitDoubleBuffered(JComponent view, Graphics g, int clipX,
+			int clipY, int clipW, int clipH, int blitFromX, int blitFromY,
+			int blitToX, int blitToY, int blitW, int blitH) {
 		// NOTE:
 		// blitFrom/blitTo are in JViewport coordinates system
 		// not the views coordinate space.
@@ -1540,7 +1541,8 @@ public class JViewport extends JComponent implements Accessible {
 			oldComposite = g2d.getComposite();
 			g2d.setComposite(AlphaComposite.Src);
 		}
-		rm.copyArea(this, g, blitFromX, blitFromY, blitW, blitH, bdx, bdy, false);
+		rm.copyArea(this, g, blitFromX, blitFromY, blitW, blitH, bdx, bdy,
+				false);
 		if (oldComposite != null) {
 			((Graphics2D) g).setComposite(oldComposite);
 		}
@@ -1558,7 +1560,7 @@ public class JViewport extends JComponent implements Accessible {
 	 * blit.
 	 *
 	 * @param g
-	 *            the <code>Graphics</code> context within which to paint
+	 *          the <code>Graphics</code> context within which to paint
 	 */
 	private void paintView(Graphics g) {
 		Rectangle clip = g.getClipBounds();
@@ -1593,8 +1595,8 @@ public class JViewport extends JComponent implements Accessible {
 	 * but will not produce the expected behavior.
 	 */
 	private boolean canUseWindowBlitter() {
-		if (!isShowing()
-				|| (!(getParent() instanceof JComponent) && !(getView() instanceof JComponent))) {
+		if (!isShowing() || (!(getParent() instanceof JComponent)
+				&& !(getView() instanceof JComponent))) {
 			return false;
 		}
 		if (isPainting()) {
@@ -1607,7 +1609,8 @@ public class JViewport extends JComponent implements Accessible {
 		Rectangle dirtyRegion = RepaintManager.currentManager(this)
 				.getDirtyRegion((JComponent) getParent());
 
-		if (dirtyRegion != null && dirtyRegion.width > 0 && dirtyRegion.height > 0) {
+		if (dirtyRegion != null && dirtyRegion.width > 0
+				&& dirtyRegion.height > 0) {
 			// Part of the scrollpane needs to be repainted too, don't blit.
 			return false;
 		}
@@ -1619,8 +1622,8 @@ public class JViewport extends JComponent implements Accessible {
 		Component lastParent = null;
 		int x, y, w, h;
 
-		for (parent = this; parent != null
-				&& isLightweightComponent(parent); parent = parent.getParent()) {
+		for (parent = this; parent != null && isLightweightComponent(
+				parent); parent = parent.getParent()) {
 			x = parent.getX();
 			y = parent.getY();
 			w = parent.getWidth();

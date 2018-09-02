@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -152,8 +150,7 @@ public class XMLEntityScanner implements XMLLocator {
 	//
 
 	/** Default constructor. */
-	public XMLEntityScanner() {
-	} // <init>()
+	public XMLEntityScanner() {} // <init>()
 
 	/**
 	 * private constructor, this class can only be instantiated within this
@@ -163,7 +160,8 @@ public class XMLEntityScanner implements XMLLocator {
 	 * @see getEntityScanner()
 	 * @see getEntityScanner(ScannedEntity)
 	 */
-	public XMLEntityScanner(PropertyManager propertyManager, XMLEntityManager entityManager) {
+	public XMLEntityScanner(PropertyManager propertyManager,
+			XMLEntityManager entityManager) {
 		fEntityManager = entityManager;
 		reset(propertyManager);
 	} // <init>()
@@ -188,7 +186,8 @@ public class XMLEntityScanner implements XMLLocator {
 	 */
 	public void reset(PropertyManager propertyManager) {
 		fSymbolTable = (SymbolTable) propertyManager.getProperty(SYMBOL_TABLE);
-		fErrorReporter = (XMLErrorReporter) propertyManager.getProperty(ERROR_REPORTER);
+		fErrorReporter = (XMLErrorReporter) propertyManager.getProperty(
+				ERROR_REPORTER);
 		resetCommon();
 	}
 
@@ -197,26 +196,32 @@ public class XMLEntityScanner implements XMLLocator {
 	 * any features and properties that affect the operation of the component.
 	 *
 	 * @param componentManager
-	 *            The component manager.
+	 *                         The component manager.
 	 *
 	 * @throws SAXException
-	 *             Thrown by component on initialization error. For example, if
-	 *             a feature or property is required for the operation of the
-	 *             component, the component manager may throw a
-	 *             SAXNotRecognizedException or a SAXNotSupportedException.
+	 *                      Thrown by component on initialization error. For
+	 *                      example, if
+	 *                      a feature or property is required for the operation
+	 *                      of the
+	 *                      component, the component manager may throw a
+	 *                      SAXNotRecognizedException or a
+	 *                      SAXNotSupportedException.
 	 */
-	public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
+	public void reset(XMLComponentManager componentManager)
+			throws XMLConfigurationException {
 		// xerces features
-		fAllowJavaEncodings = componentManager.getFeature(ALLOW_JAVA_ENCODINGS, false);
+		fAllowJavaEncodings = componentManager.getFeature(ALLOW_JAVA_ENCODINGS,
+				false);
 
 		// xerces properties
 		fSymbolTable = (SymbolTable) componentManager.getProperty(SYMBOL_TABLE);
-		fErrorReporter = (XMLErrorReporter) componentManager.getProperty(ERROR_REPORTER);
+		fErrorReporter = (XMLErrorReporter) componentManager.getProperty(
+				ERROR_REPORTER);
 		resetCommon();
 	} // reset(XMLComponentManager)
 
-	public final void reset(SymbolTable symbolTable, XMLEntityManager entityManager,
-			XMLErrorReporter reporter) {
+	public final void reset(SymbolTable symbolTable,
+			XMLEntityManager entityManager, XMLErrorReporter reporter) {
 		fCurrentEntity = null;
 		fSymbolTable = symbolTable;
 		fEntityManager = entityManager;
@@ -257,7 +262,7 @@ public class XMLEntityScanner implements XMLLocator {
 	 * value of the version pseudo-attribute in an XML or text declaration.
 	 *
 	 * @param xmlVersion
-	 *            the XML version of the current entity
+	 *                   the XML version of the current entity
 	 */
 	public final void setXMLVersion(String xmlVersion) {
 		xmlVersionSetExplicitly = true;
@@ -292,7 +297,8 @@ public class XMLEntityScanner implements XMLLocator {
 	 */
 	public final String getBaseSystemId() {
 		return (fCurrentEntity != null && fCurrentEntity.entityLocation != null)
-				? fCurrentEntity.entityLocation.getExpandedSystemId() : null;
+				? fCurrentEntity.entityLocation.getExpandedSystemId()
+				: null;
 	} // getBaseSystemId():String
 
 	/**
@@ -330,14 +336,15 @@ public class XMLEntityScanner implements XMLLocator {
 	}
 
 	public final int getCharacterOffset() {
-		return fCurrentEntity != null
-				? fCurrentEntity.fTotalCountTillLastLoad + fCurrentEntity.position : -1;
+		return fCurrentEntity != null ? fCurrentEntity.fTotalCountTillLastLoad
+				+ fCurrentEntity.position : -1;
 	}
 
 	/** Returns the expanded system identifier. */
 	public final String getExpandedSystemId() {
 		return (fCurrentEntity != null && fCurrentEntity.entityLocation != null)
-				? fCurrentEntity.entityLocation.getExpandedSystemId() : null;
+				? fCurrentEntity.entityLocation.getExpandedSystemId()
+				: null;
 	}
 
 	/**
@@ -350,7 +357,8 @@ public class XMLEntityScanner implements XMLLocator {
 	/** Returns the literal system identifier. */
 	public final String getLiteralSystemId() {
 		return (fCurrentEntity != null && fCurrentEntity.entityLocation != null)
-				? fCurrentEntity.entityLocation.getLiteralSystemId() : null;
+				? fCurrentEntity.entityLocation.getLiteralSystemId()
+				: null;
 	}
 
 	/**
@@ -363,7 +371,8 @@ public class XMLEntityScanner implements XMLLocator {
 	/** Returns the public identifier. */
 	public final String getPublicId() {
 		return (fCurrentEntity != null && fCurrentEntity.entityLocation != null)
-				? fCurrentEntity.entityLocation.getPublicId() : null;
+				? fCurrentEntity.entityLocation.getPublicId()
+				: null;
 	}
 
 	/**
@@ -412,10 +421,10 @@ public class XMLEntityScanner implements XMLLocator {
 	 * appropriate java.io.Reader object).
 	 *
 	 * @param encoding
-	 *            The IANA encoding name of the new encoding.
+	 *                 The IANA encoding name of the new encoding.
 	 *
 	 * @throws IOException
-	 *             Thrown if the new encoding is not supported.
+	 *                     Thrown if the new encoding is not supported.
 	 *
 	 * @see com.sun.org.apache.xerces.internal.util.EncodingMap
 	 */
@@ -433,33 +442,34 @@ public class XMLEntityScanner implements XMLLocator {
 			// distribution (up to and including 1.3). The UTF-16
 			// decoder buffers 8K blocks even when only asked to read
 			// a single char! -Ac
-			if (fCurrentEntity.encoding == null || !fCurrentEntity.encoding.equals(encoding)) {
+			if (fCurrentEntity.encoding == null || !fCurrentEntity.encoding
+					.equals(encoding)) {
 				// UTF-16 is a bit of a special case. If the encoding is UTF-16,
 				// and we know the endian-ness, we shouldn't change readers.
 				// If it's ISO-10646-UCS-(2|4), then we'll have to deduce
 				// the endian-ness from the encoding we presently have.
-				if (fCurrentEntity.encoding != null
-						&& fCurrentEntity.encoding.startsWith("UTF-16")) {
+				if (fCurrentEntity.encoding != null && fCurrentEntity.encoding
+						.startsWith("UTF-16")) {
 					String ENCODING = encoding.toUpperCase(Locale.ENGLISH);
 					if (ENCODING.equals("UTF-16"))
 						return;
 					if (ENCODING.equals("ISO-10646-UCS-4")) {
 						if (fCurrentEntity.encoding.equals("UTF-16BE")) {
-							fCurrentEntity.reader = new UCSReader(fCurrentEntity.stream,
-									UCSReader.UCS4BE);
+							fCurrentEntity.reader = new UCSReader(
+									fCurrentEntity.stream, UCSReader.UCS4BE);
 						} else {
-							fCurrentEntity.reader = new UCSReader(fCurrentEntity.stream,
-									UCSReader.UCS4LE);
+							fCurrentEntity.reader = new UCSReader(
+									fCurrentEntity.stream, UCSReader.UCS4LE);
 						}
 						return;
 					}
 					if (ENCODING.equals("ISO-10646-UCS-2")) {
 						if (fCurrentEntity.encoding.equals("UTF-16BE")) {
-							fCurrentEntity.reader = new UCSReader(fCurrentEntity.stream,
-									UCSReader.UCS2BE);
+							fCurrentEntity.reader = new UCSReader(
+									fCurrentEntity.stream, UCSReader.UCS2BE);
 						} else {
-							fCurrentEntity.reader = new UCSReader(fCurrentEntity.stream,
-									UCSReader.UCS2LE);
+							fCurrentEntity.reader = new UCSReader(
+									fCurrentEntity.stream, UCSReader.UCS2LE);
 						}
 						return;
 					}
@@ -467,11 +477,12 @@ public class XMLEntityScanner implements XMLLocator {
 				// wrap a new reader around the input stream, changing
 				// the encoding
 				if (DEBUG_ENCODINGS) {
-					System.out.println(
-							"$$$ creating new reader from stream: " + fCurrentEntity.stream);
+					System.out.println("$$$ creating new reader from stream: "
+							+ fCurrentEntity.stream);
 				}
 				// fCurrentEntity.stream.reset();
-				fCurrentEntity.reader = createReader(fCurrentEntity.stream, encoding, null);
+				fCurrentEntity.reader = createReader(fCurrentEntity.stream,
+						encoding, null);
 				fCurrentEntity.encoding = encoding;
 
 			} else {
@@ -501,9 +512,9 @@ public class XMLEntityScanner implements XMLLocator {
 	 * <strong>Note:</strong> The character is <em>not</em> consumed.
 	 *
 	 * @throws IOException
-	 *             Thrown if i/o error occurs.
+	 *                      Thrown if i/o error occurs.
 	 * @throws EOFException
-	 *             Thrown on end of file.
+	 *                      Thrown on end of file.
 	 */
 	public int peekChar() throws IOException {
 		if (DEBUG_BUFFER) {
@@ -525,7 +536,8 @@ public class XMLEntityScanner implements XMLLocator {
 			System.out.print(")peekChar: ");
 			print();
 			if (isExternal) {
-				System.out.println(" -> '" + (c != '\r' ? (char) c : '\n') + "'");
+				System.out.println(" -> '" + (c != '\r' ? (char) c : '\n')
+						+ "'");
 			} else {
 				System.out.println(" -> '" + (char) c + "'");
 			}
@@ -544,12 +556,12 @@ public class XMLEntityScanner implements XMLLocator {
 	 * <strong>Note:</strong> The character is consumed.
 	 *
 	 * @param nt
-	 *            The type of the name (element or attribute)
+	 *           The type of the name (element or attribute)
 	 *
 	 * @throws IOException
-	 *             Thrown if i/o error occurs.
+	 *                      Thrown if i/o error occurs.
 	 * @throws EOFException
-	 *             Thrown on end of file.
+	 *                      Thrown on end of file.
 	 */
 	protected int scanChar(NameType nt) throws IOException {
 		if (DEBUG_BUFFER) {
@@ -591,7 +603,8 @@ public class XMLEntityScanner implements XMLLocator {
 		}
 		fCurrentEntity.columnNumber++;
 		if (!detectingVersion) {
-			checkEntityLimit(nt, fCurrentEntity, offset, fCurrentEntity.position - offset);
+			checkEntityLimit(nt, fCurrentEntity, offset, fCurrentEntity.position
+					- offset);
 		}
 		return c;
 
@@ -607,9 +620,9 @@ public class XMLEntityScanner implements XMLLocator {
 	 * SymbolTable can be used for this purpose.
 	 *
 	 * @throws IOException
-	 *             Thrown if i/o error occurs.
+	 *                      Thrown if i/o error occurs.
 	 * @throws EOFException
-	 *             Thrown on end of file.
+	 *                      Thrown on end of file.
 	 *
 	 * @see com.sun.org.apache.xerces.internal.util.SymbolTable
 	 * @see com.sun.org.apache.xerces.internal.util.XMLChar#isName
@@ -652,7 +665,8 @@ public class XMLEntityScanner implements XMLLocator {
 					fCurrentEntity.ch = tmp;
 					fCurrentEntity.fBufferSize *= 2;
 				} else {
-					System.arraycopy(fCurrentEntity.ch, offset, fCurrentEntity.ch, 0, length);
+					System.arraycopy(fCurrentEntity.ch, offset,
+							fCurrentEntity.ch, 0, length);
 				}
 				offset = 0;
 				if (load(length, false, false)) {
@@ -687,12 +701,12 @@ public class XMLEntityScanner implements XMLLocator {
 	 * SymbolTable can be used for this purpose.
 	 *
 	 * @param nt
-	 *            The type of the name (element or attribute)
+	 *           The type of the name (element or attribute)
 	 *
 	 * @throws IOException
-	 *             Thrown if i/o error occurs.
+	 *                      Thrown if i/o error occurs.
 	 * @throws EOFException
-	 *             Thrown on end of file.
+	 *                      Thrown on end of file.
 	 *
 	 * @see com.sun.org.apache.xerces.internal.util.SymbolTable
 	 * @see com.sun.org.apache.xerces.internal.util.XMLChar#isName
@@ -720,7 +734,8 @@ public class XMLEntityScanner implements XMLLocator {
 				offset = 0;
 				if (load(1, false, false)) {
 					fCurrentEntity.columnNumber++;
-					String symbol = fSymbolTable.addSymbol(fCurrentEntity.ch, 0, 1);
+					String symbol = fSymbolTable.addSymbol(fCurrentEntity.ch, 0,
+							1);
 
 					if (DEBUG_BUFFER) {
 						System.out.print(")scanName: ");
@@ -741,7 +756,8 @@ public class XMLEntityScanner implements XMLLocator {
 				}
 				if (!vc)
 					break;
-				if ((length = checkBeforeLoad(fCurrentEntity, offset, offset)) > 0) {
+				if ((length = checkBeforeLoad(fCurrentEntity, offset,
+						offset)) > 0) {
 					offset = 0;
 					if (load(length, false, false)) {
 						break;
@@ -779,17 +795,17 @@ public class XMLEntityScanner implements XMLLocator {
 	 * structure must be symbols. The SymbolTable can be used for this purpose.
 	 *
 	 * @param qname
-	 *            The qualified name structure to fill.
+	 *              The qualified name structure to fill.
 	 * @param nt
-	 *            The type of the name (element or attribute)
+	 *              The type of the name (element or attribute)
 	 *
 	 * @return Returns true if a qualified name appeared immediately on the
 	 *         input and was scanned, false otherwise.
 	 *
 	 * @throws IOException
-	 *             Thrown if i/o error occurs.
+	 *                      Thrown if i/o error occurs.
 	 * @throws EOFException
-	 *             Thrown on end of file.
+	 *                      Thrown on end of file.
 	 *
 	 * @see com.sun.org.apache.xerces.internal.util.SymbolTable
 	 * @see com.sun.org.apache.xerces.internal.util.XMLChar#isName
@@ -826,7 +842,8 @@ public class XMLEntityScanner implements XMLLocator {
 					// adding into symbol table.
 					// XXX We are trying to add single character in
 					// SymbolTable??????
-					String name = fSymbolTable.addSymbol(fCurrentEntity.ch, 0, 1);
+					String name = fSymbolTable.addSymbol(fCurrentEntity.ch, 0,
+							1);
 					qname.setValues(null, name, name, null);
 					if (DEBUG_BUFFER) {
 						System.out.print(")scanQName, " + qname + ": ");
@@ -857,9 +874,11 @@ public class XMLEntityScanner implements XMLLocator {
 					}
 					index = fCurrentEntity.position;
 					// check prefix before further read
-					checkLimit(Limit.MAX_NAME_LIMIT, fCurrentEntity, offset, index - offset);
+					checkLimit(Limit.MAX_NAME_LIMIT, fCurrentEntity, offset,
+							index - offset);
 				}
-				if ((length = checkBeforeLoad(fCurrentEntity, offset, index)) > 0) {
+				if ((length = checkBeforeLoad(fCurrentEntity, offset,
+						index)) > 0) {
 					if (index != -1) {
 						index = index - offset;
 					}
@@ -874,22 +893,28 @@ public class XMLEntityScanner implements XMLLocator {
 			if (length > 0) {
 				String prefix = null;
 				String localpart = null;
-				String rawname = fSymbolTable.addSymbol(fCurrentEntity.ch, offset, length);
+				String rawname = fSymbolTable.addSymbol(fCurrentEntity.ch,
+						offset, length);
 
 				if (index != -1) {
 					int prefixLength = index - offset;
 					// check the result: prefix
-					checkLimit(Limit.MAX_NAME_LIMIT, fCurrentEntity, offset, prefixLength);
-					prefix = fSymbolTable.addSymbol(fCurrentEntity.ch, offset, prefixLength);
+					checkLimit(Limit.MAX_NAME_LIMIT, fCurrentEntity, offset,
+							prefixLength);
+					prefix = fSymbolTable.addSymbol(fCurrentEntity.ch, offset,
+							prefixLength);
 					int len = length - prefixLength - 1;
 					// check the result: localpart
-					checkLimit(Limit.MAX_NAME_LIMIT, fCurrentEntity, index + 1, len);
-					localpart = fSymbolTable.addSymbol(fCurrentEntity.ch, index + 1, len);
+					checkLimit(Limit.MAX_NAME_LIMIT, fCurrentEntity, index + 1,
+							len);
+					localpart = fSymbolTable.addSymbol(fCurrentEntity.ch, index
+							+ 1, len);
 
 				} else {
 					localpart = rawname;
 					// check the result: localpart
-					checkLimit(Limit.MAX_NAME_LIMIT, fCurrentEntity, offset, length);
+					checkLimit(Limit.MAX_NAME_LIMIT, fCurrentEntity, offset,
+							length);
 				}
 				qname.setValues(prefix, localpart, rawname, null);
 				if (DEBUG_BUFFER) {
@@ -917,16 +942,16 @@ public class XMLEntityScanner implements XMLLocator {
 	 * checks against the limit and buffer size before loading more characters.
 	 *
 	 * @param entity
-	 *            the current entity
+	 *                   the current entity
 	 * @param offset
-	 *            the offset from which the current read was started
+	 *                   the offset from which the current read was started
 	 * @param nameOffset
-	 *            the offset from which the current name starts
+	 *                   the offset from which the current name starts
 	 * @return the length of characters scanned before the end of the buffer,
 	 *         zero if there is more to be read in the buffer
 	 */
-	protected int checkBeforeLoad(Entity.ScannedEntity entity, int offset, int nameOffset)
-			throws IOException {
+	protected int checkBeforeLoad(Entity.ScannedEntity entity, int offset,
+			int nameOffset) throws IOException {
 		int length = 0;
 		if (++entity.position == entity.count) {
 			length = entity.position - offset;
@@ -958,15 +983,16 @@ public class XMLEntityScanner implements XMLLocator {
 	 * against the limit.
 	 *
 	 * @param nt
-	 *            type of name (element, attribute or entity)
+	 *               type of name (element, attribute or entity)
 	 * @param entity
-	 *            The current entity
+	 *               The current entity
 	 * @param offset
-	 *            The index of the first byte
+	 *               The index of the first byte
 	 * @param length
-	 *            The length of the entity scanned
+	 *               The length of the entity scanned
 	 */
-	protected void checkEntityLimit(NameType nt, ScannedEntity entity, int offset, int length) {
+	protected void checkEntityLimit(NameType nt, ScannedEntity entity,
+			int offset, int length) {
 		if (entity == null || !entity.isGE) {
 			return;
 		}
@@ -984,7 +1010,7 @@ public class XMLEntityScanner implements XMLLocator {
 	 * the entity and checks the accumulated value against the limit.
 	 *
 	 * @param entity
-	 *            The current entity
+	 *               The current entity
 	 */
 	protected void checkNodeCount(ScannedEntity entity) {
 		if (entity != null && entity.isGE) {
@@ -996,34 +1022,39 @@ public class XMLEntityScanner implements XMLLocator {
 	 * Checks whether the value of the specified Limit exceeds its limit
 	 *
 	 * @param limit
-	 *            The Limit to be checked
+	 *               The Limit to be checked
 	 * @param entity
-	 *            The current entity
+	 *               The current entity
 	 * @param offset
-	 *            The index of the first byte
+	 *               The index of the first byte
 	 * @param length
-	 *            The length of the entity scanned
+	 *               The length of the entity scanned
 	 */
-	protected void checkLimit(Limit limit, ScannedEntity entity, int offset, int length) {
+	protected void checkLimit(Limit limit, ScannedEntity entity, int offset,
+			int length) {
 		fLimitAnalyzer.addValue(limit, entity.name, length);
 		if (fSecurityManager.isOverLimit(limit, fLimitAnalyzer)) {
 			fSecurityManager.debugPrint(fLimitAnalyzer);
 			Object[] e = (limit == Limit.ENTITY_REPLACEMENT_LIMIT)
 					? new Object[] { fLimitAnalyzer.getValue(limit),
-							fSecurityManager.getLimit(limit),
-							fSecurityManager.getStateLiteral(limit) }
-					: new Object[] { entity.name, fLimitAnalyzer.getValue(limit),
-							fSecurityManager.getLimit(limit),
+							fSecurityManager.getLimit(limit), fSecurityManager
+									.getStateLiteral(limit) }
+					: new Object[] { entity.name, fLimitAnalyzer.getValue(
+							limit), fSecurityManager.getLimit(limit),
 							fSecurityManager.getStateLiteral(limit) };
-			fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, limit.key(), e,
-					XMLErrorReporter.SEVERITY_FATAL_ERROR);
+			fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, limit
+					.key(), e, XMLErrorReporter.SEVERITY_FATAL_ERROR);
 		}
-		if (fSecurityManager.isOverLimit(Limit.TOTAL_ENTITY_SIZE_LIMIT, fLimitAnalyzer)) {
+		if (fSecurityManager.isOverLimit(Limit.TOTAL_ENTITY_SIZE_LIMIT,
+				fLimitAnalyzer)) {
 			fSecurityManager.debugPrint(fLimitAnalyzer);
-			fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "TotalEntitySizeLimit",
-					new Object[] { fLimitAnalyzer.getTotalValue(Limit.TOTAL_ENTITY_SIZE_LIMIT),
-							fSecurityManager.getLimit(Limit.TOTAL_ENTITY_SIZE_LIMIT),
-							fSecurityManager.getStateLiteral(Limit.TOTAL_ENTITY_SIZE_LIMIT) },
+			fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
+					"TotalEntitySizeLimit", new Object[] { fLimitAnalyzer
+							.getTotalValue(Limit.TOTAL_ENTITY_SIZE_LIMIT),
+							fSecurityManager.getLimit(
+									Limit.TOTAL_ENTITY_SIZE_LIMIT),
+							fSecurityManager.getStateLiteral(
+									Limit.TOTAL_ENTITY_SIZE_LIMIT) },
 					XMLErrorReporter.SEVERITY_FATAL_ERROR);
 		}
 	}
@@ -1040,15 +1071,15 @@ public class XMLEntityScanner implements XMLLocator {
 	 * <p>
 	 *
 	 * @param content
-	 *            The content structure to fill.
+	 *                The content structure to fill.
 	 *
 	 * @return Returns the next character on the input, if known. This value may
 	 *         be -1 but this does <em>note</em> designate end of file.
 	 *
 	 * @throws IOException
-	 *             Thrown if i/o error occurs.
+	 *                      Thrown if i/o error occurs.
 	 * @throws EOFException
-	 *             Thrown on end of file.
+	 *                      Thrown on end of file.
 	 */
 	protected int scanContent(XMLString content) throws IOException {
 		if (DEBUG_BUFFER) {
@@ -1074,7 +1105,8 @@ public class XMLEntityScanner implements XMLLocator {
 		boolean counted = false;
 		if (c == '\n' || (c == '\r' && isExternal)) {
 			if (DEBUG_BUFFER) {
-				System.out.print("[newline, " + offset + ", " + fCurrentEntity.position + ": ");
+				System.out.print("[newline, " + offset + ", "
+						+ fCurrentEntity.position + ": ");
 				print();
 				System.out.println();
 			}
@@ -1085,7 +1117,8 @@ public class XMLEntityScanner implements XMLLocator {
 					fCurrentEntity.lineNumber++;
 					fCurrentEntity.columnNumber = 1;
 					if (fCurrentEntity.position == fCurrentEntity.count) {
-						checkEntityLimit(null, fCurrentEntity, offset, newlines);
+						checkEntityLimit(null, fCurrentEntity, offset,
+								newlines);
 						offset = 0;
 						fCurrentEntity.position = newlines;
 						if (load(newlines, false, true)) {
@@ -1106,7 +1139,8 @@ public class XMLEntityScanner implements XMLLocator {
 					fCurrentEntity.lineNumber++;
 					fCurrentEntity.columnNumber = 1;
 					if (fCurrentEntity.position == fCurrentEntity.count) {
-						checkEntityLimit(null, fCurrentEntity, offset, newlines);
+						checkEntityLimit(null, fCurrentEntity, offset,
+								newlines);
 						offset = 0;
 						fCurrentEntity.position = newlines;
 						if (load(newlines, false, true)) {
@@ -1131,14 +1165,16 @@ public class XMLEntityScanner implements XMLLocator {
 				content.setValues(fCurrentEntity.ch, offset, length);
 				// content.append(fCurrentEntity.ch, offset, length);
 				if (DEBUG_BUFFER) {
-					System.out.print("]newline, " + offset + ", " + fCurrentEntity.position + ": ");
+					System.out.print("]newline, " + offset + ", "
+							+ fCurrentEntity.position + ": ");
 					print();
 					System.out.println();
 				}
 				return -1;
 			}
 			if (DEBUG_BUFFER) {
-				System.out.print("]newline, " + offset + ", " + fCurrentEntity.position + ": ");
+				System.out.print("]newline, " + offset + ", "
+						+ fCurrentEntity.position + ": ");
 				print();
 				System.out.println();
 			}
@@ -1199,22 +1235,24 @@ public class XMLEntityScanner implements XMLLocator {
 	 * returned character data or making a copy of the character data.
 	 *
 	 * @param quote
-	 *            The quote character that signifies the end of the attribute
-	 *            value data.
+	 *                The quote character that signifies the end of the
+	 *                attribute
+	 *                value data.
 	 * @param content
-	 *            The content structure to fill.
+	 *                The content structure to fill.
 	 * @param isNSURI
-	 *            a flag indicating whether the content is a Namespace URI
+	 *                a flag indicating whether the content is a Namespace URI
 	 *
 	 * @return Returns the next character on the input, if known. This value may
 	 *         be -1 but this does <em>note</em> designate end of file.
 	 *
 	 * @throws IOException
-	 *             Thrown if i/o error occurs.
+	 *                      Thrown if i/o error occurs.
 	 * @throws EOFException
-	 *             Thrown on end of file.
+	 *                      Thrown on end of file.
 	 */
-	protected int scanLiteral(int quote, XMLString content, boolean isNSURI) throws IOException {
+	protected int scanLiteral(int quote, XMLString content, boolean isNSURI)
+			throws IOException {
 		if (DEBUG_BUFFER) {
 			System.out.print("(scanLiteral, '" + (char) quote + "': ");
 			print();
@@ -1238,7 +1276,8 @@ public class XMLEntityScanner implements XMLLocator {
 			whiteSpaceLen = 0;
 		if (c == '\n' || (c == '\r' && isExternal)) {
 			if (DEBUG_BUFFER) {
-				System.out.print("[newline, " + offset + ", " + fCurrentEntity.position + ": ");
+				System.out.print("[newline, " + offset + ", "
+						+ fCurrentEntity.position + ": ");
 				print();
 				System.out.println();
 			}
@@ -1295,14 +1334,16 @@ public class XMLEntityScanner implements XMLLocator {
 			if (fCurrentEntity.position == fCurrentEntity.count - 1) {
 				content.setValues(fCurrentEntity.ch, offset, length);
 				if (DEBUG_BUFFER) {
-					System.out.print("]newline, " + offset + ", " + fCurrentEntity.position + ": ");
+					System.out.print("]newline, " + offset + ", "
+							+ fCurrentEntity.position + ": ");
 					print();
 					System.out.println();
 				}
 				return -1;
 			}
 			if (DEBUG_BUFFER) {
-				System.out.print("]newline, " + offset + ", " + fCurrentEntity.position + ": ");
+				System.out.print("]newline, " + offset + ", "
+						+ fCurrentEntity.position + ": ");
 				print();
 				System.out.println();
 			}
@@ -1311,8 +1352,8 @@ public class XMLEntityScanner implements XMLLocator {
 		// scan literal value
 		for (; fCurrentEntity.position < fCurrentEntity.count; fCurrentEntity.position++) {
 			c = fCurrentEntity.ch[fCurrentEntity.position];
-			if ((c == quote && (!fCurrentEntity.literal || isExternal)) || c == '%'
-					|| !XMLChar.isContent(c)) {
+			if ((c == quote && (!fCurrentEntity.literal || isExternal))
+					|| c == '%' || !XMLChar.isContent(c)) {
 				break;
 			}
 			if (whiteSpaceInfoNeeded && c == '\t') {
@@ -1357,12 +1398,14 @@ public class XMLEntityScanner implements XMLLocator {
 	 * 0x0D (CR).
 	 *
 	 * @param whiteSpacePos
-	 *            position of a whitespace in the scanner entity buffer
+	 *                      position of a whitespace in the scanner entity
+	 *                      buffer
 	 */
 	private void storeWhiteSpace(int whiteSpacePos) {
 		if (whiteSpaceLen >= whiteSpaceLookup.length) {
 			int[] tmp = new int[whiteSpaceLookup.length + 100];
-			System.arraycopy(whiteSpaceLookup, 0, tmp, 0, whiteSpaceLookup.length);
+			System.arraycopy(whiteSpaceLookup, 0, tmp, 0,
+					whiteSpaceLookup.length);
 			whiteSpaceLookup = tmp;
 		}
 
@@ -1386,19 +1429,21 @@ public class XMLEntityScanner implements XMLLocator {
 	 * <p>
 	 * 
 	 * @param delimiter
-	 *            The string that signifies the end of the character data to be
-	 *            scanned.
+	 *                  The string that signifies the end of the character data
+	 *                  to be
+	 *                  scanned.
 	 * @param buffer
-	 *            The XMLStringBuffer to fill.
+	 *                  The XMLStringBuffer to fill.
 	 *
 	 * @return Returns true if there is more data to scan, false otherwise.
 	 *
 	 * @throws IOException
-	 *             Thrown if i/o error occurs.
+	 *                      Thrown if i/o error occurs.
 	 * @throws EOFException
-	 *             Thrown on end of file.
+	 *                      Thrown on end of file.
 	 */
-	protected boolean scanData(String delimiter, XMLStringBuffer buffer) throws IOException {
+	protected boolean scanData(String delimiter, XMLStringBuffer buffer)
+			throws IOException {
 
 		boolean done = false;
 		int delimLen = delimiter.length();
@@ -1418,11 +1463,14 @@ public class XMLEntityScanner implements XMLLocator {
 
 			boolean bNextEntity = false;
 
-			while ((fCurrentEntity.position > fCurrentEntity.count - delimLen) && (!bNextEntity)) {
-				System.arraycopy(fCurrentEntity.ch, fCurrentEntity.position, fCurrentEntity.ch, 0,
-						fCurrentEntity.count - fCurrentEntity.position);
+			while ((fCurrentEntity.position > fCurrentEntity.count - delimLen)
+					&& (!bNextEntity)) {
+				System.arraycopy(fCurrentEntity.ch, fCurrentEntity.position,
+						fCurrentEntity.ch, 0, fCurrentEntity.count
+								- fCurrentEntity.position);
 
-				bNextEntity = load(fCurrentEntity.count - fCurrentEntity.position, false, false);
+				bNextEntity = load(fCurrentEntity.count
+						- fCurrentEntity.position, false, false);
 				fCurrentEntity.position = 0;
 				fCurrentEntity.startPosition = 0;
 			}
@@ -1431,8 +1479,10 @@ public class XMLEntityScanner implements XMLLocator {
 				// something must be wrong with the input: e.g., file ends in an
 				// unterminated comment
 				int length = fCurrentEntity.count - fCurrentEntity.position;
-				checkEntityLimit(NameType.COMMENT, fCurrentEntity, fCurrentEntity.position, length);
-				buffer.append(fCurrentEntity.ch, fCurrentEntity.position, length);
+				checkEntityLimit(NameType.COMMENT, fCurrentEntity,
+						fCurrentEntity.position, length);
+				buffer.append(fCurrentEntity.ch, fCurrentEntity.position,
+						length);
 				fCurrentEntity.columnNumber += fCurrentEntity.count;
 				fCurrentEntity.baseCharOffset += (fCurrentEntity.position
 						- fCurrentEntity.startPosition);
@@ -1448,7 +1498,8 @@ public class XMLEntityScanner implements XMLLocator {
 			int newlines = 0;
 			if (c == '\n' || (c == '\r' && isExternal)) {
 				if (DEBUG_BUFFER) {
-					System.out.print("[newline, " + offset + ", " + fCurrentEntity.position + ": ");
+					System.out.print("[newline, " + offset + ", "
+							+ fCurrentEntity.position + ": ");
 					print();
 					System.out.println();
 				}
@@ -1495,18 +1546,20 @@ public class XMLEntityScanner implements XMLLocator {
 				}
 				int length = fCurrentEntity.position - offset;
 				if (fCurrentEntity.position == fCurrentEntity.count - 1) {
-					checkEntityLimit(NameType.COMMENT, fCurrentEntity, offset, length);
+					checkEntityLimit(NameType.COMMENT, fCurrentEntity, offset,
+							length);
 					buffer.append(fCurrentEntity.ch, offset, length);
 					if (DEBUG_BUFFER) {
-						System.out.print(
-								"]newline, " + offset + ", " + fCurrentEntity.position + ": ");
+						System.out.print("]newline, " + offset + ", "
+								+ fCurrentEntity.position + ": ");
 						print();
 						System.out.println();
 					}
 					return true;
 				}
 				if (DEBUG_BUFFER) {
-					System.out.print("]newline, " + offset + ", " + fCurrentEntity.position + ": ");
+					System.out.print("]newline, " + offset + ", "
+							+ fCurrentEntity.position + ": ");
 					print();
 					System.out.println();
 				}
@@ -1540,7 +1593,8 @@ public class XMLEntityScanner implements XMLLocator {
 					fCurrentEntity.position--;
 					int length = fCurrentEntity.position - offset;
 					fCurrentEntity.columnNumber += length - newlines;
-					checkEntityLimit(NameType.COMMENT, fCurrentEntity, offset, length);
+					checkEntityLimit(NameType.COMMENT, fCurrentEntity, offset,
+							length);
 					buffer.append(fCurrentEntity.ch, offset, length);
 					return true;
 				}
@@ -1571,16 +1625,16 @@ public class XMLEntityScanner implements XMLLocator {
 	 * specified character.
 	 *
 	 * @param c
-	 *            The character to skip.
+	 *           The character to skip.
 	 * @param nt
-	 *            The type of the name (element or attribute)
+	 *           The type of the name (element or attribute)
 	 *
 	 * @return Returns true if the character was skipped.
 	 *
 	 * @throws IOException
-	 *             Thrown if i/o error occurs.
+	 *                      Thrown if i/o error occurs.
 	 * @throws EOFException
-	 *             Thrown on end of file.
+	 *                      Thrown on end of file.
 	 */
 	protected boolean skipChar(int c, NameType nt) throws IOException {
 		if (DEBUG_BUFFER) {
@@ -1610,7 +1664,8 @@ public class XMLEntityScanner implements XMLLocator {
 				print();
 				System.out.println(" -> true");
 			}
-			checkEntityLimit(nt, fCurrentEntity, offset, fCurrentEntity.position - offset);
+			checkEntityLimit(nt, fCurrentEntity, offset, fCurrentEntity.position
+					- offset);
 			return true;
 		} else if (c == '\n' && cc == '\r' && isExternal) {
 			// handle newlines
@@ -1630,7 +1685,8 @@ public class XMLEntityScanner implements XMLLocator {
 				print();
 				System.out.println(" -> true");
 			}
-			checkEntityLimit(nt, fCurrentEntity, offset, fCurrentEntity.position - offset);
+			checkEntityLimit(nt, fCurrentEntity, offset, fCurrentEntity.position
+					- offset);
 			return true;
 		}
 
@@ -1657,9 +1713,9 @@ public class XMLEntityScanner implements XMLLocator {
 	 * @return Returns true if at least one space character was skipped.
 	 *
 	 * @throws IOException
-	 *             Thrown if i/o error occurs.
+	 *                      Thrown if i/o error occurs.
 	 * @throws EOFException
-	 *             Thrown on end of file.
+	 *                      Thrown on end of file.
 	 *
 	 * @see com.sun.org.apache.xerces.internal.util.XMLChar#isSpace
 	 */
@@ -1721,7 +1777,8 @@ public class XMLEntityScanner implements XMLLocator {
 
 				// If this is a general entity, spaces within a start element
 				// should be counted
-				checkEntityLimit(null, fCurrentEntity, offset, fCurrentEntity.position - offset);
+				checkEntityLimit(null, fCurrentEntity, offset,
+						fCurrentEntity.position - offset);
 				offset = fCurrentEntity.position;
 
 				// load more characters, if needed
@@ -1747,7 +1804,8 @@ public class XMLEntityScanner implements XMLLocator {
 					}
 
 				}
-			} while (XMLChar.isSpace(c = fCurrentEntity.ch[fCurrentEntity.position]));
+			} while (XMLChar.isSpace(
+					c = fCurrentEntity.ch[fCurrentEntity.position]));
 			if (DEBUG_BUFFER) {
 				System.out.print(")skipSpaces: ");
 				print();
@@ -1768,8 +1826,9 @@ public class XMLEntityScanner implements XMLLocator {
 
 	/**
 	 * @param length
-	 *            This function checks that following number of characters are
-	 *            available. to the underlying buffer.
+	 *               This function checks that following number of characters
+	 *               are
+	 *               available. to the underlying buffer.
 	 * @return This function returns true if capacity asked is available.
 	 */
 	public boolean arrangeCapacity(int length) throws IOException {
@@ -1778,15 +1837,18 @@ public class XMLEntityScanner implements XMLLocator {
 
 	/**
 	 * @param length
-	 *            This function checks that following number of characters are
-	 *            available. to the underlying buffer.
+	 *                     This function checks that following number of
+	 *                     characters are
+	 *                     available. to the underlying buffer.
 	 * @param changeEntity
-	 *            a flag to indicate that the underlying function should change
-	 *            the entity
+	 *                     a flag to indicate that the underlying function
+	 *                     should change
+	 *                     the entity
 	 * @return This function returns true if capacity asked is available.
 	 *
 	 */
-	public boolean arrangeCapacity(int length, boolean changeEntity) throws IOException {
+	public boolean arrangeCapacity(int length, boolean changeEntity)
+			throws IOException {
 		// check if the capacity is availble in the current buffer
 		// count is no. of characters in the buffer [x][m][l]
 		// position is '0' based
@@ -1795,8 +1857,10 @@ public class XMLEntityScanner implements XMLLocator {
 			return true;
 		}
 		if (DEBUG_SKIP_STRING) {
-			System.out.println("fCurrentEntity.count = " + fCurrentEntity.count);
-			System.out.println("fCurrentEntity.position = " + fCurrentEntity.position);
+			System.out.println("fCurrentEntity.count = "
+					+ fCurrentEntity.count);
+			System.out.println("fCurrentEntity.position = "
+					+ fCurrentEntity.position);
 			System.out.println("length = " + length);
 		}
 		boolean entityChanged = false;
@@ -1804,9 +1868,11 @@ public class XMLEntityScanner implements XMLLocator {
 		while ((fCurrentEntity.count - fCurrentEntity.position) < length) {
 			if ((fCurrentEntity.ch.length - fCurrentEntity.position) < length) {
 				invokeListeners(0);
-				System.arraycopy(fCurrentEntity.ch, fCurrentEntity.position, fCurrentEntity.ch, 0,
-						fCurrentEntity.count - fCurrentEntity.position);
-				fCurrentEntity.count = fCurrentEntity.count - fCurrentEntity.position;
+				System.arraycopy(fCurrentEntity.ch, fCurrentEntity.position,
+						fCurrentEntity.ch, 0, fCurrentEntity.count
+								- fCurrentEntity.position);
+				fCurrentEntity.count = fCurrentEntity.count
+						- fCurrentEntity.position;
 				fCurrentEntity.position = 0;
 			}
 
@@ -1819,8 +1885,10 @@ public class XMLEntityScanner implements XMLLocator {
 					break;
 			}
 			if (DEBUG_SKIP_STRING) {
-				System.out.println("fCurrentEntity.count = " + fCurrentEntity.count);
-				System.out.println("fCurrentEntity.position = " + fCurrentEntity.position);
+				System.out.println("fCurrentEntity.count = "
+						+ fCurrentEntity.count);
+				System.out.println("fCurrentEntity.position = "
+						+ fCurrentEntity.position);
 				System.out.println("length = " + length);
 			}
 		}
@@ -1842,14 +1910,14 @@ public class XMLEntityScanner implements XMLLocator {
 	 * characters are skipped.
 	 *
 	 * @param s
-	 *            The string to skip.
+	 *          The string to skip.
 	 *
 	 * @return Returns true if the string was skipped.
 	 *
 	 * @throws IOException
-	 *             Thrown if i/o error occurs.
+	 *                      Thrown if i/o error occurs.
 	 * @throws EOFException
-	 *             Thrown on end of file.
+	 *                      Thrown on end of file.
 	 */
 	protected boolean skipString(String s) throws IOException {
 
@@ -1873,7 +1941,8 @@ public class XMLEntityScanner implements XMLLocator {
 					fCurrentEntity.position = fCurrentEntity.position + length;
 					fCurrentEntity.columnNumber += length;
 					if (!detectingVersion) {
-						checkEntityLimit(null, fCurrentEntity, beforeSkip, length);
+						checkEntityLimit(null, fCurrentEntity, beforeSkip,
+								length);
 					}
 					return true;
 				}
@@ -1891,8 +1960,10 @@ public class XMLEntityScanner implements XMLLocator {
 			int beforeSkip = fCurrentEntity.position;
 
 			if (DEBUG_SKIP_STRING) {
-				System.out.println("skipString,length = " + new String(s) + "," + length);
-				System.out.println("skipString,length = " + new String(s) + "," + length);
+				System.out.println("skipString,length = " + new String(s) + ","
+						+ length);
+				System.out.println("skipString,length = " + new String(s) + ","
+						+ length);
 			}
 
 			for (int i = 0; i < length; i++) {
@@ -1923,19 +1994,23 @@ public class XMLEntityScanner implements XMLLocator {
 	 * Loads a chunk of text.
 	 *
 	 * @param offset
-	 *            The offset into the character buffer to read the next batch of
-	 *            characters.
+	 *                     The offset into the character buffer to read the next
+	 *                     batch of
+	 *                     characters.
 	 * @param changeEntity
-	 *            True if the load should change entities at the end of the
-	 *            entity, otherwise leave the current entity in place and the
-	 *            entity boundary will be signaled by the return value.
+	 *                     True if the load should change entities at the end of
+	 *                     the
+	 *                     entity, otherwise leave the current entity in place
+	 *                     and the
+	 *                     entity boundary will be signaled by the return value.
 	 * @param notify
-	 *            Determine whether to notify listeners of the event
+	 *                     Determine whether to notify listeners of the event
 	 *
 	 * @returns Returns true if the entity changed as a result of this load
 	 *          operation.
 	 */
-	final boolean load(int offset, boolean changeEntity, boolean notify) throws IOException {
+	final boolean load(int offset, boolean changeEntity, boolean notify)
+			throws IOException {
 		if (DEBUG_BUFFER) {
 			System.out.print("(load, " + offset + ": ");
 			print();
@@ -1955,7 +2030,8 @@ public class XMLEntityScanner implements XMLLocator {
 		}
 		if (DEBUG_BUFFER)
 			System.out.println("  length to try to read: " + length);
-		int count = fCurrentEntity.reader.read(fCurrentEntity.ch, offset, length);
+		int count = fCurrentEntity.reader.read(fCurrentEntity.ch, offset,
+				length);
 		if (DEBUG_BUFFER)
 			System.out.println("  length actually read:  " + count);
 
@@ -2004,21 +2080,26 @@ public class XMLEntityScanner implements XMLLocator {
 	 * specified encoding.
 	 *
 	 * @param inputStream
-	 *            The input stream.
+	 *                    The input stream.
 	 * @param encoding
-	 *            The encoding name that the input stream is encoded using. If
-	 *            the user has specified that Java encoding names are allowed,
-	 *            then the encoding name may be a Java encoding name; otherwise,
-	 *            it is an ianaEncoding name.
+	 *                    The encoding name that the input stream is encoded
+	 *                    using. If
+	 *                    the user has specified that Java encoding names are
+	 *                    allowed,
+	 *                    then the encoding name may be a Java encoding name;
+	 *                    otherwise,
+	 *                    it is an ianaEncoding name.
 	 * @param isBigEndian
-	 *            For encodings (like uCS-4), whose names cannot specify a byte
-	 *            order, this tells whether the order is bigEndian. null menas
-	 *            unknown or not relevant.
+	 *                    For encodings (like uCS-4), whose names cannot specify
+	 *                    a byte
+	 *                    order, this tells whether the order is bigEndian. null
+	 *                    menas
+	 *                    unknown or not relevant.
 	 *
 	 * @return Returns a reader.
 	 */
-	protected Reader createReader(InputStream inputStream, String encoding, Boolean isBigEndian)
-			throws IOException {
+	protected Reader createReader(InputStream inputStream, String encoding,
+			Boolean isBigEndian) throws IOException {
 
 		// normalize encoding name
 		if (encoding == null) {
@@ -2032,16 +2113,18 @@ public class XMLEntityScanner implements XMLLocator {
 				System.out.println("$$$ creating UTF8Reader");
 			}
 			return new UTF8Reader(inputStream, fCurrentEntity.fBufferSize,
-					fErrorReporter.getMessageFormatter(XMLMessageFormatter.XML_DOMAIN),
-					fErrorReporter.getLocale());
+					fErrorReporter.getMessageFormatter(
+							XMLMessageFormatter.XML_DOMAIN), fErrorReporter
+									.getLocale());
 		}
 		if (ENCODING.equals("US-ASCII")) {
 			if (DEBUG_ENCODINGS) {
 				System.out.println("$$$ creating ASCIIReader");
 			}
 			return new ASCIIReader(inputStream, fCurrentEntity.fBufferSize,
-					fErrorReporter.getMessageFormatter(XMLMessageFormatter.XML_DOMAIN),
-					fErrorReporter.getLocale());
+					fErrorReporter.getMessageFormatter(
+							XMLMessageFormatter.XML_DOMAIN), fErrorReporter
+									.getLocale());
 		}
 		if (ENCODING.equals("ISO-10646-UCS-4")) {
 			if (isBigEndian != null) {
@@ -2053,7 +2136,8 @@ public class XMLEntityScanner implements XMLLocator {
 				}
 			} else {
 				fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
-						"EncodingByteOrderUnsupported", new Object[] { encoding },
+						"EncodingByteOrderUnsupported", new Object[] {
+								encoding },
 						XMLErrorReporter.SEVERITY_FATAL_ERROR);
 			}
 		}
@@ -2068,7 +2152,8 @@ public class XMLEntityScanner implements XMLLocator {
 				}
 			} else {
 				fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
-						"EncodingByteOrderUnsupported", new Object[] { encoding },
+						"EncodingByteOrderUnsupported", new Object[] {
+								encoding },
 						XMLErrorReporter.SEVERITY_FATAL_ERROR);
 			}
 		}
@@ -2077,8 +2162,9 @@ public class XMLEntityScanner implements XMLLocator {
 		boolean validIANA = XMLChar.isValidIANAEncoding(encoding);
 		boolean validJava = XMLChar.isValidJavaEncoding(encoding);
 		if (!validIANA || (fAllowJavaEncodings && !validJava)) {
-			fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "EncodingDeclInvalid",
-					new Object[] { encoding }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
+			fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
+					"EncodingDeclInvalid", new Object[] { encoding },
+					XMLErrorReporter.SEVERITY_FATAL_ERROR);
 			// NOTE: AndyH suggested that, on failure, we use ISO Latin 1
 			// because every byte is a valid ISO Latin 1 character.
 			// It may not translate correctly but if we failed on
@@ -2096,8 +2182,9 @@ public class XMLEntityScanner implements XMLLocator {
 			if (fAllowJavaEncodings) {
 				javaEncoding = encoding;
 			} else {
-				fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "EncodingDeclInvalid",
-						new Object[] { encoding }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
+				fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
+						"EncodingDeclInvalid", new Object[] { encoding },
+						XMLErrorReporter.SEVERITY_FATAL_ERROR);
 				// see comment above.
 				javaEncoding = "ISO8859_1";
 			}
@@ -2105,13 +2192,14 @@ public class XMLEntityScanner implements XMLLocator {
 			if (DEBUG_ENCODINGS) {
 				System.out.println("$$$ creating ASCIIReader");
 			}
-			return new ASCIIReader(inputStream, fBufferSize,
-					fErrorReporter.getMessageFormatter(XMLMessageFormatter.XML_DOMAIN),
+			return new ASCIIReader(inputStream, fBufferSize, fErrorReporter
+					.getMessageFormatter(XMLMessageFormatter.XML_DOMAIN),
 					fErrorReporter.getLocale());
 		}
 
 		if (DEBUG_ENCODINGS) {
-			System.out.print("$$$ creating Java InputStreamReader: encoding=" + javaEncoding);
+			System.out.print("$$$ creating Java InputStreamReader: encoding="
+					+ javaEncoding);
 			if (javaEncoding == encoding) {
 				System.out.print(" (IANA encoding)");
 			}
@@ -2126,9 +2214,9 @@ public class XMLEntityScanner implements XMLLocator {
 	 * specified, with the endian-ness of that encoding where appropriate.
 	 *
 	 * @param b4
-	 *            The first four bytes of the input.
+	 *              The first four bytes of the input.
 	 * @param count
-	 *            The number of bytes actually read.
+	 *              The number of bytes actually read.
 	 * @return a 2-element array: the first element, an IANA-encoding string,
 	 *         the second element a Boolean which is true iff the document is
 	 *         big endian, false if it's little-endian, and null if the
@@ -2217,7 +2305,7 @@ public class XMLEntityScanner implements XMLLocator {
 	 * it. Ends an entity.
 	 *
 	 * @throws XNIException
-	 *             Thrown by entity handler to signal an error.
+	 *                      Thrown by entity handler to signal an error.
 	 */
 	//
 	/** Prints the contents of the buffer. */
@@ -2236,25 +2324,25 @@ public class XMLEntityScanner implements XMLLocator {
 						}
 						char c = fCurrentEntity.ch[i];
 						switch (c) {
-						case '\n': {
-							System.out.print("\\n");
-							break;
-						}
-						case '\r': {
-							System.out.print("\\r");
-							break;
-						}
-						case '\t': {
-							System.out.print("\\t");
-							break;
-						}
-						case '\\': {
-							System.out.print("\\\\");
-							break;
-						}
-						default: {
-							System.out.print(c);
-						}
+							case '\n': {
+								System.out.print("\\n");
+								break;
+							}
+							case '\r': {
+								System.out.print("\\r");
+								break;
+							}
+							case '\t': {
+								System.out.print("\\t");
+								break;
+							}
+							case '\\': {
+								System.out.print("\\\\");
+								break;
+							}
+							default: {
+								System.out.print(c);
+							}
 						}
 					}
 					if (fCurrentEntity.position == fCurrentEntity.count) {
@@ -2277,8 +2365,9 @@ public class XMLEntityScanner implements XMLLocator {
 	 * Registers the listener object and provides callback.
 	 * 
 	 * @param listener
-	 *            listener to which call back should be provided when scanner
-	 *            buffer is being changed.
+	 *                 listener to which call back should be provided when
+	 *                 scanner
+	 *                 buffer is being changed.
 	 */
 	public void registerListener(XMLBufferListener listener) {
 		if (!listeners.contains(listener)) {
@@ -2289,8 +2378,8 @@ public class XMLEntityScanner implements XMLLocator {
 	/**
 	 *
 	 * @param loadPos
-	 *            Starting position from which new data is being loaded into
-	 *            scanner buffer.
+	 *                Starting position from which new data is being loaded into
+	 *                scanner buffer.
 	 */
 	public void invokeListeners(int loadPos) {
 		for (int i = 0; i < listeners.size(); i++) {
@@ -2310,9 +2399,9 @@ public class XMLEntityScanner implements XMLLocator {
 	 * @return Returns true if at least one space character was skipped.
 	 *
 	 * @throws IOException
-	 *             Thrown if i/o error occurs.
+	 *                      Thrown if i/o error occurs.
 	 * @throws EOFException
-	 *             Thrown on end of file.
+	 *                      Thrown on end of file.
 	 *
 	 * @see com.sun.org.apache.xerces.internal.util.XMLChar#isSpace
 	 */
@@ -2367,7 +2456,8 @@ public class XMLEntityScanner implements XMLLocator {
 				if (fCurrentEntity.position == fCurrentEntity.count) {
 					load(0, true, false);
 				}
-			} while (XMLChar.isSpace(c = fCurrentEntity.ch[fCurrentEntity.position]));
+			} while (XMLChar.isSpace(
+					c = fCurrentEntity.ch[fCurrentEntity.position]));
 			if (DEBUG_BUFFER) {
 				System.out.print(")skipDeclSpaces: ");
 				// XMLEntityManager.print(fCurrentEntity);

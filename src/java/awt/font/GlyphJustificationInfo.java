@@ -1,38 +1,16 @@
 /*
  * Copyright (c) 1997, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996 - 1997, All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998, All Rights Reserved
- *
  * The original version of this source code and documentation is
  * copyrighted and owned by Taligent, Inc., a wholly-owned subsidiary
  * of IBM. These materials are provided under terms of a License
  * Agreement between Taligent and Sun. This technology is protected
  * by multiple US and International patents.
- *
  * This notice and attribution to Taligent may not be removed.
  * Taligent is a registered trademark of Taligent, Inc.
  */
@@ -78,34 +56,44 @@ public final class GlyphJustificationInfo {
 	 * Constructs information about the justification properties of a glyph.
 	 * 
 	 * @param weight
-	 *            the weight of this glyph when allocating space. Must be
-	 *            non-negative.
+	 *                         the weight of this glyph when allocating space.
+	 *                         Must be
+	 *                         non-negative.
 	 * @param growAbsorb
-	 *            if <code>true</code> this glyph absorbs all extra space at
-	 *            this priority and lower priority levels when it grows
+	 *                         if <code>true</code> this glyph absorbs all extra
+	 *                         space at
+	 *                         this priority and lower priority levels when it
+	 *                         grows
 	 * @param growPriority
-	 *            the priority level of this glyph when it grows
+	 *                         the priority level of this glyph when it grows
 	 * @param growLeftLimit
-	 *            the maximum amount by which the left side of this glyph can
-	 *            grow. Must be non-negative.
+	 *                         the maximum amount by which the left side of this
+	 *                         glyph can
+	 *                         grow. Must be non-negative.
 	 * @param growRightLimit
-	 *            the maximum amount by which the right side of this glyph can
-	 *            grow. Must be non-negative.
+	 *                         the maximum amount by which the right side of
+	 *                         this glyph can
+	 *                         grow. Must be non-negative.
 	 * @param shrinkAbsorb
-	 *            if <code>true</code>, this glyph absorbs all remaining
-	 *            shrinkage at this and lower priority levels when it shrinks
+	 *                         if <code>true</code>, this glyph absorbs all
+	 *                         remaining
+	 *                         shrinkage at this and lower priority levels when
+	 *                         it shrinks
 	 * @param shrinkPriority
-	 *            the priority level of this glyph when it shrinks
+	 *                         the priority level of this glyph when it shrinks
 	 * @param shrinkLeftLimit
-	 *            the maximum amount by which the left side of this glyph can
-	 *            shrink. Must be non-negative.
+	 *                         the maximum amount by which the left side of this
+	 *                         glyph can
+	 *                         shrink. Must be non-negative.
 	 * @param shrinkRightLimit
-	 *            the maximum amount by which the right side of this glyph can
-	 *            shrink. Must be non-negative.
+	 *                         the maximum amount by which the right side of
+	 *                         this glyph can
+	 *                         shrink. Must be non-negative.
 	 */
-	public GlyphJustificationInfo(float weight, boolean growAbsorb, int growPriority,
-			float growLeftLimit, float growRightLimit, boolean shrinkAbsorb, int shrinkPriority,
-			float shrinkLeftLimit, float shrinkRightLimit) {
+	public GlyphJustificationInfo(float weight, boolean growAbsorb,
+			int growPriority, float growLeftLimit, float growRightLimit,
+			boolean shrinkAbsorb, int shrinkPriority, float shrinkLeftLimit,
+			float shrinkRightLimit) {
 		if (weight < 0) {
 			throw new IllegalArgumentException("weight is negative");
 		}

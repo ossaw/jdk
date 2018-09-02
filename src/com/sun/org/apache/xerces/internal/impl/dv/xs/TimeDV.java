@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,7 +39,7 @@ public class TimeDV extends AbstractDateTimeDV {
 	 * Convert a string to a compiled form
 	 *
 	 * @param content
-	 *            The lexical representation of time
+	 *                The lexical representation of time
 	 * @return a valid and normalized time object
 	 */
 	public Object getActualValue(String content, ValidationContext context)
@@ -64,7 +61,7 @@ public class TimeDV extends AbstractDateTimeDV {
 	 *            "(\\d\\d):(\\d\\d):(\\d\\d)(\\.(\\d)*)?(Z|(([-+])(\\d\\d)(:(\\d\\d))?))?")
 	 * @return normalized time representation
 	 * @exception SchemaDateTimeException
-	 *                Invalid lexical representation
+	 *                                    Invalid lexical representation
 	 */
 	protected DateTimeData parse(String str) throws SchemaDateTimeException {
 		DateTimeData date = new DateTimeData(str, this);
@@ -95,7 +92,7 @@ public class TimeDV extends AbstractDateTimeDV {
 	 * Converts time object representation to String
 	 *
 	 * @param date
-	 *            time object
+	 *             time object
 	 * @return lexical representation of time: hh:mm:ss.sss with an optional
 	 *         time zone sign
 	 */
@@ -112,11 +109,13 @@ public class TimeDV extends AbstractDateTimeDV {
 	}
 
 	protected XMLGregorianCalendar getXMLGregorianCalendar(DateTimeData date) {
-		return datatypeFactory.newXMLGregorianCalendar(null, DatatypeConstants.FIELD_UNDEFINED,
-				DatatypeConstants.FIELD_UNDEFINED, date.unNormHour, date.unNormMinute,
-				(int) date.unNormSecond,
-				date.unNormSecond != 0 ? getFractionalSecondsAsBigDecimal(date) : null,
-				date.hasTimeZone() ? (date.timezoneHr * 60 + date.timezoneMin)
-						: DatatypeConstants.FIELD_UNDEFINED);
+		return datatypeFactory.newXMLGregorianCalendar(null,
+				DatatypeConstants.FIELD_UNDEFINED,
+				DatatypeConstants.FIELD_UNDEFINED, date.unNormHour,
+				date.unNormMinute, (int) date.unNormSecond,
+				date.unNormSecond != 0 ? getFractionalSecondsAsBigDecimal(date)
+						: null, date.hasTimeZone() ? (date.timezoneHr * 60
+								+ date.timezoneMin)
+								: DatatypeConstants.FIELD_UNDEFINED);
 	}
 }

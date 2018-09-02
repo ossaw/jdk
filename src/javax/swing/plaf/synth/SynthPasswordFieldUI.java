@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -43,7 +23,7 @@ public class SynthPasswordFieldUI extends SynthTextFieldUI {
 	 * Creates a UI for a JPasswordField.
 	 *
 	 * @param c
-	 *            the JPasswordField
+	 *          the JPasswordField
 	 * @return the UI
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -65,7 +45,7 @@ public class SynthPasswordFieldUI extends SynthTextFieldUI {
 	 * Creates a view (PasswordView) for an element.
 	 *
 	 * @param elem
-	 *            the element
+	 *             the element
 	 * @return the view
 	 */
 	@Override
@@ -78,15 +58,16 @@ public class SynthPasswordFieldUI extends SynthTextFieldUI {
 	 */
 	@Override
 	void paintBackground(SynthContext context, Graphics g, JComponent c) {
-		context.getPainter().paintPasswordFieldBackground(context, g, 0, 0, c.getWidth(),
-				c.getHeight());
+		context.getPainter().paintPasswordFieldBackground(context, g, 0, 0, c
+				.getWidth(), c.getHeight());
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+	public void paintBorder(SynthContext context, Graphics g, int x, int y,
+			int w, int h) {
 		context.getPainter().paintPasswordFieldBorder(context, g, x, y, w, h);
 	}
 

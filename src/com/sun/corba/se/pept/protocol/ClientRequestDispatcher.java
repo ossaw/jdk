@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.pept.protocol;
@@ -43,20 +23,21 @@ public interface ClientRequestDispatcher {
 	 * set data to be sent on a message.
 	 *
 	 * @param self
-	 *            -
+	 *                    -
 	 * @param methodName
-	 *            - the remote method name
+	 *                    - the remote method name
 	 * @param isOneWay
-	 *            - <code>true</code> if the message is asynchronous
+	 *                    - <code>true</code> if the message is asynchronous
 	 * @param contactInfo
-	 *            - the {@link com.sun.corba.se.pept.transport.ContactInfo
-	 *            ContactInfo} which which created/chose this
-	 *            <code>ClientRequestDispatcher</code>
+	 *                    - the
+	 *                    {@link com.sun.corba.se.pept.transport.ContactInfo
+	 *                    ContactInfo} which which created/chose this
+	 *                    <code>ClientRequestDispatcher</code>
 	 *
 	 * @return {@link com.sun.corba.se.pept.encoding.OutputObject OutputObject}
 	 */
-	public OutputObject beginRequest(Object self, String methodName, boolean isOneWay,
-			ContactInfo contactInfo);
+	public OutputObject beginRequest(Object self, String methodName,
+			boolean isOneWay, ContactInfo contactInfo);
 
 	/**
 	 * After the presentation block has set data on the
@@ -64,7 +45,7 @@ public interface ClientRequestDispatcher {
 	 * signals the PEPt runtime to send the encoded data by calling this method.
 	 *
 	 * @param self
-	 *            -
+	 *                     -
 	 * @param outputObject
 	 *
 	 * @return {@link com.sun.corba.se.pept.encoding.InputObject InputObject} if
@@ -79,7 +60,8 @@ public interface ClientRequestDispatcher {
 	 * @link org.omg.CORBA.portable.RemarshalException RemarshalException} if
 	 *       the PEPt runtime would like the presentation block to start over.
 	 */
-	public InputObject marshalingComplete(java.lang.Object self, OutputObject outputObject)
+	public InputObject marshalingComplete(java.lang.Object self,
+			OutputObject outputObject)
 			// REVISIT EXCEPTIONS
 			throws org.omg.CORBA.portable.ApplicationException,
 			org.omg.CORBA.portable.RemarshalException;
@@ -92,11 +74,12 @@ public interface ClientRequestDispatcher {
 	 * error messages to be sent.
 	 *
 	 * @param broker
-	 *            -
+	 *                    -
 	 * @param inputObject
-	 *            -
+	 *                    -
 	 */
-	public void endRequest(Broker broker, java.lang.Object self, InputObject inputObject);
+	public void endRequest(Broker broker, java.lang.Object self,
+			InputObject inputObject);
 }
 
 // End of file.

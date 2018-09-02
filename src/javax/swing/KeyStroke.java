@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -66,10 +46,10 @@ public class KeyStroke extends AWTKeyStroke {
 	 */
 	private static final long serialVersionUID = -9060180771037902530L;
 
-	private KeyStroke() {
-	}
+	private KeyStroke() {}
 
-	private KeyStroke(char keyChar, int keyCode, int modifiers, boolean onKeyRelease) {
+	private KeyStroke(char keyChar, int keyCode, int modifiers,
+			boolean onKeyRelease) {
 		super(keyChar, keyCode, modifiers, onKeyRelease);
 	}
 
@@ -78,7 +58,7 @@ public class KeyStroke extends AWTKeyStroke {
 	 * <code>KEY_TYPED</code> event for the specified character.
 	 *
 	 * @param keyChar
-	 *            the character value for a keyboard key
+	 *                the character value for a keyboard key
 	 * @return a KeyStroke object for that key
 	 */
 	public static KeyStroke getKeyStroke(char keyChar) {
@@ -95,10 +75,11 @@ public class KeyStroke extends AWTKeyStroke {
 	 * method are not necessarily cached or shared.
 	 *
 	 * @param keyChar
-	 *            the character value for a keyboard key
+	 *                     the character value for a keyboard key
 	 * @param onKeyRelease
-	 *            <code>true</code> if this KeyStroke corresponds to a key
-	 *            release; <code>false</code> otherwise.
+	 *                     <code>true</code> if this KeyStroke corresponds to a
+	 *                     key
+	 *                     release; <code>false</code> otherwise.
 	 * @return a KeyStroke object for that key
 	 * @deprecated use getKeyStroke(char)
 	 */
@@ -138,12 +119,12 @@ public class KeyStroke extends AWTKeyStroke {
 	 * Use 0 to specify no modifiers.
 	 *
 	 * @param keyChar
-	 *            the Character object for a keyboard character
+	 *                  the Character object for a keyboard character
 	 * @param modifiers
-	 *            a bitwise-ored combination of any modifiers
+	 *                  a bitwise-ored combination of any modifiers
 	 * @return an KeyStroke object for that key
 	 * @throws IllegalArgumentException
-	 *             if keyChar is null
+	 *                                  if keyChar is null
 	 *
 	 * @see java.awt.event.InputEvent
 	 * @since 1.3
@@ -193,21 +174,24 @@ public class KeyStroke extends AWTKeyStroke {
 	 * Use 0 to specify no modifiers.
 	 *
 	 * @param keyCode
-	 *            an int specifying the numeric code for a keyboard key
+	 *                     an int specifying the numeric code for a keyboard key
 	 * @param modifiers
-	 *            a bitwise-ored combination of any modifiers
+	 *                     a bitwise-ored combination of any modifiers
 	 * @param onKeyRelease
-	 *            <code>true</code> if the KeyStroke should represent a key
-	 *            release; <code>false</code> otherwise.
+	 *                     <code>true</code> if the KeyStroke should represent a
+	 *                     key
+	 *                     release; <code>false</code> otherwise.
 	 * @return a KeyStroke object for that key
 	 *
 	 * @see java.awt.event.KeyEvent
 	 * @see java.awt.event.InputEvent
 	 */
-	public static KeyStroke getKeyStroke(int keyCode, int modifiers, boolean onKeyRelease) {
+	public static KeyStroke getKeyStroke(int keyCode, int modifiers,
+			boolean onKeyRelease) {
 		synchronized (AWTKeyStroke.class) {
 			registerSubclass(KeyStroke.class);
-			return (KeyStroke) getAWTKeyStroke(keyCode, modifiers, onKeyRelease);
+			return (KeyStroke) getAWTKeyStroke(keyCode, modifiers,
+					onKeyRelease);
 		}
 	}
 
@@ -248,9 +232,9 @@ public class KeyStroke extends AWTKeyStroke {
 	 * Use 0 to specify no modifiers.
 	 *
 	 * @param keyCode
-	 *            an int specifying the numeric code for a keyboard key
+	 *                  an int specifying the numeric code for a keyboard key
 	 * @param modifiers
-	 *            a bitwise-ored combination of any modifiers
+	 *                  a bitwise-ored combination of any modifiers
 	 * @return a KeyStroke object for that key
 	 *
 	 * @see java.awt.event.KeyEvent
@@ -272,9 +256,9 @@ public class KeyStroke extends AWTKeyStroke {
 	 * obtained for all three types of KeyEvent.
 	 *
 	 * @param anEvent
-	 *            the KeyEvent from which to obtain the KeyStroke
+	 *                the KeyEvent from which to obtain the KeyStroke
 	 * @throws NullPointerException
-	 *             if <code>anEvent</code> is null
+	 *                              if <code>anEvent</code> is null
 	 * @return the KeyStroke that precipitated the event
 	 */
 	public static KeyStroke getKeyStrokeForEvent(KeyEvent anEvent) {
@@ -313,7 +297,7 @@ public class KeyStroke extends AWTKeyStroke {
 	 * a String which is formatted incorrectly, returns null.
 	 *
 	 * @param s
-	 *            a String formatted as described above
+	 *          a String formatted as described above
 	 * @return a KeyStroke object for that String, or null if the specified
 	 *         String is null, or is formatted incorrectly
 	 *

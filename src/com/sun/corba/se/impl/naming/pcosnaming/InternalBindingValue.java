@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.naming.pcosnaming;
@@ -44,8 +24,7 @@ public class InternalBindingValue implements Serializable {
 	transient private org.omg.CORBA.Object theObjectRef;
 
 	// Default constructor
-	public InternalBindingValue() {
-	}
+	public InternalBindingValue() {}
 
 	// Normal constructor
 	public InternalBindingValue(BindingType b, String o) {

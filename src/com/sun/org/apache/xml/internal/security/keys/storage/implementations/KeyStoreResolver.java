@@ -46,7 +46,7 @@ public class KeyStoreResolver extends StorageResolverSpi {
 	 * Constructor KeyStoreResolver
 	 *
 	 * @param keyStore
-	 *            is the keystore which contains the Certificates
+	 *                 is the keystore which contains the Certificates
 	 * @throws StorageResolverException
 	 */
 	public KeyStoreResolver(KeyStore keyStore) throws StorageResolverException {
@@ -130,7 +130,8 @@ public class KeyStoreResolver extends StorageResolverSpi {
 		 * Method remove
 		 */
 		public void remove() {
-			throw new UnsupportedOperationException("Can't remove keys from KeyStore");
+			throw new UnsupportedOperationException(
+					"Can't remove keys from KeyStore");
 		}
 
 		// Find the next entry that contains a certificate and return it.

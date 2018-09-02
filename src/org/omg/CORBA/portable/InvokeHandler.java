@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA.portable;
 
@@ -62,20 +42,21 @@ public interface InvokeHandler {
 	 * <p>
 	 * 
 	 * @param method
-	 *            The method name.
+	 *                The method name.
 	 * @param input
-	 *            The <code>InputStream</code> containing the marshalled
-	 *            arguments.
+	 *                The <code>InputStream</code> containing the marshalled
+	 *                arguments.
 	 * @param handler
-	 *            The <code>ResponseHandler</code> which the servant uses to
-	 *            construct a proper reply
+	 *                The <code>ResponseHandler</code> which the servant uses to
+	 *                construct a proper reply
 	 * @return The <code>OutputStream</code> created by the ResponseHandler
 	 *         which contains the marshalled reply
 	 * @throws SystemException
-	 *             is thrown when invocation fails due to a CORBA system
-	 *             exception.
+	 *                         is thrown when invocation fails due to a CORBA
+	 *                         system
+	 *                         exception.
 	 */
 
-	OutputStream _invoke(String method, InputStream input, ResponseHandler handler)
-			throws org.omg.CORBA.SystemException;
+	OutputStream _invoke(String method, InputStream input,
+			ResponseHandler handler) throws org.omg.CORBA.SystemException;
 }

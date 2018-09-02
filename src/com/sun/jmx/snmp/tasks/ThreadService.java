@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.tasks;
@@ -41,7 +21,8 @@ public class ThreadService implements TaskServer {
 
 	public ThreadService(int threadNumber) {
 		if (threadNumber <= 0) {
-			throw new IllegalArgumentException("The thread number should bigger than zero.");
+			throw new IllegalArgumentException(
+					"The thread number should bigger than zero.");
 		}
 
 		minThreads = threadNumber;
@@ -63,9 +44,9 @@ public class ThreadService implements TaskServer {
 	 * the submitted tasks.
 	 * 
 	 * @param task
-	 *            The task to be executed.
+	 *             The task to be executed.
 	 * @exception IllegalArgumentException
-	 *                if the submitted task is null.
+	 *                                     if the submitted task is null.
 	 **/
 	public void submitTask(Task task) throws IllegalArgumentException {
 		submitTask((Runnable) task);
@@ -76,9 +57,9 @@ public class ThreadService implements TaskServer {
 	 * thread pool to execute the submitted tasks.
 	 * 
 	 * @param task
-	 *            The task to be executed.
+	 *             The task to be executed.
 	 * @exception IllegalArgumentException
-	 *                if the submitted task is null.
+	 *                                     if the submitted task is null.
 	 **/
 	public void submitTask(Runnable task) throws IllegalArgumentException {
 		stateCheck();
@@ -215,7 +196,8 @@ public class ThreadService implements TaskServer {
 	// private methods
 	private void stateCheck() throws IllegalStateException {
 		if (terminated) {
-			throw new IllegalStateException("The thread service has been terminated.");
+			throw new IllegalStateException(
+					"The thread service has been terminated.");
 		}
 	}
 

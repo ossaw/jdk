@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -83,15 +58,14 @@ import java.util.function.Consumer;
  * @since 1.7
  * @author Doug Lea
  * @param <E>
- *            the type of elements held in this collection
+ *        the type of elements held in this collection
  */
-public class LinkedTransferQueue<E> extends AbstractQueue<E>
-		implements TransferQueue<E>, java.io.Serializable {
+public class LinkedTransferQueue<E> extends AbstractQueue<E> implements
+		TransferQueue<E>, java.io.Serializable {
 	private static final long serialVersionUID = -3223113410248163686L;
 
 	/*
 	 * *** Overview of Dual Queues with Slack ***
-	 *
 	 * Dual Queues, introduced by Scherer and Scott
 	 * (http://www.cs.rice.edu/~wns1/papers/2004-DISC-DDS.pdf) are (linked)
 	 * queues in which nodes may represent either data or requests. When a
@@ -103,7 +77,6 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * http://www.cs.rochester.edu/u/scott/papers/2009_Scherer_CACM_SSQ.pdf)
 	 * additionally arrange that threads enqueuing unmatched data also block.
 	 * Dual Transfer Queues support all of these modes, as dictated by callers.
-	 *
 	 * A FIFO dual queue may be implemented using a variation of the Michael &
 	 * Scott (M&S) lock-free queue algorithm
 	 * (http://www.cs.rochester.edu/u/scott/papers/1996_PODC_queues.pdf). It
@@ -112,9 +85,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * empty); and "tail" that points to the last node on the queue (or again
 	 * null if empty). For example, here is a possible queue with four data
 	 * elements:
-	 *
 	 * head tail | | v v M -> U -> U -> U -> U
-	 *
 	 * The M&S queue algorithm is known to be prone to scalability and overhead
 	 * limitations when maintaining (via CAS) these head and tail pointers. This
 	 * has led to the development of contention-reducing variants such as
@@ -124,7 +95,6 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * http://people.csail.mit.edu/edya/publications/OptimisticFIFOQueue-journal
 	 * .pdf). However, the nature of dual queues enables a simpler tactic for
 	 * improving M&S-style implementations when dual-ness is needed.
-	 *
 	 * In a dual queue, each node must atomically maintain its match status.
 	 * While there are other possible variants, we implement this here as: for a
 	 * data-mode node, matching entails CASing an "item" field from a non-null
@@ -137,7 +107,6 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * queue maintenance mechanics. (A variation of this idea applies even for
 	 * non-dual queues that support deletion of interior elements, such as
 	 * j.u.c.ConcurrentLinkedQueue.)
-	 *
 	 * Once a node is matched, its match status can never again change. We may
 	 * thus arrange that the linked list of them contain a prefix of zero or
 	 * more matched nodes, followed by a suffix of zero or more unmatched nodes.
@@ -150,16 +119,13 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * special-casing when initially empty). While this would be a terrible idea
 	 * in itself, it does have the benefit of not requiring ANY atomic updates
 	 * on head/tail fields.
-	 *
 	 * We introduce here an approach that lies between the extremes of never
 	 * versus always updating queue (head and tail) pointers. This offers a
 	 * tradeoff between sometimes requiring extra traversal steps to locate the
 	 * first and/or last unmatched nodes, versus the reduced overhead and
 	 * contention of fewer updates to queue pointers. For example, a possible
 	 * snapshot of a queue is:
-	 *
 	 * head tail | | v v M -> M -> U -> U -> U -> U
-	 *
 	 * The best value for this "slack" (the targeted maximum distance between
 	 * the value of "head" and the first unmatched node, and similarly for
 	 * "tail") is an empirical matter. We have found that using very small
@@ -167,7 +133,6 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * values introduce increasing costs of cache misses and risks of long
 	 * traversal chains, while smaller values increase CAS contention and
 	 * overhead.
-	 *
 	 * Dual queues with slack differ from plain M&S dual queues by virtue of
 	 * only sometimes updating head or tail pointers when matching, appending,
 	 * or even traversing nodes; in order to maintain a targeted slack. The idea
@@ -177,7 +142,6 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * exceeds a threshold. Another, that requires more overhead, is to use
 	 * random number generators to update with a given probability per traversal
 	 * step.
-	 *
 	 * In any strategy along these lines, because CASes updating fields may
 	 * fail, the actual slack may exceed targeted slack. However, they may be
 	 * retried at any time to maintain targets. Even when using very small slack
@@ -186,14 +150,12 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * potentially allowing progress by another thread) to be read-only, thus
 	 * not introducing any further contention. As described below, we implement
 	 * this by performing slack maintenance retries only after these points.
-	 *
 	 * As an accompaniment to such techniques, traversal overhead can be further
 	 * reduced without increasing contention of head pointer updates: Threads
 	 * may sometimes shortcut the "next" link path from the current "head" node
 	 * to be closer to the currently known first unmatched node, and similarly
 	 * for tail. Again, this may be triggered with using thresholds or
 	 * randomization.
-	 *
 	 * These ideas must be further extended to avoid unbounded amounts of
 	 * costly-to-reclaim garbage caused by the sequential "next" links of nodes
 	 * starting at old forgotten head nodes: As first described in detail by
@@ -210,7 +172,6 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * head-update, and so the traversal must continue from the "head".
 	 * Traversals trying to find the current tail starting from "tail" may also
 	 * encounter self-links, in which case they also continue at "head".
-	 *
 	 * It is tempting in slack-based scheme to not even use CAS for updates
 	 * (similarly to Ladan-Mozes & Shavit). However, this cannot be done for
 	 * head updates under the above link-forgetting mechanics because an update
@@ -222,9 +183,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * considering that writes and CASes equally require additional GC
 	 * bookkeeping ("write barriers") that are sometimes more costly than the
 	 * writes themselves because of contention).
-	 *
 	 * *** Overview of implementation ***
-	 *
 	 * We use a threshold-based approach to updates, with a slack threshold of
 	 * two -- that is, we update head/tail when the current pointer appears to
 	 * be two or more steps away from the first/last node. The slack value is
@@ -235,11 +194,9 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * implementation. Using randomization would probably work better if there
 	 * were a low-quality dirt-cheap per-thread one available, but even
 	 * ThreadLocalRandom is too heavy for these purposes.
-	 *
 	 * With such a small slack threshold value, it is not worthwhile to augment
 	 * this with path short-circuiting (i.e., unsplicing interior nodes) except
 	 * in the case of cancellation/removal (see below).
-	 *
 	 * We allow both the head and tail fields to be null before any nodes are
 	 * enqueued; initializing upon first append. This simplifies some other
 	 * logic, as well as providing more efficient explicit control paths instead
@@ -247,18 +204,14 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * While not currently fully implemented, we also leave open the possibility
 	 * of re-nulling these fields when empty (which is complicated to arrange,
 	 * for little benefit.)
-	 *
 	 * All enqueue/dequeue operations are handled by the single method "xfer"
 	 * with parameters indicating whether to act as some form of offer, put,
 	 * poll, take, or transfer (each possibly with timeout). The relative
 	 * complexity of using one monolithic method outweighs the code bulk and
 	 * maintenance problems of using separate methods for each case.
-	 *
 	 * Operation consists of up to three phases. The first is implemented within
 	 * method xfer, the second in tryAppend, and the third in method awaitMatch.
-	 *
 	 * 1. Try to match an existing node
-	 *
 	 * Starting at head, skip already-matched nodes until finding an unmatched
 	 * node of opposite mode, if one exists, in which case matching it and
 	 * returning, also if necessary updating head to one past the matched node
@@ -268,12 +221,9 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * advances head by two (if applicable), we ensure that the slack does not
 	 * grow without bound. Traversals also check if the initial head is now
 	 * off-list, in which case they start at the new head.
-	 *
 	 * If no candidates are found and the call was untimed poll/offer, (argument
 	 * "how" is NOW) return.
-	 *
 	 * 2. Try to append a new node (method tryAppend)
-	 *
 	 * Starting at current tail pointer, find the actual last node and try to
 	 * append a new node (or if head was null, establish the first node). Nodes
 	 * can be appended only if their predecessors are either already matched or
@@ -283,18 +233,14 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * to phase 1: Retrying upon CAS misses and checking for staleness. In
 	 * particular, if a self-link is encountered, then we can safely jump to a
 	 * node on the list by continuing the traversal at current head.
-	 *
 	 * On successful append, if the call was ASYNC, return.
-	 *
 	 * 3. Await match or cancellation (method awaitMatch)
-	 *
 	 * Wait for another thread to match node; instead cancelling if the current
 	 * thread was interrupted or the wait timed out. On multiprocessors, we use
 	 * front-of-queue spinning: If a node appears to be the first unmatched node
 	 * in the queue, it spins a bit before blocking. In either case, before
 	 * blocking it tries to unsplice any nodes between the current "head" and
 	 * the first unmatched node.
-	 *
 	 * Front-of-queue spinning vastly improves performance of heavily contended
 	 * queues. And so long as it is relatively brief and "quiet", spinning does
 	 * not much impact performance of less-contended queues. During spins
@@ -309,10 +255,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * data to request node or vice versa) compared to their predecessors
 	 * receive additional chained spins, reflecting longer paths typically
 	 * required to unblock threads during phase changes.
-	 *
-	 *
 	 * ** Unlinking removed interior nodes **
-	 *
 	 * In addition to minimizing garbage retention via self-linking described
 	 * above, we also unlink removed interior nodes. These may arise due to
 	 * timed out or interrupted waits, or calls to remove(x) or Iterator.remove.
@@ -331,14 +274,12 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * Although, in both cases, we can rule out the need for further action if
 	 * either s or its predecessor are (or can be made to be) at, or fall off
 	 * from, the head of list.
-	 *
 	 * Without taking these into account, it would be possible for an unbounded
 	 * number of supposedly removed nodes to remain reachable. Situations
 	 * leading to such buildup are uncommon but can occur in practice; for
 	 * example when a series of short timed calls to poll repeatedly time out
 	 * but never otherwise fall off the list because of an untimed call to take
 	 * at the front of the queue.
-	 *
 	 * When these cases arise, rather than always retraversing the entire list
 	 * to find an actual predecessor to unlink (which won't help for case (1)
 	 * anyway), we record a conservative estimate of possible unsplice failures
@@ -352,7 +293,6 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * a potentially O(n) operation (e.g. remove(x)), none of which are
 	 * time-critical enough to warrant the overhead that alternatives would
 	 * impose on other threads.
-	 *
 	 * Because the sweepVotes estimate is conservative, and because nodes become
 	 * unlinked "naturally" as they fall off the head of the queue, and because
 	 * we allow votes to accumulate even while sweeps are in progress, there are
@@ -361,14 +301,14 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * versus providing a worst-case bound on retention of interior nodes in
 	 * quiescent queues. The value defined below was chosen empirically to
 	 * balance these under various timeout scenarios.
-	 *
 	 * Note that we cannot self-link unlinked interior nodes during sweeps.
 	 * However, the associated garbage chains terminate when some successor
 	 * ultimately falls off the head of the list and is self-linked.
 	 */
 
 	/** True if on multiprocessor */
-	private static final boolean MP = Runtime.getRuntime().availableProcessors() > 1;
+	private static final boolean MP = Runtime.getRuntime()
+			.availableProcessors() > 1;
 
 	/**
 	 * The number of times to spin (with randomly interspersed calls to
@@ -497,9 +437,12 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 			try {
 				UNSAFE = sun.misc.Unsafe.getUnsafe();
 				Class<?> k = Node.class;
-				itemOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("item"));
-				nextOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("next"));
-				waiterOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("waiter"));
+				itemOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
+						"item"));
+				nextOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
+						"next"));
+				waiterOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
+						"waiter"));
 			} catch (Exception e) {
 				throw new Error(e);
 			}
@@ -546,16 +489,16 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * Implements all queuing methods. See above for explanation.
 	 *
 	 * @param e
-	 *            the item or null for take
+	 *                 the item or null for take
 	 * @param haveData
-	 *            true if this is a put, else a take
+	 *                 true if this is a put, else a take
 	 * @param how
-	 *            NOW, ASYNC, SYNC, or TIMED
+	 *                 NOW, ASYNC, SYNC, or TIMED
 	 * @param nanos
-	 *            timeout in nanosecs, used only if mode is TIMED
+	 *                 timeout in nanosecs, used only if mode is TIMED
 	 * @return an item if matched, else e
 	 * @throws NullPointerException
-	 *             if haveData mode but e is null
+	 *                              if haveData mode but e is null
 	 */
 	private E xfer(E e, boolean haveData, int how, long nanos) {
 		if (haveData && (e == null))
@@ -577,11 +520,12 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 								h.forgetNext();
 								break;
 							} // advance and retry
-							if ((h = head) == null || (q = h.next) == null || !q.isMatched())
+							if ((h = head) == null || (q = h.next) == null || !q
+									.isMatched())
 								break; // unless slack < 2
 						}
 						LockSupport.unpark(p.waiter);
-						return LinkedTransferQueue.<E> cast(item);
+						return LinkedTransferQueue.<E>cast(item);
 					}
 				}
 				Node n = p.next;
@@ -605,9 +549,9 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * Tries to append node s as tail.
 	 *
 	 * @param s
-	 *            the node to append
+	 *                 the node to append
 	 * @param haveData
-	 *            true if appending in data mode
+	 *                 true if appending in data mode
 	 * @return null on failure due to losing race with append in different mode,
 	 *         else s's predecessor, or s itself if no predecessor
 	 */
@@ -640,17 +584,18 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * Spins/yields/blocks until node s is matched or caller gives up.
 	 *
 	 * @param s
-	 *            the waiting node
+	 *              the waiting node
 	 * @param pred
-	 *            the predecessor of s, or s itself if it has no predecessor, or
-	 *            null if unknown (the null case does not occur in any current
-	 *            calls but may in possible future extensions)
+	 *              the predecessor of s, or s itself if it has no predecessor,
+	 *              or
+	 *              null if unknown (the null case does not occur in any current
+	 *              calls but may in possible future extensions)
 	 * @param e
-	 *            the comparison value for checking match
+	 *              the comparison value for checking match
 	 * @param timed
-	 *            if true, wait only until timeout elapses
+	 *              if true, wait only until timeout elapses
 	 * @param nanos
-	 *            timeout in nanosecs, used only if timed is true
+	 *              timeout in nanosecs, used only if timed is true
 	 * @return matched item, or e if unmatched on interrupt or timeout
 	 */
 	private E awaitMatch(Node s, Node pred, E e, boolean timed, long nanos) {
@@ -664,9 +609,10 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 			if (item != e) { // matched
 				// assert item != s;
 				s.forgetContents(); // avoid garbage
-				return LinkedTransferQueue.<E> cast(item);
+				return LinkedTransferQueue.<E>cast(item);
 			}
-			if ((w.isInterrupted() || (timed && nanos <= 0)) && s.casItem(e, s)) { // cancel
+			if ((w.isInterrupted() || (timed && nanos <= 0)) && s.casItem(e,
+					s)) { // cancel
 				unsplice(pred, s);
 				return e;
 			}
@@ -757,7 +703,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 			Object item = p.item;
 			if (p.isData) {
 				if (item != null && item != p)
-					return LinkedTransferQueue.<E> cast(item);
+					return LinkedTransferQueue.<E>cast(item);
 			} else if (item == null)
 				return null;
 		}
@@ -814,8 +760,8 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 				lastPred = null; // at start of list
 			else {
 				Node s, n; // help with removal of lastPred.next
-				while ((s = b.next) != null && s != b && s.isMatched() && (n = s.next) != null
-						&& n != s)
+				while ((s = b.next) != null && s != b && s.isMatched()
+						&& (n = s.next) != null && n != s)
 					b.casNext(s, n);
 			}
 
@@ -832,7 +778,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 				Object item = s.item;
 				if (s.isData) {
 					if (item != null && item != s) {
-						nextItem = LinkedTransferQueue.<E> cast(item);
+						nextItem = LinkedTransferQueue.<E>cast(item);
 						nextNode = s;
 						return;
 					}
@@ -896,8 +842,8 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 			final LinkedTransferQueue<E> q = this.queue;
 			int b = batch;
 			int n = (b <= 0) ? 1 : (b >= MAX_BATCH) ? MAX_BATCH : b + 1;
-			if (!exhausted && ((p = current) != null || (p = q.firstDataNode()) != null)
-					&& p.next != null) {
+			if (!exhausted && ((p = current) != null || (p = q
+					.firstDataNode()) != null) && p.next != null) {
 				Object[] a = new Object[n];
 				int i = 0;
 				do {
@@ -911,8 +857,8 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 					exhausted = true;
 				if (i > 0) {
 					batch = i;
-					return Spliterators.spliterator(a, 0, i,
-							Spliterator.ORDERED | Spliterator.NONNULL | Spliterator.CONCURRENT);
+					return Spliterators.spliterator(a, 0, i, Spliterator.ORDERED
+							| Spliterator.NONNULL | Spliterator.CONCURRENT);
 				}
 			}
 			return null;
@@ -924,7 +870,8 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 			if (action == null)
 				throw new NullPointerException();
 			final LinkedTransferQueue<E> q = this.queue;
-			if (!exhausted && ((p = current) != null || (p = q.firstDataNode()) != null)) {
+			if (!exhausted && ((p = current) != null || (p = q
+					.firstDataNode()) != null)) {
 				exhausted = true;
 				do {
 					Object e = p.item;
@@ -942,7 +889,8 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 			if (action == null)
 				throw new NullPointerException();
 			final LinkedTransferQueue<E> q = this.queue;
-			if (!exhausted && ((p = current) != null || (p = q.firstDataNode()) != null)) {
+			if (!exhausted && ((p = current) != null || (p = q
+					.firstDataNode()) != null)) {
 				Object e;
 				do {
 					if ((e = p.item) == p)
@@ -965,7 +913,8 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 		}
 
 		public int characteristics() {
-			return Spliterator.ORDERED | Spliterator.NONNULL | Spliterator.CONCURRENT;
+			return Spliterator.ORDERED | Spliterator.NONNULL
+					| Spliterator.CONCURRENT;
 		}
 	}
 
@@ -997,10 +946,10 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * predecessor.
 	 *
 	 * @param pred
-	 *            a node that was at one time known to be the predecessor of s,
-	 *            or null or s itself if s is/was at head
+	 *             a node that was at one time known to be the predecessor of s,
+	 *             or null or s itself if s is/was at head
 	 * @param s
-	 *            the node to be unspliced
+	 *             the node to be unspliced
 	 */
 	final void unsplice(Node pred, Node s) {
 		s.forgetContents(); // forget unneeded fields
@@ -1012,7 +961,8 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 		 */
 		if (pred != null && pred != s && pred.next == s) {
 			Node n = s.next;
-			if (n == null || (n != s && pred.casNext(s, n) && pred.isMatched())) {
+			if (n == null || (n != s && pred.casNext(s, n) && pred
+					.isMatched())) {
 				for (;;) { // check if at, or could be, head
 					Node h = head;
 					if (h == pred || h == s || h == null)
@@ -1068,7 +1018,8 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 			for (Node pred = null, p = head; p != null;) {
 				Object item = p.item;
 				if (p.isData) {
-					if (item != null && item != p && e.equals(item) && p.tryMatchData()) {
+					if (item != null && item != p && e.equals(item) && p
+							.tryMatchData()) {
 						unsplice(pred, p);
 						return true;
 					}
@@ -1087,8 +1038,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	/**
 	 * Creates an initially empty {@code LinkedTransferQueue}.
 	 */
-	public LinkedTransferQueue() {
-	}
+	public LinkedTransferQueue() {}
 
 	/**
 	 * Creates a {@code LinkedTransferQueue} initially containing the elements
@@ -1096,9 +1046,10 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * iterator.
 	 *
 	 * @param c
-	 *            the collection of elements to initially contain
+	 *          the collection of elements to initially contain
 	 * @throws NullPointerException
-	 *             if the specified collection or any of its elements are null
+	 *                              if the specified collection or any of its
+	 *                              elements are null
 	 */
 	public LinkedTransferQueue(Collection<? extends E> c) {
 		this();
@@ -1110,7 +1061,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * unbounded, this method will never block.
 	 *
 	 * @throws NullPointerException
-	 *             if the specified element is null
+	 *                              if the specified element is null
 	 */
 	public void put(E e) {
 		xfer(e, true, ASYNC, 0);
@@ -1124,7 +1075,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 *         {@link java.util.concurrent.BlockingQueue#offer(Object,long,TimeUnit)
 	 *         BlockingQueue.offer})
 	 * @throws NullPointerException
-	 *             if the specified element is null
+	 *                              if the specified element is null
 	 */
 	public boolean offer(E e, long timeout, TimeUnit unit) {
 		xfer(e, true, ASYNC, 0);
@@ -1137,7 +1088,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 *
 	 * @return {@code true} (as specified by {@link Queue#offer})
 	 * @throws NullPointerException
-	 *             if the specified element is null
+	 *                              if the specified element is null
 	 */
 	public boolean offer(E e) {
 		xfer(e, true, ASYNC, 0);
@@ -1151,7 +1102,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 *
 	 * @return {@code true} (as specified by {@link Collection#add})
 	 * @throws NullPointerException
-	 *             if the specified element is null
+	 *                              if the specified element is null
 	 */
 	public boolean add(E e) {
 		xfer(e, true, ASYNC, 0);
@@ -1168,7 +1119,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * {@code false} without enqueuing the element.
 	 *
 	 * @throws NullPointerException
-	 *             if the specified element is null
+	 *                              if the specified element is null
 	 */
 	public boolean tryTransfer(E e) {
 		return xfer(e, true, NOW, 0) == null;
@@ -1185,7 +1136,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * by a consumer.
 	 *
 	 * @throws NullPointerException
-	 *             if the specified element is null
+	 *                              if the specified element is null
 	 */
 	public void transfer(E e) throws InterruptedException {
 		if (xfer(e, true, SYNC, 0) != null) {
@@ -1207,9 +1158,10 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * before the element can be transferred.
 	 *
 	 * @throws NullPointerException
-	 *             if the specified element is null
+	 *                              if the specified element is null
 	 */
-	public boolean tryTransfer(E e, long timeout, TimeUnit unit) throws InterruptedException {
+	public boolean tryTransfer(E e, long timeout, TimeUnit unit)
+			throws InterruptedException {
 		if (xfer(e, true, TIMED, unit.toNanos(timeout)) == null)
 			return true;
 		if (!Thread.interrupted())
@@ -1238,9 +1190,9 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 */
 	public int drainTo(Collection<? super E> c) {
 		if (c == null)
@@ -1257,9 +1209,9 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 
 	/**
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 */
 	public int drainTo(Collection<? super E> c, int maxElements) {
 		if (c == null)
@@ -1338,7 +1290,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * equivalently, if this queue changed as a result of the call).
 	 *
 	 * @param o
-	 *            element to be removed from this queue, if present
+	 *          element to be removed from this queue, if present
 	 * @return {@code true} if this queue changed as a result of the call
 	 */
 	public boolean remove(Object o) {
@@ -1351,7 +1303,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * least one element {@code e} such that {@code o.equals(e)}.
 	 *
 	 * @param o
-	 *            object to be checked for containment in this queue
+	 *          object to be checked for containment in this queue
 	 * @return {@code true} if this queue contains the specified element
 	 */
 	public boolean contains(Object o) {
@@ -1384,13 +1336,14 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * Saves this queue to a stream (that is, serializes it).
 	 *
 	 * @param s
-	 *            the stream
+	 *          the stream
 	 * @throws java.io.IOException
-	 *             if an I/O error occurs
+	 *         if an I/O error occurs
 	 * @serialData All of the elements (each an {@code E}) in the proper order,
 	 *             followed by a null
 	 */
-	private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
+	private void writeObject(java.io.ObjectOutputStream s)
+			throws java.io.IOException {
 		s.defaultWriteObject();
 		for (E e : this)
 			s.writeObject(e);
@@ -1402,11 +1355,12 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 	 * Reconstitutes this queue from a stream (that is, deserializes it).
 	 * 
 	 * @param s
-	 *            the stream
+	 *          the stream
 	 * @throws ClassNotFoundException
-	 *             if the class of a serialized object could not be found
-	 * @throws java.io.IOException
-	 *             if an I/O error occurs
+	 *                                if the class of a serialized object could
+	 *                                not be found
+	 * @throws                        java.io.IOException
+	 *                                if an I/O error occurs
 	 */
 	private void readObject(java.io.ObjectInputStream s)
 			throws java.io.IOException, ClassNotFoundException {
@@ -1433,7 +1387,8 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
 			Class<?> k = LinkedTransferQueue.class;
 			headOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("head"));
 			tailOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("tail"));
-			sweepVotesOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("sweepVotes"));
+			sweepVotesOffset = UNSAFE.objectFieldOffset(k.getDeclaredField(
+					"sweepVotes"));
 		} catch (Exception e) {
 			throw new Error(e);
 		}

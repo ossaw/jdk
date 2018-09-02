@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi;
@@ -136,17 +116,20 @@ public class MidiFileFormat {
 	 * Constructs a <code>MidiFileFormat</code>.
 	 *
 	 * @param type
-	 *            the MIDI file type (0, 1, or 2)
+	 *                     the MIDI file type (0, 1, or 2)
 	 * @param divisionType
-	 *            the timing division type (PPQ or one of the SMPTE types)
+	 *                     the timing division type (PPQ or one of the SMPTE
+	 *                     types)
 	 * @param resolution
-	 *            the timing resolution
+	 *                     the timing resolution
 	 * @param bytes
-	 *            the length of the MIDI file in bytes, or UNKNOWN_LENGTH if not
-	 *            known
+	 *                     the length of the MIDI file in bytes, or
+	 *                     UNKNOWN_LENGTH if not
+	 *                     known
 	 * @param microseconds
-	 *            the duration of the file in microseconds, or UNKNOWN_LENGTH if
-	 *            not known
+	 *                     the duration of the file in microseconds, or
+	 *                     UNKNOWN_LENGTH if
+	 *                     not known
 	 * @see #UNKNOWN_LENGTH
 	 * @see Sequence#PPQ
 	 * @see Sequence#SMPTE_24
@@ -154,8 +137,8 @@ public class MidiFileFormat {
 	 * @see Sequence#SMPTE_30DROP
 	 * @see Sequence#SMPTE_30
 	 */
-	public MidiFileFormat(int type, float divisionType, int resolution, int bytes,
-			long microseconds) {
+	public MidiFileFormat(int type, float divisionType, int resolution,
+			int bytes, long microseconds) {
 
 		this.type = type;
 		this.divisionType = divisionType;
@@ -169,19 +152,23 @@ public class MidiFileFormat {
 	 * Construct a <code>MidiFileFormat</code> with a set of properties.
 	 *
 	 * @param type
-	 *            the MIDI file type (0, 1, or 2)
+	 *                     the MIDI file type (0, 1, or 2)
 	 * @param divisionType
-	 *            the timing division type (PPQ or one of the SMPTE types)
+	 *                     the timing division type (PPQ or one of the SMPTE
+	 *                     types)
 	 * @param resolution
-	 *            the timing resolution
+	 *                     the timing resolution
 	 * @param bytes
-	 *            the length of the MIDI file in bytes, or UNKNOWN_LENGTH if not
-	 *            known
+	 *                     the length of the MIDI file in bytes, or
+	 *                     UNKNOWN_LENGTH if not
+	 *                     known
 	 * @param microseconds
-	 *            the duration of the file in microseconds, or UNKNOWN_LENGTH if
-	 *            not known
+	 *                     the duration of the file in microseconds, or
+	 *                     UNKNOWN_LENGTH if
+	 *                     not known
 	 * @param properties
-	 *            a <code>Map&lt;String,Object&gt;</code> object with properties
+	 *                     a <code>Map&lt;String,Object&gt;</code> object with
+	 *                     properties
 	 *
 	 * @see #UNKNOWN_LENGTH
 	 * @see Sequence#PPQ
@@ -191,8 +178,8 @@ public class MidiFileFormat {
 	 * @see Sequence#SMPTE_30
 	 * @since 1.5
 	 */
-	public MidiFileFormat(int type, float divisionType, int resolution, int bytes,
-			long microseconds, Map<String, Object> properties) {
+	public MidiFileFormat(int type, float divisionType, int resolution,
+			int bytes, long microseconds, Map<String, Object> properties) {
 		this(type, divisionType, resolution, bytes, microseconds);
 		this.properties = new HashMap<String, Object>(properties);
 	}

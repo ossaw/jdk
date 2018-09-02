@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -64,7 +44,8 @@ public class WindowsCheckBoxMenuItemUI extends BasicCheckBoxMenuItemUI {
 	}
 
 	@Override
-	protected void paintBackground(Graphics g, JMenuItem menuItem, Color bgColor) {
+	protected void paintBackground(Graphics g, JMenuItem menuItem,
+			Color bgColor) {
 		if (WindowsMenuItemUI.isVistaPainting()) {
 			WindowsMenuItemUI.paintBackground(accessor, g, menuItem, bgColor);
 			return;
@@ -77,16 +58,17 @@ public class WindowsCheckBoxMenuItemUI extends BasicCheckBoxMenuItemUI {
 	 * <p>
 	 * 
 	 * @param g
-	 *            Graphics context
+	 *                 Graphics context
 	 * @param menuItem
-	 *            Current menu item to render
+	 *                 Current menu item to render
 	 * @param textRect
-	 *            Bounding rectangle to render the text.
+	 *                 Bounding rectangle to render the text.
 	 * @param text
-	 *            String to render
+	 *                 String to render
 	 * @since 1.4
 	 */
-	protected void paintText(Graphics g, JMenuItem menuItem, Rectangle textRect, String text) {
+	protected void paintText(Graphics g, JMenuItem menuItem, Rectangle textRect,
+			String text) {
 		if (WindowsMenuItemUI.isVistaPainting()) {
 			WindowsMenuItemUI.paintText(accessor, g, menuItem, textRect, text);
 			return;

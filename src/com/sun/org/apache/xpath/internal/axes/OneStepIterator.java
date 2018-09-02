@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -50,10 +47,11 @@ public class OneStepIterator extends ChildTestIterator {
 	 * Create a OneStepIterator object.
 	 *
 	 * @param compiler
-	 *            A reference to the Compiler that contains the op map.
+	 *                 A reference to the Compiler that contains the op map.
 	 * @param opPos
-	 *            The position within the op map, which contains the location
-	 *            path expression for this itterator.
+	 *                 The position within the op map, which contains the
+	 *                 location
+	 *                 path expression for this itterator.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -70,9 +68,9 @@ public class OneStepIterator extends ChildTestIterator {
 	 * Create a OneStepIterator object.
 	 *
 	 * @param iterator
-	 *            The DTM iterator which this iterator will use.
+	 *                 The DTM iterator which this iterator will use.
 	 * @param axis
-	 *            One of Axis.Child, etc., or -1 if the axis is unknown.
+	 *                 One of Axis.Child, etc., or -1 if the axis is unknown.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -90,7 +88,7 @@ public class OneStepIterator extends ChildTestIterator {
 	 * Initialize the context values for this expression after it is cloned.
 	 *
 	 * @param context
-	 *            The XPath runtime context for this transformation.
+	 *                The XPath runtime context for this transformation.
 	 */
 	public void setRoot(int context, Object environment) {
 		super.setRoot(context, environment);
@@ -172,7 +170,7 @@ public class OneStepIterator extends ChildTestIterator {
 	 * it.
 	 *
 	 * @param predicateIndex
-	 *            The predicate index of the proximity position.
+	 *                       The predicate index of the proximity position.
 	 *
 	 * @return The pridicate index, or -1.
 	 */
@@ -272,7 +270,7 @@ public class OneStepIterator extends ChildTestIterator {
 	 * Count backwards one proximity position.
 	 *
 	 * @param i
-	 *            The predicate index.
+	 *          The predicate index.
 	 */
 	protected void countProximityPosition(int i) {
 		if (!isReverseAxes())

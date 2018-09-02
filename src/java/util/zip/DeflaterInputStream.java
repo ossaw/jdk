@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.zip;
@@ -70,9 +50,9 @@ public class DeflaterInputStream extends FilterInputStream {
 	 * Creates a new input stream with a default compressor and buffer size.
 	 *
 	 * @param in
-	 *            input stream to read the uncompressed data to
+	 *           input stream to read the uncompressed data to
 	 * @throws NullPointerException
-	 *             if {@code in} is null
+	 *                              if {@code in} is null
 	 */
 	public DeflaterInputStream(InputStream in) {
 		this(in, new Deflater());
@@ -84,11 +64,11 @@ public class DeflaterInputStream extends FilterInputStream {
 	 * buffer size.
 	 *
 	 * @param in
-	 *            input stream to read the uncompressed data to
+	 *             input stream to read the uncompressed data to
 	 * @param defl
-	 *            compressor ("deflater") for this stream
+	 *             compressor ("deflater") for this stream
 	 * @throws NullPointerException
-	 *             if {@code in} or {@code defl} is null
+	 *                              if {@code in} or {@code defl} is null
 	 */
 	public DeflaterInputStream(InputStream in, Deflater defl) {
 		this(in, defl, 512);
@@ -98,15 +78,15 @@ public class DeflaterInputStream extends FilterInputStream {
 	 * Creates a new input stream with the specified compressor and buffer size.
 	 *
 	 * @param in
-	 *            input stream to read the uncompressed data to
+	 *               input stream to read the uncompressed data to
 	 * @param defl
-	 *            compressor ("deflater") for this stream
+	 *               compressor ("deflater") for this stream
 	 * @param bufLen
-	 *            compression buffer size
+	 *               compression buffer size
 	 * @throws IllegalArgumentException
-	 *             if {@code bufLen <= 0}
+	 *                                  if {@code bufLen <= 0}
 	 * @throws NullPointerException
-	 *             if {@code in} or {@code defl} is null
+	 *                                  if {@code in} or {@code defl} is null
 	 */
 	public DeflaterInputStream(InputStream in, Deflater defl, int bufLen) {
 		super(in);
@@ -129,7 +109,7 @@ public class DeflaterInputStream extends FilterInputStream {
 	 * pending uncompressed data.
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                     if an I/O error occurs
 	 */
 	public void close() throws IOException {
 		if (in != null) {
@@ -153,7 +133,8 @@ public class DeflaterInputStream extends FilterInputStream {
 	 * @return a single byte of compressed data, or -1 if the end of the
 	 *         uncompressed input stream is reached
 	 * @throws IOException
-	 *             if an I/O error occurs or if this stream is already closed
+	 *                     if an I/O error occurs or if this stream is already
+	 *                     closed
 	 */
 	public int read() throws IOException {
 		// Read a single byte of compressed data
@@ -176,10 +157,11 @@ public class DeflaterInputStream extends FilterInputStream {
 	 * @return the actual number of bytes read, or -1 if the end of the
 	 *         uncompressed input stream is reached
 	 * @throws IndexOutOfBoundsException
-	 *             if {@code len > b.length - off}
+	 *                                   if {@code len > b.length - off}
 	 * @throws IOException
-	 *             if an I/O error occurs or if this input stream is already
-	 *             closed
+	 *                                   if an I/O error occurs or if this input
+	 *                                   stream is already
+	 *                                   closed
 	 */
 	public int read(byte[] b, int off, int len) throws IOException {
 		// Sanity checks
@@ -229,10 +211,11 @@ public class DeflaterInputStream extends FilterInputStream {
 	 * which can be skipped is {@code Integer.MAX_VALUE}.
 	 *
 	 * @param n
-	 *            number of bytes to be skipped
+	 *          number of bytes to be skipped
 	 * @return the actual number of bytes skipped
 	 * @throws IOException
-	 *             if an I/O error occurs or if this stream is already closed
+	 *                     if an I/O error occurs or if this stream is already
+	 *                     closed
 	 */
 	public long skip(long n) throws IOException {
 		if (n < 0) {
@@ -248,7 +231,8 @@ public class DeflaterInputStream extends FilterInputStream {
 		long cnt = 0;
 		while (total > 0) {
 			// Read a small block of uncompressed bytes
-			int len = read(rbuf, 0, (total <= rbuf.length ? total : rbuf.length));
+			int len = read(rbuf, 0, (total <= rbuf.length ? total
+					: rbuf.length));
 
 			if (len < 0) {
 				break;
@@ -268,7 +252,8 @@ public class DeflaterInputStream extends FilterInputStream {
 	 * @return zero after the end of the underlying input stream has been
 	 *         reached, otherwise always returns 1
 	 * @throws IOException
-	 *             if an I/O error occurs or if this stream is already closed
+	 *                     if an I/O error occurs or if this stream is already
+	 *                     closed
 	 */
 	public int available() throws IOException {
 		ensureOpen();
@@ -292,8 +277,8 @@ public class DeflaterInputStream extends FilterInputStream {
 	 * <i>This operation is not supported</i>.
 	 *
 	 * @param limit
-	 *            maximum bytes that can be read before invalidating the
-	 *            position marker
+	 *              maximum bytes that can be read before invalidating the
+	 *              position marker
 	 */
 	public void mark(int limit) {
 		// Operation not supported
@@ -303,7 +288,7 @@ public class DeflaterInputStream extends FilterInputStream {
 	 * <i>This operation is not supported</i>.
 	 *
 	 * @throws IOException
-	 *             always thrown
+	 *                     always thrown
 	 */
 	public void reset() throws IOException {
 		throw new IOException("mark/reset not supported");

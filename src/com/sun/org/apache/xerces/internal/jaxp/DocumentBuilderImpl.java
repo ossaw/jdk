@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -56,7 +54,8 @@ import org.xml.sax.SAXNotSupportedException;
  * @author Edwin Goei
  * @version $Id: DocumentBuilderImpl.java,v 1.8 2010-11-01 04:40:06 joehw Exp $
  */
-public class DocumentBuilderImpl extends DocumentBuilder implements JAXPConstants {
+public class DocumentBuilderImpl extends DocumentBuilder implements
+		JAXPConstants {
 	/** Feature identifier: namespaces. */
 	private static final String NAMESPACES_FEATURE = Constants.SAX_FEATURE_PREFIX
 			+ Constants.NAMESPACES_FEATURE;
@@ -119,23 +118,24 @@ public class DocumentBuilderImpl extends DocumentBuilder implements JAXPConstant
 	private XMLSecurityManager fSecurityManager;
 	private XMLSecurityPropertyManager fSecurityPropertyMgr;
 
-	DocumentBuilderImpl(DocumentBuilderFactoryImpl dbf, Map<String, Object> dbfAttrs,
-			Map<String, Boolean> features)
+	DocumentBuilderImpl(DocumentBuilderFactoryImpl dbf,
+			Map<String, Object> dbfAttrs, Map<String, Boolean> features)
 			throws SAXNotRecognizedException, SAXNotSupportedException {
 		this(dbf, dbfAttrs, features, false);
 	}
 
-	DocumentBuilderImpl(DocumentBuilderFactoryImpl dbf, Map<String, Object> dbfAttrs,
-			Map<String, Boolean> features, boolean secureProcessing)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
+	DocumentBuilderImpl(DocumentBuilderFactoryImpl dbf,
+			Map<String, Object> dbfAttrs, Map<String, Boolean> features,
+			boolean secureProcessing) throws SAXNotRecognizedException,
+			SAXNotSupportedException {
 		domParser = new DOMParser();
 
 		// If validating, provide a default ErrorHandler that prints
 		// validation errors with a warning telling the user to set an
 		// ErrorHandler
 		if (dbf.isValidating()) {
-			fInitErrorHandler = new DefaultValidationErrorHandler(
-					domParser.getXMLParserConfiguration().getLocale());
+			fInitErrorHandler = new DefaultValidationErrorHandler(domParser
+					.getXMLParserConfiguration().getLocale());
 			setErrorHandler(fInitErrorHandler);
 		} else {
 			fInitErrorHandler = domParser.getErrorHandler();
@@ -147,10 +147,12 @@ public class DocumentBuilderImpl extends DocumentBuilder implements JAXPConstant
 		domParser.setFeature(NAMESPACES_FEATURE, dbf.isNamespaceAware());
 
 		// Set various parameters obtained from DocumentBuilderFactory
-		domParser.setFeature(INCLUDE_IGNORABLE_WHITESPACE,
-				!dbf.isIgnoringElementContentWhitespace());
-		domParser.setFeature(CREATE_ENTITY_REF_NODES_FEATURE, !dbf.isExpandEntityReferences());
-		domParser.setFeature(INCLUDE_COMMENTS_FEATURE, !dbf.isIgnoringComments());
+		domParser.setFeature(INCLUDE_IGNORABLE_WHITESPACE, !dbf
+				.isIgnoringElementContentWhitespace());
+		domParser.setFeature(CREATE_ENTITY_REF_NODES_FEATURE, !dbf
+				.isExpandEntityReferences());
+		domParser.setFeature(INCLUDE_COMMENTS_FEATURE, !dbf
+				.isIgnoringComments());
 		domParser.setFeature(CREATE_CDATA_NODES_FEATURE, !dbf.isCoalescing());
 
 		// Avoid setting the XInclude processing feature if the value is false.
@@ -161,7 +163,8 @@ public class DocumentBuilderImpl extends DocumentBuilder implements JAXPConstant
 		}
 
 		fSecurityPropertyMgr = new XMLSecurityPropertyManager();
-		domParser.setProperty(XML_SECURITY_PROPERTY_MANAGER, fSecurityPropertyMgr);
+		domParser.setProperty(XML_SECURITY_PROPERTY_MANAGER,
+				fSecurityPropertyMgr);
 
 		fSecurityManager = new XMLSecurityManager(secureProcessing);
 		domParser.setProperty(SECURITY_MANAGER, fSecurityManager);
@@ -173,12 +176,15 @@ public class DocumentBuilderImpl extends DocumentBuilder implements JAXPConstant
 			 * or jaxp.properties are set
 			 */
 			if (features != null) {
-				Boolean temp = features.get(XMLConstants.FEATURE_SECURE_PROCESSING);
+				Boolean temp = features.get(
+						XMLConstants.FEATURE_SECURE_PROCESSING);
 				if (temp != null) {
 					if (temp && Constants.IS_JDK8_OR_ABOVE) {
-						fSecurityPropertyMgr.setValue(Property.ACCESS_EXTERNAL_DTD, State.FSP,
+						fSecurityPropertyMgr.setValue(
+								Property.ACCESS_EXTERNAL_DTD, State.FSP,
 								Constants.EXTERNAL_ACCESS_DEFAULT_FSP);
-						fSecurityPropertyMgr.setValue(Property.ACCESS_EXTERNAL_SCHEMA, State.FSP,
+						fSecurityPropertyMgr.setValue(
+								Property.ACCESS_EXTERNAL_SCHEMA, State.FSP,
 								Constants.EXTERNAL_ACCESS_DEFAULT_FSP);
 					}
 				}
@@ -187,32 +193,39 @@ public class DocumentBuilderImpl extends DocumentBuilder implements JAXPConstant
 
 		this.grammar = dbf.getSchema();
 		if (grammar != null) {
-			XMLParserConfiguration config = domParser.getXMLParserConfiguration();
+			XMLParserConfiguration config = domParser
+					.getXMLParserConfiguration();
 			XMLComponent validatorComponent = null;
 			/** For Xerces grammars, use built-in schema validator. **/
 			if (grammar instanceof XSGrammarPoolContainer) {
 				validatorComponent = new XMLSchemaValidator();
 				fSchemaValidationManager = new ValidationManager();
-				fUnparsedEntityHandler = new UnparsedEntityHandler(fSchemaValidationManager);
+				fUnparsedEntityHandler = new UnparsedEntityHandler(
+						fSchemaValidationManager);
 				config.setDTDHandler(fUnparsedEntityHandler);
 				fUnparsedEntityHandler.setDTDHandler(domParser);
 				domParser.setDTDSource(fUnparsedEntityHandler);
-				fSchemaValidatorComponentManager = new SchemaValidatorConfiguration(config,
-						(XSGrammarPoolContainer) grammar, fSchemaValidationManager);
+				fSchemaValidatorComponentManager = new SchemaValidatorConfiguration(
+						config, (XSGrammarPoolContainer) grammar,
+						fSchemaValidationManager);
 			}
 			/** For third party grammars, use the JAXP validator component. **/
 			else {
-				validatorComponent = new JAXPValidatorComponent(grammar.newValidatorHandler());
+				validatorComponent = new JAXPValidatorComponent(grammar
+						.newValidatorHandler());
 				fSchemaValidationManager = null;
 				fUnparsedEntityHandler = null;
 				fSchemaValidatorComponentManager = config;
 			}
-			config.addRecognizedFeatures(validatorComponent.getRecognizedFeatures());
-			config.addRecognizedProperties(validatorComponent.getRecognizedProperties());
+			config.addRecognizedFeatures(validatorComponent
+					.getRecognizedFeatures());
+			config.addRecognizedProperties(validatorComponent
+					.getRecognizedProperties());
 			setFeatures(features); // Must set before calling
 									// setDocumentHandler()
 			config.setDocumentHandler((XMLDocumentHandler) validatorComponent);
-			((XMLDocumentSource) validatorComponent).setDocumentHandler(domParser);
+			((XMLDocumentSource) validatorComponent).setDocumentHandler(
+					domParser);
 			domParser.setDocumentSource((XMLDocumentSource) validatorComponent);
 			fSchemaValidator = validatorComponent;
 		} else {
@@ -246,8 +259,9 @@ public class DocumentBuilderImpl extends DocumentBuilder implements JAXPConstant
 	 * names and JAXP specific attribute names, eg.
 	 * DocumentBuilderFactory.setValidating()
 	 */
-	private void setDocumentBuilderFactoryAttributes(Map<String, Object> dbfAttrs)
-			throws SAXNotSupportedException, SAXNotRecognizedException {
+	private void setDocumentBuilderFactoryAttributes(
+			Map<String, Object> dbfAttrs) throws SAXNotSupportedException,
+			SAXNotRecognizedException {
 		if (dbfAttrs == null) {
 			// Nothing to do
 			return;
@@ -267,32 +281,40 @@ public class DocumentBuilderImpl extends DocumentBuilder implements JAXPConstant
 					// setValidating(true) has been called
 					if (W3C_XML_SCHEMA.equals(val)) {
 						if (isValidating()) {
-							domParser.setFeature(XMLSCHEMA_VALIDATION_FEATURE, true);
+							domParser.setFeature(XMLSCHEMA_VALIDATION_FEATURE,
+									true);
 							// this should allow us not to emit DTD errors, as
 							// expected by the
 							// spec when schema validation is enabled
-							domParser.setProperty(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
+							domParser.setProperty(JAXP_SCHEMA_LANGUAGE,
+									W3C_XML_SCHEMA);
 						}
 					}
 				} else if (JAXP_SCHEMA_SOURCE.equals(name)) {
 					if (isValidating()) {
-						String value = (String) dbfAttrs.get(JAXP_SCHEMA_LANGUAGE);
+						String value = (String) dbfAttrs.get(
+								JAXP_SCHEMA_LANGUAGE);
 						if (value != null && W3C_XML_SCHEMA.equals(value)) {
 							domParser.setProperty(name, val);
 						} else {
-							throw new IllegalArgumentException(DOMMessageFormatter.formatMessage(
-									DOMMessageFormatter.DOM_DOMAIN, "jaxp-order-not-supported",
-									new Object[] { JAXP_SCHEMA_LANGUAGE, JAXP_SCHEMA_SOURCE }));
+							throw new IllegalArgumentException(
+									DOMMessageFormatter.formatMessage(
+											DOMMessageFormatter.DOM_DOMAIN,
+											"jaxp-order-not-supported",
+											new Object[] { JAXP_SCHEMA_LANGUAGE,
+													JAXP_SCHEMA_SOURCE }));
 						}
 					}
 				} else {
 					// check if the property is managed by security manager
-					if (fSecurityManager == null || !fSecurityManager.setLimit(name,
-							XMLSecurityManager.State.APIPROPERTY, val)) {
+					if (fSecurityManager == null || !fSecurityManager.setLimit(
+							name, XMLSecurityManager.State.APIPROPERTY, val)) {
 						// check if the property is managed by security property
 						// manager
-						if (fSecurityPropertyMgr == null || !fSecurityPropertyMgr.setValue(name,
-								XMLSecurityPropertyManager.State.APIPROPERTY, val)) {
+						if (fSecurityPropertyMgr == null
+								|| !fSecurityPropertyMgr.setValue(name,
+										XMLSecurityPropertyManager.State.APIPROPERTY,
+										val)) {
 							// fall back to the existing property manager
 							domParser.setProperty(name, val);
 						}
@@ -319,7 +341,8 @@ public class DocumentBuilderImpl extends DocumentBuilder implements JAXPConstant
 	public Document parse(InputSource is) throws SAXException, IOException {
 		if (is == null) {
 			throw new IllegalArgumentException(DOMMessageFormatter
-					.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "jaxp-null-input-source", null));
+					.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+							"jaxp-null-input-source", null));
 		}
 		if (fSchemaValidator != null) {
 			if (fSchemaValidationManager != null) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -87,12 +67,15 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * operation</a>.
 	 *
 	 * @param predicate
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            predicate to apply to each element to determine if it should
-	 *            be included
+	 *                  a
+	 *                  <a href=
+	 *                  "package-summary.html#NonInterference">non-interfering
+	 *                  </a>,
+	 *                  <a href=
+	 *                  "package-summary.html#Statelessness">stateless</a>
+	 *                  predicate to apply to each element to determine if it
+	 *                  should
+	 *                  be included
 	 * @return the new stream
 	 */
 	DoubleStream filter(DoublePredicate predicate);
@@ -106,11 +89,12 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * operation</a>.
 	 *
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element
 	 * @return the new stream
 	 */
 	DoubleStream map(DoubleUnaryOperator mapper);
@@ -123,14 +107,15 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * This is an <a href="package-summary.html#StreamOps"> intermediate
 	 * operation</a>.
 	 *
-	 * @param <U>
-	 *            the element type of the new stream
+	 * @param        <U>
+	 *               the element type of the new stream
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element
 	 * @return the new stream
 	 */
 	<U> Stream<U> mapToObj(DoubleFunction<? extends U> mapper);
@@ -144,11 +129,12 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * operation</a>.
 	 *
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element
 	 * @return the new stream
 	 */
 	IntStream mapToInt(DoubleToIntFunction mapper);
@@ -162,11 +148,12 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * operation</a>.
 	 *
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element
 	 * @return the new stream
 	 */
 	LongStream mapToLong(DoubleToLongFunction mapper);
@@ -184,12 +171,13 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * operation</a>.
 	 *
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element which produces a
-	 *            {@code DoubleStream} of new values
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element which produces a
+	 *               {@code DoubleStream} of new values
 	 * @return the new stream
 	 * @see Stream#flatMap(Function)
 	 */
@@ -252,9 +240,10 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 *          </pre>
 	 *
 	 * @param action
-	 *            a <a href="package-summary.html#NonInterference"> non-
-	 *            interfering</a> action to perform on the elements as they are
-	 *            consumed from the stream
+	 *               a <a href="package-summary.html#NonInterference"> non-
+	 *               interfering</a> action to perform on the elements as they
+	 *               are
+	 *               consumed from the stream
 	 * @return the new stream
 	 */
 	DoubleStream peek(DoubleConsumer action);
@@ -283,10 +272,10 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 *          {@link #sequential()} may improve performance.
 	 *
 	 * @param maxSize
-	 *            the number of elements the stream should be limited to
+	 *                the number of elements the stream should be limited to
 	 * @return the new stream
 	 * @throws IllegalArgumentException
-	 *             if {@code maxSize} is negative
+	 *                                  if {@code maxSize} is negative
 	 */
 	DoubleStream limit(long maxSize);
 
@@ -316,10 +305,10 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 *          {@link #sequential()} may improve performance.
 	 *
 	 * @param n
-	 *            the number of leading elements to skip
+	 *          the number of leading elements to skip
 	 * @return the new stream
 	 * @throws IllegalArgumentException
-	 *             if {@code n} is negative
+	 *                                  if {@code n} is negative
 	 */
 	DoubleStream skip(long n);
 
@@ -339,8 +328,8 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * required synchronization.
 	 *
 	 * @param action
-	 *            a <a href="package-summary.html#NonInterference"> non-
-	 *            interfering</a> action to perform on the elements
+	 *               a <a href="package-summary.html#NonInterference"> non-
+	 *               interfering</a> action to perform on the elements
 	 */
 	void forEach(DoubleConsumer action);
 
@@ -354,8 +343,8 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * .
 	 *
 	 * @param action
-	 *            a <a href="package-summary.html#NonInterference"> non-
-	 *            interfering</a> action to perform on the elements
+	 *               a <a href="package-summary.html#NonInterference"> non-
+	 *               interfering</a> action to perform on the elements
 	 * @see #forEach(DoubleConsumer)
 	 */
 	void forEachOrdered(DoubleConsumer action);
@@ -424,14 +413,17 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 *          of data races.
 	 *
 	 * @param identity
-	 *            the identity value for the accumulating function
+	 *                 the identity value for the accumulating function
 	 * @param op
-	 *            an
-	 *            <a href="package-summary.html#Associativity">associative</a>,
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function for combining two values
+	 *                 an
+	 *                 <a href=
+	 *                 "package-summary.html#Associativity">associative</a>,
+	 *                 <a href=
+	 *                 "package-summary.html#NonInterference">non-interfering
+	 *                 </a>,
+	 *                 <a href=
+	 *                 "package-summary.html#Statelessness">stateless</a>
+	 *                 function for combining two values
 	 * @return the result of the reduction
 	 * @see #sum()
 	 * @see #min()
@@ -474,12 +466,12 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * .
 	 *
 	 * @param op
-	 *            an
-	 *            <a href="package-summary.html#Associativity">associative</a>,
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function for combining two values
+	 *           an
+	 *           <a href="package-summary.html#Associativity">associative</a>,
+	 *           <a href="package-summary.html#NonInterference">non-interfering
+	 *           </a>,
+	 *           <a href="package-summary.html#Statelessness">stateless</a>
+	 *           function for combining two values
 	 * @return the result of the reduction
 	 * @see #reduce(double, DoubleBinaryOperator)
 	 */
@@ -511,27 +503,37 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * This is a <a href="package-summary.html#StreamOps">terminal operation</a>
 	 * .
 	 *
-	 * @param <R>
-	 *            type of the result
+	 * @param             <R>
+	 *                    type of the result
 	 * @param supplier
-	 *            a function that creates a new result container. For a parallel
-	 *            execution, this function may be called multiple times and must
-	 *            return a fresh value each time.
+	 *                    a function that creates a new result container. For a
+	 *                    parallel
+	 *                    execution, this function may be called multiple times
+	 *                    and must
+	 *                    return a fresh value each time.
 	 * @param accumulator
-	 *            an
-	 *            <a href="package-summary.html#Associativity">associative</a>,
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function for incorporating an additional element into a result
+	 *                    an
+	 *                    <a href=
+	 *                    "package-summary.html#Associativity">associative</a>,
+	 *                    <a href=
+	 *                    "package-summary.html#NonInterference">non-interfering
+	 *                    </a>,
+	 *                    <a href=
+	 *                    "package-summary.html#Statelessness">stateless</a>
+	 *                    function for incorporating an additional element into
+	 *                    a result
 	 * @param combiner
-	 *            an
-	 *            <a href="package-summary.html#Associativity">associative</a>,
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function for combining two values, which must be compatible
-	 *            with the accumulator function
+	 *                    an
+	 *                    <a href=
+	 *                    "package-summary.html#Associativity">associative</a>,
+	 *                    <a href=
+	 *                    "package-summary.html#NonInterference">non-interfering
+	 *                    </a>,
+	 *                    <a href=
+	 *                    "package-summary.html#Statelessness">stateless</a>
+	 *                    function for combining two values, which must be
+	 *                    compatible
+	 *                    with the accumulator function
 	 * @return the result of the reduction
 	 * @see Stream#collect(Supplier, BiConsumer, BiConsumer)
 	 */
@@ -706,11 +708,13 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 *          the predicate over the elements of the stream (for some x P(x)).
 	 *
 	 * @param predicate
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            predicate to apply to elements of this stream
+	 *                  a
+	 *                  <a href=
+	 *                  "package-summary.html#NonInterference">non-interfering
+	 *                  </a>,
+	 *                  <a href=
+	 *                  "package-summary.html#Statelessness">stateless</a>
+	 *                  predicate to apply to elements of this stream
 	 * @return {@code true} if any elements of the stream match the provided
 	 *         predicate, otherwise {@code false}
 	 */
@@ -730,14 +734,16 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 *          the predicate over the elements of the stream (for all x P(x)).
 	 *          If the stream is empty, the quantification is said to be
 	 *          <em>vacuously
-	 * satisfied</em> and is always {@code true} (regardless of P(x)).
+	 *          satisfied</em> and is always {@code true} (regardless of P(x)).
 	 *
 	 * @param predicate
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            predicate to apply to elements of this stream
+	 *                  a
+	 *                  <a href=
+	 *                  "package-summary.html#NonInterference">non-interfering
+	 *                  </a>,
+	 *                  <a href=
+	 *                  "package-summary.html#Statelessness">stateless</a>
+	 *                  predicate to apply to elements of this stream
 	 * @return {@code true} if either all elements of the stream match the
 	 *         provided predicate or the stream is empty, otherwise
 	 *         {@code false}
@@ -761,11 +767,13 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 *          P(x).
 	 *
 	 * @param predicate
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            predicate to apply to elements of this stream
+	 *                  a
+	 *                  <a href=
+	 *                  "package-summary.html#NonInterference">non-interfering
+	 *                  </a>,
+	 *                  <a href=
+	 *                  "package-summary.html#Statelessness">stateless</a>
+	 *                  predicate to apply to elements of this stream
 	 * @return {@code true} if either no elements of the stream match the
 	 *         provided predicate or the stream is empty, otherwise
 	 *         {@code false}
@@ -849,18 +857,20 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * @return an empty sequential stream
 	 */
 	public static DoubleStream empty() {
-		return StreamSupport.doubleStream(Spliterators.emptyDoubleSpliterator(), false);
+		return StreamSupport.doubleStream(Spliterators.emptyDoubleSpliterator(),
+				false);
 	}
 
 	/**
 	 * Returns a sequential {@code DoubleStream} containing a single element.
 	 *
 	 * @param t
-	 *            the single element
+	 *          the single element
 	 * @return a singleton sequential stream
 	 */
 	public static DoubleStream of(double t) {
-		return StreamSupport.doubleStream(new Streams.DoubleStreamBuilderImpl(t), false);
+		return StreamSupport.doubleStream(new Streams.DoubleStreamBuilderImpl(
+				t), false);
 	}
 
 	/**
@@ -868,7 +878,7 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * values.
 	 *
 	 * @param values
-	 *            the elements of the new stream
+	 *               the elements of the new stream
 	 * @return the new stream
 	 */
 	public static DoubleStream of(double... values) {
@@ -888,13 +898,15 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * element at position {@code n - 1}.
 	 *
 	 * @param seed
-	 *            the initial element
+	 *             the initial element
 	 * @param f
-	 *            a function to be applied to to the previous element to produce
-	 *            a new element
+	 *             a function to be applied to to the previous element to
+	 *             produce
+	 *             a new element
 	 * @return a new sequential {@code DoubleStream}
 	 */
-	public static DoubleStream iterate(final double seed, final DoubleUnaryOperator f) {
+	public static DoubleStream iterate(final double seed,
+			final DoubleUnaryOperator f) {
 		Objects.requireNonNull(f);
 		final PrimitiveIterator.OfDouble iterator = new PrimitiveIterator.OfDouble() {
 			double t = seed;
@@ -911,8 +923,9 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 				return v;
 			}
 		};
-		return StreamSupport.doubleStream(Spliterators.spliteratorUnknownSize(iterator,
-				Spliterator.ORDERED | Spliterator.IMMUTABLE | Spliterator.NONNULL), false);
+		return StreamSupport.doubleStream(Spliterators.spliteratorUnknownSize(
+				iterator, Spliterator.ORDERED | Spliterator.IMMUTABLE
+						| Spliterator.NONNULL), false);
 	}
 
 	/**
@@ -921,14 +934,14 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 * generating constant streams, streams of random elements, etc.
 	 *
 	 * @param s
-	 *            the {@code DoubleSupplier} for generated elements
+	 *          the {@code DoubleSupplier} for generated elements
 	 * @return a new infinite sequential unordered {@code DoubleStream}
 	 */
 	public static DoubleStream generate(DoubleSupplier s) {
 		Objects.requireNonNull(s);
 		return StreamSupport.doubleStream(
-				new StreamSpliterators.InfiniteSupplyingSpliterator.OfDouble(Long.MAX_VALUE, s),
-				false);
+				new StreamSpliterators.InfiniteSupplyingSpliterator.OfDouble(
+						Long.MAX_VALUE, s), false);
 	}
 
 	/**
@@ -945,18 +958,19 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 	 *           {@code StackOverflowException}.
 	 *
 	 * @param a
-	 *            the first stream
+	 *          the first stream
 	 * @param b
-	 *            the second stream
+	 *          the second stream
 	 * @return the concatenation of the two input streams
 	 */
 	public static DoubleStream concat(DoubleStream a, DoubleStream b) {
 		Objects.requireNonNull(a);
 		Objects.requireNonNull(b);
 
-		Spliterator.OfDouble split = new Streams.ConcatSpliterator.OfDouble(a.spliterator(),
-				b.spliterator());
-		DoubleStream stream = StreamSupport.doubleStream(split, a.isParallel() || b.isParallel());
+		Spliterator.OfDouble split = new Streams.ConcatSpliterator.OfDouble(a
+				.spliterator(), b.spliterator());
+		DoubleStream stream = StreamSupport.doubleStream(split, a.isParallel()
+				|| b.isParallel());
 		return stream.onClose(Streams.composedClose(a, b));
 	}
 
@@ -980,8 +994,9 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 		 * Adds an element to the stream being built.
 		 *
 		 * @throws IllegalStateException
-		 *             if the builder has already transitioned to the built
-		 *             state
+		 *                               if the builder has already transitioned
+		 *                               to the built
+		 *                               state
 		 */
 		@Override
 		void accept(double t);
@@ -999,11 +1014,12 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 		 *           </pre>
 		 *
 		 * @param t
-		 *            the element to add
+		 *          the element to add
 		 * @return {@code this} builder
 		 * @throws IllegalStateException
-		 *             if the builder has already transitioned to the built
-		 *             state
+		 *                               if the builder has already transitioned
+		 *                               to the built
+		 *                               state
 		 */
 		default Builder add(double t) {
 			accept(t);
@@ -1017,8 +1033,9 @@ public interface DoubleStream extends BaseStream<Double, DoubleStream> {
 		 *
 		 * @return the built stream
 		 * @throws IllegalStateException
-		 *             if the builder has already transitioned to the built
-		 *             state
+		 *                               if the builder has already transitioned
+		 *                               to the built
+		 *                               state
 		 */
 		DoubleStream build();
 	}

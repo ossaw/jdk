@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -78,7 +76,7 @@ final class Key extends TopLevelElement {
 	 * Parse the <xsl:key> element and attributes
 	 * 
 	 * @param parser
-	 *            A reference to the stylesheet parser
+	 *               A reference to the stylesheet parser
 	 */
 	public void parseContents(Parser parser) {
 
@@ -126,7 +124,8 @@ final class Key extends TopLevelElement {
 
 		// Cast node values to string values (except for nodesets)
 		_useType = _use.typeCheck(stable);
-		if (_useType instanceof StringType == false && _useType instanceof NodeSetType == false) {
+		if (_useType instanceof StringType == false
+				&& _useType instanceof NodeSetType == false) {
 			_use = new CastExpr(_use, Type.String);
 		}
 
@@ -138,17 +137,17 @@ final class Key extends TopLevelElement {
 	 * set. In this case we must traverse all nodes in the set and create one
 	 * entry in this key's index for each node in the set.
 	 */
-	public void traverseNodeSet(ClassGenerator classGen, MethodGenerator methodGen,
-			int buildKeyIndex) {
+	public void traverseNodeSet(ClassGenerator classGen,
+			MethodGenerator methodGen, int buildKeyIndex) {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = methodGen.getInstructionList();
 
 		// DOM.getStringValueX(nodeIndex) => String
-		final int getNodeValue = cpg.addInterfaceMethodref(DOM_INTF, GET_NODE_VALUE,
-				"(I)" + STRING_SIG);
+		final int getNodeValue = cpg.addInterfaceMethodref(DOM_INTF,
+				GET_NODE_VALUE, "(I)" + STRING_SIG);
 
-		final int getNodeIdent = cpg.addInterfaceMethodref(DOM_INTF, "getNodeIdent",
-				"(I)" + NODE_SIG);
+		final int getNodeIdent = cpg.addInterfaceMethodref(DOM_INTF,
+				"getNodeIdent", "(I)" + NODE_SIG);
 
 		// AbstractTranslet.SetKeyIndexDom(name, Dom) => void
 		final int keyDom = cpg.addMethodref(TRANSLET_CLASS, "setKeyIndexDom",
@@ -157,8 +156,8 @@ final class Key extends TopLevelElement {
 		// This variable holds the id of the node we found with the "match"
 		// attribute of xsl:key. This is the id we store, with the value we
 		// get from the nodes we find here, in the index for this key.
-		final LocalVariableGen parentNode = methodGen.addLocalVariable("parentNode",
-				Util.getJCRefType("I"), null, null);
+		final LocalVariableGen parentNode = methodGen.addLocalVariable(
+				"parentNode", Util.getJCRefType("I"), null, null);
 
 		// Get the 'parameter' from the stack and store it in a local var.
 		parentNode.setStart(il.append(new ISTORE(parentNode.getIndex())));
@@ -216,15 +215,15 @@ final class Key extends TopLevelElement {
 		final int current = methodGen.getLocalIndex("current");
 
 		// AbstractTranslet.buildKeyIndex(name,node_id,value) => void
-		final int key = cpg.addMethodref(TRANSLET_CLASS, "buildKeyIndex",
-				"(" + STRING_SIG + "I" + STRING_SIG + ")V");
+		final int key = cpg.addMethodref(TRANSLET_CLASS, "buildKeyIndex", "("
+				+ STRING_SIG + "I" + STRING_SIG + ")V");
 
 		// AbstractTranslet.SetKeyIndexDom(name, Dom) => void
 		final int keyDom = cpg.addMethodref(TRANSLET_CLASS, "setKeyIndexDom",
 				"(" + STRING_SIG + DOM_INTF_SIG + ")V");
 
-		final int getNodeIdent = cpg.addInterfaceMethodref(DOM_INTF, "getNodeIdent",
-				"(I)" + NODE_SIG);
+		final int getNodeIdent = cpg.addInterfaceMethodref(DOM_INTF,
+				"getNodeIdent", "(I)" + NODE_SIG);
 
 		// DOM.getAxisIterator(root) => NodeIterator
 		final int git = cpg.addInterfaceMethodref(DOM_INTF, "getAxisIterator",

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind.util;
@@ -89,18 +69,19 @@ public class ValidationEventCollector implements ValidationEventHandler {
 
 		boolean retVal = true;
 		switch (event.getSeverity()) {
-		case ValidationEvent.WARNING:
-			retVal = true; // continue validation
-			break;
-		case ValidationEvent.ERROR:
-			retVal = true; // continue validation
-			break;
-		case ValidationEvent.FATAL_ERROR:
-			retVal = false; // halt validation
-			break;
-		default:
-			_assert(false, Messages.format(Messages.UNRECOGNIZED_SEVERITY, event.getSeverity()));
-			break;
+			case ValidationEvent.WARNING:
+				retVal = true; // continue validation
+				break;
+			case ValidationEvent.ERROR:
+				retVal = true; // continue validation
+				break;
+			case ValidationEvent.FATAL_ERROR:
+				retVal = false; // halt validation
+				break;
+			default:
+				_assert(false, Messages.format(Messages.UNRECOGNIZED_SEVERITY,
+						event.getSeverity()));
+				break;
 		}
 
 		return retVal;

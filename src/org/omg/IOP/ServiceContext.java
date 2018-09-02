@@ -16,8 +16,7 @@ public final class ServiceContext implements org.omg.CORBA.portable.IDLEntity {
 	/** The data associated with this service context */
 	public byte context_data[] = null;
 
-	public ServiceContext() {
-	} // ctor
+	public ServiceContext() {} // ctor
 
 	public ServiceContext(int _context_id, byte[] _context_data) {
 		context_id = _context_id;

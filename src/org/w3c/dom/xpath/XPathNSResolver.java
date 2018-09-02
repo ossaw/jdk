@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2002 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -59,7 +34,7 @@ public interface XPathNSResolver {
 	 * argument, because the result of doing this is undefined.
 	 * 
 	 * @param prefix
-	 *            The prefix to look for.
+	 *               The prefix to look for.
 	 * @return Returns the associated namespace URI or <code>null</code> if none
 	 *         is found.
 	 */

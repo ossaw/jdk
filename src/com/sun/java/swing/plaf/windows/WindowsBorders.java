@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.windows;
@@ -54,9 +34,10 @@ public class WindowsBorders {
 	public static Border getProgressBarBorder() {
 		UIDefaults table = UIManager.getLookAndFeelDefaults();
 		Border progressBarBorder = new BorderUIResource.CompoundBorderUIResource(
-				new WindowsBorders.ProgressBarBorder(table.getColor("ProgressBar.shadow"),
-						table.getColor("ProgressBar.highlight")),
-				new EmptyBorder(1, 1, 1, 1));
+				new WindowsBorders.ProgressBarBorder(table.getColor(
+						"ProgressBar.shadow"), table.getColor(
+								"ProgressBar.highlight")), new EmptyBorder(1, 1,
+										1, 1));
 		return progressBarBorder;
 	}
 
@@ -68,8 +49,8 @@ public class WindowsBorders {
 	 */
 	public static Border getToolBarBorder() {
 		UIDefaults table = UIManager.getLookAndFeelDefaults();
-		Border toolBarBorder = new WindowsBorders.ToolBarBorder(table.getColor("ToolBar.shadow"),
-				table.getColor("ToolBar.highlight"));
+		Border toolBarBorder = new WindowsBorders.ToolBarBorder(table.getColor(
+				"ToolBar.shadow"), table.getColor("ToolBar.highlight"));
 		return toolBarBorder;
 	}
 
@@ -88,8 +69,9 @@ public class WindowsBorders {
 		UIDefaults table = UIManager.getLookAndFeelDefaults();
 		Border tableHeaderBorder = new BorderUIResource.CompoundBorderUIResource(
 				new BasicBorders.ButtonBorder(table.getColor("Table.shadow"),
-						table.getColor("Table.darkShadow"), table.getColor("Table.light"),
-						table.getColor("Table.highlight")),
+						table.getColor("Table.darkShadow"), table.getColor(
+								"Table.light"), table.getColor(
+										"Table.highlight")),
 				new BasicBorders.MarginBorder());
 		return tableHeaderBorder;
 	}
@@ -97,20 +79,22 @@ public class WindowsBorders {
 	public static Border getInternalFrameBorder() {
 		UIDefaults table = UIManager.getLookAndFeelDefaults();
 		Border internalFrameBorder = new BorderUIResource.CompoundBorderUIResource(
-				BorderFactory.createBevelBorder(BevelBorder.RAISED,
-						table.getColor("InternalFrame.borderColor"),
-						table.getColor("InternalFrame.borderHighlight"),
-						table.getColor("InternalFrame.borderDarkShadow"),
+				BorderFactory.createBevelBorder(BevelBorder.RAISED, table
+						.getColor("InternalFrame.borderColor"), table.getColor(
+								"InternalFrame.borderHighlight"), table
+										.getColor(
+												"InternalFrame.borderDarkShadow"),
 						table.getColor("InternalFrame.borderShadow")),
-				new WindowsBorders.InternalFrameLineBorder(
-						table.getColor("InternalFrame.activeBorderColor"),
-						table.getColor("InternalFrame.inactiveBorderColor"),
-						table.getInt("InternalFrame.borderWidth")));
+				new WindowsBorders.InternalFrameLineBorder(table.getColor(
+						"InternalFrame.activeBorderColor"), table.getColor(
+								"InternalFrame.inactiveBorderColor"), table
+										.getInt("InternalFrame.borderWidth")));
 
 		return internalFrameBorder;
 	}
 
-	public static class ProgressBarBorder extends AbstractBorder implements UIResource {
+	public static class ProgressBarBorder extends AbstractBorder implements
+			UIResource {
 		protected Color shadow;
 		protected Color highlight;
 
@@ -119,7 +103,8 @@ public class WindowsBorders {
 			this.shadow = shadow;
 		}
 
-		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+		public void paintBorder(Component c, Graphics g, int x, int y,
+				int width, int height) {
 			g.setColor(shadow);
 			g.drawLine(x, y, width - 1, y); // draw top
 			g.drawLine(x, y, x, height - 1); // draw left
@@ -141,7 +126,8 @@ public class WindowsBorders {
 	 * 
 	 * @since 1.4
 	 */
-	public static class ToolBarBorder extends AbstractBorder implements UIResource, SwingConstants {
+	public static class ToolBarBorder extends AbstractBorder implements
+			UIResource, SwingConstants {
 		protected Color shadow;
 		protected Color highlight;
 
@@ -150,7 +136,8 @@ public class WindowsBorders {
 			this.shadow = shadow;
 		}
 
-		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+		public void paintBorder(Component c, Graphics g, int x, int y,
+				int width, int height) {
 			if (!(c instanceof JToolBar)) {
 				return;
 			}
@@ -167,7 +154,8 @@ public class WindowsBorders {
 				boolean vertical = ((JToolBar) c).getOrientation() == VERTICAL;
 
 				if (xp != null) {
-					Part part = vertical ? Part.RP_GRIPPERVERT : Part.RP_GRIPPER;
+					Part part = vertical ? Part.RP_GRIPPERVERT
+							: Part.RP_GRIPPER;
 					Skin skin = xp.getSkin(c, part);
 					int dx, dy, dw, dh;
 					if (vertical) {
@@ -178,7 +166,8 @@ public class WindowsBorders {
 					} else {
 						dw = skin.getWidth();
 						dh = height - 1;
-						dx = c.getComponentOrientation().isLeftToRight() ? 2 : (width - dw - 2);
+						dx = c.getComponentOrientation().isLeftToRight() ? 2
+								: (width - dw - 2);
 						dy = 0;
 					}
 					skin.paintSkin(g, dx, dy, dw, dh, State.NORMAL);
@@ -197,7 +186,8 @@ public class WindowsBorders {
 						} else {
 							g.setColor(shadow);
 							g.drawLine(width - 3, 3, width - 3, height - 4);
-							g.drawLine(width - 4, height - 4, width - 4, height - 4);
+							g.drawLine(width - 4, height - 4, width - 4, height
+									- 4);
 
 							g.setColor(highlight);
 							g.drawLine(width - 5, 3, width - 4, 3);
@@ -253,13 +243,15 @@ public class WindowsBorders {
 			super(color, thickness);
 		}
 
-		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+		public void paintBorder(Component c, Graphics g, int x, int y,
+				int width, int height) {
 			Color oldColor = g.getColor();
 			int i;
 
 			g.setColor(lineColor);
 			for (i = 0; i < thickness; i++) {
-				BasicGraphicsUtils.drawDashedRect(g, x + i, y + i, width - i - i, height - i - i);
+				BasicGraphicsUtils.drawDashedRect(g, x + i, y + i, width - i
+						- i, height - i - i);
 			}
 			g.setColor(oldColor);
 		}
@@ -269,7 +261,8 @@ public class WindowsBorders {
 	 * A dashed border that paints itself in the complementary color of the
 	 * component's background color.
 	 */
-	static class ComplementDashedBorder extends LineBorder implements UIResource {
+	static class ComplementDashedBorder extends LineBorder implements
+			UIResource {
 		private Color origColor;
 		private Color paintColor;
 
@@ -277,7 +270,8 @@ public class WindowsBorders {
 			super(null);
 		}
 
-		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+		public void paintBorder(Component c, Graphics g, int x, int y,
+				int width, int height) {
 			Color color = c.getBackground();
 
 			if (origColor != color) {
@@ -295,18 +289,20 @@ public class WindowsBorders {
 	 * 
 	 * @since 1.4
 	 */
-	public static class InternalFrameLineBorder extends LineBorder implements UIResource {
+	public static class InternalFrameLineBorder extends LineBorder implements
+			UIResource {
 		protected Color activeColor;
 		protected Color inactiveColor;
 
-		public InternalFrameLineBorder(Color activeBorderColor, Color inactiveBorderColor,
-				int thickness) {
+		public InternalFrameLineBorder(Color activeBorderColor,
+				Color inactiveBorderColor, int thickness) {
 			super(activeBorderColor, thickness);
 			activeColor = activeBorderColor;
 			inactiveColor = inactiveBorderColor;
 		}
 
-		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+		public void paintBorder(Component c, Graphics g, int x, int y,
+				int width, int height) {
 
 			JInternalFrame jif = null;
 			if (c instanceof JInternalFrame) {

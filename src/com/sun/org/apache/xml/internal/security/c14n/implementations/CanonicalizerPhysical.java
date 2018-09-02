@@ -70,13 +70,14 @@ public class CanonicalizerPhysical extends CanonicalizerBase {
 	 * @param inclusiveNamespaces
 	 * @return none it always fails
 	 * @throws CanonicalizationException
-	 *             always
+	 *                                   always
 	 */
-	public byte[] engineCanonicalizeXPathNodeSet(Set<Node> xpathNodeSet, String inclusiveNamespaces)
-			throws CanonicalizationException {
+	public byte[] engineCanonicalizeXPathNodeSet(Set<Node> xpathNodeSet,
+			String inclusiveNamespaces) throws CanonicalizationException {
 
 		/** $todo$ well, should we throw UnsupportedOperationException ? */
-		throw new CanonicalizationException("c14n.Canonicalizer.UnsupportedOperation");
+		throw new CanonicalizationException(
+				"c14n.Canonicalizer.UnsupportedOperation");
 	}
 
 	/**
@@ -87,11 +88,12 @@ public class CanonicalizerPhysical extends CanonicalizerBase {
 	 * @return none it always fails
 	 * @throws CanonicalizationException
 	 */
-	public byte[] engineCanonicalizeSubTree(Node rootNode, String inclusiveNamespaces)
-			throws CanonicalizationException {
+	public byte[] engineCanonicalizeSubTree(Node rootNode,
+			String inclusiveNamespaces) throws CanonicalizationException {
 
 		/** $todo$ well, should we throw UnsupportedOperationException ? */
-		throw new CanonicalizationException("c14n.Canonicalizer.UnsupportedOperation");
+		throw new CanonicalizationException(
+				"c14n.Canonicalizer.UnsupportedOperation");
 	}
 
 	/**
@@ -108,8 +110,8 @@ public class CanonicalizerPhysical extends CanonicalizerBase {
 	 * @throws CanonicalizationException
 	 */
 	@Override
-	protected Iterator<Attr> handleAttributesSubtree(Element element, NameSpaceSymbTable ns)
-			throws CanonicalizationException {
+	protected Iterator<Attr> handleAttributesSubtree(Element element,
+			NameSpaceSymbTable ns) throws CanonicalizationException {
 		if (!element.hasAttributes()) {
 			return null;
 		}
@@ -140,15 +142,17 @@ public class CanonicalizerPhysical extends CanonicalizerBase {
 	 * @throws CanonicalizationException
 	 */
 	@Override
-	protected Iterator<Attr> handleAttributes(Element element, NameSpaceSymbTable ns)
-			throws CanonicalizationException {
+	protected Iterator<Attr> handleAttributes(Element element,
+			NameSpaceSymbTable ns) throws CanonicalizationException {
 
 		/** $todo$ well, should we throw UnsupportedOperationException ? */
-		throw new CanonicalizationException("c14n.Canonicalizer.UnsupportedOperation");
+		throw new CanonicalizationException(
+				"c14n.Canonicalizer.UnsupportedOperation");
 	}
 
-	protected void circumventBugIfNeeded(XMLSignatureInput input) throws CanonicalizationException,
-			ParserConfigurationException, IOException, SAXException {
+	protected void circumventBugIfNeeded(XMLSignatureInput input)
+			throws CanonicalizationException, ParserConfigurationException,
+			IOException, SAXException {
 		// nothing to do
 	}
 
@@ -168,16 +172,17 @@ public class CanonicalizerPhysical extends CanonicalizerBase {
 	}
 
 	@Override
-	protected void outputPItoWriter(ProcessingInstruction currentPI, OutputStream writer,
-			int position) throws IOException {
+	protected void outputPItoWriter(ProcessingInstruction currentPI,
+			OutputStream writer, int position) throws IOException {
 		// Processing Instructions before or after the document element are not
 		// treated specially
-		super.outputPItoWriter(currentPI, writer, NODE_NOT_BEFORE_OR_AFTER_DOCUMENT_ELEMENT);
+		super.outputPItoWriter(currentPI, writer,
+				NODE_NOT_BEFORE_OR_AFTER_DOCUMENT_ELEMENT);
 	}
 
 	@Override
-	protected void outputCommentToWriter(Comment currentComment, OutputStream writer, int position)
-			throws IOException {
+	protected void outputCommentToWriter(Comment currentComment,
+			OutputStream writer, int position) throws IOException {
 		// Comments before or after the document element are not treated
 		// specially
 		super.outputCommentToWriter(currentComment, writer,

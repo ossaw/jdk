@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -62,8 +60,7 @@ public abstract class DTMManager {
 	/**
 	 * Default constructor is protected on purpose.
 	 */
-	protected DTMManager() {
-	}
+	protected DTMManager() {}
 
 	/**
 	 * Get the XMLStringFactory used for the DTMs.
@@ -102,10 +99,11 @@ public abstract class DTMManager {
 	 * @return new DTMManager instance, never null.
 	 *
 	 * @throws DTMException
-	 *             if the implementation is not available or cannot be
-	 *             instantiated.
+	 *                      if the implementation is not available or cannot be
+	 *                      instantiated.
 	 */
-	public static DTMManager newInstance(XMLStringFactory xsf) throws DTMException {
+	public static DTMManager newInstance(XMLStringFactory xsf)
+			throws DTMException {
 		final DTMManager factoryImpl = new com.sun.org.apache.xml.internal.dtm.ref.DTMManagerDefault();
 		factoryImpl.setXMLStringFactory(xsf);
 
@@ -123,30 +121,37 @@ public abstract class DTMManager {
 	 * entity resolution, and to better control selection of implementations.)
 	 *
 	 * @param source
-	 *            the specification of the source object, which may be null, in
-	 *            which case it is assumed that node construction will take by
-	 *            some other means.
+	 *                         the specification of the source object, which may
+	 *                         be null, in
+	 *                         which case it is assumed that node construction
+	 *                         will take by
+	 *                         some other means.
 	 * @param unique
-	 *            true if the returned DTM must be unique, probably because it
-	 *            is going to be mutated.
+	 *                         true if the returned DTM must be unique, probably
+	 *                         because it
+	 *                         is going to be mutated.
 	 * @param whiteSpaceFilter
-	 *            Enables filtering of whitespace nodes, and may be null.
+	 *                         Enables filtering of whitespace nodes, and may be
+	 *                         null.
 	 * @param incremental
-	 *            true if the DTM should be built incrementally, if possible.
+	 *                         true if the DTM should be built incrementally, if
+	 *                         possible.
 	 * @param doIndexing
-	 *            true if the caller considers it worth it to use indexing
-	 *            schemes.
+	 *                         true if the caller considers it worth it to use
+	 *                         indexing
+	 *                         schemes.
 	 *
 	 * @return a non-null DTM reference.
 	 */
-	public abstract DTM getDTM(javax.xml.transform.Source source, boolean unique,
-			DTMWSFilter whiteSpaceFilter, boolean incremental, boolean doIndexing);
+	public abstract DTM getDTM(javax.xml.transform.Source source,
+			boolean unique, DTMWSFilter whiteSpaceFilter, boolean incremental,
+			boolean doIndexing);
 
 	/**
 	 * Get the instance of DTM that "owns" a node handle.
 	 *
 	 * @param nodeHandle
-	 *            the nodeHandle.
+	 *                   the nodeHandle.
 	 *
 	 * @return a non-null DTM reference.
 	 */
@@ -157,7 +162,7 @@ public abstract class DTMManager {
 	 * be non-optimal.
 	 *
 	 * @param node
-	 *            Non-null reference to a DOM node.
+	 *             Non-null reference to a DOM node.
 	 *
 	 * @return a valid DTM handle.
 	 */
@@ -175,9 +180,9 @@ public abstract class DTMManager {
 	 * without system IDs are always hard deleted. State: experimental.
 	 *
 	 * @param dtm
-	 *            The DTM to be released.
+	 *                         The DTM to be released.
 	 * @param shouldHardDelete
-	 *            True if the DTM should be removed no matter what.
+	 *                         True if the DTM should be removed no matter what.
 	 * @return true if the DTM was removed, false if it was put back in a lru
 	 *         pool.
 	 */
@@ -189,15 +194,18 @@ public abstract class DTMManager {
 	 * <a href="http://www.w3.org/TR/xpath#NT-UnionExpr">UnionExpr</a>.
 	 *
 	 * @param xpathCompiler
-	 *            ??? Somehow we need to pass in a subpart of the expression. I
-	 *            hate to do this with strings, since the larger expression has
-	 *            already been parsed.
+	 *                      ??? Somehow we need to pass in a subpart of the
+	 *                      expression. I
+	 *                      hate to do this with strings, since the larger
+	 *                      expression has
+	 *                      already been parsed.
 	 *
 	 * @param pos
-	 *            The position in the expression.
+	 *                      The position in the expression.
 	 * @return The newly created <code>DTMIterator</code>.
 	 */
-	public abstract DTMIterator createDTMIterator(Object xpathCompiler, int pos);
+	public abstract DTMIterator createDTMIterator(Object xpathCompiler,
+			int pos);
 
 	/**
 	 * Create a new <code>DTMIterator</code> based on an XPath <a
@@ -205,18 +213,20 @@ public abstract class DTMManager {
 	 * <a href="http://www.w3.org/TR/xpath#NT-UnionExpr">UnionExpr</a>.
 	 *
 	 * @param xpathString
-	 *            Must be a valid string expressing a <a
-	 *            href="http://www.w3.org/TR/xpath#NT-LocationPath>LocationPath
-	 *            </a> or a
-	 *            <a href="http://www.w3.org/TR/xpath#NT-UnionExpr">UnionExpr
-	 *            </a>.
+	 *                    Must be a valid string expressing a <a
+	 *                    href="http://www.w3.org/TR/xpath#NT-LocationPath>LocationPath
+	 *                    </a> or a
+	 *                    <a href=
+	 *                    "http://www.w3.org/TR/xpath#NT-UnionExpr">UnionExpr
+	 *                    </a>.
 	 *
 	 * @param presolver
-	 *            An object that can resolve prefixes to namespace URLs.
+	 *                    An object that can resolve prefixes to namespace URLs.
 	 *
 	 * @return The newly created <code>DTMIterator</code>.
 	 */
-	public abstract DTMIterator createDTMIterator(String xpathString, PrefixResolver presolver);
+	public abstract DTMIterator createDTMIterator(String xpathString,
+			PrefixResolver presolver);
 
 	/**
 	 * Create a new <code>DTMIterator</code> based only on a whatToShow and a
@@ -227,29 +237,36 @@ public abstract class DTMManager {
 	 * their response to document mutation is not currently defined.
 	 *
 	 * @param whatToShow
-	 *            This flag specifies which node types may appear in the logical
-	 *            view of the tree presented by the iterator. See the
-	 *            description of <code>NodeFilter</code> for the set of possible
-	 *            <code>SHOW_</code> values.These flags can be combined using
-	 *            <code>OR</code>.
+	 *                                 This flag specifies which node types may
+	 *                                 appear in the logical
+	 *                                 view of the tree presented by the
+	 *                                 iterator. See the
+	 *                                 description of <code>NodeFilter</code>
+	 *                                 for the set of possible
+	 *                                 <code>SHOW_</code> values.These flags can
+	 *                                 be combined using
+	 *                                 <code>OR</code>.
 	 * @param filter
-	 *            The <code>NodeFilter</code> to be used with this
-	 *            <code>DTMFilter</code>, or <code>null</code> to indicate no
-	 *            filter.
+	 *                                 The <code>NodeFilter</code> to be used
+	 *                                 with this
+	 *                                 <code>DTMFilter</code>, or
+	 *                                 <code>null</code> to indicate no
+	 *                                 filter.
 	 * @param entityReferenceExpansion
-	 *            The value of this flag determines whether entity reference
-	 *            nodes are expanded.
+	 *                                 The value of this flag determines whether
+	 *                                 entity reference
+	 *                                 nodes are expanded.
 	 *
 	 * @return The newly created <code>DTMIterator</code>.
 	 */
-	public abstract DTMIterator createDTMIterator(int whatToShow, DTMFilter filter,
-			boolean entityReferenceExpansion);
+	public abstract DTMIterator createDTMIterator(int whatToShow,
+			DTMFilter filter, boolean entityReferenceExpansion);
 
 	/**
 	 * Create a new <code>DTMIterator</code> that holds exactly one node.
 	 *
 	 * @param node
-	 *            The node handle that the DTMIterator will iterate to.
+	 *             The node handle that the DTMIterator will iterate to.
 	 *
 	 * @return The newly created <code>DTMIterator</code>.
 	 */
@@ -282,7 +299,7 @@ public abstract class DTMManager {
 	 * is created
 	 * 
 	 * @param incremental
-	 *            boolean to use to set m_incremental.
+	 *                    boolean to use to set m_incremental.
 	 *
 	 */
 	public void setIncremental(boolean incremental) {
@@ -308,7 +325,7 @@ public abstract class DTMManager {
 	 * is created
 	 * 
 	 * @param sourceLocation
-	 *            boolean to use to set m_source_location
+	 *                       boolean to use to set m_source_location
 	 */
 	public void setSource_location(boolean sourceLocation) {
 		m_source_location = sourceLocation;
@@ -364,7 +381,8 @@ public abstract class DTMManager {
 	 * This is the maximum number of DTMs available. The highest DTM is one less
 	 * than this.
 	 */
-	public static final int IDENT_MAX_DTMS = (IDENT_DTM_DEFAULT >>> IDENT_DTM_NODE_BITS) + 1;
+	public static final int IDENT_MAX_DTMS = (IDENT_DTM_DEFAULT >>> IDENT_DTM_NODE_BITS)
+			+ 1;
 
 	/**
 	 * %TBD% Doc

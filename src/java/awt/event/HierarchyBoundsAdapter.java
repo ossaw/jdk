@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -46,16 +26,15 @@ package java.awt.event;
  * @see HierarchyEvent
  * @since 1.3
  */
-public abstract class HierarchyBoundsAdapter implements HierarchyBoundsListener {
+public abstract class HierarchyBoundsAdapter implements
+		HierarchyBoundsListener {
 	/**
 	 * Called when an ancestor of the source is moved.
 	 */
-	public void ancestorMoved(HierarchyEvent e) {
-	}
+	public void ancestorMoved(HierarchyEvent e) {}
 
 	/**
 	 * Called when an ancestor of the source is resized.
 	 */
-	public void ancestorResized(HierarchyEvent e) {
-	}
+	public void ancestorResized(HierarchyEvent e) {}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.spec;
@@ -48,10 +28,11 @@ public abstract class EncodedKeySpec implements KeySpec {
 	 * Creates a new EncodedKeySpec with the given encoded key.
 	 *
 	 * @param encodedKey
-	 *            the encoded key. The contents of the array are copied to
-	 *            protect against subsequent modification.
+	 *                   the encoded key. The contents of the array are copied
+	 *                   to
+	 *                   protect against subsequent modification.
 	 * @exception NullPointerException
-	 *                if {@code encodedKey} is null.
+	 *                                 if {@code encodedKey} is null.
 	 */
 	public EncodedKeySpec(byte[] encodedKey) {
 		this.encodedKey = encodedKey.clone();

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.net;
 
@@ -33,22 +13,22 @@ import java.io.IOException;
  * If InetAddress.preferIPv6Address is true then anyLocalAddress(),
  * loopbackAddress(), and localHost() will return IPv6 addresses,
  * otherwise IPv4 addresses.
- *
  * @since 1.4
  */
 
 class Inet6AddressImpl implements InetAddressImpl {
 	public native String getLocalHostName() throws UnknownHostException;
 
-	public native InetAddress[] lookupAllHostAddr(String hostname) throws UnknownHostException;
+	public native InetAddress[] lookupAllHostAddr(String hostname)
+			throws UnknownHostException;
 
 	public native String getHostByAddr(byte[] addr) throws UnknownHostException;
 
-	private native boolean isReachable0(byte[] addr, int scope, int timeout, byte[] inf, int ttl,
-			int if_scope) throws IOException;
+	private native boolean isReachable0(byte[] addr, int scope, int timeout,
+			byte[] inf, int ttl, int if_scope) throws IOException;
 
-	public boolean isReachable(InetAddress addr, int timeout, NetworkInterface netif, int ttl)
-			throws IOException {
+	public boolean isReachable(InetAddress addr, int timeout,
+			NetworkInterface netif, int ttl) throws IOException {
 		byte[] ifaddr = null;
 		int scope = -1;
 		int netif_scope = -1;
@@ -79,7 +59,8 @@ class Inet6AddressImpl implements InetAddressImpl {
 		}
 		if (addr instanceof Inet6Address)
 			scope = ((Inet6Address) addr).getScopeId();
-		return isReachable0(addr.getAddress(), scope, timeout, ifaddr, ttl, netif_scope);
+		return isReachable0(addr.getAddress(), scope, timeout, ifaddr, ttl,
+				netif_scope);
 	}
 
 	public synchronized InetAddress anyLocalAddress() {
@@ -97,8 +78,8 @@ class Inet6AddressImpl implements InetAddressImpl {
 	public synchronized InetAddress loopbackAddress() {
 		if (loopbackAddress == null) {
 			if (InetAddress.preferIPv6Address) {
-				byte[] loopback = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-						0x00, 0x00, 0x00, 0x00, 0x00, 0x01 };
+				byte[] loopback = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+						0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 };
 				loopbackAddress = new Inet6Address("localhost", loopback);
 			} else {
 				loopbackAddress = (new Inet4AddressImpl()).loopbackAddress();

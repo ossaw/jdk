@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.generic;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.generic;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -96,7 +88,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * Initialize with given array of constants.
 	 *
 	 * @param c
-	 *            array of given constants, new ones will be appended
+	 *          array of given constants, new ones will be appended
 	 */
 	public ConstantPoolGen(Constant[] cs) {
 		if (cs.length > size) {
@@ -125,19 +117,24 @@ public class ConstantPoolGen implements java.io.Serializable {
 			} else if (c instanceof ConstantNameAndType) {
 				ConstantNameAndType n = (ConstantNameAndType) c;
 				ConstantUtf8 u8 = (ConstantUtf8) constants[n.getNameIndex()];
-				ConstantUtf8 u8_2 = (ConstantUtf8) constants[n.getSignatureIndex()];
+				ConstantUtf8 u8_2 = (ConstantUtf8) constants[n
+						.getSignatureIndex()];
 
-				n_a_t_table.put(u8.getBytes() + NAT_DELIM + u8_2.getBytes(), new Index(i));
+				n_a_t_table.put(u8.getBytes() + NAT_DELIM + u8_2.getBytes(),
+						new Index(i));
 			} else if (c instanceof ConstantUtf8) {
 				ConstantUtf8 u = (ConstantUtf8) c;
 
 				utf8_table.put(u.getBytes(), new Index(i));
 			} else if (c instanceof ConstantCP) {
 				ConstantCP m = (ConstantCP) c;
-				ConstantClass clazz = (ConstantClass) constants[m.getClassIndex()];
-				ConstantNameAndType n = (ConstantNameAndType) constants[m.getNameAndTypeIndex()];
+				ConstantClass clazz = (ConstantClass) constants[m
+						.getClassIndex()];
+				ConstantNameAndType n = (ConstantNameAndType) constants[m
+						.getNameAndTypeIndex()];
 
-				ConstantUtf8 u8 = (ConstantUtf8) constants[clazz.getNameIndex()];
+				ConstantUtf8 u8 = (ConstantUtf8) constants[clazz
+						.getNameIndex()];
 				String class_name = u8.getBytes().replace('/', '.');
 
 				u8 = (ConstantUtf8) constants[n.getNameIndex()];
@@ -153,7 +150,8 @@ public class ConstantPoolGen implements java.io.Serializable {
 				else if (c instanceof ConstantFieldref)
 					delim = FIELDREF_DELIM;
 
-				cp_table.put(class_name + delim + method_name + delim + signature, new Index(i));
+				cp_table.put(class_name + delim + method_name + delim
+						+ signature, new Index(i));
 			}
 		}
 	}
@@ -168,8 +166,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	/**
 	 * Create empty constant pool.
 	 */
-	public ConstantPoolGen() {
-	}
+	public ConstantPoolGen() {}
 
 	/**
 	 * Resize internal array of constants.
@@ -286,7 +283,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * MULTIANEWARRAY instruction, e.g. to the ConstantPool.
 	 *
 	 * @param type
-	 *            type of array class
+	 *             type of array class
 	 * @return index of entry
 	 */
 	public int addArrayClass(ArrayType type) {
@@ -297,7 +294,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * Look for ConstantInteger in ConstantPool.
 	 *
 	 * @param n
-	 *            integer number to look for
+	 *          integer number to look for
 	 * @return index on success, -1 otherwise
 	 */
 	public int lookupInteger(int n) {
@@ -318,7 +315,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * there.
 	 *
 	 * @param n
-	 *            integer number to add
+	 *          integer number to add
 	 * @return index of entry
 	 */
 	public int addInteger(int n) {
@@ -339,7 +336,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * Look for ConstantFloat in ConstantPool.
 	 *
 	 * @param n
-	 *            Float number to look for
+	 *          Float number to look for
 	 * @return index on success, -1 otherwise
 	 */
 	public int lookupFloat(float n) {
@@ -362,7 +359,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * there.
 	 *
 	 * @param n
-	 *            Float number to add
+	 *          Float number to add
 	 * @return index of entry
 	 */
 	public int addFloat(float n) {
@@ -385,7 +382,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * Look for ConstantUtf8 in ConstantPool.
 	 *
 	 * @param n
-	 *            Utf8 string to look for
+	 *          Utf8 string to look for
 	 * @return index on success, -1 otherwise
 	 */
 	public int lookupUtf8(String n) {
@@ -399,7 +396,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * there.
 	 *
 	 * @param n
-	 *            Utf8 string to add
+	 *          Utf8 string to add
 	 * @return index of entry
 	 */
 	public int addUtf8(String n) {
@@ -422,7 +419,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * Look for ConstantLong in ConstantPool.
 	 *
 	 * @param n
-	 *            Long number to look for
+	 *          Long number to look for
 	 * @return index on success, -1 otherwise
 	 */
 	public int lookupLong(long n) {
@@ -443,7 +440,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * there.
 	 *
 	 * @param n
-	 *            Long number to add
+	 *          Long number to add
 	 * @return index of entry
 	 */
 	public int addLong(long n) {
@@ -465,7 +462,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * Look for ConstantDouble in ConstantPool.
 	 *
 	 * @param n
-	 *            Double number to look for
+	 *          Double number to look for
 	 * @return index on success, -1 otherwise
 	 */
 	public int lookupDouble(double n) {
@@ -488,7 +485,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * there.
 	 *
 	 * @param n
-	 *            Double number to add
+	 *          Double number to add
 	 * @return index of entry
 	 */
 	public int addDouble(double n) {
@@ -512,9 +509,9 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * Look for ConstantNameAndType in ConstantPool.
 	 *
 	 * @param name
-	 *            of variable/method
+	 *                  of variable/method
 	 * @param signature
-	 *            of variable/method
+	 *                  of variable/method
 	 * @return index on success, -1 otherwise
 	 */
 	public int lookupNameAndType(String name, String signature) {
@@ -527,7 +524,7 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * in there.
 	 *
 	 * @param n
-	 *            NameAndType string to add
+	 *          NameAndType string to add
 	 * @return index of entry
 	 */
 	public int addNameAndType(String name, String signature) {
@@ -542,7 +539,8 @@ public class ConstantPoolGen implements java.io.Serializable {
 		name_index = addUtf8(name);
 		signature_index = addUtf8(signature);
 		ret = index;
-		constants[index++] = new ConstantNameAndType(name_index, signature_index);
+		constants[index++] = new ConstantNameAndType(name_index,
+				signature_index);
 
 		n_a_t_table.put(name + NAT_DELIM + signature, new Index(ret));
 		return ret;
@@ -554,21 +552,23 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * Look for ConstantMethodref in ConstantPool.
 	 *
 	 * @param class_name
-	 *            Where to find method
+	 *                    Where to find method
 	 * @param method_name
-	 *            Guess what
+	 *                    Guess what
 	 * @param signature
-	 *            return and argument types
+	 *                    return and argument types
 	 * @return index on success, -1 otherwise
 	 */
-	public int lookupMethodref(String class_name, String method_name, String signature) {
-		Index index = (Index) cp_table
-				.get(class_name + METHODREF_DELIM + method_name + METHODREF_DELIM + signature);
+	public int lookupMethodref(String class_name, String method_name,
+			String signature) {
+		Index index = (Index) cp_table.get(class_name + METHODREF_DELIM
+				+ method_name + METHODREF_DELIM + signature);
 		return (index != null) ? index.index : -1;
 	}
 
 	public int lookupMethodref(MethodGen method) {
-		return lookupMethodref(method.getClassName(), method.getName(), method.getSignature());
+		return lookupMethodref(method.getClassName(), method.getName(), method
+				.getSignature());
 	}
 
 	/**
@@ -576,10 +576,11 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * there.
 	 *
 	 * @param n
-	 *            Methodref string to add
+	 *          Methodref string to add
 	 * @return index of entry
 	 */
-	public int addMethodref(String class_name, String method_name, String signature) {
+	public int addMethodref(String class_name, String method_name,
+			String signature) {
 		int ret, class_index, name_and_type_index;
 
 		if ((ret = lookupMethodref(class_name, method_name, signature)) != -1)
@@ -590,32 +591,35 @@ public class ConstantPoolGen implements java.io.Serializable {
 		name_and_type_index = addNameAndType(method_name, signature);
 		class_index = addClass(class_name);
 		ret = index;
-		constants[index++] = new ConstantMethodref(class_index, name_and_type_index);
+		constants[index++] = new ConstantMethodref(class_index,
+				name_and_type_index);
 
-		cp_table.put(class_name + METHODREF_DELIM + method_name + METHODREF_DELIM + signature,
-				new Index(ret));
+		cp_table.put(class_name + METHODREF_DELIM + method_name
+				+ METHODREF_DELIM + signature, new Index(ret));
 
 		return ret;
 	}
 
 	public int addMethodref(MethodGen method) {
-		return addMethodref(method.getClassName(), method.getName(), method.getSignature());
+		return addMethodref(method.getClassName(), method.getName(), method
+				.getSignature());
 	}
 
 	/**
 	 * Look for ConstantInterfaceMethodref in ConstantPool.
 	 *
 	 * @param class_name
-	 *            Where to find method
+	 *                    Where to find method
 	 * @param method_name
-	 *            Guess what
+	 *                    Guess what
 	 * @param signature
-	 *            return and argument types
+	 *                    return and argument types
 	 * @return index on success, -1 otherwise
 	 */
-	public int lookupInterfaceMethodref(String class_name, String method_name, String signature) {
-		Index index = (Index) cp_table
-				.get(class_name + IMETHODREF_DELIM + method_name + IMETHODREF_DELIM + signature);
+	public int lookupInterfaceMethodref(String class_name, String method_name,
+			String signature) {
+		Index index = (Index) cp_table.get(class_name + IMETHODREF_DELIM
+				+ method_name + IMETHODREF_DELIM + signature);
 		return (index != null) ? index.index : -1;
 	}
 
@@ -629,13 +633,15 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * already in there.
 	 *
 	 * @param n
-	 *            InterfaceMethodref string to add
+	 *          InterfaceMethodref string to add
 	 * @return index of entry
 	 */
-	public int addInterfaceMethodref(String class_name, String method_name, String signature) {
+	public int addInterfaceMethodref(String class_name, String method_name,
+			String signature) {
 		int ret, class_index, name_and_type_index;
 
-		if ((ret = lookupInterfaceMethodref(class_name, method_name, signature)) != -1)
+		if ((ret = lookupInterfaceMethodref(class_name, method_name,
+				signature)) != -1)
 			return ret; // Already in CP
 
 		adjustSize();
@@ -643,10 +649,11 @@ public class ConstantPoolGen implements java.io.Serializable {
 		class_index = addClass(class_name);
 		name_and_type_index = addNameAndType(method_name, signature);
 		ret = index;
-		constants[index++] = new ConstantInterfaceMethodref(class_index, name_and_type_index);
+		constants[index++] = new ConstantInterfaceMethodref(class_index,
+				name_and_type_index);
 
-		cp_table.put(class_name + IMETHODREF_DELIM + method_name + IMETHODREF_DELIM + signature,
-				new Index(ret));
+		cp_table.put(class_name + IMETHODREF_DELIM + method_name
+				+ IMETHODREF_DELIM + signature, new Index(ret));
 
 		return ret;
 	}
@@ -660,16 +667,17 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * Look for ConstantFieldref in ConstantPool.
 	 *
 	 * @param class_name
-	 *            Where to find method
+	 *                   Where to find method
 	 * @param field_name
-	 *            Guess what
+	 *                   Guess what
 	 * @param signature
-	 *            return and argument types
+	 *                   return and argument types
 	 * @return index on success, -1 otherwise
 	 */
-	public int lookupFieldref(String class_name, String field_name, String signature) {
-		Index index = (Index) cp_table
-				.get(class_name + FIELDREF_DELIM + field_name + FIELDREF_DELIM + signature);
+	public int lookupFieldref(String class_name, String field_name,
+			String signature) {
+		Index index = (Index) cp_table.get(class_name + FIELDREF_DELIM
+				+ field_name + FIELDREF_DELIM + signature);
 		return (index != null) ? index.index : -1;
 	}
 
@@ -678,10 +686,11 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * there.
 	 *
 	 * @param n
-	 *            Fieldref string to add
+	 *          Fieldref string to add
 	 * @return index of entry
 	 */
-	public int addFieldref(String class_name, String field_name, String signature) {
+	public int addFieldref(String class_name, String field_name,
+			String signature) {
 		int ret;
 		int class_index, name_and_type_index;
 
@@ -693,17 +702,18 @@ public class ConstantPoolGen implements java.io.Serializable {
 		class_index = addClass(class_name);
 		name_and_type_index = addNameAndType(field_name, signature);
 		ret = index;
-		constants[index++] = new ConstantFieldref(class_index, name_and_type_index);
+		constants[index++] = new ConstantFieldref(class_index,
+				name_and_type_index);
 
-		cp_table.put(class_name + FIELDREF_DELIM + field_name + FIELDREF_DELIM + signature,
-				new Index(ret));
+		cp_table.put(class_name + FIELDREF_DELIM + field_name + FIELDREF_DELIM
+				+ signature, new Index(ret));
 
 		return ret;
 	}
 
 	/**
 	 * @param i
-	 *            index in constant pool
+	 *          index in constant pool
 	 * @return constant pool entry at index i
 	 */
 	public Constant getConstant(int i) {
@@ -714,9 +724,9 @@ public class ConstantPoolGen implements java.io.Serializable {
 	 * Use with care!
 	 *
 	 * @param i
-	 *            index in constant pool
+	 *          index in constant pool
 	 * @param c
-	 *            new constant pool entry at index i
+	 *          new constant pool entry at index i
 	 */
 	public void setConstant(int i, Constant c) {
 		constants[i] = c;
@@ -766,75 +776,81 @@ public class ConstantPoolGen implements java.io.Serializable {
 		Constant[] constants = cp.getConstantPool().getConstantPool();
 
 		switch (c.getTag()) {
-		case Constants.CONSTANT_String: {
-			ConstantString s = (ConstantString) c;
-			ConstantUtf8 u8 = (ConstantUtf8) constants[s.getStringIndex()];
+			case Constants.CONSTANT_String: {
+				ConstantString s = (ConstantString) c;
+				ConstantUtf8 u8 = (ConstantUtf8) constants[s.getStringIndex()];
 
-			return addString(u8.getBytes());
-		}
+				return addString(u8.getBytes());
+			}
 
-		case Constants.CONSTANT_Class: {
-			ConstantClass s = (ConstantClass) c;
-			ConstantUtf8 u8 = (ConstantUtf8) constants[s.getNameIndex()];
+			case Constants.CONSTANT_Class: {
+				ConstantClass s = (ConstantClass) c;
+				ConstantUtf8 u8 = (ConstantUtf8) constants[s.getNameIndex()];
 
-			return addClass(u8.getBytes());
-		}
+				return addClass(u8.getBytes());
+			}
 
-		case Constants.CONSTANT_NameAndType: {
-			ConstantNameAndType n = (ConstantNameAndType) c;
-			ConstantUtf8 u8 = (ConstantUtf8) constants[n.getNameIndex()];
-			ConstantUtf8 u8_2 = (ConstantUtf8) constants[n.getSignatureIndex()];
+			case Constants.CONSTANT_NameAndType: {
+				ConstantNameAndType n = (ConstantNameAndType) c;
+				ConstantUtf8 u8 = (ConstantUtf8) constants[n.getNameIndex()];
+				ConstantUtf8 u8_2 = (ConstantUtf8) constants[n
+						.getSignatureIndex()];
 
-			return addNameAndType(u8.getBytes(), u8_2.getBytes());
-		}
+				return addNameAndType(u8.getBytes(), u8_2.getBytes());
+			}
 
-		case Constants.CONSTANT_Utf8:
-			return addUtf8(((ConstantUtf8) c).getBytes());
+			case Constants.CONSTANT_Utf8:
+				return addUtf8(((ConstantUtf8) c).getBytes());
 
-		case Constants.CONSTANT_Double:
-			return addDouble(((ConstantDouble) c).getBytes());
+			case Constants.CONSTANT_Double:
+				return addDouble(((ConstantDouble) c).getBytes());
 
-		case Constants.CONSTANT_Float:
-			return addFloat(((ConstantFloat) c).getBytes());
+			case Constants.CONSTANT_Float:
+				return addFloat(((ConstantFloat) c).getBytes());
 
-		case Constants.CONSTANT_Long:
-			return addLong(((ConstantLong) c).getBytes());
+			case Constants.CONSTANT_Long:
+				return addLong(((ConstantLong) c).getBytes());
 
-		case Constants.CONSTANT_Integer:
-			return addInteger(((ConstantInteger) c).getBytes());
+			case Constants.CONSTANT_Integer:
+				return addInteger(((ConstantInteger) c).getBytes());
 
-		case Constants.CONSTANT_InterfaceMethodref:
-		case Constants.CONSTANT_Methodref:
-		case Constants.CONSTANT_Fieldref: {
-			ConstantCP m = (ConstantCP) c;
-			ConstantClass clazz = (ConstantClass) constants[m.getClassIndex()];
-			ConstantNameAndType n = (ConstantNameAndType) constants[m.getNameAndTypeIndex()];
-			ConstantUtf8 u8 = (ConstantUtf8) constants[clazz.getNameIndex()];
-			String class_name = u8.getBytes().replace('/', '.');
-
-			u8 = (ConstantUtf8) constants[n.getNameIndex()];
-			String name = u8.getBytes();
-
-			u8 = (ConstantUtf8) constants[n.getSignatureIndex()];
-			String signature = u8.getBytes();
-
-			switch (c.getTag()) {
 			case Constants.CONSTANT_InterfaceMethodref:
-				return addInterfaceMethodref(class_name, name, signature);
-
 			case Constants.CONSTANT_Methodref:
-				return addMethodref(class_name, name, signature);
+			case Constants.CONSTANT_Fieldref: {
+				ConstantCP m = (ConstantCP) c;
+				ConstantClass clazz = (ConstantClass) constants[m
+						.getClassIndex()];
+				ConstantNameAndType n = (ConstantNameAndType) constants[m
+						.getNameAndTypeIndex()];
+				ConstantUtf8 u8 = (ConstantUtf8) constants[clazz
+						.getNameIndex()];
+				String class_name = u8.getBytes().replace('/', '.');
 
-			case Constants.CONSTANT_Fieldref:
-				return addFieldref(class_name, name, signature);
+				u8 = (ConstantUtf8) constants[n.getNameIndex()];
+				String name = u8.getBytes();
+
+				u8 = (ConstantUtf8) constants[n.getSignatureIndex()];
+				String signature = u8.getBytes();
+
+				switch (c.getTag()) {
+					case Constants.CONSTANT_InterfaceMethodref:
+						return addInterfaceMethodref(class_name, name,
+								signature);
+
+					case Constants.CONSTANT_Methodref:
+						return addMethodref(class_name, name, signature);
+
+					case Constants.CONSTANT_Fieldref:
+						return addFieldref(class_name, name, signature);
+
+					default: // Never reached
+						throw new RuntimeException("Unknown constant type "
+								+ c);
+				}
+			}
 
 			default: // Never reached
 				throw new RuntimeException("Unknown constant type " + c);
-			}
-		}
-
-		default: // Never reached
-			throw new RuntimeException("Unknown constant type " + c);
 		}
 	}
 }

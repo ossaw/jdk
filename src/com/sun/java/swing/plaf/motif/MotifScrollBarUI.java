@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.java.swing.plaf.motif;
 
@@ -60,7 +40,8 @@ public class MotifScrollBarUI extends BasicScrollBarUI {
 		Insets insets = c.getInsets();
 		int dx = insets.left + insets.right;
 		int dy = insets.top + insets.bottom;
-		return (scrollbar.getOrientation() == JScrollBar.VERTICAL) ? new Dimension(dx + 11, dy + 33)
+		return (scrollbar.getOrientation() == JScrollBar.VERTICAL)
+				? new Dimension(dx + 11, dy + 33)
 				: new Dimension(dx + 33, dy + 11);
 	}
 
@@ -74,7 +55,8 @@ public class MotifScrollBarUI extends BasicScrollBarUI {
 
 	public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
 		g.setColor(trackColor);
-		g.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
+		g.fillRect(trackBounds.x, trackBounds.y, trackBounds.width,
+				trackBounds.height);
 	}
 
 	public void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -78,12 +58,12 @@ import static javax.lang.model.SourceVersion.*;
  * of this visitor may be deprecated.
  *
  * @param <R>
- *            the return type of this visitor's methods. Use {@link Void} for
- *            visitors that do not need to return results.
+ *        the return type of this visitor's methods. Use {@link Void} for
+ *        visitors that do not need to return results.
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
- *            Use {@code Void} for visitors that do not need an additional
- *            parameter.
+ *        the type of the additional parameter to this visitor's methods.
+ *        Use {@code Void} for visitors that do not need an additional
+ *        parameter.
  *
  * @see ElementScanner6
  * @see ElementScanner8
@@ -104,7 +84,7 @@ public class ElementScanner7<R, P> extends ElementScanner6<R, P> {
 	 * value.
 	 *
 	 * @param defaultValue
-	 *            the default value
+	 *                     the default value
 	 */
 	protected ElementScanner7(R defaultValue) {
 		super(defaultValue);
@@ -114,9 +94,9 @@ public class ElementScanner7<R, P> extends ElementScanner6<R, P> {
 	 * This implementation scans the enclosed elements.
 	 *
 	 * @param e
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of scanning
 	 */
 	@Override

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.basic;
 
@@ -50,21 +30,25 @@ class BasicTransferable implements Transferable, UIResource {
 			htmlFlavors = new DataFlavor[3];
 			htmlFlavors[0] = new DataFlavor("text/html;class=java.lang.String");
 			htmlFlavors[1] = new DataFlavor("text/html;class=java.io.Reader");
-			htmlFlavors[2] = new DataFlavor("text/html;charset=unicode;class=java.io.InputStream");
+			htmlFlavors[2] = new DataFlavor(
+					"text/html;charset=unicode;class=java.io.InputStream");
 
 			plainFlavors = new DataFlavor[3];
-			plainFlavors[0] = new DataFlavor("text/plain;class=java.lang.String");
+			plainFlavors[0] = new DataFlavor(
+					"text/plain;class=java.lang.String");
 			plainFlavors[1] = new DataFlavor("text/plain;class=java.io.Reader");
 			plainFlavors[2] = new DataFlavor(
 					"text/plain;charset=unicode;class=java.io.InputStream");
 
 			stringFlavors = new DataFlavor[2];
 			stringFlavors[0] = new DataFlavor(
-					DataFlavor.javaJVMLocalObjectMimeType + ";class=java.lang.String");
+					DataFlavor.javaJVMLocalObjectMimeType
+							+ ";class=java.lang.String");
 			stringFlavors[1] = DataFlavor.stringFlavor;
 
 		} catch (ClassNotFoundException cle) {
-			System.err.println("error initializing javax.swing.plaf.basic.BasicTranserable");
+			System.err.println(
+					"error initializing javax.swing.plaf.basic.BasicTranserable");
 		}
 	}
 
@@ -116,7 +100,7 @@ class BasicTransferable implements Transferable, UIResource {
 	 * object.
 	 * 
 	 * @param flavor
-	 *            the requested flavor for the data
+	 *               the requested flavor for the data
 	 * @return boolean indicating whether or not the data flavor is supported
 	 */
 	public boolean isDataFlavorSupported(DataFlavor flavor) {
@@ -135,13 +119,15 @@ class BasicTransferable implements Transferable, UIResource {
 	 * flavor.
 	 *
 	 * @param flavor
-	 *            the requested flavor for the data
+	 *               the requested flavor for the data
 	 * @see DataFlavor#getRepresentationClass
 	 * @exception IOException
-	 *                if the data is no longer available in the requested
-	 *                flavor.
+	 *                                       if the data is no longer available
+	 *                                       in the requested
+	 *                                       flavor.
 	 * @exception UnsupportedFlavorException
-	 *                if the requested data flavor is not supported.
+	 *                                       if the requested data flavor is not
+	 *                                       supported.
 	 */
 	public Object getTransferData(DataFlavor flavor)
 			throws UnsupportedFlavorException, IOException {
@@ -155,7 +141,8 @@ class BasicTransferable implements Transferable, UIResource {
 				return data;
 			} else if (Reader.class.equals(flavor.getRepresentationClass())) {
 				return new StringReader(data);
-			} else if (InputStream.class.equals(flavor.getRepresentationClass())) {
+			} else if (InputStream.class.equals(flavor
+					.getRepresentationClass())) {
 				return createInputStream(flavor, data);
 			}
 			// fall through to unsupported
@@ -166,7 +153,8 @@ class BasicTransferable implements Transferable, UIResource {
 				return data;
 			} else if (Reader.class.equals(flavor.getRepresentationClass())) {
 				return new StringReader(data);
-			} else if (InputStream.class.equals(flavor.getRepresentationClass())) {
+			} else if (InputStream.class.equals(flavor
+					.getRepresentationClass())) {
 				return createInputStream(flavor, data);
 			}
 			// fall through to unsupported
@@ -211,7 +199,8 @@ class BasicTransferable implements Transferable, UIResource {
 		return null;
 	}
 
-	protected Object getRicherData(DataFlavor flavor) throws UnsupportedFlavorException {
+	protected Object getRicherData(DataFlavor flavor)
+			throws UnsupportedFlavorException {
 		return null;
 	}
 
@@ -223,7 +212,7 @@ class BasicTransferable implements Transferable, UIResource {
 	 * is supported.
 	 * 
 	 * @param flavor
-	 *            the requested flavor for the data
+	 *               the requested flavor for the data
 	 * @return boolean indicating whether or not the data flavor is supported
 	 */
 	protected boolean isHTMLFlavor(DataFlavor flavor) {
@@ -259,7 +248,7 @@ class BasicTransferable implements Transferable, UIResource {
 	 * is supported.
 	 * 
 	 * @param flavor
-	 *            the requested flavor for the data
+	 *               the requested flavor for the data
 	 * @return boolean indicating whether or not the data flavor is supported
 	 */
 	protected boolean isPlainFlavor(DataFlavor flavor) {
@@ -295,7 +284,7 @@ class BasicTransferable implements Transferable, UIResource {
 	 * is supported.
 	 * 
 	 * @param flavor
-	 *            the requested flavor for the data
+	 *               the requested flavor for the data
 	 * @return boolean indicating whether or not the data flavor is supported
 	 */
 	protected boolean isStringFlavor(DataFlavor flavor) {

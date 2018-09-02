@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.management;
@@ -402,8 +382,8 @@ public interface MemoryPoolMXBean extends PlatformManagedObject {
 	 * memory usage.
 	 *
 	 * @throws java.lang.SecurityException
-	 *             if a security manager exists and the caller does not have
-	 *             ManagementPermission("control").
+	 *         if a security manager exists and the caller does not have
+	 *         ManagementPermission("control").
 	 */
 	public void resetPeakUsage();
 
@@ -435,7 +415,8 @@ public interface MemoryPoolMXBean extends PlatformManagedObject {
 	 * @return the usage threshold value of this memory pool in bytes.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if this memory pool does not support a usage threshold.
+	 *                                       if this memory pool does not
+	 *                                       support a usage threshold.
 	 *
 	 * @see #isUsageThresholdSupported
 	 */
@@ -449,18 +430,22 @@ public interface MemoryPoolMXBean extends PlatformManagedObject {
 	 * checking is disabled if it is set to zero.
 	 *
 	 * @param threshold
-	 *            the new threshold value in bytes. Must be non-negative.
+	 *                  the new threshold value in bytes. Must be non-negative.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <tt>threshold</tt> is negative or greater than the maximum
-	 *             amount of memory for this memory pool if defined.
+	 *                                       if <tt>threshold</tt> is negative
+	 *                                       or greater than the maximum
+	 *                                       amount of memory for this memory
+	 *                                       pool if defined.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if this memory pool does not support a usage threshold.
+	 *                                       if this memory pool does not
+	 *                                       support a usage threshold.
 	 *
-	 * @throws java.lang.SecurityException
-	 *             if a security manager exists and the caller does not have
-	 *             ManagementPermission("control").
+	 * @throws                               java.lang.SecurityException
+	 *                                       if a security manager exists and
+	 *                                       the caller does not have
+	 *                                       ManagementPermission("control").
 	 *
 	 * @see #isUsageThresholdSupported
 	 * @see <a href="#UsageThreshold">Usage threshold</a>
@@ -475,7 +460,8 @@ public interface MemoryPoolMXBean extends PlatformManagedObject {
 	 *         exceeds the threshold value; <tt>false</tt> otherwise.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if this memory pool does not support a usage threshold.
+	 *                                       if this memory pool does not
+	 *                                       support a usage threshold.
 	 */
 	public boolean isUsageThresholdExceeded();
 
@@ -487,7 +473,8 @@ public interface MemoryPoolMXBean extends PlatformManagedObject {
 	 *         threshold value.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if this memory pool does not support a usage threshold.
+	 *                                       if this memory pool does not
+	 *                                       support a usage threshold.
 	 */
 	public long getUsageThresholdCount();
 
@@ -508,8 +495,9 @@ public interface MemoryPoolMXBean extends PlatformManagedObject {
 	 * @return the collection usage threshold of this memory pool in bytes.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if this memory pool does not support a collection usage
-	 *             threshold.
+	 *                                       if this memory pool does not
+	 *                                       support a collection usage
+	 *                                       threshold.
 	 *
 	 * @see #isCollectionUsageThresholdSupported
 	 */
@@ -527,20 +515,25 @@ public interface MemoryPoolMXBean extends PlatformManagedObject {
 	 * usage threshold crossing checking is disabled if it is set to zero.
 	 *
 	 * @param threshold
-	 *            the new collection usage threshold value in bytes. Must be
-	 *            non-negative.
+	 *                  the new collection usage threshold value in bytes. Must
+	 *                  be
+	 *                  non-negative.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <tt>threshold</tt> is negative or greater than the maximum
-	 *             amount of memory for this memory pool if defined.
+	 *                                       if <tt>threshold</tt> is negative
+	 *                                       or greater than the maximum
+	 *                                       amount of memory for this memory
+	 *                                       pool if defined.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if this memory pool does not support a collection usage
-	 *             threshold.
+	 *                                       if this memory pool does not
+	 *                                       support a collection usage
+	 *                                       threshold.
 	 *
-	 * @throws java.lang.SecurityException
-	 *             if a security manager exists and the caller does not have
-	 *             ManagementPermission("control").
+	 * @throws                               java.lang.SecurityException
+	 *                                       if a security manager exists and
+	 *                                       the caller does not have
+	 *                                       ManagementPermission("control").
 	 *
 	 * @see #isCollectionUsageThresholdSupported
 	 * @see <a href="#CollectionThreshold">Collection usage threshold</a>
@@ -559,7 +552,8 @@ public interface MemoryPoolMXBean extends PlatformManagedObject {
 	 *         collection; <tt>false</tt> otherwise.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if this memory pool does not support a usage threshold.
+	 *                                       if this memory pool does not
+	 *                                       support a usage threshold.
 	 */
 	public boolean isCollectionUsageThresholdExceeded();
 
@@ -572,8 +566,9 @@ public interface MemoryPoolMXBean extends PlatformManagedObject {
 	 *         the collection usage threshold.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if this memory pool does not support a collection usage
-	 *             threshold.
+	 *                                       if this memory pool does not
+	 *                                       support a collection usage
+	 *                                       threshold.
 	 *
 	 * @see #isCollectionUsageThresholdSupported
 	 */

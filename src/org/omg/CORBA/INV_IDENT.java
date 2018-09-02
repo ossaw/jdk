@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -54,7 +34,7 @@ public final class INV_IDENT extends SystemException {
 	 * message, a minor code of 0, and a completion state of COMPLETED_NO.
 	 * 
 	 * @param s
-	 *            the String containing a detail message
+	 *          the String containing a detail message
 	 */
 	public INV_IDENT(String s) {
 		this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -65,10 +45,10 @@ public final class INV_IDENT extends SystemException {
 	 * code and completion status.
 	 * 
 	 * @param minor
-	 *            the minor code
+	 *                  the minor code
 	 * @param completed
-	 *            a <code>CompletionStatus</code> object indicating the
-	 *            completion status
+	 *                  a <code>CompletionStatus</code> object indicating the
+	 *                  completion status
 	 */
 	public INV_IDENT(int minor, CompletionStatus completed) {
 		this("", minor, completed);
@@ -80,12 +60,12 @@ public final class INV_IDENT extends SystemException {
 	 * that describes this particular exception.
 	 * 
 	 * @param s
-	 *            the String containing a detail message
+	 *                  the String containing a detail message
 	 * @param minor
-	 *            the minor code
+	 *                  the minor code
 	 * @param completed
-	 *            a <code>CompletionStatus</code> object indicating the
-	 *            completion status
+	 *                  a <code>CompletionStatus</code> object indicating the
+	 *                  completion status
 	 */
 	public INV_IDENT(String s, int minor, CompletionStatus completed) {
 		super(s, minor, completed);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // SAX DTD handler.
@@ -97,18 +77,20 @@ public interface DTDHandler {
 	 * </p>
 	 *
 	 * @param name
-	 *            The notation name.
+	 *                 The notation name.
 	 * @param publicId
-	 *            The notation's public identifier, or null if none was given.
+	 *                 The notation's public identifier, or null if none was
+	 *                 given.
 	 * @param systemId
-	 *            The notation's system identifier, or null if none was given.
+	 *                 The notation's system identifier, or null if none was
+	 *                 given.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 * @see #unparsedEntityDecl
 	 * @see org.xml.sax.Attributes
 	 */
-	public abstract void notationDecl(String name, String publicId, String systemId)
-			throws SAXException;
+	public abstract void notationDecl(String name, String publicId,
+			String systemId) throws SAXException;
 
 	/**
 	 * Receive notification of an unparsed entity declaration event.
@@ -126,20 +108,21 @@ public interface DTDHandler {
 	 * </p>
 	 *
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 * @param name
-	 *            The unparsed entity's name.
+	 *                     The unparsed entity's name.
 	 * @param publicId
-	 *            The entity's public identifier, or null if none was given.
+	 *                     The entity's public identifier, or null if none was
+	 *                     given.
 	 * @param systemId
-	 *            The entity's system identifier.
+	 *                     The entity's system identifier.
 	 * @param notationName
-	 *            The name of the associated notation.
+	 *                     The name of the associated notation.
 	 * @see #notationDecl
 	 * @see org.xml.sax.Attributes
 	 */
-	public abstract void unparsedEntityDecl(String name, String publicId, String systemId,
-			String notationName) throws SAXException;
+	public abstract void unparsedEntityDecl(String name, String publicId,
+			String systemId, String notationName) throws SAXException;
 
 }
 

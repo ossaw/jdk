@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -53,14 +33,13 @@ public final class FixedHolder implements Streamable {
 	/**
 	 * Construct the FixedHolder without initializing the contained value.
 	 */
-	public FixedHolder() {
-	}
+	public FixedHolder() {}
 
 	/**
 	 * Construct the FixedHolder and initialize it with the given value.
 	 * 
 	 * @param initial
-	 *            the value used to initialize the FixedHolder
+	 *                the value used to initialize the FixedHolder
 	 */
 	public FixedHolder(java.math.BigDecimal initial) {
 		value = initial;
@@ -71,7 +50,7 @@ public final class FixedHolder implements Streamable {
 	 * member.
 	 *
 	 * @param input
-	 *            the <code>InputStream</code> to read from.
+	 *              the <code>InputStream</code> to read from.
 	 */
 	public void _read(InputStream input) {
 		value = input.read_fixed();
@@ -82,7 +61,7 @@ public final class FixedHolder implements Streamable {
 	 * <code>OutputStream</code>.
 	 *
 	 * @param output
-	 *            the <code>OutputStream</code> to write into.
+	 *               the <code>OutputStream</code> to write into.
 	 */
 	public void _write(OutputStream output) {
 		output.write_fixed(value);

@@ -4,43 +4,34 @@
  */
 /*
  * The Apache Software License, Version 1.1
- *
- *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Xerces" and "Apache Software Foundation" must
- *    not be used to endorse or promote products derived from this
- *    software without prior written permission. For written
- *    permission, please contact apache@apache.org.
- *
+ * not be used to endorse or promote products derived from this
+ * software without prior written permission. For written
+ * permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    nor may "Apache" appear in their name, without prior written
- *    permission of the Apache Software Foundation.
- *
+ * nor may "Apache" appear in their name, without prior written
+ * permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -50,11 +41,10 @@
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
  * individuals on behalf of the Apache Software Foundation and was
  * originally based on software copyright (c) 1999, International
- * Business Machines, Inc., http://www.apache.org.  For more
+ * Business Machines, Inc., http://www.apache.org. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -232,9 +222,9 @@ public class DFAContentModel implements ContentModelValidator {
 	 * Constructs a DFA content model.
 	 *
 	 * @param syntaxTree
-	 *            The syntax tree of the content model.
+	 *                   The syntax tree of the content model.
 	 * @param leafCount
-	 *            The number of leaves.
+	 *                   The number of leaves.
 	 * @param mixed
 	 *
 	 */
@@ -273,14 +263,15 @@ public class DFAContentModel implements ContentModelValidator {
 	 * confirmed.
 	 *
 	 * @param children
-	 *            The children of this element. Each integer is an index within
-	 *            the <code>StringPool</code> of the child element name. An
-	 *            index of -1 is used to indicate an occurrence of
-	 *            non-whitespace character data.
+	 *                 The children of this element. Each integer is an index
+	 *                 within
+	 *                 the <code>StringPool</code> of the child element name. An
+	 *                 index of -1 is used to indicate an occurrence of
+	 *                 non-whitespace character data.
 	 * @param offset
-	 *            Offset into the array where the children starts.
+	 *                 Offset into the array where the children starts.
 	 * @param length
-	 *            The number of entries in the <code>children</code> array.
+	 *                 The number of entries in the <code>children</code> array.
 	 *
 	 * @return The value -1 if fully valid, else the 0 based index of the child
 	 *         that first failed. If the value returned is equal to the number
@@ -314,8 +305,8 @@ public class DFAContentModel implements ContentModelValidator {
 					String uri = fElemMap[i].uri;
 					String localpart = fElemMap[i].localpart;
 
-					System.out.println("fElemMap[" + i + "]=" + uri + "," + localpart + " (" + uri
-							+ ", " + localpart + ')');
+					System.out.println("fElemMap[" + i + "]=" + uri + ","
+							+ localpart + " (" + uri + ", " + localpart + ')');
 
 				}
 				System.out.println("EOCIndex=" + fEOCString);
@@ -372,8 +363,10 @@ public class DFAContentModel implements ContentModelValidator {
 
 					System.out.println("curElem : " + curElem);
 					for (int i = 0; i < fElemMapSize; i++) {
-						System.out.println("fElemMap[" + i + "] = " + fElemMap[i]);
-						System.out.println("fElemMapType[" + i + "] = " + fElemMapType[i]);
+						System.out.println("fElemMap[" + i + "] = "
+								+ fElemMap[i]);
+						System.out.println("fElemMapType[" + i + "] = "
+								+ fElemMapType[i]);
 					}
 				}
 
@@ -400,7 +393,8 @@ public class DFAContentModel implements ContentModelValidator {
 		// our ending state is a final state.
 		//
 		if (DEBUG_VALIDATE_CONTENT)
-			System.out.println("curState=" + curState + ", childCount=" + length);
+			System.out.println("curState=" + curState + ", childCount="
+					+ length);
 		if (!fFinalStateFlags[curState])
 			return length;
 
@@ -416,10 +410,10 @@ public class DFAContentModel implements ContentModelValidator {
 	 * Builds the internal DFA transition table from the given syntax tree.
 	 *
 	 * @param syntaxTree
-	 *            The syntax tree.
+	 *                   The syntax tree.
 	 *
 	 * @exception CMException
-	 *                Thrown if DFA cannot be built.
+	 *                        Thrown if DFA cannot be built.
 	 */
 	private void buildDFA(CMNode syntaxTree) {
 		//
@@ -453,20 +447,18 @@ public class DFAContentModel implements ContentModelValidator {
 
 		/*
 		 * MODIFIED (Jan, 2001)
-		 *
 		 * Use following rules. nullable(x+) := nullable(x), first(x+) :=
 		 * first(x), last(x+) := last(x) nullable(x?) := true, first(x?) :=
 		 * first(x), last(x?) := last(x)
-		 *
 		 * The same computation of follow as x* is applied to x+
-		 *
 		 * The modification drastically reduces computation time of
 		 * "(a, (b, a+, (c, (b, a+)+, a+, (d,  (c, (b, a+)+, a+)+, (b, a+)+, a+)+)+)+)+"
 		 */
 
 		fQName.setValues(null, fEOCString, fEOCString, null);
 		CMLeaf nodeEOC = new CMLeaf(fQName);
-		fHeadNode = new CMBinOp(XMLContentSpec.CONTENTSPECNODE_SEQ, syntaxTree, nodeEOC);
+		fHeadNode = new CMBinOp(XMLContentSpec.CONTENTSPECNODE_SEQ, syntaxTree,
+				nodeEOC);
 
 		//
 		// And handle specially the EOC node, which also must be numbered
@@ -693,7 +685,8 @@ public class DFAContentModel implements ContentModelValidator {
 
 					/* Optimization(Jan, 2001) */
 					Integer stateObj = (Integer) stateTable.get(newSet);
-					int stateIndex = (stateObj == null ? curState : stateObj.intValue());
+					int stateIndex = (stateObj == null ? curState
+							: stateObj.intValue());
 					/* Optimization(Jan, 2001) */
 
 					// If we did not find it, then add it
@@ -742,9 +735,12 @@ public class DFAContentModel implements ContentModelValidator {
 						int[][] newTransTable = new int[newSize][];
 
 						// Copy over all of the existing content
-						System.arraycopy(statesToDo, 0, newToDo, 0, curArraySize);
-						System.arraycopy(fFinalStateFlags, 0, newFinalFlags, 0, curArraySize);
-						System.arraycopy(fTransTable, 0, newTransTable, 0, curArraySize);
+						System.arraycopy(statesToDo, 0, newToDo, 0,
+								curArraySize);
+						System.arraycopy(fFinalStateFlags, 0, newFinalFlags, 0,
+								curArraySize);
+						System.arraycopy(fTransTable, 0, newTransTable, 0,
+								curArraySize);
 
 						// Store the new array size
 						curArraySize = newSize;
@@ -775,10 +771,10 @@ public class DFAContentModel implements ContentModelValidator {
 	 * Calculates the follow list of the current node.
 	 *
 	 * @param nodeCur
-	 *            The curent node.
+	 *                The curent node.
 	 *
 	 * @exception CMException
-	 *                Thrown if follow list cannot be calculated.
+	 *                        Thrown if follow list cannot be calculated.
 	 */
 	private void calcFollowList(CMNode nodeCur) {
 		// Recurse as required
@@ -827,7 +823,8 @@ public class DFAContentModel implements ContentModelValidator {
 		 * throw new RuntimeException("ImplementationMessages.VAL_NIICM"); } /
 		 ***/
 		else if (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_MORE
-				|| nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ONE_OR_MORE) {
+				|| nodeCur
+						.type() == XMLContentSpec.CONTENTSPECNODE_ONE_OR_MORE) {
 			// Recurse first
 			calcFollowList(((CMUniOp) nodeCur).getChild());
 
@@ -860,12 +857,12 @@ public class DFAContentModel implements ContentModelValidator {
 	 * Dumps the tree of the current node to standard output.
 	 *
 	 * @param nodeCur
-	 *            The current node.
+	 *                The current node.
 	 * @param level
-	 *            The maximum levels to output.
+	 *                The maximum levels to output.
 	 *
 	 * @exception CMException
-	 *                Thrown on error.
+	 *                        Thrown on error.
 	 */
 	private void dumpTree(CMNode nodeCur, int level) {
 		for (int index = 0; index < level; index++)
@@ -889,7 +886,8 @@ public class DFAContentModel implements ContentModelValidator {
 
 			dumpTree(((CMBinOp) nodeCur).getLeft(), level + 1);
 			dumpTree(((CMBinOp) nodeCur).getRight(), level + 1);
-		} else if (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_MORE) {
+		} else if (nodeCur
+				.type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_MORE) {
 			System.out.print("Rep Node ");
 
 			if (nodeCur.isNullable())
@@ -902,8 +900,8 @@ public class DFAContentModel implements ContentModelValidator {
 
 			dumpTree(((CMUniOp) nodeCur).getChild(), level + 1);
 		} else if (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_LEAF) {
-			System.out.print("Leaf: (pos=" + ((CMLeaf) nodeCur).getPosition() + "), "
-					+ ((CMLeaf) nodeCur).getElement() + "(elemIndex="
+			System.out.print("Leaf: (pos=" + ((CMLeaf) nodeCur).getPosition()
+					+ "), " + ((CMLeaf) nodeCur).getElement() + "(elemIndex="
 					+ ((CMLeaf) nodeCur).getElement() + ") ");
 
 			if (nodeCur.isNullable())
@@ -937,21 +935,29 @@ public class DFAContentModel implements ContentModelValidator {
 
 		// Recurse as required
 		if ((nodeCur.type() & 0x0f) == XMLContentSpec.CONTENTSPECNODE_ANY
-				|| (nodeCur.type() & 0x0f) == XMLContentSpec.CONTENTSPECNODE_ANY_LOCAL
-				|| (nodeCur.type() & 0x0f) == XMLContentSpec.CONTENTSPECNODE_ANY_OTHER) {
+				|| (nodeCur.type()
+						& 0x0f) == XMLContentSpec.CONTENTSPECNODE_ANY_LOCAL
+				|| (nodeCur.type()
+						& 0x0f) == XMLContentSpec.CONTENTSPECNODE_ANY_OTHER) {
 			// REVISIT: Don't waste these structures.
-			QName qname = new QName(null, null, null, ((CMAny) nodeCur).getURI());
-			fLeafList[curIndex] = new CMLeaf(qname, ((CMAny) nodeCur).getPosition());
+			QName qname = new QName(null, null, null, ((CMAny) nodeCur)
+					.getURI());
+			fLeafList[curIndex] = new CMLeaf(qname, ((CMAny) nodeCur)
+					.getPosition());
 			fLeafListType[curIndex] = nodeCur.type();
 			curIndex++;
 		} else if ((nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_CHOICE)
 				|| (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_SEQ)) {
-			curIndex = postTreeBuildInit(((CMBinOp) nodeCur).getLeft(), curIndex);
-			curIndex = postTreeBuildInit(((CMBinOp) nodeCur).getRight(), curIndex);
+			curIndex = postTreeBuildInit(((CMBinOp) nodeCur).getLeft(),
+					curIndex);
+			curIndex = postTreeBuildInit(((CMBinOp) nodeCur).getRight(),
+					curIndex);
 		} else if (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_MORE
 				|| nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ONE_OR_MORE
-				|| nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_ONE) {
-			curIndex = postTreeBuildInit(((CMUniOp) nodeCur).getChild(), curIndex);
+				|| nodeCur
+						.type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_ONE) {
+			curIndex = postTreeBuildInit(((CMUniOp) nodeCur).getChild(),
+					curIndex);
 		} else if (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_LEAF) {
 			//
 			// Put this node in the leaf list at the current index if its
@@ -964,7 +970,8 @@ public class DFAContentModel implements ContentModelValidator {
 				curIndex++;
 			}
 		} else {
-			throw new RuntimeException("ImplementationMessages.VAL_NIICM: type=" + nodeCur.type());
+			throw new RuntimeException("ImplementationMessages.VAL_NIICM: type="
+					+ nodeCur.type());
 		}
 		return curIndex;
 	}

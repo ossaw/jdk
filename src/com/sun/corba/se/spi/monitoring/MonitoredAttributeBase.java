@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.spi.monitoring;
 
@@ -73,8 +53,7 @@ public abstract class MonitoredAttributeBase implements MonitoredAttribute {
 	 * state of the connection. NOTE: This method is only used to clear the
 	 * Monitored Attribute state, not the real state of the system itself.
 	 */
-	public void clearState() {
-	}
+	public void clearState() {}
 
 	/**
 	 * This method should be implemented by the concrete class.
@@ -88,10 +67,12 @@ public abstract class MonitoredAttributeBase implements MonitoredAttribute {
 	 */
 	public void setValue(Object value) {
 		if (!attributeInfo.isWritable()) {
-			throw new IllegalStateException("The Attribute " + name + " is not Writable...");
+			throw new IllegalStateException("The Attribute " + name
+					+ " is not Writable...");
 		}
 		throw new IllegalStateException(
-				"The method implementation is not provided for the attribute " + name);
+				"The method implementation is not provided for the attribute "
+						+ name);
 	}
 
 	/**

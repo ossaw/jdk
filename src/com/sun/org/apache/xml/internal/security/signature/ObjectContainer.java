@@ -53,12 +53,13 @@ public class ObjectContainer extends SignatureElementProxy {
 	 * Constructs {@link ObjectContainer} from {@link Element}
 	 *
 	 * @param element
-	 *            is <code>Object</code> element
+	 *                is <code>Object</code> element
 	 * @param baseURI
-	 *            the URI of the resource where the XML instance was stored
+	 *                the URI of the resource where the XML instance was stored
 	 * @throws XMLSecurityException
 	 */
-	public ObjectContainer(Element element, String baseURI) throws XMLSecurityException {
+	public ObjectContainer(Element element, String baseURI)
+			throws XMLSecurityException {
 		super(element, baseURI);
 	}
 
@@ -66,12 +67,14 @@ public class ObjectContainer extends SignatureElementProxy {
 	 * Sets the <code>Id</code> attribute
 	 *
 	 * @param Id
-	 *            <code>Id</code> attribute
+	 *           <code>Id</code> attribute
 	 */
 	public void setId(String Id) {
 		if (Id != null) {
-			this.constructionElement.setAttributeNS(null, Constants._ATT_ID, Id);
-			this.constructionElement.setIdAttributeNS(null, Constants._ATT_ID, true);
+			this.constructionElement.setAttributeNS(null, Constants._ATT_ID,
+					Id);
+			this.constructionElement.setIdAttributeNS(null, Constants._ATT_ID,
+					true);
 		}
 	}
 
@@ -88,11 +91,12 @@ public class ObjectContainer extends SignatureElementProxy {
 	 * Sets the <code>MimeType</code> attribute
 	 *
 	 * @param MimeType
-	 *            the <code>MimeType</code> attribute
+	 *                 the <code>MimeType</code> attribute
 	 */
 	public void setMimeType(String MimeType) {
 		if (MimeType != null) {
-			this.constructionElement.setAttributeNS(null, Constants._ATT_MIMETYPE, MimeType);
+			this.constructionElement.setAttributeNS(null,
+					Constants._ATT_MIMETYPE, MimeType);
 		}
 	}
 
@@ -102,18 +106,20 @@ public class ObjectContainer extends SignatureElementProxy {
 	 * @return the <code>MimeType</code> attribute
 	 */
 	public String getMimeType() {
-		return this.constructionElement.getAttributeNS(null, Constants._ATT_MIMETYPE);
+		return this.constructionElement.getAttributeNS(null,
+				Constants._ATT_MIMETYPE);
 	}
 
 	/**
 	 * Sets the <code>Encoding</code> attribute
 	 *
 	 * @param Encoding
-	 *            the <code>Encoding</code> attribute
+	 *                 the <code>Encoding</code> attribute
 	 */
 	public void setEncoding(String Encoding) {
 		if (Encoding != null) {
-			this.constructionElement.setAttributeNS(null, Constants._ATT_ENCODING, Encoding);
+			this.constructionElement.setAttributeNS(null,
+					Constants._ATT_ENCODING, Encoding);
 		}
 	}
 
@@ -123,14 +129,15 @@ public class ObjectContainer extends SignatureElementProxy {
 	 * @return the <code>Encoding</code> attribute
 	 */
 	public String getEncoding() {
-		return this.constructionElement.getAttributeNS(null, Constants._ATT_ENCODING);
+		return this.constructionElement.getAttributeNS(null,
+				Constants._ATT_ENCODING);
 	}
 
 	/**
 	 * Adds child Node
 	 *
 	 * @param node
-	 *            child Node
+	 *             child Node
 	 * @return the new node in the tree.
 	 */
 	public Node appendChild(Node node) {

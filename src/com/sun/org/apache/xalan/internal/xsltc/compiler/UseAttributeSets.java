@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -65,7 +62,8 @@ final class UseAttributeSets extends Instruction {
 		if ((setNames != null) && (!setNames.equals(Constants.EMPTYSTRING))) {
 			final StringTokenizer tokens = new StringTokenizer(setNames);
 			while (tokens.hasMoreTokens()) {
-				final QName qname = getParser().getQNameIgnoreDefaultNs(tokens.nextToken());
+				final QName qname = getParser().getQNameIgnoreDefaultNs(tokens
+						.nextToken());
 				_sets.add(qname);
 			}
 		}
@@ -101,8 +99,8 @@ final class UseAttributeSets extends Instruction {
 				il.append(methodGen.loadIterator());
 				il.append(methodGen.loadHandler());
 				il.append(methodGen.loadCurrentNode());
-				final int method = cpg.addMethodref(classGen.getClassName(), methodName,
-						ATTR_SET_SIG);
+				final int method = cpg.addMethodref(classGen.getClassName(),
+						methodName, ATTR_SET_SIG);
 				il.append(new INVOKESPECIAL(method));
 			}
 			// Generate an error if the attribute set does not exist

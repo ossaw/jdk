@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -46,7 +26,8 @@ final class MenuBarMenuPainter extends AbstractRegionPainter {
 	// layers
 	private Path2D path = new Path2D.Float();
 	private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
+	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
+			0, 0);
 	private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
 	// All Colors used for painting are stored here. Ideally, only those colors
@@ -54,7 +35,8 @@ final class MenuBarMenuPainter extends AbstractRegionPainter {
 	// by a particular instance of MenuBarMenuPainter would be created. For the
 	// moment at least,
 	// however, all are created for each instance.
-	private Color color1 = decodeColor("nimbusBase", -0.010750473f, -0.04875779f, -0.007843137f, 0);
+	private Color color1 = decodeColor("nimbusBase", -0.010750473f,
+			-0.04875779f, -0.007843137f, 0);
 
 	// Array of current component colors, updated in each paint call
 	private Object[] componentColors;
@@ -74,9 +56,9 @@ final class MenuBarMenuPainter extends AbstractRegionPainter {
 		// generate this entire method. Each state/bg/fg/border combo that has
 		// been painted gets its own KEY and paint method.
 		switch (state) {
-		case BACKGROUND_SELECTED:
-			paintBackgroundSelected(g);
-			break;
+			case BACKGROUND_SELECTED:
+				paintBackgroundSelected(g);
+				break;
 
 		}
 	}

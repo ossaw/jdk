@@ -1,47 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * Copyright (c) 2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -113,8 +87,8 @@ import java.time.temporal.ValueRange;
  *
  * @since 1.8
  */
-public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
-		implements ChronoLocalDate, Serializable {
+public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate> implements
+		ChronoLocalDate, Serializable {
 
 	/**
 	 * Serialization version.
@@ -143,17 +117,18 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * month-of-year and day-of-month.
 	 *
 	 * @param prolepticYear
-	 *            the proleptic year to represent in the Hijrah calendar
+	 *                      the proleptic year to represent in the Hijrah
+	 *                      calendar
 	 * @param monthOfYear
-	 *            the month-of-year to represent, from 1 to 12
+	 *                      the month-of-year to represent, from 1 to 12
 	 * @param dayOfMonth
-	 *            the day-of-month to represent, from 1 to 30
+	 *                      the day-of-month to represent, from 1 to 30
 	 * @return the Hijrah date, never null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range
+	 *                           if the value of any field is out of range
 	 */
-	static HijrahDate of(HijrahChronology chrono, int prolepticYear, int monthOfYear,
-			int dayOfMonth) {
+	static HijrahDate of(HijrahChronology chrono, int prolepticYear,
+			int monthOfYear, int dayOfMonth) {
 		return new HijrahDate(chrono, prolepticYear, monthOfYear, dayOfMonth);
 	}
 
@@ -161,9 +136,9 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * Returns a HijrahDate for the chronology and epochDay.
 	 * 
 	 * @param chrono
-	 *            The Hijrah chronology
+	 *                 The Hijrah chronology
 	 * @param epochDay
-	 *            the epoch day
+	 *                 the epoch day
 	 * @return a HijrahDate for the epoch day; non-null
 	 */
 	static HijrahDate ofEpochDay(HijrahChronology chrono, long epochDay) {
@@ -200,7 +175,7 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * testing because the clock is hard-coded.
 	 *
 	 * @param zone
-	 *            the zone ID to use, not null
+	 *             the zone ID to use, not null
 	 * @return the current date using the system clock, not null
 	 */
 	public static HijrahDate now(ZoneId zone) {
@@ -217,13 +192,14 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * injection}.
 	 *
 	 * @param clock
-	 *            the clock to use, not null
+	 *              the clock to use, not null
 	 * @return the current date, not null
 	 * @throws DateTimeException
-	 *             if the current date cannot be obtained
+	 *                           if the current date cannot be obtained
 	 */
 	public static HijrahDate now(Clock clock) {
-		return HijrahDate.ofEpochDay(HijrahChronology.INSTANCE, LocalDate.now(clock).toEpochDay());
+		return HijrahDate.ofEpochDay(HijrahChronology.INSTANCE, LocalDate.now(
+				clock).toEpochDay());
 	}
 
 	/**
@@ -234,15 +210,16 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * be valid for the year and month, otherwise an exception will be thrown.
 	 *
 	 * @param prolepticYear
-	 *            the Hijrah proleptic-year
+	 *                      the Hijrah proleptic-year
 	 * @param month
-	 *            the Hijrah month-of-year, from 1 to 12
+	 *                      the Hijrah month-of-year, from 1 to 12
 	 * @param dayOfMonth
-	 *            the Hijrah day-of-month, from 1 to 30
+	 *                      the Hijrah day-of-month, from 1 to 30
 	 * @return the date in Hijrah calendar system, not null
 	 * @throws DateTimeException
-	 *             if the value of any field is out of range, or if the
-	 *             day-of-month is invalid for the month-year
+	 *                           if the value of any field is out of range, or
+	 *                           if the
+	 *                           day-of-month is invalid for the month-year
 	 */
 	public static HijrahDate of(int prolepticYear, int month, int dayOfMonth) {
 		return HijrahChronology.INSTANCE.date(prolepticYear, month, dayOfMonth);
@@ -265,10 +242,10 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * reference, {@code HijrahDate::from}.
 	 *
 	 * @param temporal
-	 *            the temporal object to convert, not null
+	 *                 the temporal object to convert, not null
 	 * @return the date in Hijrah calendar system, not null
 	 * @throws DateTimeException
-	 *             if unable to convert to a {@code HijrahDate}
+	 *                           if unable to convert to a {@code HijrahDate}
 	 */
 	public static HijrahDate from(TemporalAccessor temporal) {
 		return HijrahChronology.INSTANCE.date(temporal);
@@ -280,16 +257,16 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * and day-of-month fields.
 	 *
 	 * @param chrono
-	 *            The chronology to create the date with
+	 *                      The chronology to create the date with
 	 * @param prolepticYear
-	 *            the proleptic year
+	 *                      the proleptic year
 	 * @param monthOfYear
-	 *            the month of year
+	 *                      the month of year
 	 * @param dayOfMonth
-	 *            the day of month
+	 *                      the day of month
 	 */
-	private HijrahDate(HijrahChronology chrono, int prolepticYear, int monthOfYear,
-			int dayOfMonth) {
+	private HijrahDate(HijrahChronology chrono, int prolepticYear,
+			int monthOfYear, int dayOfMonth) {
 		// Computing the Gregorian day checks the valid ranges
 		chrono.getEpochDay(prolepticYear, monthOfYear, dayOfMonth);
 
@@ -303,7 +280,7 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * Constructs an instance with the Epoch Day.
 	 *
 	 * @param epochDay
-	 *            the epochDay
+	 *                 the epochDay
 	 */
 	private HijrahDate(HijrahChronology chrono, long epochDay) {
 		int[] dateInfo = chrono.getHijrahDateInfo((int) epochDay);
@@ -374,18 +351,19 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 			if (isSupported(field)) {
 				ChronoField f = (ChronoField) field;
 				switch (f) {
-				case DAY_OF_MONTH:
-					return ValueRange.of(1, lengthOfMonth());
-				case DAY_OF_YEAR:
-					return ValueRange.of(1, lengthOfYear());
-				case ALIGNED_WEEK_OF_MONTH:
-					return ValueRange.of(1, 5); // TODO
-				// TODO does the limited range of valid years cause years to
-				// start/end part way through? that would affect range
+					case DAY_OF_MONTH:
+						return ValueRange.of(1, lengthOfMonth());
+					case DAY_OF_YEAR:
+						return ValueRange.of(1, lengthOfYear());
+					case ALIGNED_WEEK_OF_MONTH:
+						return ValueRange.of(1, 5); // TODO
+					// TODO does the limited range of valid years cause years to
+					// start/end part way through? that would affect range
 				}
 				return getChronology().range(f);
 			}
-			throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
+			throw new UnsupportedTemporalTypeException("Unsupported field: "
+					+ field);
 		}
 		return field.rangeRefinedBy(this);
 	}
@@ -394,34 +372,35 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	public long getLong(TemporalField field) {
 		if (field instanceof ChronoField) {
 			switch ((ChronoField) field) {
-			case DAY_OF_WEEK:
-				return getDayOfWeek();
-			case ALIGNED_DAY_OF_WEEK_IN_MONTH:
-				return ((getDayOfWeek() - 1) % 7) + 1;
-			case ALIGNED_DAY_OF_WEEK_IN_YEAR:
-				return ((getDayOfYear() - 1) % 7) + 1;
-			case DAY_OF_MONTH:
-				return this.dayOfMonth;
-			case DAY_OF_YEAR:
-				return this.getDayOfYear();
-			case EPOCH_DAY:
-				return toEpochDay();
-			case ALIGNED_WEEK_OF_MONTH:
-				return ((dayOfMonth - 1) / 7) + 1;
-			case ALIGNED_WEEK_OF_YEAR:
-				return ((getDayOfYear() - 1) / 7) + 1;
-			case MONTH_OF_YEAR:
-				return monthOfYear;
-			case PROLEPTIC_MONTH:
-				return getProlepticMonth();
-			case YEAR_OF_ERA:
-				return prolepticYear;
-			case YEAR:
-				return prolepticYear;
-			case ERA:
-				return getEraValue();
+				case DAY_OF_WEEK:
+					return getDayOfWeek();
+				case ALIGNED_DAY_OF_WEEK_IN_MONTH:
+					return ((getDayOfWeek() - 1) % 7) + 1;
+				case ALIGNED_DAY_OF_WEEK_IN_YEAR:
+					return ((getDayOfYear() - 1) % 7) + 1;
+				case DAY_OF_MONTH:
+					return this.dayOfMonth;
+				case DAY_OF_YEAR:
+					return this.getDayOfYear();
+				case EPOCH_DAY:
+					return toEpochDay();
+				case ALIGNED_WEEK_OF_MONTH:
+					return ((dayOfMonth - 1) / 7) + 1;
+				case ALIGNED_WEEK_OF_YEAR:
+					return ((getDayOfYear() - 1) / 7) + 1;
+				case MONTH_OF_YEAR:
+					return monthOfYear;
+				case PROLEPTIC_MONTH:
+					return getProlepticMonth();
+				case YEAR_OF_ERA:
+					return prolepticYear;
+				case YEAR:
+					return prolepticYear;
+				case ERA:
+					return getEraValue();
 			}
-			throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
+			throw new UnsupportedTemporalTypeException("Unsupported field: "
+					+ field);
 		}
 		return field.getFrom(this);
 	}
@@ -440,40 +419,51 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 															// value
 			int nvalue = (int) newValue;
 			switch (f) {
-			case DAY_OF_WEEK:
-				return plusDays(newValue - getDayOfWeek());
-			case ALIGNED_DAY_OF_WEEK_IN_MONTH:
-				return plusDays(newValue - getLong(ALIGNED_DAY_OF_WEEK_IN_MONTH));
-			case ALIGNED_DAY_OF_WEEK_IN_YEAR:
-				return plusDays(newValue - getLong(ALIGNED_DAY_OF_WEEK_IN_YEAR));
-			case DAY_OF_MONTH:
-				return resolvePreviousValid(prolepticYear, monthOfYear, nvalue);
-			case DAY_OF_YEAR:
-				return plusDays(Math.min(nvalue, lengthOfYear()) - getDayOfYear());
-			case EPOCH_DAY:
-				return new HijrahDate(chrono, newValue);
-			case ALIGNED_WEEK_OF_MONTH:
-				return plusDays((newValue - getLong(ALIGNED_WEEK_OF_MONTH)) * 7);
-			case ALIGNED_WEEK_OF_YEAR:
-				return plusDays((newValue - getLong(ALIGNED_WEEK_OF_YEAR)) * 7);
-			case MONTH_OF_YEAR:
-				return resolvePreviousValid(prolepticYear, nvalue, dayOfMonth);
-			case PROLEPTIC_MONTH:
-				return plusMonths(newValue - getProlepticMonth());
-			case YEAR_OF_ERA:
-				return resolvePreviousValid(prolepticYear >= 1 ? nvalue : 1 - nvalue, monthOfYear,
-						dayOfMonth);
-			case YEAR:
-				return resolvePreviousValid(nvalue, monthOfYear, dayOfMonth);
-			case ERA:
-				return resolvePreviousValid(1 - prolepticYear, monthOfYear, dayOfMonth);
+				case DAY_OF_WEEK:
+					return plusDays(newValue - getDayOfWeek());
+				case ALIGNED_DAY_OF_WEEK_IN_MONTH:
+					return plusDays(newValue - getLong(
+							ALIGNED_DAY_OF_WEEK_IN_MONTH));
+				case ALIGNED_DAY_OF_WEEK_IN_YEAR:
+					return plusDays(newValue - getLong(
+							ALIGNED_DAY_OF_WEEK_IN_YEAR));
+				case DAY_OF_MONTH:
+					return resolvePreviousValid(prolepticYear, monthOfYear,
+							nvalue);
+				case DAY_OF_YEAR:
+					return plusDays(Math.min(nvalue, lengthOfYear())
+							- getDayOfYear());
+				case EPOCH_DAY:
+					return new HijrahDate(chrono, newValue);
+				case ALIGNED_WEEK_OF_MONTH:
+					return plusDays((newValue - getLong(ALIGNED_WEEK_OF_MONTH))
+							* 7);
+				case ALIGNED_WEEK_OF_YEAR:
+					return plusDays((newValue - getLong(ALIGNED_WEEK_OF_YEAR))
+							* 7);
+				case MONTH_OF_YEAR:
+					return resolvePreviousValid(prolepticYear, nvalue,
+							dayOfMonth);
+				case PROLEPTIC_MONTH:
+					return plusMonths(newValue - getProlepticMonth());
+				case YEAR_OF_ERA:
+					return resolvePreviousValid(prolepticYear >= 1 ? nvalue
+							: 1 - nvalue, monthOfYear, dayOfMonth);
+				case YEAR:
+					return resolvePreviousValid(nvalue, monthOfYear,
+							dayOfMonth);
+				case ERA:
+					return resolvePreviousValid(1 - prolepticYear, monthOfYear,
+							dayOfMonth);
 			}
-			throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
+			throw new UnsupportedTemporalTypeException("Unsupported field: "
+					+ field);
 		}
 		return super.with(field, newValue);
 	}
 
-	private HijrahDate resolvePreviousValid(int prolepticYear, int month, int day) {
+	private HijrahDate resolvePreviousValid(int prolepticYear, int month,
+			int day) {
 		int monthDays = chrono.getMonthLength(prolepticYear, month);
 		if (day > monthDays) {
 			day = monthDays;
@@ -485,10 +475,11 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * {@inheritDoc}
 	 * 
 	 * @throws DateTimeException
-	 *             if unable to make the adjustment. For example, if the
-	 *             adjuster requires an ISO chronology
+	 *                             if unable to make the adjustment. For
+	 *                             example, if the
+	 *                             adjuster requires an ISO chronology
 	 * @throws ArithmeticException
-	 *             {@inheritDoc}
+	 *                             {@inheritDoc}
 	 */
 	@Override
 	public HijrahDate with(TemporalAdjuster adjuster) {
@@ -503,7 +494,7 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * month, the day is reduced to be the last day of the month.
 	 *
 	 * @param chronology
-	 *            the new HijrahChonology, non-null
+	 *                   the new HijrahChonology, non-null
 	 * @return a HijrahDate with the requested HijrahChronology, non-null
 	 */
 	public HijrahDate withVariant(HijrahChronology chronology) {
@@ -521,9 +512,9 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * {@inheritDoc}
 	 * 
 	 * @throws DateTimeException
-	 *             {@inheritDoc}
+	 *                             {@inheritDoc}
 	 * @throws ArithmeticException
-	 *             {@inheritDoc}
+	 *                             {@inheritDoc}
 	 */
 	@Override
 	public HijrahDate plus(TemporalAmount amount) {
@@ -534,9 +525,9 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * {@inheritDoc}
 	 * 
 	 * @throws DateTimeException
-	 *             {@inheritDoc}
+	 *                             {@inheritDoc}
 	 * @throws ArithmeticException
-	 *             {@inheritDoc}
+	 *                             {@inheritDoc}
 	 */
 	@Override
 	public HijrahDate minus(TemporalAmount amount) {
@@ -729,12 +720,13 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws InvalidObjectException
-	 *             always
+	 *                                always
 	 */
 	private void readObject(ObjectInputStream s) throws InvalidObjectException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 
 	/**
@@ -766,7 +758,8 @@ public final class HijrahDate extends ChronoLocalDateImpl<HijrahDate>
 		out.writeByte(get(DAY_OF_MONTH));
 	}
 
-	static HijrahDate readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+	static HijrahDate readExternal(ObjectInput in) throws IOException,
+			ClassNotFoundException {
 		HijrahChronology chrono = (HijrahChronology) in.readObject();
 		int year = in.readInt();
 		int month = in.readByte();

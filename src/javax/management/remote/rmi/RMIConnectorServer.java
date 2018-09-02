@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote.rmi;
@@ -108,28 +88,37 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	 * </p>
 	 *
 	 * @param url
-	 *            the URL defining how to create the connector server. Cannot be
-	 *            null.
+	 *                    the URL defining how to create the connector server.
+	 *                    Cannot be
+	 *                    null.
 	 *
 	 * @param environment
-	 *            attributes governing the creation and storing of the RMI
-	 *            object. Can be null, which is equivalent to an empty Map.
+	 *                    attributes governing the creation and storing of the
+	 *                    RMI
+	 *                    object. Can be null, which is equivalent to an empty
+	 *                    Map.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>url</code> is null.
+	 *                                     if <code>url</code> is null.
 	 *
 	 * @exception MalformedURLException
-	 *                if <code>url</code> does not conform to the syntax for an
-	 *                RMI connector, or if its protocol is not recognized by
-	 *                this implementation. Only "rmi" and "iiop" are valid when
-	 *                this constructor is used.
+	 *                                     if <code>url</code> does not conform
+	 *                                     to the syntax for an
+	 *                                     RMI connector, or if its protocol is
+	 *                                     not recognized by
+	 *                                     this implementation. Only "rmi" and
+	 *                                     "iiop" are valid when
+	 *                                     this constructor is used.
 	 *
 	 * @exception IOException
-	 *                if the connector server cannot be created for some reason
-	 *                or if it is inevitable that its {@link #start() start}
-	 *                method will fail.
+	 *                                     if the connector server cannot be
+	 *                                     created for some reason
+	 *                                     or if it is inevitable that its
+	 *                                     {@link #start() start}
+	 *                                     method will fail.
 	 */
-	public RMIConnectorServer(JMXServiceURL url, Map<String, ?> environment) throws IOException {
+	public RMIConnectorServer(JMXServiceURL url, Map<String, ?> environment)
+			throws IOException {
 		this(url, environment, (MBeanServer) null);
 	}
 
@@ -142,31 +131,40 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	 * </p>
 	 *
 	 * @param url
-	 *            the URL defining how to create the connector server. Cannot be
-	 *            null.
+	 *                    the URL defining how to create the connector server.
+	 *                    Cannot be
+	 *                    null.
 	 *
 	 * @param environment
-	 *            attributes governing the creation and storing of the RMI
-	 *            object. Can be null, which is equivalent to an empty Map.
+	 *                    attributes governing the creation and storing of the
+	 *                    RMI
+	 *                    object. Can be null, which is equivalent to an empty
+	 *                    Map.
 	 *
 	 * @param mbeanServer
-	 *            the MBean server to which the new connector server is
-	 *            attached, or null if it will be attached by being registered
-	 *            as an MBean in the MBean server.
+	 *                    the MBean server to which the new connector server is
+	 *                    attached, or null if it will be attached by being
+	 *                    registered
+	 *                    as an MBean in the MBean server.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>url</code> is null.
+	 *                                     if <code>url</code> is null.
 	 *
 	 * @exception MalformedURLException
-	 *                if <code>url</code> does not conform to the syntax for an
-	 *                RMI connector, or if its protocol is not recognized by
-	 *                this implementation. Only "rmi" and "iiop" are valid when
-	 *                this constructor is used.
+	 *                                     if <code>url</code> does not conform
+	 *                                     to the syntax for an
+	 *                                     RMI connector, or if its protocol is
+	 *                                     not recognized by
+	 *                                     this implementation. Only "rmi" and
+	 *                                     "iiop" are valid when
+	 *                                     this constructor is used.
 	 *
 	 * @exception IOException
-	 *                if the connector server cannot be created for some reason
-	 *                or if it is inevitable that its {@link #start() start}
-	 *                method will fail.
+	 *                                     if the connector server cannot be
+	 *                                     created for some reason
+	 *                                     or if it is inevitable that its
+	 *                                     {@link #start() start}
+	 *                                     method will fail.
 	 */
 	public RMIConnectorServer(JMXServiceURL url, Map<String, ?> environment,
 			MBeanServer mbeanServer) throws IOException {
@@ -179,43 +177,59 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	 * </p>
 	 *
 	 * @param url
-	 *            the URL defining how to create the connector server. Cannot be
-	 *            null.
+	 *                      the URL defining how to create the connector server.
+	 *                      Cannot be
+	 *                      null.
 	 *
 	 * @param environment
-	 *            attributes governing the creation and storing of the RMI
-	 *            object. Can be null, which is equivalent to an empty Map.
+	 *                      attributes governing the creation and storing of the
+	 *                      RMI
+	 *                      object. Can be null, which is equivalent to an empty
+	 *                      Map.
 	 *
 	 * @param rmiServerImpl
-	 *            An implementation of the RMIServer interface, consistent with
-	 *            the protocol type specified in <var>url</var>. If this
-	 *            parameter is non null, the protocol type specified by
-	 *            <var>url</var> is not constrained, and is assumed to be valid.
-	 *            Otherwise, only "rmi" and "iiop" will be recognized.
+	 *                      An implementation of the RMIServer interface,
+	 *                      consistent with
+	 *                      the protocol type specified in <var>url</var>. If
+	 *                      this
+	 *                      parameter is non null, the protocol type specified
+	 *                      by
+	 *                      <var>url</var> is not constrained, and is assumed to
+	 *                      be valid.
+	 *                      Otherwise, only "rmi" and "iiop" will be recognized.
 	 *
 	 * @param mbeanServer
-	 *            the MBean server to which the new connector server is
-	 *            attached, or null if it will be attached by being registered
-	 *            as an MBean in the MBean server.
+	 *                      the MBean server to which the new connector server
+	 *                      is
+	 *                      attached, or null if it will be attached by being
+	 *                      registered
+	 *                      as an MBean in the MBean server.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>url</code> is null.
+	 *                                     if <code>url</code> is null.
 	 *
 	 * @exception MalformedURLException
-	 *                if <code>url</code> does not conform to the syntax for an
-	 *                RMI connector, or if its protocol is not recognized by
-	 *                this implementation. Only "rmi" and "iiop" are recognized
-	 *                when <var>rmiServerImpl</var> is null.
+	 *                                     if <code>url</code> does not conform
+	 *                                     to the syntax for an
+	 *                                     RMI connector, or if its protocol is
+	 *                                     not recognized by
+	 *                                     this implementation. Only "rmi" and
+	 *                                     "iiop" are recognized
+	 *                                     when <var>rmiServerImpl</var> is
+	 *                                     null.
 	 *
 	 * @exception IOException
-	 *                if the connector server cannot be created for some reason
-	 *                or if it is inevitable that its {@link #start() start}
-	 *                method will fail.
+	 *                                     if the connector server cannot be
+	 *                                     created for some reason
+	 *                                     or if it is inevitable that its
+	 *                                     {@link #start() start}
+	 *                                     method will fail.
 	 *
 	 * @see #start
 	 */
 	public RMIConnectorServer(JMXServiceURL url, Map<String, ?> environment,
-			RMIServerImpl rmiServerImpl, MBeanServer mbeanServer) throws IOException {
+			RMIServerImpl rmiServerImpl, MBeanServer mbeanServer)
+			throws IOException {
 		super(mbeanServer);
 
 		if (url == null)
@@ -227,8 +241,10 @@ public class RMIConnectorServer extends JMXConnectorServer {
 				throw new MalformedURLException(msg);
 			}
 			final String urlPath = url.getURLPath();
-			if (!urlPath.equals("") && !urlPath.equals("/") && !urlPath.startsWith("/jndi/")) {
-				final String msg = "URL path must be empty or start with " + "/jndi/";
+			if (!urlPath.equals("") && !urlPath.equals("/") && !urlPath
+					.startsWith("/jndi/")) {
+				final String msg = "URL path must be empty or start with "
+						+ "/jndi/";
 				throw new MalformedURLException(msg);
 			}
 		}
@@ -261,16 +277,19 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	 *         connector server.
 	 *
 	 * @exception UnsupportedOperationException
-	 *                if this connector server does not support the generation
-	 *                of client stubs.
+	 *                                          if this connector server does
+	 *                                          not support the generation
+	 *                                          of client stubs.
 	 *
 	 * @exception IllegalStateException
-	 *                if the JMXConnectorServer is not started (see
-	 *                {@link #isActive()}).
+	 *                                          if the JMXConnectorServer is not
+	 *                                          started (see
+	 *                                          {@link #isActive()}).
 	 *
 	 * @exception IOException
-	 *                if a communications problem means that a stub cannot be
-	 *                created.
+	 *                                          if a communications problem
+	 *                                          means that a stub cannot be
+	 *                                          created.
 	 **/
 	public JMXConnector toJMXConnector(Map<String, ?> env) throws IOException {
 		// The serialized for of rmiServerImpl is automatically
@@ -279,8 +298,9 @@ public class RMIConnectorServer extends JMXConnectorServer {
 			throw new IllegalStateException("Connector is not active");
 
 		// Merge maps
-		Map<String, Object> usemap = new HashMap<String, Object>((this.attributes == null)
-				? Collections.<String, Object> emptyMap() : this.attributes);
+		Map<String, Object> usemap = new HashMap<String, Object>(
+				(this.attributes == null) ? Collections
+						.<String, Object>emptyMap() : this.attributes);
 
 		if (env != null) {
 			EnvHelp.checkAttributes(env);
@@ -355,12 +375,15 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	 * </p>
 	 *
 	 * @exception IllegalStateException
-	 *                if the connector server has not been attached to an MBean
-	 *                server.
+	 *                                  if the connector server has not been
+	 *                                  attached to an MBean
+	 *                                  server.
 	 * @exception IOException
-	 *                if the connector server cannot be started, or in the case
-	 *                of the {@code iiop} protocol, that RMI/IIOP is not
-	 *                supported.
+	 *                                  if the connector server cannot be
+	 *                                  started, or in the case
+	 *                                  of the {@code iiop} protocol, that
+	 *                                  RMI/IIOP is not
+	 *                                  supported.
 	 */
 	public synchronized void start() throws IOException {
 		final boolean tracing = logger.traceOn();
@@ -376,8 +399,8 @@ public class RMIConnectorServer extends JMXConnectorServer {
 		}
 
 		if (getMBeanServer() == null)
-			throw new IllegalStateException(
-					"This connector server is not " + "attached to an MBean server");
+			throw new IllegalStateException("This connector server is not "
+					+ "attached to an MBean server");
 
 		// Check the internal access file property to see
 		// if an MBeanServerForwarder is to be provided
@@ -385,7 +408,8 @@ public class RMIConnectorServer extends JMXConnectorServer {
 		if (attributes != null) {
 			// Check if access file property is specified
 			//
-			String accessFile = (String) attributes.get("jmx.remote.x.access.file");
+			String accessFile = (String) attributes.get(
+					"jmx.remote.x.access.file");
 			if (accessFile != null) {
 				// Access file property specified, create an instance
 				// of the MBeanServerFileAccessController class
@@ -394,7 +418,8 @@ public class RMIConnectorServer extends JMXConnectorServer {
 				try {
 					mbsf = new MBeanServerFileAccessController(accessFile);
 				} catch (IOException e) {
-					throw EnvHelp.initCause(new IllegalArgumentException(e.getMessage()), e);
+					throw EnvHelp.initCause(new IllegalArgumentException(e
+							.getMessage()), e);
 				}
 				// Set the MBeanServerForwarder
 				//
@@ -405,7 +430,8 @@ public class RMIConnectorServer extends JMXConnectorServer {
 		try {
 			if (tracing)
 				logger.trace("start", "setting default class loader");
-			defaultClassLoader = EnvHelp.resolveServerClassLoader(attributes, getMBeanServer());
+			defaultClassLoader = EnvHelp.resolveServerClassLoader(attributes,
+					getMBeanServer());
 		} catch (InstanceNotFoundException infc) {
 			IllegalArgumentException x = new IllegalArgumentException(
 					"ClassLoader not found: " + infc);
@@ -435,10 +461,13 @@ public class RMIConnectorServer extends JMXConnectorServer {
 				final String jndiUrl = address.getURLPath().substring(6);
 
 				if (tracing)
-					logger.trace("start", "Using external directory: " + jndiUrl);
+					logger.trace("start", "Using external directory: "
+							+ jndiUrl);
 
-				String stringBoolean = (String) attributes.get(JNDI_REBIND_ATTRIBUTE);
-				final boolean rebind = EnvHelp.computeBooleanFromString(stringBoolean);
+				String stringBoolean = (String) attributes.get(
+						JNDI_REBIND_ATTRIBUTE);
+				final boolean rebind = EnvHelp.computeBooleanFromString(
+						stringBoolean);
 
 				if (tracing)
 					logger.trace("start", JNDI_REBIND_ATTRIBUTE + "=" + rebind);
@@ -447,14 +476,16 @@ public class RMIConnectorServer extends JMXConnectorServer {
 					if (tracing)
 						logger.trace("start", "binding to " + jndiUrl);
 
-					final Hashtable<?, ?> usemap = EnvHelp.mapToHashtable(attributes);
+					final Hashtable<?, ?> usemap = EnvHelp.mapToHashtable(
+							attributes);
 
 					bind(jndiUrl, usemap, objref, rebind);
 
 					boundJndiUrl = jndiUrl;
 				} catch (NamingException e) {
 					// fit e in the nested exception if we are on 1.4
-					throw newIOException("Cannot bind to URL [" + jndiUrl + "]: " + e, e);
+					throw newIOException("Cannot bind to URL [" + jndiUrl
+							+ "]: " + e, e);
 				}
 			} else {
 				// if jndiURL is null, we must encode the stub into the URL.
@@ -477,9 +508,8 @@ public class RMIConnectorServer extends JMXConnectorServer {
 			else if (e instanceof IOException)
 				throw (IOException) e;
 			else
-				throw newIOException(
-						"Got unexpected exception while " + "starting the connector server: " + e,
-						e);
+				throw newIOException("Got unexpected exception while "
+						+ "starting the connector server: " + e, e);
 		}
 
 		rmiServerImpl = rmiServer;
@@ -542,15 +572,22 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	 * </p>
 	 *
 	 * @exception IOException
-	 *                if the server cannot be closed cleanly, or if the
-	 *                <code>RMIServerImpl</code> cannot be unbound from the
-	 *                directory. When this exception is thrown, the server has
-	 *                already attempted to close all client connections, if
-	 *                appropriate; to call {@link RMIServerImpl#close()}; and to
-	 *                unbind the <code>RMIServerImpl</code> from its directory,
-	 *                if appropriate. All client connections are closed except
-	 *                possibly those that generated exceptions when the server
-	 *                attempted to close them.
+	 *                        if the server cannot be closed cleanly, or if the
+	 *                        <code>RMIServerImpl</code> cannot be unbound from
+	 *                        the
+	 *                        directory. When this exception is thrown, the
+	 *                        server has
+	 *                        already attempted to close all client connections,
+	 *                        if
+	 *                        appropriate; to call
+	 *                        {@link RMIServerImpl#close()}; and to
+	 *                        unbind the <code>RMIServerImpl</code> from its
+	 *                        directory,
+	 *                        if appropriate. All client connections are closed
+	 *                        except
+	 *                        possibly those that generated exceptions when the
+	 *                        server
+	 *                        attempted to close them.
 	 */
 	public void stop() throws IOException {
 		final boolean tracing = logger.traceOn();
@@ -594,9 +631,11 @@ public class RMIConnectorServer extends JMXConnectorServer {
 		if (boundJndiUrl != null) {
 			try {
 				if (tracing)
-					logger.trace("stop", "unbind from external directory: " + boundJndiUrl);
+					logger.trace("stop", "unbind from external directory: "
+							+ boundJndiUrl);
 
-				final Hashtable<?, ?> usemap = EnvHelp.mapToHashtable(attributes);
+				final Hashtable<?, ?> usemap = EnvHelp.mapToHashtable(
+						attributes);
 
 				InitialContext ctx = new InitialContext(usemap);
 
@@ -637,7 +676,8 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	}
 
 	@Override
-	public synchronized void setMBeanServerForwarder(MBeanServerForwarder mbsf) {
+	public synchronized void setMBeanServerForwarder(
+			MBeanServerForwarder mbsf) {
 		super.setMBeanServerForwarder(mbsf);
 		if (rmiServerImpl != null)
 			rmiServerImpl.setMBeanServer(getMBeanServer());
@@ -650,17 +690,20 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	 */
 
 	@Override
-	protected void connectionOpened(String connectionId, String message, Object userData) {
+	protected void connectionOpened(String connectionId, String message,
+			Object userData) {
 		super.connectionOpened(connectionId, message, userData);
 	}
 
 	@Override
-	protected void connectionClosed(String connectionId, String message, Object userData) {
+	protected void connectionClosed(String connectionId, String message,
+			Object userData) {
 		super.connectionClosed(connectionId, message, userData);
 	}
 
 	@Override
-	protected void connectionFailed(String connectionId, String message, Object userData) {
+	protected void connectionFailed(String connectionId, String message,
+			Object userData) {
 		super.connectionFailed(connectionId, message, userData);
 	}
 
@@ -668,18 +711,19 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	 * Bind a stub to a registry.
 	 * 
 	 * @param jndiUrl
-	 *            URL of the stub in the registry, extracted from the
-	 *            <code>JMXServiceURL</code>.
+	 *                   URL of the stub in the registry, extracted from the
+	 *                   <code>JMXServiceURL</code>.
 	 * @param attributes
-	 *            A Hashtable containing environment parameters, built from the
-	 *            Map specified at this object creation.
+	 *                   A Hashtable containing environment parameters, built
+	 *                   from the
+	 *                   Map specified at this object creation.
 	 * @param rmiServer
-	 *            The object to bind in the registry
+	 *                   The object to bind in the registry
 	 * @param rebind
-	 *            true if the object must be rebound.
+	 *                   true if the object must be rebound.
 	 **/
-	void bind(String jndiUrl, Hashtable<?, ?> attributes, RMIServer rmiServer, boolean rebind)
-			throws NamingException, MalformedURLException {
+	void bind(String jndiUrl, Hashtable<?, ?> attributes, RMIServer rmiServer,
+			boolean rebind) throws NamingException, MalformedURLException {
 		// if jndiURL is not null, we nust bind the stub to a
 		// directory.
 		InitialContext ctx = new InitialContext(attributes);
@@ -711,13 +755,14 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	 * Encode a stub into the JMXServiceURL.
 	 * 
 	 * @param rmiServer
-	 *            The stub object to encode in the URL
+	 *                   The stub object to encode in the URL
 	 * @param attributes
-	 *            A Map containing environment parameters, built from the Map
-	 *            specified at this object creation.
+	 *                   A Map containing environment parameters, built from the
+	 *                   Map
+	 *                   specified at this object creation.
 	 **/
-	private void encodeStubInAddress(RMIServer rmiServer, Map<String, ?> attributes)
-			throws IOException {
+	private void encodeStubInAddress(RMIServer rmiServer,
+			Map<String, ?> attributes) throws IOException {
 
 		final String protocol, host;
 		final int port;
@@ -749,8 +794,8 @@ public class RMIConnectorServer extends JMXConnectorServer {
 			return true;
 		else if (strict) {
 
-			throw new MalformedURLException(
-					"URL must have protocol " + "\"rmi\" or \"iiop\": \"" + protocol + "\"");
+			throw new MalformedURLException("URL must have protocol "
+					+ "\"rmi\" or \"iiop\": \"" + protocol + "\"");
 		}
 		return false;
 	}
@@ -758,14 +803,16 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	/**
 	 * Returns the IOR of the given rmiServer.
 	 **/
-	static String encodeStub(RMIServer rmiServer, Map<String, ?> env) throws IOException {
+	static String encodeStub(RMIServer rmiServer, Map<String, ?> env)
+			throws IOException {
 		if (IIOPHelper.isStub(rmiServer))
 			return "/ior/" + encodeIIOPStub(rmiServer, env);
 		else
 			return "/stub/" + encodeJRMPStub(rmiServer, env);
 	}
 
-	static String encodeJRMPStub(RMIServer rmiServer, Map<String, ?> env) throws IOException {
+	static String encodeJRMPStub(RMIServer rmiServer, Map<String, ?> env)
+			throws IOException {
 		ByteArrayOutputStream bout = new ByteArrayOutputStream();
 		ObjectOutputStream oout = new ObjectOutputStream(bout);
 		oout.writeObject(rmiServer);
@@ -774,7 +821,8 @@ public class RMIConnectorServer extends JMXConnectorServer {
 		return byteArrayToBase64(bytes);
 	}
 
-	static String encodeIIOPStub(RMIServer rmiServer, Map<String, ?> env) throws IOException {
+	static String encodeIIOPStub(RMIServer rmiServer, Map<String, ?> env)
+			throws IOException {
 		try {
 			Object orb = IIOPHelper.getOrb(rmiServer);
 			return IIOPHelper.objectToString(orb, rmiServer);
@@ -787,20 +835,22 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	 * Object that we will bind to the registry. This object is a stub connected
 	 * to our RMIServerImpl.
 	 **/
-	private static RMIServer objectToBind(RMIServerImpl rmiServer, Map<String, ?> env)
-			throws IOException {
+	private static RMIServer objectToBind(RMIServerImpl rmiServer,
+			Map<String, ?> env) throws IOException {
 		return RMIConnector.connectStub((RMIServer) rmiServer.toStub(), env);
 	}
 
-	private static RMIServerImpl newJRMPServer(Map<String, ?> env, int port) throws IOException {
-		RMIClientSocketFactory csf = (RMIClientSocketFactory) env
-				.get(RMI_CLIENT_SOCKET_FACTORY_ATTRIBUTE);
-		RMIServerSocketFactory ssf = (RMIServerSocketFactory) env
-				.get(RMI_SERVER_SOCKET_FACTORY_ATTRIBUTE);
+	private static RMIServerImpl newJRMPServer(Map<String, ?> env, int port)
+			throws IOException {
+		RMIClientSocketFactory csf = (RMIClientSocketFactory) env.get(
+				RMI_CLIENT_SOCKET_FACTORY_ATTRIBUTE);
+		RMIServerSocketFactory ssf = (RMIServerSocketFactory) env.get(
+				RMI_SERVER_SOCKET_FACTORY_ATTRIBUTE);
 		return new RMIJRMPServerImpl(port, csf, ssf, env);
 	}
 
-	private static RMIServerImpl newIIOPServer(Map<String, ?> env) throws IOException {
+	private static RMIServerImpl newIIOPServer(Map<String, ?> env)
+			throws IOException {
 		return new RMIIIOPServerImpl(env);
 	}
 
@@ -848,11 +898,12 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	 * values into their "Base64 Alphabet" equivalents as specified in Table 1
 	 * of RFC 2045.
 	 */
-	private static final char intToAlpha[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-			'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a',
-			'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-			's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8',
-			'9', '+', '/' };
+	private static final char intToAlpha[] = { 'A', 'B', 'C', 'D', 'E', 'F',
+			'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
+			'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
+			'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+			't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5',
+			'6', '7', '8', '9', '+', '/' };
 
 	/**
 	 * Construct a new IOException with a nested exception. The nested exception
@@ -866,8 +917,8 @@ public class RMIConnectorServer extends JMXConnectorServer {
 	// Private variables
 	// -----------------
 
-	private static ClassLogger logger = new ClassLogger("javax.management.remote.rmi",
-			"RMIConnectorServer");
+	private static ClassLogger logger = new ClassLogger(
+			"javax.management.remote.rmi", "RMIConnectorServer");
 
 	private JMXServiceURL address;
 	private RMIServerImpl rmiServerImpl;

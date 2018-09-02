@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -39,8 +19,9 @@ public class IOError extends Error {
 	 * contains the class and detail message of cause).
 	 *
 	 * @param cause
-	 *            The cause of this error, or <tt>null</tt> if the cause is not
-	 *            known
+	 *              The cause of this error, or <tt>null</tt> if the cause is
+	 *              not
+	 *              known
 	 */
 	public IOError(Throwable cause) {
 		super(cause);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -56,17 +36,20 @@ public final class DisplayMode {
 	 * Create a new display mode object with the supplied parameters.
 	 * 
 	 * @param width
-	 *            the width of the display, in pixels
+	 *                    the width of the display, in pixels
 	 * @param height
-	 *            the height of the display, in pixels
+	 *                    the height of the display, in pixels
 	 * @param bitDepth
-	 *            the bit depth of the display, in bits per pixel. This can be
-	 *            <code>BIT_DEPTH_MULTI</code> if multiple bit depths are
-	 *            available.
+	 *                    the bit depth of the display, in bits per pixel. This
+	 *                    can be
+	 *                    <code>BIT_DEPTH_MULTI</code> if multiple bit depths
+	 *                    are
+	 *                    available.
 	 * @param refreshRate
-	 *            the refresh rate of the display, in hertz. This can be
-	 *            <code>REFRESH_RATE_UNKNOWN</code> if the information is not
-	 *            available.
+	 *                    the refresh rate of the display, in hertz. This can be
+	 *                    <code>REFRESH_RATE_UNKNOWN</code> if the information
+	 *                    is not
+	 *                    available.
 	 * @see #BIT_DEPTH_MULTI
 	 * @see #REFRESH_RATE_UNKNOWN
 	 */
@@ -144,7 +127,8 @@ public final class DisplayMode {
 			return false;
 		}
 		return (getHeight() == dm.getHeight() && getWidth() == dm.getWidth()
-				&& getBitDepth() == dm.getBitDepth() && getRefreshRate() == dm.getRefreshRate());
+				&& getBitDepth() == dm.getBitDepth() && getRefreshRate() == dm
+						.getRefreshRate());
 	}
 
 	/**
@@ -162,7 +146,8 @@ public final class DisplayMode {
 	 * {@inheritDoc}
 	 */
 	public int hashCode() {
-		return getWidth() + getHeight() + getBitDepth() * 7 + getRefreshRate() * 13;
+		return getWidth() + getHeight() + getBitDepth() * 7 + getRefreshRate()
+				* 13;
 	}
 
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -47,7 +27,7 @@ public class NotCompliantMBeanException extends OperationsException {
 	 * Constructor that allows a specific error message to be specified.
 	 *
 	 * @param message
-	 *            the detail message.
+	 *                the detail message.
 	 */
 	public NotCompliantMBeanException(String message) {
 		super(message);

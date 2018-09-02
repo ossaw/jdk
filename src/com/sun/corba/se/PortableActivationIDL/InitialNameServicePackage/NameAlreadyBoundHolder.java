@@ -9,11 +9,11 @@ package com.sun.corba.se.PortableActivationIDL.InitialNameServicePackage;
  * 21, 2017 9:58:51 PM PDT
  */
 
-public final class NameAlreadyBoundHolder implements org.omg.CORBA.portable.Streamable {
+public final class NameAlreadyBoundHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public com.sun.corba.se.PortableActivationIDL.InitialNameServicePackage.NameAlreadyBound value = null;
 
-	public NameAlreadyBoundHolder() {
-	}
+	public NameAlreadyBoundHolder() {}
 
 	public NameAlreadyBoundHolder(
 			com.sun.corba.se.PortableActivationIDL.InitialNameServicePackage.NameAlreadyBound initialValue) {

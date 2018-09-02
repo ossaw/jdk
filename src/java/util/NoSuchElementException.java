@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -51,7 +31,7 @@ public class NoSuchElementException extends RuntimeException {
 	 * <tt>getMessage</tt> method.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public NoSuchElementException(String s) {
 		super(s);

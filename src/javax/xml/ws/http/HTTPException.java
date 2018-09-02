@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws.http;
@@ -42,7 +22,7 @@ public class HTTPException extends javax.xml.ws.ProtocolException {
 	 * Constructor for the HTTPException
 	 * 
 	 * @param statusCode
-	 *            <code>int</code> for the HTTP status code
+	 *                   <code>int</code> for the HTTP status code
 	 **/
 	public HTTPException(int statusCode) {
 		super();

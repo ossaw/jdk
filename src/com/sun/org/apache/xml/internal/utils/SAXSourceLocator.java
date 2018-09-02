@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,7 +32,8 @@ import org.xml.sax.helpers.LocatorImpl;
  * purpose of implementing the SourceLocator interface, and thus can be both a
  * SourceLocator and a SAX Locator.
  */
-public class SAXSourceLocator extends LocatorImpl implements SourceLocator, Serializable {
+public class SAXSourceLocator extends LocatorImpl implements SourceLocator,
+		Serializable {
 	static final long serialVersionUID = 3181680946321164112L;
 	/**
 	 * The SAX Locator object.
@@ -48,15 +46,14 @@ public class SAXSourceLocator extends LocatorImpl implements SourceLocator, Seri
 	 * Constructor SAXSourceLocator
 	 *
 	 */
-	public SAXSourceLocator() {
-	}
+	public SAXSourceLocator() {}
 
 	/**
 	 * Constructor SAXSourceLocator
 	 *
 	 *
 	 * @param locator
-	 *            Source locator
+	 *                Source locator
 	 */
 	public SAXSourceLocator(Locator locator) {
 		m_locator = locator;
@@ -71,7 +68,7 @@ public class SAXSourceLocator extends LocatorImpl implements SourceLocator, Seri
 	 *
 	 *
 	 * @param locator
-	 *            Source locator
+	 *                Source locator
 	 */
 	public SAXSourceLocator(javax.xml.transform.SourceLocator locator) {
 		m_locator = null;
@@ -109,7 +106,8 @@ public class SAXSourceLocator extends LocatorImpl implements SourceLocator, Seri
 	 * @see #getSystemId
 	 */
 	public String getPublicId() {
-		return (null == m_locator) ? super.getPublicId() : m_locator.getPublicId();
+		return (null == m_locator) ? super.getPublicId()
+				: m_locator.getPublicId();
 	}
 
 	/**
@@ -131,7 +129,8 @@ public class SAXSourceLocator extends LocatorImpl implements SourceLocator, Seri
 	 * @see #getPublicId
 	 */
 	public String getSystemId() {
-		return (null == m_locator) ? super.getSystemId() : m_locator.getSystemId();
+		return (null == m_locator) ? super.getSystemId()
+				: m_locator.getSystemId();
 	}
 
 	/**
@@ -154,7 +153,8 @@ public class SAXSourceLocator extends LocatorImpl implements SourceLocator, Seri
 	 * @see #getColumnNumber
 	 */
 	public int getLineNumber() {
-		return (null == m_locator) ? super.getLineNumber() : m_locator.getLineNumber();
+		return (null == m_locator) ? super.getLineNumber()
+				: m_locator.getLineNumber();
 	}
 
 	/**
@@ -177,6 +177,7 @@ public class SAXSourceLocator extends LocatorImpl implements SourceLocator, Seri
 	 * @see #getLineNumber
 	 */
 	public int getColumnNumber() {
-		return (null == m_locator) ? super.getColumnNumber() : m_locator.getColumnNumber();
+		return (null == m_locator) ? super.getColumnNumber()
+				: m_locator.getColumnNumber();
 	}
 }

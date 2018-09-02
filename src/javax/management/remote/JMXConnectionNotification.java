@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -127,40 +107,52 @@ public class JMXConnectionNotification extends Notification {
 	 * </ul>
 	 *
 	 * @param type
-	 *            the type of the notification. This is usually one of the
-	 *            constants {@link #OPENED}, {@link #CLOSED}, {@link #FAILED},
-	 *            {@link #NOTIFS_LOST}. It is not an error for it to be a
-	 *            different string.
+	 *                       the type of the notification. This is usually one
+	 *                       of the
+	 *                       constants {@link #OPENED}, {@link #CLOSED},
+	 *                       {@link #FAILED},
+	 *                       {@link #NOTIFS_LOST}. It is not an error for it to
+	 *                       be a
+	 *                       different string.
 	 *
 	 * @param source
-	 *            the connector server or client emitting the notification.
+	 *                       the connector server or client emitting the
+	 *                       notification.
 	 *
 	 * @param connectionId
-	 *            the ID of the connection within its connector server.
+	 *                       the ID of the connection within its connector
+	 *                       server.
 	 *
 	 * @param sequenceNumber
-	 *            a non-negative integer. It is expected but not required that
-	 *            this number will be greater than any previous
-	 *            <code>sequenceNumber</code> in a notification from this
-	 *            source.
+	 *                       a non-negative integer. It is expected but not
+	 *                       required that
+	 *                       this number will be greater than any previous
+	 *                       <code>sequenceNumber</code> in a notification from
+	 *                       this
+	 *                       source.
 	 *
 	 * @param message
-	 *            an unspecified text message, typically containing a
-	 *            human-readable description of the event. Can be null.
+	 *                       an unspecified text message, typically containing a
+	 *                       human-readable description of the event. Can be
+	 *                       null.
 	 *
 	 * @param userData
-	 *            an object whose type and meaning is defined by the connector
-	 *            server. Can be null.
+	 *                       an object whose type and meaning is defined by the
+	 *                       connector
+	 *                       server. Can be null.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>type</code>, <code>source</code>, or
-	 *                <code>connectionId</code> is null.
+	 *                                     if <code>type</code>,
+	 *                                     <code>source</code>, or
+	 *                                     <code>connectionId</code> is null.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>sequenceNumber</code> is negative.
+	 *                                     if <code>sequenceNumber</code> is
+	 *                                     negative.
 	 */
-	public JMXConnectionNotification(String type, Object source, String connectionId,
-			long sequenceNumber, String message, Object userData) {
+	public JMXConnectionNotification(String type, Object source,
+			String connectionId, long sequenceNumber, String message,
+			Object userData) {
 		/*
 		 * We don't know whether the parent class (Notification) will throw an
 		 * exception if the type or source is null, because JMX 1.2 doesn't
@@ -168,8 +160,8 @@ public class JMXConnectionNotification extends Notification {
 		 * the wrong exception (e.g. IllegalArgumentException instead of
 		 * NullPointerException). Likewise for the sequence number.
 		 */
-		super((String) nonNull(type), nonNull(source), Math.max(0, sequenceNumber),
-				System.currentTimeMillis(), message);
+		super((String) nonNull(type), nonNull(source), Math.max(0,
+				sequenceNumber), System.currentTimeMillis(), message);
 		if (type == null || source == null || connectionId == null)
 			throw new NullPointerException("Illegal null argument");
 		if (sequenceNumber < 0)

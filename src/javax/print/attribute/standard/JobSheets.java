@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -53,7 +33,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public class JobSheets extends EnumSyntax implements PrintRequestAttribute, PrintJobAttribute {
+public class JobSheets extends EnumSyntax implements PrintRequestAttribute,
+		PrintJobAttribute {
 
 	private static final long serialVersionUID = -4735258056132519759L;
 
@@ -73,7 +54,7 @@ public class JobSheets extends EnumSyntax implements PrintRequestAttribute, Prin
 	 * value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected JobSheets(int value) {
 		super(value);

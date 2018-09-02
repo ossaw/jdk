@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -81,8 +78,8 @@ final class BinOpExpr extends Expression {
 	public Type typeCheck(SymbolTable stable) throws TypeCheckError {
 		final Type tleft = _left.typeCheck(stable);
 		final Type tright = _right.typeCheck(stable);
-		final MethodType ptype = lookupPrimop(stable, Ops[_op],
-				new MethodType(Type.Void, tleft, tright));
+		final MethodType ptype = lookupPrimop(stable, Ops[_op], new MethodType(
+				Type.Void, tleft, tright));
 		if (ptype != null) {
 			final Type arg1 = (Type) ptype.argsType().elementAt(0);
 			if (!arg1.identicalTo(tleft)) {
@@ -104,24 +101,25 @@ final class BinOpExpr extends Expression {
 		_right.translate(classGen, methodGen);
 
 		switch (_op) {
-		case PLUS:
-			il.append(_type.ADD());
-			break;
-		case MINUS:
-			il.append(_type.SUB());
-			break;
-		case TIMES:
-			il.append(_type.MUL());
-			break;
-		case DIV:
-			il.append(_type.DIV());
-			break;
-		case MOD:
-			il.append(_type.REM());
-			break;
-		default:
-			ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_BINARY_OP_ERR, this);
-			getParser().reportError(Constants.ERROR, msg);
+			case PLUS:
+				il.append(_type.ADD());
+				break;
+			case MINUS:
+				il.append(_type.SUB());
+				break;
+			case TIMES:
+				il.append(_type.MUL());
+				break;
+			case DIV:
+				il.append(_type.DIV());
+				break;
+			case MOD:
+				il.append(_type.REM());
+				break;
+			default:
+				ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_BINARY_OP_ERR,
+						this);
+				getParser().reportError(Constants.ERROR, msg);
 		}
 	}
 

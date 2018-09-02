@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -80,7 +60,8 @@ import java.util.Iterator;
  * 
  * <pre>
  * Path path = FileSystems.getDefault().getPath("logs", "access.log");
- * BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
+ * BufferedReader reader = Files.newBufferedReader(path,
+ * 		StandardCharsets.UTF_8);
  * </pre>
  *
  * <a name="interop"></a>
@@ -192,14 +173,16 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * the root has index {@link #getNameCount count}{@code -1}.
 	 *
 	 * @param index
-	 *            the index of the element
+	 *              the index of the element
 	 *
 	 * @return the name element
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code index} is negative, {@code index} is greater than
-	 *             or equal to the number of elements, or this path has zero
-	 *             name elements
+	 *                                  if {@code index} is negative,
+	 *                                  {@code index} is greater than
+	 *                                  or equal to the number of elements, or
+	 *                                  this path has zero
+	 *                                  name elements
 	 */
 	Path getName(int index);
 
@@ -217,18 +200,21 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * endIndex-1}.
 	 *
 	 * @param beginIndex
-	 *            the index of the first element, inclusive
+	 *                   the index of the first element, inclusive
 	 * @param endIndex
-	 *            the index of the last element, exclusive
+	 *                   the index of the last element, exclusive
 	 *
 	 * @return a new {@code Path} object that is a subsequence of the name
 	 *         elements in this {@code Path}
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code beginIndex} is negative, or greater than or equal
-	 *             to the number of elements. If {@code endIndex} is less than
-	 *             or equal to {@code beginIndex}, or larger than the number of
-	 *             elements.
+	 *                                  if {@code beginIndex} is negative, or
+	 *                                  greater than or equal
+	 *                                  to the number of elements. If
+	 *                                  {@code endIndex} is less than
+	 *                                  or equal to {@code beginIndex}, or
+	 *                                  larger than the number of
+	 *                                  elements.
 	 */
 	Path subpath(int beginIndex, int endIndex);
 
@@ -253,7 +239,7 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * this path then {@code false} is returned.
 	 *
 	 * @param other
-	 *            the given path
+	 *              the given path
 	 *
 	 * @return {@code true} if this path starts with the given path; otherwise
 	 *         {@code false}
@@ -268,13 +254,14 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * "{@code foo/bar}". It does not start with "{@code f}" or "{@code fo}".
 	 *
 	 * @param other
-	 *            the given path string
+	 *              the given path string
 	 *
 	 * @return {@code true} if this path starts with the given path; otherwise
 	 *         {@code false}
 	 *
 	 * @throws InvalidPathException
-	 *             If the path string cannot be converted to a Path.
+	 *                              If the path string cannot be converted to a
+	 *                              Path.
 	 */
 	boolean startsWith(String other);
 
@@ -301,7 +288,7 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * this path then {@code false} is returned.
 	 *
 	 * @param other
-	 *            the given path
+	 *              the given path
 	 *
 	 * @return {@code true} if this path ends with the given path; otherwise
 	 *         {@code false}
@@ -320,13 +307,14 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * {@code true}.
 	 *
 	 * @param other
-	 *            the given path string
+	 *              the given path string
 	 *
 	 * @return {@code true} if this path ends with the given path; otherwise
 	 *         {@code false}
 	 *
 	 * @throws InvalidPathException
-	 *             If the path string cannot be converted to a Path.
+	 *                              If the path string cannot be converted to a
+	 *                              Path.
 	 */
 	boolean endsWith(String other);
 
@@ -376,7 +364,7 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * therefore unspecified.
 	 *
 	 * @param other
-	 *            the path to resolve against this path
+	 *              the path to resolve against this path
 	 *
 	 * @return the resulting path
 	 *
@@ -393,12 +381,13 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * the {@code Path} "{@code foo/bar/gus}".
 	 *
 	 * @param other
-	 *            the path string to resolve against this path
+	 *              the path string to resolve against this path
 	 *
 	 * @return the resulting path
 	 *
 	 * @throws InvalidPathException
-	 *             if the path string cannot be converted to a Path.
+	 *                              if the path string cannot be converted to a
+	 *                              Path.
 	 *
 	 * @see FileSystem#getPath
 	 */
@@ -417,7 +406,7 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * empty path.
 	 *
 	 * @param other
-	 *            the path to resolve against this path's parent
+	 *              the path to resolve against this path's parent
 	 *
 	 * @return the resulting path
 	 *
@@ -431,12 +420,13 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * specified by the {@link #resolveSibling(Path) resolveSibling} method.
 	 *
 	 * @param other
-	 *            the path string to resolve against this path's parent
+	 *              the path string to resolve against this path's parent
 	 *
 	 * @return the resulting path
 	 *
 	 * @throws InvalidPathException
-	 *             if the path string cannot be converted to a Path.
+	 *                              if the path string cannot be converted to a
+	 *                              Path.
 	 *
 	 * @see FileSystem#getPath
 	 */
@@ -476,14 +466,15 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * {@code "/a/x"}.
 	 *
 	 * @param other
-	 *            the path to relativize against this path
+	 *              the path to relativize against this path
 	 *
 	 * @return the resulting relative path, or an empty path if both paths are
 	 *         equal
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code other} is not a {@code Path} that can be
-	 *             relativized against this path
+	 *                                  if {@code other} is not a {@code Path}
+	 *                                  that can be
+	 *                                  relativized against this path
 	 */
 	Path relativize(Path other);
 
@@ -530,16 +521,21 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 *
 	 * @return the URI representing this path
 	 *
-	 * @throws java.io.IOError
-	 *             if an I/O error occurs obtaining the absolute path, or where
-	 *             a file system is constructed to access the contents of a file
-	 *             as a file system, and the URI of the enclosing file system
-	 *             cannot be obtained
+	 * @throws                   java.io.IOError
+	 *                           if an I/O error occurs obtaining the absolute
+	 *                           path, or where
+	 *                           a file system is constructed to access the
+	 *                           contents of a file
+	 *                           as a file system, and the URI of the enclosing
+	 *                           file system
+	 *                           cannot be obtained
 	 *
 	 * @throws SecurityException
-	 *             In the case of the default provider, and a security manager
-	 *             is installed, the {@link #toAbsolutePath toAbsolutePath}
-	 *             method throws a security exception.
+	 *                           In the case of the default provider, and a
+	 *                           security manager
+	 *                           is installed, the {@link #toAbsolutePath
+	 *                           toAbsolutePath}
+	 *                           method throws a security exception.
 	 */
 	URI toUri();
 
@@ -556,14 +552,18 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 *
 	 * @return a {@code Path} object representing the absolute path
 	 *
-	 * @throws java.io.IOError
-	 *             if an I/O error occurs
+	 * @throws                   java.io.IOError
+	 *                           if an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default provider, a security manager is
-	 *             installed, and this path is not absolute, then the security
-	 *             manager's {@link SecurityManager#checkPropertyAccess(String)
-	 *             checkPropertyAccess} method is invoked to check access to the
-	 *             system property {@code user.dir}
+	 *                           In the case of the default provider, a security
+	 *                           manager is
+	 *                           installed, and this path is not absolute, then
+	 *                           the security
+	 *                           manager's
+	 *                           {@link SecurityManager#checkPropertyAccess(String)
+	 *                           checkPropertyAccess} method is invoked to check
+	 *                           access to the
+	 *                           system property {@code user.dir}
 	 */
 	Path toAbsolutePath();
 
@@ -599,21 +599,26 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * locate the same file as this path.
 	 *
 	 * @param options
-	 *            options indicating how symbolic links are handled
+	 *                options indicating how symbolic links are handled
 	 *
 	 * @return an absolute path represent the <em>real</em> path of the file
 	 *         located by this object
 	 *
 	 * @throws IOException
-	 *             if the file does not exist or an I/O error occurs
+	 *                           if the file does not exist or an I/O error
+	 *                           occurs
 	 * @throws SecurityException
-	 *             In the case of the default provider, and a security manager
-	 *             is installed, its {@link SecurityManager#checkRead(String)
-	 *             checkRead} method is invoked to check read access to the
-	 *             file, and where this path is not absolute, its
-	 *             {@link SecurityManager#checkPropertyAccess(String)
-	 *             checkPropertyAccess} method is invoked to check access to the
-	 *             system property {@code user.dir}
+	 *                           In the case of the default provider, and a
+	 *                           security manager
+	 *                           is installed, its
+	 *                           {@link SecurityManager#checkRead(String)
+	 *                           checkRead} method is invoked to check read
+	 *                           access to the
+	 *                           file, and where this path is not absolute, its
+	 *                           {@link SecurityManager#checkPropertyAccess(String)
+	 *                           checkPropertyAccess} method is invoked to check
+	 *                           access to the
+	 *                           system property {@code user.dir}
 	 */
 	Path toRealPath(LinkOption... options) throws IOException;
 
@@ -632,8 +637,9 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * @return a {@code File} object representing this path
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if this {@code Path} is not associated with the default
-	 *             provider
+	 *                                       if this {@code Path} is not
+	 *                                       associated with the default
+	 *                                       provider
 	 */
 	File toFile();
 
@@ -677,33 +683,41 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * on the existence of the symbolic link after it is registered.
 	 *
 	 * @param watcher
-	 *            the watch service to which this object is to be registered
+	 *                  the watch service to which this object is to be
+	 *                  registered
 	 * @param events
-	 *            the events for which this object should be registered
+	 *                  the events for which this object should be registered
 	 * @param modifiers
-	 *            the modifiers, if any, that modify how the object is
-	 *            registered
+	 *                  the modifiers, if any, that modify how the object is
+	 *                  registered
 	 *
 	 * @return a key representing the registration of this object with the given
 	 *         watch service
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if unsupported events or modifiers are specified
+	 *                                       if unsupported events or modifiers
+	 *                                       are specified
 	 * @throws IllegalArgumentException
-	 *             if an invalid combination of events or modifiers is specified
+	 *                                       if an invalid combination of events
+	 *                                       or modifiers is specified
 	 * @throws ClosedWatchServiceException
-	 *             if the watch service is closed
+	 *                                       if the watch service is closed
 	 * @throws NotDirectoryException
-	 *             if the file is registered to watch the entries in a directory
-	 *             and the file is not a directory <i>(optional specific
-	 *             exception)</i>
+	 *                                       if the file is registered to watch
+	 *                                       the entries in a directory
+	 *                                       and the file is not a directory
+	 *                                       <i>(optional specific
+	 *                                       exception)</i>
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                                       if an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default provider, and a security manager
-	 *             is installed, the {@link SecurityManager#checkRead(String)
-	 *             checkRead} method is invoked to check read access to the
-	 *             file.
+	 *                                       In the case of the default
+	 *                                       provider, and a security manager
+	 *                                       is installed, the
+	 *                                       {@link SecurityManager#checkRead(String)
+	 *                                       checkRead} method is invoked to
+	 *                                       check read access to the
+	 *                                       file.
 	 */
 	@Override
 	WatchKey register(WatchService watcher, WatchEvent.Kind<?>[] events,
@@ -732,33 +746,40 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * </pre>
 	 * 
 	 * @param watcher
-	 *            The watch service to which this object is to be registered
+	 *                The watch service to which this object is to be registered
 	 * @param events
-	 *            The events for which this object should be registered
+	 *                The events for which this object should be registered
 	 *
 	 * @return A key representing the registration of this object with the given
 	 *         watch service
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If unsupported events are specified
+	 *                                       If unsupported events are specified
 	 * @throws IllegalArgumentException
-	 *             If an invalid combination of events is specified
+	 *                                       If an invalid combination of events
+	 *                                       is specified
 	 * @throws ClosedWatchServiceException
-	 *             If the watch service is closed
+	 *                                       If the watch service is closed
 	 * @throws NotDirectoryException
-	 *             If the file is registered to watch the entries in a directory
-	 *             and the file is not a directory <i>(optional specific
-	 *             exception)</i>
+	 *                                       If the file is registered to watch
+	 *                                       the entries in a directory
+	 *                                       and the file is not a directory
+	 *                                       <i>(optional specific
+	 *                                       exception)</i>
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                       If an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default provider, and a security manager
-	 *             is installed, the {@link SecurityManager#checkRead(String)
-	 *             checkRead} method is invoked to check read access to the
-	 *             file.
+	 *                                       In the case of the default
+	 *                                       provider, and a security manager
+	 *                                       is installed, the
+	 *                                       {@link SecurityManager#checkRead(String)
+	 *                                       checkRead} method is invoked to
+	 *                                       check read access to the
+	 *                                       file.
 	 */
 	@Override
-	WatchKey register(WatchService watcher, WatchEvent.Kind<?>... events) throws IOException;
+	WatchKey register(WatchService watcher, WatchEvent.Kind<?>... events)
+			throws IOException;
 
 	// -- Iterable --
 
@@ -790,7 +811,7 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * different file system providers.
 	 *
 	 * @param other
-	 *            the path compared to this path.
+	 *              the path compared to this path.
 	 *
 	 * @return zero if the argument is {@link #equals equal} to this path, a
 	 *         value less than zero if this path is lexicographically less than
@@ -798,7 +819,8 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 *         lexicographically greater than the argument
 	 *
 	 * @throws ClassCastException
-	 *             if the paths are associated with different providers
+	 *                            if the paths are associated with different
+	 *                            providers
 	 */
 	@Override
 	int compareTo(Path other);
@@ -824,7 +846,7 @@ public interface Path extends Comparable<Path>, Iterable<Path>, Watchable {
 	 * </p>
 	 *
 	 * @param other
-	 *            the object to which this object is to be compared
+	 *              the object to which this object is to be compared
 	 *
 	 * @return {@code true} if, and only if, the given object is a {@code Path}
 	 *         that is identical to this {@code Path}

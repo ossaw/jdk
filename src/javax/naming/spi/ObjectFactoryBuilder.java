@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.spi;
@@ -62,14 +42,16 @@ public interface ObjectFactoryBuilder {
 	 * reference to a clone or copy.
 	 *
 	 * @param obj
-	 *            The possibly null object for which to create a factory.
+	 *                    The possibly null object for which to create a
+	 *                    factory.
 	 * @param environment
-	 *            Environment to use when creating the factory. Can be null.
+	 *                    Environment to use when creating the factory. Can be
+	 *                    null.
 	 * @return A non-null new instance of an ObjectFactory.
 	 * @exception NamingException
-	 *                If an object factory cannot be created.
+	 *                            If an object factory cannot be created.
 	 *
 	 */
-	public ObjectFactory createObjectFactory(Object obj, Hashtable<?, ?> environment)
-			throws NamingException;
+	public ObjectFactory createObjectFactory(Object obj,
+			Hashtable<?, ?> environment) throws NamingException;
 }

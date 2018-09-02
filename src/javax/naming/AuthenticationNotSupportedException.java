@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -50,14 +30,16 @@ package javax.naming;
  * @since 1.3
  */
 
-public class AuthenticationNotSupportedException extends NamingSecurityException {
+public class AuthenticationNotSupportedException extends
+		NamingSecurityException {
 	/**
 	 * Constructs a new instance of AuthenticationNotSupportedException using an
 	 * explanation. All other fields default to null.
 	 *
 	 * @param explanation
-	 *            A possibly null string containing additional detail about this
-	 *            exception.
+	 *                    A possibly null string containing additional detail
+	 *                    about this
+	 *                    exception.
 	 * @see java.lang.Throwable#getMessage
 	 */
 	public AuthenticationNotSupportedException(String explanation) {

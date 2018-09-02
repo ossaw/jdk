@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -52,11 +32,11 @@ public abstract class CRL {
 	 * Creates a CRL of the specified type.
 	 *
 	 * @param type
-	 *            the standard name of the CRL type. See Appendix A in the
-	 *            <a href=
-	 *            "../../../../technotes/guides/security/crypto/CryptoSpec.html#AppA">
-	 *            Java Cryptography Architecture API Specification &amp;
-	 *            Reference </a> for information about standard CRL types.
+	 *             the standard name of the CRL type. See Appendix A in the
+	 *             <a href=
+	 *             "../../../../technotes/guides/security/crypto/CryptoSpec.html#AppA">
+	 *             Java Cryptography Architecture API Specification &amp;
+	 *             Reference </a> for information about standard CRL types.
 	 */
 	protected CRL(String type) {
 		this.type = type;
@@ -82,7 +62,7 @@ public abstract class CRL {
 	 * Checks whether the given certificate is on this CRL.
 	 *
 	 * @param cert
-	 *            the certificate to check for.
+	 *             the certificate to check for.
 	 * @return true if the given certificate is on this CRL, false otherwise.
 	 */
 	public abstract boolean isRevoked(Certificate cert);

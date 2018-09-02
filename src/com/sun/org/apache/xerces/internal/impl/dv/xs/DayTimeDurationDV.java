@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -51,17 +48,19 @@ class DayTimeDurationDV extends DurationDV {
 
 	protected Duration getDuration(DateTimeData date) {
 		int sign = 1;
-		if (date.day < 0 || date.hour < 0 || date.minute < 0 || date.second < 0) {
+		if (date.day < 0 || date.hour < 0 || date.minute < 0
+				|| date.second < 0) {
 			sign = -1;
 		}
 		return datatypeFactory.newDuration(sign == 1, null, null,
-				date.day != DatatypeConstants.FIELD_UNDEFINED ? BigInteger.valueOf(sign * date.day)
-						: null,
-				date.hour != DatatypeConstants.FIELD_UNDEFINED
-						? BigInteger.valueOf(sign * date.hour) : null,
-				date.minute != DatatypeConstants.FIELD_UNDEFINED
-						? BigInteger.valueOf(sign * date.minute) : null,
+				date.day != DatatypeConstants.FIELD_UNDEFINED ? BigInteger
+						.valueOf(sign * date.day) : null,
+				date.hour != DatatypeConstants.FIELD_UNDEFINED ? BigInteger
+						.valueOf(sign * date.hour) : null,
+				date.minute != DatatypeConstants.FIELD_UNDEFINED ? BigInteger
+						.valueOf(sign * date.minute) : null,
 				date.second != DatatypeConstants.FIELD_UNDEFINED
-						? new BigDecimal(String.valueOf(sign * date.second)) : null);
+						? new BigDecimal(String.valueOf(sign * date.second))
+						: null);
 	}
 }

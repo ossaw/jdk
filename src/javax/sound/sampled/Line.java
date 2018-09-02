@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled;
@@ -110,11 +90,14 @@ public interface Line extends AutoCloseable {
 	 * qualified audio format, the last one will be used as the default format.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if this method is called on a Clip instance.
+	 *                                  if this method is called on a Clip
+	 *                                  instance.
 	 * @throws LineUnavailableException
-	 *             if the line cannot be opened due to resource restrictions.
+	 *                                  if the line cannot be opened due to
+	 *                                  resource restrictions.
 	 * @throws SecurityException
-	 *             if the line cannot be opened due to security restrictions.
+	 *                                  if the line cannot be opened due to
+	 *                                  security restrictions.
 	 *
 	 * @see #close
 	 * @see #isOpen
@@ -131,7 +114,8 @@ public interface Line extends AutoCloseable {
 	 * and a <code>CLOSE</code> event is dispatched to the line's listeners.
 	 * 
 	 * @throws SecurityException
-	 *             if the line cannot be closed due to security restrictions.
+	 *                           if the line cannot be closed due to security
+	 *                           restrictions.
 	 *
 	 * @see #open
 	 * @see #isOpen
@@ -167,7 +151,7 @@ public interface Line extends AutoCloseable {
 	 * controls may only be available when the line is open.
 	 * 
 	 * @param control
-	 *            the type of the control for which support is queried
+	 *                the type of the control for which support is queried
 	 * @return <code>true</code> if at least one control of the specified type
 	 *         is supported, otherwise <code>false</code>.
 	 */
@@ -178,10 +162,11 @@ public interface Line extends AutoCloseable {
 	 * may only be available when the line is open.
 	 * 
 	 * @param control
-	 *            the type of the requested control
+	 *                the type of the requested control
 	 * @return a control of the specified type
 	 * @throws IllegalArgumentException
-	 *             if a control of the specified type is not supported
+	 *                                  if a control of the specified type is
+	 *                                  not supported
 	 * @see #getControls
 	 * @see #isControlSupported(Control.Type control)
 	 */
@@ -193,7 +178,7 @@ public interface Line extends AutoCloseable {
 	 * <code>LineEvent</code> object that describes the change.
 	 * 
 	 * @param listener
-	 *            the object to add as a listener to this line
+	 *                 the object to add as a listener to this line
 	 * @see #removeLineListener
 	 * @see LineListener#update
 	 * @see LineEvent
@@ -204,7 +189,7 @@ public interface Line extends AutoCloseable {
 	 * Removes the specified listener from this line's list of listeners.
 	 * 
 	 * @param listener
-	 *            listener to remove
+	 *                 listener to remove
 	 * @see #addLineListener
 	 */
 	public void removeLineListener(LineListener listener);
@@ -256,8 +241,8 @@ public interface Line extends AutoCloseable {
 		 * describe a desired line.
 		 * 
 		 * @param lineClass
-		 *            the class of the line that the new Line.Info object
-		 *            describes
+		 *                  the class of the line that the new Line.Info object
+		 *                  describes
 		 */
 		public Info(Class<?> lineClass) {
 
@@ -289,7 +274,7 @@ public interface Line extends AutoCloseable {
 		 * whether the two objects match.
 		 *
 		 * @param info
-		 *            the info object which is being compared to this one
+		 *             the info object which is being compared to this one
 		 * @return <code>true</code> if the specified object matches this one,
 		 *         <code>false</code> otherwise
 		 */
@@ -358,7 +343,8 @@ public interface Line extends AutoCloseable {
 
 			if (index != -1) {
 				finalString = initialString.substring(0, index) + initialString
-						.substring((index + fullPackagePath.length()), initialString.length());
+						.substring((index + fullPackagePath.length()),
+								initialString.length());
 			} else {
 				finalString = initialString;
 			}

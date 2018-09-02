@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -65,9 +45,11 @@ public class ImmutableDescriptor implements Descriptor {
 	 * Construct a descriptor containing the given fields and values.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if either array is null, or if the arrays have different
-	 *             sizes, or if a field name is null or empty, or if the same
-	 *             field name appears more than once.
+	 *                                  if either array is null, or if the
+	 *                                  arrays have different
+	 *                                  sizes, or if a field name is null or
+	 *                                  empty, or if the same
+	 *                                  field name appears more than once.
 	 */
 	public ImmutableDescriptor(String[] fieldNames, Object[] fieldValues) {
 		this(makeMap(fieldNames, fieldValues));
@@ -80,9 +62,12 @@ public class ImmutableDescriptor implements Descriptor {
 	 * then the field name is {@code a} and its value is {@code b=c}.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the parameter is null, or if a field name is empty, or if
-	 *             the same field name appears more than once, or if one of the
-	 *             strings does not contain an {@code =} character.
+	 *                                  if the parameter is null, or if a field
+	 *                                  name is empty, or if
+	 *                                  the same field name appears more than
+	 *                                  once, or if one of the
+	 *                                  strings does not contain an {@code =}
+	 *                                  character.
 	 */
 	public ImmutableDescriptor(String... fields) {
 		this(makeMap(fields));
@@ -95,15 +80,19 @@ public class ImmutableDescriptor implements Descriptor {
 	 * </p>
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the parameter is null, or if a field name is null or
-	 *             empty, or if the same field name appears more than once
-	 *             (which can happen because field names are not case
-	 *             sensitive).
+	 *                                  if the parameter is null, or if a field
+	 *                                  name is null or
+	 *                                  empty, or if the same field name appears
+	 *                                  more than once
+	 *                                  (which can happen because field names
+	 *                                  are not case
+	 *                                  sensitive).
 	 */
 	public ImmutableDescriptor(Map<String, ?> fields) {
 		if (fields == null)
 			throw new IllegalArgumentException("Null Map");
-		SortedMap<String, Object> map = new TreeMap<String, Object>(String.CASE_INSENSITIVE_ORDER);
+		SortedMap<String, Object> map = new TreeMap<String, Object>(
+				String.CASE_INSENSITIVE_ORDER);
 		for (Map.Entry<String, ?> entry : fields.entrySet()) {
 			String name = entry.getKey();
 			if (name == null || name.equals(""))
@@ -125,7 +114,7 @@ public class ImmutableDescriptor implements Descriptor {
 	 * @return the replacement object, which may be {@code this}.
 	 *
 	 * @throws InvalidObjectException
-	 *             if the read object has invalid fields.
+	 *                                if the read object has invalid fields.
 	 */
 	private Object readResolve() throws InvalidObjectException {
 
@@ -138,7 +127,8 @@ public class ImmutableDescriptor implements Descriptor {
 			final Comparator<String> compare = String.CASE_INSENSITIVE_ORDER;
 			String lastName = ""; // also catches illegal null name
 			for (int i = 0; i < names.length; i++) {
-				if (names[i] == null || compare.compare(lastName, names[i]) >= 0) {
+				if (names[i] == null || compare.compare(lastName,
+						names[i]) >= 0) {
 					bad = true;
 					break;
 				}
@@ -151,19 +141,22 @@ public class ImmutableDescriptor implements Descriptor {
 		return this;
 	}
 
-	private static SortedMap<String, ?> makeMap(String[] fieldNames, Object[] fieldValues) {
+	private static SortedMap<String, ?> makeMap(String[] fieldNames,
+			Object[] fieldValues) {
 		if (fieldNames == null || fieldValues == null)
 			throw new IllegalArgumentException("Null array parameter");
 		if (fieldNames.length != fieldValues.length)
 			throw new IllegalArgumentException("Different size arrays");
-		SortedMap<String, Object> map = new TreeMap<String, Object>(String.CASE_INSENSITIVE_ORDER);
+		SortedMap<String, Object> map = new TreeMap<String, Object>(
+				String.CASE_INSENSITIVE_ORDER);
 		for (int i = 0; i < fieldNames.length; i++) {
 			String name = fieldNames[i];
 			if (name == null || name.equals(""))
 				throw new IllegalArgumentException("Empty or null field name");
 			Object old = map.put(name, fieldValues[i]);
 			if (old != null) {
-				throw new IllegalArgumentException("Duplicate field name: " + name);
+				throw new IllegalArgumentException("Duplicate field name: "
+						+ name);
 			}
 		}
 		return map;
@@ -178,7 +171,8 @@ public class ImmutableDescriptor implements Descriptor {
 			String field = fields[i];
 			int eq = field.indexOf('=');
 			if (eq < 0) {
-				throw new IllegalArgumentException("Missing = character: " + field);
+				throw new IllegalArgumentException("Missing = character: "
+						+ field);
 			}
 			fieldNames[i] = field.substring(0, eq);
 			// makeMap will catch the case where the name is empty
@@ -208,8 +202,9 @@ public class ImmutableDescriptor implements Descriptor {
 	 * </pre>
 	 *
 	 * @param descriptors
-	 *            the descriptors to be combined. Any of the descriptors can be
-	 *            null, in which case it is skipped.
+	 *                    the descriptors to be combined. Any of the descriptors
+	 *                    can be
+	 *                    null, in which case it is skipped.
 	 *
 	 * @return an {@code ImmutableDescriptor} that is the union of the given
 	 *         descriptors. The returned object may be identical to one of the
@@ -217,11 +212,16 @@ public class ImmutableDescriptor implements Descriptor {
 	 *         all of the required fields.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if two Descriptors contain the same field name with different
-	 *             associated values. Primitive array values are considered the
-	 *             same if they are of the same type with the same elements.
-	 *             Object array values are considered the same if
-	 *             {@link Arrays#deepEquals(Object[],Object[])} returns true.
+	 *                                  if two Descriptors contain the same
+	 *                                  field name with different
+	 *                                  associated values. Primitive array
+	 *                                  values are considered the
+	 *                                  same if they are of the same type with
+	 *                                  the same elements.
+	 *                                  Object array values are considered the
+	 *                                  same if
+	 *                                  {@link Arrays#deepEquals(Object[],Object[])}
+	 *                                  returns true.
 	 */
 	public static ImmutableDescriptor union(Descriptor... descriptors) {
 		// Optimize the case where exactly one Descriptor is non-Empty
@@ -229,11 +229,12 @@ public class ImmutableDescriptor implements Descriptor {
 		int index = findNonEmpty(descriptors, 0);
 		if (index < 0)
 			return EMPTY_DESCRIPTOR;
-		if (descriptors[index] instanceof ImmutableDescriptor
-				&& findNonEmpty(descriptors, index + 1) < 0)
+		if (descriptors[index] instanceof ImmutableDescriptor && findNonEmpty(
+				descriptors, index + 1) < 0)
 			return (ImmutableDescriptor) descriptors[index];
 
-		Map<String, Object> map = new TreeMap<String, Object>(String.CASE_INSENSITIVE_ORDER);
+		Map<String, Object> map = new TreeMap<String, Object>(
+				String.CASE_INSENSITIVE_ORDER);
 		ImmutableDescriptor biggestImmutable = EMPTY_DESCRIPTOR;
 		for (Descriptor d : descriptors) {
 			if (d != null) {
@@ -252,12 +253,13 @@ public class ImmutableDescriptor implements Descriptor {
 					if (old != null) {
 						boolean equal;
 						if (old.getClass().isArray()) {
-							equal = Arrays.deepEquals(new Object[] { old }, new Object[] { v });
+							equal = Arrays.deepEquals(new Object[] { old },
+									new Object[] { v });
 						} else
 							equal = old.equals(v);
 						if (!equal) {
-							final String msg = "Inconsistent values for descriptor field " + n
-									+ ": " + old + " :: " + v;
+							final String msg = "Inconsistent values for descriptor field "
+									+ n + ": " + old + " :: " + v;
 							throw new IllegalArgumentException(msg);
 						}
 					}
@@ -353,7 +355,7 @@ public class ImmutableDescriptor implements Descriptor {
 	 * </ul>
 	 *
 	 * @param o
-	 *            the object to compare with.
+	 *          the object to compare with.
 	 *
 	 * @return {@code true} if the objects are the same; {@code false}
 	 *         otherwise.
@@ -445,9 +447,12 @@ public class ImmutableDescriptor implements Descriptor {
 	 * @return true if the values are legal.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                if the validity checking fails. The method returns false
-	 *                if the descriptor is not valid, but throws this exception
-	 *                if the attempt to determine validity fails.
+	 *                                       if the validity checking fails. The
+	 *                                       method returns false
+	 *                                       if the descriptor is not valid, but
+	 *                                       throws this exception
+	 *                                       if the attempt to determine
+	 *                                       validity fails.
 	 */
 	public boolean isValid() {
 		return true;
@@ -465,9 +470,11 @@ public class ImmutableDescriptor implements Descriptor {
 	 * override it to return another object provided the contract is respected.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                for illegal value for field Names or field Values. If the
-	 *                descriptor construction fails for any reason, this
-	 *                exception will be thrown.
+	 *                                       for illegal value for field Names
+	 *                                       or field Values. If the
+	 *                                       descriptor construction fails for
+	 *                                       any reason, this
+	 *                                       exception will be thrown.
 	 */
 	@Override
 	public Descriptor clone() {
@@ -517,13 +524,17 @@ public class ImmutableDescriptor implements Descriptor {
 	 * Removes a field from the descriptor.
 	 *
 	 * @param fieldName
-	 *            String name of the field to be removed. If the field name is
-	 *            illegal or the field is not found, no exception is thrown.
+	 *                  String name of the field to be removed. If the field
+	 *                  name is
+	 *                  illegal or the field is not found, no exception is
+	 *                  thrown.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                if a field of the given name exists and the descriptor is
-	 *                immutable. The wrapped exception will be an
-	 *                {@link UnsupportedOperationException}.
+	 *                                       if a field of the given name exists
+	 *                                       and the descriptor is
+	 *                                       immutable. The wrapped exception
+	 *                                       will be an
+	 *                                       {@link UnsupportedOperationException}.
 	 */
 	public final void removeField(String fieldName) {
 		if (fieldName != null && fieldIndex(fieldName) >= 0)

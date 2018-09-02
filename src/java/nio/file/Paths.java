@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -36,8 +16,7 @@ import java.net.URI;
  */
 
 public final class Paths {
-	private Paths() {
-	}
+	private Paths() {}
 
 	/**
 	 * Converts a path string, or a sequence of strings that when joined form a
@@ -72,14 +51,15 @@ public final class Paths {
 	 * </pre>
 	 *
 	 * @param first
-	 *            the path string or initial part of the path string
+	 *              the path string or initial part of the path string
 	 * @param more
-	 *            additional strings to be joined to form the path string
+	 *              additional strings to be joined to form the path string
 	 *
 	 * @return the resulting {@code Path}
 	 *
 	 * @throws InvalidPathException
-	 *             if the path string cannot be converted to a {@code Path}
+	 *                              if the path string cannot be converted to a
+	 *                              {@code Path}
 	 *
 	 * @see FileSystem#getPath
 	 */
@@ -123,15 +103,22 @@ public final class Paths {
 	 * @return the resulting {@code Path}
 	 *
 	 * @throws IllegalArgumentException
-	 *             if preconditions on the {@code uri} parameter do not hold.
-	 *             The format of the URI is provider specific.
+	 *                                     if preconditions on the {@code uri}
+	 *                                     parameter do not hold.
+	 *                                     The format of the URI is provider
+	 *                                     specific.
 	 * @throws FileSystemNotFoundException
-	 *             The file system, identified by the URI, does not exist and
-	 *             cannot be created automatically, or the provider identified
-	 *             by the URI's scheme component is not installed
+	 *                                     The file system, identified by the
+	 *                                     URI, does not exist and
+	 *                                     cannot be created automatically, or
+	 *                                     the provider identified
+	 *                                     by the URI's scheme component is not
+	 *                                     installed
 	 * @throws SecurityException
-	 *             if a security manager is installed and it denies an
-	 *             unspecified permission to access the file system
+	 *                                     if a security manager is installed
+	 *                                     and it denies an
+	 *                                     unspecified permission to access the
+	 *                                     file system
 	 */
 	public static Path get(URI uri) {
 		String scheme = uri.getScheme();
@@ -143,12 +130,14 @@ public final class Paths {
 			return FileSystems.getDefault().provider().getPath(uri);
 
 		// try to find provider
-		for (FileSystemProvider provider : FileSystemProvider.installedProviders()) {
+		for (FileSystemProvider provider : FileSystemProvider
+				.installedProviders()) {
 			if (provider.getScheme().equalsIgnoreCase(scheme)) {
 				return provider.getPath(uri);
 			}
 		}
 
-		throw new FileSystemNotFoundException("Provider \"" + scheme + "\" not installed");
+		throw new FileSystemNotFoundException("Provider \"" + scheme
+				+ "\" not installed");
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.javadoc;
@@ -127,7 +107,7 @@ public interface ClassDoc extends ProgramElementDoc, Type {
 	 * compatibility reasons).
 	 *
 	 * @param cd
-	 *            the candidate superclass.
+	 *           the candidate superclass.
 	 * @return true if cd is a superclass of this class.
 	 */
 	boolean subclassOf(ClassDoc cd);
@@ -191,9 +171,9 @@ public interface ClassDoc extends ProgramElementDoc, Type {
 	 * modifier option</a>. Excludes enum constants if this is an enum type.
 	 *
 	 * @param filter
-	 *            Specify true to filter according to the specified access
-	 *            modifier option. Specify false to include all fields
-	 *            regardless of access modifier option.
+	 *               Specify true to filter according to the specified access
+	 *               modifier option. Specify false to include all fields
+	 *               regardless of access modifier option.
 	 * @return an array of FieldDoc objects representing the included fields in
 	 *         this class or interface.
 	 */
@@ -225,9 +205,9 @@ public interface ClassDoc extends ProgramElementDoc, Type {
 	 * elements.
 	 *
 	 * @param filter
-	 *            Specify true to filter according to the specified access
-	 *            modifier option. Specify false to include all methods
-	 *            regardless of access modifier option.
+	 *               Specify true to filter according to the specified access
+	 *               modifier option. Specify false to include all methods
+	 *               regardless of access modifier option.
 	 * @return an array of MethodDoc objects representing the included methods
 	 *         in this class or interface.
 	 */
@@ -251,9 +231,9 @@ public interface ClassDoc extends ProgramElementDoc, Type {
 	 * constructor if no other constructors exist.
 	 *
 	 * @param filter
-	 *            Specify true to filter according to the specified access
-	 *            modifier option. Specify false to include all constructors
-	 *            regardless of access modifier option.
+	 *               Specify true to filter according to the specified access
+	 *               modifier option. Specify false to include all constructors
+	 *               regardless of access modifier option.
 	 * @return an array of ConstructorDoc objects representing the included
 	 *         constructors in this class.
 	 */
@@ -280,9 +260,10 @@ public interface ClassDoc extends ProgramElementDoc, Type {
 	 * classes. Anonymous and local classes are not included.
 	 *
 	 * @param filter
-	 *            Specify true to filter according to the specified access
-	 *            modifier option. Specify false to include all nested classes
-	 *            regardless of access modifier option.
+	 *               Specify true to filter according to the specified access
+	 *               modifier option. Specify false to include all nested
+	 *               classes
+	 *               regardless of access modifier option.
 	 * @return a filtered array of ClassDoc objects representing the included
 	 *         classes and interfaces defined in this class or interface.
 	 */

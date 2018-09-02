@@ -8,11 +8,11 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public final class ServerIdsHolder implements org.omg.CORBA.portable.Streamable {
+public final class ServerIdsHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public int value[] = null;
 
-	public ServerIdsHolder() {
-	}
+	public ServerIdsHolder() {}
 
 	public ServerIdsHolder(int[] initialValue) {
 		value = initialValue;

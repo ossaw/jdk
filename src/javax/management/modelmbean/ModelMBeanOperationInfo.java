@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
- * @author    IBM Corp.
- *
- * Copyright IBM Corp. 1999-2000.  All rights reserved.
+ * @author IBM Corp.
+ * Copyright IBM Corp. 1999-2000. All rights reserved.
  */
 
 package javax.management.modelmbean;
@@ -152,7 +131,8 @@ import javax.management.RuntimeOperationsException;
  */
 
 @SuppressWarnings("serial") // serialVersionUID is not constant
-public class ModelMBeanOperationInfo extends MBeanOperationInfo implements DescriptorAccess {
+public class ModelMBeanOperationInfo extends MBeanOperationInfo implements
+		DescriptorAccess {
 
 	// Serialization compatibility stuff:
 	// Two serial forms are supported in this class. The selected form depends
@@ -179,8 +159,8 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 	private static final long serialVersionUID;
 	/**
 	 * @serialField operationDescriptor
-	 *                  Descriptor The descriptor containing the appropriate
-	 *                  metadata for this instance
+	 *              Descriptor The descriptor containing the appropriate
+	 *              metadata for this instance
 	 */
 	private static final ObjectStreamField[] serialPersistentFields;
 	private static boolean compat = false;
@@ -218,18 +198,20 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 	 * the {@link DescriptorKey} meta-annotation.
 	 *
 	 * @param operationMethod
-	 *            The java.lang.reflect.Method object describing the MBean
-	 *            operation.
+	 *                        The java.lang.reflect.Method object describing the
+	 *                        MBean
+	 *                        operation.
 	 * @param description
-	 *            A human readable description of the operation.
+	 *                        A human readable description of the operation.
 	 */
 
 	public ModelMBeanOperationInfo(String description, Method operationMethod) {
 		super(description, operationMethod);
 		// create default descriptor
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class.getName(),
-					"ModelMBeanOperationInfo(String,Method)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class
+					.getName(), "ModelMBeanOperationInfo(String,Method)",
+					"Entry");
 		}
 		operationDescriptor = validDescriptor(null);
 	}
@@ -241,24 +223,34 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 	 * meta-annotation.
 	 *
 	 * @param operationMethod
-	 *            The java.lang.reflect.Method object describing the MBean
-	 *            operation.
+	 *                        The java.lang.reflect.Method object describing the
+	 *                        MBean
+	 *                        operation.
 	 * @param description
-	 *            A human readable description of the operation.
+	 *                        A human readable description of the operation.
 	 * @param descriptor
-	 *            An instance of Descriptor containing the appropriate metadata
-	 *            for this instance of the ModelMBeanOperationInfo. If it is
-	 *            null a default descriptor will be created. If the descriptor
-	 *            does not contain the fields "displayName" or "role", the
-	 *            missing ones are added with their default values.
+	 *                        An instance of Descriptor containing the
+	 *                        appropriate metadata
+	 *                        for this instance of the ModelMBeanOperationInfo.
+	 *                        If it is
+	 *                        null a default descriptor will be created. If the
+	 *                        descriptor
+	 *                        does not contain the fields "displayName" or
+	 *                        "role", the
+	 *                        missing ones are added with their default values.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException. The descriptor is
-	 *                invalid; or descriptor field "name" is not equal to
-	 *                operation name; or descriptor field "DescriptorType" is
-	 *                not equal to "operation"; or descriptor optional field
-	 *                "role" is present but not equal to "operation", "getter",
-	 *                or "setter".
+	 *                                       Wraps an IllegalArgumentException.
+	 *                                       The descriptor is
+	 *                                       invalid; or descriptor field "name"
+	 *                                       is not equal to
+	 *                                       operation name; or descriptor field
+	 *                                       "DescriptorType" is
+	 *                                       not equal to "operation"; or
+	 *                                       descriptor optional field
+	 *                                       "role" is present but not equal to
+	 *                                       "operation", "getter",
+	 *                                       or "setter".
 	 *
 	 */
 
@@ -267,8 +259,10 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 
 		super(description, operationMethod);
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class.getName(),
-					"ModelMBeanOperationInfo(String,Method,Descriptor)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class
+					.getName(),
+					"ModelMBeanOperationInfo(String,Method,Descriptor)",
+					"Entry");
 		}
 		operationDescriptor = validDescriptor(descriptor);
 	}
@@ -277,27 +271,29 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 	 * Constructs a ModelMBeanOperationInfo object with a default descriptor.
 	 *
 	 * @param name
-	 *            The name of the method.
+	 *                    The name of the method.
 	 * @param description
-	 *            A human readable description of the operation.
+	 *                    A human readable description of the operation.
 	 * @param signature
-	 *            MBeanParameterInfo objects describing the
-	 *            parameters(arguments) of the method.
+	 *                    MBeanParameterInfo objects describing the
+	 *                    parameters(arguments) of the method.
 	 * @param type
-	 *            The type of the method's return value.
+	 *                    The type of the method's return value.
 	 * @param impact
-	 *            The impact of the method, one of INFO, ACTION, ACTION_INFO,
-	 *            UNKNOWN.
+	 *                    The impact of the method, one of INFO, ACTION,
+	 *                    ACTION_INFO,
+	 *                    UNKNOWN.
 	 */
 
-	public ModelMBeanOperationInfo(String name, String description, MBeanParameterInfo[] signature,
-			String type, int impact) {
+	public ModelMBeanOperationInfo(String name, String description,
+			MBeanParameterInfo[] signature, String type, int impact) {
 
 		super(name, description, signature, type, impact);
 		// create default descriptor
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class.getName(),
-					"ModelMBeanOperationInfo(" + "String,String,MBeanParameterInfo[],String,int)",
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class
+					.getName(), "ModelMBeanOperationInfo("
+							+ "String,String,MBeanParameterInfo[],String,int)",
 					"Entry");
 		}
 		operationDescriptor = validDescriptor(null);
@@ -307,39 +303,50 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 	 * Constructs a ModelMBeanOperationInfo object.
 	 *
 	 * @param name
-	 *            The name of the method.
+	 *                    The name of the method.
 	 * @param description
-	 *            A human readable description of the operation.
+	 *                    A human readable description of the operation.
 	 * @param signature
-	 *            MBeanParameterInfo objects describing the
-	 *            parameters(arguments) of the method.
+	 *                    MBeanParameterInfo objects describing the
+	 *                    parameters(arguments) of the method.
 	 * @param type
-	 *            The type of the method's return value.
+	 *                    The type of the method's return value.
 	 * @param impact
-	 *            The impact of the method, one of INFO, ACTION, ACTION_INFO,
-	 *            UNKNOWN.
+	 *                    The impact of the method, one of INFO, ACTION,
+	 *                    ACTION_INFO,
+	 *                    UNKNOWN.
 	 * @param descriptor
-	 *            An instance of Descriptor containing the appropriate metadata
-	 *            for this instance of the MBeanOperationInfo. If it is null
-	 *            then a default descriptor will be created. If the descriptor
-	 *            does not contain fields "displayName" or "role", the missing
-	 *            ones are added with their default values.
+	 *                    An instance of Descriptor containing the appropriate
+	 *                    metadata
+	 *                    for this instance of the MBeanOperationInfo. If it is
+	 *                    null
+	 *                    then a default descriptor will be created. If the
+	 *                    descriptor
+	 *                    does not contain fields "displayName" or "role", the
+	 *                    missing
+	 *                    ones are added with their default values.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException. The descriptor is
-	 *                invalid; or descriptor field "name" is not equal to
-	 *                operation name; or descriptor field "DescriptorType" is
-	 *                not equal to "operation"; or descriptor optional field
-	 *                "role" is present but not equal to "operation", "getter",
-	 *                or "setter".
+	 *                                       Wraps an IllegalArgumentException.
+	 *                                       The descriptor is
+	 *                                       invalid; or descriptor field "name"
+	 *                                       is not equal to
+	 *                                       operation name; or descriptor field
+	 *                                       "DescriptorType" is
+	 *                                       not equal to "operation"; or
+	 *                                       descriptor optional field
+	 *                                       "role" is present but not equal to
+	 *                                       "operation", "getter",
+	 *                                       or "setter".
 	 */
 
-	public ModelMBeanOperationInfo(String name, String description, MBeanParameterInfo[] signature,
-			String type, int impact, Descriptor descriptor) {
+	public ModelMBeanOperationInfo(String name, String description,
+			MBeanParameterInfo[] signature, String type, int impact,
+			Descriptor descriptor) {
 		super(name, description, signature, type, impact);
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class.getName(),
-					"ModelMBeanOperationInfo(String,String,"
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class
+					.getName(), "ModelMBeanOperationInfo(String,String,"
 							+ "MBeanParameterInfo[],String,int,Descriptor)",
 					"Entry");
 		}
@@ -351,7 +358,7 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 	 * ModelMBeanOperation Object.
 	 *
 	 * @param inInfo
-	 *            the ModelMBeanOperationInfo to be duplicated
+	 *               the ModelMBeanOperationInfo to be duplicated
 	 *
 	 */
 
@@ -359,8 +366,10 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 		super(inInfo.getName(), inInfo.getDescription(), inInfo.getSignature(),
 				inInfo.getReturnType(), inInfo.getImpact());
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class.getName(),
-					"ModelMBeanOperationInfo(ModelMBeanOperationInfo)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class
+					.getName(),
+					"ModelMBeanOperationInfo(ModelMBeanOperationInfo)",
+					"Entry");
 		}
 		Descriptor newDesc = inInfo.getDescriptor();
 		operationDescriptor = validDescriptor(newDesc);
@@ -374,8 +383,8 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 
 	public Object clone() {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class.getName(), "clone()",
-					"Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class
+					.getName(), "clone()", "Entry");
 		}
 		return (new ModelMBeanOperationInfo(this));
 	}
@@ -391,8 +400,8 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 
 	public Descriptor getDescriptor() {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class.getName(),
-					"getDescriptor()", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class
+					.getName(), "getDescriptor()", "Entry");
 		}
 		if (operationDescriptor == null) {
 			operationDescriptor = validDescriptor(null);
@@ -409,18 +418,19 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 	 * wrapping an IllegalArgumentException is thrown.
 	 *
 	 * @param inDescriptor
-	 *            replaces the Descriptor associated with the
-	 *            ModelMBeanOperation.
+	 *                     replaces the Descriptor associated with the
+	 *                     ModelMBeanOperation.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException for invalid Descriptor.
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       for invalid Descriptor.
 	 *
 	 * @see #getDescriptor
 	 */
 	public void setDescriptor(Descriptor inDescriptor) {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class.getName(),
-					"setDescriptor(Descriptor)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class
+					.getName(), "setDescriptor(Descriptor)", "Entry");
 		}
 		operationDescriptor = validDescriptor(inDescriptor);
 	}
@@ -431,12 +441,13 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 	 */
 	public String toString() {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class.getName(),
-					"toString()", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanOperationInfo.class
+					.getName(), "toString()", "Entry");
 		}
-		String retStr = "ModelMBeanOperationInfo: " + this.getName() + " ; Description: "
-				+ this.getDescription() + " ; Descriptor: " + this.getDescriptor()
-				+ " ; ReturnType: " + this.getReturnType() + " ; Signature: ";
+		String retStr = "ModelMBeanOperationInfo: " + this.getName()
+				+ " ; Description: " + this.getDescription() + " ; Descriptor: "
+				+ this.getDescriptor() + " ; ReturnType: " + this
+						.getReturnType() + " ; Signature: ";
 		MBeanParameterInfo[] pTypes = this.getSignature();
 		for (int i = 0; i < pTypes.length; i++) {
 			retStr = retStr.concat((pTypes[i]).getType() + ", ");
@@ -456,12 +467,13 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 	 *
 	 *
 	 * @param in
-	 *            Descriptor to be checked, or null which is equivalent to an
-	 *            empty Descriptor.
+	 *           Descriptor to be checked, or null which is equivalent to an
+	 *           empty Descriptor.
 	 * @exception RuntimeOperationsException
-	 *                if Descriptor is invalid
+	 *                                       if Descriptor is invalid
 	 */
-	private Descriptor validDescriptor(final Descriptor in) throws RuntimeOperationsException {
+	private Descriptor validDescriptor(final Descriptor in)
+			throws RuntimeOperationsException {
 		Descriptor clone;
 		boolean defaulted = (in == null);
 		if (defaulted) {
@@ -474,57 +486,63 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 		// Setting defaults.
 		if (defaulted && clone.getFieldValue("name") == null) {
 			clone.setField("name", this.getName());
-			MODELMBEAN_LOGGER.finer("Defaulting Descriptor name to " + this.getName());
+			MODELMBEAN_LOGGER.finer("Defaulting Descriptor name to " + this
+					.getName());
 		}
 		if (defaulted && clone.getFieldValue("descriptorType") == null) {
 			clone.setField("descriptorType", "operation");
-			MODELMBEAN_LOGGER.finer("Defaulting descriptorType to \"operation\"");
+			MODELMBEAN_LOGGER.finer(
+					"Defaulting descriptorType to \"operation\"");
 		}
 		if (clone.getFieldValue("displayName") == null) {
 			clone.setField("displayName", this.getName());
-			MODELMBEAN_LOGGER.finer("Defaulting Descriptor displayName to " + this.getName());
+			MODELMBEAN_LOGGER.finer("Defaulting Descriptor displayName to "
+					+ this.getName());
 		}
 		if (clone.getFieldValue("role") == null) {
 			clone.setField("role", "operation");
-			MODELMBEAN_LOGGER.finer("Defaulting Descriptor role field to \"operation\"");
+			MODELMBEAN_LOGGER.finer(
+					"Defaulting Descriptor role field to \"operation\"");
 		}
 
 		// Checking validity
 		if (!clone.isValid()) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Invalid Descriptor argument"),
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Invalid Descriptor argument"),
 					"The isValid() method of the Descriptor object itself returned false,"
 							+ "one or more required fields are invalid. Descriptor:"
 							+ clone.toString());
 		}
 		if (!getName().equalsIgnoreCase((String) clone.getFieldValue("name"))) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Invalid Descriptor argument"),
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Invalid Descriptor argument"),
 					"The Descriptor \"name\" field does not match the object described. "
 							+ " Expected: " + this.getName() + " , was: "
 							+ clone.getFieldValue("name"));
 		}
-		if (!"operation".equalsIgnoreCase((String) clone.getFieldValue("descriptorType"))) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Invalid Descriptor argument"),
+		if (!"operation".equalsIgnoreCase((String) clone.getFieldValue(
+				"descriptorType"))) {
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Invalid Descriptor argument"),
 					"The Descriptor \"descriptorType\" field does not match the object described. "
-							+ " Expected: \"operation\" ," + " was: "
-							+ clone.getFieldValue("descriptorType"));
+							+ " Expected: \"operation\" ," + " was: " + clone
+									.getFieldValue("descriptorType"));
 		}
 		final String role = (String) clone.getFieldValue("role");
-		if (!(role.equalsIgnoreCase("operation") || role.equalsIgnoreCase("setter")
-				|| role.equalsIgnoreCase("getter"))) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Invalid Descriptor argument"),
+		if (!(role.equalsIgnoreCase("operation") || role.equalsIgnoreCase(
+				"setter") || role.equalsIgnoreCase("getter"))) {
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Invalid Descriptor argument"),
 					"The Descriptor \"role\" field does not match the object described. "
-							+ " Expected: \"operation\", \"setter\", or \"getter\" ," + " was: "
-							+ clone.getFieldValue("role"));
+							+ " Expected: \"operation\", \"setter\", or \"getter\" ,"
+							+ " was: " + clone.getFieldValue("role"));
 		}
 		final Object targetValue = clone.getFieldValue("targetType");
 		if (targetValue != null) {
 			if (!(targetValue instanceof java.lang.String)) {
 				throw new RuntimeOperationsException(
-						new IllegalArgumentException("Invalid Descriptor argument"),
+						new IllegalArgumentException(
+								"Invalid Descriptor argument"),
 						"The Descriptor field \"targetValue\" is invalid class. "
 								+ " Expected: java.lang.String, " + " was: "
 								+ targetValue.getClass().getName());
@@ -537,7 +555,8 @@ public class ModelMBeanOperationInfo extends MBeanOperationInfo implements Descr
 	 * Deserializes a {@link ModelMBeanOperationInfo} from an
 	 * {@link ObjectInputStream}.
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		// New serial form ignores extra field "currClass"
 		in.defaultReadObject();
 	}

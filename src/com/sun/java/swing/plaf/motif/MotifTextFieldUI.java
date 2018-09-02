@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.java.swing.plaf.motif;
 
@@ -46,7 +26,7 @@ public class MotifTextFieldUI extends BasicTextFieldUI {
 	 * Creates a UI for a JTextField.
 	 *
 	 * @param c
-	 *            the text field
+	 *          the text field
 	 * @return the UI
 	 */
 	public static ComponentUI createUI(JComponent c) {

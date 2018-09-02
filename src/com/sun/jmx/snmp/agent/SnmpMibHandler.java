@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.agent;
@@ -60,40 +40,43 @@ public interface SnmpMibHandler {
 	 * @return A reference on the SNMP MIB handler.
 	 *
 	 * @exception IllegalArgumentException
-	 *                If the parameter is null.
+	 *                                     If the parameter is null.
 	 */
-	public SnmpMibHandler addMib(SnmpMibAgent mib) throws IllegalArgumentException;
+	public SnmpMibHandler addMib(SnmpMibAgent mib)
+			throws IllegalArgumentException;
 
 	/**
 	 * Adds a new MIB in the SNMP MIB handler.
 	 *
 	 * @param mib
-	 *            The MIB to add.
+	 *             The MIB to add.
 	 * @param oids
-	 *            The array of oid used to add the mib. Each oid is a root oid
-	 *            for the mib.
+	 *             The array of oid used to add the mib. Each oid is a root oid
+	 *             for the mib.
 	 * @return A reference on the SNMP MIB handler.
 	 *
 	 * @exception IllegalArgumentException
-	 *                If the parameter is null.
+	 *                                     If the parameter is null.
 	 *
 	 * @since 1.5
 	 */
-	public SnmpMibHandler addMib(SnmpMibAgent mib, SnmpOid[] oids) throws IllegalArgumentException;
+	public SnmpMibHandler addMib(SnmpMibAgent mib, SnmpOid[] oids)
+			throws IllegalArgumentException;
 
 	/**
 	 * Adds a new contextualized MIB in the SNMP MIB handler.
 	 *
 	 * @param mib
-	 *            The MIB to add.
+	 *                    The MIB to add.
 	 * @param contextName
-	 *            The MIB context name. If null is passed, will be registered in
-	 *            the default context.
+	 *                    The MIB context name. If null is passed, will be
+	 *                    registered in
+	 *                    the default context.
 	 *
 	 * @return A reference to the SNMP MIB handler.
 	 *
 	 * @exception IllegalArgumentException
-	 *                If the parameter is null.
+	 *                                     If the parameter is null.
 	 *
 	 * @since 1.5
 	 */
@@ -104,23 +87,25 @@ public interface SnmpMibHandler {
 	 * Adds a new contextualized MIB in the SNMP MIB handler.
 	 *
 	 * @param mib
-	 *            The MIB to add.
+	 *                    The MIB to add.
 	 * @param contextName
-	 *            The MIB context name. If null is passed, will be registered in
-	 *            the default context.
+	 *                    The MIB context name. If null is passed, will be
+	 *                    registered in
+	 *                    the default context.
 	 * @param oids
-	 *            The array of oid used to add the mib. Each oid is a root oid
-	 *            for the mib.
+	 *                    The array of oid used to add the mib. Each oid is a
+	 *                    root oid
+	 *                    for the mib.
 	 *
 	 * @return A reference to the SNMP MIB handler.
 	 *
 	 * @exception IllegalArgumentException
-	 *                If the parameter is null.
+	 *                                     If the parameter is null.
 	 *
 	 * @since 1.5
 	 */
-	public SnmpMibHandler addMib(SnmpMibAgent mib, String contextName, SnmpOid[] oids)
-			throws IllegalArgumentException;
+	public SnmpMibHandler addMib(SnmpMibAgent mib, String contextName,
+			SnmpOid[] oids) throws IllegalArgumentException;
 
 	/**
 	 * Removes the specified MIB from the SNMP protocol adaptor. This method is
@@ -147,9 +132,9 @@ public interface SnmpMibHandler {
 	 * and should not be called directly.
 	 *
 	 * @param mib
-	 *            The MIB to be removed.
+	 *             The MIB to be removed.
 	 * @param oids
-	 *            The oid the MIB was previously registered for.
+	 *             The oid the MIB was previously registered for.
 	 * @return <CODE>true</CODE> if the specified <CODE>mib</CODE> was a MIB
 	 *         included in the SNMP MIB handler, <CODE>false</CODE> otherwise.
 	 *
@@ -161,9 +146,9 @@ public interface SnmpMibHandler {
 	 * Removes the specified MIB from the SNMP protocol adaptor.
 	 *
 	 * @param mib
-	 *            The MIB to be removed.
+	 *                    The MIB to be removed.
 	 * @param contextName
-	 *            The context name used at registration time.
+	 *                    The context name used at registration time.
 	 *
 	 * @return <CODE>true</CODE> if the specified <CODE>mib</CODE> was a MIB
 	 *         included in the SNMP MIB handler, <CODE>false</CODE> otherwise.
@@ -176,15 +161,16 @@ public interface SnmpMibHandler {
 	 * Removes the specified MIB from the SNMP protocol adaptor.
 	 *
 	 * @param mib
-	 *            The MIB to be removed.
+	 *                    The MIB to be removed.
 	 * @param contextName
-	 *            The context name used at registration time.
+	 *                    The context name used at registration time.
 	 * @param oids
-	 *            The oid the MIB was previously registered for.
+	 *                    The oid the MIB was previously registered for.
 	 * @return <CODE>true</CODE> if the specified <CODE>mib</CODE> was a MIB
 	 *         included in the SNMP MIB handler, <CODE>false</CODE> otherwise.
 	 *
 	 * @since 1.5
 	 */
-	public boolean removeMib(SnmpMibAgent mib, String contextName, SnmpOid[] oids);
+	public boolean removeMib(SnmpMibAgent mib, String contextName,
+			SnmpOid[] oids);
 }

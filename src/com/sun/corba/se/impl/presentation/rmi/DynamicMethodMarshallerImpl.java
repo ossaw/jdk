@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.presentation.rmi;
@@ -56,8 +36,8 @@ public class DynamicMethodMarshallerImpl implements DynamicMethodMarshaller {
 	ReaderWriter resultRW = null;
 
 	private static boolean isAnyClass(Class cls) {
-		return cls.equals(Object.class) || cls.equals(Serializable.class)
-				|| cls.equals(Externalizable.class);
+		return cls.equals(Object.class) || cls.equals(Serializable.class) || cls
+				.equals(Externalizable.class);
 	}
 
 	// Assume that cls is not Remote, !isAnyClass(cls), and
@@ -216,7 +196,8 @@ public class DynamicMethodMarshallerImpl implements DynamicMethodMarshaller {
 		}
 	};
 
-	private static ReaderWriter corbaObjectRW = new ReaderWriterBase("org.omg.CORBA.Object") {
+	private static ReaderWriter corbaObjectRW = new ReaderWriterBase(
+			"org.omg.CORBA.Object") {
 		public Object read(InputStream is) {
 			return is.read_Object();
 		}
@@ -236,7 +217,8 @@ public class DynamicMethodMarshallerImpl implements DynamicMethodMarshaller {
 		}
 	};
 
-	private static ReaderWriter abstractInterfaceRW = new ReaderWriterBase("abstract_interface") {
+	private static ReaderWriter abstractInterfaceRW = new ReaderWriterBase(
+			"abstract_interface") {
 		public Object read(InputStream is) {
 			return is.read_abstract_interface();
 		}
@@ -276,7 +258,8 @@ public class DynamicMethodMarshallerImpl implements DynamicMethodMarshaller {
 		else if (cls.equals(org.omg.CORBA.Object.class))
 			return corbaObjectRW;
 		else if (org.omg.CORBA.Object.class.isAssignableFrom(cls))
-			return new ReaderWriterBase("org.omg.CORBA.Object(" + cls.getName() + ")") {
+			return new ReaderWriterBase("org.omg.CORBA.Object(" + cls.getName()
+					+ ")") {
 				public Object read(InputStream is) {
 					return is.read_Object(cls);
 				}
@@ -334,7 +317,8 @@ public class DynamicMethodMarshallerImpl implements DynamicMethodMarshaller {
 		return method;
 	}
 
-	public Object[] copyArguments(Object[] args, ORB orb) throws RemoteException {
+	public Object[] copyArguments(Object[] args, ORB orb)
+			throws RemoteException {
 		if (needsArgumentCopy)
 			return Util.copyObjects(args, orb);
 		else

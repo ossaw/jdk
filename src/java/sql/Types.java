@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.sql;
@@ -336,6 +316,5 @@ public class Types {
 	public static final int TIMESTAMP_WITH_TIMEZONE = 2014;
 
 	// Prevent instantiation
-	private Types() {
-	}
+	private Types() {}
 }

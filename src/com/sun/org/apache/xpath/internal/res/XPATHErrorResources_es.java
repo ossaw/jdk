@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,49 +31,37 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 
 	/*
 	 * General notes to translators:
-	 *
 	 * This file contains error and warning messages related to XPath Error
 	 * Handling.
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 * 8) The context node is the node in the document with respect to which an
 	 * XPath expression is being evaluated.
-	 *
 	 * 9) An iterator is an object that traverses nodes in the tree, one at a
 	 * time.
-	 *
 	 * 10) NCName is an XML term used to describe a name that does not contain a
 	 * colon (a "no-colon name").
-	 *
 	 * 11) QName is an XML term meaning "qualified name".
 	 */
 
@@ -283,29 +268,38 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 			{ ER_CURRENT_NOT_ALLOWED_IN_MATCH,
 					"La funci\u00F3n current() no est\u00E1 permitida en un patr\u00F3n de coincidencia." },
 
-			{ ER_CURRENT_TAKES_NO_ARGS, "La funci\u00F3n current() no acepta argumentos." },
+			{ ER_CURRENT_TAKES_NO_ARGS,
+					"La funci\u00F3n current() no acepta argumentos." },
 
 			{ ER_DOCUMENT_REPLACED,
 					"La implantaci\u00F3n de la funci\u00F3n document() se ha sustituido por com.sun.org.apache.xalan.internal.xslt.FuncDocument!" },
 
-			{ ER_CONTEXT_HAS_NO_OWNERDOC, "El contexto no tiene un documento de propietario." },
+			{ ER_CONTEXT_HAS_NO_OWNERDOC,
+					"El contexto no tiene un documento de propietario." },
 
-			{ ER_LOCALNAME_HAS_TOO_MANY_ARGS, "local-name() tiene demasiados argumentos." },
+			{ ER_LOCALNAME_HAS_TOO_MANY_ARGS,
+					"local-name() tiene demasiados argumentos." },
 
-			{ ER_NAMESPACEURI_HAS_TOO_MANY_ARGS, "namespace-uri() tiene demasiados argumentos." },
+			{ ER_NAMESPACEURI_HAS_TOO_MANY_ARGS,
+					"namespace-uri() tiene demasiados argumentos." },
 
 			{ ER_NORMALIZESPACE_HAS_TOO_MANY_ARGS,
 					"normalize-space() tiene demasiados argumentos." },
 
-			{ ER_NUMBER_HAS_TOO_MANY_ARGS, "number() tiene demasiados argumentos." },
+			{ ER_NUMBER_HAS_TOO_MANY_ARGS,
+					"number() tiene demasiados argumentos." },
 
-			{ ER_NAME_HAS_TOO_MANY_ARGS, "name() tiene demasiados argumentos." },
+			{ ER_NAME_HAS_TOO_MANY_ARGS,
+					"name() tiene demasiados argumentos." },
 
-			{ ER_STRING_HAS_TOO_MANY_ARGS, "string() tiene demasiados argumentos." },
+			{ ER_STRING_HAS_TOO_MANY_ARGS,
+					"string() tiene demasiados argumentos." },
 
-			{ ER_STRINGLENGTH_HAS_TOO_MANY_ARGS, "string-length() tiene demasiados argumentos." },
+			{ ER_STRINGLENGTH_HAS_TOO_MANY_ARGS,
+					"string-length() tiene demasiados argumentos." },
 
-			{ ER_TRANSLATE_TAKES_3_ARGS, "La funci\u00F3n translate() necesita tres argumentos." },
+			{ ER_TRANSLATE_TAKES_3_ARGS,
+					"La funci\u00F3n translate() necesita tres argumentos." },
 
 			{ ER_UNPARSEDENTITYURI_TAKES_1_ARG,
 					"La funci\u00F3n unparsed-entity-uri necesita un argumento." },
@@ -315,27 +309,35 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 
 			{ ER_UNKNOWN_AXIS, "eje desconocido: {0}" },
 
-			{ ER_UNKNOWN_MATCH_OPERATION, "Operaci\u00F3n de coincidencia desconocida." },
+			{ ER_UNKNOWN_MATCH_OPERATION,
+					"Operaci\u00F3n de coincidencia desconocida." },
 
 			{ ER_INCORRECT_ARG_LENGTH,
 					"La longitud del argumento de la prueba del nodo processing-instruction() es incorrecta." },
 
-			{ ER_CANT_CONVERT_TO_NUMBER, "No se puede convertir {0} en un n\u00FAmero" },
+			{ ER_CANT_CONVERT_TO_NUMBER,
+					"No se puede convertir {0} en un n\u00FAmero" },
 
-			{ ER_CANT_CONVERT_TO_NODELIST, "No se puede convertir {0} en una lista de nodos." },
+			{ ER_CANT_CONVERT_TO_NODELIST,
+					"No se puede convertir {0} en una lista de nodos." },
 
 			{ ER_CANT_CONVERT_TO_MUTABLENODELIST,
 					"No se puede convertir {0} en un DTM de juego de nodos." },
 
-			{ ER_CANT_CONVERT_TO_TYPE, "No se puede convertir {0} en el n\u00FAmero de tipo {1}" },
+			{ ER_CANT_CONVERT_TO_TYPE,
+					"No se puede convertir {0} en el n\u00FAmero de tipo {1}" },
 
-			{ ER_EXPECTED_MATCH_PATTERN, "Patr\u00F3n de coincidencia esperado en getMatchScore." },
+			{ ER_EXPECTED_MATCH_PATTERN,
+					"Patr\u00F3n de coincidencia esperado en getMatchScore." },
 
-			{ ER_COULDNOT_GET_VAR_NAMED, "No se ha encontrado la variable llamada {0}" },
+			{ ER_COULDNOT_GET_VAR_NAMED,
+					"No se ha encontrado la variable llamada {0}" },
 
-			{ ER_UNKNOWN_OPCODE, "ERROR. C\u00F3digo de operaci\u00F3n desconocido: {0}" },
+			{ ER_UNKNOWN_OPCODE,
+					"ERROR. C\u00F3digo de operaci\u00F3n desconocido: {0}" },
 
-			{ ER_EXTRA_ILLEGAL_TOKENS, "Tokens no permitidos adicionales: {0}" },
+			{ ER_EXTRA_ILLEGAL_TOKENS,
+					"Tokens no permitidos adicionales: {0}" },
 
 			{ ER_EXPECTED_DOUBLE_QUOTE,
 					"literal con comillas incorrectas... se esperaban comillas dobles" },
@@ -345,7 +347,8 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 
 			{ ER_EMPTY_EXPRESSION, "Expresi\u00F3n vac\u00EDa" },
 
-			{ ER_EXPECTED_BUT_FOUND, "Se esperaba {0} pero se ha encontrado: {1}" },
+			{ ER_EXPECTED_BUT_FOUND,
+					"Se esperaba {0} pero se ha encontrado: {1}" },
 
 			{ ER_INCORRECT_PROGRAMMER_ASSERTION,
 					"La afirmaci\u00F3n del programador es incorrecta - {0}" },
@@ -389,11 +392,14 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 			{ ER_AXES_NOT_ALLOWED,
 					"S\u00F3lo los ejes child:: y attribute:: est\u00E1n permitidos en los patrones de coincidencia. Ejes incorrectos = {0}" },
 
-			{ ER_KEY_HAS_TOO_MANY_ARGS, "key() tiene un n\u00FAmero incorrecto de argumentos." },
+			{ ER_KEY_HAS_TOO_MANY_ARGS,
+					"key() tiene un n\u00FAmero incorrecto de argumentos." },
 
-			{ ER_COUNT_TAKES_1_ARG, "La funci\u00F3n count necesita un argumento." },
+			{ ER_COUNT_TAKES_1_ARG,
+					"La funci\u00F3n count necesita un argumento." },
 
-			{ ER_COULDNOT_FIND_FUNCTION, "No se ha encontrado la funci\u00F3n: {0}" },
+			{ ER_COULDNOT_FIND_FUNCTION,
+					"No se ha encontrado la funci\u00F3n: {0}" },
 
 			{ ER_UNSUPPORTED_ENCODING, "Codificaci\u00F3n no soportada: {0}" },
 
@@ -406,7 +412,8 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 			{ ER_SETDOMFACTORY_NOT_SUPPORTED,
 					"setDOMFactory no est\u00E1 soportado por XPathContext." },
 
-			{ ER_PREFIX_MUST_RESOLVE, "El prefijo se debe resolver en un espacio de nombres: {0}" },
+			{ ER_PREFIX_MUST_RESOLVE,
+					"El prefijo se debe resolver en un espacio de nombres: {0}" },
 
 			{ ER_PARSE_NOT_SUPPORTED,
 					"El an\u00E1lisis (origen de InputSource) no est\u00E1 soportado en XPathContext. No se puede abrir {0}" },
@@ -417,7 +424,8 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 			{ ER_IGNORABLE_WHITESPACE_NOT_HANDLED,
 					"ignorableWhitespace(char ch[]... no gestionado por DTM." },
 
-			{ ER_DTM_CANNOT_HANDLE_NODES, "DTMLiaison no puede gestionar los nodos de tipo {0}" },
+			{ ER_DTM_CANNOT_HANDLE_NODES,
+					"DTMLiaison no puede gestionar los nodos de tipo {0}" },
 
 			{ ER_XERCES_CANNOT_HANDLE_NODES,
 					"DOM2Helper no puede gestionar los nodos de tipo {0}" },
@@ -436,13 +444,16 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 
 			{ ER_XPATH_READOBJECT, "En XPath.readObject: {0}" },
 
-			{ ER_FUNCTION_TOKEN_NOT_FOUND, "No se ha encontrado el token de funci\u00F3n." },
+			{ ER_FUNCTION_TOKEN_NOT_FOUND,
+					"No se ha encontrado el token de funci\u00F3n." },
 
-			{ ER_CANNOT_DEAL_XPATH_TYPE, "No se puede negociar con el tipo de XPath: {0}" },
+			{ ER_CANNOT_DEAL_XPATH_TYPE,
+					"No se puede negociar con el tipo de XPath: {0}" },
 
 			{ ER_NODESET_NOT_MUTABLE, "Este juego de nodos no es modificable" },
 
-			{ ER_NODESETDTM_NOT_MUTABLE, "Este DTM de juego de nodos no es modificable" },
+			{ ER_NODESETDTM_NOT_MUTABLE,
+					"Este DTM de juego de nodos no es modificable" },
 
 			{ ER_VAR_NOT_RESOLVABLE, "La variable no se puede resolver: {0}" },
 
@@ -475,9 +486,11 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 			{ ER_STR_NOT_SUPPORTED_XRTREEFRAGSELECTWRAPPER,
 					"str() no soportado por XRTreeFragSelectWrapper" },
 
-			{ ER_FSB_NOT_SUPPORTED_XSTRINGFORCHARS, "fsb() no soportado para XStringForChars" },
+			{ ER_FSB_NOT_SUPPORTED_XSTRINGFORCHARS,
+					"fsb() no soportado para XStringForChars" },
 
-			{ ER_COULD_NOT_FIND_VAR, "No se ha encontrado la variable con el nombre de {0}" },
+			{ ER_COULD_NOT_FIND_VAR,
+					"No se ha encontrado la variable con el nombre de {0}" },
 
 			{ ER_XSTRINGFORCHARS_CANNOT_TAKE_STRING,
 					"XStringForChars no puede utilizar una cadena para un argumento" },
@@ -605,7 +618,8 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 			{ ER_DOC_MUTATED,
 					"Documento mutado debido a que se ha devuelto el resultado. El iterador no es v\u00E1lido." },
 
-			{ ER_INVALID_XPATH_TYPE, "Argumento de tipo XPath no v\u00E1lido: {0}" },
+			{ ER_INVALID_XPATH_TYPE,
+					"Argumento de tipo XPath no v\u00E1lido: {0}" },
 
 			{ ER_EMPTY_XPATH_RESULT, "Objeto de resultado XPath vac\u00EDo" },
 
@@ -640,7 +654,8 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 			// Note to translators: The XPath expression cannot be evaluated
 			// with respect
 			// to this type of node.
-			{ ER_WRONG_NODETYPE, "El tipo de nodo de contexto no est\u00E1 soportado." },
+			{ ER_WRONG_NODETYPE,
+					"El tipo de nodo de contexto no est\u00E1 soportado." },
 
 			{ ER_XPATH_ERROR, "Error desconocido en XPath." },
 
@@ -737,14 +752,17 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 			{ WG_SECURITY_EXCEPTION,
 					"Excepci\u00F3n de seguridad al intentar acceder a la propiedad del sistema XSL: {0}" },
 
-			{ WG_QUO_NO_LONGER_DEFINED, "Sintaxis anterior: quo(...) ya no se define en XPath." },
+			{ WG_QUO_NO_LONGER_DEFINED,
+					"Sintaxis anterior: quo(...) ya no se define en XPath." },
 
 			{ WG_NEED_DERIVED_OBJECT_TO_IMPLEMENT_NODETEST,
 					"XPath necesita un objeto derivado para implantar una prueba de nodo." },
 
-			{ WG_FUNCTION_TOKEN_NOT_FOUND, "No se ha encontrado el token de funci\u00F3n." },
+			{ WG_FUNCTION_TOKEN_NOT_FOUND,
+					"No se ha encontrado el token de funci\u00F3n." },
 
-			{ WG_COULDNOT_FIND_FUNCTION, "No se ha encontrado la funci\u00F3n: {0}" },
+			{ WG_COULDNOT_FIND_FUNCTION,
+					"No se ha encontrado la funci\u00F3n: {0}" },
 
 			{ WG_CANNOT_MAKE_URL_FROM, "No se puede crear la URL desde: {0}" },
 
@@ -757,27 +775,36 @@ public class XPATHErrorResources_es extends ListResourceBundle {
 			{ WG_UNSUPPORTED_ENCODING, "Codificaci\u00F3n no soportada: {0}" },
 
 			// Other miscellaneous text used inside the code...
-			{ "ui_language", "es" }, { "help_language", "es" }, { "language", "es" },
-			{ "BAD_CODE",
-					"El par\u00E1metro para crear un mensaje est\u00E1 fuera de los l\u00EDmites" },
+			{ "ui_language", "es" }, { "help_language", "es" }, { "language",
+					"es" }, { "BAD_CODE",
+							"El par\u00E1metro para crear un mensaje est\u00E1 fuera de los l\u00EDmites" },
 			{ "FORMAT_FAILED",
 					"Se ha emitido una excepci\u00F3n durante la llamada a messageFormat" },
-			{ "version", ">>>>>>> Versi\u00F3n Xalan " }, { "version2", "<<<<<<<" },
-			{ "yes", "s\u00ED" }, { "line", "N\u00BA de L\u00EDnea" },
-			{ "column", "N\u00BA de Columna" }, { "xsldone", "XSLProcessor: listo" },
-			{ "xpath_option", "Opciones de xpath: " }, { "optionIN", "   [-in inputXMLURL]" },
-			{ "optionSelect", "   [-select expresi\u00F3n xpath]" },
-			{ "optionMatch",
+			{ "version", ">>>>>>> Versi\u00F3n Xalan " }, { "version2",
+					"<<<<<<<" }, { "yes", "s\u00ED" }, { "line",
+							"N\u00BA de L\u00EDnea" }, { "column",
+									"N\u00BA de Columna" }, { "xsldone",
+											"XSLProcessor: listo" }, {
+													"xpath_option",
+													"Opciones de xpath: " }, {
+															"optionIN",
+															"   [-in inputXMLURL]" },
+			{ "optionSelect", "   [-select expresi\u00F3n xpath]" }, {
+					"optionMatch",
 					"   [-match patr\u00F3n de coincidencia (para diagn\u00F3sticos de coincidencia)]" },
 			{ "optionAnyExpr",
 					"O s\u00F3lo una expresi\u00F3n xpath realizar\u00E1 un volcado de diagn\u00F3stico" },
-			{ "noParsermsg1", "El proceso XSL no se ha realizado correctamente." },
-			{ "noParsermsg2", "** No se ha encontrado el analizador **" },
-			{ "noParsermsg3", "Compruebe la classpath." },
+			{ "noParsermsg1",
+					"El proceso XSL no se ha realizado correctamente." }, {
+							"noParsermsg2",
+							"** No se ha encontrado el analizador **" }, {
+									"noParsermsg3", "Compruebe la classpath." },
 			{ "noParsermsg4",
 					"Si no tiene un analizador XML de IBM para Java, puede descargarlo de" },
-			{ "noParsermsg5", "AlphaWorks de IBM: http://www.alphaworks.ibm.com/formula/xml" },
-			{ "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" }, { "three", "3" }
+			{ "noParsermsg5",
+					"AlphaWorks de IBM: http://www.alphaworks.ibm.com/formula/xml" },
+			{ "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" },
+			{ "three", "3" }
 
 	};
 

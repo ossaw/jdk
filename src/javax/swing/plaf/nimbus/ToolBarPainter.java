@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -48,7 +28,8 @@ final class ToolBarPainter extends AbstractRegionPainter {
 	// layers
 	private Path2D path = new Path2D.Float();
 	private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
+	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
+			0, 0);
 	private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
 	// All Colors used for painting are stored here. Ideally, only those colors
@@ -57,12 +38,14 @@ final class ToolBarPainter extends AbstractRegionPainter {
 	// moment at least,
 	// however, all are created for each instance.
 	private Color color1 = decodeColor("nimbusBorder", 0.0f, 0.0f, 0.0f, 0);
-	private Color color2 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f, 0.25490195f, 0);
-	private Color color3 = decodeColor("nimbusBlueGrey", -0.006944418f, -0.07399663f, 0.11372548f,
-			0);
-	private Color color4 = decodeColor("nimbusBorder", 0.0f, -0.029675633f, 0.109803915f, 0);
-	private Color color5 = decodeColor("nimbusBlueGrey", -0.008547008f, -0.03494492f, -0.07058823f,
-			0);
+	private Color color2 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f,
+			0.25490195f, 0);
+	private Color color3 = decodeColor("nimbusBlueGrey", -0.006944418f,
+			-0.07399663f, 0.11372548f, 0);
+	private Color color4 = decodeColor("nimbusBorder", 0.0f, -0.029675633f,
+			0.109803915f, 0);
+	private Color color5 = decodeColor("nimbusBlueGrey", -0.008547008f,
+			-0.03494492f, -0.07058823f, 0);
 
 	// Array of current component colors, updated in each paint call
 	private Object[] componentColors;
@@ -82,21 +65,21 @@ final class ToolBarPainter extends AbstractRegionPainter {
 		// generate this entire method. Each state/bg/fg/border combo that has
 		// been painted gets its own KEY and paint method.
 		switch (state) {
-		case BORDER_NORTH:
-			paintBorderNorth(g);
-			break;
-		case BORDER_SOUTH:
-			paintBorderSouth(g);
-			break;
-		case BORDER_EAST:
-			paintBorderEast(g);
-			break;
-		case BORDER_WEST:
-			paintBorderWest(g);
-			break;
-		case HANDLEICON_ENABLED:
-			painthandleIconEnabled(g);
-			break;
+			case BORDER_NORTH:
+				paintBorderNorth(g);
+				break;
+			case BORDER_SOUTH:
+				paintBorderSouth(g);
+				break;
+			case BORDER_EAST:
+				paintBorderEast(g);
+				break;
+			case BORDER_WEST:
+				paintBorderWest(g);
+				break;
+			case HANDLEICON_ENABLED:
+				painthandleIconEnabled(g);
+				break;
 
 		}
 	}
@@ -208,9 +191,9 @@ final class ToolBarPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.0f * w) + x, (0.5f * h) + y, (1.0f * w) + x, (0.5f * h) + y,
-				new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color2, decodeColor(color2, color3, 0.5f), color3 });
+		return decodeGradient((0.0f * w) + x, (0.5f * h) + y, (1.0f * w) + x,
+				(0.5f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
+						color2, decodeColor(color2, color3, 0.5f), color3 });
 	}
 
 }

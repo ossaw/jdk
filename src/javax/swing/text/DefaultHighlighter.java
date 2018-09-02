@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -51,7 +31,7 @@ public class DefaultHighlighter extends LayeredHighlighter {
 	 * Renders the highlights.
 	 *
 	 * @param g
-	 *            the graphics context
+	 *          the graphics context
 	 */
 	public void paint(Graphics g) {
 		// PENDING(prinz) - should cull ranges not visible
@@ -70,7 +50,8 @@ public class DefaultHighlighter extends LayeredHighlighter {
 					info = highlights.elementAt(i);
 					if (!(info instanceof LayeredHighlightInfo)) {
 						Highlighter.HighlightPainter p = info.getPainter();
-						p.paint(g, info.getStartOffset(), info.getEndOffset(), a, component);
+						p.paint(g, info.getStartOffset(), info.getEndOffset(),
+								a, component);
 					}
 				}
 			}
@@ -82,7 +63,7 @@ public class DefaultHighlighter extends LayeredHighlighter {
 	 * JTextComponent. Installs the editor, and removes any existing highlights.
 	 *
 	 * @param c
-	 *            the editor component
+	 *          the editor component
 	 * @see Highlighter#install
 	 */
 	public void install(JTextComponent c) {
@@ -95,7 +76,7 @@ public class DefaultHighlighter extends LayeredHighlighter {
 	 * JTextComponent.
 	 *
 	 * @param c
-	 *            the component
+	 *          the component
 	 * @see Highlighter#deinstall
 	 */
 	public void deinstall(JTextComponent c) {
@@ -107,14 +88,14 @@ public class DefaultHighlighter extends LayeredHighlighter {
 	 * the highlight.
 	 *
 	 * @param p0
-	 *            the start offset of the range to highlight &gt;= 0
+	 *           the start offset of the range to highlight &gt;= 0
 	 * @param p1
-	 *            the end offset of the range to highlight &gt;= p0
+	 *           the end offset of the range to highlight &gt;= p0
 	 * @param p
-	 *            the painter to use to actually render the highlight
+	 *           the painter to use to actually render the highlight
 	 * @return an object that can be used as a tag to refer to the highlight
 	 * @exception BadLocationException
-	 *                if the specified location is invalid
+	 *                                 if the specified location is invalid
 	 */
 	public Object addHighlight(int p0, int p1, Highlighter.HighlightPainter p)
 			throws BadLocationException {
@@ -128,7 +109,8 @@ public class DefaultHighlighter extends LayeredHighlighter {
 
 		Document doc = component.getDocument();
 		HighlightInfo i = (getDrawsLayeredHighlights()
-				&& (p instanceof LayeredHighlighter.LayerPainter)) ? new LayeredHighlightInfo()
+				&& (p instanceof LayeredHighlighter.LayerPainter))
+						? new LayeredHighlightInfo()
 						: new HighlightInfo();
 		i.painter = p;
 		i.p0 = doc.createPosition(p0);
@@ -230,11 +212,13 @@ public class DefaultHighlighter extends LayeredHighlighter {
 	 * @param p1
 	 *            the end of the range &gt;= p0
 	 * @exception BadLocationException
-	 *                if the specified location is invalid
+	 *                                 if the specified location is invalid
 	 */
-	public void changeHighlight(Object tag, int p0, int p1) throws BadLocationException {
+	public void changeHighlight(Object tag, int p0, int p1)
+			throws BadLocationException {
 		if (p0 < 0) {
-			throw new BadLocationException("Invalid beginning of the range", p0);
+			throw new BadLocationException("Invalid beginning of the range",
+					p0);
 		}
 
 		if (p1 < p0) {
@@ -293,20 +277,20 @@ public class DefaultHighlighter extends LayeredHighlighter {
 	 * immediately.
 	 *
 	 * @param g
-	 *            Graphics used to draw
+	 *                   Graphics used to draw
 	 * @param p0
-	 *            starting offset of view
+	 *                   starting offset of view
 	 * @param p1
-	 *            ending offset of view
+	 *                   ending offset of view
 	 * @param viewBounds
-	 *            Bounds of View
+	 *                   Bounds of View
 	 * @param editor
-	 *            JTextComponent
+	 *                   JTextComponent
 	 * @param view
-	 *            View instance being rendered
+	 *                   View instance being rendered
 	 */
-	public void paintLayeredHighlights(Graphics g, int p0, int p1, Shape viewBounds,
-			JTextComponent editor, View view) {
+	public void paintLayeredHighlights(Graphics g, int p0, int p1,
+			Shape viewBounds, JTextComponent editor, View view) {
 		for (int counter = highlights.size() - 1; counter >= 0; counter--) {
 			HighlightInfo tag = highlights.elementAt(counter);
 			if (tag instanceof LayeredHighlightInfo) {
@@ -314,7 +298,8 @@ public class DefaultHighlighter extends LayeredHighlighter {
 				int start = lhi.getStartOffset();
 				int end = lhi.getEndOffset();
 				if ((p0 < start && p1 > start) || (p0 >= start && p0 < end)) {
-					lhi.paintLayeredHighlights(g, p0, p1, viewBounds, editor, view);
+					lhi.paintLayeredHighlights(g, p0, p1, viewBounds, editor,
+							view);
 				}
 			}
 		}
@@ -373,14 +358,15 @@ public class DefaultHighlighter extends LayeredHighlighter {
 	 * Simple highlight painter that fills a highlighted area with a solid
 	 * color.
 	 */
-	public static class DefaultHighlightPainter extends LayeredHighlighter.LayerPainter {
+	public static class DefaultHighlightPainter extends
+			LayeredHighlighter.LayerPainter {
 
 		/**
 		 * Constructs a new highlight painter. If <code>c</code> is null, the
 		 * JTextComponent will be queried for its selection color.
 		 *
 		 * @param c
-		 *            the color for the highlight
+		 *          the color for the highlight
 		 */
 		public DefaultHighlightPainter(Color c) {
 			color = c;
@@ -401,17 +387,18 @@ public class DefaultHighlighter extends LayeredHighlighter {
 		 * Paints a highlight.
 		 *
 		 * @param g
-		 *            the graphics context
+		 *               the graphics context
 		 * @param offs0
-		 *            the starting model offset &gt;= 0
+		 *               the starting model offset &gt;= 0
 		 * @param offs1
-		 *            the ending model offset &gt;= offs1
+		 *               the ending model offset &gt;= offs1
 		 * @param bounds
-		 *            the bounding box for the highlight
+		 *               the bounding box for the highlight
 		 * @param c
-		 *            the editor
+		 *               the editor
 		 */
-		public void paint(Graphics g, int offs0, int offs1, Shape bounds, JTextComponent c) {
+		public void paint(Graphics g, int offs0, int offs1, Shape bounds,
+				JTextComponent c) {
 			Rectangle alloc = bounds.getBounds();
 			try {
 				// --- determine locations ---
@@ -436,8 +423,8 @@ public class DefaultHighlighter extends LayeredHighlighter {
 					int p0ToMarginWidth = alloc.x + alloc.width - p0.x;
 					g.fillRect(p0.x, p0.y, p0ToMarginWidth, p0.height);
 					if ((p0.y + p0.height) != p1.y) {
-						g.fillRect(alloc.x, p0.y + p0.height, alloc.width,
-								p1.y - (p0.y + p0.height));
+						g.fillRect(alloc.x, p0.y + p0.height, alloc.width, p1.y
+								- (p0.y + p0.height));
 					}
 					g.fillRect(alloc.x, p1.y, (p1.x - alloc.x), p1.height);
 				}
@@ -451,22 +438,23 @@ public class DefaultHighlighter extends LayeredHighlighter {
 		 * Paints a portion of a highlight.
 		 *
 		 * @param g
-		 *            the graphics context
+		 *               the graphics context
 		 * @param offs0
-		 *            the starting model offset &gt;= 0
+		 *               the starting model offset &gt;= 0
 		 * @param offs1
-		 *            the ending model offset &gt;= offs1
+		 *               the ending model offset &gt;= offs1
 		 * @param bounds
-		 *            the bounding box of the view, which is not necessarily the
-		 *            region to paint.
+		 *               the bounding box of the view, which is not necessarily
+		 *               the
+		 *               region to paint.
 		 * @param c
-		 *            the editor
+		 *               the editor
 		 * @param view
-		 *            View painting for
+		 *               View painting for
 		 * @return region drawing occurred in
 		 */
-		public Shape paintLayer(Graphics g, int offs0, int offs1, Shape bounds, JTextComponent c,
-				View view) {
+		public Shape paintLayer(Graphics g, int offs0, int offs1, Shape bounds,
+				JTextComponent c, View view) {
 			Color color = getColor();
 
 			if (color == null) {
@@ -477,7 +465,8 @@ public class DefaultHighlighter extends LayeredHighlighter {
 
 			Rectangle r;
 
-			if (offs0 == view.getStartOffset() && offs1 == view.getEndOffset()) {
+			if (offs0 == view.getStartOffset() && offs1 == view
+					.getEndOffset()) {
 				// Contained in view, can just use bounds.
 				if (bounds instanceof Rectangle) {
 					r = (Rectangle) bounds;
@@ -488,9 +477,10 @@ public class DefaultHighlighter extends LayeredHighlighter {
 				// Should only render part of View.
 				try {
 					// --- determine locations ---
-					Shape shape = view.modelToView(offs0, Position.Bias.Forward, offs1,
-							Position.Bias.Backward, bounds);
-					r = (shape instanceof Rectangle) ? (Rectangle) shape : shape.getBounds();
+					Shape shape = view.modelToView(offs0, Position.Bias.Forward,
+							offs1, Position.Bias.Backward, bounds);
+					r = (shape instanceof Rectangle) ? (Rectangle) shape
+							: shape.getBounds();
 				} catch (BadLocationException e) {
 					// can't render
 					r = null;
@@ -566,8 +556,8 @@ public class DefaultHighlighter extends LayeredHighlighter {
 		 * Restricts the region based on the receivers offsets and messages the
 		 * painter to paint the region.
 		 */
-		void paintLayeredHighlights(Graphics g, int p0, int p1, Shape viewBounds,
-				JTextComponent editor, View view) {
+		void paintLayeredHighlights(Graphics g, int p0, int p1,
+				Shape viewBounds, JTextComponent editor, View view) {
 			int start = getStartOffset();
 			int end = getEndOffset();
 			// Restrict the region to what we represent
@@ -575,8 +565,8 @@ public class DefaultHighlighter extends LayeredHighlighter {
 			p1 = Math.min(end, p1);
 			// Paint the appropriate region using the painter and union
 			// the effected region with our bounds.
-			union(((LayeredHighlighter.LayerPainter) painter).paintLayer(g, p0, p1, viewBounds,
-					editor, view));
+			union(((LayeredHighlighter.LayerPainter) painter).paintLayer(g, p0,
+					p1, viewBounds, editor, view));
 		}
 
 		int x;
@@ -607,7 +597,8 @@ public class DefaultHighlighter extends LayeredHighlighter {
 					// display highlights
 					int len = p0.size();
 					for (int i = 0; i < len; i++) {
-						mapper.damageRange(component, p0.get(i).getOffset(), p1.get(i).getOffset());
+						mapper.damageRange(component, p0.get(i).getOffset(), p1
+								.get(i).getOffset());
 					}
 				}
 			}

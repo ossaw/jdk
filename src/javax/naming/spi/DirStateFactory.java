@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.naming.spi;
 
@@ -117,32 +97,40 @@ public interface DirStateFactory extends StateFactory {
 	 * reference to the original <tt>inAttrs</tt> parameter.
 	 *
 	 * @param obj
-	 *            A possibly null object whose state is to be retrieved.
+	 *                    A possibly null object whose state is to be retrieved.
 	 * @param name
-	 *            The name of this object relative to <code>nameCtx</code>, or
-	 *            null if no name is specified.
+	 *                    The name of this object relative to
+	 *                    <code>nameCtx</code>, or
+	 *                    null if no name is specified.
 	 * @param nameCtx
-	 *            The context relative to which the <code>name</code> parameter
-	 *            is specified, or null if <code>name</code> is relative to the
-	 *            default initial context.
+	 *                    The context relative to which the <code>name</code>
+	 *                    parameter
+	 *                    is specified, or null if <code>name</code> is relative
+	 *                    to the
+	 *                    default initial context.
 	 * @param environment
-	 *            The possibly null environment to be used in the creation of
-	 *            the object's state.
+	 *                    The possibly null environment to be used in the
+	 *                    creation of
+	 *                    the object's state.
 	 * @param inAttrs
-	 *            The possibly null attributes to be bound with the object. The
-	 *            factory must not modify <tt>inAttrs</tt>.
+	 *                    The possibly null attributes to be bound with the
+	 *                    object. The
+	 *                    factory must not modify <tt>inAttrs</tt>.
 	 * @return A <tt>Result</tt> containing the object's state for binding and
 	 *         the corresponding attributes to be bound; null if the object
 	 *         don't use this factory.
 	 * @exception NamingException
-	 *                If this factory encountered an exception while attempting
-	 *                to get the object's state, and no other factories are to
-	 *                be tried.
+	 *                            If this factory encountered an exception while
+	 *                            attempting
+	 *                            to get the object's state, and no other
+	 *                            factories are to
+	 *                            be tried.
 	 *
 	 * @see DirectoryManager#getStateToBind
 	 */
 	public Result getStateToBind(Object obj, Name name, Context nameCtx,
-			Hashtable<?, ?> environment, Attributes inAttrs) throws NamingException;
+			Hashtable<?, ?> environment, Attributes inAttrs)
+			throws NamingException;
 
 	/**
 	 * An object/attributes pair for returning the result of
@@ -163,9 +151,9 @@ public interface DirStateFactory extends StateFactory {
 		 * Constructs an instance of Result.
 		 *
 		 * @param obj
-		 *            The possibly null object to be bound.
+		 *                 The possibly null object to be bound.
 		 * @param outAttrs
-		 *            The possibly null attributes to be bound.
+		 *                 The possibly null attributes to be bound.
 		 */
 		public Result(Object obj, Attributes outAttrs) {
 			this.obj = obj;

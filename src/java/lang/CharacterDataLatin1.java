@@ -1,27 +1,8 @@
-// This file was generated AUTOMATICALLY from a template file Fri Jul 21 22:00:52 PDT 2017
+// This file was generated AUTOMATICALLY from a template file Fri Jul 21
+// 22:00:52 PDT 2017
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -56,7 +37,6 @@ class CharacterDataLatin1 extends CharacterData {
 	 * numeric value 3 a Java supradecimal digit: adding the digit offset to the
 	 * character code, then masking with 0x1F, then adding 10 will produce the
 	 * desired numeric value 5 bits digit offset 5 bits character type
-	 * 
 	 * The encoding of character properties is subject to change at any time.
 	 */
 
@@ -172,19 +152,19 @@ class CharacterDataLatin1 extends CharacterData {
 		int retval = -1;
 
 		switch (val & 0xC00) {
-		default: // cannot occur
-		case (0x00000000): // not numeric
-			retval = -1;
-			break;
-		case (0x00000400): // simple numeric
-			retval = ch + ((val & 0x3E0) >> 5) & 0x1F;
-			break;
-		case (0x00000800): // "strange" numeric
-			retval = -2;
-			break;
-		case (0x00000C00): // Java supradecimal
-			retval = (ch + ((val & 0x3E0) >> 5) & 0x1F) + 10;
-			break;
+			default: // cannot occur
+			case (0x00000000): // not numeric
+				retval = -1;
+				break;
+			case (0x00000400): // simple numeric
+				retval = ch + ((val & 0x3E0) >> 5) & 0x1F;
+				break;
+			case (0x00000800): // "strange" numeric
+				retval = -2;
+				break;
+			case (0x00000C00): // Java supradecimal
+				retval = (ch + ((val & 0x3E0) >> 5) & 0x1F) + 10;
+				break;
 		}
 		return retval;
 	}
@@ -219,13 +199,13 @@ class CharacterDataLatin1 extends CharacterData {
 				mapChar = ch - offset;
 			} else {
 				switch (ch) {
-				// map overflow characters
-				case 0x00B5:
-					mapChar = 0x039C;
-					break;
-				default:
-					mapChar = Character.ERROR;
-					break;
+					// map overflow characters
+					case 0x00B5:
+						mapChar = 0x039C;
+						break;
+					default:
+						mapChar = Character.ERROR;
+						break;
 				}
 			}
 		}
@@ -244,8 +224,7 @@ class CharacterDataLatin1 extends CharacterData {
 
 	static final CharacterDataLatin1 instance = new CharacterDataLatin1();
 
-	private CharacterDataLatin1() {
-	};
+	private CharacterDataLatin1() {};
 
 	// The following tables and code generated using:
 	// java GenerateCharacter -template

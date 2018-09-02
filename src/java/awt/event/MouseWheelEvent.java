@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -169,45 +149,51 @@ public class MouseWheelEvent extends MouseEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            the <code>Component</code> that originated the event
+	 *                      the <code>Component</code> that originated the event
 	 * @param id
-	 *            the integer that identifies the event
+	 *                      the integer that identifies the event
 	 * @param when
-	 *            a long that gives the time the event occurred
+	 *                      a long that gives the time the event occurred
 	 * @param modifiers
-	 *            the modifier keys down during event (shift, ctrl, alt, meta)
+	 *                      the modifier keys down during event (shift, ctrl,
+	 *                      alt, meta)
 	 * @param x
-	 *            the horizontal x coordinate for the mouse location
+	 *                      the horizontal x coordinate for the mouse location
 	 * @param y
-	 *            the vertical y coordinate for the mouse location
+	 *                      the vertical y coordinate for the mouse location
 	 * @param clickCount
-	 *            the number of mouse clicks associated with event
+	 *                      the number of mouse clicks associated with event
 	 * @param popupTrigger
-	 *            a boolean, true if this event is a trigger for a popup-menu
+	 *                      a boolean, true if this event is a trigger for a
+	 *                      popup-menu
 	 * @param scrollType
-	 *            the type of scrolling which should take place in response to
-	 *            this event; valid values are <code>WHEEL_UNIT_SCROLL</code>
-	 *            and <code>WHEEL_BLOCK_SCROLL</code>
+	 *                      the type of scrolling which should take place in
+	 *                      response to
+	 *                      this event; valid values are
+	 *                      <code>WHEEL_UNIT_SCROLL</code>
+	 *                      and <code>WHEEL_BLOCK_SCROLL</code>
 	 * @param scrollAmount
-	 *            for scrollType <code>WHEEL_UNIT_SCROLL</code>, the number of
-	 *            units to be scrolled
+	 *                      for scrollType <code>WHEEL_UNIT_SCROLL</code>, the
+	 *                      number of
+	 *                      units to be scrolled
 	 * @param wheelRotation
-	 *            the integer number of "clicks" by which the mouse wheel was
-	 *            rotated
+	 *                      the integer number of "clicks" by which the mouse
+	 *                      wheel was
+	 *                      rotated
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see MouseEvent#MouseEvent(java.awt.Component, int, long, int, int, int,
 	 *      int, boolean)
 	 * @see MouseEvent#MouseEvent(java.awt.Component, int, long, int, int, int,
 	 *      int, int, int, boolean, int)
 	 */
-	public MouseWheelEvent(Component source, int id, long when, int modifiers, int x, int y,
-			int clickCount, boolean popupTrigger, int scrollType, int scrollAmount,
-			int wheelRotation) {
+	public MouseWheelEvent(Component source, int id, long when, int modifiers,
+			int x, int y, int clickCount, boolean popupTrigger, int scrollType,
+			int scrollAmount, int wheelRotation) {
 
-		this(source, id, when, modifiers, x, y, 0, 0, clickCount, popupTrigger, scrollType,
-				scrollAmount, wheelRotation);
+		this(source, id, when, modifiers, x, y, 0, 0, clickCount, popupTrigger,
+				scrollType, scrollAmount, wheelRotation);
 	}
 
 	/**
@@ -224,50 +210,60 @@ public class MouseWheelEvent extends MouseEvent {
 	 * and no exception is thrown.
 	 *
 	 * @param source
-	 *            the <code>Component</code> that originated the event
+	 *                      the <code>Component</code> that originated the event
 	 * @param id
-	 *            the integer that identifies the event
+	 *                      the integer that identifies the event
 	 * @param when
-	 *            a long that gives the time the event occurred
+	 *                      a long that gives the time the event occurred
 	 * @param modifiers
-	 *            the modifier keys down during event (shift, ctrl, alt, meta)
+	 *                      the modifier keys down during event (shift, ctrl,
+	 *                      alt, meta)
 	 * @param x
-	 *            the horizontal x coordinate for the mouse location
+	 *                      the horizontal x coordinate for the mouse location
 	 * @param y
-	 *            the vertical y coordinate for the mouse location
+	 *                      the vertical y coordinate for the mouse location
 	 * @param xAbs
-	 *            the absolute horizontal x coordinate for the mouse location
+	 *                      the absolute horizontal x coordinate for the mouse
+	 *                      location
 	 * @param yAbs
-	 *            the absolute vertical y coordinate for the mouse location
+	 *                      the absolute vertical y coordinate for the mouse
+	 *                      location
 	 * @param clickCount
-	 *            the number of mouse clicks associated with event
+	 *                      the number of mouse clicks associated with event
 	 * @param popupTrigger
-	 *            a boolean, true if this event is a trigger for a popup-menu
+	 *                      a boolean, true if this event is a trigger for a
+	 *                      popup-menu
 	 * @param scrollType
-	 *            the type of scrolling which should take place in response to
-	 *            this event; valid values are <code>WHEEL_UNIT_SCROLL</code>
-	 *            and <code>WHEEL_BLOCK_SCROLL</code>
+	 *                      the type of scrolling which should take place in
+	 *                      response to
+	 *                      this event; valid values are
+	 *                      <code>WHEEL_UNIT_SCROLL</code>
+	 *                      and <code>WHEEL_BLOCK_SCROLL</code>
 	 * @param scrollAmount
-	 *            for scrollType <code>WHEEL_UNIT_SCROLL</code>, the number of
-	 *            units to be scrolled
+	 *                      for scrollType <code>WHEEL_UNIT_SCROLL</code>, the
+	 *                      number of
+	 *                      units to be scrolled
 	 * @param wheelRotation
-	 *            the integer number of "clicks" by which the mouse wheel was
-	 *            rotated
+	 *                      the integer number of "clicks" by which the mouse
+	 *                      wheel was
+	 *                      rotated
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see MouseEvent#MouseEvent(java.awt.Component, int, long, int, int, int,
 	 *      int, boolean)
 	 * @see MouseEvent#MouseEvent(java.awt.Component, int, long, int, int, int,
 	 *      int, int, int, boolean, int)
 	 * @since 1.6
 	 */
-	public MouseWheelEvent(Component source, int id, long when, int modifiers, int x, int y,
-			int xAbs, int yAbs, int clickCount, boolean popupTrigger, int scrollType,
-			int scrollAmount, int wheelRotation) {
+	public MouseWheelEvent(Component source, int id, long when, int modifiers,
+			int x, int y, int xAbs, int yAbs, int clickCount,
+			boolean popupTrigger, int scrollType, int scrollAmount,
+			int wheelRotation) {
 
-		this(source, id, when, modifiers, x, y, xAbs, yAbs, clickCount, popupTrigger, scrollType,
-				scrollAmount, wheelRotation, wheelRotation);
+		this(source, id, when, modifiers, x, y, xAbs, yAbs, clickCount,
+				popupTrigger, scrollType, scrollAmount, wheelRotation,
+				wheelRotation);
 
 	}
 
@@ -286,57 +282,72 @@ public class MouseWheelEvent extends MouseEvent {
 	 * still created and no exception is thrown.
 	 *
 	 * @param source
-	 *            the <code>Component</code> that originated the event
+	 *                             the <code>Component</code> that originated
+	 *                             the event
 	 * @param id
-	 *            the integer value that identifies the event
+	 *                             the integer value that identifies the event
 	 * @param when
-	 *            a long value that gives the time when the event occurred
+	 *                             a long value that gives the time when the
+	 *                             event occurred
 	 * @param modifiers
-	 *            the modifier keys down during event (shift, ctrl, alt, meta)
+	 *                             the modifier keys down during event (shift,
+	 *                             ctrl, alt, meta)
 	 * @param x
-	 *            the horizontal <code>x</code> coordinate for the mouse
-	 *            location
+	 *                             the horizontal <code>x</code> coordinate for
+	 *                             the mouse
+	 *                             location
 	 * @param y
-	 *            the vertical <code>y</code> coordinate for the mouse location
+	 *                             the vertical <code>y</code> coordinate for
+	 *                             the mouse location
 	 * @param xAbs
-	 *            the absolute horizontal <code>x</code> coordinate for the
-	 *            mouse location
+	 *                             the absolute horizontal <code>x</code>
+	 *                             coordinate for the
+	 *                             mouse location
 	 * @param yAbs
-	 *            the absolute vertical <code>y</code> coordinate for the mouse
-	 *            location
+	 *                             the absolute vertical <code>y</code>
+	 *                             coordinate for the mouse
+	 *                             location
 	 * @param clickCount
-	 *            the number of mouse clicks associated with the event
+	 *                             the number of mouse clicks associated with
+	 *                             the event
 	 * @param popupTrigger
-	 *            a boolean value, <code>true</code> if this event is a trigger
-	 *            for a popup-menu
+	 *                             a boolean value, <code>true</code> if this
+	 *                             event is a trigger
+	 *                             for a popup-menu
 	 * @param scrollType
-	 *            the type of scrolling which should take place in response to
-	 *            this event; valid values are <code>WHEEL_UNIT_SCROLL</code>
-	 *            and <code>WHEEL_BLOCK_SCROLL</code>
+	 *                             the type of scrolling which should take place
+	 *                             in response to
+	 *                             this event; valid values are
+	 *                             <code>WHEEL_UNIT_SCROLL</code>
+	 *                             and <code>WHEEL_BLOCK_SCROLL</code>
 	 * @param scrollAmount
-	 *            for scrollType <code>WHEEL_UNIT_SCROLL</code>, the number of
-	 *            units to be scrolled
+	 *                             for scrollType
+	 *                             <code>WHEEL_UNIT_SCROLL</code>, the number of
+	 *                             units to be scrolled
 	 * @param wheelRotation
-	 *            the integer number of "clicks" by which the mouse wheel was
-	 *            rotated
+	 *                             the integer number of "clicks" by which the
+	 *                             mouse wheel was
+	 *                             rotated
 	 * @param preciseWheelRotation
-	 *            the double number of "clicks" by which the mouse wheel was
-	 *            rotated
+	 *                             the double number of "clicks" by which the
+	 *                             mouse wheel was
+	 *                             rotated
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see MouseEvent#MouseEvent(java.awt.Component, int, long, int, int, int,
 	 *      int, boolean)
 	 * @see MouseEvent#MouseEvent(java.awt.Component, int, long, int, int, int,
 	 *      int, int, int, boolean, int)
 	 * @since 1.7
 	 */
-	public MouseWheelEvent(Component source, int id, long when, int modifiers, int x, int y,
-			int xAbs, int yAbs, int clickCount, boolean popupTrigger, int scrollType,
-			int scrollAmount, int wheelRotation, double preciseWheelRotation) {
+	public MouseWheelEvent(Component source, int id, long when, int modifiers,
+			int x, int y, int xAbs, int yAbs, int clickCount,
+			boolean popupTrigger, int scrollType, int scrollAmount,
+			int wheelRotation, double preciseWheelRotation) {
 
-		super(source, id, when, modifiers, x, y, xAbs, yAbs, clickCount, popupTrigger,
-				MouseEvent.NOBUTTON);
+		super(source, id, when, modifiers, x, y, xAbs, yAbs, clickCount,
+				popupTrigger, MouseEvent.NOBUTTON);
 
 		this.scrollType = scrollType;
 		this.scrollAmount = scrollAmount;
@@ -475,8 +486,9 @@ public class MouseWheelEvent extends MouseEvent {
 		} else {
 			scrollTypeStr = "unknown scroll type";
 		}
-		return super.paramString() + ",scrollType=" + scrollTypeStr + ",scrollAmount="
-				+ getScrollAmount() + ",wheelRotation=" + getWheelRotation()
-				+ ",preciseWheelRotation=" + getPreciseWheelRotation();
+		return super.paramString() + ",scrollType=" + scrollTypeStr
+				+ ",scrollAmount=" + getScrollAmount() + ",wheelRotation="
+				+ getWheelRotation() + ",preciseWheelRotation="
+				+ getPreciseWheelRotation();
 	}
 }

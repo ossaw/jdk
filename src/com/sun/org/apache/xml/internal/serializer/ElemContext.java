@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -133,8 +130,9 @@ final class ElemContext {
 	 * no more than that.
 	 *
 	 * @param previous
-	 *            The "stack frame" corresponding to the new elements parent
-	 *            element.
+	 *                 The "stack frame" corresponding to the new elements
+	 *                 parent
+	 *                 element.
 	 */
 	private ElemContext(final ElemContext previous) {
 		m_prev = previous;
@@ -185,15 +183,18 @@ final class ElemContext {
 	 * information gathered about the element.
 	 * 
 	 * @param uri
-	 *            The URI for the namespace for the element name, can be null if
-	 *            it is not yet known.
+	 *                  The URI for the namespace for the element name, can be
+	 *                  null if
+	 *                  it is not yet known.
 	 * @param localName
-	 *            The local name of the element (no prefix), can be null.
+	 *                  The local name of the element (no prefix), can be null.
 	 * @param qName
-	 *            The qualified name (with prefix, if any) of the element, this
-	 *            parameter is required.
+	 *                  The qualified name (with prefix, if any) of the element,
+	 *                  this
+	 *                  parameter is required.
 	 */
-	final ElemContext push(final String uri, final String localName, final String qName) {
+	final ElemContext push(final String uri, final String localName,
+			final String qName) {
 		ElemContext frame = this.m_next;
 		if (frame == null) {
 			/*

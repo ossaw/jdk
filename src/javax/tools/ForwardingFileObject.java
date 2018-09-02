@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.tools;
@@ -38,7 +18,7 @@ import java.net.URI;
  * methods.
  *
  * @param <F>
- *            the kind of file object forwarded to by this object
+ *        the kind of file object forwarded to by this object
  * @author Peter von der Ah&eacute;
  * @since 1.6
  */
@@ -53,7 +33,7 @@ public class ForwardingFileObject<F extends FileObject> implements FileObject {
 	 * Creates a new instance of ForwardingFileObject.
 	 * 
 	 * @param fileObject
-	 *            delegate to this file object
+	 *                   delegate to this file object
 	 */
 	protected ForwardingFileObject(F fileObject) {
 		fileObject.getClass(); // null check
@@ -70,11 +50,11 @@ public class ForwardingFileObject<F extends FileObject> implements FileObject {
 
 	/**
 	 * @throws IllegalStateException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public InputStream openInputStream() throws IOException {
 		return fileObject.openInputStream();
@@ -82,11 +62,11 @@ public class ForwardingFileObject<F extends FileObject> implements FileObject {
 
 	/**
 	 * @throws IllegalStateException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public OutputStream openOutputStream() throws IOException {
 		return fileObject.openOutputStream();
@@ -94,11 +74,11 @@ public class ForwardingFileObject<F extends FileObject> implements FileObject {
 
 	/**
 	 * @throws IllegalStateException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public Reader openReader(boolean ignoreEncodingErrors) throws IOException {
 		return fileObject.openReader(ignoreEncodingErrors);
@@ -106,23 +86,24 @@ public class ForwardingFileObject<F extends FileObject> implements FileObject {
 
 	/**
 	 * @throws IllegalStateException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
-	public CharSequence getCharContent(boolean ignoreEncodingErrors) throws IOException {
+	public CharSequence getCharContent(boolean ignoreEncodingErrors)
+			throws IOException {
 		return fileObject.getCharContent(ignoreEncodingErrors);
 	}
 
 	/**
 	 * @throws IllegalStateException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 */
 	public Writer openWriter() throws IOException {
 		return fileObject.openWriter();

@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1998, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.util;
@@ -45,8 +24,8 @@ public class ORBProperties {
 		try {
 			// Check if orb.properties exists
 			String javaHome = System.getProperty("java.home");
-			File propFile = new File(
-					javaHome + File.separator + "lib" + File.separator + "orb.properties");
+			File propFile = new File(javaHome + File.separator + "lib"
+					+ File.separator + "orb.properties");
 
 			if (propFile.exists())
 				return;

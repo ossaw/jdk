@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.synth;
@@ -75,8 +55,8 @@ class SynthComboPopup extends BasicComboPopup {
 			SynthComboBoxUI sui = (SynthComboBoxUI) ui;
 			if (sui.popupInsets != null) {
 				Insets i = sui.popupInsets;
-				return super.computePopupBounds(px + i.left, py + i.top, pw - i.left - i.right,
-						ph - i.top - i.bottom);
+				return super.computePopupBounds(px + i.left, py + i.top, pw
+						- i.left - i.right, ph - i.top - i.bottom);
 			}
 		}
 		return super.computePopupBounds(px, py, pw, ph);

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,8 +54,10 @@ class PrecisionDecimalDV extends TypeValidator {
 				ivalue = content;
 				sign = 0;
 			}
-			if (content.equals("+INF") || content.equals("INF") || content.equals("-INF")) {
-				ivalue = content.charAt(0) == '+' ? content.substring(1) : content;
+			if (content.equals("+INF") || content.equals("INF") || content
+					.equals("-INF")) {
+				ivalue = content.charAt(0) == '+' ? content.substring(1)
+						: content;
 				return;
 			}
 			initD(content);
@@ -84,20 +83,21 @@ class PrecisionDecimalDV extends TypeValidator {
 
 			// skip leading zeroes in integer part
 			int actualIntStart = intStart;
-			while (actualIntStart < len && content.charAt(actualIntStart) == '0') {
+			while (actualIntStart < len && content.charAt(
+					actualIntStart) == '0') {
 				actualIntStart++;
 			}
 
 			// Find the ending position of the integer part
-			for (intEnd = actualIntStart; intEnd < len
-					&& TypeValidator.isDigit(content.charAt(intEnd)); intEnd++)
+			for (intEnd = actualIntStart; intEnd < len && TypeValidator.isDigit(
+					content.charAt(intEnd)); intEnd++)
 				;
 
 			// Not reached the end yet
 			if (intEnd < len) {
 				// the remaining part is not ".DDD" or "EDDD" or "eDDD", error
-				if (content.charAt(intEnd) != '.' && content.charAt(intEnd) != 'E'
-						&& content.charAt(intEnd) != 'e')
+				if (content.charAt(intEnd) != '.' && content.charAt(
+						intEnd) != 'E' && content.charAt(intEnd) != 'e')
 					throw new NumberFormatException();
 
 				if (content.charAt(intEnd) == '.') {
@@ -107,11 +107,12 @@ class PrecisionDecimalDV extends TypeValidator {
 
 					// find location of E or e (if present)
 					// Find the ending position of the fracion part
-					for (fracEnd = fracStart; fracEnd < len
-							&& TypeValidator.isDigit(content.charAt(fracEnd)); fracEnd++)
+					for (fracEnd = fracStart; fracEnd < len && TypeValidator
+							.isDigit(content.charAt(fracEnd)); fracEnd++)
 						;
 				} else {
-					pvalue = Integer.parseInt(content.substring(intEnd + 1, len));
+					pvalue = Integer.parseInt(content.substring(intEnd + 1,
+							len));
 				}
 			}
 
@@ -141,7 +142,8 @@ class PrecisionDecimalDV extends TypeValidator {
 			if (fracDigits > 0) {
 				fvalue = content.substring(fracStart, fracEnd);
 				if (fracEnd < len) {
-					pvalue = Integer.parseInt(content.substring(fracEnd + 1, len));
+					pvalue = Integer.parseInt(content.substring(fracEnd + 1,
+							len));
 				}
 			}
 			totalDigits = intDigits + fracDigits;
@@ -153,8 +155,8 @@ class PrecisionDecimalDV extends TypeValidator {
 		// The toString representation will be:
 		// NaN for NaN, INF for +infinity, -INF for -infinity, 0 for zero,
 		// and [1-9].[0-9]*[1-9]?(E[1-9][0-9]*)? for other numbers.
-		private static String canonicalToStringForHashCode(String ivalue, String fvalue, int sign,
-				int pvalue) {
+		private static String canonicalToStringForHashCode(String ivalue,
+				String fvalue, int sign, int pvalue) {
 			if ("NaN".equals(ivalue)) {
 				return "NaN";
 			}
@@ -238,7 +240,8 @@ class PrecisionDecimalDV extends TypeValidator {
 			// So we call cannonicalToStringForHashCode - which implements an
 			// algorithm that invents a normalized string representation
 			// for this number, and we return a hash for that.
-			return canonicalToStringForHashCode(ivalue, fvalue, sign, pvalue).hashCode();
+			return canonicalToStringForHashCode(ivalue, fvalue, sign, pvalue)
+					.hashCode();
 		}
 
 		/**
@@ -255,7 +258,8 @@ class PrecisionDecimalDV extends TypeValidator {
 			return temp1.toString().compareTo(temp2.toString());
 		}
 
-		private void truncateTrailingZeros(StringBuffer fValue, StringBuffer otherFValue) {
+		private void truncateTrailingZeros(StringBuffer fValue,
+				StringBuffer otherFValue) {
 			for (int i = fValue.length() - 1; i >= 0; i--)
 				if (fValue.charAt(i) == '0')
 					fValue.deleteCharAt(i);
@@ -310,7 +314,8 @@ class PrecisionDecimalDV extends TypeValidator {
 				else {
 
 					if (intDigits + pvalue != val.intDigits + val.pvalue)
-						return intDigits + pvalue > val.intDigits + val.pvalue ? GREATER_THAN
+						return intDigits + pvalue > val.intDigits + val.pvalue
+								? GREATER_THAN
 								: LESS_THAN;
 
 					// otherwise the 2 combined values are the same
@@ -325,8 +330,8 @@ class PrecisionDecimalDV extends TypeValidator {
 							} else
 								buffer.append('0');
 						}
-						return compareDecimal(buffer.toString(), val.ivalue, fbuffer.toString(),
-								val.fvalue);
+						return compareDecimal(buffer.toString(), val.ivalue,
+								fbuffer.toString(), val.fvalue);
 					} else {
 						int expDiff = val.pvalue - pvalue;
 						StringBuffer buffer = new StringBuffer(val.ivalue);
@@ -362,8 +367,8 @@ class PrecisionDecimalDV extends TypeValidator {
 		 * @param val
 		 * @return
 		 */
-		private int compareDecimal(String iValue, String fValue, String otherIValue,
-				String otherFValue) {
+		private int compareDecimal(String iValue, String fValue,
+				String otherIValue, String otherFValue) {
 			int ret = iValue.compareTo(otherIValue);
 			if (ret != 0)
 				return ret > 0 ? GREATER_THAN : LESS_THAN;
@@ -399,13 +404,14 @@ class PrecisionDecimalDV extends TypeValidator {
 		 * @return
 		 */
 		public boolean isIdentical(XPrecisionDecimal decimal) {
-			if (ivalue.equals(decimal.ivalue)
-					&& (ivalue.equals("INF") || ivalue.equals("-INF") || ivalue.equals("NaN")))
+			if (ivalue.equals(decimal.ivalue) && (ivalue.equals("INF") || ivalue
+					.equals("-INF") || ivalue.equals("NaN")))
 				return true;
 
 			if (sign == decimal.sign && intDigits == decimal.intDigits
-					&& fracDigits == decimal.fracDigits && pvalue == decimal.pvalue
-					&& ivalue.equals(decimal.ivalue) && fvalue.equals(decimal.fvalue))
+					&& fracDigits == decimal.fracDigits
+					&& pvalue == decimal.pvalue && ivalue.equals(decimal.ivalue)
+					&& fvalue.equals(decimal.fvalue))
 				return true;
 			return false;
 		}
@@ -414,22 +420,24 @@ class PrecisionDecimalDV extends TypeValidator {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see com.sun.org.apache.xerces.internal.impl.dv.xs.TypeValidator#
 	 * getAllowedFacets()
 	 */
 	@Override
 	public short getAllowedFacets() {
-		return (XSSimpleTypeDecl.FACET_PATTERN | XSSimpleTypeDecl.FACET_WHITESPACE
-				| XSSimpleTypeDecl.FACET_ENUMERATION | XSSimpleTypeDecl.FACET_MAXINCLUSIVE
-				| XSSimpleTypeDecl.FACET_MININCLUSIVE | XSSimpleTypeDecl.FACET_MAXEXCLUSIVE
-				| XSSimpleTypeDecl.FACET_MINEXCLUSIVE | XSSimpleTypeDecl.FACET_TOTALDIGITS
+		return (XSSimpleTypeDecl.FACET_PATTERN
+				| XSSimpleTypeDecl.FACET_WHITESPACE
+				| XSSimpleTypeDecl.FACET_ENUMERATION
+				| XSSimpleTypeDecl.FACET_MAXINCLUSIVE
+				| XSSimpleTypeDecl.FACET_MININCLUSIVE
+				| XSSimpleTypeDecl.FACET_MAXEXCLUSIVE
+				| XSSimpleTypeDecl.FACET_MINEXCLUSIVE
+				| XSSimpleTypeDecl.FACET_TOTALDIGITS
 				| XSSimpleTypeDecl.FACET_FRACTIONDIGITS);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see com.sun.org.apache.xerces.internal.impl.dv.xs.TypeValidator#
 	 * getActualValue(java.lang.String,
 	 * com.sun.org.apache.xerces.internal.impl.dv.ValidationContext)
@@ -447,7 +455,8 @@ class PrecisionDecimalDV extends TypeValidator {
 
 	@Override
 	public int compare(Object value1, Object value2) {
-		return ((XPrecisionDecimal) value1).compareTo((XPrecisionDecimal) value2);
+		return ((XPrecisionDecimal) value1).compareTo(
+				(XPrecisionDecimal) value2);
 	}
 
 	@Override
@@ -462,8 +471,10 @@ class PrecisionDecimalDV extends TypeValidator {
 
 	@Override
 	public boolean isIdentical(Object value1, Object value2) {
-		if (!(value2 instanceof XPrecisionDecimal) || !(value1 instanceof XPrecisionDecimal))
+		if (!(value2 instanceof XPrecisionDecimal)
+				|| !(value1 instanceof XPrecisionDecimal))
 			return false;
-		return ((XPrecisionDecimal) value1).isIdentical((XPrecisionDecimal) value2);
+		return ((XPrecisionDecimal) value1).isIdentical(
+				(XPrecisionDecimal) value2);
 	}
 }

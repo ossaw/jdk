@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.filechooser;
@@ -65,24 +45,28 @@ public final class FileNameExtensionFilter extends FileFilter {
 	 * file name extension contained in {@code extensions}.
 	 *
 	 * @param description
-	 *            textual description for the filter, may be {@code null}
+	 *                    textual description for the filter, may be
+	 *                    {@code null}
 	 * @param extensions
-	 *            the accepted file name extensions
+	 *                    the accepted file name extensions
 	 * @throws IllegalArgumentException
-	 *             if extensions is {@code null}, empty, contains {@code null},
-	 *             or contains an empty string
+	 *                                  if extensions is {@code null}, empty,
+	 *                                  contains {@code null},
+	 *                                  or contains an empty string
 	 * @see #accept
 	 */
 	public FileNameExtensionFilter(String description, String... extensions) {
 		if (extensions == null || extensions.length == 0) {
-			throw new IllegalArgumentException("Extensions must be non-null and not empty");
+			throw new IllegalArgumentException(
+					"Extensions must be non-null and not empty");
 		}
 		this.description = description;
 		this.extensions = new String[extensions.length];
 		this.lowerCaseExtensions = new String[extensions.length];
 		for (int i = 0; i < extensions.length; i++) {
 			if (extensions[i] == null || extensions[i].length() == 0) {
-				throw new IllegalArgumentException("Each extension must be non-null and not empty");
+				throw new IllegalArgumentException(
+						"Each extension must be non-null and not empty");
 			}
 			this.extensions[i] = extensions[i];
 			lowerCaseExtensions[i] = extensions[i].toLowerCase(Locale.ENGLISH);
@@ -96,7 +80,7 @@ public final class FileNameExtensionFilter extends FileFilter {
 	 * FileFilter}, or the file is a directory.
 	 *
 	 * @param f
-	 *            the {@code File} to test
+	 *          the {@code File} to test
 	 * @return true if the file is to be accepted, false otherwise
 	 */
 	public boolean accept(File f) {
@@ -112,7 +96,8 @@ public final class FileNameExtensionFilter extends FileFilter {
 			String fileName = f.getName();
 			int i = fileName.lastIndexOf('.');
 			if (i > 0 && i < fileName.length() - 1) {
-				String desiredExtension = fileName.substring(i + 1).toLowerCase(Locale.ENGLISH);
+				String desiredExtension = fileName.substring(i + 1).toLowerCase(
+						Locale.ENGLISH);
 				for (String extension : lowerCaseExtensions) {
 					if (desiredExtension.equals(extension)) {
 						return true;
@@ -152,7 +137,8 @@ public final class FileNameExtensionFilter extends FileFilter {
 	 * @return a string representation of this {@code FileNameExtensionFilter}
 	 */
 	public String toString() {
-		return super.toString() + "[description=" + getDescription() + " extensions="
-				+ java.util.Arrays.asList(getExtensions()) + "]";
+		return super.toString() + "[description=" + getDescription()
+				+ " extensions=" + java.util.Arrays.asList(getExtensions())
+				+ "]";
 	}
 }

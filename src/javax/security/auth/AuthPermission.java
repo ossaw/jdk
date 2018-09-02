@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth;
@@ -138,17 +118,18 @@ public final class AuthPermission extends java.security.BasicPermission {
 	 * <p>
 	 *
 	 * @param name
-	 *            the name of the AuthPermission
+	 *             the name of the AuthPermission
 	 *
 	 * @throws NullPointerException
-	 *             if {@code name} is {@code null}.
+	 *                                  if {@code name} is {@code null}.
 	 * @throws IllegalArgumentException
-	 *             if {@code name} is empty.
+	 *                                  if {@code name} is empty.
 	 */
 	public AuthPermission(String name) {
 		// for backwards compatibility --
 		// createLoginContext is deprecated in favor of createLoginContext.*
-		super("createLoginContext".equals(name) ? "createLoginContext.*" : name);
+		super("createLoginContext".equals(name) ? "createLoginContext.*"
+				: name);
 	}
 
 	/**
@@ -159,20 +140,21 @@ public final class AuthPermission extends java.security.BasicPermission {
 	 * <p>
 	 *
 	 * @param name
-	 *            the name of the AuthPermission
-	 *            <p>
+	 *                the name of the AuthPermission
+	 *                <p>
 	 *
 	 * @param actions
-	 *            should be null.
+	 *                should be null.
 	 *
 	 * @throws NullPointerException
-	 *             if {@code name} is {@code null}.
+	 *                                  if {@code name} is {@code null}.
 	 * @throws IllegalArgumentException
-	 *             if {@code name} is empty.
+	 *                                  if {@code name} is empty.
 	 */
 	public AuthPermission(String name, String actions) {
 		// for backwards compatibility --
 		// createLoginContext is deprecated in favor of createLoginContext.*
-		super("createLoginContext".equals(name) ? "createLoginContext.*" : name, actions);
+		super("createLoginContext".equals(name) ? "createLoginContext.*" : name,
+				actions);
 	}
 }

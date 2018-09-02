@@ -40,21 +40,24 @@ public class RSAKeyValueResolver extends KeyResolverSpi {
 			.getLogger(RSAKeyValueResolver.class.getName());
 
 	/** @inheritDoc */
-	public PublicKey engineLookupAndResolvePublicKey(Element element, String BaseURI,
-			StorageResolver storage) {
+	public PublicKey engineLookupAndResolvePublicKey(Element element,
+			String BaseURI, StorageResolver storage) {
 		if (log.isLoggable(java.util.logging.Level.FINE)) {
-			log.log(java.util.logging.Level.FINE, "Can I resolve " + element.getTagName());
+			log.log(java.util.logging.Level.FINE, "Can I resolve " + element
+					.getTagName());
 		}
 		if (element == null) {
 			return null;
 		}
 
-		boolean isKeyValue = XMLUtils.elementIsInSignatureSpace(element, Constants._TAG_KEYVALUE);
+		boolean isKeyValue = XMLUtils.elementIsInSignatureSpace(element,
+				Constants._TAG_KEYVALUE);
 		Element rsaKeyElement = null;
 		if (isKeyValue) {
 			rsaKeyElement = XMLUtils.selectDsNode(element.getFirstChild(),
 					Constants._TAG_RSAKEYVALUE, 0);
-		} else if (XMLUtils.elementIsInSignatureSpace(element, Constants._TAG_RSAKEYVALUE)) {
+		} else if (XMLUtils.elementIsInSignatureSpace(element,
+				Constants._TAG_RSAKEYVALUE)) {
 			// this trick is needed to allow the RetrievalMethodResolver to eat
 			// a
 			// ds:RSAKeyValue directly (without KeyValue)
@@ -71,7 +74,8 @@ public class RSAKeyValueResolver extends KeyResolverSpi {
 			return rsaKeyValue.getPublicKey();
 		} catch (XMLSecurityException ex) {
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE, "XMLSecurityException", ex);
+				log.log(java.util.logging.Level.FINE, "XMLSecurityException",
+						ex);
 			}
 		}
 
@@ -79,14 +83,14 @@ public class RSAKeyValueResolver extends KeyResolverSpi {
 	}
 
 	/** @inheritDoc */
-	public X509Certificate engineLookupResolveX509Certificate(Element element, String BaseURI,
-			StorageResolver storage) {
+	public X509Certificate engineLookupResolveX509Certificate(Element element,
+			String BaseURI, StorageResolver storage) {
 		return null;
 	}
 
 	/** @inheritDoc */
-	public javax.crypto.SecretKey engineLookupAndResolveSecretKey(Element element, String BaseURI,
-			StorageResolver storage) {
+	public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
+			Element element, String BaseURI, StorageResolver storage) {
 		return null;
 	}
 }

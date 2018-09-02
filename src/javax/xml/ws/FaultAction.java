@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws;
@@ -87,7 +67,8 @@ import java.lang.annotation.Target;
  * <pre>
  * &#64;WebService(targetNamespace = "http://example.com/numbers")
  * public class AddNumbersImpl {
- * 	public int addNumbers(int number1, int number2) throws AddNumbersException {
+ * 	public int addNumbers(int number1, int number2)
+ * 			throws AddNumbersException {
  * 		return number1 + number2;
  * 	}
  * }

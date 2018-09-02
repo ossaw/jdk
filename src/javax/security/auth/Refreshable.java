@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth;
@@ -51,12 +31,14 @@ public interface Refreshable {
 	 * <p>
 	 *
 	 * @exception SecurityException
-	 *                if the caller does not have permission to update or extend
-	 *                the validity period for this {@code Object}.
-	 *                <p>
+	 *                                   if the caller does not have permission
+	 *                                   to update or extend
+	 *                                   the validity period for this
+	 *                                   {@code Object}.
+	 *                                   <p>
 	 *
 	 * @exception RefreshFailedException
-	 *                if the refresh attempt failed.
+	 *                                   if the refresh attempt failed.
 	 */
 	void refresh() throws RefreshFailedException;
 }

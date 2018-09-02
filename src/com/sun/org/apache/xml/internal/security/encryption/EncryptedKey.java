@@ -57,7 +57,7 @@ public interface EncryptedKey extends EncryptedType {
 	 * Sets the recipient for this <code>EncryptedKey</code>.
 	 *
 	 * @param recipient
-	 *            the recipient for this <code>EncryptedKey</code>.
+	 *                  the recipient for this <code>EncryptedKey</code>.
 	 */
 	void setRecipient(String recipient);
 
@@ -77,7 +77,7 @@ public interface EncryptedKey extends EncryptedType {
 	 * Sets the <code>ReferenceList</code> to the <code>EncryptedKey</code>.
 	 *
 	 * @param list
-	 *            a list of pointers to data elements encrypted using this key.
+	 *             a list of pointers to data elements encrypted using this key.
 	 */
 	void setReferenceList(ReferenceList list);
 
@@ -102,7 +102,7 @@ public interface EncryptedKey extends EncryptedType {
 	 * Sets the carried name.
 	 *
 	 * @param name
-	 *            the carried name.
+	 *             the carried name.
 	 */
 	void setCarriedName(String name);
 }

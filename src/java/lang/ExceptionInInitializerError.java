@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -75,7 +55,7 @@ public class ExceptionInInitializerError extends LinkageError {
 	 * string is set to <code>null</code>.
 	 *
 	 * @param thrown
-	 *            The exception thrown
+	 *               The exception thrown
 	 */
 	public ExceptionInInitializerError(Throwable thrown) {
 		initCause(null); // Disallow subsequent initCause
@@ -91,7 +71,7 @@ public class ExceptionInInitializerError extends LinkageError {
 	 *
 	 *
 	 * @param s
-	 *            the detail message
+	 *          the detail message
 	 */
 	public ExceptionInInitializerError(String s) {
 		super(s);

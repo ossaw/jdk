@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,11 +33,10 @@ import org.w3c.dom.DOMException;
 public class DefaultElement extends NodeImpl implements Element {
 
 	// default constructor
-	public DefaultElement() {
-	}
+	public DefaultElement() {}
 
-	public DefaultElement(String prefix, String localpart, String rawname, String uri,
-			short nodeType) {
+	public DefaultElement(String prefix, String localpart, String rawname,
+			String uri, short nodeType) {
 		super(prefix, localpart, rawname, uri, nodeType);
 	}
 
@@ -73,7 +69,8 @@ public class DefaultElement extends NodeImpl implements Element {
 		return null;
 	}
 
-	public NodeList getElementsByTagNameNS(String namespaceURI, String localName) {
+	public NodeList getElementsByTagNameNS(String namespaceURI,
+			String localName) {
 		return null;
 	}
 
@@ -91,45 +88,58 @@ public class DefaultElement extends NodeImpl implements Element {
 
 	// setter methods
 	public void setAttribute(String name, String value) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public void removeAttribute(String name) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public Attr removeAttributeNode(Attr oldAttr) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public Attr setAttributeNode(Attr newAttr) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
-	public void setAttributeNS(String namespaceURI, String qualifiedName, String value)
+	public void setAttributeNS(String namespaceURI, String qualifiedName,
+			String value) throws DOMException {
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
+	}
+
+	public void removeAttributeNS(String namespaceURI, String localName)
 			throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
-	}
-
-	public void removeAttributeNS(String namespaceURI, String localName) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public Attr setAttributeNodeNS(Attr newAttr) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
-	public void setIdAttributeNode(Attr at, boolean makeId) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
-	}
-
-	public void setIdAttribute(String name, boolean makeId) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
-	}
-
-	public void setIdAttributeNS(String namespaceURI, String localName, boolean makeId)
+	public void setIdAttributeNode(Attr at, boolean makeId)
 			throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
+	}
+
+	public void setIdAttribute(String name, boolean makeId)
+			throws DOMException {
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
+	}
+
+	public void setIdAttributeNS(String namespaceURI, String localName,
+			boolean makeId) throws DOMException {
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 }

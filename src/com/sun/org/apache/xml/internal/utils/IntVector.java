@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -61,7 +58,7 @@ public class IntVector implements Cloneable {
 	 * Construct a IntVector, using the given block size.
 	 *
 	 * @param blocksize
-	 *            Size of block to allocate
+	 *                  Size of block to allocate
 	 */
 	public IntVector(int blocksize) {
 
@@ -74,7 +71,7 @@ public class IntVector implements Cloneable {
 	 * Construct a IntVector, using the given block size.
 	 *
 	 * @param blocksize
-	 *            Size of block to allocate
+	 *                  Size of block to allocate
 	 */
 	public IntVector(int blocksize, int increaseSize) {
 
@@ -87,7 +84,7 @@ public class IntVector implements Cloneable {
 	 * Copy constructor for IntVector
 	 *
 	 * @param v
-	 *            Existing IntVector to copy
+	 *          Existing IntVector to copy
 	 */
 	public IntVector(IntVector v) {
 		m_map = new int[v.m_mapSize];
@@ -119,7 +116,7 @@ public class IntVector implements Cloneable {
 	 * Append a int onto the vector.
 	 *
 	 * @param value
-	 *            Int to add to the list
+	 *              Int to add to the list
 	 */
 	public final void addElement(int value) {
 
@@ -142,7 +139,7 @@ public class IntVector implements Cloneable {
 	 * Append several int values onto the vector.
 	 *
 	 * @param value
-	 *            Int to add to the list
+	 *              Int to add to the list
 	 */
 	public final void addElements(int value, int numberOfElements) {
 
@@ -166,7 +163,7 @@ public class IntVector implements Cloneable {
 	 * Append several slots onto the vector, but do not set the values.
 	 *
 	 * @param numberOfElements
-	 *            Int to add to the list
+	 *                         Int to add to the list
 	 */
 	public final void addElements(int numberOfElements) {
 
@@ -190,9 +187,9 @@ public class IntVector implements Cloneable {
 	 * had previously.
 	 *
 	 * @param value
-	 *            Int to insert
+	 *              Int to insert
 	 * @param at
-	 *            Index of where to insert
+	 *              Index of where to insert
 	 */
 	public final void insertElementAt(int value, int at) {
 
@@ -237,7 +234,7 @@ public class IntVector implements Cloneable {
 	 * an index one smaller than the value it had previously.
 	 *
 	 * @param s
-	 *            Int to remove from array
+	 *          Int to remove from array
 	 *
 	 * @return True if the int was removed, false if it was not found
 	 */
@@ -246,7 +243,8 @@ public class IntVector implements Cloneable {
 		for (int i = 0; i < m_firstFree; i++) {
 			if (m_map[i] == s) {
 				if ((i + 1) < m_firstFree)
-					System.arraycopy(m_map, i + 1, m_map, i - 1, m_firstFree - i);
+					System.arraycopy(m_map, i + 1, m_map, i - 1, m_firstFree
+							- i);
 				else
 					m_map[i] = java.lang.Integer.MIN_VALUE;
 
@@ -265,7 +263,7 @@ public class IntVector implements Cloneable {
 	 * downward to have an index one smaller than the value it had previously.
 	 *
 	 * @param i
-	 *            index of where to remove and int
+	 *          index of where to remove and int
 	 */
 	public final void removeElementAt(int i) {
 
@@ -285,9 +283,9 @@ public class IntVector implements Cloneable {
 	 * current size of the vector.
 	 *
 	 * @param value
-	 *            object to set
+	 *              object to set
 	 * @param index
-	 *            Index of where to set the object
+	 *              Index of where to set the object
 	 */
 	public final void setElementAt(int value, int index) {
 		m_map[index] = value;
@@ -297,7 +295,7 @@ public class IntVector implements Cloneable {
 	 * Get the nth element.
 	 *
 	 * @param i
-	 *            index of object to get
+	 *          index of object to get
 	 *
 	 * @return object at given index
 	 */
@@ -309,7 +307,7 @@ public class IntVector implements Cloneable {
 	 * Tell if the table contains the given node.
 	 *
 	 * @param s
-	 *            object to look for
+	 *          object to look for
 	 *
 	 * @return true if the object is in the list
 	 */
@@ -328,9 +326,9 @@ public class IntVector implements Cloneable {
 	 * search at index, and testing for equality using the equals method.
 	 *
 	 * @param elem
-	 *            object to look for
+	 *              object to look for
 	 * @param index
-	 *            Index of where to begin search
+	 *              Index of where to begin search
 	 * @return the index of the first occurrence of the object argument in this
 	 *         vector at position index or later in the vector; returns -1 if
 	 *         the object is not found.
@@ -350,7 +348,7 @@ public class IntVector implements Cloneable {
 	 * search at index, and testing for equality using the equals method.
 	 *
 	 * @param elem
-	 *            object to look for
+	 *             object to look for
 	 * @return the index of the first occurrence of the object argument in this
 	 *         vector at position index or later in the vector; returns -1 if
 	 *         the object is not found.
@@ -370,7 +368,7 @@ public class IntVector implements Cloneable {
 	 * search at index, and testing for equality using the equals method.
 	 *
 	 * @param elem
-	 *            Object to look for
+	 *             Object to look for
 	 * @return the index of the first occurrence of the object argument in this
 	 *         vector at position index or later in the vector; returns -1 if
 	 *         the object is not found.

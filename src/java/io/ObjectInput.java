@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -42,10 +22,12 @@ public interface ObjectInput extends DataInput, AutoCloseable {
 	 * defines where the object is "read" from.
 	 *
 	 * @return the object read from the stream
-	 * @exception java.lang.ClassNotFoundException
-	 *                If the class of a serialized object cannot be found.
+	 * @exception             java.lang.ClassNotFoundException
+	 *                        If the class of a serialized object cannot be
+	 *                        found.
 	 * @exception IOException
-	 *                If any of the usual Input/Output related exceptions occur.
+	 *                        If any of the usual Input/Output related
+	 *                        exceptions occur.
 	 */
 	public Object readObject() throws ClassNotFoundException, IOException;
 
@@ -54,7 +36,7 @@ public interface ObjectInput extends DataInput, AutoCloseable {
 	 * 
 	 * @return the byte read, or -1 if the end of the stream is reached.
 	 * @exception IOException
-	 *                If an I/O error has occurred.
+	 *                        If an I/O error has occurred.
 	 */
 	public int read() throws IOException;
 
@@ -63,11 +45,11 @@ public interface ObjectInput extends DataInput, AutoCloseable {
 	 * available.
 	 * 
 	 * @param b
-	 *            the buffer into which the data is read
+	 *          the buffer into which the data is read
 	 * @return the actual number of bytes read, -1 is returned when the end of
 	 *         the stream is reached.
 	 * @exception IOException
-	 *                If an I/O error has occurred.
+	 *                        If an I/O error has occurred.
 	 */
 	public int read(byte b[]) throws IOException;
 
@@ -84,7 +66,7 @@ public interface ObjectInput extends DataInput, AutoCloseable {
 	 * @return the actual number of bytes read, -1 is returned when the end of
 	 *         the stream is reached.
 	 * @exception IOException
-	 *                If an I/O error has occurred.
+	 *                        If an I/O error has occurred.
 	 */
 	public int read(byte b[], int off, int len) throws IOException;
 
@@ -92,10 +74,10 @@ public interface ObjectInput extends DataInput, AutoCloseable {
 	 * Skips n bytes of input.
 	 * 
 	 * @param n
-	 *            the number of bytes to be skipped
+	 *          the number of bytes to be skipped
 	 * @return the actual number of bytes skipped.
 	 * @exception IOException
-	 *                If an I/O error has occurred.
+	 *                        If an I/O error has occurred.
 	 */
 	public long skip(long n) throws IOException;
 
@@ -104,7 +86,7 @@ public interface ObjectInput extends DataInput, AutoCloseable {
 	 * 
 	 * @return the number of available bytes.
 	 * @exception IOException
-	 *                If an I/O error has occurred.
+	 *                        If an I/O error has occurred.
 	 */
 	public int available() throws IOException;
 
@@ -113,7 +95,7 @@ public interface ObjectInput extends DataInput, AutoCloseable {
 	 * associated with the stream.
 	 * 
 	 * @exception IOException
-	 *                If an I/O error has occurred.
+	 *                        If an I/O error has occurred.
 	 */
 	public void close() throws IOException;
 }

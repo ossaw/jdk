@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd;
@@ -35,8 +15,7 @@ import java.lang.annotation.Native;
  */
 public final class DnDConstants {
 
-	private DnDConstants() {
-	} // define null private constructor.
+	private DnDConstants() {} // define null private constructor.
 
 	/**
 	 * An <code>int</code> representing no action.

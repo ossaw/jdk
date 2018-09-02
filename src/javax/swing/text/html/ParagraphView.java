@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.html;
 
@@ -48,7 +28,7 @@ public class ParagraphView extends javax.swing.text.ParagraphView {
 	 * Constructs a ParagraphView for the given element.
 	 *
 	 * @param elem
-	 *            the element that this view is responsible for
+	 *             the element that this view is responsible for
 	 */
 	public ParagraphView(Element elem) {
 		super(elem);
@@ -66,8 +46,8 @@ public class ParagraphView extends javax.swing.text.ParagraphView {
 	 * view attributes.
 	 *
 	 * @param parent
-	 *            the new parent, or null if the view is being removed from a
-	 *            parent it was previously added to
+	 *               the new parent, or null if the view is being removed from a
+	 *               parent it was previously added to
 	 */
 	public void setParent(View parent) {
 		super.setParent(parent);
@@ -98,8 +78,9 @@ public class ParagraphView extends javax.swing.text.ParagraphView {
 		painter = sheet.getBoxPainter(attr);
 		if (attr != null) {
 			super.setPropertiesFromAttributes();
-			setInsets((short) painter.getInset(TOP, this), (short) painter.getInset(LEFT, this),
-					(short) painter.getInset(BOTTOM, this), (short) painter.getInset(RIGHT, this));
+			setInsets((short) painter.getInset(TOP, this), (short) painter
+					.getInset(LEFT, this), (short) painter.getInset(BOTTOM,
+							this), (short) painter.getInset(RIGHT, this));
 			Object o = attr.getAttribute(CSS.Attribute.TEXT_ALIGN);
 			if (o != null) {
 				// set horizontal alignment
@@ -116,7 +97,8 @@ public class ParagraphView extends javax.swing.text.ParagraphView {
 			}
 			// Get the width/height
 			cssWidth = (CSS.LengthValue) attr.getAttribute(CSS.Attribute.WIDTH);
-			cssHeight = (CSS.LengthValue) attr.getAttribute(CSS.Attribute.HEIGHT);
+			cssHeight = (CSS.LengthValue) attr.getAttribute(
+					CSS.Attribute.HEIGHT);
 		}
 	}
 
@@ -143,14 +125,15 @@ public class ParagraphView extends javax.swing.text.ParagraphView {
 	 * </p>
 	 *
 	 * @param axis
-	 *            the minor axis
+	 *             the minor axis
 	 * @param r
-	 *            the input {@code SizeRequirements} object
+	 *             the input {@code SizeRequirements} object
 	 * @return the new or adjusted {@code SizeRequirements} object
 	 * @throws IllegalArgumentException
-	 *             if the {@code axis} parameter is invalid
+	 *                                  if the {@code axis} parameter is invalid
 	 */
-	protected SizeRequirements calculateMinorAxisRequirements(int axis, SizeRequirements r) {
+	protected SizeRequirements calculateMinorAxisRequirements(int axis,
+			SizeRequirements r) {
 		r = super.calculateMinorAxisRequirements(axis, r);
 
 		if (BlockView.spanSetFromAttributes(axis, r, cssWidth, cssHeight)) {
@@ -209,9 +192,9 @@ public class ParagraphView extends javax.swing.text.ParagraphView {
 	 * coordinate for tab calculations.
 	 *
 	 * @param g
-	 *            the rendering surface to use
+	 *          the rendering surface to use
 	 * @param a
-	 *            the allocated region to render into
+	 *          the allocated region to render into
 	 * @see View#paint
 	 */
 	public void paint(Graphics g, Shape a) {
@@ -235,7 +218,7 @@ public class ParagraphView extends javax.swing.text.ParagraphView {
 	 * span. axis.
 	 *
 	 * @param axis
-	 *            may be either View.X_AXIS or View.Y_AXIS
+	 *             may be either View.X_AXIS or View.Y_AXIS
 	 * @return the span the view would like to be rendered into; typically the
 	 *         view is told to render into the span that is returned, although
 	 *         there is no guarantee; the parent may choose to resize or break
@@ -255,8 +238,8 @@ public class ParagraphView extends javax.swing.text.ParagraphView {
 	 * minimum span.
 	 *
 	 * @param axis
-	 *            may be either <code>View.X_AXIS</code> or
-	 *            <code>View.Y_AXIS</code>
+	 *             may be either <code>View.X_AXIS</code> or
+	 *             <code>View.Y_AXIS</code>
 	 * @return the minimum span the view can be rendered into
 	 * @see javax.swing.text.ParagraphView#getMinimumSpan
 	 */
@@ -273,8 +256,8 @@ public class ParagraphView extends javax.swing.text.ParagraphView {
 	 * maximum span.
 	 *
 	 * @param axis
-	 *            may be either <code>View.X_AXIS</code> or
-	 *            <code>View.Y_AXIS</code>
+	 *             may be either <code>View.X_AXIS</code> or
+	 *             <code>View.Y_AXIS</code>
 	 * @return the maximum span the view can be rendered into
 	 * @see javax.swing.text.ParagraphView#getMaximumSpan
 	 */

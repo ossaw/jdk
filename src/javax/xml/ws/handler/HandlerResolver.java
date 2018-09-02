@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws.handler;
@@ -47,7 +27,7 @@ public interface HandlerResolver {
 	 * Gets the handler chain for the specified port.
 	 *
 	 * @param portInfo
-	 *            Contains information about the port being accessed.
+	 *                 Contains information about the port being accessed.
 	 * @return java.util.List&lt;Handler> chain
 	 **/
 	public java.util.List<Handler> getHandlerChain(PortInfo portInfo);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql;
@@ -56,7 +36,7 @@ public interface CommonDataSource {
 	 * @return the log writer for this data source or null if logging is
 	 *         disabled
 	 * @exception java.sql.SQLException
-	 *                if a database access error occurs
+	 *            if a database access error occurs
 	 * @see #setLogWriter
 	 * @since 1.4
 	 */
@@ -81,7 +61,7 @@ public interface CommonDataSource {
 	 * @param out
 	 *            the new log writer; to disable logging, set to null
 	 * @exception SQLException
-	 *                if a database access error occurs
+	 *                         if a database access error occurs
 	 * @see #getLogWriter
 	 * @since 1.4
 	 */
@@ -96,9 +76,9 @@ public interface CommonDataSource {
 	 * is created, the login timeout is initially zero.
 	 *
 	 * @param seconds
-	 *            the data source login time limit
+	 *                the data source login time limit
 	 * @exception SQLException
-	 *                if a database access error occurs.
+	 *                         if a database access error occurs.
 	 * @see #getLoginTimeout
 	 * @since 1.4
 	 */
@@ -113,7 +93,7 @@ public interface CommonDataSource {
 	 *
 	 * @return the data source login time limit
 	 * @exception SQLException
-	 *                if a database access error occurs.
+	 *                         if a database access error occurs.
 	 * @see #setLoginTimeout
 	 * @since 1.4
 	 */
@@ -130,7 +110,8 @@ public interface CommonDataSource {
 	 *
 	 * @return the parent Logger for this data source
 	 * @throws SQLFeatureNotSupportedException
-	 *             if the data source does not use {@code java.util.logging}
+	 *                                         if the data source does not use
+	 *                                         {@code java.util.logging}
 	 * @since 1.7
 	 */
 	public Logger getParentLogger() throws SQLFeatureNotSupportedException;

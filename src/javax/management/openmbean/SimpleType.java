@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.openmbean;
@@ -67,13 +47,15 @@ public final class SimpleType<T> extends OpenType<T> {
 	 * The <code>SimpleType</code> instance describing values whose Java class
 	 * name is <code>java.lang.Void</code>.
 	 */
-	public static final SimpleType<Void> VOID = new SimpleType<Void>(Void.class);
+	public static final SimpleType<Void> VOID = new SimpleType<Void>(
+			Void.class);
 
 	/**
 	 * The <code>SimpleType</code> instance describing values whose Java class
 	 * name is <code>java.lang.Boolean</code>.
 	 */
-	public static final SimpleType<Boolean> BOOLEAN = new SimpleType<Boolean>(Boolean.class);
+	public static final SimpleType<Boolean> BOOLEAN = new SimpleType<Boolean>(
+			Boolean.class);
 
 	/**
 	 * The <code>SimpleType</code> instance describing values whose Java class
@@ -86,43 +68,50 @@ public final class SimpleType<T> extends OpenType<T> {
 	 * The <code>SimpleType</code> instance describing values whose Java class
 	 * name is <code>java.lang.Byte</code>.
 	 */
-	public static final SimpleType<Byte> BYTE = new SimpleType<Byte>(Byte.class);
+	public static final SimpleType<Byte> BYTE = new SimpleType<Byte>(
+			Byte.class);
 
 	/**
 	 * The <code>SimpleType</code> instance describing values whose Java class
 	 * name is <code>java.lang.Short</code>.
 	 */
-	public static final SimpleType<Short> SHORT = new SimpleType<Short>(Short.class);
+	public static final SimpleType<Short> SHORT = new SimpleType<Short>(
+			Short.class);
 
 	/**
 	 * The <code>SimpleType</code> instance describing values whose Java class
 	 * name is <code>java.lang.Integer</code>.
 	 */
-	public static final SimpleType<Integer> INTEGER = new SimpleType<Integer>(Integer.class);
+	public static final SimpleType<Integer> INTEGER = new SimpleType<Integer>(
+			Integer.class);
 
 	/**
 	 * The <code>SimpleType</code> instance describing values whose Java class
 	 * name is <code>java.lang.Long</code>.
 	 */
-	public static final SimpleType<Long> LONG = new SimpleType<Long>(Long.class);
+	public static final SimpleType<Long> LONG = new SimpleType<Long>(
+			Long.class);
 
 	/**
 	 * The <code>SimpleType</code> instance describing values whose Java class
 	 * name is <code>java.lang.Float</code>.
 	 */
-	public static final SimpleType<Float> FLOAT = new SimpleType<Float>(Float.class);
+	public static final SimpleType<Float> FLOAT = new SimpleType<Float>(
+			Float.class);
 
 	/**
 	 * The <code>SimpleType</code> instance describing values whose Java class
 	 * name is <code>java.lang.Double</code>.
 	 */
-	public static final SimpleType<Double> DOUBLE = new SimpleType<Double>(Double.class);
+	public static final SimpleType<Double> DOUBLE = new SimpleType<Double>(
+			Double.class);
 
 	/**
 	 * The <code>SimpleType</code> instance describing values whose Java class
 	 * name is <code>java.lang.String</code>.
 	 */
-	public static final SimpleType<String> STRING = new SimpleType<String>(String.class);
+	public static final SimpleType<String> STRING = new SimpleType<String>(
+			String.class);
 
 	/**
 	 * The <code>SimpleType</code> instance describing values whose Java class
@@ -142,7 +131,8 @@ public final class SimpleType<T> extends OpenType<T> {
 	 * The <code>SimpleType</code> instance describing values whose Java class
 	 * name is <code>java.util.Date</code>.
 	 */
-	public static final SimpleType<Date> DATE = new SimpleType<Date>(Date.class);
+	public static final SimpleType<Date> DATE = new SimpleType<Date>(
+			Date.class);
 
 	/**
 	 * The <code>SimpleType</code> instance describing values whose Java class
@@ -151,8 +141,9 @@ public final class SimpleType<T> extends OpenType<T> {
 	public static final SimpleType<ObjectName> OBJECTNAME = new SimpleType<ObjectName>(
 			ObjectName.class);
 
-	private static final SimpleType<?>[] typeArray = { VOID, BOOLEAN, CHARACTER, BYTE, SHORT,
-			INTEGER, LONG, FLOAT, DOUBLE, STRING, BIGDECIMAL, BIGINTEGER, DATE, OBJECTNAME, };
+	private static final SimpleType<?>[] typeArray = { VOID, BOOLEAN, CHARACTER,
+			BYTE, SHORT, INTEGER, LONG, FLOAT, DOUBLE, STRING, BIGDECIMAL,
+			BIGINTEGER, DATE, OBJECTNAME, };
 
 	private transient Integer myHashCode = null; // As this instance is
 													// immutable, these two
@@ -162,7 +153,8 @@ public final class SimpleType<T> extends OpenType<T> {
 	/* *** Constructor *** */
 
 	private SimpleType(Class<T> valueClass) {
-		super(valueClass.getName(), valueClass.getName(), valueClass.getName(), false);
+		super(valueClass.getName(), valueClass.getName(), valueClass.getName(),
+				false);
 	}
 
 	/* *** SimpleType specific information methods *** */
@@ -281,7 +273,8 @@ public final class SimpleType<T> extends OpenType<T> {
 		// 1st call to toString())
 		//
 		if (myToString == null) {
-			myToString = this.getClass().getName() + "(name=" + getTypeName() + ")";
+			myToString = this.getClass().getName() + "(name=" + getTypeName()
+					+ ")";
 		}
 
 		// return always the same string representation for this instance
@@ -305,7 +298,7 @@ public final class SimpleType<T> extends OpenType<T> {
 	 * @return the replacement object.
 	 *
 	 * @exception ObjectStreamException
-	 *                if the read object cannot be resolved.
+	 *                                  if the read object cannot be resolved.
 	 */
 	public Object readResolve() throws ObjectStreamException {
 		final SimpleType<?> canonical = canonicalTypes.get(this);

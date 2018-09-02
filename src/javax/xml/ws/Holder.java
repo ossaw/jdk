@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws;
@@ -44,14 +24,13 @@ public final class Holder<T> implements Serializable {
 	/**
 	 * Creates a new holder with a <code>null</code> value.
 	 */
-	public Holder() {
-	}
+	public Holder() {}
 
 	/**
 	 * Create a new holder with the specified value.
 	 *
 	 * @param value
-	 *            The value to be stored in the holder.
+	 *              The value to be stored in the holder.
 	 */
 	public Holder(T value) {
 		this.value = value;

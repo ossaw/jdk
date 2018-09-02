@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.dynamicany;
@@ -98,7 +78,8 @@ public class DynFixedImpl extends DynAnyBasicImpl implements DynFixed {
 	// other than leading or trailing white space, the operation raises
 	// TypeMismatch.
 	//
-	public boolean set_value(String val) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+	public boolean set_value(String val)
+			throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
 			org.omg.DynamicAny.DynAnyPackage.InvalidValue {
 		if (status == STATUS_DESTROYED) {
 			throw wrapper.dynAnyDestroyed();
@@ -162,7 +143,8 @@ public class DynFixedImpl extends DynAnyBasicImpl implements DynFixed {
 			preservedPrecision = false;
 			// truncate the fraction part
 			if (integerPart.length() < digits) {
-				fractionPart = fractionPart.substring(0, digits - integerPart.length());
+				fractionPart = fractionPart.substring(0, digits - integerPart
+						.length());
 			} else if (integerPart.length() == digits) {
 				// currentScale > 0
 				// drop the fraction completely
@@ -191,7 +173,8 @@ public class DynFixedImpl extends DynAnyBasicImpl implements DynFixed {
 				result = new BigDecimal(sign + integerPart);
 			} else {
 				new BigInteger(fractionPart);
-				result = new BigDecimal(sign + integerPart + "." + fractionPart);
+				result = new BigDecimal(sign + integerPart + "."
+						+ fractionPart);
 			}
 		} catch (NumberFormatException nfe) {
 			throw new TypeMismatch();
@@ -208,7 +191,7 @@ public class DynFixedImpl extends DynAnyBasicImpl implements DynFixed {
 			scale = any.type().fixed_scale();
 		} catch (BadKind ex) { // impossible
 		}
-		return "DynFixed with value=" + this.get_value() + ", digits=" + digits + ", scale="
-				+ scale;
+		return "DynFixed with value=" + this.get_value() + ", digits=" + digits
+				+ ", scale=" + scale;
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -64,7 +44,7 @@ public abstract class Pipe {
 		 * Constructs a new instance of this class.
 		 *
 		 * @param provider
-		 *            The selector provider
+		 *                 The selector provider
 		 */
 		protected SourceChannel(SelectorProvider provider) {
 			super(provider);
@@ -98,7 +78,7 @@ public abstract class Pipe {
 		 * Initializes a new instance of this class.
 		 *
 		 * @param provider
-		 *            The selector provider
+		 *                 The selector provider
 		 */
 		protected SinkChannel(SelectorProvider provider) {
 			super(provider);
@@ -124,8 +104,7 @@ public abstract class Pipe {
 	/**
 	 * Initializes a new instance of this class.
 	 */
-	protected Pipe() {
-	}
+	protected Pipe() {}
 
 	/**
 	 * Returns this pipe's source channel.
@@ -154,7 +133,7 @@ public abstract class Pipe {
 	 * @return A new pipe
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public static Pipe open() throws IOException {
 		return SelectorProvider.provider().openPipe();

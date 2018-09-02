@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2000 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -96,13 +71,16 @@ public interface HTMLTableSectionElement extends HTMLElement {
 	 * new row is appended.
 	 * 
 	 * @param index
-	 *            The row number where to insert a new row. This index starts
-	 *            from 0 and is relative only to the rows contained inside this
-	 *            section, not all the rows in the table.
+	 *              The row number where to insert a new row. This index starts
+	 *              from 0 and is relative only to the rows contained inside
+	 *              this
+	 *              section, not all the rows in the table.
 	 * @return The newly created row.
 	 * @exception DOMException
-	 *                INDEX_SIZE_ERR: Raised if the specified index is greater
-	 *                than the number of rows of if the index is neagative.
+	 *                         INDEX_SIZE_ERR: Raised if the specified index is
+	 *                         greater
+	 *                         than the number of rows of if the index is
+	 *                         neagative.
 	 */
 	public HTMLElement insertRow(int index) throws DOMException;
 
@@ -110,13 +88,15 @@ public interface HTMLTableSectionElement extends HTMLElement {
 	 * Delete a row from this section.
 	 * 
 	 * @param index
-	 *            The index of the row to be deleted. This index starts from 0
-	 *            and is relative only to the rows contained inside this
-	 *            section, not all the rows in the table.
+	 *              The index of the row to be deleted. This index starts from 0
+	 *              and is relative only to the rows contained inside this
+	 *              section, not all the rows in the table.
 	 * @exception DOMException
-	 *                INDEX_SIZE_ERR: Raised if the specified index is greater
-	 *                than or equal to the number of rows or if the index is
-	 *                negative.
+	 *                         INDEX_SIZE_ERR: Raised if the specified index is
+	 *                         greater
+	 *                         than or equal to the number of rows or if the
+	 *                         index is
+	 *                         negative.
 	 */
 	public void deleteRow(int index) throws DOMException;
 

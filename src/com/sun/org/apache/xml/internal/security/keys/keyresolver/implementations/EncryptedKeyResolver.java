@@ -96,23 +96,24 @@ public class EncryptedKeyResolver extends KeyResolverSpi {
 	}
 
 	/** @inheritDoc */
-	public PublicKey engineLookupAndResolvePublicKey(Element element, String BaseURI,
-			StorageResolver storage) {
+	public PublicKey engineLookupAndResolvePublicKey(Element element,
+			String BaseURI, StorageResolver storage) {
 		return null;
 	}
 
 	/** @inheritDoc */
-	public X509Certificate engineLookupResolveX509Certificate(Element element, String BaseURI,
-			StorageResolver storage) {
+	public X509Certificate engineLookupResolveX509Certificate(Element element,
+			String BaseURI, StorageResolver storage) {
 		return null;
 	}
 
 	/** @inheritDoc */
-	public javax.crypto.SecretKey engineLookupAndResolveSecretKey(Element element, String BaseURI,
-			StorageResolver storage) {
+	public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
+			Element element, String BaseURI, StorageResolver storage) {
 		if (log.isLoggable(java.util.logging.Level.FINE)) {
 			log.log(java.util.logging.Level.FINE,
-					"EncryptedKeyResolver - Can I resolve " + element.getTagName());
+					"EncryptedKeyResolver - Can I resolve " + element
+							.getTagName());
 		}
 
 		if (element == null) {
@@ -124,7 +125,8 @@ public class EncryptedKeyResolver extends KeyResolverSpi {
 				EncryptionConstants._TAG_ENCRYPTEDKEY);
 		if (isEncryptedKey) {
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE, "Passed an Encrypted Key");
+				log.log(java.util.logging.Level.FINE,
+						"Passed an Encrypted Key");
 			}
 			try {
 				XMLCipher cipher = XMLCipher.getInstance();
@@ -132,7 +134,8 @@ public class EncryptedKeyResolver extends KeyResolverSpi {
 				if (internalKeyResolvers != null) {
 					int size = internalKeyResolvers.size();
 					for (int i = 0; i < size; i++) {
-						cipher.registerInternalKeyResolver(internalKeyResolvers.get(i));
+						cipher.registerInternalKeyResolver(internalKeyResolvers
+								.get(i));
 					}
 				}
 				EncryptedKey ek = cipher.loadEncryptedKey(element);

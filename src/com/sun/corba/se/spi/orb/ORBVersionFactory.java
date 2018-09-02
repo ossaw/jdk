@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.orb;
@@ -31,8 +11,7 @@ import org.omg.CORBA.portable.InputStream;
 import org.omg.CORBA.INTERNAL;
 
 public class ORBVersionFactory {
-	private ORBVersionFactory() {
-	};
+	private ORBVersionFactory() {};
 
 	public static ORBVersion getFOREIGN() {
 		return ORBVersionImpl.FOREIGN;
@@ -91,20 +70,20 @@ public class ORBVersionFactory {
 		 */
 
 		switch (value) {
-		case ORBVersion.FOREIGN:
-			return ORBVersionImpl.FOREIGN;
-		case ORBVersion.OLD:
-			return ORBVersionImpl.OLD;
-		case ORBVersion.NEW:
-			return ORBVersionImpl.NEW;
-		case ORBVersion.JDK1_3_1_01:
-			return ORBVersionImpl.JDK1_3_1_01;
-		case ORBVersion.NEWER:
-			return ORBVersionImpl.NEWER;
-		case ORBVersion.PEORB:
-			return ORBVersionImpl.PEORB;
-		default:
-			return new ORBVersionImpl(value);
+			case ORBVersion.FOREIGN:
+				return ORBVersionImpl.FOREIGN;
+			case ORBVersion.OLD:
+				return ORBVersionImpl.OLD;
+			case ORBVersion.NEW:
+				return ORBVersionImpl.NEW;
+			case ORBVersion.JDK1_3_1_01:
+				return ORBVersionImpl.JDK1_3_1_01;
+			case ORBVersion.NEWER:
+				return ORBVersionImpl.NEWER;
+			case ORBVersion.PEORB:
+				return ORBVersionImpl.PEORB;
+			default:
+				return new ORBVersionImpl(value);
 		}
 	}
 }

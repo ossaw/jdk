@@ -8,6 +8,5 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public interface Activator
-		extends ActivatorOperations, org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {
-} // interface Activator
+public interface Activator extends ActivatorOperations, org.omg.CORBA.Object,
+		org.omg.CORBA.portable.IDLEntity {} // interface Activator

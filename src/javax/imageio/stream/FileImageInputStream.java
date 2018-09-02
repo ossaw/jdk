@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.stream;
@@ -58,20 +38,24 @@ public class FileImageInputStream extends ImageInputStreamImpl {
 	 * constructed and the time of the last call to a read method.
 	 *
 	 * @param f
-	 *            a <code>File</code> to read from.
+	 *          a <code>File</code> to read from.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>f</code> is <code>null</code>.
+	 *                                     if <code>f</code> is
+	 *                                     <code>null</code>.
 	 * @exception SecurityException
-	 *                if a security manager exists and does not allow read
-	 *                access to the file.
+	 *                                     if a security manager exists and does
+	 *                                     not allow read
+	 *                                     access to the file.
 	 * @exception FileNotFoundException
-	 *                if <code>f</code> is a directory or cannot be opened for
-	 *                reading for any other reason.
+	 *                                     if <code>f</code> is a directory or
+	 *                                     cannot be opened for
+	 *                                     reading for any other reason.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                                     if an I/O error occurs.
 	 */
-	public FileImageInputStream(File f) throws FileNotFoundException, IOException {
+	public FileImageInputStream(File f) throws FileNotFoundException,
+			IOException {
 		this(f == null ? null : new RandomAccessFile(f, "r"));
 	}
 
@@ -87,7 +71,8 @@ public class FileImageInputStream extends ImageInputStreamImpl {
 	 *            a <code>RandomAccessFile</code> to read from.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>raf</code> is <code>null</code>.
+	 *                                     if <code>raf</code> is
+	 *                                     <code>null</code>.
 	 */
 	public FileImageInputStream(RandomAccessFile raf) {
 		if (raf == null) {

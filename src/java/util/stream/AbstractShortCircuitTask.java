@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -33,14 +13,14 @@ import java.util.concurrent.atomic.AtomicReference;
  * stream.
  *
  * @param <P_IN>
- *            type of input elements to the pipeline
+ *        type of input elements to the pipeline
  * @param <P_OUT>
- *            type of output elements from the pipeline
+ *        type of output elements from the pipeline
  * @param <R>
- *            type of intermediate result, may be different from operation
- *            result type
+ *        type of intermediate result, may be different from operation
+ *        result type
  * @param <K>
- *            type of child and sibling tasks
+ *        type of child and sibling tasks
  * @since 1.8
  */
 @SuppressWarnings("serial")
@@ -64,11 +44,12 @@ abstract class AbstractShortCircuitTask<P_IN, P_OUT, R, K extends AbstractShortC
 	 * Constructor for root tasks.
 	 *
 	 * @param helper
-	 *            the {@code PipelineHelper} describing the stream pipeline up
-	 *            to this operation
+	 *                    the {@code PipelineHelper} describing the stream
+	 *                    pipeline up
+	 *                    to this operation
 	 * @param spliterator
-	 *            the {@code Spliterator} describing the source for this
-	 *            pipeline
+	 *                    the {@code Spliterator} describing the source for this
+	 *                    pipeline
 	 */
 	protected AbstractShortCircuitTask(PipelineHelper<P_OUT> helper,
 			Spliterator<P_IN> spliterator) {
@@ -80,12 +61,14 @@ abstract class AbstractShortCircuitTask<P_IN, P_OUT, R, K extends AbstractShortC
 	 * Constructor for non-root nodes.
 	 *
 	 * @param parent
-	 *            parent task in the computation tree
+	 *                    parent task in the computation tree
 	 * @param spliterator
-	 *            the {@code Spliterator} for the portion of the computation
-	 *            tree described by this task
+	 *                    the {@code Spliterator} for the portion of the
+	 *                    computation
+	 *                    tree described by this task
 	 */
-	protected AbstractShortCircuitTask(K parent, Spliterator<P_IN> spliterator) {
+	protected AbstractShortCircuitTask(K parent,
+			Spliterator<P_IN> spliterator) {
 		super(parent, spliterator);
 		sharedResult = parent.sharedResult;
 	}
@@ -151,7 +134,7 @@ abstract class AbstractShortCircuitTask<P_IN, P_OUT, R, K extends AbstractShortC
 	 * the computation to terminate early.
 	 *
 	 * @param result
-	 *            the result found
+	 *               the result found
 	 */
 	protected void shortCircuit(R result) {
 		if (result != null)
@@ -163,7 +146,7 @@ abstract class AbstractShortCircuitTask<P_IN, P_OUT, R, K extends AbstractShortC
 	 * shared result instead (if not already set).
 	 *
 	 * @param localResult
-	 *            The result to set for this task
+	 *                    The result to set for this task
 	 */
 	@Override
 	protected void setLocalResult(R localResult) {
@@ -211,7 +194,8 @@ abstract class AbstractShortCircuitTask<P_IN, P_OUT, R, K extends AbstractShortC
 	protected boolean taskCanceled() {
 		boolean cancel = canceled;
 		if (!cancel) {
-			for (K parent = getParent(); !cancel && parent != null; parent = parent.getParent())
+			for (K parent = getParent(); !cancel
+					&& parent != null; parent = parent.getParent())
 				cancel = parent.canceled;
 		}
 

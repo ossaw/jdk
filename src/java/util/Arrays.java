@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -82,8 +62,7 @@ public class Arrays {
 	private static final int MIN_ARRAY_SORT_GRAN = 1 << 13;
 
 	// Suppresses default constructor, ensuring non-instantiability.
-	private Arrays() {
-	}
+	private Arrays() {}
 
 	/**
 	 * A comparator that implements the natural ordering of a group of mutually
@@ -111,10 +90,11 @@ public class Arrays {
 	 * Checks that {@code fromIndex} and {@code toIndex} are in the range and
 	 * throws an exception if they aren't.
 	 */
-	private static void rangeCheck(int arrayLength, int fromIndex, int toIndex) {
+	private static void rangeCheck(int arrayLength, int fromIndex,
+			int toIndex) {
 		if (fromIndex > toIndex) {
-			throw new IllegalArgumentException(
-					"fromIndex(" + fromIndex + ") > toIndex(" + toIndex + ")");
+			throw new IllegalArgumentException("fromIndex(" + fromIndex
+					+ ") > toIndex(" + toIndex + ")");
 		}
 		if (fromIndex < 0) {
 			throw new ArrayIndexOutOfBoundsException(fromIndex);
@@ -143,7 +123,7 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 */
 	public static void sort(int[] a) {
 		DualPivotQuicksort.sort(a, 0, a.length - 1, null, 0, 0);
@@ -163,16 +143,17 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 */
 	public static void sort(int[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -190,7 +171,7 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 */
 	public static void sort(long[] a) {
 		DualPivotQuicksort.sort(a, 0, a.length - 1, null, 0, 0);
@@ -210,16 +191,17 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 */
 	public static void sort(long[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -237,7 +219,7 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 */
 	public static void sort(short[] a) {
 		DualPivotQuicksort.sort(a, 0, a.length - 1, null, 0, 0);
@@ -257,16 +239,17 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 */
 	public static void sort(short[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -284,7 +267,7 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 */
 	public static void sort(char[] a) {
 		DualPivotQuicksort.sort(a, 0, a.length - 1, null, 0, 0);
@@ -304,16 +287,17 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 */
 	public static void sort(char[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -331,7 +315,7 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 */
 	public static void sort(byte[] a) {
 		DualPivotQuicksort.sort(a, 0, a.length - 1);
@@ -351,16 +335,17 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 */
 	public static void sort(byte[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -387,7 +372,7 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 */
 	public static void sort(float[] a) {
 		DualPivotQuicksort.sort(a, 0, a.length - 1, null, 0, 0);
@@ -416,16 +401,17 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 */
 	public static void sort(float[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -452,7 +438,7 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 */
 	public static void sort(double[] a) {
 		DualPivotQuicksort.sort(a, 0, a.length - 1, null, 0, 0);
@@ -481,16 +467,17 @@ public class Arrays {
 	 * than traditional (one-pivot) Quicksort implementations.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 */
 	public static void sort(double[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -513,17 +500,20 @@ public class Arrays {
 	 *           common pool} is used to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(byte[] a) {
 		int n = a.length, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, 0, n - 1);
 		else
-			new ArraysParallelSortHelpers.FJByte.Sorter(null, a, new byte[n], 0, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJByte.Sorter(null, a, new byte[n], 0,
+					n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g).invoke();
 	}
 
 	/**
@@ -546,27 +536,31 @@ public class Arrays {
 	 *           to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(byte[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		int n = toIndex - fromIndex, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, fromIndex, toIndex - 1);
 		else
-			new ArraysParallelSortHelpers.FJByte.Sorter(null, a, new byte[n], fromIndex, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJByte.Sorter(null, a, new byte[n],
+					fromIndex, n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g).invoke();
 	}
 
 	/**
@@ -585,17 +579,20 @@ public class Arrays {
 	 *           common pool} is used to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(char[] a) {
 		int n = a.length, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, 0, n - 1, null, 0, 0);
 		else
-			new ArraysParallelSortHelpers.FJChar.Sorter(null, a, new char[n], 0, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJChar.Sorter(null, a, new char[n], 0,
+					n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g).invoke();
 	}
 
 	/**
@@ -618,27 +615,31 @@ public class Arrays {
 	 *           to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(char[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		int n = toIndex - fromIndex, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, fromIndex, toIndex - 1, null, 0, 0);
 		else
-			new ArraysParallelSortHelpers.FJChar.Sorter(null, a, new char[n], fromIndex, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJChar.Sorter(null, a, new char[n],
+					fromIndex, n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g).invoke();
 	}
 
 	/**
@@ -657,17 +658,20 @@ public class Arrays {
 	 *           common pool} is used to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(short[] a) {
 		int n = a.length, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, 0, n - 1, null, 0, 0);
 		else
-			new ArraysParallelSortHelpers.FJShort.Sorter(null, a, new short[n], 0, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJShort.Sorter(null, a, new short[n],
+					0, n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g).invoke();
 	}
 
 	/**
@@ -690,27 +694,31 @@ public class Arrays {
 	 *           to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(short[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		int n = toIndex - fromIndex, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, fromIndex, toIndex - 1, null, 0, 0);
 		else
-			new ArraysParallelSortHelpers.FJShort.Sorter(null, a, new short[n], fromIndex, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJShort.Sorter(null, a, new short[n],
+					fromIndex, n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g).invoke();
 	}
 
 	/**
@@ -729,17 +737,20 @@ public class Arrays {
 	 *           to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(int[] a) {
 		int n = a.length, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, 0, n - 1, null, 0, 0);
 		else
-			new ArraysParallelSortHelpers.FJInt.Sorter(null, a, new int[n], 0, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJInt.Sorter(null, a, new int[n], 0,
+					n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g).invoke();
 	}
 
 	/**
@@ -761,27 +772,31 @@ public class Arrays {
 	 *           pool} is used to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(int[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		int n = toIndex - fromIndex, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, fromIndex, toIndex - 1, null, 0, 0);
 		else
-			new ArraysParallelSortHelpers.FJInt.Sorter(null, a, new int[n], fromIndex, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJInt.Sorter(null, a, new int[n],
+					fromIndex, n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g).invoke();
 	}
 
 	/**
@@ -800,17 +815,20 @@ public class Arrays {
 	 *           common pool} is used to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(long[] a) {
 		int n = a.length, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, 0, n - 1, null, 0, 0);
 		else
-			new ArraysParallelSortHelpers.FJLong.Sorter(null, a, new long[n], 0, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJLong.Sorter(null, a, new long[n], 0,
+					n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g).invoke();
 	}
 
 	/**
@@ -833,27 +851,31 @@ public class Arrays {
 	 *           to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(long[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		int n = toIndex - fromIndex, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, fromIndex, toIndex - 1, null, 0, 0);
 		else
-			new ArraysParallelSortHelpers.FJLong.Sorter(null, a, new long[n], fromIndex, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJLong.Sorter(null, a, new long[n],
+					fromIndex, n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g).invoke();
 	}
 
 	/**
@@ -881,17 +903,20 @@ public class Arrays {
 	 *           common pool} is used to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(float[] a) {
 		int n = a.length, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, 0, n - 1, null, 0, 0);
 		else
-			new ArraysParallelSortHelpers.FJFloat.Sorter(null, a, new float[n], 0, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJFloat.Sorter(null, a, new float[n],
+					0, n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g).invoke();
 	}
 
 	/**
@@ -923,27 +948,31 @@ public class Arrays {
 	 *           to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(float[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		int n = toIndex - fromIndex, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, fromIndex, toIndex - 1, null, 0, 0);
 		else
-			new ArraysParallelSortHelpers.FJFloat.Sorter(null, a, new float[n], fromIndex, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJFloat.Sorter(null, a, new float[n],
+					fromIndex, n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g).invoke();
 	}
 
 	/**
@@ -971,17 +1000,21 @@ public class Arrays {
 	 *           common pool} is used to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(double[] a) {
 		int n = a.length, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, 0, n - 1, null, 0, 0);
 		else
-			new ArraysParallelSortHelpers.FJDouble.Sorter(null, a, new double[n], 0, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJDouble.Sorter(null, a,
+					new double[n], 0, n, 0, ((g = n
+							/ (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+									? MIN_ARRAY_SORT_GRAN
+									: g).invoke();
 	}
 
 	/**
@@ -1013,27 +1046,32 @@ public class Arrays {
 	 *           to execute any parallel tasks.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element, inclusive, to be sorted
+	 *                  the index of the first element, inclusive, to be sorted
 	 * @param toIndex
-	 *            the index of the last element, exclusive, to be sorted
+	 *                  the index of the last element, exclusive, to be sorted
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 *
 	 * @since 1.8
 	 */
 	public static void parallelSort(double[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		int n = toIndex - fromIndex, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			DualPivotQuicksort.sort(a, fromIndex, toIndex - 1, null, 0, 0);
 		else
-			new ArraysParallelSortHelpers.FJDouble.Sorter(null, a, new double[n], fromIndex, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g).invoke();
+			new ArraysParallelSortHelpers.FJDouble.Sorter(null, a,
+					new double[n], fromIndex, n, 0, ((g = n
+							/ (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+									? MIN_ARRAY_SORT_GRAN
+									: g).invoke();
 	}
 
 	/**
@@ -1061,30 +1099,36 @@ public class Arrays {
 	 *           original array. The {@link ForkJoinPool#commonPool() ForkJoin
 	 *           common pool} is used to execute any parallel tasks.
 	 *
-	 * @param <T>
-	 *            the class of the objects to be sorted
+	 * @param   <T>
+	 *          the class of the objects to be sorted
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 *
 	 * @throws ClassCastException
-	 *             if the array contains elements that are not <i>mutually
-	 *             comparable</i> (for example, strings and integers)
+	 *                                  if the array contains elements that are
+	 *                                  not <i>mutually
+	 *                                  comparable</i> (for example, strings and
+	 *                                  integers)
 	 * @throws IllegalArgumentException
-	 *             (optional) if the natural ordering of the array elements is
-	 *             found to violate the {@link Comparable} contract
+	 *                                  (optional) if the natural ordering of
+	 *                                  the array elements is
+	 *                                  found to violate the {@link Comparable}
+	 *                                  contract
 	 *
 	 * @since 1.8
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<? super T>> void parallelSort(T[] a) {
 		int n = a.length, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			TimSort.sort(a, 0, n, NaturalOrder.INSTANCE, null, 0, 0);
 		else
 			new ArraysParallelSortHelpers.FJObject.Sorter<T>(null, a,
-					(T[]) Array.newInstance(a.getClass().getComponentType(), n), 0, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g,
-					NaturalOrder.INSTANCE).invoke();
+					(T[]) Array.newInstance(a.getClass().getComponentType(), n),
+					0, n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g, NaturalOrder.INSTANCE).invoke();
 	}
 
 	/**
@@ -1116,38 +1160,46 @@ public class Arrays {
 	 *           {@link ForkJoinPool#commonPool() ForkJoin common pool} is used
 	 *           to execute any parallel tasks.
 	 *
-	 * @param <T>
-	 *            the class of the objects to be sorted
+	 * @param           <T>
+	 *                  the class of the objects to be sorted
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be sorted
+	 *                  the index of the first element (inclusive) to be sorted
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be sorted
+	 *                  the index of the last element (exclusive) to be sorted
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex} or (optional) if the natural
-	 *             ordering of the array elements is found to violate the
-	 *             {@link Comparable} contract
+	 *                                        if {@code fromIndex > toIndex} or
+	 *                                        (optional) if the natural
+	 *                                        ordering of the array elements is
+	 *                                        found to violate the
+	 *                                        {@link Comparable} contract
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 * @throws ClassCastException
-	 *             if the array contains elements that are not <i>mutually
-	 *             comparable</i> (for example, strings and integers).
+	 *                                        if the array contains elements
+	 *                                        that are not <i>mutually
+	 *                                        comparable</i> (for example,
+	 *                                        strings and integers).
 	 *
 	 * @since 1.8
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Comparable<? super T>> void parallelSort(T[] a, int fromIndex,
-			int toIndex) {
+	public static <T extends Comparable<? super T>> void parallelSort(T[] a,
+			int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		int n = toIndex - fromIndex, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
-			TimSort.sort(a, fromIndex, toIndex, NaturalOrder.INSTANCE, null, 0, 0);
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
+			TimSort.sort(a, fromIndex, toIndex, NaturalOrder.INSTANCE, null, 0,
+					0);
 		else
 			new ArraysParallelSortHelpers.FJObject.Sorter<T>(null, a,
-					(T[]) Array.newInstance(a.getClass().getComponentType(), n), fromIndex, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g,
-					NaturalOrder.INSTANCE).invoke();
+					(T[]) Array.newInstance(a.getClass().getComponentType(), n),
+					fromIndex, n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g, NaturalOrder.INSTANCE).invoke();
 	}
 
 	/**
@@ -1173,7 +1225,7 @@ public class Arrays {
 	 *           original array. The {@link ForkJoinPool#commonPool() ForkJoin
 	 *           common pool} is used to execute any parallel tasks.
 	 *
-	 * @param <T>
+	 * @param     <T>
 	 *            the class of the objects to be sorted
 	 * @param a
 	 *            the array to be sorted
@@ -1182,11 +1234,14 @@ public class Arrays {
 	 *            {@code null} value indicates that the elements'
 	 *            {@linkplain Comparable natural ordering} should be used.
 	 * @throws ClassCastException
-	 *             if the array contains elements that are not <i>mutually
-	 *             comparable</i> using the specified comparator
+	 *                                  if the array contains elements that are
+	 *                                  not <i>mutually
+	 *                                  comparable</i> using the specified
+	 *                                  comparator
 	 * @throws IllegalArgumentException
-	 *             (optional) if the comparator is found to violate the
-	 *             {@link java.util.Comparator} contract
+	 *                                  (optional) if the comparator is found to
+	 *                                  violate the
+	 *                                  {@link java.util.Comparator} contract
 	 *
 	 * @since 1.8
 	 */
@@ -1195,13 +1250,15 @@ public class Arrays {
 		if (cmp == null)
 			cmp = NaturalOrder.INSTANCE;
 		int n = a.length, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			TimSort.sort(a, 0, n, cmp, null, 0, 0);
 		else
 			new ArraysParallelSortHelpers.FJObject.Sorter<T>(null, a,
-					(T[]) Array.newInstance(a.getClass().getComponentType(), n), 0, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g, cmp)
-							.invoke();
+					(T[]) Array.newInstance(a.getClass().getComponentType(), n),
+					0, n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g, cmp).invoke();
 	}
 
 	/**
@@ -1231,27 +1288,32 @@ public class Arrays {
 	 *           {@link ForkJoinPool#commonPool() ForkJoin common pool} is used
 	 *           to execute any parallel tasks.
 	 *
-	 * @param <T>
-	 *            the class of the objects to be sorted
+	 * @param           <T>
+	 *                  the class of the objects to be sorted
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be sorted
+	 *                  the index of the first element (inclusive) to be sorted
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be sorted
+	 *                  the index of the last element (exclusive) to be sorted
 	 * @param cmp
-	 *            the comparator to determine the order of the array. A
-	 *            {@code null} value indicates that the elements'
-	 *            {@linkplain Comparable natural ordering} should be used.
+	 *                  the comparator to determine the order of the array. A
+	 *                  {@code null} value indicates that the elements'
+	 *                  {@linkplain Comparable natural ordering} should be used.
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex} or (optional) if the natural
-	 *             ordering of the array elements is found to violate the
-	 *             {@link Comparable} contract
+	 *                                        if {@code fromIndex > toIndex} or
+	 *                                        (optional) if the natural
+	 *                                        ordering of the array elements is
+	 *                                        found to violate the
+	 *                                        {@link Comparable} contract
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 * @throws ClassCastException
-	 *             if the array contains elements that are not <i>mutually
-	 *             comparable</i> (for example, strings and integers).
+	 *                                        if the array contains elements
+	 *                                        that are not <i>mutually
+	 *                                        comparable</i> (for example,
+	 *                                        strings and integers).
 	 *
 	 * @since 1.8
 	 */
@@ -1262,13 +1324,15 @@ public class Arrays {
 		if (cmp == null)
 			cmp = NaturalOrder.INSTANCE;
 		int n = toIndex - fromIndex, p, g;
-		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool.getCommonPoolParallelism()) == 1)
+		if (n <= MIN_ARRAY_SORT_GRAN || (p = ForkJoinPool
+				.getCommonPoolParallelism()) == 1)
 			TimSort.sort(a, fromIndex, toIndex, cmp, null, 0, 0);
 		else
 			new ArraysParallelSortHelpers.FJObject.Sorter<T>(null, a,
-					(T[]) Array.newInstance(a.getClass().getComponentType(), n), fromIndex, n, 0,
-					((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN) ? MIN_ARRAY_SORT_GRAN : g, cmp)
-							.invoke();
+					(T[]) Array.newInstance(a.getClass().getComponentType(), n),
+					fromIndex, n, 0, ((g = n / (p << 2)) <= MIN_ARRAY_SORT_GRAN)
+							? MIN_ARRAY_SORT_GRAN
+							: g, cmp).invoke();
 	}
 
 	/*
@@ -1282,9 +1346,9 @@ public class Arrays {
 	 * future release.
 	 */
 	static final class LegacyMergeSort {
-		private static final boolean userRequested = java.security.AccessController.doPrivileged(
-				new sun.security.action.GetBooleanAction("java.util.Arrays.useLegacyMergeSort"))
-				.booleanValue();
+		private static final boolean userRequested = java.security.AccessController
+				.doPrivileged(new sun.security.action.GetBooleanAction(
+						"java.util.Arrays.useLegacyMergeSort")).booleanValue();
 	}
 
 	/**
@@ -1327,13 +1391,17 @@ public class Arrays {
 	 * 1993.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 * @throws ClassCastException
-	 *             if the array contains elements that are not <i>mutually
-	 *             comparable</i> (for example, strings and integers)
+	 *                                  if the array contains elements that are
+	 *                                  not <i>mutually
+	 *                                  comparable</i> (for example, strings and
+	 *                                  integers)
 	 * @throws IllegalArgumentException
-	 *             (optional) if the natural ordering of the array elements is
-	 *             found to violate the {@link Comparable} contract
+	 *                                  (optional) if the natural ordering of
+	 *                                  the array elements is
+	 *                                  found to violate the {@link Comparable}
+	 *                                  contract
 	 */
 	public static void sort(Object[] a) {
 		if (LegacyMergeSort.userRequested)
@@ -1391,20 +1459,25 @@ public class Arrays {
 	 * 1993.
 	 *
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be sorted
+	 *                  the index of the first element (inclusive) to be sorted
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be sorted
+	 *                  the index of the last element (exclusive) to be sorted
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex} or (optional) if the natural
-	 *             ordering of the array elements is found to violate the
-	 *             {@link Comparable} contract
+	 *                                        if {@code fromIndex > toIndex} or
+	 *                                        (optional) if the natural
+	 *                                        ordering of the array elements is
+	 *                                        found to violate the
+	 *                                        {@link Comparable} contract
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 * @throws ClassCastException
-	 *             if the array contains elements that are not <i>mutually
-	 *             comparable</i> (for example, strings and integers).
+	 *                                        if the array contains elements
+	 *                                        that are not <i>mutually
+	 *                                        comparable</i> (for example,
+	 *                                        strings and integers).
 	 */
 	public static void sort(Object[] a, int fromIndex, int toIndex) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -1415,7 +1488,8 @@ public class Arrays {
 	}
 
 	/** To be removed in a future release. */
-	private static void legacyMergeSort(Object[] a, int fromIndex, int toIndex) {
+	private static void legacyMergeSort(Object[] a, int fromIndex,
+			int toIndex) {
 		Object[] aux = copyOfRange(a, fromIndex, toIndex);
 		mergeSort(aux, a, fromIndex, toIndex, -fromIndex);
 	}
@@ -1434,13 +1508,15 @@ public class Arrays {
 	 * future release.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private static void mergeSort(Object[] src, Object[] dest, int low, int high, int off) {
+	private static void mergeSort(Object[] src, Object[] dest, int low,
+			int high, int off) {
 		int length = high - low;
 
 		// Insertion sort on smallest arrays
 		if (length < INSERTIONSORT_THRESHOLD) {
 			for (int i = low; i < high; i++)
-				for (int j = i; j > low && ((Comparable) dest[j - 1]).compareTo(dest[j]) > 0; j--)
+				for (int j = i; j > low && ((Comparable) dest[j - 1]).compareTo(
+						dest[j]) > 0; j--)
 					swap(dest, j, j - 1);
 			return;
 		}
@@ -1463,7 +1539,8 @@ public class Arrays {
 
 		// Merge sorted halves (now in src) into dest
 		for (int i = destLow, p = low, q = mid; i < destHigh; i++) {
-			if (q >= high || p < mid && ((Comparable) src[p]).compareTo(src[q]) <= 0)
+			if (q >= high || p < mid && ((Comparable) src[p]).compareTo(
+					src[q]) <= 0)
 				dest[i] = src[p++];
 			else
 				dest[i] = src[q++];
@@ -1516,20 +1593,23 @@ public class Arrays {
 	 * Annual ACM-SIAM Symposium on Discrete Algorithms, pp 467-474, January
 	 * 1993.
 	 *
-	 * @param <T>
-	 *            the class of the objects to be sorted
+	 * @param   <T>
+	 *          the class of the objects to be sorted
 	 * @param a
-	 *            the array to be sorted
+	 *          the array to be sorted
 	 * @param c
-	 *            the comparator to determine the order of the array. A
-	 *            {@code null} value indicates that the elements'
-	 *            {@linkplain Comparable natural ordering} should be used.
+	 *          the comparator to determine the order of the array. A
+	 *          {@code null} value indicates that the elements'
+	 *          {@linkplain Comparable natural ordering} should be used.
 	 * @throws ClassCastException
-	 *             if the array contains elements that are not <i>mutually
-	 *             comparable</i> using the specified comparator
+	 *                                  if the array contains elements that are
+	 *                                  not <i>mutually
+	 *                                  comparable</i> using the specified
+	 *                                  comparator
 	 * @throws IllegalArgumentException
-	 *             (optional) if the comparator is found to violate the
-	 *             {@link Comparator} contract
+	 *                                  (optional) if the comparator is found to
+	 *                                  violate the
+	 *                                  {@link Comparator} contract
 	 */
 	public static <T> void sort(T[] a, Comparator<? super T> c) {
 		if (c == null) {
@@ -1591,29 +1671,35 @@ public class Arrays {
 	 * Annual ACM-SIAM Symposium on Discrete Algorithms, pp 467-474, January
 	 * 1993.
 	 *
-	 * @param <T>
-	 *            the class of the objects to be sorted
+	 * @param           <T>
+	 *                  the class of the objects to be sorted
 	 * @param a
-	 *            the array to be sorted
+	 *                  the array to be sorted
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be sorted
+	 *                  the index of the first element (inclusive) to be sorted
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be sorted
+	 *                  the index of the last element (exclusive) to be sorted
 	 * @param c
-	 *            the comparator to determine the order of the array. A
-	 *            {@code null} value indicates that the elements'
-	 *            {@linkplain Comparable natural ordering} should be used.
+	 *                  the comparator to determine the order of the array. A
+	 *                  {@code null} value indicates that the elements'
+	 *                  {@linkplain Comparable natural ordering} should be used.
 	 * @throws ClassCastException
-	 *             if the array contains elements that are not <i>mutually
-	 *             comparable</i> using the specified comparator.
+	 *                                        if the array contains elements
+	 *                                        that are not <i>mutually
+	 *                                        comparable</i> using the specified
+	 *                                        comparator.
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex} or (optional) if the
-	 *             comparator is found to violate the {@link Comparator}
-	 *             contract
+	 *                                        if {@code fromIndex > toIndex} or
+	 *                                        (optional) if the
+	 *                                        comparator is found to violate the
+	 *                                        {@link Comparator}
+	 *                                        contract
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > a.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > a.length}
 	 */
-	public static <T> void sort(T[] a, int fromIndex, int toIndex, Comparator<? super T> c) {
+	public static <T> void sort(T[] a, int fromIndex, int toIndex,
+			Comparator<? super T> c) {
 		if (c == null) {
 			sort(a, fromIndex, toIndex);
 		} else {
@@ -1643,14 +1729,15 @@ public class Arrays {
 	 * release.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static void mergeSort(Object[] src, Object[] dest, int low, int high, int off,
-			Comparator c) {
+	private static void mergeSort(Object[] src, Object[] dest, int low,
+			int high, int off, Comparator c) {
 		int length = high - low;
 
 		// Insertion sort on smallest arrays
 		if (length < INSERTIONSORT_THRESHOLD) {
 			for (int i = low; i < high; i++)
-				for (int j = i; j > low && c.compare(dest[j - 1], dest[j]) > 0; j--)
+				for (int j = i; j > low && c.compare(dest[j - 1],
+						dest[j]) > 0; j--)
 					swap(dest, j, j - 1);
 			return;
 		}
@@ -1689,44 +1776,47 @@ public class Arrays {
 	 * return the array holds {@code [2, 3, 3, 6]}. Parallel prefix computation
 	 * is usually more efficient than sequential loops for large arrays.
 	 *
-	 * @param <T>
-	 *            the class of the objects in the array
+	 * @param       <T>
+	 *              the class of the objects in the array
 	 * @param array
-	 *            the array, which is modified in-place by this method
+	 *              the array, which is modified in-place by this method
 	 * @param op
-	 *            a side-effect-free, associative function to perform the
-	 *            cumulation
+	 *              a side-effect-free, associative function to perform the
+	 *              cumulation
 	 * @throws NullPointerException
-	 *             if the specified array or function is null
+	 *                              if the specified array or function is null
 	 * @since 1.8
 	 */
 	public static <T> void parallelPrefix(T[] array, BinaryOperator<T> op) {
 		Objects.requireNonNull(op);
 		if (array.length > 0)
-			new ArrayPrefixHelpers.CumulateTask<>(null, op, array, 0, array.length).invoke();
+			new ArrayPrefixHelpers.CumulateTask<>(null, op, array, 0,
+					array.length).invoke();
 	}
 
 	/**
 	 * Performs {@link #parallelPrefix(Object[], BinaryOperator)} for the given
 	 * subrange of the array.
 	 *
-	 * @param <T>
-	 *            the class of the objects in the array
+	 * @param           <T>
+	 *                  the class of the objects in the array
 	 * @param array
-	 *            the array
+	 *                  the array
 	 * @param fromIndex
-	 *            the index of the first element, inclusive
+	 *                  the index of the first element, inclusive
 	 * @param toIndex
-	 *            the index of the last element, exclusive
+	 *                  the index of the last element, exclusive
 	 * @param op
-	 *            a side-effect-free, associative function to perform the
-	 *            cumulation
+	 *                  a side-effect-free, associative function to perform the
+	 *                  cumulation
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > array.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > array.length}
 	 * @throws NullPointerException
-	 *             if the specified array or function is null
+	 *                                        if the specified array or function
+	 *                                        is null
 	 * @since 1.8
 	 */
 	public static <T> void parallelPrefix(T[] array, int fromIndex, int toIndex,
@@ -1734,7 +1824,8 @@ public class Arrays {
 		Objects.requireNonNull(op);
 		rangeCheck(array.length, fromIndex, toIndex);
 		if (fromIndex < toIndex)
-			new ArrayPrefixHelpers.CumulateTask<>(null, op, array, fromIndex, toIndex).invoke();
+			new ArrayPrefixHelpers.CumulateTask<>(null, op, array, fromIndex,
+					toIndex).invoke();
 	}
 
 	/**
@@ -1745,18 +1836,19 @@ public class Arrays {
 	 * is usually more efficient than sequential loops for large arrays.
 	 *
 	 * @param array
-	 *            the array, which is modified in-place by this method
+	 *              the array, which is modified in-place by this method
 	 * @param op
-	 *            a side-effect-free, associative function to perform the
-	 *            cumulation
+	 *              a side-effect-free, associative function to perform the
+	 *              cumulation
 	 * @throws NullPointerException
-	 *             if the specified array or function is null
+	 *                              if the specified array or function is null
 	 * @since 1.8
 	 */
 	public static void parallelPrefix(long[] array, LongBinaryOperator op) {
 		Objects.requireNonNull(op);
 		if (array.length > 0)
-			new ArrayPrefixHelpers.LongCumulateTask(null, op, array, 0, array.length).invoke();
+			new ArrayPrefixHelpers.LongCumulateTask(null, op, array, 0,
+					array.length).invoke();
 	}
 
 	/**
@@ -1764,20 +1856,22 @@ public class Arrays {
 	 * given subrange of the array.
 	 *
 	 * @param array
-	 *            the array
+	 *                  the array
 	 * @param fromIndex
-	 *            the index of the first element, inclusive
+	 *                  the index of the first element, inclusive
 	 * @param toIndex
-	 *            the index of the last element, exclusive
+	 *                  the index of the last element, exclusive
 	 * @param op
-	 *            a side-effect-free, associative function to perform the
-	 *            cumulation
+	 *                  a side-effect-free, associative function to perform the
+	 *                  cumulation
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > array.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > array.length}
 	 * @throws NullPointerException
-	 *             if the specified array or function is null
+	 *                                        if the specified array or function
+	 *                                        is null
 	 * @since 1.8
 	 */
 	public static void parallelPrefix(long[] array, int fromIndex, int toIndex,
@@ -1785,7 +1879,8 @@ public class Arrays {
 		Objects.requireNonNull(op);
 		rangeCheck(array.length, fromIndex, toIndex);
 		if (fromIndex < toIndex)
-			new ArrayPrefixHelpers.LongCumulateTask(null, op, array, fromIndex, toIndex).invoke();
+			new ArrayPrefixHelpers.LongCumulateTask(null, op, array, fromIndex,
+					toIndex).invoke();
 	}
 
 	/**
@@ -1802,17 +1897,18 @@ public class Arrays {
 	 * if the operation was performed sequentially.
 	 *
 	 * @param array
-	 *            the array, which is modified in-place by this method
+	 *              the array, which is modified in-place by this method
 	 * @param op
-	 *            a side-effect-free function to perform the cumulation
+	 *              a side-effect-free function to perform the cumulation
 	 * @throws NullPointerException
-	 *             if the specified array or function is null
+	 *                              if the specified array or function is null
 	 * @since 1.8
 	 */
 	public static void parallelPrefix(double[] array, DoubleBinaryOperator op) {
 		Objects.requireNonNull(op);
 		if (array.length > 0)
-			new ArrayPrefixHelpers.DoubleCumulateTask(null, op, array, 0, array.length).invoke();
+			new ArrayPrefixHelpers.DoubleCumulateTask(null, op, array, 0,
+					array.length).invoke();
 	}
 
 	/**
@@ -1820,28 +1916,31 @@ public class Arrays {
 	 * given subrange of the array.
 	 *
 	 * @param array
-	 *            the array
+	 *                  the array
 	 * @param fromIndex
-	 *            the index of the first element, inclusive
+	 *                  the index of the first element, inclusive
 	 * @param toIndex
-	 *            the index of the last element, exclusive
+	 *                  the index of the last element, exclusive
 	 * @param op
-	 *            a side-effect-free, associative function to perform the
-	 *            cumulation
+	 *                  a side-effect-free, associative function to perform the
+	 *                  cumulation
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > array.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > array.length}
 	 * @throws NullPointerException
-	 *             if the specified array or function is null
+	 *                                        if the specified array or function
+	 *                                        is null
 	 * @since 1.8
 	 */
-	public static void parallelPrefix(double[] array, int fromIndex, int toIndex,
-			DoubleBinaryOperator op) {
+	public static void parallelPrefix(double[] array, int fromIndex,
+			int toIndex, DoubleBinaryOperator op) {
 		Objects.requireNonNull(op);
 		rangeCheck(array.length, fromIndex, toIndex);
 		if (fromIndex < toIndex)
-			new ArrayPrefixHelpers.DoubleCumulateTask(null, op, array, fromIndex, toIndex).invoke();
+			new ArrayPrefixHelpers.DoubleCumulateTask(null, op, array,
+					fromIndex, toIndex).invoke();
 	}
 
 	/**
@@ -1852,18 +1951,19 @@ public class Arrays {
 	 * is usually more efficient than sequential loops for large arrays.
 	 *
 	 * @param array
-	 *            the array, which is modified in-place by this method
+	 *              the array, which is modified in-place by this method
 	 * @param op
-	 *            a side-effect-free, associative function to perform the
-	 *            cumulation
+	 *              a side-effect-free, associative function to perform the
+	 *              cumulation
 	 * @throws NullPointerException
-	 *             if the specified array or function is null
+	 *                              if the specified array or function is null
 	 * @since 1.8
 	 */
 	public static void parallelPrefix(int[] array, IntBinaryOperator op) {
 		Objects.requireNonNull(op);
 		if (array.length > 0)
-			new ArrayPrefixHelpers.IntCumulateTask(null, op, array, 0, array.length).invoke();
+			new ArrayPrefixHelpers.IntCumulateTask(null, op, array, 0,
+					array.length).invoke();
 	}
 
 	/**
@@ -1871,20 +1971,22 @@ public class Arrays {
 	 * subrange of the array.
 	 *
 	 * @param array
-	 *            the array
+	 *                  the array
 	 * @param fromIndex
-	 *            the index of the first element, inclusive
+	 *                  the index of the first element, inclusive
 	 * @param toIndex
-	 *            the index of the last element, exclusive
+	 *                  the index of the last element, exclusive
 	 * @param op
-	 *            a side-effect-free, associative function to perform the
-	 *            cumulation
+	 *                  a side-effect-free, associative function to perform the
+	 *                  cumulation
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0} or {@code toIndex > array.length}
+	 *                                        if {@code fromIndex < 0} or
+	 *                                        {@code toIndex > array.length}
 	 * @throws NullPointerException
-	 *             if the specified array or function is null
+	 *                                        if the specified array or function
+	 *                                        is null
 	 * @since 1.8
 	 */
 	public static void parallelPrefix(int[] array, int fromIndex, int toIndex,
@@ -1892,7 +1994,8 @@ public class Arrays {
 		Objects.requireNonNull(op);
 		rangeCheck(array.length, fromIndex, toIndex);
 		if (fromIndex < toIndex)
-			new ArrayPrefixHelpers.IntCumulateTask(null, op, array, fromIndex, toIndex).invoke();
+			new ArrayPrefixHelpers.IntCumulateTask(null, op, array, fromIndex,
+					toIndex).invoke();
 	}
 
 	// Searching
@@ -1931,13 +2034,14 @@ public class Arrays {
 	 * be found.
 	 *
 	 * @param a
-	 *            the array to be searched
+	 *                  the array to be searched
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be searched
+	 *                  the index of the first element (inclusive) to be
+	 *                  searched
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be searched
+	 *                  the index of the last element (exclusive) to be searched
 	 * @param key
-	 *            the value to be searched for
+	 *                  the value to be searched for
 	 * @return index of the search key, if it is contained in the array within
 	 *         the specified range; otherwise,
 	 *         <tt>(-(<i>insertion point</i>) - 1)</tt>. The <i>insertion
@@ -1948,18 +2052,21 @@ public class Arrays {
 	 *         guarantees that the return value will be &gt;= 0 if and only if
 	 *         the key is found.
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0 or toIndex > a.length}
+	 *                                        if
+	 *                                        {@code fromIndex < 0 or toIndex > a.length}
 	 * @since 1.6
 	 */
-	public static int binarySearch(long[] a, int fromIndex, int toIndex, long key) {
+	public static int binarySearch(long[] a, int fromIndex, int toIndex,
+			long key) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		return binarySearch0(a, fromIndex, toIndex, key);
 	}
 
 	// Like public version, but without range checks.
-	private static int binarySearch0(long[] a, int fromIndex, int toIndex, long key) {
+	private static int binarySearch0(long[] a, int fromIndex, int toIndex,
+			long key) {
 		int low = fromIndex;
 		int high = toIndex - 1;
 
@@ -2011,13 +2118,14 @@ public class Arrays {
 	 * be found.
 	 *
 	 * @param a
-	 *            the array to be searched
+	 *                  the array to be searched
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be searched
+	 *                  the index of the first element (inclusive) to be
+	 *                  searched
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be searched
+	 *                  the index of the last element (exclusive) to be searched
 	 * @param key
-	 *            the value to be searched for
+	 *                  the value to be searched for
 	 * @return index of the search key, if it is contained in the array within
 	 *         the specified range; otherwise,
 	 *         <tt>(-(<i>insertion point</i>) - 1)</tt>. The <i>insertion
@@ -2028,18 +2136,21 @@ public class Arrays {
 	 *         guarantees that the return value will be &gt;= 0 if and only if
 	 *         the key is found.
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0 or toIndex > a.length}
+	 *                                        if
+	 *                                        {@code fromIndex < 0 or toIndex > a.length}
 	 * @since 1.6
 	 */
-	public static int binarySearch(int[] a, int fromIndex, int toIndex, int key) {
+	public static int binarySearch(int[] a, int fromIndex, int toIndex,
+			int key) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		return binarySearch0(a, fromIndex, toIndex, key);
 	}
 
 	// Like public version, but without range checks.
-	private static int binarySearch0(int[] a, int fromIndex, int toIndex, int key) {
+	private static int binarySearch0(int[] a, int fromIndex, int toIndex,
+			int key) {
 		int low = fromIndex;
 		int high = toIndex - 1;
 
@@ -2091,13 +2202,14 @@ public class Arrays {
 	 * be found.
 	 *
 	 * @param a
-	 *            the array to be searched
+	 *                  the array to be searched
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be searched
+	 *                  the index of the first element (inclusive) to be
+	 *                  searched
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be searched
+	 *                  the index of the last element (exclusive) to be searched
 	 * @param key
-	 *            the value to be searched for
+	 *                  the value to be searched for
 	 * @return index of the search key, if it is contained in the array within
 	 *         the specified range; otherwise,
 	 *         <tt>(-(<i>insertion point</i>) - 1)</tt>. The <i>insertion
@@ -2108,18 +2220,21 @@ public class Arrays {
 	 *         guarantees that the return value will be &gt;= 0 if and only if
 	 *         the key is found.
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0 or toIndex > a.length}
+	 *                                        if
+	 *                                        {@code fromIndex < 0 or toIndex > a.length}
 	 * @since 1.6
 	 */
-	public static int binarySearch(short[] a, int fromIndex, int toIndex, short key) {
+	public static int binarySearch(short[] a, int fromIndex, int toIndex,
+			short key) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		return binarySearch0(a, fromIndex, toIndex, key);
 	}
 
 	// Like public version, but without range checks.
-	private static int binarySearch0(short[] a, int fromIndex, int toIndex, short key) {
+	private static int binarySearch0(short[] a, int fromIndex, int toIndex,
+			short key) {
 		int low = fromIndex;
 		int high = toIndex - 1;
 
@@ -2171,13 +2286,14 @@ public class Arrays {
 	 * be found.
 	 *
 	 * @param a
-	 *            the array to be searched
+	 *                  the array to be searched
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be searched
+	 *                  the index of the first element (inclusive) to be
+	 *                  searched
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be searched
+	 *                  the index of the last element (exclusive) to be searched
 	 * @param key
-	 *            the value to be searched for
+	 *                  the value to be searched for
 	 * @return index of the search key, if it is contained in the array within
 	 *         the specified range; otherwise,
 	 *         <tt>(-(<i>insertion point</i>) - 1)</tt>. The <i>insertion
@@ -2188,18 +2304,21 @@ public class Arrays {
 	 *         guarantees that the return value will be &gt;= 0 if and only if
 	 *         the key is found.
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0 or toIndex > a.length}
+	 *                                        if
+	 *                                        {@code fromIndex < 0 or toIndex > a.length}
 	 * @since 1.6
 	 */
-	public static int binarySearch(char[] a, int fromIndex, int toIndex, char key) {
+	public static int binarySearch(char[] a, int fromIndex, int toIndex,
+			char key) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		return binarySearch0(a, fromIndex, toIndex, key);
 	}
 
 	// Like public version, but without range checks.
-	private static int binarySearch0(char[] a, int fromIndex, int toIndex, char key) {
+	private static int binarySearch0(char[] a, int fromIndex, int toIndex,
+			char key) {
 		int low = fromIndex;
 		int high = toIndex - 1;
 
@@ -2251,13 +2370,14 @@ public class Arrays {
 	 * be found.
 	 *
 	 * @param a
-	 *            the array to be searched
+	 *                  the array to be searched
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be searched
+	 *                  the index of the first element (inclusive) to be
+	 *                  searched
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be searched
+	 *                  the index of the last element (exclusive) to be searched
 	 * @param key
-	 *            the value to be searched for
+	 *                  the value to be searched for
 	 * @return index of the search key, if it is contained in the array within
 	 *         the specified range; otherwise,
 	 *         <tt>(-(<i>insertion point</i>) - 1)</tt>. The <i>insertion
@@ -2268,18 +2388,21 @@ public class Arrays {
 	 *         guarantees that the return value will be &gt;= 0 if and only if
 	 *         the key is found.
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0 or toIndex > a.length}
+	 *                                        if
+	 *                                        {@code fromIndex < 0 or toIndex > a.length}
 	 * @since 1.6
 	 */
-	public static int binarySearch(byte[] a, int fromIndex, int toIndex, byte key) {
+	public static int binarySearch(byte[] a, int fromIndex, int toIndex,
+			byte key) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		return binarySearch0(a, fromIndex, toIndex, key);
 	}
 
 	// Like public version, but without range checks.
-	private static int binarySearch0(byte[] a, int fromIndex, int toIndex, byte key) {
+	private static int binarySearch0(byte[] a, int fromIndex, int toIndex,
+			byte key) {
 		int low = fromIndex;
 		int high = toIndex - 1;
 
@@ -2333,13 +2456,14 @@ public class Arrays {
 	 * and equal.
 	 *
 	 * @param a
-	 *            the array to be searched
+	 *                  the array to be searched
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be searched
+	 *                  the index of the first element (inclusive) to be
+	 *                  searched
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be searched
+	 *                  the index of the last element (exclusive) to be searched
 	 * @param key
-	 *            the value to be searched for
+	 *                  the value to be searched for
 	 * @return index of the search key, if it is contained in the array within
 	 *         the specified range; otherwise,
 	 *         <tt>(-(<i>insertion point</i>) - 1)</tt>. The <i>insertion
@@ -2350,18 +2474,21 @@ public class Arrays {
 	 *         guarantees that the return value will be &gt;= 0 if and only if
 	 *         the key is found.
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0 or toIndex > a.length}
+	 *                                        if
+	 *                                        {@code fromIndex < 0 or toIndex > a.length}
 	 * @since 1.6
 	 */
-	public static int binarySearch(double[] a, int fromIndex, int toIndex, double key) {
+	public static int binarySearch(double[] a, int fromIndex, int toIndex,
+			double key) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		return binarySearch0(a, fromIndex, toIndex, key);
 	}
 
 	// Like public version, but without range checks.
-	private static int binarySearch0(double[] a, int fromIndex, int toIndex, double key) {
+	private static int binarySearch0(double[] a, int fromIndex, int toIndex,
+			double key) {
 		int low = fromIndex;
 		int high = toIndex - 1;
 
@@ -2423,13 +2550,14 @@ public class Arrays {
 	 * equal.
 	 *
 	 * @param a
-	 *            the array to be searched
+	 *                  the array to be searched
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be searched
+	 *                  the index of the first element (inclusive) to be
+	 *                  searched
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be searched
+	 *                  the index of the last element (exclusive) to be searched
 	 * @param key
-	 *            the value to be searched for
+	 *                  the value to be searched for
 	 * @return index of the search key, if it is contained in the array within
 	 *         the specified range; otherwise,
 	 *         <tt>(-(<i>insertion point</i>) - 1)</tt>. The <i>insertion
@@ -2440,18 +2568,21 @@ public class Arrays {
 	 *         guarantees that the return value will be &gt;= 0 if and only if
 	 *         the key is found.
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0 or toIndex > a.length}
+	 *                                        if
+	 *                                        {@code fromIndex < 0 or toIndex > a.length}
 	 * @since 1.6
 	 */
-	public static int binarySearch(float[] a, int fromIndex, int toIndex, float key) {
+	public static int binarySearch(float[] a, int fromIndex, int toIndex,
+			float key) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		return binarySearch0(a, fromIndex, toIndex, key);
 	}
 
 	// Like public version, but without range checks.
-	private static int binarySearch0(float[] a, int fromIndex, int toIndex, float key) {
+	private static int binarySearch0(float[] a, int fromIndex, int toIndex,
+			float key) {
 		int low = fromIndex;
 		int high = toIndex - 1;
 
@@ -2502,8 +2633,9 @@ public class Arrays {
 	 *         that the return value will be &gt;= 0 if and only if the key is
 	 *         found.
 	 * @throws ClassCastException
-	 *             if the search key is not comparable to the elements of the
-	 *             array.
+	 *                            if the search key is not comparable to the
+	 *                            elements of the
+	 *                            array.
 	 */
 	public static int binarySearch(Object[] a, Object key) {
 		return binarySearch0(a, 0, a.length, key);
@@ -2522,13 +2654,14 @@ public class Arrays {
 	 * no guarantee which one will be found.
 	 *
 	 * @param a
-	 *            the array to be searched
+	 *                  the array to be searched
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be searched
+	 *                  the index of the first element (inclusive) to be
+	 *                  searched
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be searched
+	 *                  the index of the last element (exclusive) to be searched
 	 * @param key
-	 *            the value to be searched for
+	 *                  the value to be searched for
 	 * @return index of the search key, if it is contained in the array within
 	 *         the specified range; otherwise,
 	 *         <tt>(-(<i>insertion point</i>) - 1)</tt>. The <i>insertion
@@ -2539,21 +2672,25 @@ public class Arrays {
 	 *         guarantees that the return value will be &gt;= 0 if and only if
 	 *         the key is found.
 	 * @throws ClassCastException
-	 *             if the search key is not comparable to the elements of the
-	 *             array within the specified range.
+	 *                                        if the search key is not
+	 *                                        comparable to the elements of the
+	 *                                        array within the specified range.
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0 or toIndex > a.length}
+	 *                                        if
+	 *                                        {@code fromIndex < 0 or toIndex > a.length}
 	 * @since 1.6
 	 */
-	public static int binarySearch(Object[] a, int fromIndex, int toIndex, Object key) {
+	public static int binarySearch(Object[] a, int fromIndex, int toIndex,
+			Object key) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		return binarySearch0(a, fromIndex, toIndex, key);
 	}
 
 	// Like public version, but without range checks.
-	private static int binarySearch0(Object[] a, int fromIndex, int toIndex, Object key) {
+	private static int binarySearch0(Object[] a, int fromIndex, int toIndex,
+			Object key) {
 		int low = fromIndex;
 		int high = toIndex - 1;
 
@@ -2583,7 +2720,7 @@ public class Arrays {
 	 * elements equal to the specified object, there is no guarantee which one
 	 * will be found.
 	 *
-	 * @param <T>
+	 * @param     <T>
 	 *            the class of the objects in the array
 	 * @param a
 	 *            the array to be searched
@@ -2602,10 +2739,13 @@ public class Arrays {
 	 *         that the return value will be &gt;= 0 if and only if the key is
 	 *         found.
 	 * @throws ClassCastException
-	 *             if the array contains elements that are not <i>mutually
-	 *             comparable</i> using the specified comparator, or the search
-	 *             key is not comparable to the elements of the array using this
-	 *             comparator.
+	 *                            if the array contains elements that are not
+	 *                            <i>mutually
+	 *                            comparable</i> using the specified comparator,
+	 *                            or the search
+	 *                            key is not comparable to the elements of the
+	 *                            array using this
+	 *                            comparator.
 	 */
 	public static <T> int binarySearch(T[] a, T key, Comparator<? super T> c) {
 		return binarySearch0(a, 0, a.length, key, c);
@@ -2620,20 +2760,23 @@ public class Arrays {
 	 * results are undefined. If the range contains multiple elements equal to
 	 * the specified object, there is no guarantee which one will be found.
 	 *
-	 * @param <T>
-	 *            the class of the objects in the array
+	 * @param           <T>
+	 *                  the class of the objects in the array
 	 * @param a
-	 *            the array to be searched
+	 *                  the array to be searched
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be searched
+	 *                  the index of the first element (inclusive) to be
+	 *                  searched
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be searched
+	 *                  the index of the last element (exclusive) to be searched
 	 * @param key
-	 *            the value to be searched for
+	 *                  the value to be searched for
 	 * @param c
-	 *            the comparator by which the array is ordered. A <tt>null</tt>
-	 *            value indicates that the elements' {@linkplain Comparable
-	 *            natural ordering} should be used.
+	 *                  the comparator by which the array is ordered. A
+	 *                  <tt>null</tt>
+	 *                  value indicates that the elements'
+	 *                  {@linkplain Comparable
+	 *                  natural ordering} should be used.
 	 * @return index of the search key, if it is contained in the array within
 	 *         the specified range; otherwise,
 	 *         <tt>(-(<i>insertion point</i>) - 1)</tt>. The <i>insertion
@@ -2644,14 +2787,18 @@ public class Arrays {
 	 *         guarantees that the return value will be &gt;= 0 if and only if
 	 *         the key is found.
 	 * @throws ClassCastException
-	 *             if the range contains elements that are not <i>mutually
-	 *             comparable</i> using the specified comparator, or the search
-	 *             key is not comparable to the elements in the range using this
-	 *             comparator.
+	 *                                        if the range contains elements
+	 *                                        that are not <i>mutually
+	 *                                        comparable</i> using the specified
+	 *                                        comparator, or the search
+	 *                                        key is not comparable to the
+	 *                                        elements in the range using this
+	 *                                        comparator.
 	 * @throws IllegalArgumentException
-	 *             if {@code fromIndex > toIndex}
+	 *                                        if {@code fromIndex > toIndex}
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code fromIndex < 0 or toIndex > a.length}
+	 *                                        if
+	 *                                        {@code fromIndex < 0 or toIndex > a.length}
 	 * @since 1.6
 	 */
 	public static <T> int binarySearch(T[] a, int fromIndex, int toIndex, T key,
@@ -2661,8 +2808,8 @@ public class Arrays {
 	}
 
 	// Like public version, but without range checks.
-	private static <T> int binarySearch0(T[] a, int fromIndex, int toIndex, T key,
-			Comparator<? super T> c) {
+	private static <T> int binarySearch0(T[] a, int fromIndex, int toIndex,
+			T key, Comparator<? super T> c) {
 		if (c == null) {
 			return binarySearch0(a, fromIndex, toIndex, key);
 		}
@@ -2695,9 +2842,9 @@ public class Arrays {
 	 * <p>
 	 *
 	 * @param a
-	 *            one array to be tested for equality
+	 *           one array to be tested for equality
 	 * @param a2
-	 *            the other array to be tested for equality
+	 *           the other array to be tested for equality
 	 * @return <tt>true</tt> if the two arrays are equal
 	 */
 	public static boolean equals(long[] a, long[] a2) {
@@ -2727,9 +2874,9 @@ public class Arrays {
 	 * <p>
 	 *
 	 * @param a
-	 *            one array to be tested for equality
+	 *           one array to be tested for equality
 	 * @param a2
-	 *            the other array to be tested for equality
+	 *           the other array to be tested for equality
 	 * @return <tt>true</tt> if the two arrays are equal
 	 */
 	public static boolean equals(int[] a, int[] a2) {
@@ -2759,9 +2906,9 @@ public class Arrays {
 	 * <p>
 	 *
 	 * @param a
-	 *            one array to be tested for equality
+	 *           one array to be tested for equality
 	 * @param a2
-	 *            the other array to be tested for equality
+	 *           the other array to be tested for equality
 	 * @return <tt>true</tt> if the two arrays are equal
 	 */
 	public static boolean equals(short[] a, short a2[]) {
@@ -2791,9 +2938,9 @@ public class Arrays {
 	 * <p>
 	 *
 	 * @param a
-	 *            one array to be tested for equality
+	 *           one array to be tested for equality
 	 * @param a2
-	 *            the other array to be tested for equality
+	 *           the other array to be tested for equality
 	 * @return <tt>true</tt> if the two arrays are equal
 	 */
 	public static boolean equals(char[] a, char[] a2) {
@@ -2823,9 +2970,9 @@ public class Arrays {
 	 * <p>
 	 *
 	 * @param a
-	 *            one array to be tested for equality
+	 *           one array to be tested for equality
 	 * @param a2
-	 *            the other array to be tested for equality
+	 *           the other array to be tested for equality
 	 * @return <tt>true</tt> if the two arrays are equal
 	 */
 	public static boolean equals(byte[] a, byte[] a2) {
@@ -2855,9 +3002,9 @@ public class Arrays {
 	 * <p>
 	 *
 	 * @param a
-	 *            one array to be tested for equality
+	 *           one array to be tested for equality
 	 * @param a2
-	 *            the other array to be tested for equality
+	 *           the other array to be tested for equality
 	 * @return <tt>true</tt> if the two arrays are equal
 	 */
 	public static boolean equals(boolean[] a, boolean[] a2) {
@@ -2896,9 +3043,9 @@ public class Arrays {
 	 * equals to itself, and 0.0d unequal to -0.0d.)
 	 *
 	 * @param a
-	 *            one array to be tested for equality
+	 *           one array to be tested for equality
 	 * @param a2
-	 *            the other array to be tested for equality
+	 *           the other array to be tested for equality
 	 * @return <tt>true</tt> if the two arrays are equal
 	 * @see Double#equals(Object)
 	 */
@@ -2938,9 +3085,9 @@ public class Arrays {
 	 * equals to itself, and 0.0f unequal to -0.0f.)
 	 *
 	 * @param a
-	 *            one array to be tested for equality
+	 *           one array to be tested for equality
 	 * @param a2
-	 *            the other array to be tested for equality
+	 *           the other array to be tested for equality
 	 * @return <tt>true</tt> if the two arrays are equal
 	 * @see Float#equals(Object)
 	 */
@@ -2973,9 +3120,9 @@ public class Arrays {
 	 * <p>
 	 *
 	 * @param a
-	 *            one array to be tested for equality
+	 *           one array to be tested for equality
 	 * @param a2
-	 *            the other array to be tested for equality
+	 *           the other array to be tested for equality
 	 * @return <tt>true</tt> if the two arrays are equal
 	 */
 	public static boolean equals(Object[] a, Object[] a2) {
@@ -3022,20 +3169,22 @@ public class Arrays {
 	 * empty.)
 	 *
 	 * @param a
-	 *            the array to be filled
+	 *                  the array to be filled
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the first element (inclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the last element (exclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param val
-	 *            the value to be stored in all elements of the array
+	 *                  the value to be stored in all elements of the array
 	 * @throws IllegalArgumentException
-	 *             if <tt>fromIndex &gt; toIndex</tt>
+	 *                                        if <tt>fromIndex &gt; toIndex</tt>
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <tt>fromIndex &lt; 0</tt> or
-	 *             <tt>toIndex &gt; a.length</tt>
+	 *                                        if <tt>fromIndex &lt; 0</tt> or
+	 *                                        <tt>toIndex &gt; a.length</tt>
 	 */
 	public static void fill(long[] a, int fromIndex, int toIndex, long val) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -3064,20 +3213,22 @@ public class Arrays {
 	 * <tt>fromIndex==toIndex</tt>, the range to be filled is empty.)
 	 *
 	 * @param a
-	 *            the array to be filled
+	 *                  the array to be filled
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the first element (inclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the last element (exclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param val
-	 *            the value to be stored in all elements of the array
+	 *                  the value to be stored in all elements of the array
 	 * @throws IllegalArgumentException
-	 *             if <tt>fromIndex &gt; toIndex</tt>
+	 *                                        if <tt>fromIndex &gt; toIndex</tt>
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <tt>fromIndex &lt; 0</tt> or
-	 *             <tt>toIndex &gt; a.length</tt>
+	 *                                        if <tt>fromIndex &lt; 0</tt> or
+	 *                                        <tt>toIndex &gt; a.length</tt>
 	 */
 	public static void fill(int[] a, int fromIndex, int toIndex, int val) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -3107,20 +3258,22 @@ public class Arrays {
 	 * empty.)
 	 *
 	 * @param a
-	 *            the array to be filled
+	 *                  the array to be filled
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the first element (inclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the last element (exclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param val
-	 *            the value to be stored in all elements of the array
+	 *                  the value to be stored in all elements of the array
 	 * @throws IllegalArgumentException
-	 *             if <tt>fromIndex &gt; toIndex</tt>
+	 *                                        if <tt>fromIndex &gt; toIndex</tt>
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <tt>fromIndex &lt; 0</tt> or
-	 *             <tt>toIndex &gt; a.length</tt>
+	 *                                        if <tt>fromIndex &lt; 0</tt> or
+	 *                                        <tt>toIndex &gt; a.length</tt>
 	 */
 	public static void fill(short[] a, int fromIndex, int toIndex, short val) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -3150,20 +3303,22 @@ public class Arrays {
 	 * empty.)
 	 *
 	 * @param a
-	 *            the array to be filled
+	 *                  the array to be filled
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the first element (inclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the last element (exclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param val
-	 *            the value to be stored in all elements of the array
+	 *                  the value to be stored in all elements of the array
 	 * @throws IllegalArgumentException
-	 *             if <tt>fromIndex &gt; toIndex</tt>
+	 *                                        if <tt>fromIndex &gt; toIndex</tt>
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <tt>fromIndex &lt; 0</tt> or
-	 *             <tt>toIndex &gt; a.length</tt>
+	 *                                        if <tt>fromIndex &lt; 0</tt> or
+	 *                                        <tt>toIndex &gt; a.length</tt>
 	 */
 	public static void fill(char[] a, int fromIndex, int toIndex, char val) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -3193,20 +3348,22 @@ public class Arrays {
 	 * empty.)
 	 *
 	 * @param a
-	 *            the array to be filled
+	 *                  the array to be filled
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the first element (inclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the last element (exclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param val
-	 *            the value to be stored in all elements of the array
+	 *                  the value to be stored in all elements of the array
 	 * @throws IllegalArgumentException
-	 *             if <tt>fromIndex &gt; toIndex</tt>
+	 *                                        if <tt>fromIndex &gt; toIndex</tt>
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <tt>fromIndex &lt; 0</tt> or
-	 *             <tt>toIndex &gt; a.length</tt>
+	 *                                        if <tt>fromIndex &lt; 0</tt> or
+	 *                                        <tt>toIndex &gt; a.length</tt>
 	 */
 	public static void fill(byte[] a, int fromIndex, int toIndex, byte val) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -3236,22 +3393,25 @@ public class Arrays {
 	 * empty.)
 	 *
 	 * @param a
-	 *            the array to be filled
+	 *                  the array to be filled
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the first element (inclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the last element (exclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param val
-	 *            the value to be stored in all elements of the array
+	 *                  the value to be stored in all elements of the array
 	 * @throws IllegalArgumentException
-	 *             if <tt>fromIndex &gt; toIndex</tt>
+	 *                                        if <tt>fromIndex &gt; toIndex</tt>
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <tt>fromIndex &lt; 0</tt> or
-	 *             <tt>toIndex &gt; a.length</tt>
+	 *                                        if <tt>fromIndex &lt; 0</tt> or
+	 *                                        <tt>toIndex &gt; a.length</tt>
 	 */
-	public static void fill(boolean[] a, int fromIndex, int toIndex, boolean val) {
+	public static void fill(boolean[] a, int fromIndex, int toIndex,
+			boolean val) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		for (int i = fromIndex; i < toIndex; i++)
 			a[i] = val;
@@ -3279,22 +3439,25 @@ public class Arrays {
 	 * empty.)
 	 *
 	 * @param a
-	 *            the array to be filled
+	 *                  the array to be filled
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the first element (inclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the last element (exclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param val
-	 *            the value to be stored in all elements of the array
+	 *                  the value to be stored in all elements of the array
 	 * @throws IllegalArgumentException
-	 *             if <tt>fromIndex &gt; toIndex</tt>
+	 *                                        if <tt>fromIndex &gt; toIndex</tt>
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <tt>fromIndex &lt; 0</tt> or
-	 *             <tt>toIndex &gt; a.length</tt>
+	 *                                        if <tt>fromIndex &lt; 0</tt> or
+	 *                                        <tt>toIndex &gt; a.length</tt>
 	 */
-	public static void fill(double[] a, int fromIndex, int toIndex, double val) {
+	public static void fill(double[] a, int fromIndex, int toIndex,
+			double val) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		for (int i = fromIndex; i < toIndex; i++)
 			a[i] = val;
@@ -3322,20 +3485,22 @@ public class Arrays {
 	 * empty.)
 	 *
 	 * @param a
-	 *            the array to be filled
+	 *                  the array to be filled
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the first element (inclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the last element (exclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param val
-	 *            the value to be stored in all elements of the array
+	 *                  the value to be stored in all elements of the array
 	 * @throws IllegalArgumentException
-	 *             if <tt>fromIndex &gt; toIndex</tt>
+	 *                                        if <tt>fromIndex &gt; toIndex</tt>
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <tt>fromIndex &lt; 0</tt> or
-	 *             <tt>toIndex &gt; a.length</tt>
+	 *                                        if <tt>fromIndex &lt; 0</tt> or
+	 *                                        <tt>toIndex &gt; a.length</tt>
 	 */
 	public static void fill(float[] a, int fromIndex, int toIndex, float val) {
 		rangeCheck(a.length, fromIndex, toIndex);
@@ -3352,8 +3517,9 @@ public class Arrays {
 	 * @param val
 	 *            the value to be stored in all elements of the array
 	 * @throws ArrayStoreException
-	 *             if the specified value is not of a runtime type that can be
-	 *             stored in the specified array
+	 *                             if the specified value is not of a runtime
+	 *                             type that can be
+	 *                             stored in the specified array
 	 */
 	public static void fill(Object[] a, Object val) {
 		for (int i = 0, len = a.length; i < len; i++)
@@ -3368,25 +3534,29 @@ public class Arrays {
 	 * empty.)
 	 *
 	 * @param a
-	 *            the array to be filled
+	 *                  the array to be filled
 	 * @param fromIndex
-	 *            the index of the first element (inclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the first element (inclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param toIndex
-	 *            the index of the last element (exclusive) to be filled with
-	 *            the specified value
+	 *                  the index of the last element (exclusive) to be filled
+	 *                  with
+	 *                  the specified value
 	 * @param val
-	 *            the value to be stored in all elements of the array
+	 *                  the value to be stored in all elements of the array
 	 * @throws IllegalArgumentException
-	 *             if <tt>fromIndex &gt; toIndex</tt>
+	 *                                        if <tt>fromIndex &gt; toIndex</tt>
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <tt>fromIndex &lt; 0</tt> or
-	 *             <tt>toIndex &gt; a.length</tt>
+	 *                                        if <tt>fromIndex &lt; 0</tt> or
+	 *                                        <tt>toIndex &gt; a.length</tt>
 	 * @throws ArrayStoreException
-	 *             if the specified value is not of a runtime type that can be
-	 *             stored in the specified array
+	 *                                        if the specified value is not of a
+	 *                                        runtime type that can be
+	 *                                        stored in the specified array
 	 */
-	public static void fill(Object[] a, int fromIndex, int toIndex, Object val) {
+	public static void fill(Object[] a, int fromIndex, int toIndex,
+			Object val) {
 		rangeCheck(a.length, fromIndex, toIndex);
 		for (int i = fromIndex; i < toIndex; i++)
 			a[i] = val;
@@ -3404,18 +3574,18 @@ public class Arrays {
 	 * original array. The resulting array is of exactly the same class as the
 	 * original array.
 	 *
-	 * @param <T>
-	 *            the class of the objects in the array
+	 * @param           <T>
+	 *                  the class of the objects in the array
 	 * @param original
-	 *            the array to be copied
+	 *                  the array to be copied
 	 * @param newLength
-	 *            the length of the copy to be returned
+	 *                  the length of the copy to be returned
 	 * @return a copy of the original array, truncated or padded with nulls to
 	 *         obtain the specified length
 	 * @throws NegativeArraySizeException
-	 *             if <tt>newLength</tt> is negative
+	 *                                    if <tt>newLength</tt> is negative
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                    if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	@SuppressWarnings("unchecked")
@@ -3432,33 +3602,39 @@ public class Arrays {
 	 * exist if and only if the specified length is greater than that of the
 	 * original array. The resulting array is of the class <tt>newType</tt>.
 	 *
-	 * @param <U>
-	 *            the class of the objects in the original array
-	 * @param <T>
-	 *            the class of the objects in the returned array
+	 * @param           <U>
+	 *                  the class of the objects in the original array
+	 * @param           <T>
+	 *                  the class of the objects in the returned array
 	 * @param original
-	 *            the array to be copied
+	 *                  the array to be copied
 	 * @param newLength
-	 *            the length of the copy to be returned
+	 *                  the length of the copy to be returned
 	 * @param newType
-	 *            the class of the copy to be returned
+	 *                  the class of the copy to be returned
 	 * @return a copy of the original array, truncated or padded with nulls to
 	 *         obtain the specified length
 	 * @throws NegativeArraySizeException
-	 *             if <tt>newLength</tt> is negative
+	 *                                    if <tt>newLength</tt> is negative
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                    if <tt>original</tt> is null
 	 * @throws ArrayStoreException
-	 *             if an element copied from <tt>original</tt> is not of a
-	 *             runtime type that can be stored in an array of class
-	 *             <tt>newType</tt>
+	 *                                    if an element copied from
+	 *                                    <tt>original</tt> is not of a
+	 *                                    runtime type that can be stored in an
+	 *                                    array of class
+	 *                                    <tt>newType</tt>
 	 * @since 1.6
 	 */
-	public static <T, U> T[] copyOf(U[] original, int newLength, Class<? extends T[]> newType) {
+	public static <T, U> T[] copyOf(U[] original, int newLength,
+			Class<? extends T[]> newType) {
 		@SuppressWarnings("unchecked")
-		T[] copy = ((Object) newType == (Object) Object[].class) ? (T[]) new Object[newLength]
-				: (T[]) Array.newInstance(newType.getComponentType(), newLength);
-		System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+		T[] copy = ((Object) newType == (Object) Object[].class)
+				? (T[]) new Object[newLength]
+				: (T[]) Array.newInstance(newType.getComponentType(),
+						newLength);
+		System.arraycopy(original, 0, copy, 0, Math.min(original.length,
+				newLength));
 		return copy;
 	}
 
@@ -3472,20 +3648,21 @@ public class Arrays {
 	 * the original array.
 	 *
 	 * @param original
-	 *            the array to be copied
+	 *                  the array to be copied
 	 * @param newLength
-	 *            the length of the copy to be returned
+	 *                  the length of the copy to be returned
 	 * @return a copy of the original array, truncated or padded with zeros to
 	 *         obtain the specified length
 	 * @throws NegativeArraySizeException
-	 *             if <tt>newLength</tt> is negative
+	 *                                    if <tt>newLength</tt> is negative
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                    if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static byte[] copyOf(byte[] original, int newLength) {
 		byte[] copy = new byte[newLength];
-		System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+		System.arraycopy(original, 0, copy, 0, Math.min(original.length,
+				newLength));
 		return copy;
 	}
 
@@ -3499,20 +3676,21 @@ public class Arrays {
 	 * the original array.
 	 *
 	 * @param original
-	 *            the array to be copied
+	 *                  the array to be copied
 	 * @param newLength
-	 *            the length of the copy to be returned
+	 *                  the length of the copy to be returned
 	 * @return a copy of the original array, truncated or padded with zeros to
 	 *         obtain the specified length
 	 * @throws NegativeArraySizeException
-	 *             if <tt>newLength</tt> is negative
+	 *                                    if <tt>newLength</tt> is negative
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                    if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static short[] copyOf(short[] original, int newLength) {
 		short[] copy = new short[newLength];
-		System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+		System.arraycopy(original, 0, copy, 0, Math.min(original.length,
+				newLength));
 		return copy;
 	}
 
@@ -3526,20 +3704,21 @@ public class Arrays {
 	 * original array.
 	 *
 	 * @param original
-	 *            the array to be copied
+	 *                  the array to be copied
 	 * @param newLength
-	 *            the length of the copy to be returned
+	 *                  the length of the copy to be returned
 	 * @return a copy of the original array, truncated or padded with zeros to
 	 *         obtain the specified length
 	 * @throws NegativeArraySizeException
-	 *             if <tt>newLength</tt> is negative
+	 *                                    if <tt>newLength</tt> is negative
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                    if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static int[] copyOf(int[] original, int newLength) {
 		int[] copy = new int[newLength];
-		System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+		System.arraycopy(original, 0, copy, 0, Math.min(original.length,
+				newLength));
 		return copy;
 	}
 
@@ -3553,20 +3732,21 @@ public class Arrays {
 	 * original array.
 	 *
 	 * @param original
-	 *            the array to be copied
+	 *                  the array to be copied
 	 * @param newLength
-	 *            the length of the copy to be returned
+	 *                  the length of the copy to be returned
 	 * @return a copy of the original array, truncated or padded with zeros to
 	 *         obtain the specified length
 	 * @throws NegativeArraySizeException
-	 *             if <tt>newLength</tt> is negative
+	 *                                    if <tt>newLength</tt> is negative
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                    if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static long[] copyOf(long[] original, int newLength) {
 		long[] copy = new long[newLength];
-		System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+		System.arraycopy(original, 0, copy, 0, Math.min(original.length,
+				newLength));
 		return copy;
 	}
 
@@ -3580,20 +3760,21 @@ public class Arrays {
 	 * the original array.
 	 *
 	 * @param original
-	 *            the array to be copied
+	 *                  the array to be copied
 	 * @param newLength
-	 *            the length of the copy to be returned
+	 *                  the length of the copy to be returned
 	 * @return a copy of the original array, truncated or padded with null
 	 *         characters to obtain the specified length
 	 * @throws NegativeArraySizeException
-	 *             if <tt>newLength</tt> is negative
+	 *                                    if <tt>newLength</tt> is negative
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                    if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static char[] copyOf(char[] original, int newLength) {
 		char[] copy = new char[newLength];
-		System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+		System.arraycopy(original, 0, copy, 0, Math.min(original.length,
+				newLength));
 		return copy;
 	}
 
@@ -3607,20 +3788,21 @@ public class Arrays {
 	 * original array.
 	 *
 	 * @param original
-	 *            the array to be copied
+	 *                  the array to be copied
 	 * @param newLength
-	 *            the length of the copy to be returned
+	 *                  the length of the copy to be returned
 	 * @return a copy of the original array, truncated or padded with zeros to
 	 *         obtain the specified length
 	 * @throws NegativeArraySizeException
-	 *             if <tt>newLength</tt> is negative
+	 *                                    if <tt>newLength</tt> is negative
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                    if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static float[] copyOf(float[] original, int newLength) {
 		float[] copy = new float[newLength];
-		System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+		System.arraycopy(original, 0, copy, 0, Math.min(original.length,
+				newLength));
 		return copy;
 	}
 
@@ -3634,20 +3816,21 @@ public class Arrays {
 	 * original array.
 	 *
 	 * @param original
-	 *            the array to be copied
+	 *                  the array to be copied
 	 * @param newLength
-	 *            the length of the copy to be returned
+	 *                  the length of the copy to be returned
 	 * @return a copy of the original array, truncated or padded with zeros to
 	 *         obtain the specified length
 	 * @throws NegativeArraySizeException
-	 *             if <tt>newLength</tt> is negative
+	 *                                    if <tt>newLength</tt> is negative
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                    if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static double[] copyOf(double[] original, int newLength) {
 		double[] copy = new double[newLength];
-		System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+		System.arraycopy(original, 0, copy, 0, Math.min(original.length,
+				newLength));
 		return copy;
 	}
 
@@ -3661,20 +3844,21 @@ public class Arrays {
 	 * original array.
 	 *
 	 * @param original
-	 *            the array to be copied
+	 *                  the array to be copied
 	 * @param newLength
-	 *            the length of the copy to be returned
+	 *                  the length of the copy to be returned
 	 * @return a copy of the original array, truncated or padded with false
 	 *         elements to obtain the specified length
 	 * @throws NegativeArraySizeException
-	 *             if <tt>newLength</tt> is negative
+	 *                                    if <tt>newLength</tt> is negative
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                    if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static boolean[] copyOf(boolean[] original, int newLength) {
 		boolean[] copy = new boolean[newLength];
-		System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+		System.arraycopy(original, 0, copy, 0, Math.min(original.length,
+				newLength));
 		return copy;
 	}
 
@@ -3694,29 +3878,32 @@ public class Arrays {
 	 * <p>
 	 * The resulting array is of exactly the same class as the original array.
 	 *
-	 * @param <T>
-	 *            the class of the objects in the array
+	 * @param          <T>
+	 *                 the class of the objects in the array
 	 * @param original
-	 *            the array from which a range is to be copied
+	 *                 the array from which a range is to be copied
 	 * @param from
-	 *            the initial index of the range to be copied, inclusive
+	 *                 the initial index of the range to be copied, inclusive
 	 * @param to
-	 *            the final index of the range to be copied, exclusive. (This
-	 *            index may lie outside the array.)
+	 *                 the final index of the range to be copied, exclusive.
+	 *                 (This
+	 *                 index may lie outside the array.)
 	 * @return a new array containing the specified range from the original
 	 *         array, truncated or padded with nulls to obtain the required
 	 *         length
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code from < 0} or {@code from > original.length}
+	 *                                        if {@code from < 0} or
+	 *                                        {@code from > original.length}
 	 * @throws IllegalArgumentException
-	 *             if <tt>from &gt; to</tt>
+	 *                                        if <tt>from &gt; to</tt>
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                        if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T[] copyOfRange(T[] original, int from, int to) {
-		return copyOfRange(original, from, to, (Class<? extends T[]>) original.getClass());
+		return copyOfRange(original, from, to, (Class<? extends T[]>) original
+				.getClass());
 	}
 
 	/**
@@ -3733,32 +3920,36 @@ public class Arrays {
 	 * <tt>original.length - from</tt>. The length of the returned array will be
 	 * <tt>to - from</tt>. The resulting array is of the class <tt>newType</tt>.
 	 *
-	 * @param <U>
-	 *            the class of the objects in the original array
-	 * @param <T>
-	 *            the class of the objects in the returned array
+	 * @param          <U>
+	 *                 the class of the objects in the original array
+	 * @param          <T>
+	 *                 the class of the objects in the returned array
 	 * @param original
-	 *            the array from which a range is to be copied
+	 *                 the array from which a range is to be copied
 	 * @param from
-	 *            the initial index of the range to be copied, inclusive
+	 *                 the initial index of the range to be copied, inclusive
 	 * @param to
-	 *            the final index of the range to be copied, exclusive. (This
-	 *            index may lie outside the array.)
+	 *                 the final index of the range to be copied, exclusive.
+	 *                 (This
+	 *                 index may lie outside the array.)
 	 * @param newType
-	 *            the class of the copy to be returned
+	 *                 the class of the copy to be returned
 	 * @return a new array containing the specified range from the original
 	 *         array, truncated or padded with nulls to obtain the required
 	 *         length
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code from < 0} or {@code from > original.length}
+	 *                                        if {@code from < 0} or
+	 *                                        {@code from > original.length}
 	 * @throws IllegalArgumentException
-	 *             if <tt>from &gt; to</tt>
+	 *                                        if <tt>from &gt; to</tt>
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                        if <tt>original</tt> is null
 	 * @throws ArrayStoreException
-	 *             if an element copied from <tt>original</tt> is not of a
-	 *             runtime type that can be stored in an array of class
-	 *             <tt>newType</tt>.
+	 *                                        if an element copied from
+	 *                                        <tt>original</tt> is not of a
+	 *                                        runtime type that can be stored in
+	 *                                        an array of class
+	 *                                        <tt>newType</tt>.
 	 * @since 1.6
 	 */
 	public static <T, U> T[] copyOfRange(U[] original, int from, int to,
@@ -3767,9 +3958,12 @@ public class Arrays {
 		if (newLength < 0)
 			throw new IllegalArgumentException(from + " > " + to);
 		@SuppressWarnings("unchecked")
-		T[] copy = ((Object) newType == (Object) Object[].class) ? (T[]) new Object[newLength]
-				: (T[]) Array.newInstance(newType.getComponentType(), newLength);
-		System.arraycopy(original, from, copy, 0, Math.min(original.length - from, newLength));
+		T[] copy = ((Object) newType == (Object) Object[].class)
+				? (T[]) new Object[newLength]
+				: (T[]) Array.newInstance(newType.getComponentType(),
+						newLength);
+		System.arraycopy(original, from, copy, 0, Math.min(original.length
+				- from, newLength));
 		return copy;
 	}
 
@@ -3788,21 +3982,23 @@ public class Arrays {
 	 * <tt>to - from</tt>.
 	 *
 	 * @param original
-	 *            the array from which a range is to be copied
+	 *                 the array from which a range is to be copied
 	 * @param from
-	 *            the initial index of the range to be copied, inclusive
+	 *                 the initial index of the range to be copied, inclusive
 	 * @param to
-	 *            the final index of the range to be copied, exclusive. (This
-	 *            index may lie outside the array.)
+	 *                 the final index of the range to be copied, exclusive.
+	 *                 (This
+	 *                 index may lie outside the array.)
 	 * @return a new array containing the specified range from the original
 	 *         array, truncated or padded with zeros to obtain the required
 	 *         length
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code from < 0} or {@code from > original.length}
+	 *                                        if {@code from < 0} or
+	 *                                        {@code from > original.length}
 	 * @throws IllegalArgumentException
-	 *             if <tt>from &gt; to</tt>
+	 *                                        if <tt>from &gt; to</tt>
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                        if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static byte[] copyOfRange(byte[] original, int from, int to) {
@@ -3810,7 +4006,8 @@ public class Arrays {
 		if (newLength < 0)
 			throw new IllegalArgumentException(from + " > " + to);
 		byte[] copy = new byte[newLength];
-		System.arraycopy(original, from, copy, 0, Math.min(original.length - from, newLength));
+		System.arraycopy(original, from, copy, 0, Math.min(original.length
+				- from, newLength));
 		return copy;
 	}
 
@@ -3829,21 +4026,23 @@ public class Arrays {
 	 * <tt>to - from</tt>.
 	 *
 	 * @param original
-	 *            the array from which a range is to be copied
+	 *                 the array from which a range is to be copied
 	 * @param from
-	 *            the initial index of the range to be copied, inclusive
+	 *                 the initial index of the range to be copied, inclusive
 	 * @param to
-	 *            the final index of the range to be copied, exclusive. (This
-	 *            index may lie outside the array.)
+	 *                 the final index of the range to be copied, exclusive.
+	 *                 (This
+	 *                 index may lie outside the array.)
 	 * @return a new array containing the specified range from the original
 	 *         array, truncated or padded with zeros to obtain the required
 	 *         length
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code from < 0} or {@code from > original.length}
+	 *                                        if {@code from < 0} or
+	 *                                        {@code from > original.length}
 	 * @throws IllegalArgumentException
-	 *             if <tt>from &gt; to</tt>
+	 *                                        if <tt>from &gt; to</tt>
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                        if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static short[] copyOfRange(short[] original, int from, int to) {
@@ -3851,7 +4050,8 @@ public class Arrays {
 		if (newLength < 0)
 			throw new IllegalArgumentException(from + " > " + to);
 		short[] copy = new short[newLength];
-		System.arraycopy(original, from, copy, 0, Math.min(original.length - from, newLength));
+		System.arraycopy(original, from, copy, 0, Math.min(original.length
+				- from, newLength));
 		return copy;
 	}
 
@@ -3870,21 +4070,23 @@ public class Arrays {
 	 * <tt>to - from</tt>.
 	 *
 	 * @param original
-	 *            the array from which a range is to be copied
+	 *                 the array from which a range is to be copied
 	 * @param from
-	 *            the initial index of the range to be copied, inclusive
+	 *                 the initial index of the range to be copied, inclusive
 	 * @param to
-	 *            the final index of the range to be copied, exclusive. (This
-	 *            index may lie outside the array.)
+	 *                 the final index of the range to be copied, exclusive.
+	 *                 (This
+	 *                 index may lie outside the array.)
 	 * @return a new array containing the specified range from the original
 	 *         array, truncated or padded with zeros to obtain the required
 	 *         length
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code from < 0} or {@code from > original.length}
+	 *                                        if {@code from < 0} or
+	 *                                        {@code from > original.length}
 	 * @throws IllegalArgumentException
-	 *             if <tt>from &gt; to</tt>
+	 *                                        if <tt>from &gt; to</tt>
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                        if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static int[] copyOfRange(int[] original, int from, int to) {
@@ -3892,7 +4094,8 @@ public class Arrays {
 		if (newLength < 0)
 			throw new IllegalArgumentException(from + " > " + to);
 		int[] copy = new int[newLength];
-		System.arraycopy(original, from, copy, 0, Math.min(original.length - from, newLength));
+		System.arraycopy(original, from, copy, 0, Math.min(original.length
+				- from, newLength));
 		return copy;
 	}
 
@@ -3911,21 +4114,23 @@ public class Arrays {
 	 * <tt>to - from</tt>.
 	 *
 	 * @param original
-	 *            the array from which a range is to be copied
+	 *                 the array from which a range is to be copied
 	 * @param from
-	 *            the initial index of the range to be copied, inclusive
+	 *                 the initial index of the range to be copied, inclusive
 	 * @param to
-	 *            the final index of the range to be copied, exclusive. (This
-	 *            index may lie outside the array.)
+	 *                 the final index of the range to be copied, exclusive.
+	 *                 (This
+	 *                 index may lie outside the array.)
 	 * @return a new array containing the specified range from the original
 	 *         array, truncated or padded with zeros to obtain the required
 	 *         length
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code from < 0} or {@code from > original.length}
+	 *                                        if {@code from < 0} or
+	 *                                        {@code from > original.length}
 	 * @throws IllegalArgumentException
-	 *             if <tt>from &gt; to</tt>
+	 *                                        if <tt>from &gt; to</tt>
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                        if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static long[] copyOfRange(long[] original, int from, int to) {
@@ -3933,7 +4138,8 @@ public class Arrays {
 		if (newLength < 0)
 			throw new IllegalArgumentException(from + " > " + to);
 		long[] copy = new long[newLength];
-		System.arraycopy(original, from, copy, 0, Math.min(original.length - from, newLength));
+		System.arraycopy(original, from, copy, 0, Math.min(original.length
+				- from, newLength));
 		return copy;
 	}
 
@@ -3952,21 +4158,23 @@ public class Arrays {
 	 * <tt>to - from</tt>.
 	 *
 	 * @param original
-	 *            the array from which a range is to be copied
+	 *                 the array from which a range is to be copied
 	 * @param from
-	 *            the initial index of the range to be copied, inclusive
+	 *                 the initial index of the range to be copied, inclusive
 	 * @param to
-	 *            the final index of the range to be copied, exclusive. (This
-	 *            index may lie outside the array.)
+	 *                 the final index of the range to be copied, exclusive.
+	 *                 (This
+	 *                 index may lie outside the array.)
 	 * @return a new array containing the specified range from the original
 	 *         array, truncated or padded with null characters to obtain the
 	 *         required length
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code from < 0} or {@code from > original.length}
+	 *                                        if {@code from < 0} or
+	 *                                        {@code from > original.length}
 	 * @throws IllegalArgumentException
-	 *             if <tt>from &gt; to</tt>
+	 *                                        if <tt>from &gt; to</tt>
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                        if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static char[] copyOfRange(char[] original, int from, int to) {
@@ -3974,7 +4182,8 @@ public class Arrays {
 		if (newLength < 0)
 			throw new IllegalArgumentException(from + " > " + to);
 		char[] copy = new char[newLength];
-		System.arraycopy(original, from, copy, 0, Math.min(original.length - from, newLength));
+		System.arraycopy(original, from, copy, 0, Math.min(original.length
+				- from, newLength));
 		return copy;
 	}
 
@@ -3993,21 +4202,23 @@ public class Arrays {
 	 * <tt>to - from</tt>.
 	 *
 	 * @param original
-	 *            the array from which a range is to be copied
+	 *                 the array from which a range is to be copied
 	 * @param from
-	 *            the initial index of the range to be copied, inclusive
+	 *                 the initial index of the range to be copied, inclusive
 	 * @param to
-	 *            the final index of the range to be copied, exclusive. (This
-	 *            index may lie outside the array.)
+	 *                 the final index of the range to be copied, exclusive.
+	 *                 (This
+	 *                 index may lie outside the array.)
 	 * @return a new array containing the specified range from the original
 	 *         array, truncated or padded with zeros to obtain the required
 	 *         length
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code from < 0} or {@code from > original.length}
+	 *                                        if {@code from < 0} or
+	 *                                        {@code from > original.length}
 	 * @throws IllegalArgumentException
-	 *             if <tt>from &gt; to</tt>
+	 *                                        if <tt>from &gt; to</tt>
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                        if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static float[] copyOfRange(float[] original, int from, int to) {
@@ -4015,7 +4226,8 @@ public class Arrays {
 		if (newLength < 0)
 			throw new IllegalArgumentException(from + " > " + to);
 		float[] copy = new float[newLength];
-		System.arraycopy(original, from, copy, 0, Math.min(original.length - from, newLength));
+		System.arraycopy(original, from, copy, 0, Math.min(original.length
+				- from, newLength));
 		return copy;
 	}
 
@@ -4034,21 +4246,23 @@ public class Arrays {
 	 * <tt>to - from</tt>.
 	 *
 	 * @param original
-	 *            the array from which a range is to be copied
+	 *                 the array from which a range is to be copied
 	 * @param from
-	 *            the initial index of the range to be copied, inclusive
+	 *                 the initial index of the range to be copied, inclusive
 	 * @param to
-	 *            the final index of the range to be copied, exclusive. (This
-	 *            index may lie outside the array.)
+	 *                 the final index of the range to be copied, exclusive.
+	 *                 (This
+	 *                 index may lie outside the array.)
 	 * @return a new array containing the specified range from the original
 	 *         array, truncated or padded with zeros to obtain the required
 	 *         length
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code from < 0} or {@code from > original.length}
+	 *                                        if {@code from < 0} or
+	 *                                        {@code from > original.length}
 	 * @throws IllegalArgumentException
-	 *             if <tt>from &gt; to</tt>
+	 *                                        if <tt>from &gt; to</tt>
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                        if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static double[] copyOfRange(double[] original, int from, int to) {
@@ -4056,7 +4270,8 @@ public class Arrays {
 		if (newLength < 0)
 			throw new IllegalArgumentException(from + " > " + to);
 		double[] copy = new double[newLength];
-		System.arraycopy(original, from, copy, 0, Math.min(original.length - from, newLength));
+		System.arraycopy(original, from, copy, 0, Math.min(original.length
+				- from, newLength));
 		return copy;
 	}
 
@@ -4075,21 +4290,23 @@ public class Arrays {
 	 * <tt>to - from</tt>.
 	 *
 	 * @param original
-	 *            the array from which a range is to be copied
+	 *                 the array from which a range is to be copied
 	 * @param from
-	 *            the initial index of the range to be copied, inclusive
+	 *                 the initial index of the range to be copied, inclusive
 	 * @param to
-	 *            the final index of the range to be copied, exclusive. (This
-	 *            index may lie outside the array.)
+	 *                 the final index of the range to be copied, exclusive.
+	 *                 (This
+	 *                 index may lie outside the array.)
 	 * @return a new array containing the specified range from the original
 	 *         array, truncated or padded with false elements to obtain the
 	 *         required length
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code from < 0} or {@code from > original.length}
+	 *                                        if {@code from < 0} or
+	 *                                        {@code from > original.length}
 	 * @throws IllegalArgumentException
-	 *             if <tt>from &gt; to</tt>
+	 *                                        if <tt>from &gt; to</tt>
 	 * @throws NullPointerException
-	 *             if <tt>original</tt> is null
+	 *                                        if <tt>original</tt> is null
 	 * @since 1.6
 	 */
 	public static boolean[] copyOfRange(boolean[] original, int from, int to) {
@@ -4097,7 +4314,8 @@ public class Arrays {
 		if (newLength < 0)
 			throw new IllegalArgumentException(from + " > " + to);
 		boolean[] copy = new boolean[newLength];
-		System.arraycopy(original, from, copy, 0, Math.min(original.length - from, newLength));
+		System.arraycopy(original, from, copy, 0, Math.min(original.length
+				- from, newLength));
 		return copy;
 	}
 
@@ -4118,10 +4336,10 @@ public class Arrays {
 	 * List&lt;String&gt; stooges = Arrays.asList("Larry", "Moe", "Curly");
 	 * </pre>
 	 *
-	 * @param <T>
-	 *            the class of the objects in the array
+	 * @param   <T>
+	 *          the class of the objects in the array
 	 * @param a
-	 *            the array by which the list will be backed
+	 *          the array by which the list will be backed
 	 * @return a list view of the specified array
 	 */
 	@SafeVarargs
@@ -4133,8 +4351,8 @@ public class Arrays {
 	/**
 	 * @serial include
 	 */
-	private static class ArrayList<E> extends AbstractList<E>
-			implements RandomAccess, java.io.Serializable {
+	private static class ArrayList<E> extends AbstractList<E> implements
+			RandomAccess, java.io.Serializable {
 		private static final long serialVersionUID = -2764017481108945198L;
 		private final E[] a;
 
@@ -4157,7 +4375,8 @@ public class Arrays {
 		public <T> T[] toArray(T[] a) {
 			int size = size();
 			if (a.length < size)
-				return Arrays.copyOf(this.a, size, (Class<? extends T[]>) a.getClass());
+				return Arrays.copyOf(this.a, size, (Class<? extends T[]>) a
+						.getClass());
 			System.arraycopy(this.a, 0, a, 0, size);
 			if (a.length > size)
 				a[size] = null;
@@ -4238,7 +4457,7 @@ public class Arrays {
 	 * is <tt>null</tt>, this method returns 0.
 	 *
 	 * @param a
-	 *            the array whose hash value to compute
+	 *          the array whose hash value to compute
 	 * @return a content-based hash code for <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4269,7 +4488,7 @@ public class Arrays {
 	 * is <tt>null</tt>, this method returns 0.
 	 *
 	 * @param a
-	 *            the array whose hash value to compute
+	 *          the array whose hash value to compute
 	 * @return a content-based hash code for <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4298,7 +4517,7 @@ public class Arrays {
 	 * is <tt>null</tt>, this method returns 0.
 	 *
 	 * @param a
-	 *            the array whose hash value to compute
+	 *          the array whose hash value to compute
 	 * @return a content-based hash code for <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4327,7 +4546,7 @@ public class Arrays {
 	 * is <tt>null</tt>, this method returns 0.
 	 *
 	 * @param a
-	 *            the array whose hash value to compute
+	 *          the array whose hash value to compute
 	 * @return a content-based hash code for <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4356,7 +4575,7 @@ public class Arrays {
 	 * is <tt>null</tt>, this method returns 0.
 	 *
 	 * @param a
-	 *            the array whose hash value to compute
+	 *          the array whose hash value to compute
 	 * @return a content-based hash code for <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4385,7 +4604,7 @@ public class Arrays {
 	 * is <tt>null</tt>, this method returns 0.
 	 *
 	 * @param a
-	 *            the array whose hash value to compute
+	 *          the array whose hash value to compute
 	 * @return a content-based hash code for <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4414,7 +4633,7 @@ public class Arrays {
 	 * is <tt>null</tt>, this method returns 0.
 	 *
 	 * @param a
-	 *            the array whose hash value to compute
+	 *          the array whose hash value to compute
 	 * @return a content-based hash code for <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4443,7 +4662,7 @@ public class Arrays {
 	 * is <tt>null</tt>, this method returns 0.
 	 *
 	 * @param a
-	 *            the array whose hash value to compute
+	 *          the array whose hash value to compute
 	 * @return a content-based hash code for <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4477,7 +4696,7 @@ public class Arrays {
 	 * <tt>null</tt>, in which case <tt>0</tt> is returned.
 	 *
 	 * @param a
-	 *            the array whose content-based hash code to compute
+	 *          the array whose content-based hash code to compute
 	 * @return a content-based hash code for <tt>a</tt>
 	 * @see #deepHashCode(Object[])
 	 * @since 1.5
@@ -4519,7 +4738,7 @@ public class Arrays {
 	 * a reference type. If <tt>a</tt> is <tt>null</tt>, this method returns 0.
 	 *
 	 * @param a
-	 *            the array whose deep-content-based hash code to compute
+	 *          the array whose deep-content-based hash code to compute
 	 * @return a deep-content-based hash code for <tt>a</tt>
 	 * @see #hashCode(Object[])
 	 * @since 1.5
@@ -4590,9 +4809,9 @@ public class Arrays {
 	 * of this method is undefined.
 	 *
 	 * @param a1
-	 *            one array to be tested for equality
+	 *           one array to be tested for equality
 	 * @param a2
-	 *            the other array to be tested for equality
+	 *           the other array to be tested for equality
 	 * @return <tt>true</tt> if the two arrays are equal
 	 * @see #equals(Object[],Object[])
 	 * @see Objects#deepEquals(Object, Object)
@@ -4660,7 +4879,7 @@ public class Arrays {
 	 * Returns <tt>"null"</tt> if <tt>a</tt> is <tt>null</tt>.
 	 *
 	 * @param a
-	 *            the array whose string representation to return
+	 *          the array whose string representation to return
 	 * @return a string representation of <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4690,7 +4909,7 @@ public class Arrays {
 	 * Returns <tt>"null"</tt> if <tt>a</tt> is <tt>null</tt>.
 	 *
 	 * @param a
-	 *            the array whose string representation to return
+	 *          the array whose string representation to return
 	 * @return a string representation of <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4720,7 +4939,7 @@ public class Arrays {
 	 * Returns <tt>"null"</tt> if <tt>a</tt> is <tt>null</tt>.
 	 *
 	 * @param a
-	 *            the array whose string representation to return
+	 *          the array whose string representation to return
 	 * @return a string representation of <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4750,7 +4969,7 @@ public class Arrays {
 	 * Returns <tt>"null"</tt> if <tt>a</tt> is <tt>null</tt>.
 	 *
 	 * @param a
-	 *            the array whose string representation to return
+	 *          the array whose string representation to return
 	 * @return a string representation of <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4780,7 +4999,7 @@ public class Arrays {
 	 * Returns <tt>"null"</tt> if <tt>a</tt> is <tt>null</tt>.
 	 *
 	 * @param a
-	 *            the array whose string representation to return
+	 *          the array whose string representation to return
 	 * @return a string representation of <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4810,7 +5029,7 @@ public class Arrays {
 	 * Returns <tt>"null"</tt> if <tt>a</tt> is <tt>null</tt>.
 	 *
 	 * @param a
-	 *            the array whose string representation to return
+	 *          the array whose string representation to return
 	 * @return a string representation of <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4840,7 +5059,7 @@ public class Arrays {
 	 * Returns <tt>"null"</tt> if <tt>a</tt> is <tt>null</tt>.
 	 *
 	 * @param a
-	 *            the array whose string representation to return
+	 *          the array whose string representation to return
 	 * @return a string representation of <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4871,7 +5090,7 @@ public class Arrays {
 	 * Returns <tt>"null"</tt> if <tt>a</tt> is <tt>null</tt>.
 	 *
 	 * @param a
-	 *            the array whose string representation to return
+	 *          the array whose string representation to return
 	 * @return a string representation of <tt>a</tt>
 	 * @since 1.5
 	 */
@@ -4905,7 +5124,7 @@ public class Arrays {
 	 * <tt>null</tt>, in which case <tt>"null"</tt> is returned.
 	 *
 	 * @param a
-	 *            the array whose string representation to return
+	 *          the array whose string representation to return
 	 * @return a string representation of <tt>a</tt>
 	 * @see #deepToString(Object[])
 	 * @since 1.5
@@ -4960,7 +5179,7 @@ public class Arrays {
 	 * <tt>null</tt>.
 	 *
 	 * @param a
-	 *            the array whose string representation to return
+	 *          the array whose string representation to return
 	 * @return a string representation of <tt>a</tt>
 	 * @see #toString(Object[])
 	 * @since 1.5
@@ -4977,7 +5196,8 @@ public class Arrays {
 		return buf.toString();
 	}
 
-	private static void deepToString(Object[] a, StringBuilder buf, Set<Object[]> dejaVu) {
+	private static void deepToString(Object[] a, StringBuilder buf,
+			Set<Object[]> dejaVu) {
 		if (a == null) {
 			buf.append("null");
 			return;
@@ -5041,18 +5261,20 @@ public class Arrays {
 	 * If the generator function throws an exception, it is relayed to the
 	 * caller and the array is left in an indeterminate state.
 	 *
-	 * @param <T>
-	 *            type of elements of the array
+	 * @param           <T>
+	 *                  type of elements of the array
 	 * @param array
-	 *            array to be initialized
+	 *                  array to be initialized
 	 * @param generator
-	 *            a function accepting an index and producing the desired value
-	 *            for that position
+	 *                  a function accepting an index and producing the desired
+	 *                  value
+	 *                  for that position
 	 * @throws NullPointerException
-	 *             if the generator is null
+	 *                              if the generator is null
 	 * @since 1.8
 	 */
-	public static <T> void setAll(T[] array, IntFunction<? extends T> generator) {
+	public static <T> void setAll(T[] array,
+			IntFunction<? extends T> generator) {
 		Objects.requireNonNull(generator);
 		for (int i = 0; i < array.length; i++)
 			array[i] = generator.apply(i);
@@ -5067,18 +5289,20 @@ public class Arrays {
 	 * thrown from {@code parallelSetAll} and the array is left in an
 	 * indeterminate state.
 	 *
-	 * @param <T>
-	 *            type of elements of the array
+	 * @param           <T>
+	 *                  type of elements of the array
 	 * @param array
-	 *            array to be initialized
+	 *                  array to be initialized
 	 * @param generator
-	 *            a function accepting an index and producing the desired value
-	 *            for that position
+	 *                  a function accepting an index and producing the desired
+	 *                  value
+	 *                  for that position
 	 * @throws NullPointerException
-	 *             if the generator is null
+	 *                              if the generator is null
 	 * @since 1.8
 	 */
-	public static <T> void parallelSetAll(T[] array, IntFunction<? extends T> generator) {
+	public static <T> void parallelSetAll(T[] array,
+			IntFunction<? extends T> generator) {
 		Objects.requireNonNull(generator);
 		IntStream.range(0, array.length).parallel().forEach(i -> {
 			array[i] = generator.apply(i);
@@ -5094,12 +5318,13 @@ public class Arrays {
 	 * caller and the array is left in an indeterminate state.
 	 *
 	 * @param array
-	 *            array to be initialized
+	 *                  array to be initialized
 	 * @param generator
-	 *            a function accepting an index and producing the desired value
-	 *            for that position
+	 *                  a function accepting an index and producing the desired
+	 *                  value
+	 *                  for that position
 	 * @throws NullPointerException
-	 *             if the generator is null
+	 *                              if the generator is null
 	 * @since 1.8
 	 */
 	public static void setAll(int[] array, IntUnaryOperator generator) {
@@ -5118,12 +5343,13 @@ public class Arrays {
 	 * indeterminate state.
 	 *
 	 * @param array
-	 *            array to be initialized
+	 *                  array to be initialized
 	 * @param generator
-	 *            a function accepting an index and producing the desired value
-	 *            for that position
+	 *                  a function accepting an index and producing the desired
+	 *                  value
+	 *                  for that position
 	 * @throws NullPointerException
-	 *             if the generator is null
+	 *                              if the generator is null
 	 * @since 1.8
 	 */
 	public static void parallelSetAll(int[] array, IntUnaryOperator generator) {
@@ -5142,12 +5368,13 @@ public class Arrays {
 	 * caller and the array is left in an indeterminate state.
 	 *
 	 * @param array
-	 *            array to be initialized
+	 *                  array to be initialized
 	 * @param generator
-	 *            a function accepting an index and producing the desired value
-	 *            for that position
+	 *                  a function accepting an index and producing the desired
+	 *                  value
+	 *                  for that position
 	 * @throws NullPointerException
-	 *             if the generator is null
+	 *                              if the generator is null
 	 * @since 1.8
 	 */
 	public static void setAll(long[] array, IntToLongFunction generator) {
@@ -5166,15 +5393,17 @@ public class Arrays {
 	 * indeterminate state.
 	 *
 	 * @param array
-	 *            array to be initialized
+	 *                  array to be initialized
 	 * @param generator
-	 *            a function accepting an index and producing the desired value
-	 *            for that position
+	 *                  a function accepting an index and producing the desired
+	 *                  value
+	 *                  for that position
 	 * @throws NullPointerException
-	 *             if the generator is null
+	 *                              if the generator is null
 	 * @since 1.8
 	 */
-	public static void parallelSetAll(long[] array, IntToLongFunction generator) {
+	public static void parallelSetAll(long[] array,
+			IntToLongFunction generator) {
 		Objects.requireNonNull(generator);
 		IntStream.range(0, array.length).parallel().forEach(i -> {
 			array[i] = generator.applyAsLong(i);
@@ -5190,12 +5419,13 @@ public class Arrays {
 	 * caller and the array is left in an indeterminate state.
 	 *
 	 * @param array
-	 *            array to be initialized
+	 *                  array to be initialized
 	 * @param generator
-	 *            a function accepting an index and producing the desired value
-	 *            for that position
+	 *                  a function accepting an index and producing the desired
+	 *                  value
+	 *                  for that position
 	 * @throws NullPointerException
-	 *             if the generator is null
+	 *                              if the generator is null
 	 * @since 1.8
 	 */
 	public static void setAll(double[] array, IntToDoubleFunction generator) {
@@ -5214,15 +5444,17 @@ public class Arrays {
 	 * indeterminate state.
 	 *
 	 * @param array
-	 *            array to be initialized
+	 *                  array to be initialized
 	 * @param generator
-	 *            a function accepting an index and producing the desired value
-	 *            for that position
+	 *                  a function accepting an index and producing the desired
+	 *                  value
+	 *                  for that position
 	 * @throws NullPointerException
-	 *             if the generator is null
+	 *                              if the generator is null
 	 * @since 1.8
 	 */
-	public static void parallelSetAll(double[] array, IntToDoubleFunction generator) {
+	public static void parallelSetAll(double[] array,
+			IntToDoubleFunction generator) {
 		Objects.requireNonNull(generator);
 		IntStream.range(0, array.length).parallel().forEach(i -> {
 			array[i] = generator.applyAsDouble(i);
@@ -5237,15 +5469,16 @@ public class Arrays {
 	 * {@link Spliterator#SUBSIZED}, {@link Spliterator#ORDERED}, and
 	 * {@link Spliterator#IMMUTABLE}.
 	 *
-	 * @param <T>
-	 *            type of elements
+	 * @param       <T>
+	 *              type of elements
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *              the array, assumed to be unmodified during use
 	 * @return a spliterator for the array elements
 	 * @since 1.8
 	 */
 	public static <T> Spliterator<T> spliterator(T[] array) {
-		return Spliterators.spliterator(array, Spliterator.ORDERED | Spliterator.IMMUTABLE);
+		return Spliterators.spliterator(array, Spliterator.ORDERED
+				| Spliterator.IMMUTABLE);
 	}
 
 	/**
@@ -5257,22 +5490,26 @@ public class Arrays {
 	 * {@link Spliterator#SUBSIZED}, {@link Spliterator#ORDERED}, and
 	 * {@link Spliterator#IMMUTABLE}.
 	 *
-	 * @param <T>
-	 *            type of elements
+	 * @param                <T>
+	 *                       type of elements
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *                       the array, assumed to be unmodified during use
 	 * @param startInclusive
-	 *            the first index to cover, inclusive
+	 *                       the first index to cover, inclusive
 	 * @param endExclusive
-	 *            index immediately past the last index to cover
+	 *                       index immediately past the last index to cover
 	 * @return a spliterator for the array elements
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code startInclusive} is negative, {@code endExclusive}
-	 *             is less than {@code startInclusive}, or {@code endExclusive}
-	 *             is greater than the array size
+	 *                                        if {@code startInclusive} is
+	 *                                        negative, {@code endExclusive}
+	 *                                        is less than
+	 *                                        {@code startInclusive}, or
+	 *                                        {@code endExclusive}
+	 *                                        is greater than the array size
 	 * @since 1.8
 	 */
-	public static <T> Spliterator<T> spliterator(T[] array, int startInclusive, int endExclusive) {
+	public static <T> Spliterator<T> spliterator(T[] array, int startInclusive,
+			int endExclusive) {
 		return Spliterators.spliterator(array, startInclusive, endExclusive,
 				Spliterator.ORDERED | Spliterator.IMMUTABLE);
 	}
@@ -5286,12 +5523,13 @@ public class Arrays {
 	 * {@link Spliterator#IMMUTABLE}.
 	 *
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *              the array, assumed to be unmodified during use
 	 * @return a spliterator for the array elements
 	 * @since 1.8
 	 */
 	public static Spliterator.OfInt spliterator(int[] array) {
-		return Spliterators.spliterator(array, Spliterator.ORDERED | Spliterator.IMMUTABLE);
+		return Spliterators.spliterator(array, Spliterator.ORDERED
+				| Spliterator.IMMUTABLE);
 	}
 
 	/**
@@ -5304,19 +5542,23 @@ public class Arrays {
 	 * {@link Spliterator#IMMUTABLE}.
 	 *
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *                       the array, assumed to be unmodified during use
 	 * @param startInclusive
-	 *            the first index to cover, inclusive
+	 *                       the first index to cover, inclusive
 	 * @param endExclusive
-	 *            index immediately past the last index to cover
+	 *                       index immediately past the last index to cover
 	 * @return a spliterator for the array elements
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code startInclusive} is negative, {@code endExclusive}
-	 *             is less than {@code startInclusive}, or {@code endExclusive}
-	 *             is greater than the array size
+	 *                                        if {@code startInclusive} is
+	 *                                        negative, {@code endExclusive}
+	 *                                        is less than
+	 *                                        {@code startInclusive}, or
+	 *                                        {@code endExclusive}
+	 *                                        is greater than the array size
 	 * @since 1.8
 	 */
-	public static Spliterator.OfInt spliterator(int[] array, int startInclusive, int endExclusive) {
+	public static Spliterator.OfInt spliterator(int[] array, int startInclusive,
+			int endExclusive) {
 		return Spliterators.spliterator(array, startInclusive, endExclusive,
 				Spliterator.ORDERED | Spliterator.IMMUTABLE);
 	}
@@ -5330,12 +5572,13 @@ public class Arrays {
 	 * {@link Spliterator#IMMUTABLE}.
 	 *
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *              the array, assumed to be unmodified during use
 	 * @return the spliterator for the array elements
 	 * @since 1.8
 	 */
 	public static Spliterator.OfLong spliterator(long[] array) {
-		return Spliterators.spliterator(array, Spliterator.ORDERED | Spliterator.IMMUTABLE);
+		return Spliterators.spliterator(array, Spliterator.ORDERED
+				| Spliterator.IMMUTABLE);
 	}
 
 	/**
@@ -5348,20 +5591,23 @@ public class Arrays {
 	 * {@link Spliterator#IMMUTABLE}.
 	 *
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *                       the array, assumed to be unmodified during use
 	 * @param startInclusive
-	 *            the first index to cover, inclusive
+	 *                       the first index to cover, inclusive
 	 * @param endExclusive
-	 *            index immediately past the last index to cover
+	 *                       index immediately past the last index to cover
 	 * @return a spliterator for the array elements
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code startInclusive} is negative, {@code endExclusive}
-	 *             is less than {@code startInclusive}, or {@code endExclusive}
-	 *             is greater than the array size
+	 *                                        if {@code startInclusive} is
+	 *                                        negative, {@code endExclusive}
+	 *                                        is less than
+	 *                                        {@code startInclusive}, or
+	 *                                        {@code endExclusive}
+	 *                                        is greater than the array size
 	 * @since 1.8
 	 */
-	public static Spliterator.OfLong spliterator(long[] array, int startInclusive,
-			int endExclusive) {
+	public static Spliterator.OfLong spliterator(long[] array,
+			int startInclusive, int endExclusive) {
 		return Spliterators.spliterator(array, startInclusive, endExclusive,
 				Spliterator.ORDERED | Spliterator.IMMUTABLE);
 	}
@@ -5376,12 +5622,13 @@ public class Arrays {
 	 * {@link Spliterator#IMMUTABLE}.
 	 *
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *              the array, assumed to be unmodified during use
 	 * @return a spliterator for the array elements
 	 * @since 1.8
 	 */
 	public static Spliterator.OfDouble spliterator(double[] array) {
-		return Spliterators.spliterator(array, Spliterator.ORDERED | Spliterator.IMMUTABLE);
+		return Spliterators.spliterator(array, Spliterator.ORDERED
+				| Spliterator.IMMUTABLE);
 	}
 
 	/**
@@ -5394,20 +5641,23 @@ public class Arrays {
 	 * {@link Spliterator#IMMUTABLE}.
 	 *
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *                       the array, assumed to be unmodified during use
 	 * @param startInclusive
-	 *            the first index to cover, inclusive
+	 *                       the first index to cover, inclusive
 	 * @param endExclusive
-	 *            index immediately past the last index to cover
+	 *                       index immediately past the last index to cover
 	 * @return a spliterator for the array elements
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code startInclusive} is negative, {@code endExclusive}
-	 *             is less than {@code startInclusive}, or {@code endExclusive}
-	 *             is greater than the array size
+	 *                                        if {@code startInclusive} is
+	 *                                        negative, {@code endExclusive}
+	 *                                        is less than
+	 *                                        {@code startInclusive}, or
+	 *                                        {@code endExclusive}
+	 *                                        is greater than the array size
 	 * @since 1.8
 	 */
-	public static Spliterator.OfDouble spliterator(double[] array, int startInclusive,
-			int endExclusive) {
+	public static Spliterator.OfDouble spliterator(double[] array,
+			int startInclusive, int endExclusive) {
 		return Spliterators.spliterator(array, startInclusive, endExclusive,
 				Spliterator.ORDERED | Spliterator.IMMUTABLE);
 	}
@@ -5416,10 +5666,10 @@ public class Arrays {
 	 * Returns a sequential {@link Stream} with the specified array as its
 	 * source.
 	 *
-	 * @param <T>
-	 *            The type of the array elements
+	 * @param       <T>
+	 *              The type of the array elements
 	 * @param array
-	 *            The array, assumed to be unmodified during use
+	 *              The array, assumed to be unmodified during use
 	 * @return a {@code Stream} for the array
 	 * @since 1.8
 	 */
@@ -5431,23 +5681,28 @@ public class Arrays {
 	 * Returns a sequential {@link Stream} with the specified range of the
 	 * specified array as its source.
 	 *
-	 * @param <T>
-	 *            the type of the array elements
+	 * @param                <T>
+	 *                       the type of the array elements
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *                       the array, assumed to be unmodified during use
 	 * @param startInclusive
-	 *            the first index to cover, inclusive
+	 *                       the first index to cover, inclusive
 	 * @param endExclusive
-	 *            index immediately past the last index to cover
+	 *                       index immediately past the last index to cover
 	 * @return a {@code Stream} for the array range
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code startInclusive} is negative, {@code endExclusive}
-	 *             is less than {@code startInclusive}, or {@code endExclusive}
-	 *             is greater than the array size
+	 *                                        if {@code startInclusive} is
+	 *                                        negative, {@code endExclusive}
+	 *                                        is less than
+	 *                                        {@code startInclusive}, or
+	 *                                        {@code endExclusive}
+	 *                                        is greater than the array size
 	 * @since 1.8
 	 */
-	public static <T> Stream<T> stream(T[] array, int startInclusive, int endExclusive) {
-		return StreamSupport.stream(spliterator(array, startInclusive, endExclusive), false);
+	public static <T> Stream<T> stream(T[] array, int startInclusive,
+			int endExclusive) {
+		return StreamSupport.stream(spliterator(array, startInclusive,
+				endExclusive), false);
 	}
 
 	/**
@@ -5455,7 +5710,7 @@ public class Arrays {
 	 * source.
 	 *
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *              the array, assumed to be unmodified during use
 	 * @return an {@code IntStream} for the array
 	 * @since 1.8
 	 */
@@ -5468,20 +5723,25 @@ public class Arrays {
 	 * specified array as its source.
 	 *
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *                       the array, assumed to be unmodified during use
 	 * @param startInclusive
-	 *            the first index to cover, inclusive
+	 *                       the first index to cover, inclusive
 	 * @param endExclusive
-	 *            index immediately past the last index to cover
+	 *                       index immediately past the last index to cover
 	 * @return an {@code IntStream} for the array range
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code startInclusive} is negative, {@code endExclusive}
-	 *             is less than {@code startInclusive}, or {@code endExclusive}
-	 *             is greater than the array size
+	 *                                        if {@code startInclusive} is
+	 *                                        negative, {@code endExclusive}
+	 *                                        is less than
+	 *                                        {@code startInclusive}, or
+	 *                                        {@code endExclusive}
+	 *                                        is greater than the array size
 	 * @since 1.8
 	 */
-	public static IntStream stream(int[] array, int startInclusive, int endExclusive) {
-		return StreamSupport.intStream(spliterator(array, startInclusive, endExclusive), false);
+	public static IntStream stream(int[] array, int startInclusive,
+			int endExclusive) {
+		return StreamSupport.intStream(spliterator(array, startInclusive,
+				endExclusive), false);
 	}
 
 	/**
@@ -5489,7 +5749,7 @@ public class Arrays {
 	 * source.
 	 *
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *              the array, assumed to be unmodified during use
 	 * @return a {@code LongStream} for the array
 	 * @since 1.8
 	 */
@@ -5502,20 +5762,25 @@ public class Arrays {
 	 * specified array as its source.
 	 *
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *                       the array, assumed to be unmodified during use
 	 * @param startInclusive
-	 *            the first index to cover, inclusive
+	 *                       the first index to cover, inclusive
 	 * @param endExclusive
-	 *            index immediately past the last index to cover
+	 *                       index immediately past the last index to cover
 	 * @return a {@code LongStream} for the array range
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code startInclusive} is negative, {@code endExclusive}
-	 *             is less than {@code startInclusive}, or {@code endExclusive}
-	 *             is greater than the array size
+	 *                                        if {@code startInclusive} is
+	 *                                        negative, {@code endExclusive}
+	 *                                        is less than
+	 *                                        {@code startInclusive}, or
+	 *                                        {@code endExclusive}
+	 *                                        is greater than the array size
 	 * @since 1.8
 	 */
-	public static LongStream stream(long[] array, int startInclusive, int endExclusive) {
-		return StreamSupport.longStream(spliterator(array, startInclusive, endExclusive), false);
+	public static LongStream stream(long[] array, int startInclusive,
+			int endExclusive) {
+		return StreamSupport.longStream(spliterator(array, startInclusive,
+				endExclusive), false);
 	}
 
 	/**
@@ -5523,7 +5788,7 @@ public class Arrays {
 	 * source.
 	 *
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *              the array, assumed to be unmodified during use
 	 * @return a {@code DoubleStream} for the array
 	 * @since 1.8
 	 */
@@ -5536,19 +5801,24 @@ public class Arrays {
 	 * specified array as its source.
 	 *
 	 * @param array
-	 *            the array, assumed to be unmodified during use
+	 *                       the array, assumed to be unmodified during use
 	 * @param startInclusive
-	 *            the first index to cover, inclusive
+	 *                       the first index to cover, inclusive
 	 * @param endExclusive
-	 *            index immediately past the last index to cover
+	 *                       index immediately past the last index to cover
 	 * @return a {@code DoubleStream} for the array range
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if {@code startInclusive} is negative, {@code endExclusive}
-	 *             is less than {@code startInclusive}, or {@code endExclusive}
-	 *             is greater than the array size
+	 *                                        if {@code startInclusive} is
+	 *                                        negative, {@code endExclusive}
+	 *                                        is less than
+	 *                                        {@code startInclusive}, or
+	 *                                        {@code endExclusive}
+	 *                                        is greater than the array size
 	 * @since 1.8
 	 */
-	public static DoubleStream stream(double[] array, int startInclusive, int endExclusive) {
-		return StreamSupport.doubleStream(spliterator(array, startInclusive, endExclusive), false);
+	public static DoubleStream stream(double[] array, int startInclusive,
+			int endExclusive) {
+		return StreamSupport.doubleStream(spliterator(array, startInclusive,
+				endExclusive), false);
 	}
 }

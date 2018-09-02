@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -90,9 +87,13 @@ final class LogicalExpr extends Expression {
 		}
 
 		if (_op == AND) {
-			return (leftb == Boolean.TRUE && rightb == Boolean.TRUE) ? Boolean.TRUE : Boolean.FALSE;
+			return (leftb == Boolean.TRUE && rightb == Boolean.TRUE)
+					? Boolean.TRUE
+					: Boolean.FALSE;
 		} else {
-			return (leftb == Boolean.TRUE || rightb == Boolean.TRUE) ? Boolean.TRUE : Boolean.FALSE;
+			return (leftb == Boolean.TRUE || rightb == Boolean.TRUE)
+					? Boolean.TRUE
+					: Boolean.FALSE;
 		}
 	}
 
@@ -160,7 +161,8 @@ final class LogicalExpr extends Expression {
 	/**
 	 * Compile expression and update true/false-lists
 	 */
-	public void translateDesynthesized(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void translateDesynthesized(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 
 		final InstructionList il = methodGen.getInstructionList();
 		final SyntaxTreeNode parent = getParent();
@@ -185,7 +187,8 @@ final class LogicalExpr extends Expression {
 
 			// Special case for OR-expression as a left child of AND.
 			// The true-list of OR must point to second clause of AND.
-			if ((_left instanceof LogicalExpr) && (((LogicalExpr) _left).getOp() == OR)) {
+			if ((_left instanceof LogicalExpr) && (((LogicalExpr) _left)
+					.getOp() == OR)) {
 				_left.backPatchTrueList(middle);
 			} else if (_left instanceof NotCall) {
 				_left.backPatchTrueList(middle);
@@ -195,7 +198,8 @@ final class LogicalExpr extends Expression {
 
 			// Special case for OR-expression as a right child of AND
 			// The true-list of OR must point to true-list of AND.
-			if ((_right instanceof LogicalExpr) && (((LogicalExpr) _right).getOp() == OR)) {
+			if ((_right instanceof LogicalExpr) && (((LogicalExpr) _right)
+					.getOp() == OR)) {
 				_right.backPatchTrueList(after);
 			} else if (_right instanceof NotCall) {
 				_right.backPatchTrueList(after);

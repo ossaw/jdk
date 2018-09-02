@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.zip;
@@ -66,17 +46,18 @@ public class GZIPInputStream extends InflaterInputStream {
 	 * Creates a new input stream with the specified buffer size.
 	 * 
 	 * @param in
-	 *            the input stream
+	 *             the input stream
 	 * @param size
-	 *            the input buffer size
+	 *             the input buffer size
 	 *
 	 * @exception ZipException
-	 *                if a GZIP format error has occurred or the compression
-	 *                method used is unsupported
+	 *                                     if a GZIP format error has occurred
+	 *                                     or the compression
+	 *                                     method used is unsupported
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                                     if an I/O error has occurred
 	 * @exception IllegalArgumentException
-	 *                if {@code size <= 0}
+	 *                                     if {@code size <= 0}
 	 */
 	public GZIPInputStream(InputStream in, int size) throws IOException {
 		super(in, new Inflater(true), size);
@@ -88,13 +69,14 @@ public class GZIPInputStream extends InflaterInputStream {
 	 * Creates a new input stream with a default buffer size.
 	 * 
 	 * @param in
-	 *            the input stream
+	 *           the input stream
 	 *
 	 * @exception ZipException
-	 *                if a GZIP format error has occurred or the compression
-	 *                method used is unsupported
+	 *                         if a GZIP format error has occurred or the
+	 *                         compression
+	 *                         method used is unsupported
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                         if an I/O error has occurred
 	 */
 	public GZIPInputStream(InputStream in) throws IOException {
 		this(in, 512);
@@ -115,15 +97,19 @@ public class GZIPInputStream extends InflaterInputStream {
 	 *         compressed input stream is reached
 	 *
 	 * @exception NullPointerException
-	 *                If <code>buf</code> is <code>null</code>.
+	 *                                      If <code>buf</code> is
+	 *                                      <code>null</code>.
 	 * @exception IndexOutOfBoundsException
-	 *                If <code>off</code> is negative, <code>len</code> is
-	 *                negative, or <code>len</code> is greater than
-	 *                <code>buf.length - off</code>
+	 *                                      If <code>off</code> is negative,
+	 *                                      <code>len</code> is
+	 *                                      negative, or <code>len</code> is
+	 *                                      greater than
+	 *                                      <code>buf.length - off</code>
 	 * @exception ZipException
-	 *                if the compressed input data is corrupt.
+	 *                                      if the compressed input data is
+	 *                                      corrupt.
 	 * @exception IOException
-	 *                if an I/O error has occurred.
+	 *                                      if an I/O error has occurred.
 	 *
 	 */
 	public int read(byte[] buf, int off, int len) throws IOException {
@@ -148,7 +134,7 @@ public class GZIPInputStream extends InflaterInputStream {
 	 * with the stream.
 	 * 
 	 * @exception IOException
-	 *                if an I/O error has occurred
+	 *                        if an I/O error has occurred
 	 */
 	public void close() throws IOException {
 		if (!closed) {
@@ -230,10 +216,9 @@ public class GZIPInputStream extends InflaterInputStream {
 		InputStream in = this.in;
 		int n = inf.getRemaining();
 		if (n > 0) {
-			in = new SequenceInputStream(new ByteArrayInputStream(buf, len - n, n),
-					new FilterInputStream(in) {
-						public void close() throws IOException {
-						}
+			in = new SequenceInputStream(new ByteArrayInputStream(buf, len - n,
+					n), new FilterInputStream(in) {
+						public void close() throws IOException {}
 					});
 		}
 		// Uses left-to-right evaluation order

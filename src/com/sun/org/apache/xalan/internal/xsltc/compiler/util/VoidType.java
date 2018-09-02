@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,8 +30,7 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.Constants;
  * @author Santiago Pericas-Geertsen
  */
 public final class VoidType extends Type {
-	protected VoidType() {
-	}
+	protected VoidType() {}
 
 	public String toString() {
 		return "void";
@@ -62,11 +58,13 @@ public final class VoidType extends Type {
 	 *
 	 * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, Type type) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			Type type) {
 		if (type == Type.String) {
 			translateTo(classGen, methodGen, (StringType) type);
 		} else {
-			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), type.toString());
+			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
+					toString(), type.toString());
 			classGen.getParser().reportError(Constants.FATAL, err);
 		}
 	}
@@ -76,7 +74,8 @@ public final class VoidType extends Type {
 	 *
 	 * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
 	 */
-	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, StringType type) {
+	public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
+			StringType type) {
 		final InstructionList il = methodGen.getInstructionList();
 		il.append(new PUSH(classGen.getConstantPool(), ""));
 	}
@@ -85,9 +84,11 @@ public final class VoidType extends Type {
 	 * Translates an external (primitive) Java type into a void. Only an
 	 * external "void" can be converted to this class.
 	 */
-	public void translateFrom(ClassGenerator classGen, MethodGenerator methodGen, Class clazz) {
+	public void translateFrom(ClassGenerator classGen,
+			MethodGenerator methodGen, Class clazz) {
 		if (!clazz.getName().equals("void")) {
-			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), clazz.getName());
+			ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
+					toString(), clazz.getName());
 			classGen.getParser().reportError(Constants.FATAL, err);
 		}
 	}

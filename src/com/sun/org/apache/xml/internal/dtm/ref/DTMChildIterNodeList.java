@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: DTMChildIterNodeList.java,v 1.2.4.1 2005/09/15 08:15:00 suresh_emailid Exp $
+ * $Id: DTMChildIterNodeList.java,v 1.2.4.1 2005/09/15 08:15:00 suresh_emailid
+ * Exp $
  */
 package com.sun.org.apache.xml.internal.dtm.ref;
 
@@ -59,8 +57,7 @@ public class DTMChildIterNodeList extends DTMNodeListBase {
 
 	// ================================================================
 	// Methods unique to this class
-	private DTMChildIterNodeList() {
-	}
+	private DTMChildIterNodeList() {}
 
 	/**
 	 * Public constructor: Create a NodeList to support
@@ -71,9 +68,9 @@ public class DTMChildIterNodeList extends DTMNodeListBase {
 	 * Another Class, let's set up a special case of this one.
 	 *
 	 * @param parentDTM
-	 *            The DTM containing this node
+	 *                     The DTM containing this node
 	 * @param parentHandle
-	 *            DTM node-handle integer
+	 *                     DTM node-handle integer
 	 *
 	 */
 	public DTMChildIterNodeList(DTM parentDTM, int parentHandle) {
@@ -90,7 +87,7 @@ public class DTMChildIterNodeList extends DTMNodeListBase {
 	 * list, this returns <code>null</code>.
 	 * 
 	 * @param index
-	 *            Index into the collection.
+	 *              Index into the collection.
 	 * @return The node at the <code>index</code>th position in the
 	 *         <code>NodeList</code>, or <code>null</code> if that is not a
 	 *         valid index.

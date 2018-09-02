@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,13 +41,14 @@ final class Util {
 	 */
 	public static final XMLInputSource toXMLInputSource(StreamSource in) {
 		if (in.getReader() != null)
-			return new XMLInputSource(in.getPublicId(), in.getSystemId(), in.getSystemId(),
-					in.getReader(), null);
+			return new XMLInputSource(in.getPublicId(), in.getSystemId(), in
+					.getSystemId(), in.getReader(), null);
 		if (in.getInputStream() != null)
-			return new XMLInputSource(in.getPublicId(), in.getSystemId(), in.getSystemId(),
-					in.getInputStream(), null);
+			return new XMLInputSource(in.getPublicId(), in.getSystemId(), in
+					.getSystemId(), in.getInputStream(), null);
 
-		return new XMLInputSource(in.getPublicId(), in.getSystemId(), in.getSystemId());
+		return new XMLInputSource(in.getPublicId(), in.getSystemId(), in
+				.getSystemId());
 	}
 
 	/**
@@ -67,8 +65,9 @@ final class Util {
 	public static SAXParseException toSAXParseException(XMLParseException e) {
 		if (e.getException() instanceof SAXParseException)
 			return (SAXParseException) e.getException();
-		return new SAXParseException(e.getMessage(), e.getPublicId(), e.getExpandedSystemId(),
-				e.getLineNumber(), e.getColumnNumber(), e.getException());
+		return new SAXParseException(e.getMessage(), e.getPublicId(), e
+				.getExpandedSystemId(), e.getLineNumber(), e.getColumnNumber(),
+				e.getException());
 	}
 
 } // Util

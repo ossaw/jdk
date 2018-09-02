@@ -8,11 +8,11 @@ package org.omg.IOP;
  * PDT
  */
 
-public final class TaggedComponentHolder implements org.omg.CORBA.portable.Streamable {
+public final class TaggedComponentHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public org.omg.IOP.TaggedComponent value = null;
 
-	public TaggedComponentHolder() {
-	}
+	public TaggedComponentHolder() {}
 
 	public TaggedComponentHolder(org.omg.IOP.TaggedComponent initialValue) {
 		value = initialValue;

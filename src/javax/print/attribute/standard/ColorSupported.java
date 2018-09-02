@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -56,7 +36,8 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class ColorSupported extends EnumSyntax implements PrintServiceAttribute {
+public final class ColorSupported extends EnumSyntax implements
+		PrintServiceAttribute {
 
 	private static final long serialVersionUID = -2700555589688535545L;
 
@@ -76,15 +57,17 @@ public final class ColorSupported extends EnumSyntax implements PrintServiceAttr
 	 * value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected ColorSupported(int value) {
 		super(value);
 	}
 
-	private static final String[] myStringTable = { "not-supported", "supported" };
+	private static final String[] myStringTable = { "not-supported",
+			"supported" };
 
-	private static final ColorSupported[] myEnumValueTable = { NOT_SUPPORTED, SUPPORTED };
+	private static final ColorSupported[] myEnumValueTable = { NOT_SUPPORTED,
+			SUPPORTED };
 
 	/**
 	 * Returns the string table for class ColorSupported.

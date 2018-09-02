@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -136,8 +116,7 @@ public abstract class Spring {
 	 * @see #sum
 	 * @see SpringLayout.Constraints
 	 */
-	protected Spring() {
-	}
+	protected Spring() {}
 
 	/**
 	 * Returns the <em>minimum</em> value of this <code>Spring</code>.
@@ -176,7 +155,7 @@ public abstract class Spring {
 	 * <code>value</code>.
 	 *
 	 * @param value
-	 *            the new setting of the <code>value</code> property
+	 *              the new setting of the <code>value</code> property
 	 *
 	 * @see #getValue
 	 */
@@ -187,16 +166,16 @@ public abstract class Spring {
 				: (getMaximumValue() - getPreferredValue());
 	}
 
-			/* pp */ double getStrain() {
+	/* pp */ double getStrain() {
 		double delta = (getValue() - getPreferredValue());
 		return delta / range(getValue() < getPreferredValue());
 	}
 
-			/* pp */ void setStrain(double strain) {
+	/* pp */ void setStrain(double strain) {
 		setValue(getPreferredValue() + (int) (strain * range(strain < 0)));
 	}
 
-			/* pp */ boolean isCyclic(SpringLayout l) {
+	/* pp */ boolean isCyclic(SpringLayout l) {
 		return false;
 	}
 
@@ -291,7 +270,7 @@ public abstract class Spring {
 			s.setValue(-size);
 		}
 
-				/* pp */ boolean isCyclic(SpringLayout l) {
+		/* pp */ boolean isCyclic(SpringLayout l) {
 			return s.isCyclic(l);
 		}
 	}
@@ -306,7 +285,8 @@ public abstract class Spring {
 		}
 
 		public int getMinimumValue() {
-			return Math.round((factor < 0 ? s.getMaximumValue() : s.getMinimumValue()) * factor);
+			return Math.round((factor < 0 ? s.getMaximumValue()
+					: s.getMinimumValue()) * factor);
 		}
 
 		public int getPreferredValue() {
@@ -314,7 +294,8 @@ public abstract class Spring {
 		}
 
 		public int getMaximumValue() {
-			return Math.round((factor < 0 ? s.getMinimumValue() : s.getMaximumValue()) * factor);
+			return Math.round((factor < 0 ? s.getMinimumValue()
+					: s.getMaximumValue()) * factor);
 		}
 
 		public int getValue() {
@@ -329,7 +310,7 @@ public abstract class Spring {
 			}
 		}
 
-				/* pp */ boolean isCyclic(SpringLayout l) {
+		/* pp */ boolean isCyclic(SpringLayout l) {
 			return s.isCyclic(l);
 		}
 	}
@@ -412,7 +393,7 @@ public abstract class Spring {
 			}
 		}
 
-				/* pp */ boolean isCyclic(SpringLayout l) {
+		/* pp */ boolean isCyclic(SpringLayout l) {
 			return s.isCyclic(l);
 		}
 	}
@@ -470,7 +451,7 @@ public abstract class Spring {
 			return size;
 		}
 
-				/* pp */ boolean isCyclic(SpringLayout l) {
+		/* pp */ boolean isCyclic(SpringLayout l) {
 			return l.isCyclic(s1) || l.isCyclic(s2);
 		}
 	};
@@ -513,8 +494,9 @@ public abstract class Spring {
 	 * and <em>maximum</em> values each have the value <code>pref</code>.
 	 *
 	 * @param pref
-	 *            the <em>minimum</em>, <em>preferred</em>, and <em>maximum</em>
-	 *            values of the new spring
+	 *             the <em>minimum</em>, <em>preferred</em>, and
+	 *             <em>maximum</em>
+	 *             values of the new spring
 	 * @return a spring whose <em>minimum</em>, <em>preferred</em>, and
 	 *         <em>maximum</em> values each have the value <code>pref</code>
 	 *
@@ -530,11 +512,11 @@ public abstract class Spring {
 	 * <code>pref</code>, and <code>max</code> respectively.
 	 *
 	 * @param min
-	 *            the <em>minimum</em> value of the new spring
+	 *             the <em>minimum</em> value of the new spring
 	 * @param pref
-	 *            the <em>preferred</em> value of the new spring
+	 *             the <em>preferred</em> value of the new spring
 	 * @param max
-	 *            the <em>maximum</em> value of the new spring
+	 *             the <em>maximum</em> value of the new spring
 	 * @return a spring whose <em>minimum</em>, <em>preferred</em>, and
 	 *         <em>maximum</em> values have the values: <code>min</code>,
 	 *         <code>pref</code>, and <code>max</code> respectively
@@ -636,13 +618,13 @@ public abstract class Spring {
 	 * container.
 	 *
 	 * @param s
-	 *            the spring to scale
+	 *               the spring to scale
 	 * @param factor
-	 *            amount to scale by.
+	 *               amount to scale by.
 	 * @return a spring whose properties are those of the input spring
 	 *         <code>s</code> multiplied by <code>factor</code>
 	 * @throws NullPointerException
-	 *             if <code>s</code> is null
+	 *                              if <code>s</code> is null
 	 * @since 1.5
 	 */
 	public static Spring scale(Spring s, float factor) {
@@ -662,11 +644,11 @@ public abstract class Spring {
 	 * they change.
 	 *
 	 * @param c
-	 *            Component used for calculating size
+	 *          Component used for calculating size
 	 * @return a spring whose properties are defined by the horizontal component
 	 *         of the component's size methods.
 	 * @throws NullPointerException
-	 *             if <code>c</code> is null
+	 *                              if <code>c</code> is null
 	 * @since 1.5
 	 */
 	public static Spring width(Component c) {
@@ -686,11 +668,11 @@ public abstract class Spring {
 	 * they change.
 	 *
 	 * @param c
-	 *            Component used for calculating size
+	 *          Component used for calculating size
 	 * @return a spring whose properties are defined by the vertical component
 	 *         of the component's size methods.
 	 * @throws NullPointerException
-	 *             if <code>c</code> is null
+	 *                              if <code>c</code> is null
 	 * @since 1.5
 	 */
 	public static Spring height(Component c) {

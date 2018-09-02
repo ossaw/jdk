@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -103,32 +83,42 @@ public abstract class PackedColorModel extends ColorModel {
 	 * the type of primitive array used to represent pixel values.
 	 * 
 	 * @param space
-	 *            the specified <code>ColorSpace</code>
+	 *                             the specified <code>ColorSpace</code>
 	 * @param bits
-	 *            the number of bits in the pixel values
+	 *                             the number of bits in the pixel values
 	 * @param colorMaskArray
-	 *            array that specifies the masks representing the bits of the
-	 *            pixel values that represent the color components
+	 *                             array that specifies the masks representing
+	 *                             the bits of the
+	 *                             pixel values that represent the color
+	 *                             components
 	 * @param alphaMask
-	 *            specifies the mask representing the bits of the pixel values
-	 *            that represent the alpha component
+	 *                             specifies the mask representing the bits of
+	 *                             the pixel values
+	 *                             that represent the alpha component
 	 * @param isAlphaPremultiplied
-	 *            <code>true</code> if color samples are premultiplied by the
-	 *            alpha sample; <code>false</code> otherwise
+	 *                             <code>true</code> if color samples are
+	 *                             premultiplied by the
+	 *                             alpha sample; <code>false</code> otherwise
 	 * @param trans
-	 *            specifies the alpha value that can be represented by this
-	 *            color model
+	 *                             specifies the alpha value that can be
+	 *                             represented by this
+	 *                             color model
 	 * @param transferType
-	 *            the type of array used to represent pixel values
+	 *                             the type of array used to represent pixel
+	 *                             values
 	 * @throws IllegalArgumentException
-	 *             if <code>bits</code> is less than 1 or greater than 32
+	 *                                  if <code>bits</code> is less than 1 or
+	 *                                  greater than 32
 	 */
-	public PackedColorModel(ColorSpace space, int bits, int[] colorMaskArray, int alphaMask,
-			boolean isAlphaPremultiplied, int trans, int transferType) {
-		super(bits, PackedColorModel.createBitsArray(colorMaskArray, alphaMask), space,
-				(alphaMask == 0 ? false : true), isAlphaPremultiplied, trans, transferType);
+	public PackedColorModel(ColorSpace space, int bits, int[] colorMaskArray,
+			int alphaMask, boolean isAlphaPremultiplied, int trans,
+			int transferType) {
+		super(bits, PackedColorModel.createBitsArray(colorMaskArray, alphaMask),
+				space, (alphaMask == 0 ? false : true), isAlphaPremultiplied,
+				trans, transferType);
 		if (bits < 1 || bits > 32) {
-			throw new IllegalArgumentException("Number of bits must be between" + " 1 and 32.");
+			throw new IllegalArgumentException("Number of bits must be between"
+					+ " 1 and 32.");
 		}
 		maskArray = new int[numComponents];
 		maskOffsets = new int[numComponents];
@@ -163,37 +153,47 @@ public abstract class PackedColorModel extends ColorModel {
 	 * the type of primitive array used to represent pixel values.
 	 * 
 	 * @param space
-	 *            the specified <code>ColorSpace</code>
+	 *                             the specified <code>ColorSpace</code>
 	 * @param bits
-	 *            the number of bits in the pixel values
+	 *                             the number of bits in the pixel values
 	 * @param rmask
-	 *            specifies the mask representing the bits of the pixel values
-	 *            that represent the red color component
+	 *                             specifies the mask representing the bits of
+	 *                             the pixel values
+	 *                             that represent the red color component
 	 * @param gmask
-	 *            specifies the mask representing the bits of the pixel values
-	 *            that represent the green color component
+	 *                             specifies the mask representing the bits of
+	 *                             the pixel values
+	 *                             that represent the green color component
 	 * @param bmask
-	 *            specifies the mask representing the bits of the pixel values
-	 *            that represent the blue color component
+	 *                             specifies the mask representing the bits of
+	 *                             the pixel values
+	 *                             that represent the blue color component
 	 * @param amask
-	 *            specifies the mask representing the bits of the pixel values
-	 *            that represent the alpha component
+	 *                             specifies the mask representing the bits of
+	 *                             the pixel values
+	 *                             that represent the alpha component
 	 * @param isAlphaPremultiplied
-	 *            <code>true</code> if color samples are premultiplied by the
-	 *            alpha sample; <code>false</code> otherwise
+	 *                             <code>true</code> if color samples are
+	 *                             premultiplied by the
+	 *                             alpha sample; <code>false</code> otherwise
 	 * @param trans
-	 *            specifies the alpha value that can be represented by this
-	 *            color model
+	 *                             specifies the alpha value that can be
+	 *                             represented by this
+	 *                             color model
 	 * @param transferType
-	 *            the type of array used to represent pixel values
+	 *                             the type of array used to represent pixel
+	 *                             values
 	 * @throws IllegalArgumentException
-	 *             if <code>space</code> is not a TYPE_RGB space
+	 *                                  if <code>space</code> is not a TYPE_RGB
+	 *                                  space
 	 * @see ColorSpace
 	 */
-	public PackedColorModel(ColorSpace space, int bits, int rmask, int gmask, int bmask, int amask,
-			boolean isAlphaPremultiplied, int trans, int transferType) {
-		super(bits, PackedColorModel.createBitsArray(rmask, gmask, bmask, amask), space,
-				(amask == 0 ? false : true), isAlphaPremultiplied, trans, transferType);
+	public PackedColorModel(ColorSpace space, int bits, int rmask, int gmask,
+			int bmask, int amask, boolean isAlphaPremultiplied, int trans,
+			int transferType) {
+		super(bits, PackedColorModel.createBitsArray(rmask, gmask, bmask,
+				amask), space, (amask == 0 ? false : true),
+				isAlphaPremultiplied, trans, transferType);
 
 		if (space.getType() != ColorSpace.TYPE_RGB) {
 			throw new IllegalArgumentException("ColorSpace must be TYPE_RGB.");
@@ -229,14 +229,17 @@ public abstract class PackedColorModel extends ColorModel {
 	 * </pre>
 	 * 
 	 * @param index
-	 *            the specified color or alpha sample
+	 *              the specified color or alpha sample
 	 * @return the mask, which indicates which bits of the <code>int</code>
 	 *         pixel representation contain the color or alpha sample specified
 	 *         by <code>index</code>.
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <code>index</code> is greater than the number of
-	 *             components minus 1 in this <code>PackedColorModel</code> or
-	 *             if <code>index</code> is less than zero
+	 *                                        if <code>index</code> is greater
+	 *                                        than the number of
+	 *                                        components minus 1 in this
+	 *                                        <code>PackedColorModel</code> or
+	 *                                        if <code>index</code> is less than
+	 *                                        zero
 	 */
 	final public int getMask(int index) {
 		return maskArray[index];
@@ -275,9 +278,9 @@ public abstract class PackedColorModel extends ColorModel {
 		}
 
 		if (off + count > pixel_bits) {
-			throw new IllegalArgumentException(
-					componentName + " mask " + Integer.toHexString(maskArray[idx])
-							+ " overflows pixel (expecting " + pixel_bits + " bits");
+			throw new IllegalArgumentException(componentName + " mask "
+					+ Integer.toHexString(maskArray[idx])
+					+ " overflows pixel (expecting " + pixel_bits + " bits");
 		}
 
 		maskOffsets[idx] = off;
@@ -296,14 +299,15 @@ public abstract class PackedColorModel extends ColorModel {
 	 * that has a data layout compatible with this <code>ColorModel</code>.
 	 * 
 	 * @param w
-	 *            the width (in pixels) of the region of the image data
-	 *            described
+	 *          the width (in pixels) of the region of the image data
+	 *          described
 	 * @param h
-	 *            the height (in pixels) of the region of the image data
-	 *            described
+	 *          the height (in pixels) of the region of the image data
+	 *          described
 	 * @return the newly created <code>SampleModel</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>w</code> or <code>h</code> is not greater than 0
+	 *                                  if <code>w</code> or <code>h</code> is
+	 *                                  not greater than 0
 	 * @see SampleModel
 	 */
 	public SampleModel createCompatibleSampleModel(int w, int h) {
@@ -316,7 +320,7 @@ public abstract class PackedColorModel extends ColorModel {
 	 * method returns <code>false</code>.
 	 * 
 	 * @param sm
-	 *            the specified <code>SampleModel</code>, or <code>null</code>
+	 *           the specified <code>SampleModel</code>, or <code>null</code>
 	 * @return <code>true</code> if the specified <code>SampleModel</code> is
 	 *         compatible with this <code>ColorModel</code>; <code>false</code>
 	 *         otherwise.
@@ -348,7 +352,8 @@ public abstract class PackedColorModel extends ColorModel {
 		 * compare 'effective' masks only, i.e. only part of the mask which fits
 		 * the capacity of the transfer type.
 		 */
-		int maxMask = (int) ((1L << DataBuffer.getDataTypeSize(transferType)) - 1);
+		int maxMask = (int) ((1L << DataBuffer.getDataTypeSize(transferType))
+				- 1);
 		for (int i = 0; i < bitMasks.length; i++) {
 			if ((maxMask & bitMasks[i]) != (maxMask & maskArray[i])) {
 				return false;
@@ -369,7 +374,7 @@ public abstract class PackedColorModel extends ColorModel {
 	 * array.
 	 * 
 	 * @param raster
-	 *            a <code>WritableRaster</code> containing an image
+	 *               a <code>WritableRaster</code> containing an image
 	 * @return a <code>WritableRaster</code> that represents the alpha channel
 	 *         of the image contained in <code>raster</code>.
 	 */
@@ -382,7 +387,8 @@ public abstract class PackedColorModel extends ColorModel {
 		int y = raster.getMinY();
 		int[] band = new int[1];
 		band[0] = raster.getNumBands() - 1;
-		return raster.createWritableChild(x, y, raster.getWidth(), raster.getHeight(), x, y, band);
+		return raster.createWritableChild(x, y, raster.getWidth(), raster
+				.getHeight(), x, y, band);
 	}
 
 	/**
@@ -418,7 +424,8 @@ public abstract class PackedColorModel extends ColorModel {
 		return true;
 	}
 
-	private final static int[] createBitsArray(int[] colorMaskArray, int alphaMask) {
+	private final static int[] createBitsArray(int[] colorMaskArray,
+			int alphaMask) {
 		int numColors = colorMaskArray.length;
 		int numAlpha = (alphaMask == 0 ? 0 : 1);
 		int[] arr = new int[numColors + numAlpha];
@@ -426,39 +433,41 @@ public abstract class PackedColorModel extends ColorModel {
 			arr[i] = countBits(colorMaskArray[i]);
 			if (arr[i] < 0) {
 				throw new IllegalArgumentException("Noncontiguous color mask ("
-						+ Integer.toHexString(colorMaskArray[i]) + "at index " + i);
+						+ Integer.toHexString(colorMaskArray[i]) + "at index "
+						+ i);
 			}
 		}
 		if (alphaMask != 0) {
 			arr[numColors] = countBits(alphaMask);
 			if (arr[numColors] < 0) {
-				throw new IllegalArgumentException(
-						"Noncontiguous alpha mask (" + Integer.toHexString(alphaMask));
+				throw new IllegalArgumentException("Noncontiguous alpha mask ("
+						+ Integer.toHexString(alphaMask));
 			}
 		}
 		return arr;
 	}
 
-	private final static int[] createBitsArray(int rmask, int gmask, int bmask, int amask) {
+	private final static int[] createBitsArray(int rmask, int gmask, int bmask,
+			int amask) {
 		int[] arr = new int[3 + (amask == 0 ? 0 : 1)];
 		arr[0] = countBits(rmask);
 		arr[1] = countBits(gmask);
 		arr[2] = countBits(bmask);
 		if (arr[0] < 0) {
-			throw new IllegalArgumentException(
-					"Noncontiguous red mask (" + Integer.toHexString(rmask));
+			throw new IllegalArgumentException("Noncontiguous red mask ("
+					+ Integer.toHexString(rmask));
 		} else if (arr[1] < 0) {
-			throw new IllegalArgumentException(
-					"Noncontiguous green mask (" + Integer.toHexString(gmask));
+			throw new IllegalArgumentException("Noncontiguous green mask ("
+					+ Integer.toHexString(gmask));
 		} else if (arr[2] < 0) {
-			throw new IllegalArgumentException(
-					"Noncontiguous blue mask (" + Integer.toHexString(bmask));
+			throw new IllegalArgumentException("Noncontiguous blue mask ("
+					+ Integer.toHexString(bmask));
 		}
 		if (amask != 0) {
 			arr[3] = countBits(amask);
 			if (arr[3] < 0) {
-				throw new IllegalArgumentException(
-						"Noncontiguous alpha mask (" + Integer.toHexString(amask));
+				throw new IllegalArgumentException("Noncontiguous alpha mask ("
+						+ Integer.toHexString(amask));
 			}
 		}
 		return arr;

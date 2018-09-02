@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.cert;
@@ -130,7 +110,7 @@ public abstract class X509CRL extends CRL implements X509Extension {
 	 * encoded form is retrieved and compared with the encoded form of this CRL.
 	 *
 	 * @param other
-	 *            the object to test for equality with this CRL.
+	 *              the object to test for equality with this CRL.
 	 *
 	 * @return true iff the encoded forms of the two CRLs match, false
 	 *         otherwise.
@@ -175,7 +155,7 @@ public abstract class X509CRL extends CRL implements X509Extension {
 	 *
 	 * @return the encoded form of this certificate
 	 * @exception CRLException
-	 *                if an encoding error occurs.
+	 *                         if an encoding error occurs.
 	 */
 	public abstract byte[] getEncoded() throws CRLException;
 
@@ -187,18 +167,19 @@ public abstract class X509CRL extends CRL implements X509Extension {
 	 *            the PublicKey used to carry out the verification.
 	 *
 	 * @exception NoSuchAlgorithmException
-	 *                on unsupported signature algorithms.
+	 *                                     on unsupported signature algorithms.
 	 * @exception InvalidKeyException
-	 *                on incorrect key.
+	 *                                     on incorrect key.
 	 * @exception NoSuchProviderException
-	 *                if there's no default provider.
+	 *                                     if there's no default provider.
 	 * @exception SignatureException
-	 *                on signature errors.
+	 *                                     on signature errors.
 	 * @exception CRLException
-	 *                on encoding errors.
+	 *                                     on encoding errors.
 	 */
-	public abstract void verify(PublicKey key) throws CRLException, NoSuchAlgorithmException,
-			InvalidKeyException, NoSuchProviderException, SignatureException;
+	public abstract void verify(PublicKey key) throws CRLException,
+			NoSuchAlgorithmException, InvalidKeyException,
+			NoSuchProviderException, SignatureException;
 
 	/**
 	 * Verifies that this CRL was signed using the private key that corresponds
@@ -206,20 +187,20 @@ public abstract class X509CRL extends CRL implements X509Extension {
 	 * engine supplied by the given provider.
 	 *
 	 * @param key
-	 *            the PublicKey used to carry out the verification.
+	 *                    the PublicKey used to carry out the verification.
 	 * @param sigProvider
-	 *            the name of the signature provider.
+	 *                    the name of the signature provider.
 	 *
 	 * @exception NoSuchAlgorithmException
-	 *                on unsupported signature algorithms.
+	 *                                     on unsupported signature algorithms.
 	 * @exception InvalidKeyException
-	 *                on incorrect key.
+	 *                                     on incorrect key.
 	 * @exception NoSuchProviderException
-	 *                on incorrect provider.
+	 *                                     on incorrect provider.
 	 * @exception SignatureException
-	 *                on signature errors.
+	 *                                     on signature errors.
 	 * @exception CRLException
-	 *                on encoding errors.
+	 *                                     on encoding errors.
 	 */
 	public abstract void verify(PublicKey key, String sigProvider)
 			throws CRLException, NoSuchAlgorithmException, InvalidKeyException,
@@ -237,22 +218,22 @@ public abstract class X509CRL extends CRL implements X509Extension {
 	 * default implementation.
 	 *
 	 * @param key
-	 *            the PublicKey used to carry out the verification.
+	 *                    the PublicKey used to carry out the verification.
 	 * @param sigProvider
-	 *            the signature provider.
+	 *                    the signature provider.
 	 *
 	 * @exception NoSuchAlgorithmException
-	 *                on unsupported signature algorithms.
+	 *                                     on unsupported signature algorithms.
 	 * @exception InvalidKeyException
-	 *                on incorrect key.
+	 *                                     on incorrect key.
 	 * @exception SignatureException
-	 *                on signature errors.
+	 *                                     on signature errors.
 	 * @exception CRLException
-	 *                on encoding errors.
+	 *                                     on encoding errors.
 	 * @since 1.8
 	 */
-	public void verify(PublicKey key, Provider sigProvider)
-			throws CRLException, NoSuchAlgorithmException, InvalidKeyException, SignatureException {
+	public void verify(PublicKey key, Provider sigProvider) throws CRLException,
+			NoSuchAlgorithmException, InvalidKeyException, SignatureException {
 		X509CRLImpl.verify(this, key, sigProvider);
 	}
 
@@ -356,8 +337,9 @@ public abstract class X509CRL extends CRL implements X509Extension {
 	 * Gets the CRL entry, if any, with the given certificate serialNumber.
 	 *
 	 * @param serialNumber
-	 *            the serial number of the certificate for which a CRL entry is
-	 *            to be looked up
+	 *                     the serial number of the certificate for which a CRL
+	 *                     entry is
+	 *                     to be looked up
 	 * @return the entry with the given serial number, or null if no such entry
 	 *         exists in this CRL.
 	 * @see X509CRLEntry
@@ -375,11 +357,12 @@ public abstract class X509CRL extends CRL implements X509Extension {
 	 * should override this method.
 	 *
 	 * @param certificate
-	 *            the certificate for which a CRL entry is to be looked up
+	 *                    the certificate for which a CRL entry is to be looked
+	 *                    up
 	 * @return the entry for the given certificate, or null if no such entry
 	 *         exists in this CRL.
 	 * @exception NullPointerException
-	 *                if certificate is null
+	 *                                 if certificate is null
 	 *
 	 * @since 1.5
 	 */
@@ -407,7 +390,7 @@ public abstract class X509CRL extends CRL implements X509Extension {
 	 *
 	 * @return the DER-encoded CRL information.
 	 * @exception CRLException
-	 *                if an encoding error occurs.
+	 *                         if an encoding error occurs.
 	 */
 	public abstract byte[] getTBSCertList() throws CRLException;
 

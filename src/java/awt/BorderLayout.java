@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -361,9 +341,9 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * is specified by <code>vgap</code>.
 	 * 
 	 * @param hgap
-	 *            the horizontal gap.
+	 *             the horizontal gap.
 	 * @param vgap
-	 *            the vertical gap.
+	 *             the vertical gap.
 	 */
 	public BorderLayout(int hgap, int vgap) {
 		this.hgap = hgap;
@@ -383,7 +363,7 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * Sets the horizontal gap between components.
 	 * 
 	 * @param hgap
-	 *            the horizontal gap between components
+	 *             the horizontal gap between components
 	 * @since JDK1.1
 	 */
 	public void setHgap(int hgap) {
@@ -403,7 +383,7 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * Sets the vertical gap between components.
 	 * 
 	 * @param vgap
-	 *            the vertical gap between components
+	 *             the vertical gap between components
 	 * @since JDK1.1
 	 */
 	public void setVgap(int vgap) {
@@ -421,14 +401,16 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * <code>Container.add</code> method with the same argument types.
 	 * 
 	 * @param comp
-	 *            the component to be added.
+	 *                    the component to be added.
 	 * @param constraints
-	 *            an object that specifies how and where the component is added
-	 *            to the layout.
+	 *                    an object that specifies how and where the component
+	 *                    is added
+	 *                    to the layout.
 	 * @see java.awt.Container#add(java.awt.Component, java.lang.Object)
 	 * @exception IllegalArgumentException
-	 *                if the constraint object is not a string, or if it not one
-	 *                of the five specified constants.
+	 *                                     if the constraint object is not a
+	 *                                     string, or if it not one
+	 *                                     of the five specified constants.
 	 * @since JDK1.1
 	 */
 	public void addLayoutComponent(Component comp, Object constraints) {
@@ -489,7 +471,7 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * directly.
 	 * 
 	 * @param comp
-	 *            the component to be removed.
+	 *             the component to be removed.
 	 * @see java.awt.Container#remove(java.awt.Component)
 	 * @see java.awt.Container#removeAll()
 	 */
@@ -522,16 +504,18 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * Gets the component that was added using the given constraint
 	 *
 	 * @param constraints
-	 *            the desired constraint, one of <code>CENTER</code>,
-	 *            <code>NORTH</code>, <code>SOUTH</code>, <code>WEST</code>,
-	 *            <code>EAST</code>, <code>PAGE_START</code>,
-	 *            <code>PAGE_END</code>, <code>LINE_START</code>,
-	 *            <code>LINE_END</code>
+	 *                    the desired constraint, one of <code>CENTER</code>,
+	 *                    <code>NORTH</code>, <code>SOUTH</code>,
+	 *                    <code>WEST</code>,
+	 *                    <code>EAST</code>, <code>PAGE_START</code>,
+	 *                    <code>PAGE_END</code>, <code>LINE_START</code>,
+	 *                    <code>LINE_END</code>
 	 * @return the component at the given location, or <code>null</code> if the
 	 *         location is empty
 	 * @exception IllegalArgumentException
-	 *                if the constraint object is not one of the nine specified
-	 *                constants
+	 *                                     if the constraint object is not one
+	 *                                     of the nine specified
+	 *                                     constants
 	 * @see #addLayoutComponent(java.awt.Component, java.lang.Object)
 	 * @since 1.5
 	 */
@@ -572,19 +556,24 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * <code>LINE_START</code> and <code>LINE_END</code>.
 	 *
 	 * @param constraints
-	 *            the desired absolute position, one of <code>CENTER</code>,
-	 *            <code>NORTH</code>, <code>SOUTH</code>, <code>EAST</code>,
-	 *            <code>WEST</code>
+	 *                    the desired absolute position, one of
+	 *                    <code>CENTER</code>,
+	 *                    <code>NORTH</code>, <code>SOUTH</code>,
+	 *                    <code>EAST</code>,
+	 *                    <code>WEST</code>
 	 * @param target
-	 *            the {@code Container} used to obtain the constraint location
-	 *            based on the target {@code Container}'s component orientation.
+	 *                    the {@code Container} used to obtain the constraint
+	 *                    location
+	 *                    based on the target {@code Container}'s component
+	 *                    orientation.
 	 * @return the component at the given location, or <code>null</code> if the
 	 *         location is empty
 	 * @exception IllegalArgumentException
-	 *                if the constraint object is not one of the five specified
-	 *                constants
+	 *                                     if the constraint object is not one
+	 *                                     of the five specified
+	 *                                     constants
 	 * @exception NullPointerException
-	 *                if the target parameter is null
+	 *                                     if the target parameter is null
 	 * @see #addLayoutComponent(java.awt.Component, java.lang.Object)
 	 * @since 1.5
 	 */
@@ -620,7 +609,7 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * Gets the constraints for the specified component
 	 *
 	 * @param comp
-	 *            the component to be queried
+	 *             the component to be queried
 	 * @return the constraint for the specified component, or null if component
 	 *         is null or is not present in this layout
 	 * @see #addLayoutComponent(java.awt.Component, java.lang.Object)
@@ -663,7 +652,7 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * method directly.
 	 * 
 	 * @param target
-	 *            the container in which to do the layout.
+	 *               the container in which to do the layout.
 	 * @return the minimum dimensions needed to lay out the subcomponents of the
 	 *         specified container.
 	 * @see java.awt.Container
@@ -719,7 +708,7 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * when a container calls its <code>getPreferredSize</code> method.
 	 * 
 	 * @param target
-	 *            the container in which to do the layout.
+	 *               the container in which to do the layout.
 	 * @return the preferred dimensions to lay out the subcomponents of the
 	 *         specified container.
 	 * @see java.awt.Container
@@ -772,7 +761,7 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * the specified target container.
 	 * 
 	 * @param target
-	 *            the component which needs to be laid out
+	 *               the component which needs to be laid out
 	 * @see Container
 	 * @see #minimumLayoutSize
 	 * @see #preferredLayoutSize
@@ -807,8 +796,7 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * Invalidates the layout, indicating that if the layout manager has cached
 	 * information it should be discarded.
 	 */
-	public void invalidateLayout(Container target) {
-	}
+	public void invalidateLayout(Container target) {}
 
 	/**
 	 * Lays out the container argument using this border layout.
@@ -825,7 +813,7 @@ public class BorderLayout implements LayoutManager2, java.io.Serializable {
 	 * when a container calls its <code>doLayout</code> method.
 	 * 
 	 * @param target
-	 *            the container in which to do the layout.
+	 *               the container in which to do the layout.
 	 * @see java.awt.Container
 	 * @see java.awt.Container#doLayout()
 	 */

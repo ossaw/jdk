@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.impl.naming.namingutil;
 
@@ -43,8 +23,7 @@ public class INSURLHandler {
 	// Length of corbaname:
 	private static final int CORBANAME_PREFIX_LENGTH = 10;
 
-	private INSURLHandler() {
-	}
+	private INSURLHandler() {}
 
 	public synchronized static INSURLHandler getINSURLHandler() {
 		if (insURLHandler == null) {

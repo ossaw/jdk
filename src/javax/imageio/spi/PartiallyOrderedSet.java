@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.spi;
@@ -64,8 +44,7 @@ class PartiallyOrderedSet extends AbstractSet {
 	/**
 	 * Constructs a <code>PartiallyOrderedSet</code>.
 	 */
-	public PartiallyOrderedSet() {
-	}
+	public PartiallyOrderedSet() {}
 
 	public int size() {
 		return nodes.size();
@@ -142,7 +121,8 @@ class PartiallyOrderedSet extends AbstractSet {
 		DigraphNode firstPONode = (DigraphNode) poNodes.get(first);
 		DigraphNode secondPONode = (DigraphNode) poNodes.get(second);
 
-		return firstPONode.removeEdge(secondPONode) || secondPONode.removeEdge(firstPONode);
+		return firstPONode.removeEdge(secondPONode) || secondPONode.removeEdge(
+				firstPONode);
 	}
 
 	/**

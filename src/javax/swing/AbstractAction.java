@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -54,7 +34,8 @@ import sun.security.action.GetPropertyAction;
  * @author Georges Saab
  * @see Action
  */
-public abstract class AbstractAction implements Action, Cloneable, Serializable {
+public abstract class AbstractAction implements Action, Cloneable,
+		Serializable {
 	/**
 	 * Whether or not actions should reconfigure all properties on null.
 	 */
@@ -78,8 +59,10 @@ public abstract class AbstractAction implements Action, Cloneable, Serializable 
 		if (e.getPropertyName() == null) {
 			synchronized (AbstractAction.class) {
 				if (RECONFIGURE_ON_NULL == null) {
-					RECONFIGURE_ON_NULL = Boolean.valueOf(AccessController.doPrivileged(
-							new GetPropertyAction("swing.actions.reconfigureOnNull", "false")));
+					RECONFIGURE_ON_NULL = Boolean.valueOf(AccessController
+							.doPrivileged(new GetPropertyAction(
+									"swing.actions.reconfigureOnNull",
+									"false")));
 				}
 				return RECONFIGURE_ON_NULL;
 			}
@@ -91,9 +74,9 @@ public abstract class AbstractAction implements Action, Cloneable, Serializable 
 	 * Sets the enabled state of a component from an Action.
 	 *
 	 * @param c
-	 *            the Component to set the enabled state on
+	 *          the Component to set the enabled state on
 	 * @param a
-	 *            the Action to set the enabled state from, may be null
+	 *          the Action to set the enabled state from, may be null
 	 */
 	static void setEnabledFromAction(JComponent c, Action a) {
 		c.setEnabled((a != null) ? a.isEnabled() : true);
@@ -103,12 +86,13 @@ public abstract class AbstractAction implements Action, Cloneable, Serializable 
 	 * Sets the tooltip text of a component from an Action.
 	 *
 	 * @param c
-	 *            the Component to set the tooltip text on
+	 *          the Component to set the tooltip text on
 	 * @param a
-	 *            the Action to set the tooltip text from, may be null
+	 *          the Action to set the tooltip text from, may be null
 	 */
 	static void setToolTipTextFromAction(JComponent c, Action a) {
-		c.setToolTipText(a != null ? (String) a.getValue(Action.SHORT_DESCRIPTION) : null);
+		c.setToolTipText(a != null ? (String) a.getValue(
+				Action.SHORT_DESCRIPTION) : null);
 	}
 
 	static boolean hasSelectedKey(Action a) {
@@ -122,15 +106,14 @@ public abstract class AbstractAction implements Action, Cloneable, Serializable 
 	/**
 	 * Creates an {@code Action}.
 	 */
-	public AbstractAction() {
-	}
+	public AbstractAction() {}
 
 	/**
 	 * Creates an {@code Action} with the specified name.
 	 *
 	 * @param name
-	 *            the name ({@code Action.NAME}) for the action; a value of
-	 *            {@code null} is ignored
+	 *             the name ({@code Action.NAME}) for the action; a value of
+	 *             {@code null} is ignored
 	 */
 	public AbstractAction(String name) {
 		putValue(Action.NAME, name);
@@ -140,11 +123,11 @@ public abstract class AbstractAction implements Action, Cloneable, Serializable 
 	 * Creates an {@code Action} with the specified name and small icon.
 	 *
 	 * @param name
-	 *            the name ({@code Action.NAME}) for the action; a value of
-	 *            {@code null} is ignored
+	 *             the name ({@code Action.NAME}) for the action; a value of
+	 *             {@code null} is ignored
 	 * @param icon
-	 *            the small icon ({@code Action.SMALL_ICON}) for the action; a
-	 *            value of {@code null} is ignored
+	 *             the small icon ({@code Action.SMALL_ICON}) for the action; a
+	 *             value of {@code null} is ignored
 	 */
 	public AbstractAction(String name, Icon icon) {
 		this(name);
@@ -174,9 +157,9 @@ public abstract class AbstractAction implements Action, Cloneable, Serializable 
 	 * Sets the <code>Value</code> associated with the specified key.
 	 *
 	 * @param key
-	 *            the <code>String</code> that identifies the stored object
+	 *                 the <code>String</code> that identifies the stored object
 	 * @param newValue
-	 *            the <code>Object</code> to store using this key
+	 *                 the <code>Object</code> to store using this key
 	 * @see Action#putValue
 	 */
 	public void putValue(String key, Object newValue) {
@@ -227,7 +210,8 @@ public abstract class AbstractAction implements Action, Cloneable, Serializable 
 	 * Sets whether the {@code Action} is enabled. The default is {@code true}.
 	 *
 	 * @param newValue
-	 *            {@code true} to enable the action, {@code false} to disable it
+	 *                 {@code true} to enable the action, {@code false} to
+	 *                 disable it
 	 * @see Action#setEnabled
 	 */
 	public void setEnabled(boolean newValue) {
@@ -235,7 +219,8 @@ public abstract class AbstractAction implements Action, Cloneable, Serializable 
 
 		if (oldValue != newValue) {
 			this.enabled = newValue;
-			firePropertyChange("enabled", Boolean.valueOf(oldValue), Boolean.valueOf(newValue));
+			firePropertyChange("enabled", Boolean.valueOf(oldValue), Boolean
+					.valueOf(newValue));
 		}
 	}
 
@@ -269,9 +254,10 @@ public abstract class AbstractAction implements Action, Cloneable, Serializable 
 	 * <code>PropertyChangeEvent</code> to any registered
 	 * <code>PropertyChangeListeners</code>.
 	 */
-	protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
-		if (changeSupport == null
-				|| (oldValue != null && newValue != null && oldValue.equals(newValue))) {
+	protected void firePropertyChange(String propertyName, Object oldValue,
+			Object newValue) {
+		if (changeSupport == null || (oldValue != null && newValue != null
+				&& oldValue.equals(newValue))) {
 			return;
 		}
 		changeSupport.firePropertyChange(propertyName, oldValue, newValue);
@@ -288,11 +274,12 @@ public abstract class AbstractAction implements Action, Cloneable, Serializable 
 	 * no event will be fired in response to a change in the inherited property.
 	 *
 	 * @param listener
-	 *            The <code>PropertyChangeListener</code> to be added
+	 *                 The <code>PropertyChangeListener</code> to be added
 	 *
 	 * @see Action#addPropertyChangeListener
 	 */
-	public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
+	public synchronized void addPropertyChangeListener(
+			PropertyChangeListener listener) {
 		if (changeSupport == null) {
 			changeSupport = new SwingPropertyChangeSupport(this);
 		}
@@ -305,11 +292,12 @@ public abstract class AbstractAction implements Action, Cloneable, Serializable 
 	 * for all properties.
 	 *
 	 * @param listener
-	 *            the <code>PropertyChangeListener</code> to be removed
+	 *                 the <code>PropertyChangeListener</code> to be removed
 	 *
 	 * @see Action#removePropertyChangeListener
 	 */
-	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
+	public synchronized void removePropertyChangeListener(
+			PropertyChangeListener listener) {
 		if (changeSupport == null) {
 			return;
 		}
@@ -355,7 +343,8 @@ public abstract class AbstractAction implements Action, Cloneable, Serializable 
 		ArrayTable.writeArrayTable(s, arrayTable);
 	}
 
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException {
 		s.defaultReadObject();
 		for (int counter = s.readInt() - 1; counter >= 0; counter--) {
 			putValue((String) s.readObject(), s.readObject());

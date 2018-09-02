@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -84,7 +64,7 @@ import java.io.InvalidObjectException;
  * Framework</a>.
  *
  * @param <E>
- *            the type of elements maintained by this set
+ *        the type of elements maintained by this set
  *
  * @author Josh Bloch
  * @author Neal Gafter
@@ -95,7 +75,8 @@ import java.io.InvalidObjectException;
  * @since 1.2
  */
 
-public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, java.io.Serializable {
+public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
+		java.io.Serializable {
 	static final long serialVersionUID = -5024744406713321676L;
 
 	private transient HashMap<E, Object> map;
@@ -118,9 +99,9 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
 	 * collection.
 	 *
 	 * @param c
-	 *            the collection whose elements are to be placed into this set
+	 *          the collection whose elements are to be placed into this set
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                              if the specified collection is null
 	 */
 	public HashSet(Collection<? extends E> c) {
 		map = new HashMap<>(Math.max((int) (c.size() / .75f) + 1, 16));
@@ -132,12 +113,13 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
 	 * the specified initial capacity and the specified load factor.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the hash map
+	 *                        the initial capacity of the hash map
 	 * @param loadFactor
-	 *            the load factor of the hash map
+	 *                        the load factor of the hash map
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is less than zero, or if the load
-	 *             factor is nonpositive
+	 *                                  if the initial capacity is less than
+	 *                                  zero, or if the load
+	 *                                  factor is nonpositive
 	 */
 	public HashSet(int initialCapacity, float loadFactor) {
 		map = new HashMap<>(initialCapacity, loadFactor);
@@ -148,9 +130,10 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
 	 * the specified initial capacity and default load factor (0.75).
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the hash table
+	 *                        the initial capacity of the hash table
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is less than zero
+	 *                                  if the initial capacity is less than
+	 *                                  zero
 	 */
 	public HashSet(int initialCapacity) {
 		map = new HashMap<>(initialCapacity);
@@ -163,15 +146,17 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
 	 * load factor.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the hash map
+	 *                        the initial capacity of the hash map
 	 * @param loadFactor
-	 *            the load factor of the hash map
+	 *                        the load factor of the hash map
 	 * @param dummy
-	 *            ignored (distinguishes this constructor from other int, float
-	 *            constructor.)
+	 *                        ignored (distinguishes this constructor from other
+	 *                        int, float
+	 *                        constructor.)
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is less than zero, or if the load
-	 *             factor is nonpositive
+	 *                                  if the initial capacity is less than
+	 *                                  zero, or if the load
+	 *                                  factor is nonpositive
 	 */
 	HashSet(int initialCapacity, float loadFactor, boolean dummy) {
 		map = new LinkedHashMap<>(initialCapacity, loadFactor);
@@ -213,7 +198,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
 	 * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
 	 *
 	 * @param o
-	 *            element whose presence in this set is to be tested
+	 *          element whose presence in this set is to be tested
 	 * @return <tt>true</tt> if this set contains the specified element
 	 */
 	public boolean contains(Object o) {
@@ -229,7 +214,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
 	 * returns <tt>false</tt>.
 	 *
 	 * @param e
-	 *            element to be added to this set
+	 *          element to be added to this set
 	 * @return <tt>true</tt> if this set did not already contain the specified
 	 *         element
 	 */
@@ -246,7 +231,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
 	 * call). (This set will not contain the element once the call returns.)
 	 *
 	 * @param o
-	 *            object to be removed from this set, if present
+	 *          object to be removed from this set, if present
 	 * @return <tt>true</tt> if the set contained the specified element
 	 */
 	public boolean remove(Object o) {
@@ -288,7 +273,8 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
 	 *             followed by all of its elements (each an Object) in no
 	 *             particular order.
 	 */
-	private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
+	private void writeObject(java.io.ObjectOutputStream s)
+			throws java.io.IOException {
 		// Write out any hidden serialization magic
 		s.defaultWriteObject();
 
@@ -322,7 +308,8 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
 		// Read load factor and verify positive and non NaN.
 		float loadFactor = s.readFloat();
 		if (loadFactor <= 0 || Float.isNaN(loadFactor)) {
-			throw new InvalidObjectException("Illegal load factor: " + loadFactor);
+			throw new InvalidObjectException("Illegal load factor: "
+					+ loadFactor);
 		}
 
 		// Read size and verify non-negative.
@@ -333,7 +320,8 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, jav
 
 		// Set the capacity according to the size and load factor ensuring that
 		// the HashMap is at least 25% full but clamping to maximum capacity.
-		capacity = (int) Math.min(size * Math.min(1 / loadFactor, 4.0f), HashMap.MAXIMUM_CAPACITY);
+		capacity = (int) Math.min(size * Math.min(1 / loadFactor, 4.0f),
+				HashMap.MAXIMUM_CAPACITY);
 
 		// Create backing HashMap
 		map = (((HashSet<?>) this) instanceof LinkedHashSet

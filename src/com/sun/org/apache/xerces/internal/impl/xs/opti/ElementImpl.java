@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -62,8 +59,8 @@ public class ElementImpl extends DefaultElement {
 		this(line, column, -1);
 	}
 
-	public ElementImpl(String prefix, String localpart, String rawname, String uri, int line,
-			int column, int offset) {
+	public ElementImpl(String prefix, String localpart, String rawname,
+			String uri, int line, int column, int offset) {
 		super(prefix, localpart, rawname, uri, Node.ELEMENT_NODE);
 		row = -1;
 		col = -1;
@@ -74,8 +71,8 @@ public class ElementImpl extends DefaultElement {
 		charOffset = offset;
 	}
 
-	public ElementImpl(String prefix, String localpart, String rawname, String uri, int line,
-			int column) {
+	public ElementImpl(String prefix, String localpart, String rawname,
+			String uri, int line, int column) {
 		this(prefix, localpart, rawname, uri, line, column, -1);
 	}
 
@@ -173,8 +170,8 @@ public class ElementImpl extends DefaultElement {
 
 	public String getAttributeNS(String namespaceURI, String localName) {
 		for (int i = 0; i < attrs.length; i++) {
-			if (attrs[i].getLocalName().equals(localName)
-					&& nsEquals(attrs[i].getNamespaceURI(), namespaceURI)) {
+			if (attrs[i].getLocalName().equals(localName) && nsEquals(attrs[i]
+					.getNamespaceURI(), namespaceURI)) {
 				return attrs[i].getValue();
 			}
 		}
@@ -183,8 +180,8 @@ public class ElementImpl extends DefaultElement {
 
 	public Attr getAttributeNodeNS(String namespaceURI, String localName) {
 		for (int i = 0; i < attrs.length; i++) {
-			if (attrs[i].getName().equals(localName)
-					&& nsEquals(attrs[i].getNamespaceURI(), namespaceURI)) {
+			if (attrs[i].getName().equals(localName) && nsEquals(attrs[i]
+					.getNamespaceURI(), namespaceURI)) {
 				return attrs[i];
 			}
 		}
@@ -202,8 +199,8 @@ public class ElementImpl extends DefaultElement {
 
 	public boolean hasAttributeNS(String namespaceURI, String localName) {
 		for (int i = 0; i < attrs.length; i++) {
-			if (attrs[i].getName().equals(localName)
-					&& nsEquals(attrs[i].getNamespaceURI(), namespaceURI)) {
+			if (attrs[i].getName().equals(localName) && nsEquals(attrs[i]
+					.getNamespaceURI(), namespaceURI)) {
 				return true;
 			}
 		}

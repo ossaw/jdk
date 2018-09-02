@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -64,9 +44,10 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 	/**
 	 * Keys to lookup borders in defaults table.
 	 */
-	private static final String[] borderKeys = new String[] { null, "RootPane.frameBorder",
-			"RootPane.plainDialogBorder", "RootPane.informationDialogBorder",
-			"RootPane.errorDialogBorder", "RootPane.colorChooserDialogBorder",
+	private static final String[] borderKeys = new String[] { null,
+			"RootPane.frameBorder", "RootPane.plainDialogBorder",
+			"RootPane.informationDialogBorder", "RootPane.errorDialogBorder",
+			"RootPane.colorChooserDialogBorder",
 			"RootPane.fileChooserDialogBorder", "RootPane.questionDialogBorder",
 			"RootPane.warningDialogBorder" };
 	/**
@@ -116,13 +97,14 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 	 * <code>Cursor</code> used to track the cursor set by the user. This is
 	 * initially <code>Cursor.DEFAULT_CURSOR</code>.
 	 */
-	private Cursor lastCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+	private Cursor lastCursor = Cursor.getPredefinedCursor(
+			Cursor.DEFAULT_CURSOR);
 
 	/**
 	 * Creates a UI for a <code>JRootPane</code>.
 	 *
 	 * @param c
-	 *            the JRootPane the RootPaneUI will be created for
+	 *          the JRootPane the RootPaneUI will be created for
 	 * @return the RootPaneUI implementation for the passed in JRootPane
 	 */
 	public static ComponentUI createUI(JComponent c) {
@@ -140,7 +122,7 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 	 * <code>LayoutManager</code> on the <code>JRootPane</code>.
 	 *
 	 * @param c
-	 *            the JRootPane to install state onto
+	 *          the JRootPane to install state onto
 	 */
 	public void installUI(JComponent c) {
 		super.installUI(c);
@@ -161,7 +143,7 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 	 * invoked.
 	 *
 	 * @param c
-	 *            the JRootPane to uninstall state from
+	 *          the JRootPane to uninstall state from
 	 */
 	public void uninstallUI(JComponent c) {
 		super.uninstallUI(c);
@@ -202,7 +184,7 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 	 * yet.
 	 *
 	 * @param parent
-	 *            The parent of the JRootPane
+	 *               The parent of the JRootPane
 	 */
 	private void installWindowListeners(JRootPane root, Component parent) {
 		if (parent instanceof Window) {
@@ -332,7 +314,8 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 	 * window title pane.
 	 *
 	 * @param content
-	 *            the <code>JComponent</code> to use for the window title pane.
+	 *                the <code>JComponent</code> to use for the window title
+	 *                pane.
 	 */
 	private void setTitlePane(JRootPane root, JComponent titlePane) {
 		JLayeredPane layeredPane = root.getLayeredPane();
@@ -382,8 +365,8 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 	 * Border to what it was before <code>installUI</code> was invoked.
 	 *
 	 * @param e
-	 *            A PropertyChangeEvent object describing the event source and
-	 *            the property that has changed.
+	 *          A PropertyChangeEvent object describing the event source and
+	 *          the property that has changed.
 	 */
 	public void propertyChange(PropertyChangeEvent e) {
 		super.propertyChange(e);
@@ -407,7 +390,8 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 			}
 		} else if (propertyName.equals("ancestor")) {
 			uninstallWindowListeners(root);
-			if (((JRootPane) e.getSource()).getWindowDecorationStyle() != JRootPane.NONE) {
+			if (((JRootPane) e.getSource())
+					.getWindowDecorationStyle() != JRootPane.NONE) {
 				installWindowListeners(root, root.getParent());
 			}
 		}
@@ -457,9 +441,10 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 				}
 			}
 
-			if (root.getWindowDecorationStyle() != JRootPane.NONE
-					&& (root.getUI() instanceof MetalRootPaneUI)) {
-				JComponent titlePane = ((MetalRootPaneUI) root.getUI()).getTitlePane();
+			if (root.getWindowDecorationStyle() != JRootPane.NONE && (root
+					.getUI() instanceof MetalRootPaneUI)) {
+				JComponent titlePane = ((MetalRootPaneUI) root.getUI())
+						.getTitlePane();
 				if (titlePane != null) {
 					tpd = titlePane.getPreferredSize();
 					if (tpd != null) {
@@ -469,8 +454,9 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 				}
 			}
 
-			return new Dimension(Math.max(Math.max(cpWidth, mbWidth), tpWidth) + i.left + i.right,
-					cpHeight + mbHeight + tpWidth + i.top + i.bottom);
+			return new Dimension(Math.max(Math.max(cpWidth, mbWidth), tpWidth)
+					+ i.left + i.right, cpHeight + mbHeight + tpWidth + i.top
+							+ i.bottom);
 		}
 
 		/**
@@ -508,9 +494,10 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 					mbHeight = mbd.height;
 				}
 			}
-			if (root.getWindowDecorationStyle() != JRootPane.NONE
-					&& (root.getUI() instanceof MetalRootPaneUI)) {
-				JComponent titlePane = ((MetalRootPaneUI) root.getUI()).getTitlePane();
+			if (root.getWindowDecorationStyle() != JRootPane.NONE && (root
+					.getUI() instanceof MetalRootPaneUI)) {
+				JComponent titlePane = ((MetalRootPaneUI) root.getUI())
+						.getTitlePane();
 				if (titlePane != null) {
 					tpd = titlePane.getMinimumSize();
 					if (tpd != null) {
@@ -520,8 +507,9 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 				}
 			}
 
-			return new Dimension(Math.max(Math.max(cpWidth, mbWidth), tpWidth) + i.left + i.right,
-					cpHeight + mbHeight + tpWidth + i.top + i.bottom);
+			return new Dimension(Math.max(Math.max(cpWidth, mbWidth), tpWidth)
+					+ i.left + i.right, cpHeight + mbHeight + tpWidth + i.top
+							+ i.bottom);
 		}
 
 		/**
@@ -558,9 +546,10 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 				}
 			}
 
-			if (root.getWindowDecorationStyle() != JRootPane.NONE
-					&& (root.getUI() instanceof MetalRootPaneUI)) {
-				JComponent titlePane = ((MetalRootPaneUI) root.getUI()).getTitlePane();
+			if (root.getWindowDecorationStyle() != JRootPane.NONE && (root
+					.getUI() instanceof MetalRootPaneUI)) {
+				JComponent titlePane = ((MetalRootPaneUI) root.getUI())
+						.getTitlePane();
 				if (titlePane != null) {
 					tpd = titlePane.getMaximumSize();
 					if (tpd != null) {
@@ -611,9 +600,10 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 			}
 			// Note: This is laying out the children in the layeredPane,
 			// technically, these are not our children.
-			if (root.getWindowDecorationStyle() != JRootPane.NONE
-					&& (root.getUI() instanceof MetalRootPaneUI)) {
-				JComponent titlePane = ((MetalRootPaneUI) root.getUI()).getTitlePane();
+			if (root.getWindowDecorationStyle() != JRootPane.NONE && (root
+					.getUI() instanceof MetalRootPaneUI)) {
+				JComponent titlePane = ((MetalRootPaneUI) root.getUI())
+						.getTitlePane();
 				if (titlePane != null) {
 					Dimension tpd = titlePane.getPreferredSize();
 					if (tpd != null) {
@@ -630,18 +620,16 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 			}
 			if (root.getContentPane() != null) {
 				Dimension cpd = root.getContentPane().getPreferredSize();
-				root.getContentPane().setBounds(0, nextY, w, h < nextY ? 0 : h - nextY);
+				root.getContentPane().setBounds(0, nextY, w, h < nextY ? 0
+						: h - nextY);
 			}
 		}
 
-		public void addLayoutComponent(String name, Component comp) {
-		}
+		public void addLayoutComponent(String name, Component comp) {}
 
-		public void removeLayoutComponent(Component comp) {
-		}
+		public void removeLayoutComponent(Component comp) {}
 
-		public void addLayoutComponent(Component comp, Object constraints) {
-		}
+		public void addLayoutComponent(Component comp, Object constraints) {}
 
 		public float getLayoutAlignmentX(Container target) {
 			return 0.0f;
@@ -651,20 +639,22 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 			return 0.0f;
 		}
 
-		public void invalidateLayout(Container target) {
-		}
+		public void invalidateLayout(Container target) {}
 	}
 
 	/**
 	 * Maps from positions to cursor type. Refer to calculateCorner and
 	 * calculatePosition for details of this.
 	 */
-	private static final int[] cursorMapping = new int[] { Cursor.NW_RESIZE_CURSOR,
-			Cursor.NW_RESIZE_CURSOR, Cursor.N_RESIZE_CURSOR, Cursor.NE_RESIZE_CURSOR,
-			Cursor.NE_RESIZE_CURSOR, Cursor.NW_RESIZE_CURSOR, 0, 0, 0, Cursor.NE_RESIZE_CURSOR,
-			Cursor.W_RESIZE_CURSOR, 0, 0, 0, Cursor.E_RESIZE_CURSOR, Cursor.SW_RESIZE_CURSOR, 0, 0,
-			0, Cursor.SE_RESIZE_CURSOR, Cursor.SW_RESIZE_CURSOR, Cursor.SW_RESIZE_CURSOR,
-			Cursor.S_RESIZE_CURSOR, Cursor.SE_RESIZE_CURSOR, Cursor.SE_RESIZE_CURSOR };
+	private static final int[] cursorMapping = new int[] {
+			Cursor.NW_RESIZE_CURSOR, Cursor.NW_RESIZE_CURSOR,
+			Cursor.N_RESIZE_CURSOR, Cursor.NE_RESIZE_CURSOR,
+			Cursor.NE_RESIZE_CURSOR, Cursor.NW_RESIZE_CURSOR, 0, 0, 0,
+			Cursor.NE_RESIZE_CURSOR, Cursor.W_RESIZE_CURSOR, 0, 0, 0,
+			Cursor.E_RESIZE_CURSOR, Cursor.SW_RESIZE_CURSOR, 0, 0, 0,
+			Cursor.SE_RESIZE_CURSOR, Cursor.SW_RESIZE_CURSOR,
+			Cursor.SW_RESIZE_CURSOR, Cursor.S_RESIZE_CURSOR,
+			Cursor.SE_RESIZE_CURSOR, Cursor.SE_RESIZE_CURSOR };
 
 	/**
 	 * MouseInputHandler is responsible for handling resize/moving of the
@@ -713,8 +703,8 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 			if (w != null) {
 				w.toFront();
 			}
-			Point convertedDragWindowOffset = SwingUtilities.convertPoint(w, dragWindowOffset,
-					getTitlePane());
+			Point convertedDragWindowOffset = SwingUtilities.convertPoint(w,
+					dragWindowOffset, getTitlePane());
 
 			Frame f = null;
 			Dialog d = null;
@@ -727,22 +717,27 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 
 			int frameState = (f != null) ? f.getExtendedState() : 0;
 
-			if (getTitlePane() != null && getTitlePane().contains(convertedDragWindowOffset)) {
-				if ((f != null && ((frameState & Frame.MAXIMIZED_BOTH) == 0) || (d != null))
+			if (getTitlePane() != null && getTitlePane().contains(
+					convertedDragWindowOffset)) {
+				if ((f != null && ((frameState & Frame.MAXIMIZED_BOTH) == 0)
+						|| (d != null))
 						&& dragWindowOffset.y >= BORDER_DRAG_THICKNESS
 						&& dragWindowOffset.x >= BORDER_DRAG_THICKNESS
-						&& dragWindowOffset.x < w.getWidth() - BORDER_DRAG_THICKNESS) {
+						&& dragWindowOffset.x < w.getWidth()
+								- BORDER_DRAG_THICKNESS) {
 					isMovingWindow = true;
 					dragOffsetX = dragWindowOffset.x;
 					dragOffsetY = dragWindowOffset.y;
 				}
-			} else if (f != null && f.isResizable() && ((frameState & Frame.MAXIMIZED_BOTH) == 0)
-					|| (d != null && d.isResizable())) {
+			} else if (f != null && f.isResizable() && ((frameState
+					& Frame.MAXIMIZED_BOTH) == 0) || (d != null && d
+							.isResizable())) {
 				dragOffsetX = dragWindowOffset.x;
 				dragOffsetY = dragWindowOffset.y;
 				dragWidth = w.getWidth();
 				dragHeight = w.getHeight();
-				dragCursor = getCursor(calculateCorner(w, dragWindowOffset.x, dragWindowOffset.y));
+				dragCursor = getCursor(calculateCorner(w, dragWindowOffset.x,
+						dragWindowOffset.y));
 			}
 		}
 
@@ -778,8 +773,8 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 			// Update the cursor
 			int cursor = getCursor(calculateCorner(w, ev.getX(), ev.getY()));
 
-			if (cursor != 0 && ((f != null
-					&& (f.isResizable() && (f.getExtendedState() & Frame.MAXIMIZED_BOTH) == 0))
+			if (cursor != 0 && ((f != null && (f.isResizable() && (f
+					.getExtendedState() & Frame.MAXIMIZED_BOTH) == 0))
 					|| (d != null && d.isResizable()))) {
 				w.setCursor(Cursor.getPredefinedCursor(cursor));
 			} else {
@@ -787,8 +782,8 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 			}
 		}
 
-		private void adjust(Rectangle bounds, Dimension min, int deltaX, int deltaY, int deltaWidth,
-				int deltaHeight) {
+		private void adjust(Rectangle bounds, Dimension min, int deltaX,
+				int deltaY, int deltaWidth, int deltaHeight) {
 			bounds.x += deltaX;
 			bounds.y += deltaY;
 			bounds.width += deltaWidth;
@@ -825,36 +820,43 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 				Dimension min = w.getMinimumSize();
 
 				switch (dragCursor) {
-				case Cursor.E_RESIZE_CURSOR:
-					adjust(r, min, 0, 0, pt.x + (dragWidth - dragOffsetX) - r.width, 0);
-					break;
-				case Cursor.S_RESIZE_CURSOR:
-					adjust(r, min, 0, 0, 0, pt.y + (dragHeight - dragOffsetY) - r.height);
-					break;
-				case Cursor.N_RESIZE_CURSOR:
-					adjust(r, min, 0, pt.y - dragOffsetY, 0, -(pt.y - dragOffsetY));
-					break;
-				case Cursor.W_RESIZE_CURSOR:
-					adjust(r, min, pt.x - dragOffsetX, 0, -(pt.x - dragOffsetX), 0);
-					break;
-				case Cursor.NE_RESIZE_CURSOR:
-					adjust(r, min, 0, pt.y - dragOffsetY,
-							pt.x + (dragWidth - dragOffsetX) - r.width, -(pt.y - dragOffsetY));
-					break;
-				case Cursor.SE_RESIZE_CURSOR:
-					adjust(r, min, 0, 0, pt.x + (dragWidth - dragOffsetX) - r.width,
-							pt.y + (dragHeight - dragOffsetY) - r.height);
-					break;
-				case Cursor.NW_RESIZE_CURSOR:
-					adjust(r, min, pt.x - dragOffsetX, pt.y - dragOffsetY, -(pt.x - dragOffsetX),
-							-(pt.y - dragOffsetY));
-					break;
-				case Cursor.SW_RESIZE_CURSOR:
-					adjust(r, min, pt.x - dragOffsetX, 0, -(pt.x - dragOffsetX),
-							pt.y + (dragHeight - dragOffsetY) - r.height);
-					break;
-				default:
-					break;
+					case Cursor.E_RESIZE_CURSOR:
+						adjust(r, min, 0, 0, pt.x + (dragWidth - dragOffsetX)
+								- r.width, 0);
+						break;
+					case Cursor.S_RESIZE_CURSOR:
+						adjust(r, min, 0, 0, 0, pt.y + (dragHeight
+								- dragOffsetY) - r.height);
+						break;
+					case Cursor.N_RESIZE_CURSOR:
+						adjust(r, min, 0, pt.y - dragOffsetY, 0, -(pt.y
+								- dragOffsetY));
+						break;
+					case Cursor.W_RESIZE_CURSOR:
+						adjust(r, min, pt.x - dragOffsetX, 0, -(pt.x
+								- dragOffsetX), 0);
+						break;
+					case Cursor.NE_RESIZE_CURSOR:
+						adjust(r, min, 0, pt.y - dragOffsetY, pt.x + (dragWidth
+								- dragOffsetX) - r.width, -(pt.y
+										- dragOffsetY));
+						break;
+					case Cursor.SE_RESIZE_CURSOR:
+						adjust(r, min, 0, 0, pt.x + (dragWidth - dragOffsetX)
+								- r.width, pt.y + (dragHeight - dragOffsetY)
+										- r.height);
+						break;
+					case Cursor.NW_RESIZE_CURSOR:
+						adjust(r, min, pt.x - dragOffsetX, pt.y - dragOffsetY,
+								-(pt.x - dragOffsetX), -(pt.y - dragOffsetY));
+						break;
+					case Cursor.SW_RESIZE_CURSOR:
+						adjust(r, min, pt.x - dragOffsetX, 0, -(pt.x
+								- dragOffsetX), pt.y + (dragHeight
+										- dragOffsetY) - r.height);
+						break;
+					default:
+						break;
 				}
 				if (!r.equals(startBounds)) {
 					w.setBounds(r);
@@ -889,12 +891,14 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 				return;
 			}
 
-			Point convertedPoint = SwingUtilities.convertPoint(w, ev.getPoint(), getTitlePane());
+			Point convertedPoint = SwingUtilities.convertPoint(w, ev.getPoint(),
+					getTitlePane());
 
 			int state = f.getExtendedState();
-			if (getTitlePane() != null && getTitlePane().contains(convertedPoint)) {
-				if ((ev.getClickCount() % 2) == 0
-						&& ((ev.getModifiers() & InputEvent.BUTTON1_MASK) != 0)) {
+			if (getTitlePane() != null && getTitlePane().contains(
+					convertedPoint)) {
+				if ((ev.getClickCount() % 2) == 0 && ((ev.getModifiers()
+						& InputEvent.BUTTON1_MASK) != 0)) {
 					if (f.isResizable()) {
 						if ((state & Frame.MAXIMIZED_BOTH) != 0) {
 							f.setExtendedState(state & ~Frame.MAXIMIZED_BOTH);
@@ -913,10 +917,10 @@ public class MetalRootPaneUI extends BasicRootPaneUI {
 		 */
 		private int calculateCorner(Window w, int x, int y) {
 			Insets insets = w.getInsets();
-			int xPosition = calculatePosition(x - insets.left,
-					w.getWidth() - insets.left - insets.right);
-			int yPosition = calculatePosition(y - insets.top,
-					w.getHeight() - insets.top - insets.bottom);
+			int xPosition = calculatePosition(x - insets.left, w.getWidth()
+					- insets.left - insets.right);
+			int yPosition = calculatePosition(y - insets.top, w.getHeight()
+					- insets.top - insets.bottom);
 
 			if (xPosition == -1 || yPosition == -1) {
 				return -1;

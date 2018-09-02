@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.protocol.giopmsgheaders;
@@ -31,12 +11,12 @@ package com.sun.corba.se.impl.protocol.giopmsgheaders;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class FragmentMessage_1_1 extends Message_1_1 implements FragmentMessage {
+public final class FragmentMessage_1_1 extends Message_1_1 implements
+		FragmentMessage {
 
 	// Constructors
 
-	FragmentMessage_1_1() {
-	}
+	FragmentMessage_1_1() {}
 
 	FragmentMessage_1_1(Message_1_1 msg11) {
 		this.magic = msg11.magic;

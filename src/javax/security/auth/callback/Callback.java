@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.callback;
@@ -49,5 +29,4 @@ package javax.security.auth.callback;
  * @see javax.security.auth.callback.TextInputCallback
  * @see javax.security.auth.callback.TextOutputCallback
  */
-public interface Callback {
-}
+public interface Callback {}

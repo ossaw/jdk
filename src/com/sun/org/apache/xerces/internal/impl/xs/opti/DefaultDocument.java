@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,8 +45,7 @@ public class DefaultDocument extends NodeImpl implements Document {
 	private String fDocumentURI = null;
 
 	// default constructor
-	public DefaultDocument() {
-	}
+	public DefaultDocument() {}
 
 	//
 	// org.w3c.dom.Document methods
@@ -71,7 +67,8 @@ public class DefaultDocument extends NodeImpl implements Document {
 		return null;
 	}
 
-	public NodeList getElementsByTagNameNS(String namespaceURI, String localName) {
+	public NodeList getElementsByTagNameNS(String namespaceURI,
+			String localName) {
 		return null;
 	}
 
@@ -79,12 +76,15 @@ public class DefaultDocument extends NodeImpl implements Document {
 		return null;
 	}
 
-	public Node importNode(Node importedNode, boolean deep) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+	public Node importNode(Node importedNode, boolean deep)
+			throws DOMException {
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public Element createElement(String tagName) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public DocumentFragment createDocumentFragment() {
@@ -100,28 +100,37 @@ public class DefaultDocument extends NodeImpl implements Document {
 	}
 
 	public CDATASection createCDATASection(String data) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
-	public ProcessingInstruction createProcessingInstruction(String target, String data)
-			throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+	public ProcessingInstruction createProcessingInstruction(String target,
+			String data) throws DOMException {
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	public Attr createAttribute(String name) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
-	public EntityReference createEntityReference(String name) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+	public EntityReference createEntityReference(String name)
+			throws DOMException {
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
-	public Element createElementNS(String namespaceURI, String qualifiedName) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+	public Element createElementNS(String namespaceURI, String qualifiedName)
+			throws DOMException {
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
-	public Attr createAttributeNS(String namespaceURI, String qualifiedName) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+	public Attr createAttributeNS(String namespaceURI, String qualifiedName)
+			throws DOMException {
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	// DOM Level 3 methods.
@@ -156,7 +165,8 @@ public class DefaultDocument extends NodeImpl implements Document {
 	 * @since DOM Level 3
 	 */
 	public boolean getXmlStandalone() {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -167,7 +177,8 @@ public class DefaultDocument extends NodeImpl implements Document {
 	 * @since DOM Level 3
 	 */
 	public void setXmlStandalone(boolean standalone) {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -176,8 +187,10 @@ public class DefaultDocument extends NodeImpl implements Document {
 	 * This attribute represents the property [version] defined in .
 	 * 
 	 * @exception DOMException
-	 *                NOT_SUPPORTED_ERR: Raised if the version is set to a value
-	 *                that is not supported by this <code>Document</code>.
+	 *                         NOT_SUPPORTED_ERR: Raised if the version is set
+	 *                         to a value
+	 *                         that is not supported by this
+	 *                         <code>Document</code>.
 	 * @since DOM Level 3
 	 */
 	public String getXmlVersion() {
@@ -190,12 +203,15 @@ public class DefaultDocument extends NodeImpl implements Document {
 	 * This attribute represents the property [version] defined in .
 	 * 
 	 * @exception DOMException
-	 *                NOT_SUPPORTED_ERR: Raised if the version is set to a value
-	 *                that is not supported by this <code>Document</code>.
+	 *                         NOT_SUPPORTED_ERR: Raised if the version is set
+	 *                         to a value
+	 *                         that is not supported by this
+	 *                         <code>Document</code>.
 	 * @since DOM Level 3
 	 */
 	public void setXmlVersion(String version) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -221,7 +237,8 @@ public class DefaultDocument extends NodeImpl implements Document {
 	 * @since DOM Level 3
 	 */
 	public void setStrictErrorChecking(boolean strictErrorChecking) {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -250,12 +267,14 @@ public class DefaultDocument extends NodeImpl implements Document {
 
 	/** DOM Level 3 */
 	public Node adoptNode(Node source) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/** DOM Level 3 */
 	public void normalizeDocument() {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/**
@@ -265,12 +284,15 @@ public class DefaultDocument extends NodeImpl implements Document {
 	 * @since DOM Level 3
 	 */
 	public DOMConfiguration getDomConfig() {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 	/** DOM Level 3 */
-	public Node renameNode(Node n, String namespaceURI, String name) throws DOMException {
-		throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
+	public Node renameNode(Node n, String namespaceURI, String name)
+			throws DOMException {
+		throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
+				"Method not supported");
 	}
 
 }

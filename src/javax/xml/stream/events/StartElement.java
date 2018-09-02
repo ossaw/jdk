@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -93,7 +73,7 @@ public interface StartElement extends XMLEvent {
 	 * Returns the attribute referred to by this name
 	 * 
 	 * @param name
-	 *            the qname of the desired name
+	 *             the qname of the desired name
 	 * @return the attribute corresponding to the name value or null
 	 */
 	public Attribute getAttributeByName(QName name);
@@ -112,7 +92,7 @@ public interface StartElement extends XMLEvent {
 	 * element. Returns null if the prefix is not bound in this context
 	 * 
 	 * @param prefix
-	 *            the prefix to lookup
+	 *               the prefix to lookup
 	 * @return the uri bound to the prefix or null
 	 */
 	public String getNamespaceURI(String prefix);

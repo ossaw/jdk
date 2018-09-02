@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.basic;
 
@@ -38,7 +18,7 @@ public class BasicFormattedTextFieldUI extends BasicTextFieldUI {
 	 * Creates a UI for a JFormattedTextField.
 	 *
 	 * @param c
-	 *            the formatted text field
+	 *          the formatted text field
 	 * @return the UI
 	 */
 	public static ComponentUI createUI(JComponent c) {

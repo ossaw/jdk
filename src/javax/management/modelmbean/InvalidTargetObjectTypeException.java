@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 2000, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
- * @author    IBM Corp.
- *
- * Copyright IBM Corp. 1999-2000.  All rights reserved.
+ * @author IBM Corp.
+ * Copyright IBM Corp. 1999-2000. All rights reserved.
  */
 
 package javax.management.modelmbean;
@@ -76,7 +55,7 @@ public class InvalidTargetObjectTypeException extends Exception {
 	private static final long serialVersionUID;
 	/**
 	 * @serialField exception
-	 *                  Exception Encapsulated {@link Exception}
+	 *              Exception Encapsulated {@link Exception}
 	 */
 	private static final ObjectStreamField[] serialPersistentFields;
 	private static boolean compat = false;
@@ -116,8 +95,8 @@ public class InvalidTargetObjectTypeException extends Exception {
 	 * Constructor from a string.
 	 *
 	 * @param s
-	 *            String value that will be incorporated in the message for this
-	 *            exception.
+	 *          String value that will be incorporated in the message for this
+	 *          exception.
 	 */
 
 	public InvalidTargetObjectTypeException(String s) {
@@ -129,18 +108,19 @@ public class InvalidTargetObjectTypeException extends Exception {
 	 * Constructor taking an exception and a string.
 	 *
 	 * @param e
-	 *            Exception that we may have caught to reissue as an
-	 *            InvalidTargetObjectTypeException. The message will be used,
-	 *            and we may want to consider overriding the printStackTrace()
-	 *            methods to get data pointing back to original throw stack.
+	 *          Exception that we may have caught to reissue as an
+	 *          InvalidTargetObjectTypeException. The message will be used,
+	 *          and we may want to consider overriding the printStackTrace()
+	 *          methods to get data pointing back to original throw stack.
 	 * @param s
-	 *            String value that will be incorporated in message for this
-	 *            exception.
+	 *          String value that will be incorporated in message for this
+	 *          exception.
 	 */
 
 	public InvalidTargetObjectTypeException(Exception e, String s) {
-		super("InvalidTargetObjectTypeException: " + s
-				+ ((e != null) ? ("\n\t triggered by:" + e.toString()) : ""));
+		super("InvalidTargetObjectTypeException: " + s + ((e != null)
+				? ("\n\t triggered by:" + e.toString())
+				: ""));
 		exception = e;
 	}
 
@@ -148,7 +128,8 @@ public class InvalidTargetObjectTypeException extends Exception {
 	 * Deserializes an {@link InvalidTargetObjectTypeException} from an
 	 * {@link ObjectInputStream}.
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		if (compat) {
 			// Read an object serialized in the old serial form
 			//
@@ -174,7 +155,8 @@ public class InvalidTargetObjectTypeException extends Exception {
 			//
 			ObjectOutputStream.PutField fields = out.putFields();
 			fields.put("relatedExcept", exception);
-			fields.put("msgStr", ((exception != null) ? exception.getMessage() : ""));
+			fields.put("msgStr", ((exception != null) ? exception.getMessage()
+					: ""));
 			out.writeFields();
 		} else {
 			// Serializes this instance in the new serial form

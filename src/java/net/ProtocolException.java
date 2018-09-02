@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -42,7 +22,7 @@ public class ProtocolException extends IOException {
 	 * message.
 	 *
 	 * @param host
-	 *            the detail message.
+	 *             the detail message.
 	 */
 	public ProtocolException(String host) {
 		super(host);
@@ -51,6 +31,5 @@ public class ProtocolException extends IOException {
 	/**
 	 * Constructs a new {@code ProtocolException} with no detail message.
 	 */
-	public ProtocolException() {
-	}
+	public ProtocolException() {}
 }

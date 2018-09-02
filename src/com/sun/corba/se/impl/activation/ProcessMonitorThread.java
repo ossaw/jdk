@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.activation;
@@ -82,7 +62,8 @@ public class ProcessMonitorThread extends java.lang.Thread {
 	static void start(HashMap serverTable) {
 		int sleepTime = ORBConstants.DEFAULT_SERVER_POLLING_TIME;
 
-		String pollingTime = System.getProperties().getProperty(ORBConstants.SERVER_POLLING_TIME);
+		String pollingTime = System.getProperties().getProperty(
+				ORBConstants.SERVER_POLLING_TIME);
 
 		if (pollingTime != null) {
 			try {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.tools;
@@ -34,18 +14,18 @@ import javax.lang.model.element.NestingKind;
  * methods.
  *
  * @param <F>
- *            the kind of file object forwarded to by this object
+ *        the kind of file object forwarded to by this object
  * @author Peter von der Ah&eacute;
  * @since 1.6
  */
-public class ForwardingJavaFileObject<F extends JavaFileObject> extends ForwardingFileObject<F>
-		implements JavaFileObject {
+public class ForwardingJavaFileObject<F extends JavaFileObject> extends
+		ForwardingFileObject<F> implements JavaFileObject {
 
 	/**
 	 * Creates a new instance of ForwardingJavaFileObject.
 	 * 
 	 * @param fileObject
-	 *            delegate to this file object
+	 *                   delegate to this file object
 	 */
 	protected ForwardingJavaFileObject(F fileObject) {
 		super(fileObject);

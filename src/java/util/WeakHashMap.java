@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -128,9 +108,9 @@ import java.util.function.Consumer;
  * Framework</a>.
  *
  * @param <K>
- *            the type of keys maintained by this map
+ *        the type of keys maintained by this map
  * @param <V>
- *            the type of mapped values
+ *        the type of mapped values
  *
  * @author Doug Lea
  * @author Josh Bloch
@@ -203,21 +183,24 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 	 * capacity and the given load factor.
 	 *
 	 * @param initialCapacity
-	 *            The initial capacity of the <tt>WeakHashMap</tt>
+	 *                        The initial capacity of the <tt>WeakHashMap</tt>
 	 * @param loadFactor
-	 *            The load factor of the <tt>WeakHashMap</tt>
+	 *                        The load factor of the <tt>WeakHashMap</tt>
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is negative, or if the load factor is
-	 *             nonpositive.
+	 *                                  if the initial capacity is negative, or
+	 *                                  if the load factor is
+	 *                                  nonpositive.
 	 */
 	public WeakHashMap(int initialCapacity, float loadFactor) {
 		if (initialCapacity < 0)
-			throw new IllegalArgumentException("Illegal Initial Capacity: " + initialCapacity);
+			throw new IllegalArgumentException("Illegal Initial Capacity: "
+					+ initialCapacity);
 		if (initialCapacity > MAXIMUM_CAPACITY)
 			initialCapacity = MAXIMUM_CAPACITY;
 
 		if (loadFactor <= 0 || Float.isNaN(loadFactor))
-			throw new IllegalArgumentException("Illegal Load factor: " + loadFactor);
+			throw new IllegalArgumentException("Illegal Load factor: "
+					+ loadFactor);
 		int capacity = 1;
 		while (capacity < initialCapacity)
 			capacity <<= 1;
@@ -231,9 +214,9 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 	 * capacity and the default load factor (0.75).
 	 *
 	 * @param initialCapacity
-	 *            The initial capacity of the <tt>WeakHashMap</tt>
+	 *                        The initial capacity of the <tt>WeakHashMap</tt>
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is negative
+	 *                                  if the initial capacity is negative
 	 */
 	public WeakHashMap(int initialCapacity) {
 		this(initialCapacity, DEFAULT_LOAD_FACTOR);
@@ -254,14 +237,14 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 	 * the specified map.
 	 *
 	 * @param m
-	 *            the map whose mappings are to be placed in this map
+	 *          the map whose mappings are to be placed in this map
 	 * @throws NullPointerException
-	 *             if the specified map is null
+	 *                              if the specified map is null
 	 * @since 1.3
 	 */
 	public WeakHashMap(Map<? extends K, ? extends V> m) {
-		this(Math.max((int) (m.size() / DEFAULT_LOAD_FACTOR) + 1, DEFAULT_INITIAL_CAPACITY),
-				DEFAULT_LOAD_FACTOR);
+		this(Math.max((int) (m.size() / DEFAULT_LOAD_FACTOR) + 1,
+				DEFAULT_INITIAL_CAPACITY), DEFAULT_LOAD_FACTOR);
 		putAll(m);
 	}
 
@@ -446,9 +429,9 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 	 * replaced.
 	 *
 	 * @param key
-	 *            key with which the specified value is to be associated.
+	 *              key with which the specified value is to be associated.
 	 * @param value
-	 *            value to be associated with the specified key.
+	 *              value to be associated with the specified key.
 	 * @return the previous value associated with <tt>key</tt>, or <tt>null</tt>
 	 *         if there was no mapping for <tt>key</tt>. (A <tt>null</tt> return
 	 *         can also indicate that the map previously associated
@@ -487,9 +470,11 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 	 * preventing future calls.
 	 *
 	 * @param newCapacity
-	 *            the new capacity, MUST be a power of two; must be greater than
-	 *            current capacity unless current capacity is MAXIMUM_CAPACITY
-	 *            (in which case value is irrelevant).
+	 *                    the new capacity, MUST be a power of two; must be
+	 *                    greater than
+	 *                    current capacity unless current capacity is
+	 *                    MAXIMUM_CAPACITY
+	 *                    (in which case value is irrelevant).
 	 */
 	void resize(int newCapacity) {
 		Entry<K, V>[] oldTable = getTable();
@@ -545,9 +530,9 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 	 * currently in the specified map.
 	 *
 	 * @param m
-	 *            mappings to be stored in this map.
+	 *          mappings to be stored in this map.
 	 * @throws NullPointerException
-	 *             if the specified map is null.
+	 *                              if the specified map is null.
 	 */
 	public void putAll(Map<? extends K, ? extends V> m) {
 		int numKeysToBeAdded = m.size();
@@ -683,7 +668,7 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 	 * value.
 	 *
 	 * @param value
-	 *            value whose presence in this map is to be tested
+	 *              value whose presence in this map is to be tested
 	 * @return <tt>true</tt> if this map maps one or more keys to the specified
 	 *         value
 	 */
@@ -715,7 +700,8 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 	 * The entries in this hash table extend WeakReference, using its main ref
 	 * field as the key.
 	 */
-	private static class Entry<K, V> extends WeakReference<Object> implements Map.Entry<K, V> {
+	private static class Entry<K, V> extends WeakReference<Object> implements
+			Map.Entry<K, V> {
 		V value;
 		final int hash;
 		Entry<K, V> next;
@@ -723,7 +709,8 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 		/**
 		 * Creates new entry.
 		 */
-		Entry(Object key, V value, ReferenceQueue<Object> queue, int hash, Entry<K, V> next) {
+		Entry(Object key, V value, ReferenceQueue<Object> queue, int hash,
+				Entry<K, V> next) {
 			super(key, queue);
 			this.value = value;
 			this.hash = hash;
@@ -1043,7 +1030,8 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void replaceAll(BiFunction<? super K, ? super V, ? extends V> function) {
+	public void replaceAll(
+			BiFunction<? super K, ? super V, ? extends V> function) {
 		Objects.requireNonNull(function);
 		int expectedModCount = modCount;
 
@@ -1053,7 +1041,8 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 			while (entry != null) {
 				Object key = entry.get();
 				if (key != null) {
-					entry.value = function.apply((K) WeakHashMap.unmaskNull(key), entry.value);
+					entry.value = function.apply((K) WeakHashMap.unmaskNull(
+							key), entry.value);
 				}
 				entry = entry.next;
 
@@ -1075,8 +1064,8 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 		int est; // size estimate
 		int expectedModCount; // for comodification checks
 
-		WeakHashMapSpliterator(WeakHashMap<K, V> m, int origin, int fence, int est,
-				int expectedModCount) {
+		WeakHashMapSpliterator(WeakHashMap<K, V> m, int origin, int fence,
+				int est, int expectedModCount) {
 			this.map = m;
 			this.index = origin;
 			this.fence = fence;
@@ -1103,14 +1092,16 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 
 	static final class KeySpliterator<K, V> extends WeakHashMapSpliterator<K, V>
 			implements Spliterator<K> {
-		KeySpliterator(WeakHashMap<K, V> m, int origin, int fence, int est, int expectedModCount) {
+		KeySpliterator(WeakHashMap<K, V> m, int origin, int fence, int est,
+				int expectedModCount) {
 			super(m, origin, fence, est, expectedModCount);
 		}
 
 		public KeySpliterator<K, V> trySplit() {
 			int hi = getFence(), lo = index, mid = (lo + hi) >>> 1;
 			return (lo >= mid) ? null
-					: new KeySpliterator<K, V>(map, lo, index = mid, est >>>= 1, expectedModCount);
+					: new KeySpliterator<K, V>(map, lo, index = mid, est >>>= 1,
+							expectedModCount);
 		}
 
 		public void forEachRemaining(Consumer<? super K> action) {
@@ -1124,7 +1115,8 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 				hi = fence = tab.length;
 			} else
 				mc = expectedModCount;
-			if (tab.length >= hi && (i = index) >= 0 && (i < (index = hi) || current != null)) {
+			if (tab.length >= hi && (i = index) >= 0 && (i < (index = hi)
+					|| current != null)) {
 				WeakHashMap.Entry<K, V> p = current;
 				current = null; // exhaust
 				do {
@@ -1176,8 +1168,8 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 		}
 	}
 
-	static final class ValueSpliterator<K, V> extends WeakHashMapSpliterator<K, V>
-			implements Spliterator<V> {
+	static final class ValueSpliterator<K, V> extends
+			WeakHashMapSpliterator<K, V> implements Spliterator<V> {
 		ValueSpliterator(WeakHashMap<K, V> m, int origin, int fence, int est,
 				int expectedModCount) {
 			super(m, origin, fence, est, expectedModCount);
@@ -1186,8 +1178,8 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 		public ValueSpliterator<K, V> trySplit() {
 			int hi = getFence(), lo = index, mid = (lo + hi) >>> 1;
 			return (lo >= mid) ? null
-					: new ValueSpliterator<K, V>(map, lo, index = mid, est >>>= 1,
-							expectedModCount);
+					: new ValueSpliterator<K, V>(map, lo, index = mid,
+							est >>>= 1, expectedModCount);
 		}
 
 		public void forEachRemaining(Consumer<? super V> action) {
@@ -1201,7 +1193,8 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 				hi = fence = tab.length;
 			} else
 				mc = expectedModCount;
-			if (tab.length >= hi && (i = index) >= 0 && (i < (index = hi) || current != null)) {
+			if (tab.length >= hi && (i = index) >= 0 && (i < (index = hi)
+					|| current != null)) {
 				WeakHashMap.Entry<K, V> p = current;
 				current = null; // exhaust
 				do {
@@ -1250,8 +1243,9 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 		}
 	}
 
-	static final class EntrySpliterator<K, V> extends WeakHashMapSpliterator<K, V>
-			implements Spliterator<Map.Entry<K, V>> {
+	static final class EntrySpliterator<K, V> extends
+			WeakHashMapSpliterator<K, V> implements
+			Spliterator<Map.Entry<K, V>> {
 		EntrySpliterator(WeakHashMap<K, V> m, int origin, int fence, int est,
 				int expectedModCount) {
 			super(m, origin, fence, est, expectedModCount);
@@ -1260,8 +1254,8 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 		public EntrySpliterator<K, V> trySplit() {
 			int hi = getFence(), lo = index, mid = (lo + hi) >>> 1;
 			return (lo >= mid) ? null
-					: new EntrySpliterator<K, V>(map, lo, index = mid, est >>>= 1,
-							expectedModCount);
+					: new EntrySpliterator<K, V>(map, lo, index = mid,
+							est >>>= 1, expectedModCount);
 		}
 
 		public void forEachRemaining(Consumer<? super Map.Entry<K, V>> action) {
@@ -1275,7 +1269,8 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 				hi = fence = tab.length;
 			} else
 				mc = expectedModCount;
-			if (tab.length >= hi && (i = index) >= 0 && (i < (index = hi) || current != null)) {
+			if (tab.length >= hi && (i = index) >= 0 && (i < (index = hi)
+					|| current != null)) {
 				WeakHashMap.Entry<K, V> p = current;
 				current = null; // exhaust
 				do {
@@ -1288,7 +1283,9 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 						if (x != null) {
 							@SuppressWarnings("unchecked")
 							K k = (K) WeakHashMap.unmaskNull(x);
-							action.accept(new AbstractMap.SimpleImmutableEntry<K, V>(k, v));
+							action.accept(
+									new AbstractMap.SimpleImmutableEntry<K, V>(
+											k, v));
 						}
 					}
 				} while (p != null || i < hi);
@@ -1313,7 +1310,9 @@ public class WeakHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 						if (x != null) {
 							@SuppressWarnings("unchecked")
 							K k = (K) WeakHashMap.unmaskNull(x);
-							action.accept(new AbstractMap.SimpleImmutableEntry<K, V>(k, v));
+							action.accept(
+									new AbstractMap.SimpleImmutableEntry<K, V>(
+											k, v));
 							if (map.modCount != expectedModCount)
 								throw new ConcurrentModificationException();
 							return true;

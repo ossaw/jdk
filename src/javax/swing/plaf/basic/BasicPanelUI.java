@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -62,7 +42,8 @@ public class BasicPanelUI extends PanelUI {
 	}
 
 	protected void installDefaults(JPanel p) {
-		LookAndFeel.installColorsAndFont(p, "Panel.background", "Panel.foreground", "Panel.font");
+		LookAndFeel.installColorsAndFont(p, "Panel.background",
+				"Panel.foreground", "Panel.font");
 		LookAndFeel.installBorder(p, "Panel.border");
 		LookAndFeel.installProperty(p, "opaque", Boolean.TRUE);
 	}
@@ -75,9 +56,9 @@ public class BasicPanelUI extends PanelUI {
 	 * Returns the baseline.
 	 *
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                  {@inheritDoc}
 	 * @see javax.swing.JComponent#getBaseline(int, int)
 	 * @since 1.6
 	 */
@@ -95,11 +76,12 @@ public class BasicPanelUI extends PanelUI {
 	 * the size changes.
 	 *
 	 * @throws NullPointerException
-	 *             {@inheritDoc}
+	 *                              {@inheritDoc}
 	 * @see javax.swing.JComponent#getBaseline(int, int)
 	 * @since 1.6
 	 */
-	public Component.BaselineResizeBehavior getBaselineResizeBehavior(JComponent c) {
+	public Component.BaselineResizeBehavior getBaselineResizeBehavior(
+			JComponent c) {
 		super.getBaselineResizeBehavior(c);
 		Border border = c.getBorder();
 		if (border instanceof AbstractBorder) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -92,7 +72,8 @@ import sun.nio.ch.Interruptible;
  * @since 1.4
  */
 
-public abstract class AbstractInterruptibleChannel implements Channel, InterruptibleChannel {
+public abstract class AbstractInterruptibleChannel implements Channel,
+		InterruptibleChannel {
 
 	private final Object closeLock = new Object();
 	private volatile boolean open = true;
@@ -100,8 +81,7 @@ public abstract class AbstractInterruptibleChannel implements Channel, Interrupt
 	/**
 	 * Initializes a new instance of this class.
 	 */
-	protected AbstractInterruptibleChannel() {
-	}
+	protected AbstractInterruptibleChannel() {}
 
 	/**
 	 * Closes this channel.
@@ -114,7 +94,7 @@ public abstract class AbstractInterruptibleChannel implements Channel, Interrupt
 	 * </p>
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public final void close() throws IOException {
 		synchronized (closeLock) {
@@ -141,7 +121,7 @@ public abstract class AbstractInterruptibleChannel implements Channel, Interrupt
 	 * </p>
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs while closing the channel
+	 *                     If an I/O error occurs while closing the channel
 	 */
 	protected abstract void implCloseChannel() throws IOException;
 
@@ -174,7 +154,8 @@ public abstract class AbstractInterruptibleChannel implements Channel, Interrupt
 						open = false;
 						interrupted = target;
 						try {
-							AbstractInterruptibleChannel.this.implCloseChannel();
+							AbstractInterruptibleChannel.this
+									.implCloseChannel();
 						} catch (IOException x) {
 						}
 					}
@@ -198,17 +179,22 @@ public abstract class AbstractInterruptibleChannel implements Channel, Interrupt
 	 * </p>
 	 *
 	 * @param completed
-	 *            <tt>true</tt> if, and only if, the I/O operation completed
-	 *            successfully, that is, had some effect that would be visible
-	 *            to the operation's invoker
+	 *                  <tt>true</tt> if, and only if, the I/O operation
+	 *                  completed
+	 *                  successfully, that is, had some effect that would be
+	 *                  visible
+	 *                  to the operation's invoker
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If the channel was asynchronously closed
+	 *                                    If the channel was asynchronously
+	 *                                    closed
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If the thread blocked in the I/O operation was interrupted
+	 *                                    If the thread blocked in the I/O
+	 *                                    operation was interrupted
 	 */
-	protected final void end(boolean completed) throws AsynchronousCloseException {
+	protected final void end(boolean completed)
+			throws AsynchronousCloseException {
 		blockedOn(null);
 		Thread interrupted = this.interrupted;
 		if (interrupted != null && interrupted == Thread.currentThread()) {
@@ -221,6 +207,7 @@ public abstract class AbstractInterruptibleChannel implements Channel, Interrupt
 
 	// -- sun.misc.SharedSecrets --
 	static void blockedOn(Interruptible intr) { // package-private
-		sun.misc.SharedSecrets.getJavaLangAccess().blockedOn(Thread.currentThread(), intr);
+		sun.misc.SharedSecrets.getJavaLangAccess().blockedOn(Thread
+				.currentThread(), intr);
 	}
 }

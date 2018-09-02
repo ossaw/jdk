@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2000-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -52,25 +49,28 @@ public interface XMLGrammarLoader {
 	 * Returns the state of a feature.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                  The feature identifier.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown on configuration error.
+	 *                                   Thrown on configuration error.
 	 */
-	public boolean getFeature(String featureId) throws XMLConfigurationException;
+	public boolean getFeature(String featureId)
+			throws XMLConfigurationException;
 
 	/**
 	 * Sets the state of a feature.
 	 *
 	 * @param featureId
-	 *            The feature identifier.
+	 *                  The feature identifier.
 	 * @param state
-	 *            The state of the feature.
+	 *                  The state of the feature.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown when a feature is not recognized or cannot be set.
+	 *                                   Thrown when a feature is not recognized
+	 *                                   or cannot be set.
 	 */
-	public void setFeature(String featureId, boolean state) throws XMLConfigurationException;
+	public void setFeature(String featureId, boolean state)
+			throws XMLConfigurationException;
 
 	/**
 	 * Returns a list of property identifiers that are recognized by this
@@ -83,35 +83,39 @@ public interface XMLGrammarLoader {
 	 * Returns the state of a property.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown on configuration error.
+	 *                                   Thrown on configuration error.
 	 */
-	public Object getProperty(String propertyId) throws XMLConfigurationException;
+	public Object getProperty(String propertyId)
+			throws XMLConfigurationException;
 
 	/**
 	 * Sets the state of a property.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 * @param state
-	 *            The state of the property.
+	 *                   The state of the property.
 	 *
 	 * @throws XMLConfigurationException
-	 *             Thrown when a property is not recognized or cannot be set.
+	 *                                   Thrown when a property is not
+	 *                                   recognized or cannot be set.
 	 */
-	public void setProperty(String propertyId, Object state) throws XMLConfigurationException;
+	public void setProperty(String propertyId, Object state)
+			throws XMLConfigurationException;
 
 	/**
 	 * Set the locale to use for messages.
 	 *
 	 * @param locale
-	 *            The locale object to use for localization of messages.
+	 *               The locale object to use for localization of messages.
 	 *
 	 * @exception XNIException
-	 *                Thrown if the parser does not support the specified
-	 *                locale.
+	 *                         Thrown if the parser does not support the
+	 *                         specified
+	 *                         locale.
 	 */
 	public void setLocale(Locale locale);
 
@@ -122,7 +126,7 @@ public interface XMLGrammarLoader {
 	 * Sets the error handler.
 	 *
 	 * @param errorHandler
-	 *            The error handler.
+	 *                     The error handler.
 	 */
 	public void setErrorHandler(XMLErrorHandler errorHandler);
 
@@ -133,7 +137,7 @@ public interface XMLGrammarLoader {
 	 * Sets the entity resolver.
 	 *
 	 * @param entityResolver
-	 *            The new entity resolver.
+	 *                       The new entity resolver.
 	 */
 	public void setEntityResolver(XMLEntityResolver entityResolver);
 
@@ -145,12 +149,16 @@ public interface XMLGrammarLoader {
 	 * by source.
 	 *
 	 * @param source
-	 *            the location of the entity which forms the starting point of
-	 *            the grammar to be constructed.
+	 *               the location of the entity which forms the starting point
+	 *               of
+	 *               the grammar to be constructed.
 	 * @throws IOException
-	 *             When a problem is encountered reading the entity XNIException
-	 *             When a condition arises (such as a FatalError) that requires
-	 *             parsing of the entity be terminated.
+	 *                     When a problem is encountered reading the entity
+	 *                     XNIException
+	 *                     When a condition arises (such as a FatalError) that
+	 *                     requires
+	 *                     parsing of the entity be terminated.
 	 */
-	public Grammar loadGrammar(XMLInputSource source) throws IOException, XNIException;
+	public Grammar loadGrammar(XMLInputSource source) throws IOException,
+			XNIException;
 } // XMLGrammarLoader

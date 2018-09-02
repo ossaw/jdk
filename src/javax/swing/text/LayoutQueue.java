@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -67,7 +47,7 @@ public class LayoutQueue {
 	 * Set the default layout queue.
 	 *
 	 * @param q
-	 *            the new queue.
+	 *          the new queue.
 	 */
 	public static void setDefaultQueue(LayoutQueue q) {
 		synchronized (DEFAULT_QUEUE) {

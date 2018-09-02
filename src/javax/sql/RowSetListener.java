@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql;
@@ -46,8 +26,8 @@ public interface RowSetListener extends java.util.EventListener {
 	 * <code>event.getSource</code>.
 	 *
 	 * @param event
-	 *            a <code>RowSetEvent</code> object that contains the
-	 *            <code>RowSet</code> object that is the source of the event
+	 *              a <code>RowSetEvent</code> object that contains the
+	 *              <code>RowSet</code> object that is the source of the event
 	 */
 	void rowSetChanged(RowSetEvent event);
 
@@ -59,8 +39,8 @@ public interface RowSetListener extends java.util.EventListener {
 	 * <code>event.getSource</code>.
 	 *
 	 * @param event
-	 *            a <code>RowSetEvent</code> object that contains the
-	 *            <code>RowSet</code> object that is the source of the event
+	 *              a <code>RowSetEvent</code> object that contains the
+	 *              <code>RowSet</code> object that is the source of the event
 	 */
 	void rowChanged(RowSetEvent event);
 
@@ -72,8 +52,8 @@ public interface RowSetListener extends java.util.EventListener {
 	 * <code>event.getSource</code>.
 	 *
 	 * @param event
-	 *            a <code>RowSetEvent</code> object that contains the
-	 *            <code>RowSet</code> object that is the source of the event
+	 *              a <code>RowSetEvent</code> object that contains the
+	 *              <code>RowSet</code> object that is the source of the event
 	 */
 	void cursorMoved(RowSetEvent event);
 }

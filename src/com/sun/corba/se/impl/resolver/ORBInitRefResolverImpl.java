@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.resolver;
@@ -51,7 +31,8 @@ public class ORBInitRefResolverImpl implements Resolver {
 		if (url == null)
 			return null;
 
-		org.omg.CORBA.Object result = (org.omg.CORBA.Object) urlHandler.operate(url);
+		org.omg.CORBA.Object result = (org.omg.CORBA.Object) urlHandler.operate(
+				url);
 		return result;
 	}
 

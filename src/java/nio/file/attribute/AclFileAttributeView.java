@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file.attribute;
@@ -80,12 +60,13 @@ import java.io.IOException;
  * 		.lookupPrincipalByName("joe");
  *
  * // get view
- * AclFileAttributeView view = Files.getFileAttributeView(file, AclFileAttributeView.class);
+ * AclFileAttributeView view = Files.getFileAttributeView(file,
+ * 		AclFileAttributeView.class);
  *
  * // create ACE to give "joe" read access
- * AclEntry entry = AclEntry.newBuilder().setType(AclEntryType.ALLOW).setPrincipal(joe)
- * 		.setPermissions(AclEntryPermission.READ_DATA, AclEntryPermission.READ_ATTRIBUTES)
- * 		.build();
+ * AclEntry entry = AclEntry.newBuilder().setType(AclEntryType.ALLOW)
+ * 		.setPrincipal(joe).setPermissions(AclEntryPermission.READ_DATA,
+ * 				AclEntryPermission.READ_ATTRIBUTES).build();
  *
  * // read ACL, insert ACE, re-write ACL
  * List&lt;AclEntry&gt; acl = view.getAcl();
@@ -169,13 +150,16 @@ public interface AclFileAttributeView extends FileOwnerAttributeView {
 	 * @return an ordered list of {@link AclEntry entries} representing the ACL
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs
+	 *                           if an I/O error occurs
 	 * @throws SecurityException
-	 *             In the case of the default provider, a security manager is
-	 *             installed, and it denies {@link RuntimePermission}
-	 *             <tt>("accessUserInformation")</tt> or its
-	 *             {@link SecurityManager#checkRead(String) checkRead} method
-	 *             denies read access to the file.
+	 *                           In the case of the default provider, a security
+	 *                           manager is
+	 *                           installed, and it denies
+	 *                           {@link RuntimePermission}
+	 *                           <tt>("accessUserInformation")</tt> or its
+	 *                           {@link SecurityManager#checkRead(String)
+	 *                           checkRead} method
+	 *                           denies read access to the file.
 	 */
 	List<AclEntry> getAcl() throws IOException;
 
@@ -209,13 +193,15 @@ public interface AclFileAttributeView extends FileOwnerAttributeView {
 	 *            the new access control list
 	 *
 	 * @throws IOException
-	 *             if an I/O error occurs or the ACL is invalid
+	 *                           if an I/O error occurs or the ACL is invalid
 	 * @throws SecurityException
-	 *             In the case of the default provider, a security manager is
-	 *             installed, it denies {@link RuntimePermission}
-	 *             <tt>("accessUserInformation")</tt> or its
-	 *             {@link SecurityManager#checkWrite(String) checkWrite} method
-	 *             denies write access to the file.
+	 *                           In the case of the default provider, a security
+	 *                           manager is
+	 *                           installed, it denies {@link RuntimePermission}
+	 *                           <tt>("accessUserInformation")</tt> or its
+	 *                           {@link SecurityManager#checkWrite(String)
+	 *                           checkWrite} method
+	 *                           denies write access to the file.
 	 */
 	void setAcl(List<AclEntry> acl) throws IOException;
 }

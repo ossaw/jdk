@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -87,24 +67,28 @@ public interface NotificationBroadcaster {
 	 * Adds a listener to this MBean.
 	 *
 	 * @param listener
-	 *            The listener object which will handle the notifications
-	 *            emitted by the broadcaster.
+	 *                 The listener object which will handle the notifications
+	 *                 emitted by the broadcaster.
 	 * @param filter
-	 *            The filter object. If filter is null, no filtering will be
-	 *            performed before handling notifications.
+	 *                 The filter object. If filter is null, no filtering will
+	 *                 be
+	 *                 performed before handling notifications.
 	 * @param handback
-	 *            An opaque object to be sent back to the listener when a
-	 *            notification is emitted. This object cannot be used by the
-	 *            Notification broadcaster object. It should be resent unchanged
-	 *            with the notification to the listener.
+	 *                 An opaque object to be sent back to the listener when a
+	 *                 notification is emitted. This object cannot be used by
+	 *                 the
+	 *                 Notification broadcaster object. It should be resent
+	 *                 unchanged
+	 *                 with the notification to the listener.
 	 *
 	 * @exception IllegalArgumentException
-	 *                Listener parameter is null.
+	 *                                     Listener parameter is null.
 	 *
 	 * @see #removeNotificationListener
 	 */
-	public void addNotificationListener(NotificationListener listener, NotificationFilter filter,
-			Object handback) throws java.lang.IllegalArgumentException;
+	public void addNotificationListener(NotificationListener listener,
+			NotificationFilter filter, Object handback)
+			throws java.lang.IllegalArgumentException;
 
 	/**
 	 * Removes a listener from this MBean. If the listener has been registered
@@ -112,10 +96,11 @@ public interface NotificationBroadcaster {
 	 * corresponding to the listener will be removed.
 	 *
 	 * @param listener
-	 *            A listener that was previously added to this MBean.
+	 *                 A listener that was previously added to this MBean.
 	 *
 	 * @exception ListenerNotFoundException
-	 *                The listener is not registered with the MBean.
+	 *                                      The listener is not registered with
+	 *                                      the MBean.
 	 *
 	 * @see #addNotificationListener
 	 * @see NotificationEmitter#removeNotificationListener

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi;
@@ -66,6 +46,5 @@ public class RMISecurityManager extends SecurityManager {
 	 * 
 	 * @since JDK1.1
 	 */
-	public RMISecurityManager() {
-	}
+	public RMISecurityManager() {}
 }

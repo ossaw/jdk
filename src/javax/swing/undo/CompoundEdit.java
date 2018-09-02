@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.undo;
 
@@ -114,7 +94,7 @@ public class CompoundEdit extends AbstractUndoableEdit {
 	 * <code>edits</code>.
 	 *
 	 * @param anEdit
-	 *            the edit to be added
+	 *               the edit to be added
 	 * @return true if the edit is <code>inProgress</code>; otherwise returns
 	 *         false
 	 */
@@ -242,6 +222,7 @@ public class CompoundEdit extends AbstractUndoableEdit {
 	 * @return a String representation of this object
 	 */
 	public String toString() {
-		return super.toString() + " inProgress: " + inProgress + " edits: " + edits;
+		return super.toString() + " inProgress: " + inProgress + " edits: "
+				+ edits;
 	}
 }

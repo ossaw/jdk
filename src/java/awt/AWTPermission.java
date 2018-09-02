@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -203,12 +183,13 @@ public final class AWTPermission extends BasicPermission {
 	 * indicate all AWT permissions.
 	 *
 	 * @param name
-	 *            the name of the AWTPermission
+	 *             the name of the AWTPermission
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                  if <code>name</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>name</code> is empty.
+	 *                                  if <code>name</code> is empty.
 	 */
 
 	public AWTPermission(String name) {
@@ -221,14 +202,15 @@ public final class AWTPermission extends BasicPermission {
 	 * actions string is currently unused and should be <code>null</code>.
 	 *
 	 * @param name
-	 *            the name of the <code>AWTPermission</code>
+	 *                the name of the <code>AWTPermission</code>
 	 * @param actions
-	 *            should be <code>null</code>
+	 *                should be <code>null</code>
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                  if <code>name</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>name</code> is empty.
+	 *                                  if <code>name</code> is empty.
 	 */
 
 	public AWTPermission(String name, String actions) {

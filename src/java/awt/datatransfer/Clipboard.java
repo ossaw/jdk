@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.datatransfer;
@@ -110,14 +90,16 @@ public class Clipboard {
 	 * clipboard is unavailable while it is accessed by another application.
 	 *
 	 * @param contents
-	 *            the transferable object representing the clipboard content
+	 *                 the transferable object representing the clipboard
+	 *                 content
 	 * @param owner
-	 *            the object which owns the clipboard content
+	 *                 the object which owns the clipboard content
 	 * @throws IllegalStateException
-	 *             if the clipboard is currently unavailable
+	 *                               if the clipboard is currently unavailable
 	 * @see java.awt.Toolkit#getSystemClipboard
 	 */
-	public synchronized void setContents(Transferable contents, ClipboardOwner owner) {
+	public synchronized void setContents(Transferable contents,
+			ClipboardOwner owner) {
 		final ClipboardOwner oldOwner = this.owner;
 		final Transferable oldContents = this.contents;
 
@@ -143,10 +125,10 @@ public class Clipboard {
 	 * clipboard is unavailable while it is accessed by another application.
 	 *
 	 * @param requestor
-	 *            the object requesting the clip data (not used)
+	 *                  the object requesting the clip data (not used)
 	 * @return the current transferable object on the clipboard
 	 * @throws IllegalStateException
-	 *             if the clipboard is currently unavailable
+	 *                               if the clipboard is currently unavailable
 	 * @see java.awt.Toolkit#getSystemClipboard
 	 */
 	public synchronized Transferable getContents(Object requestor) {
@@ -163,7 +145,7 @@ public class Clipboard {
 	 *         contents of this clipboard can be provided
 	 *
 	 * @throws IllegalStateException
-	 *             if this clipboard is currently unavailable
+	 *                               if this clipboard is currently unavailable
 	 *
 	 * @since 1.5
 	 */
@@ -180,16 +162,16 @@ public class Clipboard {
 	 * provided in the specified <code>DataFlavor</code>.
 	 *
 	 * @param flavor
-	 *            the requested <code>DataFlavor</code> for the contents
+	 *               the requested <code>DataFlavor</code> for the contents
 	 *
 	 * @return <code>true</code> if the current contents of this clipboard can
 	 *         be provided in the specified <code>DataFlavor</code>;
 	 *         <code>false</code> otherwise
 	 *
 	 * @throws NullPointerException
-	 *             if <code>flavor</code> is <code>null</code>
+	 *                               if <code>flavor</code> is <code>null</code>
 	 * @throws IllegalStateException
-	 *             if this clipboard is currently unavailable
+	 *                               if this clipboard is currently unavailable
 	 *
 	 * @since 1.5
 	 */
@@ -211,26 +193,32 @@ public class Clipboard {
 	 * is defined by the representation class of <code>flavor</code>.
 	 *
 	 * @param flavor
-	 *            the requested <code>DataFlavor</code> for the contents
+	 *               the requested <code>DataFlavor</code> for the contents
 	 *
 	 * @return an object representing the current contents of this clipboard in
 	 *         the specified <code>DataFlavor</code>
 	 *
 	 * @throws NullPointerException
-	 *             if <code>flavor</code> is <code>null</code>
+	 *                                    if <code>flavor</code> is
+	 *                                    <code>null</code>
 	 * @throws IllegalStateException
-	 *             if this clipboard is currently unavailable
+	 *                                    if this clipboard is currently
+	 *                                    unavailable
 	 * @throws UnsupportedFlavorException
-	 *             if the requested <code>DataFlavor</code> is not available
+	 *                                    if the requested
+	 *                                    <code>DataFlavor</code> is not
+	 *                                    available
 	 * @throws IOException
-	 *             if the data in the requested <code>DataFlavor</code> can not
-	 *             be retrieved
+	 *                                    if the data in the requested
+	 *                                    <code>DataFlavor</code> can not
+	 *                                    be retrieved
 	 *
 	 * @see DataFlavor#getRepresentationClass
 	 *
 	 * @since 1.5
 	 */
-	public Object getData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
+	public Object getData(DataFlavor flavor) throws UnsupportedFlavorException,
+			IOException {
 		if (flavor == null) {
 			throw new NullPointerException("flavor");
 		}
@@ -248,7 +236,7 @@ public class Clipboard {
 	 * is <code>null</code>, no exception is thrown and no action is performed.
 	 *
 	 * @param listener
-	 *            the listener to be added
+	 *                 the listener to be added
 	 *
 	 * @see #removeFlavorListener
 	 * @see #getFlavorListeners
@@ -276,7 +264,7 @@ public class Clipboard {
 	 * exception is thrown and no action is performed.
 	 *
 	 * @param listener
-	 *            the listener to be removed
+	 *                 the listener to be removed
 	 *
 	 * @see #addFlavorListener
 	 * @see #getFlavorListeners

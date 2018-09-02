@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.instrument;
@@ -149,30 +129,38 @@ public interface ClassFileTransformer {
 	 * logging or debugging of format corruptions.
 	 *
 	 * @param loader
-	 *            the defining loader of the class to be transformed, may be
-	 *            <code>null</code> if the bootstrap loader
+	 *                            the defining loader of the class to be
+	 *                            transformed, may be
+	 *                            <code>null</code> if the bootstrap loader
 	 * @param className
-	 *            the name of the class in the internal form of fully qualified
-	 *            class and interface names as defined in <i>The Java Virtual
-	 *            Machine Specification</i>. For example,
-	 *            <code>"java/util/List"</code>.
+	 *                            the name of the class in the internal form of
+	 *                            fully qualified
+	 *                            class and interface names as defined in <i>The
+	 *                            Java Virtual
+	 *                            Machine Specification</i>. For example,
+	 *                            <code>"java/util/List"</code>.
 	 * @param classBeingRedefined
-	 *            if this is triggered by a redefine or retransform, the class
-	 *            being redefined or retransformed; if this is a class load,
-	 *            <code>null</code>
+	 *                            if this is triggered by a redefine or
+	 *                            retransform, the class
+	 *                            being redefined or retransformed; if this is a
+	 *                            class load,
+	 *                            <code>null</code>
 	 * @param protectionDomain
-	 *            the protection domain of the class being defined or redefined
+	 *                            the protection domain of the class being
+	 *                            defined or redefined
 	 * @param classfileBuffer
-	 *            the input byte buffer in class file format - must not be
-	 *            modified
+	 *                            the input byte buffer in class file format -
+	 *                            must not be
+	 *                            modified
 	 *
 	 * @throws IllegalClassFormatException
-	 *             if the input does not represent a well-formed class file
+	 *                                     if the input does not represent a
+	 *                                     well-formed class file
 	 * @return a well-formed class file buffer (the result of the transform), or
 	 *         <code>null</code> if no transform is performed.
 	 * @see Instrumentation#redefineClasses
 	 */
-	byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
-			ProtectionDomain protectionDomain, byte[] classfileBuffer)
-			throws IllegalClassFormatException;
+	byte[] transform(ClassLoader loader, String className,
+			Class<?> classBeingRedefined, ProtectionDomain protectionDomain,
+			byte[] classfileBuffer) throws IllegalClassFormatException;
 }

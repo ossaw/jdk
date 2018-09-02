@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -59,13 +39,14 @@ package java.lang.invoke;
  * <pre>
  * {
  * 	&#64;code
- * 	MethodHandle MH_strcat = MethodHandles.lookup().findVirtual(String.class, "concat",
- * 			MethodType.methodType(String.class, String.class));
+ * 	MethodHandle MH_strcat = MethodHandles.lookup().findVirtual(String.class,
+ * 			"concat", MethodType.methodType(String.class, String.class));
  * 	SwitchPoint spt = new SwitchPoint();
  * 	assert (!spt.hasBeenInvalidated());
  * 	// the following steps may be repeated to re-use the same switch point:
  * 	MethodHandle worker1 = MH_strcat;
- * 	MethodHandle worker2 = MethodHandles.permuteArguments(MH_strcat, MH_strcat.type(), 1, 0);
+ * 	MethodHandle worker2 = MethodHandles.permuteArguments(MH_strcat,
+ * 			MH_strcat.type(), 1, 0);
  * 	MethodHandle worker = spt.guardWithTest(worker1, worker2);
  * 	assertEquals("method", (String) worker.invokeExact("met", "hod"));
  * 	SwitchPoint.invalidateAll(new SwitchPoint[] { spt });
@@ -89,8 +70,9 @@ package java.lang.invoke;
  * {
  * 	&#64;code
  * 	public class SwitchPoint {
- * 		private static final MethodHandle K_true = MethodHandles.constant(boolean.class, true),
- * 				K_false = MethodHandles.constant(boolean.class, false);
+ * 		private static final MethodHandle K_true = MethodHandles.constant(
+ * 				boolean.class, true), K_false = MethodHandles.constant(
+ * 						boolean.class, false);
  * 		private final MutableCallSite mcs;
  * 		private final MethodHandle mcsInvoker;
  * 
@@ -99,11 +81,13 @@ package java.lang.invoke;
  * 			this.mcsInvoker = mcs.dynamicInvoker();
  * 		}
  * 
- * 		public MethodHandle guardWithTest(MethodHandle target, MethodHandle fallback) {
+ * 		public MethodHandle guardWithTest(MethodHandle target,
+ * 				MethodHandle fallback) {
  * 			// Note: mcsInvoker is of type ()boolean.
  * 			// Target and fallback may take any arguments, but must have the
  * 			// same type.
- * 			return MethodHandles.guardWithTest(this.mcsInvoker, target, fallback);
+ * 			return MethodHandles.guardWithTest(this.mcsInvoker, target,
+ * 					fallback);
  * 		}
  * 
  * 		public static void invalidateAll(SwitchPoint[] spts) {
@@ -121,8 +105,9 @@ package java.lang.invoke;
  * @author Remi Forax, JSR 292 EG
  */
 public class SwitchPoint {
-	private static final MethodHandle K_true = MethodHandles.constant(boolean.class, true),
-			K_false = MethodHandles.constant(boolean.class, false);
+	private static final MethodHandle K_true = MethodHandles.constant(
+			boolean.class, true), K_false = MethodHandles.constant(
+					boolean.class, false);
 
 	private final MutableCallSite mcs;
 	private final MethodHandle mcsInvoker;
@@ -169,20 +154,23 @@ public class SwitchPoint {
 	 * resulting combined method handle will also be of this type.
 	 *
 	 * @param target
-	 *            the method handle selected by the switch point as long as it
-	 *            is valid
+	 *                 the method handle selected by the switch point as long as
+	 *                 it
+	 *                 is valid
 	 * @param fallback
-	 *            the method handle selected by the switch point after it is
-	 *            invalidated
+	 *                 the method handle selected by the switch point after it
+	 *                 is
+	 *                 invalidated
 	 * @return a combined method handle which always calls either the target or
 	 *         fallback
 	 * @throws NullPointerException
-	 *             if either argument is null
+	 *                                  if either argument is null
 	 * @throws IllegalArgumentException
-	 *             if the two method types do not match
+	 *                                  if the two method types do not match
 	 * @see MethodHandles#guardWithTest
 	 */
-	public MethodHandle guardWithTest(MethodHandle target, MethodHandle fallback) {
+	public MethodHandle guardWithTest(MethodHandle target,
+			MethodHandle fallback) {
 		if (mcs.getTarget() == K_false)
 			return fallback; // already invalid
 		return MethodHandles.guardWithTest(mcsInvoker, target, fallback);
@@ -224,10 +212,11 @@ public class SwitchPoint {
 	 * all the private call sites.
 	 *
 	 * @param switchPoints
-	 *            an array of call sites to be synchronized
+	 *                     an array of call sites to be synchronized
 	 * @throws NullPointerException
-	 *             if the {@code switchPoints} array reference is null or the
-	 *             array contains a null
+	 *                              if the {@code switchPoints} array reference
+	 *                              is null or the
+	 *                              array contains a null
 	 */
 	public static void invalidateAll(SwitchPoint[] switchPoints) {
 		if (switchPoints.length == 0)

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.remote.security;
@@ -93,7 +73,8 @@ public final class JMXPluggableAuthenticator implements JMXAuthenticator {
 	 *            authenticator. Can be null, which is equivalent to an empty
 	 *            Map.
 	 * @exception SecurityException
-	 *                if the authentication mechanism cannot be initialized.
+	 *                              if the authentication mechanism cannot be
+	 *                              initialized.
 	 */
 	public JMXPluggableAuthenticator(Map<?, ?> env) {
 
@@ -109,23 +90,26 @@ public final class JMXPluggableAuthenticator implements JMXAuthenticator {
 
 			if (loginConfigName != null) {
 				// use the supplied JAAS login configuration
-				loginContext = new LoginContext(loginConfigName, new JMXCallbackHandler());
+				loginContext = new LoginContext(loginConfigName,
+						new JMXCallbackHandler());
 
 			} else {
 				// use the default JAAS login configuration (file-based)
 				SecurityManager sm = System.getSecurityManager();
 				if (sm != null) {
-					sm.checkPermission(
-							new AuthPermission("createLoginContext." + LOGIN_CONFIG_NAME));
+					sm.checkPermission(new AuthPermission("createLoginContext."
+							+ LOGIN_CONFIG_NAME));
 				}
 
 				final String pf = passwordFile;
 				try {
-					loginContext = AccessController
-							.doPrivileged(new PrivilegedExceptionAction<LoginContext>() {
-								public LoginContext run() throws LoginException {
-									return new LoginContext(LOGIN_CONFIG_NAME, null,
-											new JMXCallbackHandler(), new FileLoginConfig(pf));
+					loginContext = AccessController.doPrivileged(
+							new PrivilegedExceptionAction<LoginContext>() {
+								public LoginContext run()
+										throws LoginException {
+									return new LoginContext(LOGIN_CONFIG_NAME,
+											null, new JMXCallbackHandler(),
+											new FileLoginConfig(pf));
 								}
 							});
 				} catch (PrivilegedActionException pae) {
@@ -146,18 +130,22 @@ public final class JMXPluggableAuthenticator implements JMXAuthenticator {
 	 * client credentials.
 	 *
 	 * @param credentials
-	 *            the user-defined credentials to be passed in to the server in
-	 *            order to authenticate the user before creating the
-	 *            <code>MBeanServerConnection</code>. This parameter must be a
-	 *            two-element <code>String[]</code> containing the client's
-	 *            username and password in that order.
+	 *                    the user-defined credentials to be passed in to the
+	 *                    server in
+	 *                    order to authenticate the user before creating the
+	 *                    <code>MBeanServerConnection</code>. This parameter
+	 *                    must be a
+	 *                    two-element <code>String[]</code> containing the
+	 *                    client's
+	 *                    username and password in that order.
 	 *
 	 * @return the authenticated subject containing a
 	 *         <code>JMXPrincipal(username)</code>.
 	 *
 	 * @exception SecurityException
-	 *                if the server cannot authenticate the user with the
-	 *                provided credentials.
+	 *                              if the server cannot authenticate the user
+	 *                              with the
+	 *                              provided credentials.
 	 */
 	public Subject authenticate(Object credentials) {
 		// Verify that credentials is of type String[].
@@ -175,7 +163,8 @@ public final class JMXPluggableAuthenticator implements JMXAuthenticator {
 		//
 		final String[] aCredentials = (String[]) credentials;
 		if (aCredentials.length != 2) {
-			final String message = "Credentials should have 2 elements not " + aCredentials.length;
+			final String message = "Credentials should have 2 elements not "
+					+ aCredentials.length;
 			authenticationFailure("authenticate", message);
 		}
 		// Verify that username exists and the associated
@@ -215,8 +204,8 @@ public final class JMXPluggableAuthenticator implements JMXAuthenticator {
 		throw e;
 	}
 
-	private static void authenticationFailure(String method, Exception exception)
-			throws SecurityException {
+	private static void authenticationFailure(String method,
+			Exception exception) throws SecurityException {
 		String msg;
 		SecurityException se;
 		if (exception instanceof SecurityException) {
@@ -232,7 +221,8 @@ public final class JMXPluggableAuthenticator implements JMXAuthenticator {
 		throw se;
 	}
 
-	private static void logException(String method, String message, Exception e) {
+	private static void logException(String method, String message,
+			Exception e) {
 		if (logger.traceOn()) {
 			logger.trace(method, message);
 		}
@@ -247,8 +237,8 @@ public final class JMXPluggableAuthenticator implements JMXAuthenticator {
 	private static final String LOGIN_CONFIG_PROP = "jmx.remote.x.login.config";
 	private static final String LOGIN_CONFIG_NAME = "JMXPluggableAuthenticator";
 	private static final String PASSWORD_FILE_PROP = "jmx.remote.x.password.file";
-	private static final ClassLogger logger = new ClassLogger("javax.management.remote.misc",
-			LOGIN_CONFIG_NAME);
+	private static final ClassLogger logger = new ClassLogger(
+			"javax.management.remote.misc", LOGIN_CONFIG_NAME);
 
 	/**
 	 * This callback handler supplies the username and password (which was
@@ -262,17 +252,20 @@ public final class JMXPluggableAuthenticator implements JMXAuthenticator {
 		/**
 		 * Sets the username and password in the appropriate Callback object.
 		 */
-		public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
+		public void handle(Callback[] callbacks) throws IOException,
+				UnsupportedCallbackException {
 
 			for (int i = 0; i < callbacks.length; i++) {
 				if (callbacks[i] instanceof NameCallback) {
 					((NameCallback) callbacks[i]).setName(username);
 
 				} else if (callbacks[i] instanceof PasswordCallback) {
-					((PasswordCallback) callbacks[i]).setPassword(password.toCharArray());
+					((PasswordCallback) callbacks[i]).setPassword(password
+							.toCharArray());
 
 				} else {
-					throw new UnsupportedCallbackException(callbacks[i], "Unrecognized Callback");
+					throw new UnsupportedCallbackException(callbacks[i],
+							"Unrecognized Callback");
 				}
 			}
 		}
@@ -294,7 +287,8 @@ public final class JMXPluggableAuthenticator implements JMXAuthenticator {
 		private AppConfigurationEntry[] entries;
 
 		// The classname of the login module for file-based authentication
-		private static final String FILE_LOGIN_MODULE = FileLoginModule.class.getName();
+		private static final String FILE_LOGIN_MODULE = FileLoginModule.class
+				.getName();
 
 		// The option that identifies the password file to use
 		private static final String PASSWORD_FILE_OPTION = "passwordFile";
@@ -303,8 +297,9 @@ public final class JMXPluggableAuthenticator implements JMXAuthenticator {
 		 * Creates an instance of <code>FileLoginConfig</code>
 		 *
 		 * @param passwordFile
-		 *            A filepath that identifies the password file to use. If
-		 *            null then the default password file is used.
+		 *                     A filepath that identifies the password file to
+		 *                     use. If
+		 *                     null then the default password file is used.
 		 */
 		public FileLoginConfig(String passwordFile) {
 
@@ -316,8 +311,10 @@ public final class JMXPluggableAuthenticator implements JMXAuthenticator {
 				options = Collections.emptyMap();
 			}
 
-			entries = new AppConfigurationEntry[] { new AppConfigurationEntry(FILE_LOGIN_MODULE,
-					AppConfigurationEntry.LoginModuleControlFlag.REQUIRED, options) };
+			entries = new AppConfigurationEntry[] { new AppConfigurationEntry(
+					FILE_LOGIN_MODULE,
+					AppConfigurationEntry.LoginModuleControlFlag.REQUIRED,
+					options) };
 		}
 
 		/**

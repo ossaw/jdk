@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -52,7 +49,7 @@ public class XNIException extends RuntimeException {
 	 * Constructs an XNI exception with a message.
 	 *
 	 * @param message
-	 *            The exception message.
+	 *                The exception message.
 	 */
 	public XNIException(String message) {
 		super(message);
@@ -62,7 +59,7 @@ public class XNIException extends RuntimeException {
 	 * Constructs an XNI exception with a wrapped exception.
 	 *
 	 * @param exception
-	 *            The wrapped exception.
+	 *                  The wrapped exception.
 	 */
 	public XNIException(Exception exception) {
 		super(exception.getMessage());
@@ -73,9 +70,9 @@ public class XNIException extends RuntimeException {
 	 * Constructs an XNI exception with a message and wrapped exception.
 	 *
 	 * @param message
-	 *            The exception message.
+	 *                  The exception message.
 	 * @param exception
-	 *            The wrapped exception.
+	 *                  The wrapped exception.
 	 */
 	public XNIException(String message, Exception exception) {
 		super(message);

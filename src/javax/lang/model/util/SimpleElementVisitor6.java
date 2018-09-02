@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -74,12 +54,12 @@ import static javax.lang.model.SourceVersion.*;
  * of default methods in this situation.
  *
  * @param <R>
- *            the return type of this visitor's methods. Use {@code Void} for
- *            visitors that do not need to return results.
+ *        the return type of this visitor's methods. Use {@code Void} for
+ *        visitors that do not need to return results.
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
- *            Use {@code Void} for visitors that do not need an additional
- *            parameter.
+ *        the type of the additional parameter to this visitor's methods.
+ *        Use {@code Void} for visitors that do not need an additional
+ *        parameter.
  *
  * @author Joseph D. Darcy
  * @author Scott Seligman
@@ -110,7 +90,7 @@ public class SimpleElementVisitor6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * value.
 	 *
 	 * @param defaultValue
-	 *            the value to assign to {@link #DEFAULT_VALUE}
+	 *                     the value to assign to {@link #DEFAULT_VALUE}
 	 */
 	protected SimpleElementVisitor6(R defaultValue) {
 		DEFAULT_VALUE = defaultValue;
@@ -122,9 +102,9 @@ public class SimpleElementVisitor6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * this method.
 	 *
 	 * @param e
-	 *            the element to process
+	 *          the element to process
 	 * @param p
-	 *            a visitor-specified parameter
+	 *          a visitor-specified parameter
 	 * @return {@code DEFAULT_VALUE} unless overridden
 	 */
 	protected R defaultAction(Element e, P p) {
@@ -135,9 +115,9 @@ public class SimpleElementVisitor6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * {@inheritDoc} This implementation calls {@code defaultAction}.
 	 *
 	 * @param e
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of {@code defaultAction}
 	 */
 	public R visitPackage(PackageElement e, P p) {
@@ -148,9 +128,9 @@ public class SimpleElementVisitor6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * {@inheritDoc} This implementation calls {@code defaultAction}.
 	 *
 	 * @param e
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of {@code defaultAction}
 	 */
 	public R visitType(TypeElement e, P p) {
@@ -165,9 +145,9 @@ public class SimpleElementVisitor6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * visitUnknown} is called.
 	 *
 	 * @param e
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of {@code defaultAction} or {@code visitUnknown}
 	 */
 	public R visitVariable(VariableElement e, P p) {
@@ -181,9 +161,9 @@ public class SimpleElementVisitor6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * {@inheritDoc} This implementation calls {@code defaultAction}.
 	 *
 	 * @param e
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of {@code defaultAction}
 	 */
 	public R visitExecutable(ExecutableElement e, P p) {
@@ -194,9 +174,9 @@ public class SimpleElementVisitor6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * {@inheritDoc} This implementation calls {@code defaultAction}.
 	 *
 	 * @param e
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of {@code defaultAction}
 	 */
 	public R visitTypeParameter(TypeParameterElement e, P p) {

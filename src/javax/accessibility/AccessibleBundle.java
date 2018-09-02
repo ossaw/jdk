@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -56,8 +36,7 @@ public abstract class AccessibleBundle {
 	/**
 	 * Construct an {@code AccessibleBundle}.
 	 */
-	public AccessibleBundle() {
-	}
+	public AccessibleBundle() {}
 
 	/**
 	 * The locale independent name of the state. This is a programmatic name
@@ -75,9 +54,11 @@ public abstract class AccessibleBundle {
 	 * strings for their keys.
 	 * 
 	 * @param resourceBundleName
-	 *            the name of the resource bundle to use for lookup
+	 *                           the name of the resource bundle to use for
+	 *                           lookup
 	 * @param locale
-	 *            the locale for which to obtain a localized string
+	 *                           the locale for which to obtain a localized
+	 *                           string
 	 * @return a localized String for the key.
 	 */
 	protected String toDisplayString(String resourceBundleName, Locale locale) {
@@ -104,7 +85,7 @@ public abstract class AccessibleBundle {
 	 * returned.
 	 *
 	 * @param locale
-	 *            the locale for which to obtain a localized string
+	 *               the locale for which to obtain a localized string
 	 * @return a localized String for the key.
 	 */
 	public String toDisplayString(Locale locale) {
@@ -139,7 +120,8 @@ public abstract class AccessibleBundle {
 			try {
 				Hashtable resourceTable = new Hashtable();
 
-				ResourceBundle bundle = ResourceBundle.getBundle(resourceBundleName, locale);
+				ResourceBundle bundle = ResourceBundle.getBundle(
+						resourceBundleName, locale);
 
 				Enumeration iter = bundle.getKeys();
 				while (iter.hasMoreElements()) {

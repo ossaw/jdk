@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.spec;
@@ -53,18 +33,19 @@ public class DSAPublicKeySpec implements KeySpec {
 	 * Creates a new DSAPublicKeySpec with the specified parameter values.
 	 *
 	 * @param y
-	 *            the public key.
+	 *          the public key.
 	 *
 	 * @param p
-	 *            the prime.
+	 *          the prime.
 	 *
 	 * @param q
-	 *            the sub-prime.
+	 *          the sub-prime.
 	 *
 	 * @param g
-	 *            the base.
+	 *          the base.
 	 */
-	public DSAPublicKeySpec(BigInteger y, BigInteger p, BigInteger q, BigInteger g) {
+	public DSAPublicKeySpec(BigInteger y, BigInteger p, BigInteger q,
+			BigInteger g) {
 		this.y = y;
 		this.p = p;
 		this.q = q;

@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -102,7 +100,8 @@ final class AttributeSet extends TopLevelElement {
 		final String useSets = getAttribute("use-attribute-sets");
 		if (useSets.length() > 0) {
 			if (!Util.isValidQNames(useSets)) {
-				ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, useSets, this);
+				ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, useSets,
+						this);
 				parser.reportError(Constants.ERROR, err);
 			}
 			_useSets = new UseAttributeSets(useSets, parser);
@@ -171,7 +170,8 @@ final class AttributeSet extends TopLevelElement {
 			il.append(methodGen.loadIterator());
 			il.append(methodGen.loadHandler());
 			il.append(methodGen.loadCurrentNode());
-			final int method = cpg.addMethodref(classGen.getClassName(), methodName, ATTR_SET_SIG);
+			final int method = cpg.addMethodref(classGen.getClassName(),
+					methodName, ATTR_SET_SIG);
 			il.append(new INVOKESPECIAL(method));
 		}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util;
 
@@ -80,7 +60,7 @@ public final class Optional<T> {
 	 *          singleton. Instead, use {@link #isPresent()}.
 	 *
 	 * @param <T>
-	 *            Type of the non-existent value
+	 *        Type of the non-existent value
 	 * @return an empty {@code Optional}
 	 */
 	public static <T> Optional<T> empty() {
@@ -93,9 +73,9 @@ public final class Optional<T> {
 	 * Constructs an instance with the value present.
 	 *
 	 * @param value
-	 *            the non-null value to be present
+	 *              the non-null value to be present
 	 * @throws NullPointerException
-	 *             if value is null
+	 *                              if value is null
 	 */
 	private Optional(T value) {
 		this.value = Objects.requireNonNull(value);
@@ -104,13 +84,13 @@ public final class Optional<T> {
 	/**
 	 * Returns an {@code Optional} with the specified present non-null value.
 	 *
-	 * @param <T>
-	 *            the class of the value
+	 * @param       <T>
+	 *              the class of the value
 	 * @param value
-	 *            the value to be present, which must be non-null
+	 *              the value to be present, which must be non-null
 	 * @return an {@code Optional} with the value present
 	 * @throws NullPointerException
-	 *             if value is null
+	 *                              if value is null
 	 */
 	public static <T> Optional<T> of(T value) {
 		return new Optional<>(value);
@@ -120,10 +100,10 @@ public final class Optional<T> {
 	 * Returns an {@code Optional} describing the specified value, if non-null,
 	 * otherwise returns an empty {@code Optional}.
 	 *
-	 * @param <T>
-	 *            the class of the value
+	 * @param       <T>
+	 *              the class of the value
 	 * @param value
-	 *            the possibly-null value to describe
+	 *              the possibly-null value to describe
 	 * @return an {@code Optional} with a present value if the specified value
 	 *         is non-null, otherwise an empty {@code Optional}
 	 */
@@ -137,7 +117,7 @@ public final class Optional<T> {
 	 *
 	 * @return the non-null value held by this {@code Optional}
 	 * @throws NoSuchElementException
-	 *             if there is no value present
+	 *                                if there is no value present
 	 *
 	 * @see Optional#isPresent()
 	 */
@@ -162,9 +142,10 @@ public final class Optional<T> {
 	 * otherwise do nothing.
 	 *
 	 * @param consumer
-	 *            block to be executed if a value is present
+	 *                 block to be executed if a value is present
 	 * @throws NullPointerException
-	 *             if value is present and {@code consumer} is null
+	 *                              if value is present and {@code consumer} is
+	 *                              null
 	 */
 	public void ifPresent(Consumer<? super T> consumer) {
 		if (value != null)
@@ -177,12 +158,12 @@ public final class Optional<T> {
 	 * {@code Optional}.
 	 *
 	 * @param predicate
-	 *            a predicate to apply to the value, if present
+	 *                  a predicate to apply to the value, if present
 	 * @return an {@code Optional} describing the value of this {@code Optional}
 	 *         if a value is present and the value matches the given predicate,
 	 *         otherwise an empty {@code Optional}
 	 * @throws NullPointerException
-	 *             if the predicate is null
+	 *                              if the predicate is null
 	 */
 	public Optional<T> filter(Predicate<? super T> predicate) {
 		Objects.requireNonNull(predicate);
@@ -216,15 +197,15 @@ public final class Optional<T> {
 	 *          then {@code map} returns an {@code Optional<FileInputStream>}
 	 *          for the desired file if one exists.
 	 *
-	 * @param <U>
-	 *            The type of the result of the mapping function
+	 * @param        <U>
+	 *               The type of the result of the mapping function
 	 * @param mapper
-	 *            a mapping function to apply to the value, if present
+	 *               a mapping function to apply to the value, if present
 	 * @return an {@code Optional} describing the result of applying a mapping
 	 *         function to the value of this {@code Optional}, if a value is
 	 *         present, otherwise an empty {@code Optional}
 	 * @throws NullPointerException
-	 *             if the mapping function is null
+	 *                              if the mapping function is null
 	 */
 	public <U> Optional<U> map(Function<? super T, ? extends U> mapper) {
 		Objects.requireNonNull(mapper);
@@ -243,16 +224,17 @@ public final class Optional<T> {
 	 * and if invoked, {@code flatMap} does not wrap it with an additional
 	 * {@code Optional}.
 	 *
-	 * @param <U>
-	 *            The type parameter to the {@code Optional} returned by
+	 * @param        <U>
+	 *               The type parameter to the {@code Optional} returned by
 	 * @param mapper
-	 *            a mapping function to apply to the value, if present the
-	 *            mapping function
+	 *               a mapping function to apply to the value, if present the
+	 *               mapping function
 	 * @return the result of applying an {@code Optional}-bearing mapping
 	 *         function to the value of this {@code Optional}, if a value is
 	 *         present, otherwise an empty {@code Optional}
 	 * @throws NullPointerException
-	 *             if the mapping function is null or returns a null result
+	 *                              if the mapping function is null or returns a
+	 *                              null result
 	 */
 	public <U> Optional<U> flatMap(Function<? super T, Optional<U>> mapper) {
 		Objects.requireNonNull(mapper);
@@ -267,8 +249,9 @@ public final class Optional<T> {
 	 * Return the value if present, otherwise return {@code other}.
 	 *
 	 * @param other
-	 *            the value to be returned if there is no value present, may be
-	 *            null
+	 *              the value to be returned if there is no value present, may
+	 *              be
+	 *              null
 	 * @return the value, if present, otherwise {@code other}
 	 */
 	public T orElse(T other) {
@@ -280,11 +263,12 @@ public final class Optional<T> {
 	 * the result of that invocation.
 	 *
 	 * @param other
-	 *            a {@code Supplier} whose result is returned if no value is
-	 *            present
+	 *              a {@code Supplier} whose result is returned if no value is
+	 *              present
 	 * @return the value if present otherwise the result of {@code other.get()}
 	 * @throws NullPointerException
-	 *             if value is not present and {@code other} is null
+	 *                              if value is not present and {@code other} is
+	 *                              null
 	 */
 	public T orElseGet(Supplier<? extends T> other) {
 		return value != null ? value : other.get();
@@ -298,17 +282,20 @@ public final class Optional<T> {
 	 *          argument list can be used as the supplier. For example,
 	 *          {@code IllegalStateException::new}
 	 *
-	 * @param <X>
-	 *            Type of the exception to be thrown
+	 * @param                   <X>
+	 *                          Type of the exception to be thrown
 	 * @param exceptionSupplier
-	 *            The supplier which will return the exception to be thrown
+	 *                          The supplier which will return the exception to
+	 *                          be thrown
 	 * @return the present value
 	 * @throws X
-	 *             if there is no value present
+	 *                              if there is no value present
 	 * @throws NullPointerException
-	 *             if no value is present and {@code exceptionSupplier} is null
+	 *                              if no value is present and
+	 *                              {@code exceptionSupplier} is null
 	 */
-	public <X extends Throwable> T orElseThrow(Supplier<? extends X> exceptionSupplier) throws X {
+	public <X extends Throwable> T orElseThrow(
+			Supplier<? extends X> exceptionSupplier) throws X {
 		if (value != null) {
 			return value;
 		} else {
@@ -368,6 +355,7 @@ public final class Optional<T> {
 	 */
 	@Override
 	public String toString() {
-		return value != null ? String.format("Optional[%s]", value) : "Optional.empty";
+		return value != null ? String.format("Optional[%s]", value)
+				: "Optional.empty";
 	}
 }

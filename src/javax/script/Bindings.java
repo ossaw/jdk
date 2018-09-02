@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.script;
@@ -38,17 +18,17 @@ public interface Bindings extends Map<String, Object> {
 	 * Set a named value.
 	 *
 	 * @param name
-	 *            The name associated with the value.
+	 *              The name associated with the value.
 	 * @param value
-	 *            The value associated with the name.
+	 *              The value associated with the name.
 	 *
 	 * @return The value previously associated with the given name. Returns null
 	 *         if no value was previously associated with the name.
 	 *
 	 * @throws NullPointerException
-	 *             if the name is null.
+	 *                                  if the name is null.
 	 * @throws IllegalArgumentException
-	 *             if the name is empty String.
+	 *                                  if the name is empty String.
 	 */
 	public Object put(String name, Object value);
 
@@ -57,12 +37,14 @@ public interface Bindings extends Map<String, Object> {
 	 * <code>Bindings</code>.
 	 * 
 	 * @param toMerge
-	 *            The <code>Map</code> to merge with this one.
+	 *                The <code>Map</code> to merge with this one.
 	 *
 	 * @throws NullPointerException
-	 *             if toMerge map is null or if some key in the map is null.
+	 *                                  if toMerge map is null or if some key in
+	 *                                  the map is null.
 	 * @throws IllegalArgumentException
-	 *             if some key in the map is an empty String.
+	 *                                  if some key in the map is an empty
+	 *                                  String.
 	 */
 	public void putAll(Map<? extends String, ? extends Object> toMerge);
 
@@ -79,11 +61,11 @@ public interface Bindings extends Map<String, Object> {
 	 *         key.
 	 *
 	 * @throws NullPointerException
-	 *             if key is null
+	 *                                  if key is null
 	 * @throws ClassCastException
-	 *             if key is not String
+	 *                                  if key is not String
 	 * @throws IllegalArgumentException
-	 *             if key is empty String
+	 *                                  if key is empty String
 	 */
 	public boolean containsKey(Object key);
 
@@ -107,11 +89,11 @@ public interface Bindings extends Map<String, Object> {
 	 *         <tt>null</tt> if the map contains no mapping for this key.
 	 *
 	 * @throws NullPointerException
-	 *             if key is null
+	 *                                  if key is null
 	 * @throws ClassCastException
-	 *             if key is not String
+	 *                                  if key is not String
 	 * @throws IllegalArgumentException
-	 *             if key is empty String
+	 *                                  if key is empty String
 	 */
 	public Object get(Object key);
 
@@ -136,11 +118,11 @@ public interface Bindings extends Map<String, Object> {
 	 *         there was no mapping for key.
 	 *
 	 * @throws NullPointerException
-	 *             if key is null
+	 *                                  if key is null
 	 * @throws ClassCastException
-	 *             if key is not String
+	 *                                  if key is not String
 	 * @throws IllegalArgumentException
-	 *             if key is empty String
+	 *                                  if key is empty String
 	 */
 	public Object remove(Object key);
 }

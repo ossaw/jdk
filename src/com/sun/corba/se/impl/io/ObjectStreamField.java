@@ -1,33 +1,12 @@
 /*
  * Copyright (c) 1998, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.io;
@@ -46,8 +25,8 @@ import java.security.PrivilegedAction;
  *
  */
 public class ObjectStreamField implements Comparable {
-	private static final Bridge bridge = (Bridge) AccessController
-			.doPrivileged(new PrivilegedAction() {
+	private static final Bridge bridge = (Bridge) AccessController.doPrivileged(
+			new PrivilegedAction() {
 				public Object run() {
 					return Bridge.get();
 				}
@@ -129,34 +108,34 @@ public class ObjectStreamField implements Comparable {
 		if (clazz != null)
 			return clazz;
 		switch (type) {
-		case 'B':
-			clazz = Byte.TYPE;
-			break;
-		case 'C':
-			clazz = Character.TYPE;
-			break;
-		case 'S':
-			clazz = Short.TYPE;
-			break;
-		case 'I':
-			clazz = Integer.TYPE;
-			break;
-		case 'J':
-			clazz = Long.TYPE;
-			break;
-		case 'F':
-			clazz = Float.TYPE;
-			break;
-		case 'D':
-			clazz = Double.TYPE;
-			break;
-		case 'Z':
-			clazz = Boolean.TYPE;
-			break;
-		case '[':
-		case 'L':
-			clazz = Object.class;
-			break;
+			case 'B':
+				clazz = Byte.TYPE;
+				break;
+			case 'C':
+				clazz = Character.TYPE;
+				break;
+			case 'S':
+				clazz = Short.TYPE;
+				break;
+			case 'I':
+				clazz = Integer.TYPE;
+				break;
+			case 'J':
+				clazz = Long.TYPE;
+				break;
+			case 'F':
+				clazz = Float.TYPE;
+				break;
+			case 'D':
+				clazz = Double.TYPE;
+				break;
+			case 'Z':
+				clazz = Boolean.TYPE;
+				break;
+			case '[':
+			case 'L':
+				clazz = Object.class;
+				break;
 		}
 
 		return clazz;
@@ -183,8 +162,7 @@ public class ObjectStreamField implements Comparable {
 	 * Default constructor creates an empty field. Usually used just to get to
 	 * the sort functions.
 	 */
-	ObjectStreamField() {
-	}
+	ObjectStreamField() {}
 
 	/**
 	 * test if this field is a primitive or not.
@@ -222,12 +200,12 @@ public class ObjectStreamField implements Comparable {
 		if (typeString == null && other.typeString == null)
 			return true;
 
-		return ObjectStreamClass.compareClassNames(typeString, other.typeString, '/');
+		return ObjectStreamClass.compareClassNames(typeString, other.typeString,
+				'/');
 	}
 
 	/*
 	 * Returns the signature of the Field.
-	 *
 	 */
 	public String getSignature() {
 
@@ -251,7 +229,6 @@ public class ObjectStreamField implements Comparable {
 
 	/*
 	 * Returns the Field ID
-	 *
 	 */
 	public long getFieldID() {
 		return fieldID;

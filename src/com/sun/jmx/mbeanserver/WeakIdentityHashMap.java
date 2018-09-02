@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -59,8 +39,7 @@ import java.util.Map;
  * same object. This enables us to find the entry again.
  */
 class WeakIdentityHashMap<K, V> {
-	private WeakIdentityHashMap() {
-	}
+	private WeakIdentityHashMap() {}
 
 	static <K, V> WeakIdentityHashMap<K, V> make() {
 		return new WeakIdentityHashMap<K, V>();

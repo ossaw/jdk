@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.bind;
@@ -39,7 +19,8 @@ import org.xml.sax.ContentHandler;
  *
  * Unmarshaller unmarshaller = context.createUnmarshaller();
  *
- * UnmarshallerHandler unmarshallerHandler = unmarshaller.getUnmarshallerHandler();
+ * UnmarshallerHandler unmarshallerHandler = unmarshaller
+ * 		.getUnmarshallerHandler();
  *
  * SAXParserFactory spf = SAXParserFactory.newInstance();
  * spf.setNamespaceAware(true);
@@ -70,13 +51,16 @@ public interface UnmarshallerHandler extends ContentHandler {
 	 * endDocument SAX event.
 	 *
 	 * @exception IllegalStateException
-	 *                if this method is called before this handler receives the
-	 *                endDocument event.
+	 *                                  if this method is called before this
+	 *                                  handler receives the
+	 *                                  endDocument event.
 	 *
 	 * @exception JAXBException
-	 *                if there is any unmarshalling error. Note that the
-	 *                implementation is allowed to throw SAXException during the
-	 *                parsing when it finds an error.
+	 *                                  if there is any unmarshalling error.
+	 *                                  Note that the
+	 *                                  implementation is allowed to throw
+	 *                                  SAXException during the
+	 *                                  parsing when it finds an error.
 	 *
 	 * @return always return a non-null valid object which was unmarshalled.
 	 */

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -46,8 +26,7 @@ public abstract class EditorKit implements Cloneable, Serializable {
 	/**
 	 * Construct an EditorKit.
 	 */
-	public EditorKit() {
-	}
+	public EditorKit() {}
 
 	/**
 	 * Creates a copy of the editor kit. This is implemented to use
@@ -70,20 +49,18 @@ public abstract class EditorKit implements Cloneable, Serializable {
 	 * Called when the kit is being installed into the a JEditorPane.
 	 *
 	 * @param c
-	 *            the JEditorPane
+	 *          the JEditorPane
 	 */
-	public void install(JEditorPane c) {
-	}
+	public void install(JEditorPane c) {}
 
 	/**
 	 * Called when the kit is being removed from the JEditorPane. This is used
 	 * to unregister any listeners that were attached.
 	 *
 	 * @param c
-	 *            the JEditorPane
+	 *          the JEditorPane
 	 */
-	public void deinstall(JEditorPane c) {
-	}
+	public void deinstall(JEditorPane c) {}
 
 	/**
 	 * Gets the MIME type of the data that this kit represents support for.
@@ -135,9 +112,10 @@ public abstract class EditorKit implements Cloneable, Serializable {
 	 * @param pos
 	 *            The location in the document to place the content &gt;= 0.
 	 * @exception IOException
-	 *                on any I/O error
+	 *                                 on any I/O error
 	 * @exception BadLocationException
-	 *                if pos represents an invalid location within the document.
+	 *                                 if pos represents an invalid location
+	 *                                 within the document.
 	 */
 	public abstract void read(InputStream in, Document doc, int pos)
 			throws IOException, BadLocationException;
@@ -156,9 +134,10 @@ public abstract class EditorKit implements Cloneable, Serializable {
 	 * @param len
 	 *            The amount to write out &gt;= 0.
 	 * @exception IOException
-	 *                on any I/O error
+	 *                                 on any I/O error
 	 * @exception BadLocationException
-	 *                if pos represents an invalid location within the document.
+	 *                                 if pos represents an invalid location
+	 *                                 within the document.
 	 */
 	public abstract void write(OutputStream out, Document doc, int pos, int len)
 			throws IOException, BadLocationException;
@@ -178,9 +157,10 @@ public abstract class EditorKit implements Cloneable, Serializable {
 	 * @param pos
 	 *            The location in the document to place the content &gt;= 0.
 	 * @exception IOException
-	 *                on any I/O error
+	 *                                 on any I/O error
 	 * @exception BadLocationException
-	 *                if pos represents an invalid location within the document.
+	 *                                 if pos represents an invalid location
+	 *                                 within the document.
 	 */
 	public abstract void read(Reader in, Document doc, int pos)
 			throws IOException, BadLocationException;
@@ -202,9 +182,10 @@ public abstract class EditorKit implements Cloneable, Serializable {
 	 * @param len
 	 *            The amount to write out &gt;= 0.
 	 * @exception IOException
-	 *                on any I/O error
+	 *                                 on any I/O error
 	 * @exception BadLocationException
-	 *                if pos represents an invalid location within the document.
+	 *                                 if pos represents an invalid location
+	 *                                 within the document.
 	 */
 	public abstract void write(Writer out, Document doc, int pos, int len)
 			throws IOException, BadLocationException;

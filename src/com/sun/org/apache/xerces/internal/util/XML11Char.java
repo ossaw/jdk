@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -79,7 +76,8 @@ public class XML11Char {
 	public static final int MASK_XML11_NCNAME = 0x80;
 
 	/** XML 1.1 content for internal entities (valid - "special" chars) */
-	public static final int MASK_XML11_CONTENT_INTERNAL = MASK_XML11_CONTROL | MASK_XML11_CONTENT;
+	public static final int MASK_XML11_CONTENT_INTERNAL = MASK_XML11_CONTROL
+			| MASK_XML11_CONTENT;
 
 	//
 	// Static initialization
@@ -189,7 +187,7 @@ public class XML11Char {
 	 * in the XML 1.1 specification.
 	 *
 	 * @param c
-	 *            The character to check.
+	 *          The character to check.
 	 */
 	public static boolean isXML11Space(int c) {
 		return (c < 0x10000 && (XML11CHARS[c] & MASK_XML11_SPACE) != 0);
@@ -204,7 +202,7 @@ public class XML11Char {
 	 * surrogate character range.
 	 *
 	 * @param c
-	 *            The character to check.
+	 *          The character to check.
 	 */
 	public static boolean isXML11Valid(int c) {
 		return (c < 0x10000 && (XML11CHARS[c] & MASK_XML11_VALID) != 0)
@@ -215,7 +213,7 @@ public class XML11Char {
 	 * Returns true if the specified character is invalid.
 	 *
 	 * @param c
-	 *            The character to check.
+	 *          The character to check.
 	 */
 	public static boolean isXML11Invalid(int c) {
 		return !isXML11Valid(c);
@@ -228,11 +226,12 @@ public class XML11Char {
 	 * "control characters".
 	 *
 	 * @param c
-	 *            The character to check.
+	 *          The character to check.
 	 */
 	public static boolean isXML11ValidLiteral(int c) {
 		return ((c < 0x10000 && ((XML11CHARS[c] & MASK_XML11_VALID) != 0
-				&& (XML11CHARS[c] & MASK_XML11_CONTROL) == 0)) || (0x10000 <= c && c <= 0x10FFFF));
+				&& (XML11CHARS[c] & MASK_XML11_CONTROL) == 0)) || (0x10000 <= c
+						&& c <= 0x10FFFF));
 	} // isXML11ValidLiteral(int):boolean
 
 	/**
@@ -240,7 +239,7 @@ public class XML11Char {
 	 * external parsed entity.
 	 *
 	 * @param c
-	 *            The character to check.
+	 *          The character to check.
 	 */
 	public static boolean isXML11Content(int c) {
 		return (c < 0x10000 && (XML11CHARS[c] & MASK_XML11_CONTENT) != 0)
@@ -252,11 +251,12 @@ public class XML11Char {
 	 * internal parsed entity.
 	 *
 	 * @param c
-	 *            The character to check.
+	 *          The character to check.
 	 */
 	public static boolean isXML11InternalEntityContent(int c) {
-		return (c < 0x10000 && (XML11CHARS[c] & MASK_XML11_CONTENT_INTERNAL) != 0)
-				|| (0x10000 <= c && c <= 0x10FFFF);
+		return (c < 0x10000 && (XML11CHARS[c]
+				& MASK_XML11_CONTENT_INTERNAL) != 0) || (0x10000 <= c
+						&& c <= 0x10FFFF);
 	} // isXML11InternalEntityContent(int):boolean
 
 	/**
@@ -264,7 +264,7 @@ public class XML11Char {
 	 * as defined by production [4] in the XML 1.1 specification.
 	 *
 	 * @param c
-	 *            The character to check.
+	 *          The character to check.
 	 */
 	public static boolean isXML11NameStart(int c) {
 		return (c < 0x10000 && (XML11CHARS[c] & MASK_XML11_NAME_START) != 0)
@@ -276,7 +276,7 @@ public class XML11Char {
 	 * defined by production [4a] in the XML 1.1 specification.
 	 *
 	 * @param c
-	 *            The character to check.
+	 *          The character to check.
 	 */
 	public static boolean isXML11Name(int c) {
 		return (c < 0x10000 && (XML11CHARS[c] & MASK_XML11_NAME) != 0)
@@ -288,7 +288,7 @@ public class XML11Char {
 	 * as defined by production [4] in Namespaces in XML 1.1 recommendation.
 	 *
 	 * @param c
-	 *            The character to check.
+	 *          The character to check.
 	 */
 	public static boolean isXML11NCNameStart(int c) {
 		return (c < 0x10000 && (XML11CHARS[c] & MASK_XML11_NCNAME_START) != 0)
@@ -300,7 +300,7 @@ public class XML11Char {
 	 * defined by production [5] in Namespaces in XML 1.1 recommendation.
 	 *
 	 * @param c
-	 *            The character to check.
+	 *          The character to check.
 	 */
 	public static boolean isXML11NCName(int c) {
 		return (c < 0x10000 && (XML11CHARS[c] & MASK_XML11_NCNAME) != 0)
@@ -313,7 +313,7 @@ public class XML11Char {
 	 * [0x10000-0xEFFFF]. In other words everything excluding planes 15 and 16.
 	 *
 	 * @param c
-	 *            The character to check.
+	 *          The character to check.
 	 */
 	public static boolean isXML11NameHighSurrogate(int c) {
 		return (0xD800 <= c && c <= 0xDB7F);
@@ -327,7 +327,7 @@ public class XML11Char {
 	 * Recommendation
 	 *
 	 * @param name
-	 *            string to check
+	 *             string to check
 	 * @return true if name is a valid Name
 	 */
 	public static boolean isXML11ValidName(String name) {
@@ -340,8 +340,8 @@ public class XML11Char {
 		if (!isXML11NameStart(ch)) {
 			if (length > 1 && isXML11NameHighSurrogate(ch)) {
 				char ch2 = name.charAt(1);
-				if (!XMLChar.isLowSurrogate(ch2)
-						|| !isXML11NameStart(XMLChar.supplemental(ch, ch2))) {
+				if (!XMLChar.isLowSurrogate(ch2) || !isXML11NameStart(XMLChar
+						.supplemental(ch, ch2))) {
 					return false;
 				}
 				i = 2;
@@ -354,8 +354,8 @@ public class XML11Char {
 			if (!isXML11Name(ch)) {
 				if (++i < length && isXML11NameHighSurrogate(ch)) {
 					char ch2 = name.charAt(i);
-					if (!XMLChar.isLowSurrogate(ch2)
-							|| !isXML11Name(XMLChar.supplemental(ch, ch2))) {
+					if (!XMLChar.isLowSurrogate(ch2) || !isXML11Name(XMLChar
+							.supplemental(ch, ch2))) {
 						return false;
 					}
 				} else {
@@ -375,7 +375,7 @@ public class XML11Char {
 	 * Namespaces 1.1 Recommendation
 	 *
 	 * @param ncName
-	 *            string to check
+	 *               string to check
 	 * @return true if name is a valid NCName
 	 */
 	public static boolean isXML11ValidNCName(String ncName) {
@@ -388,8 +388,8 @@ public class XML11Char {
 		if (!isXML11NCNameStart(ch)) {
 			if (length > 1 && isXML11NameHighSurrogate(ch)) {
 				char ch2 = ncName.charAt(1);
-				if (!XMLChar.isLowSurrogate(ch2)
-						|| !isXML11NCNameStart(XMLChar.supplemental(ch, ch2))) {
+				if (!XMLChar.isLowSurrogate(ch2) || !isXML11NCNameStart(XMLChar
+						.supplemental(ch, ch2))) {
 					return false;
 				}
 				i = 2;
@@ -402,8 +402,8 @@ public class XML11Char {
 			if (!isXML11NCName(ch)) {
 				if (++i < length && isXML11NameHighSurrogate(ch)) {
 					char ch2 = ncName.charAt(i);
-					if (!XMLChar.isLowSurrogate(ch2)
-							|| !isXML11NCName(XMLChar.supplemental(ch, ch2))) {
+					if (!XMLChar.isLowSurrogate(ch2) || !isXML11NCName(XMLChar
+							.supplemental(ch, ch2))) {
 						return false;
 					}
 				} else {
@@ -423,7 +423,7 @@ public class XML11Char {
 	 * 1.1 Recommendation
 	 *
 	 * @param nmtoken
-	 *            string to check
+	 *                string to check
 	 * @return true if nmtoken is a valid Nmtoken
 	 */
 	public static boolean isXML11ValidNmtoken(String nmtoken) {
@@ -436,8 +436,8 @@ public class XML11Char {
 			if (!isXML11Name(ch)) {
 				if (++i < length && isXML11NameHighSurrogate(ch)) {
 					char ch2 = nmtoken.charAt(i);
-					if (!XMLChar.isLowSurrogate(ch2)
-							|| !isXML11Name(XMLChar.supplemental(ch, ch2))) {
+					if (!XMLChar.isLowSurrogate(ch2) || !isXML11Name(XMLChar
+							.supplemental(ch, ch2))) {
 						return false;
 					}
 				} else {

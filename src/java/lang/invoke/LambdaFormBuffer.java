@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -116,7 +96,8 @@ final class LambdaFormBuffer {
 				return true;
 			}
 		}
-		assert (firstChange == length) : Arrays.asList(firstChange, Arrays.asList(names));
+		assert (firstChange == length) : Arrays.asList(firstChange, Arrays
+				.asList(names));
 		return true;
 	}
 
@@ -171,7 +152,8 @@ final class LambdaFormBuffer {
 		System.arraycopy(names, insertPos, names, insertEnd, tailLength);
 		Arrays.fill(names, insertPos, insertEnd, null);
 		if (originalNames != null) {
-			System.arraycopy(originalNames, insertPos, originalNames, insertEnd, tailLength);
+			System.arraycopy(originalNames, insertPos, originalNames, insertEnd,
+					tailLength);
 			Arrays.fill(originalNames, insertPos, insertEnd, null);
 		}
 		length = newLength;
@@ -252,7 +234,8 @@ final class LambdaFormBuffer {
 		} else {
 			// make a new buffer to hold the names
 			final int SLOP = 2;
-			names = Arrays.copyOf(oldNames, Math.max(length + SLOP, oldNames.length));
+			names = Arrays.copyOf(oldNames, Math.max(length + SLOP,
+					oldNames.length));
 			if (oc < 2)
 				++flags;
 			assert (ownedCount() == oc + 1);
@@ -296,7 +279,8 @@ final class LambdaFormBuffer {
 			Name name = names[i];
 			if (name == null)
 				continue; // space for removed duplicate
-			Name newName = name.replaceNames(originalNames, names, firstChange, i);
+			Name newName = name.replaceNames(originalNames, names, firstChange,
+					i);
 			if (newName != name) {
 				names[i] = newName;
 				if (resultName == name) {
@@ -343,8 +327,8 @@ final class LambdaFormBuffer {
 	 * is in the corresponding position in newFns. Only do this if the arguments
 	 * are exactly equal to the given.
 	 */
-	LambdaFormBuffer replaceFunctions(NamedFunction[] oldFns, NamedFunction[] newFns,
-			Object... forArguments) {
+	LambdaFormBuffer replaceFunctions(NamedFunction[] oldFns,
+			NamedFunction[] newFns, Object... forArguments) {
 		assert (inTrans());
 		if (oldFns.length == 0)
 			return this;

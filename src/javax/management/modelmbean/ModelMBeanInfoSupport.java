@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 2000, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
- * @author    IBM Corp.
- *
- * Copyright IBM Corp. 1999-2000.  All rights reserved.
+ * @author IBM Corp.
+ * Copyright IBM Corp. 1999-2000. All rights reserved.
  */
 
 package javax.management.modelmbean;
@@ -97,40 +76,45 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	private static final ObjectStreamField[] oldSerialPersistentFields = {
 			new ObjectStreamField("modelMBeanDescriptor", Descriptor.class),
 			new ObjectStreamField("mmbAttributes", MBeanAttributeInfo[].class),
-			new ObjectStreamField("mmbConstructors", MBeanConstructorInfo[].class),
-			new ObjectStreamField("mmbNotifications", MBeanNotificationInfo[].class),
+			new ObjectStreamField("mmbConstructors",
+					MBeanConstructorInfo[].class), new ObjectStreamField(
+							"mmbNotifications", MBeanNotificationInfo[].class),
 			new ObjectStreamField("mmbOperations", MBeanOperationInfo[].class),
 			new ObjectStreamField("currClass", String.class) };
 	//
 	// Serializable fields in new serial form
 	private static final ObjectStreamField[] newSerialPersistentFields = {
 			new ObjectStreamField("modelMBeanDescriptor", Descriptor.class),
-			new ObjectStreamField("modelMBeanAttributes", MBeanAttributeInfo[].class),
-			new ObjectStreamField("modelMBeanConstructors", MBeanConstructorInfo[].class),
-			new ObjectStreamField("modelMBeanNotifications", MBeanNotificationInfo[].class),
-			new ObjectStreamField("modelMBeanOperations", MBeanOperationInfo[].class) };
+			new ObjectStreamField("modelMBeanAttributes",
+					MBeanAttributeInfo[].class), new ObjectStreamField(
+							"modelMBeanConstructors",
+							MBeanConstructorInfo[].class),
+			new ObjectStreamField("modelMBeanNotifications",
+					MBeanNotificationInfo[].class), new ObjectStreamField(
+							"modelMBeanOperations",
+							MBeanOperationInfo[].class) };
 	//
 	// Actual serial version and serial form
 	private static final long serialVersionUID;
 	/**
 	 * @serialField modelMBeanDescriptor
-	 *                  Descriptor The descriptor containing MBean wide policy
+	 *              Descriptor The descriptor containing MBean wide policy
 	 * @serialField modelMBeanAttributes
-	 *                  ModelMBeanAttributeInfo[] The array of
-	 *                  {@link ModelMBeanAttributeInfo} objects which have
-	 *                  descriptors
+	 *              ModelMBeanAttributeInfo[] The array of
+	 *              {@link ModelMBeanAttributeInfo} objects which have
+	 *              descriptors
 	 * @serialField modelMBeanConstructors
-	 *                  MBeanConstructorInfo[] The array of
-	 *                  {@link ModelMBeanConstructorInfo} objects which have
-	 *                  descriptors
+	 *              MBeanConstructorInfo[] The array of
+	 *              {@link ModelMBeanConstructorInfo} objects which have
+	 *              descriptors
 	 * @serialField modelMBeanNotifications
-	 *                  MBeanNotificationInfo[] The array of
-	 *                  {@link ModelMBeanNotificationInfo} objects which have
-	 *                  descriptors
+	 *              MBeanNotificationInfo[] The array of
+	 *              {@link ModelMBeanNotificationInfo} objects which have
+	 *              descriptors
 	 * @serialField modelMBeanOperations
-	 *                  MBeanOperationInfo[] The array of
-	 *                  {@link ModelMBeanOperationInfo} objects which have
-	 *                  descriptors
+	 *              MBeanOperationInfo[] The array of
+	 *              {@link ModelMBeanOperationInfo} objects which have
+	 *              descriptors
 	 */
 	private static final ObjectStreamField[] serialPersistentFields;
 	private static boolean compat = false;
@@ -162,7 +146,6 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	 * The following fields always have the same values as the fields inherited
 	 * from MBeanInfo and are retained only for compatibility. By rewriting the
 	 * serialization code we could get rid of them.
-	 * 
 	 * These fields can't be final because they are assigned to by readObject().
 	 */
 
@@ -212,8 +195,9 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	 *            being created is initialized.
 	 */
 	public ModelMBeanInfoSupport(ModelMBeanInfo mbi) {
-		super(mbi.getClassName(), mbi.getDescription(), mbi.getAttributes(), mbi.getConstructors(),
-				mbi.getOperations(), mbi.getNotifications());
+		super(mbi.getClassName(), mbi.getDescription(), mbi.getAttributes(), mbi
+				.getConstructors(), mbi.getOperations(), mbi
+						.getNotifications());
 
 		modelMBeanAttributes = mbi.getAttributes();
 		modelMBeanConstructors = mbi.getConstructors();
@@ -226,16 +210,16 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 		} catch (MBeanException mbe) {
 			modelMBeanDescriptor = validDescriptor(null);
 			if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-				MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-						"ModelMBeanInfo(ModelMBeanInfo)",
+				MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+						.getName(), "ModelMBeanInfo(ModelMBeanInfo)",
 						"Could not get a valid modelMBeanDescriptor, "
 								+ "setting a default Descriptor");
 			}
 		}
 
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"ModelMBeanInfo(ModelMBeanInfo)", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "ModelMBeanInfo(ModelMBeanInfo)", "Exit");
 		}
 	}
 
@@ -246,26 +230,31 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	 * log="F", visibility="1"
 	 *
 	 * @param className
-	 *            classname of the MBean
+	 *                      classname of the MBean
 	 * @param description
-	 *            human readable description of the ModelMBean
+	 *                      human readable description of the ModelMBean
 	 * @param attributes
-	 *            array of ModelMBeanAttributeInfo objects which have
-	 *            descriptors
+	 *                      array of ModelMBeanAttributeInfo objects which have
+	 *                      descriptors
 	 * @param constructors
-	 *            array of ModelMBeanConstructorInfo objects which have
-	 *            descriptors
+	 *                      array of ModelMBeanConstructorInfo objects which
+	 *                      have
+	 *                      descriptors
 	 * @param operations
-	 *            array of ModelMBeanOperationInfo objects which have
-	 *            descriptors
+	 *                      array of ModelMBeanOperationInfo objects which have
+	 *                      descriptors
 	 * @param notifications
-	 *            array of ModelMBeanNotificationInfo objects which have
-	 *            descriptors
+	 *                      array of ModelMBeanNotificationInfo objects which
+	 *                      have
+	 *                      descriptors
 	 */
 	public ModelMBeanInfoSupport(String className, String description,
-			ModelMBeanAttributeInfo[] attributes, ModelMBeanConstructorInfo[] constructors,
-			ModelMBeanOperationInfo[] operations, ModelMBeanNotificationInfo[] notifications) {
-		this(className, description, attributes, constructors, operations, notifications, null);
+			ModelMBeanAttributeInfo[] attributes,
+			ModelMBeanConstructorInfo[] constructors,
+			ModelMBeanOperationInfo[] operations,
+			ModelMBeanNotificationInfo[] notifications) {
+		this(className, description, attributes, constructors, operations,
+				notifications, null);
 	}
 
 	/**
@@ -273,44 +262,60 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	 * descriptor given in parameter.
 	 *
 	 * @param className
-	 *            classname of the MBean
+	 *                        classname of the MBean
 	 * @param description
-	 *            human readable description of the ModelMBean
+	 *                        human readable description of the ModelMBean
 	 * @param attributes
-	 *            array of ModelMBeanAttributeInfo objects which have
-	 *            descriptors
+	 *                        array of ModelMBeanAttributeInfo objects which
+	 *                        have
+	 *                        descriptors
 	 * @param constructors
-	 *            array of ModelMBeanConstructorInfo objects which have
-	 *            descriptor
+	 *                        array of ModelMBeanConstructorInfo objects which
+	 *                        have
+	 *                        descriptor
 	 * @param operations
-	 *            array of ModelMBeanOperationInfo objects which have descriptor
+	 *                        array of ModelMBeanOperationInfo objects which
+	 *                        have descriptor
 	 * @param notifications
-	 *            array of ModelMBeanNotificationInfo objects which have
-	 *            descriptor
+	 *                        array of ModelMBeanNotificationInfo objects which
+	 *                        have
+	 *                        descriptor
 	 * @param mbeandescriptor
-	 *            descriptor to be used as the MBeanDescriptor containing MBean
-	 *            wide policy. If the descriptor is null, a default descriptor
-	 *            will be constructed. The default descriptor is:
-	 *            name=className, descriptorType="mbean", displayName=className,
-	 *            persistPolicy="never", log="F", visibility="1". If the
-	 *            descriptor does not contain all of these fields, the missing
-	 *            ones are added with these default values.
+	 *                        descriptor to be used as the MBeanDescriptor
+	 *                        containing MBean
+	 *                        wide policy. If the descriptor is null, a default
+	 *                        descriptor
+	 *                        will be constructed. The default descriptor is:
+	 *                        name=className, descriptorType="mbean",
+	 *                        displayName=className,
+	 *                        persistPolicy="never", log="F", visibility="1". If
+	 *                        the
+	 *                        descriptor does not contain all of these fields,
+	 *                        the missing
+	 *                        ones are added with these default values.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException for invalid descriptor
-	 *                passed in parameter. (see {@link #getMBeanDescriptor
-	 *                getMBeanDescriptor} for the definition of a valid MBean
-	 *                descriptor.)
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       for invalid descriptor
+	 *                                       passed in parameter. (see
+	 *                                       {@link #getMBeanDescriptor
+	 *                                       getMBeanDescriptor} for the
+	 *                                       definition of a valid MBean
+	 *                                       descriptor.)
 	 */
 
 	public ModelMBeanInfoSupport(String className, String description,
-			ModelMBeanAttributeInfo[] attributes, ModelMBeanConstructorInfo[] constructors,
-			ModelMBeanOperationInfo[] operations, ModelMBeanNotificationInfo[] notifications,
+			ModelMBeanAttributeInfo[] attributes,
+			ModelMBeanConstructorInfo[] constructors,
+			ModelMBeanOperationInfo[] operations,
+			ModelMBeanNotificationInfo[] notifications,
 			Descriptor mbeandescriptor) {
-		super(className, description, (attributes != null) ? attributes : NO_ATTRIBUTES,
-				(constructors != null) ? constructors : NO_CONSTRUCTORS,
-				(operations != null) ? operations : NO_OPERATIONS,
-				(notifications != null) ? notifications : NO_NOTIFICATIONS);
+		super(className, description, (attributes != null) ? attributes
+				: NO_ATTRIBUTES, (constructors != null) ? constructors
+						: NO_CONSTRUCTORS, (operations != null) ? operations
+								: NO_OPERATIONS, (notifications != null)
+										? notifications
+										: NO_NOTIFICATIONS);
 		/*
 		 * The values saved here are possibly null, but we check this everywhere
 		 * they are referenced. If at some stage we replace null with an empty
@@ -323,7 +328,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 		modelMBeanNotifications = notifications;
 		modelMBeanDescriptor = validDescriptor(mbeandescriptor);
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(),
 					"ModelMBeanInfoSupport(String,String,ModelMBeanAttributeInfo[],"
 							+ "ModelMBeanConstructorInfo[],ModelMBeanOperationInfo[],"
 							+ "ModelMBeanNotificationInfo[],Descriptor)",
@@ -354,8 +360,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	public Descriptor[] getDescriptors(String inDescriptorType)
 			throws MBeanException, RuntimeOperationsException {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getDescriptors(String)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getDescriptors(String)", "Entry");
 		}
 
 		if ((inDescriptorType == null) || (inDescriptorType.equals(""))) {
@@ -376,7 +382,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 
 			retList = new Descriptor[numAttrs];
 			for (int i = 0; i < numAttrs; i++) {
-				retList[i] = (((ModelMBeanAttributeInfo) attrList[i]).getDescriptor());
+				retList[i] = (((ModelMBeanAttributeInfo) attrList[i])
+						.getDescriptor());
 			}
 		} else if (inDescriptorType.equalsIgnoreCase(OPER)) {
 			final MBeanOperationInfo[] operList = modelMBeanOperations;
@@ -386,7 +393,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 
 			retList = new Descriptor[numOpers];
 			for (int i = 0; i < numOpers; i++) {
-				retList[i] = (((ModelMBeanOperationInfo) operList[i]).getDescriptor());
+				retList[i] = (((ModelMBeanOperationInfo) operList[i])
+						.getDescriptor());
 			}
 		} else if (inDescriptorType.equalsIgnoreCase(CONS)) {
 			final MBeanConstructorInfo[] consList = modelMBeanConstructors;
@@ -396,7 +404,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 
 			retList = new Descriptor[numCons];
 			for (int i = 0; i < numCons; i++) {
-				retList[i] = (((ModelMBeanConstructorInfo) consList[i]).getDescriptor());
+				retList[i] = (((ModelMBeanConstructorInfo) consList[i])
+						.getDescriptor());
 			}
 		} else if (inDescriptorType.equalsIgnoreCase(NOTF)) {
 			final MBeanNotificationInfo[] notifList = modelMBeanNotifications;
@@ -406,7 +415,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 
 			retList = new Descriptor[numNotifs];
 			for (int i = 0; i < numNotifs; i++) {
-				retList[i] = (((ModelMBeanNotificationInfo) notifList[i]).getDescriptor());
+				retList[i] = (((ModelMBeanNotificationInfo) notifList[i])
+						.getDescriptor());
 			}
 		} else if (inDescriptorType.equalsIgnoreCase(ALL)) {
 
@@ -437,19 +447,23 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 
 			int j = 0;
 			for (int i = 0; i < numAttrs; i++) {
-				retList[j] = (((ModelMBeanAttributeInfo) attrList[i]).getDescriptor());
+				retList[j] = (((ModelMBeanAttributeInfo) attrList[i])
+						.getDescriptor());
 				j++;
 			}
 			for (int i = 0; i < numCons; i++) {
-				retList[j] = (((ModelMBeanConstructorInfo) consList[i]).getDescriptor());
+				retList[j] = (((ModelMBeanConstructorInfo) consList[i])
+						.getDescriptor());
 				j++;
 			}
 			for (int i = 0; i < numOpers; i++) {
-				retList[j] = (((ModelMBeanOperationInfo) operList[i]).getDescriptor());
+				retList[j] = (((ModelMBeanOperationInfo) operList[i])
+						.getDescriptor());
 				j++;
 			}
 			for (int i = 0; i < numNotifs; i++) {
-				retList[j] = (((ModelMBeanNotificationInfo) notifList[i]).getDescriptor());
+				retList[j] = (((ModelMBeanNotificationInfo) notifList[i])
+						.getDescriptor());
 				j++;
 			}
 		} else {
@@ -460,8 +474,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 			throw new RuntimeOperationsException(iae, msg);
 		}
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getDescriptors(String)", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getDescriptors(String)", "Exit");
 		}
 
 		return retList;
@@ -470,14 +484,15 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	public void setDescriptors(Descriptor[] inDescriptors)
 			throws MBeanException, RuntimeOperationsException {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"setDescriptors(Descriptor[])", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "setDescriptors(Descriptor[])", "Entry");
 		}
 		if (inDescriptors == null) {
 			// throw RuntimeOperationsException - invalid descriptor
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Descriptor list is invalid"),
-					"Exception occurred trying to set the descriptors " + "of the MBeanInfo");
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Descriptor list is invalid"),
+					"Exception occurred trying to set the descriptors "
+							+ "of the MBeanInfo");
 		}
 		if (inDescriptors.length == 0) { // empty list, no-op
 			return;
@@ -486,8 +501,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 			setDescriptor(inDescriptors[j], null);
 		}
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"setDescriptors(Descriptor[])", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "setDescriptors(Descriptor[])", "Exit");
 		}
 
 	}
@@ -496,15 +511,17 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	 * Returns a Descriptor requested by name.
 	 *
 	 * @param inDescriptorName
-	 *            The name of the descriptor.
+	 *                         The name of the descriptor.
 	 *
 	 * @return Descriptor containing a descriptor for the ModelMBean with the
 	 *         same name. If no descriptor is found, null is returned.
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException for null name.
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       for null name.
 	 *
 	 * @see #setDescriptor
 	 */
@@ -512,19 +529,21 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	public Descriptor getDescriptor(String inDescriptorName)
 			throws MBeanException, RuntimeOperationsException {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getDescriptor(String)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getDescriptor(String)", "Entry");
 		}
 		return (getDescriptor(inDescriptorName, null));
 	}
 
-	public Descriptor getDescriptor(String inDescriptorName, String inDescriptorType)
-			throws MBeanException, RuntimeOperationsException {
+	public Descriptor getDescriptor(String inDescriptorName,
+			String inDescriptorType) throws MBeanException,
+			RuntimeOperationsException {
 		if (inDescriptorName == null) {
 			// throw RuntimeOperationsException - invalid descriptor
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Descriptor is invalid"),
-					"Exception occurred trying to set the descriptors of " + "the MBeanInfo");
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Descriptor is invalid"),
+					"Exception occurred trying to set the descriptors of "
+							+ "the MBeanInfo");
 		}
 
 		if (MMB.equalsIgnoreCase(inDescriptorType)) {
@@ -539,29 +558,34 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 		 * then all of the following ifs will run until one of them finds a
 		 * descriptor.
 		 */
-		if (ATTR.equalsIgnoreCase(inDescriptorType) || inDescriptorType == null) {
+		if (ATTR.equalsIgnoreCase(inDescriptorType)
+				|| inDescriptorType == null) {
 			ModelMBeanAttributeInfo attr = getAttribute(inDescriptorName);
 			if (attr != null)
 				return attr.getDescriptor();
 			if (inDescriptorType != null)
 				return null;
 		}
-		if (OPER.equalsIgnoreCase(inDescriptorType) || inDescriptorType == null) {
+		if (OPER.equalsIgnoreCase(inDescriptorType)
+				|| inDescriptorType == null) {
 			ModelMBeanOperationInfo oper = getOperation(inDescriptorName);
 			if (oper != null)
 				return oper.getDescriptor();
 			if (inDescriptorType != null)
 				return null;
 		}
-		if (CONS.equalsIgnoreCase(inDescriptorType) || inDescriptorType == null) {
+		if (CONS.equalsIgnoreCase(inDescriptorType)
+				|| inDescriptorType == null) {
 			ModelMBeanConstructorInfo oper = getConstructor(inDescriptorName);
 			if (oper != null)
 				return oper.getDescriptor();
 			if (inDescriptorType != null)
 				return null;
 		}
-		if (NOTF.equalsIgnoreCase(inDescriptorType) || inDescriptorType == null) {
-			ModelMBeanNotificationInfo notif = getNotification(inDescriptorName);
+		if (NOTF.equalsIgnoreCase(inDescriptorType)
+				|| inDescriptorType == null) {
+			ModelMBeanNotificationInfo notif = getNotification(
+					inDescriptorName);
 			if (notif != null)
 				return notif.getDescriptor();
 			if (inDescriptorType != null)
@@ -569,8 +593,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 		}
 		if (inDescriptorType == null)
 			return null;
-		throw new RuntimeOperationsException(
-				new IllegalArgumentException("Descriptor Type is invalid"),
+		throw new RuntimeOperationsException(new IllegalArgumentException(
+				"Descriptor Type is invalid"),
 				"Exception occurred trying to find the descriptors of the MBean");
 
 	}
@@ -579,8 +603,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 			throws MBeanException, RuntimeOperationsException {
 		final String excMsg = "Exception occurred trying to set the descriptors of the MBean";
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"setDescriptor(Descriptor,String)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "setDescriptor(Descriptor,String)", "Entry");
 		}
 
 		if (inDescriptor == null) {
@@ -588,11 +612,12 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 		}
 
 		if ((inDescriptorType == null) || (inDescriptorType.equals(""))) {
-			inDescriptorType = (String) inDescriptor.getFieldValue("descriptorType");
+			inDescriptorType = (String) inDescriptor.getFieldValue(
+					"descriptorType");
 
 			if (inDescriptorType == null) {
-				MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-						"setDescriptor(Descriptor,String)",
+				MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+						.getName(), "setDescriptor(Descriptor,String)",
 						"descriptorType null in both String parameter and Descriptor, defaulting to "
 								+ MMB);
 				inDescriptorType = MMB;
@@ -601,9 +626,10 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 
 		String inDescriptorName = (String) inDescriptor.getFieldValue("name");
 		if (inDescriptorName == null) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"setDescriptor(Descriptor,String)",
-					"descriptor name null, defaulting to " + this.getClassName());
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "setDescriptor(Descriptor,String)",
+					"descriptor name null, defaulting to " + this
+							.getClassName());
 			inDescriptorName = this.getClassName();
 		}
 		boolean found = false;
@@ -622,14 +648,17 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 					ModelMBeanAttributeInfo mmbai = (ModelMBeanAttributeInfo) attrList[i];
 					mmbai.setDescriptor(inDescriptor);
 					if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-						StringBuilder strb = new StringBuilder().append("Setting descriptor to ")
-								.append(inDescriptor)
+						StringBuilder strb = new StringBuilder().append(
+								"Setting descriptor to ").append(inDescriptor)
 								.append("\t\n local: AttributeInfo descriptor is ")
-								.append(mmbai.getDescriptor())
-								.append("\t\n modelMBeanInfo: AttributeInfo descriptor is ")
-								.append(this.getDescriptor(inDescriptorName, "attribute"));
-						MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-								"setDescriptor(Descriptor,String)", strb.toString());
+								.append(mmbai.getDescriptor()).append(
+										"\t\n modelMBeanInfo: AttributeInfo descriptor is ")
+								.append(this.getDescriptor(inDescriptorName,
+										"attribute"));
+						MODELMBEAN_LOGGER.logp(Level.FINER,
+								ModelMBeanInfoSupport.class.getName(),
+								"setDescriptor(Descriptor,String)", strb
+										.toString());
 					}
 				}
 			}
@@ -679,13 +708,14 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 		}
 
 		if (!found) {
-			RuntimeException iae = new IllegalArgumentException("Descriptor name is invalid: "
-					+ "type=" + inDescriptorType + "; name=" + inDescriptorName);
+			RuntimeException iae = new IllegalArgumentException(
+					"Descriptor name is invalid: " + "type=" + inDescriptorType
+							+ "; name=" + inDescriptorName);
 			throw new RuntimeOperationsException(iae, excMsg);
 		}
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"setDescriptor(Descriptor,String)", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "setDescriptor(Descriptor,String)", "Exit");
 		}
 
 	}
@@ -694,12 +724,12 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 			throws MBeanException, RuntimeOperationsException {
 		ModelMBeanAttributeInfo retInfo = null;
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getAttribute(String)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getAttribute(String)", "Entry");
 		}
 		if (inName == null) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Attribute Name is null"),
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Attribute Name is null"),
 					"Exception occurred trying to get the "
 							+ "ModelMBeanAttributeInfo of the MBean");
 		}
@@ -710,23 +740,25 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 
 		for (int i = 0; (i < numAttrs) && (retInfo == null); i++) {
 			if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-				final StringBuilder strb = new StringBuilder()
-						.append("\t\n this.getAttributes() MBeanAttributeInfo Array ").append(i)
-						.append(":").append(((ModelMBeanAttributeInfo) attrList[i]).getDescriptor())
-						.append("\t\n this.modelMBeanAttributes MBeanAttributeInfo Array ")
-						.append(i).append(":")
-						.append(((ModelMBeanAttributeInfo) modelMBeanAttributes[i])
-								.getDescriptor());
-				MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-						"getAttribute(String)", strb.toString());
+				final StringBuilder strb = new StringBuilder().append(
+						"\t\n this.getAttributes() MBeanAttributeInfo Array ")
+						.append(i).append(":").append(
+								((ModelMBeanAttributeInfo) attrList[i])
+										.getDescriptor()).append(
+												"\t\n this.modelMBeanAttributes MBeanAttributeInfo Array ")
+						.append(i).append(":").append(
+								((ModelMBeanAttributeInfo) modelMBeanAttributes[i])
+										.getDescriptor());
+				MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+						.getName(), "getAttribute(String)", strb.toString());
 			}
 			if (inName.equals(attrList[i].getName())) {
 				retInfo = ((ModelMBeanAttributeInfo) attrList[i].clone());
 			}
 		}
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getAttribute(String)", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getAttribute(String)", "Exit");
 		}
 
 		return retInfo;
@@ -736,12 +768,12 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 			throws MBeanException, RuntimeOperationsException {
 		ModelMBeanOperationInfo retInfo = null;
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getOperation(String)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getOperation(String)", "Entry");
 		}
 		if (inName == null) {
-			throw new RuntimeOperationsException(new IllegalArgumentException("inName is null"),
-					"Exception occurred trying to get the "
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"inName is null"), "Exception occurred trying to get the "
 							+ "ModelMBeanOperationInfo of the MBean");
 		}
 		MBeanOperationInfo[] operList = modelMBeanOperations; // this.getOperations();
@@ -755,8 +787,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 			}
 		}
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getOperation(String)", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getOperation(String)", "Exit");
 		}
 
 		return retInfo;
@@ -767,28 +799,30 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	 * ModelMBeanConstructorInfo exists for this name null is returned.
 	 *
 	 * @param inName
-	 *            the name of the constructor.
+	 *               the name of the constructor.
 	 *
 	 * @return the constructor info for the named constructor, or null if there
 	 *         is none.
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException for a null constructor
-	 *                name.
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       for a null constructor
+	 *                                       name.
 	 */
 
 	public ModelMBeanConstructorInfo getConstructor(String inName)
 			throws MBeanException, RuntimeOperationsException {
 		ModelMBeanConstructorInfo retInfo = null;
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getConstructor(String)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getConstructor(String)", "Entry");
 		}
 		if (inName == null) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Constructor name is null"),
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Constructor name is null"),
 					"Exception occurred trying to get the "
 							+ "ModelMBeanConstructorInfo of the MBean");
 		}
@@ -803,8 +837,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 			}
 		}
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getConstructor(String)", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getConstructor(String)", "Exit");
 		}
 
 		return retInfo;
@@ -814,12 +848,12 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 			throws MBeanException, RuntimeOperationsException {
 		ModelMBeanNotificationInfo retInfo = null;
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getNotification(String)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getNotification(String)", "Entry");
 		}
 		if (inName == null) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Notification name is null"),
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Notification name is null"),
 					"Exception occurred trying to get the "
 							+ "ModelMBeanNotificationInfo of the MBean");
 		}
@@ -834,8 +868,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 			}
 		}
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getNotification(String)", "Exit");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getNotification(String)", "Exit");
 		}
 
 		return retInfo;
@@ -856,16 +890,17 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 
 	private Descriptor getMBeanDescriptorNoException() {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getMBeanDescriptorNoException()", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getMBeanDescriptorNoException()", "Entry");
 		}
 
 		if (modelMBeanDescriptor == null)
 			modelMBeanDescriptor = validDescriptor(null);
 
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"getMBeanDescriptorNoException()", "Exit, returning: " + modelMBeanDescriptor);
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "getMBeanDescriptorNoException()",
+					"Exit, returning: " + modelMBeanDescriptor);
 		}
 		return (Descriptor) modelMBeanDescriptor.clone();
 	}
@@ -873,8 +908,8 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	public void setMBeanDescriptor(Descriptor inMBeanDescriptor)
 			throws MBeanException, RuntimeOperationsException {
 		if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
-			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class.getName(),
-					"setMBeanDescriptor(Descriptor)", "Entry");
+			MODELMBEAN_LOGGER.logp(Level.FINER, ModelMBeanInfoSupport.class
+					.getName(), "setMBeanDescriptor(Descriptor)", "Entry");
 		}
 		modelMBeanDescriptor = validDescriptor(inMBeanDescriptor);
 	}
@@ -890,12 +925,13 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	 * persistPolicy="never", log="F", visibility="1"
 	 *
 	 * @param in
-	 *            Descriptor to be checked, or null which is equivalent to an
-	 *            empty Descriptor.
+	 *           Descriptor to be checked, or null which is equivalent to an
+	 *           empty Descriptor.
 	 * @exception RuntimeOperationsException
-	 *                if Descriptor is invalid
+	 *                                       if Descriptor is invalid
 	 */
-	private Descriptor validDescriptor(final Descriptor in) throws RuntimeOperationsException {
+	private Descriptor validDescriptor(final Descriptor in)
+			throws RuntimeOperationsException {
 		Descriptor clone;
 		boolean defaulted = (in == null);
 		if (defaulted) {
@@ -908,23 +944,28 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 		// Setting defaults.
 		if (defaulted && clone.getFieldValue("name") == null) {
 			clone.setField("name", this.getClassName());
-			MODELMBEAN_LOGGER.finer("Defaulting Descriptor name to " + this.getClassName());
+			MODELMBEAN_LOGGER.finer("Defaulting Descriptor name to " + this
+					.getClassName());
 		}
 		if (defaulted && clone.getFieldValue("descriptorType") == null) {
 			clone.setField("descriptorType", MMB);
-			MODELMBEAN_LOGGER.finer("Defaulting descriptorType to \"" + MMB + "\"");
+			MODELMBEAN_LOGGER.finer("Defaulting descriptorType to \"" + MMB
+					+ "\"");
 		}
 		if (clone.getFieldValue("displayName") == null) {
 			clone.setField("displayName", this.getClassName());
-			MODELMBEAN_LOGGER.finer("Defaulting Descriptor displayName to " + this.getClassName());
+			MODELMBEAN_LOGGER.finer("Defaulting Descriptor displayName to "
+					+ this.getClassName());
 		}
 		if (clone.getFieldValue("persistPolicy") == null) {
 			clone.setField("persistPolicy", "never");
-			MODELMBEAN_LOGGER.finer("Defaulting Descriptor persistPolicy to \"never\"");
+			MODELMBEAN_LOGGER.finer(
+					"Defaulting Descriptor persistPolicy to \"never\"");
 		}
 		if (clone.getFieldValue("log") == null) {
 			clone.setField("log", "F");
-			MODELMBEAN_LOGGER.finer("Defaulting Descriptor \"log\" field to \"F\"");
+			MODELMBEAN_LOGGER.finer(
+					"Defaulting Descriptor \"log\" field to \"F\"");
 		}
 		if (clone.getFieldValue("visibility") == null) {
 			clone.setField("visibility", "1");
@@ -933,19 +974,20 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 
 		// Checking validity
 		if (!clone.isValid()) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Invalid Descriptor argument"),
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Invalid Descriptor argument"),
 					"The isValid() method of the Descriptor object itself returned false,"
 							+ "one or more required fields are invalid. Descriptor:"
 							+ clone.toString());
 		}
 
-		if (!((String) clone.getFieldValue("descriptorType")).equalsIgnoreCase(MMB)) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Invalid Descriptor argument"),
+		if (!((String) clone.getFieldValue("descriptorType")).equalsIgnoreCase(
+				MMB)) {
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Invalid Descriptor argument"),
 					"The Descriptor \"descriptorType\" field does not match the object described. "
-							+ " Expected: " + MMB + " , was: "
-							+ clone.getFieldValue("descriptorType"));
+							+ " Expected: " + MMB + " , was: " + clone
+									.getFieldValue("descriptorType"));
 		}
 
 		return clone;
@@ -955,29 +997,34 @@ public class ModelMBeanInfoSupport extends MBeanInfo implements ModelMBeanInfo {
 	 * Deserializes a {@link ModelMBeanInfoSupport} from an
 	 * {@link ObjectInputStream}.
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		if (compat) {
 			// Read an object serialized in the old serial form
 			//
 			ObjectInputStream.GetField fields = in.readFields();
-			modelMBeanDescriptor = (Descriptor) fields.get("modelMBeanDescriptor", null);
+			modelMBeanDescriptor = (Descriptor) fields.get(
+					"modelMBeanDescriptor", null);
 			if (fields.defaulted("modelMBeanDescriptor")) {
 				throw new NullPointerException("modelMBeanDescriptor");
 			}
-			modelMBeanAttributes = (MBeanAttributeInfo[]) fields.get("mmbAttributes", null);
+			modelMBeanAttributes = (MBeanAttributeInfo[]) fields.get(
+					"mmbAttributes", null);
 			if (fields.defaulted("mmbAttributes")) {
 				throw new NullPointerException("mmbAttributes");
 			}
-			modelMBeanConstructors = (MBeanConstructorInfo[]) fields.get("mmbConstructors", null);
+			modelMBeanConstructors = (MBeanConstructorInfo[]) fields.get(
+					"mmbConstructors", null);
 			if (fields.defaulted("mmbConstructors")) {
 				throw new NullPointerException("mmbConstructors");
 			}
-			modelMBeanNotifications = (MBeanNotificationInfo[]) fields.get("mmbNotifications",
-					null);
+			modelMBeanNotifications = (MBeanNotificationInfo[]) fields.get(
+					"mmbNotifications", null);
 			if (fields.defaulted("mmbNotifications")) {
 				throw new NullPointerException("mmbNotifications");
 			}
-			modelMBeanOperations = (MBeanOperationInfo[]) fields.get("mmbOperations", null);
+			modelMBeanOperations = (MBeanOperationInfo[]) fields.get(
+					"mmbOperations", null);
 			if (fields.defaulted("mmbOperations")) {
 				throw new NullPointerException("mmbOperations");
 			}

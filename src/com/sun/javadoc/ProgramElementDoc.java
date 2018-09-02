@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.javadoc;
@@ -75,7 +55,7 @@ public interface ProgramElementDoc extends Doc {
 	 * Get modifiers string. For example, for:
 	 * 
 	 * <pre>
-	 * public abstract int foo() { ... }
+	 * public abstract int foo(){...}
 	 * </pre>
 	 * 
 	 * return "public abstract". Annotations are not included.

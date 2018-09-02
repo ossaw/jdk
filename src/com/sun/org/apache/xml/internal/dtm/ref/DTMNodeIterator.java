@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -73,7 +70,8 @@ public class DTMNodeIterator implements org.w3c.dom.traversal.NodeIterator {
 		try {
 			dtm_iter = (DTMIterator) dtmIterator.clone();
 		} catch (CloneNotSupportedException cnse) {
-			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(cnse);
+			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
+					cnse);
 		}
 	}
 
@@ -121,8 +119,9 @@ public class DTMNodeIterator implements org.w3c.dom.traversal.NodeIterator {
 	 * -- and just isn't all that useful.
 	 *
 	 * @throws DOMException
-	 *             -- NOT_SUPPORTED_ERROR because I can't think of anything more
-	 *             useful to do in this case
+	 *                      -- NOT_SUPPORTED_ERROR because I can't think of
+	 *                      anything more
+	 *                      useful to do in this case
 	 */
 	public NodeFilter getFilter() {
 		throw new DTMDOMException(DOMException.NOT_SUPPORTED_ERR);
@@ -149,8 +148,9 @@ public class DTMNodeIterator implements org.w3c.dom.traversal.NodeIterator {
 	 *         in the set.
 	 *
 	 * @throws DOMException
-	 *             - INVALID_STATE_ERR Raised if this method is called after the
-	 *             detach method was invoked.
+	 *                      - INVALID_STATE_ERR Raised if this method is called
+	 *                      after the
+	 *                      detach method was invoked.
 	 */
 	public Node nextNode() throws DOMException {
 		if (!valid)
@@ -167,8 +167,9 @@ public class DTMNodeIterator implements org.w3c.dom.traversal.NodeIterator {
 	 *         iterator in the set.
 	 *
 	 * @throws DOMException
-	 *             - INVALID_STATE_ERR Raised if this method is called after the
-	 *             detach method was invoked.
+	 *                      - INVALID_STATE_ERR Raised if this method is called
+	 *                      after the
+	 *                      detach method was invoked.
 	 */
 	public Node previousNode() {
 		if (!valid)

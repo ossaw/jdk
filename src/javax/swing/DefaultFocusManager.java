@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -46,15 +26,18 @@ import java.util.Comparator;
  */
 public class DefaultFocusManager extends FocusManager {
 
-	final FocusTraversalPolicy gluePolicy = new LegacyGlueFocusTraversalPolicy(this);
-	private final FocusTraversalPolicy layoutPolicy = new LegacyLayoutFocusTraversalPolicy(this);
+	final FocusTraversalPolicy gluePolicy = new LegacyGlueFocusTraversalPolicy(
+			this);
+	private final FocusTraversalPolicy layoutPolicy = new LegacyLayoutFocusTraversalPolicy(
+			this);
 	private final LayoutComparator comparator = new LayoutComparator();
 
 	public DefaultFocusManager() {
 		setDefaultFocusTraversalPolicy(gluePolicy);
 	}
 
-	public Component getComponentAfter(Container aContainer, Component aComponent) {
+	public Component getComponentAfter(Container aContainer,
+			Component aComponent) {
 		Container root = (aContainer.isFocusCycleRoot()) ? aContainer
 				: aContainer.getFocusCycleRootAncestor();
 
@@ -73,7 +56,8 @@ public class DefaultFocusManager extends FocusManager {
 		return null;
 	}
 
-	public Component getComponentBefore(Container aContainer, Component aComponent) {
+	public Component getComponentBefore(Container aContainer,
+			Component aComponent) {
 		Container root = (aContainer.isFocusCycleRoot()) ? aContainer
 				: aContainer.getFocusCycleRootAncestor();
 
@@ -135,7 +119,8 @@ public class DefaultFocusManager extends FocusManager {
 	}
 }
 
-final class LegacyLayoutFocusTraversalPolicy extends LayoutFocusTraversalPolicy {
+final class LegacyLayoutFocusTraversalPolicy extends
+		LayoutFocusTraversalPolicy {
 	LegacyLayoutFocusTraversalPolicy(DefaultFocusManager defaultFocusManager) {
 		super(new CompareTabOrderComparator(defaultFocusManager));
 	}

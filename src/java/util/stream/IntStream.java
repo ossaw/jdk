@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.stream;
 
@@ -57,8 +37,8 @@ import java.util.function.Supplier;
  * <pre>
  * {
  * 	&#64;code
- * 	int sum = widgets.stream().filter(w -> w.getColor() == RED).mapToInt(w -> w.getWeight())
- * 			.sum();
+ * 	int sum = widgets.stream().filter(w -> w.getColor() == RED).mapToInt(
+ * 			w -> w.getWeight()).sum();
  * }
  * </pre>
  *
@@ -82,12 +62,15 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * operation</a>.
 	 *
 	 * @param predicate
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            predicate to apply to each element to determine if it should
-	 *            be included
+	 *                  a
+	 *                  <a href=
+	 *                  "package-summary.html#NonInterference">non-interfering
+	 *                  </a>,
+	 *                  <a href=
+	 *                  "package-summary.html#Statelessness">stateless</a>
+	 *                  predicate to apply to each element to determine if it
+	 *                  should
+	 *                  be included
 	 * @return the new stream
 	 */
 	IntStream filter(IntPredicate predicate);
@@ -101,11 +84,12 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * operation</a>.
 	 *
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element
 	 * @return the new stream
 	 */
 	IntStream map(IntUnaryOperator mapper);
@@ -118,14 +102,15 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * This is an <a href="package-summary.html#StreamOps"> intermediate
 	 * operation</a>.
 	 *
-	 * @param <U>
-	 *            the element type of the new stream
+	 * @param        <U>
+	 *               the element type of the new stream
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element
 	 * @return the new stream
 	 */
 	<U> Stream<U> mapToObj(IntFunction<? extends U> mapper);
@@ -139,11 +124,12 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * operation</a>.
 	 *
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element
 	 * @return the new stream
 	 */
 	LongStream mapToLong(IntToLongFunction mapper);
@@ -157,11 +143,12 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * operation</a>.
 	 *
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element
 	 * @return the new stream
 	 */
 	DoubleStream mapToDouble(IntToDoubleFunction mapper);
@@ -179,12 +166,13 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * operation</a>.
 	 *
 	 * @param mapper
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function to apply to each element which produces an
-	 *            {@code IntStream} of new values
+	 *               a
+	 *               <a href=
+	 *               "package-summary.html#NonInterference">non-interfering
+	 *               </a>,
+	 *               <a href="package-summary.html#Statelessness">stateless</a>
+	 *               function to apply to each element which produces an
+	 *               {@code IntStream} of new values
 	 * @return the new stream
 	 * @see Stream#flatMap(Function)
 	 */
@@ -244,9 +232,10 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 *          </pre>
 	 *
 	 * @param action
-	 *            a <a href="package-summary.html#NonInterference"> non-
-	 *            interfering</a> action to perform on the elements as they are
-	 *            consumed from the stream
+	 *               a <a href="package-summary.html#NonInterference"> non-
+	 *               interfering</a> action to perform on the elements as they
+	 *               are
+	 *               consumed from the stream
 	 * @return the new stream
 	 */
 	IntStream peek(IntConsumer action);
@@ -275,10 +264,10 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 *          {@link #sequential()} may improve performance.
 	 *
 	 * @param maxSize
-	 *            the number of elements the stream should be limited to
+	 *                the number of elements the stream should be limited to
 	 * @return the new stream
 	 * @throws IllegalArgumentException
-	 *             if {@code maxSize} is negative
+	 *                                  if {@code maxSize} is negative
 	 */
 	IntStream limit(long maxSize);
 
@@ -308,10 +297,10 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 *          {@link #sequential()} may improve performance.
 	 *
 	 * @param n
-	 *            the number of leading elements to skip
+	 *          the number of leading elements to skip
 	 * @return the new stream
 	 * @throws IllegalArgumentException
-	 *             if {@code n} is negative
+	 *                                  if {@code n} is negative
 	 */
 	IntStream skip(long n);
 
@@ -331,8 +320,8 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * required synchronization.
 	 *
 	 * @param action
-	 *            a <a href="package-summary.html#NonInterference"> non-
-	 *            interfering</a> action to perform on the elements
+	 *               a <a href="package-summary.html#NonInterference"> non-
+	 *               interfering</a> action to perform on the elements
 	 */
 	void forEach(IntConsumer action);
 
@@ -346,8 +335,8 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * .
 	 *
 	 * @param action
-	 *            a <a href="package-summary.html#NonInterference"> non-
-	 *            interfering</a> action to perform on the elements
+	 *               a <a href="package-summary.html#NonInterference"> non-
+	 *               interfering</a> action to perform on the elements
 	 * @see #forEach(IntConsumer)
 	 */
 	void forEachOrdered(IntConsumer action);
@@ -416,14 +405,17 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 *          of data races.
 	 *
 	 * @param identity
-	 *            the identity value for the accumulating function
+	 *                 the identity value for the accumulating function
 	 * @param op
-	 *            an
-	 *            <a href="package-summary.html#Associativity">associative</a>,
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function for combining two values
+	 *                 an
+	 *                 <a href=
+	 *                 "package-summary.html#Associativity">associative</a>,
+	 *                 <a href=
+	 *                 "package-summary.html#NonInterference">non-interfering
+	 *                 </a>,
+	 *                 <a href=
+	 *                 "package-summary.html#Statelessness">stateless</a>
+	 *                 function for combining two values
 	 * @return the result of the reduction
 	 * @see #sum()
 	 * @see #min()
@@ -466,12 +458,12 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * .
 	 *
 	 * @param op
-	 *            an
-	 *            <a href="package-summary.html#Associativity">associative</a>,
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function for combining two values
+	 *           an
+	 *           <a href="package-summary.html#Associativity">associative</a>,
+	 *           <a href="package-summary.html#NonInterference">non-interfering
+	 *           </a>,
+	 *           <a href="package-summary.html#Statelessness">stateless</a>
+	 *           function for combining two values
 	 * @return the result of the reduction
 	 * @see #reduce(int, IntBinaryOperator)
 	 */
@@ -502,31 +494,42 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * This is a <a href="package-summary.html#StreamOps">terminal operation</a>
 	 * .
 	 *
-	 * @param <R>
-	 *            type of the result
+	 * @param             <R>
+	 *                    type of the result
 	 * @param supplier
-	 *            a function that creates a new result container. For a parallel
-	 *            execution, this function may be called multiple times and must
-	 *            return a fresh value each time.
+	 *                    a function that creates a new result container. For a
+	 *                    parallel
+	 *                    execution, this function may be called multiple times
+	 *                    and must
+	 *                    return a fresh value each time.
 	 * @param accumulator
-	 *            an
-	 *            <a href="package-summary.html#Associativity">associative</a>,
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function for incorporating an additional element into a result
+	 *                    an
+	 *                    <a href=
+	 *                    "package-summary.html#Associativity">associative</a>,
+	 *                    <a href=
+	 *                    "package-summary.html#NonInterference">non-interfering
+	 *                    </a>,
+	 *                    <a href=
+	 *                    "package-summary.html#Statelessness">stateless</a>
+	 *                    function for incorporating an additional element into
+	 *                    a result
 	 * @param combiner
-	 *            an
-	 *            <a href="package-summary.html#Associativity">associative</a>,
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            function for combining two values, which must be compatible
-	 *            with the accumulator function
+	 *                    an
+	 *                    <a href=
+	 *                    "package-summary.html#Associativity">associative</a>,
+	 *                    <a href=
+	 *                    "package-summary.html#NonInterference">non-interfering
+	 *                    </a>,
+	 *                    <a href=
+	 *                    "package-summary.html#Statelessness">stateless</a>
+	 *                    function for combining two values, which must be
+	 *                    compatible
+	 *                    with the accumulator function
 	 * @return the result of the reduction
 	 * @see Stream#collect(Supplier, BiConsumer, BiConsumer)
 	 */
-	<R> R collect(Supplier<R> supplier, ObjIntConsumer<R> accumulator, BiConsumer<R, R> combiner);
+	<R> R collect(Supplier<R> supplier, ObjIntConsumer<R> accumulator,
+			BiConsumer<R, R> combiner);
 
 	/**
 	 * Returns the sum of elements in this stream. This is a special case of a
@@ -651,11 +654,13 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 *          the predicate over the elements of the stream (for some x P(x)).
 	 *
 	 * @param predicate
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            predicate to apply to elements of this stream
+	 *                  a
+	 *                  <a href=
+	 *                  "package-summary.html#NonInterference">non-interfering
+	 *                  </a>,
+	 *                  <a href=
+	 *                  "package-summary.html#Statelessness">stateless</a>
+	 *                  predicate to apply to elements of this stream
 	 * @return {@code true} if any elements of the stream match the provided
 	 *         predicate, otherwise {@code false}
 	 */
@@ -675,14 +680,16 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 *          the predicate over the elements of the stream (for all x P(x)).
 	 *          If the stream is empty, the quantification is said to be
 	 *          <em>vacuously
-	 * satisfied</em> and is always {@code true} (regardless of P(x)).
+	 *          satisfied</em> and is always {@code true} (regardless of P(x)).
 	 *
 	 * @param predicate
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            predicate to apply to elements of this stream
+	 *                  a
+	 *                  <a href=
+	 *                  "package-summary.html#NonInterference">non-interfering
+	 *                  </a>,
+	 *                  <a href=
+	 *                  "package-summary.html#Statelessness">stateless</a>
+	 *                  predicate to apply to elements of this stream
 	 * @return {@code true} if either all elements of the stream match the
 	 *         provided predicate or the stream is empty, otherwise
 	 *         {@code false}
@@ -706,11 +713,13 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 *          P(x).
 	 *
 	 * @param predicate
-	 *            a
-	 *            <a href="package-summary.html#NonInterference">non-interfering
-	 *            </a>,
-	 *            <a href="package-summary.html#Statelessness">stateless</a>
-	 *            predicate to apply to elements of this stream
+	 *                  a
+	 *                  <a href=
+	 *                  "package-summary.html#NonInterference">non-interfering
+	 *                  </a>,
+	 *                  <a href=
+	 *                  "package-summary.html#Statelessness">stateless</a>
+	 *                  predicate to apply to elements of this stream
 	 * @return {@code true} if either no elements of the stream match the
 	 *         provided predicate or the stream is empty, otherwise
 	 *         {@code false}
@@ -820,18 +829,20 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * @return an empty sequential stream
 	 */
 	public static IntStream empty() {
-		return StreamSupport.intStream(Spliterators.emptyIntSpliterator(), false);
+		return StreamSupport.intStream(Spliterators.emptyIntSpliterator(),
+				false);
 	}
 
 	/**
 	 * Returns a sequential {@code IntStream} containing a single element.
 	 *
 	 * @param t
-	 *            the single element
+	 *          the single element
 	 * @return a singleton sequential stream
 	 */
 	public static IntStream of(int t) {
-		return StreamSupport.intStream(new Streams.IntStreamBuilderImpl(t), false);
+		return StreamSupport.intStream(new Streams.IntStreamBuilderImpl(t),
+				false);
 	}
 
 	/**
@@ -839,7 +850,7 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * values.
 	 *
 	 * @param values
-	 *            the elements of the new stream
+	 *               the elements of the new stream
 	 * @return the new stream
 	 */
 	public static IntStream of(int... values) {
@@ -859,10 +870,11 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * element at position {@code n - 1}.
 	 *
 	 * @param seed
-	 *            the initial element
+	 *             the initial element
 	 * @param f
-	 *            a function to be applied to to the previous element to produce
-	 *            a new element
+	 *             a function to be applied to to the previous element to
+	 *             produce
+	 *             a new element
 	 * @return A new sequential {@code IntStream}
 	 */
 	public static IntStream iterate(final int seed, final IntUnaryOperator f) {
@@ -882,8 +894,9 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 				return v;
 			}
 		};
-		return StreamSupport.intStream(Spliterators.spliteratorUnknownSize(iterator,
-				Spliterator.ORDERED | Spliterator.IMMUTABLE | Spliterator.NONNULL), false);
+		return StreamSupport.intStream(Spliterators.spliteratorUnknownSize(
+				iterator, Spliterator.ORDERED | Spliterator.IMMUTABLE
+						| Spliterator.NONNULL), false);
 	}
 
 	/**
@@ -892,14 +905,14 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 * generating constant streams, streams of random elements, etc.
 	 *
 	 * @param s
-	 *            the {@code IntSupplier} for generated elements
+	 *          the {@code IntSupplier} for generated elements
 	 * @return a new infinite sequential unordered {@code IntStream}
 	 */
 	public static IntStream generate(IntSupplier s) {
 		Objects.requireNonNull(s);
 		return StreamSupport.intStream(
-				new StreamSpliterators.InfiniteSupplyingSpliterator.OfInt(Long.MAX_VALUE, s),
-				false);
+				new StreamSpliterators.InfiniteSupplyingSpliterator.OfInt(
+						Long.MAX_VALUE, s), false);
 	}
 
 	/**
@@ -919,9 +932,9 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 *          </pre>
 	 *
 	 * @param startInclusive
-	 *            the (inclusive) initial value
+	 *                       the (inclusive) initial value
 	 * @param endExclusive
-	 *            the exclusive upper bound
+	 *                       the exclusive upper bound
 	 * @return a sequential {@code IntStream} for the range of {@code int}
 	 *         elements
 	 */
@@ -929,8 +942,8 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 		if (startInclusive >= endExclusive) {
 			return empty();
 		} else {
-			return StreamSupport.intStream(
-					new Streams.RangeIntSpliterator(startInclusive, endExclusive, false), false);
+			return StreamSupport.intStream(new Streams.RangeIntSpliterator(
+					startInclusive, endExclusive, false), false);
 		}
 	}
 
@@ -951,9 +964,9 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 *          </pre>
 	 *
 	 * @param startInclusive
-	 *            the (inclusive) initial value
+	 *                       the (inclusive) initial value
 	 * @param endInclusive
-	 *            the inclusive upper bound
+	 *                       the inclusive upper bound
 	 * @return a sequential {@code IntStream} for the range of {@code int}
 	 *         elements
 	 */
@@ -961,8 +974,8 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 		if (startInclusive > endInclusive) {
 			return empty();
 		} else {
-			return StreamSupport.intStream(
-					new Streams.RangeIntSpliterator(startInclusive, endInclusive, true), false);
+			return StreamSupport.intStream(new Streams.RangeIntSpliterator(
+					startInclusive, endInclusive, true), false);
 		}
 	}
 
@@ -980,18 +993,19 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 	 *           {@code StackOverflowException}.
 	 *
 	 * @param a
-	 *            the first stream
+	 *          the first stream
 	 * @param b
-	 *            the second stream
+	 *          the second stream
 	 * @return the concatenation of the two input streams
 	 */
 	public static IntStream concat(IntStream a, IntStream b) {
 		Objects.requireNonNull(a);
 		Objects.requireNonNull(b);
 
-		Spliterator.OfInt split = new Streams.ConcatSpliterator.OfInt(a.spliterator(),
-				b.spliterator());
-		IntStream stream = StreamSupport.intStream(split, a.isParallel() || b.isParallel());
+		Spliterator.OfInt split = new Streams.ConcatSpliterator.OfInt(a
+				.spliterator(), b.spliterator());
+		IntStream stream = StreamSupport.intStream(split, a.isParallel() || b
+				.isParallel());
 		return stream.onClose(Streams.composedClose(a, b));
 	}
 
@@ -1015,8 +1029,9 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 		 * Adds an element to the stream being built.
 		 *
 		 * @throws IllegalStateException
-		 *             if the builder has already transitioned to the built
-		 *             state
+		 *                               if the builder has already transitioned
+		 *                               to the built
+		 *                               state
 		 */
 		@Override
 		void accept(int t);
@@ -1034,11 +1049,12 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 		 *           </pre>
 		 *
 		 * @param t
-		 *            the element to add
+		 *          the element to add
 		 * @return {@code this} builder
 		 * @throws IllegalStateException
-		 *             if the builder has already transitioned to the built
-		 *             state
+		 *                               if the builder has already transitioned
+		 *                               to the built
+		 *                               state
 		 */
 		default Builder add(int t) {
 			accept(t);
@@ -1052,8 +1068,9 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
 		 *
 		 * @return the built stream
 		 * @throws IllegalStateException
-		 *             if the builder has already transitioned to the built
-		 *             state
+		 *                               if the builder has already transitioned
+		 *                               to the built
+		 *                               state
 		 */
 		IntStream build();
 	}

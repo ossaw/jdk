@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.common;
@@ -72,15 +52,16 @@ public class LZWCompressor {
 
 	/**
 	 * @param out
-	 *            destination for compressed data
+	 *                 destination for compressed data
 	 * @param codeSize
-	 *            the initial code size for the LZW compressor
+	 *                 the initial code size for the LZW compressor
 	 * @param TIFF
-	 *            flag indicating that TIFF lzw fudge needs to be applied
+	 *                 flag indicating that TIFF lzw fudge needs to be applied
 	 * @exception IOException
-	 *                if underlying output stream error
+	 *                        if underlying output stream error
 	 **/
-	public LZWCompressor(ImageOutputStream out, int codeSize, boolean TIFF) throws IOException {
+	public LZWCompressor(ImageOutputStream out, int codeSize, boolean TIFF)
+			throws IOException {
 		bf = new BitFile(out, !TIFF); // set flag for GIF as NOT tiff
 		this.codeSize = codeSize;
 		tiffFudge = TIFF;
@@ -103,9 +84,10 @@ public class LZWCompressor {
 	 * @param buf
 	 *            data to be compressed to output stream
 	 * @exception IOException
-	 *                if underlying output stream error
+	 *                        if underlying output stream error
 	 **/
-	public void compress(byte[] buf, int offset, int length) throws IOException {
+	public void compress(byte[] buf, int offset, int length)
+			throws IOException {
 		int idx;
 		byte c;
 		short index;
@@ -139,7 +121,6 @@ public class LZWCompressor {
 	/*
 	 * Indicate to compressor that no more data to go so write out any remaining
 	 * buffered data.
-	 *
 	 * @exception IOException if underlying output stream error
 	 */
 	public void flush() throws IOException {

@@ -68,7 +68,8 @@ public class InvalidTransformException extends XMLSecurityException {
 	 * @param msgId
 	 * @param originalException
 	 */
-	public InvalidTransformException(String msgId, Exception originalException) {
+	public InvalidTransformException(String msgId,
+			Exception originalException) {
 		super(msgId, originalException);
 	}
 
@@ -79,7 +80,8 @@ public class InvalidTransformException extends XMLSecurityException {
 	 * @param exArgs
 	 * @param originalException
 	 */
-	public InvalidTransformException(String msgId, Object exArgs[], Exception originalException) {
+	public InvalidTransformException(String msgId, Object exArgs[],
+			Exception originalException) {
 		super(msgId, exArgs, originalException);
 	}
 }

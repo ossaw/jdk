@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.oa;
@@ -36,7 +16,7 @@ import com.sun.corba.se.spi.oa.OADestroyed;
 
 import com.sun.corba.se.spi.ior.IORTemplate;
 
-// REVISIT: What should the order be?  enter/push...pop/exit?
+// REVISIT: What should the order be? enter/push...pop/exit?
 
 /**
  * ObjectAdapter represents the abstract model of an object adapter that was
@@ -232,10 +212,11 @@ public interface ObjectAdapter {
 	 * InvocationInfo argument that is passed into this call.
 	 * 
 	 * @param info
-	 *            is the InvocationInfo object for the object reference
+	 *             is the InvocationInfo object for the object reference
 	 * @exception ForwardException
-	 *                (a runtime exception) is thrown if the request is to be
-	 *                handled by a different object reference.
+	 *                             (a runtime exception) is thrown if the
+	 *                             request is to be
+	 *                             handled by a different object reference.
 	 */
 	void getInvocationServant(OAInvocationInfo info);
 
@@ -243,8 +224,10 @@ public interface ObjectAdapter {
 	 * enter must be called before each request is invoked on a servant.
 	 * 
 	 * @exception OADestroyed
-	 *                is thrown when an OA has been destroyed, which requires a
-	 *                retry in the case where an AdapterActivator is present.
+	 *                        is thrown when an OA has been destroyed, which
+	 *                        requires a
+	 *                        retry in the case where an AdapterActivator is
+	 *                        present.
 	 */
 	void enter() throws OADestroyed;
 

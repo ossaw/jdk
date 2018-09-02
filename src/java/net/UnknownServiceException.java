@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -41,8 +21,7 @@ public class UnknownServiceException extends IOException {
 	/**
 	 * Constructs a new {@code UnknownServiceException} with no detail message.
 	 */
-	public UnknownServiceException() {
-	}
+	public UnknownServiceException() {}
 
 	/**
 	 * Constructs a new {@code UnknownServiceException} with the specified

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws.handler;
@@ -188,12 +168,12 @@ public interface MessageContext extends Map<String, Object> {
 	 * Sets the scope of a property.
 	 *
 	 * @param name
-	 *            Name of the property associated with the
-	 *            <code>MessageContext</code>
+	 *              Name of the property associated with the
+	 *              <code>MessageContext</code>
 	 * @param scope
-	 *            Desired scope of the property
+	 *              Desired scope of the property
 	 * @throws java.lang.IllegalArgumentException
-	 *             if an illegal property name is specified
+	 *         if an illegal property name is specified
 	 */
 	public void setScope(String name, Scope scope);
 
@@ -201,10 +181,10 @@ public interface MessageContext extends Map<String, Object> {
 	 * Gets the scope of a property.
 	 *
 	 * @param name
-	 *            Name of the property
+	 *             Name of the property
 	 * @return Scope of the property
 	 * @throws java.lang.IllegalArgumentException
-	 *             if a non-existant property name is specified
+	 *         if a non-existant property name is specified
 	 */
 	public Scope getScope(String name);
 }

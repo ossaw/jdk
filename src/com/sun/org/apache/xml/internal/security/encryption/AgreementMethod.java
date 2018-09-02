@@ -103,10 +103,10 @@ public interface AgreementMethod {
 	 * Adds additional <code>AgreementMethod</code> information.
 	 *
 	 * @param info
-	 *            a <code>Element</code> that represents additional information
-	 *            specified by
-	 *            <xmp> <any namespace="##other" minOccurs="0" maxOccurs=
-	 *            "unbounded"/> </xmp>
+	 *             a <code>Element</code> that represents additional information
+	 *             specified by
+	 *             <xmp> <any namespace="##other" minOccurs="0" maxOccurs=
+	 *             "unbounded"/> </xmp>
 	 */
 	void addAgreementMethodInformation(Element info);
 
@@ -114,10 +114,10 @@ public interface AgreementMethod {
 	 * Removes additional <code>AgreementMethod</code> information.
 	 *
 	 * @param info
-	 *            a <code>Element</code> that represents additional information
-	 *            specified by
-	 *            <xmp> <any namespace="##other" minOccurs="0" maxOccurs=
-	 *            "unbounded"/> </xmp>
+	 *             a <code>Element</code> that represents additional information
+	 *             specified by
+	 *             <xmp> <any namespace="##other" minOccurs="0" maxOccurs=
+	 *             "unbounded"/> </xmp>
 	 */
 	void revoveAgreementMethodInformation(Element info);
 
@@ -132,7 +132,7 @@ public interface AgreementMethod {
 	 * Sets the information relating to the originator's shared secret.
 	 *
 	 * @param keyInfo
-	 *            information relating to the originator's shared secret.
+	 *                information relating to the originator's shared secret.
 	 */
 	void setOriginatorKeyInfo(KeyInfo keyInfo);
 
@@ -147,7 +147,7 @@ public interface AgreementMethod {
 	 * Sets the information relating to the recipient's shared secret.
 	 *
 	 * @param keyInfo
-	 *            information relating to the recipient's shared secret.
+	 *                information relating to the recipient's shared secret.
 	 */
 	void setRecipientKeyInfo(KeyInfo keyInfo);
 

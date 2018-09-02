@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1998, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.encoding;
@@ -61,8 +40,8 @@ public final class CodeSetComponentInfo {
 
 			CodeSetComponent other = (CodeSetComponent) obj;
 
-			return (nativeCodeSet == other.nativeCodeSet)
-					&& Arrays.equals(conversionCodeSets, other.conversionCodeSets);
+			return (nativeCodeSet == other.nativeCodeSet) && Arrays.equals(
+					conversionCodeSets, other.conversionCodeSets);
 		}
 
 		public int hashCode() {
@@ -72,8 +51,7 @@ public final class CodeSetComponentInfo {
 			return result;
 		}
 
-		public CodeSetComponent() {
-		}
+		public CodeSetComponent() {}
 
 		public CodeSetComponent(int nativeCodeSet, int[] conversionCodeSets) {
 			this.nativeCodeSet = nativeCodeSet;
@@ -94,7 +72,8 @@ public final class CodeSetComponentInfo {
 		public void write(MarshalOutputStream out) {
 			out.write_ulong(nativeCodeSet);
 			out.write_long(conversionCodeSets.length);
-			out.write_ulong_array(conversionCodeSets, 0, conversionCodeSets.length);
+			out.write_ulong_array(conversionCodeSets, 0,
+					conversionCodeSets.length);
 		}
 
 		public String toString() {
@@ -128,7 +107,8 @@ public final class CodeSetComponentInfo {
 			return false;
 
 		CodeSetComponentInfo other = (CodeSetComponentInfo) obj;
-		return forCharData.equals(other.forCharData) && forWCharData.equals(other.forWCharData);
+		return forCharData.equals(other.forCharData) && forWCharData.equals(
+				other.forWCharData);
 	}
 
 	public int hashCode() {
@@ -152,7 +132,8 @@ public final class CodeSetComponentInfo {
 		forWCharData = CodeSetComponentInfo.JAVASOFT_DEFAULT_CODESETS.forWCharData;
 	}
 
-	public CodeSetComponentInfo(CodeSetComponent charData, CodeSetComponent wcharData) {
+	public CodeSetComponentInfo(CodeSetComponent charData,
+			CodeSetComponent wcharData) {
 		forCharData = charData;
 		forWCharData = wcharData;
 	}
@@ -184,8 +165,7 @@ public final class CodeSetComponentInfo {
 		private int char_data;
 		private int wchar_data;
 
-		public CodeSetContext() {
-		}
+		public CodeSetContext() {}
 
 		public CodeSetContext(int charEncoding, int wcharEncoding) {
 			char_data = charEncoding;
@@ -246,14 +226,17 @@ public final class CodeSetComponentInfo {
 	 */
 	public static final CodeSetComponentInfo JAVASOFT_DEFAULT_CODESETS;
 	static {
-		CodeSetComponent charData = new CodeSetComponent(OSFCodeSetRegistry.ISO_8859_1.getNumber(),
-				new int[] { OSFCodeSetRegistry.UTF_8.getNumber(),
+		CodeSetComponent charData = new CodeSetComponent(
+				OSFCodeSetRegistry.ISO_8859_1.getNumber(), new int[] {
+						OSFCodeSetRegistry.UTF_8.getNumber(),
 						OSFCodeSetRegistry.ISO_646.getNumber() });
 
-		CodeSetComponent wcharData = new CodeSetComponent(OSFCodeSetRegistry.UTF_16.getNumber(),
-				new int[] { OSFCodeSetRegistry.UCS_2.getNumber() });
+		CodeSetComponent wcharData = new CodeSetComponent(
+				OSFCodeSetRegistry.UTF_16.getNumber(), new int[] {
+						OSFCodeSetRegistry.UCS_2.getNumber() });
 
-		JAVASOFT_DEFAULT_CODESETS = new CodeSetComponentInfo(charData, wcharData);
+		JAVASOFT_DEFAULT_CODESETS = new CodeSetComponentInfo(charData,
+				wcharData);
 	}
 
 	/**
@@ -268,7 +251,8 @@ public final class CodeSetComponentInfo {
 	 * The numbers can either be decimal or hex.
 	 */
 	public static CodeSetComponent createFromString(String str) {
-		ORBUtilSystemException wrapper = ORBUtilSystemException.get(CORBALogDomains.RPC_ENCODING);
+		ORBUtilSystemException wrapper = ORBUtilSystemException.get(
+				CORBALogDomains.RPC_ENCODING);
 
 		if (str == null || str.length() == 0)
 			throw wrapper.badCodeSetString();
@@ -303,7 +287,8 @@ public final class CodeSetComponentInfo {
 			conversionInts = new int[conversionList.size()];
 
 			for (int i = 0; i < conversionInts.length; i++)
-				conversionInts[i] = ((Integer) conversionList.get(i)).intValue();
+				conversionInts[i] = ((Integer) conversionList.get(i))
+						.intValue();
 
 		} catch (NumberFormatException nfe) {
 			throw wrapper.invalidCodeSetNumber(nfe);
@@ -320,5 +305,6 @@ public final class CodeSetComponentInfo {
 	 * Code sets for local cases without a connection.
 	 */
 	public static final CodeSetContext LOCAL_CODE_SETS = new CodeSetContext(
-			OSFCodeSetRegistry.ISO_8859_1.getNumber(), OSFCodeSetRegistry.UTF_16.getNumber());
+			OSFCodeSetRegistry.ISO_8859_1.getNumber(), OSFCodeSetRegistry.UTF_16
+					.getNumber());
 }

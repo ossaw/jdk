@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -128,18 +108,21 @@ public class Cursor implements java.io.Serializable {
 	private final static Cursor[] predefinedPrivate = new Cursor[14];
 
 	/* Localization names and default values */
-	static final String[][] cursorProperties = { { "AWT.DefaultCursor", "Default Cursor" },
-			{ "AWT.CrosshairCursor", "Crosshair Cursor" }, { "AWT.TextCursor", "Text Cursor" },
-			{ "AWT.WaitCursor", "Wait Cursor" },
-			{ "AWT.SWResizeCursor", "Southwest Resize Cursor" },
-			{ "AWT.SEResizeCursor", "Southeast Resize Cursor" },
-			{ "AWT.NWResizeCursor", "Northwest Resize Cursor" },
-			{ "AWT.NEResizeCursor", "Northeast Resize Cursor" },
-			{ "AWT.NResizeCursor", "North Resize Cursor" },
-			{ "AWT.SResizeCursor", "South Resize Cursor" },
-			{ "AWT.WResizeCursor", "West Resize Cursor" },
-			{ "AWT.EResizeCursor", "East Resize Cursor" }, { "AWT.HandCursor", "Hand Cursor" },
-			{ "AWT.MoveCursor", "Move Cursor" }, };
+	static final String[][] cursorProperties = { { "AWT.DefaultCursor",
+			"Default Cursor" }, { "AWT.CrosshairCursor", "Crosshair Cursor" }, {
+					"AWT.TextCursor", "Text Cursor" }, { "AWT.WaitCursor",
+							"Wait Cursor" }, { "AWT.SWResizeCursor",
+									"Southwest Resize Cursor" }, {
+											"AWT.SEResizeCursor",
+											"Southeast Resize Cursor" }, {
+													"AWT.NWResizeCursor",
+													"Northwest Resize Cursor" },
+			{ "AWT.NEResizeCursor", "Northeast Resize Cursor" }, {
+					"AWT.NResizeCursor", "North Resize Cursor" }, {
+							"AWT.SResizeCursor", "South Resize Cursor" }, {
+									"AWT.WResizeCursor", "West Resize Cursor" },
+			{ "AWT.EResizeCursor", "East Resize Cursor" }, { "AWT.HandCursor",
+					"Hand Cursor" }, { "AWT.MoveCursor", "Move Cursor" }, };
 
 	/**
 	 * The chosen cursor type initially set to the <code>DEFAULT_CURSOR</code>.
@@ -159,14 +142,15 @@ public class Cursor implements java.io.Serializable {
 	 * cursors support
 	 */
 
-	private static final Hashtable<String, Cursor> systemCustomCursors = new Hashtable<>(1);
+	private static final Hashtable<String, Cursor> systemCustomCursors = new Hashtable<>(
+			1);
 	private static final String systemCustomCursorDirPrefix = initCursorDir();
 
 	private static String initCursorDir() {
-		String jhome = java.security.AccessController
-				.doPrivileged(new sun.security.action.GetPropertyAction("java.home"));
-		return jhome + File.separator + "lib" + File.separator + "images" + File.separator
-				+ "cursors" + File.separator;
+		String jhome = java.security.AccessController.doPrivileged(
+				new sun.security.action.GetPropertyAction("java.home"));
+		return jhome + File.separator + "lib" + File.separator + "images"
+				+ File.separator + "cursors" + File.separator;
 	}
 
 	private static final String systemCustomCursorPropertiesFile = systemCustomCursorDirPrefix
@@ -184,7 +168,8 @@ public class Cursor implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 8028237497568985504L;
 
-	private static final PlatformLogger log = PlatformLogger.getLogger("java.awt.Cursor");
+	private static final PlatformLogger log = PlatformLogger.getLogger(
+			"java.awt.Cursor");
 
 	static {
 		/* ensure that the necessary native libraries are loaded */
@@ -266,10 +251,10 @@ public class Cursor implements java.io.Serializable {
 	 * Returns a cursor object with the specified predefined type.
 	 *
 	 * @param type
-	 *            the type of predefined cursor
+	 *             the type of predefined cursor
 	 * @return the specified predefined cursor
 	 * @throws IllegalArgumentException
-	 *             if the specified cursor type is invalid
+	 *                                  if the specified cursor type is invalid
 	 */
 	static public Cursor getPredefinedCursor(int type) {
 		if (type < Cursor.DEFAULT_CURSOR || type > Cursor.MOVE_CURSOR) {
@@ -291,11 +276,13 @@ public class Cursor implements java.io.Serializable {
 	 * name. Cursor names are, for example: "Invalid.16x16"
 	 *
 	 * @param name
-	 *            a string describing the desired system-specific custom cursor
+	 *             a string describing the desired system-specific custom cursor
 	 * @return the system specific custom cursor named
 	 * @exception HeadlessException
-	 *                if <code>GraphicsEnvironment.isHeadless</code> returns
-	 *                true
+	 *                              if
+	 *                              <code>GraphicsEnvironment.isHeadless</code>
+	 *                              returns
+	 *                              true
 	 */
 	static public Cursor getSystemCustomCursor(final String name)
 			throws AWTException, HeadlessException {
@@ -313,27 +300,33 @@ public class Cursor implements java.io.Serializable {
 
 			if (!systemCustomCursorProperties.containsKey(key)) {
 				if (log.isLoggable(PlatformLogger.Level.FINER)) {
-					log.finer("Cursor.getSystemCustomCursor(" + name + ") returned null");
+					log.finer("Cursor.getSystemCustomCursor(" + name
+							+ ") returned null");
 				}
 				return null;
 			}
 
-			final String fileName = systemCustomCursorProperties.getProperty(key);
+			final String fileName = systemCustomCursorProperties.getProperty(
+					key);
 
-			String localized = systemCustomCursorProperties.getProperty(prefix + DotNameSuffix);
+			String localized = systemCustomCursorProperties.getProperty(prefix
+					+ DotNameSuffix);
 
 			if (localized == null)
 				localized = name;
 
-			String hotspot = systemCustomCursorProperties.getProperty(prefix + DotHotspotSuffix);
+			String hotspot = systemCustomCursorProperties.getProperty(prefix
+					+ DotHotspotSuffix);
 
 			if (hotspot == null)
-				throw new AWTException("no hotspot property defined for cursor: " + name);
+				throw new AWTException(
+						"no hotspot property defined for cursor: " + name);
 
 			StringTokenizer st = new StringTokenizer(hotspot, ",");
 
 			if (st.countTokens() != 2)
-				throw new AWTException("failed to parse hotspot property for cursor: " + name);
+				throw new AWTException(
+						"failed to parse hotspot property for cursor: " + name);
 
 			int x = 0;
 			int y = 0;
@@ -342,7 +335,8 @@ public class Cursor implements java.io.Serializable {
 				x = Integer.parseInt(st.nextToken());
 				y = Integer.parseInt(st.nextToken());
 			} catch (NumberFormatException nfe) {
-				throw new AWTException("failed to parse hotspot property for cursor: " + name);
+				throw new AWTException(
+						"failed to parse hotspot property for cursor: " + name);
 			}
 
 			try {
@@ -350,24 +344,26 @@ public class Cursor implements java.io.Serializable {
 				final int fy = y;
 				final String flocalized = localized;
 
-				cursor = java.security.AccessController.<Cursor> doPrivileged(
+				cursor = java.security.AccessController.<Cursor>doPrivileged(
 						new java.security.PrivilegedExceptionAction<Cursor>() {
 							public Cursor run() throws Exception {
 								Toolkit toolkit = Toolkit.getDefaultToolkit();
-								Image image = toolkit
-										.getImage(systemCustomCursorDirPrefix + fileName);
-								return toolkit.createCustomCursor(image, new Point(fx, fy),
-										flocalized);
+								Image image = toolkit.getImage(
+										systemCustomCursorDirPrefix + fileName);
+								return toolkit.createCustomCursor(image,
+										new Point(fx, fy), flocalized);
 							}
 						});
 			} catch (Exception e) {
-				throw new AWTException("Exception: " + e.getClass() + " " + e.getMessage()
-						+ " occurred while creating cursor " + name);
+				throw new AWTException("Exception: " + e.getClass() + " " + e
+						.getMessage() + " occurred while creating cursor "
+						+ name);
 			}
 
 			if (cursor == null) {
 				if (log.isLoggable(PlatformLogger.Level.FINER)) {
-					log.finer("Cursor.getSystemCustomCursor(" + name + ") returned null");
+					log.finer("Cursor.getSystemCustomCursor(" + name
+							+ ") returned null");
 				}
 			} else {
 				systemCustomCursors.put(name, cursor);
@@ -388,9 +384,9 @@ public class Cursor implements java.io.Serializable {
 	 * Creates a new cursor object with the specified type.
 	 * 
 	 * @param type
-	 *            the type of cursor
+	 *             the type of cursor
 	 * @throws IllegalArgumentException
-	 *             if the specified cursor type is invalid
+	 *                                  if the specified cursor type is invalid
 	 */
 	@ConstructorProperties({ "type" })
 	public Cursor(int type) {
@@ -400,7 +396,8 @@ public class Cursor implements java.io.Serializable {
 		this.type = type;
 
 		// Lookup localized name.
-		name = Toolkit.getProperty(cursorProperties[type][0], cursorProperties[type][1]);
+		name = Toolkit.getProperty(cursorProperties[type][0],
+				cursorProperties[type][1]);
 	}
 
 	/**
@@ -411,7 +408,7 @@ public class Cursor implements java.io.Serializable {
 	 * Toolkit.createCustomCursor().
 	 * 
 	 * @param name
-	 *            the user-visible name of the cursor.
+	 *             the user-visible name of the cursor.
 	 * @see java.awt.Toolkit#createCustomCursor
 	 */
 	protected Cursor(String name) {
@@ -454,12 +451,13 @@ public class Cursor implements java.io.Serializable {
 			systemCustomCursorProperties = new Properties();
 
 			try {
-				AccessController.<Object> doPrivileged(
+				AccessController.<Object>doPrivileged(
 						new java.security.PrivilegedExceptionAction<Object>() {
 							public Object run() throws Exception {
 								FileInputStream fis = null;
 								try {
-									fis = new FileInputStream(systemCustomCursorPropertiesFile);
+									fis = new FileInputStream(
+											systemCustomCursorPropertiesFile);
 									systemCustomCursorProperties.load(fis);
 								} finally {
 									if (fis != null)
@@ -470,8 +468,9 @@ public class Cursor implements java.io.Serializable {
 						});
 			} catch (Exception e) {
 				systemCustomCursorProperties = null;
-				throw new AWTException("Exception: " + e.getClass() + " " + e.getMessage()
-						+ " occurred while loading: " + systemCustomCursorPropertiesFile);
+				throw new AWTException("Exception: " + e.getClass() + " " + e
+						.getMessage() + " occurred while loading: "
+						+ systemCustomCursorPropertiesFile);
 			}
 		}
 	}

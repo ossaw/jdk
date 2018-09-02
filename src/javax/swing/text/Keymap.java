@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -56,7 +36,7 @@ public interface Keymap {
 	 * Set the default action to fire if a key is typed.
 	 *
 	 * @param a
-	 *            the action
+	 *          the action
 	 */
 	public void setDefaultAction(Action a);
 
@@ -91,7 +71,7 @@ public interface Keymap {
 	 * Fetches the keystrokes that will result in the given action.
 	 *
 	 * @param a
-	 *            the action
+	 *          the action
 	 * @return the list of keystrokes
 	 */
 	public KeyStroke[] getKeyStrokesForAction(Action a);
@@ -119,7 +99,7 @@ public interface Keymap {
 	 * Removes a binding from the keymap.
 	 *
 	 * @param keys
-	 *            the key sequence
+	 *             the key sequence
 	 */
 	public void removeKeyStrokeBinding(KeyStroke keys);
 
@@ -141,7 +121,7 @@ public interface Keymap {
 	 * resolve parents.
 	 *
 	 * @param parent
-	 *            the parent keymap
+	 *               the parent keymap
 	 */
 	public void setResolveParent(Keymap parent);
 

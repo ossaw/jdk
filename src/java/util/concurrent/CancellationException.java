@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -48,15 +23,14 @@ public class CancellationException extends IllegalStateException {
 	/**
 	 * Constructs a {@code CancellationException} with no detail message.
 	 */
-	public CancellationException() {
-	}
+	public CancellationException() {}
 
 	/**
 	 * Constructs a {@code CancellationException} with the specified detail
 	 * message.
 	 *
 	 * @param message
-	 *            the detail message
+	 *                the detail message
 	 */
 	public CancellationException(String message) {
 		super(message);

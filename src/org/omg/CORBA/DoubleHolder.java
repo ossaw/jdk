@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -62,17 +42,17 @@ public final class DoubleHolder implements Streamable {
 	 * Constructs a new <code>DoubleHolder</code> object with its
 	 * <code>value</code> field initialized to 0.0.
 	 */
-	public DoubleHolder() {
-	}
+	public DoubleHolder() {}
 
 	/**
 	 * Constructs a new <code>DoubleHolder</code> object for the given
 	 * <code>double</code>.
 	 * 
 	 * @param initial
-	 *            the <code>double</code> with which to initialize the
-	 *            <code>value</code> field of the new <code>DoubleHolder</code>
-	 *            object
+	 *                the <code>double</code> with which to initialize the
+	 *                <code>value</code> field of the new
+	 *                <code>DoubleHolder</code>
+	 *                object
 	 */
 	public DoubleHolder(double initial) {
 		value = initial;
@@ -83,7 +63,7 @@ public final class DoubleHolder implements Streamable {
 	 * member.
 	 *
 	 * @param input
-	 *            the <code>InputStream</code> to read from.
+	 *              the <code>InputStream</code> to read from.
 	 */
 	public void _read(InputStream input) {
 		value = input.read_double();
@@ -94,7 +74,7 @@ public final class DoubleHolder implements Streamable {
 	 * <code>OutputStream</code>.
 	 *
 	 * @param output
-	 *            the <code>OutputStream</code> to write into.
+	 *               the <code>OutputStream</code> to write into.
 	 */
 	public void _write(OutputStream output) {
 		output.write_double(value);

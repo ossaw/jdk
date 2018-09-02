@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -94,9 +69,10 @@ import java.util.function.Consumer;
  * @since 1.5
  * @author Doug Lea
  * @param <E>
- *            the type of elements held in this collection
+ *        the type of elements held in this collection
  */
-public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Serializable {
+public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
+		java.io.Serializable {
 	private static final long serialVersionUID = 5457747651344034263L;
 
 	private final CopyOnWriteArrayList<E> al;
@@ -112,9 +88,9 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Se
 	 * Creates a set containing all of the elements of the specified collection.
 	 *
 	 * @param c
-	 *            the collection of elements to initially contain
+	 *          the collection of elements to initially contain
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                              if the specified collection is null
 	 */
 	public CopyOnWriteArraySet(Collection<? extends E> c) {
 		if (c.getClass() == CopyOnWriteArraySet.class) {
@@ -152,7 +128,7 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Se
 	 * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
 	 *
 	 * @param o
-	 *            element whose presence in this set is to be tested
+	 *          element whose presence in this set is to be tested
 	 * @return {@code true} if this set contains the specified element
 	 */
 	public boolean contains(Object o) {
@@ -220,15 +196,17 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Se
 	 * {@code toArray()}.
 	 *
 	 * @param a
-	 *            the array into which the elements of this set are to be
-	 *            stored, if it is big enough; otherwise, a new array of the
-	 *            same runtime type is allocated for this purpose.
+	 *          the array into which the elements of this set are to be
+	 *          stored, if it is big enough; otherwise, a new array of the
+	 *          same runtime type is allocated for this purpose.
 	 * @return an array containing all the elements in this set
 	 * @throws ArrayStoreException
-	 *             if the runtime type of the specified array is not a supertype
-	 *             of the runtime type of every element in this set
+	 *                              if the runtime type of the specified array
+	 *                              is not a supertype
+	 *                              of the runtime type of every element in this
+	 *                              set
 	 * @throws NullPointerException
-	 *             if the specified array is null
+	 *                              if the specified array is null
 	 */
 	public <T> T[] toArray(T[] a) {
 		return al.toArray(a);
@@ -251,7 +229,7 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Se
 	 * call). (This set will not contain the element once the call returns.)
 	 *
 	 * @param o
-	 *            object to be removed from this set, if present
+	 *          object to be removed from this set, if present
 	 * @return {@code true} if this set contained the specified element
 	 */
 	public boolean remove(Object o) {
@@ -267,7 +245,7 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Se
 	 * returns {@code false}.
 	 *
 	 * @param e
-	 *            element to be added to this set
+	 *          element to be added to this set
 	 * @return {@code true} if this set did not already contain the specified
 	 *         element
 	 */
@@ -281,11 +259,11 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Se
 	 * method returns {@code true} if it is a <i>subset</i> of this set.
 	 *
 	 * @param c
-	 *            collection to be checked for containment in this set
+	 *          collection to be checked for containment in this set
 	 * @return {@code true} if this set contains all of the elements of the
 	 *         specified collection
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                              if the specified collection is null
 	 * @see #contains(Object)
 	 */
 	public boolean containsAll(Collection<?> c) {
@@ -301,10 +279,10 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Se
 	 * is in progress.
 	 *
 	 * @param c
-	 *            collection containing elements to be added to this set
+	 *          collection containing elements to be added to this set
 	 * @return {@code true} if this set changed as a result of the call
 	 * @throws NullPointerException
-	 *             if the specified collection is null
+	 *                              if the specified collection is null
 	 * @see #add(Object)
 	 */
 	public boolean addAll(Collection<? extends E> c) {
@@ -318,15 +296,18 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Se
 	 * <i>asymmetric set difference</i> of the two sets.
 	 *
 	 * @param c
-	 *            collection containing elements to be removed from this set
+	 *          collection containing elements to be removed from this set
 	 * @return {@code true} if this set changed as a result of the call
 	 * @throws ClassCastException
-	 *             if the class of an element of this set is incompatible with
-	 *             the specified collection (optional)
+	 *                              if the class of an element of this set is
+	 *                              incompatible with
+	 *                              the specified collection (optional)
 	 * @throws NullPointerException
-	 *             if this set contains a null element and the specified
-	 *             collection does not permit null elements (optional), or if
-	 *             the specified collection is null
+	 *                              if this set contains a null element and the
+	 *                              specified
+	 *                              collection does not permit null elements
+	 *                              (optional), or if
+	 *                              the specified collection is null
 	 * @see #remove(Object)
 	 */
 	public boolean removeAll(Collection<?> c) {
@@ -341,15 +322,18 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Se
 	 * that its value is the <i>intersection</i> of the two sets.
 	 *
 	 * @param c
-	 *            collection containing elements to be retained in this set
+	 *          collection containing elements to be retained in this set
 	 * @return {@code true} if this set changed as a result of the call
 	 * @throws ClassCastException
-	 *             if the class of an element of this set is incompatible with
-	 *             the specified collection (optional)
+	 *                              if the class of an element of this set is
+	 *                              incompatible with
+	 *                              the specified collection (optional)
 	 * @throws NullPointerException
-	 *             if this set contains a null element and the specified
-	 *             collection does not permit null elements (optional), or if
-	 *             the specified collection is null
+	 *                              if this set contains a null element and the
+	 *                              specified
+	 *                              collection does not permit null elements
+	 *                              (optional), or if
+	 *                              the specified collection is null
 	 * @see #remove(Object)
 	 */
 	public boolean retainAll(Collection<?> c) {
@@ -385,7 +369,7 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Se
 	 * {@code (e1==null ? e2==null : e1.equals(e2))}.
 	 *
 	 * @param o
-	 *            object to be compared for equality with this set
+	 *          object to be compared for equality with this set
 	 * @return {@code true} if the specified object is equal to this set
 	 */
 	public boolean equals(Object o) {
@@ -446,8 +430,8 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Se
 	 * @since 1.8
 	 */
 	public Spliterator<E> spliterator() {
-		return Spliterators.spliterator(al.getArray(),
-				Spliterator.IMMUTABLE | Spliterator.DISTINCT);
+		return Spliterators.spliterator(al.getArray(), Spliterator.IMMUTABLE
+				| Spliterator.DISTINCT);
 	}
 
 	/**

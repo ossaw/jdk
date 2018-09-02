@@ -1,28 +1,6 @@
 /*
  * Copyright (c) 2000, 2007, Oracle and/or its affiliates. All rights reserved.
- *
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -46,7 +24,7 @@ public class IllegalCharsetNameException extends IllegalArgumentException {
 	 * Constructs an instance of this class.
 	 *
 	 * @param charsetName
-	 *            The illegal charset name
+	 *                    The illegal charset name
 	 */
 	public IllegalCharsetNameException(String charsetName) {
 		super(String.valueOf(charsetName));

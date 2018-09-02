@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp;
@@ -44,11 +24,12 @@ public class SnmpCounter extends SnmpUnsignedInt {
 	 * value.
 	 * 
 	 * @param v
-	 *            The initialization value.
+	 *          The initialization value.
 	 * @exception IllegalArgumentException
-	 *                The specified value is negative or larger than
-	 *                {@link SnmpUnsignedInt#MAX_VALUE
-	 *                SnmpUnsignedInt.MAX_VALUE}.
+	 *                                     The specified value is negative or
+	 *                                     larger than
+	 *                                     {@link SnmpUnsignedInt#MAX_VALUE
+	 *                                     SnmpUnsignedInt.MAX_VALUE}.
 	 */
 	public SnmpCounter(int v) throws IllegalArgumentException {
 		super(v);
@@ -59,11 +40,12 @@ public class SnmpCounter extends SnmpUnsignedInt {
 	 * <CODE>Integer</CODE> value.
 	 * 
 	 * @param v
-	 *            The initialization value.
+	 *          The initialization value.
 	 * @exception IllegalArgumentException
-	 *                The specified value is negative or larger than
-	 *                {@link SnmpUnsignedInt#MAX_VALUE
-	 *                SnmpUnsignedInt.MAX_VALUE}.
+	 *                                     The specified value is negative or
+	 *                                     larger than
+	 *                                     {@link SnmpUnsignedInt#MAX_VALUE
+	 *                                     SnmpUnsignedInt.MAX_VALUE}.
 	 */
 	public SnmpCounter(Integer v) throws IllegalArgumentException {
 		super(v);
@@ -73,11 +55,12 @@ public class SnmpCounter extends SnmpUnsignedInt {
 	 * Constructs a new <CODE>SnmpCounter</CODE> from the specified long value.
 	 * 
 	 * @param v
-	 *            The initialization value.
+	 *          The initialization value.
 	 * @exception IllegalArgumentException
-	 *                The specified value is negative or larger than
-	 *                {@link SnmpUnsignedInt#MAX_VALUE
-	 *                SnmpUnsignedInt.MAX_VALUE}.
+	 *                                     The specified value is negative or
+	 *                                     larger than
+	 *                                     {@link SnmpUnsignedInt#MAX_VALUE
+	 *                                     SnmpUnsignedInt.MAX_VALUE}.
 	 */
 	public SnmpCounter(long v) throws IllegalArgumentException {
 		super(v);
@@ -88,11 +71,12 @@ public class SnmpCounter extends SnmpUnsignedInt {
 	 * <CODE>Long</CODE> value.
 	 * 
 	 * @param v
-	 *            The initialization value.
+	 *          The initialization value.
 	 * @exception IllegalArgumentException
-	 *                The specified value is negative or larger than
-	 *                {@link SnmpUnsignedInt#MAX_VALUE
-	 *                SnmpUnsignedInt.MAX_VALUE}.
+	 *                                     The specified value is negative or
+	 *                                     larger than
+	 *                                     {@link SnmpUnsignedInt#MAX_VALUE
+	 *                                     SnmpUnsignedInt.MAX_VALUE}.
 	 */
 	public SnmpCounter(Long v) throws IllegalArgumentException {
 		super(v);

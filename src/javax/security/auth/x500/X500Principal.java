@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.x500;
@@ -123,14 +103,15 @@ public final class X500Principal implements Principal, java.io.Serializable {
 	 * {@code numericoid = number 1*( DOT number ) }
 	 *
 	 * @param name
-	 *            an X.500 distinguished name in RFC 1779 or RFC 2253 format
+	 *             an X.500 distinguished name in RFC 1779 or RFC 2253 format
 	 * @exception NullPointerException
-	 *                if the {@code name} is {@code null}
+	 *                                     if the {@code name} is {@code null}
 	 * @exception IllegalArgumentException
-	 *                if the {@code name} is improperly specified
+	 *                                     if the {@code name} is improperly
+	 *                                     specified
 	 */
 	public X500Principal(String name) {
-		this(name, Collections.<String, String> emptyMap());
+		this(name, Collections.<String, String>emptyMap());
 	}
 
 	/**
@@ -161,28 +142,35 @@ public final class X500Principal implements Principal, java.io.Serializable {
 	 * {@code numericoid = number 1*( DOT number ) }
 	 *
 	 * @param name
-	 *            an X.500 distinguished name in RFC 1779 or RFC 2253 format
+	 *                   an X.500 distinguished name in RFC 1779 or RFC 2253
+	 *                   format
 	 * @param keywordMap
-	 *            an attribute type keyword map, where each key is a keyword
-	 *            String that maps to a corresponding object identifier in
-	 *            String form (a sequence of nonnegative integers separated by
-	 *            periods). The map may be empty but never {@code null}.
+	 *                   an attribute type keyword map, where each key is a
+	 *                   keyword
+	 *                   String that maps to a corresponding object identifier
+	 *                   in
+	 *                   String form (a sequence of nonnegative integers
+	 *                   separated by
+	 *                   periods). The map may be empty but never {@code null}.
 	 * @exception NullPointerException
-	 *                if {@code name} or {@code keywordMap} is {@code null}
+	 *                                     if {@code name} or {@code keywordMap}
+	 *                                     is {@code null}
 	 * @exception IllegalArgumentException
-	 *                if the {@code name} is improperly specified or a keyword
-	 *                in the {@code name} maps to an OID that is not in the
-	 *                correct form
+	 *                                     if the {@code name} is improperly
+	 *                                     specified or a keyword
+	 *                                     in the {@code name} maps to an OID
+	 *                                     that is not in the
+	 *                                     correct form
 	 * @since 1.6
 	 */
 	public X500Principal(String name, Map<String, String> keywordMap) {
 		if (name == null) {
-			throw new NullPointerException(
-					sun.security.util.ResourcesMgr.getString("provided.null.name"));
+			throw new NullPointerException(sun.security.util.ResourcesMgr
+					.getString("provided.null.name"));
 		}
 		if (keywordMap == null) {
-			throw new NullPointerException(
-					sun.security.util.ResourcesMgr.getString("provided.null.keyword.map"));
+			throw new NullPointerException(sun.security.util.ResourcesMgr
+					.getString("provided.null.keyword.map"));
 		}
 
 		try {
@@ -227,10 +215,11 @@ public final class X500Principal implements Principal, java.io.Serializable {
 	 * </pre>
 	 *
 	 * @param name
-	 *            a byte array containing the distinguished name in ASN.1 DER
-	 *            encoded form
+	 *             a byte array containing the distinguished name in ASN.1 DER
+	 *             encoded form
 	 * @throws IllegalArgumentException
-	 *             if an encoding error occurs (incorrect form for DN)
+	 *                                  if an encoding error occurs (incorrect
+	 *                                  form for DN)
 	 */
 	public X500Principal(byte[] name) {
 		try {
@@ -254,13 +243,15 @@ public final class X500Principal implements Principal, java.io.Serializable {
 	 * byte after the encoded distinguished name.
 	 *
 	 * @param is
-	 *            an {@code InputStream} containing the distinguished name in
-	 *            ASN.1 DER encoded form
+	 *           an {@code InputStream} containing the distinguished name in
+	 *           ASN.1 DER encoded form
 	 *
 	 * @exception NullPointerException
-	 *                if the {@code InputStream} is {@code null}
+	 *                                     if the {@code InputStream} is
+	 *                                     {@code null}
 	 * @exception IllegalArgumentException
-	 *                if an encoding error occurs (incorrect form for DN)
+	 *                                     if an encoding error occurs
+	 *                                     (incorrect form for DN)
 	 */
 	public X500Principal(InputStream is) {
 		if (is == null) {
@@ -359,12 +350,13 @@ public final class X500Principal implements Principal, java.io.Serializable {
 	 * Additional standard formats may be introduced in the future.
 	 *
 	 * @param format
-	 *            the format to use
+	 *               the format to use
 	 *
 	 * @return a string representation of this {@code X500Principal} using the
 	 *         specified format
 	 * @throws IllegalArgumentException
-	 *             if the specified format is invalid or null
+	 *                                  if the specified format is invalid or
+	 *                                  null
 	 */
 	public String getName(String format) {
 		if (format != null) {
@@ -403,25 +395,29 @@ public final class X500Principal implements Principal, java.io.Serializable {
 	 * if these keywords will be recognized by other implementations.
 	 *
 	 * @param format
-	 *            the format to use
+	 *               the format to use
 	 * @param oidMap
-	 *            an OID map, where each key is an object identifier in String
-	 *            form (a sequence of nonnegative integers separated by periods)
-	 *            that maps to a corresponding attribute type keyword String.
-	 *            The map may be empty but never {@code null}.
+	 *               an OID map, where each key is an object identifier in
+	 *               String
+	 *               form (a sequence of nonnegative integers separated by
+	 *               periods)
+	 *               that maps to a corresponding attribute type keyword String.
+	 *               The map may be empty but never {@code null}.
 	 * @return a string representation of this {@code X500Principal} using the
 	 *         specified format
 	 * @throws IllegalArgumentException
-	 *             if the specified format is invalid, null, or an OID in the
-	 *             name maps to an improperly specified keyword
+	 *                                  if the specified format is invalid,
+	 *                                  null, or an OID in the
+	 *                                  name maps to an improperly specified
+	 *                                  keyword
 	 * @throws NullPointerException
-	 *             if {@code oidMap} is {@code null}
+	 *                                  if {@code oidMap} is {@code null}
 	 * @since 1.6
 	 */
 	public String getName(String format, Map<String, String> oidMap) {
 		if (oidMap == null) {
-			throw new NullPointerException(
-					sun.security.util.ResourcesMgr.getString("provided.null.OID.map"));
+			throw new NullPointerException(sun.security.util.ResourcesMgr
+					.getString("provided.null.OID.map"));
 		}
 		if (format != null) {
 			if (format.equalsIgnoreCase(RFC1779)) {
@@ -478,8 +474,8 @@ public final class X500Principal implements Principal, java.io.Serializable {
 	 * This implementation is compliant with the requirements of RFC 3280.
 	 *
 	 * @param o
-	 *            Object to be compared for equality with this
-	 *            {@code X500Principal}
+	 *          Object to be compared for equality with this
+	 *          {@code X500Principal}
 	 *
 	 * @return {@code true} if the specified {@code Object} is equal to this
 	 *         {@code X500Principal}, {@code false} otherwise
@@ -523,7 +519,8 @@ public final class X500Principal implements Principal, java.io.Serializable {
 	 * Reads this object from a stream (i.e., deserializes it).
 	 */
 	private void readObject(java.io.ObjectInputStream s)
-			throws java.io.IOException, java.io.NotActiveException, ClassNotFoundException {
+			throws java.io.IOException, java.io.NotActiveException,
+			ClassNotFoundException {
 
 		// re-create thisX500Name
 		thisX500Name = new X500Name((byte[]) s.readObject());

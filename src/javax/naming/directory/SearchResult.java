@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.directory;
@@ -59,15 +39,15 @@ public class SearchResult extends Binding {
 	 * set using <tt>setClassName()</tt>.
 	 *
 	 * @param name
-	 *            The non-null name of the search item. It is relative to the
-	 *            <em>target context</em> of the search (which is named by the
-	 *            first parameter of the <code>search()</code> method)
+	 *              The non-null name of the search item. It is relative to the
+	 *              <em>target context</em> of the search (which is named by the
+	 *              first parameter of the <code>search()</code> method)
 	 *
 	 * @param obj
-	 *            The object bound to name. Can be null.
+	 *              The object bound to name. Can be null.
 	 * @param attrs
-	 *            The attributes that were requested to be returned with this
-	 *            search item. Cannot be null.
+	 *              The attributes that were requested to be returned with this
+	 *              search item. Cannot be null.
 	 * @see javax.naming.NameClassPair#setClassName
 	 * @see javax.naming.NameClassPair#getClassName
 	 */
@@ -85,21 +65,26 @@ public class SearchResult extends Binding {
 	 * set using <tt>setClassName()</tt>
 	 *
 	 * @param name
-	 *            The non-null name of the search item.
+	 *                   The non-null name of the search item.
 	 * @param obj
-	 *            The object bound to name. Can be null.
+	 *                   The object bound to name. Can be null.
 	 * @param attrs
-	 *            The attributes that were requested to be returned with this
-	 *            search item. Cannot be null.
+	 *                   The attributes that were requested to be returned with
+	 *                   this
+	 *                   search item. Cannot be null.
 	 * @param isRelative
-	 *            true if <code>name</code> is relative to the target context of
-	 *            the search (which is named by the first parameter of the
-	 *            <code>search()</code> method); false if <code>name</code> is a
-	 *            URL string.
+	 *                   true if <code>name</code> is relative to the target
+	 *                   context of
+	 *                   the search (which is named by the first parameter of
+	 *                   the
+	 *                   <code>search()</code> method); false if
+	 *                   <code>name</code> is a
+	 *                   URL string.
 	 * @see javax.naming.NameClassPair#setClassName
 	 * @see javax.naming.NameClassPair#getClassName
 	 */
-	public SearchResult(String name, Object obj, Attributes attrs, boolean isRelative) {
+	public SearchResult(String name, Object obj, Attributes attrs,
+			boolean isRelative) {
 		super(name, obj, isRelative);
 		this.attrs = attrs;
 	}
@@ -109,24 +94,30 @@ public class SearchResult extends Binding {
 	 * bound object, and its attributes.
 	 *
 	 * @param name
-	 *            The non-null name of the search item. It is relative to the
-	 *            <em>target context</em> of the search (which is named by the
-	 *            first parameter of the <code>search()</code> method)
+	 *                  The non-null name of the search item. It is relative to
+	 *                  the
+	 *                  <em>target context</em> of the search (which is named by
+	 *                  the
+	 *                  first parameter of the <code>search()</code> method)
 	 *
 	 * @param className
-	 *            The possibly null class name of the object bound to
-	 *            <tt>name</tt>. If null, the class name of <tt>obj</tt> is
-	 *            returned by <tt>getClassName()</tt>. If <tt>obj</tt> is also
-	 *            null, <tt>getClassName()</tt> will return null.
+	 *                  The possibly null class name of the object bound to
+	 *                  <tt>name</tt>. If null, the class name of <tt>obj</tt>
+	 *                  is
+	 *                  returned by <tt>getClassName()</tt>. If <tt>obj</tt> is
+	 *                  also
+	 *                  null, <tt>getClassName()</tt> will return null.
 	 * @param obj
-	 *            The object bound to name. Can be null.
+	 *                  The object bound to name. Can be null.
 	 * @param attrs
-	 *            The attributes that were requested to be returned with this
-	 *            search item. Cannot be null.
+	 *                  The attributes that were requested to be returned with
+	 *                  this
+	 *                  search item. Cannot be null.
 	 * @see javax.naming.NameClassPair#setClassName
 	 * @see javax.naming.NameClassPair#getClassName
 	 */
-	public SearchResult(String name, String className, Object obj, Attributes attrs) {
+	public SearchResult(String name, String className, Object obj,
+			Attributes attrs) {
 		super(name, className, obj);
 		this.attrs = attrs;
 	}
@@ -136,27 +127,33 @@ public class SearchResult extends Binding {
 	 * bound object, its attributes, and whether the name is relative.
 	 *
 	 * @param name
-	 *            The non-null name of the search item.
+	 *                   The non-null name of the search item.
 	 * @param className
-	 *            The possibly null class name of the object bound to
-	 *            <tt>name</tt>. If null, the class name of <tt>obj</tt> is
-	 *            returned by <tt>getClassName()</tt>. If <tt>obj</tt> is also
-	 *            null, <tt>getClassName()</tt> will return null.
+	 *                   The possibly null class name of the object bound to
+	 *                   <tt>name</tt>. If null, the class name of <tt>obj</tt>
+	 *                   is
+	 *                   returned by <tt>getClassName()</tt>. If <tt>obj</tt> is
+	 *                   also
+	 *                   null, <tt>getClassName()</tt> will return null.
 	 * @param obj
-	 *            The object bound to name. Can be null.
+	 *                   The object bound to name. Can be null.
 	 * @param attrs
-	 *            The attributes that were requested to be returned with this
-	 *            search item. Cannot be null.
+	 *                   The attributes that were requested to be returned with
+	 *                   this
+	 *                   search item. Cannot be null.
 	 * @param isRelative
-	 *            true if <code>name</code> is relative to the target context of
-	 *            the search (which is named by the first parameter of the
-	 *            <code>search()</code> method); false if <code>name</code> is a
-	 *            URL string.
+	 *                   true if <code>name</code> is relative to the target
+	 *                   context of
+	 *                   the search (which is named by the first parameter of
+	 *                   the
+	 *                   <code>search()</code> method); false if
+	 *                   <code>name</code> is a
+	 *                   URL string.
 	 * @see javax.naming.NameClassPair#setClassName
 	 * @see javax.naming.NameClassPair#getClassName
 	 */
-	public SearchResult(String name, String className, Object obj, Attributes attrs,
-			boolean isRelative) {
+	public SearchResult(String name, String className, Object obj,
+			Attributes attrs, boolean isRelative) {
 		super(name, className, obj, isRelative);
 		this.attrs = attrs;
 	}
@@ -175,7 +172,7 @@ public class SearchResult extends Binding {
 	 * Sets the attributes of this search result to <code>attrs</code>.
 	 * 
 	 * @param attrs
-	 *            The non-null attributes to use. Can be empty.
+	 *              The non-null attributes to use. Can be empty.
 	 * @see #getAttributes
 	 */
 	public void setAttributes(Attributes attrs) {

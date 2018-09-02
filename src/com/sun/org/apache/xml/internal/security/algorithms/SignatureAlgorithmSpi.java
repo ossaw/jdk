@@ -61,7 +61,8 @@ public abstract class SignatureAlgorithmSpi {
 	 * @param input
 	 * @throws XMLSignatureException
 	 */
-	protected abstract void engineUpdate(byte[] input) throws XMLSignatureException;
+	protected abstract void engineUpdate(byte[] input)
+			throws XMLSignatureException;
 
 	/**
 	 * Proxy method for {@link java.security.Signature#update(byte[])} which is
@@ -70,7 +71,8 @@ public abstract class SignatureAlgorithmSpi {
 	 * @param input
 	 * @throws XMLSignatureException
 	 */
-	protected abstract void engineUpdate(byte input) throws XMLSignatureException;
+	protected abstract void engineUpdate(byte input)
+			throws XMLSignatureException;
 
 	/**
 	 * Proxy method for {@link java.security.Signature#update(byte[], int, int)}
@@ -91,9 +93,10 @@ public abstract class SignatureAlgorithmSpi {
 	 *
 	 * @param signingKey
 	 * @throws XMLSignatureException
-	 *             if this method is called on a MAC
+	 *                               if this method is called on a MAC
 	 */
-	protected abstract void engineInitSign(Key signingKey) throws XMLSignatureException;
+	protected abstract void engineInitSign(Key signingKey)
+			throws XMLSignatureException;
 
 	/**
 	 * Proxy method for
@@ -103,10 +106,10 @@ public abstract class SignatureAlgorithmSpi {
 	 * @param signingKey
 	 * @param secureRandom
 	 * @throws XMLSignatureException
-	 *             if this method is called on a MAC
+	 *                               if this method is called on a MAC
 	 */
-	protected abstract void engineInitSign(Key signingKey, SecureRandom secureRandom)
-			throws XMLSignatureException;
+	protected abstract void engineInitSign(Key signingKey,
+			SecureRandom secureRandom) throws XMLSignatureException;
 
 	/**
 	 * Proxy method for {@link javax.crypto.Mac} which is executed on the
@@ -115,10 +118,11 @@ public abstract class SignatureAlgorithmSpi {
 	 * @param signingKey
 	 * @param algorithmParameterSpec
 	 * @throws XMLSignatureException
-	 *             if this method is called on a Signature
+	 *                               if this method is called on a Signature
 	 */
 	protected abstract void engineInitSign(Key signingKey,
-			AlgorithmParameterSpec algorithmParameterSpec) throws XMLSignatureException;
+			AlgorithmParameterSpec algorithmParameterSpec)
+			throws XMLSignatureException;
 
 	/**
 	 * Proxy method for {@link java.security.Signature#sign()} which is executed
@@ -135,7 +139,8 @@ public abstract class SignatureAlgorithmSpi {
 	 * @param verificationKey
 	 * @throws XMLSignatureException
 	 */
-	protected abstract void engineInitVerify(Key verificationKey) throws XMLSignatureException;
+	protected abstract void engineInitVerify(Key verificationKey)
+			throws XMLSignatureException;
 
 	/**
 	 * Proxy method for {@link java.security.Signature#verify(byte[])} which is
@@ -145,7 +150,8 @@ public abstract class SignatureAlgorithmSpi {
 	 * @return true if the signature is correct
 	 * @throws XMLSignatureException
 	 */
-	protected abstract boolean engineVerify(byte[] signature) throws XMLSignatureException;
+	protected abstract boolean engineVerify(byte[] signature)
+			throws XMLSignatureException;
 
 	/**
 	 * Proxy method for
@@ -163,8 +169,7 @@ public abstract class SignatureAlgorithmSpi {
 	 *
 	 * @param element
 	 */
-	protected void engineGetContextFromElement(Element element) {
-	}
+	protected void engineGetContextFromElement(Element element) {}
 
 	/**
 	 * Method engineSetHMACOutputLength
@@ -175,6 +180,5 @@ public abstract class SignatureAlgorithmSpi {
 	protected abstract void engineSetHMACOutputLength(int HMACOutputLength)
 			throws XMLSignatureException;
 
-	public void reset() {
-	}
+	public void reset() {}
 }

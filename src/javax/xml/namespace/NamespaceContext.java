@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.namespace;
@@ -151,12 +131,13 @@ public interface NamespaceContext {
 	 * </table>
 	 *
 	 * @param prefix
-	 *            prefix to look up
+	 *               prefix to look up
 	 *
 	 * @return Namespace URI bound to prefix in the current scope
 	 *
 	 * @throws IllegalArgumentException
-	 *             When <code>prefix</code> is <code>null</code>
+	 *                                  When <code>prefix</code> is
+	 *                                  <code>null</code>
 	 */
 	String getNamespaceURI(String prefix);
 
@@ -219,12 +200,13 @@ public interface NamespaceContext {
 	 * </table>
 	 *
 	 * @param namespaceURI
-	 *            URI of Namespace to lookup
+	 *                     URI of Namespace to lookup
 	 *
 	 * @return prefix bound to Namespace URI in current context
 	 *
 	 * @throws IllegalArgumentException
-	 *             When <code>namespaceURI</code> is <code>null</code>
+	 *                                  When <code>namespaceURI</code> is
+	 *                                  <code>null</code>
 	 */
 	String getPrefix(String namespaceURI);
 
@@ -291,13 +273,14 @@ public interface NamespaceContext {
 	 * </table>
 	 *
 	 * @param namespaceURI
-	 *            URI of Namespace to lookup
+	 *                     URI of Namespace to lookup
 	 *
 	 * @return <code>Iterator</code> for all prefixes bound to the Namespace URI
 	 *         in the current scope
 	 *
 	 * @throws IllegalArgumentException
-	 *             When <code>namespaceURI</code> is <code>null</code>
+	 *                                  When <code>namespaceURI</code> is
+	 *                                  <code>null</code>
 	 */
 	Iterator getPrefixes(String namespaceURI);
 }

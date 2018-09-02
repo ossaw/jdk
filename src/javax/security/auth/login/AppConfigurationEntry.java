@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.login;
@@ -56,25 +36,32 @@ public class AppConfigurationEntry {
 	 * {@code Configuration} class.
 	 *
 	 * @param loginModuleName
-	 *            String representing the class name of the {@code LoginModule}
-	 *            configured for the specified application.
-	 *            <p>
+	 *                        String representing the class name of the
+	 *                        {@code LoginModule}
+	 *                        configured for the specified application.
+	 *                        <p>
 	 *
 	 * @param controlFlag
-	 *            either REQUIRED, REQUISITE, SUFFICIENT, or OPTIONAL.
-	 *            <p>
+	 *                        either REQUIRED, REQUISITE, SUFFICIENT, or
+	 *                        OPTIONAL.
+	 *                        <p>
 	 *
 	 * @param options
-	 *            the options configured for this {@code LoginModule}.
+	 *                        the options configured for this
+	 *                        {@code LoginModule}.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if {@code loginModuleName} is null, if
-	 *                {@code LoginModuleName} has a length of 0, if
-	 *                {@code controlFlag} is not either REQUIRED, REQUISITE,
-	 *                SUFFICIENT or OPTIONAL, or if {@code options} is null.
+	 *                                     if {@code loginModuleName} is null,
+	 *                                     if
+	 *                                     {@code LoginModuleName} has a length
+	 *                                     of 0, if
+	 *                                     {@code controlFlag} is not either
+	 *                                     REQUIRED, REQUISITE,
+	 *                                     SUFFICIENT or OPTIONAL, or if
+	 *                                     {@code options} is null.
 	 */
-	public AppConfigurationEntry(String loginModuleName, LoginModuleControlFlag controlFlag,
-			Map<String, ?> options) {
+	public AppConfigurationEntry(String loginModuleName,
+			LoginModuleControlFlag controlFlag, Map<String, ?> options) {
 		if (loginModuleName == null || loginModuleName.length() == 0
 				|| (controlFlag != LoginModuleControlFlag.REQUIRED
 						&& controlFlag != LoginModuleControlFlag.REQUISITE
@@ -165,8 +152,8 @@ public class AppConfigurationEntry {
 		 * @return a String representation of this controlFlag.
 		 */
 		public String toString() {
-			return (sun.security.util.ResourcesMgr.getString("LoginModuleControlFlag.")
-					+ controlFlag);
+			return (sun.security.util.ResourcesMgr.getString(
+					"LoginModuleControlFlag.") + controlFlag);
 		}
 	}
 }

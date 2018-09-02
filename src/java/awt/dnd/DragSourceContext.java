@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd;
@@ -83,8 +63,8 @@ import java.util.TooManyListenersException;
  * @since 1.2
  */
 
-public class DragSourceContext
-		implements DragSourceListener, DragSourceMotionListener, Serializable {
+public class DragSourceContext implements DragSourceListener,
+		DragSourceMotionListener, Serializable {
 
 	private static final long serialVersionUID = -115407898692194719L;
 
@@ -143,46 +123,54 @@ public class DragSourceContext
 	 * thrown.
 	 *
 	 * @param dscp
-	 *            the <code>DragSourceContextPeer</code> for this drag
+	 *                   the <code>DragSourceContextPeer</code> for this drag
 	 * @param trigger
-	 *            the triggering event
+	 *                   the triggering event
 	 * @param dragCursor
-	 *            the initial {@code Cursor} for this drag operation or
-	 *            {@code null} for the default cursor handling; see
-	 *            <a href="DragSourceContext.html#defaultCursor">class level
-	 *            documentation</a> for more details on the cursor handling
-	 *            mechanism during drag and drop
+	 *                   the initial {@code Cursor} for this drag operation or
+	 *                   {@code null} for the default cursor handling; see
+	 *                   <a href="DragSourceContext.html#defaultCursor">class
+	 *                   level
+	 *                   documentation</a> for more details on the cursor
+	 *                   handling
+	 *                   mechanism during drag and drop
 	 * @param dragImage
-	 *            the <code>Image</code> to drag (or <code>null</code>)
+	 *                   the <code>Image</code> to drag (or <code>null</code>)
 	 * @param offset
-	 *            the offset of the image origin from the hotspot at the instant
-	 *            of the triggering event
+	 *                   the offset of the image origin from the hotspot at the
+	 *                   instant
+	 *                   of the triggering event
 	 * @param t
-	 *            the <code>Transferable</code>
+	 *                   the <code>Transferable</code>
 	 * @param dsl
-	 *            the <code>DragSourceListener</code>
+	 *                   the <code>DragSourceListener</code>
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the <code>Component</code> associated with the trigger
-	 *             event is <code>null</code>.
+	 *                                  if the <code>Component</code> associated
+	 *                                  with the trigger
+	 *                                  event is <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if the <code>DragSource</code> for the trigger event is
-	 *             <code>null</code>.
+	 *                                  if the <code>DragSource</code> for the
+	 *                                  trigger event is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if the drag action for the trigger event is
-	 *             <code>DnDConstants.ACTION_NONE</code>.
+	 *                                  if the drag action for the trigger event
+	 *                                  is
+	 *                                  <code>DnDConstants.ACTION_NONE</code>.
 	 * @throws IllegalArgumentException
-	 *             if the source actions for the
-	 *             <code>DragGestureRecognizer</code> associated with the
-	 *             trigger event are equal to
-	 *             <code>DnDConstants.ACTION_NONE</code>.
+	 *                                  if the source actions for the
+	 *                                  <code>DragGestureRecognizer</code>
+	 *                                  associated with the
+	 *                                  trigger event are equal to
+	 *                                  <code>DnDConstants.ACTION_NONE</code>.
 	 * @throws NullPointerException
-	 *             if dscp, trigger, or t are null, or if dragImage is non-null
-	 *             and offset is null
+	 *                                  if dscp, trigger, or t are null, or if
+	 *                                  dragImage is non-null
+	 *                                  and offset is null
 	 */
-	public DragSourceContext(DragSourceContextPeer dscp, DragGestureEvent trigger,
-			Cursor dragCursor, Image dragImage, Point offset, Transferable t,
-			DragSourceListener dsl) {
+	public DragSourceContext(DragSourceContextPeer dscp,
+			DragGestureEvent trigger, Cursor dragCursor, Image dragImage,
+			Point offset, Transferable t, DragSourceListener dsl) {
 		if (dscp == null) {
 			throw new NullPointerException("DragSourceContextPeer");
 		}
@@ -221,11 +209,13 @@ public class DragSourceContext
 		cursor = dragCursor;
 		transferable = t;
 		listener = dsl;
-		sourceActions = trigger.getSourceAsDragGestureRecognizer().getSourceActions();
+		sourceActions = trigger.getSourceAsDragGestureRecognizer()
+				.getSourceActions();
 
 		useCustomCursor = (dragCursor != null);
 
-		updateCurrentCursor(trigger.getDragAction(), getSourceActions(), DEFAULT);
+		updateCurrentCursor(trigger.getDragAction(), getSourceActions(),
+				DEFAULT);
 	}
 
 	/**
@@ -280,10 +270,10 @@ public class DragSourceContext
 	 * drag operation, otherwise it is deactivated.
 	 *
 	 * @param c
-	 *            the initial {@code Cursor} for this drag operation, or
-	 *            {@code null} for the default cursor handling; see
-	 *            {@linkplain Cursor class level documentation} for more details
-	 *            on the cursor handling during drag and drop
+	 *          the initial {@code Cursor} for this drag operation, or
+	 *          {@code null} for the default cursor handling; see
+	 *          {@linkplain Cursor class level documentation} for more details
+	 *          on the cursor handling during drag and drop
 	 *
 	 */
 
@@ -316,7 +306,8 @@ public class DragSourceContext
 	 *            parameter.
 	 *            <P>
 	 * @throws TooManyListenersException
-	 *             if a <code>DragSourceListener</code> has already been added
+	 *                                   if a <code>DragSourceListener</code>
+	 *                                   has already been added
 	 */
 
 	public synchronized void addDragSourceListener(DragSourceListener dsl)
@@ -325,7 +316,8 @@ public class DragSourceContext
 			return;
 
 		if (equals(dsl))
-			throw new IllegalArgumentException("DragSourceContext may not be its own listener");
+			throw new IllegalArgumentException(
+					"DragSourceContext may not be its own listener");
 
 		if (listener != null)
 			throw new TooManyListenersException();
@@ -367,7 +359,7 @@ public class DragSourceContext
 	 * <code>DragSourceDragEvent</code>.
 	 *
 	 * @param dsde
-	 *            the <code>DragSourceDragEvent</code>
+	 *             the <code>DragSourceDragEvent</code>
 	 */
 	public void dragEnter(DragSourceDragEvent dsde) {
 		DragSourceListener dsl = listener;
@@ -386,7 +378,7 @@ public class DragSourceContext
 	 * <code>DragSourceDragEvent</code>.
 	 *
 	 * @param dsde
-	 *            the <code>DragSourceDragEvent</code>
+	 *             the <code>DragSourceDragEvent</code>
 	 */
 	public void dragOver(DragSourceDragEvent dsde) {
 		DragSourceListener dsl = listener;
@@ -414,7 +406,8 @@ public class DragSourceContext
 		}
 		getDragSource().processDragExit(dse);
 
-		updateCurrentCursor(DnDConstants.ACTION_NONE, DnDConstants.ACTION_NONE, DEFAULT);
+		updateCurrentCursor(DnDConstants.ACTION_NONE, DnDConstants.ACTION_NONE,
+				DEFAULT);
 	}
 
 	/**
@@ -425,7 +418,7 @@ public class DragSourceContext
 	 * <code>DragSourceDragEvent</code>.
 	 *
 	 * @param dsde
-	 *            the <code>DragSourceDragEvent</code>
+	 *             the <code>DragSourceDragEvent</code>
 	 */
 	public void dropActionChanged(DragSourceDragEvent dsde) {
 		DragSourceListener dsl = listener;
@@ -434,7 +427,8 @@ public class DragSourceContext
 		}
 		getDragSource().processDropActionChanged(dsde);
 
-		updateCurrentCursor(getSourceActions(), dsde.getTargetActions(), CHANGED);
+		updateCurrentCursor(getSourceActions(), dsde.getTargetActions(),
+				CHANGED);
 	}
 
 	/**
@@ -444,7 +438,7 @@ public class DragSourceContext
 	 * <code>DragSourceDropEvent</code>.
 	 *
 	 * @param dsde
-	 *            the <code>DragSourceDropEvent</code>
+	 *             the <code>DragSourceDropEvent</code>
 	 */
 	public void dragDropEnd(DragSourceDropEvent dsde) {
 		DragSourceListener dsl = listener;
@@ -462,7 +456,7 @@ public class DragSourceContext
 	 * <code>DragSourceDragEvent</code>.
 	 *
 	 * @param dsde
-	 *            the <code>DragSourceDragEvent</code>
+	 *             the <code>DragSourceDragEvent</code>
 	 * @since 1.4
 	 */
 	public void dragMouseMoved(DragSourceDragEvent dsde) {
@@ -486,15 +480,17 @@ public class DragSourceContext
 	 * nothing.
 	 *
 	 * @param sourceAct
-	 *            the actions supported by the drag source
+	 *                  the actions supported by the drag source
 	 * @param targetAct
-	 *            the drop target action
+	 *                  the drop target action
 	 * @param status
-	 *            one of the fields <code>DEFAULT</code>, <code>ENTER</code>,
-	 *            <code>OVER</code>, <code>CHANGED</code>
+	 *                  one of the fields <code>DEFAULT</code>,
+	 *                  <code>ENTER</code>,
+	 *                  <code>OVER</code>, <code>CHANGED</code>
 	 */
 
-	protected synchronized void updateCurrentCursor(int sourceAct, int targetAct, int status) {
+	protected synchronized void updateCurrentCursor(int sourceAct,
+			int targetAct, int status) {
 
 		// if the cursor has been previously set then don't do any defaults
 		// processing.
@@ -508,28 +504,31 @@ public class DragSourceContext
 		Cursor c = null;
 
 		switch (status) {
-		default:
-			targetAct = DnDConstants.ACTION_NONE;
-		case ENTER:
-		case OVER:
-		case CHANGED:
-			int ra = sourceAct & targetAct;
+			default:
+				targetAct = DnDConstants.ACTION_NONE;
+			case ENTER:
+			case OVER:
+			case CHANGED:
+				int ra = sourceAct & targetAct;
 
-			if (ra == DnDConstants.ACTION_NONE) { // no drop possible
-				if ((sourceAct & DnDConstants.ACTION_LINK) == DnDConstants.ACTION_LINK)
-					c = DragSource.DefaultLinkNoDrop;
-				else if ((sourceAct & DnDConstants.ACTION_MOVE) == DnDConstants.ACTION_MOVE)
-					c = DragSource.DefaultMoveNoDrop;
-				else
-					c = DragSource.DefaultCopyNoDrop;
-			} else { // drop possible
-				if ((ra & DnDConstants.ACTION_LINK) == DnDConstants.ACTION_LINK)
-					c = DragSource.DefaultLinkDrop;
-				else if ((ra & DnDConstants.ACTION_MOVE) == DnDConstants.ACTION_MOVE)
-					c = DragSource.DefaultMoveDrop;
-				else
-					c = DragSource.DefaultCopyDrop;
-			}
+				if (ra == DnDConstants.ACTION_NONE) { // no drop possible
+					if ((sourceAct
+							& DnDConstants.ACTION_LINK) == DnDConstants.ACTION_LINK)
+						c = DragSource.DefaultLinkNoDrop;
+					else if ((sourceAct
+							& DnDConstants.ACTION_MOVE) == DnDConstants.ACTION_MOVE)
+						c = DragSource.DefaultMoveNoDrop;
+					else
+						c = DragSource.DefaultCopyNoDrop;
+				} else { // drop possible
+					if ((ra & DnDConstants.ACTION_LINK) == DnDConstants.ACTION_LINK)
+						c = DragSource.DefaultLinkDrop;
+					else if ((ra
+							& DnDConstants.ACTION_MOVE) == DnDConstants.ACTION_MOVE)
+						c = DragSource.DefaultMoveDrop;
+					else
+						c = DragSource.DefaultCopyDrop;
+				}
 		}
 
 		setCursorImpl(c);
@@ -564,7 +563,8 @@ public class DragSourceContext
 	private void writeObject(ObjectOutputStream s) throws IOException {
 		s.defaultWriteObject();
 
-		s.writeObject(SerializationTester.test(transferable) ? transferable : null);
+		s.writeObject(SerializationTester.test(transferable) ? transferable
+				: null);
 		s.writeObject(SerializationTester.test(listener) ? listener : null);
 	}
 
@@ -580,7 +580,8 @@ public class DragSourceContext
 	 *
 	 * @since 1.4
 	 */
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException {
 		ObjectInputStream.GetField f = s.readFields();
 
 		DragGestureEvent newTrigger = (DragGestureEvent) f.get("trigger", null);
@@ -600,7 +601,8 @@ public class DragSourceContext
 			throw new InvalidObjectException("Invalid source actions");
 		}
 		int triggerActions = newTrigger.getDragAction();
-		if (triggerActions != DnDConstants.ACTION_COPY && triggerActions != DnDConstants.ACTION_MOVE
+		if (triggerActions != DnDConstants.ACTION_COPY
+				&& triggerActions != DnDConstants.ACTION_MOVE
 				&& triggerActions != DnDConstants.ACTION_LINK) {
 			throw new InvalidObjectException("No drag action");
 		}

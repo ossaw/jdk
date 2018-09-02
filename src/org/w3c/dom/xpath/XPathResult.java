@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2002 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -152,8 +127,9 @@ public interface XPathResult {
 	 * specify how the XPath number is converted to the native binding number.
 	 * 
 	 * @exception XPathException
-	 *                TYPE_ERR: raised if <code>resultType</code> is not
-	 *                <code>NUMBER_TYPE</code>.
+	 *                           TYPE_ERR: raised if <code>resultType</code> is
+	 *                           not
+	 *                           <code>NUMBER_TYPE</code>.
 	 */
 	public double getNumberValue() throws XPathException;
 
@@ -161,8 +137,9 @@ public interface XPathResult {
 	 * The value of this string result.
 	 * 
 	 * @exception XPathException
-	 *                TYPE_ERR: raised if <code>resultType</code> is not
-	 *                <code>STRING_TYPE</code>.
+	 *                           TYPE_ERR: raised if <code>resultType</code> is
+	 *                           not
+	 *                           <code>STRING_TYPE</code>.
 	 */
 	public String getStringValue() throws XPathException;
 
@@ -170,8 +147,9 @@ public interface XPathResult {
 	 * The value of this boolean result.
 	 * 
 	 * @exception XPathException
-	 *                TYPE_ERR: raised if <code>resultType</code> is not
-	 *                <code>BOOLEAN_TYPE</code>.
+	 *                           TYPE_ERR: raised if <code>resultType</code> is
+	 *                           not
+	 *                           <code>BOOLEAN_TYPE</code>.
 	 */
 	public boolean getBooleanValue() throws XPathException;
 
@@ -179,9 +157,10 @@ public interface XPathResult {
 	 * The value of this single node result, which may be <code>null</code>.
 	 * 
 	 * @exception XPathException
-	 *                TYPE_ERR: raised if <code>resultType</code> is not
-	 *                <code>ANY_UNORDERED_NODE_TYPE</code> or
-	 *                <code>FIRST_ORDERED_NODE_TYPE</code>.
+	 *                           TYPE_ERR: raised if <code>resultType</code> is
+	 *                           not
+	 *                           <code>ANY_UNORDERED_NODE_TYPE</code> or
+	 *                           <code>FIRST_ORDERED_NODE_TYPE</code>.
 	 */
 	public Node getSingleNodeValue() throws XPathException;
 
@@ -198,9 +177,10 @@ public interface XPathResult {
 	 * indices are <code>0</code> to <code>snapshotLength-1</code> inclusive.
 	 * 
 	 * @exception XPathException
-	 *                TYPE_ERR: raised if <code>resultType</code> is not
-	 *                <code>UNORDERED_NODE_SNAPSHOT_TYPE</code> or
-	 *                <code>ORDERED_NODE_SNAPSHOT_TYPE</code>.
+	 *                           TYPE_ERR: raised if <code>resultType</code> is
+	 *                           not
+	 *                           <code>UNORDERED_NODE_SNAPSHOT_TYPE</code> or
+	 *                           <code>ORDERED_NODE_SNAPSHOT_TYPE</code>.
 	 */
 	public int getSnapshotLength() throws XPathException;
 
@@ -210,12 +190,14 @@ public interface XPathResult {
 	 * 
 	 * @return Returns the next node.
 	 * @exception XPathException
-	 *                TYPE_ERR: raised if <code>resultType</code> is not
-	 *                <code>UNORDERED_NODE_ITERATOR_TYPE</code> or
-	 *                <code>ORDERED_NODE_ITERATOR_TYPE</code>.
+	 *                           TYPE_ERR: raised if <code>resultType</code> is
+	 *                           not
+	 *                           <code>UNORDERED_NODE_ITERATOR_TYPE</code> or
+	 *                           <code>ORDERED_NODE_ITERATOR_TYPE</code>.
 	 * @exception DOMException
-	 *                INVALID_STATE_ERR: The document has been mutated since the
-	 *                result was returned.
+	 *                           INVALID_STATE_ERR: The document has been
+	 *                           mutated since the
+	 *                           result was returned.
 	 */
 	public Node iterateNext() throws XPathException, DOMException;
 
@@ -227,14 +209,15 @@ public interface XPathResult {
 	 * current document if it is mutated.
 	 * 
 	 * @param index
-	 *            Index into the snapshot collection.
+	 *              Index into the snapshot collection.
 	 * @return The node at the <code>index</code>th position in the
 	 *         <code>NodeList</code>, or <code>null</code> if that is not a
 	 *         valid index.
 	 * @exception XPathException
-	 *                TYPE_ERR: raised if <code>resultType</code> is not
-	 *                <code>UNORDERED_NODE_SNAPSHOT_TYPE</code> or
-	 *                <code>ORDERED_NODE_SNAPSHOT_TYPE</code>.
+	 *                           TYPE_ERR: raised if <code>resultType</code> is
+	 *                           not
+	 *                           <code>UNORDERED_NODE_SNAPSHOT_TYPE</code> or
+	 *                           <code>ORDERED_NODE_SNAPSHOT_TYPE</code>.
 	 */
 	public Node snapshotItem(int index) throws XPathException;
 

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,49 +31,37 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
 
 	/*
 	 * General notes to translators:
-	 *
 	 * This file contains error and warning messages related to XPath Error
 	 * Handling.
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 * 8) The context node is the node in the document with respect to which an
 	 * XPath expression is being evaluated.
-	 *
 	 * 9) An iterator is an object that traverses nodes in the tree, one at a
 	 * time.
-	 *
 	 * 10) NCName is an XML term used to describe a name that does not contain a
 	 * colon (a "no-colon name").
-	 *
 	 * 11) QName is an XML term meaning "qualified name".
 	 */
 
@@ -477,7 +462,8 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
 			{ ER_VAR_NOT_RESOLVABLE,
 					"\u5909\u6570\u3092\u89E3\u6C7A\u3067\u304D\u307E\u305B\u3093: {0}" },
 
-			{ ER_NULL_ERROR_HANDLER, "Null\u306E\u30A8\u30E9\u30FC\u30FB\u30CF\u30F3\u30C9\u30E9" },
+			{ ER_NULL_ERROR_HANDLER,
+					"Null\u306E\u30A8\u30E9\u30FC\u30FB\u30CF\u30F3\u30C9\u30E9" },
 
 			{ ER_PROG_ASSERT_UNKNOWN_OPCODE,
 					"\u30D7\u30ED\u30B0\u30E9\u30DE\u306E\u30A2\u30B5\u30FC\u30B7\u30E7\u30F3: \u4E0D\u660E\u306Aopcode: {0}" },
@@ -803,19 +789,20 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
 					"\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u3066\u3044\u306A\u3044\u30A8\u30F3\u30B3\u30FC\u30C7\u30A3\u30F3\u30B0\u3067\u3059: {0}" },
 
 			// Other miscellaneous text used inside the code...
-			{ "ui_language", "ja" }, { "help_language", "ja" }, { "language", "ja" },
-			{ "BAD_CODE",
-					"createMessage\u306E\u30D1\u30E9\u30E1\u30FC\u30BF\u304C\u7BC4\u56F2\u5916\u3067\u3059" },
+			{ "ui_language", "ja" }, { "help_language", "ja" }, { "language",
+					"ja" }, { "BAD_CODE",
+							"createMessage\u306E\u30D1\u30E9\u30E1\u30FC\u30BF\u304C\u7BC4\u56F2\u5916\u3067\u3059" },
 			{ "FORMAT_FAILED",
 					"messageFormat\u306E\u547C\u51FA\u3057\u4E2D\u306B\u4F8B\u5916\u304C\u30B9\u30ED\u30FC\u3055\u308C\u307E\u3057\u305F" },
-			{ "version", ">>>>>>> Xalan\u30D0\u30FC\u30B8\u30E7\u30F3 " },
-			{ "version2", "<<<<<<<" }, { "yes", "yes" }, { "line", "\u884C\u756A\u53F7" },
-			{ "column", "\u5217\u756A\u53F7" },
-			{ "xsldone", "XSLProcessor: \u5B8C\u4E86\u3057\u307E\u3057\u305F" },
-			{ "xpath_option", "xpath\u30AA\u30D7\u30B7\u30E7\u30F3: " },
-			{ "optionIN", "   [-in inputXMLURL]" },
-			{ "optionSelect", "   [-select xpath expression]" },
-			{ "optionMatch", "   [-match match pattern (\u4E00\u81F4\u8A3A\u65AD\u7528)]" },
+			{ "version", ">>>>>>> Xalan\u30D0\u30FC\u30B8\u30E7\u30F3 " }, {
+					"version2", "<<<<<<<" }, { "yes", "yes" }, { "line",
+							"\u884C\u756A\u53F7" }, { "column",
+									"\u5217\u756A\u53F7" }, { "xsldone",
+											"XSLProcessor: \u5B8C\u4E86\u3057\u307E\u3057\u305F" },
+			{ "xpath_option", "xpath\u30AA\u30D7\u30B7\u30E7\u30F3: " }, {
+					"optionIN", "   [-in inputXMLURL]" }, { "optionSelect",
+							"   [-select xpath expression]" }, { "optionMatch",
+									"   [-match match pattern (\u4E00\u81F4\u8A3A\u65AD\u7528)]" },
 			{ "optionAnyExpr",
 					"\u307E\u305F\u306F\u3001xpath\u5F0F\u304C\u8A3A\u65AD\u30C0\u30F3\u30D7\u3092\u5B9F\u884C\u3057\u307E\u3059" },
 			{ "noParsermsg1",
@@ -826,8 +813,10 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
 					"\u30AF\u30E9\u30B9\u30D1\u30B9\u3092\u78BA\u8A8D\u3057\u3066\u304F\u3060\u3055\u3044\u3002" },
 			{ "noParsermsg4",
 					"IBM\u306EJava\u7528XML\u30D1\u30FC\u30B5\u30FC\u304C\u306A\u3044\u5834\u5408\u3001\u6B21\u306E\u30B5\u30A4\u30C8\u304B\u3089\u30C0\u30A6\u30F3\u30ED\u30FC\u30C9\u3067\u304D\u307E\u3059" },
-			{ "noParsermsg5", "IBM\u306EAlphaWorks: http://www.alphaworks.ibm.com/formula/xml" },
-			{ "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" }, { "three", "3" }
+			{ "noParsermsg5",
+					"IBM\u306EAlphaWorks: http://www.alphaworks.ibm.com/formula/xml" },
+			{ "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" },
+			{ "three", "3" }
 
 	};
 

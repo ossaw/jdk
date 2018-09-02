@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -35,7 +15,8 @@ import java.security.BasicPermission;
  * allows, and discusses the risks of granting code the permission.
  *
  * <table border=1 cellpadding=5 summary=
- * "Table shows permission target name, what the permission allows, and associated risks"
+ * "Table shows permission target name, what the permission allows, and
+ * associated risks"
  * >
  * <tr>
  * <th>Permission Target Name</th>
@@ -77,10 +58,10 @@ public final class LinkPermission extends BasicPermission {
 	 * Constructs a {@code LinkPermission} with the specified name.
 	 *
 	 * @param name
-	 *            the name of the permission. It must be "hard" or "symbolic".
+	 *             the name of the permission. It must be "hard" or "symbolic".
 	 *
 	 * @throws IllegalArgumentException
-	 *             if name is empty or invalid
+	 *                                  if name is empty or invalid
 	 */
 	public LinkPermission(String name) {
 		super(name);
@@ -91,13 +72,15 @@ public final class LinkPermission extends BasicPermission {
 	 * Constructs a {@code LinkPermission} with the specified name.
 	 *
 	 * @param name
-	 *            the name of the permission; must be "hard" or "symbolic".
+	 *                the name of the permission; must be "hard" or "symbolic".
 	 * @param actions
-	 *            the actions for the permission; must be the empty string or
-	 *            {@code null}
+	 *                the actions for the permission; must be the empty string
+	 *                or
+	 *                {@code null}
 	 *
 	 * @throws IllegalArgumentException
-	 *             if name is empty or invalid, or actions is a non-empty string
+	 *                                  if name is empty or invalid, or actions
+	 *                                  is a non-empty string
 	 */
 	public LinkPermission(String name, String actions) {
 		super(name);

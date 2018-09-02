@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -66,11 +46,13 @@ public interface JMXConnector extends Closeable {
 	 * </p>
 	 *
 	 * @exception IOException
-	 *                if the connection could not be made because of a
-	 *                communication problem.
+	 *                              if the connection could not be made because
+	 *                              of a
+	 *                              communication problem.
 	 *
 	 * @exception SecurityException
-	 *                if the connection could not be made for security reasons.
+	 *                              if the connection could not be made for
+	 *                              security reasons.
 	 */
 	public void connect() throws IOException;
 
@@ -99,11 +81,13 @@ public interface JMXConnector extends Closeable {
 	 *            can be null, which is equivalent to an empty map.
 	 *
 	 * @exception IOException
-	 *                if the connection could not be made because of a
-	 *                communication problem.
+	 *                              if the connection could not be made because
+	 *                              of a
+	 *                              communication problem.
 	 *
 	 * @exception SecurityException
-	 *                if the connection could not be made for security reasons.
+	 *                              if the connection could not be made for
+	 *                              security reasons.
 	 */
 	public void connect(Map<String, ?> env) throws IOException;
 
@@ -138,11 +122,15 @@ public interface JMXConnector extends Closeable {
 	 *         interface by forwarding its methods to the remote MBean server.
 	 *
 	 * @exception IOException
-	 *                if a valid <code>MBeanServerConnection</code> cannot be
-	 *                created, for instance because the connection to the remote
-	 *                MBean server has not yet been established (with the
-	 *                {@link #connect(Map) connect} method), or it has been
-	 *                closed, or it has broken.
+	 *                        if a valid <code>MBeanServerConnection</code>
+	 *                        cannot be
+	 *                        created, for instance because the connection to
+	 *                        the remote
+	 *                        MBean server has not yet been established (with
+	 *                        the
+	 *                        {@link #connect(Map) connect} method), or it has
+	 *                        been
+	 *                        closed, or it has broken.
 	 */
 	public MBeanServerConnection getMBeanServerConnection() throws IOException;
 
@@ -169,23 +157,30 @@ public interface JMXConnector extends Closeable {
 	 * </p>
 	 *
 	 * @param delegationSubject
-	 *            the <code>Subject</code> on behalf of which requests will be
-	 *            performed. Can be null, in which case requests will be
-	 *            performed on behalf of the authenticated Subject, if any.
+	 *                          the <code>Subject</code> on behalf of which
+	 *                          requests will be
+	 *                          performed. Can be null, in which case requests
+	 *                          will be
+	 *                          performed on behalf of the authenticated
+	 *                          Subject, if any.
 	 *
 	 * @return an object that implements the <code>MBeanServerConnection</code>
 	 *         interface by forwarding its methods to the remote MBean server on
 	 *         behalf of a given delegation subject.
 	 *
 	 * @exception IOException
-	 *                if a valid <code>MBeanServerConnection</code> cannot be
-	 *                created, for instance because the connection to the remote
-	 *                MBean server has not yet been established (with the
-	 *                {@link #connect(Map) connect} method), or it has been
-	 *                closed, or it has broken.
+	 *                        if a valid <code>MBeanServerConnection</code>
+	 *                        cannot be
+	 *                        created, for instance because the connection to
+	 *                        the remote
+	 *                        MBean server has not yet been established (with
+	 *                        the
+	 *                        {@link #connect(Map) connect} method), or it has
+	 *                        been
+	 *                        closed, or it has broken.
 	 */
-	public MBeanServerConnection getMBeanServerConnection(Subject delegationSubject)
-			throws IOException;
+	public MBeanServerConnection getMBeanServerConnection(
+			Subject delegationSubject) throws IOException;
 
 	/**
 	 * <p>
@@ -211,9 +206,11 @@ public interface JMXConnector extends Closeable {
 	 * </p>
 	 *
 	 * @exception IOException
-	 *                if the connection cannot be closed cleanly. If this
-	 *                exception is thrown, it is not known whether the server
-	 *                end of the connection has been cleanly closed.
+	 *                        if the connection cannot be closed cleanly. If
+	 *                        this
+	 *                        exception is thrown, it is not known whether the
+	 *                        server
+	 *                        end of the connection has been cleanly closed.
 	 */
 	public void close() throws IOException;
 
@@ -235,17 +232,18 @@ public interface JMXConnector extends Closeable {
 	 * </p>
 	 *
 	 * @param listener
-	 *            a listener to receive connection status notifications.
+	 *                 a listener to receive connection status notifications.
 	 * @param filter
-	 *            a filter to select which notifications are to be delivered to
-	 *            the listener, or null if all notifications are to be
-	 *            delivered.
+	 *                 a filter to select which notifications are to be
+	 *                 delivered to
+	 *                 the listener, or null if all notifications are to be
+	 *                 delivered.
 	 * @param handback
-	 *            an object to be given to the listener along with each
-	 *            notification. Can be null.
+	 *                 an object to be given to the listener along with each
+	 *                 notification. Can be null.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>listener</code> is null.
+	 *                                 if <code>listener</code> is null.
 	 *
 	 * @see #removeConnectionNotificationListener
 	 * @see javax.management.NotificationBroadcaster#addNotificationListener
@@ -261,22 +259,23 @@ public interface JMXConnector extends Closeable {
 	 * </p>
 	 *
 	 * @param listener
-	 *            a listener to receive connection status notifications.
+	 *                 a listener to receive connection status notifications.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>listener</code> is null.
+	 *                                      if <code>listener</code> is null.
 	 *
 	 * @exception ListenerNotFoundException
-	 *                if the listener is not registered with this
-	 *                <code>JMXConnector</code>.
+	 *                                      if the listener is not registered
+	 *                                      with this
+	 *                                      <code>JMXConnector</code>.
 	 *
 	 * @see #removeConnectionNotificationListener(NotificationListener,
 	 *      NotificationFilter, Object)
 	 * @see #addConnectionNotificationListener
 	 * @see javax.management.NotificationEmitter#removeNotificationListener
 	 */
-	public void removeConnectionNotificationListener(NotificationListener listener)
-			throws ListenerNotFoundException;
+	public void removeConnectionNotificationListener(
+			NotificationListener listener) throws ListenerNotFoundException;
 
 	/**
 	 * <p>
@@ -286,25 +285,29 @@ public interface JMXConnector extends Closeable {
 	 * </p>
 	 *
 	 * @param l
-	 *            a listener to receive connection status notifications.
+	 *                 a listener to receive connection status notifications.
 	 * @param f
-	 *            a filter to select which notifications are to be delivered to
-	 *            the listener. Can be null.
+	 *                 a filter to select which notifications are to be
+	 *                 delivered to
+	 *                 the listener. Can be null.
 	 * @param handback
-	 *            an object to be given to the listener along with each
-	 *            notification. Can be null.
+	 *                 an object to be given to the listener along with each
+	 *                 notification. Can be null.
 	 *
 	 * @exception ListenerNotFoundException
-	 *                if the listener is not registered with this
-	 *                <code>JMXConnector</code>, or is not registered with the
-	 *                given filter and handback.
+	 *                                      if the listener is not registered
+	 *                                      with this
+	 *                                      <code>JMXConnector</code>, or is not
+	 *                                      registered with the
+	 *                                      given filter and handback.
 	 *
 	 * @see #removeConnectionNotificationListener(NotificationListener)
 	 * @see #addConnectionNotificationListener
 	 * @see javax.management.NotificationEmitter#removeNotificationListener
 	 */
-	public void removeConnectionNotificationListener(NotificationListener l, NotificationFilter f,
-			Object handback) throws ListenerNotFoundException;
+	public void removeConnectionNotificationListener(NotificationListener l,
+			NotificationFilter f, Object handback)
+			throws ListenerNotFoundException;
 
 	/**
 	 * <p>
@@ -320,8 +323,9 @@ public interface JMXConnector extends Closeable {
 	 *         conventions for connection IDs.
 	 *
 	 * @exception IOException
-	 *                if the connection ID cannot be obtained, for instance
-	 *                because the connection is closed or broken.
+	 *                        if the connection ID cannot be obtained, for
+	 *                        instance
+	 *                        because the connection is closed or broken.
 	 */
 	public String getConnectionId() throws IOException;
 }

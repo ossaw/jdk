@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.validation;
@@ -41,17 +21,18 @@ import java.util.*;
 class SecuritySupport {
 
 	ClassLoader getContextClassLoader() {
-		return (ClassLoader) AccessController.doPrivileged(new PrivilegedAction() {
-			public Object run() {
-				ClassLoader cl = null;
-				// try {
-				cl = Thread.currentThread().getContextClassLoader();
-				// } catch (SecurityException ex) { }
-				if (cl == null)
-					cl = ClassLoader.getSystemClassLoader();
-				return cl;
-			}
-		});
+		return (ClassLoader) AccessController.doPrivileged(
+				new PrivilegedAction() {
+					public Object run() {
+						ClassLoader cl = null;
+						// try {
+						cl = Thread.currentThread().getContextClassLoader();
+						// } catch (SecurityException ex) { }
+						if (cl == null)
+							cl = ClassLoader.getSystemClassLoader();
+						return cl;
+					}
+				});
 	}
 
 	String getSystemProperty(final String propName) {
@@ -62,13 +43,15 @@ class SecuritySupport {
 		});
 	}
 
-	FileInputStream getFileInputStream(final File file) throws FileNotFoundException {
+	FileInputStream getFileInputStream(final File file)
+			throws FileNotFoundException {
 		try {
-			return (FileInputStream) AccessController.doPrivileged(new PrivilegedExceptionAction() {
-				public Object run() throws FileNotFoundException {
-					return new FileInputStream(file);
-				}
-			});
+			return (FileInputStream) AccessController.doPrivileged(
+					new PrivilegedExceptionAction() {
+						public Object run() throws FileNotFoundException {
+							return new FileInputStream(file);
+						}
+					});
 		} catch (PrivilegedActionException e) {
 			throw (FileNotFoundException) e.getException();
 		}
@@ -76,11 +59,12 @@ class SecuritySupport {
 
 	InputStream getURLInputStream(final URL url) throws IOException {
 		try {
-			return (InputStream) AccessController.doPrivileged(new PrivilegedExceptionAction() {
-				public Object run() throws IOException {
-					return url.openStream();
-				}
-			});
+			return (InputStream) AccessController.doPrivileged(
+					new PrivilegedExceptionAction() {
+						public Object run() throws IOException {
+							return url.openStream();
+						}
+					});
 		} catch (PrivilegedActionException e) {
 			throw (IOException) e.getException();
 		}
@@ -100,36 +84,40 @@ class SecuritySupport {
 		});
 	}
 
-	Enumeration getResources(final ClassLoader cl, final String name) throws IOException {
+	Enumeration getResources(final ClassLoader cl, final String name)
+			throws IOException {
 		try {
-			return (Enumeration) AccessController.doPrivileged(new PrivilegedExceptionAction() {
-				public Object run() throws IOException {
-					Enumeration enumeration;
-					if (cl == null) {
-						enumeration = ClassLoader.getSystemResources(name);
-					} else {
-						enumeration = cl.getResources(name);
-					}
-					return enumeration;
-				}
-			});
+			return (Enumeration) AccessController.doPrivileged(
+					new PrivilegedExceptionAction() {
+						public Object run() throws IOException {
+							Enumeration enumeration;
+							if (cl == null) {
+								enumeration = ClassLoader.getSystemResources(
+										name);
+							} else {
+								enumeration = cl.getResources(name);
+							}
+							return enumeration;
+						}
+					});
 		} catch (PrivilegedActionException e) {
 			throw (IOException) e.getException();
 		}
 	}
 
 	InputStream getResourceAsStream(final ClassLoader cl, final String name) {
-		return (InputStream) AccessController.doPrivileged(new PrivilegedAction() {
-			public Object run() {
-				InputStream ris;
-				if (cl == null) {
-					ris = Object.class.getResourceAsStream(name);
-				} else {
-					ris = cl.getResourceAsStream(name);
-				}
-				return ris;
-			}
-		});
+		return (InputStream) AccessController.doPrivileged(
+				new PrivilegedAction() {
+					public Object run() {
+						InputStream ris;
+						if (cl == null) {
+							ris = Object.class.getResourceAsStream(name);
+						} else {
+							ris = cl.getResourceAsStream(name);
+						}
+						return ris;
+					}
+				});
 	}
 
 	boolean doesFileExist(final File f) {

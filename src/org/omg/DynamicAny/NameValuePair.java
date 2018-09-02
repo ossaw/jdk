@@ -20,8 +20,7 @@ public final class NameValuePair implements org.omg.CORBA.portable.IDLEntity {
 	 */
 	public org.omg.CORBA.Any value = null;
 
-	public NameValuePair() {
-	} // ctor
+	public NameValuePair() {} // ctor
 
 	public NameValuePair(String _id, org.omg.CORBA.Any _value) {
 		id = _id;

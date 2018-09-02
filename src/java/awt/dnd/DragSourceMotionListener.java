@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd;
@@ -56,7 +36,7 @@ public interface DragSourceMotionListener extends EventListener {
 	 * Called whenever the mouse is moved during a drag operation.
 	 *
 	 * @param dsde
-	 *            the <code>DragSourceDragEvent</code>
+	 *             the <code>DragSourceDragEvent</code>
 	 */
 	void dragMouseMoved(DragSourceDragEvent dsde);
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.motif;
@@ -57,7 +37,8 @@ public class MotifCheckBoxUI extends MotifRadioButtonUI {
 	// ********************************
 	public static ComponentUI createUI(JComponent c) {
 		AppContext appContext = AppContext.getAppContext();
-		MotifCheckBoxUI motifCheckBoxUI = (MotifCheckBoxUI) appContext.get(MOTIF_CHECK_BOX_UI_KEY);
+		MotifCheckBoxUI motifCheckBoxUI = (MotifCheckBoxUI) appContext.get(
+				MOTIF_CHECK_BOX_UI_KEY);
 		if (motifCheckBoxUI == null) {
 			motifCheckBoxUI = new MotifCheckBoxUI();
 			appContext.put(MOTIF_CHECK_BOX_UI_KEY, motifCheckBoxUI);

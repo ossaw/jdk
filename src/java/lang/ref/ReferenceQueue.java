@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.ref;
@@ -38,8 +18,7 @@ public class ReferenceQueue<T> {
 	/**
 	 * Constructs a new reference-object queue.
 	 */
-	public ReferenceQueue() {
-	}
+	public ReferenceQueue() {}
 
 	private static class Null<S> extends ReferenceQueue<S> {
 		boolean enqueue(Reference<? extends S> r) {
@@ -50,15 +29,16 @@ public class ReferenceQueue<T> {
 	static ReferenceQueue<Object> NULL = new Null<>();
 	static ReferenceQueue<Object> ENQUEUED = new Null<>();
 
-	static private class Lock {
-	};
+	static private class Lock {};
 
 	private Lock lock = new Lock();
 	private volatile Reference<? extends T> head = null;
 	private long queueLength = 0;
 
-	boolean enqueue(
-			Reference<? extends T> r) { /* Called only by Reference class */
+	boolean enqueue(Reference<? extends T> r) { /*
+												 * Called only by Reference
+												 * class
+												 */
 		synchronized (lock) {
 			// Check that since getting the lock this reference hasn't already
 			// been
@@ -123,18 +103,21 @@ public class ReferenceQueue<T> {
 	 * as if by invoking the {@link Object#wait(long)} method.
 	 *
 	 * @param timeout
-	 *            If positive, block for up to <code>timeout</code> milliseconds
-	 *            while waiting for a reference to be added to this queue. If
-	 *            zero, block indefinitely.
+	 *                If positive, block for up to <code>timeout</code>
+	 *                milliseconds
+	 *                while waiting for a reference to be added to this queue.
+	 *                If
+	 *                zero, block indefinitely.
 	 *
 	 * @return A reference object, if one was available within the specified
 	 *         timeout period, otherwise <code>null</code>
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the value of the timeout argument is negative
+	 *                                  If the value of the timeout argument is
+	 *                                  negative
 	 *
 	 * @throws InterruptedException
-	 *             If the timeout wait is interrupted
+	 *                                  If the timeout wait is interrupted
 	 */
 	public Reference<? extends T> remove(long timeout)
 			throws IllegalArgumentException, InterruptedException {
@@ -168,7 +151,7 @@ public class ReferenceQueue<T> {
 	 *
 	 * @return A reference object, blocking until one becomes available
 	 * @throws InterruptedException
-	 *             If the wait is interrupted
+	 *                              If the wait is interrupted
 	 */
 	public Reference<? extends T> remove() throws InterruptedException {
 		return remove(0);

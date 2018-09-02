@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.script;
@@ -62,16 +42,20 @@ public interface ScriptContext {
 	 * specified scope.
 	 *
 	 * @param bindings
-	 *            The <code>Bindings</code> to associate with the given scope
+	 *                 The <code>Bindings</code> to associate with the given
+	 *                 scope
 	 * @param scope
-	 *            The scope
+	 *                 The scope
 	 *
 	 * @throws IllegalArgumentException
-	 *             If no <code>Bindings</code> is defined for the specified
-	 *             scope value in ScriptContexts of this type.
+	 *                                  If no <code>Bindings</code> is defined
+	 *                                  for the specified
+	 *                                  scope value in ScriptContexts of this
+	 *                                  type.
 	 * @throws NullPointerException
-	 *             if value of scope is <code>ENGINE_SCOPE</code> and the
-	 *             specified <code>Bindings</code> is null.
+	 *                                  if value of scope is
+	 *                                  <code>ENGINE_SCOPE</code> and the
+	 *                                  specified <code>Bindings</code> is null.
 	 *
 	 */
 	public void setBindings(Bindings bindings, int scope);
@@ -84,10 +68,12 @@ public interface ScriptContext {
 	 *         if it has not been set.
 	 *
 	 * @param scope
-	 *            The scope
+	 *              The scope
 	 * @throws IllegalArgumentException
-	 *             If no <code>Bindings</code> is defined for the specified
-	 *             scope value in <code>ScriptContext</code> of this type.
+	 *                                  If no <code>Bindings</code> is defined
+	 *                                  for the specified
+	 *                                  scope value in
+	 *                                  <code>ScriptContext</code> of this type.
 	 */
 	public Bindings getBindings(int scope);
 
@@ -95,16 +81,17 @@ public interface ScriptContext {
 	 * Sets the value of an attribute in a given scope.
 	 *
 	 * @param name
-	 *            The name of the attribute to set
+	 *              The name of the attribute to set
 	 * @param value
-	 *            The value of the attribute
+	 *              The value of the attribute
 	 * @param scope
-	 *            The scope in which to set the attribute
+	 *              The scope in which to set the attribute
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the name is empty or if the scope is invalid.
+	 *                                  if the name is empty or if the scope is
+	 *                                  invalid.
 	 * @throws NullPointerException
-	 *             if the name is null.
+	 *                                  if the name is null.
 	 */
 	public void setAttribute(String name, Object value, int scope);
 
@@ -112,16 +99,17 @@ public interface ScriptContext {
 	 * Gets the value of an attribute in a given scope.
 	 *
 	 * @param name
-	 *            The name of the attribute to retrieve.
+	 *              The name of the attribute to retrieve.
 	 * @param scope
-	 *            The scope in which to retrieve the attribute.
+	 *              The scope in which to retrieve the attribute.
 	 * @return The value of the attribute. Returns <code>null</code> is the name
 	 *         does not exist in the given scope.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the name is empty or if the value of scope is invalid.
+	 *                                  if the name is empty or if the value of
+	 *                                  scope is invalid.
 	 * @throws NullPointerException
-	 *             if the name is null.
+	 *                                  if the name is null.
 	 */
 	public Object getAttribute(String name, int scope);
 
@@ -129,15 +117,16 @@ public interface ScriptContext {
 	 * Remove an attribute in a given scope.
 	 *
 	 * @param name
-	 *            The name of the attribute to remove
+	 *              The name of the attribute to remove
 	 * @param scope
-	 *            The scope in which to remove the attribute
+	 *              The scope in which to remove the attribute
 	 *
 	 * @return The removed value.
 	 * @throws IllegalArgumentException
-	 *             if the name is empty or if the scope is invalid.
+	 *                                  if the name is empty or if the scope is
+	 *                                  invalid.
 	 * @throws NullPointerException
-	 *             if the name is null.
+	 *                                  if the name is null.
 	 */
 	public Object removeAttribute(String name, int scope);
 
@@ -147,14 +136,14 @@ public interface ScriptContext {
 	 * numeric value of the scope parameter (lowest scope values first.)
 	 *
 	 * @param name
-	 *            The name of the the attribute to retrieve.
+	 *             The name of the the attribute to retrieve.
 	 * @return The value of the attribute in the lowest scope for which an
 	 *         attribute with the given name is defined. Returns null if no
 	 *         attribute with the name exists in any scope.
 	 * @throws NullPointerException
-	 *             if the name is null.
+	 *                                  if the name is null.
 	 * @throws IllegalArgumentException
-	 *             if the name is empty.
+	 *                                  if the name is empty.
 	 */
 	public Object getAttribute(String name);
 
@@ -162,13 +151,13 @@ public interface ScriptContext {
 	 * Get the lowest scope in which an attribute is defined.
 	 * 
 	 * @param name
-	 *            Name of the attribute .
+	 *             Name of the attribute .
 	 * @return The lowest scope. Returns -1 if no attribute with the given name
 	 *         is defined in any scope.
 	 * @throws NullPointerException
-	 *             if name is null.
+	 *                                  if name is null.
 	 * @throws IllegalArgumentException
-	 *             if name is empty.
+	 *                                  if name is empty.
 	 */
 	public int getAttributesScope(String name);
 
@@ -191,7 +180,7 @@ public interface ScriptContext {
 	 * Sets the <code>Writer</code> for scripts to use when displaying output.
 	 *
 	 * @param writer
-	 *            The new <code>Writer</code>.
+	 *               The new <code>Writer</code>.
 	 */
 	public void setWriter(Writer writer);
 
@@ -199,7 +188,7 @@ public interface ScriptContext {
 	 * Sets the <code>Writer</code> used to display error output.
 	 *
 	 * @param writer
-	 *            The <code>Writer</code>.
+	 *               The <code>Writer</code>.
 	 */
 	public void setErrorWriter(Writer writer);
 
@@ -214,7 +203,7 @@ public interface ScriptContext {
 	 * Sets the <code>Reader</code> for scripts to read input .
 	 * 
 	 * @param reader
-	 *            The new <code>Reader</code>.
+	 *               The new <code>Reader</code>.
 	 */
 	public void setReader(Reader reader);
 

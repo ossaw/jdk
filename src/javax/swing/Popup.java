@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -72,15 +52,15 @@ public class Popup {
 	 * <code>y</code>.
 	 *
 	 * @param owner
-	 *            Component mouse coordinates are relative to, may be null
+	 *                 Component mouse coordinates are relative to, may be null
 	 * @param contents
-	 *            Contents of the Popup
+	 *                 Contents of the Popup
 	 * @param x
-	 *            Initial x screen coordinate
+	 *                 Initial x screen coordinate
 	 * @param y
-	 *            Initial y screen coordinate
+	 *                 Initial y screen coordinate
 	 * @exception IllegalArgumentException
-	 *                if contents is null
+	 *                                     if contents is null
 	 */
 	protected Popup(Component owner, Component contents, int x, int y) {
 		this();
@@ -93,8 +73,7 @@ public class Popup {
 	/**
 	 * Creates a <code>Popup</code>. This is provided for subclasses.
 	 */
-	protected Popup() {
-	}
+	protected Popup() {}
 
 	/**
 	 * Makes the <code>Popup</code> visible. If the <code>Popup</code> is
@@ -265,6 +244,5 @@ public class Popup {
 	 * PopupFactory uses this as a way to know when the Popup shouldn't be
 	 * cached based on the Window.
 	 */
-	static class DefaultFrame extends Frame {
-	}
+	static class DefaultFrame extends Frame {}
 }

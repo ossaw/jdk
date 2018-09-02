@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -94,7 +74,8 @@ import java.security.cert.*;
  * @author Roland Schemers
  */
 
-public final class UnresolvedPermission extends Permission implements java.io.Serializable {
+public final class UnresolvedPermission extends Permission implements
+		java.io.Serializable {
 
 	private static final long serialVersionUID = -4821973115467008846L;
 
@@ -131,21 +112,28 @@ public final class UnresolvedPermission extends Permission implements java.io.Se
 	 * the permission is resolved.
 	 *
 	 * @param type
-	 *            the class name of the Permission class that will be created
-	 *            when this unresolved permission is resolved.
+	 *                the class name of the Permission class that will be
+	 *                created
+	 *                when this unresolved permission is resolved.
 	 * @param name
-	 *            the name of the permission.
+	 *                the name of the permission.
 	 * @param actions
-	 *            the actions of the permission.
+	 *                the actions of the permission.
 	 * @param certs
-	 *            the certificates the permission's class was signed with. This
-	 *            is a list of certificate chains, where each chain is composed
-	 *            of a signer certificate and optionally its supporting
-	 *            certificate chain. Each chain is ordered bottom-to-top (i.e.,
-	 *            with the signer certificate first and the (root) certificate
-	 *            authority last). The signer certificates are copied from the
-	 *            array. Subsequent changes to the array will not affect this
-	 *            UnsolvedPermission.
+	 *                the certificates the permission's class was signed with.
+	 *                This
+	 *                is a list of certificate chains, where each chain is
+	 *                composed
+	 *                of a signer certificate and optionally its supporting
+	 *                certificate chain. Each chain is ordered bottom-to-top
+	 *                (i.e.,
+	 *                with the signer certificate first and the (root)
+	 *                certificate
+	 *                authority last). The signer certificates are copied from
+	 *                the
+	 *                array. Subsequent changes to the array will not affect
+	 *                this
+	 *                UnsolvedPermission.
 	 */
 	public UnresolvedPermission(String type, String name, String actions,
 			java.security.cert.Certificate certs[]) {
@@ -175,8 +163,10 @@ public final class UnresolvedPermission extends Permission implements java.io.Se
 				int count = 0;
 				while (i < certs.length) {
 					count++;
-					while (((i + 1) < certs.length) && ((X509Certificate) certs[i]).getIssuerDN()
-							.equals(((X509Certificate) certs[i + 1]).getSubjectDN())) {
+					while (((i + 1) < certs.length)
+							&& ((X509Certificate) certs[i]).getIssuerDN()
+									.equals(((X509Certificate) certs[i + 1])
+											.getSubjectDN())) {
 						i++;
 					}
 					i++;
@@ -195,12 +185,14 @@ public final class UnresolvedPermission extends Permission implements java.io.Se
 						signerCerts.add(certs[i]);
 						while (((i + 1) < certs.length)
 								&& ((X509Certificate) certs[i]).getIssuerDN()
-										.equals(((X509Certificate) certs[i + 1]).getSubjectDN())) {
+										.equals(((X509Certificate) certs[i + 1])
+												.getSubjectDN())) {
 							i++;
 						}
 						i++;
 					}
-					this.certs = new java.security.cert.Certificate[signerCerts.size()];
+					this.certs = new java.security.cert.Certificate[signerCerts
+							.size()];
 					signerCerts.toArray(this.certs);
 				}
 			}
@@ -246,24 +238,29 @@ public final class UnresolvedPermission extends Permission implements java.io.Se
 				} catch (NoSuchMethodException ne) {
 					try {
 						Constructor<?> c = pc.getConstructor(PARAMS1);
-						return (Permission) c.newInstance(new Object[] { name });
+						return (Permission) c.newInstance(new Object[] {
+								name });
 					} catch (NoSuchMethodException ne1) {
 						Constructor<?> c = pc.getConstructor(PARAMS2);
-						return (Permission) c.newInstance(new Object[] { name, actions });
+						return (Permission) c.newInstance(new Object[] { name,
+								actions });
 					}
 				}
 			} else {
 				if (name != null && actions == null) {
 					try {
 						Constructor<?> c = pc.getConstructor(PARAMS1);
-						return (Permission) c.newInstance(new Object[] { name });
+						return (Permission) c.newInstance(new Object[] {
+								name });
 					} catch (NoSuchMethodException ne) {
 						Constructor<?> c = pc.getConstructor(PARAMS2);
-						return (Permission) c.newInstance(new Object[] { name, actions });
+						return (Permission) c.newInstance(new Object[] { name,
+								actions });
 					}
 				} else {
 					Constructor<?> c = pc.getConstructor(PARAMS2);
-					return (Permission) c.newInstance(new Object[] { name, actions });
+					return (Permission) c.newInstance(new Object[] { name,
+							actions });
 				}
 			}
 		} catch (NoSuchMethodException nsme) {
@@ -287,7 +284,7 @@ public final class UnresolvedPermission extends Permission implements java.io.Se
 	 * UnresolvedPermission is never considered to imply another permission.
 	 *
 	 * @param p
-	 *            the permission to check against.
+	 *          the permission to check against.
 	 *
 	 * @return false.
 	 */
@@ -346,8 +343,9 @@ public final class UnresolvedPermission extends Permission implements java.io.Se
 		}
 
 		// check certs
-		if ((this.certs == null && that.certs != null) || (this.certs != null && that.certs == null)
-				|| (this.certs != null && that.certs != null
+		if ((this.certs == null && that.certs != null) || (this.certs != null
+				&& that.certs == null) || (this.certs != null
+						&& that.certs != null
 						&& this.certs.length != that.certs.length)) {
 			return false;
 		}
@@ -501,7 +499,8 @@ public final class UnresolvedPermission extends Permission implements java.io.Se
 	 *             by the certificate encoding itself which is written out as an
 	 *             array of bytes.
 	 */
-	private void writeObject(java.io.ObjectOutputStream oos) throws IOException {
+	private void writeObject(java.io.ObjectOutputStream oos)
+			throws IOException {
 		oos.defaultWriteObject();
 
 		if (certs == null || certs.length == 0) {
@@ -527,8 +526,8 @@ public final class UnresolvedPermission extends Permission implements java.io.Se
 	/**
 	 * Restores this object from a stream (i.e., deserializes it).
 	 */
-	private void readObject(java.io.ObjectInputStream ois)
-			throws IOException, ClassNotFoundException {
+	private void readObject(java.io.ObjectInputStream ois) throws IOException,
+			ClassNotFoundException {
 		CertificateFactory cf;
 		Hashtable<String, CertificateFactory> cfs = null;
 
@@ -558,8 +557,8 @@ public final class UnresolvedPermission extends Permission implements java.io.Se
 				try {
 					cf = CertificateFactory.getInstance(certType);
 				} catch (CertificateException ce) {
-					throw new ClassNotFoundException(
-							"Certificate factory for " + certType + " not found");
+					throw new ClassNotFoundException("Certificate factory for "
+							+ certType + " not found");
 				}
 				// store the certificate factory so we can reuse it later
 				cfs.put(certType, cf);

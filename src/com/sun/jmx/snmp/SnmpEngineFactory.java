@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp;
 
@@ -47,10 +27,11 @@ public interface SnmpEngineFactory {
 	 * The engine instantiation method.
 	 * 
 	 * @param p
-	 *            The parameters used to instantiate a new engine.
+	 *          The parameters used to instantiate a new engine.
 	 * @throws IllegalArgumentException
-	 *             Throwed if one of the configuration file file doesn't exist
-	 *             (Acl files, security file).
+	 *                                  Throwed if one of the configuration file
+	 *                                  file doesn't exist
+	 *                                  (Acl files, security file).
 	 * @return The newly created SnmpEngine.
 	 */
 	public SnmpEngine createEngine(SnmpEngineParameters p);
@@ -59,13 +40,15 @@ public interface SnmpEngineFactory {
 	 * The engine instantiation method.
 	 * 
 	 * @param p
-	 *            The parameters used to instantiate a new engine.
+	 *              The parameters used to instantiate a new engine.
 	 * @param ipacl
-	 *            The Ip ACL to pass to the Access Control Model.
+	 *              The Ip ACL to pass to the Access Control Model.
 	 * @throws IllegalArgumentException
-	 *             Throwed if one of the configuration file file doesn't exist
-	 *             (Acl files, security file).
+	 *                                  Throwed if one of the configuration file
+	 *                                  file doesn't exist
+	 *                                  (Acl files, security file).
 	 * @return The newly created SnmpEngine.
 	 */
-	public SnmpEngine createEngine(SnmpEngineParameters p, InetAddressAcl ipacl);
+	public SnmpEngine createEngine(SnmpEngineParameters p,
+			InetAddressAcl ipacl);
 }

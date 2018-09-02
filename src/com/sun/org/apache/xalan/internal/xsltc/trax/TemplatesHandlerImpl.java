@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -52,7 +49,8 @@ import java.util.Vector;
  * @author Morten Jorgensen
  * @author Santiago Pericas-Geertsen
  */
-public class TemplatesHandlerImpl implements ContentHandler, TemplatesHandler, SourceLoader {
+public class TemplatesHandlerImpl implements ContentHandler, TemplatesHandler,
+		SourceLoader {
 	/**
 	 * System ID for this stylesheet.
 	 */
@@ -87,23 +85,27 @@ public class TemplatesHandlerImpl implements ContentHandler, TemplatesHandler, S
 	/**
 	 * Default constructor
 	 */
-	protected TemplatesHandlerImpl(int indentNumber, TransformerFactoryImpl tfactory) {
+	protected TemplatesHandlerImpl(int indentNumber,
+			TransformerFactoryImpl tfactory) {
 		_indentNumber = indentNumber;
 		_tfactory = tfactory;
 
 		// Instantiate XSLTC and get reference to parser object
-		XSLTC xsltc = new XSLTC(tfactory.useServicesMechnism(), tfactory.getFeatureManager());
+		XSLTC xsltc = new XSLTC(tfactory.useServicesMechnism(), tfactory
+				.getFeatureManager());
 		if (tfactory.getFeature(XMLConstants.FEATURE_SECURE_PROCESSING))
 			xsltc.setSecureProcessing(true);
 
 		xsltc.setProperty(XMLConstants.ACCESS_EXTERNAL_STYLESHEET,
-				(String) tfactory.getAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET));
-		xsltc.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD,
-				(String) tfactory.getAttribute(XMLConstants.ACCESS_EXTERNAL_DTD));
-		xsltc.setProperty(XalanConstants.SECURITY_MANAGER,
-				tfactory.getAttribute(XalanConstants.SECURITY_MANAGER));
+				(String) tfactory.getAttribute(
+						XMLConstants.ACCESS_EXTERNAL_STYLESHEET));
+		xsltc.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, (String) tfactory
+				.getAttribute(XMLConstants.ACCESS_EXTERNAL_DTD));
+		xsltc.setProperty(XalanConstants.SECURITY_MANAGER, tfactory
+				.getAttribute(XalanConstants.SECURITY_MANAGER));
 
-		if ("true".equals(tfactory.getAttribute(TransformerFactoryImpl.ENABLE_INLINING)))
+		if ("true".equals(tfactory.getAttribute(
+				TransformerFactoryImpl.ENABLE_INLINING)))
 			xsltc.setTemplateInlining(true);
 		else
 			xsltc.setTemplateInlining(false);
@@ -126,7 +128,7 @@ public class TemplatesHandlerImpl implements ContentHandler, TemplatesHandler, S
 	 * base ID (URI or system ID) from where relative URLs will be resolved.
 	 * 
 	 * @param id
-	 *            Base URI for this stylesheet
+	 *           Base URI for this stylesheet
 	 */
 	public void setSystemId(String id) {
 		_systemId = id;
@@ -157,11 +159,11 @@ public class TemplatesHandlerImpl implements ContentHandler, TemplatesHandler, S
 	 * a TrAX URIResolver to the XSLTC compiler's Input and Import classes.
 	 *
 	 * @param href
-	 *            The URI of the document to load
+	 *                The URI of the document to load
 	 * @param context
-	 *            The URI of the currently loaded document
+	 *                The URI of the currently loaded document
 	 * @param xsltc
-	 *            The compiler that resuests the document
+	 *                The compiler that resuests the document
 	 * @return An InputSource with the loaded document
 	 */
 	public InputSource loadSource(String href, String context, XSLTC xsltc) {
@@ -255,8 +257,9 @@ public class TemplatesHandlerImpl implements ContentHandler, TemplatesHandler, S
 				// Check that the transformation went well before returning
 				final byte[][] bytecodes = xsltc.getBytecodes();
 				if (bytecodes != null) {
-					_templates = new TemplatesImpl(xsltc.getBytecodes(), transletName,
-							_parser.getOutputProperties(), _indentNumber, _tfactory);
+					_templates = new TemplatesImpl(xsltc.getBytecodes(),
+							transletName, _parser.getOutputProperties(),
+							_indentNumber, _tfactory);
 
 					// Set URIResolver on templates object
 					if (_uriResolver != null) {
@@ -297,8 +300,8 @@ public class TemplatesHandlerImpl implements ContentHandler, TemplatesHandler, S
 	/**
 	 * Just forward SAX2 event to parser object.
 	 */
-	public void startElement(String uri, String localname, String qname, Attributes attributes)
-			throws SAXException {
+	public void startElement(String uri, String localname, String qname,
+			Attributes attributes) throws SAXException {
 		_parser.startElement(uri, localname, qname, attributes);
 	}
 

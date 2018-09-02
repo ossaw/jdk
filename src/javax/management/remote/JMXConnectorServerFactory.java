@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -211,15 +191,15 @@ public class JMXConnectorServerFactory {
 
 	private static final String PROTOCOL_PROVIDER_DEFAULT_PACKAGE = "com.sun.jmx.remote.protocol";
 
-	private static final ClassLogger logger = new ClassLogger("javax.management.remote.misc",
-			"JMXConnectorServerFactory");
+	private static final ClassLogger logger = new ClassLogger(
+			"javax.management.remote.misc", "JMXConnectorServerFactory");
 
 	/** There are no instances of this class. */
-	private JMXConnectorServerFactory() {
-	}
+	private JMXConnectorServerFactory() {}
 
-	private static JMXConnectorServer getConnectorServerAsService(ClassLoader loader,
-			JMXServiceURL url, Map<String, ?> map, MBeanServer mbs) throws IOException {
+	private static JMXConnectorServer getConnectorServerAsService(
+			ClassLoader loader, JMXServiceURL url, Map<String, ?> map,
+			MBeanServer mbs) throws IOException {
 		Iterator<JMXConnectorServerProvider> providers = JMXConnectorFactory
 				.getProviderIterator(JMXConnectorServerProvider.class, loader);
 
@@ -231,14 +211,15 @@ public class JMXConnectorServerFactory {
 				throw e;
 			} catch (Exception e) {
 				if (logger.traceOn())
-					logger.trace("getConnectorAsService",
-							"URL[" + url + "] Service provider exception: " + e);
+					logger.trace("getConnectorAsService", "URL[" + url
+							+ "] Service provider exception: " + e);
 				if (!(e instanceof MalformedURLException)) {
 					if (exception == null) {
 						if (e instanceof IOException) {
 							exception = (IOException) e;
 						} else {
-							exception = EnvHelp.initCause(new IOException(e.getMessage()), e);
+							exception = EnvHelp.initCause(new IOException(e
+									.getMessage()), e);
 						}
 					}
 				}
@@ -259,46 +240,61 @@ public class JMXConnectorServerFactory {
 	 * </p>
 	 *
 	 * @param serviceURL
-	 *            the address of the new connector server. The actual address of
-	 *            the new connector server, as returned by its
-	 *            {@link JMXConnectorServer#getAddress() getAddress} method,
-	 *            will not necessarily be exactly the same. For example, it
-	 *            might include a port number if the original address did not.
+	 *                    the address of the new connector server. The actual
+	 *                    address of
+	 *                    the new connector server, as returned by its
+	 *                    {@link JMXConnectorServer#getAddress() getAddress}
+	 *                    method,
+	 *                    will not necessarily be exactly the same. For example,
+	 *                    it
+	 *                    might include a port number if the original address
+	 *                    did not.
 	 *
 	 * @param environment
-	 *            a set of attributes to control the new connector server's
-	 *            behavior. This parameter can be null. Keys in this map must be
-	 *            Strings. The appropriate type of each associated value depends
-	 *            on the attribute. The contents of <code>environment</code> are
-	 *            not changed by this call.
+	 *                    a set of attributes to control the new connector
+	 *                    server's
+	 *                    behavior. This parameter can be null. Keys in this map
+	 *                    must be
+	 *                    Strings. The appropriate type of each associated value
+	 *                    depends
+	 *                    on the attribute. The contents of
+	 *                    <code>environment</code> are
+	 *                    not changed by this call.
 	 *
 	 * @param mbeanServer
-	 *            the MBean server that this connector server is attached to.
-	 *            Null if this connector server will be attached to an MBean
-	 *            server by being registered in it.
+	 *                    the MBean server that this connector server is
+	 *                    attached to.
+	 *                    Null if this connector server will be attached to an
+	 *                    MBean
+	 *                    server by being registered in it.
 	 *
 	 * @return a <code>JMXConnectorServer</code> representing the new connector
 	 *         server. Each successful call to this method produces a different
 	 *         object.
 	 *
 	 * @exception NullPointerException
-	 *                if <code>serviceURL</code> is null.
+	 *                                  if <code>serviceURL</code> is null.
 	 *
 	 * @exception IOException
-	 *                if the connector server cannot be made because of a
-	 *                communication problem.
+	 *                                  if the connector server cannot be made
+	 *                                  because of a
+	 *                                  communication problem.
 	 *
 	 * @exception MalformedURLException
-	 *                if there is no provider for the protocol in
-	 *                <code>serviceURL</code>.
+	 *                                  if there is no provider for the protocol
+	 *                                  in
+	 *                                  <code>serviceURL</code>.
 	 *
 	 * @exception JMXProviderException
-	 *                if there is a provider for the protocol in
-	 *                <code>serviceURL</code> but it cannot be used for some
-	 *                reason.
+	 *                                  if there is a provider for the protocol
+	 *                                  in
+	 *                                  <code>serviceURL</code> but it cannot be
+	 *                                  used for some
+	 *                                  reason.
 	 */
-	public static JMXConnectorServer newJMXConnectorServer(JMXServiceURL serviceURL,
-			Map<String, ?> environment, MBeanServer mbeanServer) throws IOException {
+	public static JMXConnectorServer newJMXConnectorServer(
+			JMXServiceURL serviceURL, Map<String, ?> environment,
+			MBeanServer mbeanServer) throws IOException {
 		Map<String, Object> envcopy;
 		if (environment == null)
 			envcopy = new HashMap<String, Object>();
@@ -308,12 +304,14 @@ public class JMXConnectorServerFactory {
 		}
 
 		final Class<JMXConnectorServerProvider> targetInterface = JMXConnectorServerProvider.class;
-		final ClassLoader loader = JMXConnectorFactory.resolveClassLoader(envcopy);
+		final ClassLoader loader = JMXConnectorFactory.resolveClassLoader(
+				envcopy);
 		final String protocol = serviceURL.getProtocol();
 		final String providerClassName = "ServerProvider";
 
-		JMXConnectorServerProvider provider = JMXConnectorFactory.getProvider(serviceURL, envcopy,
-				providerClassName, targetInterface, loader);
+		JMXConnectorServerProvider provider = JMXConnectorFactory.getProvider(
+				serviceURL, envcopy, providerClassName, targetInterface,
+				loader);
 
 		IOException exception = null;
 		if (provider == null) {
@@ -323,8 +321,8 @@ public class JMXConnectorServerFactory {
 			// provider search algorithm doesn't handle well null classloader.
 			if (loader != null) {
 				try {
-					JMXConnectorServer connection = getConnectorServerAsService(loader, serviceURL,
-							envcopy, mbeanServer);
+					JMXConnectorServer connection = getConnectorServerAsService(
+							loader, serviceURL, envcopy, mbeanServer);
 					if (connection != null)
 						return connection;
 				} catch (JMXProviderException e) {
@@ -333,8 +331,10 @@ public class JMXConnectorServerFactory {
 					exception = e;
 				}
 			}
-			provider = JMXConnectorFactory.getProvider(protocol, PROTOCOL_PROVIDER_DEFAULT_PACKAGE,
-					JMXConnectorFactory.class.getClassLoader(), providerClassName, targetInterface);
+			provider = JMXConnectorFactory.getProvider(protocol,
+					PROTOCOL_PROVIDER_DEFAULT_PACKAGE, JMXConnectorFactory.class
+							.getClassLoader(), providerClassName,
+					targetInterface);
 		}
 
 		if (provider == null) {

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,25 +41,18 @@ public class SerializerMessages_sv extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Serializer Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 * 
 	 * 1) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
-	 * 
 	 * 2) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 3) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
-	 *
 	 */
 
 	/** The lookup table for error messages. */
@@ -107,7 +97,8 @@ public class SerializerMessages_sv extends ListResourceBundle {
 				 * element. The substitution text specifies the name of the
 				 * attribute.
 				 */
-				{ MsgKey.ER_STRAY_ATTRIBUTE, "Attributet ''{0}'' finns utanf\u00F6r elementet." },
+				{ MsgKey.ER_STRAY_ATTRIBUTE,
+						"Attributet ''{0}'' finns utanf\u00F6r elementet." },
 
 				/*
 				 * Note to translators: As with the preceding message, a
@@ -136,7 +127,8 @@ public class SerializerMessages_sv extends ListResourceBundle {
 				{ MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED,
 						"V\u00E4rd \u00E4r inte en v\u00E4lformulerad adress" },
 
-				{ MsgKey.ER_SCHEME_NOT_CONFORMANT, "Schemat \u00E4r inte likformigt." },
+				{ MsgKey.ER_SCHEME_NOT_CONFORMANT,
+						"Schemat \u00E4r inte likformigt." },
 
 				{ MsgKey.ER_SCHEME_FROM_NULL_STRING,
 						"Kan inte st\u00E4lla in schema fr\u00E5n null-str\u00E4ng" },
@@ -147,7 +139,8 @@ public class SerializerMessages_sv extends ListResourceBundle {
 				{ MsgKey.ER_PATH_INVALID_CHAR,
 						"S\u00F6kv\u00E4gen inneh\u00E5ller ett ogiltigt tecken: {0}" },
 
-				{ MsgKey.ER_FRAG_INVALID_CHAR, "Fragment inneh\u00E5ller ett ogiltigt tecken" },
+				{ MsgKey.ER_FRAG_INVALID_CHAR,
+						"Fragment inneh\u00E5ller ett ogiltigt tecken" },
 
 				{ MsgKey.ER_FRAG_WHEN_PATH_NULL,
 						"Fragment kan inte st\u00E4llas in n\u00E4r s\u00F6kv\u00E4g \u00E4r null" },

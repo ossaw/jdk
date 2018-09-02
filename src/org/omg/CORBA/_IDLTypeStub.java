@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -33,8 +13,8 @@ package org.omg.CORBA;
  * GMT+00:00
  */
 
-public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl
-		implements org.omg.CORBA.IDLType {
+public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl implements
+		org.omg.CORBA.IDLType {
 	/**
 	 * Constructs a default <code>_IDLTypeStub</code> object. NOTE: If the
 	 * default constructor is used, the object is useless until the method
@@ -51,7 +31,7 @@ public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl
 	 * <code>Delegate</code> object.
 	 *
 	 * @param delegate
-	 *            a Delegate object
+	 *                 a Delegate object
 	 */
 	// NOTE: This constructor is not required according to the spec. We keep it
 	// as a convenience method.
@@ -63,7 +43,8 @@ public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl
 	public org.omg.CORBA.TypeCode type() {
 		org.omg.CORBA.portable.InputStream _in = null;
 		try {
-			org.omg.CORBA.portable.OutputStream _out = _request("_get_type", true);
+			org.omg.CORBA.portable.OutputStream _out = _request("_get_type",
+					true);
 			_in = _invoke(_out);
 			org.omg.CORBA.TypeCode __result = _in.read_TypeCode();
 			return __result;
@@ -82,9 +63,11 @@ public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl
 	public org.omg.CORBA.DefinitionKind def_kind() {
 		org.omg.CORBA.portable.InputStream _in = null;
 		try {
-			org.omg.CORBA.portable.OutputStream _out = _request("_get_def_kind", true);
+			org.omg.CORBA.portable.OutputStream _out = _request("_get_def_kind",
+					true);
 			_in = _invoke(_out);
-			org.omg.CORBA.DefinitionKind __result = org.omg.CORBA.DefinitionKindHelper.read(_in);
+			org.omg.CORBA.DefinitionKind __result = org.omg.CORBA.DefinitionKindHelper
+					.read(_in);
 			return __result;
 		} catch (org.omg.CORBA.portable.ApplicationException _ex) {
 			_in = _ex.getInputStream();
@@ -101,7 +84,8 @@ public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl
 	public void destroy() {
 		org.omg.CORBA.portable.InputStream _in = null;
 		try {
-			org.omg.CORBA.portable.OutputStream _out = _request("destroy", true);
+			org.omg.CORBA.portable.OutputStream _out = _request("destroy",
+					true);
 			_in = _invoke(_out);
 		} catch (org.omg.CORBA.portable.ApplicationException _ex) {
 			_in = _ex.getInputStream();
@@ -125,7 +109,8 @@ public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl
 	private void readObject(java.io.ObjectInputStream s) {
 		try {
 			String str = s.readUTF();
-			org.omg.CORBA.Object obj = org.omg.CORBA.ORB.init().string_to_object(str);
+			org.omg.CORBA.Object obj = org.omg.CORBA.ORB.init()
+					.string_to_object(str);
 			org.omg.CORBA.portable.Delegate delegate = ((org.omg.CORBA.portable.ObjectImpl) obj)
 					._get_delegate();
 			_set_delegate(delegate);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.server;
@@ -50,7 +30,7 @@ public class SkeletonMismatchException extends RemoteException {
 	 * detail message.
 	 *
 	 * @param s
-	 *            the detail message
+	 *          the detail message
 	 * @since JDK1.1
 	 * @deprecated no replacement
 	 */

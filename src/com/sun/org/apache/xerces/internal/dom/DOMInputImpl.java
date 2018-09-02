@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001, 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -91,8 +88,7 @@ public class DOMInputImpl implements LSInput {
 	 *
 	 *
 	 */
-	public DOMInputImpl() {
-	}
+	public DOMInputImpl() {}
 
 	/**
 	 * Constructs an input source from just the public and system identifiers,
@@ -100,16 +96,21 @@ public class DOMInputImpl implements LSInput {
 	 * the caller.
 	 *
 	 * @param publicId
-	 *            The public identifier, if known.
+	 *                     The public identifier, if known.
 	 * @param systemId
-	 *            The system identifier. This value should always be set, if
-	 *            possible, and can be relative or absolute. If the system
-	 *            identifier is relative, then the base system identifier should
-	 *            be set.
+	 *                     The system identifier. This value should always be
+	 *                     set, if
+	 *                     possible, and can be relative or absolute. If the
+	 *                     system
+	 *                     identifier is relative, then the base system
+	 *                     identifier should
+	 *                     be set.
 	 * @param baseSystemId
-	 *            The base system identifier. This value should always be set to
-	 *            the fully expanded URI of the base system identifier, if
-	 *            possible.
+	 *                     The base system identifier. This value should always
+	 *                     be set to
+	 *                     the fully expanded URI of the base system identifier,
+	 *                     if
+	 *                     possible.
 	 */
 
 	public DOMInputImpl(String publicId, String systemId, String baseSystemId) {
@@ -124,20 +125,25 @@ public class DOMInputImpl implements LSInput {
 	 * Constructs an input source from a byte stream.
 	 *
 	 * @param publicId
-	 *            The public identifier, if known.
+	 *                     The public identifier, if known.
 	 * @param systemId
-	 *            The system identifier. This value should always be set, if
-	 *            possible, and can be relative or absolute. If the system
-	 *            identifier is relative, then the base system identifier should
-	 *            be set.
+	 *                     The system identifier. This value should always be
+	 *                     set, if
+	 *                     possible, and can be relative or absolute. If the
+	 *                     system
+	 *                     identifier is relative, then the base system
+	 *                     identifier should
+	 *                     be set.
 	 * @param baseSystemId
-	 *            The base system identifier. This value should always be set to
-	 *            the fully expanded URI of the base system identifier, if
-	 *            possible.
+	 *                     The base system identifier. This value should always
+	 *                     be set to
+	 *                     the fully expanded URI of the base system identifier,
+	 *                     if
+	 *                     possible.
 	 * @param byteStream
-	 *            The byte stream.
+	 *                     The byte stream.
 	 * @param encoding
-	 *            The encoding of the byte stream, if known.
+	 *                     The encoding of the byte stream, if known.
 	 */
 
 	public DOMInputImpl(String publicId, String systemId, String baseSystemId,
@@ -155,25 +161,31 @@ public class DOMInputImpl implements LSInput {
 	 * Constructs an input source from a character stream.
 	 *
 	 * @param publicId
-	 *            The public identifier, if known.
+	 *                     The public identifier, if known.
 	 * @param systemId
-	 *            The system identifier. This value should always be set, if
-	 *            possible, and can be relative or absolute. If the system
-	 *            identifier is relative, then the base system identifier should
-	 *            be set.
+	 *                     The system identifier. This value should always be
+	 *                     set, if
+	 *                     possible, and can be relative or absolute. If the
+	 *                     system
+	 *                     identifier is relative, then the base system
+	 *                     identifier should
+	 *                     be set.
 	 * @param baseSystemId
-	 *            The base system identifier. This value should always be set to
-	 *            the fully expanded URI of the base system identifier, if
-	 *            possible.
+	 *                     The base system identifier. This value should always
+	 *                     be set to
+	 *                     the fully expanded URI of the base system identifier,
+	 *                     if
+	 *                     possible.
 	 * @param charStream
-	 *            The character stream.
+	 *                     The character stream.
 	 * @param encoding
-	 *            The original encoding of the byte stream used by the reader,
-	 *            if known.
+	 *                     The original encoding of the byte stream used by the
+	 *                     reader,
+	 *                     if known.
 	 */
 
-	public DOMInputImpl(String publicId, String systemId, String baseSystemId, Reader charStream,
-			String encoding) {
+	public DOMInputImpl(String publicId, String systemId, String baseSystemId,
+			Reader charStream, String encoding) {
 
 		fPublicId = publicId;
 		fSystemId = systemId;
@@ -187,25 +199,31 @@ public class DOMInputImpl implements LSInput {
 	 * Constructs an input source from a String.
 	 *
 	 * @param publicId
-	 *            The public identifier, if known.
+	 *                     The public identifier, if known.
 	 * @param systemId
-	 *            The system identifier. This value should always be set, if
-	 *            possible, and can be relative or absolute. If the system
-	 *            identifier is relative, then the base system identifier should
-	 *            be set.
+	 *                     The system identifier. This value should always be
+	 *                     set, if
+	 *                     possible, and can be relative or absolute. If the
+	 *                     system
+	 *                     identifier is relative, then the base system
+	 *                     identifier should
+	 *                     be set.
 	 * @param baseSystemId
-	 *            The base system identifier. This value should always be set to
-	 *            the fully expanded URI of the base system identifier, if
-	 *            possible.
+	 *                     The base system identifier. This value should always
+	 *                     be set to
+	 *                     the fully expanded URI of the base system identifier,
+	 *                     if
+	 *                     possible.
 	 * @param data
-	 *            The String Data.
+	 *                     The String Data.
 	 * @param encoding
-	 *            The original encoding of the byte stream used by the reader,
-	 *            if known.
+	 *                     The original encoding of the byte stream used by the
+	 *                     reader,
+	 *                     if known.
 	 */
 
-	public DOMInputImpl(String publicId, String systemId, String baseSystemId, String data,
-			String encoding) {
+	public DOMInputImpl(String publicId, String systemId, String baseSystemId,
+			String data, String encoding) {
 		fPublicId = publicId;
 		fSystemId = systemId;
 		fBaseSystemId = baseSystemId;

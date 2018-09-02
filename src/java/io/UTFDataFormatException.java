@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -57,7 +37,7 @@ public class UTFDataFormatException extends IOException {
 	 * <code>java.lang.Throwable</code>.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public UTFDataFormatException(String s) {
 		super(s);

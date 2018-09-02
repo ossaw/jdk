@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -42,7 +22,7 @@ public interface Highlighter {
 	 * being navigated by the implementation of this interface.
 	 *
 	 * @param c
-	 *            the JTextComponent editor
+	 *          the JTextComponent editor
 	 */
 	public void install(JTextComponent c);
 
@@ -52,7 +32,7 @@ public interface Highlighter {
 	 * attached.
 	 *
 	 * @param c
-	 *            the JTextComponent editor
+	 *          the JTextComponent editor
 	 */
 	public void deinstall(JTextComponent c);
 
@@ -60,7 +40,7 @@ public interface Highlighter {
 	 * Renders the highlights.
 	 *
 	 * @param g
-	 *            the graphics context.
+	 *          the graphics context.
 	 */
 	public void paint(Graphics g);
 
@@ -69,16 +49,17 @@ public interface Highlighter {
 	 * the highlight.
 	 *
 	 * @param p0
-	 *            the beginning of the range &gt;= 0
+	 *           the beginning of the range &gt;= 0
 	 * @param p1
-	 *            the end of the range &gt;= p0
+	 *           the end of the range &gt;= p0
 	 * @param p
-	 *            the painter to use for the actual highlighting
+	 *           the painter to use for the actual highlighting
 	 * @return an object that refers to the highlight
 	 * @exception BadLocationException
-	 *                for an invalid range specification
+	 *                                 for an invalid range specification
 	 */
-	public Object addHighlight(int p0, int p1, HighlightPainter p) throws BadLocationException;
+	public Object addHighlight(int p0, int p1, HighlightPainter p)
+			throws BadLocationException;
 
 	/**
 	 * Removes a highlight from the view.
@@ -106,9 +87,10 @@ public interface Highlighter {
 	 * @param p1
 	 *            the end of the range &gt;= p0
 	 * @exception BadLocationException
-	 *                for an invalid range specification
+	 *                                 for an invalid range specification
 	 */
-	public void changeHighlight(Object tag, int p0, int p1) throws BadLocationException;
+	public void changeHighlight(Object tag, int p0, int p1)
+			throws BadLocationException;
 
 	/**
 	 * Fetches the current list of highlights.
@@ -126,17 +108,18 @@ public interface Highlighter {
 		 * Renders the highlight.
 		 *
 		 * @param g
-		 *            the graphics context
+		 *               the graphics context
 		 * @param p0
-		 *            the starting offset in the model &gt;= 0
+		 *               the starting offset in the model &gt;= 0
 		 * @param p1
-		 *            the ending offset in the model &gt;= p0
+		 *               the ending offset in the model &gt;= p0
 		 * @param bounds
-		 *            the bounding box for the highlight
+		 *               the bounding box for the highlight
 		 * @param c
-		 *            the editor
+		 *               the editor
 		 */
-		public void paint(Graphics g, int p0, int p1, Shape bounds, JTextComponent c);
+		public void paint(Graphics g, int p0, int p1, Shape bounds,
+				JTextComponent c);
 
 	}
 

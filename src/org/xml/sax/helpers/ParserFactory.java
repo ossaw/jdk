@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // SAX parser factory.
@@ -71,8 +51,7 @@ public class ParserFactory {
 	/**
 	 * Private null constructor.
 	 */
-	private ParserFactory() {
-	}
+	private ParserFactory() {}
 
 	/**
 	 * Create a new SAX parser using the `org.xml.sax.parser' system property.
@@ -82,25 +61,31 @@ public class ParserFactory {
 	 * {@link org.xml.sax.Parser Parser} interface.
 	 * </p>
 	 *
-	 * @exception java.lang.NullPointerException
-	 *                There is no value for the `org.xml.sax.parser' system
-	 *                property.
-	 * @exception java.lang.ClassNotFoundException
-	 *                The SAX parser class was not found (check your CLASSPATH).
+	 * @exception                        java.lang.NullPointerException
+	 *                                   There is no value for the
+	 *                                   `org.xml.sax.parser' system
+	 *                                   property.
+	 * @exception                        java.lang.ClassNotFoundException
+	 *                                   The SAX parser class was not found
+	 *                                   (check your CLASSPATH).
 	 * @exception IllegalAccessException
-	 *                The SAX parser class was found, but you do not have
-	 *                permission to load it.
+	 *                                   The SAX parser class was found, but you
+	 *                                   do not have
+	 *                                   permission to load it.
 	 * @exception InstantiationException
-	 *                The SAX parser class was found but could not be
-	 *                instantiated.
-	 * @exception java.lang.ClassCastException
-	 *                The SAX parser class was found and instantiated, but does
-	 *                not implement org.xml.sax.Parser.
+	 *                                   The SAX parser class was found but
+	 *                                   could not be
+	 *                                   instantiated.
+	 * @exception                        java.lang.ClassCastException
+	 *                                   The SAX parser class was found and
+	 *                                   instantiated, but does
+	 *                                   not implement org.xml.sax.Parser.
 	 * @see #makeParser(java.lang.String)
 	 * @see org.xml.sax.Parser
 	 */
-	public static Parser makeParser() throws ClassNotFoundException, IllegalAccessException,
-			InstantiationException, NullPointerException, ClassCastException {
+	public static Parser makeParser() throws ClassNotFoundException,
+			IllegalAccessException, InstantiationException,
+			NullPointerException, ClassCastException {
 		String className = ss.getSystemProperty("org.xml.sax.parser");
 		if (className == null) {
 			throw new NullPointerException("No value for sax.parser property");
@@ -118,24 +103,30 @@ public class ParserFactory {
 	 * </p>
 	 *
 	 * @param className
-	 *            A string containing the name of the SAX parser class.
-	 * @exception java.lang.ClassNotFoundException
-	 *                The SAX parser class was not found (check your CLASSPATH).
+	 *                  A string containing the name of the SAX parser class.
+	 * @exception                        java.lang.ClassNotFoundException
+	 *                                   The SAX parser class was not found
+	 *                                   (check your CLASSPATH).
 	 * @exception IllegalAccessException
-	 *                The SAX parser class was found, but you do not have
-	 *                permission to load it.
+	 *                                   The SAX parser class was found, but you
+	 *                                   do not have
+	 *                                   permission to load it.
 	 * @exception InstantiationException
-	 *                The SAX parser class was found but could not be
-	 *                instantiated.
-	 * @exception java.lang.ClassCastException
-	 *                The SAX parser class was found and instantiated, but does
-	 *                not implement org.xml.sax.Parser.
+	 *                                   The SAX parser class was found but
+	 *                                   could not be
+	 *                                   instantiated.
+	 * @exception                        java.lang.ClassCastException
+	 *                                   The SAX parser class was found and
+	 *                                   instantiated, but does
+	 *                                   not implement org.xml.sax.Parser.
 	 * @see #makeParser()
 	 * @see org.xml.sax.Parser
 	 */
-	public static Parser makeParser(String className) throws ClassNotFoundException,
-			IllegalAccessException, InstantiationException, ClassCastException {
-		return (Parser) NewInstance.newInstance(ss.getContextClassLoader(), className);
+	public static Parser makeParser(String className)
+			throws ClassNotFoundException, IllegalAccessException,
+			InstantiationException, ClassCastException {
+		return (Parser) NewInstance.newInstance(ss.getContextClassLoader(),
+				className);
 	}
 
 }

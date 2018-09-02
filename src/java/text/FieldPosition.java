@@ -1,39 +1,17 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996 - All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - All Rights Reserved
- *
- *   The original version of this source code and documentation is copyrighted
+ * The original version of this source code and documentation is copyrighted
  * and owned by Taligent, Inc., a wholly-owned subsidiary of IBM. These
  * materials are provided under terms of a License Agreement between Taligent
  * and Sun. This technology is protected by multiple US and International
  * patents. This notice and attribution to Taligent may not be removed.
- *   Taligent is a registered trademark of Taligent, Inc.
- *
+ * Taligent is a registered trademark of Taligent, Inc.
  */
 
 package java.text;
@@ -100,7 +78,7 @@ public class FieldPosition {
 	 * subclasses of Format.
 	 *
 	 * @param field
-	 *            the field identifier
+	 *              the field identifier
 	 * @see java.text.NumberFormat#INTEGER_FIELD
 	 * @see java.text.NumberFormat#FRACTION_FIELD
 	 * @see java.text.DateFormat#YEAR_FIELD
@@ -117,7 +95,7 @@ public class FieldPosition {
 	 * <code>new FieldPosition(attribute, -1)</code>.
 	 *
 	 * @param attribute
-	 *            Format.Field constant identifying a field
+	 *                  Format.Field constant identifying a field
 	 * @since 1.4
 	 */
 	public FieldPosition(Format.Field attribute) {
@@ -137,9 +115,9 @@ public class FieldPosition {
 	 * <code>fieldID</code> should be -1.
 	 *
 	 * @param attribute
-	 *            Format.Field constant identifying a field
+	 *                  Format.Field constant identifying a field
 	 * @param fieldID
-	 *            integer constant identifying a field
+	 *                  integer constant identifying a field
 	 * @since 1.4
 	 */
 	public FieldPosition(Format.Field attribute, int fieldID) {
@@ -191,7 +169,7 @@ public class FieldPosition {
 	 * Sets the begin index. For use by subclasses of Format.
 	 *
 	 * @param bi
-	 *            the begin index
+	 *           the begin index
 	 * @since 1.2
 	 */
 	public void setBeginIndex(int bi) {
@@ -202,7 +180,7 @@ public class FieldPosition {
 	 * Sets the end index. For use by subclasses of Format.
 	 *
 	 * @param ei
-	 *            the end index
+	 *           the end index
 	 * @since 1.2
 	 */
 	public void setEndIndex(int ei) {
@@ -253,8 +231,9 @@ public class FieldPosition {
 	 * @return a string representation of this object
 	 */
 	public String toString() {
-		return getClass().getName() + "[field=" + field + ",attribute=" + attribute + ",beginIndex="
-				+ beginIndex + ",endIndex=" + endIndex + ']';
+		return getClass().getName() + "[field=" + field + ",attribute="
+				+ attribute + ",beginIndex=" + beginIndex + ",endIndex="
+				+ endIndex + ']';
 	}
 
 	/**
@@ -292,8 +271,8 @@ public class FieldPosition {
 		 */
 		private boolean encounteredField;
 
-		public void formatted(Format.Field attr, Object value, int start, int end,
-				StringBuffer buffer) {
+		public void formatted(Format.Field attr, Object value, int start,
+				int end, StringBuffer buffer) {
 			if (!encounteredField && matchesField(attr)) {
 				setBeginIndex(start);
 				setEndIndex(end);
@@ -301,8 +280,8 @@ public class FieldPosition {
 			}
 		}
 
-		public void formatted(int fieldID, Format.Field attr, Object value, int start, int end,
-				StringBuffer buffer) {
+		public void formatted(int fieldID, Format.Field attr, Object value,
+				int start, int end, StringBuffer buffer) {
 			if (!encounteredField && matchesField(attr, fieldID)) {
 				setBeginIndex(start);
 				setEndIndex(end);

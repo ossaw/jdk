@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -55,18 +35,18 @@ public class Attribute implements Serializable {
 	 * with the given value.
 	 *
 	 * @param name
-	 *            A String containing the name of the attribute to be created.
-	 *            Cannot be null.
+	 *              A String containing the name of the attribute to be created.
+	 *              Cannot be null.
 	 * @param value
-	 *            The Object which is assigned to the attribute. This object
-	 *            must be of the same type as the attribute.
+	 *              The Object which is assigned to the attribute. This object
+	 *              must be of the same type as the attribute.
 	 *
 	 */
 	public Attribute(String name, Object value) {
 
 		if (name == null) {
-			throw new RuntimeOperationsException(
-					new IllegalArgumentException("Attribute name cannot be null "));
+			throw new RuntimeOperationsException(new IllegalArgumentException(
+					"Attribute name cannot be null "));
 		}
 
 		this.name = name;
@@ -95,8 +75,8 @@ public class Attribute implements Serializable {
 	 * Compares the current Attribute Object with another Attribute Object.
 	 *
 	 * @param object
-	 *            The Attribute that the current Attribute is to be compared
-	 *            with.
+	 *               The Attribute that the current Attribute is to be compared
+	 *               with.
 	 *
 	 * @return True if the two Attribute objects are equal, otherwise false.
 	 */

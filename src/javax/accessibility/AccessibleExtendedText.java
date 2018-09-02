@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.accessibility;
@@ -75,9 +55,9 @@ public interface AccessibleExtendedText {
 	 * Returns the text between two indices
 	 *
 	 * @param startIndex
-	 *            the start index in the text
+	 *                   the start index in the text
 	 * @param endIndex
-	 *            the end index in the text
+	 *                   the end index in the text
 	 * @return the text string if the indices are valid. Otherwise, null is
 	 *         returned.
 	 */
@@ -87,11 +67,11 @@ public interface AccessibleExtendedText {
 	 * Returns the <code>AccessibleTextSequence</code> at a given index.
 	 *
 	 * @param part
-	 *            the <code>CHARACTER</code>, <code>WORD</code>,
-	 *            <code>SENTENCE</code>, <code>LINE</code> or
-	 *            <code>ATTRIBUTE_RUN</code> to retrieve
+	 *              the <code>CHARACTER</code>, <code>WORD</code>,
+	 *              <code>SENTENCE</code>, <code>LINE</code> or
+	 *              <code>ATTRIBUTE_RUN</code> to retrieve
 	 * @param index
-	 *            an index within the text
+	 *              an index within the text
 	 * @return an <code>AccessibleTextSequence</code> specifying the text if
 	 *         part and index are valid. Otherwise, null is returned.
 	 *
@@ -105,11 +85,11 @@ public interface AccessibleExtendedText {
 	 * Returns the <code>AccessibleTextSequence</code> after a given index.
 	 *
 	 * @param part
-	 *            the <code>CHARACTER</code>, <code>WORD</code>,
-	 *            <code>SENTENCE</code>, <code>LINE</code> or
-	 *            <code>ATTRIBUTE_RUN</code> to retrieve
+	 *              the <code>CHARACTER</code>, <code>WORD</code>,
+	 *              <code>SENTENCE</code>, <code>LINE</code> or
+	 *              <code>ATTRIBUTE_RUN</code> to retrieve
 	 * @param index
-	 *            an index within the text
+	 *              an index within the text
 	 * @return an <code>AccessibleTextSequence</code> specifying the text if
 	 *         part and index are valid. Otherwise, null is returned.
 	 *
@@ -123,11 +103,11 @@ public interface AccessibleExtendedText {
 	 * Returns the <code>AccessibleTextSequence</code> before a given index.
 	 *
 	 * @param part
-	 *            the <code>CHARACTER</code>, <code>WORD</code>,
-	 *            <code>SENTENCE</code>, <code>LINE</code> or
-	 *            <code>ATTRIBUTE_RUN</code> to retrieve
+	 *              the <code>CHARACTER</code>, <code>WORD</code>,
+	 *              <code>SENTENCE</code>, <code>LINE</code> or
+	 *              <code>ATTRIBUTE_RUN</code> to retrieve
 	 * @param index
-	 *            an index within the text
+	 *              an index within the text
 	 * @return an <code>AccessibleTextSequence</code> specifying the text if
 	 *         part and index are valid. Otherwise, null is returned.
 	 *
@@ -141,9 +121,9 @@ public interface AccessibleExtendedText {
 	 * Returns the bounding rectangle of the text between two indices.
 	 *
 	 * @param startIndex
-	 *            the start index in the text
+	 *                   the start index in the text
 	 * @param endIndex
-	 *            the end index in the text
+	 *                   the end index in the text
 	 * @return the bounding rectangle of the text if the indices are valid.
 	 *         Otherwise, null is returned.
 	 */

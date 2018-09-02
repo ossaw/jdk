@@ -2,21 +2,19 @@
  * Copyright (c) 2015, Oracle and/or its affiliates. All rights reserved.
  */
 /*
-* Licensed to the Apache Software Foundation (ASF) under one or more
-* contributor license agreements.  See the NOTICE file distributed with
-* this work for additional information regarding copyright ownership.
-* The ASF licenses this file to You under the Apache License, Version 2.0
-* (the "License"); you may not use this file except in compliance with
-* the License.  You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.sun.org.apache.xerces.internal.dom;
 
@@ -75,7 +73,8 @@ import org.w3c.dom.events.EventTarget;
  * @author Joe Kesselman, IBM
  * @since PR-DOM-Level-1-19980818.
  */
-public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable, Serializable {
+public abstract class NodeImpl implements Node, NodeList, EventTarget,
+		Cloneable, Serializable {
 
 	//
 	// Constants
@@ -171,8 +170,7 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	} // <init>(CoreDocumentImpl)
 
 	/** Constructor for serialization. */
-	public NodeImpl() {
-	}
+	public NodeImpl() {}
 
 	//
 	// Node methods
@@ -220,14 +218,19 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 *         DocumentNode.)
 	 *
 	 * @throws DOMException(HIERARCHY_REQUEST_ERR)
-	 *             if newChild is of a type that shouldn't be a child of this
-	 *             node.
+	 *                                                   if newChild is of a
+	 *                                                   type that shouldn't be
+	 *                                                   a child of this
+	 *                                                   node.
 	 *
 	 * @throws DOMException(WRONG_DOCUMENT_ERR)
-	 *             if newChild has a different owner document than we do.
+	 *                                                   if newChild has a
+	 *                                                   different owner
+	 *                                                   document than we do.
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if this node is read-only.
+	 *                                                   if this node is
+	 *                                                   read-only.
 	 */
 	public Node appendChild(Node newChild) throws DOMException {
 		return insertBefore(newChild, null);
@@ -280,7 +283,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 		// this is overriden in readonly subclasses
 		newnode.isReadOnly(false);
 
-		ownerDocument().callUserDataHandlers(this, newnode, UserDataHandler.NODE_CLONED);
+		ownerDocument().callUserDataHandlers(this, newnode,
+				UserDataHandler.NODE_CLONED);
 
 		return newnode;
 
@@ -453,33 +457,46 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * @see ParentNode
 	 *
 	 * @param newChild
-	 *            The Node to be moved to our subtree. As a convenience feature,
-	 *            inserting a DocumentNode will instead insert all its children.
+	 *                 The Node to be moved to our subtree. As a convenience
+	 *                 feature,
+	 *                 inserting a DocumentNode will instead insert all its
+	 *                 children.
 	 *
 	 * @param refChild
-	 *            Current child which newChild should be placed immediately
-	 *            before. If refChild is null, the insertion occurs after all
-	 *            existing Nodes, like appendChild().
+	 *                 Current child which newChild should be placed immediately
+	 *                 before. If refChild is null, the insertion occurs after
+	 *                 all
+	 *                 existing Nodes, like appendChild().
 	 *
 	 * @return newChild, in its new state (relocated, or emptied in the case of
 	 *         DocumentNode.)
 	 *
 	 * @throws DOMException(HIERARCHY_REQUEST_ERR)
-	 *             if newChild is of a type that shouldn't be a child of this
-	 *             node, or if newChild is an ancestor of this node.
+	 *                                                   if newChild is of a
+	 *                                                   type that shouldn't be
+	 *                                                   a child of this
+	 *                                                   node, or if newChild is
+	 *                                                   an ancestor of this
+	 *                                                   node.
 	 *
 	 * @throws DOMException(WRONG_DOCUMENT_ERR)
-	 *             if newChild has a different owner document than we do.
+	 *                                                   if newChild has a
+	 *                                                   different owner
+	 *                                                   document than we do.
 	 *
 	 * @throws DOMException(NOT_FOUND_ERR)
-	 *             if refChild is not a child of this node.
+	 *                                                   if refChild is not a
+	 *                                                   child of this node.
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if this node is read-only.
+	 *                                                   if this node is
+	 *                                                   read-only.
 	 */
 	public Node insertBefore(Node newChild, Node refChild) throws DOMException {
-		throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, DOMMessageFormatter
-				.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR", null));
+		throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR,
+				DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR",
+						null));
 	}
 
 	/**
@@ -493,14 +510,17 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * @return oldChild, in its new state (removed).
 	 *
 	 * @throws DOMException(NOT_FOUND_ERR)
-	 *             if oldChild is not a child of this node.
+	 *                                                   if oldChild is not a
+	 *                                                   child of this node.
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if this node is read-only.
+	 *                                                   if this node is
+	 *                                                   read-only.
 	 */
 	public Node removeChild(Node oldChild) throws DOMException {
 		throw new DOMException(DOMException.NOT_FOUND_ERR, DOMMessageFormatter
-				.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null));
+				.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR",
+						null));
 	}
 
 	/**
@@ -515,21 +535,30 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * @return oldChild, in its new state (removed).
 	 *
 	 * @throws DOMException(HIERARCHY_REQUEST_ERR)
-	 *             if newChild is of a type that shouldn't be a child of this
-	 *             node, or if newChild is one of our ancestors.
+	 *                                                   if newChild is of a
+	 *                                                   type that shouldn't be
+	 *                                                   a child of this
+	 *                                                   node, or if newChild is
+	 *                                                   one of our ancestors.
 	 *
 	 * @throws DOMException(WRONG_DOCUMENT_ERR)
-	 *             if newChild has a different owner document than we do.
+	 *                                                   if newChild has a
+	 *                                                   different owner
+	 *                                                   document than we do.
 	 *
 	 * @throws DOMException(NOT_FOUND_ERR)
-	 *             if oldChild is not a child of this node.
+	 *                                                   if oldChild is not a
+	 *                                                   child of this node.
 	 *
 	 * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-	 *             if this node is read-only.
+	 *                                                   if this node is
+	 *                                                   read-only.
 	 */
 	public Node replaceChild(Node newChild, Node oldChild) throws DOMException {
-		throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, DOMMessageFormatter
-				.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR", null));
+		throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR,
+				DOMMessageFormatter.formatMessage(
+						DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR",
+						null));
 	}
 
 	//
@@ -559,7 +588,7 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 *
 	 * @return org.w3c.dom.Node
 	 * @param Index
-	 *            int
+	 *              int
 	 */
 	public Node item(int index) {
 		return null;
@@ -601,14 +630,17 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * that feature is supported by this node.
 	 * 
 	 * @param feature
-	 *            The package name of the feature to test. This is the same name
-	 *            as what can be passed to the method hasFeature on
-	 *            DOMImplementation.
+	 *                The package name of the feature to test. This is the same
+	 *                name
+	 *                as what can be passed to the method hasFeature on
+	 *                DOMImplementation.
 	 * @param version
-	 *            This is the version number of the package name to test. In
-	 *            Level 2, version 1, this is the string "2.0". If the version
-	 *            is not specified, supporting any version of the feature will
-	 *            cause the method to return true.
+	 *                This is the version number of the package name to test. In
+	 *                Level 2, version 1, this is the string "2.0". If the
+	 *                version
+	 *                is not specified, supporting any version of the feature
+	 *                will
+	 *                cause the method to return true.
 	 * @return boolean Returns true if this node defines a subtree within which
 	 *         the specified feature is supported, false otherwise.
 	 * @since WD-DOM-Level-2-19990923
@@ -682,7 +714,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * <p>
 	 *
 	 * @throws INVALID_CHARACTER_ERR
-	 *             Raised if the specified prefix contains an invalid character.
+	 *                               Raised if the specified prefix contains an
+	 *                               invalid character.
 	 *
 	 * @since WD-DOM-Level-2-19990923
 	 * @see AttrNSImpl
@@ -690,7 +723,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 */
 	public void setPrefix(String prefix) throws DOMException {
 		throw new DOMException(DOMException.NAMESPACE_ERR, DOMMessageFormatter
-				.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR", null));
+				.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR",
+						null));
 	}
 
 	/**
@@ -714,12 +748,14 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	// EventTarget support
 	//
 
-	public void addEventListener(String type, EventListener listener, boolean useCapture) {
+	public void addEventListener(String type, EventListener listener,
+			boolean useCapture) {
 		// simply forward to Document
 		ownerDocument().addEventListener(this, type, listener, useCapture);
 	}
 
-	public void removeEventListener(String type, EventListener listener, boolean useCapture) {
+	public void removeEventListener(String type, EventListener listener,
+			boolean useCapture) {
 		// simply forward to Document
 		ownerDocument().removeEventListener(this, type, listener, useCapture);
 	}
@@ -767,7 +803,7 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * that define additional types of nodes.
 	 * 
 	 * @param other
-	 *            The node to compare against this node.
+	 *              The node to compare against this node.
 	 * @return Returns how the given node is positioned relatively to this node.
 	 * @since DOM Level 3
 	 * @deprecated
@@ -818,7 +854,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 
 		// If either node is of type ENTITY or NOTATION, compare as disconnected
 		if (thisType == Node.ENTITY_NODE || thisType == Node.NOTATION_NODE
-				|| otherType == Node.ENTITY_NODE || otherType == Node.NOTATION_NODE) {
+				|| otherType == Node.ENTITY_NODE
+				|| otherType == Node.NOTATION_NODE) {
 			return TREE_POSITION_DISCONNECTED;
 		}
 
@@ -868,7 +905,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 
 		// Before proceeding, we should check if both ancestor nodes turned
 		// out to be attributes for the same element
-		if (thisAncestorType == Node.ATTRIBUTE_NODE && otherAncestorType == Node.ATTRIBUTE_NODE
+		if (thisAncestorType == Node.ATTRIBUTE_NODE
+				&& otherAncestorType == Node.ATTRIBUTE_NODE
 				&& thisNode == otherNode)
 			return TREE_POSITION_EQUIVALENT;
 
@@ -948,8 +986,9 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 		// the common ancestor.
 		// See whether thisNode or otherNode is the leftmost
 
-		for (Node current = thisNodeP.getFirstChild(); current != null; current = current
-				.getNextSibling()) {
+		for (Node current = thisNodeP
+				.getFirstChild(); current != null; current = current
+						.getNextSibling()) {
 			if (current == otherNode) {
 				return TREE_POSITION_PRECEDING;
 			} else if (current == thisNode) {
@@ -967,7 +1006,7 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * document.
 	 * 
 	 * @param other
-	 *            The node to compare against this node.
+	 *              The node to compare against this node.
 	 * @return Returns how the given node is positioned relatively to this node.
 	 * @since DOM Level 3
 	 */
@@ -982,8 +1021,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 			NodeImpl node = (NodeImpl) other;
 		} catch (ClassCastException e) {
 			// other comes from a different implementation
-			String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
-					"NOT_SUPPORTED_ERR", null);
+			String msg = DOMMessageFormatter.formatMessage(
+					DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR", null);
 			throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
 		}
 
@@ -1000,14 +1039,18 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 
 		// If from different documents, we know they are disconnected.
 		// and have an implementation dependent order
-		if (thisOwnerDoc != otherOwnerDoc && thisOwnerDoc != null && otherOwnerDoc != null) {
-			int otherDocNum = ((CoreDocumentImpl) otherOwnerDoc).getNodeNumber();
+		if (thisOwnerDoc != otherOwnerDoc && thisOwnerDoc != null
+				&& otherOwnerDoc != null) {
+			int otherDocNum = ((CoreDocumentImpl) otherOwnerDoc)
+					.getNodeNumber();
 			int thisDocNum = ((CoreDocumentImpl) thisOwnerDoc).getNodeNumber();
 			if (otherDocNum > thisDocNum)
-				return DOCUMENT_POSITION_DISCONNECTED | DOCUMENT_POSITION_FOLLOWING
+				return DOCUMENT_POSITION_DISCONNECTED
+						| DOCUMENT_POSITION_FOLLOWING
 						| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC;
 			else
-				return DOCUMENT_POSITION_DISCONNECTED | DOCUMENT_POSITION_PRECEDING
+				return DOCUMENT_POSITION_DISCONNECTED
+						| DOCUMENT_POSITION_PRECEDING
 						| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC;
 
 		}
@@ -1029,7 +1072,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 			thisDepth += 1;
 			if (node == other)
 				// The other node is an ancestor of this one.
-				return (DOCUMENT_POSITION_CONTAINS | DOCUMENT_POSITION_PRECEDING);
+				return (DOCUMENT_POSITION_CONTAINS
+						| DOCUMENT_POSITION_PRECEDING);
 			thisAncestor = node;
 		}
 
@@ -1037,7 +1081,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 			otherDepth += 1;
 			if (node == this)
 				// The other node is a descendent of the reference node.
-				return (DOCUMENT_POSITION_IS_CONTAINED | DOCUMENT_POSITION_FOLLOWING);
+				return (DOCUMENT_POSITION_IS_CONTAINED
+						| DOCUMENT_POSITION_FOLLOWING);
 			otherAncestor = node;
 		}
 
@@ -1049,104 +1094,116 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 		// Special casing for ENTITY, NOTATION, DOCTYPE and ATTRIBUTES
 		// LM: should rewrite this.
 		switch (thisAncestorType) {
-		case Node.NOTATION_NODE:
-		case Node.ENTITY_NODE: {
-			DocumentType container = thisOwnerDoc.getDoctype();
-			if (container == otherAncestor)
-				return (DOCUMENT_POSITION_CONTAINS | DOCUMENT_POSITION_PRECEDING);
-			switch (otherAncestorType) {
 			case Node.NOTATION_NODE:
 			case Node.ENTITY_NODE: {
-				if (thisAncestorType != otherAncestorType)
-					// the nodes are of different types
-					return ((thisAncestorType > otherAncestorType) ? DOCUMENT_POSITION_PRECEDING
-							: DOCUMENT_POSITION_FOLLOWING);
-				else {
-					// the nodes are of the same type. Find order.
-					if (thisAncestorType == Node.NOTATION_NODE)
+				DocumentType container = thisOwnerDoc.getDoctype();
+				if (container == otherAncestor)
+					return (DOCUMENT_POSITION_CONTAINS
+							| DOCUMENT_POSITION_PRECEDING);
+				switch (otherAncestorType) {
+					case Node.NOTATION_NODE:
+					case Node.ENTITY_NODE: {
+						if (thisAncestorType != otherAncestorType)
+							// the nodes are of different types
+							return ((thisAncestorType > otherAncestorType)
+									? DOCUMENT_POSITION_PRECEDING
+									: DOCUMENT_POSITION_FOLLOWING);
+						else {
+							// the nodes are of the same type. Find order.
+							if (thisAncestorType == Node.NOTATION_NODE)
 
-						if (((NamedNodeMapImpl) container.getNotations()).precedes(otherAncestor,
-								thisAncestor))
+								if (((NamedNodeMapImpl) container
+										.getNotations()).precedes(otherAncestor,
+												thisAncestor))
+									return (DOCUMENT_POSITION_PRECEDING
+											| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC);
+								else
+									return (DOCUMENT_POSITION_FOLLOWING
+											| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC);
+							else if (((NamedNodeMapImpl) container
+									.getEntities()).precedes(otherAncestor,
+											thisAncestor))
+								return (DOCUMENT_POSITION_PRECEDING
+										| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC);
+							else
+								return (DOCUMENT_POSITION_FOLLOWING
+										| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC);
+						}
+					}
+				}
+				thisNode = thisAncestor = thisOwnerDoc;
+				break;
+			}
+			case Node.DOCUMENT_TYPE_NODE: {
+				if (otherNode == thisOwnerDoc)
+					return (DOCUMENT_POSITION_PRECEDING
+							| DOCUMENT_POSITION_CONTAINS);
+				else if (thisOwnerDoc != null && thisOwnerDoc == otherOwnerDoc)
+					return (DOCUMENT_POSITION_FOLLOWING);
+				break;
+			}
+			case Node.ATTRIBUTE_NODE: {
+				thisNode = ((AttrImpl) thisAncestor).getOwnerElement();
+				if (otherAncestorType == Node.ATTRIBUTE_NODE) {
+					otherNode = ((AttrImpl) otherAncestor).getOwnerElement();
+					if (otherNode == thisNode) {
+						if (((NamedNodeMapImpl) thisNode.getAttributes())
+								.precedes(other, this))
 							return (DOCUMENT_POSITION_PRECEDING
 									| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC);
 						else
 							return (DOCUMENT_POSITION_FOLLOWING
 									| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC);
-					else if (((NamedNodeMapImpl) container.getEntities()).precedes(otherAncestor,
-							thisAncestor))
-						return (DOCUMENT_POSITION_PRECEDING
-								| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC);
-					else
-						return (DOCUMENT_POSITION_FOLLOWING
-								| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC);
+					}
 				}
-			}
-			}
-			thisNode = thisAncestor = thisOwnerDoc;
-			break;
-		}
-		case Node.DOCUMENT_TYPE_NODE: {
-			if (otherNode == thisOwnerDoc)
-				return (DOCUMENT_POSITION_PRECEDING | DOCUMENT_POSITION_CONTAINS);
-			else if (thisOwnerDoc != null && thisOwnerDoc == otherOwnerDoc)
-				return (DOCUMENT_POSITION_FOLLOWING);
-			break;
-		}
-		case Node.ATTRIBUTE_NODE: {
-			thisNode = ((AttrImpl) thisAncestor).getOwnerElement();
-			if (otherAncestorType == Node.ATTRIBUTE_NODE) {
-				otherNode = ((AttrImpl) otherAncestor).getOwnerElement();
-				if (otherNode == thisNode) {
-					if (((NamedNodeMapImpl) thisNode.getAttributes()).precedes(other, this))
-						return (DOCUMENT_POSITION_PRECEDING
-								| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC);
-					else
-						return (DOCUMENT_POSITION_FOLLOWING
-								| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC);
-				}
-			}
 
-			// Now, find the ancestor of the element
-			thisDepth = 0;
-			for (node = thisNode; node != null; node = node.getParentNode()) {
-				thisDepth += 1;
-				if (node == otherNode) {
-					// The other node is an ancestor of the owning element
-					return (DOCUMENT_POSITION_CONTAINS | DOCUMENT_POSITION_PRECEDING);
+				// Now, find the ancestor of the element
+				thisDepth = 0;
+				for (node = thisNode; node != null; node = node
+						.getParentNode()) {
+					thisDepth += 1;
+					if (node == otherNode) {
+						// The other node is an ancestor of the owning element
+						return (DOCUMENT_POSITION_CONTAINS
+								| DOCUMENT_POSITION_PRECEDING);
+					}
+					thisAncestor = node;
 				}
-				thisAncestor = node;
 			}
-		}
 		}
 		switch (otherAncestorType) {
-		case Node.NOTATION_NODE:
-		case Node.ENTITY_NODE: {
-			DocumentType container = thisOwnerDoc.getDoctype();
-			if (container == this)
-				return (DOCUMENT_POSITION_IS_CONTAINED | DOCUMENT_POSITION_FOLLOWING);
-			otherNode = otherAncestor = thisOwnerDoc;
-			break;
-		}
-		case Node.DOCUMENT_TYPE_NODE: {
-			if (thisNode == otherOwnerDoc)
-				return (DOCUMENT_POSITION_FOLLOWING | DOCUMENT_POSITION_IS_CONTAINED);
-			else if (otherOwnerDoc != null && thisOwnerDoc == otherOwnerDoc)
-				return (DOCUMENT_POSITION_PRECEDING);
-			break;
-		}
-		case Node.ATTRIBUTE_NODE: {
-			otherDepth = 0;
-			otherNode = ((AttrImpl) otherAncestor).getOwnerElement();
-			for (node = otherNode; node != null; node = node.getParentNode()) {
-				otherDepth += 1;
-				if (node == thisNode)
-					// The other node is a descendent of the reference
-					// node's element
-					return DOCUMENT_POSITION_FOLLOWING | DOCUMENT_POSITION_IS_CONTAINED;
-				otherAncestor = node;
+			case Node.NOTATION_NODE:
+			case Node.ENTITY_NODE: {
+				DocumentType container = thisOwnerDoc.getDoctype();
+				if (container == this)
+					return (DOCUMENT_POSITION_IS_CONTAINED
+							| DOCUMENT_POSITION_FOLLOWING);
+				otherNode = otherAncestor = thisOwnerDoc;
+				break;
 			}
+			case Node.DOCUMENT_TYPE_NODE: {
+				if (thisNode == otherOwnerDoc)
+					return (DOCUMENT_POSITION_FOLLOWING
+							| DOCUMENT_POSITION_IS_CONTAINED);
+				else if (otherOwnerDoc != null && thisOwnerDoc == otherOwnerDoc)
+					return (DOCUMENT_POSITION_PRECEDING);
+				break;
+			}
+			case Node.ATTRIBUTE_NODE: {
+				otherDepth = 0;
+				otherNode = ((AttrImpl) otherAncestor).getOwnerElement();
+				for (node = otherNode; node != null; node = node
+						.getParentNode()) {
+					otherDepth += 1;
+					if (node == thisNode)
+						// The other node is a descendent of the reference
+						// node's element
+						return DOCUMENT_POSITION_FOLLOWING
+								| DOCUMENT_POSITION_IS_CONTAINED;
+					otherAncestor = node;
+				}
 
-		}
+			}
 		}
 
 		// thisAncestor and otherAncestor must be the same at this point,
@@ -1157,10 +1214,12 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 			otherAncestorNum = ((NodeImpl) otherAncestor).getNodeNumber();
 
 			if (thisAncestorNum > otherAncestorNum)
-				return DOCUMENT_POSITION_DISCONNECTED | DOCUMENT_POSITION_FOLLOWING
+				return DOCUMENT_POSITION_DISCONNECTED
+						| DOCUMENT_POSITION_FOLLOWING
 						| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC;
 			else
-				return DOCUMENT_POSITION_DISCONNECTED | DOCUMENT_POSITION_PRECEDING
+				return DOCUMENT_POSITION_DISCONNECTED
+						| DOCUMENT_POSITION_PRECEDING
 						| DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC;
 		}
 
@@ -1204,8 +1263,9 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 		// the common ancestor.
 		// See whether thisNode or otherNode is the leftmost
 
-		for (Node current = thisNodeP.getFirstChild(); current != null; current = current
-				.getNextSibling()) {
+		for (Node current = thisNodeP
+				.getFirstChild(); current != null; current = current
+						.getNextSibling()) {
 			if (current == otherNode) {
 				return DOCUMENT_POSITION_PRECEDING;
 			} else if (current == thisNode) {
@@ -1272,12 +1332,15 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * </table>
 	 * 
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised when the node is
-	 *                readonly.
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+	 *                         is
+	 *                         readonly.
 	 * @exception DOMException
-	 *                DOMSTRING_SIZE_ERR: Raised when it would return more
-	 *                characters than fit in a <code>DOMString</code> variable
-	 *                on the implementation platform.
+	 *                         DOMSTRING_SIZE_ERR: Raised when it would return
+	 *                         more
+	 *                         characters than fit in a <code>DOMString</code>
+	 *                         variable
+	 *                         on the implementation platform.
 	 * @since DOM Level 3
 	 */
 	public String getTextContent() throws DOMException {
@@ -1329,12 +1392,15 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * </table>
 	 * 
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised when the node is
-	 *                readonly.
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+	 *                         is
+	 *                         readonly.
 	 * @exception DOMException
-	 *                DOMSTRING_SIZE_ERR: Raised when it would return more
-	 *                characters than fit in a <code>DOMString</code> variable
-	 *                on the implementation platform.
+	 *                         DOMSTRING_SIZE_ERR: Raised when it would return
+	 *                         more
+	 *                         characters than fit in a <code>DOMString</code>
+	 *                         variable
+	 *                         on the implementation platform.
 	 * @since DOM Level 3
 	 */
 	public void setTextContent(String textContent) throws DOMException {
@@ -1351,7 +1417,7 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * method on either reference always has exactly the same effect.
 	 * 
 	 * @param other
-	 *            The node to test against.
+	 *              The node to test against.
 	 * @return Returns <code>true</code> if the nodes are the same,
 	 *         <code>false</code> otherwise.
 	 * @since DOM Level 3
@@ -1366,7 +1432,7 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * <code>namespaceURI</code> is the default namespace or not.
 	 * 
 	 * @param namespaceURI
-	 *            The namespace URI to look for.
+	 *                     The namespace URI to look for.
 	 * @return <code>true</code> if the specified <code>namespaceURI</code> is
 	 *         the default namespace, <code>false</code> otherwise.
 	 * @since DOM Level 3
@@ -1375,61 +1441,61 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 		// REVISIT: remove casts when DOM L3 becomes REC.
 		short type = this.getNodeType();
 		switch (type) {
-		case Node.ELEMENT_NODE: {
-			String namespace = this.getNamespaceURI();
-			String prefix = this.getPrefix();
+			case Node.ELEMENT_NODE: {
+				String namespace = this.getNamespaceURI();
+				String prefix = this.getPrefix();
 
-			// REVISIT: is it possible that prefix is empty string?
-			if (prefix == null || prefix.length() == 0) {
-				if (namespaceURI == null) {
-					return (namespace == namespaceURI);
-				}
-				return namespaceURI.equals(namespace);
-			}
-			if (this.hasAttributes()) {
-				ElementImpl elem = (ElementImpl) this;
-				NodeImpl attr = (NodeImpl) elem.getAttributeNodeNS("http://www.w3.org/2000/xmlns/",
-						"xmlns");
-				if (attr != null) {
-					String value = attr.getNodeValue();
+				// REVISIT: is it possible that prefix is empty string?
+				if (prefix == null || prefix.length() == 0) {
 					if (namespaceURI == null) {
-						return (namespace == value);
+						return (namespace == namespaceURI);
 					}
-					return namespaceURI.equals(value);
+					return namespaceURI.equals(namespace);
 				}
+				if (this.hasAttributes()) {
+					ElementImpl elem = (ElementImpl) this;
+					NodeImpl attr = (NodeImpl) elem.getAttributeNodeNS(
+							"http://www.w3.org/2000/xmlns/", "xmlns");
+					if (attr != null) {
+						String value = attr.getNodeValue();
+						if (namespaceURI == null) {
+							return (namespace == value);
+						}
+						return namespaceURI.equals(value);
+					}
+				}
+
+				NodeImpl ancestor = (NodeImpl) getElementAncestor(this);
+				if (ancestor != null) {
+					return ancestor.isDefaultNamespace(namespaceURI);
+				}
+				return false;
+			}
+			case Node.DOCUMENT_NODE: {
+				return ((NodeImpl) ((Document) this).getDocumentElement())
+						.isDefaultNamespace(namespaceURI);
 			}
 
-			NodeImpl ancestor = (NodeImpl) getElementAncestor(this);
-			if (ancestor != null) {
-				return ancestor.isDefaultNamespace(namespaceURI);
-			}
-			return false;
-		}
-		case Node.DOCUMENT_NODE: {
-			return ((NodeImpl) ((Document) this).getDocumentElement())
-					.isDefaultNamespace(namespaceURI);
-		}
+			case Node.ENTITY_NODE:
+			case Node.NOTATION_NODE:
+			case Node.DOCUMENT_FRAGMENT_NODE:
+			case Node.DOCUMENT_TYPE_NODE:
+				// type is unknown
+				return false;
+			case Node.ATTRIBUTE_NODE: {
+				if (this.ownerNode.getNodeType() == Node.ELEMENT_NODE) {
+					return ownerNode.isDefaultNamespace(namespaceURI);
 
-		case Node.ENTITY_NODE:
-		case Node.NOTATION_NODE:
-		case Node.DOCUMENT_FRAGMENT_NODE:
-		case Node.DOCUMENT_TYPE_NODE:
-			// type is unknown
-			return false;
-		case Node.ATTRIBUTE_NODE: {
-			if (this.ownerNode.getNodeType() == Node.ELEMENT_NODE) {
-				return ownerNode.isDefaultNamespace(namespaceURI);
-
+				}
+				return false;
 			}
-			return false;
-		}
-		default: {
-			NodeImpl ancestor = (NodeImpl) getElementAncestor(this);
-			if (ancestor != null) {
-				return ancestor.isDefaultNamespace(namespaceURI);
+			default: {
+				NodeImpl ancestor = (NodeImpl) getElementAncestor(this);
+				if (ancestor != null) {
+					return ancestor.isDefaultNamespace(namespaceURI);
+				}
+				return false;
 			}
-			return false;
-		}
 
 		}
 
@@ -1454,35 +1520,36 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 		short type = this.getNodeType();
 
 		switch (type) {
-		case Node.ELEMENT_NODE: {
+			case Node.ELEMENT_NODE: {
 
-			String namespace = this.getNamespaceURI(); // to flip out children
-			return lookupNamespacePrefix(namespaceURI, (ElementImpl) this);
-		}
-		case Node.DOCUMENT_NODE: {
-			return ((NodeImpl) ((Document) this).getDocumentElement()).lookupPrefix(namespaceURI);
-		}
-
-		case Node.ENTITY_NODE:
-		case Node.NOTATION_NODE:
-		case Node.DOCUMENT_FRAGMENT_NODE:
-		case Node.DOCUMENT_TYPE_NODE:
-			// type is unknown
-			return null;
-		case Node.ATTRIBUTE_NODE: {
-			if (this.ownerNode.getNodeType() == Node.ELEMENT_NODE) {
-				return ownerNode.lookupPrefix(namespaceURI);
-
+				String namespace = this.getNamespaceURI(); // to flip out children
+				return lookupNamespacePrefix(namespaceURI, (ElementImpl) this);
 			}
-			return null;
-		}
-		default: {
-			NodeImpl ancestor = (NodeImpl) getElementAncestor(this);
-			if (ancestor != null) {
-				return ancestor.lookupPrefix(namespaceURI);
+			case Node.DOCUMENT_NODE: {
+				return ((NodeImpl) ((Document) this).getDocumentElement())
+						.lookupPrefix(namespaceURI);
 			}
-			return null;
-		}
+
+			case Node.ENTITY_NODE:
+			case Node.NOTATION_NODE:
+			case Node.DOCUMENT_FRAGMENT_NODE:
+			case Node.DOCUMENT_TYPE_NODE:
+				// type is unknown
+				return null;
+			case Node.ATTRIBUTE_NODE: {
+				if (this.ownerNode.getNodeType() == Node.ELEMENT_NODE) {
+					return ownerNode.lookupPrefix(namespaceURI);
+
+				}
+				return null;
+			}
+			default: {
+				NodeImpl ancestor = (NodeImpl) getElementAncestor(this);
+				if (ancestor != null) {
+					return ancestor.lookupPrefix(namespaceURI);
+				}
+				return null;
+			}
 
 		}
 	}
@@ -1499,74 +1566,78 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	public String lookupNamespaceURI(String specifiedPrefix) {
 		short type = this.getNodeType();
 		switch (type) {
-		case Node.ELEMENT_NODE: {
+			case Node.ELEMENT_NODE: {
 
-			String namespace = this.getNamespaceURI();
-			String prefix = this.getPrefix();
-			if (namespace != null) {
-				// REVISIT: is it possible that prefix is empty string?
-				if (specifiedPrefix == null && prefix == specifiedPrefix) {
-					// looking for default namespace
-					return namespace;
-				} else if (prefix != null && prefix.equals(specifiedPrefix)) {
-					// non default namespace
-					return namespace;
+				String namespace = this.getNamespaceURI();
+				String prefix = this.getPrefix();
+				if (namespace != null) {
+					// REVISIT: is it possible that prefix is empty string?
+					if (specifiedPrefix == null && prefix == specifiedPrefix) {
+						// looking for default namespace
+						return namespace;
+					} else if (prefix != null && prefix.equals(
+							specifiedPrefix)) {
+						// non default namespace
+						return namespace;
+					}
 				}
-			}
-			if (this.hasAttributes()) {
-				NamedNodeMap map = this.getAttributes();
-				int length = map.getLength();
-				for (int i = 0; i < length; i++) {
-					Node attr = map.item(i);
-					String attrPrefix = attr.getPrefix();
-					String value = attr.getNodeValue();
-					namespace = attr.getNamespaceURI();
-					if (namespace != null && namespace.equals("http://www.w3.org/2000/xmlns/")) {
-						// at this point we are dealing with DOM Level 2 nodes
-						// only
-						if (specifiedPrefix == null && attr.getNodeName().equals("xmlns")) {
-							// default namespace
-							return value;
-						} else if (attrPrefix != null && attrPrefix.equals("xmlns")
-								&& attr.getLocalName().equals(specifiedPrefix)) {
-							// non default namespace
-							return value;
+				if (this.hasAttributes()) {
+					NamedNodeMap map = this.getAttributes();
+					int length = map.getLength();
+					for (int i = 0; i < length; i++) {
+						Node attr = map.item(i);
+						String attrPrefix = attr.getPrefix();
+						String value = attr.getNodeValue();
+						namespace = attr.getNamespaceURI();
+						if (namespace != null && namespace.equals(
+								"http://www.w3.org/2000/xmlns/")) {
+							// at this point we are dealing with DOM Level 2 nodes
+							// only
+							if (specifiedPrefix == null && attr.getNodeName()
+									.equals("xmlns")) {
+								// default namespace
+								return value;
+							} else if (attrPrefix != null && attrPrefix.equals(
+									"xmlns") && attr.getLocalName().equals(
+											specifiedPrefix)) {
+								// non default namespace
+								return value;
+							}
 						}
 					}
 				}
-			}
-			NodeImpl ancestor = (NodeImpl) getElementAncestor(this);
-			if (ancestor != null) {
-				return ancestor.lookupNamespaceURI(specifiedPrefix);
-			}
+				NodeImpl ancestor = (NodeImpl) getElementAncestor(this);
+				if (ancestor != null) {
+					return ancestor.lookupNamespaceURI(specifiedPrefix);
+				}
 
-			return null;
-
-		}
-		case Node.DOCUMENT_NODE: {
-			return ((NodeImpl) ((Document) this).getDocumentElement())
-					.lookupNamespaceURI(specifiedPrefix);
-		}
-		case Node.ENTITY_NODE:
-		case Node.NOTATION_NODE:
-		case Node.DOCUMENT_FRAGMENT_NODE:
-		case Node.DOCUMENT_TYPE_NODE:
-			// type is unknown
-			return null;
-		case Node.ATTRIBUTE_NODE: {
-			if (this.ownerNode.getNodeType() == Node.ELEMENT_NODE) {
-				return ownerNode.lookupNamespaceURI(specifiedPrefix);
+				return null;
 
 			}
-			return null;
-		}
-		default: {
-			NodeImpl ancestor = (NodeImpl) getElementAncestor(this);
-			if (ancestor != null) {
-				return ancestor.lookupNamespaceURI(specifiedPrefix);
+			case Node.DOCUMENT_NODE: {
+				return ((NodeImpl) ((Document) this).getDocumentElement())
+						.lookupNamespaceURI(specifiedPrefix);
 			}
-			return null;
-		}
+			case Node.ENTITY_NODE:
+			case Node.NOTATION_NODE:
+			case Node.DOCUMENT_FRAGMENT_NODE:
+			case Node.DOCUMENT_TYPE_NODE:
+				// type is unknown
+				return null;
+			case Node.ATTRIBUTE_NODE: {
+				if (this.ownerNode.getNodeType() == Node.ELEMENT_NODE) {
+					return ownerNode.lookupNamespaceURI(specifiedPrefix);
+
+				}
+				return null;
+			}
+			default: {
+				NodeImpl ancestor = (NodeImpl) getElementAncestor(this);
+				if (ancestor != null) {
+					return ancestor.lookupNamespaceURI(specifiedPrefix);
+				}
+				return null;
+			}
 
 		}
 	}
@@ -1592,7 +1663,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 		if (namespace != null && namespace.equals(namespaceURI)) {
 			if (prefix != null) {
 				String foundNamespace = el.lookupNamespaceURI(prefix);
-				if (foundNamespace != null && foundNamespace.equals(namespaceURI)) {
+				if (foundNamespace != null && foundNamespace.equals(
+						namespaceURI)) {
 					return prefix;
 				}
 
@@ -1606,15 +1678,18 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 				String attrPrefix = attr.getPrefix();
 				String value = attr.getNodeValue();
 				namespace = attr.getNamespaceURI();
-				if (namespace != null && namespace.equals("http://www.w3.org/2000/xmlns/")) {
+				if (namespace != null && namespace.equals(
+						"http://www.w3.org/2000/xmlns/")) {
 					// DOM Level 2 nodes
 					if (((attr.getNodeName().equals("xmlns"))
-							|| (attrPrefix != null && attrPrefix.equals("xmlns"))
-									&& value.equals(namespaceURI))) {
+							|| (attrPrefix != null && attrPrefix.equals(
+									"xmlns")) && value.equals(namespaceURI))) {
 
 						String localname = attr.getLocalName();
-						String foundNamespace = el.lookupNamespaceURI(localname);
-						if (foundNamespace != null && foundNamespace.equals(namespaceURI)) {
+						String foundNamespace = el.lookupNamespaceURI(
+								localname);
+						if (foundNamespace != null && foundNamespace.equals(
+								namespaceURI)) {
 							return localname;
 						}
 					}
@@ -1666,11 +1741,12 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * nodes.
 	 * 
 	 * @param arg
-	 *            The node to compare equality with.
+	 *             The node to compare equality with.
 	 * @param deep
-	 *            If <code>true</code>, recursively compare the subtrees; if
-	 *            <code>false</code>, compare only the nodes themselves (and its
-	 *            attributes, if it is an <code>Element</code>).
+	 *             If <code>true</code>, recursively compare the subtrees; if
+	 *             <code>false</code>, compare only the nodes themselves (and
+	 *             its
+	 *             attributes, if it is an <code>Element</code>).
 	 * @return If the nodes, and possibly subtrees are equal, <code>true</code>
 	 *         otherwise <code>false</code>.
 	 * @since DOM Level 3
@@ -1742,17 +1818,20 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * same key.
 	 * 
 	 * @param key
-	 *            The key to associate the object to.
+	 *                The key to associate the object to.
 	 * @param data
-	 *            The object to associate to the given key, or <code>null</code>
-	 *            to remove any existing association to that key.
+	 *                The object to associate to the given key, or
+	 *                <code>null</code>
+	 *                to remove any existing association to that key.
 	 * @param handler
-	 *            The handler to associate to that key, or <code>null</code>.
+	 *                The handler to associate to that key, or
+	 *                <code>null</code>.
 	 * @return Returns the <code>DOMObject</code> previously associated to the
 	 *         given key on this node, or <code>null</code> if there was none.
 	 * @since DOM Level 3
 	 */
-	public Object setUserData(String key, Object data, UserDataHandler handler) {
+	public Object setUserData(String key, Object data,
+			UserDataHandler handler) {
 		return ownerDocument().setUserData(this, key, data, handler);
 	}
 
@@ -1794,11 +1873,13 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * @see ParentNode
 	 *
 	 * @param readOnly
-	 *            True or false as desired.
+	 *                 True or false as desired.
 	 * @param deep
-	 *            If true, children are also toggled. Note that this will not
-	 *            change the state of an EntityReference or its children, which
-	 *            are always read-only.
+	 *                 If true, children are also toggled. Note that this will
+	 *                 not
+	 *                 change the state of an EntityReference or its children,
+	 *                 which
+	 *                 are always read-only.
 	 */
 	public void setReadOnly(boolean readOnly, boolean deep) {
 
@@ -1833,7 +1914,7 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 	 * whole document is.
 	 *
 	 * @param data
-	 *            the object to store or null to remove any existing reference
+	 *             the object to store or null to remove any existing reference
 	 */
 	public void setUserData(Object data) {
 		ownerDocument().setUserData(this, data);

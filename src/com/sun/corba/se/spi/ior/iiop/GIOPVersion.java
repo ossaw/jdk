@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.ior.iiop;
@@ -54,7 +34,8 @@ public class GIOPVersion {
 	public static final int VERSION_1_1 = 0x0101;
 	public static final int VERSION_1_2 = 0x0102;
 	public static final int VERSION_1_3 = 0x0103;
-	public static final int VERSION_13_XX = ((0x0D << 8) & 0x0000FF00) | Message.JAVA_ENC_VERSION;
+	public static final int VERSION_13_XX = ((0x0D << 8) & 0x0000FF00)
+			| Message.JAVA_ENC_VERSION;
 
 	// Instance variables
 
@@ -63,8 +44,7 @@ public class GIOPVersion {
 
 	// Constructor
 
-	public GIOPVersion() {
-	}
+	public GIOPVersion() {}
 
 	public GIOPVersion(byte majorB, byte minorB) {
 		this.major = majorB;
@@ -125,18 +105,18 @@ public class GIOPVersion {
 
 	public static GIOPVersion getInstance(byte major, byte minor) {
 		switch (((major << 8) | minor)) {
-		case VERSION_1_0:
-			return GIOPVersion.V1_0;
-		case VERSION_1_1:
-			return GIOPVersion.V1_1;
-		case VERSION_1_2:
-			return GIOPVersion.V1_2;
-		case VERSION_1_3:
-			return GIOPVersion.V1_3;
-		case VERSION_13_XX:
-			return GIOPVersion.V13_XX;
-		default:
-			return new GIOPVersion(major, minor);
+			case VERSION_1_0:
+				return GIOPVersion.V1_0;
+			case VERSION_1_1:
+				return GIOPVersion.V1_1;
+			case VERSION_1_2:
+				return GIOPVersion.V1_2;
+			case VERSION_1_3:
+				return GIOPVersion.V1_3;
+			case VERSION_13_XX:
+				return GIOPVersion.V13_XX;
+			default:
+				return new GIOPVersion(major, minor);
 		}
 	}
 
@@ -144,7 +124,8 @@ public class GIOPVersion {
 		int dotIdx = s.indexOf('.');
 
 		if (dotIdx < 1 || dotIdx == s.length() - 1)
-			throw new NumberFormatException("GIOP major, minor, and decimal point required: " + s);
+			throw new NumberFormatException(
+					"GIOP major, minor, and decimal point required: " + s);
 
 		int major = Integer.parseInt(s.substring(0, dotIdx));
 		int minor = Integer.parseInt(s.substring(dotIdx + 1, s.length()));

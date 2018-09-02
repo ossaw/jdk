@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.lang.model.util;
@@ -78,12 +58,12 @@ import static javax.lang.model.SourceVersion.*;
  * of this visitor may be deprecated.
  *
  * @param <R>
- *            the return type of this visitor's methods. Use {@link Void} for
- *            visitors that do not need to return results.
+ *        the return type of this visitor's methods. Use {@link Void} for
+ *        visitors that do not need to return results.
  * @param <P>
- *            the type of the additional parameter to this visitor's methods.
- *            Use {@code Void} for visitors that do not need an additional
- *            parameter.
+ *        the type of the additional parameter to this visitor's methods.
+ *        Use {@code Void} for visitors that do not need an additional
+ *        parameter.
  *
  * @author Joseph D. Darcy
  * @author Scott Seligman
@@ -113,7 +93,7 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * value.
 	 *
 	 * @param defaultValue
-	 *            the default value
+	 *                     the default value
 	 */
 	protected ElementScanner6(R defaultValue) {
 		DEFAULT_VALUE = defaultValue;
@@ -126,9 +106,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * DEFAULT_VALUE} for an empty iterable.
 	 *
 	 * @param iterable
-	 *            the elements to scan
+	 *                 the elements to scan
 	 * @param p
-	 *            additional parameter
+	 *                 additional parameter
 	 * @return the scan of the last element or {@code DEFAULT_VALUE} if no
 	 *         elements
 	 */
@@ -144,9 +124,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * may be overridden by subclasses.
 	 *
 	 * @param e
-	 *            the element to scan
+	 *          the element to scan
 	 * @param p
-	 *            a scanner-specified parameter
+	 *          a scanner-specified parameter
 	 * @return the result of visiting {@code e}.
 	 */
 	public R scan(Element e, P p) {
@@ -157,7 +137,7 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * Convenience method equivalent to {@code v.scan(e, null)}.
 	 *
 	 * @param e
-	 *            the element to scan
+	 *          the element to scan
 	 * @return the result of scanning {@code e}.
 	 */
 	public final R scan(Element e) {
@@ -168,9 +148,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * {@inheritDoc} This implementation scans the enclosed elements.
 	 *
 	 * @param e
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of scanning
 	 */
 	public R visitPackage(PackageElement e, P p) {
@@ -181,9 +161,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * {@inheritDoc} This implementation scans the enclosed elements.
 	 *
 	 * @param e
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of scanning
 	 */
 	public R visitType(TypeElement e, P p) {
@@ -198,9 +178,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * visitUnknown} is called.
 	 *
 	 * @param e
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of scanning
 	 */
 	public R visitVariable(VariableElement e, P p) {
@@ -214,9 +194,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * {@inheritDoc} This implementation scans the parameters.
 	 *
 	 * @param e
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of scanning
 	 */
 	public R visitExecutable(ExecutableElement e, P p) {
@@ -227,9 +207,9 @@ public class ElementScanner6<R, P> extends AbstractElementVisitor6<R, P> {
 	 * {@inheritDoc} This implementation scans the enclosed elements.
 	 *
 	 * @param e
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @param p
-	 *            {@inheritDoc}
+	 *          {@inheritDoc}
 	 * @return the result of scanning
 	 */
 	public R visitTypeParameter(TypeParameterElement e, P p) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -64,7 +44,8 @@ package javax.management;
  *
  * @since 1.6
  */
-public class StandardEmitterMBean extends StandardMBean implements NotificationEmitter {
+public class StandardEmitterMBean extends StandardMBean implements
+		NotificationEmitter {
 
 	private static final MBeanNotificationInfo[] NO_NOTIFICATION_INFO = new MBeanNotificationInfo[0];
 
@@ -98,17 +79,21 @@ public class StandardEmitterMBean extends StandardMBean implements NotificationE
 	 * </p>
 	 *
 	 * @param implementation
-	 *            the implementation of the MBean interface.
+	 *                       the implementation of the MBean interface.
 	 * @param mbeanInterface
-	 *            a Standard MBean interface.
+	 *                       a Standard MBean interface.
 	 * @param emitter
-	 *            the object that will handle notifications.
+	 *                       the object that will handle notifications.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the {@code mbeanInterface} does not follow JMX design
-	 *             patterns for Management Interfaces, or if the given
-	 *             {@code implementation} does not implement the specified
-	 *             interface, or if {@code emitter} is null.
+	 *                                  if the {@code mbeanInterface} does not
+	 *                                  follow JMX design
+	 *                                  patterns for Management Interfaces, or
+	 *                                  if the given
+	 *                                  {@code implementation} does not
+	 *                                  implement the specified
+	 *                                  interface, or if {@code emitter} is
+	 *                                  null.
 	 */
 	public <T> StandardEmitterMBean(T implementation, Class<T> mbeanInterface,
 			NotificationEmitter emitter) {
@@ -144,23 +129,28 @@ public class StandardEmitterMBean extends StandardMBean implements NotificationE
 	 * </p>
 	 *
 	 * @param implementation
-	 *            the implementation of the MBean interface.
+	 *                       the implementation of the MBean interface.
 	 * @param mbeanInterface
-	 *            a Standard MBean interface.
+	 *                       a Standard MBean interface.
 	 * @param isMXBean
-	 *            If true, the {@code mbeanInterface} parameter names an MXBean
-	 *            interface and the resultant MBean is an MXBean.
+	 *                       If true, the {@code mbeanInterface} parameter names
+	 *                       an MXBean
+	 *                       interface and the resultant MBean is an MXBean.
 	 * @param emitter
-	 *            the object that will handle notifications.
+	 *                       the object that will handle notifications.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the {@code mbeanInterface} does not follow JMX design
-	 *             patterns for Management Interfaces, or if the given
-	 *             {@code implementation} does not implement the specified
-	 *             interface, or if {@code emitter} is null.
+	 *                                  if the {@code mbeanInterface} does not
+	 *                                  follow JMX design
+	 *                                  patterns for Management Interfaces, or
+	 *                                  if the given
+	 *                                  {@code implementation} does not
+	 *                                  implement the specified
+	 *                                  interface, or if {@code emitter} is
+	 *                                  null.
 	 */
-	public <T> StandardEmitterMBean(T implementation, Class<T> mbeanInterface, boolean isMXBean,
-			NotificationEmitter emitter) {
+	public <T> StandardEmitterMBean(T implementation, Class<T> mbeanInterface,
+			boolean isMXBean, NotificationEmitter emitter) {
 		super(implementation, mbeanInterface, isMXBean);
 		if (emitter == null)
 			throw new IllegalArgumentException("Null emitter");
@@ -204,17 +194,21 @@ public class StandardEmitterMBean extends StandardMBean implements NotificationE
 	 * </p>
 	 *
 	 * @param mbeanInterface
-	 *            a StandardMBean interface.
+	 *                       a StandardMBean interface.
 	 * @param emitter
-	 *            the object that will handle notifications.
+	 *                       the object that will handle notifications.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the {@code mbeanInterface} does not follow JMX design
-	 *             patterns for Management Interfaces, or if {@code this} does
-	 *             not implement the specified interface, or if {@code emitter}
-	 *             is null.
+	 *                                  if the {@code mbeanInterface} does not
+	 *                                  follow JMX design
+	 *                                  patterns for Management Interfaces, or
+	 *                                  if {@code this} does
+	 *                                  not implement the specified interface,
+	 *                                  or if {@code emitter}
+	 *                                  is null.
 	 */
-	protected StandardEmitterMBean(Class<?> mbeanInterface, NotificationEmitter emitter) {
+	protected StandardEmitterMBean(Class<?> mbeanInterface,
+			NotificationEmitter emitter) {
 		this(mbeanInterface, false, emitter);
 	}
 
@@ -250,18 +244,22 @@ public class StandardEmitterMBean extends StandardMBean implements NotificationE
 	 * </p>
 	 *
 	 * @param mbeanInterface
-	 *            a StandardMBean interface.
+	 *                       a StandardMBean interface.
 	 * @param isMXBean
-	 *            If true, the {@code mbeanInterface} parameter names an MXBean
-	 *            interface and the resultant MBean is an MXBean.
+	 *                       If true, the {@code mbeanInterface} parameter names
+	 *                       an MXBean
+	 *                       interface and the resultant MBean is an MXBean.
 	 * @param emitter
-	 *            the object that will handle notifications.
+	 *                       the object that will handle notifications.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the {@code mbeanInterface} does not follow JMX design
-	 *             patterns for Management Interfaces, or if {@code this} does
-	 *             not implement the specified interface, or if {@code emitter}
-	 *             is null.
+	 *                                  if the {@code mbeanInterface} does not
+	 *                                  follow JMX design
+	 *                                  patterns for Management Interfaces, or
+	 *                                  if {@code this} does
+	 *                                  not implement the specified interface,
+	 *                                  or if {@code emitter}
+	 *                                  is null.
 	 */
 	protected StandardEmitterMBean(Class<?> mbeanInterface, boolean isMXBean,
 			NotificationEmitter emitter) {
@@ -282,13 +280,14 @@ public class StandardEmitterMBean extends StandardMBean implements NotificationE
 		emitter.removeNotificationListener(listener);
 	}
 
-	public void removeNotificationListener(NotificationListener listener, NotificationFilter filter,
-			Object handback) throws ListenerNotFoundException {
+	public void removeNotificationListener(NotificationListener listener,
+			NotificationFilter filter, Object handback)
+			throws ListenerNotFoundException {
 		emitter.removeNotificationListener(listener, filter, handback);
 	}
 
-	public void addNotificationListener(NotificationListener listener, NotificationFilter filter,
-			Object handback) {
+	public void addNotificationListener(NotificationListener listener,
+			NotificationFilter filter, Object handback) {
 		emitter.addNotificationListener(listener, filter, handback);
 	}
 
@@ -318,18 +317,20 @@ public class StandardEmitterMBean extends StandardMBean implements NotificationE
 	 * </p>
 	 *
 	 * @param n
-	 *            the notification to send.
+	 *          the notification to send.
 	 *
 	 * @throws ClassCastException
-	 *             if the {@code emitter} parameter to the constructor was not a
-	 *             {@code NotificationBroadcasterSupport}.
+	 *                            if the {@code emitter} parameter to the
+	 *                            constructor was not a
+	 *                            {@code NotificationBroadcasterSupport}.
 	 */
 	public void sendNotification(Notification n) {
 		if (emitter instanceof NotificationBroadcasterSupport)
 			((NotificationBroadcasterSupport) emitter).sendNotification(n);
 		else {
 			final String msg = "Cannot sendNotification when emitter is not an "
-					+ "instance of NotificationBroadcasterSupport: " + emitter.getClass().getName();
+					+ "instance of NotificationBroadcasterSupport: " + emitter
+							.getClass().getName();
 			throw new ClassCastException(msg);
 		}
 	}
@@ -346,7 +347,7 @@ public class StandardEmitterMBean extends StandardMBean implements NotificationE
 	 * </p>
 	 *
 	 * @param info
-	 *            The default MBeanInfo derived by reflection.
+	 *             The default MBeanInfo derived by reflection.
 	 * @return the MBeanNotificationInfo[] for the new MBeanInfo.
 	 */
 	@Override

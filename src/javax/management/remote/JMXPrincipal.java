@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -64,10 +44,11 @@ public class JMXPrincipal implements Principal, Serializable {
 	 * </p>
 	 *
 	 * @param name
-	 *            the JMX Remote API name for this identity.
+	 *             the JMX Remote API name for this identity.
 	 *
 	 * @exception NullPointerException
-	 *                if the <code>name</code> is <code>null</code>.
+	 *                                 if the <code>name</code> is
+	 *                                 <code>null</code>.
 	 */
 	public JMXPrincipal(String name) {
 		validate(name);
@@ -104,8 +85,8 @@ public class JMXPrincipal implements Principal, Serializable {
 	 * <p>
 	 *
 	 * @param o
-	 *            Object to be compared for equality with this
-	 *            <code>JMXPrincipal</code>.
+	 *          Object to be compared for equality with this
+	 *          <code>JMXPrincipal</code>.
 	 *
 	 * @return true if the specified Object is equal to this
 	 *         <code>JMXPrincipal</code>.
@@ -135,7 +116,8 @@ public class JMXPrincipal implements Principal, Serializable {
 		return name.hashCode();
 	}
 
-	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream ois) throws IOException,
+			ClassNotFoundException {
 		ObjectInputStream.GetField gf = ois.readFields();
 		String principalName = (String) gf.get("name", null);
 		try {

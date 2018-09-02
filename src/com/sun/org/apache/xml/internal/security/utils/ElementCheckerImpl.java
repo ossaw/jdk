@@ -31,7 +31,8 @@ import org.w3c.dom.Node;
 public abstract class ElementCheckerImpl implements ElementChecker {
 
 	public boolean isNamespaceElement(Node el, String type, String ns) {
-		if ((el == null) || ns != el.getNamespaceURI() || !el.getLocalName().equals(type)) {
+		if ((el == null) || ns != el.getNamespaceURI() || !el.getLocalName()
+				.equals(type)) {
 			return false;
 		}
 
@@ -40,15 +41,16 @@ public abstract class ElementCheckerImpl implements ElementChecker {
 
 	/** A checker for DOM that interns NS */
 	public static class InternedNsChecker extends ElementCheckerImpl {
-		public void guaranteeThatElementInCorrectSpace(ElementProxy expected, Element actual)
-				throws XMLSecurityException {
+		public void guaranteeThatElementInCorrectSpace(ElementProxy expected,
+				Element actual) throws XMLSecurityException {
 
 			String expectedLocalname = expected.getBaseLocalName();
 			String expectedNamespace = expected.getBaseNamespace();
 
 			String localnameIS = actual.getLocalName();
 			String namespaceIS = actual.getNamespaceURI();
-			if ((expectedNamespace != namespaceIS) || !expectedLocalname.equals(localnameIS)) {
+			if ((expectedNamespace != namespaceIS) || !expectedLocalname.equals(
+					localnameIS)) {
 				Object exArgs[] = { namespaceIS + ":" + localnameIS,
 						expectedNamespace + ":" + expectedLocalname };
 				throw new XMLSecurityException("xml.WrongElement", exArgs);
@@ -59,15 +61,15 @@ public abstract class ElementCheckerImpl implements ElementChecker {
 	/** A checker for DOM that interns NS */
 	public static class FullChecker extends ElementCheckerImpl {
 
-		public void guaranteeThatElementInCorrectSpace(ElementProxy expected, Element actual)
-				throws XMLSecurityException {
+		public void guaranteeThatElementInCorrectSpace(ElementProxy expected,
+				Element actual) throws XMLSecurityException {
 			String expectedLocalname = expected.getBaseLocalName();
 			String expectedNamespace = expected.getBaseNamespace();
 
 			String localnameIS = actual.getLocalName();
 			String namespaceIS = actual.getNamespaceURI();
-			if ((!expectedNamespace.equals(namespaceIS))
-					|| !expectedLocalname.equals(localnameIS)) {
+			if ((!expectedNamespace.equals(namespaceIS)) || !expectedLocalname
+					.equals(localnameIS)) {
 				Object exArgs[] = { namespaceIS + ":" + localnameIS,
 						expectedNamespace + ":" + expectedLocalname };
 				throw new XMLSecurityException("xml.WrongElement", exArgs);
@@ -77,8 +79,8 @@ public abstract class ElementCheckerImpl implements ElementChecker {
 
 	/** An empty checker if schema checking is used */
 	public static class EmptyChecker extends ElementCheckerImpl {
-		public void guaranteeThatElementInCorrectSpace(ElementProxy expected, Element actual)
-				throws XMLSecurityException {
+		public void guaranteeThatElementInCorrectSpace(ElementProxy expected,
+				Element actual) throws XMLSecurityException {
 			// empty
 		}
 	}

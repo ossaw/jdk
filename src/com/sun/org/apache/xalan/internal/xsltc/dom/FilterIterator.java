@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -79,7 +76,8 @@ public final class FilterIterator extends DTMAxisIteratorBase {
 			clone._isRestartable = false;
 			return clone.reset();
 		} catch (CloneNotSupportedException e) {
-			BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e.toString());
+			BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
+					.toString());
 			return null;
 		}
 	}
@@ -92,7 +90,8 @@ public final class FilterIterator extends DTMAxisIteratorBase {
 	public int next() {
 		int node;
 		while ((node = _source.next()) != END) {
-			if (_filter.acceptNode(node, DTMFilter.SHOW_ALL) == DTMIterator.FILTER_ACCEPT) {
+			if (_filter.acceptNode(node,
+					DTMFilter.SHOW_ALL) == DTMIterator.FILTER_ACCEPT) {
 				return returnNode(node);
 			}
 		}

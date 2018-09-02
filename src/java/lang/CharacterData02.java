@@ -1,27 +1,8 @@
-// This file was generated AUTOMATICALLY from a template file Fri Jul 21 22:00:53 PDT 2017
+// This file was generated AUTOMATICALLY from a template file Fri Jul 21
+// 22:00:53 PDT 2017
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -55,19 +36,20 @@ class CharacterData02 extends CharacterData {
 	 * numeric value 3 a Java supradecimal digit: adding the digit offset to the
 	 * character code, then masking with 0x1F, then adding 10 will produce the
 	 * desired numeric value 5 bits digit offset 5 bits character type
-	 * 
 	 * The encoding of character properties is subject to change at any time.
 	 */
 
 	int getProperties(int ch) {
 		char offset = (char) ch;
-		int props = A[Y[X[offset >> 5] | ((offset >> 1) & 0xF)] | (offset & 0x1)];
+		int props = A[Y[X[offset >> 5] | ((offset >> 1) & 0xF)] | (offset
+				& 0x1)];
 		return props;
 	}
 
 	int getPropertiesEx(int ch) {
 		char offset = (char) ch;
-		int props = B[Y[X[offset >> 5] | ((offset >> 1) & 0xF)] | (offset & 0x1)];
+		int props = B[Y[X[offset >> 5] | ((offset >> 1) & 0xF)] | (offset
+				& 0x1)];
 		return props;
 	}
 
@@ -195,19 +177,19 @@ class CharacterData02 extends CharacterData {
 		int retval = -1;
 
 		switch (val & 0xC00) {
-		default: // cannot occur
-		case (0x00000000): // not numeric
-			retval = -1;
-			break;
-		case (0x00000400): // simple numeric
-			retval = ch + ((val & 0x3E0) >> 5) & 0x1F;
-			break;
-		case (0x00000800): // "strange" numeric
-			retval = -2;
-			break;
-		case (0x00000C00): // Java supradecimal
-			retval = (ch + ((val & 0x3E0) >> 5) & 0x1F) + 10;
-			break;
+			default: // cannot occur
+			case (0x00000000): // not numeric
+				retval = -1;
+				break;
+			case (0x00000400): // simple numeric
+				retval = ch + ((val & 0x3E0) >> 5) & 0x1F;
+				break;
+			case (0x00000800): // "strange" numeric
+				retval = -2;
+				break;
+			case (0x00000C00): // Java supradecimal
+				retval = (ch + ((val & 0x3E0) >> 5) & 0x1F) + 10;
+				break;
 		}
 		return retval;
 	}
@@ -231,8 +213,7 @@ class CharacterData02 extends CharacterData {
 
 	static final CharacterData instance = new CharacterData02();
 
-	private CharacterData02() {
-	};
+	private CharacterData02() {};
 
 	// The following tables and code generated using:
 	// java GenerateCharacter -plane 2 -template
@@ -355,7 +336,8 @@ class CharacterData02 extends CharacterData {
 			+ "\040\040\040\040\040\040\040\040\000\000\000\000\120\000\000\000\000\000\000"
 			+ "\000\000\000\000\000\100\040\040\040\040\040\040\040\040\040\040\040\040\040"
 			+ "\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040"
-			+ "\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040").toCharArray();
+			+ "\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040")
+					.toCharArray();
 
 	// The Y table has 96 entries for a total of 192 bytes.
 

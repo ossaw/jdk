@@ -1,39 +1,17 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996 - All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - All Rights Reserved
- *
- *   The original version of this source code and documentation is copyrighted
+ * The original version of this source code and documentation is copyrighted
  * and owned by Taligent, Inc., a wholly-owned subsidiary of IBM. These
  * materials are provided under terms of a License Agreement between Taligent
  * and Sun. This technology is protected by multiple US and International
  * patents. This notice and attribution to Taligent may not be removed.
- *   Taligent is a registered trademark of Taligent, Inc.
- *
+ * Taligent is a registered trademark of Taligent, Inc.
  */
 
 package java.text;
@@ -108,7 +86,8 @@ import sun.util.locale.provider.LocaleServiceProviderPool;
  * <pre>
  * {
  * 	&#64;code
- * 	DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, Locale.FRANCE);
+ * 	DateFormat df = DateFormat.getDateInstance(DateFormat.LONG,
+ * 			Locale.FRANCE);
  * }
  * </pre>
  * 
@@ -302,26 +281,38 @@ public abstract class DateFormat extends Format {
 	 * object.
 	 * 
 	 * @param obj
-	 *            must be a Number or a Date.
+	 *                   must be a Number or a Date.
 	 * @param toAppendTo
-	 *            the string buffer for the returning time string.
+	 *                   the string buffer for the returning time string.
 	 * @return the string buffer passed in as toAppendTo, with formatted text
 	 *         appended.
 	 * @param fieldPosition
-	 *            keeps track of the position of the field within the returned
-	 *            string. On input: an alignment field, if desired. On output:
-	 *            the offsets of the alignment field. For example, given a time
-	 *            text "1996.07.10 AD at 15:08:56 PDT", if the given
-	 *            fieldPosition is DateFormat.YEAR_FIELD, the begin index and
-	 *            end index of fieldPosition will be set to 0 and 4,
-	 *            respectively. Notice that if the same time field appears more
-	 *            than once in a pattern, the fieldPosition will be set for the
-	 *            first occurrence of that time field. For instance, formatting
-	 *            a Date to the time string "1 PM PDT (Pacific Daylight Time)"
-	 *            using the pattern "h a z (zzzz)" and the alignment field
-	 *            DateFormat.TIMEZONE_FIELD, the begin index and end index of
-	 *            fieldPosition will be set to 5 and 8, respectively, for the
-	 *            first occurrence of the timezone pattern character 'z'.
+	 *                      keeps track of the position of the field within the
+	 *                      returned
+	 *                      string. On input: an alignment field, if desired. On
+	 *                      output:
+	 *                      the offsets of the alignment field. For example,
+	 *                      given a time
+	 *                      text "1996.07.10 AD at 15:08:56 PDT", if the given
+	 *                      fieldPosition is DateFormat.YEAR_FIELD, the begin
+	 *                      index and
+	 *                      end index of fieldPosition will be set to 0 and 4,
+	 *                      respectively. Notice that if the same time field
+	 *                      appears more
+	 *                      than once in a pattern, the fieldPosition will be
+	 *                      set for the
+	 *                      first occurrence of that time field. For instance,
+	 *                      formatting
+	 *                      a Date to the time string "1 PM PDT (Pacific
+	 *                      Daylight Time)"
+	 *                      using the pattern "h a z (zzzz)" and the alignment
+	 *                      field
+	 *                      DateFormat.TIMEZONE_FIELD, the begin index and end
+	 *                      index of
+	 *                      fieldPosition will be set to 5 and 8, respectively,
+	 *                      for the
+	 *                      first occurrence of the timezone pattern character
+	 *                      'z'.
 	 * @see java.text.Format
 	 */
 	public final StringBuffer format(Object obj, StringBuffer toAppendTo,
@@ -329,33 +320,48 @@ public abstract class DateFormat extends Format {
 		if (obj instanceof Date)
 			return format((Date) obj, toAppendTo, fieldPosition);
 		else if (obj instanceof Number)
-			return format(new Date(((Number) obj).longValue()), toAppendTo, fieldPosition);
+			return format(new Date(((Number) obj).longValue()), toAppendTo,
+					fieldPosition);
 		else
-			throw new IllegalArgumentException("Cannot format given Object as a Date");
+			throw new IllegalArgumentException(
+					"Cannot format given Object as a Date");
 	}
 
 	/**
 	 * Formats a Date into a date/time string.
 	 * 
 	 * @param date
-	 *            a Date to be formatted into a date/time string.
+	 *                      a Date to be formatted into a date/time string.
 	 * @param toAppendTo
-	 *            the string buffer for the returning date/time string.
+	 *                      the string buffer for the returning date/time
+	 *                      string.
 	 * @param fieldPosition
-	 *            keeps track of the position of the field within the returned
-	 *            string. On input: an alignment field, if desired. On output:
-	 *            the offsets of the alignment field. For example, given a time
-	 *            text "1996.07.10 AD at 15:08:56 PDT", if the given
-	 *            fieldPosition is DateFormat.YEAR_FIELD, the begin index and
-	 *            end index of fieldPosition will be set to 0 and 4,
-	 *            respectively. Notice that if the same time field appears more
-	 *            than once in a pattern, the fieldPosition will be set for the
-	 *            first occurrence of that time field. For instance, formatting
-	 *            a Date to the time string "1 PM PDT (Pacific Daylight Time)"
-	 *            using the pattern "h a z (zzzz)" and the alignment field
-	 *            DateFormat.TIMEZONE_FIELD, the begin index and end index of
-	 *            fieldPosition will be set to 5 and 8, respectively, for the
-	 *            first occurrence of the timezone pattern character 'z'.
+	 *                      keeps track of the position of the field within the
+	 *                      returned
+	 *                      string. On input: an alignment field, if desired. On
+	 *                      output:
+	 *                      the offsets of the alignment field. For example,
+	 *                      given a time
+	 *                      text "1996.07.10 AD at 15:08:56 PDT", if the given
+	 *                      fieldPosition is DateFormat.YEAR_FIELD, the begin
+	 *                      index and
+	 *                      end index of fieldPosition will be set to 0 and 4,
+	 *                      respectively. Notice that if the same time field
+	 *                      appears more
+	 *                      than once in a pattern, the fieldPosition will be
+	 *                      set for the
+	 *                      first occurrence of that time field. For instance,
+	 *                      formatting
+	 *                      a Date to the time string "1 PM PDT (Pacific
+	 *                      Daylight Time)"
+	 *                      using the pattern "h a z (zzzz)" and the alignment
+	 *                      field
+	 *                      DateFormat.TIMEZONE_FIELD, the begin index and end
+	 *                      index of
+	 *                      fieldPosition will be set to 5 and 8, respectively,
+	 *                      for the
+	 *                      first occurrence of the timezone pattern character
+	 *                      'z'.
 	 * @return the string buffer passed in as toAppendTo, with formatted text
 	 *         appended.
 	 */
@@ -366,11 +372,12 @@ public abstract class DateFormat extends Format {
 	 * Formats a Date into a date/time string.
 	 * 
 	 * @param date
-	 *            the time value to be formatted into a time string.
+	 *             the time value to be formatted into a time string.
 	 * @return the formatted time string.
 	 */
 	public final String format(Date date) {
-		return format(date, new StringBuffer(), DontCareFieldPosition.INSTANCE).toString();
+		return format(date, new StringBuffer(), DontCareFieldPosition.INSTANCE)
+				.toString();
 	}
 
 	/**
@@ -381,16 +388,18 @@ public abstract class DateFormat extends Format {
 	 * on date parsing.
 	 *
 	 * @param source
-	 *            A <code>String</code> whose beginning should be parsed.
+	 *               A <code>String</code> whose beginning should be parsed.
 	 * @return A <code>Date</code> parsed from the string.
 	 * @exception ParseException
-	 *                if the beginning of the specified string cannot be parsed.
+	 *                           if the beginning of the specified string cannot
+	 *                           be parsed.
 	 */
 	public Date parse(String source) throws ParseException {
 		ParsePosition pos = new ParsePosition(0);
 		Date result = parse(source, pos);
 		if (pos.index == 0)
-			throw new ParseException("Unparseable date: \"" + source + "\"", pos.errorIndex);
+			throw new ParseException("Unparseable date: \"" + source + "\"",
+					pos.errorIndex);
 		return result;
 	}
 
@@ -415,12 +424,13 @@ public abstract class DateFormat extends Format {
 	 * restored for further operations.
 	 *
 	 * @param source
-	 *            The date/time string to be parsed
+	 *               The date/time string to be parsed
 	 *
 	 * @param pos
-	 *            On input, the position at which to start parsing; on output,
-	 *            the position at which parsing terminated, or the start
-	 *            position if the parse failed.
+	 *               On input, the position at which to start parsing; on
+	 *               output,
+	 *               the position at which parsing terminated, or the start
+	 *               position if the parse failed.
 	 *
 	 * @return A {@code Date}, or {@code null} if the input could not be parsed
 	 */
@@ -443,14 +453,15 @@ public abstract class DateFormat extends Format {
 	 * on date parsing.
 	 *
 	 * @param source
-	 *            A <code>String</code>, part of which should be parsed.
+	 *               A <code>String</code>, part of which should be parsed.
 	 * @param pos
-	 *            A <code>ParsePosition</code> object with index and error index
-	 *            information as described above.
+	 *               A <code>ParsePosition</code> object with index and error
+	 *               index
+	 *               information as described above.
 	 * @return A <code>Date</code> parsed from the string. In case of error,
 	 *         returns null.
 	 * @exception NullPointerException
-	 *                if <code>pos</code> is null.
+	 *                                 if <code>pos</code> is null.
 	 */
 	public Object parseObject(String source, ParsePosition pos) {
 		return parse(source, pos);
@@ -502,8 +513,9 @@ public abstract class DateFormat extends Format {
 	 * @see java.util.Locale#getDefault(java.util.Locale.Category)
 	 * @see java.util.Locale.Category#FORMAT
 	 * @param style
-	 *            the given formatting style. For example, SHORT for "h:mm a" in
-	 *            the US locale.
+	 *              the given formatting style. For example, SHORT for "h:mm a"
+	 *              in
+	 *              the US locale.
 	 * @return a time formatter.
 	 */
 	public final static DateFormat getTimeInstance(int style) {
@@ -515,10 +527,11 @@ public abstract class DateFormat extends Format {
 	 * locale.
 	 * 
 	 * @param style
-	 *            the given formatting style. For example, SHORT for "h:mm a" in
-	 *            the US locale.
+	 *                the given formatting style. For example, SHORT for "h:mm
+	 *                a" in
+	 *                the US locale.
 	 * @param aLocale
-	 *            the given locale.
+	 *                the given locale.
 	 * @return a time formatter.
 	 */
 	public final static DateFormat getTimeInstance(int style, Locale aLocale) {
@@ -550,8 +563,9 @@ public abstract class DateFormat extends Format {
 	 * @see java.util.Locale#getDefault(java.util.Locale.Category)
 	 * @see java.util.Locale.Category#FORMAT
 	 * @param style
-	 *            the given formatting style. For example, SHORT for "M/d/yy" in
-	 *            the US locale.
+	 *              the given formatting style. For example, SHORT for "M/d/yy"
+	 *              in
+	 *              the US locale.
 	 * @return a date formatter.
 	 */
 	public final static DateFormat getDateInstance(int style) {
@@ -563,10 +577,11 @@ public abstract class DateFormat extends Format {
 	 * locale.
 	 * 
 	 * @param style
-	 *            the given formatting style. For example, SHORT for "M/d/yy" in
-	 *            the US locale.
+	 *                the given formatting style. For example, SHORT for
+	 *                "M/d/yy" in
+	 *                the US locale.
 	 * @param aLocale
-	 *            the given locale.
+	 *                the given locale.
 	 * @return a date formatter.
 	 */
 	public final static DateFormat getDateInstance(int style, Locale aLocale) {
@@ -587,7 +602,8 @@ public abstract class DateFormat extends Format {
 	 * @return a date/time formatter.
 	 */
 	public final static DateFormat getDateTimeInstance() {
-		return get(DEFAULT, DEFAULT, 3, Locale.getDefault(Locale.Category.FORMAT));
+		return get(DEFAULT, DEFAULT, 3, Locale.getDefault(
+				Locale.Category.FORMAT));
 	}
 
 	/**
@@ -603,15 +619,17 @@ public abstract class DateFormat extends Format {
 	 * @see java.util.Locale#getDefault(java.util.Locale.Category)
 	 * @see java.util.Locale.Category#FORMAT
 	 * @param dateStyle
-	 *            the given date formatting style. For example, SHORT for
-	 *            "M/d/yy" in the US locale.
+	 *                  the given date formatting style. For example, SHORT for
+	 *                  "M/d/yy" in the US locale.
 	 * @param timeStyle
-	 *            the given time formatting style. For example, SHORT for
-	 *            "h:mm a" in the US locale.
+	 *                  the given time formatting style. For example, SHORT for
+	 *                  "h:mm a" in the US locale.
 	 * @return a date/time formatter.
 	 */
-	public final static DateFormat getDateTimeInstance(int dateStyle, int timeStyle) {
-		return get(timeStyle, dateStyle, 3, Locale.getDefault(Locale.Category.FORMAT));
+	public final static DateFormat getDateTimeInstance(int dateStyle,
+			int timeStyle) {
+		return get(timeStyle, dateStyle, 3, Locale.getDefault(
+				Locale.Category.FORMAT));
 	}
 
 	/**
@@ -619,15 +637,15 @@ public abstract class DateFormat extends Format {
 	 * given locale.
 	 * 
 	 * @param dateStyle
-	 *            the given date formatting style.
+	 *                  the given date formatting style.
 	 * @param timeStyle
-	 *            the given time formatting style.
+	 *                  the given time formatting style.
 	 * @param aLocale
-	 *            the given locale.
+	 *                  the given locale.
 	 * @return a date/time formatter.
 	 */
-	public final static DateFormat getDateTimeInstance(int dateStyle, int timeStyle,
-			Locale aLocale) {
+	public final static DateFormat getDateTimeInstance(int dateStyle,
+			int timeStyle, Locale aLocale) {
 		return get(timeStyle, dateStyle, 3, aLocale);
 	}
 
@@ -653,8 +671,8 @@ public abstract class DateFormat extends Format {
 	 *         instances are available.
 	 */
 	public static Locale[] getAvailableLocales() {
-		LocaleServiceProviderPool pool = LocaleServiceProviderPool
-				.getPool(DateFormatProvider.class);
+		LocaleServiceProviderPool pool = LocaleServiceProviderPool.getPool(
+				DateFormatProvider.class);
 		return pool.getAvailableLocales();
 	}
 
@@ -668,7 +686,7 @@ public abstract class DateFormat extends Format {
 	 * {@code newCalendar}'s values.
 	 *
 	 * @param newCalendar
-	 *            the new {@code Calendar} to be used by the date format
+	 *                    the new {@code Calendar} to be used by the date format
 	 */
 	public void setCalendar(Calendar newCalendar) {
 		this.calendar = newCalendar;
@@ -687,7 +705,7 @@ public abstract class DateFormat extends Format {
 	 * Allows you to set the number formatter.
 	 * 
 	 * @param newNumberFormat
-	 *            the given new NumberFormat.
+	 *                        the given new NumberFormat.
 	 */
 	public void setNumberFormat(NumberFormat newNumberFormat) {
 		this.numberFormat = newNumberFormat;
@@ -724,7 +742,7 @@ public abstract class DateFormat extends Format {
 	 * a call to the parse method.
 	 *
 	 * @param zone
-	 *            the given new time zone.
+	 *             the given new time zone.
 	 */
 	public void setTimeZone(TimeZone zone) {
 		calendar.setTimeZone(zone);
@@ -770,7 +788,7 @@ public abstract class DateFormat extends Format {
 	 * {@link #setCalendar(java.util.Calendar) setCalendar()}.
 	 *
 	 * @param lenient
-	 *            when {@code true}, parsing is lenient
+	 *                when {@code true}, parsing is lenient
 	 * @see java.util.Calendar#setLenient(boolean)
 	 */
 	public void setLenient(boolean lenient) {
@@ -818,8 +836,8 @@ public abstract class DateFormat extends Format {
 				// EXIST YET!
 		calendar.getFirstDayOfWeek() == other.calendar.getFirstDayOfWeek()
 				&& calendar.getMinimalDaysInFirstWeek() == other.calendar
-						.getMinimalDaysInFirstWeek()
-				&& calendar.isLenient() == other.calendar.isLenient()
+						.getMinimalDaysInFirstWeek() && calendar
+								.isLenient() == other.calendar.isLenient()
 				&& calendar.getTimeZone().equals(other.calendar.getTimeZone())
 				&& numberFormat.equals(other.numberFormat));
 	}
@@ -839,44 +857,51 @@ public abstract class DateFormat extends Format {
 	 * locale.
 	 * 
 	 * @param timeStyle
-	 *            a value from 0 to 3 indicating the time format, ignored if
-	 *            flags is 2
+	 *                  a value from 0 to 3 indicating the time format, ignored
+	 *                  if
+	 *                  flags is 2
 	 * @param dateStyle
-	 *            a value from 0 to 3 indicating the time format, ignored if
-	 *            flags is 1
+	 *                  a value from 0 to 3 indicating the time format, ignored
+	 *                  if
+	 *                  flags is 1
 	 * @param flags
-	 *            either 1 for a time format, 2 for a date format, or 3 for a
-	 *            date/time format
+	 *                  either 1 for a time format, 2 for a date format, or 3
+	 *                  for a
+	 *                  date/time format
 	 * @param loc
-	 *            the locale for the format
+	 *                  the locale for the format
 	 */
-	private static DateFormat get(int timeStyle, int dateStyle, int flags, Locale loc) {
+	private static DateFormat get(int timeStyle, int dateStyle, int flags,
+			Locale loc) {
 		if ((flags & 1) != 0) {
 			if (timeStyle < 0 || timeStyle > 3) {
-				throw new IllegalArgumentException("Illegal time style " + timeStyle);
+				throw new IllegalArgumentException("Illegal time style "
+						+ timeStyle);
 			}
 		} else {
 			timeStyle = -1;
 		}
 		if ((flags & 2) != 0) {
 			if (dateStyle < 0 || dateStyle > 3) {
-				throw new IllegalArgumentException("Illegal date style " + dateStyle);
+				throw new IllegalArgumentException("Illegal date style "
+						+ dateStyle);
 			}
 		} else {
 			dateStyle = -1;
 		}
 
-		LocaleProviderAdapter adapter = LocaleProviderAdapter.getAdapter(DateFormatProvider.class,
-				loc);
+		LocaleProviderAdapter adapter = LocaleProviderAdapter.getAdapter(
+				DateFormatProvider.class, loc);
 		DateFormat dateFormat = get(adapter, timeStyle, dateStyle, loc);
 		if (dateFormat == null) {
-			dateFormat = get(LocaleProviderAdapter.forJRE(), timeStyle, dateStyle, loc);
+			dateFormat = get(LocaleProviderAdapter.forJRE(), timeStyle,
+					dateStyle, loc);
 		}
 		return dateFormat;
 	}
 
-	private static DateFormat get(LocaleProviderAdapter adapter, int timeStyle, int dateStyle,
-			Locale loc) {
+	private static DateFormat get(LocaleProviderAdapter adapter, int timeStyle,
+			int dateStyle, Locale loc) {
 		DateFormatProvider provider = adapter.getDateFormatProvider();
 		DateFormat dateFormat;
 		if (timeStyle == -1) {
@@ -885,7 +910,8 @@ public abstract class DateFormat extends Format {
 			if (dateStyle == -1) {
 				dateFormat = provider.getTimeInstance(timeStyle, loc);
 			} else {
-				dateFormat = provider.getDateTimeInstance(dateStyle, timeStyle, loc);
+				dateFormat = provider.getDateTimeInstance(dateStyle, timeStyle,
+						loc);
 			}
 		}
 		return dateFormat;
@@ -894,8 +920,7 @@ public abstract class DateFormat extends Format {
 	/**
 	 * Create a new date format.
 	 */
-	protected DateFormat() {
-	}
+	protected DateFormat() {}
 
 	/**
 	 * Defines constants that are used as attribute keys in the
@@ -930,16 +955,20 @@ public abstract class DateFormat extends Format {
 		 * <code>Field</code>, null is returned.
 		 *
 		 * @throws IllegalArgumentException
-		 *             if <code>calendarField</code> is not the value of a
-		 *             <code>Calendar</code> field constant.
+		 *                                  if <code>calendarField</code> is not
+		 *                                  the value of a
+		 *                                  <code>Calendar</code> field
+		 *                                  constant.
 		 * @param calendarField
-		 *            Calendar field constant
+		 *                      Calendar field constant
 		 * @return Field instance representing calendarField.
 		 * @see java.util.Calendar
 		 */
 		public static Field ofCalendarField(int calendarField) {
-			if (calendarField < 0 || calendarField >= calendarToFieldMapping.length) {
-				throw new IllegalArgumentException("Unknown Calendar constant " + calendarField);
+			if (calendarField < 0
+					|| calendarField >= calendarToFieldMapping.length) {
+				throw new IllegalArgumentException("Unknown Calendar constant "
+						+ calendarField);
 			}
 			return calendarToFieldMapping[calendarField];
 		}
@@ -948,13 +977,17 @@ public abstract class DateFormat extends Format {
 		 * Creates a <code>Field</code>.
 		 *
 		 * @param name
-		 *            the name of the <code>Field</code>
+		 *                      the name of the <code>Field</code>
 		 * @param calendarField
-		 *            the <code>Calendar</code> constant this <code>Field</code>
-		 *            corresponds to; any value, even one outside the range of
-		 *            legal <code>Calendar</code> values may be used, but
-		 *            <code>-1</code> should be used for values that don't
-		 *            correspond to legal <code>Calendar</code> values
+		 *                      the <code>Calendar</code> constant this
+		 *                      <code>Field</code>
+		 *                      corresponds to; any value, even one outside the
+		 *                      range of
+		 *                      legal <code>Calendar</code> values may be used,
+		 *                      but
+		 *                      <code>-1</code> should be used for values that
+		 *                      don't
+		 *                      correspond to legal <code>Calendar</code> values
 		 */
 		protected Field(String name, int calendarField) {
 			super(name);
@@ -986,13 +1019,14 @@ public abstract class DateFormat extends Format {
 		 * Resolves instances being deserialized to the predefined constants.
 		 *
 		 * @throws InvalidObjectException
-		 *             if the constant could not be resolved.
+		 *                                if the constant could not be resolved.
 		 * @return resolved DateFormat.Field constant
 		 */
 		@Override
 		protected Object readResolve() throws InvalidObjectException {
 			if (this.getClass() != DateFormat.Field.class) {
-				throw new InvalidObjectException("subclass didn't correctly implement readResolve");
+				throw new InvalidObjectException(
+						"subclass didn't correctly implement readResolve");
 			}
 
 			Object instance = instanceMap.get(getName());
@@ -1025,7 +1059,8 @@ public abstract class DateFormat extends Format {
 		/**
 		 * Constant identifying the day of month field.
 		 */
-		public final static Field DAY_OF_MONTH = new Field("day of month", Calendar.DAY_OF_MONTH);
+		public final static Field DAY_OF_MONTH = new Field("day of month",
+				Calendar.DAY_OF_MONTH);
 
 		/**
 		 * Constant identifying the hour of day field, where the legal values
@@ -1037,7 +1072,8 @@ public abstract class DateFormat extends Format {
 		 * Constant identifying the hour of day field, where the legal values
 		 * are 0 to 23.
 		 */
-		public final static Field HOUR_OF_DAY0 = new Field("hour of day", Calendar.HOUR_OF_DAY);
+		public final static Field HOUR_OF_DAY0 = new Field("hour of day",
+				Calendar.HOUR_OF_DAY);
 
 		/**
 		 * Constant identifying the minute field.
@@ -1052,28 +1088,32 @@ public abstract class DateFormat extends Format {
 		/**
 		 * Constant identifying the millisecond field.
 		 */
-		public final static Field MILLISECOND = new Field("millisecond", Calendar.MILLISECOND);
+		public final static Field MILLISECOND = new Field("millisecond",
+				Calendar.MILLISECOND);
 
 		/**
 		 * Constant identifying the day of week field.
 		 */
-		public final static Field DAY_OF_WEEK = new Field("day of week", Calendar.DAY_OF_WEEK);
+		public final static Field DAY_OF_WEEK = new Field("day of week",
+				Calendar.DAY_OF_WEEK);
 
 		/**
 		 * Constant identifying the day of year field.
 		 */
-		public final static Field DAY_OF_YEAR = new Field("day of year", Calendar.DAY_OF_YEAR);
+		public final static Field DAY_OF_YEAR = new Field("day of year",
+				Calendar.DAY_OF_YEAR);
 
 		/**
 		 * Constant identifying the day of week field.
 		 */
-		public final static Field DAY_OF_WEEK_IN_MONTH = new Field("day of week in month",
-				Calendar.DAY_OF_WEEK_IN_MONTH);
+		public final static Field DAY_OF_WEEK_IN_MONTH = new Field(
+				"day of week in month", Calendar.DAY_OF_WEEK_IN_MONTH);
 
 		/**
 		 * Constant identifying the week of year field.
 		 */
-		public final static Field WEEK_OF_YEAR = new Field("week of year", Calendar.WEEK_OF_YEAR);
+		public final static Field WEEK_OF_YEAR = new Field("week of year",
+				Calendar.WEEK_OF_YEAR);
 
 		/**
 		 * Constant identifying the week of month field.

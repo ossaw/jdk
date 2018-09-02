@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.filechooser;
@@ -99,7 +79,8 @@ public abstract class FileSystemView {
 	}
 
 	public FileSystemView() {
-		final WeakReference<FileSystemView> weakReference = new WeakReference<FileSystemView>(this);
+		final WeakReference<FileSystemView> weakReference = new WeakReference<FileSystemView>(
+				this);
 
 		UIManager.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
@@ -110,8 +91,9 @@ public abstract class FileSystemView {
 					UIManager.removePropertyChangeListener(this);
 				} else {
 					if (evt.getPropertyName().equals("lookAndFeel")) {
-						fileSystemView.useSystemExtensionHiding = UIManager.getDefaults()
-								.getBoolean("FileChooser.useSystemExtensionHiding");
+						fileSystemView.useSystemExtensionHiding = UIManager
+								.getDefaults().getBoolean(
+										"FileChooser.useSystemExtensionHiding");
 					}
 				}
 			}
@@ -128,7 +110,7 @@ public abstract class FileSystemView {
 	 * <code>ShellFolder</code> class.
 	 *
 	 * @param f
-	 *            a <code>File</code> object representing a directory
+	 *          a <code>File</code> object representing a directory
 	 * @return <code>true</code> if <code>f</code> is a root in the navigable
 	 *         tree.
 	 * @see #isFileSystemRoot
@@ -152,7 +134,7 @@ public abstract class FileSystemView {
 	 * directory cannot be traversed.
 	 *
 	 * @param f
-	 *            the <code>File</code>
+	 *          the <code>File</code>
 	 * @return <code>true</code> if the file/directory can be traversed,
 	 *         otherwise <code>false</code>
 	 * @see JFileChooser#isTraversable
@@ -171,7 +153,7 @@ public abstract class FileSystemView {
 	 * The default implementation gets information from the ShellFolder class.
 	 *
 	 * @param f
-	 *            a <code>File</code> object
+	 *          a <code>File</code> object
 	 * @return the file name as it would be displayed by a native file chooser
 	 * @see JFileChooser#getName
 	 * @since 1.4
@@ -183,8 +165,8 @@ public abstract class FileSystemView {
 
 		String name = f.getName();
 
-		if (!name.equals("..") && !name.equals(".")
-				&& (useSystemExtensionHiding || !isFileSystem(f) || isFileSystemRoot(f))
+		if (!name.equals("..") && !name.equals(".") && (useSystemExtensionHiding
+				|| !isFileSystem(f) || isFileSystemRoot(f))
 				&& (f instanceof ShellFolder || f.exists())) {
 
 			try {
@@ -209,7 +191,7 @@ public abstract class FileSystemView {
 	 * Override for platforms with native ShellFolder implementations.
 	 *
 	 * @param f
-	 *            a <code>File</code> object
+	 *          a <code>File</code> object
 	 * @return the file type description as it would be displayed by a native
 	 *         file chooser or null if no native information is available.
 	 * @see JFileChooser#getTypeDescription
@@ -227,7 +209,7 @@ public abstract class FileSystemView {
 	 * The default implementation gets information from the ShellFolder class.
 	 *
 	 * @param f
-	 *            a <code>File</code> object
+	 *          a <code>File</code> object
 	 * @return an icon as it would be displayed by a native file chooser
 	 * @see JFileChooser#getIcon
 	 * @since 1.4
@@ -250,8 +232,8 @@ public abstract class FileSystemView {
 		if (img != null) {
 			return new ImageIcon(img, sf.getFolderType());
 		} else {
-			return UIManager
-					.getIcon(f.isDirectory() ? "FileView.directoryIcon" : "FileView.fileIcon");
+			return UIManager.getIcon(f.isDirectory() ? "FileView.directoryIcon"
+					: "FileView.fileIcon");
 		}
 	}
 
@@ -261,10 +243,11 @@ public abstract class FileSystemView {
 	 * folder which is not the same as file.getParentFile().
 	 *
 	 * @param folder
-	 *            a <code>File</code> object representing a directory or special
-	 *            folder
+	 *               a <code>File</code> object representing a directory or
+	 *               special
+	 *               folder
 	 * @param file
-	 *            a <code>File</code> object
+	 *               a <code>File</code> object
 	 * @return <code>true</code> if <code>folder</code> is a directory or
 	 *         special folder and contains <code>file</code>.
 	 * @since 1.4
@@ -292,10 +275,12 @@ public abstract class FileSystemView {
 	/**
 	 *
 	 * @param parent
-	 *            a <code>File</code> object representing a directory or special
-	 *            folder
+	 *                 a <code>File</code> object representing a directory or
+	 *                 special
+	 *                 folder
 	 * @param fileName
-	 *            a name of a file or folder which exists in <code>parent</code>
+	 *                 a name of a file or folder which exists in
+	 *                 <code>parent</code>
 	 * @return a File object. This is normally constructed with <code>new
 	 * File(parent, fileName)</code> except when parent and child are both
 	 *         special folders, in which case the <code>File</code> is a wrapper
@@ -320,7 +305,7 @@ public abstract class FileSystemView {
 	 * decide if a folder is selectable when doing directory choosing.
 	 *
 	 * @param f
-	 *            a <code>File</code> object
+	 *          a <code>File</code> object
 	 * @return <code>true</code> if <code>f</code> is a real file or directory.
 	 * @since 1.4
 	 */
@@ -572,7 +557,8 @@ public abstract class FileSystemView {
 	 * was interrupted
 	 */
 	ShellFolder getShellFolder(File f) throws FileNotFoundException {
-		if (!(f instanceof ShellFolder) && !(f instanceof FileSystemRoot) && isFileSystemRoot(f)) {
+		if (!(f instanceof ShellFolder) && !(f instanceof FileSystemRoot)
+				&& isFileSystemRoot(f)) {
 			f = createFileSystemRoot(f);
 		}
 
@@ -590,8 +576,8 @@ public abstract class FileSystemView {
 	 * behavior for a file system root directory.
 	 *
 	 * @param f
-	 *            a <code>File</code> object representing a file system root
-	 *            directory, for example "/" on Unix or "C:\" on Windows.
+	 *          a <code>File</code> object representing a file system root
+	 *          directory, for example "/" on Unix or "C:\" on Windows.
 	 * @return a new <code>File</code> object
 	 * @since 1.4
 	 */
@@ -623,10 +609,10 @@ public abstract class FileSystemView {
  */
 class UnixFileSystemView extends FileSystemView {
 
-	private static final String newFolderString = UIManager
-			.getString("FileChooser.other.newFolder");
-	private static final String newFolderNextString = UIManager
-			.getString("FileChooser.other.newFolder.subsequent");
+	private static final String newFolderString = UIManager.getString(
+			"FileChooser.other.newFolder");
+	private static final String newFolderNextString = UIManager.getString(
+			"FileChooser.other.newFolder.subsequent");
 
 	/**
 	 * Creates a new folder with a default folder name.
@@ -641,13 +627,14 @@ class UnixFileSystemView extends FileSystemView {
 		newFolder = createFileObject(containingDir, newFolderString);
 		int i = 1;
 		while (newFolder.exists() && i < 100) {
-			newFolder = createFileObject(containingDir,
-					MessageFormat.format(newFolderNextString, new Integer(i)));
+			newFolder = createFileObject(containingDir, MessageFormat.format(
+					newFolderNextString, new Integer(i)));
 			i++;
 		}
 
 		if (newFolder.exists()) {
-			throw new IOException("Directory already exists:" + newFolder.getAbsolutePath());
+			throw new IOException("Directory already exists:" + newFolder
+					.getAbsolutePath());
 		} else {
 			newFolder.mkdirs();
 		}
@@ -687,21 +674,24 @@ class UnixFileSystemView extends FileSystemView {
  */
 class WindowsFileSystemView extends FileSystemView {
 
-	private static final String newFolderString = UIManager
-			.getString("FileChooser.win32.newFolder");
-	private static final String newFolderNextString = UIManager
-			.getString("FileChooser.win32.newFolder.subsequent");
+	private static final String newFolderString = UIManager.getString(
+			"FileChooser.win32.newFolder");
+	private static final String newFolderNextString = UIManager.getString(
+			"FileChooser.win32.newFolder.subsequent");
 
 	public Boolean isTraversable(File f) {
-		return Boolean.valueOf(isFileSystemRoot(f) || isComputerNode(f) || f.isDirectory());
+		return Boolean.valueOf(isFileSystemRoot(f) || isComputerNode(f) || f
+				.isDirectory());
 	}
 
 	public File getChild(File parent, String fileName) {
-		if (fileName.startsWith("\\") && !fileName.startsWith("\\\\") && isFileSystem(parent)) {
+		if (fileName.startsWith("\\") && !fileName.startsWith("\\\\")
+				&& isFileSystem(parent)) {
 
 			// Path is relative to the root of parent's drive
 			String path = parent.getAbsolutePath();
-			if (path.length() >= 2 && path.charAt(1) == ':' && Character.isLetter(path.charAt(0))) {
+			if (path.length() >= 2 && path.charAt(1) == ':' && Character
+					.isLetter(path.charAt(0))) {
 
 				return createFileObject(path.substring(0, 2) + fileName);
 			}
@@ -747,13 +737,14 @@ class WindowsFileSystemView extends FileSystemView {
 		File newFolder = createFileObject(containingDir, newFolderString);
 		int i = 2;
 		while (newFolder.exists() && i < 100) {
-			newFolder = createFileObject(containingDir,
-					MessageFormat.format(newFolderNextString, new Integer(i)));
+			newFolder = createFileObject(containingDir, MessageFormat.format(
+					newFolderNextString, new Integer(i)));
 			i++;
 		}
 
 		if (newFolder.exists()) {
-			throw new IOException("Directory already exists:" + newFolder.getAbsolutePath());
+			throw new IOException("Directory already exists:" + newFolder
+					.getAbsolutePath());
 		} else {
 			newFolder.mkdirs();
 		}
@@ -766,11 +757,12 @@ class WindowsFileSystemView extends FileSystemView {
 	}
 
 	public boolean isFloppyDrive(final File dir) {
-		String path = AccessController.doPrivileged(new PrivilegedAction<String>() {
-			public String run() {
-				return dir.getAbsolutePath();
-			}
-		});
+		String path = AccessController.doPrivileged(
+				new PrivilegedAction<String>() {
+					public String run() {
+						return dir.getAbsolutePath();
+					}
+				});
 
 		return path != null && (path.equals("A:\\") || path.equals("B:\\"));
 	}
@@ -781,7 +773,8 @@ class WindowsFileSystemView extends FileSystemView {
 	public File createFileObject(String path) {
 		// Check for missing backslash after drive letter such as "C:" or
 		// "C:filename"
-		if (path.length() >= 2 && path.charAt(1) == ':' && Character.isLetter(path.charAt(0))) {
+		if (path.length() >= 2 && path.charAt(1) == ':' && Character.isLetter(
+				path.charAt(0))) {
 			if (path.length() == 2) {
 				path += "\\";
 			} else if (path.charAt(2) != '\\') {
@@ -808,8 +801,8 @@ class WindowsFileSystemView extends FileSystemView {
  */
 class GenericFileSystemView extends FileSystemView {
 
-	private static final String newFolderString = UIManager
-			.getString("FileChooser.other.newFolder");
+	private static final String newFolderString = UIManager.getString(
+			"FileChooser.other.newFolder");
 
 	/**
 	 * Creates a new folder with a default folder name.
@@ -822,7 +815,8 @@ class GenericFileSystemView extends FileSystemView {
 		File newFolder = createFileObject(containingDir, newFolderString);
 
 		if (newFolder.exists()) {
-			throw new IOException("Directory already exists:" + newFolder.getAbsolutePath());
+			throw new IOException("Directory already exists:" + newFolder
+					.getAbsolutePath());
 		} else {
 			newFolder.mkdirs();
 		}

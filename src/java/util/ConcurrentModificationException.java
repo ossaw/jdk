@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -74,15 +54,14 @@ public class ConcurrentModificationException extends RuntimeException {
 	/**
 	 * Constructs a ConcurrentModificationException with no detail message.
 	 */
-	public ConcurrentModificationException() {
-	}
+	public ConcurrentModificationException() {}
 
 	/**
 	 * Constructs a {@code ConcurrentModificationException} with the specified
 	 * detail message.
 	 *
 	 * @param message
-	 *            the detail message pertaining to this exception.
+	 *                the detail message pertaining to this exception.
 	 */
 	public ConcurrentModificationException(String message) {
 		super(message);
@@ -94,10 +73,11 @@ public class ConcurrentModificationException extends RuntimeException {
 	 * contains the class and detail message of {@code cause}.
 	 *
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link Throwable#getCause()} method). (A {@code null} value is
-	 *            permitted, and indicates that the cause is nonexistent or
-	 *            unknown.)
+	 *              the cause (which is saved for later retrieval by the
+	 *              {@link Throwable#getCause()} method). (A {@code null} value
+	 *              is
+	 *              permitted, and indicates that the cause is nonexistent or
+	 *              unknown.)
 	 * @since 1.7
 	 */
 	public ConcurrentModificationException(Throwable cause) {
@@ -112,13 +92,15 @@ public class ConcurrentModificationException extends RuntimeException {
 	 * <i>not</i> automatically incorporated in this exception's detail message.
 	 *
 	 * @param message
-	 *            the detail message (which is saved for later retrieval by the
-	 *            {@link Throwable#getMessage()} method).
+	 *                the detail message (which is saved for later retrieval by
+	 *                the
+	 *                {@link Throwable#getMessage()} method).
 	 * @param cause
-	 *            the cause (which is saved for later retrieval by the
-	 *            {@link Throwable#getCause()} method). (A {@code null} value is
-	 *            permitted, and indicates that the cause is nonexistent or
-	 *            unknown.)
+	 *                the cause (which is saved for later retrieval by the
+	 *                {@link Throwable#getCause()} method). (A {@code null}
+	 *                value is
+	 *                permitted, and indicates that the cause is nonexistent or
+	 *                unknown.)
 	 * @since 1.7
 	 */
 	public ConcurrentModificationException(String message, Throwable cause) {

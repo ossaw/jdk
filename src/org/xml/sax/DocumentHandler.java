@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // SAX document handler.
@@ -98,8 +78,8 @@ public interface DocumentHandler {
 	 * </p>
 	 *
 	 * @param locator
-	 *            An object that can return the location of any SAX document
-	 *            event.
+	 *                An object that can return the location of any SAX document
+	 *                event.
 	 * @see org.xml.sax.Locator
 	 */
 	public abstract void setDocumentLocator(Locator locator);
@@ -114,7 +94,7 @@ public interface DocumentHandler {
 	 * </p>
 	 *
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 */
 	public abstract void startDocument() throws SAXException;
 
@@ -129,7 +109,7 @@ public interface DocumentHandler {
 	 * </p>
 	 *
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 */
 	public abstract void endDocument() throws SAXException;
 
@@ -152,15 +132,16 @@ public interface DocumentHandler {
 	 * </p>
 	 *
 	 * @param name
-	 *            The element type name.
+	 *             The element type name.
 	 * @param atts
-	 *            The attributes attached to the element, if any.
+	 *             The attributes attached to the element, if any.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 * @see #endElement
 	 * @see org.xml.sax.AttributeList
 	 */
-	public abstract void startElement(String name, AttributeList atts) throws SAXException;
+	public abstract void startElement(String name, AttributeList atts)
+			throws SAXException;
 
 	/**
 	 * Receive notification of the end of an element.
@@ -177,9 +158,9 @@ public interface DocumentHandler {
 	 * </p>
 	 *
 	 * @param name
-	 *            The element type name
+	 *             The element type name
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 */
 	public abstract void endElement(String name) throws SAXException;
 
@@ -206,17 +187,18 @@ public interface DocumentHandler {
 	 * </p>
 	 *
 	 * @param ch
-	 *            The characters from the XML document.
+	 *               The characters from the XML document.
 	 * @param start
-	 *            The start position in the array.
+	 *               The start position in the array.
 	 * @param length
-	 *            The number of characters to read from the array.
+	 *               The number of characters to read from the array.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 * @see #ignorableWhitespace
 	 * @see org.xml.sax.Locator
 	 */
-	public abstract void characters(char ch[], int start, int length) throws SAXException;
+	public abstract void characters(char ch[], int start, int length)
+			throws SAXException;
 
 	/**
 	 * Receive notification of ignorable whitespace in element content.
@@ -241,16 +223,17 @@ public interface DocumentHandler {
 	 * </p>
 	 *
 	 * @param ch
-	 *            The characters from the XML document.
+	 *               The characters from the XML document.
 	 * @param start
-	 *            The start position in the array.
+	 *               The start position in the array.
 	 * @param length
-	 *            The number of characters to read from the array.
+	 *               The number of characters to read from the array.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 * @see #characters
 	 */
-	public abstract void ignorableWhitespace(char ch[], int start, int length) throws SAXException;
+	public abstract void ignorableWhitespace(char ch[], int start, int length)
+			throws SAXException;
 
 	/**
 	 * Receive notification of a processing instruction.
@@ -267,13 +250,15 @@ public interface DocumentHandler {
 	 * </p>
 	 *
 	 * @param target
-	 *            The processing instruction target.
+	 *               The processing instruction target.
 	 * @param data
-	 *            The processing instruction data, or null if none was supplied.
+	 *               The processing instruction data, or null if none was
+	 *               supplied.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 */
-	public abstract void processingInstruction(String target, String data) throws SAXException;
+	public abstract void processingInstruction(String target, String data)
+			throws SAXException;
 
 }
 

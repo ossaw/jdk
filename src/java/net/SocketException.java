@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -50,6 +30,5 @@ public class SocketException extends IOException {
 	/**
 	 * Constructs a new {@code SocketException} with no detail message.
 	 */
-	public SocketException() {
-	}
+	public SocketException() {}
 }

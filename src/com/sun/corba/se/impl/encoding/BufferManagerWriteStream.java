@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.corba.se.impl.encoding;
 
@@ -68,7 +48,8 @@ public class BufferManagerWriteStream extends BufferManagerWrite {
 		try {
 			sendFragment(false);
 		} catch (SystemException se) {
-			orb.getPIHandler().invokeClientPIEndingPoint(ReplyMessage.SYSTEM_EXCEPTION, se);
+			orb.getPIHandler().invokeClientPIEndingPoint(
+					ReplyMessage.SYSTEM_EXCEPTION, se);
 			throw se;
 		}
 
@@ -86,14 +67,15 @@ public class BufferManagerWriteStream extends BufferManagerWrite {
 		// REVISIT - we can optimize this by not creating the fragment message
 		// each time.
 
-		FragmentMessage header = ((CDROutputObject) outputObject).getMessageHeader()
-				.createFragmentMessage();
+		FragmentMessage header = ((CDROutputObject) outputObject)
+				.getMessageHeader().createFragmentMessage();
 
 		header.write(((CDROutputObject) outputObject));
 	}
 
 	private void sendFragment(boolean isLastFragment) {
-		Connection conn = ((OutputObject) outputObject).getMessageMediator().getConnection();
+		Connection conn = ((OutputObject) outputObject).getMessageMediator()
+				.getConnection();
 
 		// REVISIT: need an ORB
 		// System.out.println("sendFragment: last?: " + isLastFragment);
@@ -124,7 +106,6 @@ public class BufferManagerWriteStream extends BufferManagerWrite {
 	 *
 	 * No work to do for a BufferManagerWriteStream
 	 */
-	public void close() {
-	};
+	public void close() {};
 
 }

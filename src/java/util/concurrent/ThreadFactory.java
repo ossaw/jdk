@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -68,7 +43,7 @@ public interface ThreadFactory {
 	 * priority, name, daemon status, {@code ThreadGroup}, etc.
 	 *
 	 * @param r
-	 *            a runnable to be executed by new thread instance
+	 *          a runnable to be executed by new thread instance
 	 * @return constructed thread, or {@code null} if the request to create a
 	 *         thread is rejected
 	 */

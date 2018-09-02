@@ -11,10 +11,10 @@ package com.sun.corba.se.PortableActivationIDL;
 public final class LocatorHolder implements org.omg.CORBA.portable.Streamable {
 	public com.sun.corba.se.PortableActivationIDL.Locator value = null;
 
-	public LocatorHolder() {
-	}
+	public LocatorHolder() {}
 
-	public LocatorHolder(com.sun.corba.se.PortableActivationIDL.Locator initialValue) {
+	public LocatorHolder(
+			com.sun.corba.se.PortableActivationIDL.Locator initialValue) {
 		value = initialValue;
 	}
 

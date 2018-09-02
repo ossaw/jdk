@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,7 +29,8 @@ import com.sun.org.apache.xerces.internal.xni.grammars.XMLGrammarPool;
  *
  * @author Michael Glavassevich, IBM
  */
-final class SimpleXMLSchema extends AbstractXMLSchema implements XMLGrammarPool {
+final class SimpleXMLSchema extends AbstractXMLSchema implements
+		XMLGrammarPool {
 
 	/** Zero length grammar array. */
 	private static final Grammar[] ZERO_LENGTH_GRAMMAR_ARRAY = new Grammar[0];
@@ -52,25 +50,22 @@ final class SimpleXMLSchema extends AbstractXMLSchema implements XMLGrammarPool 
 	 */
 
 	public Grammar[] retrieveInitialGrammarSet(String grammarType) {
-		return XMLGrammarDescription.XML_SCHEMA.equals(grammarType) ? (Grammar[]) fGrammars.clone()
+		return XMLGrammarDescription.XML_SCHEMA.equals(grammarType)
+				? (Grammar[]) fGrammars.clone()
 				: ZERO_LENGTH_GRAMMAR_ARRAY;
 	}
 
-	public void cacheGrammars(String grammarType, Grammar[] grammars) {
-	}
+	public void cacheGrammars(String grammarType, Grammar[] grammars) {}
 
 	public Grammar retrieveGrammar(XMLGrammarDescription desc) {
 		return fGrammarDescription.equals(desc) ? fGrammar : null;
 	}
 
-	public void lockPool() {
-	}
+	public void lockPool() {}
 
-	public void unlockPool() {
-	}
+	public void unlockPool() {}
 
-	public void clear() {
-	}
+	public void clear() {}
 
 	/*
 	 * XSGrammarPoolContainer methods

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.attribute;
@@ -44,15 +24,16 @@ import java.io.Serializable;
  * 	public static final Bach P_D_Q = new Bach(4);
  *
  * 	private static final String[] stringTable = { "Johann Sebastian Bach",
- * 			"Wilhelm Friedemann Bach", "Carl Philip Emmanuel Bach", "Johann Christian Bach",
- * 			"P.D.Q. Bach" };
+ * 			"Wilhelm Friedemann Bach", "Carl Philip Emmanuel Bach",
+ * 			"Johann Christian Bach", "P.D.Q. Bach" };
  *
  * 	protected String[] getStringTable() {
  * 		return stringTable;
  * 	}
  *
- * 	private static final Bach[] enumValueTable = { JOHANN_SEBASTIAN, WILHELM_FRIEDEMANN,
- * 			CARL_PHILIP_EMMANUEL, JOHANN_CHRISTIAN, P_D_Q };
+ * 	private static final Bach[] enumValueTable = { JOHANN_SEBASTIAN,
+ * 			WILHELM_FRIEDEMANN, CARL_PHILIP_EMMANUEL, JOHANN_CHRISTIAN,
+ * 			P_D_Q };
  *
  * 	protected EnumSyntax[] getEnumValueTable() {
  * 		return enumValueTable;
@@ -115,7 +96,7 @@ public abstract class EnumSyntax implements Serializable, Cloneable {
 	 * Construct a new enumeration value with the given integer value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected EnumSyntax(int value) {
 		this.value = value;
@@ -154,7 +135,8 @@ public abstract class EnumSyntax implements Serializable, Cloneable {
 
 		String[] theTable = getStringTable();
 		int theIndex = value - getOffset();
-		return theTable != null && theIndex >= 0 && theIndex < theTable.length ? theTable[theIndex]
+		return theTable != null && theIndex >= 0 && theIndex < theTable.length
+				? theTable[theIndex]
 				: Integer.toString(value);
 	}
 
@@ -169,16 +151,23 @@ public abstract class EnumSyntax implements Serializable, Cloneable {
 	 *         value returned by {@link #getOffset() getOffset()}.
 	 *
 	 * @throws ObjectStreamException
-	 *             if the stream can't be deserialised
+	 *                                if the stream can't be deserialised
 	 * @throws InvalidObjectException
-	 *             Thrown if the enumeration value table is null, this
-	 *             enumeration value's integer value does not correspond to an
-	 *             element in the enumeration value table, or the corresponding
-	 *             element in the enumeration value table is null. (Note:
-	 *             {@link java.io.InvalidObjectException InvalidObjectException}
-	 *             is a subclass of {@link java.io.ObjectStreamException
-	 *             ObjectStreamException}, which <CODE>readResolve()</CODE> is
-	 *             declared to throw.)
+	 *                                Thrown if the enumeration value table is
+	 *                                null, this
+	 *                                enumeration value's integer value does not
+	 *                                correspond to an
+	 *                                element in the enumeration value table, or
+	 *                                the corresponding
+	 *                                element in the enumeration value table is
+	 *                                null. (Note:
+	 *                                {@link java.io.InvalidObjectException
+	 *                                InvalidObjectException}
+	 *                                is a subclass of
+	 *                                {@link java.io.ObjectStreamException
+	 *                                ObjectStreamException}, which
+	 *                                <CODE>readResolve()</CODE> is
+	 *                                declared to throw.)
 	 */
 	protected Object readResolve() throws ObjectStreamException {
 
@@ -193,15 +182,16 @@ public abstract class EnumSyntax implements Serializable, Cloneable {
 		int theIndex = value - theOffset;
 
 		if (0 > theIndex || theIndex >= theTable.length) {
-			throw new InvalidObjectException(
-					"Integer value = " + value + " not in valid range " + theOffset + ".."
-							+ (theOffset + theTable.length - 1) + "for class " + getClass());
+			throw new InvalidObjectException("Integer value = " + value
+					+ " not in valid range " + theOffset + ".." + (theOffset
+							+ theTable.length - 1) + "for class " + getClass());
 		}
 
 		EnumSyntax result = theTable[theIndex];
 		if (result == null) {
-			throw new InvalidObjectException("No enumeration value for integer value = " + value
-					+ "for class " + getClass());
+			throw new InvalidObjectException(
+					"No enumeration value for integer value = " + value
+							+ "for class " + getClass());
 		}
 		return result;
 	}

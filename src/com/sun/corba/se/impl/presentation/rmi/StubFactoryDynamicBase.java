@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.presentation.rmi;
@@ -41,13 +21,14 @@ public abstract class StubFactoryDynamicBase extends StubFactoryBase {
 	private static Void checkPermission() {
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
-			sm.checkPermission(new SerializablePermission("enableSubclassImplementation"));
+			sm.checkPermission(new SerializablePermission(
+					"enableSubclassImplementation"));
 		}
 		return null;
 	}
 
-	private StubFactoryDynamicBase(Void unused, PresentationManager.ClassData classData,
-			ClassLoader loader) {
+	private StubFactoryDynamicBase(Void unused,
+			PresentationManager.ClassData classData, ClassLoader loader) {
 		super(classData);
 		// this.loader must not be null, or the newProxyInstance call
 		// will fail.
@@ -61,7 +42,8 @@ public abstract class StubFactoryDynamicBase extends StubFactoryBase {
 		}
 	}
 
-	public StubFactoryDynamicBase(PresentationManager.ClassData classData, ClassLoader loader) {
+	public StubFactoryDynamicBase(PresentationManager.ClassData classData,
+			ClassLoader loader) {
 		this(checkPermission(), classData, loader);
 	}
 

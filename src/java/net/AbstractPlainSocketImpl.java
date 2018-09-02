@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -77,12 +57,13 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 	 * Load net library into runtime.
 	 */
 	static {
-		java.security.AccessController.doPrivileged(new java.security.PrivilegedAction<Void>() {
-			public Void run() {
-				System.loadLibrary("net");
-				return null;
-			}
-		});
+		java.security.AccessController.doPrivileged(
+				new java.security.PrivilegedAction<Void>() {
+					public Void run() {
+						System.loadLibrary("net");
+						return null;
+					}
+				});
 	}
 
 	/**
@@ -118,11 +99,12 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 	 * host.
 	 * 
 	 * @param host
-	 *            the specified host
+	 *             the specified host
 	 * @param port
-	 *            the specified port
+	 *             the specified port
 	 */
-	protected void connect(String host, int port) throws UnknownHostException, IOException {
+	protected void connect(String host, int port) throws UnknownHostException,
+			IOException {
 		boolean connected = false;
 		try {
 			InetAddress address = InetAddress.getByName(host);
@@ -150,9 +132,9 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 	 * specified port.
 	 * 
 	 * @param address
-	 *            the address
+	 *                the address
 	 * @param port
-	 *            the specified port
+	 *                the specified port
 	 */
 	protected void connect(InetAddress address, int port) throws IOException {
 		this.port = port;
@@ -173,17 +155,19 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 	 * specified port.
 	 * 
 	 * @param address
-	 *            the address
+	 *                the address
 	 * @param timeout
-	 *            the timeout value in milliseconds, or zero for no timeout.
+	 *                the timeout value in milliseconds, or zero for no timeout.
 	 * @throws IOException
-	 *             if connection fails
+	 *                                  if connection fails
 	 * @throws IllegalArgumentException
-	 *             if address is null or is a SocketAddress subclass not
-	 *             supported by this socket
+	 *                                  if address is null or is a SocketAddress
+	 *                                  subclass not
+	 *                                  supported by this socket
 	 * @since 1.4
 	 */
-	protected void connect(SocketAddress address, int timeout) throws IOException {
+	protected void connect(SocketAddress address, int timeout)
+			throws IOException {
 		boolean connected = false;
 		try {
 			if (address == null || !(address instanceof InetSocketAddress))
@@ -210,7 +194,8 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 		}
 	}
 
-	private void connectToAddress(InetAddress address, int port, int timeout) throws IOException {
+	private void connectToAddress(InetAddress address, int port, int timeout)
+			throws IOException {
 		if (address.isAnyLocalAddress()) {
 			doConnect(InetAddress.getLocalHost(), port, timeout);
 		} else {
@@ -224,62 +209,65 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 		}
 		boolean on = true;
 		switch (opt) {
-		/*
-		 * check type safety b4 going native. These should never fail, since
-		 * only java.Socket* has access to PlainSocketImpl.setOption().
-		 */
-		case SO_LINGER:
-			if (val == null || (!(val instanceof Integer) && !(val instanceof Boolean)))
-				throw new SocketException("Bad parameter for option");
-			if (val instanceof Boolean) {
-				/* true only if disabling - enabling should be Integer */
-				on = false;
-			}
-			break;
-		case SO_TIMEOUT:
-			if (val == null || (!(val instanceof Integer)))
-				throw new SocketException("Bad parameter for SO_TIMEOUT");
-			int tmp = ((Integer) val).intValue();
-			if (tmp < 0)
-				throw new IllegalArgumentException("timeout < 0");
-			timeout = tmp;
-			break;
-		case IP_TOS:
-			if (val == null || !(val instanceof Integer)) {
-				throw new SocketException("bad argument for IP_TOS");
-			}
-			trafficClass = ((Integer) val).intValue();
-			break;
-		case SO_BINDADDR:
-			throw new SocketException("Cannot re-bind socket");
-		case TCP_NODELAY:
-			if (val == null || !(val instanceof Boolean))
-				throw new SocketException("bad parameter for TCP_NODELAY");
-			on = ((Boolean) val).booleanValue();
-			break;
-		case SO_SNDBUF:
-		case SO_RCVBUF:
-			if (val == null || !(val instanceof Integer) || !(((Integer) val).intValue() > 0)) {
-				throw new SocketException("bad parameter for SO_SNDBUF " + "or SO_RCVBUF");
-			}
-			break;
-		case SO_KEEPALIVE:
-			if (val == null || !(val instanceof Boolean))
-				throw new SocketException("bad parameter for SO_KEEPALIVE");
-			on = ((Boolean) val).booleanValue();
-			break;
-		case SO_OOBINLINE:
-			if (val == null || !(val instanceof Boolean))
-				throw new SocketException("bad parameter for SO_OOBINLINE");
-			on = ((Boolean) val).booleanValue();
-			break;
-		case SO_REUSEADDR:
-			if (val == null || !(val instanceof Boolean))
-				throw new SocketException("bad parameter for SO_REUSEADDR");
-			on = ((Boolean) val).booleanValue();
-			break;
-		default:
-			throw new SocketException("unrecognized TCP option: " + opt);
+			/*
+			 * check type safety b4 going native. These should never fail, since
+			 * only java.Socket* has access to PlainSocketImpl.setOption().
+			 */
+			case SO_LINGER:
+				if (val == null || (!(val instanceof Integer)
+						&& !(val instanceof Boolean)))
+					throw new SocketException("Bad parameter for option");
+				if (val instanceof Boolean) {
+					/* true only if disabling - enabling should be Integer */
+					on = false;
+				}
+				break;
+			case SO_TIMEOUT:
+				if (val == null || (!(val instanceof Integer)))
+					throw new SocketException("Bad parameter for SO_TIMEOUT");
+				int tmp = ((Integer) val).intValue();
+				if (tmp < 0)
+					throw new IllegalArgumentException("timeout < 0");
+				timeout = tmp;
+				break;
+			case IP_TOS:
+				if (val == null || !(val instanceof Integer)) {
+					throw new SocketException("bad argument for IP_TOS");
+				}
+				trafficClass = ((Integer) val).intValue();
+				break;
+			case SO_BINDADDR:
+				throw new SocketException("Cannot re-bind socket");
+			case TCP_NODELAY:
+				if (val == null || !(val instanceof Boolean))
+					throw new SocketException("bad parameter for TCP_NODELAY");
+				on = ((Boolean) val).booleanValue();
+				break;
+			case SO_SNDBUF:
+			case SO_RCVBUF:
+				if (val == null || !(val instanceof Integer)
+						|| !(((Integer) val).intValue() > 0)) {
+					throw new SocketException("bad parameter for SO_SNDBUF "
+							+ "or SO_RCVBUF");
+				}
+				break;
+			case SO_KEEPALIVE:
+				if (val == null || !(val instanceof Boolean))
+					throw new SocketException("bad parameter for SO_KEEPALIVE");
+				on = ((Boolean) val).booleanValue();
+				break;
+			case SO_OOBINLINE:
+				if (val == null || !(val instanceof Boolean))
+					throw new SocketException("bad parameter for SO_OOBINLINE");
+				on = ((Boolean) val).booleanValue();
+				break;
+			case SO_REUSEADDR:
+				if (val == null || !(val instanceof Boolean))
+					throw new SocketException("bad parameter for SO_REUSEADDR");
+				on = ((Boolean) val).booleanValue();
+				break;
+			default:
+				throw new SocketException("unrecognized TCP option: " + opt);
 		}
 		socketSetOption(opt, on, val);
 	}
@@ -300,44 +288,45 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 		 */
 
 		switch (opt) {
-		case TCP_NODELAY:
-			ret = socketGetOption(opt, null);
-			return Boolean.valueOf(ret != -1);
-		case SO_OOBINLINE:
-			ret = socketGetOption(opt, null);
-			return Boolean.valueOf(ret != -1);
-		case SO_LINGER:
-			ret = socketGetOption(opt, null);
-			return (ret == -1) ? Boolean.FALSE : (Object) (new Integer(ret));
-		case SO_REUSEADDR:
-			ret = socketGetOption(opt, null);
-			return Boolean.valueOf(ret != -1);
-		case SO_BINDADDR:
-			InetAddressContainer in = new InetAddressContainer();
-			ret = socketGetOption(opt, in);
-			return in.addr;
-		case SO_SNDBUF:
-		case SO_RCVBUF:
-			ret = socketGetOption(opt, null);
-			return new Integer(ret);
-		case IP_TOS:
-			try {
+			case TCP_NODELAY:
 				ret = socketGetOption(opt, null);
-				if (ret == -1) { // ipv6 tos
-					return trafficClass;
-				} else {
-					return ret;
+				return Boolean.valueOf(ret != -1);
+			case SO_OOBINLINE:
+				ret = socketGetOption(opt, null);
+				return Boolean.valueOf(ret != -1);
+			case SO_LINGER:
+				ret = socketGetOption(opt, null);
+				return (ret == -1) ? Boolean.FALSE
+						: (Object) (new Integer(ret));
+			case SO_REUSEADDR:
+				ret = socketGetOption(opt, null);
+				return Boolean.valueOf(ret != -1);
+			case SO_BINDADDR:
+				InetAddressContainer in = new InetAddressContainer();
+				ret = socketGetOption(opt, in);
+				return in.addr;
+			case SO_SNDBUF:
+			case SO_RCVBUF:
+				ret = socketGetOption(opt, null);
+				return new Integer(ret);
+			case IP_TOS:
+				try {
+					ret = socketGetOption(opt, null);
+					if (ret == -1) { // ipv6 tos
+						return trafficClass;
+					} else {
+						return ret;
+					}
+				} catch (SocketException se) {
+					// TODO - should make better effort to read TOS or TCLASS
+					return trafficClass; // ipv6 tos
 				}
-			} catch (SocketException se) {
-				// TODO - should make better effort to read TOS or TCLASS
-				return trafficClass; // ipv6 tos
-			}
-		case SO_KEEPALIVE:
-			ret = socketGetOption(opt, null);
-			return Boolean.valueOf(ret != -1);
-		// should never get here
-		default:
-			return null;
+			case SO_KEEPALIVE:
+				ret = socketGetOption(opt, null);
+				return Boolean.valueOf(ret != -1);
+			// should never get here
+			default:
+				return null;
 		}
 	}
 
@@ -347,7 +336,8 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 	 * an IOException indicating what went wrong.
 	 */
 
-	synchronized void doConnect(InetAddress address, int port, int timeout) throws IOException {
+	synchronized void doConnect(InetAddress address, int port, int timeout)
+			throws IOException {
 		synchronized (fdLock) {
 			if (!closePending && (socket == null || !socket.isBound())) {
 				NetHooks.beforeTcpConnect(fd, address, port);
@@ -384,11 +374,12 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 	 * Binds the socket to the specified address of the specified local port.
 	 * 
 	 * @param address
-	 *            the address
+	 *                the address
 	 * @param lport
-	 *            the port
+	 *                the port
 	 */
-	protected synchronized void bind(InetAddress address, int lport) throws IOException {
+	protected synchronized void bind(InetAddress address, int lport)
+			throws IOException {
 		synchronized (fdLock) {
 			if (!closePending && (socket == null || !socket.isBound())) {
 				NetHooks.beforeTcpBind(fd, address, lport);
@@ -405,7 +396,7 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 	 * Listens, for a specified amount of time, for connections.
 	 * 
 	 * @param count
-	 *            the amount of time to listen for connections
+	 *              the amount of time to listen for connections
 	 */
 	protected synchronized void listen(int count) throws IOException {
 		socketListen(count);
@@ -415,7 +406,7 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 	 * Accepts connections.
 	 * 
 	 * @param s
-	 *            the connection
+	 *          the connection
 	 */
 	protected void accept(SocketImpl s) throws IOException {
 		acquireFD();
@@ -495,7 +486,6 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 		/*
 		 * If no bytes available and we were previously notified of a connection
 		 * reset then we move to the reset state.
-		 *
 		 * If are notified of a connection reset then check again if there are
 		 * bytes buffered on the socket.
 		 */
@@ -614,7 +604,6 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 
 	/*
 	 * "Acquires" and returns the FileDescriptor for this impl
-	 *
 	 * A corresponding releaseFD is required to "release" the FileDescriptor.
 	 */
 	FileDescriptor acquireFD() {
@@ -626,7 +615,6 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 
 	/*
 	 * "Release" the FileDescriptor for this impl.
-	 *
 	 * If the use count goes to -1 then the socket is closed.
 	 */
 	void releaseFD() {
@@ -712,7 +700,8 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 
 	abstract void socketCreate(boolean isServer) throws IOException;
 
-	abstract void socketConnect(InetAddress address, int port, int timeout) throws IOException;
+	abstract void socketConnect(InetAddress address, int port, int timeout)
+			throws IOException;
 
 	abstract void socketBind(InetAddress address, int port) throws IOException;
 
@@ -726,9 +715,11 @@ abstract class AbstractPlainSocketImpl extends SocketImpl {
 
 	abstract void socketShutdown(int howto) throws IOException;
 
-	abstract void socketSetOption(int cmd, boolean on, Object value) throws SocketException;
+	abstract void socketSetOption(int cmd, boolean on, Object value)
+			throws SocketException;
 
-	abstract int socketGetOption(int opt, Object iaContainerObj) throws SocketException;
+	abstract int socketGetOption(int opt, Object iaContainerObj)
+			throws SocketException;
 
 	abstract void socketSendUrgentData(int data) throws IOException;
 

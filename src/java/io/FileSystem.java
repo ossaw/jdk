@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -132,7 +112,8 @@ abstract class FileSystem {
 	 * or directory denoted by the given abstract pathname, based on the
 	 * parameters enable, access and oweronly.
 	 */
-	public abstract boolean setPermission(File f, int access, boolean enable, boolean owneronly);
+	public abstract boolean setPermission(File f, int access, boolean enable,
+			boolean owneronly);
 
 	/**
 	 * Return the time at which the file or directory denoted by the given
@@ -156,7 +137,8 @@ abstract class FileSystem {
 	 * with the given pathname already exists. Throw an IOException if an I/O
 	 * error occurs.
 	 */
-	public abstract boolean createFileExclusively(String pathname) throws IOException;
+	public abstract boolean createFileExclusively(String pathname)
+			throws IOException;
 
 	/**
 	 * Delete the file or directory denoted by the given abstract pathname,
@@ -244,7 +226,9 @@ abstract class FileSystem {
 	}
 
 	static {
-		useCanonCaches = getBooleanProperty("sun.io.useCanonCaches", useCanonCaches);
-		useCanonPrefixCache = getBooleanProperty("sun.io.useCanonPrefixCache", useCanonPrefixCache);
+		useCanonCaches = getBooleanProperty("sun.io.useCanonCaches",
+				useCanonCaches);
+		useCanonPrefixCache = getBooleanProperty("sun.io.useCanonPrefixCache",
+				useCanonPrefixCache);
 	}
 }

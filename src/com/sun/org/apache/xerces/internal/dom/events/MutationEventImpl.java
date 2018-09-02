@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,8 +25,9 @@ import org.w3c.dom.events.MutationEvent;
  *
  */
 
-public class MutationEventImpl extends com.sun.org.apache.xerces.internal.dom.events.EventImpl
-		implements MutationEvent {
+public class MutationEventImpl extends
+		com.sun.org.apache.xerces.internal.dom.events.EventImpl implements
+		MutationEvent {
 	Node relatedNode = null;
 	String prevValue = null, newValue = null, attrName = null;
 	// REVISIT: The DOM Level 2 PR has a bug: the init method should let this
@@ -93,9 +91,9 @@ public class MutationEventImpl extends com.sun.org.apache.xerces.internal.dom.ev
 	 * Initialize a mutation event, or overwrite the event's current settings
 	 * with new values of the parameters.
 	 */
-	public void initMutationEvent(String typeArg, boolean canBubbleArg, boolean cancelableArg,
-			Node relatedNodeArg, String prevValueArg, String newValueArg, String attrNameArg,
-			short attrChangeArg) {
+	public void initMutationEvent(String typeArg, boolean canBubbleArg,
+			boolean cancelableArg, Node relatedNodeArg, String prevValueArg,
+			String newValueArg, String attrNameArg, short attrChangeArg) {
 		relatedNode = relatedNodeArg;
 		prevValue = prevValueArg;
 		newValue = newValueArg;

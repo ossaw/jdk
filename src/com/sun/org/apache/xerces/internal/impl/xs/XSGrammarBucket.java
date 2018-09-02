@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -60,7 +58,7 @@ public class XSGrammarBucket {
 	 * already in the bucket.
 	 *
 	 * @param grammar
-	 *            the grammar to put in the registry
+	 *                the grammar to put in the registry
 	 */
 	public void putGrammar(SchemaGrammar grammar) {
 		if (grammar.getTargetNamespace() == null)
@@ -76,9 +74,9 @@ public class XSGrammarBucket {
 	 * added, it's an error, and no grammar will be added into the bucket.
 	 *
 	 * @param grammar
-	 *            the grammar to put in the registry
+	 *                the grammar to put in the registry
 	 * @param deep
-	 *            whether to add imported grammars
+	 *                whether to add imported grammars
 	 * @return whether the process succeeded
 	 */
 	public boolean putGrammar(SchemaGrammar grammar, boolean deep) {
@@ -148,15 +146,17 @@ public class XSGrammarBucket {
 	 * added, no grammar will be added into the bucket.
 	 *
 	 * @param grammar
-	 *            the grammar to put in the registry
+	 *                       the grammar to put in the registry
 	 * @param deep
-	 *            whether to add imported grammars
+	 *                       whether to add imported grammars
 	 * @param ignoreConflict
-	 *            whether to ignore grammars that already exist in the grammar
-	 *            bucket or not - including 'grammar' parameter.
+	 *                       whether to ignore grammars that already exist in
+	 *                       the grammar
+	 *                       bucket or not - including 'grammar' parameter.
 	 * @return whether the process succeeded
 	 */
-	public boolean putGrammar(SchemaGrammar grammar, boolean deep, boolean ignoreConflict) {
+	public boolean putGrammar(SchemaGrammar grammar, boolean deep,
+			boolean ignoreConflict) {
 		if (!ignoreConflict) {
 			return putGrammar(grammar, deep);
 		}
@@ -227,7 +227,8 @@ public class XSGrammarBucket {
 		SchemaGrammar[] grammars = new SchemaGrammar[count];
 		// get grammars with target namespace
 		int i = 0;
-		for (Map.Entry<String, SchemaGrammar> entry : fGrammarRegistry.entrySet()) {
+		for (Map.Entry<String, SchemaGrammar> entry : fGrammarRegistry
+				.entrySet()) {
 			grammars[i++] = entry.getValue();
 		}
 

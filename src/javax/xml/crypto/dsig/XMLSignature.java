@@ -1,33 +1,11 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * ===========================================================================
- *
  * (C) Copyright IBM Corp. 2003 All Rights Reserved.
- *
  * ===========================================================================
  */
 /*
@@ -109,19 +87,24 @@ public interface XMLSignature extends XMLStructure {
 	 * subsequent invocations, it returns a cached result.
 	 *
 	 * @param validateContext
-	 *            the validating context
+	 *                        the validating context
 	 * @return <code>true</code> if the signature passed core validation,
 	 *         otherwise <code>false</code>
 	 * @throws ClassCastException
-	 *             if the type of <code>validateContext</code> is not compatible
-	 *             with this <code>XMLSignature</code>
+	 *                               if the type of <code>validateContext</code>
+	 *                               is not compatible
+	 *                               with this <code>XMLSignature</code>
 	 * @throws NullPointerException
-	 *             if <code>validateContext</code> is <code>null</code>
+	 *                               if <code>validateContext</code> is
+	 *                               <code>null</code>
 	 * @throws XMLSignatureException
-	 *             if an unexpected error occurs during validation that
-	 *             prevented the validation operation from completing
+	 *                               if an unexpected error occurs during
+	 *                               validation that
+	 *                               prevented the validation operation from
+	 *                               completing
 	 */
-	boolean validate(XMLValidateContext validateContext) throws XMLSignatureException;
+	boolean validate(XMLValidateContext validateContext)
+			throws XMLSignatureException;
 
 	/**
 	 * Returns the key info of this <code>XMLSignature</code>.
@@ -170,19 +153,23 @@ public interface XMLSignature extends XMLStructure {
 	 * was in prior to the invocation.
 	 *
 	 * @param signContext
-	 *            the signing context
+	 *                    the signing context
 	 * @throws ClassCastException
-	 *             if the type of <code>signContext</code> is not compatible
-	 *             with this <code>XMLSignature</code>
+	 *                               if the type of <code>signContext</code> is
+	 *                               not compatible
+	 *                               with this <code>XMLSignature</code>
 	 * @throws NullPointerException
-	 *             if <code>signContext</code> is <code>null</code>
+	 *                               if <code>signContext</code> is
+	 *                               <code>null</code>
 	 * @throws MarshalException
-	 *             if an exception occurs while marshalling
+	 *                               if an exception occurs while marshalling
 	 * @throws XMLSignatureException
-	 *             if an unexpected exception occurs while generating the
-	 *             signature
+	 *                               if an unexpected exception occurs while
+	 *                               generating the
+	 *                               signature
 	 */
-	void sign(XMLSignContext signContext) throws MarshalException, XMLSignatureException;
+	void sign(XMLSignContext signContext) throws MarshalException,
+			XMLSignatureException;
 
 	/**
 	 * Returns the result of the {@link KeySelector}, if specified, after this
@@ -248,13 +235,16 @@ public interface XMLSignature extends XMLStructure {
 		 * @return <code>true</code> if the signature was validated
 		 *         successfully; <code>false</code> otherwise
 		 * @param validateContext
-		 *            the validating context
+		 *                        the validating context
 		 * @throws NullPointerException
-		 *             if <code>validateContext</code> is <code>null</code>
+		 *                               if <code>validateContext</code> is
+		 *                               <code>null</code>
 		 * @throws XMLSignatureException
-		 *             if an unexpected exception occurs while validating the
-		 *             signature
+		 *                               if an unexpected exception occurs while
+		 *                               validating the
+		 *                               signature
 		 */
-		boolean validate(XMLValidateContext validateContext) throws XMLSignatureException;
+		boolean validate(XMLValidateContext validateContext)
+				throws XMLSignatureException;
 	}
 }

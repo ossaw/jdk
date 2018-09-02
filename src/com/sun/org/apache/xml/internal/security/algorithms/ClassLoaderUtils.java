@@ -45,8 +45,7 @@ final class ClassLoaderUtils {
 	private static final java.util.logging.Logger log = java.util.logging.Logger
 			.getLogger(ClassLoaderUtils.class.getName());
 
-	private ClassLoaderUtils() {
-	}
+	private ClassLoaderUtils() {}
 
 	/**
 	 * Load a given resource.
@@ -60,16 +59,17 @@ final class ClassLoaderUtils {
 	 * </ul>
 	 *
 	 * @param resourceName
-	 *            The name of the resource to load
+	 *                     The name of the resource to load
 	 * @param callingClass
-	 *            The Class object of the calling object
+	 *                     The Class object of the calling object
 	 */
 	static URL getResource(String resourceName, Class<?> callingClass) {
-		URL url = Thread.currentThread().getContextClassLoader().getResource(resourceName);
+		URL url = Thread.currentThread().getContextClassLoader().getResource(
+				resourceName);
 		if (url == null && resourceName.startsWith("/")) {
 			// certain classloaders need it without the leading /
-			url = Thread.currentThread().getContextClassLoader()
-					.getResource(resourceName.substring(1));
+			url = Thread.currentThread().getContextClassLoader().getResource(
+					resourceName.substring(1));
 		}
 
 		ClassLoader cluClassloader = ClassLoaderUtils.class.getClassLoader();
@@ -96,7 +96,8 @@ final class ClassLoaderUtils {
 			url = callingClass.getResource(resourceName);
 		}
 
-		if ((url == null) && (resourceName != null) && (resourceName.charAt(0) != '/')) {
+		if ((url == null) && (resourceName != null) && (resourceName.charAt(
+				0) != '/')) {
 			return getResource('/' + resourceName, callingClass);
 		}
 
@@ -115,9 +116,9 @@ final class ClassLoaderUtils {
 	 * </ul>
 	 *
 	 * @param resourceName
-	 *            The name of the resource to load
+	 *                     The name of the resource to load
 	 * @param callingClass
-	 *            The Class object of the calling object
+	 *                     The Class object of the calling object
 	 */
 	static List<URL> getResources(String resourceName, Class<?> callingClass) {
 		List<URL> ret = new ArrayList<URL>();
@@ -132,7 +133,8 @@ final class ClassLoaderUtils {
 
 		};
 		try {
-			urls = Thread.currentThread().getContextClassLoader().getResources(resourceName);
+			urls = Thread.currentThread().getContextClassLoader().getResources(
+					resourceName);
 		} catch (IOException e) {
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
 				log.log(java.util.logging.Level.FINE, e.getMessage(), e);
@@ -186,7 +188,8 @@ final class ClassLoaderUtils {
 					urls = cl.getResources(resourceName);
 				} catch (IOException e) {
 					if (log.isLoggable(java.util.logging.Level.FINE)) {
-						log.log(java.util.logging.Level.FINE, e.getMessage(), e);
+						log.log(java.util.logging.Level.FINE, e.getMessage(),
+								e);
 					}
 					// ignore
 				}
@@ -203,7 +206,8 @@ final class ClassLoaderUtils {
 			ret.add(urls.nextElement());
 		}
 
-		if (ret.isEmpty() && (resourceName != null) && (resourceName.charAt(0) != '/')) {
+		if (ret.isEmpty() && (resourceName != null) && (resourceName.charAt(
+				0) != '/')) {
 			return getResources('/' + resourceName, callingClass);
 		}
 		return ret;
@@ -215,11 +219,12 @@ final class ClassLoaderUtils {
 	 * The algorithm used to find the resource is given in getResource()
 	 *
 	 * @param resourceName
-	 *            The name of the resource to load
+	 *                     The name of the resource to load
 	 * @param callingClass
-	 *            The Class object of the calling object
+	 *                     The Class object of the calling object
 	 */
-	static InputStream getResourceAsStream(String resourceName, Class<?> callingClass) {
+	static InputStream getResourceAsStream(String resourceName,
+			Class<?> callingClass) {
 		URL url = getResource(resourceName, callingClass);
 
 		try {
@@ -244,11 +249,11 @@ final class ClassLoaderUtils {
 	 * </ul>
 	 *
 	 * @param className
-	 *            The name of the class to load
+	 *                     The name of the class to load
 	 * @param callingClass
-	 *            The Class object of the calling object
+	 *                     The Class object of the calling object
 	 * @throws ClassNotFoundException
-	 *             If the class cannot be found anywhere.
+	 *                                If the class cannot be found anywhere.
 	 */
 	static Class<?> loadClass(String className, Class<?> callingClass)
 			throws ClassNotFoundException {
@@ -274,10 +279,12 @@ final class ClassLoaderUtils {
 		} catch (ClassNotFoundException ex) {
 			try {
 				if (ClassLoaderUtils.class.getClassLoader() != null) {
-					return ClassLoaderUtils.class.getClassLoader().loadClass(className);
+					return ClassLoaderUtils.class.getClassLoader().loadClass(
+							className);
 				}
 			} catch (ClassNotFoundException exc) {
-				if (callingClass != null && callingClass.getClassLoader() != null) {
+				if (callingClass != null && callingClass
+						.getClassLoader() != null) {
 					return callingClass.getClassLoader().loadClass(className);
 				}
 			}

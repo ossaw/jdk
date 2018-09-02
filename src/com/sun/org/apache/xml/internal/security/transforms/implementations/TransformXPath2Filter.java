@@ -80,18 +80,21 @@ public class TransformXPath2Filter extends TransformSpi {
 	 *
 	 * @throws TransformationException
 	 */
-	protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, OutputStream os,
-			Transform transformObject) throws TransformationException {
+	protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
+			OutputStream os, Transform transformObject)
+			throws TransformationException {
 		try {
 			List<NodeList> unionNodes = new ArrayList<NodeList>();
 			List<NodeList> subtractNodes = new ArrayList<NodeList>();
 			List<NodeList> intersectNodes = new ArrayList<NodeList>();
 
-			Element[] xpathElements = XMLUtils.selectNodes(
-					transformObject.getElement().getFirstChild(),
-					XPath2FilterContainer.XPathFilter2NS, XPath2FilterContainer._TAG_XPATH2);
+			Element[] xpathElements = XMLUtils.selectNodes(transformObject
+					.getElement().getFirstChild(),
+					XPath2FilterContainer.XPathFilter2NS,
+					XPath2FilterContainer._TAG_XPATH2);
 			if (xpathElements.length == 0) {
-				Object exArgs[] = { Transforms.TRANSFORM_XPATH2FILTER, "XPath" };
+				Object exArgs[] = { Transforms.TRANSFORM_XPATH2FILTER,
+						"XPath" };
 
 				throw new TransformationException("xml.WrongContent", exArgs);
 			}
@@ -109,13 +112,15 @@ public class TransformXPath2Filter extends TransformSpi {
 				XPath2FilterContainer xpathContainer = XPath2FilterContainer
 						.newInstance(xpathElement, input.getSourceURI());
 
-				String str = XMLUtils.getStrFromNode(xpathContainer.getXPathFilterTextNode());
+				String str = XMLUtils.getStrFromNode(xpathContainer
+						.getXPathFilterTextNode());
 
 				XPathFactory xpathFactory = XPathFactory.newInstance();
 				XPathAPI xpathAPIInstance = xpathFactory.newXPathAPI();
 
-				NodeList subtreeRoots = xpathAPIInstance.selectNodeList(inputDoc,
-						xpathContainer.getXPathFilterTextNode(), str, xpathContainer.getElement());
+				NodeList subtreeRoots = xpathAPIInstance.selectNodeList(
+						inputDoc, xpathContainer.getXPathFilterTextNode(), str,
+						xpathContainer.getElement());
 				if (xpathContainer.isIntersect()) {
 					intersectNodes.add(subtreeRoots);
 				} else if (xpathContainer.isSubtract()) {
@@ -125,7 +130,8 @@ public class TransformXPath2Filter extends TransformSpi {
 				}
 			}
 
-			input.addNodeFilter(new XPath2NodeFilter(unionNodes, subtractNodes, intersectNodes));
+			input.addNodeFilter(new XPath2NodeFilter(unionNodes, subtractNodes,
+					intersectNodes));
 			input.setNodeSet(true);
 			return input;
 		} catch (TransformerException ex) {
@@ -209,7 +215,8 @@ class XPath2NodeFilter implements NodeFilter {
 				result = -1;
 			}
 		}
-		if (result != -1 && hasIntersectFilter && ((inIntersect == -1) || (level <= inIntersect))) {
+		if (result != -1 && hasIntersectFilter && ((inIntersect == -1)
+				|| (level <= inIntersect))) {
 			if (!inList(n, intersectNodes)) {
 				inIntersect = -1;
 				result = 0;

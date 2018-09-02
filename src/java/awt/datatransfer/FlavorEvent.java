@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.datatransfer;
 
@@ -40,10 +20,10 @@ public class FlavorEvent extends EventObject {
 	 * Constructs a <code>FlavorEvent</code> object.
 	 *
 	 * @param source
-	 *            the <code>Clipboard</code> that is the source of the event
+	 *               the <code>Clipboard</code> that is the source of the event
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the {@code source} is {@code null}
+	 *                                  if the {@code source} is {@code null}
 	 */
 	public FlavorEvent(Clipboard source) {
 		super(source);

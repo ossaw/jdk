@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -54,8 +34,8 @@ public final class OldJIDLObjectKeyTemplate extends OldObjectKeyTemplateBase {
 
 	byte patchVersion = OldJIDLObjectKeyTemplate.NULL_PATCH_VERSION;
 
-	public OldJIDLObjectKeyTemplate(ORB orb, int magic, int scid, InputStream is,
-			OctetSeqHolder osh) {
+	public OldJIDLObjectKeyTemplate(ORB orb, int magic, int scid,
+			InputStream is, OctetSeqHolder osh) {
 		this(orb, magic, scid, is);
 
 		osh.value = readObjectKey(is);
@@ -83,15 +63,18 @@ public final class OldJIDLObjectKeyTemplate extends OldObjectKeyTemplateBase {
 			else if (patchVersion > ObjectKeyFactoryImpl.JDK1_3_1_01_PATCH_LEVEL)
 				setORBVersion(ORBVersionFactory.getORBVersion());
 			else
-				throw wrapper.invalidJdk131PatchLevel(new Integer(patchVersion));
+				throw wrapper.invalidJdk131PatchLevel(new Integer(
+						patchVersion));
 		}
 	}
 
-	public OldJIDLObjectKeyTemplate(ORB orb, int magic, int scid, int serverid) {
+	public OldJIDLObjectKeyTemplate(ORB orb, int magic, int scid,
+			int serverid) {
 		super(orb, magic, scid, serverid, JIDL_ORB_ID, JIDL_OAID);
 	}
 
-	public OldJIDLObjectKeyTemplate(ORB orb, int magic, int scid, InputStream is) {
+	public OldJIDLObjectKeyTemplate(ORB orb, int magic, int scid,
+			InputStream is) {
 		this(orb, magic, scid, is.read_long());
 	}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -231,10 +211,11 @@ public class MBeanPermission extends Permission {
 	/**
 	 * All actions.
 	 */
-	private static final int ALL = AddNotificationListener | GetAttribute | GetClassLoader
-			| GetClassLoaderFor | GetClassLoaderRepository | GetDomains | GetMBeanInfo
-			| GetObjectInstance | Instantiate | Invoke | IsInstanceOf | QueryMBeans | QueryNames
-			| RegisterMBean | RemoveNotificationListener | SetAttribute | UnregisterMBean;
+	private static final int ALL = AddNotificationListener | GetAttribute
+			| GetClassLoader | GetClassLoaderFor | GetClassLoaderRepository
+			| GetDomains | GetMBeanInfo | GetObjectInstance | Instantiate
+			| Invoke | IsInstanceOf | QueryMBeans | QueryNames | RegisterMBean
+			| RemoveNotificationListener | SetAttribute | UnregisterMBean;
 
 	/**
 	 * The actions string.
@@ -278,9 +259,11 @@ public class MBeanPermission extends Permission {
 		int mask;
 
 		if (actions == null)
-			throw new IllegalArgumentException("MBeanPermission: " + "actions can't be null");
+			throw new IllegalArgumentException("MBeanPermission: "
+					+ "actions can't be null");
 		if (actions.equals(""))
-			throw new IllegalArgumentException("MBeanPermission: " + "actions can't be empty");
+			throw new IllegalArgumentException("MBeanPermission: "
+					+ "actions can't be empty");
 
 		mask = getMask(actions);
 
@@ -298,10 +281,12 @@ public class MBeanPermission extends Permission {
 		String name = getName();
 
 		if (name == null)
-			throw new IllegalArgumentException("MBeanPermission name " + "cannot be null");
+			throw new IllegalArgumentException("MBeanPermission name "
+					+ "cannot be null");
 
 		if (name.equals(""))
-			throw new IllegalArgumentException("MBeanPermission name " + "cannot be empty");
+			throw new IllegalArgumentException("MBeanPermission name "
+					+ "cannot be empty");
 
 		/*
 		 * The name looks like "class#member[objectname]". We subtract elements
@@ -319,15 +304,17 @@ public class MBeanPermission extends Permission {
 			objectName = ObjectName.WILDCARD;
 		} else {
 			if (!name.endsWith("]")) {
-				throw new IllegalArgumentException("MBeanPermission: " + "The ObjectName in the "
-						+ "target name must be " + "included in square " + "brackets");
+				throw new IllegalArgumentException("MBeanPermission: "
+						+ "The ObjectName in the " + "target name must be "
+						+ "included in square " + "brackets");
 			} else {
 				// Create ObjectName
 				//
 				try {
 					// If "[]" then ObjectName("*:*")
 					//
-					String on = name.substring(openingBracket + 1, name.length() - 1);
+					String on = name.substring(openingBracket + 1, name.length()
+							- 1);
 					if (on.equals(""))
 						objectName = ObjectName.WILDCARD;
 					else if (on.equals("-"))
@@ -335,8 +322,9 @@ public class MBeanPermission extends Permission {
 					else
 						objectName = new ObjectName(on);
 				} catch (MalformedObjectNameException e) {
-					throw new IllegalArgumentException("MBeanPermission: " + "The target name does "
-							+ "not specify a valid " + "ObjectName", e);
+					throw new IllegalArgumentException("MBeanPermission: "
+							+ "The target name does " + "not specify a valid "
+							+ "ObjectName", e);
 				}
 			}
 
@@ -363,7 +351,8 @@ public class MBeanPermission extends Permission {
 	/**
 	 * Assign fields based on className, member, and objectName parameters.
 	 */
-	private void initName(String className, String member, ObjectName objectName) {
+	private void initName(String className, String member,
+			ObjectName objectName) {
 		setClassName(className);
 		setMember(member);
 		this.objectName = objectName;
@@ -413,13 +402,14 @@ public class MBeanPermission extends Permission {
 	 * </p>
 	 *
 	 * @param name
-	 *            the triplet "className#member[objectName]".
+	 *                the triplet "className#member[objectName]".
 	 * @param actions
-	 *            the action string.
+	 *                the action string.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if the <code>name</code> or <code>actions</code> is
-	 *                invalid.
+	 *                                     if the <code>name</code> or
+	 *                                     <code>actions</code> is
+	 *                                     invalid.
 	 */
 	public MBeanPermission(String name, String actions) {
 		super(name);
@@ -449,22 +439,30 @@ public class MBeanPermission extends Permission {
 	 * </p>
 	 *
 	 * @param className
-	 *            the class name to which this permission applies. May be null
-	 *            or <code>"-"</code>, which represents a class name that is
-	 *            implied by any class name but does not imply any other class
-	 *            name.
+	 *                   the class name to which this permission applies. May be
+	 *                   null
+	 *                   or <code>"-"</code>, which represents a class name that
+	 *                   is
+	 *                   implied by any class name but does not imply any other
+	 *                   class
+	 *                   name.
 	 * @param member
-	 *            the member to which this permission applies. May be null or
-	 *            <code>"-"</code>, which represents a member that is implied by
-	 *            any member but does not imply any other member.
+	 *                   the member to which this permission applies. May be
+	 *                   null or
+	 *                   <code>"-"</code>, which represents a member that is
+	 *                   implied by
+	 *                   any member but does not imply any other member.
 	 * @param objectName
-	 *            the object name to which this permission applies. May be null,
-	 *            which represents an object name that is implied by any object
-	 *            name but does not imply any other object name.
+	 *                   the object name to which this permission applies. May
+	 *                   be null,
+	 *                   which represents an object name that is implied by any
+	 *                   object
+	 *                   name but does not imply any other object name.
 	 * @param actions
-	 *            the action string.
+	 *                   the action string.
 	 */
-	public MBeanPermission(String className, String member, ObjectName objectName, String actions) {
+	public MBeanPermission(String className, String member,
+			ObjectName objectName, String actions) {
 
 		super(makeName(className, member, objectName));
 		initName(className, member, objectName);
@@ -473,7 +471,8 @@ public class MBeanPermission extends Permission {
 		parseActions();
 	}
 
-	private static String makeName(String className, String member, ObjectName objectName) {
+	private static String makeName(String className, String member,
+			ObjectName objectName) {
 		final StringBuilder name = new StringBuilder();
 		if (className == null)
 			className = "-";
@@ -667,17 +666,15 @@ public class MBeanPermission extends Permission {
 	 * Converts an action String to an integer action mask.
 	 *
 	 * @param action
-	 *            the action string.
+	 *               the action string.
 	 * @return the action mask.
 	 */
 	private static int getMask(String action) {
 
 		/*
 		 * BE CAREFUL HERE! PARSING ORDER IS IMPORTANT IN THIS ALGORITHM.
-		 *
 		 * The 'string length' test must be performed for the lengthiest strings
 		 * first.
-		 *
 		 * In this permission if the "unregisterMBean" string length test is
 		 * performed after the "registerMBean" string length test the algorithm
 		 * considers the 'unregisterMBean' action as being the 'registerMBean'
@@ -704,151 +701,192 @@ public class MBeanPermission extends Permission {
 			char c;
 
 			// skip whitespace
-			while ((i != -1)
-					&& ((c = a[i]) == ' ' || c == '\r' || c == '\n' || c == '\f' || c == '\t'))
+			while ((i != -1) && ((c = a[i]) == ' ' || c == '\r' || c == '\n'
+					|| c == '\f' || c == '\t'))
 				i--;
 
 			// check for the known strings
 			int matchlen;
 
 			if (i >= 25 && /* removeNotificationListener */
-					(a[i - 25] == 'r') && (a[i - 24] == 'e') && (a[i - 23] == 'm')
-					&& (a[i - 22] == 'o') && (a[i - 21] == 'v') && (a[i - 20] == 'e')
-					&& (a[i - 19] == 'N') && (a[i - 18] == 'o') && (a[i - 17] == 't')
-					&& (a[i - 16] == 'i') && (a[i - 15] == 'f') && (a[i - 14] == 'i')
-					&& (a[i - 13] == 'c') && (a[i - 12] == 'a') && (a[i - 11] == 't')
-					&& (a[i - 10] == 'i') && (a[i - 9] == 'o') && (a[i - 8] == 'n')
-					&& (a[i - 7] == 'L') && (a[i - 6] == 'i') && (a[i - 5] == 's')
-					&& (a[i - 4] == 't') && (a[i - 3] == 'e') && (a[i - 2] == 'n')
+					(a[i - 25] == 'r') && (a[i - 24] == 'e') && (a[i
+							- 23] == 'm') && (a[i - 22] == 'o') && (a[i
+									- 21] == 'v') && (a[i - 20] == 'e') && (a[i
+											- 19] == 'N') && (a[i - 18] == 'o')
+					&& (a[i - 17] == 't') && (a[i - 16] == 'i') && (a[i
+							- 15] == 'f') && (a[i - 14] == 'i') && (a[i
+									- 13] == 'c') && (a[i - 12] == 'a') && (a[i
+											- 11] == 't') && (a[i - 10] == 'i')
+					&& (a[i - 9] == 'o') && (a[i - 8] == 'n') && (a[i
+							- 7] == 'L') && (a[i - 6] == 'i') && (a[i
+									- 5] == 's') && (a[i - 4] == 't') && (a[i
+											- 3] == 'e') && (a[i - 2] == 'n')
 					&& (a[i - 1] == 'e') && (a[i] == 'r')) {
 				matchlen = 26;
 				mask |= RemoveNotificationListener;
 			} else if (i >= 23 && /* getClassLoaderRepository */
-					(a[i - 23] == 'g') && (a[i - 22] == 'e') && (a[i - 21] == 't')
-					&& (a[i - 20] == 'C') && (a[i - 19] == 'l') && (a[i - 18] == 'a')
-					&& (a[i - 17] == 's') && (a[i - 16] == 's') && (a[i - 15] == 'L')
-					&& (a[i - 14] == 'o') && (a[i - 13] == 'a') && (a[i - 12] == 'd')
-					&& (a[i - 11] == 'e') && (a[i - 10] == 'r') && (a[i - 9] == 'R')
-					&& (a[i - 8] == 'e') && (a[i - 7] == 'p') && (a[i - 6] == 'o')
-					&& (a[i - 5] == 's') && (a[i - 4] == 'i') && (a[i - 3] == 't')
-					&& (a[i - 2] == 'o') && (a[i - 1] == 'r') && (a[i] == 'y')) {
+					(a[i - 23] == 'g') && (a[i - 22] == 'e') && (a[i
+							- 21] == 't') && (a[i - 20] == 'C') && (a[i
+									- 19] == 'l') && (a[i - 18] == 'a') && (a[i
+											- 17] == 's') && (a[i - 16] == 's')
+					&& (a[i - 15] == 'L') && (a[i - 14] == 'o') && (a[i
+							- 13] == 'a') && (a[i - 12] == 'd') && (a[i
+									- 11] == 'e') && (a[i - 10] == 'r') && (a[i
+											- 9] == 'R') && (a[i - 8] == 'e')
+					&& (a[i - 7] == 'p') && (a[i - 6] == 'o') && (a[i
+							- 5] == 's') && (a[i - 4] == 'i') && (a[i
+									- 3] == 't') && (a[i - 2] == 'o') && (a[i
+											- 1] == 'r') && (a[i] == 'y')) {
 				matchlen = 24;
 				mask |= GetClassLoaderRepository;
 			} else if (i >= 22 && /* addNotificationListener */
-					(a[i - 22] == 'a') && (a[i - 21] == 'd') && (a[i - 20] == 'd')
-					&& (a[i - 19] == 'N') && (a[i - 18] == 'o') && (a[i - 17] == 't')
-					&& (a[i - 16] == 'i') && (a[i - 15] == 'f') && (a[i - 14] == 'i')
-					&& (a[i - 13] == 'c') && (a[i - 12] == 'a') && (a[i - 11] == 't')
-					&& (a[i - 10] == 'i') && (a[i - 9] == 'o') && (a[i - 8] == 'n')
-					&& (a[i - 7] == 'L') && (a[i - 6] == 'i') && (a[i - 5] == 's')
-					&& (a[i - 4] == 't') && (a[i - 3] == 'e') && (a[i - 2] == 'n')
-					&& (a[i - 1] == 'e') && (a[i] == 'r')) {
+					(a[i - 22] == 'a') && (a[i - 21] == 'd') && (a[i
+							- 20] == 'd') && (a[i - 19] == 'N') && (a[i
+									- 18] == 'o') && (a[i - 17] == 't') && (a[i
+											- 16] == 'i') && (a[i - 15] == 'f')
+					&& (a[i - 14] == 'i') && (a[i - 13] == 'c') && (a[i
+							- 12] == 'a') && (a[i - 11] == 't') && (a[i
+									- 10] == 'i') && (a[i - 9] == 'o') && (a[i
+											- 8] == 'n') && (a[i - 7] == 'L')
+					&& (a[i - 6] == 'i') && (a[i - 5] == 's') && (a[i
+							- 4] == 't') && (a[i - 3] == 'e') && (a[i
+									- 2] == 'n') && (a[i - 1] == 'e')
+					&& (a[i] == 'r')) {
 				matchlen = 23;
 				mask |= AddNotificationListener;
 			} else if (i >= 16 && /* getClassLoaderFor */
-					(a[i - 16] == 'g') && (a[i - 15] == 'e') && (a[i - 14] == 't')
-					&& (a[i - 13] == 'C') && (a[i - 12] == 'l') && (a[i - 11] == 'a')
-					&& (a[i - 10] == 's') && (a[i - 9] == 's') && (a[i - 8] == 'L')
-					&& (a[i - 7] == 'o') && (a[i - 6] == 'a') && (a[i - 5] == 'd')
-					&& (a[i - 4] == 'e') && (a[i - 3] == 'r') && (a[i - 2] == 'F')
-					&& (a[i - 1] == 'o') && (a[i] == 'r')) {
+					(a[i - 16] == 'g') && (a[i - 15] == 'e') && (a[i
+							- 14] == 't') && (a[i - 13] == 'C') && (a[i
+									- 12] == 'l') && (a[i - 11] == 'a') && (a[i
+											- 10] == 's') && (a[i - 9] == 's')
+					&& (a[i - 8] == 'L') && (a[i - 7] == 'o') && (a[i
+							- 6] == 'a') && (a[i - 5] == 'd') && (a[i
+									- 4] == 'e') && (a[i - 3] == 'r') && (a[i
+											- 2] == 'F') && (a[i - 1] == 'o')
+					&& (a[i] == 'r')) {
 				matchlen = 17;
 				mask |= GetClassLoaderFor;
 			} else if (i >= 16 && /* getObjectInstance */
-					(a[i - 16] == 'g') && (a[i - 15] == 'e') && (a[i - 14] == 't')
-					&& (a[i - 13] == 'O') && (a[i - 12] == 'b') && (a[i - 11] == 'j')
-					&& (a[i - 10] == 'e') && (a[i - 9] == 'c') && (a[i - 8] == 't')
-					&& (a[i - 7] == 'I') && (a[i - 6] == 'n') && (a[i - 5] == 's')
-					&& (a[i - 4] == 't') && (a[i - 3] == 'a') && (a[i - 2] == 'n')
-					&& (a[i - 1] == 'c') && (a[i] == 'e')) {
+					(a[i - 16] == 'g') && (a[i - 15] == 'e') && (a[i
+							- 14] == 't') && (a[i - 13] == 'O') && (a[i
+									- 12] == 'b') && (a[i - 11] == 'j') && (a[i
+											- 10] == 'e') && (a[i - 9] == 'c')
+					&& (a[i - 8] == 't') && (a[i - 7] == 'I') && (a[i
+							- 6] == 'n') && (a[i - 5] == 's') && (a[i
+									- 4] == 't') && (a[i - 3] == 'a') && (a[i
+											- 2] == 'n') && (a[i - 1] == 'c')
+					&& (a[i] == 'e')) {
 				matchlen = 17;
 				mask |= GetObjectInstance;
 			} else if (i >= 14 && /* unregisterMBean */
-					(a[i - 14] == 'u') && (a[i - 13] == 'n') && (a[i - 12] == 'r')
-					&& (a[i - 11] == 'e') && (a[i - 10] == 'g') && (a[i - 9] == 'i')
-					&& (a[i - 8] == 's') && (a[i - 7] == 't') && (a[i - 6] == 'e')
-					&& (a[i - 5] == 'r') && (a[i - 4] == 'M') && (a[i - 3] == 'B')
-					&& (a[i - 2] == 'e') && (a[i - 1] == 'a') && (a[i] == 'n')) {
+					(a[i - 14] == 'u') && (a[i - 13] == 'n') && (a[i
+							- 12] == 'r') && (a[i - 11] == 'e') && (a[i
+									- 10] == 'g') && (a[i - 9] == 'i') && (a[i
+											- 8] == 's') && (a[i - 7] == 't')
+					&& (a[i - 6] == 'e') && (a[i - 5] == 'r') && (a[i
+							- 4] == 'M') && (a[i - 3] == 'B') && (a[i
+									- 2] == 'e') && (a[i - 1] == 'a')
+					&& (a[i] == 'n')) {
 				matchlen = 15;
 				mask |= UnregisterMBean;
 			} else if (i >= 13 && /* getClassLoader */
-					(a[i - 13] == 'g') && (a[i - 12] == 'e') && (a[i - 11] == 't')
-					&& (a[i - 10] == 'C') && (a[i - 9] == 'l') && (a[i - 8] == 'a')
-					&& (a[i - 7] == 's') && (a[i - 6] == 's') && (a[i - 5] == 'L')
-					&& (a[i - 4] == 'o') && (a[i - 3] == 'a') && (a[i - 2] == 'd')
-					&& (a[i - 1] == 'e') && (a[i] == 'r')) {
+					(a[i - 13] == 'g') && (a[i - 12] == 'e') && (a[i
+							- 11] == 't') && (a[i - 10] == 'C') && (a[i
+									- 9] == 'l') && (a[i - 8] == 'a') && (a[i
+											- 7] == 's') && (a[i - 6] == 's')
+					&& (a[i - 5] == 'L') && (a[i - 4] == 'o') && (a[i
+							- 3] == 'a') && (a[i - 2] == 'd') && (a[i
+									- 1] == 'e') && (a[i] == 'r')) {
 				matchlen = 14;
 				mask |= GetClassLoader;
 			} else if (i >= 12 && /* registerMBean */
-					(a[i - 12] == 'r') && (a[i - 11] == 'e') && (a[i - 10] == 'g')
-					&& (a[i - 9] == 'i') && (a[i - 8] == 's') && (a[i - 7] == 't')
-					&& (a[i - 6] == 'e') && (a[i - 5] == 'r') && (a[i - 4] == 'M')
-					&& (a[i - 3] == 'B') && (a[i - 2] == 'e') && (a[i - 1] == 'a')
+					(a[i - 12] == 'r') && (a[i - 11] == 'e') && (a[i
+							- 10] == 'g') && (a[i - 9] == 'i') && (a[i
+									- 8] == 's') && (a[i - 7] == 't') && (a[i
+											- 6] == 'e') && (a[i - 5] == 'r')
+					&& (a[i - 4] == 'M') && (a[i - 3] == 'B') && (a[i
+							- 2] == 'e') && (a[i - 1] == 'a')
 					&& (a[i] == 'n')) {
 				matchlen = 13;
 				mask |= RegisterMBean;
 			} else if (i >= 11 && /* getAttribute */
-					(a[i - 11] == 'g') && (a[i - 10] == 'e') && (a[i - 9] == 't')
-					&& (a[i - 8] == 'A') && (a[i - 7] == 't') && (a[i - 6] == 't')
-					&& (a[i - 5] == 'r') && (a[i - 4] == 'i') && (a[i - 3] == 'b')
-					&& (a[i - 2] == 'u') && (a[i - 1] == 't') && (a[i] == 'e')) {
+					(a[i - 11] == 'g') && (a[i - 10] == 'e') && (a[i
+							- 9] == 't') && (a[i - 8] == 'A') && (a[i
+									- 7] == 't') && (a[i - 6] == 't') && (a[i
+											- 5] == 'r') && (a[i - 4] == 'i')
+					&& (a[i - 3] == 'b') && (a[i - 2] == 'u') && (a[i
+							- 1] == 't') && (a[i] == 'e')) {
 				matchlen = 12;
 				mask |= GetAttribute;
 			} else if (i >= 11 && /* getMBeanInfo */
-					(a[i - 11] == 'g') && (a[i - 10] == 'e') && (a[i - 9] == 't')
-					&& (a[i - 8] == 'M') && (a[i - 7] == 'B') && (a[i - 6] == 'e')
-					&& (a[i - 5] == 'a') && (a[i - 4] == 'n') && (a[i - 3] == 'I')
-					&& (a[i - 2] == 'n') && (a[i - 1] == 'f') && (a[i] == 'o')) {
+					(a[i - 11] == 'g') && (a[i - 10] == 'e') && (a[i
+							- 9] == 't') && (a[i - 8] == 'M') && (a[i
+									- 7] == 'B') && (a[i - 6] == 'e') && (a[i
+											- 5] == 'a') && (a[i - 4] == 'n')
+					&& (a[i - 3] == 'I') && (a[i - 2] == 'n') && (a[i
+							- 1] == 'f') && (a[i] == 'o')) {
 				matchlen = 12;
 				mask |= GetMBeanInfo;
 			} else if (i >= 11 && /* isInstanceOf */
-					(a[i - 11] == 'i') && (a[i - 10] == 's') && (a[i - 9] == 'I')
-					&& (a[i - 8] == 'n') && (a[i - 7] == 's') && (a[i - 6] == 't')
-					&& (a[i - 5] == 'a') && (a[i - 4] == 'n') && (a[i - 3] == 'c')
-					&& (a[i - 2] == 'e') && (a[i - 1] == 'O') && (a[i] == 'f')) {
+					(a[i - 11] == 'i') && (a[i - 10] == 's') && (a[i
+							- 9] == 'I') && (a[i - 8] == 'n') && (a[i
+									- 7] == 's') && (a[i - 6] == 't') && (a[i
+											- 5] == 'a') && (a[i - 4] == 'n')
+					&& (a[i - 3] == 'c') && (a[i - 2] == 'e') && (a[i
+							- 1] == 'O') && (a[i] == 'f')) {
 				matchlen = 12;
 				mask |= IsInstanceOf;
 			} else if (i >= 11 && /* setAttribute */
-					(a[i - 11] == 's') && (a[i - 10] == 'e') && (a[i - 9] == 't')
-					&& (a[i - 8] == 'A') && (a[i - 7] == 't') && (a[i - 6] == 't')
-					&& (a[i - 5] == 'r') && (a[i - 4] == 'i') && (a[i - 3] == 'b')
-					&& (a[i - 2] == 'u') && (a[i - 1] == 't') && (a[i] == 'e')) {
+					(a[i - 11] == 's') && (a[i - 10] == 'e') && (a[i
+							- 9] == 't') && (a[i - 8] == 'A') && (a[i
+									- 7] == 't') && (a[i - 6] == 't') && (a[i
+											- 5] == 'r') && (a[i - 4] == 'i')
+					&& (a[i - 3] == 'b') && (a[i - 2] == 'u') && (a[i
+							- 1] == 't') && (a[i] == 'e')) {
 				matchlen = 12;
 				mask |= SetAttribute;
 			} else if (i >= 10 && /* instantiate */
 					(a[i - 10] == 'i') && (a[i - 9] == 'n') && (a[i - 8] == 's')
-					&& (a[i - 7] == 't') && (a[i - 6] == 'a') && (a[i - 5] == 'n')
-					&& (a[i - 4] == 't') && (a[i - 3] == 'i') && (a[i - 2] == 'a')
-					&& (a[i - 1] == 't') && (a[i] == 'e')) {
+					&& (a[i - 7] == 't') && (a[i - 6] == 'a') && (a[i
+							- 5] == 'n') && (a[i - 4] == 't') && (a[i
+									- 3] == 'i') && (a[i - 2] == 'a') && (a[i
+											- 1] == 't') && (a[i] == 'e')) {
 				matchlen = 11;
 				mask |= Instantiate;
 			} else if (i >= 10 && /* queryMBeans */
 					(a[i - 10] == 'q') && (a[i - 9] == 'u') && (a[i - 8] == 'e')
-					&& (a[i - 7] == 'r') && (a[i - 6] == 'y') && (a[i - 5] == 'M')
-					&& (a[i - 4] == 'B') && (a[i - 3] == 'e') && (a[i - 2] == 'a')
-					&& (a[i - 1] == 'n') && (a[i] == 's')) {
+					&& (a[i - 7] == 'r') && (a[i - 6] == 'y') && (a[i
+							- 5] == 'M') && (a[i - 4] == 'B') && (a[i
+									- 3] == 'e') && (a[i - 2] == 'a') && (a[i
+											- 1] == 'n') && (a[i] == 's')) {
 				matchlen = 11;
 				mask |= QueryMBeans;
 			} else if (i >= 9 && /* getDomains */
-					(a[i - 9] == 'g') && (a[i - 8] == 'e') && (a[i - 7] == 't') && (a[i - 6] == 'D')
-					&& (a[i - 5] == 'o') && (a[i - 4] == 'm') && (a[i - 3] == 'a')
-					&& (a[i - 2] == 'i') && (a[i - 1] == 'n') && (a[i] == 's')) {
+					(a[i - 9] == 'g') && (a[i - 8] == 'e') && (a[i - 7] == 't')
+					&& (a[i - 6] == 'D') && (a[i - 5] == 'o') && (a[i
+							- 4] == 'm') && (a[i - 3] == 'a') && (a[i
+									- 2] == 'i') && (a[i - 1] == 'n')
+					&& (a[i] == 's')) {
 				matchlen = 10;
 				mask |= GetDomains;
 			} else if (i >= 9 && /* queryNames */
-					(a[i - 9] == 'q') && (a[i - 8] == 'u') && (a[i - 7] == 'e') && (a[i - 6] == 'r')
-					&& (a[i - 5] == 'y') && (a[i - 4] == 'N') && (a[i - 3] == 'a')
-					&& (a[i - 2] == 'm') && (a[i - 1] == 'e') && (a[i] == 's')) {
+					(a[i - 9] == 'q') && (a[i - 8] == 'u') && (a[i - 7] == 'e')
+					&& (a[i - 6] == 'r') && (a[i - 5] == 'y') && (a[i
+							- 4] == 'N') && (a[i - 3] == 'a') && (a[i
+									- 2] == 'm') && (a[i - 1] == 'e')
+					&& (a[i] == 's')) {
 				matchlen = 10;
 				mask |= QueryNames;
 			} else if (i >= 5 && /* invoke */
-					(a[i - 5] == 'i') && (a[i - 4] == 'n') && (a[i - 3] == 'v') && (a[i - 2] == 'o')
-					&& (a[i - 1] == 'k') && (a[i] == 'e')) {
+					(a[i - 5] == 'i') && (a[i - 4] == 'n') && (a[i - 3] == 'v')
+					&& (a[i - 2] == 'o') && (a[i - 1] == 'k')
+					&& (a[i] == 'e')) {
 				matchlen = 6;
 				mask |= Invoke;
 			} else {
 				// parse error
-				throw new IllegalArgumentException("Invalid permission: " + action);
+				throw new IllegalArgumentException("Invalid permission: "
+						+ action);
 			}
 
 			// make sure we didn't just match the tail of a word
@@ -856,17 +894,18 @@ public class MBeanPermission extends Permission {
 			boolean seencomma = false;
 			while (i >= matchlen && !seencomma) {
 				switch (a[i - matchlen]) {
-				case ',':
-					seencomma = true;
-					break;
-				case ' ':
-				case '\r':
-				case '\n':
-				case '\f':
-				case '\t':
-					break;
-				default:
-					throw new IllegalArgumentException("Invalid permission: " + action);
+					case ',':
+						seencomma = true;
+						break;
+					case ' ':
+					case '\r':
+					case '\n':
+					case '\f':
+					case '\t':
+						break;
+					default:
+						throw new IllegalArgumentException(
+								"Invalid permission: " + action);
 				}
 				i--;
 			}
@@ -928,7 +967,7 @@ public class MBeanPermission extends Permission {
 	 * </p>
 	 *
 	 * @param p
-	 *            the permission to check against.
+	 *          the permission to check against.
 	 * @return true if the specified permission is implied by this object, false
 	 *         if not.
 	 */
@@ -981,7 +1020,6 @@ public class MBeanPermission extends Permission {
 
 		/*
 		 * Check if this.className implies that.className.
-		 * 
 		 * If that.classNamePrefix is empty that means the className is
 		 * irrelevant for this permission check. Otherwise, we do not expect
 		 * that "that" contains a wildcard, since it is a needed permission. So
@@ -1058,13 +1096,15 @@ public class MBeanPermission extends Permission {
 
 		MBeanPermission that = (MBeanPermission) obj;
 
-		return (this.mask == that.mask) && (this.getName().equals(that.getName()));
+		return (this.mask == that.mask) && (this.getName().equals(that
+				.getName()));
 	}
 
 	/**
 	 * Deserialize this object based on its name and actions.
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		in.defaultReadObject();
 		parseName();
 		parseActions();

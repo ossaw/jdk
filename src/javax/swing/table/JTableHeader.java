@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.table;
@@ -57,7 +37,8 @@ import java.io.IOException;
  * @author Philip Milne
  * @see javax.swing.JTable
  */
-public class JTableHeader extends JComponent implements TableColumnModelListener, Accessible {
+public class JTableHeader extends JComponent implements
+		TableColumnModelListener, Accessible {
 	/**
 	 * @see #getUIClassID
 	 * @see #readObject
@@ -140,7 +121,7 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * default <code>TableColumnModel</code>.
 	 *
 	 * @param cm
-	 *            the column model for the table
+	 *           the column model for the table
 	 * @see #createDefaultColumnModel
 	 */
 	public JTableHeader(TableColumnModel cm) {
@@ -168,7 +149,7 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * Sets the table associated with this header.
 	 * 
 	 * @param table
-	 *            the new table
+	 *              the new table
 	 * @beaninfo bound: true description: The table associated with this header.
 	 */
 	public void setTable(JTable table) {
@@ -190,8 +171,9 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * Sets whether the user can drag column headers to reorder columns.
 	 *
 	 * @param reorderingAllowed
-	 *            true if the table view should allow reordering; otherwise
-	 *            false
+	 *                          true if the table view should allow reordering;
+	 *                          otherwise
+	 *                          false
 	 * @see #getReorderingAllowed
 	 * @beaninfo bound: true description: Whether the user can drag column
 	 *           headers to reorder columns.
@@ -218,7 +200,7 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * Sets whether the user can resize columns by dragging between headers.
 	 *
 	 * @param resizingAllowed
-	 *            true if table view should allow resizing
+	 *                        true if table view should allow resizing
 	 * @see #getResizingAllowed
 	 * @beaninfo bound: true description: Whether the user can resize columns by
 	 *           dragging between headers.
@@ -284,10 +266,8 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	/*
 	 * Sets whether the body of the table updates in real time when a column is
 	 * resized or dragged.
-	 *
 	 * @param flag true if tableView should update the body of the table in real
 	 * time
-	 * 
 	 * @see #getUpdateTableInRealTime
 	 */
 	public void setUpdateTableInRealTime(boolean flag) {
@@ -302,9 +282,7 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * Returns true if the body of the table view updates in real time when a
 	 * column is resized or dragged. User can set this flag to false to speed up
 	 * the table's response to user resize or drag actions. The default is true.
-	 *
 	 * @return true if the table updates in real time
-	 * 
 	 * @see #setUpdateTableInRealTime
 	 */
 	public boolean getUpdateTableInRealTime() {
@@ -316,7 +294,7 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * is defined by a <code>TableColumn</code>.
 	 * 
 	 * @param defaultRenderer
-	 *            the default renderer
+	 *                        the default renderer
 	 * @since 1.3
 	 */
 	public void setDefaultRenderer(TableCellRenderer defaultRenderer) {
@@ -379,7 +357,8 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 				r.x += cm.getColumn(i).getWidth();
 			}
 			if (!getComponentOrientation().isLeftToRight()) {
-				r.x = getWidthInRightToLeft() - r.x - cm.getColumn(column).getWidth();
+				r.x = getWidthInRightToLeft() - r.x - cm.getColumn(column)
+						.getWidth();
 			}
 
 			r.width = cm.getColumn(column).getWidth();
@@ -391,8 +370,9 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * Allows the renderer's tips to be used if there is text set.
 	 * 
 	 * @param event
-	 *            the location of the event identifies the proper renderer and,
-	 *            therefore, the proper tip
+	 *              the location of the event identifies the proper renderer
+	 *              and,
+	 *              therefore, the proper tip
 	 * @return the tool tip for this component
 	 */
 	public String getToolTipText(MouseEvent event) {
@@ -407,8 +387,9 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 			if (renderer == null) {
 				renderer = defaultRenderer;
 			}
-			Component component = renderer.getTableCellRendererComponent(getTable(),
-					aColumn.getHeaderValue(), false, false, -1, column);
+			Component component = renderer.getTableCellRendererComponent(
+					getTable(), aColumn.getHeaderValue(), false, false, -1,
+					column);
 
 			// Now have to see if the component is a JComponent before
 			// getting the tip
@@ -418,9 +399,12 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 				Rectangle cellRect = getHeaderRect(column);
 
 				p.translate(-cellRect.x, -cellRect.y);
-				newEvent = new MouseEvent(component, event.getID(), event.getWhen(),
-						event.getModifiers(), p.x, p.y, event.getXOnScreen(), event.getYOnScreen(),
-						event.getClickCount(), event.isPopupTrigger(), MouseEvent.NOBUTTON);
+				newEvent = new MouseEvent(component, event.getID(), event
+						.getWhen(), event.getModifiers(), p.x, p.y, event
+								.getXOnScreen(), event.getYOnScreen(), event
+										.getClickCount(), event
+												.isPopupTrigger(),
+						MouseEvent.NOBUTTON);
 
 				tip = ((JComponent) component).getToolTipText(newEvent);
 			}
@@ -450,7 +434,7 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * Sets the look and feel (L&amp;F) object that renders this component.
 	 *
 	 * @param ui
-	 *            the <code>TableHeaderUI</code> L&amp;F object
+	 *           the <code>TableHeaderUI</code> L&amp;F object
 	 * @see UIDefaults#getUI
 	 */
 	public void setUI(TableHeaderUI ui) {
@@ -499,9 +483,10 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * registers for listener notifications from the new column model.
 	 *
 	 * @param columnModel
-	 *            the new data source for this table
+	 *                    the new data source for this table
 	 * @exception IllegalArgumentException
-	 *                if <code>newModel</code> is <code>null</code>
+	 *                                     if <code>newModel</code> is
+	 *                                     <code>null</code>
 	 * @see #getColumnModel
 	 * @beaninfo bound: true description: The object governing the way columns
 	 *           appear in the view.
@@ -545,7 +530,7 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * internally by <code>JTable</code>.
 	 *
 	 * @param e
-	 *            the event received
+	 *          the event received
 	 * @see TableColumnModelListener
 	 */
 	public void columnAdded(TableColumnModelEvent e) {
@@ -559,7 +544,7 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * internally by <code>JTable</code>.
 	 *
 	 * @param e
-	 *            the event received
+	 *          the event received
 	 * @see TableColumnModelListener
 	 */
 	public void columnRemoved(TableColumnModelEvent e) {
@@ -573,7 +558,7 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * internally by <code>JTable</code>.
 	 *
 	 * @param e
-	 *            the event received
+	 *          the event received
 	 * @see TableColumnModelListener
 	 */
 	public void columnMoved(TableColumnModelEvent e) {
@@ -587,7 +572,7 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * internally by <code>JTable</code>.
 	 *
 	 * @param e
-	 *            the event received
+	 *          the event received
 	 * @see TableColumnModelListener
 	 */
 	public void columnMarginChanged(ChangeEvent e) {
@@ -605,11 +590,10 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * internally by <code>JTable</code>.
 	 *
 	 * @param e
-	 *            the event received
+	 *          the event received
 	 * @see TableColumnModelListener
 	 */
-	public void columnSelectionChanged(ListSelectionEvent e) {
-	} // repaint(); }
+	public void columnSelectionChanged(ListSelectionEvent e) {} // repaint(); }
 
 	//
 	// Package Methods
@@ -674,8 +658,9 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * internally by the column dragging mechanism.
 	 *
 	 * @param aColumn
-	 *            the column being dragged, or <code>null</code> if no column is
-	 *            being dragged
+	 *                the column being dragged, or <code>null</code> if no
+	 *                column is
+	 *                being dragged
 	 */
 	public void setDraggedColumn(TableColumn aColumn) {
 		draggedColumn = aColumn;
@@ -685,7 +670,7 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * Sets the header's <code>draggedDistance</code> to <code>distance</code>.
 	 * 
 	 * @param distance
-	 *            the distance dragged
+	 *                 the distance dragged
 	 */
 	public void setDraggedDistance(int distance) {
 		draggedDistance = distance;
@@ -698,8 +683,9 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	 * internally by the column sizing mechanism.
 	 *
 	 * @param aColumn
-	 *            the column being resized, or <code>null</code> if no column is
-	 *            being resized
+	 *                the column being resized, or <code>null</code> if no
+	 *                column is
+	 *                being resized
 	 */
 	public void setResizingColumn(TableColumn aColumn) {
 		resizingColumn = aColumn;
@@ -718,7 +704,8 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	}
 
 	private int getWidthInRightToLeft() {
-		if ((table != null) && (table.getAutoResizeMode() != JTable.AUTO_RESIZE_OFF)) {
+		if ((table != null) && (table
+				.getAutoResizeMode() != JTable.AUTO_RESIZE_OFF)) {
 			return table.getWidth();
 		}
 		return super.getWidth();
@@ -739,10 +726,12 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 	protected String paramString() {
 		String reorderingAllowedString = (reorderingAllowed ? "true" : "false");
 		String resizingAllowedString = (resizingAllowed ? "true" : "false");
-		String updateTableInRealTimeString = (updateTableInRealTime ? "true" : "false");
+		String updateTableInRealTimeString = (updateTableInRealTime ? "true"
+				: "false");
 
-		return super.paramString() + ",draggedDistance=" + draggedDistance + ",reorderingAllowed="
-				+ reorderingAllowedString + ",resizingAllowed=" + resizingAllowedString
+		return super.paramString() + ",draggedDistance=" + draggedDistance
+				+ ",reorderingAllowed=" + reorderingAllowedString
+				+ ",resizingAllowed=" + resizingAllowedString
 				+ ",updateTableInRealTime=" + updateTableInRealTimeString;
 	}
 
@@ -801,8 +790,8 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 		 * coordinate Point.
 		 *
 		 * @param p
-		 *            The point defining the top-left corner of the Accessible,
-		 *            given in the coordinate space of the object's parent.
+		 *          The point defining the top-left corner of the Accessible,
+		 *          given in the coordinate space of the object's parent.
 		 * @return the Accessible, if it exists, at the specified location; else
 		 *         null
 		 */
@@ -811,7 +800,8 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 
 			// Locate the renderer under the Point
 			if ((column = JTableHeader.this.columnAtPoint(p)) != -1) {
-				TableColumn aColumn = JTableHeader.this.columnModel.getColumn(column);
+				TableColumn aColumn = JTableHeader.this.columnModel.getColumn(
+						column);
 				TableCellRenderer renderer = aColumn.getHeaderRenderer();
 				if (renderer == null) {
 					if (defaultRenderer != null) {
@@ -821,11 +811,11 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 					}
 				}
 				Component component = renderer.getTableCellRendererComponent(
-						JTableHeader.this.getTable(), aColumn.getHeaderValue(), false, false, -1,
-						column);
+						JTableHeader.this.getTable(), aColumn.getHeaderValue(),
+						false, false, -1, column);
 
-				return new AccessibleJTableHeaderEntry(column, JTableHeader.this,
-						JTableHeader.this.table);
+				return new AccessibleJTableHeaderEntry(column,
+						JTableHeader.this, JTableHeader.this.table);
 			} else {
 				return null;
 			}
@@ -846,14 +836,15 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 		 * Return the nth Accessible child of the object.
 		 *
 		 * @param i
-		 *            zero-based index of child
+		 *          zero-based index of child
 		 * @return the nth Accessible child of the object
 		 */
 		public Accessible getAccessibleChild(int i) {
 			if (i < 0 || i >= getAccessibleChildrenCount()) {
 				return null;
 			} else {
-				TableColumn aColumn = JTableHeader.this.columnModel.getColumn(i);
+				TableColumn aColumn = JTableHeader.this.columnModel.getColumn(
+						i);
 				TableCellRenderer renderer = aColumn.getHeaderRenderer();
 				if (renderer == null) {
 					if (defaultRenderer != null) {
@@ -863,8 +854,8 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 					}
 				}
 				Component component = renderer.getTableCellRendererComponent(
-						JTableHeader.this.getTable(), aColumn.getHeaderValue(), false, false, -1,
-						i);
+						JTableHeader.this.getTable(), aColumn.getHeaderValue(),
+						false, false, -1, i);
 
 				return new AccessibleJTableHeaderEntry(i, JTableHeader.this,
 						JTableHeader.this.table);
@@ -887,7 +878,8 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 			 * 
 			 * @since 1.4
 			 */
-			public AccessibleJTableHeaderEntry(int c, JTableHeader p, JTable t) {
+			public AccessibleJTableHeaderEntry(int c, JTableHeader p,
+					JTable t) {
 				parent = p;
 				column = c;
 				table = t;
@@ -923,8 +915,9 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 						}
 					}
 					Component c = renderer.getTableCellRendererComponent(
-							JTableHeader.this.getTable(), aColumn.getHeaderValue(), false, false,
-							-1, column);
+							JTableHeader.this.getTable(), aColumn
+									.getHeaderValue(), false, false, -1,
+							column);
 					if (c instanceof Accessible) {
 						return ((Accessible) c).getAccessibleContext();
 					}
@@ -949,8 +942,10 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 							return null;
 						}
 					}
-					return renderer.getTableCellRendererComponent(JTableHeader.this.getTable(),
-							aColumn.getHeaderValue(), false, false, -1, column);
+					return renderer.getTableCellRendererComponent(
+							JTableHeader.this.getTable(), aColumn
+									.getHeaderValue(), false, false, -1,
+							column);
 				} else {
 					return null;
 				}
@@ -1317,7 +1312,8 @@ public class JTableHeader extends JComponent implements TableColumnModelListener
 				if (parent != null) {
 					Point parentLocation = parent.getLocationOnScreen();
 					Point componentLocation = getLocation();
-					componentLocation.translate(parentLocation.x, parentLocation.y);
+					componentLocation.translate(parentLocation.x,
+							parentLocation.y);
 					return componentLocation;
 				} else {
 					return null;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -70,16 +50,17 @@ public interface Composite {
 	 * can exist simultaneously for a single <code>Composite</code> object.
 	 * 
 	 * @param srcColorModel
-	 *            the {@link ColorModel} of the source
+	 *                      the {@link ColorModel} of the source
 	 * @param dstColorModel
-	 *            the <code>ColorModel</code> of the destination
+	 *                      the <code>ColorModel</code> of the destination
 	 * @param hints
-	 *            the hint that the context object uses to choose between
-	 *            rendering alternatives
+	 *                      the hint that the context object uses to choose
+	 *                      between
+	 *                      rendering alternatives
 	 * @return the <code>CompositeContext</code> object used to perform the
 	 *         compositing operation.
 	 */
-	public CompositeContext createContext(ColorModel srcColorModel, ColorModel dstColorModel,
-			RenderingHints hints);
+	public CompositeContext createContext(ColorModel srcColorModel,
+			ColorModel dstColorModel, RenderingHints hints);
 
 }

@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2000 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -168,7 +143,7 @@ public interface NodeFilter {
 	 * guide your own application logic.)
 	 * 
 	 * @param n
-	 *            The node to check to see if it passes the filter or not.
+	 *          The node to check to see if it passes the filter or not.
 	 * @return A constant to determine whether the node is accepted, rejected,
 	 *         or skipped, as defined above.
 	 */

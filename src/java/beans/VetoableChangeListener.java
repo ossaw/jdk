@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 1997, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -38,8 +18,9 @@ public interface VetoableChangeListener extends java.util.EventListener {
 	 *            a <code>PropertyChangeEvent</code> object describing the event
 	 *            source and the property that has changed.
 	 * @exception PropertyVetoException
-	 *                if the recipient wishes the property change to be rolled
-	 *                back.
+	 *                                  if the recipient wishes the property
+	 *                                  change to be rolled
+	 *                                  back.
 	 */
 	void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException;
 }

@@ -7,13 +7,10 @@
 /*
  * Copyright 2001-2004 The Apache Software Foundation or its licensors,
  * as applicable.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -54,18 +51,22 @@ public interface CatalogReader {
 	 * </p>
 	 *
 	 * @param catalog
-	 *            The catalog for which this reader is called.
+	 *                The catalog for which this reader is called.
 	 * @param fileUrl
-	 *            The URL of a document to be read.
+	 *                The URL of a document to be read.
 	 * @throws MalformedURLException
-	 *             if the specified URL cannot be turned into a URL object.
+	 *                                       if the specified URL cannot be
+	 *                                       turned into a URL object.
 	 * @throws IOException
-	 *             if the URL cannot be read.
+	 *                                       if the URL cannot be read.
 	 * @throws UnknownCatalogFormatException
-	 *             if the catalog format is not recognized.
+	 *                                       if the catalog format is not
+	 *                                       recognized.
 	 * @throws UnparseableCatalogException
-	 *             if the catalog cannot be parsed. (For example, if it is
-	 *             supposed to be XML and isn't well-formed.)
+	 *                                       if the catalog cannot be parsed.
+	 *                                       (For example, if it is
+	 *                                       supposed to be XML and isn't
+	 *                                       well-formed.)
 	 */
 	public void readCatalog(Catalog catalog, String fileUrl)
 			throws MalformedURLException, IOException, CatalogException;
@@ -78,16 +79,20 @@ public interface CatalogReader {
 	 * </p>
 	 *
 	 * @param catalog
-	 *            The catalog for which this reader is called.
+	 *                The catalog for which this reader is called.
 	 * @param is
-	 *            The input stream that is to be read.
+	 *                The input stream that is to be read.
 	 * @throws IOException
-	 *             if the URL cannot be read.
+	 *                                       if the URL cannot be read.
 	 * @throws UnknownCatalogFormatException
-	 *             if the catalog format is not recognized.
+	 *                                       if the catalog format is not
+	 *                                       recognized.
 	 * @throws UnparseableCatalogException
-	 *             if the catalog cannot be parsed. (For example, if it is
-	 *             supposed to be XML and isn't well-formed.)
+	 *                                       if the catalog cannot be parsed.
+	 *                                       (For example, if it is
+	 *                                       supposed to be XML and isn't
+	 *                                       well-formed.)
 	 */
-	public void readCatalog(Catalog catalog, InputStream is) throws IOException, CatalogException;
+	public void readCatalog(Catalog catalog, InputStream is) throws IOException,
+			CatalogException;
 }

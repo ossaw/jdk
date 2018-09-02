@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.border;
 
@@ -60,7 +40,7 @@ public class BevelBorder extends AbstractBorder {
 	 * paintBorder method.
 	 * 
 	 * @param bevelType
-	 *            the type of bevel for the border
+	 *                  the type of bevel for the border
 	 */
 	public BevelBorder(int bevelType) {
 		this.bevelType = bevelType;
@@ -71,14 +51,15 @@ public class BevelBorder extends AbstractBorder {
 	 * colors.
 	 * 
 	 * @param bevelType
-	 *            the type of bevel for the border
+	 *                  the type of bevel for the border
 	 * @param highlight
-	 *            the color to use for the bevel highlight
+	 *                  the color to use for the bevel highlight
 	 * @param shadow
-	 *            the color to use for the bevel shadow
+	 *                  the color to use for the bevel shadow
 	 */
 	public BevelBorder(int bevelType, Color highlight, Color shadow) {
-		this(bevelType, highlight.brighter(), highlight, shadow, shadow.brighter());
+		this(bevelType, highlight.brighter(), highlight, shadow, shadow
+				.brighter());
 	}
 
 	/**
@@ -86,20 +67,21 @@ public class BevelBorder extends AbstractBorder {
 	 * colors.
 	 *
 	 * @param bevelType
-	 *            the type of bevel for the border
+	 *                            the type of bevel for the border
 	 * @param highlightOuterColor
-	 *            the color to use for the bevel outer highlight
+	 *                            the color to use for the bevel outer highlight
 	 * @param highlightInnerColor
-	 *            the color to use for the bevel inner highlight
+	 *                            the color to use for the bevel inner highlight
 	 * @param shadowOuterColor
-	 *            the color to use for the bevel outer shadow
+	 *                            the color to use for the bevel outer shadow
 	 * @param shadowInnerColor
-	 *            the color to use for the bevel inner shadow
+	 *                            the color to use for the bevel inner shadow
 	 */
-	@ConstructorProperties({ "bevelType", "highlightOuterColor", "highlightInnerColor",
-			"shadowOuterColor", "shadowInnerColor" })
-	public BevelBorder(int bevelType, Color highlightOuterColor, Color highlightInnerColor,
-			Color shadowOuterColor, Color shadowInnerColor) {
+	@ConstructorProperties({ "bevelType", "highlightOuterColor",
+			"highlightInnerColor", "shadowOuterColor", "shadowInnerColor" })
+	public BevelBorder(int bevelType, Color highlightOuterColor,
+			Color highlightInnerColor, Color shadowOuterColor,
+			Color shadowInnerColor) {
 		this(bevelType);
 		this.highlightOuter = highlightOuterColor;
 		this.highlightInner = highlightInnerColor;
@@ -112,19 +94,20 @@ public class BevelBorder extends AbstractBorder {
 	 * and size.
 	 * 
 	 * @param c
-	 *            the component for which this border is being painted
+	 *               the component for which this border is being painted
 	 * @param g
-	 *            the paint graphics
+	 *               the paint graphics
 	 * @param x
-	 *            the x position of the painted border
+	 *               the x position of the painted border
 	 * @param y
-	 *            the y position of the painted border
+	 *               the y position of the painted border
 	 * @param width
-	 *            the width of the painted border
+	 *               the width of the painted border
 	 * @param height
-	 *            the height of the painted border
+	 *               the height of the painted border
 	 */
-	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+	public void paintBorder(Component c, Graphics g, int x, int y, int width,
+			int height) {
 		if (bevelType == RAISED) {
 			paintRaisedBevel(c, g, x, y, width, height);
 
@@ -137,9 +120,9 @@ public class BevelBorder extends AbstractBorder {
 	 * Reinitialize the insets parameter with this Border's current Insets.
 	 * 
 	 * @param c
-	 *            the component for which this border insets value applies
+	 *               the component for which this border insets value applies
 	 * @param insets
-	 *            the object to be reinitialized
+	 *               the object to be reinitialized
 	 */
 	public Insets getBorderInsets(Component c, Insets insets) {
 		insets.set(2, 2, 2, 2);
@@ -153,12 +136,13 @@ public class BevelBorder extends AbstractBorder {
 	 * component's background color.
 	 * 
 	 * @param c
-	 *            the component for which the highlight may be derived
+	 *          the component for which the highlight may be derived
 	 * @since 1.3
 	 */
 	public Color getHighlightOuterColor(Component c) {
 		Color highlight = getHighlightOuterColor();
-		return highlight != null ? highlight : c.getBackground().brighter().brighter();
+		return highlight != null ? highlight
+				: c.getBackground().brighter().brighter();
 	}
 
 	/**
@@ -168,7 +152,7 @@ public class BevelBorder extends AbstractBorder {
 	 * component's background color.
 	 * 
 	 * @param c
-	 *            the component for which the highlight may be derived
+	 *          the component for which the highlight may be derived
 	 * @since 1.3
 	 */
 	public Color getHighlightInnerColor(Component c) {
@@ -183,7 +167,7 @@ public class BevelBorder extends AbstractBorder {
 	 * color.
 	 * 
 	 * @param c
-	 *            the component for which the shadow may be derived
+	 *          the component for which the shadow may be derived
 	 * @since 1.3
 	 */
 	public Color getShadowInnerColor(Component c) {
@@ -198,7 +182,7 @@ public class BevelBorder extends AbstractBorder {
 	 * color.
 	 * 
 	 * @param c
-	 *            the component for which the shadow may be derived
+	 *          the component for which the shadow may be derived
 	 * @since 1.3
 	 */
 	public Color getShadowOuterColor(Component c) {
@@ -260,7 +244,8 @@ public class BevelBorder extends AbstractBorder {
 		return true;
 	}
 
-	protected void paintRaisedBevel(Component c, Graphics g, int x, int y, int width, int height) {
+	protected void paintRaisedBevel(Component c, Graphics g, int x, int y,
+			int width, int height) {
 		Color oldColor = g.getColor();
 		int h = height;
 		int w = width;
@@ -288,7 +273,8 @@ public class BevelBorder extends AbstractBorder {
 
 	}
 
-	protected void paintLoweredBevel(Component c, Graphics g, int x, int y, int width, int height) {
+	protected void paintLoweredBevel(Component c, Graphics g, int x, int y,
+			int width, int height) {
 		Color oldColor = g.getColor();
 		int h = height;
 		int w = width;

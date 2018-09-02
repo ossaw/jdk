@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -44,7 +24,8 @@ package org.omg.CORBA;
  * <code>value</code> field can be accessed with
  * <code>myServiceInformationHolder.value</code>.
  */
-public final class ServiceInformationHolder implements org.omg.CORBA.portable.Streamable {
+public final class ServiceInformationHolder implements
+		org.omg.CORBA.portable.Streamable {
 
 	/**
 	 * The <code>ServiceInformation</code> value held by this
@@ -93,8 +74,8 @@ public final class ServiceInformationHolder implements org.omg.CORBA.portable.St
 	 * <code>ServiceInformationHolder</code> object.
 	 *
 	 * @param in
-	 *            the <code>InputStream</code> object containing CDR formatted
-	 *            data from the wire
+	 *           the <code>InputStream</code> object containing CDR formatted
+	 *           data from the wire
 	 */
 	public void _read(org.omg.CORBA.portable.InputStream in) {
 		value = org.omg.CORBA.ServiceInformationHelper.read(in);

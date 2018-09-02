@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -48,7 +28,7 @@ public class MBeanException extends JMException {
 	 * <CODE>java.lang.Exception</CODE>.
 	 *
 	 * @param e
-	 *            the wrapped exception.
+	 *          the wrapped exception.
 	 */
 	public MBeanException(java.lang.Exception e) {
 		super();
@@ -60,9 +40,9 @@ public class MBeanException extends JMException {
 	 * <CODE>java.lang.Exception</CODE> with a detail message.
 	 *
 	 * @param e
-	 *            the wrapped exception.
+	 *                the wrapped exception.
 	 * @param message
-	 *            the detail message.
+	 *                the detail message.
 	 */
 	public MBeanException(java.lang.Exception e, String message) {
 		super(message);

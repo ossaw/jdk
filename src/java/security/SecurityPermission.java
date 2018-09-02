@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -307,12 +287,12 @@ public final class SecurityPermission extends BasicPermission {
 	 * match.
 	 *
 	 * @param name
-	 *            the name of the SecurityPermission
+	 *             the name of the SecurityPermission
 	 *
 	 * @throws NullPointerException
-	 *             if {@code name} is {@code null}.
+	 *                                  if {@code name} is {@code null}.
 	 * @throws IllegalArgumentException
-	 *             if {@code name} is empty.
+	 *                                  if {@code name} is empty.
 	 */
 	public SecurityPermission(String name) {
 		super(name);
@@ -324,14 +304,14 @@ public final class SecurityPermission extends BasicPermission {
 	 * currently unused and should be null.
 	 *
 	 * @param name
-	 *            the name of the SecurityPermission
+	 *                the name of the SecurityPermission
 	 * @param actions
-	 *            should be null.
+	 *                should be null.
 	 *
 	 * @throws NullPointerException
-	 *             if {@code name} is {@code null}.
+	 *                                  if {@code name} is {@code null}.
 	 * @throws IllegalArgumentException
-	 *             if {@code name} is empty.
+	 *                                  if {@code name} is empty.
 	 */
 	public SecurityPermission(String name, String actions) {
 		super(name, actions);

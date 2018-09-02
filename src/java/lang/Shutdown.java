@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -56,8 +36,7 @@ class Shutdown {
 	private static int currentRunningHook = 0;
 
 	/* The preceding static fields are protected by this lock */
-	private static class Lock {
-	};
+	private static class Lock {};
 
 	private static Object lock = new Lock();
 
@@ -89,16 +68,19 @@ class Shutdown {
 	 *        shutdown is in progress; or if registerShutdownInProgress is true
 	 *        and the shutdown process already passes the given slot
 	 */
-	static void add(int slot, boolean registerShutdownInProgress, Runnable hook) {
+	static void add(int slot, boolean registerShutdownInProgress,
+			Runnable hook) {
 		synchronized (lock) {
 			if (hooks[slot] != null)
-				throw new InternalError("Shutdown hook at slot " + slot + " already registered");
+				throw new InternalError("Shutdown hook at slot " + slot
+						+ " already registered");
 
 			if (!registerShutdownInProgress) {
 				if (state > RUNNING)
 					throw new IllegalStateException("Shutdown in progress");
 			} else {
-				if (state > HOOKS || (state == HOOKS && slot <= currentRunningHook))
+				if (state > HOOKS || (state == HOOKS
+						&& slot <= currentRunningHook))
 					throw new IllegalStateException("Shutdown in progress");
 			}
 
@@ -147,7 +129,6 @@ class Shutdown {
 
 	/*
 	 * The actual shutdown sequence is defined here.
-	 *
 	 * If it weren't for runFinalizersOnExit, this would be simple -- we'd just
 	 * run the hooks and then halt. Instead we need to keep track of whether
 	 * we're running hooks or finalizers. In the latter case a finalizer could
@@ -187,23 +168,24 @@ class Shutdown {
 			if (status != 0)
 				runFinalizersOnExit = false;
 			switch (state) {
-			case RUNNING: /* Initiate shutdown */
-				state = HOOKS;
-				break;
-			case HOOKS: /* Stall and halt */
-				break;
-			case FINALIZERS:
-				if (status != 0) {
-					/* Halt immediately on nonzero status */
-					halt(status);
-				} else {
-					/*
-					 * Compatibility with old behavior: Run more finalizers and
-					 * then halt
-					 */
-					runMoreFinalizers = runFinalizersOnExit;
-				}
-				break;
+				case RUNNING: /* Initiate shutdown */
+					state = HOOKS;
+					break;
+				case HOOKS: /* Stall and halt */
+					break;
+				case FINALIZERS:
+					if (status != 0) {
+						/* Halt immediately on nonzero status */
+						halt(status);
+					} else {
+						/*
+						 * Compatibility with old behavior: Run more finalizers
+						 * and
+						 * then halt
+						 */
+						runMoreFinalizers = runFinalizersOnExit;
+					}
+					break;
 			}
 		}
 		if (runMoreFinalizers) {
@@ -228,12 +210,12 @@ class Shutdown {
 	static void shutdown() {
 		synchronized (lock) {
 			switch (state) {
-			case RUNNING: /* Initiate shutdown */
-				state = HOOKS;
-				break;
-			case HOOKS: /* Stall and then return */
-			case FINALIZERS:
-				break;
+				case RUNNING: /* Initiate shutdown */
+					state = HOOKS;
+					break;
+				case HOOKS: /* Stall and then return */
+				case FINALIZERS:
+					break;
 			}
 		}
 		synchronized (Shutdown.class) {

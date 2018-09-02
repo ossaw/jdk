@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -83,14 +80,12 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 	/**
 	 * Do nothing for SAX.
 	 */
-	public void indent(int n) throws SAXException {
-	}
+	public void indent(int n) throws SAXException {}
 
 	/**
 	 * @see DOMSerializer#serialize(Node)
 	 */
-	public void serialize(Node node) throws IOException {
-	}
+	public void serialize(Node node) throws IOException {}
 
 	/**
 	 * @see SerializationHandler#setEscaping(boolean)
@@ -111,47 +106,42 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 	/**
 	 * @see Serializer#setOutputFormat(Properties)
 	 */
-	public void setOutputFormat(Properties format) {
-	}
+	public void setOutputFormat(Properties format) {}
 
 	/**
 	 * @see Serializer#setOutputStream(OutputStream)
 	 */
-	public void setOutputStream(OutputStream output) {
-	}
+	public void setOutputStream(OutputStream output) {}
 
 	/**
 	 * @see Serializer#setWriter(Writer)
 	 */
-	public void setWriter(Writer writer) {
-	}
+	public void setWriter(Writer writer) {}
 
 	/**
 	 * @see org.xml.sax.ext.DeclHandler#attributeDecl(String, String, String,
 	 *      String, String)
 	 */
-	public void attributeDecl(String arg0, String arg1, String arg2, String arg3, String arg4)
-			throws SAXException {
-	}
+	public void attributeDecl(String arg0, String arg1, String arg2,
+			String arg3, String arg4) throws SAXException {}
 
 	/**
 	 * @see org.xml.sax.ext.DeclHandler#elementDecl(String, String)
 	 */
-	public void elementDecl(String arg0, String arg1) throws SAXException {
-	}
+	public void elementDecl(String arg0, String arg1) throws SAXException {}
 
 	/**
 	 * @see org.xml.sax.ext.DeclHandler#externalEntityDecl(String, String,
 	 *      String)
 	 */
-	public void externalEntityDecl(String arg0, String arg1, String arg2) throws SAXException {
-	}
+	public void externalEntityDecl(String arg0, String arg1, String arg2)
+			throws SAXException {}
 
 	/**
 	 * @see org.xml.sax.ext.DeclHandler#internalEntityDecl(String, String)
 	 */
-	public void internalEntityDecl(String arg0, String arg1) throws SAXException {
-	}
+	public void internalEntityDecl(String arg0, String arg1)
+			throws SAXException {}
 
 	/**
 	 * Receives notification of the end of the document.
@@ -184,7 +174,8 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 		if (m_needToCallStartDocument) {
 			startDocumentInternal();
 		}
-		m_saxHandler.startElement(uri, localName, m_elemContext.m_elementName, m_attributes);
+		m_saxHandler.startElement(uri, localName, m_elemContext.m_elementName,
+				m_attributes);
 		// we've sent the official SAX attributes on their way,
 		// now we don't need them anymore.
 		m_attributes.clear();
@@ -244,7 +235,8 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 		 * Pop all namespaces at the current element depth. We are not waiting
 		 * for official endPrefixMapping() calls.
 		 */
-		m_prefixMap.popNamespaces(m_elemContext.m_currentElemDepth, m_saxHandler);
+		m_prefixMap.popNamespaces(m_elemContext.m_currentElemDepth,
+				m_saxHandler);
 		m_elemContext = m_elemContext.m_prev;
 	}
 
@@ -262,7 +254,8 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 	/**
 	 * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)
 	 */
-	public void ignorableWhitespace(char[] arg0, int arg1, int arg2) throws SAXException {
+	public void ignorableWhitespace(char[] arg0, int arg1, int arg2)
+			throws SAXException {
 		m_saxHandler.ignorableWhitespace(arg0, arg1, arg2);
 	}
 
@@ -284,11 +277,12 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 	/**
 	 * @see org.xml.sax.ContentHandler#startPrefixMapping(String, String)
 	 * @param prefix
-	 *            The prefix that maps to the URI
+	 *               The prefix that maps to the URI
 	 * @param uri
-	 *            The URI for the namespace
+	 *               The URI for the namespace
 	 */
-	public void startPrefixMapping(String prefix, String uri) throws SAXException {
+	public void startPrefixMapping(String prefix, String uri)
+			throws SAXException {
 		startPrefixMapping(prefix, uri, true);
 	}
 
@@ -297,16 +291,17 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 	 *
 	 * @see org.xml.sax.ContentHandler#startPrefixMapping(String, String)
 	 * @param prefix
-	 *            The prefix that maps to the URI
+	 *                    The prefix that maps to the URI
 	 * @param uri
-	 *            The URI for the namespace
+	 *                    The URI for the namespace
 	 * @param shouldFlush
-	 *            a flag indicating if the mapping applies to the current
-	 *            element or an up coming child (not used).
+	 *                    a flag indicating if the mapping applies to the
+	 *                    current
+	 *                    element or an up coming child (not used).
 	 */
 
-	public boolean startPrefixMapping(String prefix, String uri, boolean shouldFlush)
-			throws org.xml.sax.SAXException {
+	public boolean startPrefixMapping(String prefix, String uri,
+			boolean shouldFlush) throws org.xml.sax.SAXException {
 
 		/*
 		 * Remember the mapping, and at what depth it was declared This is one
@@ -340,7 +335,8 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 				String name;
 				if (EMPTYSTRING.equals(prefix)) {
 					name = "xmlns";
-					addAttributeAlways(XMLNS_URI, name, name, "CDATA", uri, false);
+					addAttributeAlways(XMLNS_URI, name, name, "CDATA", uri,
+							false);
 				} else {
 					if (!EMPTYSTRING.equals(uri)) // hack for XSLTC attribset16
 													// test
@@ -352,7 +348,8 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 						 * is the value, that is why we pass it in the value, or
 						 * 5th slot of addAttributeAlways()
 						 */
-						addAttributeAlways(XMLNS_URI, prefix, name, "CDATA", uri, false);
+						addAttributeAlways(XMLNS_URI, prefix, name, "CDATA",
+								uri, false);
 					}
 				}
 			}
@@ -380,18 +377,14 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 		 * Normally we would do somthing with this but we ignore it. The
 		 * neccessary call to m_lexHandler.endCDATA() will be made in
 		 * flushPending().
-		 *
 		 * This is so that if we get calls like these: this.startCDATA();
 		 * this.characters(chars1, off1, len1); this.endCDATA();
 		 * this.startCDATA(); this.characters(chars2, off2, len2);
 		 * this.endCDATA();
-		 *
 		 * that we will only make these calls to the wrapped handlers:
-		 *
 		 * m_lexHandler.startCDATA(); m_saxHandler.characters(chars1, off1,
 		 * len1); m_saxHandler.characters(chars1, off2, len2);
 		 * m_lexHandler.endCDATA();
-		 *
 		 * We will merge adjacent CDATA blocks.
 		 */
 	}
@@ -433,7 +426,8 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 		m_prefixMap = new NamespaceMappings();
 	}
 
-	public ToXMLSAXHandler(ContentHandler handler, LexicalHandler lex, String encoding) {
+	public ToXMLSAXHandler(ContentHandler handler, LexicalHandler lex,
+			String encoding) {
 		super(handler, lex, encoding);
 
 		initCDATA();
@@ -445,8 +439,8 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 	 * Start an element in the output document. This might be an XML element (
 	 * <elem>data</elem> type) or a CDATA section.
 	 */
-	public void startElement(String elementNamespaceURI, String elementLocalName,
-			String elementName) throws SAXException {
+	public void startElement(String elementNamespaceURI,
+			String elementLocalName, String elementName) throws SAXException {
 		startElement(elementNamespaceURI, elementLocalName, elementName, null);
 
 	}
@@ -468,7 +462,8 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 			m_elemContext.m_startTagOpen = false;
 		}
 
-		if (m_elemContext.m_isCdataSection && !m_cdataTagOpen && m_lexHandler != null) {
+		if (m_elemContext.m_isCdataSection && !m_cdataTagOpen
+				&& m_lexHandler != null) {
 			m_lexHandler.startCDATA();
 			// We have made a call to m_lexHandler.startCDATA() with
 			// no balancing call to m_lexHandler.endCDATA()
@@ -500,8 +495,8 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 	 * declaration will not be include if the namespace is already in scope with
 	 * the same prefix.
 	 */
-	public void namespaceAfterStartElement(final String prefix, final String uri)
-			throws SAXException {
+	public void namespaceAfterStartElement(final String prefix,
+			final String uri) throws SAXException {
 		startPrefixMapping(prefix, uri, false);
 	}
 
@@ -510,7 +505,8 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 	 * @see org.xml.sax.ContentHandler#processingInstruction(String, String)
 	 *      Send a processing instruction to the output document
 	 */
-	public void processingInstruction(String target, String data) throws SAXException {
+	public void processingInstruction(String target, String data)
+			throws SAXException {
 		flushPending();
 
 		// Pass the processing instruction to the SAX handler
@@ -564,8 +560,8 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 	 * @see org.xml.sax.ContentHandler#startElement(String, String, String,
 	 *      Attributes)
 	 */
-	public void startElement(String namespaceURI, String localName, String name, Attributes atts)
-			throws SAXException {
+	public void startElement(String namespaceURI, String localName, String name,
+			Attributes atts) throws SAXException {
 		flushPending();
 		super.startElement(namespaceURI, localName, name, atts);
 
@@ -595,7 +591,8 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 
 	}
 
-	private void ensurePrefixIsDeclared(String ns, String rawName) throws org.xml.sax.SAXException {
+	private void ensurePrefixIsDeclared(String ns, String rawName)
+			throws org.xml.sax.SAXException {
 
 		if (ns != null && ns.length() > 0) {
 			int index;
@@ -629,22 +626,24 @@ public final class ToXMLSAXHandler extends ToSAXHandler {
 	 * currently open element.
 	 *
 	 * @param uri
-	 *            the URI of the attribute
+	 *                     the URI of the attribute
 	 * @param localName
-	 *            the local name of the attribute
+	 *                     the local name of the attribute
 	 * @param rawName
-	 *            the qualified name of the attribute
+	 *                     the qualified name of the attribute
 	 * @param type
-	 *            the type of the attribute (probably CDATA)
+	 *                     the type of the attribute (probably CDATA)
 	 * @param value
-	 *            the value of the attribute
+	 *                     the value of the attribute
 	 * @param XSLAttribute
-	 *            true if this attribute is coming from an xsl:attribute element
+	 *                     true if this attribute is coming from an
+	 *                     xsl:attribute element
 	 * @see ExtendedContentHandler#addAttribute(String, String, String, String,
 	 *      String)
 	 */
-	public void addAttribute(String uri, String localName, String rawName, String type,
-			String value, boolean XSLAttribute) throws SAXException {
+	public void addAttribute(String uri, String localName, String rawName,
+			String type, String value, boolean XSLAttribute)
+			throws SAXException {
 		if (m_elemContext.m_startTagOpen) {
 			ensurePrefixIsDeclared(uri, rawName);
 			addAttributeAlways(uri, localName, rawName, type, value, false);

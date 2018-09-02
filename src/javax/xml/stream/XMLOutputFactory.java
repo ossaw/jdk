@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -129,17 +109,18 @@ public abstract class XMLOutputFactory {
 
 	static final String DEFAULIMPL = "com.sun.xml.internal.stream.XMLOutputFactoryImpl";
 
-	protected XMLOutputFactory() {
-	}
+	protected XMLOutputFactory() {}
 
 	/**
 	 * Creates a new instance of the factory in exactly the same manner as the
 	 * {@link #newFactory()} method.
 	 * 
 	 * @throws FactoryConfigurationError
-	 *             if an instance of this factory cannot be loaded
+	 *                                   if an instance of this factory cannot
+	 *                                   be loaded
 	 */
-	public static XMLOutputFactory newInstance() throws FactoryConfigurationError {
+	public static XMLOutputFactory newInstance()
+			throws FactoryConfigurationError {
 		return FactoryFinder.find(XMLOutputFactory.class, DEFAULIMPL);
 	}
 
@@ -177,11 +158,14 @@ public abstract class XMLOutputFactory {
 	 * </p>
 	 * 
 	 * @throws FactoryConfigurationError
-	 *             in case of {@linkplain java.util.ServiceConfigurationError
-	 *             service configuration error} or if the implementation is not
-	 *             available or cannot be instantiated.
+	 *                                   in case of
+	 *                                   {@linkplain java.util.ServiceConfigurationError
+	 *                                   service configuration error} or if the
+	 *                                   implementation is not
+	 *                                   available or cannot be instantiated.
 	 */
-	public static XMLOutputFactory newFactory() throws FactoryConfigurationError {
+	public static XMLOutputFactory newFactory()
+			throws FactoryConfigurationError {
 		return FactoryFinder.find(XMLOutputFactory.class, DEFAULIMPL);
 	}
 
@@ -189,12 +173,13 @@ public abstract class XMLOutputFactory {
 	 * Create a new instance of the factory.
 	 *
 	 * @param factoryId
-	 *            Name of the factory to find, same as a property name
+	 *                    Name of the factory to find, same as a property name
 	 * @param classLoader
-	 *            classLoader to use
+	 *                    classLoader to use
 	 * @return the factory implementation
 	 * @throws FactoryConfigurationError
-	 *             if an instance of this factory cannot be loaded
+	 *                                   if an instance of this factory cannot
+	 *                                   be loaded
 	 *
 	 * @deprecated This method has been deprecated because it returns an
 	 *             instance of XMLInputFactory, which is of the wrong class. Use
@@ -202,11 +187,12 @@ public abstract class XMLOutputFactory {
 	 *             {@link #newFactory(java.lang.String, java.lang.ClassLoader)}
 	 *             instead.
 	 */
-	public static XMLInputFactory newInstance(String factoryId, ClassLoader classLoader)
-			throws FactoryConfigurationError {
+	public static XMLInputFactory newInstance(String factoryId,
+			ClassLoader classLoader) throws FactoryConfigurationError {
 		// do not fallback if given classloader can't find the class, throw
 		// exception
-		return FactoryFinder.find(XMLInputFactory.class, factoryId, classLoader, null);
+		return FactoryFinder.find(XMLInputFactory.class, factoryId, classLoader,
+				null);
 	}
 
 	/**
@@ -253,27 +239,30 @@ public abstract class XMLOutputFactory {
 	 *          </p>
 	 *
 	 * @param factoryId
-	 *            Name of the factory to find, same as a property name
+	 *                    Name of the factory to find, same as a property name
 	 * @param classLoader
-	 *            classLoader to use
+	 *                    classLoader to use
 	 * @return the factory implementation
 	 * @throws FactoryConfigurationError
-	 *             in case of {@linkplain java.util.ServiceConfigurationError
-	 *             service configuration error} or if the implementation is not
-	 *             available or cannot be instantiated.
+	 *                                   in case of
+	 *                                   {@linkplain java.util.ServiceConfigurationError
+	 *                                   service configuration error} or if the
+	 *                                   implementation is not
+	 *                                   available or cannot be instantiated.
 	 */
-	public static XMLOutputFactory newFactory(String factoryId, ClassLoader classLoader)
-			throws FactoryConfigurationError {
+	public static XMLOutputFactory newFactory(String factoryId,
+			ClassLoader classLoader) throws FactoryConfigurationError {
 		// do not fallback if given classloader can't find the class, throw
 		// exception
-		return FactoryFinder.find(XMLOutputFactory.class, factoryId, classLoader, null);
+		return FactoryFinder.find(XMLOutputFactory.class, factoryId,
+				classLoader, null);
 	}
 
 	/**
 	 * Create a new XMLStreamWriter that writes to a writer
 	 * 
 	 * @param stream
-	 *            the writer to write to
+	 *               the writer to write to
 	 * @throws XMLStreamException
 	 */
 	public abstract XMLStreamWriter createXMLStreamWriter(java.io.Writer stream)
@@ -283,75 +272,81 @@ public abstract class XMLOutputFactory {
 	 * Create a new XMLStreamWriter that writes to a stream
 	 * 
 	 * @param stream
-	 *            the stream to write to
+	 *               the stream to write to
 	 * @throws XMLStreamException
 	 */
-	public abstract XMLStreamWriter createXMLStreamWriter(java.io.OutputStream stream)
-			throws XMLStreamException;
+	public abstract XMLStreamWriter createXMLStreamWriter(
+			java.io.OutputStream stream) throws XMLStreamException;
 
 	/**
 	 * Create a new XMLStreamWriter that writes to a stream
 	 * 
 	 * @param stream
-	 *            the stream to write to
+	 *                 the stream to write to
 	 * @param encoding
-	 *            the encoding to use
+	 *                 the encoding to use
 	 * @throws XMLStreamException
 	 */
-	public abstract XMLStreamWriter createXMLStreamWriter(java.io.OutputStream stream,
-			String encoding) throws XMLStreamException;
+	public abstract XMLStreamWriter createXMLStreamWriter(
+			java.io.OutputStream stream, String encoding)
+			throws XMLStreamException;
 
 	/**
 	 * Create a new XMLStreamWriter that writes to a JAXP result. This method is
 	 * optional.
 	 * 
 	 * @param result
-	 *            the result to write to
+	 *               the result to write to
 	 * @throws UnsupportedOperationException
-	 *             if this method is not supported by this XMLOutputFactory
+	 *                                       if this method is not supported by
+	 *                                       this XMLOutputFactory
 	 * @throws XMLStreamException
 	 */
-	public abstract XMLStreamWriter createXMLStreamWriter(Result result) throws XMLStreamException;
+	public abstract XMLStreamWriter createXMLStreamWriter(Result result)
+			throws XMLStreamException;
 
 	/**
 	 * Create a new XMLEventWriter that writes to a JAXP result. This method is
 	 * optional.
 	 * 
 	 * @param result
-	 *            the result to write to
+	 *               the result to write to
 	 * @throws UnsupportedOperationException
-	 *             if this method is not supported by this XMLOutputFactory
+	 *                                       if this method is not supported by
+	 *                                       this XMLOutputFactory
 	 * @throws XMLStreamException
 	 */
-	public abstract XMLEventWriter createXMLEventWriter(Result result) throws XMLStreamException;
-
-	/**
-	 * Create a new XMLEventWriter that writes to a stream
-	 * 
-	 * @param stream
-	 *            the stream to write to
-	 * @throws XMLStreamException
-	 */
-	public abstract XMLEventWriter createXMLEventWriter(java.io.OutputStream stream)
+	public abstract XMLEventWriter createXMLEventWriter(Result result)
 			throws XMLStreamException;
 
 	/**
 	 * Create a new XMLEventWriter that writes to a stream
 	 * 
 	 * @param stream
-	 *            the stream to write to
-	 * @param encoding
-	 *            the encoding to use
+	 *               the stream to write to
 	 * @throws XMLStreamException
 	 */
-	public abstract XMLEventWriter createXMLEventWriter(java.io.OutputStream stream,
-			String encoding) throws XMLStreamException;
+	public abstract XMLEventWriter createXMLEventWriter(
+			java.io.OutputStream stream) throws XMLStreamException;
+
+	/**
+	 * Create a new XMLEventWriter that writes to a stream
+	 * 
+	 * @param stream
+	 *                 the stream to write to
+	 * @param encoding
+	 *                 the encoding to use
+	 * @throws XMLStreamException
+	 */
+	public abstract XMLEventWriter createXMLEventWriter(
+			java.io.OutputStream stream, String encoding)
+			throws XMLStreamException;
 
 	/**
 	 * Create a new XMLEventWriter that writes to a writer
 	 * 
 	 * @param stream
-	 *            the stream to write to
+	 *               the stream to write to
 	 * @throws XMLStreamException
 	 */
 	public abstract XMLEventWriter createXMLEventWriter(java.io.Writer stream)
@@ -362,11 +357,11 @@ public abstract class XMLOutputFactory {
 	 * implementation.
 	 * 
 	 * @param name
-	 *            The name of the property
+	 *              The name of the property
 	 * @param value
-	 *            The value of the property
+	 *              The value of the property
 	 * @throws java.lang.IllegalArgumentException
-	 *             if the property is not supported
+	 *         if the property is not supported
 	 */
 	public abstract void setProperty(java.lang.String name, Object value)
 			throws IllegalArgumentException;
@@ -375,18 +370,19 @@ public abstract class XMLOutputFactory {
 	 * Get a feature/property on the underlying implementation
 	 * 
 	 * @param name
-	 *            The name of the property
+	 *             The name of the property
 	 * @return The value of the property
 	 * @throws java.lang.IllegalArgumentException
-	 *             if the property is not supported
+	 *         if the property is not supported
 	 */
-	public abstract Object getProperty(java.lang.String name) throws IllegalArgumentException;
+	public abstract Object getProperty(java.lang.String name)
+			throws IllegalArgumentException;
 
 	/**
 	 * Query the set of properties that this factory supports.
 	 *
 	 * @param name
-	 *            The name of the property (may not be null)
+	 *             The name of the property (may not be null)
 	 * @return true if the property is supported and false otherwise
 	 */
 	public abstract boolean isPropertySupported(String name);

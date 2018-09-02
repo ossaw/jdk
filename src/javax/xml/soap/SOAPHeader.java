@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.soap;
@@ -74,12 +54,12 @@ public interface SOAPHeader extends SOAPElement {
 	 * specified name and adds it to this <code>SOAPHeader</code> object.
 	 *
 	 * @param name
-	 *            a <code>Name</code> object with the name of the new
-	 *            <code>SOAPHeaderElement</code> object
+	 *             a <code>Name</code> object with the name of the new
+	 *             <code>SOAPHeaderElement</code> object
 	 * @return the new <code>SOAPHeaderElement</code> object that was inserted
 	 *         into this <code>SOAPHeader</code> object
 	 * @exception SOAPException
-	 *                if a SOAP error occurs
+	 *                          if a SOAP error occurs
 	 * @see SOAPHeader#addHeaderElement(javax.xml.namespace.QName)
 	 */
 	public SOAPHeaderElement addHeaderElement(Name name) throws SOAPException;
@@ -89,12 +69,12 @@ public interface SOAPHeader extends SOAPElement {
 	 * specified qname and adds it to this <code>SOAPHeader</code> object.
 	 *
 	 * @param qname
-	 *            a <code>QName</code> object with the qname of the new
-	 *            <code>SOAPHeaderElement</code> object
+	 *              a <code>QName</code> object with the qname of the new
+	 *              <code>SOAPHeaderElement</code> object
 	 * @return the new <code>SOAPHeaderElement</code> object that was inserted
 	 *         into this <code>SOAPHeader</code> object
 	 * @exception SOAPException
-	 *                if a SOAP error occurs
+	 *                          if a SOAP error occurs
 	 * @see SOAPHeader#addHeaderElement(Name)
 	 * @since SAAJ 1.3
 	 */
@@ -110,8 +90,9 @@ public interface SOAPHeader extends SOAPElement {
 	 * <i>env:role</i> attribute, but with essentially the same semantics.
 	 *
 	 * @param actor
-	 *            a <code>String</code> giving the URI of the <code>actor</code>
-	 *            / <code>role</code> for which to search
+	 *              a <code>String</code> giving the URI of the
+	 *              <code>actor</code>
+	 *              / <code>role</code> for which to search
 	 * @return an <code>Iterator</code> object over all the
 	 *         <code>SOAPHeaderElement</code> objects that contain the specified
 	 *         <code>actor</code> / <code>role</code> and are marked as
@@ -141,8 +122,9 @@ public interface SOAPHeader extends SOAPElement {
 	 * <i>env:role</i> attribute, but with essentially the same semantics.
 	 *
 	 * @param actor
-	 *            a <code>String</code> giving the URI of the <code>actor</code>
-	 *            / <code>role</code> for which to search
+	 *              a <code>String</code> giving the URI of the
+	 *              <code>actor</code>
+	 *              / <code>role</code> for which to search
 	 * @return an <code>Iterator</code> object over all the
 	 *         <code>SOAPHeaderElement</code> objects that contain the specified
 	 *         <code>actor</code> / <code>role</code>
@@ -165,8 +147,9 @@ public interface SOAPHeader extends SOAPElement {
 	 * <i>env:role</i> attribute, but with essentially the same semantics.
 	 *
 	 * @param actor
-	 *            a <code>String</code> giving the URI of the <code>actor</code>
-	 *            / <code>role</code> for which to search
+	 *              a <code>String</code> giving the URI of the
+	 *              <code>actor</code>
+	 *              / <code>role</code> for which to search
 	 * @return an <code>Iterator</code> object over all the
 	 *         <code>SOAPHeaderElement</code> objects that contain the specified
 	 *         <code>actor</code> / <code>role</code>
@@ -183,17 +166,19 @@ public interface SOAPHeader extends SOAPElement {
 	 * 1.2.
 	 *
 	 * @param name
-	 *            a <code>QName</code> object with the name of the
-	 *            <code>SOAPHeaderElement</code> object that was not understood.
+	 *             a <code>QName</code> object with the name of the
+	 *             <code>SOAPHeaderElement</code> object that was not
+	 *             understood.
 	 * @return the new <code>SOAPHeaderElement</code> object that was inserted
 	 *         into this <code>SOAPHeader</code> object
 	 * @exception SOAPException
-	 *                if a SOAP error occurs.
+	 *                                          if a SOAP error occurs.
 	 * @exception UnsupportedOperationException
-	 *                if this is a SOAP 1.1 Header.
+	 *                                          if this is a SOAP 1.1 Header.
 	 * @since SAAJ 1.3
 	 */
-	public SOAPHeaderElement addNotUnderstoodHeaderElement(QName name) throws SOAPException;
+	public SOAPHeaderElement addNotUnderstoodHeaderElement(QName name)
+			throws SOAPException;
 
 	/**
 	 * Creates a new Upgrade <code>SOAPHeaderElement</code> object initialized
@@ -202,12 +187,13 @@ public interface SOAPHeader extends SOAPElement {
 	 * 1.1 and SOAP 1.2 header.
 	 *
 	 * @param supportedSOAPURIs
-	 *            an <code>Iterator</code> object with the URIs of SOAP versions
-	 *            supported.
+	 *                          an <code>Iterator</code> object with the URIs of
+	 *                          SOAP versions
+	 *                          supported.
 	 * @return the new <code>SOAPHeaderElement</code> object that was inserted
 	 *         into this <code>SOAPHeader</code> object
 	 * @exception SOAPException
-	 *                if a SOAP error occurs.
+	 *                          if a SOAP error occurs.
 	 * @since SAAJ 1.3
 	 */
 	public SOAPHeaderElement addUpgradeHeaderElement(Iterator supportedSOAPURIs)
@@ -220,11 +206,11 @@ public interface SOAPHeader extends SOAPElement {
 	 * 1.1 and SOAP 1.2 header.
 	 *
 	 * @param supportedSoapUris
-	 *            an array of the URIs of SOAP versions supported.
+	 *                          an array of the URIs of SOAP versions supported.
 	 * @return the new <code>SOAPHeaderElement</code> object that was inserted
 	 *         into this <code>SOAPHeader</code> object
 	 * @exception SOAPException
-	 *                if a SOAP error occurs.
+	 *                          if a SOAP error occurs.
 	 * @since SAAJ 1.3
 	 */
 	public SOAPHeaderElement addUpgradeHeaderElement(String[] supportedSoapUris)
@@ -237,14 +223,15 @@ public interface SOAPHeader extends SOAPElement {
 	 * 1.1 and SOAP 1.2 header.
 	 *
 	 * @param supportedSoapUri
-	 *            the URI of SOAP the version that is supported.
+	 *                         the URI of SOAP the version that is supported.
 	 * @return the new <code>SOAPHeaderElement</code> object that was inserted
 	 *         into this <code>SOAPHeader</code> object
 	 * @exception SOAPException
-	 *                if a SOAP error occurs.
+	 *                          if a SOAP error occurs.
 	 * @since SAAJ 1.3
 	 */
-	public SOAPHeaderElement addUpgradeHeaderElement(String supportedSoapUri) throws SOAPException;
+	public SOAPHeaderElement addUpgradeHeaderElement(String supportedSoapUri)
+			throws SOAPException;
 
 	/**
 	 * Returns an <code>Iterator</code> over all the

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xalan.internal.xsltc.trax;
@@ -71,7 +51,8 @@ public class StAXStream2SAX implements XMLReader, Locator {
 		return _sax;
 	}
 
-	public void setContentHandler(ContentHandler handler) throws NullPointerException {
+	public void setContentHandler(ContentHandler handler)
+			throws NullPointerException {
 		_sax = handler;
 		if (handler instanceof LexicalHandler) {
 			_lex = (LexicalHandler) handler;
@@ -119,8 +100,8 @@ public class StAXStream2SAX implements XMLReader, Locator {
 				event = staxStreamReader.nextTag();
 				// An error if a START_ELEMENT isn't found now
 				if (event != XMLStreamConstants.START_ELEMENT) {
-					throw new IllegalStateException(
-							"The current event is " + "not START_ELEMENT\n but" + event);
+					throw new IllegalStateException("The current event is "
+							+ "not START_ELEMENT\n but" + event);
 				}
 			}
 
@@ -131,49 +112,49 @@ public class StAXStream2SAX implements XMLReader, Locator {
 				// XMLEvent.
 				// The spec only really describes 11 of them.
 				switch (event) {
-				case XMLStreamConstants.START_ELEMENT:
-					depth++;
-					handleStartElement();
-					break;
-				case XMLStreamConstants.END_ELEMENT:
-					handleEndElement();
-					depth--;
-					break;
-				case XMLStreamConstants.CHARACTERS:
-					handleCharacters();
-					break;
-				case XMLStreamConstants.ENTITY_REFERENCE:
-					handleEntityReference();
-					break;
-				case XMLStreamConstants.PROCESSING_INSTRUCTION:
-					handlePI();
-					break;
-				case XMLStreamConstants.COMMENT:
-					handleComment();
-					break;
-				case XMLStreamConstants.DTD:
-					handleDTD();
-					break;
-				case XMLStreamConstants.ATTRIBUTE:
-					handleAttribute();
-					break;
-				case XMLStreamConstants.NAMESPACE:
-					handleNamespace();
-					break;
-				case XMLStreamConstants.CDATA:
-					handleCDATA();
-					break;
-				case XMLStreamConstants.ENTITY_DECLARATION:
-					handleEntityDecl();
-					break;
-				case XMLStreamConstants.NOTATION_DECLARATION:
-					handleNotationDecl();
-					break;
-				case XMLStreamConstants.SPACE:
-					handleSpace();
-					break;
-				default:
-					throw new InternalError("processing event: " + event);
+					case XMLStreamConstants.START_ELEMENT:
+						depth++;
+						handleStartElement();
+						break;
+					case XMLStreamConstants.END_ELEMENT:
+						handleEndElement();
+						depth--;
+						break;
+					case XMLStreamConstants.CHARACTERS:
+						handleCharacters();
+						break;
+					case XMLStreamConstants.ENTITY_REFERENCE:
+						handleEntityReference();
+						break;
+					case XMLStreamConstants.PROCESSING_INSTRUCTION:
+						handlePI();
+						break;
+					case XMLStreamConstants.COMMENT:
+						handleComment();
+						break;
+					case XMLStreamConstants.DTD:
+						handleDTD();
+						break;
+					case XMLStreamConstants.ATTRIBUTE:
+						handleAttribute();
+						break;
+					case XMLStreamConstants.NAMESPACE:
+						handleNamespace();
+						break;
+					case XMLStreamConstants.CDATA:
+						handleCDATA();
+						break;
+					case XMLStreamConstants.ENTITY_DECLARATION:
+						handleEntityDecl();
+						break;
+					case XMLStreamConstants.NOTATION_DECLARATION:
+						handleNotationDecl();
+						break;
+					case XMLStreamConstants.SPACE:
+						handleSpace();
+						break;
+					default:
+						throw new InternalError("processing event: " + event);
 				}
 
 				event = staxStreamReader.next();
@@ -261,13 +242,15 @@ public class StAXStream2SAX implements XMLReader, Locator {
 		try {
 			// construct prefix:localName from qName
 			String qname = "";
-			if (qName.getPrefix() != null && qName.getPrefix().trim().length() != 0) {
+			if (qName.getPrefix() != null && qName.getPrefix().trim()
+					.length() != 0) {
 				qname = qName.getPrefix() + ":";
 			}
 			qname += qName.getLocalPart();
 
 			// fire endElement
-			_sax.endElement(qName.getNamespaceURI(), qName.getLocalPart(), qname);
+			_sax.endElement(qName.getNamespaceURI(), qName.getLocalPart(),
+					qname);
 
 			// end namespace bindings
 			int nsCount = staxStreamReader.getNamespaceCount();
@@ -293,7 +276,8 @@ public class StAXStream2SAX implements XMLReader, Locator {
 				if (prefix == null) { // true for default namespace
 					prefix = "";
 				}
-				_sax.startPrefixMapping(prefix, staxStreamReader.getNamespaceURI(i));
+				_sax.startPrefixMapping(prefix, staxStreamReader
+						.getNamespaceURI(i));
 			}
 
 			// fire startElement
@@ -305,7 +289,8 @@ public class StAXStream2SAX implements XMLReader, Locator {
 			else
 				rawname = prefix + ':' + qName.getLocalPart();
 			Attributes attrs = getAttributes();
-			_sax.startElement(qName.getNamespaceURI(), qName.getLocalPart(), rawname, attrs);
+			_sax.startElement(qName.getNamespaceURI(), qName.getLocalPart(),
+					rawname, attrs);
 		} catch (SAXException e) {
 			throw new XMLStreamException(e);
 		}
@@ -323,7 +308,8 @@ public class StAXStream2SAX implements XMLReader, Locator {
 		int eventType = staxStreamReader.getEventType();
 		if (eventType != XMLStreamConstants.ATTRIBUTE
 				&& eventType != XMLStreamConstants.START_ELEMENT) {
-			throw new InternalError("getAttributes() attempting to process: " + eventType);
+			throw new InternalError("getAttributes() attempting to process: "
+					+ eventType);
 		}
 
 		// in SAX, namespace declarations are not part of attributes by default.
@@ -413,8 +399,8 @@ public class StAXStream2SAX implements XMLReader, Locator {
 	/**
 	 * This class is only used internally so this method should never be called.
 	 */
-	public boolean getFeature(String name)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
+	public boolean getFeature(String name) throws SAXNotRecognizedException,
+			SAXNotSupportedException {
 		return false;
 	}
 
@@ -422,20 +408,18 @@ public class StAXStream2SAX implements XMLReader, Locator {
 	 * This class is only used internally so this method should never be called.
 	 */
 	public void setFeature(String name, boolean value)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
-	}
+			throws SAXNotRecognizedException, SAXNotSupportedException {}
 
 	/**
 	 * This class is only used internally so this method should never be called.
 	 */
-	public void setDTDHandler(DTDHandler handler) throws NullPointerException {
-	}
+	public void setDTDHandler(DTDHandler handler) throws NullPointerException {}
 
 	/**
 	 * This class is only used internally so this method should never be called.
 	 */
-	public void setEntityResolver(EntityResolver resolver) throws NullPointerException {
-	}
+	public void setEntityResolver(EntityResolver resolver)
+			throws NullPointerException {}
 
 	/**
 	 * This class is only used internally so this method should never be called.
@@ -447,21 +431,20 @@ public class StAXStream2SAX implements XMLReader, Locator {
 	/**
 	 * This class is only used internally so this method should never be called.
 	 */
-	public void setErrorHandler(ErrorHandler handler) throws NullPointerException {
-	}
+	public void setErrorHandler(ErrorHandler handler)
+			throws NullPointerException {}
 
 	/**
 	 * This class is only used internally so this method should never be called.
 	 */
 	public void setProperty(String name, Object value)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
-	}
+			throws SAXNotRecognizedException, SAXNotSupportedException {}
 
 	/**
 	 * This class is only used internally so this method should never be called.
 	 */
-	public Object getProperty(String name)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
+	public Object getProperty(String name) throws SAXNotRecognizedException,
+			SAXNotSupportedException {
 		return null;
 	}
 

@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -94,8 +92,8 @@ public class XMLGrammarPreparser {
 	}
 
 	/** Recognized properties. */
-	private static final String[] RECOGNIZED_PROPERTIES = { SYMBOL_TABLE, ERROR_REPORTER,
-			ERROR_HANDLER, ENTITY_RESOLVER, GRAMMAR_POOL, };
+	private static final String[] RECOGNIZED_PROPERTIES = { SYMBOL_TABLE,
+			ERROR_REPORTER, ERROR_HANDLER, ENTITY_RESOLVER, GRAMMAR_POOL, };
 
 	// Data
 	protected SymbolTable fSymbolTable;
@@ -121,7 +119,7 @@ public class XMLGrammarPreparser {
 	 * Constructs a preparser using the specified symbol table.
 	 *
 	 * @param symbolTable
-	 *            The symbol table to use.
+	 *                    The symbol table to use.
 	 */
 	public XMLGrammarPreparser(SymbolTable symbolTable) {
 		fSymbolTable = symbolTable;
@@ -142,23 +140,21 @@ public class XMLGrammarPreparser {
 	 * parameter is null, the parser will use its built-in facilities for that
 	 * grammar type. This should be called by the application immediately after
 	 * creating this object and before initializing any properties/features.
-	 * 
 	 * @param type URI identifying the type of the grammar
-	 * 
 	 * @param loader an object capable of preparsing that type; null if the
 	 * ppreparser should use built-in knowledge.
-	 * 
 	 * @return true if successful; false if no built-in knowledge of the type or
 	 * if unable to instantiate the string we know about
 	 */
-	public boolean registerPreparser(String grammarType, XMLGrammarLoader loader) {
+	public boolean registerPreparser(String grammarType,
+			XMLGrammarLoader loader) {
 		if (loader == null) { // none specified!
 			if (KNOWN_LOADERS.containsKey(grammarType)) {
 				// got one; just instantiate it...
 				String loaderName = (String) KNOWN_LOADERS.get(grammarType);
 				try {
-					XMLGrammarLoader gl = (XMLGrammarLoader) (ObjectFactory.newInstance(loaderName,
-							true));
+					XMLGrammarLoader gl = (XMLGrammarLoader) (ObjectFactory
+							.newInstance(loaderName, true));
 					fLoaders.put(grammarType, gl);
 				} catch (Exception e) {
 					return false;
@@ -177,17 +173,19 @@ public class XMLGrammarPreparser {
 	 * method also adds this grammar to the XMLGrammarPool
 	 *
 	 * @param type
-	 *            The type of the grammar to be constructed
+	 *             The type of the grammar to be constructed
 	 * @param is
-	 *            The XMLInputSource containing this grammar's information
-	 *            <strong>If a URI is included in the systemId field, the parser
-	 *            will not expand this URI or make it available to the
-	 *            EntityResolver</strong>
+	 *             The XMLInputSource containing this grammar's information
+	 *             <strong>If a URI is included in the systemId field, the
+	 *             parser
+	 *             will not expand this URI or make it available to the
+	 *             EntityResolver</strong>
 	 * @return The newly created <code>Grammar</code>.
 	 * @exception XNIException
-	 *                thrown on an error in grammar construction
+	 *                         thrown on an error in grammar construction
 	 * @exception IOException
-	 *                thrown if an error is encountered in reading the file
+	 *                         thrown if an error is encountered in reading the
+	 *                         file
 	 */
 	public Grammar preparseGrammar(String type, XMLInputSource is)
 			throws XNIException, IOException {
@@ -214,11 +212,12 @@ public class XMLGrammarPreparser {
 	 * Set the locale to use for messages.
 	 *
 	 * @param locale
-	 *            The locale object to use for localization of messages.
+	 *               The locale object to use for localization of messages.
 	 *
 	 * @exception XNIException
-	 *                Thrown if the parser does not support the specified
-	 *                locale.
+	 *                         Thrown if the parser does not support the
+	 *                         specified
+	 *                         locale.
 	 */
 	public void setLocale(Locale locale) {
 		fLocale = locale;
@@ -234,7 +233,7 @@ public class XMLGrammarPreparser {
 	 * Sets the error handler.
 	 *
 	 * @param errorHandler
-	 *            The error handler.
+	 *                     The error handler.
 	 */
 	public void setErrorHandler(XMLErrorHandler errorHandler) {
 		fErrorReporter.setProperty(ERROR_HANDLER, errorHandler);
@@ -249,7 +248,7 @@ public class XMLGrammarPreparser {
 	 * Sets the entity resolver.
 	 *
 	 * @param entityResolver
-	 *            The new entity resolver.
+	 *                       The new entity resolver.
 	 */
 	public void setEntityResolver(XMLEntityResolver entityResolver) {
 		fEntityResolver = entityResolver;
@@ -264,7 +263,7 @@ public class XMLGrammarPreparser {
 	 * Sets the grammar pool.
 	 *
 	 * @param grammarPool
-	 *            The new grammar pool.
+	 *                    The new grammar pool.
 	 */
 	public void setGrammarPool(XMLGrammarPool grammarPool) {
 		fGrammarPool = grammarPool;

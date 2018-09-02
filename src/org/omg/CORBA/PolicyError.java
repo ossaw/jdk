@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -55,7 +35,7 @@ public final class PolicyError extends org.omg.CORBA.UserException {
 	 * given reason code and an empty reason detail message.
 	 * 
 	 * @param __reason
-	 *            the reason code.
+	 *                 the reason code.
 	 */
 	public PolicyError(short __reason) {
 		super();
@@ -67,9 +47,9 @@ public final class PolicyError extends org.omg.CORBA.UserException {
 	 * given reason detail message and reason code.
 	 * 
 	 * @param reason_string
-	 *            the reason detail message.
+	 *                      the reason detail message.
 	 * @param __reason
-	 *            the reason code.
+	 *                      the reason code.
 	 */
 	public PolicyError(String reason_string, short __reason) {
 		super(reason_string);

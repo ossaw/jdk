@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -51,8 +31,7 @@ public abstract class Dictionary<K, V> {
 	 * Sole constructor. (For invocation by subclass constructors, typically
 	 * implicit.)
 	 */
-	public Dictionary() {
-	}
+	public Dictionary() {}
 
 	/**
 	 * Returns the number of entries (distinct keys) in this dictionary.
@@ -106,7 +85,7 @@ public abstract class Dictionary<K, V> {
 	 *            a key in this dictionary. <code>null</code> if the key is not
 	 *            mapped to any value in this dictionary.
 	 * @exception NullPointerException
-	 *                if the <tt>key</tt> is <tt>null</tt>.
+	 *                                 if the <tt>key</tt> is <tt>null</tt>.
 	 * @see java.util.Dictionary#put(java.lang.Object, java.lang.Object)
 	 */
 	abstract public V get(Object key);
@@ -129,15 +108,16 @@ public abstract class Dictionary<K, V> {
 	 * <code>key</code>.
 	 *
 	 * @param key
-	 *            the hashtable key.
+	 *              the hashtable key.
 	 * @param value
-	 *            the value.
+	 *              the value.
 	 * @return the previous value to which the <code>key</code> was mapped in
 	 *         this dictionary, or <code>null</code> if the key did not have a
 	 *         previous mapping.
 	 * @exception NullPointerException
-	 *                if the <code>key</code> or <code>value</code> is
-	 *                <code>null</code>.
+	 *                                 if the <code>key</code> or
+	 *                                 <code>value</code> is
+	 *                                 <code>null</code>.
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 * @see java.util.Dictionary#get(java.lang.Object)
 	 */
@@ -154,7 +134,7 @@ public abstract class Dictionary<K, V> {
 	 *         dictionary, or <code>null</code> if the key did not have a
 	 *         mapping.
 	 * @exception NullPointerException
-	 *                if <tt>key</tt> is <tt>null</tt>.
+	 *                                 if <tt>key</tt> is <tt>null</tt>.
 	 */
 	abstract public V remove(Object key);
 }

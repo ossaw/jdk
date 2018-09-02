@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.spi;
@@ -53,40 +33,42 @@ public interface Resolver {
 	 * of a given subtype of <code>Context</code>.
 	 *
 	 * @param name
-	 *            the name to resolve
+	 *                    the name to resolve
 	 * @param contextType
-	 *            the type of object to resolve. This should be a subtype of
-	 *            <code>Context</code>.
+	 *                    the type of object to resolve. This should be a
+	 *                    subtype of
+	 *                    <code>Context</code>.
 	 * @return the object that was found, along with the unresolved suffix of
 	 *         <code>name</code>. Cannot be null.
 	 *
-	 * @throws javax.naming.NotContextException
-	 *             if no context of the appropriate type is found
+	 * @throws                 javax.naming.NotContextException
+	 *                         if no context of the appropriate type is found
 	 * @throws NamingException
-	 *             if a naming exception was encountered
+	 *                         if a naming exception was encountered
 	 *
 	 * @see #resolveToClass(String, Class)
 	 */
-	public ResolveResult resolveToClass(Name name, Class<? extends Context> contextType)
-			throws NamingException;
+	public ResolveResult resolveToClass(Name name,
+			Class<? extends Context> contextType) throws NamingException;
 
 	/**
 	 * Partially resolves a name. See {@link #resolveToClass(Name, Class)} for
 	 * details.
 	 *
 	 * @param name
-	 *            the name to resolve
+	 *                    the name to resolve
 	 * @param contextType
-	 *            the type of object to resolve. This should be a subtype of
-	 *            <code>Context</code>.
+	 *                    the type of object to resolve. This should be a
+	 *                    subtype of
+	 *                    <code>Context</code>.
 	 * @return the object that was found, along with the unresolved suffix of
 	 *         <code>name</code>. Cannot be null.
 	 *
-	 * @throws javax.naming.NotContextException
-	 *             if no context of the appropriate type is found
+	 * @throws                 javax.naming.NotContextException
+	 *                         if no context of the appropriate type is found
 	 * @throws NamingException
-	 *             if a naming exception was encountered
+	 *                         if a naming exception was encountered
 	 */
-	public ResolveResult resolveToClass(String name, Class<? extends Context> contextType)
-			throws NamingException;
+	public ResolveResult resolveToClass(String name,
+			Class<? extends Context> contextType) throws NamingException;
 };

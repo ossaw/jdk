@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.soap;
@@ -72,47 +52,50 @@ public abstract class SAAJMetaFactory {
 	 *
 	 * @return a concrete <code>SAAJMetaFactory</code> object
 	 * @exception SOAPException
-	 *                if there is an error in creating the
-	 *                <code>SAAJMetaFactory</code>
+	 *                          if there is an error in creating the
+	 *                          <code>SAAJMetaFactory</code>
 	 */
 	static SAAJMetaFactory getInstance() throws SOAPException {
 		try {
-			SAAJMetaFactory instance = (SAAJMetaFactory) FactoryFinder
-					.find(META_FACTORY_CLASS_PROPERTY, DEFAULT_META_FACTORY_CLASS);
+			SAAJMetaFactory instance = (SAAJMetaFactory) FactoryFinder.find(
+					META_FACTORY_CLASS_PROPERTY, DEFAULT_META_FACTORY_CLASS);
 			return instance;
 		} catch (Exception e) {
-			throw new SOAPException("Unable to create SAAJ meta-factory" + e.getMessage());
+			throw new SOAPException("Unable to create SAAJ meta-factory" + e
+					.getMessage());
 		}
 	}
 
-	protected SAAJMetaFactory() {
-	}
+	protected SAAJMetaFactory() {}
 
 	/**
 	 * Creates a <code>MessageFactory</code> object for the given
 	 * <code>String</code> protocol.
 	 *
 	 * @param protocol
-	 *            a <code>String</code> indicating the protocol
+	 *                 a <code>String</code> indicating the protocol
 	 * @exception SOAPException
-	 *                if there is an error in creating the MessageFactory
+	 *                          if there is an error in creating the
+	 *                          MessageFactory
 	 * @see SOAPConstants#SOAP_1_1_PROTOCOL
 	 * @see SOAPConstants#SOAP_1_2_PROTOCOL
 	 * @see SOAPConstants#DYNAMIC_SOAP_PROTOCOL
 	 */
-	protected abstract MessageFactory newMessageFactory(String protocol) throws SOAPException;
+	protected abstract MessageFactory newMessageFactory(String protocol)
+			throws SOAPException;
 
 	/**
 	 * Creates a <code>SOAPFactory</code> object for the given
 	 * <code>String</code> protocol.
 	 *
 	 * @param protocol
-	 *            a <code>String</code> indicating the protocol
+	 *                 a <code>String</code> indicating the protocol
 	 * @exception SOAPException
-	 *                if there is an error in creating the SOAPFactory
+	 *                          if there is an error in creating the SOAPFactory
 	 * @see SOAPConstants#SOAP_1_1_PROTOCOL
 	 * @see SOAPConstants#SOAP_1_2_PROTOCOL
 	 * @see SOAPConstants#DYNAMIC_SOAP_PROTOCOL
 	 */
-	protected abstract SOAPFactory newSOAPFactory(String protocol) throws SOAPException;
+	protected abstract SOAPFactory newSOAPFactory(String protocol)
+			throws SOAPException;
 }

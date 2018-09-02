@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -44,7 +24,7 @@ import java.util.function.Consumer;
  * Framework</a>.
  *
  * @param <E>
- *            the type of elements returned by this iterator
+ *        the type of elements returned by this iterator
  *
  * @author Josh Bloch
  * @see Collection
@@ -67,7 +47,7 @@ public interface Iterator<E> {
 	 *
 	 * @return the next element in the iteration
 	 * @throws NoSuchElementException
-	 *             if the iteration has no more elements
+	 *                                if the iteration has no more elements
 	 */
 	E next();
 
@@ -83,13 +63,16 @@ public interface Iterator<E> {
 	 *           action.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if the {@code remove} operation is not supported by this
-	 *             iterator
+	 *                                       if the {@code remove} operation is
+	 *                                       not supported by this
+	 *                                       iterator
 	 *
 	 * @throws IllegalStateException
-	 *             if the {@code next} method has not yet been called, or the
-	 *             {@code remove} method has already been called after the last
-	 *             call to the {@code next} method
+	 *                                       if the {@code next} method has not
+	 *                                       yet been called, or the
+	 *                                       {@code remove} method has already
+	 *                                       been called after the last
+	 *                                       call to the {@code next} method
 	 */
 	default void remove() {
 		throw new UnsupportedOperationException("remove");
@@ -113,9 +96,9 @@ public interface Iterator<E> {
 	 *           </pre>
 	 *
 	 * @param action
-	 *            The action to be performed for each element
+	 *               The action to be performed for each element
 	 * @throws NullPointerException
-	 *             if the specified action is null
+	 *                              if the specified action is null
 	 * @since 1.8
 	 */
 	default void forEachRemaining(Consumer<? super E> action) {

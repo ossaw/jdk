@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.script;
@@ -184,18 +164,19 @@ public interface ScriptEngineFactory {
 	 * <p>
 	 *
 	 * @param obj
-	 *            The name representing the object whose method is to be
-	 *            invoked. The name is the one used to create bindings using the
-	 *            <code>put</code> method of <code>ScriptEngine</code>, the
-	 *            <code>put</code> method of an <code>ENGINE_SCOPE</code>
-	 *            <code>Bindings</code>,or the <code>setAttribute</code> method
-	 *            of <code>ScriptContext</code>. The identifier used in scripts
-	 *            may be a decorated form of the specified one.
+	 *             The name representing the object whose method is to be
+	 *             invoked. The name is the one used to create bindings using
+	 *             the
+	 *             <code>put</code> method of <code>ScriptEngine</code>, the
+	 *             <code>put</code> method of an <code>ENGINE_SCOPE</code>
+	 *             <code>Bindings</code>,or the <code>setAttribute</code> method
+	 *             of <code>ScriptContext</code>. The identifier used in scripts
+	 *             may be a decorated form of the specified one.
 	 *
 	 * @param m
-	 *            The name of the method to invoke.
+	 *             The name of the method to invoke.
 	 * @param args
-	 *            names of the arguments in the method call.
+	 *             names of the arguments in the method call.
 	 *
 	 * @return The String used to invoke the method in the syntax of the
 	 *         scripting language.
@@ -216,7 +197,7 @@ public interface ScriptEngineFactory {
 	 * </pre>
 	 *
 	 * @param toDisplay
-	 *            The String to be displayed by the returned statement.
+	 *                  The String to be displayed by the returned statement.
 	 * @return The string used to display the String in the syntax of the
 	 *         scripting language.
 	 *
@@ -242,9 +223,10 @@ public interface ScriptEngineFactory {
 	 * </pre>
 	 *
 	 * @param statements
-	 *            The statements to be executed. May be return values of calls
-	 *            to the <code>getMethodCallSyntax</code> and
-	 *            <code>getOutputStatement</code> methods.
+	 *                   The statements to be executed. May be return values of
+	 *                   calls
+	 *                   to the <code>getMethodCallSyntax</code> and
+	 *                   <code>getOutputStatement</code> methods.
 	 * @return The Program
 	 */
 

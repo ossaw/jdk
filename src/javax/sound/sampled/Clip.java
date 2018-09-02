@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled;
@@ -78,32 +58,38 @@ public interface Clip extends DataLine {
 	 * <code>{@link LineUnavailableException}</code>.
 	 *
 	 * @param format
-	 *            the format of the supplied audio data
+	 *                   the format of the supplied audio data
 	 * @param data
-	 *            a byte array containing audio data to load into the clip
+	 *                   a byte array containing audio data to load into the
+	 *                   clip
 	 * @param offset
-	 *            the point at which to start copying, expressed in
-	 *            <em>bytes</em> from the beginning of the array
+	 *                   the point at which to start copying, expressed in
+	 *                   <em>bytes</em> from the beginning of the array
 	 * @param bufferSize
-	 *            the number of <em>bytes</em> of data to load into the clip
-	 *            from the array.
+	 *                   the number of <em>bytes</em> of data to load into the
+	 *                   clip
+	 *                   from the array.
 	 * @throws LineUnavailableException
-	 *             if the line cannot be opened due to resource restrictions
+	 *                                  if the line cannot be opened due to
+	 *                                  resource restrictions
 	 * @throws IllegalArgumentException
-	 *             if the buffer size does not represent an integral number of
-	 *             sample frames, or if <code>format</code> is not fully
-	 *             specified or invalid
+	 *                                  if the buffer size does not represent an
+	 *                                  integral number of
+	 *                                  sample frames, or if <code>format</code>
+	 *                                  is not fully
+	 *                                  specified or invalid
 	 * @throws IllegalStateException
-	 *             if the line is already open
+	 *                                  if the line is already open
 	 * @throws SecurityException
-	 *             if the line cannot be opened due to security restrictions
+	 *                                  if the line cannot be opened due to
+	 *                                  security restrictions
 	 *
 	 * @see #close
 	 * @see #isOpen
 	 * @see LineListener
 	 */
-	public void open(AudioFormat format, byte[] data, int offset, int bufferSize)
-			throws LineUnavailableException;
+	public void open(AudioFormat format, byte[] data, int offset,
+			int bufferSize) throws LineUnavailableException;
 
 	/**
 	 * Opens the clip with the format and audio data present in the provided
@@ -121,25 +107,31 @@ public interface Clip extends DataLine {
 	 * <code>{@link LineUnavailableException}</code>.
 	 *
 	 * @param stream
-	 *            an audio input stream from which audio data will be read into
-	 *            the clip
+	 *               an audio input stream from which audio data will be read
+	 *               into
+	 *               the clip
 	 * @throws LineUnavailableException
-	 *             if the line cannot be opened due to resource restrictions
+	 *                                  if the line cannot be opened due to
+	 *                                  resource restrictions
 	 * @throws IOException
-	 *             if an I/O exception occurs during reading of the stream
+	 *                                  if an I/O exception occurs during
+	 *                                  reading of the stream
 	 * @throws IllegalArgumentException
-	 *             if the stream's audio format is not fully specified or
-	 *             invalid
+	 *                                  if the stream's audio format is not
+	 *                                  fully specified or
+	 *                                  invalid
 	 * @throws IllegalStateException
-	 *             if the line is already open
+	 *                                  if the line is already open
 	 * @throws SecurityException
-	 *             if the line cannot be opened due to security restrictions
+	 *                                  if the line cannot be opened due to
+	 *                                  security restrictions
 	 *
 	 * @see #close
 	 * @see #isOpen
 	 * @see LineListener
 	 */
-	public void open(AudioInputStream stream) throws LineUnavailableException, IOException;
+	public void open(AudioInputStream stream) throws LineUnavailableException,
+			IOException;
 
 	/**
 	 * Obtains the media length in sample frames.
@@ -169,7 +161,7 @@ public interface Clip extends DataLine {
 	 * <code>DataLine</code>.
 	 *
 	 * @param frames
-	 *            the desired new media position, expressed in sample frames
+	 *               the desired new media position, expressed in sample frames
 	 */
 	public void setFramePosition(int frames);
 
@@ -186,7 +178,8 @@ public interface Clip extends DataLine {
 	 * method of <code>DataLine</code>.
 	 *
 	 * @param microseconds
-	 *            the desired new media position, expressed in microseconds
+	 *                     the desired new media position, expressed in
+	 *                     microseconds
 	 */
 	public void setMicrosecondPosition(long microseconds);
 
@@ -198,14 +191,18 @@ public interface Clip extends DataLine {
 	 * value of -1 for the ending point indicates the last frame of the media.
 	 * 
 	 * @param start
-	 *            the loop's starting position, in sample frames (zero-based)
+	 *              the loop's starting position, in sample frames (zero-based)
 	 * @param end
-	 *            the loop's ending position, in sample frames (zero-based), or
-	 *            -1 to indicate the final frame
+	 *              the loop's ending position, in sample frames (zero-based),
+	 *              or
+	 *              -1 to indicate the final frame
 	 * @throws IllegalArgumentException
-	 *             if the requested loop points cannot be set, usually because
-	 *             one or both falls outside the media's duration or because the
-	 *             ending point is before the starting point
+	 *                                  if the requested loop points cannot be
+	 *                                  set, usually because
+	 *                                  one or both falls outside the media's
+	 *                                  duration or because the
+	 *                                  ending point is before the starting
+	 *                                  point
 	 */
 	public void setLoopPoints(int start, int end);
 
@@ -229,10 +226,11 @@ public interface Clip extends DataLine {
 	 * affected by an interrupted loop operation.
 	 *
 	 * @param count
-	 *            the number of times playback should loop back from the loop's
-	 *            end position to the loop's start position, or <code>
+	 *              the number of times playback should loop back from the
+	 *              loop's
+	 *              end position to the loop's start position, or <code>
 	 *            {@link #LOOP_CONTINUOUSLY}</code> to indicate that looping
-	 *            should continue until interrupted
+	 *              should continue until interrupted
 	 */
 	public void loop(int count);
 }

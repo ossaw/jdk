@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -60,13 +40,15 @@ public class MBeanTrustPermission extends BasicPermission {
 	 * </p>
 	 * 
 	 * @param name
-	 *            the name of the permission. It must be "register" or "*" for
-	 *            this permission.
+	 *             the name of the permission. It must be "register" or "*" for
+	 *             this permission.
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                  if <code>name</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>name</code> is neither "register" nor "*".
+	 *                                  if <code>name</code> is neither
+	 *                                  "register" nor "*".
 	 */
 	public MBeanTrustPermission(String name) {
 		this(name, null);
@@ -78,17 +60,21 @@ public class MBeanTrustPermission extends BasicPermission {
 	 * </p>
 	 * 
 	 * @param name
-	 *            the name of the permission. It must be "register" or "*" for
-	 *            this permission.
+	 *                the name of the permission. It must be "register" or "*"
+	 *                for
+	 *                this permission.
 	 * @param actions
-	 *            the actions for the permission. It must be null or
-	 *            <code>""</code>.
+	 *                the actions for the permission. It must be null or
+	 *                <code>""</code>.
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                  if <code>name</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>name</code> is neither "register" nor "*"; or if
-	 *             <code>actions</code> is a non-null non-empty string.
+	 *                                  if <code>name</code> is neither
+	 *                                  "register" nor "*"; or if
+	 *                                  <code>actions</code> is a non-null
+	 *                                  non-empty string.
 	 */
 	public MBeanTrustPermission(String name, String actions) {
 		super(name, actions);
@@ -104,11 +90,13 @@ public class MBeanTrustPermission extends BasicPermission {
 
 		if (!name.equals("register") && !name.equals("*")) {
 			throw new IllegalArgumentException(
-					"MBeanTrustPermission: Unknown target name " + "[" + name + "]");
+					"MBeanTrustPermission: Unknown target name " + "[" + name
+							+ "]");
 		}
 	}
 
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 
 		// Reading private fields of base class
 		in.defaultReadObject();

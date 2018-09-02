@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -42,7 +22,7 @@ public class PlainView extends View implements TabExpander {
 	 * Constructs a new PlainView wrapped on an element.
 	 *
 	 * @param elem
-	 *            the element
+	 *             the element
 	 */
 	public PlainView(Element elem) {
 		super(elem);
@@ -54,7 +34,8 @@ public class PlainView extends View implements TabExpander {
 	 * @return the tab size
 	 */
 	protected int getTabSize() {
-		Integer i = (Integer) getDocument().getProperty(PlainDocument.tabSizeAttribute);
+		Integer i = (Integer) getDocument().getProperty(
+				PlainDocument.tabSizeAttribute);
 		int size = (i != null) ? i.intValue() : 8;
 		return size;
 	}
@@ -66,13 +47,13 @@ public class PlainView extends View implements TabExpander {
 	 * the way selected and unselected text are rendered can be customized.
 	 *
 	 * @param lineIndex
-	 *            the line to draw &gt;= 0
+	 *                  the line to draw &gt;= 0
 	 * @param g
-	 *            the <code>Graphics</code> context
+	 *                  the <code>Graphics</code> context
 	 * @param x
-	 *            the starting X position &gt;= 0
+	 *                  the starting X position &gt;= 0
 	 * @param y
-	 *            the starting Y position &gt;= 0
+	 *                  the starting Y position &gt;= 0
 	 * @see #drawUnselectedText
 	 * @see #drawSelectedText
 	 */
@@ -96,8 +77,8 @@ public class PlainView extends View implements TabExpander {
 		}
 	}
 
-	private int drawElement(int lineIndex, Element elem, Graphics g, int x, int y)
-			throws BadLocationException {
+	private int drawElement(int lineIndex, Element elem, Graphics g, int x,
+			int y) throws BadLocationException {
 		int p0 = elem.getStartOffset();
 		int p1 = elem.getEndOffset();
 		p1 = Math.min(getDocument().getLength(), p1);
@@ -108,13 +89,14 @@ public class PlainView extends View implements TabExpander {
 		AttributeSet attr = elem.getAttributes();
 		if (Utilities.isComposedTextAttributeDefined(attr)) {
 			g.setColor(unselected);
-			x = Utilities.drawComposedText(this, attr, g, x, y, p0 - elem.getStartOffset(),
-					p1 - elem.getStartOffset());
+			x = Utilities.drawComposedText(this, attr, g, x, y, p0 - elem
+					.getStartOffset(), p1 - elem.getStartOffset());
 		} else {
 			if (sel0 == sel1 || selected == unselected) {
 				// no selection, or it is invisible
 				x = drawUnselectedText(g, x, y, p0, p1);
-			} else if ((p0 >= sel0 && p0 <= sel1) && (p1 >= sel0 && p1 <= sel1)) {
+			} else if ((p0 >= sel0 && p0 <= sel1) && (p1 >= sel0
+					&& p1 <= sel1)) {
 				x = drawSelectedText(g, x, y, p0, p1);
 			} else if (sel0 >= p0 && sel0 <= p1) {
 				if (sel1 >= p0 && sel1 <= p1) {
@@ -141,18 +123,18 @@ public class PlainView extends View implements TabExpander {
 	 * foreground or disabled color to render the text.
 	 *
 	 * @param g
-	 *            the graphics context
+	 *           the graphics context
 	 * @param x
-	 *            the starting X coordinate &gt;= 0
+	 *           the starting X coordinate &gt;= 0
 	 * @param y
-	 *            the starting Y coordinate &gt;= 0
+	 *           the starting Y coordinate &gt;= 0
 	 * @param p0
-	 *            the beginning position in the model &gt;= 0
+	 *           the beginning position in the model &gt;= 0
 	 * @param p1
-	 *            the ending position in the model &gt;= 0
+	 *           the ending position in the model &gt;= 0
 	 * @return the X location of the end of the range &gt;= 0
 	 * @exception BadLocationException
-	 *                if the range is invalid
+	 *                                 if the range is invalid
 	 */
 	protected int drawUnselectedText(Graphics g, int x, int y, int p0, int p1)
 			throws BadLocationException {
@@ -172,18 +154,18 @@ public class PlainView extends View implements TabExpander {
 	 * background.
 	 *
 	 * @param g
-	 *            the graphics context
+	 *           the graphics context
 	 * @param x
-	 *            the starting X coordinate &gt;= 0
+	 *           the starting X coordinate &gt;= 0
 	 * @param y
-	 *            the starting Y coordinate &gt;= 0
+	 *           the starting Y coordinate &gt;= 0
 	 * @param p0
-	 *            the beginning position in the model &gt;= 0
+	 *           the beginning position in the model &gt;= 0
 	 * @param p1
-	 *            the ending position in the model &gt;= 0
+	 *           the ending position in the model &gt;= 0
 	 * @return the location of the end of the range
 	 * @exception BadLocationException
-	 *                if the range is invalid
+	 *                                 if the range is invalid
 	 */
 	protected int drawSelectedText(Graphics g, int x, int y, int p0, int p1)
 			throws BadLocationException {
@@ -231,23 +213,23 @@ public class PlainView extends View implements TabExpander {
 	 * Determines the preferred span for this view along an axis.
 	 *
 	 * @param axis
-	 *            may be either View.X_AXIS or View.Y_AXIS
+	 *             may be either View.X_AXIS or View.Y_AXIS
 	 * @return the span the view would like to be rendered into &gt;= 0.
 	 *         Typically the view is told to render into the span that is
 	 *         returned, although there is no guarantee. The parent may choose
 	 *         to resize or break the view.
 	 * @exception IllegalArgumentException
-	 *                for an invalid axis
+	 *                                     for an invalid axis
 	 */
 	public float getPreferredSpan(int axis) {
 		updateMetrics();
 		switch (axis) {
-		case View.X_AXIS:
-			return getLineWidth(longLine);
-		case View.Y_AXIS:
-			return getElement().getElementCount() * metrics.getHeight();
-		default:
-			throw new IllegalArgumentException("Invalid axis: " + axis);
+			case View.X_AXIS:
+				return getLineWidth(longLine);
+			case View.Y_AXIS:
+				return getElement().getElementCount() * metrics.getHeight();
+			default:
+				throw new IllegalArgumentException("Invalid axis: " + axis);
 		}
 	}
 
@@ -257,9 +239,9 @@ public class PlainView extends View implements TabExpander {
 	 * render into the given allocation.
 	 *
 	 * @param g
-	 *            the rendering surface to use
+	 *          the rendering surface to use
 	 * @param a
-	 *            the allocated region to render into
+	 *          the allocated region to render into
 	 *
 	 * @see View#paint
 	 */
@@ -273,9 +255,11 @@ public class PlainView extends View implements TabExpander {
 		g.setFont(host.getFont());
 		sel0 = host.getSelectionStart();
 		sel1 = host.getSelectionEnd();
-		unselected = (host.isEnabled()) ? host.getForeground() : host.getDisabledTextColor();
+		unselected = (host.isEnabled()) ? host.getForeground()
+				: host.getDisabledTextColor();
 		Caret c = host.getCaret();
-		selected = c.isSelectionVisible() && h != null ? host.getSelectedTextColor() : unselected;
+		selected = c.isSelectionVisible() && h != null ? host
+				.getSelectedTextColor() : unselected;
 		updateMetrics();
 
 		// If the lines are clipped then we don't expend the effort to
@@ -307,7 +291,9 @@ public class PlainView extends View implements TabExpander {
 		int lineCount = map.getElementCount();
 		int endLine = Math.min(lineCount, linesTotal - linesBelow);
 		lineCount--;
-		LayeredHighlighter dh = (h instanceof LayeredHighlighter) ? (LayeredHighlighter) h : null;
+		LayeredHighlighter dh = (h instanceof LayeredHighlighter)
+				? (LayeredHighlighter) h
+				: null;
 		for (int line = linesAbove; line < endLine; line++) {
 			if (dh != null) {
 				Element lineElement = map.getElement(line);
@@ -316,7 +302,8 @@ public class PlainView extends View implements TabExpander {
 							lineElement.getEndOffset(), originalA, host, this);
 				} else {
 					dh.paintLayeredHighlights(g, lineElement.getStartOffset(),
-							lineElement.getEndOffset() - 1, originalA, host, this);
+							lineElement.getEndOffset() - 1, originalA, host,
+							this);
 				}
 			}
 			drawLine(line, g, x, y);
@@ -349,11 +336,13 @@ public class PlainView extends View implements TabExpander {
 	 *            the allocated region to render into
 	 * @return the bounding box of the given position
 	 * @exception BadLocationException
-	 *                if the given position does not represent a valid location
-	 *                in the associated document
+	 *                                 if the given position does not represent
+	 *                                 a valid location
+	 *                                 in the associated document
 	 * @see View#modelToView
 	 */
-	public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
+	public Shape modelToView(int pos, Shape a, Position.Bias b)
+			throws BadLocationException {
 		// line coordinates
 		Document doc = getDocument();
 		Element map = getElement();
@@ -384,11 +373,11 @@ public class PlainView extends View implements TabExpander {
 	 * coordinate space of the model.
 	 *
 	 * @param fx
-	 *            the X coordinate &gt;= 0
+	 *           the X coordinate &gt;= 0
 	 * @param fy
-	 *            the Y coordinate &gt;= 0
+	 *           the Y coordinate &gt;= 0
 	 * @param a
-	 *            the allocated region to render into
+	 *           the allocated region to render into
 	 * @return the location within the model that best represents the given
 	 *         point in the view &gt;= 0
 	 * @see View#viewToModel
@@ -417,8 +406,8 @@ public class PlainView extends View implements TabExpander {
 			// we can position to.
 			Element map = doc.getDefaultRootElement();
 			int fontHeight = metrics.getHeight();
-			int lineIndex = (fontHeight > 0 ? Math.abs((y - alloc.y) / fontHeight)
-					: map.getElementCount() - 1);
+			int lineIndex = (fontHeight > 0 ? Math.abs((y - alloc.y)
+					/ fontHeight) : map.getElementCount() - 1);
 			if (lineIndex >= map.getElementCount()) {
 				return getEndOffset() - 1;
 			}
@@ -442,7 +431,8 @@ public class PlainView extends View implements TabExpander {
 					Segment s = SegmentCache.getSharedSegment();
 					doc.getText(p0, p1 - p0, s);
 					tabBase = alloc.x;
-					int offs = p0 + Utilities.getTabbedTextOffset(s, metrics, tabBase, x, this, p0);
+					int offs = p0 + Utilities.getTabbedTextOffset(s, metrics,
+							tabBase, x, this, p0);
 					SegmentCache.releaseSharedSegment(s);
 					return offs;
 				} catch (BadLocationException e) {
@@ -458,11 +448,11 @@ public class PlainView extends View implements TabExpander {
 	 * location that this view is responsible for.
 	 *
 	 * @param changes
-	 *            the change information from the associated document
+	 *                the change information from the associated document
 	 * @param a
-	 *            the current allocation of the view
+	 *                the current allocation of the view
 	 * @param f
-	 *            the factory to use to rebuild if the view has children
+	 *                the factory to use to rebuild if the view has children
 	 * @see View#insertUpdate
 	 */
 	public void insertUpdate(DocumentEvent changes, Shape a, ViewFactory f) {
@@ -474,11 +464,11 @@ public class PlainView extends View implements TabExpander {
 	 * location that this view is responsible for.
 	 *
 	 * @param changes
-	 *            the change information from the associated document
+	 *                the change information from the associated document
 	 * @param a
-	 *            the current allocation of the view
+	 *                the current allocation of the view
 	 * @param f
-	 *            the factory to use to rebuild if the view has children
+	 *                the factory to use to rebuild if the view has children
 	 * @see View#removeUpdate
 	 */
 	public void removeUpdate(DocumentEvent changes, Shape a, ViewFactory f) {
@@ -490,11 +480,11 @@ public class PlainView extends View implements TabExpander {
 	 * location that this view is responsible for.
 	 *
 	 * @param changes
-	 *            the change information from the associated document
+	 *                the change information from the associated document
 	 * @param a
-	 *            the current allocation of the view
+	 *                the current allocation of the view
 	 * @param f
-	 *            the factory to use to rebuild if the view has children
+	 *                the factory to use to rebuild if the view has children
 	 * @see View#changedUpdate
 	 */
 	public void changedUpdate(DocumentEvent changes, Shape a, ViewFactory f) {
@@ -506,9 +496,9 @@ public class PlainView extends View implements TabExpander {
 	 * given axis, if it has any layout duties.
 	 *
 	 * @param width
-	 *            the width &gt;= 0
+	 *               the width &gt;= 0
 	 * @param height
-	 *            the height &gt;= 0
+	 *               the height &gt;= 0
 	 */
 	public void setSize(float width, float height) {
 		super.setSize(width, height);
@@ -523,10 +513,11 @@ public class PlainView extends View implements TabExpander {
 	 * tabOffset argument.
 	 *
 	 * @param x
-	 *            the current position &gt;= 0
+	 *                  the current position &gt;= 0
 	 * @param tabOffset
-	 *            the position within the text stream that the tab occurred at
-	 *            &gt;= 0.
+	 *                  the position within the text stream that the tab
+	 *                  occurred at
+	 *                  &gt;= 0.
 	 * @return the tab stop, measured in points &gt;= 0
 	 */
 	public float nextTabStop(float x, int tabOffset) {
@@ -555,8 +546,8 @@ public class PlainView extends View implements TabExpander {
 
 		Element[] added = (ec != null) ? ec.getChildrenAdded() : null;
 		Element[] removed = (ec != null) ? ec.getChildrenRemoved() : null;
-		if (((added != null) && (added.length > 0))
-				|| ((removed != null) && (removed.length > 0))) {
+		if (((added != null) && (added.length > 0)) || ((removed != null)
+				&& (removed.length > 0))) {
 			// lines were added or removed...
 			if (added != null) {
 				int currWide = getLineWidth(longLine);
@@ -607,18 +598,20 @@ public class PlainView extends View implements TabExpander {
 	 * Repaint the given line range.
 	 *
 	 * @param host
-	 *            the component hosting the view (used to call repaint)
+	 *              the component hosting the view (used to call repaint)
 	 * @param a
-	 *            the region allocated for the view to render into
+	 *              the region allocated for the view to render into
 	 * @param line0
-	 *            the starting line number to repaint. This must be a valid line
-	 *            number in the model.
+	 *              the starting line number to repaint. This must be a valid
+	 *              line
+	 *              number in the model.
 	 * @param line1
-	 *            the ending line number to repaint. This must be a valid line
-	 *            number in the model.
+	 *              the ending line number to repaint. This must be a valid line
+	 *              number in the model.
 	 * @since 1.4
 	 */
-	protected void damageLineRange(int line0, int line1, Shape a, Component host) {
+	protected void damageLineRange(int line0, int line1, Shape a,
+			Component host) {
 		if (a != null) {
 			Rectangle area0 = lineToRect(a, line0);
 			Rectangle area1 = lineToRect(a, line1);
@@ -635,10 +628,10 @@ public class PlainView extends View implements TabExpander {
 	 * Determine the rectangle that represents the given line.
 	 *
 	 * @param a
-	 *            the region allocated for the view to render into
+	 *             the region allocated for the view to render into
 	 * @param line
-	 *            the line number to find the region of. This must be a valid
-	 *            line number in the model.
+	 *             the line number to find the region of. This must be a valid
+	 *             line number in the model.
 	 * @since 1.4
 	 */
 	protected Rectangle lineToRect(Shape a, int line) {
@@ -650,8 +643,8 @@ public class PlainView extends View implements TabExpander {
 				alloc.x += firstLineOffset;
 				alloc.width -= firstLineOffset;
 			}
-			r = new Rectangle(alloc.x, alloc.y + (line * metrics.getHeight()), alloc.width,
-					metrics.getHeight());
+			r = new Rectangle(alloc.x, alloc.y + (line * metrics.getHeight()),
+					alloc.width, metrics.getHeight());
 		}
 		return r;
 	}

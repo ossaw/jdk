@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.basic;
@@ -61,18 +41,16 @@ public class BasicSeparatorUI extends SeparatorUI {
 	}
 
 	protected void installDefaults(JSeparator s) {
-		LookAndFeel.installColors(s, "Separator.background", "Separator.foreground");
+		LookAndFeel.installColors(s, "Separator.background",
+				"Separator.foreground");
 		LookAndFeel.installProperty(s, "opaque", Boolean.FALSE);
 	}
 
-	protected void uninstallDefaults(JSeparator s) {
-	}
+	protected void uninstallDefaults(JSeparator s) {}
 
-	protected void installListeners(JSeparator s) {
-	}
+	protected void installListeners(JSeparator s) {}
 
-	protected void uninstallListeners(JSeparator s) {
-	}
+	protected void uninstallListeners(JSeparator s) {}
 
 	public void paint(Graphics g, JComponent c) {
 		Dimension s = c.getSize();

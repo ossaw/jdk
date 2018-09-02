@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -129,7 +126,8 @@ final class EqualityExpr extends Expression {
 					_right = new CastExpr(_right, Type.Boolean);
 				} else if (tright instanceof BooleanType) {
 					_left = new CastExpr(_left, Type.Boolean);
-				} else if (tleft instanceof NumberType || tright instanceof NumberType) {
+				} else if (tleft instanceof NumberType
+						|| tright instanceof NumberType) {
 					_left = new CastExpr(_left, Type.Real);
 					_right = new CastExpr(_right, Type.Real);
 				} else { // both compared as strings
@@ -168,8 +166,8 @@ final class EqualityExpr extends Expression {
 			}
 
 			// If one arg is a node-set then make it the left one
-			if (tleft.isSimple()
-					|| tleft instanceof ResultTreeType && tright instanceof NodeSetType) {
+			if (tleft.isSimple() || tleft instanceof ResultTreeType
+					&& tright instanceof NodeSetType) {
 				swapArguments();
 			}
 
@@ -181,14 +179,16 @@ final class EqualityExpr extends Expression {
 		return _type = Type.Boolean;
 	}
 
-	public void translateDesynthesized(ClassGenerator classGen, MethodGenerator methodGen) {
+	public void translateDesynthesized(ClassGenerator classGen,
+			MethodGenerator methodGen) {
 		final Type tleft = _left.getType();
 		final InstructionList il = methodGen.getInstructionList();
 
 		if (tleft instanceof BooleanType) {
 			_left.translate(classGen, methodGen);
 			_right.translate(classGen, methodGen);
-			_falseList.add(il.append(_op == Operators.EQ ? (BranchInstruction) new IF_ICMPNE(null)
+			_falseList.add(il.append(_op == Operators.EQ
+					? (BranchInstruction) new IF_ICMPNE(null)
 					: (BranchInstruction) new IF_ICMPEQ(null)));
 		} else if (tleft instanceof NumberType) {
 			_left.translate(classGen, methodGen);
@@ -196,12 +196,13 @@ final class EqualityExpr extends Expression {
 
 			if (tleft instanceof RealType) {
 				il.append(DCMPG);
-				_falseList.add(il.append(_op == Operators.EQ ? (BranchInstruction) new IFNE(null)
+				_falseList.add(il.append(_op == Operators.EQ
+						? (BranchInstruction) new IFNE(null)
 						: (BranchInstruction) new IFEQ(null)));
 			} else {
-				_falseList
-						.add(il.append(_op == Operators.EQ ? (BranchInstruction) new IF_ICMPNE(null)
-								: (BranchInstruction) new IF_ICMPEQ(null)));
+				_falseList.add(il.append(_op == Operators.EQ
+						? (BranchInstruction) new IF_ICMPNE(null)
+						: (BranchInstruction) new IF_ICMPEQ(null)));
 			}
 		} else {
 			translate(classGen, methodGen);
@@ -223,7 +224,8 @@ final class EqualityExpr extends Expression {
 		}
 
 		if (tleft instanceof StringType) {
-			final int equals = cpg.addMethodref(STRING_CLASS, "equals", "(" + OBJECT_SIG + ")Z");
+			final int equals = cpg.addMethodref(STRING_CLASS, "equals", "("
+					+ OBJECT_SIG + ")Z");
 			_left.translate(classGen, methodGen);
 			_right.translate(classGen, methodGen);
 			il.append(new INVOKEVIRTUAL(equals));
@@ -253,7 +255,8 @@ final class EqualityExpr extends Expression {
 				_right.translate(classGen, methodGen);
 
 				il.append(DCMPG);
-				falsec = il.append(_op == Operators.EQ ? (BranchInstruction) new IFNE(null)
+				falsec = il.append(_op == Operators.EQ
+						? (BranchInstruction) new IFNE(null)
 						: (BranchInstruction) new IFEQ(null));
 				il.append(ICONST_1);
 				truec = il.append(new GOTO(null));
@@ -272,7 +275,8 @@ final class EqualityExpr extends Expression {
 				tright.translateTo(classGen, methodGen, Type.String);
 			}
 
-			final int equals = cpg.addMethodref(STRING_CLASS, "equals", "(" + OBJECT_SIG + ")Z");
+			final int equals = cpg.addMethodref(STRING_CLASS, "equals", "("
+					+ OBJECT_SIG + ")Z");
 			il.append(new INVOKEVIRTUAL(equals));
 
 			if (_op == Operators.NE) {
@@ -302,8 +306,9 @@ final class EqualityExpr extends Expression {
 			_right.translate(classGen, methodGen);
 			il.append(new PUSH(cpg, _op));
 			il.append(methodGen.loadDOM());
-			final int cmp = cpg.addMethodref(BASIS_LIBRARY_CLASS, "compare",
-					"(" + tleft.toSignature() + tright.toSignature() + "I" + DOM_INTF_SIG + ")Z");
+			final int cmp = cpg.addMethodref(BASIS_LIBRARY_CLASS, "compare", "("
+					+ tleft.toSignature() + tright.toSignature() + "I"
+					+ DOM_INTF_SIG + ")Z");
 			il.append(new INVOKESTATIC(cmp));
 			return;
 		}
@@ -324,8 +329,9 @@ final class EqualityExpr extends Expression {
 		il.append(new PUSH(cpg, _op));
 		il.append(methodGen.loadDOM());
 
-		final int compare = cpg.addMethodref(BASIS_LIBRARY_CLASS, "compare",
-				"(" + tleft.toSignature() + tright.toSignature() + "I" + DOM_INTF_SIG + ")Z");
+		final int compare = cpg.addMethodref(BASIS_LIBRARY_CLASS, "compare", "("
+				+ tleft.toSignature() + tright.toSignature() + "I"
+				+ DOM_INTF_SIG + ")Z");
 		il.append(new INVOKESTATIC(compare));
 	}
 }

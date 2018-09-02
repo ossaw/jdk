@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * $Id: XPathFilterParameterSpec.java,v 1.4 2005/05/10 16:40:17 mullan Exp $
@@ -62,9 +42,9 @@ public final class XPathFilterParameterSpec implements TransformParameterSpec {
 	 * expression.
 	 *
 	 * @param xPath
-	 *            the XPath expression to be evaluated
+	 *              the XPath expression to be evaluated
 	 * @throws NullPointerException
-	 *             if <code>xPath</code> is <code>null</code>
+	 *                              if <code>xPath</code> is <code>null</code>
 	 */
 	public XPathFilterParameterSpec(String xPath) {
 		if (xPath == null) {
@@ -80,17 +60,21 @@ public final class XPathFilterParameterSpec implements TransformParameterSpec {
 	 * subsequent modification.
 	 *
 	 * @param xPath
-	 *            the XPath expression to be evaluated
+	 *                     the XPath expression to be evaluated
 	 * @param namespaceMap
-	 *            the map of namespace prefixes. Each key is a namespace prefix
-	 *            <code>String</code> that maps to a corresponding namespace URI
-	 *            <code>String</code>.
+	 *                     the map of namespace prefixes. Each key is a
+	 *                     namespace prefix
+	 *                     <code>String</code> that maps to a corresponding
+	 *                     namespace URI
+	 *                     <code>String</code>.
 	 * @throws NullPointerException
-	 *             if <code>xPath</code> or <code>namespaceMap</code> are
-	 *             <code>null</code>
+	 *                              if <code>xPath</code> or
+	 *                              <code>namespaceMap</code> are
+	 *                              <code>null</code>
 	 * @throws ClassCastException
-	 *             if any of the map's keys or entries are not of type
-	 *             <code>String</code>
+	 *                              if any of the map's keys or entries are not
+	 *                              of type
+	 *                              <code>String</code>
 	 */
 	@SuppressWarnings("rawtypes")
 	public XPathFilterParameterSpec(String xPath, Map namespaceMap) {
@@ -99,10 +83,12 @@ public final class XPathFilterParameterSpec implements TransformParameterSpec {
 		}
 		this.xPath = xPath;
 		Map<?, ?> copy = new HashMap<>((Map<?, ?>) namespaceMap);
-		Iterator<? extends Map.Entry<?, ?>> entries = copy.entrySet().iterator();
+		Iterator<? extends Map.Entry<?, ?>> entries = copy.entrySet()
+				.iterator();
 		while (entries.hasNext()) {
 			Map.Entry<?, ?> me = entries.next();
-			if (!(me.getKey() instanceof String) || !(me.getValue() instanceof String)) {
+			if (!(me.getKey() instanceof String) || !(me
+					.getValue() instanceof String)) {
 				throw new ClassCastException("not a String");
 			}
 		}

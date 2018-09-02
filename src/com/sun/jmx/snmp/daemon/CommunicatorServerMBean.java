@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.daemon;
@@ -133,17 +113,18 @@ public interface CommunicatorServerMBean {
 	 * </UL>
 	 *
 	 * @param state
-	 *            The value of this MBean's State attribute to wait for.
-	 *            <VAR>state</VAR> can be one of:
-	 *            <ul>
-	 *            <li><CODE>CommunicatorServer.OFFLINE</CODE>,</li>
-	 *            <li><CODE>CommunicatorServer.ONLINE</CODE>,</li>
-	 *            <li><CODE>CommunicatorServer.STARTING</CODE>,</li>
-	 *            <li><CODE>CommunicatorServer.STOPPING</CODE>.</li>
-	 *            </ul>
+	 *                The value of this MBean's State attribute to wait for.
+	 *                <VAR>state</VAR> can be one of:
+	 *                <ul>
+	 *                <li><CODE>CommunicatorServer.OFFLINE</CODE>,</li>
+	 *                <li><CODE>CommunicatorServer.ONLINE</CODE>,</li>
+	 *                <li><CODE>CommunicatorServer.STARTING</CODE>,</li>
+	 *                <li><CODE>CommunicatorServer.STOPPING</CODE>.</li>
+	 *                </ul>
 	 * @param timeOut
-	 *            The maximum time to wait for, in milliseconds, if positive.
-	 *            Infinite time out if 0, or no waiting at all if negative.
+	 *                The maximum time to wait for, in milliseconds, if
+	 *                positive.
+	 *                Infinite time out if 0, or no waiting at all if negative.
 	 *
 	 * @return true if the value of this MBean's State attribute is the same as
 	 *         the <VAR>state</VAR> parameter; false otherwise.
@@ -183,11 +164,11 @@ public interface CommunicatorServerMBean {
 	 * Sets the port number used by this <CODE>CommunicatorServer</CODE>.
 	 *
 	 * @param port
-	 *            The port number used by this <CODE>CommunicatorServer</CODE>.
+	 *             The port number used by this <CODE>CommunicatorServer</CODE>.
 	 *
 	 * @exception java.lang.IllegalStateException
-	 *                This method has been invoked while the communicator was
-	 *                ONLINE or STARTING.
+	 *            This method has been invoked while the communicator was
+	 *            ONLINE or STARTING.
 	 */
 	public void setPort(int port) throws java.lang.IllegalStateException;
 

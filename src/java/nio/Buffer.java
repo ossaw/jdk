@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio;
@@ -216,8 +196,8 @@ public abstract class Buffer {
 	 * The characteristics of Spliterators that traverse and split elements
 	 * maintained in Buffers.
 	 */
-	static final int SPLITERATOR_CHARACTERISTICS = Spliterator.SIZED | Spliterator.SUBSIZED
-			| Spliterator.ORDERED;
+	static final int SPLITERATOR_CHARACTERISTICS = Spliterator.SIZED
+			| Spliterator.SUBSIZED | Spliterator.ORDERED;
 
 	// Invariants: mark <= position <= limit <= capacity
 	private int mark = -1;
@@ -240,7 +220,8 @@ public abstract class Buffer {
 		position(pos);
 		if (mark >= 0) {
 			if (mark > pos)
-				throw new IllegalArgumentException("mark > position: (" + mark + " > " + pos + ")");
+				throw new IllegalArgumentException("mark > position: (" + mark
+						+ " > " + pos + ")");
 			this.mark = mark;
 		}
 	}
@@ -268,13 +249,15 @@ public abstract class Buffer {
 	 * new position then it is discarded.
 	 *
 	 * @param newPosition
-	 *            The new position value; must be non-negative and no larger
-	 *            than the current limit
+	 *                    The new position value; must be non-negative and no
+	 *                    larger
+	 *                    than the current limit
 	 *
 	 * @return This buffer
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the preconditions on <tt>newPosition</tt> do not hold
+	 *                                  If the preconditions on
+	 *                                  <tt>newPosition</tt> do not hold
 	 */
 	public final Buffer position(int newPosition) {
 		if ((newPosition > limit) || (newPosition < 0))
@@ -300,13 +283,15 @@ public abstract class Buffer {
 	 * the new limit then it is discarded.
 	 *
 	 * @param newLimit
-	 *            The new limit value; must be non-negative and no larger than
-	 *            this buffer's capacity
+	 *                 The new limit value; must be non-negative and no larger
+	 *                 than
+	 *                 this buffer's capacity
 	 *
 	 * @return This buffer
 	 *
 	 * @throws IllegalArgumentException
-	 *             If the preconditions on <tt>newLimit</tt> do not hold
+	 *                                  If the preconditions on
+	 *                                  <tt>newLimit</tt> do not hold
 	 */
 	public final Buffer limit(int newLimit) {
 		if ((newLimit > capacity) || (newLimit < 0))
@@ -339,7 +324,7 @@ public abstract class Buffer {
 	 * @return This buffer
 	 *
 	 * @throws InvalidMarkException
-	 *             If the mark has not been set
+	 *                              If the mark has not been set
 	 */
 	public final Buffer reset() {
 		int m = mark;
@@ -507,10 +492,12 @@ public abstract class Buffer {
 	 * @return The array that backs this buffer
 	 *
 	 * @throws ReadOnlyBufferException
-	 *             If this buffer is backed by an array but is read-only
+	 *                                       If this buffer is backed by an
+	 *                                       array but is read-only
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If this buffer is not backed by an accessible array
+	 *                                       If this buffer is not backed by an
+	 *                                       accessible array
 	 *
 	 * @since 1.6
 	 */
@@ -533,10 +520,12 @@ public abstract class Buffer {
 	 *         buffer
 	 *
 	 * @throws ReadOnlyBufferException
-	 *             If this buffer is backed by an array but is read-only
+	 *                                       If this buffer is backed by an
+	 *                                       array but is read-only
 	 *
 	 * @throws UnsupportedOperationException
-	 *             If this buffer is not backed by an accessible array
+	 *                                       If this buffer is not backed by an
+	 *                                       accessible array
 	 *
 	 * @since 1.6
 	 */

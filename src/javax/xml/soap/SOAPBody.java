@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.soap;
@@ -58,7 +38,7 @@ public interface SOAPBody extends SOAPElement {
 	 *
 	 * @return the new <code>SOAPFault</code> object
 	 * @exception SOAPException
-	 *                if there is a SOAP error
+	 *                          if there is a SOAP error
 	 */
 	public SOAPFault addFault() throws SOAPException;
 
@@ -80,17 +60,21 @@ public interface SOAPBody extends SOAPElement {
 	 * child element.
 	 *
 	 * @param faultCode
-	 *            a <code>Name</code> object giving the fault code to be set;
-	 *            must be one of the fault codes defined in the Version of SOAP
-	 *            specification in use
+	 *                    a <code>Name</code> object giving the fault code to be
+	 *                    set;
+	 *                    must be one of the fault codes defined in the Version
+	 *                    of SOAP
+	 *                    specification in use
 	 * @param faultString
-	 *            a <code>String</code> giving an explanation of the fault
+	 *                    a <code>String</code> giving an explanation of the
+	 *                    fault
 	 * @param locale
-	 *            a {@link java.util.Locale} object indicating the native
-	 *            language of the <code>faultString</code>
+	 *                    a {@link java.util.Locale} object indicating the
+	 *                    native
+	 *                    language of the <code>faultString</code>
 	 * @return the new <code>SOAPFault</code> object
 	 * @exception SOAPException
-	 *                if there is a SOAP error
+	 *                          if there is a SOAP error
 	 * @see SOAPFault#setFaultCode
 	 * @see SOAPFault#setFaultString
 	 * @since SAAJ 1.2
@@ -116,25 +100,29 @@ public interface SOAPBody extends SOAPElement {
 	 * child element.
 	 *
 	 * @param faultCode
-	 *            a <code>QName</code> object giving the fault code to be set;
-	 *            must be one of the fault codes defined in the version of SOAP
-	 *            specification in use.
+	 *                    a <code>QName</code> object giving the fault code to
+	 *                    be set;
+	 *                    must be one of the fault codes defined in the version
+	 *                    of SOAP
+	 *                    specification in use.
 	 * @param faultString
-	 *            a <code>String</code> giving an explanation of the fault
+	 *                    a <code>String</code> giving an explanation of the
+	 *                    fault
 	 * @param locale
-	 *            a {@link java.util.Locale Locale} object indicating the native
-	 *            language of the <code>faultString</code>
+	 *                    a {@link java.util.Locale Locale} object indicating
+	 *                    the native
+	 *                    language of the <code>faultString</code>
 	 * @return the new <code>SOAPFault</code> object
 	 * @exception SOAPException
-	 *                if there is a SOAP error
+	 *                          if there is a SOAP error
 	 * @see SOAPFault#setFaultCode
 	 * @see SOAPFault#setFaultString
 	 * @see SOAPBody#addFault(Name faultCode, String faultString, Locale locale)
 	 *
 	 * @since SAAJ 1.3
 	 */
-	public SOAPFault addFault(QName faultCode, String faultString, Locale locale)
-			throws SOAPException;
+	public SOAPFault addFault(QName faultCode, String faultString,
+			Locale locale) throws SOAPException;
 
 	/**
 	 * Creates a new <code>SOAPFault</code> object and adds it to this
@@ -158,19 +146,23 @@ public interface SOAPBody extends SOAPElement {
 	 * child element.
 	 *
 	 * @param faultCode
-	 *            a <code>Name</code> object giving the fault code to be set;
-	 *            must be one of the fault codes defined in the version of SOAP
-	 *            specification in use
+	 *                    a <code>Name</code> object giving the fault code to be
+	 *                    set;
+	 *                    must be one of the fault codes defined in the version
+	 *                    of SOAP
+	 *                    specification in use
 	 * @param faultString
-	 *            a <code>String</code> giving an explanation of the fault
+	 *                    a <code>String</code> giving an explanation of the
+	 *                    fault
 	 * @return the new <code>SOAPFault</code> object
 	 * @exception SOAPException
-	 *                if there is a SOAP error
+	 *                          if there is a SOAP error
 	 * @see SOAPFault#setFaultCode
 	 * @see SOAPFault#setFaultString
 	 * @since SAAJ 1.2
 	 */
-	public SOAPFault addFault(Name faultCode, String faultString) throws SOAPException;
+	public SOAPFault addFault(Name faultCode, String faultString)
+			throws SOAPException;
 
 	/**
 	 * Creates a new <code>SOAPFault</code> object and adds it to this
@@ -194,20 +186,24 @@ public interface SOAPBody extends SOAPElement {
 	 * child element
 	 *
 	 * @param faultCode
-	 *            a <code>QName</code> object giving the fault code to be set;
-	 *            must be one of the fault codes defined in the version of SOAP
-	 *            specification in use
+	 *                    a <code>QName</code> object giving the fault code to
+	 *                    be set;
+	 *                    must be one of the fault codes defined in the version
+	 *                    of SOAP
+	 *                    specification in use
 	 * @param faultString
-	 *            a <code>String</code> giving an explanation of the fault
+	 *                    a <code>String</code> giving an explanation of the
+	 *                    fault
 	 * @return the new <code>SOAPFault</code> object
 	 * @exception SOAPException
-	 *                if there is a SOAP error
+	 *                          if there is a SOAP error
 	 * @see SOAPFault#setFaultCode
 	 * @see SOAPFault#setFaultString
 	 * @see SOAPBody#addFault(Name faultCode, String faultString)
 	 * @since SAAJ 1.3
 	 */
-	public SOAPFault addFault(QName faultCode, String faultString) throws SOAPException;
+	public SOAPFault addFault(QName faultCode, String faultString)
+			throws SOAPException;
 
 	/**
 	 * Indicates whether a <code>SOAPFault</code> object exists in this
@@ -232,11 +228,11 @@ public interface SOAPBody extends SOAPElement {
 	 * and adds it to this <code>SOAPBody</code> object.
 	 *
 	 * @param name
-	 *            a <code>Name</code> object with the name for the new
-	 *            <code>SOAPBodyElement</code> object
+	 *             a <code>Name</code> object with the name for the new
+	 *             <code>SOAPBodyElement</code> object
 	 * @return the new <code>SOAPBodyElement</code> object
 	 * @exception SOAPException
-	 *                if a SOAP error occurs
+	 *                          if a SOAP error occurs
 	 * @see SOAPBody#addBodyElement(javax.xml.namespace.QName)
 	 */
 	public SOAPBodyElement addBodyElement(Name name) throws SOAPException;
@@ -246,11 +242,11 @@ public interface SOAPBody extends SOAPElement {
 	 * QName and adds it to this <code>SOAPBody</code> object.
 	 *
 	 * @param qname
-	 *            a <code>QName</code> object with the qname for the new
-	 *            <code>SOAPBodyElement</code> object
+	 *              a <code>QName</code> object with the qname for the new
+	 *              <code>SOAPBodyElement</code> object
 	 * @return the new <code>SOAPBodyElement</code> object
 	 * @exception SOAPException
-	 *                if a SOAP error occurs
+	 *                          if a SOAP error occurs
 	 * @see SOAPBody#addBodyElement(Name)
 	 * @since SAAJ 1.3
 	 */
@@ -267,15 +263,17 @@ public interface SOAPBody extends SOAPElement {
 	 * to use such references is undefined.
 	 *
 	 * @param document
-	 *            the <code>Document</code> object whose root node will be added
-	 *            to this <code>SOAPBody</code>.
+	 *                 the <code>Document</code> object whose root node will be
+	 *                 added
+	 *                 to this <code>SOAPBody</code>.
 	 * @return the <code>SOAPBodyElement</code> that represents the root node
 	 *         that was added.
 	 * @exception SOAPException
-	 *                if the <code>Document</code> cannot be added
+	 *                          if the <code>Document</code> cannot be added
 	 * @since SAAJ 1.2
 	 */
-	public SOAPBodyElement addDocument(org.w3c.dom.Document document) throws SOAPException;
+	public SOAPBodyElement addDocument(org.w3c.dom.Document document)
+			throws SOAPException;
 
 	/**
 	 * Creates a new DOM <code>{@link org.w3c.dom.Document}</code> and sets the
@@ -286,8 +284,9 @@ public interface SOAPBody extends SOAPElement {
 	 *         the <code>SOAPBody</code> content.
 	 *
 	 * @exception SOAPException
-	 *                if there is not exactly one child <code>SOAPElement</code>
-	 *                of the <code>
+	 *                          if there is not exactly one child
+	 *                          <code>SOAPElement</code>
+	 *                          of the <code>
 	 *              <code>SOAPBody</code>.
 	 *
 	 * @since SAAJ 1.3

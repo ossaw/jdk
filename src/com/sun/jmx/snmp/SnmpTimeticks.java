@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -27,9 +26,9 @@ public class SnmpTimeticks extends SnmpUnsignedInt {
 	 * value.
 	 * 
 	 * @param v
-	 *            The initialization value.
+	 *          The initialization value.
 	 * @exception IllegalArgumentException
-	 *                The specified value is negative.
+	 *                                     The specified value is negative.
 	 */
 	public SnmpTimeticks(int v) throws IllegalArgumentException {
 		super(v);
@@ -40,9 +39,9 @@ public class SnmpTimeticks extends SnmpUnsignedInt {
 	 * <CODE>Integer</CODE> value.
 	 * 
 	 * @param v
-	 *            The initialization value.
+	 *          The initialization value.
 	 * @exception IllegalArgumentException
-	 *                The specified value is negative.
+	 *                                     The specified value is negative.
 	 */
 	public SnmpTimeticks(Integer v) throws IllegalArgumentException {
 		super(v);
@@ -57,9 +56,9 @@ public class SnmpTimeticks extends SnmpUnsignedInt {
 	 * <code>v%(SnmpUnsignedInt.MAX_VALUE+1)</code>.
 	 * 
 	 * @param v
-	 *            The initialization value.
+	 *          The initialization value.
 	 * @exception IllegalArgumentException
-	 *                if the specified value is negative.
+	 *                                     if the specified value is negative.
 	 */
 	public SnmpTimeticks(long v) throws IllegalArgumentException {
 		super(((v > 0) ? v & SnmpUnsignedInt.MAX_VALUE : v));
@@ -74,9 +73,9 @@ public class SnmpTimeticks extends SnmpUnsignedInt {
 	 * <code>v%(SnmpUnsignedInt.MAX_VALUE+1)</code>.
 	 * 
 	 * @param v
-	 *            The initialization value.
+	 *          The initialization value.
 	 * @exception IllegalArgumentException
-	 *                if the specified value is negative.
+	 *                                     if the specified value is negative.
 	 */
 	public SnmpTimeticks(Long v) throws IllegalArgumentException {
 		this(v.longValue());
@@ -89,7 +88,7 @@ public class SnmpTimeticks extends SnmpUnsignedInt {
 	 * <CODE>String</CODE> of the form <CODE>d days hh:mm:ss</CODE>.
 	 * 
 	 * @param timeticks
-	 *            The value to be parsed.
+	 *                  The value to be parsed.
 	 * @return The <CODE>String</CODE> representation of the value.
 	 */
 	final static public String printTimeTicks(long timeticks) {

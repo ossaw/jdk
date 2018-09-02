@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.event;
@@ -45,9 +25,9 @@ public final class SwingPropertyChangeSupport extends PropertyChangeSupport {
 	 * Constructs a SwingPropertyChangeSupport object.
 	 *
 	 * @param sourceBean
-	 *            The bean to be given as the source for any events.
+	 *                   The bean to be given as the source for any events.
 	 * @throws NullPointerException
-	 *             if {@code sourceBean} is {@code null}
+	 *                              if {@code sourceBean} is {@code null}
 	 */
 	public SwingPropertyChangeSupport(Object sourceBean) {
 		this(sourceBean, false);
@@ -57,13 +37,13 @@ public final class SwingPropertyChangeSupport extends PropertyChangeSupport {
 	 * Constructs a SwingPropertyChangeSupport object.
 	 *
 	 * @param sourceBean
-	 *            the bean to be given as the source for any events
+	 *                    the bean to be given as the source for any events
 	 * @param notifyOnEDT
-	 *            whether to notify listeners on the <i>Event Dispatch
-	 *            Thread</i> only
+	 *                    whether to notify listeners on the <i>Event Dispatch
+	 *                    Thread</i> only
 	 *
 	 * @throws NullPointerException
-	 *             if {@code sourceBean} is {@code null}
+	 *                              if {@code sourceBean} is {@code null}
 	 * @since 1.6
 	 */
 	public SwingPropertyChangeSupport(Object sourceBean, boolean notifyOnEDT) {
@@ -82,7 +62,7 @@ public final class SwingPropertyChangeSupport extends PropertyChangeSupport {
 	 * notified on the <i>Event Dispatch Thread</i>.
 	 *
 	 * @throws NullPointerException
-	 *             if {@code evt} is {@code null}
+	 *                              if {@code evt} is {@code null}
 	 * @since 1.6
 	 */
 	public void firePropertyChange(final PropertyChangeEvent evt) {

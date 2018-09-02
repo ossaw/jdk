@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2000-2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,9 +41,9 @@ public interface Augmentations {
 	 * structure.
 	 *
 	 * @param key
-	 *            Identifier, can't be <code>null</code>
+	 *             Identifier, can't be <code>null</code>
 	 * @param item
-	 *            Additional information
+	 *             Additional information
 	 *
 	 * @return the previous value of the specified key in the Augmentations
 	 *         structure, or <code>null</code> if it did not have one.

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.peer;
@@ -44,8 +24,9 @@ public interface DesktopPeer {
 	 * Returns whether the given action is supported on the current platform.
 	 * 
 	 * @param action
-	 *            the action type to be tested if it's supported on the current
-	 *            platform.
+	 *               the action type to be tested if it's supported on the
+	 *               current
+	 *               platform.
 	 * @return {@code true} if the given action is supported on the current
 	 *         platform; {@code false} otherwise.
 	 */
@@ -57,10 +38,11 @@ public interface DesktopPeer {
 	 * the file type of the given file.
 	 *
 	 * @param file
-	 *            the given file.
+	 *             the given file.
 	 * @throws IOException
-	 *             If the given file has no associated application, or the
-	 *             associated application fails to be launched.
+	 *                     If the given file has no associated application, or
+	 *                     the
+	 *                     associated application fails to be launched.
 	 */
 	void open(File file) throws IOException;
 
@@ -70,10 +52,11 @@ public interface DesktopPeer {
 	 * type of the given file.
 	 *
 	 * @param file
-	 *            the given file.
+	 *             the given file.
 	 * @throws IOException
-	 *             If the given file has no associated editor, or the associated
-	 *             application fails to be launched.
+	 *                     If the given file has no associated editor, or the
+	 *                     associated
+	 *                     application fails to be launched.
 	 */
 	void edit(File file) throws IOException;
 
@@ -82,10 +65,11 @@ public interface DesktopPeer {
 	 * the associated application's print command.
 	 *
 	 * @param file
-	 *            the given file.
+	 *             the given file.
 	 * @throws IOException
-	 *             If the given file has no associated application that can be
-	 *             used to print it.
+	 *                     If the given file has no associated application that
+	 *                     can be
+	 *                     used to print it.
 	 */
 	void print(File file) throws IOException;
 
@@ -95,13 +79,16 @@ public interface DesktopPeer {
 	 * specified by the given mailto URL.
 	 *
 	 * @param mailtoURL
-	 *            represents a mailto URL with specified values of the message.
-	 *            The syntax of mailto URL is defined by
-	 *            <a href="http://www.ietf.org/rfc/rfc2368.txt">RFC2368: The
-	 *            mailto URL scheme</a>
+	 *                  represents a mailto URL with specified values of the
+	 *                  message.
+	 *                  The syntax of mailto URL is defined by
+	 *                  <a href="http://www.ietf.org/rfc/rfc2368.txt">RFC2368:
+	 *                  The
+	 *                  mailto URL scheme</a>
 	 * @throws IOException
-	 *             If the user default mail client is not found, or it fails to
-	 *             be launched.
+	 *                     If the user default mail client is not found, or it
+	 *                     fails to
+	 *                     be launched.
 	 */
 	void mail(URI mailtoURL) throws IOException;
 
@@ -111,8 +98,9 @@ public interface DesktopPeer {
 	 * @param uri
 	 *            the given URI.
 	 * @throws IOException
-	 *             If the user default browser is not found, or it fails to be
-	 *             launched.
+	 *                     If the user default browser is not found, or it fails
+	 *                     to be
+	 *                     launched.
 	 */
 	void browse(URI uri) throws IOException;
 }

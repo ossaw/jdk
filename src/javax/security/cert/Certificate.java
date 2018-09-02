@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.cert;
@@ -69,7 +49,7 @@ public abstract class Certificate {
 	 * certificate.
 	 *
 	 * @param other
-	 *            the object to test for equality with this certificate.
+	 *              the object to test for equality with this certificate.
 	 * @return true if the encoded forms of the two certificates match, false
 	 *         otherwise.
 	 */
@@ -118,7 +98,8 @@ public abstract class Certificate {
 	 *
 	 * @return encoded form of this certificate
 	 * @exception CertificateEncodingException
-	 *                on internal certificate encoding failure
+	 *                                         on internal certificate encoding
+	 *                                         failure
 	 */
 	public abstract byte[] getEncoded() throws CertificateEncodingException;
 
@@ -130,18 +111,18 @@ public abstract class Certificate {
 	 *            the PublicKey used to carry out the verification.
 	 *
 	 * @exception NoSuchAlgorithmException
-	 *                on unsupported signature algorithms.
+	 *                                     on unsupported signature algorithms.
 	 * @exception InvalidKeyException
-	 *                on incorrect key.
+	 *                                     on incorrect key.
 	 * @exception NoSuchProviderException
-	 *                if there's no default provider.
+	 *                                     if there's no default provider.
 	 * @exception SignatureException
-	 *                on signature errors.
+	 *                                     on signature errors.
 	 * @exception CertificateException
-	 *                on encoding errors.
+	 *                                     on encoding errors.
 	 */
-	public abstract void verify(PublicKey key)
-			throws CertificateException, NoSuchAlgorithmException, InvalidKeyException,
+	public abstract void verify(PublicKey key) throws CertificateException,
+			NoSuchAlgorithmException, InvalidKeyException,
 			NoSuchProviderException, SignatureException;
 
 	/**
@@ -150,23 +131,23 @@ public abstract class Certificate {
 	 * verification engine supplied by the specified provider.
 	 *
 	 * @param key
-	 *            the PublicKey used to carry out the verification.
+	 *                    the PublicKey used to carry out the verification.
 	 * @param sigProvider
-	 *            the name of the signature provider.
+	 *                    the name of the signature provider.
 	 * @exception NoSuchAlgorithmException
-	 *                on unsupported signature algorithms.
+	 *                                     on unsupported signature algorithms.
 	 * @exception InvalidKeyException
-	 *                on incorrect key.
+	 *                                     on incorrect key.
 	 * @exception NoSuchProviderException
-	 *                on incorrect provider.
+	 *                                     on incorrect provider.
 	 * @exception SignatureException
-	 *                on signature errors.
+	 *                                     on signature errors.
 	 * @exception CertificateException
-	 *                on encoding errors.
+	 *                                     on encoding errors.
 	 */
 	public abstract void verify(PublicKey key, String sigProvider)
-			throws CertificateException, NoSuchAlgorithmException, InvalidKeyException,
-			NoSuchProviderException, SignatureException;
+			throws CertificateException, NoSuchAlgorithmException,
+			InvalidKeyException, NoSuchProviderException, SignatureException;
 
 	/**
 	 * Returns a string representation of this certificate.

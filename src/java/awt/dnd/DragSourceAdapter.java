@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd;
@@ -54,7 +34,8 @@ package java.awt.dnd;
  * @author David Mendenhall
  * @since 1.4
  */
-public abstract class DragSourceAdapter implements DragSourceListener, DragSourceMotionListener {
+public abstract class DragSourceAdapter implements DragSourceListener,
+		DragSourceMotionListener {
 
 	/**
 	 * Called as the cursor's hotspot enters a platform-dependent drop site.
@@ -67,10 +48,9 @@ public abstract class DragSourceAdapter implements DragSourceListener, DragSourc
 	 * </UL>
 	 *
 	 * @param dsde
-	 *            the <code>DragSourceDragEvent</code>
+	 *             the <code>DragSourceDragEvent</code>
 	 */
-	public void dragEnter(DragSourceDragEvent dsde) {
-	}
+	public void dragEnter(DragSourceDragEvent dsde) {}
 
 	/**
 	 * Called as the cursor's hotspot moves over a platform-dependent drop site.
@@ -84,19 +64,17 @@ public abstract class DragSourceAdapter implements DragSourceListener, DragSourc
 	 * </UL>
 	 *
 	 * @param dsde
-	 *            the <code>DragSourceDragEvent</code>
+	 *             the <code>DragSourceDragEvent</code>
 	 */
-	public void dragOver(DragSourceDragEvent dsde) {
-	}
+	public void dragOver(DragSourceDragEvent dsde) {}
 
 	/**
 	 * Called whenever the mouse is moved during a drag operation.
 	 *
 	 * @param dsde
-	 *            the <code>DragSourceDragEvent</code>
+	 *             the <code>DragSourceDragEvent</code>
 	 */
-	public void dragMouseMoved(DragSourceDragEvent dsde) {
-	}
+	public void dragMouseMoved(DragSourceDragEvent dsde) {}
 
 	/**
 	 * Called when the user has modified the drop gesture. This method is
@@ -105,10 +83,9 @@ public abstract class DragSourceAdapter implements DragSourceListener, DragSourc
 	 * keyboard modifiers that the user is interacting with.
 	 *
 	 * @param dsde
-	 *            the <code>DragSourceDragEvent</code>
+	 *             the <code>DragSourceDragEvent</code>
 	 */
-	public void dropActionChanged(DragSourceDragEvent dsde) {
-	}
+	public void dropActionChanged(DragSourceDragEvent dsde) {}
 
 	/**
 	 * Called as the cursor's hotspot exits a platform-dependent drop site. This
@@ -131,8 +108,7 @@ public abstract class DragSourceAdapter implements DragSourceListener, DragSourc
 	 * @param dse
 	 *            the <code>DragSourceEvent</code>
 	 */
-	public void dragExit(DragSourceEvent dse) {
-	}
+	public void dragExit(DragSourceEvent dse) {}
 
 	/**
 	 * This method is invoked to signify that the Drag and Drop operation is
@@ -144,8 +120,7 @@ public abstract class DragSourceAdapter implements DragSourceListener, DragSourc
 	 * resources become invalid.
 	 *
 	 * @param dsde
-	 *            the <code>DragSourceDropEvent</code>
+	 *             the <code>DragSourceDropEvent</code>
 	 */
-	public void dragDropEnd(DragSourceDropEvent dsde) {
-	}
+	public void dragDropEnd(DragSourceDropEvent dsde) {}
 }

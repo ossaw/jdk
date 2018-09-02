@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -86,7 +66,8 @@ public class MetalComboBoxEditor extends BasicComboBoxEditor {
 	protected static Insets editorBorderInsets = new Insets(2, 2, 2, 0);
 
 	class EditorBorder extends AbstractBorder {
-		public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
+		public void paintBorder(Component c, Graphics g, int x, int y, int w,
+				int h) {
 			g.translate(x, y);
 
 			if (MetalLookAndFeel.usingOcean()) {
@@ -129,7 +110,6 @@ public class MetalComboBoxEditor extends BasicComboBoxEditor {
 	 * all JavaBeans&trade; has been added to the <code>java.beans</code>
 	 * package. Please see {@link java.beans.XMLEncoder}.
 	 */
-	public static class UIResource extends MetalComboBoxEditor
-			implements javax.swing.plaf.UIResource {
-	}
+	public static class UIResource extends MetalComboBoxEditor implements
+			javax.swing.plaf.UIResource {}
 }

@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.generic;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.generic;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -68,8 +60,8 @@ import com.sun.org.apache.bcel.internal.util.ByteSequence;
  * @see TABLESWITCH
  * @see InstructionList
  */
-public abstract class Select extends BranchInstruction
-		implements VariableLengthInstruction, StackProducer {
+public abstract class Select extends BranchInstruction implements
+		VariableLengthInstruction, StackProducer {
 	protected int[] match; // matches, i.e., case 1: ...
 	protected int[] indices; // target offsets
 	protected InstructionHandle[] targets; // target objects in instruction list
@@ -81,21 +73,21 @@ public abstract class Select extends BranchInstruction
 	 * Empty constructor needed for the Class.newInstance() statement in
 	 * Instruction.readInstruction(). Not to be used otherwise.
 	 */
-	Select() {
-	}
+	Select() {}
 
 	/**
 	 * (Match, target) pairs for switch. `Match' and `targets' must have the
 	 * same length of course.
 	 *
 	 * @param match
-	 *            array of matching values
+	 *                array of matching values
 	 * @param targets
-	 *            instruction targets
+	 *                instruction targets
 	 * @param target
-	 *            default instruction target
+	 *                default instruction target
 	 */
-	Select(short opcode, int[] match, InstructionHandle[] targets, InstructionHandle target) {
+	Select(short opcode, int[] match, InstructionHandle[] targets,
+			InstructionHandle target) {
 		super(opcode, target);
 
 		this.targets = targets;
@@ -106,7 +98,8 @@ public abstract class Select extends BranchInstruction
 		this.match = match;
 
 		if ((match_length = match.length) != targets.length)
-			throw new ClassGenException("Match and target array have not the same length");
+			throw new ClassGenException(
+					"Match and target array have not the same length");
 
 		indices = new int[match_length];
 	}
@@ -122,10 +115,11 @@ public abstract class Select extends BranchInstruction
 	 * function.
 	 *
 	 * @param offset
-	 *            additional offset caused by preceding (variable length)
-	 *            instructions
+	 *                   additional offset caused by preceding (variable length)
+	 *                   instructions
 	 * @param max_offset
-	 *            the maximum offset that may be caused by these instructions
+	 *                   the maximum offset that may be caused by these
+	 *                   instructions
 	 * @return additional offset caused by possible change of this instruction's
 	 *         length
 	 */
@@ -166,7 +160,8 @@ public abstract class Select extends BranchInstruction
 	 * Read needed data (e.g. index) from file.
 	 */
 	@Override
-	protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
+	protected void initFromFile(ByteSequence bytes, boolean wide)
+			throws IOException {
 		padding = (4 - (bytes.getIndex() % 4)) % 4; // Compute number of pad
 													// bytes
 
@@ -193,8 +188,8 @@ public abstract class Select extends BranchInstruction
 				if (targets[i] != null)
 					s = targets[i].getInstruction().toString();
 
-				buf.append("(").append(match[i]).append(", ").append(s).append(" = {")
-						.append(indices[i]).append("})");
+				buf.append("(").append(match[i]).append(", ").append(s).append(
+						" = {").append(indices[i]).append("})");
 			}
 		} else
 			buf.append(" ...");
@@ -213,12 +208,13 @@ public abstract class Select extends BranchInstruction
 
 	/**
 	 * @param old_ih
-	 *            old target
+	 *               old target
 	 * @param new_ih
-	 *            new target
+	 *               new target
 	 */
 	@Override
-	public void updateTarget(InstructionHandle old_ih, InstructionHandle new_ih) {
+	public void updateTarget(InstructionHandle old_ih,
+			InstructionHandle new_ih) {
 		boolean targeted = false;
 
 		if (target == old_ih) {

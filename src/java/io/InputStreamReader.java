@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -67,7 +47,7 @@ public class InputStreamReader extends Reader {
 	 * Creates an InputStreamReader that uses the default charset.
 	 *
 	 * @param in
-	 *            An InputStream
+	 *           An InputStream
 	 */
 	public InputStreamReader(InputStream in) {
 		super(in);
@@ -86,14 +66,16 @@ public class InputStreamReader extends Reader {
 	 * Creates an InputStreamReader that uses the named charset.
 	 *
 	 * @param in
-	 *            An InputStream
+	 *                    An InputStream
 	 *
 	 * @param charsetName
-	 *            The name of a supported {@link java.nio.charset.Charset
-	 *            charset}
+	 *                    The name of a supported
+	 *                    {@link java.nio.charset.Charset
+	 *                    charset}
 	 *
 	 * @exception UnsupportedEncodingException
-	 *                If the named charset is not supported
+	 *                                         If the named charset is not
+	 *                                         supported
 	 */
 	public InputStreamReader(InputStream in, String charsetName)
 			throws UnsupportedEncodingException {
@@ -107,9 +89,9 @@ public class InputStreamReader extends Reader {
 	 * Creates an InputStreamReader that uses the given charset.
 	 *
 	 * @param in
-	 *            An InputStream
+	 *           An InputStream
 	 * @param cs
-	 *            A charset
+	 *           A charset
 	 *
 	 * @since 1.4
 	 * @spec JSR-51
@@ -173,7 +155,7 @@ public class InputStreamReader extends Reader {
 	 *         reached
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public int read() throws IOException {
 		return sd.read();
@@ -183,17 +165,17 @@ public class InputStreamReader extends Reader {
 	 * Reads characters into a portion of an array.
 	 *
 	 * @param cbuf
-	 *            Destination buffer
+	 *               Destination buffer
 	 * @param offset
-	 *            Offset at which to start storing characters
+	 *               Offset at which to start storing characters
 	 * @param length
-	 *            Maximum number of characters to read
+	 *               Maximum number of characters to read
 	 *
 	 * @return The number of characters read, or -1 if the end of the stream has
 	 *         been reached
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public int read(char cbuf[], int offset, int length) throws IOException {
 		return sd.read(cbuf, offset, length);
@@ -205,7 +187,7 @@ public class InputStreamReader extends Reader {
 	 * read from the underlying byte stream.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public boolean ready() throws IOException {
 		return sd.ready();

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001,2002,2004,2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,10 +38,14 @@ public class DecimalDV extends TypeValidator {
 
 	@Override
 	public final short getAllowedFacets() {
-		return (XSSimpleTypeDecl.FACET_PATTERN | XSSimpleTypeDecl.FACET_WHITESPACE
-				| XSSimpleTypeDecl.FACET_ENUMERATION | XSSimpleTypeDecl.FACET_MAXINCLUSIVE
-				| XSSimpleTypeDecl.FACET_MININCLUSIVE | XSSimpleTypeDecl.FACET_MAXEXCLUSIVE
-				| XSSimpleTypeDecl.FACET_MINEXCLUSIVE | XSSimpleTypeDecl.FACET_TOTALDIGITS
+		return (XSSimpleTypeDecl.FACET_PATTERN
+				| XSSimpleTypeDecl.FACET_WHITESPACE
+				| XSSimpleTypeDecl.FACET_ENUMERATION
+				| XSSimpleTypeDecl.FACET_MAXINCLUSIVE
+				| XSSimpleTypeDecl.FACET_MININCLUSIVE
+				| XSSimpleTypeDecl.FACET_MAXEXCLUSIVE
+				| XSSimpleTypeDecl.FACET_MINEXCLUSIVE
+				| XSSimpleTypeDecl.FACET_TOTALDIGITS
 				| XSSimpleTypeDecl.FACET_FRACTIONDIGITS);
 	}
 
@@ -123,13 +124,14 @@ public class DecimalDV extends TypeValidator {
 
 			// skip leading zeroes in integer part
 			int actualIntStart = intStart;
-			while (actualIntStart < len && content.charAt(actualIntStart) == '0') {
+			while (actualIntStart < len && content.charAt(
+					actualIntStart) == '0') {
 				actualIntStart++;
 			}
 
 			// Find the ending position of the integer part
-			for (intEnd = actualIntStart; intEnd < len
-					&& TypeValidator.isDigit(content.charAt(intEnd)); intEnd++)
+			for (intEnd = actualIntStart; intEnd < len && TypeValidator.isDigit(
+					content.charAt(intEnd)); intEnd++)
 				;
 
 			// Not reached the end yet
@@ -198,13 +200,14 @@ public class DecimalDV extends TypeValidator {
 
 			// skip leading zeroes in integer part
 			int actualIntStart = intStart;
-			while (actualIntStart < len && content.charAt(actualIntStart) == '0') {
+			while (actualIntStart < len && content.charAt(
+					actualIntStart) == '0') {
 				actualIntStart++;
 			}
 
 			// Find the ending position of the integer part
-			for (intEnd = actualIntStart; intEnd < len
-					&& TypeValidator.isDigit(content.charAt(intEnd)); intEnd++)
+			for (intEnd = actualIntStart; intEnd < len && TypeValidator.isDigit(
+					content.charAt(intEnd)); intEnd++)
 				;
 
 			// Not reached the end yet, error

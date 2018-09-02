@@ -1,25 +1,5 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
@@ -50,9 +30,10 @@ public interface XMLEventReader extends Iterator {
 	 * 
 	 * @see XMLEvent
 	 * @throws XMLStreamException
-	 *             if there is an error with the underlying XML.
+	 *                                if there is an error with the underlying
+	 *                                XML.
 	 * @throws NoSuchElementException
-	 *             iteration has no more elements.
+	 *                                iteration has no more elements.
 	 */
 	public XMLEvent nextEvent() throws XMLStreamException;
 
@@ -80,8 +61,9 @@ public interface XMLEventReader extends Iterator {
 	 * END_ELEMENT.
 	 * 
 	 * @throws XMLStreamException
-	 *             if the current event is not a START_ELEMENT or if a non text
-	 *             element is encountered
+	 *                            if the current event is not a START_ELEMENT or
+	 *                            if a non text
+	 *                            element is encountered
 	 */
 	public String getElementText() throws XMLStreamException;
 
@@ -93,7 +75,8 @@ public interface XMLEventReader extends Iterator {
 	 * ignorable whitespace if the DTD is missing or not interpreted.
 	 * 
 	 * @throws XMLStreamException
-	 *             if anything other than space characters are encountered
+	 *                            if anything other than space characters are
+	 *                            encountered
 	 */
 	public XMLEvent nextTag() throws XMLStreamException;
 
@@ -101,19 +84,21 @@ public interface XMLEventReader extends Iterator {
 	 * Get the value of a feature/property from the underlying implementation
 	 * 
 	 * @param name
-	 *            The name of the property
+	 *             The name of the property
 	 * @return The value of the property
 	 * @throws IllegalArgumentException
-	 *             if the property is not supported
+	 *                                  if the property is not supported
 	 */
-	public Object getProperty(java.lang.String name) throws java.lang.IllegalArgumentException;
+	public Object getProperty(java.lang.String name)
+			throws java.lang.IllegalArgumentException;
 
 	/**
 	 * Frees any resources associated with this Reader. This method does not
 	 * close the underlying input source.
 	 * 
 	 * @throws XMLStreamException
-	 *             if there are errors freeing associated resources
+	 *                            if there are errors freeing associated
+	 *                            resources
 	 */
 	public void close() throws XMLStreamException;
 }

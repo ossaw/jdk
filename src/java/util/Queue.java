@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -140,7 +115,7 @@ package java.util;
  * @since 1.5
  * @author Doug Lea
  * @param <E>
- *            the type of elements held in this collection
+ *        the type of elements held in this collection
  */
 public interface Queue<E> extends Collection<E> {
 	/**
@@ -150,20 +125,24 @@ public interface Queue<E> extends Collection<E> {
 	 * if no space is currently available.
 	 *
 	 * @param e
-	 *            the element to add
+	 *          the element to add
 	 * @return {@code true} (as specified by {@link Collection#add})
 	 * @throws IllegalStateException
-	 *             if the element cannot be added at this time due to capacity
-	 *             restrictions
+	 *                                  if the element cannot be added at this
+	 *                                  time due to capacity
+	 *                                  restrictions
 	 * @throws ClassCastException
-	 *             if the class of the specified element prevents it from being
-	 *             added to this queue
+	 *                                  if the class of the specified element
+	 *                                  prevents it from being
+	 *                                  added to this queue
 	 * @throws NullPointerException
-	 *             if the specified element is null and this queue does not
-	 *             permit null elements
+	 *                                  if the specified element is null and
+	 *                                  this queue does not
+	 *                                  permit null elements
 	 * @throws IllegalArgumentException
-	 *             if some property of this element prevents it from being added
-	 *             to this queue
+	 *                                  if some property of this element
+	 *                                  prevents it from being added
+	 *                                  to this queue
 	 */
 	boolean add(E e);
 
@@ -175,18 +154,21 @@ public interface Queue<E> extends Collection<E> {
 	 * exception.
 	 *
 	 * @param e
-	 *            the element to add
+	 *          the element to add
 	 * @return {@code true} if the element was added to this queue, else
 	 *         {@code false}
 	 * @throws ClassCastException
-	 *             if the class of the specified element prevents it from being
-	 *             added to this queue
+	 *                                  if the class of the specified element
+	 *                                  prevents it from being
+	 *                                  added to this queue
 	 * @throws NullPointerException
-	 *             if the specified element is null and this queue does not
-	 *             permit null elements
+	 *                                  if the specified element is null and
+	 *                                  this queue does not
+	 *                                  permit null elements
 	 * @throws IllegalArgumentException
-	 *             if some property of this element prevents it from being added
-	 *             to this queue
+	 *                                  if some property of this element
+	 *                                  prevents it from being added
+	 *                                  to this queue
 	 */
 	boolean offer(E e);
 
@@ -197,7 +179,7 @@ public interface Queue<E> extends Collection<E> {
 	 *
 	 * @return the head of this queue
 	 * @throws NoSuchElementException
-	 *             if this queue is empty
+	 *                                if this queue is empty
 	 */
 	E remove();
 
@@ -216,7 +198,7 @@ public interface Queue<E> extends Collection<E> {
 	 *
 	 * @return the head of this queue
 	 * @throws NoSuchElementException
-	 *             if this queue is empty
+	 *                                if this queue is empty
 	 */
 	E element();
 

@@ -74,7 +74,7 @@ public abstract class ResourceResolverSpi {
 	 * This is the workhorse method used to resolve resources.
 	 * 
 	 * @param context
-	 *            Context to use to resolve resources.
+	 *                Context to use to resolve resources.
 	 *
 	 * @return the resource wrapped around a XMLSignatureInput
 	 *
@@ -163,7 +163,7 @@ public abstract class ResourceResolverSpi {
 	 * </p>
 	 * 
 	 * @param context
-	 *            Context in which to do resolution.
+	 *                Context in which to do resolution.
 	 * @return true if the engine can resolve the uri
 	 */
 	public boolean engineCanResolveURI(ResourceResolverContext context) {
@@ -222,11 +222,12 @@ public abstract class ResourceResolverSpi {
 			char ch1 = str.charAt(1);
 			char ch2 = str.charAt(2);
 			char ch3 = str.charAt(3);
-			boolean isDosFilename = ((('A' <= ch0) && (ch0 <= 'Z')) && (ch1 == ':') && (ch2 == '/')
-					&& (ch3 != '/'));
+			boolean isDosFilename = ((('A' <= ch0) && (ch0 <= 'Z'))
+					&& (ch1 == ':') && (ch2 == '/') && (ch3 != '/'));
 
 			if (isDosFilename && log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE, "Found DOS filename: " + str);
+				log.log(java.util.logging.Level.FINE, "Found DOS filename: "
+						+ str);
 			}
 		}
 

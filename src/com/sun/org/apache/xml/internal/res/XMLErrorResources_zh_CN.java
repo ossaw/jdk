@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,39 +30,30 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Xalan Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 */
 
 	/**
@@ -183,22 +171,28 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 			 */
 			{ "ER0000", "{0}" },
 
-			{ ER_FUNCTION_NOT_SUPPORTED, "\u4E0D\u652F\u6301\u8BE5\u51FD\u6570!" },
+			{ ER_FUNCTION_NOT_SUPPORTED,
+					"\u4E0D\u652F\u6301\u8BE5\u51FD\u6570!" },
 
-			{ ER_CANNOT_OVERWRITE_CAUSE, "\u65E0\u6CD5\u8986\u76D6\u539F\u56E0" },
+			{ ER_CANNOT_OVERWRITE_CAUSE,
+					"\u65E0\u6CD5\u8986\u76D6\u539F\u56E0" },
 
-			{ ER_NO_DEFAULT_IMPL, "\u627E\u4E0D\u5230\u9ED8\u8BA4\u5B9E\u73B0 " },
+			{ ER_NO_DEFAULT_IMPL,
+					"\u627E\u4E0D\u5230\u9ED8\u8BA4\u5B9E\u73B0 " },
 
 			{ ER_CHUNKEDINTARRAY_NOT_SUPPORTED,
 					"\u5F53\u524D\u4E0D\u652F\u6301 ChunkedIntArray({0})" },
 
-			{ ER_OFFSET_BIGGER_THAN_SLOT, "\u504F\u79FB\u91CF\u5927\u4E8E\u63D2\u69FD" },
+			{ ER_OFFSET_BIGGER_THAN_SLOT,
+					"\u504F\u79FB\u91CF\u5927\u4E8E\u63D2\u69FD" },
 
 			{ ER_COROUTINE_NOT_AVAIL, "Coroutine \u4E0D\u53EF\u7528, id={0}" },
 
-			{ ER_COROUTINE_CO_EXIT, "CoroutineManager \u6536\u5230 co_exit() \u8BF7\u6C42" },
+			{ ER_COROUTINE_CO_EXIT,
+					"CoroutineManager \u6536\u5230 co_exit() \u8BF7\u6C42" },
 
-			{ ER_COJOINROUTINESET_FAILED, "co_joinCoroutineSet() \u5931\u8D25" },
+			{ ER_COJOINROUTINESET_FAILED,
+					"co_joinCoroutineSet() \u5931\u8D25" },
 
 			{ ER_COROUTINE_PARAM, "Coroutine \u53C2\u6570\u9519\u8BEF ({0})" },
 
@@ -214,13 +208,17 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 			{ ER_ITERATOR_AXIS_NOT_IMPLEMENTED,
 					"\u9519\u8BEF: \u672A\u5B9E\u73B0\u8F74{0}\u7684\u8FED\u4EE3\u5668 " },
 
-			{ ER_ITERATOR_CLONE_NOT_SUPPORTED, "\u4E0D\u652F\u6301\u514B\u9686\u8FED\u4EE3\u5668" },
+			{ ER_ITERATOR_CLONE_NOT_SUPPORTED,
+					"\u4E0D\u652F\u6301\u514B\u9686\u8FED\u4EE3\u5668" },
 
-			{ ER_UNKNOWN_AXIS_TYPE, "\u8F74\u904D\u5386\u7C7B\u578B\u672A\u77E5: {0}" },
+			{ ER_UNKNOWN_AXIS_TYPE,
+					"\u8F74\u904D\u5386\u7C7B\u578B\u672A\u77E5: {0}" },
 
-			{ ER_AXIS_NOT_SUPPORTED, "\u4E0D\u652F\u6301\u8F74\u904D\u5386\u7A0B\u5E8F: {0}" },
+			{ ER_AXIS_NOT_SUPPORTED,
+					"\u4E0D\u652F\u6301\u8F74\u904D\u5386\u7A0B\u5E8F: {0}" },
 
-			{ ER_NO_DTMIDS_AVAIL, "\u65E0\u6CD5\u4F7F\u7528\u66F4\u591A DTM ID" },
+			{ ER_NO_DTMIDS_AVAIL,
+					"\u65E0\u6CD5\u4F7F\u7528\u66F4\u591A DTM ID" },
 
 			{ ER_NOT_SUPPORTED, "\u4E0D\u652F\u6301: {0}" },
 
@@ -233,7 +231,8 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 			{ ER_STARTPARSE_WHILE_PARSING,
 					"\u65E0\u6CD5\u5728\u89E3\u6790\u65F6\u8C03\u7528 startParse" },
 
-			{ ER_STARTPARSE_NEEDS_SAXPARSER, "startParse \u9700\u8981\u975E\u7A7A SAXParser" },
+			{ ER_STARTPARSE_NEEDS_SAXPARSER,
+					"startParse \u9700\u8981\u975E\u7A7A SAXParser" },
 
 			{ ER_COULD_NOT_INIT_PARSER,
 					"\u65E0\u6CD5\u4F7F\u7528\u4EE5\u4E0B\u5BF9\u8C61\u521D\u59CB\u5316\u89E3\u6790\u5668" },
@@ -246,16 +245,20 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 
 			{ ER_SCHEME_REQUIRED, "\u65B9\u6848\u662F\u5FC5\u9700\u7684!" },
 
-			{ ER_NO_SCHEME_IN_URI, "\u5728 URI \u4E2D\u627E\u4E0D\u5230\u65B9\u6848: {0}" },
+			{ ER_NO_SCHEME_IN_URI,
+					"\u5728 URI \u4E2D\u627E\u4E0D\u5230\u65B9\u6848: {0}" },
 
-			{ ER_NO_SCHEME_INURI, "\u5728 URI \u4E2D\u627E\u4E0D\u5230\u65B9\u6848" },
+			{ ER_NO_SCHEME_INURI,
+					"\u5728 URI \u4E2D\u627E\u4E0D\u5230\u65B9\u6848" },
 
-			{ ER_PATH_INVALID_CHAR, "\u8DEF\u5F84\u5305\u542B\u65E0\u6548\u7684\u5B57\u7B26: {0}" },
+			{ ER_PATH_INVALID_CHAR,
+					"\u8DEF\u5F84\u5305\u542B\u65E0\u6548\u7684\u5B57\u7B26: {0}" },
 
 			{ ER_SCHEME_FROM_NULL_STRING,
 					"\u65E0\u6CD5\u4ECE\u7A7A\u5B57\u7B26\u4E32\u8BBE\u7F6E\u65B9\u6848" },
 
-			{ ER_SCHEME_NOT_CONFORMANT, "\u65B9\u6848\u4E0D\u4E00\u81F4\u3002" },
+			{ ER_SCHEME_NOT_CONFORMANT,
+					"\u65B9\u6848\u4E0D\u4E00\u81F4\u3002" },
 
 			{ ER_HOST_ADDRESS_NOT_WELLFORMED,
 					"\u4E3B\u673A\u4E0D\u662F\u683C\u5F0F\u826F\u597D\u7684\u5730\u5740" },
@@ -271,14 +274,16 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 			{ ER_FRAG_WHEN_PATH_NULL,
 					"\u8DEF\u5F84\u4E3A\u7A7A\u65F6, \u65E0\u6CD5\u8BBE\u7F6E\u7247\u6BB5" },
 
-			{ ER_FRAG_INVALID_CHAR, "\u7247\u6BB5\u5305\u542B\u65E0\u6548\u7684\u5B57\u7B26" },
+			{ ER_FRAG_INVALID_CHAR,
+					"\u7247\u6BB5\u5305\u542B\u65E0\u6548\u7684\u5B57\u7B26" },
 
 			{ ER_PARSER_IN_USE, "\u89E3\u6790\u5668\u5DF2\u5728\u4F7F\u7528" },
 
 			{ ER_CANNOT_CHANGE_WHILE_PARSING,
 					"\u65E0\u6CD5\u5728\u89E3\u6790\u65F6\u66F4\u6539{0} {1}" },
 
-			{ ER_SELF_CAUSATION_NOT_PERMITTED, "\u4E0D\u5141\u8BB8\u4F7F\u7528\u81EA\u56E0" },
+			{ ER_SELF_CAUSATION_NOT_PERMITTED,
+					"\u4E0D\u5141\u8BB8\u4F7F\u7528\u81EA\u56E0" },
 
 			{ ER_NO_USERINFO_IF_NO_HOST,
 					"\u5982\u679C\u6CA1\u6709\u6307\u5B9A\u4E3B\u673A, \u5219\u4E0D\u53EF\u4EE5\u6307\u5B9A Userinfo" },
@@ -295,7 +300,8 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 			{ ER_CANNOT_INIT_URI_EMPTY_PARMS,
 					"\u65E0\u6CD5\u4EE5\u7A7A\u53C2\u6570\u521D\u59CB\u5316 URI" },
 
-			{ ER_METHOD_NOT_SUPPORTED, "\u5C1A\u4E0D\u652F\u6301\u8BE5\u65B9\u6CD5 " },
+			{ ER_METHOD_NOT_SUPPORTED,
+					"\u5C1A\u4E0D\u652F\u6301\u8BE5\u65B9\u6CD5 " },
 
 			{ ER_INCRSAXSRCFILTER_NOT_RESTARTABLE,
 					"\u5F53\u524D\u65E0\u6CD5\u91CD\u65B0\u542F\u52A8 IncrementalSAXSource_Filter" },
@@ -311,7 +317,8 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 
 			{ ER_SYSTEMID_UNKNOWN, "SystemId \u672A\u77E5" },
 
-			{ ER_LOCATION_UNKNOWN, "\u9519\u8BEF\u6240\u5728\u7684\u4F4D\u7F6E\u672A\u77E5" },
+			{ ER_LOCATION_UNKNOWN,
+					"\u9519\u8BEF\u6240\u5728\u7684\u4F4D\u7F6E\u672A\u77E5" },
 
 			{ ER_PREFIX_MUST_RESOLVE,
 					"\u524D\u7F00\u5FC5\u987B\u89E3\u6790\u4E3A\u540D\u79F0\u7A7A\u95F4: {0}" },
@@ -328,9 +335,11 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 			{ ER_CANT_OUTPUT_TEXT_BEFORE_DOC,
 					"\u8B66\u544A: \u65E0\u6CD5\u8F93\u51FA\u6587\u6863\u5143\u7D20\u4E4B\u524D\u7684\u6587\u672C! \u5C06\u5FFD\u7565..." },
 
-			{ ER_CANT_HAVE_MORE_THAN_ONE_ROOT, "DOM \u4E0A\u4E0D\u80FD\u6709\u591A\u4E2A\u6839!" },
+			{ ER_CANT_HAVE_MORE_THAN_ONE_ROOT,
+					"DOM \u4E0A\u4E0D\u80FD\u6709\u591A\u4E2A\u6839!" },
 
-			{ ER_ARG_LOCALNAME_NULL, "\u53C2\u6570 'localName' \u4E3A\u7A7A\u503C" },
+			{ ER_ARG_LOCALNAME_NULL,
+					"\u53C2\u6570 'localName' \u4E3A\u7A7A\u503C" },
 
 			// Note to translators: A QNAME has the syntactic form
 			// [NCName:]NCName
@@ -351,7 +360,8 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 			{ ER_NAME_CANT_START_WITH_COLON,
 					"\u540D\u79F0\u4E0D\u80FD\u4EE5\u5192\u53F7\u5F00\u5934" },
 
-			{ "BAD_CODE", "createMessage \u7684\u53C2\u6570\u8D85\u51FA\u8303\u56F4" },
+			{ "BAD_CODE",
+					"createMessage \u7684\u53C2\u6570\u8D85\u51FA\u8303\u56F4" },
 			{ "FORMAT_FAILED",
 					"\u8C03\u7528 messageFormat \u65F6\u629B\u51FA\u5F02\u5E38\u9519\u8BEF" },
 			{ "line", "\u884C\u53F7" }, { "column", "\u5217\u53F7" },
@@ -359,12 +369,14 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 			{ ER_SERIALIZER_NOT_CONTENTHANDLER,
 					"\u4E32\u884C\u5668\u7C7B ''{0}'' \u4E0D\u5B9E\u73B0 org.xml.sax.ContentHandler\u3002" },
 
-			{ ER_RESOURCE_COULD_NOT_FIND, "\u627E\u4E0D\u5230\u8D44\u6E90 [ {0} ]\u3002\n {1}" },
+			{ ER_RESOURCE_COULD_NOT_FIND,
+					"\u627E\u4E0D\u5230\u8D44\u6E90 [ {0} ]\u3002\n {1}" },
 
 			{ ER_RESOURCE_COULD_NOT_LOAD,
 					"\u8D44\u6E90 [ {0} ] \u65E0\u6CD5\u52A0\u8F7D: {1} \n {2} \t {3}" },
 
-			{ ER_BUFFER_SIZE_LESSTHAN_ZERO, "\u7F13\u51B2\u533A\u5927\u5C0F <=0" },
+			{ ER_BUFFER_SIZE_LESSTHAN_ZERO,
+					"\u7F13\u51B2\u533A\u5927\u5C0F <=0" },
 
 			{ ER_INVALID_UTF16_SURROGATE,
 					"\u68C0\u6D4B\u5230\u65E0\u6548\u7684 UTF-16 \u4EE3\u7406: {0}?" },
@@ -387,7 +399,8 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 			 * attribute in a place other than on an element. The substitution
 			 * text specifies the name of the attribute.
 			 */
-			{ ER_STRAY_ATTRIBUTE, "\u5C5E\u6027 ''{0}'' \u5728\u5143\u7D20\u5916\u90E8\u3002" },
+			{ ER_STRAY_ATTRIBUTE,
+					"\u5C5E\u6027 ''{0}'' \u5728\u5143\u7D20\u5916\u90E8\u3002" },
 
 			/*
 			 * Note to translators: As with the preceding message, a namespace

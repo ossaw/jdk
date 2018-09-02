@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,39 +33,30 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Xalan Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 */
 
 	/*
@@ -355,7 +343,8 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				{ ER_NULL_SOURCENODE_APPLYIMPORTS,
 						"sourceNode\u306Fxsl:apply-imports\u5185\u3067null\u3067\u3059\u3002" },
 
-				{ ER_CANNOT_ADD, "{0}\u3092{1}\u306B\u8FFD\u52A0\u3067\u304D\u307E\u305B\u3093" },
+				{ ER_CANNOT_ADD,
+						"{0}\u3092{1}\u306B\u8FFD\u52A0\u3067\u304D\u307E\u305B\u3093" },
 
 				{ ER_NULL_SOURCENODE_HANDLEAPPLYTEMPLATES,
 						"sourceNode\u306FhandleApplyTemplatesInstruction\u5185\u3067null\u3067\u3059\u3002" },
@@ -369,7 +358,8 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				{ ER_CANT_RESOLVE_NAME_AVT,
 						"xsl:call-template\u306E\u540D\u524DAVT\u3092\u89E3\u6C7A\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002" },
 
-				{ ER_REQUIRES_ATTRIB, "{0}\u306F\u5C5E\u6027{1}\u304C\u5FC5\u8981\u3067\u3059" },
+				{ ER_REQUIRES_ATTRIB,
+						"{0}\u306F\u5C5E\u6027{1}\u304C\u5FC5\u8981\u3067\u3059" },
 
 				{ ER_MUST_HAVE_TEST_ATTRIB,
 						"{0}\u306F''test''\u5C5E\u6027\u3092\u6301\u3064\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002" },
@@ -392,12 +382,14 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				{ ER_CANT_RESOLVE_NSPREFIX,
 						"\u30CD\u30FC\u30E0\u30B9\u30DA\u30FC\u30B9\u306E\u63A5\u982D\u8F9E\u3092\u89E3\u6C7A\u3067\u304D\u307E\u305B\u3093: {0}" },
 
-				{ ER_ILLEGAL_VALUE, "xml:space\u306E\u5024\u304C\u4E0D\u6B63\u3067\u3059: {0}" },
+				{ ER_ILLEGAL_VALUE,
+						"xml:space\u306E\u5024\u304C\u4E0D\u6B63\u3067\u3059: {0}" },
 
 				{ ER_NO_OWNERDOC,
 						"\u5B50\u30CE\u30FC\u30C9\u306B\u6240\u6709\u8005\u30C9\u30AD\u30E5\u30E1\u30F3\u30C8\u304C\u3042\u308A\u307E\u305B\u3093\u3002" },
 
-				{ ER_ELEMTEMPLATEELEM_ERR, "ElemTemplateElement\u30A8\u30E9\u30FC: {0}" },
+				{ ER_ELEMTEMPLATEELEM_ERR,
+						"ElemTemplateElement\u30A8\u30E9\u30FC: {0}" },
 
 				{ ER_NULL_CHILD,
 						"null\u306E\u5B50\u3092\u8FFD\u52A0\u3057\u3088\u3046\u3068\u3057\u307E\u3057\u305F\u3002" },
@@ -471,7 +463,8 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				{ ER_CAN_ONLY_OUTPUT_TO_ELEMENT,
 						"Element\u3001DocumentFragment\u3001Document\u307E\u305F\u306FPrintWriter\u306B\u306E\u307F\u51FA\u529B\u3067\u304D\u307E\u3059\u3002" },
 
-				{ ER_PROCESS_ERROR, "StylesheetRoot.process\u30A8\u30E9\u30FC" },
+				{ ER_PROCESS_ERROR,
+						"StylesheetRoot.process\u30A8\u30E9\u30FC" },
 
 				{ ER_UNIMPLNODE_ERROR, "UnImplNode\u30A8\u30E9\u30FC: {0}" },
 
@@ -520,7 +513,8 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				{ ER_XSLFUNCTIONS_UNSUPPORTED,
 						"xsl:functions\u306F\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u3066\u3044\u307E\u305B\u3093" },
 
-				{ ER_PROCESSOR_ERROR, "XSLT TransformerFactory\u30A8\u30E9\u30FC" },
+				{ ER_PROCESSOR_ERROR,
+						"XSLT TransformerFactory\u30A8\u30E9\u30FC" },
 
 				{ ER_NOT_ALLOWED_INSIDE_STYLESHEET,
 						"(StylesheetHandler) {0}\u306F\u30B9\u30BF\u30A4\u30EB\u30B7\u30FC\u30C8\u5185\u3067\u8A31\u53EF\u3055\u308C\u307E\u305B\u3093\u3002" },
@@ -537,7 +531,8 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				{ ER_ILLEGAL_ATTRIB,
 						"(StylesheetHandler) {0}\u306B\u306F\u4E0D\u6B63\u306A\u5C5E\u6027\u304C\u3042\u308A\u307E\u3059: {1}" },
 
-				{ ER_UNKNOWN_XSL_ELEM, "\u4E0D\u660E\u306AXSL\u8981\u7D20: {0}" },
+				{ ER_UNKNOWN_XSL_ELEM,
+						"\u4E0D\u660E\u306AXSL\u8981\u7D20: {0}" },
 
 				{ ER_BAD_XSLSORT_USE,
 						"(StylesheetHandler) xsl:sort\u306F\u3001xsl:apply-templates\u307E\u305F\u306Fxsl:for-each\u3068\u3068\u3082\u306B\u306E\u307F\u4F7F\u7528\u3067\u304D\u307E\u3059\u3002" },
@@ -604,7 +599,8 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				{ ER_MISSING_ARG_FOR_OPTION,
 						"\u30AA\u30D7\u30B7\u30E7\u30F3{0}\u306E\u5F15\u6570\u304C\u3042\u308A\u307E\u305B\u3093" },
 
-				{ ER_INVALID_OPTION, "\u7121\u52B9\u306A\u30AA\u30D7\u30B7\u30E7\u30F3: {0}" },
+				{ ER_INVALID_OPTION,
+						"\u7121\u52B9\u306A\u30AA\u30D7\u30B7\u30E7\u30F3: {0}" },
 
 				{ ER_MALFORMED_FORMAT_STRING,
 						"\u4E0D\u6B63\u306A\u30D5\u30A9\u30FC\u30DE\u30C3\u30C8\u306E\u6587\u5B57\u5217\u3067\u3059: {0}" },
@@ -645,7 +641,8 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				{ ER_TOO_MANY_LISTENERS,
 						"addTraceListenersToStylesheet - TooManyListenersException" },
 
-				{ ER_IN_ELEMTEMPLATEELEM_READOBJECT, "ElemTemplateElement.readObject\u5185: {0}" },
+				{ ER_IN_ELEMTEMPLATEELEM_READOBJECT,
+						"ElemTemplateElement.readObject\u5185: {0}" },
 
 				{ ER_DUPLICATE_NAMED_TEMPLATE,
 						"\u540D\u524D{0}\u306E\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u304C\u8907\u6570\u898B\u3064\u304B\u308A\u307E\u3057\u305F" },
@@ -716,7 +713,8 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				{ ER_NO_DRIVER_NAME,
 						"\u30C9\u30E9\u30A4\u30D0\u540D\u304C\u6307\u5B9A\u3055\u308C\u3066\u3044\u307E\u305B\u3093" },
 
-				{ ER_NO_URL, "URL\u304C\u6307\u5B9A\u3055\u308C\u3066\u3044\u307E\u305B\u3093" },
+				{ ER_NO_URL,
+						"URL\u304C\u6307\u5B9A\u3055\u308C\u3066\u3044\u307E\u305B\u3093" },
 
 				{ ER_POOL_SIZE_LESSTHAN_ONE,
 						"\u30D7\u30FC\u30EB\u30FB\u30B5\u30A4\u30BA\u304C1\u3088\u308A\u5C0F\u3055\u3044\u3067\u3059\u3002" },
@@ -761,7 +759,8 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				{ ER_CANNOT_INIT_DEFAULT_TEMPLATES,
 						"\u30C7\u30D5\u30A9\u30EB\u30C8\u30FB\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u3092\u521D\u671F\u5316\u3067\u304D\u307E\u305B\u3093" },
 
-				{ ER_RESULT_NULL, "\u7D50\u679C\u306Fnull\u306B\u3067\u304D\u307E\u305B\u3093" },
+				{ ER_RESULT_NULL,
+						"\u7D50\u679C\u306Fnull\u306B\u3067\u304D\u307E\u305B\u3093" },
 
 				{ ER_RESULT_COULD_NOT_BE_SET,
 						"\u7D50\u679C\u3092\u8A2D\u5B9A\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F" },
@@ -1147,7 +1146,8 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				{ WG_PARSING_AND_PREPARING,
 						"========= {0}\u306E\u89E3\u6790\u304A\u3088\u3073\u6E96\u5099\u4E2D ==========" },
 
-				{ WG_ATTR_TEMPLATE, "\u5C5E\u6027\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u3001{0}" },
+				{ WG_ATTR_TEMPLATE,
+						"\u5C5E\u6027\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u3001{0}" },
 
 				{ WG_CONFLICT_BETWEEN_XSLSTRIPSPACE_AND_XSLPRESERVESPACE,
 						"xsl:strip-space\u3068xsl:preserve-space\u306E\u9593\u3067\u4E00\u81F4\u304C\u7AF6\u5408\u3057\u3066\u3044\u307E\u3059" },
@@ -1176,7 +1176,8 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				{ WG_STYLESHEET_REQUIRES_VERSION_ATTRIB,
 						"xsl:stylesheet\u306F'version'\u5C5E\u6027\u304C\u5FC5\u8981\u3067\u3059\u3002" },
 
-				{ WG_ILLEGAL_ATTRIBUTE_NAME, "\u4E0D\u6B63\u306A\u5C5E\u6027\u540D: {0}" },
+				{ WG_ILLEGAL_ATTRIBUTE_NAME,
+						"\u4E0D\u6B63\u306A\u5C5E\u6027\u540D: {0}" },
 
 				{ WG_ILLEGAL_ATTRIBUTE_VALUE,
 						"\u7121\u52B9\u306A\u5024\u304C\u5C5E\u6027{0}\u306B\u4F7F\u7528\u3055\u308C\u307E\u3057\u305F: {1}" },
@@ -1218,15 +1219,16 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				// XSLTErrorResources properties file?
 
 				// Other miscellaneous text used inside the code...
-				{ "ui_language", "ja" }, { "help_language", "ja" }, { "language", "ja" },
-				{ "BAD_CODE",
-						"createMessage\u306E\u30D1\u30E9\u30E1\u30FC\u30BF\u304C\u7BC4\u56F2\u5916\u3067\u3059" },
+				{ "ui_language", "ja" }, { "help_language", "ja" }, {
+						"language", "ja" }, { "BAD_CODE",
+								"createMessage\u306E\u30D1\u30E9\u30E1\u30FC\u30BF\u304C\u7BC4\u56F2\u5916\u3067\u3059" },
 				{ "FORMAT_FAILED",
 						"messageFormat\u306E\u547C\u51FA\u3057\u4E2D\u306B\u4F8B\u5916\u304C\u30B9\u30ED\u30FC\u3055\u308C\u307E\u3057\u305F" },
-				{ "version", ">>>>>>> Xalan\u30D0\u30FC\u30B8\u30E7\u30F3 " },
-				{ "version2", "<<<<<<<" }, { "yes", "yes" }, { "line", "\u884C\u756A\u53F7" },
-				{ "column", "\u5217\u756A\u53F7" },
-				{ "xsldone", "XSLProcessor: \u5B8C\u4E86\u3057\u307E\u3057\u305F" },
+				{ "version", ">>>>>>> Xalan\u30D0\u30FC\u30B8\u30E7\u30F3 " }, {
+						"version2", "<<<<<<<" }, { "yes", "yes" }, { "line",
+								"\u884C\u756A\u53F7" }, { "column",
+										"\u5217\u756A\u53F7" }, { "xsldone",
+												"XSLProcessor: \u5B8C\u4E86\u3057\u307E\u3057\u305F" },
 
 				// Note to translators: The following messages provide usage
 				// information
@@ -1243,11 +1245,14 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 						"\u30AA\u30D7\u30B7\u30E7\u30F3{0}\u306F-XSLTC\u3068\u3068\u3082\u306B\u306E\u307F\u4F7F\u7528\u3067\u304D\u307E\u3059\u3002" },
 				{ "xslProc_no_input",
 						"\u30A8\u30E9\u30FC: \u30B9\u30BF\u30A4\u30EB\u30B7\u30FC\u30C8\u307E\u305F\u306F\u5165\u529Bxml\u304C\u6307\u5B9A\u3055\u308C\u3066\u3044\u307E\u305B\u3093\u3002\u4F7F\u7528\u65B9\u6CD5\u306E\u6307\u793A\u306B\u3064\u3044\u3066\u306F\u30AA\u30D7\u30B7\u30E7\u30F3\u3092\u4ED8\u3051\u305A\u306B\u3053\u306E\u30B3\u30DE\u30F3\u30C9\u3092\u5B9F\u884C\u3057\u3066\u304F\u3060\u3055\u3044\u3002" },
-				{ "xslProc_common_options", "-\u5171\u901A\u30AA\u30D7\u30B7\u30E7\u30F3-" },
-				{ "xslProc_xalan_options", "-Xalan\u7528\u30AA\u30D7\u30B7\u30E7\u30F3-" },
-				{ "xslProc_xsltc_options", "-XSLTC\u7528\u30AA\u30D7\u30B7\u30E7\u30F3-" },
-				{ "xslProc_return_to_continue",
-						"(\u7D9A\u884C\u3059\u308B\u306B\u306F<return>\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044)" },
+				{ "xslProc_common_options",
+						"-\u5171\u901A\u30AA\u30D7\u30B7\u30E7\u30F3-" }, {
+								"xslProc_xalan_options",
+								"-Xalan\u7528\u30AA\u30D7\u30B7\u30E7\u30F3-" },
+				{ "xslProc_xsltc_options",
+						"-XSLTC\u7528\u30AA\u30D7\u30B7\u30E7\u30F3-" }, {
+								"xslProc_return_to_continue",
+								"(\u7D9A\u884C\u3059\u308B\u306B\u306F<return>\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044)" },
 
 				// Note to translators: The option name and the parameter name
 				// do not need to
@@ -1257,22 +1262,24 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 				// usage information
 				// for each option in the English messages.
 				// Do not translate the keywords: XSLTC, SAX, DOM and DTM.
-				{ "optionXSLTC", "   [-XSLTC (\u5909\u63DB\u306BXSLTC\u3092\u4F7F\u7528)]" },
-				{ "optionIN", "   [-IN inputXMLURL]" },
-				{ "optionXSL", "   [-XSL XSLTransformationURL]" },
-				{ "optionOUT", "   [-OUT outputFileName]" },
-				{ "optionLXCIN", "   [-LXCIN compiledStylesheetFileNameIn]" },
-				{ "optionLXCOUT", "   [-LXCOUT compiledStylesheetFileNameOutOut]" },
-				{ "optionPARSER",
-						"   [-PARSER \u30D1\u30FC\u30B5\u30FC\u30FB\u30EA\u30A8\u30BE\u30F3\u306E\u5B8C\u5168\u4FEE\u98FE\u30AF\u30E9\u30B9\u540D]" },
+				{ "optionXSLTC",
+						"   [-XSLTC (\u5909\u63DB\u306BXSLTC\u3092\u4F7F\u7528)]" },
+				{ "optionIN", "   [-IN inputXMLURL]" }, { "optionXSL",
+						"   [-XSL XSLTransformationURL]" }, { "optionOUT",
+								"   [-OUT outputFileName]" }, { "optionLXCIN",
+										"   [-LXCIN compiledStylesheetFileNameIn]" },
+				{ "optionLXCOUT",
+						"   [-LXCOUT compiledStylesheetFileNameOutOut]" }, {
+								"optionPARSER",
+								"   [-PARSER \u30D1\u30FC\u30B5\u30FC\u30FB\u30EA\u30A8\u30BE\u30F3\u306E\u5B8C\u5168\u4FEE\u98FE\u30AF\u30E9\u30B9\u540D]" },
 				{ "optionE",
 						"   [-E (\u5B9F\u4F53\u53C2\u7167\u3092\u62E1\u5F35\u3057\u306A\u3044)]" },
 				{ "optionV",
 						"   [-E (\u5B9F\u4F53\u53C2\u7167\u3092\u62E1\u5F35\u3057\u306A\u3044)]" },
 				{ "optionQC",
 						"   [-QC (\u6291\u5236\u30D1\u30BF\u30FC\u30F3\u7AF6\u5408\u306E\u8B66\u544A)]" },
-				{ "optionQ", "   [-Q  (\u6291\u5236\u30E2\u30FC\u30C9)]" },
-				{ "optionLF",
+				{ "optionQ", "   [-Q  (\u6291\u5236\u30E2\u30FC\u30C9)]" }, {
+						"optionLF",
 						"   [-LF (\u51FA\u529B\u3067\u306E\u307F\u6539\u884C\u3092\u4F7F\u7528{\u30C7\u30D5\u30A9\u30EB\u30C8\u306FCR/LF})]" },
 				{ "optionCR",
 						"   [-CR (\u51FA\u529B\u3067\u306E\u307F\u6539\u884C\u3092\u4F7F\u7528{\u30C7\u30D5\u30A9\u30EB\u30C8\u306FCR/LF})]" },
@@ -1331,9 +1338,9 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 						"   [-MEDIA mediaType (\u30C9\u30AD\u30E5\u30E1\u30F3\u30C8\u306B\u95A2\u9023\u4ED8\u3051\u3089\u308C\u305F\u30B9\u30BF\u30A4\u30EB\u30B7\u30FC\u30C8\u3092\u898B\u3064\u3051\u308B\u305F\u3081\u306B\u30E1\u30C7\u30A3\u30A2\u5C5E\u6027\u3092\u4F7F\u7528\u3059\u308B\u3002)]" },
 				{ "optionFLAVOR",
 						"   [-FLAVOR flavorName (\u5909\u63DB\u3092\u884C\u3046\u305F\u3081\u306Bs2s=SAX\u307E\u305F\u306Fd2d=DOM\u3092\u660E\u793A\u7684\u306B\u4F7F\u7528\u3059\u308B\u3002)] " }, // Added
-																																																		// by
-																																																		// sboag/scurcuru;
-																																																		// experimental
+				// by
+				// sboag/scurcuru;
+				// experimental
 				{ "optionDIAG",
 						"   [-DIAG (\u5909\u63DB\u306B\u304B\u304B\u3063\u305F\u5408\u8A08\u30DF\u30EA\u79D2\u6570\u3092\u51FA\u529B\u3059\u308B\u3002)]" },
 				{ "optionINCREMENTAL",
@@ -1370,8 +1377,8 @@ public class XSLTErrorResources_ja extends ListResourceBundle {
 						" --------- {1}\u306B\u3088\u308B{0}\u306E\u5909\u63DB\u306B{2}\u30DF\u30EA\u79D2\u304B\u304B\u308A\u307E\u3057\u305F" },
 				{ "recursionTooDeep",
 						"\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u306E\u30CD\u30B9\u30C8\u304C\u6DF1\u3059\u304E\u307E\u3059\u3002\u30CD\u30B9\u30C8= {0}\u3001\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8{1} {2}" },
-				{ "nameIs", "\u540D\u524D:" },
-				{ "matchPatternIs", "\u4E00\u81F4\u30D1\u30BF\u30FC\u30F3:" }
+				{ "nameIs", "\u540D\u524D:" }, { "matchPatternIs",
+						"\u4E00\u81F4\u30D1\u30BF\u30FC\u30F3:" }
 
 		};
 

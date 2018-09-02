@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.oa.poa;
@@ -81,7 +61,8 @@ public class POAPolicyMediatorImpl_NR_USM extends POAPolicyMediatorBase {
 
 			servant = locator.preinvoke(id, poa, operation, cookieHolder);
 			if (servant == null)
-				servant = new NullServantImpl(poa.omgInvocationWrapper().nullServantReturned());
+				servant = new NullServantImpl(poa.omgInvocationWrapper()
+						.nullServantReturned());
 			else
 				setDelegate((Servant) servant, id);
 		} finally {
@@ -98,8 +79,9 @@ public class POAPolicyMediatorImpl_NR_USM extends POAPolicyMediatorBase {
 
 		try {
 			poa.unlock();
-			locator.postinvoke(info.id(), (POA) (info.oa()), info.getOperation(),
-					info.getCookieHolder().value, (Servant) (info.getServantContainer()));
+			locator.postinvoke(info.id(), (POA) (info.oa()), info
+					.getOperation(), info.getCookieHolder().value,
+					(Servant) (info.getServantContainer()));
 		} finally {
 			poa.lock();
 		}
@@ -117,7 +99,8 @@ public class POAPolicyMediatorImpl_NR_USM extends POAPolicyMediatorBase {
 		return locator;
 	}
 
-	public void setServantManager(ServantManager servantManager) throws WrongPolicy {
+	public void setServantManager(ServantManager servantManager)
+			throws WrongPolicy {
 		if (locator != null)
 			throw poa.invocationWrapper().servantManagerAlreadySet();
 
@@ -140,11 +123,13 @@ public class POAPolicyMediatorImpl_NR_USM extends POAPolicyMediatorBase {
 		throw new WrongPolicy();
 	}
 
-	public Servant deactivateObject(byte[] id) throws ObjectNotActive, WrongPolicy {
+	public Servant deactivateObject(byte[] id) throws ObjectNotActive,
+			WrongPolicy {
 		throw new WrongPolicy();
 	}
 
-	public byte[] servantToId(Servant servant) throws ServantNotActive, WrongPolicy {
+	public byte[] servantToId(Servant servant) throws ServantNotActive,
+			WrongPolicy {
 		throw new WrongPolicy();
 	}
 

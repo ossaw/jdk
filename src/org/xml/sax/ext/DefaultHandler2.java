@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // DefaultHandler2.java - extended DefaultHandler
@@ -56,50 +36,40 @@ import org.xml.sax.helpers.DefaultHandler;
  * @since SAX 2.0 (extensions 1.1 alpha)
  * @author David Brownell
  */
-public class DefaultHandler2 extends DefaultHandler
-		implements LexicalHandler, DeclHandler, EntityResolver2 {
+public class DefaultHandler2 extends DefaultHandler implements LexicalHandler,
+		DeclHandler, EntityResolver2 {
 	/** Constructs a handler which ignores all parsing events. */
-	public DefaultHandler2() {
-	}
+	public DefaultHandler2() {}
 
 	// SAX2 ext-1.0 LexicalHandler
 
-	public void startCDATA() throws SAXException {
-	}
+	public void startCDATA() throws SAXException {}
 
-	public void endCDATA() throws SAXException {
-	}
+	public void endCDATA() throws SAXException {}
 
-	public void startDTD(String name, String publicId, String systemId) throws SAXException {
-	}
+	public void startDTD(String name, String publicId, String systemId)
+			throws SAXException {}
 
-	public void endDTD() throws SAXException {
-	}
+	public void endDTD() throws SAXException {}
 
-	public void startEntity(String name) throws SAXException {
-	}
+	public void startEntity(String name) throws SAXException {}
 
-	public void endEntity(String name) throws SAXException {
-	}
+	public void endEntity(String name) throws SAXException {}
 
-	public void comment(char ch[], int start, int length) throws SAXException {
-	}
+	public void comment(char ch[], int start, int length) throws SAXException {}
 
 	// SAX2 ext-1.0 DeclHandler
 
-	public void attributeDecl(String eName, String aName, String type, String mode, String value)
-			throws SAXException {
-	}
+	public void attributeDecl(String eName, String aName, String type,
+			String mode, String value) throws SAXException {}
 
-	public void elementDecl(String name, String model) throws SAXException {
-	}
+	public void elementDecl(String name, String model) throws SAXException {}
 
-	public void externalEntityDecl(String name, String publicId, String systemId)
-			throws SAXException {
-	}
+	public void externalEntityDecl(String name, String publicId,
+			String systemId) throws SAXException {}
 
-	public void internalEntityDecl(String name, String value) throws SAXException {
-	}
+	public void internalEntityDecl(String name, String value)
+			throws SAXException {}
 
 	// SAX2 ext-1.1 EntityResolver2
 
@@ -120,8 +90,8 @@ public class DefaultHandler2 extends DefaultHandler
 	 * invoked with null <em>name</em> and <em>baseURI</em>, and with the
 	 * <em>systemId</em> already absolutized.
 	 */
-	public InputSource resolveEntity(String name, String publicId, String baseURI, String systemId)
-			throws SAXException, IOException {
+	public InputSource resolveEntity(String name, String publicId,
+			String baseURI, String systemId) throws SAXException, IOException {
 		return null;
 	}
 

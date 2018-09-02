@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -120,8 +100,9 @@ public abstract class Context {
 	 *
 	 *
 	 * @param child_ctx_name
-	 *            the <code>String</code> object to be set as the name of the
-	 *            new <code>Context</code> object
+	 *                       the <code>String</code> object to be set as the
+	 *                       name of the
+	 *                       new <code>Context</code> object
 	 * @return the newly-created child <code>Context</code> object initialized
 	 *         with the specified name
 	 */
@@ -136,13 +117,15 @@ public abstract class Context {
 	 * the <code>flags</code> field is set to zero.
 	 *
 	 * @param propname
-	 *            the name of the property to be set
+	 *                  the name of the property to be set
 	 * @param propvalue
-	 *            the <code>Any</code> object to which the value of the property
-	 *            will be set. The <code>Any</code> object's <code>value</code>
-	 *            field contains the value to be associated with the given
-	 *            propname; the <code>kind</code> field must be set to
-	 *            <code>TCKind.tk_string</code>.
+	 *                  the <code>Any</code> object to which the value of the
+	 *                  property
+	 *                  will be set. The <code>Any</code> object's
+	 *                  <code>value</code>
+	 *                  field contains the value to be associated with the given
+	 *                  propname; the <code>kind</code> field must be set to
+	 *                  <code>TCKind.tk_string</code>.
 	 */
 
 	public abstract void set_one_value(String propname, Any propvalue);
@@ -160,8 +143,9 @@ public abstract class Context {
 	 * <code>TCKind.tk_string</code>.
 	 *
 	 * @param values
-	 *            an NVList containing the property names and associated values
-	 *            to be set
+	 *               an NVList containing the property names and associated
+	 *               values
+	 *               to be set
 	 *
 	 * @see #get_values
 	 * @see org.omg.CORBA.NamedValue
@@ -181,7 +165,7 @@ public abstract class Context {
 	 * If no matching property is found, an exception is returned.
 	 *
 	 * @param propname
-	 *            name of the property to be deleted
+	 *                 name of the property to be deleted
 	 */
 
 	public abstract void delete_values(String propname);
@@ -199,22 +183,32 @@ public abstract class Context {
 	 * returned.
 	 *
 	 * @param start_scope
-	 *            a <code>String</code> object indicating the context object
-	 *            level at which to initiate the search for the specified
-	 *            properties (for example, "_USER", "_GROUP", "_SYSTEM"). Valid
-	 *            scope names are implementation-specific. If a scope name is
-	 *            omitted, the search begins with the specified context object.
-	 *            If the specified scope name is not found, an exception is
-	 *            returned.
+	 *                    a <code>String</code> object indicating the context
+	 *                    object
+	 *                    level at which to initiate the search for the
+	 *                    specified
+	 *                    properties (for example, "_USER", "_GROUP",
+	 *                    "_SYSTEM"). Valid
+	 *                    scope names are implementation-specific. If a scope
+	 *                    name is
+	 *                    omitted, the search begins with the specified context
+	 *                    object.
+	 *                    If the specified scope name is not found, an exception
+	 *                    is
+	 *                    returned.
 	 * @param op_flags
-	 *            an operation flag. The one flag that may be specified is
-	 *            <code>CTX_RESTRICT_SCOPE</code>. If this flag is specified,
-	 *            searching is limited to the specified <code>start_scope</code>
-	 *            or this <code>Context</code> object.
+	 *                    an operation flag. The one flag that may be specified
+	 *                    is
+	 *                    <code>CTX_RESTRICT_SCOPE</code>. If this flag is
+	 *                    specified,
+	 *                    searching is limited to the specified
+	 *                    <code>start_scope</code>
+	 *                    or this <code>Context</code> object.
 	 * @param pattern
-	 *            the property name whose values are to be retrieved.
-	 *            <code>pattern</code> may be a name or a name with a trailing
-	 *            wildcard character ("*").
+	 *                    the property name whose values are to be retrieved.
+	 *                    <code>pattern</code> may be a name or a name with a
+	 *                    trailing
+	 *                    wildcard character ("*").
 	 *
 	 * @return an <code>NVList</code> containing all the property values (in the
 	 *         form of <code>NamedValue</code> objects) whose associated
@@ -223,5 +217,6 @@ public abstract class Context {
 	 * @see org.omg.CORBA.NamedValue
 	 */
 
-	abstract public NVList get_values(String start_scope, int op_flags, String pattern);
+	abstract public NVList get_values(String start_scope, int op_flags,
+			String pattern);
 };

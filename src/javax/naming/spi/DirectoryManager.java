@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming.spi;
@@ -67,8 +47,7 @@ public class DirectoryManager extends NamingManager {
 	/*
 	 * Disallow anyone from creating one of these.
 	 */
-	DirectoryManager() {
-	}
+	DirectoryManager() {}
 
 	/**
 	 * Creates a context in which to continue a <tt>DirContext</tt> operation.
@@ -80,15 +59,16 @@ public class DirectoryManager extends NamingManager {
 	 * @return A non-null <tt>DirContext</tt> object for continuing the
 	 *         operation.
 	 * @exception NamingException
-	 *                If a naming exception occurred.
+	 *                            If a naming exception occurred.
 	 *
 	 * @see NamingManager#getContinuationContext(CannotProceedException)
 	 */
 	@SuppressWarnings("unchecked")
-	public static DirContext getContinuationDirContext(CannotProceedException cpe)
-			throws NamingException {
+	public static DirContext getContinuationDirContext(
+			CannotProceedException cpe) throws NamingException {
 
-		Hashtable<Object, Object> env = (Hashtable<Object, Object>) cpe.getEnvironment();
+		Hashtable<Object, Object> env = (Hashtable<Object, Object>) cpe
+				.getEnvironment();
 		if (env == null) {
 			env = new Hashtable<>(7);
 		} else {
@@ -120,43 +100,59 @@ public class DirectoryManager extends NamingManager {
 	 * <p>
 	 *
 	 * @param refInfo
-	 *            The possibly null object for which to create an object.
+	 *                    The possibly null object for which to create an
+	 *                    object.
 	 * @param name
-	 *            The name of this object relative to <code>nameCtx</code>.
-	 *            Specifying a name is optional; if it is omitted,
-	 *            <code>name</code> should be null.
+	 *                    The name of this object relative to
+	 *                    <code>nameCtx</code>.
+	 *                    Specifying a name is optional; if it is omitted,
+	 *                    <code>name</code> should be null.
 	 * @param nameCtx
-	 *            The context relative to which the <code>name</code> parameter
-	 *            is specified. If null, <code>name</code> is relative to the
-	 *            default initial context.
+	 *                    The context relative to which the <code>name</code>
+	 *                    parameter
+	 *                    is specified. If null, <code>name</code> is relative
+	 *                    to the
+	 *                    default initial context.
 	 * @param environment
-	 *            The possibly null environment to be used in the creation of
-	 *            the object factory and the object.
+	 *                    The possibly null environment to be used in the
+	 *                    creation of
+	 *                    the object factory and the object.
 	 * @param attrs
-	 *            The possibly null attributes associated with refInfo. This
-	 *            might not be the complete set of attributes for refInfo; you
-	 *            might be able to read more attributes from the directory.
+	 *                    The possibly null attributes associated with refInfo.
+	 *                    This
+	 *                    might not be the complete set of attributes for
+	 *                    refInfo; you
+	 *                    might be able to read more attributes from the
+	 *                    directory.
 	 * @return An object created using <code>refInfo</code> and <tt>attrs</tt>;
 	 *         or <code>refInfo</code> if an object cannot be created by a
 	 *         factory.
 	 * @exception NamingException
-	 *                If a naming exception was encountered while attempting to
-	 *                get a URL context, or if one of the factories accessed
-	 *                throws a NamingException.
+	 *                            If a naming exception was encountered while
+	 *                            attempting to
+	 *                            get a URL context, or if one of the factories
+	 *                            accessed
+	 *                            throws a NamingException.
 	 * @exception Exception
-	 *                If one of the factories accessed throws an exception, or
-	 *                if an error was encountered while loading and
-	 *                instantiating the factory and object classes. A factory
-	 *                should only throw an exception if it does not want other
-	 *                factories to be used in an attempt to create an object.
-	 *                See <tt>DirObjectFactory.getObjectInstance()</tt>.
+	 *                            If one of the factories accessed throws an
+	 *                            exception, or
+	 *                            if an error was encountered while loading and
+	 *                            instantiating the factory and object classes.
+	 *                            A factory
+	 *                            should only throw an exception if it does not
+	 *                            want other
+	 *                            factories to be used in an attempt to create
+	 *                            an object.
+	 *                            See
+	 *                            <tt>DirObjectFactory.getObjectInstance()</tt>.
 	 * @see NamingManager#getURLContext
 	 * @see DirObjectFactory
 	 * @see DirObjectFactory#getObjectInstance
 	 * @since 1.3
 	 */
-	public static Object getObjectInstance(Object refInfo, Name name, Context nameCtx,
-			Hashtable<?, ?> environment, Attributes attrs) throws Exception {
+	public static Object getObjectInstance(Object refInfo, Name name,
+			Context nameCtx, Hashtable<?, ?> environment, Attributes attrs)
+			throws Exception {
 
 		ObjectFactory factory;
 
@@ -165,10 +161,11 @@ public class DirectoryManager extends NamingManager {
 			// builder must return non-null factory
 			factory = builder.createObjectFactory(refInfo, environment);
 			if (factory instanceof DirObjectFactory) {
-				return ((DirObjectFactory) factory).getObjectInstance(refInfo, name, nameCtx,
-						environment, attrs);
+				return ((DirObjectFactory) factory).getObjectInstance(refInfo,
+						name, nameCtx, environment, attrs);
 			} else {
-				return factory.getObjectInstance(refInfo, name, nameCtx, environment);
+				return factory.getObjectInstance(refInfo, name, nameCtx,
+						environment);
 			}
 		}
 
@@ -189,10 +186,11 @@ public class DirectoryManager extends NamingManager {
 
 				factory = getObjectFactoryFromReference(ref, f);
 				if (factory instanceof DirObjectFactory) {
-					return ((DirObjectFactory) factory).getObjectInstance(ref, name, nameCtx,
-							environment, attrs);
+					return ((DirObjectFactory) factory).getObjectInstance(ref,
+							name, nameCtx, environment, attrs);
 				} else if (factory != null) {
-					return factory.getObjectInstance(ref, name, nameCtx, environment);
+					return factory.getObjectInstance(ref, name, nameCtx,
+							environment);
 				}
 				// No factory found, so return original refInfo.
 				// Will reach this point if factory class is not in
@@ -212,15 +210,17 @@ public class DirectoryManager extends NamingManager {
 		}
 
 		// try using any specified factories
-		answer = createObjectFromFactories(refInfo, name, nameCtx, environment, attrs);
+		answer = createObjectFromFactories(refInfo, name, nameCtx, environment,
+				attrs);
 		return (answer != null) ? answer : refInfo;
 	}
 
-	private static Object createObjectFromFactories(Object obj, Name name, Context nameCtx,
-			Hashtable<?, ?> environment, Attributes attrs) throws Exception {
+	private static Object createObjectFromFactories(Object obj, Name name,
+			Context nameCtx, Hashtable<?, ?> environment, Attributes attrs)
+			throws Exception {
 
-		FactoryEnumeration factories = ResourceManager.getFactories(Context.OBJECT_FACTORIES,
-				environment, nameCtx);
+		FactoryEnumeration factories = ResourceManager.getFactories(
+				Context.OBJECT_FACTORIES, environment, nameCtx);
 
 		if (factories == null)
 			return null;
@@ -231,10 +231,11 @@ public class DirectoryManager extends NamingManager {
 		while (answer == null && factories.hasMore()) {
 			factory = (ObjectFactory) factories.next();
 			if (factory instanceof DirObjectFactory) {
-				answer = ((DirObjectFactory) factory).getObjectInstance(obj, name, nameCtx,
-						environment, attrs);
+				answer = ((DirObjectFactory) factory).getObjectInstance(obj,
+						name, nameCtx, environment, attrs);
 			} else {
-				answer = factory.getObjectInstance(obj, name, nameCtx, environment);
+				answer = factory.getObjectInstance(obj, name, nameCtx,
+						environment);
 			}
 		}
 		return answer;
@@ -270,41 +271,50 @@ public class DirectoryManager extends NamingManager {
 	 * reference to the original <tt>attrs</tt> parameter.
 	 *
 	 * @param obj
-	 *            The non-null object for which to get state to bind.
+	 *                    The non-null object for which to get state to bind.
 	 * @param name
-	 *            The name of this object relative to <code>nameCtx</code>, or
-	 *            null if no name is specified.
+	 *                    The name of this object relative to
+	 *                    <code>nameCtx</code>, or
+	 *                    null if no name is specified.
 	 * @param nameCtx
-	 *            The context relative to which the <code>name</code> parameter
-	 *            is specified, or null if <code>name</code> is relative to the
-	 *            default initial context.
+	 *                    The context relative to which the <code>name</code>
+	 *                    parameter
+	 *                    is specified, or null if <code>name</code> is relative
+	 *                    to the
+	 *                    default initial context.
 	 * @param environment
-	 *            The possibly null environment to be used in the creation of
-	 *            the state factory and the object's state.
+	 *                    The possibly null environment to be used in the
+	 *                    creation of
+	 *                    the state factory and the object's state.
 	 * @param attrs
-	 *            The possibly null Attributes that is to be bound with the
-	 *            object.
+	 *                    The possibly null Attributes that is to be bound with
+	 *                    the
+	 *                    object.
 	 * @return A non-null DirStateFactory.Result containing the object and
 	 *         attributes to be bound. If no state factory returns a non-null
 	 *         answer, the result will contain the object (<tt>obj</tt>) itself
 	 *         with the original attributes.
 	 * @exception NamingException
-	 *                If a naming exception was encountered while using the
-	 *                factories. A factory should only throw an exception if it
-	 *                does not want other factories to be used in an attempt to
-	 *                create an object. See
-	 *                <tt>DirStateFactory.getStateToBind()</tt>.
+	 *                            If a naming exception was encountered while
+	 *                            using the
+	 *                            factories. A factory should only throw an
+	 *                            exception if it
+	 *                            does not want other factories to be used in an
+	 *                            attempt to
+	 *                            create an object. See
+	 *                            <tt>DirStateFactory.getStateToBind()</tt>.
 	 * @see DirStateFactory
 	 * @see DirStateFactory#getStateToBind
 	 * @see NamingManager#getStateToBind
 	 * @since 1.3
 	 */
-	public static DirStateFactory.Result getStateToBind(Object obj, Name name, Context nameCtx,
-			Hashtable<?, ?> environment, Attributes attrs) throws NamingException {
+	public static DirStateFactory.Result getStateToBind(Object obj, Name name,
+			Context nameCtx, Hashtable<?, ?> environment, Attributes attrs)
+			throws NamingException {
 
 		// Get list of state factories
-		FactoryEnumeration factories = ResourceManager.getFactories(Context.STATE_FACTORIES,
-				environment, nameCtx);
+		FactoryEnumeration factories = ResourceManager.getFactories(
+				Context.STATE_FACTORIES, environment, nameCtx);
 
 		if (factories == null) {
 			// no factories to try; just return originals
@@ -318,17 +328,19 @@ public class DirectoryManager extends NamingManager {
 		while (answer == null && factories.hasMore()) {
 			factory = (StateFactory) factories.next();
 			if (factory instanceof DirStateFactory) {
-				answer = ((DirStateFactory) factory).getStateToBind(obj, name, nameCtx, environment,
-						attrs);
+				answer = ((DirStateFactory) factory).getStateToBind(obj, name,
+						nameCtx, environment, attrs);
 			} else {
-				objanswer = factory.getStateToBind(obj, name, nameCtx, environment);
+				objanswer = factory.getStateToBind(obj, name, nameCtx,
+						environment);
 				if (objanswer != null) {
 					answer = new DirStateFactory.Result(objanswer, attrs);
 				}
 			}
 		}
 
-		return (answer != null) ? answer : new DirStateFactory.Result(obj, attrs); // nothing
-																					// new
+		return (answer != null) ? answer
+				: new DirStateFactory.Result(obj, attrs); // nothing
+																							// new
 	}
 }

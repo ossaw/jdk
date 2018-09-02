@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2009, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws.spi.http;
@@ -50,7 +30,7 @@ public abstract class HttpContext {
 	 * requests.
 	 *
 	 * @param handler
-	 *            the handler to set for this context
+	 *                the handler to set for this context
 	 */
 	public void setHandler(HttpHandler handler) {
 		this.handler = handler;
@@ -86,7 +66,7 @@ public abstract class HttpContext {
 	 * that can be used by jax-ws runtime.
 	 *
 	 * @param name
-	 *            attribute name
+	 *             attribute name
 	 * @return attribute value
 	 */
 	public abstract Object getAttribute(String name);

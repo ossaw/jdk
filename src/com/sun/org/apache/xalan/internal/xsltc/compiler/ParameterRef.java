@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,7 +50,8 @@ final class ParameterRef extends VariableRefBase {
 	}
 
 	public String toString() {
-		return "parameter-ref(" + _variable.getName() + '/' + _variable.getType() + ')';
+		return "parameter-ref(" + _variable.getName() + '/' + _variable
+				.getType() + ')';
 	}
 
 	public void translate(ClassGenerator classGen, MethodGenerator methodGen) {
@@ -79,8 +77,8 @@ final class ParameterRef extends VariableRefBase {
 
 				if (variableClosure != null) {
 					il.append(ALOAD_0);
-					il.append(new GETFIELD(
-							cpg.addFieldref(variableClosure.getInnerClassName(), name, signature)));
+					il.append(new GETFIELD(cpg.addFieldref(variableClosure
+							.getInnerClassName(), name, signature)));
 				} else {
 					il.append(_variable.loadInstruction());
 				}
@@ -93,13 +91,14 @@ final class ParameterRef extends VariableRefBase {
 			if (classGen.isExternal()) {
 				il.append(new CHECKCAST(cpg.addClass(className)));
 			}
-			il.append(new GETFIELD(cpg.addFieldref(className, name, signature)));
+			il.append(new GETFIELD(cpg.addFieldref(className, name,
+					signature)));
 		}
 
 		if (_variable.getType() instanceof NodeSetType) {
 			// The method cloneIterator() also does resetting
-			final int clone = cpg.addInterfaceMethodref(NODE_ITERATOR, "cloneIterator",
-					"()" + NODE_ITERATOR_SIG);
+			final int clone = cpg.addInterfaceMethodref(NODE_ITERATOR,
+					"cloneIterator", "()" + NODE_ITERATOR_SIG);
 			il.append(new INVOKEINTERFACE(clone, 1));
 		}
 	}

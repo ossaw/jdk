@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.dynamicany;
@@ -98,7 +78,8 @@ abstract class DynAnyComplexImpl extends DynAnyConstructedImpl {
 	// Complex methods
 	//
 
-	public String current_member_name() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+	public String current_member_name()
+			throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
 			org.omg.DynamicAny.DynAnyPackage.InvalidValue {
 		if (status == STATUS_DESTROYED) {
 			throw wrapper.dynAnyDestroyed();
@@ -109,7 +90,8 @@ abstract class DynAnyComplexImpl extends DynAnyConstructedImpl {
 		return names[index];
 	}
 
-	public TCKind current_member_kind() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+	public TCKind current_member_kind()
+			throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
 			org.omg.DynamicAny.DynAnyPackage.InvalidValue {
 		if (status == STATUS_DESTROYED) {
 			throw wrapper.dynAnyDestroyed();
@@ -159,7 +141,8 @@ abstract class DynAnyComplexImpl extends DynAnyConstructedImpl {
 				} catch (BadKind badKind) { // impossible
 				} catch (Bounds bounds) { // impossible
 				}
-				if (!(expectedMemberName.equals(memberName) || memberName.equals(""))) {
+				if (!(expectedMemberName.equals(memberName) || memberName
+						.equals(""))) {
 					clearData();
 					// _REVISIT_ More info
 					throw new TypeMismatch();
@@ -178,7 +161,8 @@ abstract class DynAnyComplexImpl extends DynAnyConstructedImpl {
 				}
 				try {
 					// Creates the appropriate subtype without copying the Any
-					memberDynAny = DynAnyUtil.createMostDerivedDynAny(memberAny, orb, false);
+					memberDynAny = DynAnyUtil.createMostDerivedDynAny(memberAny,
+							orb, false);
 				} catch (InconsistentTypeCode itc) {
 					throw new InvalidValue();
 				}
@@ -194,7 +178,8 @@ abstract class DynAnyComplexImpl extends DynAnyConstructedImpl {
 	}
 
 	// Creates references to the parameter instead of copying it.
-	public void set_members_as_dyn_any(org.omg.DynamicAny.NameDynAnyPair[] value)
+	public void set_members_as_dyn_any(
+			org.omg.DynamicAny.NameDynAnyPair[] value)
 			throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
 			org.omg.DynamicAny.DynAnyPackage.InvalidValue {
 		if (status == STATUS_DESTROYED) {
@@ -232,7 +217,8 @@ abstract class DynAnyComplexImpl extends DynAnyConstructedImpl {
 				} catch (BadKind badKind) { // impossible
 				} catch (Bounds bounds) { // impossible
 				}
-				if (!(expectedMemberName.equals(memberName) || memberName.equals(""))) {
+				if (!(expectedMemberName.equals(memberName) || memberName
+						.equals(""))) {
 					clearData();
 					// _REVISIT_ More info
 					throw new TypeMismatch();
@@ -297,7 +283,8 @@ abstract class DynAnyComplexImpl extends DynAnyConstructedImpl {
 		nameDynAnyPairs = value;
 	}
 
-	private void addComponent(int i, String memberName, Any memberAny, DynAny memberDynAny) {
+	private void addComponent(int i, String memberName, Any memberAny,
+			DynAny memberDynAny) {
 		components[i] = memberDynAny;
 		names[i] = (memberName != null ? memberName : "");
 		nameValuePairs[i].id = memberName;
@@ -339,7 +326,8 @@ abstract class DynAnyComplexImpl extends DynAnyConstructedImpl {
 			memberAny = DynAnyUtil.extractAnyFromStream(memberType, input, orb);
 			try {
 				// Creates the appropriate subtype without copying the Any
-				memberDynAny = DynAnyUtil.createMostDerivedDynAny(memberAny, orb, false);
+				memberDynAny = DynAnyUtil.createMostDerivedDynAny(memberAny,
+						orb, false);
 				// _DEBUG_
 				// System.out.println("Created DynAny for " + memberName +
 				// ", type " + memberType.kind().value());
@@ -380,7 +368,8 @@ abstract class DynAnyComplexImpl extends DynAnyConstructedImpl {
 			} catch (Bounds bounds) { // impossible
 			}
 			try {
-				memberDynAny = DynAnyUtil.createMostDerivedDynAny(memberType, orb);
+				memberDynAny = DynAnyUtil.createMostDerivedDynAny(memberType,
+						orb);
 				// _DEBUG_
 				// System.out.println("Created DynAny for " + memberName +
 				// ", type " + memberType.kind().value());

@@ -89,7 +89,8 @@ public abstract class Canonicalizer20010315Excl extends CanonicalizerBase {
 	 *
 	 * @throws CanonicalizationException
 	 */
-	public byte[] engineCanonicalizeSubTree(Node rootNode) throws CanonicalizationException {
+	public byte[] engineCanonicalizeSubTree(Node rootNode)
+			throws CanonicalizationException {
 		return engineCanonicalizeSubTree(rootNode, "", null);
 	}
 
@@ -102,8 +103,8 @@ public abstract class Canonicalizer20010315Excl extends CanonicalizerBase {
 	 *
 	 * @throws CanonicalizationException
 	 */
-	public byte[] engineCanonicalizeSubTree(Node rootNode, String inclusiveNamespaces)
-			throws CanonicalizationException {
+	public byte[] engineCanonicalizeSubTree(Node rootNode,
+			String inclusiveNamespaces) throws CanonicalizationException {
 		return engineCanonicalizeSubTree(rootNode, inclusiveNamespaces, null);
 	}
 
@@ -113,11 +114,12 @@ public abstract class Canonicalizer20010315Excl extends CanonicalizerBase {
 	 * @param rootNode
 	 * @param inclusiveNamespaces
 	 * @param excl
-	 *            A element to exclude from the c14n process.
+	 *                            A element to exclude from the c14n process.
 	 * @return the rootNode c14n.
 	 * @throws CanonicalizationException
 	 */
-	public byte[] engineCanonicalizeSubTree(Node rootNode, String inclusiveNamespaces, Node excl)
+	public byte[] engineCanonicalizeSubTree(Node rootNode,
+			String inclusiveNamespaces, Node excl)
 			throws CanonicalizationException {
 		inclusiveNSSet = InclusiveNamespaces.prefixStr2Set(inclusiveNamespaces);
 		return super.engineCanonicalizeSubTree(rootNode, excl);
@@ -130,8 +132,8 @@ public abstract class Canonicalizer20010315Excl extends CanonicalizerBase {
 	 * @return the rootNode c14n.
 	 * @throws CanonicalizationException
 	 */
-	public byte[] engineCanonicalize(XMLSignatureInput rootNode, String inclusiveNamespaces)
-			throws CanonicalizationException {
+	public byte[] engineCanonicalize(XMLSignatureInput rootNode,
+			String inclusiveNamespaces) throws CanonicalizationException {
 		inclusiveNSSet = InclusiveNamespaces.prefixStr2Set(inclusiveNamespaces);
 		return super.engineCanonicalize(rootNode);
 	}
@@ -144,15 +146,15 @@ public abstract class Canonicalizer20010315Excl extends CanonicalizerBase {
 	 * @param inclusiveNamespaces
 	 * @throws CanonicalizationException
 	 */
-	public byte[] engineCanonicalizeXPathNodeSet(Set<Node> xpathNodeSet, String inclusiveNamespaces)
-			throws CanonicalizationException {
+	public byte[] engineCanonicalizeXPathNodeSet(Set<Node> xpathNodeSet,
+			String inclusiveNamespaces) throws CanonicalizationException {
 		inclusiveNSSet = InclusiveNamespaces.prefixStr2Set(inclusiveNamespaces);
 		return super.engineCanonicalizeXPathNodeSet(xpathNodeSet);
 	}
 
 	@Override
-	protected Iterator<Attr> handleAttributesSubtree(Element element, NameSpaceSymbTable ns)
-			throws CanonicalizationException {
+	protected Iterator<Attr> handleAttributesSubtree(Element element,
+			NameSpaceSymbTable ns) throws CanonicalizationException {
 		// result will contain the attrs which have to be output
 		final SortedSet<Attr> result = this.result;
 		result.clear();
@@ -178,25 +180,28 @@ public abstract class Canonicalizer20010315Excl extends CanonicalizerBase {
 					// to
 					// visiblyUtilized
 					String prefix = attribute.getPrefix();
-					if (prefix != null && !(prefix.equals(XML) || prefix.equals(XMLNS))) {
+					if (prefix != null && !(prefix.equals(XML) || prefix.equals(
+							XMLNS))) {
 						visiblyUtilized.add(prefix);
 					}
 					// Add to the result.
 					result.add(attribute);
-				} else if (!(XML.equals(NName) && XML_LANG_URI.equals(NNodeValue))
-						&& ns.addMapping(NName, NNodeValue, attribute)
-						&& C14nHelper.namespaceIsRelative(NNodeValue)) {
+				} else if (!(XML.equals(NName) && XML_LANG_URI.equals(
+						NNodeValue)) && ns.addMapping(NName, NNodeValue,
+								attribute) && C14nHelper.namespaceIsRelative(
+										NNodeValue)) {
 					// The default mapping for xml must not be output.
 					// New definition check if it is relative.
-					Object exArgs[] = { element.getTagName(), NName, attribute.getNodeValue() };
-					throw new CanonicalizationException("c14n.Canonicalizer.RelativeNamespace",
-							exArgs);
+					Object exArgs[] = { element.getTagName(), NName, attribute
+							.getNodeValue() };
+					throw new CanonicalizationException(
+							"c14n.Canonicalizer.RelativeNamespace", exArgs);
 				}
 			}
 		}
 		String prefix = null;
-		if (element.getNamespaceURI() != null
-				&& !(element.getPrefix() == null || element.getPrefix().length() == 0)) {
+		if (element.getNamespaceURI() != null && !(element.getPrefix() == null
+				|| element.getPrefix().length() == 0)) {
 			prefix = element.getPrefix();
 		} else {
 			prefix = XMLNS;
@@ -219,8 +224,8 @@ public abstract class Canonicalizer20010315Excl extends CanonicalizerBase {
 	 * @throws CanonicalizationException
 	 */
 	@Override
-	protected final Iterator<Attr> handleAttributes(Element element, NameSpaceSymbTable ns)
-			throws CanonicalizationException {
+	protected final Iterator<Attr> handleAttributes(Element element,
+			NameSpaceSymbTable ns) throws CanonicalizationException {
 		// result will contain the attrs which have to be output
 		final SortedSet<Attr> result = this.result;
 		result.clear();
@@ -252,25 +257,30 @@ public abstract class Canonicalizer20010315Excl extends CanonicalizerBase {
 						// used)
 						// to visibyUtilized
 						String prefix = attribute.getPrefix();
-						if (prefix != null && !(prefix.equals(XML) || prefix.equals(XMLNS))) {
+						if (prefix != null && !(prefix.equals(XML) || prefix
+								.equals(XMLNS))) {
 							visiblyUtilized.add(prefix);
 						}
 						// Add to the result.
 						result.add(attribute);
 					}
-				} else if (isOutputElement && !isVisible(attribute) && !XMLNS.equals(NName)) {
+				} else if (isOutputElement && !isVisible(attribute) && !XMLNS
+						.equals(NName)) {
 					ns.removeMappingIfNotRender(NName);
 				} else {
-					if (!isOutputElement && isVisible(attribute) && inclusiveNSSet.contains(NName)
-							&& !ns.removeMappingIfRender(NName)) {
-						Node n = ns.addMappingAndRender(NName, NNodeValue, attribute);
+					if (!isOutputElement && isVisible(attribute)
+							&& inclusiveNSSet.contains(NName) && !ns
+									.removeMappingIfRender(NName)) {
+						Node n = ns.addMappingAndRender(NName, NNodeValue,
+								attribute);
 						if (n != null) {
 							result.add((Attr) n);
 							if (C14nHelper.namespaceIsRelative(attribute)) {
 								Object exArgs[] = { element.getTagName(), NName,
 										attribute.getNodeValue() };
 								throw new CanonicalizationException(
-										"c14n.Canonicalizer.RelativeNamespace", exArgs);
+										"c14n.Canonicalizer.RelativeNamespace",
+										exArgs);
 							}
 						}
 					}
@@ -278,9 +288,10 @@ public abstract class Canonicalizer20010315Excl extends CanonicalizerBase {
 					if (ns.addMapping(NName, NNodeValue, attribute)
 							&& C14nHelper.namespaceIsRelative(NNodeValue)) {
 						// New definition check if it is relative
-						Object exArgs[] = { element.getTagName(), NName, attribute.getNodeValue() };
-						throw new CanonicalizationException("c14n.Canonicalizer.RelativeNamespace",
-								exArgs);
+						Object exArgs[] = { element.getTagName(), NName,
+								attribute.getNodeValue() };
+						throw new CanonicalizationException(
+								"c14n.Canonicalizer.RelativeNamespace", exArgs);
 					}
 				}
 			}
@@ -296,8 +307,9 @@ public abstract class Canonicalizer20010315Excl extends CanonicalizerBase {
 			}
 
 			String prefix = null;
-			if (element.getNamespaceURI() != null
-					&& !(element.getPrefix() == null || element.getPrefix().length() == 0)) {
+			if (element.getNamespaceURI() != null && !(element
+					.getPrefix() == null || element.getPrefix()
+							.length() == 0)) {
 				prefix = element.getPrefix();
 			} else {
 				prefix = XMLNS;
@@ -315,9 +327,11 @@ public abstract class Canonicalizer20010315Excl extends CanonicalizerBase {
 		return result.iterator();
 	}
 
-	protected void circumventBugIfNeeded(XMLSignatureInput input) throws CanonicalizationException,
-			ParserConfigurationException, IOException, SAXException {
-		if (!input.isNeedsToBeExpanded() || inclusiveNSSet.isEmpty() || inclusiveNSSet.isEmpty()) {
+	protected void circumventBugIfNeeded(XMLSignatureInput input)
+			throws CanonicalizationException, ParserConfigurationException,
+			IOException, SAXException {
+		if (!input.isNeedsToBeExpanded() || inclusiveNSSet.isEmpty()
+				|| inclusiveNSSet.isEmpty()) {
 			return;
 		}
 		Document doc = null;

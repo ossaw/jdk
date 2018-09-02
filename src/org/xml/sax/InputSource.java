@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // SAX input source.
@@ -93,8 +73,7 @@ public class InputSource {
 	 * @see #setCharacterStream
 	 * @see #setEncoding
 	 */
-	public InputSource() {
-	}
+	public InputSource() {}
 
 	/**
 	 * Create a new input source with a system identifier.
@@ -110,7 +89,7 @@ public class InputSource {
 	 * </p>
 	 *
 	 * @param systemId
-	 *            The system identifier (URI).
+	 *                 The system identifier (URI).
 	 * @see #setPublicId
 	 * @see #setSystemId
 	 * @see #setByteStream
@@ -132,7 +111,7 @@ public class InputSource {
 	 * </p>
 	 *
 	 * @param byteStream
-	 *            The raw byte stream containing the document.
+	 *                   The raw byte stream containing the document.
 	 * @see #setPublicId
 	 * @see #setSystemId
 	 * @see #setEncoding
@@ -174,7 +153,7 @@ public class InputSource {
 	 * </p>
 	 *
 	 * @param publicId
-	 *            The public identifier as a string.
+	 *                 The public identifier as a string.
 	 * @see #getPublicId
 	 * @see org.xml.sax.Locator#getPublicId
 	 * @see org.xml.sax.SAXParseException#getPublicId
@@ -217,7 +196,7 @@ public class InputSource {
 	 * </p>
 	 *
 	 * @param systemId
-	 *            The system identifier as a string.
+	 *                 The system identifier as a string.
 	 * @see #setEncoding
 	 * @see #getSystemId
 	 * @see org.xml.sax.Locator#getSystemId
@@ -262,7 +241,8 @@ public class InputSource {
 	 * </p>
 	 *
 	 * @param byteStream
-	 *            A byte stream containing an XML document or other entity.
+	 *                   A byte stream containing an XML document or other
+	 *                   entity.
 	 * @see #setEncoding
 	 * @see #getByteStream
 	 * @see #getEncoding
@@ -302,7 +282,7 @@ public class InputSource {
 	 * </p>
 	 *
 	 * @param encoding
-	 *            A string describing the character encoding.
+	 *                 A string describing the character encoding.
 	 * @see #setSystemId
 	 * @see #setByteStream
 	 * @see #getEncoding
@@ -334,8 +314,9 @@ public class InputSource {
 	 * </p>
 	 *
 	 * @param characterStream
-	 *            The character stream containing the XML document or other
-	 *            entity.
+	 *                        The character stream containing the XML document
+	 *                        or other
+	 *                        entity.
 	 * @see #getCharacterStream
 	 * @see java.io.Reader
 	 */

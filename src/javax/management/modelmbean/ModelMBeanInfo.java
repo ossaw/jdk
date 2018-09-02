@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
- * @author    IBM Corp.
- *
- * Copyright IBM Corp. 1999-2000.  All rights reserved.
+ * @author IBM Corp.
+ * Copyright IBM Corp. 1999-2000. All rights reserved.
  */
 
 package javax.management.modelmbean;
@@ -73,20 +52,27 @@ public interface ModelMBeanInfo {
 	 * ModelMBeanInfo of type inDescriptorType.
 	 *
 	 * @param inDescriptorType
-	 *            value of descriptorType field that must be set for the
-	 *            descriptor to be returned. Must be "mbean", "attribute",
-	 *            "operation", "constructor" or "notification". If it is null or
-	 *            empty then all types will be returned.
+	 *                         value of descriptorType field that must be set
+	 *                         for the
+	 *                         descriptor to be returned. Must be "mbean",
+	 *                         "attribute",
+	 *                         "operation", "constructor" or "notification". If
+	 *                         it is null or
+	 *                         empty then all types will be returned.
 	 *
 	 * @return Descriptor array containing all descriptors for the ModelMBean if
 	 *         type inDescriptorType.
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException when the descriptorType
-	 *                in parameter is not one of: "mbean", "attribute",
-	 *                "operation", "constructor", "notification", empty or null.
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       when the descriptorType
+	 *                                       in parameter is not one of:
+	 *                                       "mbean", "attribute",
+	 *                                       "operation", "constructor",
+	 *                                       "notification", empty or null.
 	 *
 	 * @see #setDescriptors
 	 */
@@ -97,15 +83,19 @@ public interface ModelMBeanInfo {
 	 * Adds or replaces descriptors in the ModelMBeanInfo.
 	 *
 	 * @param inDescriptors
-	 *            The descriptors to be set in the ModelMBeanInfo. Null elements
-	 *            of the list will be ignored. All descriptors must have name
-	 *            and descriptorType fields.
+	 *                      The descriptors to be set in the ModelMBeanInfo.
+	 *                      Null elements
+	 *                      of the list will be ignored. All descriptors must
+	 *                      have name
+	 *                      and descriptorType fields.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException for a null or invalid
-	 *                descriptor.
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       for a null or invalid
+	 *                                       descriptor.
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 *
 	 * @see #getDescriptors
 	 */
@@ -116,31 +106,40 @@ public interface ModelMBeanInfo {
 	 * Returns a Descriptor requested by name and descriptorType.
 	 *
 	 * @param inDescriptorName
-	 *            The name of the descriptor.
+	 *                         The name of the descriptor.
 	 * @param inDescriptorType
-	 *            The type of the descriptor being requested. If this is null or
-	 *            empty then all types are searched. Valid types are 'mbean',
-	 *            'attribute', 'constructor' 'operation', and 'notification'.
-	 *            This value will be equal to the 'descriptorType' field in the
-	 *            descriptor that is returned.
+	 *                         The type of the descriptor being requested. If
+	 *                         this is null or
+	 *                         empty then all types are searched. Valid types
+	 *                         are 'mbean',
+	 *                         'attribute', 'constructor' 'operation', and
+	 *                         'notification'.
+	 *                         This value will be equal to the 'descriptorType'
+	 *                         field in the
+	 *                         descriptor that is returned.
 	 *
 	 * @return Descriptor containing the descriptor for the ModelMBean with the
 	 *         same name and descriptorType. If no descriptor is found, null is
 	 *         returned.
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException for a null descriptor
-	 *                name or null or invalid type. The type must be
-	 *                "mbean","attribute", "constructor", "operation", or
-	 *                "notification".
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       for a null descriptor
+	 *                                       name or null or invalid type. The
+	 *                                       type must be
+	 *                                       "mbean","attribute", "constructor",
+	 *                                       "operation", or
+	 *                                       "notification".
 	 *
 	 * @see #setDescriptor
 	 */
 
-	public Descriptor getDescriptor(String inDescriptorName, String inDescriptorType)
-			throws MBeanException, RuntimeOperationsException;
+	public Descriptor getDescriptor(String inDescriptorName,
+			String inDescriptorType) throws MBeanException,
+			RuntimeOperationsException;
 
 	/**
 	 * Sets descriptors in the info array of type inDescriptorType for the
@@ -148,24 +147,35 @@ public interface ModelMBeanInfo {
 	 * will be called to set the specified descriptor.
 	 *
 	 * @param inDescriptor
-	 *            The descriptor to be set in the ModelMBean. It must NOT be
-	 *            null. All descriptors must have name and descriptorType
-	 *            fields.
+	 *                         The descriptor to be set in the ModelMBean. It
+	 *                         must NOT be
+	 *                         null. All descriptors must have name and
+	 *                         descriptorType
+	 *                         fields.
 	 * @param inDescriptorType
-	 *            The type of the descriptor being set. If this is null then the
-	 *            descriptorType field in the descriptor is used. If specified
-	 *            this value must be set in the descriptorType field in the
-	 *            descriptor. Must be "mbean","attribute", "constructor",
-	 *            "operation", or "notification".
+	 *                         The type of the descriptor being set. If this is
+	 *                         null then the
+	 *                         descriptorType field in the descriptor is used.
+	 *                         If specified
+	 *                         this value must be set in the descriptorType
+	 *                         field in the
+	 *                         descriptor. Must be "mbean","attribute",
+	 *                         "constructor",
+	 *                         "operation", or "notification".
 	 *
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException for illegal or null
-	 *                arguments or if the name field of the descriptor is not
-	 *                found in the corresponding MBeanAttributeInfo or
-	 *                MBeanConstructorInfo or MBeanNotificationInfo or
-	 *                MBeanOperationInfo.
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       for illegal or null
+	 *                                       arguments or if the name field of
+	 *                                       the descriptor is not
+	 *                                       found in the corresponding
+	 *                                       MBeanAttributeInfo or
+	 *                                       MBeanConstructorInfo or
+	 *                                       MBeanNotificationInfo or
+	 *                                       MBeanOperationInfo.
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 *
 	 * @see #getDescriptor
 	 */
@@ -283,15 +293,18 @@ public interface ModelMBeanInfo {
 	 * @return the MBean descriptor.
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 *
 	 * @exception RuntimeOperationsException
-	 *                a {@link RuntimeException} occurred while getting the
-	 *                descriptor.
+	 *                                       a {@link RuntimeException} occurred
+	 *                                       while getting the
+	 *                                       descriptor.
 	 *
 	 * @see #setMBeanDescriptor
 	 */
-	public Descriptor getMBeanDescriptor() throws MBeanException, RuntimeOperationsException;
+	public Descriptor getMBeanDescriptor() throws MBeanException,
+			RuntimeOperationsException;
 
 	/**
 	 * Sets the ModelMBean's descriptor. This descriptor contains default, MBean
@@ -307,12 +320,14 @@ public interface ModelMBeanInfo {
 	 * description of valid field names.
 	 *
 	 * @param inDescriptor
-	 *            the descriptor to set.
+	 *                     the descriptor to set.
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException for invalid descriptor.
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       for invalid descriptor.
 	 *
 	 *
 	 * @see #getMBeanDescriptor
@@ -325,17 +340,20 @@ public interface ModelMBeanInfo {
 	 * Returns a ModelMBeanAttributeInfo requested by name.
 	 *
 	 * @param inName
-	 *            The name of the ModelMBeanAttributeInfo to get. If no
-	 *            ModelMBeanAttributeInfo exists for this name null is returned.
+	 *               The name of the ModelMBeanAttributeInfo to get. If no
+	 *               ModelMBeanAttributeInfo exists for this name null is
+	 *               returned.
 	 *
 	 * @return the attribute info for the named attribute, or null if there is
 	 *         none.
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException for a null attribute
-	 *                name.
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       for a null attribute
+	 *                                       name.
 	 *
 	 */
 
@@ -346,17 +364,20 @@ public interface ModelMBeanInfo {
 	 * Returns a ModelMBeanOperationInfo requested by name.
 	 *
 	 * @param inName
-	 *            The name of the ModelMBeanOperationInfo to get. If no
-	 *            ModelMBeanOperationInfo exists for this name null is returned.
+	 *               The name of the ModelMBeanOperationInfo to get. If no
+	 *               ModelMBeanOperationInfo exists for this name null is
+	 *               returned.
 	 *
 	 * @return the operation info for the named operation, or null if there is
 	 *         none.
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException for a null operation
-	 *                name.
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       for a null operation
+	 *                                       name.
 	 *
 	 */
 
@@ -367,17 +388,19 @@ public interface ModelMBeanInfo {
 	 * Returns a ModelMBeanNotificationInfo requested by name.
 	 *
 	 * @param inName
-	 *            The name of the ModelMBeanNotificationInfo to get. If no
-	 *            ModelMBeanNotificationInfo exists for this name null is
-	 *            returned.
+	 *               The name of the ModelMBeanNotificationInfo to get. If no
+	 *               ModelMBeanNotificationInfo exists for this name null is
+	 *               returned.
 	 *
 	 * @return the info for the named notification, or null if there is none.
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException for a null notification
-	 *                name.
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       for a null notification
+	 *                                       name.
 	 *
 	 */
 	public ModelMBeanNotificationInfo getNotification(String inName)

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,39 +30,30 @@ public class XMLErrorResources_sv extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Xalan Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 *
 	 * 1) Xalan (or more properly, Xalan-interpretive) and XSLTC are names of
 	 * components. XSLT is an acronym for
 	 * "XML Stylesheet Language: Transformations". XSLTC is an acronym for XSLT
 	 * Compiler.
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 5) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 6) "Translet" is an invented term that describes the class file that
 	 * results from compiling an XML stylesheet into a Java class.
-	 *
 	 * 7) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 */
 
 	/**
@@ -194,17 +182,22 @@ public class XMLErrorResources_sv extends ListResourceBundle {
 
 			{ ER_OFFSET_BIGGER_THAN_SLOT, "Offset st\u00F6rre \u00E4n plats" },
 
-			{ ER_COROUTINE_NOT_AVAIL, "Sidorutin \u00E4r inte tillg\u00E4nglig, id={0}" },
+			{ ER_COROUTINE_NOT_AVAIL,
+					"Sidorutin \u00E4r inte tillg\u00E4nglig, id={0}" },
 
-			{ ER_COROUTINE_CO_EXIT, "CoroutineManager har tagit emot co_exit()-beg\u00E4ran" },
+			{ ER_COROUTINE_CO_EXIT,
+					"CoroutineManager har tagit emot co_exit()-beg\u00E4ran" },
 
-			{ ER_COJOINROUTINESET_FAILED, "co_joinCoroutineSet() utf\u00F6rdes inte" },
+			{ ER_COJOINROUTINESET_FAILED,
+					"co_joinCoroutineSet() utf\u00F6rdes inte" },
 
 			{ ER_COROUTINE_PARAM, "Parameterfel f\u00F6r sidorutin ({0})" },
 
-			{ ER_PARSER_DOTERMINATE_ANSWERS, "\nUNEXPECTED: Parsersvar {0} f\u00F6r doTerminate" },
+			{ ER_PARSER_DOTERMINATE_ANSWERS,
+					"\nUNEXPECTED: Parsersvar {0} f\u00F6r doTerminate" },
 
-			{ ER_NO_PARSE_CALL_WHILE_PARSING, "parse f\u00E5r inte anropas medan tolkning sker" },
+			{ ER_NO_PARSE_CALL_WHILE_PARSING,
+					"parse f\u00E5r inte anropas medan tolkning sker" },
 
 			{ ER_TYPED_ITERATOR_AXIS_NOT_IMPLEMENTED,
 					"Fel: typad iterator f\u00F6r axeln {0} har inte implementerats" },
@@ -212,28 +205,34 @@ public class XMLErrorResources_sv extends ListResourceBundle {
 			{ ER_ITERATOR_AXIS_NOT_IMPLEMENTED,
 					"Fel: iterator f\u00F6r axeln {0} har inte implementerats " },
 
-			{ ER_ITERATOR_CLONE_NOT_SUPPORTED, "Iteratorklon underst\u00F6ds inte" },
+			{ ER_ITERATOR_CLONE_NOT_SUPPORTED,
+					"Iteratorklon underst\u00F6ds inte" },
 
 			{ ER_UNKNOWN_AXIS_TYPE, "Ok\u00E4nd axeltraverstyp: {0}" },
 
 			{ ER_AXIS_NOT_SUPPORTED, "Axeltravers underst\u00F6ds inte: {0}" },
 
-			{ ER_NO_DTMIDS_AVAIL, "Inga fler DTM-id:n \u00E4r tillg\u00E4ngliga" },
+			{ ER_NO_DTMIDS_AVAIL,
+					"Inga fler DTM-id:n \u00E4r tillg\u00E4ngliga" },
 
 			{ ER_NOT_SUPPORTED, "Underst\u00F6ds inte: {0}" },
 
-			{ ER_NODE_NON_NULL, "Nod m\u00E5ste vara icke-null f\u00F6r getDTMHandleFromNode" },
+			{ ER_NODE_NON_NULL,
+					"Nod m\u00E5ste vara icke-null f\u00F6r getDTMHandleFromNode" },
 
-			{ ER_COULD_NOT_RESOLVE_NODE, "Kunde inte matcha noden med en referens" },
+			{ ER_COULD_NOT_RESOLVE_NODE,
+					"Kunde inte matcha noden med en referens" },
 
-			{ ER_STARTPARSE_WHILE_PARSING, "startParse f\u00E5r inte anropas medan tolkning sker" },
+			{ ER_STARTPARSE_WHILE_PARSING,
+					"startParse f\u00E5r inte anropas medan tolkning sker" },
 
 			{ ER_STARTPARSE_NEEDS_SAXPARSER,
 					"startParse beh\u00F6ver en SAXParser som \u00E4r icke-null" },
 
 			{ ER_COULD_NOT_INIT_PARSER, "kunde inte initiera parser med" },
 
-			{ ER_EXCEPTION_CREATING_POOL, "undantag skapar ny instans f\u00F6r pool" },
+			{ ER_EXCEPTION_CREATING_POOL,
+					"undantag skapar ny instans f\u00F6r pool" },
 
 			{ ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
 					"S\u00F6kv\u00E4gen inneh\u00E5ller en ogiltig escape-sekvens" },
@@ -244,7 +243,8 @@ public class XMLErrorResources_sv extends ListResourceBundle {
 
 			{ ER_NO_SCHEME_INURI, "Schema saknas i URI" },
 
-			{ ER_PATH_INVALID_CHAR, "S\u00F6kv\u00E4gen inneh\u00E5ller ett ogiltigt tecken: {0}" },
+			{ ER_PATH_INVALID_CHAR,
+					"S\u00F6kv\u00E4gen inneh\u00E5ller ett ogiltigt tecken: {0}" },
 
 			{ ER_SCHEME_FROM_NULL_STRING,
 					"Kan inte st\u00E4lla in schema fr\u00E5n null-str\u00E4ng" },
@@ -265,13 +265,16 @@ public class XMLErrorResources_sv extends ListResourceBundle {
 			{ ER_FRAG_WHEN_PATH_NULL,
 					"Fragment kan inte st\u00E4llas in n\u00E4r s\u00F6kv\u00E4g \u00E4r null" },
 
-			{ ER_FRAG_INVALID_CHAR, "Fragment inneh\u00E5ller ett ogiltigt tecken" },
+			{ ER_FRAG_INVALID_CHAR,
+					"Fragment inneh\u00E5ller ett ogiltigt tecken" },
 
 			{ ER_PARSER_IN_USE, "Parser anv\u00E4nds redan" },
 
-			{ ER_CANNOT_CHANGE_WHILE_PARSING, "Kan inte \u00E4ndra {0} {1} medan tolkning sker" },
+			{ ER_CANNOT_CHANGE_WHILE_PARSING,
+					"Kan inte \u00E4ndra {0} {1} medan tolkning sker" },
 
-			{ ER_SELF_CAUSATION_NOT_PERMITTED, "Sj\u00E4lvorsakande inte till\u00E5ten" },
+			{ ER_SELF_CAUSATION_NOT_PERMITTED,
+					"Sj\u00E4lvorsakande inte till\u00E5ten" },
 
 			{ ER_NO_USERINFO_IF_NO_HOST,
 					"Anv\u00E4ndarinfo f\u00E5r inte anges om v\u00E4rden inte \u00E4r angiven" },
@@ -285,29 +288,36 @@ public class XMLErrorResources_sv extends ListResourceBundle {
 			{ ER_NO_FRAGMENT_STRING_IN_PATH,
 					"Fragment kan inte anges i b\u00E5de s\u00F6kv\u00E4gen och fragmentet" },
 
-			{ ER_CANNOT_INIT_URI_EMPTY_PARMS, "Kan inte initiera URI med tomma parametrar" },
+			{ ER_CANNOT_INIT_URI_EMPTY_PARMS,
+					"Kan inte initiera URI med tomma parametrar" },
 
 			{ ER_METHOD_NOT_SUPPORTED, "Metoden st\u00F6ds \u00E4nnu inte " },
 
 			{ ER_INCRSAXSRCFILTER_NOT_RESTARTABLE,
 					"IncrementalSAXSource_Filter kan f\u00F6r n\u00E4rvarande inte startas om" },
 
-			{ ER_XMLRDR_NOT_BEFORE_STARTPARSE, "XMLReader inte f\u00F6re startParse-beg\u00E4ran" },
+			{ ER_XMLRDR_NOT_BEFORE_STARTPARSE,
+					"XMLReader inte f\u00F6re startParse-beg\u00E4ran" },
 
-			{ ER_AXIS_TRAVERSER_NOT_SUPPORTED, "Axeltravers underst\u00F6ds inte: {0}" },
+			{ ER_AXIS_TRAVERSER_NOT_SUPPORTED,
+					"Axeltravers underst\u00F6ds inte: {0}" },
 
 			{ ER_ERRORHANDLER_CREATED_WITH_NULL_PRINTWRITER,
 					"ListingErrorHandler skapad med null PrintWriter!" },
 
 			{ ER_SYSTEMID_UNKNOWN, "SystemId ok\u00E4nt" },
 
-			{ ER_LOCATION_UNKNOWN, "Platsen f\u00F6r felet \u00E4r ok\u00E4nd" },
+			{ ER_LOCATION_UNKNOWN,
+					"Platsen f\u00F6r felet \u00E4r ok\u00E4nd" },
 
-			{ ER_PREFIX_MUST_RESOLVE, "Prefix m\u00E5ste matchas till en namnrymd: {0}" },
+			{ ER_PREFIX_MUST_RESOLVE,
+					"Prefix m\u00E5ste matchas till en namnrymd: {0}" },
 
-			{ ER_CREATEDOCUMENT_NOT_SUPPORTED, "createDocument() st\u00F6ds inte i XPathContext!" },
+			{ ER_CREATEDOCUMENT_NOT_SUPPORTED,
+					"createDocument() st\u00F6ds inte i XPathContext!" },
 
-			{ ER_CHILD_HAS_NO_OWNER_DOCUMENT, "Underordnat attribut har inget \u00E4gardokument!" },
+			{ ER_CHILD_HAS_NO_OWNER_DOCUMENT,
+					"Underordnat attribut har inget \u00E4gardokument!" },
 
 			{ ER_CHILD_HAS_NO_OWNER_DOCUMENT_ELEMENT,
 					"Underordnat attribut har inget \u00E4gardokumentelement!" },
@@ -315,7 +325,8 @@ public class XMLErrorResources_sv extends ListResourceBundle {
 			{ ER_CANT_OUTPUT_TEXT_BEFORE_DOC,
 					"Varning: utdatatext kan inte skrivas ut f\u00F6re dokumentelement! Ignoreras..." },
 
-			{ ER_CANT_HAVE_MORE_THAN_ONE_ROOT, "En DOM kan inte ha fler \u00E4n en rot!" },
+			{ ER_CANT_HAVE_MORE_THAN_ONE_ROOT,
+					"En DOM kan inte ha fler \u00E4n en rot!" },
 
 			{ ER_ARG_LOCALNAME_NULL, "Argumentet 'localName' \u00E4r null" },
 
@@ -324,16 +335,19 @@ public class XMLErrorResources_sv extends ListResourceBundle {
 			// The localname is the portion after the optional colon; the
 			// message indicates
 			// that there is a problem with that part of the QNAME.
-			{ ER_ARG_LOCALNAME_INVALID, "Localname i QNAME b\u00F6r vara giltigt NCName" },
+			{ ER_ARG_LOCALNAME_INVALID,
+					"Localname i QNAME b\u00F6r vara giltigt NCName" },
 
 			// Note to translators: A QNAME has the syntactic form
 			// [NCName:]NCName
 			// The prefix is the portion before the optional colon; the message
 			// indicates
 			// that there is a problem with that part of the QNAME.
-			{ ER_ARG_PREFIX_INVALID, "Prefix i QNAME b\u00F6r vara giltigt NCName" },
+			{ ER_ARG_PREFIX_INVALID,
+					"Prefix i QNAME b\u00F6r vara giltigt NCName" },
 
-			{ ER_NAME_CANT_START_WITH_COLON, "Namnet kan inte b\u00F6rja med kolon" },
+			{ ER_NAME_CANT_START_WITH_COLON,
+					"Namnet kan inte b\u00F6rja med kolon" },
 
 			{ "BAD_CODE",
 					"Parameter f\u00F6r createMessage ligger utanf\u00F6r gr\u00E4nsv\u00E4rdet" },
@@ -343,13 +357,16 @@ public class XMLErrorResources_sv extends ListResourceBundle {
 			{ ER_SERIALIZER_NOT_CONTENTHANDLER,
 					"Serializerklassen ''{0}'' implementerar inte org.xml.sax.ContentHandler." },
 
-			{ ER_RESOURCE_COULD_NOT_FIND, "Resursen [ {0} ] kunde inte h\u00E4mtas.\n {1}" },
+			{ ER_RESOURCE_COULD_NOT_FIND,
+					"Resursen [ {0} ] kunde inte h\u00E4mtas.\n {1}" },
 
-			{ ER_RESOURCE_COULD_NOT_LOAD, "Resursen [ {0} ] kunde inte laddas: {1} \n {2} \t {3}" },
+			{ ER_RESOURCE_COULD_NOT_LOAD,
+					"Resursen [ {0} ] kunde inte laddas: {1} \n {2} \t {3}" },
 
 			{ ER_BUFFER_SIZE_LESSTHAN_ZERO, "Buffertstorlek <=0" },
 
-			{ ER_INVALID_UTF16_SURROGATE, "Ogiltigt UTF-16-surrogat uppt\u00E4ckt: {0} ?" },
+			{ ER_INVALID_UTF16_SURROGATE,
+					"Ogiltigt UTF-16-surrogat uppt\u00E4ckt: {0} ?" },
 
 			{ ER_OIERROR, "IO-fel" },
 
@@ -361,14 +378,16 @@ public class XMLErrorResources_sv extends ListResourceBundle {
 			 * namespace prefix that was undefined. The value of the
 			 * substitution text is the name of the prefix.
 			 */
-			{ ER_NAMESPACE_PREFIX, "Namnrymd f\u00F6r prefix ''{0}'' har inte deklarerats." },
+			{ ER_NAMESPACE_PREFIX,
+					"Namnrymd f\u00F6r prefix ''{0}'' har inte deklarerats." },
 			/*
 			 * Note to translators: This message is reported if the stylesheet
 			 * being processed attempted to construct an XML document with an
 			 * attribute in a place other than on an element. The substitution
 			 * text specifies the name of the attribute.
 			 */
-			{ ER_STRAY_ATTRIBUTE, "Attributet ''{0}'' finns utanf\u00F6r elementet." },
+			{ ER_STRAY_ATTRIBUTE,
+					"Attributet ''{0}'' finns utanf\u00F6r elementet." },
 
 			/*
 			 * Note to translators: As with the preceding message, a namespace

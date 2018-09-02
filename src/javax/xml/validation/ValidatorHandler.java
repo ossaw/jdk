@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.validation;
@@ -125,8 +105,7 @@ public abstract class ValidatorHandler implements ContentHandler {
 	 * {@link LSResourceResolver}.
 	 * </p>
 	 */
-	protected ValidatorHandler() {
-	}
+	protected ValidatorHandler() {}
 
 	/**
 	 * Sets the {@link ContentHandler} which receives the augmented validation
@@ -172,7 +151,7 @@ public abstract class ValidatorHandler implements ContentHandler {
 	 * This method can be called even during a middle of a validation.
 	 *
 	 * @param receiver
-	 *            A {@link ContentHandler} or a null value.
+	 *                 A {@link ContentHandler} or a null value.
 	 */
 	public abstract void setContentHandler(ContentHandler receiver);
 
@@ -237,7 +216,8 @@ public abstract class ValidatorHandler implements ContentHandler {
 	 * field is set to null.
 	 *
 	 * @param errorHandler
-	 *            A new error handler to be set. This parameter can be null.
+	 *                     A new error handler to be set. This parameter can be
+	 *                     null.
 	 */
 	public abstract void setErrorHandler(ErrorHandler errorHandler);
 
@@ -288,9 +268,11 @@ public abstract class ValidatorHandler implements ContentHandler {
 	 * field is set to null.
 	 *
 	 * @param resourceResolver
-	 *            A new resource resolver to be set. This parameter can be null.
+	 *                         A new resource resolver to be set. This parameter
+	 *                         can be null.
 	 */
-	public abstract void setResourceResolver(LSResourceResolver resourceResolver);
+	public abstract void setResourceResolver(
+			LSResourceResolver resourceResolver);
 
 	/**
 	 * Gets the current {@link LSResourceResolver} set to this
@@ -340,22 +322,26 @@ public abstract class ValidatorHandler implements ContentHandler {
 	 * </p>
 	 *
 	 * @param name
-	 *            The feature name, which is a non-null fully-qualified URI.
+	 *             The feature name, which is a non-null fully-qualified URI.
 	 *
 	 * @return The current value of the feature (true or false).
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             If the feature value can't be assigned or retrieved.
+	 *                                   If the feature value can't be assigned
+	 *                                   or retrieved.
 	 * @throws SAXNotSupportedException
-	 *             When the {@link ValidatorHandler} recognizes the feature name
-	 *             but cannot determine its value at this time.
+	 *                                   When the {@link ValidatorHandler}
+	 *                                   recognizes the feature name
+	 *                                   but cannot determine its value at this
+	 *                                   time.
 	 * @throws NullPointerException
-	 *             When <code>name</code> is <code>null</code>.
+	 *                                   When <code>name</code> is
+	 *                                   <code>null</code>.
 	 *
 	 * @see #setFeature(String, boolean)
 	 */
-	public boolean getFeature(String name)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
+	public boolean getFeature(String name) throws SAXNotRecognizedException,
+			SAXNotSupportedException {
 
 		if (name == null) {
 			throw new NullPointerException();
@@ -396,17 +382,20 @@ public abstract class ValidatorHandler implements ContentHandler {
 	 * </ul>
 	 *
 	 * @param name
-	 *            The feature name, which is a non-null fully-qualified URI.
+	 *              The feature name, which is a non-null fully-qualified URI.
 	 * @param value
-	 *            The requested value of the feature (true or false).
+	 *              The requested value of the feature (true or false).
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             If the feature value can't be assigned or retrieved.
+	 *                                   If the feature value can't be assigned
+	 *                                   or retrieved.
 	 * @throws SAXNotSupportedException
-	 *             When the {@link ValidatorHandler} recognizes the feature name
-	 *             but cannot set the requested value.
+	 *                                   When the {@link ValidatorHandler}
+	 *                                   recognizes the feature name
+	 *                                   but cannot set the requested value.
 	 * @throws NullPointerException
-	 *             When <code>name</code> is <code>null</code>.
+	 *                                   When <code>name</code> is
+	 *                                   <code>null</code>.
 	 *
 	 * @see #getFeature(String)
 	 */
@@ -437,17 +426,21 @@ public abstract class ValidatorHandler implements ContentHandler {
 	 * </p>
 	 *
 	 * @param name
-	 *            The property name, which is a non-null fully-qualified URI.
+	 *               The property name, which is a non-null fully-qualified URI.
 	 * @param object
-	 *            The requested value for the property.
+	 *               The requested value for the property.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             If the property value can't be assigned or retrieved.
+	 *                                   If the property value can't be assigned
+	 *                                   or retrieved.
 	 * @throws SAXNotSupportedException
-	 *             When the {@link ValidatorHandler} recognizes the property
-	 *             name but cannot set the requested value.
+	 *                                   When the {@link ValidatorHandler}
+	 *                                   recognizes the property
+	 *                                   name but cannot set the requested
+	 *                                   value.
 	 * @throws NullPointerException
-	 *             When <code>name</code> is <code>null</code>.
+	 *                                   When <code>name</code> is
+	 *                                   <code>null</code>.
 	 */
 	public void setProperty(String name, Object object)
 			throws SAXNotRecognizedException, SAXNotSupportedException {
@@ -480,22 +473,25 @@ public abstract class ValidatorHandler implements ContentHandler {
 	 * </p>
 	 *
 	 * @param name
-	 *            The property name, which is a non-null fully-qualified URI.
+	 *             The property name, which is a non-null fully-qualified URI.
 	 *
 	 * @return The current value of the property.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             If the property value can't be assigned or retrieved.
+	 *                                   If the property value can't be assigned
+	 *                                   or retrieved.
 	 * @throws SAXNotSupportedException
-	 *             When the XMLReader recognizes the property name but cannot
-	 *             determine its value at this time.
+	 *                                   When the XMLReader recognizes the
+	 *                                   property name but cannot
+	 *                                   determine its value at this time.
 	 * @throws NullPointerException
-	 *             When <code>name</code> is <code>null</code>.
+	 *                                   When <code>name</code> is
+	 *                                   <code>null</code>.
 	 *
 	 * @see #setProperty(String, Object)
 	 */
-	public Object getProperty(String name)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
+	public Object getProperty(String name) throws SAXNotRecognizedException,
+			SAXNotSupportedException {
 
 		if (name == null) {
 			throw new NullPointerException();

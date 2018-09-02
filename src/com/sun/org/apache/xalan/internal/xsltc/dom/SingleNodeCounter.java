@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,12 +33,13 @@ public abstract class SingleNodeCounter extends NodeCounter {
 	static private final int[] EmptyArray = new int[] {};
 	DTMAxisIterator _countSiblings = null;
 
-	public SingleNodeCounter(Translet translet, DOM document, DTMAxisIterator iterator) {
+	public SingleNodeCounter(Translet translet, DOM document,
+			DTMAxisIterator iterator) {
 		super(translet, document, iterator);
 	}
 
-	public SingleNodeCounter(Translet translet, DOM document, DTMAxisIterator iterator,
-			boolean hasFrom) {
+	public SingleNodeCounter(Translet translet, DOM document,
+			DTMAxisIterator iterator, boolean hasFrom) {
 		super(translet, document, iterator, hasFrom);
 	}
 
@@ -113,21 +111,22 @@ public abstract class SingleNodeCounter extends NodeCounter {
 		return formatNumbers(result);
 	}
 
-	public static NodeCounter getDefaultNodeCounter(Translet translet, DOM document,
-			DTMAxisIterator iterator) {
+	public static NodeCounter getDefaultNodeCounter(Translet translet,
+			DOM document, DTMAxisIterator iterator) {
 		return new DefaultSingleNodeCounter(translet, document, iterator);
 	}
 
 	static class DefaultSingleNodeCounter extends SingleNodeCounter {
-		public DefaultSingleNodeCounter(Translet translet, DOM document, DTMAxisIterator iterator) {
+		public DefaultSingleNodeCounter(Translet translet, DOM document,
+				DTMAxisIterator iterator) {
 			super(translet, document, iterator);
 		}
 
 		public NodeCounter setStartNode(int node) {
 			_node = node;
 			_nodeType = _document.getExpandedTypeID(node);
-			_countSiblings = _document.getTypedAxisIterator(Axis.PRECEDINGSIBLING,
-					_document.getExpandedTypeID(node));
+			_countSiblings = _document.getTypedAxisIterator(
+					Axis.PRECEDINGSIBLING, _document.getExpandedTypeID(node));
 			return this;
 		}
 

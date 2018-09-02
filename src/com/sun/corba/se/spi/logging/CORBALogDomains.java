@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.logging;
@@ -57,8 +37,7 @@ package com.sun.corba.se.spi.logging;
  * </ul>
  */
 public abstract class CORBALogDomains {
-	private CORBALogDomains() {
-	}
+	private CORBALogDomains() {}
 
 	// Top level log domain for CORBA
 	public static final String TOP_LEVEL_DOMAIN = "javax.enterprise.resource.corba";

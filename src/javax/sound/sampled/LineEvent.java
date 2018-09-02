@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled;
@@ -77,17 +57,18 @@ public class LineEvent extends java.util.EventObject {
 	 * specified line.
 	 * 
 	 * @param line
-	 *            the source of this event
+	 *                 the source of this event
 	 * @param type
-	 *            the event type (<code>OPEN</code>, <code>CLOSE</code>,
-	 *            <code>START</code>, or <code>STOP</code>)
+	 *                 the event type (<code>OPEN</code>, <code>CLOSE</code>,
+	 *                 <code>START</code>, or <code>STOP</code>)
 	 * @param position
-	 *            the number of sample frames that the line had already
-	 *            processed when the event occurred, or
-	 *            {@link AudioSystem#NOT_SPECIFIED}
+	 *                 the number of sample frames that the line had already
+	 *                 processed when the event occurred, or
+	 *                 {@link AudioSystem#NOT_SPECIFIED}
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>line</code> is <code>null</code>.
+	 *                                  if <code>line</code> is
+	 *                                  <code>null</code>.
 	 */
 	public LineEvent(Line line, Type type, long position) {
 
@@ -180,7 +161,7 @@ public class LineEvent extends java.util.EventObject {
 		 * Constructs a new event type.
 		 * 
 		 * @param name
-		 *            name of the type
+		 *             name of the type
 		 */
 		protected Type(String name) {
 			this.name = name;
@@ -263,7 +244,6 @@ public class LineEvent extends java.util.EventObject {
 		/*
 		 * ISSUE: we may want to get rid of this. Is JavaSound responsible for
 		 * reporting this??
-		 *
 		 * [If it's decided to keep this API, the docs will need to be updated
 		 * to include mention of EOM events elsewhere.]
 		 */

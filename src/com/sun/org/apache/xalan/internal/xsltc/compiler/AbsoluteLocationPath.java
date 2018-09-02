@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -68,7 +65,8 @@ final class AbsoluteLocationPath extends Expression {
 	}
 
 	public String toString() {
-		return "AbsoluteLocationPath(" + (_path != null ? _path.toString() : "null") + ')';
+		return "AbsoluteLocationPath(" + (_path != null ? _path.toString()
+				: "null") + ')';
 	}
 
 	public Type typeCheck(SymbolTable stable) throws TypeCheckError {
@@ -85,8 +83,8 @@ final class AbsoluteLocationPath extends Expression {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = methodGen.getInstructionList();
 		if (_path != null) {
-			final int initAI = cpg.addMethodref(ABSOLUTE_ITERATOR, "<init>",
-					"(" + NODE_ITERATOR_SIG + ")V");
+			final int initAI = cpg.addMethodref(ABSOLUTE_ITERATOR, "<init>", "("
+					+ NODE_ITERATOR_SIG + ")V");
 
 			// Compile relative path iterator(s)
 			//
@@ -99,14 +97,17 @@ final class AbsoluteLocationPath extends Expression {
 			// a temporary variable, create the object and reload the argument
 			// from the temporary to avoid the problem.
 			_path.translate(classGen, methodGen);
-			LocalVariableGen relPathIterator = methodGen.addLocalVariable("abs_location_path_tmp",
-					Util.getJCRefType(NODE_ITERATOR_SIG), null, null);
-			relPathIterator.setStart(il.append(new ASTORE(relPathIterator.getIndex())));
+			LocalVariableGen relPathIterator = methodGen.addLocalVariable(
+					"abs_location_path_tmp", Util.getJCRefType(
+							NODE_ITERATOR_SIG), null, null);
+			relPathIterator.setStart(il.append(new ASTORE(relPathIterator
+					.getIndex())));
 
 			// Create new AbsoluteIterator
 			il.append(new NEW(cpg.addClass(ABSOLUTE_ITERATOR)));
 			il.append(DUP);
-			relPathIterator.setEnd(il.append(new ALOAD(relPathIterator.getIndex())));
+			relPathIterator.setEnd(il.append(new ALOAD(relPathIterator
+					.getIndex())));
 
 			// Initialize AbsoluteIterator with iterator from the stack
 			il.append(new INVOKESPECIAL(initAI));

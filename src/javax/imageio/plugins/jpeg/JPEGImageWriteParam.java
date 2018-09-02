@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.plugins.jpeg;
@@ -110,9 +90,10 @@ public class JPEGImageWriteParam extends ImageWriteParam {
 	 * The default compression quality is 0.75.
 	 *
 	 * @param locale
-	 *            a <code>Locale</code> to be used by the superclass to localize
-	 *            compression type names and quality descriptions, or
-	 *            <code>null</code>.
+	 *               a <code>Locale</code> to be used by the superclass to
+	 *               localize
+	 *               compression type names and quality descriptions, or
+	 *               <code>null</code>.
 	 */
 	public JPEGImageWriteParam(Locale locale) {
 		super(locale);
@@ -132,11 +113,13 @@ public class JPEGImageWriteParam extends ImageWriteParam {
 	 * <code>0.75F</code>.
 	 *
 	 * @exception IllegalStateException
-	 *                if the compression mode is not <code>MODE_EXPLICIT</code>.
+	 *                                  if the compression mode is not
+	 *                                  <code>MODE_EXPLICIT</code>.
 	 */
 	public void unsetCompression() {
 		if (getCompressionMode() != MODE_EXPLICIT) {
-			throw new IllegalStateException("Compression mode not MODE_EXPLICIT!");
+			throw new IllegalStateException(
+					"Compression mode not MODE_EXPLICIT!");
 		}
 		this.compressionQuality = JPEG.DEFAULT_QUALITY;
 	}
@@ -148,18 +131,21 @@ public class JPEGImageWriteParam extends ImageWriteParam {
 	 * @return <code>false</code>.
 	 *
 	 * @exception IllegalStateException
-	 *                if the compression mode is not <code>MODE_EXPLICIT</code>.
+	 *                                  if the compression mode is not
+	 *                                  <code>MODE_EXPLICIT</code>.
 	 */
 	public boolean isCompressionLossless() {
 		if (getCompressionMode() != MODE_EXPLICIT) {
-			throw new IllegalStateException("Compression mode not MODE_EXPLICIT!");
+			throw new IllegalStateException(
+					"Compression mode not MODE_EXPLICIT!");
 		}
 		return false;
 	}
 
 	public String[] getCompressionQualityDescriptions() {
 		if (getCompressionMode() != MODE_EXPLICIT) {
-			throw new IllegalStateException("Compression mode not MODE_EXPLICIT!");
+			throw new IllegalStateException(
+					"Compression mode not MODE_EXPLICIT!");
 		}
 		if ((getCompressionTypes() != null) && (getCompressionType() == null)) {
 			throw new IllegalStateException("No compression type set!");
@@ -169,7 +155,8 @@ public class JPEGImageWriteParam extends ImageWriteParam {
 
 	public float[] getCompressionQualityValues() {
 		if (getCompressionMode() != MODE_EXPLICIT) {
-			throw new IllegalStateException("Compression mode not MODE_EXPLICIT!");
+			throw new IllegalStateException(
+					"Compression mode not MODE_EXPLICIT!");
 		}
 		if ((getCompressionTypes() != null) && (getCompressionType() == null)) {
 			throw new IllegalStateException("No compression type set!");
@@ -196,24 +183,27 @@ public class JPEGImageWriteParam extends ImageWriteParam {
 	 * these arrays. The argument arrays are copied by this method.
 	 *
 	 * @param qTables
-	 *            An array of quantization table objects.
+	 *                        An array of quantization table objects.
 	 * @param DCHuffmanTables
-	 *            An array of Huffman table objects.
+	 *                        An array of Huffman table objects.
 	 * @param ACHuffmanTables
-	 *            An array of Huffman table objects.
+	 *                        An array of Huffman table objects.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if any of the arguments is <code>null</code> or has more
-	 *                than 4 elements, or if the numbers of DC and AC tables
-	 *                differ.
+	 *                                     if any of the arguments is
+	 *                                     <code>null</code> or has more
+	 *                                     than 4 elements, or if the numbers of
+	 *                                     DC and AC tables
+	 *                                     differ.
 	 *
 	 * @see #unsetEncodeTables
 	 */
-	public void setEncodeTables(JPEGQTable[] qTables, JPEGHuffmanTable[] DCHuffmanTables,
+	public void setEncodeTables(JPEGQTable[] qTables,
+			JPEGHuffmanTable[] DCHuffmanTables,
 			JPEGHuffmanTable[] ACHuffmanTables) {
-		if ((qTables == null) || (DCHuffmanTables == null) || (ACHuffmanTables == null)
-				|| (qTables.length > 4) || (DCHuffmanTables.length > 4)
-				|| (ACHuffmanTables.length > 4)
+		if ((qTables == null) || (DCHuffmanTables == null)
+				|| (ACHuffmanTables == null) || (qTables.length > 4)
+				|| (DCHuffmanTables.length > 4) || (ACHuffmanTables.length > 4)
 				|| (DCHuffmanTables.length != ACHuffmanTables.length)) {
 			throw new IllegalArgumentException("Invalid JPEG table arrays");
 		}
@@ -258,7 +248,8 @@ public class JPEGImageWriteParam extends ImageWriteParam {
 	 * @see #setEncodeTables
 	 */
 	public JPEGHuffmanTable[] getDCHuffmanTables() {
-		return (DCHuffmanTables != null) ? (JPEGHuffmanTable[]) DCHuffmanTables.clone() : null;
+		return (DCHuffmanTables != null) ? (JPEGHuffmanTable[]) DCHuffmanTables
+				.clone() : null;
 	}
 
 	/**
@@ -272,7 +263,8 @@ public class JPEGImageWriteParam extends ImageWriteParam {
 	 * @see #setEncodeTables
 	 */
 	public JPEGHuffmanTable[] getACHuffmanTables() {
-		return (ACHuffmanTables != null) ? (JPEGHuffmanTable[]) ACHuffmanTables.clone() : null;
+		return (ACHuffmanTables != null) ? (JPEGHuffmanTable[]) ACHuffmanTables
+				.clone() : null;
 	}
 
 	/**
@@ -283,8 +275,9 @@ public class JPEGImageWriteParam extends ImageWriteParam {
 	 * set to <code>true</code> will always contain Huffman tables.
 	 *
 	 * @param optimize
-	 *            A boolean indicating whether to generate optimized Huffman
-	 *            tables when writing.
+	 *                 A boolean indicating whether to generate optimized
+	 *                 Huffman
+	 *                 tables when writing.
 	 *
 	 * @see #getOptimizeHuffmanTables
 	 */

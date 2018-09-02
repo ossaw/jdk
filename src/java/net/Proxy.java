@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -42,18 +22,18 @@ public class Proxy {
 	 * @since 1.5
 	 */
 	public enum Type {
-		/**
-		 * Represents a direct connection, or the absence of a proxy.
-		 */
-		DIRECT,
-		/**
-		 * Represents proxy for high level protocols such as HTTP or FTP.
-		 */
-		HTTP,
-		/**
-		 * Represents a SOCKS (V4 or V5) proxy.
-		 */
-		SOCKS
+	/**
+	 * Represents a direct connection, or the absence of a proxy.
+	 */
+	DIRECT,
+	/**
+	 * Represents proxy for high level protocols such as HTTP or FTP.
+	 */
+	HTTP,
+	/**
+	 * Represents a SOCKS (V4 or V5) proxy.
+	 */
+	SOCKS
 	};
 
 	private Type type;
@@ -84,16 +64,17 @@ public class Proxy {
 	 * connection.
 	 *
 	 * @param type
-	 *            the {@code Type} of the proxy
+	 *             the {@code Type} of the proxy
 	 * @param sa
-	 *            the {@code SocketAddress} for that proxy
+	 *             the {@code SocketAddress} for that proxy
 	 * @throws IllegalArgumentException
-	 *             when the type and the address are incompatible
+	 *                                  when the type and the address are
+	 *                                  incompatible
 	 */
 	public Proxy(Type type, SocketAddress sa) {
 		if ((type == Type.DIRECT) || !(sa instanceof InetSocketAddress))
-			throw new IllegalArgumentException(
-					"type " + type + " is not compatible with address " + sa);
+			throw new IllegalArgumentException("type " + type
+					+ " is not compatible with address " + sa);
 		this.type = type;
 		this.sa = sa;
 	}

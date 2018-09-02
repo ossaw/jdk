@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -63,28 +43,32 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 	// BMH API and internals
 	//
 
-	static BoundMethodHandle bindSingle(MethodType type, LambdaForm form, BasicType xtype,
-			Object x) {
+	static BoundMethodHandle bindSingle(MethodType type, LambdaForm form,
+			BasicType xtype, Object x) {
 		// for some type signatures, there exist pre-defined concrete BMH
 		// classes
 		try {
 			switch (xtype) {
-			case L_TYPE:
-				return bindSingle(type, form, x); // Use known fast path.
-			case I_TYPE:
-				return (BoundMethodHandle) SpeciesData.EMPTY.extendWith(I_TYPE).constructor()
-						.invokeBasic(type, form, ValueConversions.widenSubword(x));
-			case J_TYPE:
-				return (BoundMethodHandle) SpeciesData.EMPTY.extendWith(J_TYPE).constructor()
-						.invokeBasic(type, form, (long) x);
-			case F_TYPE:
-				return (BoundMethodHandle) SpeciesData.EMPTY.extendWith(F_TYPE).constructor()
-						.invokeBasic(type, form, (float) x);
-			case D_TYPE:
-				return (BoundMethodHandle) SpeciesData.EMPTY.extendWith(D_TYPE).constructor()
-						.invokeBasic(type, form, (double) x);
-			default:
-				throw newInternalError("unexpected xtype: " + xtype);
+				case L_TYPE:
+					return bindSingle(type, form, x); // Use known fast path.
+				case I_TYPE:
+					return (BoundMethodHandle) SpeciesData.EMPTY.extendWith(
+							I_TYPE).constructor().invokeBasic(type, form,
+									ValueConversions.widenSubword(x));
+				case J_TYPE:
+					return (BoundMethodHandle) SpeciesData.EMPTY.extendWith(
+							J_TYPE).constructor().invokeBasic(type, form,
+									(long) x);
+				case F_TYPE:
+					return (BoundMethodHandle) SpeciesData.EMPTY.extendWith(
+							F_TYPE).constructor().invokeBasic(type, form,
+									(float) x);
+				case D_TYPE:
+					return (BoundMethodHandle) SpeciesData.EMPTY.extendWith(
+							D_TYPE).constructor().invokeBasic(type, form,
+									(double) x);
+				default:
+					throw newInternalError("unexpected xtype: " + xtype);
 			}
 		} catch (Throwable t) {
 			throw newInternalError(t);
@@ -96,13 +80,14 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 		return form.editor();
 	}
 
-	static BoundMethodHandle bindSingle(MethodType type, LambdaForm form, Object x) {
+	static BoundMethodHandle bindSingle(MethodType type, LambdaForm form,
+			Object x) {
 		return Species_L.make(type, form, x);
 	}
 
 	@Override // there is a default binder in the super class, for 'L' types
 				// only
-	/* non-public */
+				/* non-public */
 	BoundMethodHandle bindArgumentL(int pos, Object value) {
 		return editor().bindArgumentL(this, pos, value);
 	}
@@ -136,8 +121,8 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 	}
 
 	private boolean tooComplex() {
-		return (fieldCount() > FIELD_COUNT_THRESHOLD
-				|| form.expressionCount() > FORM_EXPRESSION_THRESHOLD);
+		return (fieldCount() > FIELD_COUNT_THRESHOLD || form
+				.expressionCount() > FORM_EXPRESSION_THRESHOLD);
 	}
 
 	private static final int FIELD_COUNT_THRESHOLD = 12; // largest convenient
@@ -153,8 +138,9 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 	 * bmh[0]; invokeBasic(thismh, arg*) }}
 	 */
 	static BoundMethodHandle makeReinvoker(MethodHandle target) {
-		LambdaForm form = DelegatingMethodHandle.makeReinvokerForm(target, MethodTypeForm.LF_REBIND,
-				Species_L.SPECIES_DATA, Species_L.SPECIES_DATA.getterFunction(0));
+		LambdaForm form = DelegatingMethodHandle.makeReinvokerForm(target,
+				MethodTypeForm.LF_REBIND, Species_L.SPECIES_DATA,
+				Species_L.SPECIES_DATA.getterFunction(0));
 		return Species_L.make(target.type(), form, target);
 	}
 
@@ -196,43 +182,45 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 	/* non-public */ final Object arg(int i) {
 		try {
 			switch (speciesData().fieldType(i)) {
-			case L_TYPE:
-				return speciesData().getters[i].invokeBasic(this);
-			case I_TYPE:
-				return (int) speciesData().getters[i].invokeBasic(this);
-			case J_TYPE:
-				return (long) speciesData().getters[i].invokeBasic(this);
-			case F_TYPE:
-				return (float) speciesData().getters[i].invokeBasic(this);
-			case D_TYPE:
-				return (double) speciesData().getters[i].invokeBasic(this);
+				case L_TYPE:
+					return speciesData().getters[i].invokeBasic(this);
+				case I_TYPE:
+					return (int) speciesData().getters[i].invokeBasic(this);
+				case J_TYPE:
+					return (long) speciesData().getters[i].invokeBasic(this);
+				case F_TYPE:
+					return (float) speciesData().getters[i].invokeBasic(this);
+				case D_TYPE:
+					return (double) speciesData().getters[i].invokeBasic(this);
 			}
 		} catch (Throwable ex) {
 			throw newInternalError(ex);
 		}
-		throw new InternalError("unexpected type: " + speciesData().typeChars + "." + i);
+		throw new InternalError("unexpected type: " + speciesData().typeChars
+				+ "." + i);
 	}
 
 	//
 	// cloning API
 	//
 
-	/* non-public */ abstract BoundMethodHandle copyWith(MethodType mt, LambdaForm lf);
+	/* non-public */ abstract BoundMethodHandle copyWith(MethodType mt,
+			LambdaForm lf);
 
-	/* non-public */ abstract BoundMethodHandle copyWithExtendL(MethodType mt, LambdaForm lf,
-			Object narg);
+	/* non-public */ abstract BoundMethodHandle copyWithExtendL(MethodType mt,
+			LambdaForm lf, Object narg);
 
-	/* non-public */ abstract BoundMethodHandle copyWithExtendI(MethodType mt, LambdaForm lf,
-			int narg);
+	/* non-public */ abstract BoundMethodHandle copyWithExtendI(MethodType mt,
+			LambdaForm lf, int narg);
 
-	/* non-public */ abstract BoundMethodHandle copyWithExtendJ(MethodType mt, LambdaForm lf,
-			long narg);
+	/* non-public */ abstract BoundMethodHandle copyWithExtendJ(MethodType mt,
+			LambdaForm lf, long narg);
 
-	/* non-public */ abstract BoundMethodHandle copyWithExtendF(MethodType mt, LambdaForm lf,
-			float narg);
+	/* non-public */ abstract BoundMethodHandle copyWithExtendF(MethodType mt,
+			LambdaForm lf, float narg);
 
-	/* non-public */ abstract BoundMethodHandle copyWithExtendD(MethodType mt, LambdaForm lf,
-			double narg);
+	/* non-public */ abstract BoundMethodHandle copyWithExtendD(MethodType mt,
+			LambdaForm lf, double narg);
 
 	//
 	// concrete BMH classes required to close bootstrap loops
@@ -249,77 +237,79 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 		}
 
 		@Override
-				/* non-public */ SpeciesData speciesData() {
+		/* non-public */ SpeciesData speciesData() {
 			return SPECIES_DATA;
 		}
 
 		@Override
-				/* non-public */ int fieldCount() {
+		/* non-public */ int fieldCount() {
 			return 1;
 		}
 
-		/* non-public */ static final SpeciesData SPECIES_DATA = new SpeciesData("L",
-				Species_L.class);
+		/* non-public */ static final SpeciesData SPECIES_DATA = new SpeciesData(
+				"L", Species_L.class);
 
-		/* non-public */ static BoundMethodHandle make(MethodType mt, LambdaForm lf, Object argL0) {
+		/* non-public */ static BoundMethodHandle make(MethodType mt,
+				LambdaForm lf, Object argL0) {
 			return new Species_L(mt, lf, argL0);
 		}
 
 		@Override
-		/* non-public */ final BoundMethodHandle copyWith(MethodType mt, LambdaForm lf) {
+		/* non-public */ final BoundMethodHandle copyWith(MethodType mt,
+				LambdaForm lf) {
 			return new Species_L(mt, lf, argL0);
 		}
 
 		@Override
-		/* non-public */ final BoundMethodHandle copyWithExtendL(MethodType mt, LambdaForm lf,
-				Object narg) {
+		/* non-public */ final BoundMethodHandle copyWithExtendL(MethodType mt,
+				LambdaForm lf, Object narg) {
 			try {
-				return (BoundMethodHandle) SPECIES_DATA.extendWith(L_TYPE).constructor()
-						.invokeBasic(mt, lf, argL0, narg);
+				return (BoundMethodHandle) SPECIES_DATA.extendWith(L_TYPE)
+						.constructor().invokeBasic(mt, lf, argL0, narg);
 			} catch (Throwable ex) {
 				throw uncaughtException(ex);
 			}
 		}
 
 		@Override
-		/* non-public */ final BoundMethodHandle copyWithExtendI(MethodType mt, LambdaForm lf,
-				int narg) {
+		/* non-public */ final BoundMethodHandle copyWithExtendI(MethodType mt,
+				LambdaForm lf, int narg) {
 			try {
-				return (BoundMethodHandle) SPECIES_DATA.extendWith(I_TYPE).constructor()
-						.invokeBasic(mt, lf, argL0, narg);
+				return (BoundMethodHandle) SPECIES_DATA.extendWith(I_TYPE)
+						.constructor().invokeBasic(mt, lf, argL0, narg);
 			} catch (Throwable ex) {
 				throw uncaughtException(ex);
 			}
 		}
 
 		@Override
-		/* non-public */ final BoundMethodHandle copyWithExtendJ(MethodType mt, LambdaForm lf,
-				long narg) {
+		/* non-public */ final BoundMethodHandle copyWithExtendJ(MethodType mt,
+				LambdaForm lf, long narg) {
 			try {
-				return (BoundMethodHandle) SPECIES_DATA.extendWith(J_TYPE).constructor()
-						.invokeBasic(mt, lf, argL0, narg);
+				return (BoundMethodHandle) SPECIES_DATA.extendWith(J_TYPE)
+						.constructor().invokeBasic(mt, lf, argL0, narg);
 			} catch (Throwable ex) {
 				throw uncaughtException(ex);
 			}
 		}
 
 		@Override
-		/* non-public */ final BoundMethodHandle copyWithExtendF(MethodType mt, LambdaForm lf,
-				float narg) {
+		/* non-public */ final BoundMethodHandle copyWithExtendF(MethodType mt,
+				LambdaForm lf, float narg) {
 			try {
-				return (BoundMethodHandle) SPECIES_DATA.extendWith(F_TYPE).constructor()
-						.invokeBasic(mt, lf, argL0, narg);
+				return (BoundMethodHandle) SPECIES_DATA.extendWith(F_TYPE)
+						.constructor().invokeBasic(mt, lf, argL0, narg);
 			} catch (Throwable ex) {
 				throw uncaughtException(ex);
 			}
 		}
 
 		@Override
-		/* non-public */ final BoundMethodHandle copyWithExtendD(MethodType mt, LambdaForm lf,
-				double narg) {
+		/* non-public */ final BoundMethodHandle copyWithExtendD(MethodType mt,
+				LambdaForm lf, double narg) {
 			try {
-				return (BoundMethodHandle) SPECIES_DATA.extendWith(D_TYPE).constructor()
-						.invokeBasic(mt, lf, argL0, narg);
+				return (BoundMethodHandle) SPECIES_DATA.extendWith(D_TYPE)
+						.constructor().invokeBasic(mt, lf, argL0, narg);
 			} catch (Throwable ex) {
 				throw uncaughtException(ex);
 			}
@@ -357,11 +347,15 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 		@Stable
 		private final SpeciesData[] extensions;
 
-				/* non-public */ int fieldCount() {
+		/* non-public */ int fieldCount() {
 			return typeCodes.length;
-		}/* non-public */ BasicType fieldType(int i) {
+		}
+
+		/* non-public */ BasicType fieldType(int i) {
 			return typeCodes[i];
-		}/* non-public */ char fieldTypeChar(int i) {
+		}
+
+		/* non-public */ char fieldTypeChar(int i) {
 			return typeChars.charAt(i);
 		}
 
@@ -401,7 +395,8 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 			return constructor[0];
 		}
 
-		static final SpeciesData EMPTY = new SpeciesData("", BoundMethodHandle.class);
+		static final SpeciesData EMPTY = new SpeciesData("",
+				BoundMethodHandle.class);
 
 		SpeciesData(String types, Class<? extends BoundMethodHandle> clazz) {
 			this.typeChars = types;
@@ -414,7 +409,8 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 			} else {
 				this.constructor = Factory.makeCtors(clazz, types, null);
 				this.getters = Factory.makeGetters(clazz, types, null);
-				this.nominalGetters = Factory.makeNominalGetters(types, null, this.getters);
+				this.nominalGetters = Factory.makeNominalGetters(types, null,
+						this.getters);
 			}
 			this.extensions = new SpeciesData[ARG_TYPE_LIMIT];
 		}
@@ -426,7 +422,8 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 				CACHE.put(types, this);
 				Factory.makeCtors(clazz, types, this.constructor);
 				Factory.makeGetters(clazz, types, this.getters);
-				Factory.makeNominalGetters(types, this.nominalGetters, this.getters);
+				Factory.makeNominalGetters(types, this.nominalGetters,
+						this.getters);
 			}
 		}
 
@@ -448,24 +445,28 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 		}
 
 		private static SpeciesData get(String types) {
-			return CACHE.computeIfAbsent(types, new Function<String, SpeciesData>() {
-				@Override
-				public SpeciesData apply(String types) {
-					Class<? extends BoundMethodHandle> bmhcl = Factory.getConcreteBMHClass(types);
-					// SpeciesData instantiation may throw VirtualMachineError
-					// because of
-					// code cache overflow...
-					SpeciesData speciesData = new SpeciesData(types, bmhcl);
-					// CHM.computeIfAbsent ensures only one SpeciesData will be
-					// set
-					// successfully on the concrete BMH class if ever
-					Factory.setSpeciesDataToConcreteBMHClass(bmhcl, speciesData);
-					// the concrete BMH class is published via SpeciesData
-					// instance
-					// returned here only after it's SPECIES_DATA field is set
-					return speciesData;
-				}
-			});
+			return CACHE.computeIfAbsent(types,
+					new Function<String, SpeciesData>() {
+						@Override
+						public SpeciesData apply(String types) {
+							Class<? extends BoundMethodHandle> bmhcl = Factory
+									.getConcreteBMHClass(types);
+							// SpeciesData instantiation may throw VirtualMachineError
+							// because of
+							// code cache overflow...
+							SpeciesData speciesData = new SpeciesData(types,
+									bmhcl);
+							// CHM.computeIfAbsent ensures only one SpeciesData will be
+							// set
+							// successfully on the concrete BMH class if ever
+							Factory.setSpeciesDataToConcreteBMHClass(bmhcl,
+									speciesData);
+							// the concrete BMH class is published via SpeciesData
+							// instance
+							// returned here only after it's SPECIES_DATA field is set
+							return speciesData;
+						}
+					});
 		}
 
 		/**
@@ -481,7 +482,8 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 					if (rootCls.isAssignableFrom(c)) {
 						final Class<? extends BoundMethodHandle> cbmh = c
 								.asSubclass(BoundMethodHandle.class);
-						SpeciesData d = Factory.getSpeciesDataFromConcreteBMHClass(cbmh);
+						SpeciesData d = Factory
+								.getSpeciesDataFromConcreteBMHClass(cbmh);
 						assert (d != null) : cbmh.getName();
 						assert (d.clazz == cbmh);
 						assert (CACHE.get(d.typeChars) == d);
@@ -536,18 +538,20 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 		static final String STABLE_SIG = "Ljava/lang/invoke/Stable;";
 
 		static final String SPECIES_PREFIX_NAME = "Species_";
-		static final String SPECIES_PREFIX_PATH = BMH + "$" + SPECIES_PREFIX_NAME;
+		static final String SPECIES_PREFIX_PATH = BMH + "$"
+				+ SPECIES_PREFIX_NAME;
 
 		static final String BMHSPECIES_DATA_EWI_SIG = "(B)" + SPECIES_DATA_SIG;
-		static final String BMHSPECIES_DATA_GFC_SIG = "(" + JLS_SIG + JLC_SIG + ")"
-				+ SPECIES_DATA_SIG;
+		static final String BMHSPECIES_DATA_GFC_SIG = "(" + JLS_SIG + JLC_SIG
+				+ ")" + SPECIES_DATA_SIG;
 		static final String MYSPECIES_DATA_SIG = "()" + SPECIES_DATA_SIG;
 		static final String VOID_SIG = "()V";
 		static final String INT_SIG = "()I";
 
 		static final String SIG_INCIPIT = "(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;";
 
-		static final String[] E_THROWABLE = new String[] { "java/lang/Throwable" };
+		static final String[] E_THROWABLE = new String[] {
+				"java/lang/Throwable" };
 
 		static final ConcurrentMap<String, Class<? extends BoundMethodHandle>> CLASS_CACHE = new ConcurrentHashMap<>();
 
@@ -556,17 +560,20 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 		 * types.
 		 *
 		 * @param types
-		 *            the type signature, wherein reference types are erased to
-		 *            'L'
+		 *              the type signature, wherein reference types are erased
+		 *              to
+		 *              'L'
 		 * @return the concrete BMH class
 		 */
-		static Class<? extends BoundMethodHandle> getConcreteBMHClass(String types) {
+		static Class<? extends BoundMethodHandle> getConcreteBMHClass(
+				String types) {
 			// CHM.computeIfAbsent ensures generateConcreteBMHClass is called
 			// only once per key.
 			return CLASS_CACHE.computeIfAbsent(types,
 					new Function<String, Class<? extends BoundMethodHandle>>() {
 						@Override
-						public Class<? extends BoundMethodHandle> apply(String types) {
+						public Class<? extends BoundMethodHandle> apply(
+								String types) {
 							return generateConcreteBMHClass(types);
 						}
 					});
@@ -635,24 +642,27 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 		 * </pre>
 		 *
 		 * @param types
-		 *            the type signature, wherein reference types are erased to
-		 *            'L'
+		 *              the type signature, wherein reference types are erased
+		 *              to
+		 *              'L'
 		 * @return the generated concrete BMH class
 		 */
-		static Class<? extends BoundMethodHandle> generateConcreteBMHClass(String types) {
-			final ClassWriter cw = new ClassWriter(
-					ClassWriter.COMPUTE_MAXS + ClassWriter.COMPUTE_FRAMES);
+		static Class<? extends BoundMethodHandle> generateConcreteBMHClass(
+				String types) {
+			final ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS
+					+ ClassWriter.COMPUTE_FRAMES);
 
 			String shortTypes = LambdaForm.shortenSignature(types);
 			final String className = SPECIES_PREFIX_PATH + shortTypes;
 			final String sourceFile = SPECIES_PREFIX_NAME + shortTypes;
 			final int NOT_ACC_PUBLIC = 0; // not ACC_PUBLIC
-			cw.visit(V1_6, NOT_ACC_PUBLIC + ACC_FINAL + ACC_SUPER, className, null, BMH, null);
+			cw.visit(V1_6, NOT_ACC_PUBLIC + ACC_FINAL + ACC_SUPER, className,
+					null, BMH, null);
 			cw.visitSource(sourceFile, null);
 
 			// emit static types and SPECIES_DATA fields
-			FieldVisitor fw = cw.visitField(NOT_ACC_PUBLIC + ACC_STATIC, "SPECIES_DATA",
-					SPECIES_DATA_SIG, null, null);
+			FieldVisitor fw = cw.visitField(NOT_ACC_PUBLIC + ACC_STATIC,
+					"SPECIES_DATA", SPECIES_DATA_SIG, null, null);
 			fw.visitAnnotation(STABLE_SIG, true);
 			fw.visitEnd();
 
@@ -661,26 +671,30 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 				final char t = types.charAt(i);
 				final String fieldName = makeFieldName(types, i);
 				final String fieldDesc = t == 'L' ? JLO_SIG : String.valueOf(t);
-				cw.visitField(ACC_FINAL, fieldName, fieldDesc, null, null).visitEnd();
+				cw.visitField(ACC_FINAL, fieldName, fieldDesc, null, null)
+						.visitEnd();
 			}
 
 			MethodVisitor mv;
 
 			// emit constructor
-			mv = cw.visitMethod(ACC_PRIVATE, "<init>", makeSignature(types, true), null, null);
+			mv = cw.visitMethod(ACC_PRIVATE, "<init>", makeSignature(types,
+					true), null, null);
 			mv.visitCode();
 			mv.visitVarInsn(ALOAD, 0); // this
 			mv.visitVarInsn(ALOAD, 1); // type
 			mv.visitVarInsn(ALOAD, 2); // form
 
-			mv.visitMethodInsn(INVOKESPECIAL, BMH, "<init>", makeSignature("", true), false);
+			mv.visitMethodInsn(INVOKESPECIAL, BMH, "<init>", makeSignature("",
+					true), false);
 
 			for (int i = 0, j = 0; i < types.length(); ++i, ++j) {
 				// i counts the arguments, j counts corresponding argument slots
 				char t = types.charAt(i);
 				mv.visitVarInsn(ALOAD, 0);
 				mv.visitVarInsn(typeLoadOp(t), j + 3); // parameters start at 3
-				mv.visitFieldInsn(PUTFIELD, className, makeFieldName(types, i), typeSig(t));
+				mv.visitFieldInsn(PUTFIELD, className, makeFieldName(types, i),
+						typeSig(t));
 				if (t == 'J' || t == 'D') {
 					++j; // adjust argument register access
 				}
@@ -691,16 +705,18 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 			mv.visitEnd();
 
 			// emit implementation of speciesData()
-			mv = cw.visitMethod(NOT_ACC_PUBLIC + ACC_FINAL, "speciesData", MYSPECIES_DATA_SIG, null,
-					null);
+			mv = cw.visitMethod(NOT_ACC_PUBLIC + ACC_FINAL, "speciesData",
+					MYSPECIES_DATA_SIG, null, null);
 			mv.visitCode();
-			mv.visitFieldInsn(GETSTATIC, className, "SPECIES_DATA", SPECIES_DATA_SIG);
+			mv.visitFieldInsn(GETSTATIC, className, "SPECIES_DATA",
+					SPECIES_DATA_SIG);
 			mv.visitInsn(ARETURN);
 			mv.visitMaxs(0, 0);
 			mv.visitEnd();
 
 			// emit implementation of fieldCount()
-			mv = cw.visitMethod(NOT_ACC_PUBLIC + ACC_FINAL, "fieldCount", INT_SIG, null, null);
+			mv = cw.visitMethod(NOT_ACC_PUBLIC + ACC_FINAL, "fieldCount",
+					INT_SIG, null, null);
 			mv.visitCode();
 			int fc = types.length();
 			if (fc <= (ICONST_5 - ICONST_0)) {
@@ -712,8 +728,8 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 			mv.visitMaxs(0, 0);
 			mv.visitEnd();
 			// emit make() ...factory method wrapping constructor
-			mv = cw.visitMethod(NOT_ACC_PUBLIC + ACC_STATIC, "make", makeSignature(types, false),
-					null, null);
+			mv = cw.visitMethod(NOT_ACC_PUBLIC + ACC_STATIC, "make",
+					makeSignature(types, false), null, null);
 			mv.visitCode();
 			// make instance
 			mv.visitTypeInsn(NEW, className);
@@ -732,15 +748,15 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 			}
 
 			// finally, invoke the constructor and return
-			mv.visitMethodInsn(INVOKESPECIAL, className, "<init>", makeSignature(types, true),
-					false);
+			mv.visitMethodInsn(INVOKESPECIAL, className, "<init>",
+					makeSignature(types, true), false);
 			mv.visitInsn(ARETURN);
 			mv.visitMaxs(0, 0);
 			mv.visitEnd();
 
 			// emit copyWith()
-			mv = cw.visitMethod(NOT_ACC_PUBLIC + ACC_FINAL, "copyWith", makeSignature("", false),
-					null, null);
+			mv = cw.visitMethod(NOT_ACC_PUBLIC + ACC_FINAL, "copyWith",
+					makeSignature("", false), null, null);
 			mv.visitCode();
 			// make instance
 			mv.visitTypeInsn(NEW, className);
@@ -751,8 +767,8 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 			// put fields on the stack
 			emitPushFields(types, className, mv);
 			// finally, invoke the constructor and return
-			mv.visitMethodInsn(INVOKESPECIAL, className, "<init>", makeSignature(types, true),
-					false);
+			mv.visitMethodInsn(INVOKESPECIAL, className, "<init>",
+					makeSignature(types, true), false);
 			mv.visitInsn(ARETURN);
 			mv.visitMaxs(0, 0);
 			mv.visitEnd();
@@ -761,21 +777,23 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 			for (BasicType type : BasicType.ARG_TYPES) {
 				int ord = type.ordinal();
 				char btChar = type.basicTypeChar();
-				mv = cw.visitMethod(NOT_ACC_PUBLIC + ACC_FINAL, "copyWithExtend" + btChar,
-						makeSignature(String.valueOf(btChar), false), null, E_THROWABLE);
+				mv = cw.visitMethod(NOT_ACC_PUBLIC + ACC_FINAL, "copyWithExtend"
+						+ btChar, makeSignature(String.valueOf(btChar), false),
+						null, E_THROWABLE);
 				mv.visitCode();
 				// return
 				// SPECIES_DATA.extendWith(t).constructor().invokeBasic(mt, lf,
 				// argL0, ..., narg)
 				// obtain constructor
-				mv.visitFieldInsn(GETSTATIC, className, "SPECIES_DATA", SPECIES_DATA_SIG);
+				mv.visitFieldInsn(GETSTATIC, className, "SPECIES_DATA",
+						SPECIES_DATA_SIG);
 				int iconstInsn = ICONST_0 + ord;
 				assert (iconstInsn <= ICONST_5);
 				mv.visitInsn(iconstInsn);
 				mv.visitMethodInsn(INVOKEVIRTUAL, SPECIES_DATA, "extendWith",
 						BMHSPECIES_DATA_EWI_SIG, false);
-				mv.visitMethodInsn(INVOKEVIRTUAL, SPECIES_DATA, "constructor", "()" + MH_SIG,
-						false);
+				mv.visitMethodInsn(INVOKEVIRTUAL, SPECIES_DATA, "constructor",
+						"()" + MH_SIG, false);
 				// load mt, lf
 				mv.visitVarInsn(ALOAD, 1);
 				mv.visitVarInsn(ALOAD, 2);
@@ -799,35 +817,38 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 			Class<? extends BoundMethodHandle> bmhClass =
 					// UNSAFE.defineAnonymousClass(BoundMethodHandle.class,
 					// classFile, null).asSubclass(BoundMethodHandle.class);
-					UNSAFE.defineClass(className, classFile, 0, classFile.length,
-							BoundMethodHandle.class.getClassLoader(), null)
-							.asSubclass(BoundMethodHandle.class);
+					UNSAFE.defineClass(className, classFile, 0,
+							classFile.length, BoundMethodHandle.class
+									.getClassLoader(), null).asSubclass(
+											BoundMethodHandle.class);
 
 			return bmhClass;
 		}
 
 		private static int typeLoadOp(char t) {
 			switch (t) {
-			case 'L':
-				return ALOAD;
-			case 'I':
-				return ILOAD;
-			case 'J':
-				return LLOAD;
-			case 'F':
-				return FLOAD;
-			case 'D':
-				return DLOAD;
-			default:
-				throw newInternalError("unrecognized type " + t);
+				case 'L':
+					return ALOAD;
+				case 'I':
+					return ILOAD;
+				case 'J':
+					return LLOAD;
+				case 'F':
+					return FLOAD;
+				case 'D':
+					return DLOAD;
+				default:
+					throw newInternalError("unrecognized type " + t);
 			}
 		}
 
-		private static void emitPushFields(String types, String className, MethodVisitor mv) {
+		private static void emitPushFields(String types, String className,
+				MethodVisitor mv) {
 			for (int i = 0; i < types.length(); ++i) {
 				char tc = types.charAt(i);
 				mv.visitVarInsn(ALOAD, 0);
-				mv.visitFieldInsn(GETFIELD, className, makeFieldName(types, i), typeSig(tc));
+				mv.visitFieldInsn(GETFIELD, className, makeFieldName(types, i),
+						typeSig(tc));
 			}
 		}
 
@@ -839,9 +860,11 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 		// Getter MH generation.
 		//
 
-		private static MethodHandle makeGetter(Class<?> cbmhClass, String types, int index) {
+		private static MethodHandle makeGetter(Class<?> cbmhClass, String types,
+				int index) {
 			String fieldName = makeFieldName(types, index);
-			Class<?> fieldType = Wrapper.forBasicType(types.charAt(index)).primitiveType();
+			Class<?> fieldType = Wrapper.forBasicType(types.charAt(index))
+					.primitiveType();
 			try {
 				return LOOKUP.findGetter(cbmhClass, fieldName, fieldType);
 			} catch (NoSuchFieldException | IllegalAccessException e) {
@@ -849,18 +872,20 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 			}
 		}
 
-		static MethodHandle[] makeGetters(Class<?> cbmhClass, String types, MethodHandle[] mhs) {
+		static MethodHandle[] makeGetters(Class<?> cbmhClass, String types,
+				MethodHandle[] mhs) {
 			if (mhs == null)
 				mhs = new MethodHandle[types.length()];
 			for (int i = 0; i < mhs.length; ++i) {
 				mhs[i] = makeGetter(cbmhClass, types, i);
-				assert (mhs[i].internalMemberName().getDeclaringClass() == cbmhClass);
+				assert (mhs[i].internalMemberName()
+						.getDeclaringClass() == cbmhClass);
 			}
 			return mhs;
 		}
 
-		static MethodHandle[] makeCtors(Class<? extends BoundMethodHandle> cbmh, String types,
-				MethodHandle mhs[]) {
+		static MethodHandle[] makeCtors(Class<? extends BoundMethodHandle> cbmh,
+				String types, MethodHandle mhs[]) {
 			if (mhs == null)
 				mhs = new MethodHandle[1];
 			if (types.equals(""))
@@ -869,8 +894,8 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 			return mhs;
 		}
 
-		static NamedFunction[] makeNominalGetters(String types, NamedFunction[] nfs,
-				MethodHandle[] getters) {
+		static NamedFunction[] makeNominalGetters(String types,
+				NamedFunction[] nfs, MethodHandle[] getters) {
 			if (nfs == null)
 				nfs = new NamedFunction[types.length()];
 			for (int i = 0; i < nfs.length; ++i) {
@@ -893,11 +918,13 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 			}
 		}
 
-		static void setSpeciesDataToConcreteBMHClass(Class<? extends BoundMethodHandle> cbmh,
+		static void setSpeciesDataToConcreteBMHClass(
+				Class<? extends BoundMethodHandle> cbmh,
 				SpeciesData speciesData) {
 			try {
 				Field F_SPECIES_DATA = cbmh.getDeclaredField("SPECIES_DATA");
-				assert F_SPECIES_DATA.getDeclaredAnnotation(Stable.class) != null;
+				assert F_SPECIES_DATA.getDeclaredAnnotation(
+						Stable.class) != null;
 				F_SPECIES_DATA.set(null, speciesData);
 			} catch (ReflectiveOperationException ex) {
 				throw newInternalError(ex);
@@ -921,12 +948,14 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 			return buf.append(')').append(ctor ? "V" : BMH_SIG).toString();
 		}
 
-		static MethodHandle makeCbmhCtor(Class<? extends BoundMethodHandle> cbmh, String types) {
+		static MethodHandle makeCbmhCtor(
+				Class<? extends BoundMethodHandle> cbmh, String types) {
 			try {
-				return LOOKUP.findStatic(cbmh, "make",
-						MethodType.fromMethodDescriptorString(makeSignature(types, false), null));
-			} catch (NoSuchMethodException | IllegalAccessException | IllegalArgumentException
-					| TypeNotPresentException e) {
+				return LOOKUP.findStatic(cbmh, "make", MethodType
+						.fromMethodDescriptorString(makeSignature(types, false),
+								null));
+			} catch (NoSuchMethodException | IllegalAccessException
+					| IllegalArgumentException | TypeNotPresentException e) {
 				throw newInternalError(e);
 			}
 		}

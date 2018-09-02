@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -98,9 +78,9 @@ import javax.swing.SortOrder;
  * the type parameters.
  *
  * @param <M>
- *            the type of the model
+ *        the type of the model
  * @param <I>
- *            the type of the identifier passed to the <code>RowFilter</code>
+ *        the type of the identifier passed to the <code>RowFilter</code>
  * @see javax.swing.table.TableRowSorter
  * @see javax.swing.table.DefaultTableModel
  * @see java.text.Collator
@@ -198,10 +178,11 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * filtered.
 	 *
 	 * @param modelWrapper
-	 *            the model wrapper responsible for providing the data that gets
-	 *            sorted and filtered
+	 *                     the model wrapper responsible for providing the data
+	 *                     that gets
+	 *                     sorted and filtered
 	 * @throws IllegalArgumentException
-	 *             if {@code modelWrapper} is {@code null}
+	 *                                  if {@code modelWrapper} is {@code null}
 	 */
 	protected final void setModelWrapper(ModelWrapper<M, I> modelWrapper) {
 		if (modelWrapper == null) {
@@ -245,12 +226,14 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * directly setting the sort keys. The default is true.
 	 *
 	 * @param column
-	 *            the column to enable or disable sorting on, in terms of the
-	 *            underlying model
+	 *                 the column to enable or disable sorting on, in terms of
+	 *                 the
+	 *                 underlying model
 	 * @param sortable
-	 *            whether or not the specified column is sortable
+	 *                 whether or not the specified column is sortable
 	 * @throws IndexOutOfBoundsException
-	 *             if <code>column</code> is outside the range of the model
+	 *                                   if <code>column</code> is outside the
+	 *                                   range of the model
 	 * @see #toggleSortOrder
 	 * @see #setSortKeys
 	 */
@@ -269,11 +252,12 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * Returns true if the specified column is sortable; otherwise, false.
 	 *
 	 * @param column
-	 *            the column to check sorting for, in terms of the underlying
-	 *            model
+	 *               the column to check sorting for, in terms of the underlying
+	 *               model
 	 * @return true if the column is sortable
 	 * @throws IndexOutOfBoundsException
-	 *             if column is outside the range of the underlying model
+	 *                                   if column is outside the range of the
+	 *                                   underlying model
 	 */
 	public boolean isSortable(int column) {
 		checkColumn(column);
@@ -287,23 +271,28 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * sort.
 	 *
 	 * @param sortKeys
-	 *            the new <code>SortKeys</code>; <code>null</code> is a
-	 *            shorthand for specifying an empty list, indicating that the
-	 *            view should be unsorted
+	 *                 the new <code>SortKeys</code>; <code>null</code> is a
+	 *                 shorthand for specifying an empty list, indicating that
+	 *                 the
+	 *                 view should be unsorted
 	 * @throws IllegalArgumentException
-	 *             if any of the values in <code>sortKeys</code> are null or
-	 *             have a column index outside the range of the model
+	 *                                  if any of the values in
+	 *                                  <code>sortKeys</code> are null or
+	 *                                  have a column index outside the range of
+	 *                                  the model
 	 */
 	public void setSortKeys(List<? extends SortKey> sortKeys) {
 		List<SortKey> old = this.sortKeys;
 		if (sortKeys != null && sortKeys.size() > 0) {
 			int max = getModelWrapper().getColumnCount();
 			for (SortKey key : sortKeys) {
-				if (key == null || key.getColumn() < 0 || key.getColumn() >= max) {
+				if (key == null || key.getColumn() < 0 || key
+						.getColumn() >= max) {
 					throw new IllegalArgumentException("Invalid SortKey");
 				}
 			}
-			this.sortKeys = Collections.unmodifiableList(new ArrayList<SortKey>(sortKeys));
+			this.sortKeys = Collections.unmodifiableList(new ArrayList<SortKey>(
+					sortKeys));
 		} else {
 			this.sortKeys = Collections.emptyList();
 		}
@@ -356,7 +345,7 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * @param max
 	 *            the maximum number of sort keys
 	 * @throws IllegalArgumentException
-	 *             if <code>max</code> &lt; 1
+	 *                                  if <code>max</code> &lt; 1
 	 */
 	public void setMaxSortKeys(int max) {
 		if (max < 1) {
@@ -381,7 +370,7 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * may change. The default is false.
 	 *
 	 * @param sortsOnUpdates
-	 *            whether or not to sort on update events
+	 *                       whether or not to sort on update events
 	 */
 	public void setSortsOnUpdates(boolean sortsOnUpdates) {
 		this.sortsOnUpdates = sortsOnUpdates;
@@ -411,7 +400,8 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * This method triggers a sort.
 	 *
 	 * @param filter
-	 *            the filter used to determine what entries should be included
+	 *               the filter used to determine what entries should be
+	 *               included
 	 */
 	public void setRowFilter(RowFilter<? super M, ? super I> filter) {
 		this.filter = filter;
@@ -436,10 +426,10 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * method has no effect.
 	 *
 	 * @param column
-	 *            index of the column to make the primary sorted column, in
-	 *            terms of the underlying model
+	 *               index of the column to make the primary sorted column, in
+	 *               terms of the underlying model
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 * @see #setSortable(int,boolean)
 	 * @see #setMaxSortKeys(int)
 	 */
@@ -485,7 +475,7 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * {@inheritDoc}
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public int convertRowIndexToView(int index) {
 		if (modelToView == null) {
@@ -501,7 +491,7 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * {@inheritDoc}
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public int convertRowIndexToModel(int index) {
 		if (viewToModel == null) {
@@ -516,7 +506,8 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	private boolean isUnsorted() {
 		List<? extends SortKey> keys = getSortKeys();
 		int keySize = keys.size();
-		return (keySize == 0 || keys.get(0).getSortOrder() == SortOrder.UNSORTED);
+		return (keySize == 0 || keys.get(0)
+				.getSortOrder() == SortOrder.UNSORTED);
 	}
 
 	/**
@@ -663,7 +654,8 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 			if (viewToModel.length != rowCount) {
 				Row[] oldViewToModel = viewToModel;
 				viewToModel = new Row[rowCount];
-				System.arraycopy(oldViewToModel, 0, viewToModel, 0, recreateFrom);
+				System.arraycopy(oldViewToModel, 0, viewToModel, 0,
+						recreateFrom);
 			}
 		} else {
 			viewToModel = new Row[rowCount];
@@ -698,10 +690,10 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * their <code>ModelWrapper</code> implementation.
 	 *
 	 * @param column
-	 *            the index of the column to test, in terms of the underlying
-	 *            model
+	 *               the index of the column to test, in terms of the underlying
+	 *               model
 	 * @throws IndexOutOfBoundsException
-	 *             if <code>column</code> is not valid
+	 *                                   if <code>column</code> is not valid
 	 */
 	protected boolean useToString(int column) {
 		return (getComparator(column) == null);
@@ -741,13 +733,15 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * the comparator you need to explicitly invoke <code>sort</code>.
 	 *
 	 * @param column
-	 *            the index of the column the <code>Comparator</code> is to be
-	 *            used for, in terms of the underlying model
+	 *                   the index of the column the <code>Comparator</code> is
+	 *                   to be
+	 *                   used for, in terms of the underlying model
 	 * @param comparator
-	 *            the <code>Comparator</code> to use
+	 *                   the <code>Comparator</code> to use
 	 * @throws IndexOutOfBoundsException
-	 *             if <code>column</code> is outside the range of the underlying
-	 *             model
+	 *                                   if <code>column</code> is outside the
+	 *                                   range of the underlying
+	 *                                   model
 	 */
 	public void setComparator(int column, Comparator<?> comparator) {
 		checkColumn(column);
@@ -763,11 +757,13 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * specified for the column.
 	 *
 	 * @param column
-	 *            the column to fetch the <code>Comparator</code> for, in terms
-	 *            of the underlying model
+	 *               the column to fetch the <code>Comparator</code> for, in
+	 *               terms
+	 *               of the underlying model
 	 * @return the <code>Comparator</code> for the specified column
 	 * @throws IndexOutOfBoundsException
-	 *             if column is outside the range of the underlying model
+	 *                                   if column is outside the range of the
+	 *                                   underlying model
 	 */
 	public Comparator<?> getComparator(int column) {
 		checkColumn(column);
@@ -850,7 +846,7 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * {@inheritDoc}
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public void rowsInserted(int firstRow, int endRow) {
 		checkAgainstModel(firstRow, endRow);
@@ -868,7 +864,7 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * {@inheritDoc}
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public void rowsDeleted(int firstRow, int endRow) {
 		checkAgainstModel(firstRow, endRow);
@@ -885,7 +881,7 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * {@inheritDoc}
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public void rowsUpdated(int firstRow, int endRow) {
 		checkAgainstModel(firstRow, endRow);
@@ -905,7 +901,7 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * {@inheritDoc}
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
+	 *                                   {@inheritDoc}
 	 */
 	public void rowsUpdated(int firstRow, int endRow, int column) {
 		checkColumn(column);
@@ -913,7 +909,8 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	}
 
 	private void checkAgainstModel(int firstRow, int endRow) {
-		if (firstRow > endRow || firstRow < 0 || endRow < 0 || firstRow > modelRowCount) {
+		if (firstRow > endRow || firstRow < 0 || endRow < 0
+				|| firstRow > modelRowCount) {
 			throw new IndexOutOfBoundsException("Invalid range");
 		}
 	}
@@ -986,9 +983,9 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * Insets new set of entries.
 	 *
 	 * @param toAdd
-	 *            the Rows to add, sorted
+	 *                the Rows to add, sorted
 	 * @param current
-	 *            the array to insert the items into
+	 *                the array to insert the items into
 	 */
 	private void insertInOrder(List<Row> toAdd, Row[] current) {
 		int last = 0;
@@ -999,11 +996,13 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 			if (index < 0) {
 				index = -1 - index;
 			}
-			System.arraycopy(current, last, viewToModel, last + i, index - last);
+			System.arraycopy(current, last, viewToModel, last + i, index
+					- last);
 			viewToModel[index + i] = toAdd.get(i);
 			last = index;
 		}
-		System.arraycopy(current, last, viewToModel, last + max, current.length - last);
+		System.arraycopy(current, last, viewToModel, last + max, current.length
+				- last);
 	}
 
 	/**
@@ -1088,12 +1087,14 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 
 		// Then patch up the viewToModel array
 		if (removedFromView > 0) {
-			Row[] newViewToModel = new Row[viewToModel.length - removedFromView];
+			Row[] newViewToModel = new Row[viewToModel.length
+					- removedFromView];
 			int newIndex = 0;
 			int last = 0;
 			for (i = 0; i < viewToModel.length; i++) {
 				if (viewToModel[i] == null) {
-					System.arraycopy(viewToModel, last, newViewToModel, newIndex, i - last);
+					System.arraycopy(viewToModel, last, newViewToModel,
+							newIndex, i - last);
 					newIndex += (i - last);
 					last = i + 1;
 				}
@@ -1191,7 +1192,8 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 
 			// Recreate viewToModel, if necessary
 			if (newlyVisible != newlyHidden) {
-				viewToModel = new Row[viewToModel.length + newlyVisible - newlyHidden];
+				viewToModel = new Row[viewToModel.length + newlyVisible
+						- newlyHidden];
 			}
 
 			// Rebuild the new viewToModel array
@@ -1206,7 +1208,8 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 
 	private void checkColumn(int column) {
 		if (column < 0 || column >= getModelWrapper().getColumnCount()) {
-			throw new IndexOutOfBoundsException("column beyond range of TableModel");
+			throw new IndexOutOfBoundsException(
+					"column beyond range of TableModel");
 		}
 	}
 
@@ -1225,9 +1228,9 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 	 * of invoking <code>toString</code> on the object.
 	 *
 	 * @param <M>
-	 *            the type of the underlying model
+	 *        the type of the underlying model
 	 * @param <I>
-	 *            the identifier supplied to the filter
+	 *        the identifier supplied to the filter
 	 * @since 1.6
 	 * @see RowFilter
 	 * @see RowFilter.Entry
@@ -1236,8 +1239,7 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 		/**
 		 * Creates a new <code>ModelWrapper</code>.
 		 */
-		protected ModelWrapper() {
-		}
+		protected ModelWrapper() {}
 
 		/**
 		 * Returns the underlying model that this <code>Model</code> is
@@ -1265,12 +1267,13 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 		 * Returns the value at the specified index.
 		 *
 		 * @param row
-		 *            the row index
+		 *               the row index
 		 * @param column
-		 *            the column index
+		 *               the column index
 		 * @return the value at the specified index
 		 * @throws IndexOutOfBoundsException
-		 *             if the indices are outside the range of the model
+		 *                                   if the indices are outside the
+		 *                                   range of the model
 		 */
 		public abstract Object getValueAt(int row, int column);
 
@@ -1282,12 +1285,13 @@ public abstract class DefaultRowSorter<M, I> extends RowSorter<M> {
 		 * return null.
 		 *
 		 * @param row
-		 *            the row index
+		 *               the row index
 		 * @param column
-		 *            the column index
+		 *               the column index
 		 * @return the value at the specified index as a <code>String</code>
 		 * @throws IndexOutOfBoundsException
-		 *             if the indices are outside the range of the model
+		 *                                   if the indices are outside the
+		 *                                   range of the model
 		 */
 		public String getStringValueAt(int row, int column) {
 			Object o = getValueAt(row, column);

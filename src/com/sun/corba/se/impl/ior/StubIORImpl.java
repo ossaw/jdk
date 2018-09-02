@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.ior;
@@ -115,8 +94,8 @@ public class StubIORImpl {
 		return StubAdapter.getDelegate(obj);
 	}
 
-	public void doRead(java.io.ObjectInputStream stream)
-			throws IOException, ClassNotFoundException {
+	public void doRead(java.io.ObjectInputStream stream) throws IOException,
+			ClassNotFoundException {
 		// read the IOR from the ObjectInputStream
 		int typeLength = stream.readInt();
 		typeData = new byte[typeLength];
@@ -218,8 +197,9 @@ public class StubIORImpl {
 			return false;
 		}
 
-		return equalArrays(typeData, other.typeData) && equalArrays(profileTags, other.profileTags)
-				&& equalArrays(profileData, other.profileData);
+		return equalArrays(typeData, other.typeData) && equalArrays(profileTags,
+				other.profileTags) && equalArrays(profileData,
+						other.profileData);
 	}
 
 	private void appendByteArray(StringBuffer result, byte[] data) {

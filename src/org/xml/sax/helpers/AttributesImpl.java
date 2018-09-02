@@ -1,32 +1,12 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // AttributesImpl.java - default implementation of Attributes.
 // http://www.saxproject.org
 // Written by David Megginson
-// NO WARRANTY!  This class is in the public domain.
+// NO WARRANTY! This class is in the public domain.
 // $Id: AttributesImpl.java,v 1.2 2004/11/03 22:53:08 jsuttor Exp $
 
 package org.xml.sax.helpers;
@@ -93,7 +73,7 @@ public class AttributesImpl implements Attributes {
 	 * </p>
 	 *
 	 * @param atts
-	 *            The existing Attributes object.
+	 *             The existing Attributes object.
 	 */
 	public AttributesImpl(Attributes atts) {
 		setAttributes(atts);
@@ -117,7 +97,7 @@ public class AttributesImpl implements Attributes {
 	 * Return an attribute's Namespace URI.
 	 *
 	 * @param index
-	 *            The attribute's index (zero-based).
+	 *              The attribute's index (zero-based).
 	 * @return The Namespace URI, the empty string if none is available, or null
 	 *         if the index is out of range.
 	 * @see org.xml.sax.Attributes#getURI
@@ -134,7 +114,7 @@ public class AttributesImpl implements Attributes {
 	 * Return an attribute's local name.
 	 *
 	 * @param index
-	 *            The attribute's index (zero-based).
+	 *              The attribute's index (zero-based).
 	 * @return The attribute's local name, the empty string if none is
 	 *         available, or null if the index if out of range.
 	 * @see org.xml.sax.Attributes#getLocalName
@@ -151,7 +131,7 @@ public class AttributesImpl implements Attributes {
 	 * Return an attribute's qualified (prefixed) name.
 	 *
 	 * @param index
-	 *            The attribute's index (zero-based).
+	 *              The attribute's index (zero-based).
 	 * @return The attribute's qualified name, the empty string if none is
 	 *         available, or null if the index is out of bounds.
 	 * @see org.xml.sax.Attributes#getQName
@@ -168,7 +148,7 @@ public class AttributesImpl implements Attributes {
 	 * Return an attribute's type by index.
 	 *
 	 * @param index
-	 *            The attribute's index (zero-based).
+	 *              The attribute's index (zero-based).
 	 * @return The attribute's type, "CDATA" if the type is unknown, or null if
 	 *         the index is out of bounds.
 	 * @see org.xml.sax.Attributes#getType(int)
@@ -185,7 +165,7 @@ public class AttributesImpl implements Attributes {
 	 * Return an attribute's value by index.
 	 *
 	 * @param index
-	 *            The attribute's index (zero-based).
+	 *              The attribute's index (zero-based).
 	 * @return The attribute's value or null if the index is out of bounds.
 	 * @see org.xml.sax.Attributes#getValue(int)
 	 */
@@ -207,10 +187,11 @@ public class AttributesImpl implements Attributes {
 	 * </p>
 	 *
 	 * @param uri
-	 *            The attribute's Namespace URI, or the empty string if none is
-	 *            available.
+	 *                  The attribute's Namespace URI, or the empty string if
+	 *                  none is
+	 *                  available.
 	 * @param localName
-	 *            The attribute's local name.
+	 *                  The attribute's local name.
 	 * @return The attribute's index, or -1 if none matches.
 	 * @see org.xml.sax.Attributes#getIndex(java.lang.String,java.lang.String)
 	 */
@@ -228,7 +209,7 @@ public class AttributesImpl implements Attributes {
 	 * Look up an attribute's index by qualified (prefixed) name.
 	 *
 	 * @param qName
-	 *            The qualified name.
+	 *              The qualified name.
 	 * @return The attribute's index, or -1 if none matches.
 	 * @see org.xml.sax.Attributes#getIndex(java.lang.String)
 	 */
@@ -246,10 +227,11 @@ public class AttributesImpl implements Attributes {
 	 * Look up an attribute's type by Namespace-qualified name.
 	 *
 	 * @param uri
-	 *            The Namespace URI, or the empty string for a name with no
-	 *            explicit Namespace URI.
+	 *                  The Namespace URI, or the empty string for a name with
+	 *                  no
+	 *                  explicit Namespace URI.
 	 * @param localName
-	 *            The local name.
+	 *                  The local name.
 	 * @return The attribute's type, or null if there is no matching attribute.
 	 * @see org.xml.sax.Attributes#getType(java.lang.String,java.lang.String)
 	 */
@@ -267,7 +249,7 @@ public class AttributesImpl implements Attributes {
 	 * Look up an attribute's type by qualified (prefixed) name.
 	 *
 	 * @param qName
-	 *            The qualified name.
+	 *              The qualified name.
 	 * @return The attribute's type, or null if there is no matching attribute.
 	 * @see org.xml.sax.Attributes#getType(java.lang.String)
 	 */
@@ -285,10 +267,11 @@ public class AttributesImpl implements Attributes {
 	 * Look up an attribute's value by Namespace-qualified name.
 	 *
 	 * @param uri
-	 *            The Namespace URI, or the empty string for a name with no
-	 *            explicit Namespace URI.
+	 *                  The Namespace URI, or the empty string for a name with
+	 *                  no
+	 *                  explicit Namespace URI.
 	 * @param localName
-	 *            The local name.
+	 *                  The local name.
 	 * @return The attribute's value, or null if there is no matching attribute.
 	 * @see org.xml.sax.Attributes#getValue(java.lang.String,java.lang.String)
 	 */
@@ -306,7 +289,7 @@ public class AttributesImpl implements Attributes {
 	 * Look up an attribute's value by qualified (prefixed) name.
 	 *
 	 * @param qName
-	 *            The qualified name.
+	 *              The qualified name.
 	 * @return The attribute's value, or null if there is no matching attribute.
 	 * @see org.xml.sax.Attributes#getValue(java.lang.String)
 	 */
@@ -349,7 +332,7 @@ public class AttributesImpl implements Attributes {
 	 * </p>
 	 *
 	 * @param atts
-	 *            The attributes to copy.
+	 *             The attributes to copy.
 	 */
 	public void setAttributes(Attributes atts) {
 		clear();
@@ -376,21 +359,23 @@ public class AttributesImpl implements Attributes {
 	 * </p>
 	 *
 	 * @param uri
-	 *            The Namespace URI, or the empty string if none is available or
-	 *            Namespace processing is not being performed.
+	 *                  The Namespace URI, or the empty string if none is
+	 *                  available or
+	 *                  Namespace processing is not being performed.
 	 * @param localName
-	 *            The local name, or the empty string if Namespace processing is
-	 *            not being performed.
+	 *                  The local name, or the empty string if Namespace
+	 *                  processing is
+	 *                  not being performed.
 	 * @param qName
-	 *            The qualified (prefixed) name, or the empty string if
-	 *            qualified names are not available.
+	 *                  The qualified (prefixed) name, or the empty string if
+	 *                  qualified names are not available.
 	 * @param type
-	 *            The attribute type as a string.
+	 *                  The attribute type as a string.
 	 * @param value
-	 *            The attribute value.
+	 *                  The attribute value.
 	 */
-	public void addAttribute(String uri, String localName, String qName, String type,
-			String value) {
+	public void addAttribute(String uri, String localName, String qName,
+			String type, String value) {
 		ensureCapacity(length + 1);
 		data[length * 5] = uri;
 		data[length * 5 + 1] = localName;
@@ -409,26 +394,29 @@ public class AttributesImpl implements Attributes {
 	 * </p>
 	 *
 	 * @param index
-	 *            The index of the attribute (zero-based).
+	 *                  The index of the attribute (zero-based).
 	 * @param uri
-	 *            The Namespace URI, or the empty string if none is available or
-	 *            Namespace processing is not being performed.
+	 *                  The Namespace URI, or the empty string if none is
+	 *                  available or
+	 *                  Namespace processing is not being performed.
 	 * @param localName
-	 *            The local name, or the empty string if Namespace processing is
-	 *            not being performed.
+	 *                  The local name, or the empty string if Namespace
+	 *                  processing is
+	 *                  not being performed.
 	 * @param qName
-	 *            The qualified name, or the empty string if qualified names are
-	 *            not available.
+	 *                  The qualified name, or the empty string if qualified
+	 *                  names are
+	 *                  not available.
 	 * @param type
-	 *            The attribute type as a string.
+	 *                  The attribute type as a string.
 	 * @param value
-	 *            The attribute value.
+	 *                  The attribute value.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                When the supplied index does not point to an attribute in
-	 *                the list.
+	 *            When the supplied index does not point to an attribute in
+	 *            the list.
 	 */
-	public void setAttribute(int index, String uri, String localName, String qName, String type,
-			String value) {
+	public void setAttribute(int index, String uri, String localName,
+			String qName, String type, String value) {
 		if (index >= 0 && index < length) {
 			data[index * 5] = uri;
 			data[index * 5 + 1] = localName;
@@ -444,15 +432,16 @@ public class AttributesImpl implements Attributes {
 	 * Remove an attribute from the list.
 	 *
 	 * @param index
-	 *            The index of the attribute (zero-based).
+	 *              The index of the attribute (zero-based).
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                When the supplied index does not point to an attribute in
-	 *                the list.
+	 *            When the supplied index does not point to an attribute in
+	 *            the list.
 	 */
 	public void removeAttribute(int index) {
 		if (index >= 0 && index < length) {
 			if (index < length - 1) {
-				System.arraycopy(data, (index + 1) * 5, data, index * 5, (length - index - 1) * 5);
+				System.arraycopy(data, (index + 1) * 5, data, index * 5, (length
+						- index - 1) * 5);
 			}
 			index = (length - 1) * 5;
 			data[index++] = null;
@@ -470,12 +459,12 @@ public class AttributesImpl implements Attributes {
 	 * Set the Namespace URI of a specific attribute.
 	 *
 	 * @param index
-	 *            The index of the attribute (zero-based).
+	 *              The index of the attribute (zero-based).
 	 * @param uri
-	 *            The attribute's Namespace URI, or the empty string for none.
+	 *              The attribute's Namespace URI, or the empty string for none.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                When the supplied index does not point to an attribute in
-	 *                the list.
+	 *            When the supplied index does not point to an attribute in
+	 *            the list.
 	 */
 	public void setURI(int index, String uri) {
 		if (index >= 0 && index < length) {
@@ -489,12 +478,13 @@ public class AttributesImpl implements Attributes {
 	 * Set the local name of a specific attribute.
 	 *
 	 * @param index
-	 *            The index of the attribute (zero-based).
+	 *                  The index of the attribute (zero-based).
 	 * @param localName
-	 *            The attribute's local name, or the empty string for none.
+	 *                  The attribute's local name, or the empty string for
+	 *                  none.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                When the supplied index does not point to an attribute in
-	 *                the list.
+	 *            When the supplied index does not point to an attribute in
+	 *            the list.
 	 */
 	public void setLocalName(int index, String localName) {
 		if (index >= 0 && index < length) {
@@ -508,12 +498,13 @@ public class AttributesImpl implements Attributes {
 	 * Set the qualified name of a specific attribute.
 	 *
 	 * @param index
-	 *            The index of the attribute (zero-based).
+	 *              The index of the attribute (zero-based).
 	 * @param qName
-	 *            The attribute's qualified name, or the empty string for none.
+	 *              The attribute's qualified name, or the empty string for
+	 *              none.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                When the supplied index does not point to an attribute in
-	 *                the list.
+	 *            When the supplied index does not point to an attribute in
+	 *            the list.
 	 */
 	public void setQName(int index, String qName) {
 		if (index >= 0 && index < length) {
@@ -527,12 +518,12 @@ public class AttributesImpl implements Attributes {
 	 * Set the type of a specific attribute.
 	 *
 	 * @param index
-	 *            The index of the attribute (zero-based).
+	 *              The index of the attribute (zero-based).
 	 * @param type
-	 *            The attribute's type.
+	 *              The attribute's type.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                When the supplied index does not point to an attribute in
-	 *                the list.
+	 *            When the supplied index does not point to an attribute in
+	 *            the list.
 	 */
 	public void setType(int index, String type) {
 		if (index >= 0 && index < length) {
@@ -546,12 +537,12 @@ public class AttributesImpl implements Attributes {
 	 * Set the value of a specific attribute.
 	 *
 	 * @param index
-	 *            The index of the attribute (zero-based).
+	 *              The index of the attribute (zero-based).
 	 * @param value
-	 *            The attribute's value.
+	 *              The attribute's value.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                When the supplied index does not point to an attribute in
-	 *                the list.
+	 *            When the supplied index does not point to an attribute in
+	 *            the list.
 	 */
 	public void setValue(int index, String value) {
 		if (index >= 0 && index < length) {
@@ -569,8 +560,8 @@ public class AttributesImpl implements Attributes {
 	 * Ensure the internal array's capacity.
 	 *
 	 * @param n
-	 *            The minimum number of attributes that the array must be able
-	 *            to hold.
+	 *          The minimum number of attributes that the array must be able
+	 *          to hold.
 	 */
 	private void ensureCapacity(int n) {
 		if (n <= 0) {
@@ -599,9 +590,9 @@ public class AttributesImpl implements Attributes {
 	 * Report a bad array index in a manipulator.
 	 *
 	 * @param index
-	 *            The index to report.
+	 *              The index to report.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                Always.
+	 *            Always.
 	 */
 	private void badIndex(int index) throws ArrayIndexOutOfBoundsException {
 		String msg = "Attempt to modify attribute at illegal index: " + index;

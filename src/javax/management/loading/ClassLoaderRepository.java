@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.loading;
@@ -77,12 +57,12 @@ public interface ClassLoaderRepository {
 	 * </p>
 	 *
 	 * @param className
-	 *            The name of the class to be loaded.
+	 *                  The name of the class to be loaded.
 	 *
 	 * @return the loaded class.
 	 *
 	 * @exception ClassNotFoundException
-	 *                The specified class could not be found.
+	 *                                   The specified class could not be found.
 	 */
 	public Class<?> loadClass(String className) throws ClassNotFoundException;
 
@@ -109,16 +89,17 @@ public interface ClassLoaderRepository {
 	 * </p>
 	 *
 	 * @param className
-	 *            The name of the class to be loaded.
+	 *                  The name of the class to be loaded.
 	 * @param exclude
-	 *            The class loader to be excluded. May be null, in which case
-	 *            this method is equivalent to {@link #loadClass
-	 *            loadClass(className)}.
+	 *                  The class loader to be excluded. May be null, in which
+	 *                  case
+	 *                  this method is equivalent to {@link #loadClass
+	 *                  loadClass(className)}.
 	 *
 	 * @return the loaded class.
 	 *
 	 * @exception ClassNotFoundException
-	 *                The specified class could not be found.
+	 *                                   The specified class could not be found.
 	 */
 	public Class<?> loadClassWithout(ClassLoader exclude, String className)
 			throws ClassNotFoundException;
@@ -146,16 +127,17 @@ public interface ClassLoaderRepository {
 	 * </p>
 	 *
 	 * @param className
-	 *            The name of the class to be loaded.
+	 *                  The name of the class to be loaded.
 	 * @param stop
-	 *            The class loader at which to stop. May be null, in which case
-	 *            this method is equivalent to {@link #loadClass(String)
-	 *            loadClass(className)}.
+	 *                  The class loader at which to stop. May be null, in which
+	 *                  case
+	 *                  this method is equivalent to {@link #loadClass(String)
+	 *                  loadClass(className)}.
 	 *
 	 * @return the loaded class.
 	 *
 	 * @exception ClassNotFoundException
-	 *                The specified class could not be found.
+	 *                                   The specified class could not be found.
 	 *
 	 */
 	public Class<?> loadClassBefore(ClassLoader stop, String className)

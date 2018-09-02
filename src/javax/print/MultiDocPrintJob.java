@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print;
@@ -46,23 +26,30 @@ public interface MultiDocPrintJob extends DocPrintJob {
 	 * register a PrintJobListener.
 	 *
 	 * @param multiDoc
-	 *            The documents to be printed. ALL must be a flavor supported by
-	 *            the PrintJob {@literal &} PrintService.
+	 *                   The documents to be printed. ALL must be a flavor
+	 *                   supported by
+	 *                   the PrintJob {@literal &} PrintService.
 	 *
 	 * @param attributes
-	 *            The job attributes to be applied to this print job. If this
-	 *            parameter is null then the default attributes are used.
+	 *                   The job attributes to be applied to this print job. If
+	 *                   this
+	 *                   parameter is null then the default attributes are used.
 	 *
 	 * @throws PrintException
-	 *             The exception additionally may implement an interfaces which
-	 *             more precisely describes the cause of the exception
-	 *             <ul>
-	 *             <li>FlavorException. If the document has a flavor not
-	 *             supported by this print job.
-	 *             <li>AttributeException. If one or more of the attributes are
-	 *             not valid for this print job.
-	 *             </ul>
+	 *                        The exception additionally may implement an
+	 *                        interfaces which
+	 *                        more precisely describes the cause of the
+	 *                        exception
+	 *                        <ul>
+	 *                        <li>FlavorException. If the document has a flavor
+	 *                        not
+	 *                        supported by this print job.
+	 *                        <li>AttributeException. If one or more of the
+	 *                        attributes are
+	 *                        not valid for this print job.
+	 *                        </ul>
 	 */
-	public void print(MultiDoc multiDoc, PrintRequestAttributeSet attributes) throws PrintException;
+	public void print(MultiDoc multiDoc, PrintRequestAttributeSet attributes)
+			throws PrintException;
 
 }

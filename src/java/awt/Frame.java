@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -350,9 +330,7 @@ public class Frame extends Window implements MenuContainer {
 	/*
 	 * The Windows owned by the Frame. Note: in 1.2 this has been superceded by
 	 * Window.ownedWindowList
-	 *
 	 * @serial
-	 * 
 	 * @see java.awt.Window#ownedWindowList
 	 */
 	Vector<Window> ownedWindows;
@@ -378,8 +356,10 @@ public class Frame extends Window implements MenuContainer {
 	 * invisible. The title of the <code>Frame</code> is empty.
 	 * 
 	 * @exception HeadlessException
-	 *                when <code>GraphicsEnvironment.isHeadless()</code> returns
-	 *                <code>true</code>
+	 *                              when
+	 *                              <code>GraphicsEnvironment.isHeadless()</code>
+	 *                              returns
+	 *                              <code>true</code>
 	 * @see java.awt.GraphicsEnvironment#isHeadless()
 	 * @see Component#setSize
 	 * @see Component#setVisible(boolean)
@@ -393,14 +373,17 @@ public class Frame extends Window implements MenuContainer {
 	 * {@code GraphicsConfiguration}.
 	 *
 	 * @param gc
-	 *            the <code>GraphicsConfiguration</code> of the target screen
-	 *            device. If <code>gc</code> is <code>null</code>, the system
-	 *            default <code>GraphicsConfiguration</code> is assumed.
+	 *           the <code>GraphicsConfiguration</code> of the target screen
+	 *           device. If <code>gc</code> is <code>null</code>, the system
+	 *           default <code>GraphicsConfiguration</code> is assumed.
 	 * @exception IllegalArgumentException
-	 *                if <code>gc</code> is not from a screen device.
+	 *                                     if <code>gc</code> is not from a
+	 *                                     screen device.
 	 * @exception HeadlessException
-	 *                when <code>GraphicsEnvironment.isHeadless()</code> returns
-	 *                <code>true</code>
+	 *                                     when
+	 *                                     <code>GraphicsEnvironment.isHeadless()</code>
+	 *                                     returns
+	 *                                     <code>true</code>
 	 * @see java.awt.GraphicsEnvironment#isHeadless()
 	 * @since 1.3
 	 */
@@ -413,11 +396,13 @@ public class Frame extends Window implements MenuContainer {
 	 * specified title.
 	 * 
 	 * @param title
-	 *            the title to be displayed in the frame's border. A
-	 *            <code>null</code> value is treated as an empty string, "".
+	 *              the title to be displayed in the frame's border. A
+	 *              <code>null</code> value is treated as an empty string, "".
 	 * @exception HeadlessException
-	 *                when <code>GraphicsEnvironment.isHeadless()</code> returns
-	 *                <code>true</code>
+	 *                              when
+	 *                              <code>GraphicsEnvironment.isHeadless()</code>
+	 *                              returns
+	 *                              <code>true</code>
 	 * @see java.awt.GraphicsEnvironment#isHeadless()
 	 * @see java.awt.Component#setSize
 	 * @see java.awt.Component#setVisible(boolean)
@@ -432,17 +417,20 @@ public class Frame extends Window implements MenuContainer {
 	 * specified title and a <code>GraphicsConfiguration</code>.
 	 * 
 	 * @param title
-	 *            the title to be displayed in the frame's border. A
-	 *            <code>null</code> value is treated as an empty string, "".
+	 *              the title to be displayed in the frame's border. A
+	 *              <code>null</code> value is treated as an empty string, "".
 	 * @param gc
-	 *            the <code>GraphicsConfiguration</code> of the target screen
-	 *            device. If <code>gc</code> is <code>null</code>, the system
-	 *            default <code>GraphicsConfiguration</code> is assumed.
+	 *              the <code>GraphicsConfiguration</code> of the target screen
+	 *              device. If <code>gc</code> is <code>null</code>, the system
+	 *              default <code>GraphicsConfiguration</code> is assumed.
 	 * @exception IllegalArgumentException
-	 *                if <code>gc</code> is not from a screen device.
+	 *                                     if <code>gc</code> is not from a
+	 *                                     screen device.
 	 * @exception HeadlessException
-	 *                when <code>GraphicsEnvironment.isHeadless()</code> returns
-	 *                <code>true</code>
+	 *                                     when
+	 *                                     <code>GraphicsEnvironment.isHeadless()</code>
+	 *                                     returns
+	 *                                     <code>true</code>
 	 * @see java.awt.GraphicsEnvironment#isHeadless()
 	 * @see java.awt.Component#setSize
 	 * @see java.awt.Component#setVisible(boolean)
@@ -511,8 +499,8 @@ public class Frame extends Window implements MenuContainer {
 	 * Sets the title for this frame to the specified string.
 	 * 
 	 * @param title
-	 *            the title to be displayed in the frame's border. A
-	 *            <code>null</code> value is treated as an empty string, "".
+	 *              the title to be displayed in the frame's border. A
+	 *              <code>null</code> value is treated as an empty string, "".
 	 * @see #getTitle
 	 */
 	public void setTitle(String title) {
@@ -578,8 +566,8 @@ public class Frame extends Window implements MenuContainer {
 	 * Sets the menu bar for this frame to the specified menu bar.
 	 * 
 	 * @param mb
-	 *            the menu bar being set. If this parameter is <code>null</code>
-	 *            then any existing menu bar on this frame is removed.
+	 *           the menu bar being set. If this parameter is <code>null</code>
+	 *           then any existing menu bar on this frame is removed.
 	 * @see #getMenuBar
 	 */
 	public void setMenuBar(MenuBar mb) {
@@ -624,8 +612,8 @@ public class Frame extends Window implements MenuContainer {
 	 * Sets whether this frame is resizable by the user.
 	 * 
 	 * @param resizable
-	 *            <code>true</code> if this frame is resizable;
-	 *            <code>false</code> otherwise.
+	 *                  <code>true</code> if this frame is resizable;
+	 *                  <code>false</code> otherwise.
 	 * @see java.awt.Frame#isResizable
 	 */
 	public void setResizable(boolean resizable) {
@@ -688,8 +676,8 @@ public class Frame extends Window implements MenuContainer {
 	 * guaranteed in this case also.
 	 *
 	 * @param state
-	 *            either <code>Frame.NORMAL</code> or
-	 *            <code>Frame.ICONIFIED</code>.
+	 *              either <code>Frame.NORMAL</code> or
+	 *              <code>Frame.ICONIFIED</code>.
 	 * @see #setExtendedState(int)
 	 * @see java.awt.Window#addWindowStateListener
 	 */
@@ -737,7 +725,7 @@ public class Frame extends Window implements MenuContainer {
 	 * guaranteed in this case also.
 	 *
 	 * @param state
-	 *            a bitwise mask of frame state constants
+	 *              a bitwise mask of frame state constants
 	 * @since 1.4
 	 * @see java.awt.Window#addWindowStateListener
 	 */
@@ -762,7 +750,8 @@ public class Frame extends Window implements MenuContainer {
 			// on compound state even if all parts are supported;
 			// * if part of state is not supported, state is not supported;
 			// * MAXIMIZED_BOTH is not a compound state.
-			if (((state & ICONIFIED) != 0) && !getToolkit().isFrameStateSupported(ICONIFIED)) {
+			if (((state & ICONIFIED) != 0) && !getToolkit()
+					.isFrameStateSupported(ICONIFIED)) {
 				return false;
 			} else {
 				state &= ~ICONIFIED;
@@ -856,7 +845,7 @@ public class Frame extends Window implements MenuContainer {
 	 * maximized state.
 	 *
 	 * @param bounds
-	 *            bounds for the maximized state
+	 *               bounds for the maximized state
 	 * @see #getMaximizedBounds()
 	 * @since 1.4
 	 */
@@ -895,20 +884,25 @@ public class Frame extends Window implements MenuContainer {
 	 * {@link Window#setBackground} for details
 	 *
 	 * @param undecorated
-	 *            {@code true} if no frame decorations are to be enabled;
-	 *            {@code false} if frame decorations are to be enabled
+	 *                    {@code true} if no frame decorations are to be
+	 *                    enabled;
+	 *                    {@code false} if frame decorations are to be enabled
 	 *
 	 * @throws IllegalComponentStateException
-	 *             if the frame is displayable
+	 *                                        if the frame is displayable
 	 * @throws IllegalComponentStateException
-	 *             if {@code undecorated} is {@code false}, and this frame does
-	 *             not have the default shape
+	 *                                        if {@code undecorated} is
+	 *                                        {@code false}, and this frame does
+	 *                                        not have the default shape
 	 * @throws IllegalComponentStateException
-	 *             if {@code undecorated} is {@code false}, and this frame
-	 *             opacity is less than {@code 1.0f}
+	 *                                        if {@code undecorated} is
+	 *                                        {@code false}, and this frame
+	 *                                        opacity is less than {@code 1.0f}
 	 * @throws IllegalComponentStateException
-	 *             if {@code undecorated} is {@code false}, and the alpha value
-	 *             of this frame background color is less than {@code 1.0f}
+	 *                                        if {@code undecorated} is
+	 *                                        {@code false}, and the alpha value
+	 *                                        of this frame background color is
+	 *                                        less than {@code 1.0f}
 	 *
 	 * @see #isUndecorated
 	 * @see Component#isDisplayable
@@ -923,11 +917,13 @@ public class Frame extends Window implements MenuContainer {
 		/* Make sure we don't run in the middle of peer creation. */
 		synchronized (getTreeLock()) {
 			if (isDisplayable()) {
-				throw new IllegalComponentStateException("The frame is displayable.");
+				throw new IllegalComponentStateException(
+						"The frame is displayable.");
 			}
 			if (!undecorated) {
 				if (getOpacity() < 1.0f) {
-					throw new IllegalComponentStateException("The frame is not opaque");
+					throw new IllegalComponentStateException(
+							"The frame is not opaque");
 				}
 				if (getShape() != null) {
 					throw new IllegalComponentStateException(
@@ -963,7 +959,8 @@ public class Frame extends Window implements MenuContainer {
 	public void setOpacity(float opacity) {
 		synchronized (getTreeLock()) {
 			if ((opacity < 1.0f) && !isUndecorated()) {
-				throw new IllegalComponentStateException("The frame is decorated");
+				throw new IllegalComponentStateException(
+						"The frame is decorated");
 			}
 			super.setOpacity(opacity);
 		}
@@ -976,7 +973,8 @@ public class Frame extends Window implements MenuContainer {
 	public void setShape(Shape shape) {
 		synchronized (getTreeLock()) {
 			if ((shape != null) && !isUndecorated()) {
-				throw new IllegalComponentStateException("The frame is decorated");
+				throw new IllegalComponentStateException(
+						"The frame is decorated");
 			}
 			super.setShape(shape);
 		}
@@ -988,8 +986,10 @@ public class Frame extends Window implements MenuContainer {
 	@Override
 	public void setBackground(Color bgColor) {
 		synchronized (getTreeLock()) {
-			if ((bgColor != null) && (bgColor.getAlpha() < 255) && !isUndecorated()) {
-				throw new IllegalComponentStateException("The frame is decorated");
+			if ((bgColor != null) && (bgColor.getAlpha() < 255)
+					&& !isUndecorated()) {
+				throw new IllegalComponentStateException(
+						"The frame is decorated");
 			}
 			super.setBackground(bgColor);
 		}
@@ -999,8 +999,8 @@ public class Frame extends Window implements MenuContainer {
 	 * Removes the specified menu bar from this frame.
 	 * 
 	 * @param m
-	 *            the menu component to remove. If <code>m</code> is
-	 *            <code>null</code>, then no action is taken
+	 *          the menu component to remove. If <code>m</code> is
+	 *          <code>null</code>, then no action is taken
 	 */
 	public void remove(MenuComponent m) {
 		if (m == null) {
@@ -1172,7 +1172,7 @@ public class Frame extends Window implements MenuContainer {
 	 * serializable icon <code>Image</code>, which is available as of 1.4.
 	 *
 	 * @param s
-	 *            the <code>ObjectOutputStream</code> to write
+	 *          the <code>ObjectOutputStream</code> to write
 	 * @serialData an optional icon <code>Image</code>
 	 * @see java.awt.Image
 	 * @see #getIconImage
@@ -1199,21 +1199,24 @@ public class Frame extends Window implements MenuContainer {
 	 * Unrecognized keys or values will be ignored.
 	 *
 	 * @param s
-	 *            the <code>ObjectInputStream</code> to read
-	 * @exception java.io.OptionalDataException
-	 *                if an icon <code>Image</code> is not available, but
-	 *                anything other than an EOF is detected
+	 *          the <code>ObjectInputStream</code> to read
+	 * @exception                   java.io.OptionalDataException
+	 *                              if an icon <code>Image</code> is not
+	 *                              available, but
+	 *                              anything other than an EOF is detected
 	 * @exception HeadlessException
-	 *                if <code>GraphicsEnvironment.isHeadless</code> returns
-	 *                <code>true</code>
+	 *                              if
+	 *                              <code>GraphicsEnvironment.isHeadless</code>
+	 *                              returns
+	 *                              <code>true</code>
 	 * @see java.awt.GraphicsEnvironment#isHeadless()
 	 * @see java.awt.Image
 	 * @see #getIconImage
 	 * @see #setIconImage(Image)
 	 * @see #writeObject(ObjectOutputStream)
 	 */
-	private void readObject(ObjectInputStream s)
-			throws ClassNotFoundException, IOException, HeadlessException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException, HeadlessException {
 		// HeadlessException is thrown by Window's readObject
 		s.defaultReadObject();
 		try {
@@ -1256,7 +1259,6 @@ public class Frame extends Window implements MenuContainer {
 
 	/*
 	 * --- Accessibility Support ---
-	 *
 	 */
 
 	/**

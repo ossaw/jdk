@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.generic;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.generic;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -79,8 +71,7 @@ public abstract class Instruction implements Cloneable, Serializable {
 	 * Empty constructor needed for the Class.newInstance() statement in
 	 * Instruction.readInstruction(). Not to be used otherwise.
 	 */
-	Instruction() {
-	}
+	Instruction() {}
 
 	public Instruction(short opcode, short length) {
 		this.length = length;
@@ -111,7 +102,7 @@ public abstract class Instruction implements Cloneable, Serializable {
 	 * instruction&gt;")"
 	 *
 	 * @param verbose
-	 *            long/short format switch
+	 *                long/short format switch
 	 * @return mnemonic for instruction
 	 */
 	public String toString(boolean verbose) {
@@ -164,22 +155,23 @@ public abstract class Instruction implements Cloneable, Serializable {
 	 * Read needed data (e.g. index) from file.
 	 *
 	 * @param bytes
-	 *            byte sequence to read from
+	 *              byte sequence to read from
 	 * @param wide
-	 *            "wide" instruction flag
+	 *              "wide" instruction flag
 	 */
-	protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
-	}
+	protected void initFromFile(ByteSequence bytes, boolean wide)
+			throws IOException {}
 
 	/**
 	 * Read an instruction from (byte code) input stream and return the
 	 * appropiate object.
 	 *
 	 * @param file
-	 *            file to read from
+	 *             file to read from
 	 * @return instruction object being read
 	 */
-	public static final Instruction readInstruction(ByteSequence bytes) throws IOException {
+	public static final Instruction readInstruction(ByteSequence bytes)
+			throws IOException {
 		boolean wide = false;
 		short opcode = (short) bytes.readUnsignedByte();
 		Instruction obj = null;
@@ -213,8 +205,8 @@ public abstract class Instruction implements Cloneable, Serializable {
 		try {
 			obj = (Instruction) clazz.newInstance();
 
-			if (wide && !((obj instanceof LocalVariableInstruction) || (obj instanceof IINC)
-					|| (obj instanceof RET)))
+			if (wide && !((obj instanceof LocalVariableInstruction)
+					|| (obj instanceof IINC) || (obj instanceof RET)))
 				throw new Exception("Illegal opcode after wide: " + opcode);
 
 			obj.setOpcode(opcode);
@@ -296,8 +288,7 @@ public abstract class Instruction implements Cloneable, Serializable {
 	/**
 	 * Some instructions may be reused, so don't do anything by default.
 	 */
-	void dispose() {
-	}
+	void dispose() {}
 
 	/**
 	 * Call corresponding visitor method(s). The order is: Call visitor methods
@@ -306,7 +297,7 @@ public abstract class Instruction implements Cloneable, Serializable {
 	 * comes last.
 	 *
 	 * @param v
-	 *            Visitor object
+	 *          Visitor object
 	 */
 	public abstract void accept(Visitor v);
 
@@ -333,6 +324,7 @@ public abstract class Instruction implements Cloneable, Serializable {
 	 * @return true if that is an Instruction and has the same opcode
 	 */
 	public boolean equals(Object that) {
-		return (that instanceof Instruction) ? cmp.equals(this, (Instruction) that) : false;
+		return (that instanceof Instruction) ? cmp.equals(this,
+				(Instruction) that) : false;
 	}
 }

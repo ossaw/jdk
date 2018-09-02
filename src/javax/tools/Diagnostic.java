@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.tools;
@@ -41,7 +21,7 @@ import java.util.Locale;
  * and 0 are not valid line or column numbers.
  *
  * @param <S>
- *            the type of source object used by this diagnostic
+ *        the type of source object used by this diagnostic
  *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
@@ -61,30 +41,30 @@ public interface Diagnostic<S> {
 	 * warnings as errors.
 	 */
 	enum Kind {
-		/**
-		 * Problem which prevents the tool's normal completion.
-		 */
-		ERROR,
-		/**
-		 * Problem which does not usually prevent the tool from completing
-		 * normally.
-		 */
-		WARNING,
-		/**
-		 * Problem similar to a warning, but is mandated by the tool's
-		 * specification. For example, the Java&trade; Language Specification
-		 * mandates warnings on certain unchecked operations and the use of
-		 * deprecated methods.
-		 */
-		MANDATORY_WARNING,
-		/**
-		 * Informative message from the tool.
-		 */
-		NOTE,
-		/**
-		 * Diagnostic which does not fit within the other kinds.
-		 */
-		OTHER,
+	/**
+	 * Problem which prevents the tool's normal completion.
+	 */
+	ERROR,
+	/**
+	 * Problem which does not usually prevent the tool from completing
+	 * normally.
+	 */
+	WARNING,
+	/**
+	 * Problem similar to a warning, but is mandated by the tool's
+	 * specification. For example, the Java&trade; Language Specification
+	 * mandates warnings on certain unchecked operations and the use of
+	 * deprecated methods.
+	 */
+	MANDATORY_WARNING,
+	/**
+	 * Informative message from the tool.
+	 */
+	NOTE,
+	/**
+	 * Diagnostic which does not fit within the other kinds.
+	 */
+	OTHER,
 	}
 
 	/**
@@ -173,7 +153,7 @@ public interface Diagnostic<S> {
 	 * null} use the default locale.
 	 *
 	 * @param locale
-	 *            a locale; might be {@code null}
+	 *               a locale; might be {@code null}
 	 * @return a localized message
 	 */
 	String getMessage(Locale locale);

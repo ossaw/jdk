@@ -74,7 +74,8 @@ public class XMLEncryptionException extends XMLSecurityException {
 	 * @param exArgs
 	 * @param originalException
 	 */
-	public XMLEncryptionException(String msgID, Object exArgs[], Exception originalException) {
+	public XMLEncryptionException(String msgID, Object exArgs[],
+			Exception originalException) {
 		super(msgID, exArgs, originalException);
 	}
 }

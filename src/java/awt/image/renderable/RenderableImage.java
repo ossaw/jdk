@@ -1,36 +1,13 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
-/* ********************************************************************
- **********************************************************************
- **********************************************************************
- *** COPYRIGHT (c) Eastman Kodak Company, 1997                      ***
- *** As  an unpublished  work pursuant to Title 17 of the United    ***
- *** States Code.  All rights reserved.                             ***
- **********************************************************************
- **********************************************************************
+/*
+ * ********************************************************************
+ ********************************************************************** COPYRIGHT (c) Eastman Kodak Company, 1997 ***
+ *** As an unpublished work pursuant to Title 17 of the United ***
+ *** States Code. All rights reserved. ***
  **********************************************************************/
 
 package java.awt.image.renderable;
@@ -86,7 +63,7 @@ public interface RenderableImage {
 	 * is not recognized, java.awt.Image.UndefinedProperty will be returned.
 	 *
 	 * @param name
-	 *            the name of the property to get, as a String.
+	 *             the name of the property to get, as a String.
 	 * @return a reference to the property Object, or the value
 	 *         java.awt.Image.UndefinedProperty.
 	 */
@@ -163,11 +140,11 @@ public interface RenderableImage {
 	 * property.
 	 *
 	 * @param w
-	 *            the width of rendered image in pixels, or 0.
+	 *              the width of rendered image in pixels, or 0.
 	 * @param h
-	 *            the height of rendered image in pixels, or 0.
+	 *              the height of rendered image in pixels, or 0.
 	 * @param hints
-	 *            a RenderingHints object containing hints.
+	 *              a RenderingHints object containing hints.
 	 * @return a RenderedImage containing the rendered data.
 	 */
 	RenderedImage createScaledRendering(int w, int h, RenderingHints hints);
@@ -196,7 +173,7 @@ public interface RenderableImage {
 	 * have such a property.
 	 *
 	 * @param renderContext
-	 *            the RenderContext to use to produce the rendering.
+	 *                      the RenderContext to use to produce the rendering.
 	 * @return a RenderedImage containing the rendered data.
 	 */
 	RenderedImage createRendering(RenderContext renderContext);

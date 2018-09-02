@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio;
@@ -40,17 +20,19 @@ class StringCharBuffer // package-private
 	}
 
 	public CharBuffer slice() {
-		return new StringCharBuffer(str, -1, 0, this.remaining(), this.remaining(),
-				offset + this.position());
+		return new StringCharBuffer(str, -1, 0, this.remaining(), this
+				.remaining(), offset + this.position());
 	}
 
-	private StringCharBuffer(CharSequence s, int mark, int pos, int limit, int cap, int offset) {
+	private StringCharBuffer(CharSequence s, int mark, int pos, int limit,
+			int cap, int offset) {
 		super(mark, pos, limit, cap, null, offset);
 		str = s;
 	}
 
 	public CharBuffer duplicate() {
-		return new StringCharBuffer(str, markValue(), position(), limit(), capacity(), offset);
+		return new StringCharBuffer(str, markValue(), position(), limit(),
+				capacity(), offset);
 	}
 
 	public CharBuffer asReadOnlyBuffer() {

@@ -1,41 +1,14 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2004 World Wide Web Consortium,
- *
  * (Massachusetts Institute of Technology, European Research Consortium for
  * Informatics and Mathematics, Keio University). All Rights Reserved. This
  * work is distributed under the W3C(r) Software License [1] in the hope that
  * it will be useful, but WITHOUT ANY WARRANTY; without even the implied
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
  * [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
  */
 
@@ -86,39 +59,56 @@ public interface LSResourceResolver {
 	 * (including, for example, a dialog box).
 	 * 
 	 * @param type
-	 *            The type of the resource being resolved. For XML [
-	 *            <a href='http://www.w3.org/TR/2004/REC-xml-20040204'>XML
-	 *            1.0</a>] resources (i.e. entities), applications must use the
-	 *            value <code>"http://www.w3.org/TR/REC-xml"</code>. For XML
-	 *            Schema [
-	 *            <a href='http://www.w3.org/TR/2001/REC-xmlschema-1-20010502/'>
-	 *            XML Schema Part 1</a>] , applications must use the value
-	 *            <code>"http://www.w3.org/2001/XMLSchema"</code>. Other types
-	 *            of resources are outside the scope of this specification and
-	 *            therefore should recommend an absolute URI in order to use
-	 *            this method.
+	 *                     The type of the resource being resolved. For XML [
+	 *                     <a href=
+	 *                     'http://www.w3.org/TR/2004/REC-xml-20040204'>XML
+	 *                     1.0</a>] resources (i.e. entities), applications must
+	 *                     use the
+	 *                     value <code>"http://www.w3.org/TR/REC-xml"</code>.
+	 *                     For XML
+	 *                     Schema [
+	 *                     <a href=
+	 *                     'http://www.w3.org/TR/2001/REC-xmlschema-1-20010502/'>
+	 *                     XML Schema Part 1</a>] , applications must use the
+	 *                     value
+	 *                     <code>"http://www.w3.org/2001/XMLSchema"</code>.
+	 *                     Other types
+	 *                     of resources are outside the scope of this
+	 *                     specification and
+	 *                     therefore should recommend an absolute URI in order
+	 *                     to use
+	 *                     this method.
 	 * @param namespaceURI
-	 *            The namespace of the resource being resolved, e.g. the target
-	 *            namespace of the XML Schema [
-	 *            <a href='http://www.w3.org/TR/2001/REC-xmlschema-1-20010502/'>
-	 *            XML Schema Part 1</a>] when resolving XML Schema resources.
+	 *                     The namespace of the resource being resolved, e.g.
+	 *                     the target
+	 *                     namespace of the XML Schema [
+	 *                     <a href=
+	 *                     'http://www.w3.org/TR/2001/REC-xmlschema-1-20010502/'>
+	 *                     XML Schema Part 1</a>] when resolving XML Schema
+	 *                     resources.
 	 * @param publicId
-	 *            The public identifier of the external entity being referenced,
-	 *            or <code>null</code> if no public identifier was supplied or
-	 *            if the resource is not an entity.
+	 *                     The public identifier of the external entity being
+	 *                     referenced,
+	 *                     or <code>null</code> if no public identifier was
+	 *                     supplied or
+	 *                     if the resource is not an entity.
 	 * @param systemId
-	 *            The system identifier, a URI reference [
-	 *            <a href='http://www.ietf.org/rfc/rfc2396.txt'>IETF RFC
-	 *            2396</a>], of the external resource being referenced, or
-	 *            <code>null</code> if no system identifier was supplied.
+	 *                     The system identifier, a URI reference [
+	 *                     <a href='http://www.ietf.org/rfc/rfc2396.txt'>IETF
+	 *                     RFC
+	 *                     2396</a>], of the external resource being referenced,
+	 *                     or
+	 *                     <code>null</code> if no system identifier was
+	 *                     supplied.
 	 * @param baseURI
-	 *            The absolute base URI of the resource being parsed, or
-	 *            <code>null</code> if there is no base URI.
+	 *                     The absolute base URI of the resource being parsed,
+	 *                     or
+	 *                     <code>null</code> if there is no base URI.
 	 * @return A <code>LSInput</code> object describing the new input source, or
 	 *         <code>null</code> to request that the parser open a regular URI
 	 *         connection to the resource.
 	 */
-	public LSInput resolveResource(String type, String namespaceURI, String publicId,
-			String systemId, String baseURI);
+	public LSInput resolveResource(String type, String namespaceURI,
+			String publicId, String systemId, String baseURI);
 
 }

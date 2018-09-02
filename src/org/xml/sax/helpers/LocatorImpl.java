@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // SAX default implementation for Locator.
@@ -81,8 +61,7 @@ public class LocatorImpl implements Locator {
 	 * to make a snapshot of an existing Locator.
 	 * </p>
 	 */
-	public LocatorImpl() {
-	}
+	public LocatorImpl() {}
 
 	/**
 	 * Copy constructor.
@@ -94,7 +73,7 @@ public class LocatorImpl implements Locator {
 	 * </p>
 	 *
 	 * @param locator
-	 *            The locator to copy.
+	 *                The locator to copy.
 	 */
 	public LocatorImpl(Locator locator) {
 		setPublicId(locator.getPublicId());
@@ -159,7 +138,7 @@ public class LocatorImpl implements Locator {
 	 * Set the public identifier for this locator.
 	 *
 	 * @param publicId
-	 *            The new public identifier, or null if none is available.
+	 *                 The new public identifier, or null if none is available.
 	 * @see #getPublicId
 	 */
 	public void setPublicId(String publicId) {
@@ -170,7 +149,7 @@ public class LocatorImpl implements Locator {
 	 * Set the system identifier for this locator.
 	 *
 	 * @param systemId
-	 *            The new system identifier, or null if none is available.
+	 *                 The new system identifier, or null if none is available.
 	 * @see #getSystemId
 	 */
 	public void setSystemId(String systemId) {
@@ -181,7 +160,7 @@ public class LocatorImpl implements Locator {
 	 * Set the line number for this locator (1-based).
 	 *
 	 * @param lineNumber
-	 *            The line number, or -1 if none is available.
+	 *                   The line number, or -1 if none is available.
 	 * @see #getLineNumber
 	 */
 	public void setLineNumber(int lineNumber) {
@@ -192,7 +171,7 @@ public class LocatorImpl implements Locator {
 	 * Set the column number for this locator (1-based).
 	 *
 	 * @param columnNumber
-	 *            The column number, or -1 if none is available.
+	 *                     The column number, or -1 if none is available.
 	 * @see #getColumnNumber
 	 */
 	public void setColumnNumber(int columnNumber) {

@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,12 +33,13 @@ import com.sun.org.apache.xml.internal.dtm.Axis;
 public abstract class MultipleNodeCounter extends NodeCounter {
 	private DTMAxisIterator _precSiblings = null;
 
-	public MultipleNodeCounter(Translet translet, DOM document, DTMAxisIterator iterator) {
+	public MultipleNodeCounter(Translet translet, DOM document,
+			DTMAxisIterator iterator) {
 		super(translet, document, iterator);
 	}
 
-	public MultipleNodeCounter(Translet translet, DOM document, DTMAxisIterator iterator,
-			boolean hasFrom) {
+	public MultipleNodeCounter(Translet translet, DOM document,
+			DTMAxisIterator iterator, boolean hasFrom) {
 		super(translet, document, iterator, hasFrom);
 	}
 
@@ -92,18 +90,20 @@ public abstract class MultipleNodeCounter extends NodeCounter {
 				_precSiblings.setStartNode(ancestor);
 				while ((next = _precSiblings.next()) != END) {
 					if (matchesCount(next)) {
-						counters[j] = (counters[j] == Integer.MIN_VALUE) ? 1 : counters[j] + 1;
+						counters[j] = (counters[j] == Integer.MIN_VALUE) ? 1
+								: counters[j] + 1;
 					}
 				}
 				// Count the node itself
-				counters[j] = counters[j] == Integer.MIN_VALUE ? 1 : counters[j] + 1;
+				counters[j] = counters[j] == Integer.MIN_VALUE ? 1
+						: counters[j] + 1;
 			}
 		}
 		return formatNumbers(counters);
 	}
 
-	public static NodeCounter getDefaultNodeCounter(Translet translet, DOM document,
-			DTMAxisIterator iterator) {
+	public static NodeCounter getDefaultNodeCounter(Translet translet,
+			DOM document, DTMAxisIterator iterator) {
 		return new DefaultMultipleNodeCounter(translet, document, iterator);
 	}
 

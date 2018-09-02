@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2000 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -117,12 +92,14 @@ public interface HTMLTableRowElement extends HTMLElement {
 	 * is equal to the number of cells, the new cell is appended
 	 * 
 	 * @param index
-	 *            The place to insert the cell, starting from 0.
+	 *              The place to insert the cell, starting from 0.
 	 * @return The newly created cell.
 	 * @exception DOMException
-	 *                INDEX_SIZE_ERR: Raised if the specified <code>index</code>
-	 *                is greater than the number of cells or if the index is
-	 *                negative.
+	 *                         INDEX_SIZE_ERR: Raised if the specified
+	 *                         <code>index</code>
+	 *                         is greater than the number of cells or if the
+	 *                         index is
+	 *                         negative.
 	 */
 	public HTMLElement insertCell(int index) throws DOMException;
 
@@ -130,11 +107,13 @@ public interface HTMLTableRowElement extends HTMLElement {
 	 * Delete a cell from the current row.
 	 * 
 	 * @param index
-	 *            The index of the cell to delete, starting from 0.
+	 *              The index of the cell to delete, starting from 0.
 	 * @exception DOMException
-	 *                INDEX_SIZE_ERR: Raised if the specified <code>index</code>
-	 *                is greater than or equal to the number of cells or if the
-	 *                index is negative.
+	 *                         INDEX_SIZE_ERR: Raised if the specified
+	 *                         <code>index</code>
+	 *                         is greater than or equal to the number of cells
+	 *                         or if the
+	 *                         index is negative.
 	 */
 	public void deleteCell(int index) throws DOMException;
 

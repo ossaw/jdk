@@ -60,7 +60,7 @@ public interface EncryptionMethod {
 	 * Sets the size of the key of the algorithm applied to the cipher data.
 	 *
 	 * @param size
-	 *            the key size.
+	 *             the key size.
 	 */
 	void setKeySize(int size);
 
@@ -76,7 +76,7 @@ public interface EncryptionMethod {
 	 * Sets the OAEP parameters.
 	 *
 	 * @param parameters
-	 *            the OAEP parameters.
+	 *                   the OAEP parameters.
 	 */
 	void setOAEPparams(byte[] parameters);
 
@@ -84,7 +84,7 @@ public interface EncryptionMethod {
 	 * Set the Digest Algorithm to use
 	 * 
 	 * @param digestAlgorithm
-	 *            the Digest Algorithm to use
+	 *                        the Digest Algorithm to use
 	 */
 	void setDigestAlgorithm(String digestAlgorithm);
 
@@ -99,7 +99,7 @@ public interface EncryptionMethod {
 	 * Set the MGF Algorithm to use
 	 * 
 	 * @param mgfAlgorithm
-	 *            the MGF Algorithm to use
+	 *                     the MGF Algorithm to use
 	 */
 	void setMGFAlgorithm(String mgfAlgorithm);
 
@@ -123,7 +123,7 @@ public interface EncryptionMethod {
 	 * Adds encryption method information.
 	 *
 	 * @param information
-	 *            additional encryption method information.
+	 *                    additional encryption method information.
 	 */
 	void addEncryptionMethodInformation(Element information);
 
@@ -131,8 +131,8 @@ public interface EncryptionMethod {
 	 * Removes encryption method information.
 	 *
 	 * @param information
-	 *            the information to remove from the
-	 *            <code>EncryptionMethod</code>.
+	 *                    the information to remove from the
+	 *                    <code>EncryptionMethod</code>.
 	 */
 	void removeEncryptionMethodInformation(Element information);
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -44,7 +24,7 @@ public class FieldView extends PlainView {
 	 * Constructs a new FieldView wrapped on an element.
 	 *
 	 * @param elem
-	 *            the element
+	 *             the element
 	 */
 	public FieldView(Element elem) {
 		super(elem);
@@ -69,8 +49,8 @@ public class FieldView extends PlainView {
 	 * hosting component).
 	 *
 	 * @param a
-	 *            the allocation given to the view, which may need to be
-	 *            adjusted.
+	 *          the allocation given to the view, which may need to be
+	 *          adjusted.
 	 * @return the allocation that the superclass should use.
 	 */
 	protected Shape adjustAllocation(Shape a) {
@@ -95,7 +75,8 @@ public class FieldView extends PlainView {
 				if ((value + extent) > max) {
 					value = max - extent;
 				}
-				vis.setRangeProperties(value, extent, vis.getMinimum(), max, false);
+				vis.setRangeProperties(value, extent, vis.getMinimum(), max,
+						false);
 				if (hspan < bounds.width) {
 					// horizontally align the interior
 					int slop = bounds.width - 1 - hspan;
@@ -116,14 +97,14 @@ public class FieldView extends PlainView {
 					}
 
 					switch (align) {
-					case SwingConstants.CENTER:
-						bounds.x += slop / 2;
-						bounds.width -= slop;
-						break;
-					case SwingConstants.RIGHT:
-						bounds.x += slop;
-						bounds.width -= slop;
-						break;
+						case SwingConstants.CENTER:
+							bounds.x += slop / 2;
+							bounds.width -= slop;
+							break;
+						case SwingConstants.RIGHT:
+							bounds.x += slop;
+							bounds.width -= slop;
+							break;
 					}
 				} else {
 					// adjust the allocation to match the bounded range.
@@ -170,9 +151,9 @@ public class FieldView extends PlainView {
 	 * render into the given allocation.
 	 *
 	 * @param g
-	 *            the rendering surface to use
+	 *          the rendering surface to use
 	 * @param a
-	 *            the allocated region to render into
+	 *          the allocated region to render into
 	 *
 	 * @see View#paint
 	 */
@@ -193,7 +174,7 @@ public class FieldView extends PlainView {
 	 * Determines the preferred span for this view along an axis.
 	 *
 	 * @param axis
-	 *            may be either View.X_AXIS or View.Y_AXIS
+	 *             may be either View.X_AXIS or View.Y_AXIS
 	 * @return the span the view would like to be rendered into &gt;= 0.
 	 *         Typically the view is told to render into the span that is
 	 *         returned, although there is no guarantee. The parent may choose
@@ -201,30 +182,31 @@ public class FieldView extends PlainView {
 	 */
 	public float getPreferredSpan(int axis) {
 		switch (axis) {
-		case View.X_AXIS:
-			Segment buff = SegmentCache.getSharedSegment();
-			Document doc = getDocument();
-			int width;
-			try {
-				FontMetrics fm = getFontMetrics();
-				doc.getText(0, doc.getLength(), buff);
-				width = Utilities.getTabbedTextWidth(buff, fm, 0, this, 0);
-				if (buff.count > 0) {
-					Component c = getContainer();
-					firstLineOffset = sun.swing.SwingUtilities2.getLeftSideBearing(
-							(c instanceof JComponent) ? (JComponent) c : null, fm,
-							buff.array[buff.offset]);
-					firstLineOffset = Math.max(0, -firstLineOffset);
-				} else {
-					firstLineOffset = 0;
+			case View.X_AXIS:
+				Segment buff = SegmentCache.getSharedSegment();
+				Document doc = getDocument();
+				int width;
+				try {
+					FontMetrics fm = getFontMetrics();
+					doc.getText(0, doc.getLength(), buff);
+					width = Utilities.getTabbedTextWidth(buff, fm, 0, this, 0);
+					if (buff.count > 0) {
+						Component c = getContainer();
+						firstLineOffset = sun.swing.SwingUtilities2
+								.getLeftSideBearing((c instanceof JComponent)
+										? (JComponent) c
+										: null, fm, buff.array[buff.offset]);
+						firstLineOffset = Math.max(0, -firstLineOffset);
+					} else {
+						firstLineOffset = 0;
+					}
+				} catch (BadLocationException bl) {
+					width = 0;
 				}
-			} catch (BadLocationException bl) {
-				width = 0;
-			}
-			SegmentCache.releaseSharedSegment(buff);
-			return width + firstLineOffset;
-		default:
-			return super.getPreferredSpan(axis);
+				SegmentCache.releaseSharedSegment(buff);
+				return width + firstLineOffset;
+			default:
+				return super.getPreferredSpan(axis);
 		}
 	}
 
@@ -233,7 +215,7 @@ public class FieldView extends PlainView {
 	 * 0 or less is not resizable.
 	 *
 	 * @param axis
-	 *            View.X_AXIS or View.Y_AXIS
+	 *             View.X_AXIS or View.Y_AXIS
 	 * @return the weight -&gt; 1 for View.X_AXIS, else 0
 	 */
 	public int getResizeWeight(int axis) {
@@ -253,11 +235,13 @@ public class FieldView extends PlainView {
 	 *            the allocated region to render into
 	 * @return the bounding box of the given position
 	 * @exception BadLocationException
-	 *                if the given position does not represent a valid location
-	 *                in the associated document
+	 *                                 if the given position does not represent
+	 *                                 a valid location
+	 *                                 in the associated document
 	 * @see View#modelToView
 	 */
-	public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
+	public Shape modelToView(int pos, Shape a, Position.Bias b)
+			throws BadLocationException {
 		return super.modelToView(pos, adjustAllocation(a), b);
 	}
 
@@ -266,11 +250,11 @@ public class FieldView extends PlainView {
 	 * coordinate space of the model.
 	 *
 	 * @param fx
-	 *            the X coordinate &gt;= 0.0f
+	 *           the X coordinate &gt;= 0.0f
 	 * @param fy
-	 *            the Y coordinate &gt;= 0.0f
+	 *           the Y coordinate &gt;= 0.0f
 	 * @param a
-	 *            the allocated region to render into
+	 *           the allocated region to render into
 	 * @return the location within the model that best represents the given
 	 *         point in the view
 	 * @see View#viewToModel
@@ -284,11 +268,11 @@ public class FieldView extends PlainView {
 	 * location that this view is responsible for.
 	 *
 	 * @param changes
-	 *            the change information from the associated document
+	 *                the change information from the associated document
 	 * @param a
-	 *            the current allocation of the view
+	 *                the current allocation of the view
 	 * @param f
-	 *            the factory to use to rebuild if the view has children
+	 *                the factory to use to rebuild if the view has children
 	 * @see View#insertUpdate
 	 */
 	public void insertUpdate(DocumentEvent changes, Shape a, ViewFactory f) {
@@ -301,11 +285,11 @@ public class FieldView extends PlainView {
 	 * location that this view is responsible for.
 	 *
 	 * @param changes
-	 *            the change information from the associated document
+	 *                the change information from the associated document
 	 * @param a
-	 *            the current allocation of the view
+	 *                the current allocation of the view
 	 * @param f
-	 *            the factory to use to rebuild if the view has children
+	 *                the factory to use to rebuild if the view has children
 	 * @see View#removeUpdate
 	 */
 	public void removeUpdate(DocumentEvent changes, Shape a, ViewFactory f) {

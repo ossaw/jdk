@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.mbeanserver;
@@ -46,7 +26,8 @@ import sun.reflect.misc.ReflectUtil;
  *
  * @since 1.5
  */
-final class ClassLoaderRepositorySupport implements ModifiableClassLoaderRepository {
+final class ClassLoaderRepositorySupport implements
+		ModifiableClassLoaderRepository {
 
 	/*
 	 * We associate an optional ObjectName with each entry so that we can remove
@@ -83,7 +64,8 @@ final class ClassLoaderRepositorySupport implements ModifiableClassLoaderReposit
 	 * loader list with a new one in which the new loader has been added.
 	 **/
 	private synchronized boolean add(ObjectName name, ClassLoader cl) {
-		List<LoaderEntry> l = new ArrayList<LoaderEntry>(Arrays.asList(loaders));
+		List<LoaderEntry> l = new ArrayList<LoaderEntry>(Arrays.asList(
+				loaders));
 		l.add(new LoaderEntry(name, cl));
 		loaders = l.toArray(EMPTY_LOADER_ARRAY);
 		return true;
@@ -103,7 +85,8 @@ final class ClassLoaderRepositorySupport implements ModifiableClassLoaderReposit
 		final int size = loaders.length;
 		for (int i = 0; i < size; i++) {
 			LoaderEntry entry = loaders[i];
-			boolean match = (name == null) ? cl == entry.loader : name.equals(entry.name);
+			boolean match = (name == null) ? cl == entry.loader
+					: name.equals(entry.name);
 			if (match) {
 				LoaderEntry[] newloaders = new LoaderEntry[size - 1];
 				System.arraycopy(loaders, 0, newloaders, 0, i);
@@ -128,15 +111,17 @@ final class ClassLoaderRepositorySupport implements ModifiableClassLoaderReposit
 			10);
 
 	// from javax.management.loading.DefaultLoaderRepository
-	public final Class<?> loadClass(String className) throws ClassNotFoundException {
+	public final Class<?> loadClass(String className)
+			throws ClassNotFoundException {
 		return loadClass(loaders, className, null, null);
 	}
 
 	// from javax.management.loading.DefaultLoaderRepository
-	public final Class<?> loadClassWithout(ClassLoader without, String className)
-			throws ClassNotFoundException {
+	public final Class<?> loadClassWithout(ClassLoader without,
+			String className) throws ClassNotFoundException {
 		if (MBEANSERVER_LOGGER.isLoggable(Level.FINER)) {
-			MBEANSERVER_LOGGER.logp(Level.FINER, ClassLoaderRepositorySupport.class.getName(),
+			MBEANSERVER_LOGGER.logp(Level.FINER,
+					ClassLoaderRepositorySupport.class.getName(),
 					"loadClassWithout", className + " without " + without);
 		}
 
@@ -158,7 +143,8 @@ final class ClassLoaderRepositorySupport implements ModifiableClassLoaderReposit
 	public final Class<?> loadClassBefore(ClassLoader stop, String className)
 			throws ClassNotFoundException {
 		if (MBEANSERVER_LOGGER.isLoggable(Level.FINER)) {
-			MBEANSERVER_LOGGER.logp(Level.FINER, ClassLoaderRepositorySupport.class.getName(),
+			MBEANSERVER_LOGGER.logp(Level.FINER,
+					ClassLoaderRepositorySupport.class.getName(),
 					"loadClassBefore", className + " before " + stop);
 		}
 
@@ -174,7 +160,8 @@ final class ClassLoaderRepositorySupport implements ModifiableClassLoaderReposit
 	}
 
 	private Class<?> loadClass(final LoaderEntry list[], final String className,
-			final ClassLoader without, final ClassLoader stop) throws ClassNotFoundException {
+			final ClassLoader without, final ClassLoader stop)
+			throws ClassNotFoundException {
 		ReflectUtil.checkPackageAccess(className);
 		final int size = list.length;
 		for (int i = 0; i < size; i++) {
@@ -188,8 +175,8 @@ final class ClassLoaderRepositorySupport implements ModifiableClassLoaderReposit
 					break;
 				if (MBEANSERVER_LOGGER.isLoggable(Level.FINER)) {
 					MBEANSERVER_LOGGER.logp(Level.FINER,
-							ClassLoaderRepositorySupport.class.getName(), "loadClass",
-							"Trying loader = " + cl);
+							ClassLoaderRepositorySupport.class.getName(),
+							"loadClass", "Trying loader = " + cl);
 				}
 				/*
 				 * We used to have a special case for "instanceof MLet" here,
@@ -212,16 +199,17 @@ final class ClassLoaderRepositorySupport implements ModifiableClassLoaderReposit
 		throw new ClassNotFoundException(className);
 	}
 
-	private synchronized void startValidSearch(ClassLoader aloader, String className)
-			throws ClassNotFoundException {
+	private synchronized void startValidSearch(ClassLoader aloader,
+			String className) throws ClassNotFoundException {
 		// Check if we have such a current search
 		//
 		List<ClassLoader> excluded = search.get(className);
 		if ((excluded != null) && (excluded.contains(aloader))) {
 			if (MBEANSERVER_LOGGER.isLoggable(Level.FINER)) {
-				MBEANSERVER_LOGGER.logp(Level.FINER, ClassLoaderRepositorySupport.class.getName(),
-						"startValidSearch",
-						"Already requested loader = " + aloader + " class = " + className);
+				MBEANSERVER_LOGGER.logp(Level.FINER,
+						ClassLoaderRepositorySupport.class.getName(),
+						"startValidSearch", "Already requested loader = "
+								+ aloader + " class = " + className);
 			}
 			throw new ClassNotFoundException(className);
 		}
@@ -234,12 +222,15 @@ final class ClassLoaderRepositorySupport implements ModifiableClassLoaderReposit
 		}
 		excluded.add(aloader);
 		if (MBEANSERVER_LOGGER.isLoggable(Level.FINER)) {
-			MBEANSERVER_LOGGER.logp(Level.FINER, ClassLoaderRepositorySupport.class.getName(),
-					"startValidSearch", "loader = " + aloader + " class = " + className);
+			MBEANSERVER_LOGGER.logp(Level.FINER,
+					ClassLoaderRepositorySupport.class.getName(),
+					"startValidSearch", "loader = " + aloader + " class = "
+							+ className);
 		}
 	}
 
-	private synchronized void stopValidSearch(ClassLoader aloader, String className) {
+	private synchronized void stopValidSearch(ClassLoader aloader,
+			String className) {
 
 		// Retrieve the search.
 		//
@@ -247,8 +238,10 @@ final class ClassLoaderRepositorySupport implements ModifiableClassLoaderReposit
 		if (excluded != null) {
 			excluded.remove(aloader);
 			if (MBEANSERVER_LOGGER.isLoggable(Level.FINER)) {
-				MBEANSERVER_LOGGER.logp(Level.FINER, ClassLoaderRepositorySupport.class.getName(),
-						"stopValidSearch", "loader = " + aloader + " class = " + className);
+				MBEANSERVER_LOGGER.logp(Level.FINER,
+						ClassLoaderRepositorySupport.class.getName(),
+						"stopValidSearch", "loader = " + aloader + " class = "
+								+ className);
 			}
 		}
 	}
@@ -261,7 +254,8 @@ final class ClassLoaderRepositorySupport implements ModifiableClassLoaderReposit
 		remove(null, loader);
 	}
 
-	public final synchronized void addClassLoader(ObjectName name, ClassLoader loader) {
+	public final synchronized void addClassLoader(ObjectName name,
+			ClassLoader loader) {
 		loadersWithNames.put(name, loader);
 		if (!(loader instanceof PrivateClassLoader))
 			add(name, loader);
@@ -278,8 +272,8 @@ final class ClassLoaderRepositorySupport implements ModifiableClassLoaderReposit
 		if (instance != null) {
 			SecurityManager sm = System.getSecurityManager();
 			if (sm != null) {
-				Permission perm = new MBeanPermission(instance.getClass().getName(), null, name,
-						"getClassLoader");
+				Permission perm = new MBeanPermission(instance.getClass()
+						.getName(), null, name, "getClassLoader");
 				sm.checkPermission(perm);
 			}
 		}

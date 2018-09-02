@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2000 World Wide Web Consortium,
  * (Massachusetts Institute of Technology, Institut National de
  * Recherche en Informatique et en Automatique, Keio University). All
@@ -67,10 +42,12 @@ public interface CSSStyleRule extends CSSRule {
 	 * parsing the selector.
 	 * 
 	 * @exception DOMException
-	 *                SYNTAX_ERR: Raised if the specified CSS string value has a
-	 *                syntax error and is unparsable. <br>
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised if this rule is
-	 *                readonly.
+	 *                         SYNTAX_ERR: Raised if the specified CSS string
+	 *                         value has a
+	 *                         syntax error and is unparsable. <br>
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this rule
+	 *                         is
+	 *                         readonly.
 	 */
 	public void setSelectorText(String selectorText) throws DOMException;
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -72,17 +52,17 @@ public class MediaName extends Media implements Attribute {
 	 * value.
 	 *
 	 * @param value
-	 *            Integer value.
+	 *              Integer value.
 	 */
 	protected MediaName(int value) {
 		super(value);
 	}
 
-	private static final String[] myStringTable = { "na-letter-white", "na-letter-transparent",
-			"iso-a4-white", "iso-a4-transparent" };
+	private static final String[] myStringTable = { "na-letter-white",
+			"na-letter-transparent", "iso-a4-white", "iso-a4-transparent" };
 
-	private static final MediaName[] myEnumValueTable = { NA_LETTER_WHITE, NA_LETTER_TRANSPARENT,
-			ISO_A4_WHITE, ISO_A4_TRANSPARENT };
+	private static final MediaName[] myEnumValueTable = { NA_LETTER_WHITE,
+			NA_LETTER_TRANSPARENT, ISO_A4_WHITE, ISO_A4_TRANSPARENT };
 
 	/**
 	 * Returns the string table for class MediaTray.

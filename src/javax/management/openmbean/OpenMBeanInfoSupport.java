@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.openmbean;
@@ -77,45 +57,57 @@ public class OpenMBeanInfoSupport extends MBeanInfo implements OpenMBeanInfo {
 	 * </p>
 	 *
 	 * @param className
-	 *            The fully qualified Java class name of the open MBean
-	 *            described by this <CODE>OpenMBeanInfoSupport</CODE> instance.
+	 *                         The fully qualified Java class name of the open
+	 *                         MBean
+	 *                         described by this
+	 *                         <CODE>OpenMBeanInfoSupport</CODE> instance.
 	 *
 	 * @param description
-	 *            A human readable description of the open MBean described by
-	 *            this <CODE>OpenMBeanInfoSupport</CODE> instance.
+	 *                         A human readable description of the open MBean
+	 *                         described by
+	 *                         this <CODE>OpenMBeanInfoSupport</CODE> instance.
 	 *
 	 * @param openAttributes
-	 *            The list of exposed attributes of the described open MBean;
-	 *            Must be an array of instances of a subclass of
-	 *            {@code MBeanAttributeInfo}, typically {@code
+	 *                         The list of exposed attributes of the described
+	 *                         open MBean;
+	 *                         Must be an array of instances of a subclass of
+	 *                         {@code MBeanAttributeInfo}, typically {@code
 	 * OpenMBeanAttributeInfoSupport}.
 	 *
 	 * @param openConstructors
-	 *            The list of exposed public constructors of the described open
-	 *            MBean; Must be an array of instances of a subclass of
-	 *            {@code MBeanConstructorInfo}, typically {@code
+	 *                         The list of exposed public constructors of the
+	 *                         described open
+	 *                         MBean; Must be an array of instances of a
+	 *                         subclass of
+	 *                         {@code MBeanConstructorInfo}, typically {@code
 	 * OpenMBeanConstructorInfoSupport}.
 	 *
 	 * @param openOperations
-	 *            The list of exposed operations of the described open MBean.
-	 *            Must be an array of instances of a subclass of
-	 *            {@code MBeanOperationInfo}, typically {@code
+	 *                         The list of exposed operations of the described
+	 *                         open MBean.
+	 *                         Must be an array of instances of a subclass of
+	 *                         {@code MBeanOperationInfo}, typically {@code
 	 * OpenMBeanOperationInfoSupport}.
 	 *
 	 * @param notifications
-	 *            The list of notifications emitted by the described open MBean.
+	 *                         The list of notifications emitted by the
+	 *                         described open MBean.
 	 *
 	 * @throws ArrayStoreException
-	 *             If {@code openAttributes}, {@code
-	 * openConstructors} or {@code openOperations} is not an array of instances
-	 *             of a subclass of {@code MBeanAttributeInfo}, {@code
-	 * MBeanConstructorInfo} or {@code MBeanOperationInfo} respectively.
+	 *                             If {@code openAttributes}, {@code
+	 * openConstructors}        or {@code openOperations} is not an array of
+	 *                             instances
+	 *                             of a subclass of {@code MBeanAttributeInfo},
+	 *                             {@code
+	 * MBeanConstructorInfo}    or {@code MBeanOperationInfo} respectively.
 	 */
 	public OpenMBeanInfoSupport(String className, String description,
-			OpenMBeanAttributeInfo[] openAttributes, OpenMBeanConstructorInfo[] openConstructors,
-			OpenMBeanOperationInfo[] openOperations, MBeanNotificationInfo[] notifications) {
-		this(className, description, openAttributes, openConstructors, openOperations,
-				notifications, (Descriptor) null);
+			OpenMBeanAttributeInfo[] openAttributes,
+			OpenMBeanConstructorInfo[] openConstructors,
+			OpenMBeanOperationInfo[] openOperations,
+			MBeanNotificationInfo[] notifications) {
+		this(className, description, openAttributes, openConstructors,
+				openOperations, notifications, (Descriptor) null);
 	}
 
 	/**
@@ -135,56 +127,70 @@ public class OpenMBeanInfoSupport extends MBeanInfo implements OpenMBeanInfo {
 	 * </p>
 	 *
 	 * @param className
-	 *            The fully qualified Java class name of the open MBean
-	 *            described by this <CODE>OpenMBeanInfoSupport</CODE> instance.
+	 *                         The fully qualified Java class name of the open
+	 *                         MBean
+	 *                         described by this
+	 *                         <CODE>OpenMBeanInfoSupport</CODE> instance.
 	 *
 	 * @param description
-	 *            A human readable description of the open MBean described by
-	 *            this <CODE>OpenMBeanInfoSupport</CODE> instance.
+	 *                         A human readable description of the open MBean
+	 *                         described by
+	 *                         this <CODE>OpenMBeanInfoSupport</CODE> instance.
 	 *
 	 * @param openAttributes
-	 *            The list of exposed attributes of the described open MBean;
-	 *            Must be an array of instances of a subclass of
-	 *            {@code MBeanAttributeInfo}, typically {@code
+	 *                         The list of exposed attributes of the described
+	 *                         open MBean;
+	 *                         Must be an array of instances of a subclass of
+	 *                         {@code MBeanAttributeInfo}, typically {@code
 	 * OpenMBeanAttributeInfoSupport}.
 	 *
 	 * @param openConstructors
-	 *            The list of exposed public constructors of the described open
-	 *            MBean; Must be an array of instances of a subclass of
-	 *            {@code MBeanConstructorInfo}, typically {@code
+	 *                         The list of exposed public constructors of the
+	 *                         described open
+	 *                         MBean; Must be an array of instances of a
+	 *                         subclass of
+	 *                         {@code MBeanConstructorInfo}, typically {@code
 	 * OpenMBeanConstructorInfoSupport}.
 	 *
 	 * @param openOperations
-	 *            The list of exposed operations of the described open MBean.
-	 *            Must be an array of instances of a subclass of
-	 *            {@code MBeanOperationInfo}, typically {@code
+	 *                         The list of exposed operations of the described
+	 *                         open MBean.
+	 *                         Must be an array of instances of a subclass of
+	 *                         {@code MBeanOperationInfo}, typically {@code
 	 * OpenMBeanOperationInfoSupport}.
 	 *
 	 * @param notifications
-	 *            The list of notifications emitted by the described open MBean.
+	 *                         The list of notifications emitted by the
+	 *                         described open MBean.
 	 *
 	 * @param descriptor
-	 *            The descriptor for the MBean. This may be null which is
-	 *            equivalent to an empty descriptor.
+	 *                         The descriptor for the MBean. This may be null
+	 *                         which is
+	 *                         equivalent to an empty descriptor.
 	 *
 	 * @throws ArrayStoreException
-	 *             If {@code openAttributes}, {@code
-	 * openConstructors} or {@code openOperations} is not an array of instances
-	 *             of a subclass of {@code MBeanAttributeInfo}, {@code
-	 * MBeanConstructorInfo} or {@code MBeanOperationInfo} respectively.
+	 *                             If {@code openAttributes}, {@code
+	 * openConstructors}        or {@code openOperations} is not an array of
+	 *                             instances
+	 *                             of a subclass of {@code MBeanAttributeInfo},
+	 *                             {@code
+	 * MBeanConstructorInfo}    or {@code MBeanOperationInfo} respectively.
 	 *
 	 * @since 1.6
 	 */
 	public OpenMBeanInfoSupport(String className, String description,
-			OpenMBeanAttributeInfo[] openAttributes, OpenMBeanConstructorInfo[] openConstructors,
-			OpenMBeanOperationInfo[] openOperations, MBeanNotificationInfo[] notifications,
-			Descriptor descriptor) {
+			OpenMBeanAttributeInfo[] openAttributes,
+			OpenMBeanConstructorInfo[] openConstructors,
+			OpenMBeanOperationInfo[] openOperations,
+			MBeanNotificationInfo[] notifications, Descriptor descriptor) {
 		super(className, description, attributeArray(openAttributes),
-				constructorArray(openConstructors), operationArray(openOperations),
-				(notifications == null) ? null : notifications.clone(), descriptor);
+				constructorArray(openConstructors), operationArray(
+						openOperations), (notifications == null) ? null
+								: notifications.clone(), descriptor);
 	}
 
-	private static MBeanAttributeInfo[] attributeArray(OpenMBeanAttributeInfo[] src) {
+	private static MBeanAttributeInfo[] attributeArray(
+			OpenMBeanAttributeInfo[] src) {
 		if (src == null)
 			return null;
 		MBeanAttributeInfo[] dst = new MBeanAttributeInfo[src.length];
@@ -193,7 +199,8 @@ public class OpenMBeanInfoSupport extends MBeanInfo implements OpenMBeanInfo {
 		return dst;
 	}
 
-	private static MBeanConstructorInfo[] constructorArray(OpenMBeanConstructorInfo[] src) {
+	private static MBeanConstructorInfo[] constructorArray(
+			OpenMBeanConstructorInfo[] src) {
 		if (src == null)
 			return null;
 		MBeanConstructorInfo[] dst = new MBeanConstructorInfo[src.length];
@@ -202,7 +209,8 @@ public class OpenMBeanInfoSupport extends MBeanInfo implements OpenMBeanInfo {
 		return dst;
 	}
 
-	private static MBeanOperationInfo[] operationArray(OpenMBeanOperationInfo[] src) {
+	private static MBeanOperationInfo[] operationArray(
+			OpenMBeanOperationInfo[] src) {
 		if (src == null)
 			return null;
 		MBeanOperationInfo[] dst = new MBeanOperationInfo[src.length];
@@ -285,7 +293,8 @@ public class OpenMBeanInfoSupport extends MBeanInfo implements OpenMBeanInfo {
 
 		// their infos on notifications should be equal (order not
 		// significant => equality between sets, not arrays or lists)
-		if (!sameArrayContents(this.getNotifications(), other.getNotifications()))
+		if (!sameArrayContents(this.getNotifications(), other
+				.getNotifications()))
 			return false;
 
 		// All tests for equality were successful
@@ -294,7 +303,8 @@ public class OpenMBeanInfoSupport extends MBeanInfo implements OpenMBeanInfo {
 	}
 
 	private static <T> boolean sameArrayContents(T[] a1, T[] a2) {
-		return (new HashSet<T>(Arrays.asList(a1)).equals(new HashSet<T>(Arrays.asList(a2))));
+		return (new HashSet<T>(Arrays.asList(a1)).equals(new HashSet<T>(Arrays
+				.asList(a2))));
 	}
 
 	/**
@@ -396,13 +406,17 @@ public class OpenMBeanInfoSupport extends MBeanInfo implements OpenMBeanInfo {
 		//
 		if (myToString == null) {
 			myToString = new StringBuilder().append(this.getClass().getName())
-					.append("(mbean_class_name=").append(this.getClassName()).append(",attributes=")
-					.append(Arrays.asList(this.getAttributes()).toString()).append(",constructors=")
-					.append(Arrays.asList(this.getConstructors()).toString()).append(",operations=")
-					.append(Arrays.asList(this.getOperations()).toString())
-					.append(",notifications=")
-					.append(Arrays.asList(this.getNotifications()).toString())
-					.append(",descriptor=").append(this.getDescriptor()).append(")").toString();
+					.append("(mbean_class_name=").append(this.getClassName())
+					.append(",attributes=").append(Arrays.asList(this
+							.getAttributes()).toString()).append(
+									",constructors=").append(Arrays.asList(this
+											.getConstructors()).toString())
+					.append(",operations=").append(Arrays.asList(this
+							.getOperations()).toString()).append(
+									",notifications=").append(Arrays.asList(this
+											.getNotifications()).toString())
+					.append(",descriptor=").append(this.getDescriptor()).append(
+							")").toString();
 		}
 
 		// return always the same string representation for this

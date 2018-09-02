@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.server;
@@ -72,9 +52,11 @@ import java.net.*;
  *           			return new ServerSocket(port, 5, InetAddress.getByName("127.0.0.1"));
  *           		}
  *
- *           		public Socket createSocket(String host, int port) throws IOException {
+ *           		public Socket createSocket(String host, int port)
+ *           				throws IOException {
  *           			// just call the default client socket factory
- *           			return RMISocketFactory.getDefaultSocketFactory().createSocket(host, port);
+ *           			return RMISocketFactory.getDefaultSocketFactory().createSocket(
+ *           					host      , port);
  *           		}
  *           	}
  *
@@ -92,7 +74,8 @@ import java.net.*;
  * @author Peter Jones
  * @since JDK1.1
  */
-public abstract class RMISocketFactory implements RMIClientSocketFactory, RMIServerSocketFactory {
+public abstract class RMISocketFactory implements RMIClientSocketFactory,
+		RMIServerSocketFactory {
 
 	/** Client/server socket factory to be used by RMI runtime */
 	private static RMISocketFactory factory = null;
@@ -114,28 +97,31 @@ public abstract class RMISocketFactory implements RMIClientSocketFactory, RMISer
 	 * Creates a client socket connected to the specified host and port.
 	 * 
 	 * @param host
-	 *            the host name
+	 *             the host name
 	 * @param port
-	 *            the port number
+	 *             the port number
 	 * @return a socket connected to the specified host and port.
 	 * @exception IOException
-	 *                if an I/O error occurs during socket creation
+	 *                        if an I/O error occurs during socket creation
 	 * @since JDK1.1
 	 */
-	public abstract Socket createSocket(String host, int port) throws IOException;
+	public abstract Socket createSocket(String host, int port)
+			throws IOException;
 
 	/**
 	 * Create a server socket on the specified port (port 0 indicates an
 	 * anonymous port).
 	 * 
 	 * @param port
-	 *            the port number
+	 *             the port number
 	 * @return the server socket on the specified port
 	 * @exception IOException
-	 *                if an I/O error occurs during server socket creation
+	 *                        if an I/O error occurs during server socket
+	 *                        creation
 	 * @since JDK1.1
 	 */
-	public abstract ServerSocket createServerSocket(int port) throws IOException;
+	public abstract ServerSocket createServerSocket(int port)
+			throws IOException;
 
 	/**
 	 * Set the global socket factory from which RMI gets sockets (if the remote
@@ -148,16 +134,18 @@ public abstract class RMISocketFactory implements RMIClientSocketFactory, RMISer
 	 * @param fac
 	 *            the socket factory
 	 * @exception IOException
-	 *                if the RMI socket factory is already set
+	 *                              if the RMI socket factory is already set
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                <code>checkSetFactory</code> method doesn't allow the
-	 *                operation.
+	 *                              if a security manager exists and its
+	 *                              <code>checkSetFactory</code> method doesn't
+	 *                              allow the
+	 *                              operation.
 	 * @see #getSocketFactory
 	 * @see java.lang.SecurityManager#checkSetFactory()
 	 * @since JDK1.1
 	 */
-	public synchronized static void setSocketFactory(RMISocketFactory fac) throws IOException {
+	public synchronized static void setSocketFactory(RMISocketFactory fac)
+			throws IOException {
 		if (factory != null) {
 			throw new SocketException("factory already defined");
 		}
@@ -207,11 +195,12 @@ public abstract class RMISocketFactory implements RMIClientSocketFactory, RMISer
 	 * allowed. This could result in a <code>SecurityException</code>.
 	 *
 	 * @param fh
-	 *            the failure handler
+	 *           the failure handler
 	 * @throws SecurityException
-	 *             if a security manager exists and its
-	 *             <code>checkSetFactory</code> method doesn't allow the
-	 *             operation.
+	 *                           if a security manager exists and its
+	 *                           <code>checkSetFactory</code> method doesn't
+	 *                           allow the
+	 *                           operation.
 	 * @see #getFailureHandler
 	 * @see java.rmi.server.RMIFailureHandler#failure(Exception)
 	 * @since JDK1.1

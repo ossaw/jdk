@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -203,7 +183,7 @@ public class ObjectStreamClass implements Serializable {
 	 * or java.io.Externalizable.
 	 *
 	 * @param cl
-	 *            class for which to get the descriptor
+	 *           class for which to get the descriptor
 	 * @return the class descriptor for the specified class
 	 */
 	public static ObjectStreamClass lookup(Class<?> cl) {
@@ -215,7 +195,7 @@ public class ObjectStreamClass implements Serializable {
 	 * {@link Serializable}.
 	 *
 	 * @param cl
-	 *            class for which to get the descriptor
+	 *           class for which to get the descriptor
 	 * @return the class descriptor for the specified class
 	 * @since 1.6
 	 */
@@ -268,7 +248,8 @@ public class ObjectStreamClass implements Serializable {
 		requireInitialized();
 		if (System.getSecurityManager() != null) {
 			Class<?> caller = Reflection.getCallerClass();
-			if (ReflectUtil.needsPackageAccessCheck(caller.getClassLoader(), cl.getClassLoader())) {
+			if (ReflectUtil.needsPackageAccessCheck(caller.getClassLoader(), cl
+					.getClassLoader())) {
 				ReflectUtil.checkPackageAccess(cl);
 			}
 		}
@@ -290,7 +271,7 @@ public class ObjectStreamClass implements Serializable {
 	 * Get the field of this class by name.
 	 *
 	 * @param name
-	 *            the name of the data field to look for
+	 *             the name of the data field to look for
 	 * @return The ObjectStreamField object of the named field or null if there
 	 *         is no such named field.
 	 */
@@ -302,7 +283,8 @@ public class ObjectStreamClass implements Serializable {
 	 * Return a string describing this ObjectStreamClass.
 	 */
 	public String toString() {
-		return name + ": static final long serialVersionUID = " + getSerialVersionUID() + "L;";
+		return name + ": static final long serialVersionUID = "
+				+ getSerialVersionUID() + "L;";
 	}
 
 	/**
@@ -481,8 +463,8 @@ public class ObjectStreamClass implements Serializable {
 						fields = getSerialFields(cl);
 						computeFieldOffsets();
 					} catch (InvalidClassException e) {
-						serializeEx = deserializeEx = new ExceptionInfo(e.classname,
-								e.getMessage());
+						serializeEx = deserializeEx = new ExceptionInfo(
+								e.classname, e.getMessage());
 						fields = NO_FIELDS;
 					}
 
@@ -491,16 +473,19 @@ public class ObjectStreamClass implements Serializable {
 					} else {
 						cons = getSerializableConstructor(cl);
 						writeObjectMethod = getPrivateMethod(cl, "writeObject",
-								new Class<?>[] { ObjectOutputStream.class }, Void.TYPE);
-						readObjectMethod = getPrivateMethod(cl, "readObject",
-								new Class<?>[] { ObjectInputStream.class }, Void.TYPE);
-						readObjectNoDataMethod = getPrivateMethod(cl, "readObjectNoData", null,
+								new Class<?>[] { ObjectOutputStream.class },
 								Void.TYPE);
+						readObjectMethod = getPrivateMethod(cl, "readObject",
+								new Class<?>[] { ObjectInputStream.class },
+								Void.TYPE);
+						readObjectNoDataMethod = getPrivateMethod(cl,
+								"readObjectNoData", null, Void.TYPE);
 						hasWriteObjectData = (writeObjectMethod != null);
 					}
-					writeReplaceMethod = getInheritableMethod(cl, "writeReplace", null,
-							Object.class);
-					readResolveMethod = getInheritableMethod(cl, "readResolve", null, Object.class);
+					writeReplaceMethod = getInheritableMethod(cl,
+							"writeReplace", null, Object.class);
+					readResolveMethod = getInheritableMethod(cl, "readResolve",
+							null, Object.class);
 					return null;
 				}
 			});
@@ -536,14 +521,13 @@ public class ObjectStreamClass implements Serializable {
 	 * Creates blank class descriptor which should be initialized via a
 	 * subsequent call to initProxy(), initNonProxy() or readNonProxy().
 	 */
-	ObjectStreamClass() {
-	}
+	ObjectStreamClass() {}
 
 	/**
 	 * Initializes class descriptor representing a proxy class.
 	 */
-	void initProxy(Class<?> cl, ClassNotFoundException resolveEx, ObjectStreamClass superDesc)
-			throws InvalidClassException {
+	void initProxy(Class<?> cl, ClassNotFoundException resolveEx,
+			ObjectStreamClass superDesc) throws InvalidClassException {
 		ObjectStreamClass osc = null;
 		if (cl != null) {
 			osc = lookup(cl, true);
@@ -575,8 +559,9 @@ public class ObjectStreamClass implements Serializable {
 	/**
 	 * Initializes class descriptor representing a non-proxy class.
 	 */
-	void initNonProxy(ObjectStreamClass model, Class<?> cl, ClassNotFoundException resolveEx,
-			ObjectStreamClass superDesc) throws InvalidClassException {
+	void initNonProxy(ObjectStreamClass model, Class<?> cl,
+			ClassNotFoundException resolveEx, ObjectStreamClass superDesc)
+			throws InvalidClassException {
 		long suid = Long.valueOf(model.getSerialVersionUID());
 		ObjectStreamClass osc = null;
 		if (cl != null) {
@@ -586,22 +571,24 @@ public class ObjectStreamClass implements Serializable {
 						"cannot bind non-proxy descriptor to a proxy class");
 			}
 			if (model.isEnum != osc.isEnum) {
-				throw new InvalidClassException(
-						model.isEnum ? "cannot bind enum descriptor to a non-enum class"
-								: "cannot bind non-enum descriptor to an enum class");
+				throw new InvalidClassException(model.isEnum
+						? "cannot bind enum descriptor to a non-enum class"
+						: "cannot bind non-enum descriptor to an enum class");
 			}
 
 			if (model.serializable == osc.serializable && !cl.isArray()
 					&& suid != osc.getSerialVersionUID()) {
 				throw new InvalidClassException(osc.name,
-						"local class incompatible: " + "stream classdesc serialVersionUID = " + suid
-								+ ", local class serialVersionUID = " + osc.getSerialVersionUID());
+						"local class incompatible: "
+								+ "stream classdesc serialVersionUID = " + suid
+								+ ", local class serialVersionUID = " + osc
+										.getSerialVersionUID());
 			}
 
 			if (!classNamesEqual(model.name, osc.name)) {
 				throw new InvalidClassException(osc.name,
-						"local class name incompatible with stream class " + "name \"" + model.name
-								+ "\"");
+						"local class name incompatible with stream class "
+								+ "name \"" + model.name + "\"");
 			}
 
 			if (!model.isEnum) {
@@ -660,18 +647,23 @@ public class ObjectStreamClass implements Serializable {
 	 * as input to the ObjectInputStream.resolveClass() and
 	 * ObjectStreamClass.initNonProxy() methods.
 	 */
-	void readNonProxy(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	void readNonProxy(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		name = in.readUTF();
 		suid = Long.valueOf(in.readLong());
 		isProxy = false;
 
 		byte flags = in.readByte();
-		hasWriteObjectData = ((flags & ObjectStreamConstants.SC_WRITE_METHOD) != 0);
-		hasBlockExternalData = ((flags & ObjectStreamConstants.SC_BLOCK_DATA) != 0);
-		externalizable = ((flags & ObjectStreamConstants.SC_EXTERNALIZABLE) != 0);
+		hasWriteObjectData = ((flags
+				& ObjectStreamConstants.SC_WRITE_METHOD) != 0);
+		hasBlockExternalData = ((flags
+				& ObjectStreamConstants.SC_BLOCK_DATA) != 0);
+		externalizable = ((flags
+				& ObjectStreamConstants.SC_EXTERNALIZABLE) != 0);
 		boolean sflag = ((flags & ObjectStreamConstants.SC_SERIALIZABLE) != 0);
 		if (externalizable && sflag) {
-			throw new InvalidClassException(name, "serializable and externalizable flags conflict");
+			throw new InvalidClassException(name,
+					"serializable and externalizable flags conflict");
 		}
 		serializable = externalizable || sflag;
 		isEnum = ((flags & ObjectStreamConstants.SC_ENUM) != 0);
@@ -689,8 +681,8 @@ public class ObjectStreamClass implements Serializable {
 		for (int i = 0; i < numFields; i++) {
 			char tcode = (char) in.readByte();
 			String fname = in.readUTF();
-			String signature = ((tcode == 'L') || (tcode == '[')) ? in.readTypeString()
-					: new String(new char[] { tcode });
+			String signature = ((tcode == 'L') || (tcode == '[')) ? in
+					.readTypeString() : new String(new char[] { tcode });
 			try {
 				fields[i] = new ObjectStreamField(fname, signature, false);
 			} catch (RuntimeException e) {
@@ -832,7 +824,8 @@ public class ObjectStreamClass implements Serializable {
 		for (int i = 0; i < fields.length; i++) {
 			ObjectStreamField f = fields[i];
 			if (f.getName().equals(name)) {
-				if (type == null || (type == Object.class && !f.isPrimitive())) {
+				if (type == null || (type == Object.class && !f
+						.isPrimitive())) {
 					return f;
 				}
 				Class<?> ftype = f.getType();
@@ -968,8 +961,8 @@ public class ObjectStreamClass implements Serializable {
 	 * is non-serializable or if the appropriate no-arg constructor is
 	 * inaccessible/unavailable.
 	 */
-	Object newInstance() throws InstantiationException, InvocationTargetException,
-			UnsupportedOperationException {
+	Object newInstance() throws InstantiationException,
+			InvocationTargetException, UnsupportedOperationException {
 		requireInitialized();
 		if (cons != null) {
 			try {
@@ -1018,7 +1011,8 @@ public class ObjectStreamClass implements Serializable {
 	 * non-serializable or does not define readObject.
 	 */
 	void invokeReadObject(Object obj, ObjectInputStream in)
-			throws ClassNotFoundException, IOException, UnsupportedOperationException {
+			throws ClassNotFoundException, IOException,
+			UnsupportedOperationException {
 		requireInitialized();
 		if (readObjectMethod != null) {
 			try {
@@ -1047,7 +1041,8 @@ public class ObjectStreamClass implements Serializable {
 	 * not associated with a class, or if the class is externalizable,
 	 * non-serializable or does not define readObjectNoData.
 	 */
-	void invokeReadObjectNoData(Object obj) throws IOException, UnsupportedOperationException {
+	void invokeReadObjectNoData(Object obj) throws IOException,
+			UnsupportedOperationException {
 		requireInitialized();
 		if (readObjectNoDataMethod != null) {
 			try {
@@ -1074,7 +1069,8 @@ public class ObjectStreamClass implements Serializable {
 	 * descriptor is not associated with a class, or if the class is
 	 * non-serializable or does not define writeReplace.
 	 */
-	Object invokeWriteReplace(Object obj) throws IOException, UnsupportedOperationException {
+	Object invokeWriteReplace(Object obj) throws IOException,
+			UnsupportedOperationException {
 		requireInitialized();
 		if (writeReplaceMethod != null) {
 			try {
@@ -1102,7 +1098,8 @@ public class ObjectStreamClass implements Serializable {
 	 * descriptor is not associated with a class, or if the class is
 	 * non-serializable or does not define readResolve.
 	 */
-	Object invokeReadResolve(Object obj) throws IOException, UnsupportedOperationException {
+	Object invokeReadResolve(Object obj) throws IOException,
+			UnsupportedOperationException {
 		requireInitialized();
 		if (readResolveMethod != null) {
 			try {
@@ -1189,7 +1186,8 @@ public class ObjectStreamClass implements Serializable {
 			// add "no data" slot for each unmatched class below match
 			if (match != null) {
 				for (Class<?> c = start; c != match; c = c.getSuperclass()) {
-					slots.add(new ClassDataSlot(ObjectStreamClass.lookup(c, true), false));
+					slots.add(new ClassDataSlot(ObjectStreamClass.lookup(c,
+							true), false));
 				}
 				start = match.getSuperclass();
 			}
@@ -1200,7 +1198,8 @@ public class ObjectStreamClass implements Serializable {
 
 		// add "no data" slot for any leftover unmatched classes
 		for (Class<?> c = start; c != end; c = c.getSuperclass()) {
-			slots.add(new ClassDataSlot(ObjectStreamClass.lookup(c, true), false));
+			slots.add(new ClassDataSlot(ObjectStreamClass.lookup(c, true),
+					false));
 		}
 
 		// order slots from superclass -> subclass
@@ -1274,42 +1273,43 @@ public class ObjectStreamClass implements Serializable {
 		for (int i = 0; i < fields.length; i++) {
 			ObjectStreamField f = fields[i];
 			switch (f.getTypeCode()) {
-			case 'Z':
-			case 'B':
-				f.setOffset(primDataSize++);
-				break;
+				case 'Z':
+				case 'B':
+					f.setOffset(primDataSize++);
+					break;
 
-			case 'C':
-			case 'S':
-				f.setOffset(primDataSize);
-				primDataSize += 2;
-				break;
+				case 'C':
+				case 'S':
+					f.setOffset(primDataSize);
+					primDataSize += 2;
+					break;
 
-			case 'I':
-			case 'F':
-				f.setOffset(primDataSize);
-				primDataSize += 4;
-				break;
+				case 'I':
+				case 'F':
+					f.setOffset(primDataSize);
+					primDataSize += 4;
+					break;
 
-			case 'J':
-			case 'D':
-				f.setOffset(primDataSize);
-				primDataSize += 8;
-				break;
+				case 'J':
+				case 'D':
+					f.setOffset(primDataSize);
+					primDataSize += 8;
+					break;
 
-			case '[':
-			case 'L':
-				f.setOffset(numObjFields++);
-				if (firstObjIndex == -1) {
-					firstObjIndex = i;
-				}
-				break;
+				case '[':
+				case 'L':
+					f.setOffset(numObjFields++);
+					if (firstObjIndex == -1) {
+						firstObjIndex = i;
+					}
+					break;
 
-			default:
-				throw new InternalError();
+				default:
+					throw new InternalError();
 			}
 		}
-		if (firstObjIndex != -1 && firstObjIndex + numObjFields != fields.length) {
+		if (firstObjIndex != -1 && firstObjIndex
+				+ numObjFields != fields.length) {
 			throw new InvalidClassException(name, "illegal field order");
 		}
 	}
@@ -1319,7 +1319,8 @@ public class ObjectStreamClass implements Serializable {
 	 * descriptor, returns reference to this class descriptor. Otherwise,
 	 * returns variant of this class descriptor bound to given class.
 	 */
-	private ObjectStreamClass getVariantFor(Class<?> cl) throws InvalidClassException {
+	private ObjectStreamClass getVariantFor(Class<?> cl)
+			throws InvalidClassException {
 		if (this.cl == cl) {
 			return this;
 		}
@@ -1360,11 +1361,12 @@ public class ObjectStreamClass implements Serializable {
 			}
 		}
 		try {
-			Constructor<?> cons = initCl.getDeclaredConstructor((Class<?>[]) null);
+			Constructor<?> cons = initCl.getDeclaredConstructor(
+					(Class<?>[]) null);
 			int mods = cons.getModifiers();
-			if ((mods & Modifier.PRIVATE) != 0
-					|| ((mods & (Modifier.PUBLIC | Modifier.PROTECTED)) == 0
-							&& !packageEquals(cl, initCl))) {
+			if ((mods & Modifier.PRIVATE) != 0 || ((mods & (Modifier.PUBLIC
+					| Modifier.PROTECTED)) == 0 && !packageEquals(cl,
+							initCl))) {
 				return null;
 			}
 			cons = reflFactory.newConstructorForSerialization(cl, cons);
@@ -1381,8 +1383,8 @@ public class ObjectStreamClass implements Serializable {
 	 * if no match found. Access checks are disabled on the returned method (if
 	 * any).
 	 */
-	private static Method getInheritableMethod(Class<?> cl, String name, Class<?>[] argTypes,
-			Class<?> returnType) {
+	private static Method getInheritableMethod(Class<?> cl, String name,
+			Class<?>[] argTypes, Class<?> returnType) {
 		Method meth = null;
 		Class<?> defCl = cl;
 		while (defCl != null) {
@@ -1415,14 +1417,15 @@ public class ObjectStreamClass implements Serializable {
 	 * class, or null if none found. Access checks are disabled on the returned
 	 * method (if any).
 	 */
-	private static Method getPrivateMethod(Class<?> cl, String name, Class<?>[] argTypes,
-			Class<?> returnType) {
+	private static Method getPrivateMethod(Class<?> cl, String name,
+			Class<?>[] argTypes, Class<?> returnType) {
 		try {
 			Method meth = cl.getDeclaredMethod(name, argTypes);
 			meth.setAccessible(true);
 			int mods = meth.getModifiers();
-			return ((meth.getReturnType() == returnType) && ((mods & Modifier.STATIC) == 0)
-					&& ((mods & Modifier.PRIVATE) != 0)) ? meth : null;
+			return ((meth.getReturnType() == returnType) && ((mods
+					& Modifier.STATIC) == 0) && ((mods
+							& Modifier.PRIVATE) != 0)) ? meth : null;
 		} catch (NoSuchMethodException ex) {
 			return null;
 		}
@@ -1433,8 +1436,8 @@ public class ObjectStreamClass implements Serializable {
 	 * otherwise.
 	 */
 	private static boolean packageEquals(Class<?> cl1, Class<?> cl2) {
-		return (cl1.getClassLoader() == cl2.getClassLoader()
-				&& getPackageName(cl1).equals(getPackageName(cl2)));
+		return (cl1.getClassLoader() == cl2.getClassLoader() && getPackageName(
+				cl1).equals(getPackageName(cl2)));
 	}
 
 	/**
@@ -1500,7 +1503,8 @@ public class ObjectStreamClass implements Serializable {
 	/**
 	 * Returns JVM type signature for given list of parameters and return type.
 	 */
-	private static String getMethodSignature(Class<?>[] paramTypes, Class<?> retType) {
+	private static String getMethodSignature(Class<?>[] paramTypes,
+			Class<?> retType) {
 		StringBuilder sbuf = new StringBuilder();
 		sbuf.append('(');
 		for (int i = 0; i < paramTypes.length; i++) {
@@ -1535,10 +1539,12 @@ public class ObjectStreamClass implements Serializable {
 	 * objects. Throws InvalidClassException if the (explicitly declared)
 	 * serializable fields are invalid.
 	 */
-	private static ObjectStreamField[] getSerialFields(Class<?> cl) throws InvalidClassException {
+	private static ObjectStreamField[] getSerialFields(Class<?> cl)
+			throws InvalidClassException {
 		ObjectStreamField[] fields;
-		if (Serializable.class.isAssignableFrom(cl) && !Externalizable.class.isAssignableFrom(cl)
-				&& !Proxy.isProxyClass(cl) && !cl.isInterface()) {
+		if (Serializable.class.isAssignableFrom(cl) && !Externalizable.class
+				.isAssignableFrom(cl) && !Proxy.isProxyClass(cl) && !cl
+						.isInterface()) {
 			if ((fields = getDeclaredSerialFields(cl)) == null) {
 				fields = getDefaultSerialFields(cl);
 			}
@@ -1586,19 +1592,23 @@ public class ObjectStreamClass implements Serializable {
 
 			String fname = spf.getName();
 			if (fieldNames.contains(fname)) {
-				throw new InvalidClassException("multiple serializable fields named " + fname);
+				throw new InvalidClassException(
+						"multiple serializable fields named " + fname);
 			}
 			fieldNames.add(fname);
 
 			try {
 				Field f = cl.getDeclaredField(fname);
-				if ((f.getType() == spf.getType()) && ((f.getModifiers() & Modifier.STATIC) == 0)) {
-					boundFields[i] = new ObjectStreamField(f, spf.isUnshared(), true);
+				if ((f.getType() == spf.getType()) && ((f.getModifiers()
+						& Modifier.STATIC) == 0)) {
+					boundFields[i] = new ObjectStreamField(f, spf.isUnshared(),
+							true);
 				}
 			} catch (NoSuchFieldException ex) {
 			}
 			if (boundFields[i] == null) {
-				boundFields[i] = new ObjectStreamField(fname, spf.getType(), spf.isUnshared());
+				boundFields[i] = new ObjectStreamField(fname, spf.getType(), spf
+						.isUnshared());
 			}
 		}
 		return boundFields;
@@ -1621,7 +1631,8 @@ public class ObjectStreamClass implements Serializable {
 			}
 		}
 		int size = list.size();
-		return (size == 0) ? NO_FIELDS : list.toArray(new ObjectStreamField[size]);
+		return (size == 0) ? NO_FIELDS
+				: list.toArray(new ObjectStreamField[size]);
 	}
 
 	/**
@@ -1645,7 +1656,8 @@ public class ObjectStreamClass implements Serializable {
 	 * Computes the default serial version UID value for the given class.
 	 */
 	private static long computeDefaultSUID(Class<?> cl) {
-		if (!Serializable.class.isAssignableFrom(cl) || Proxy.isProxyClass(cl)) {
+		if (!Serializable.class.isAssignableFrom(cl) || Proxy.isProxyClass(
+				cl)) {
 			return 0L;
 		}
 
@@ -1655,8 +1667,8 @@ public class ObjectStreamClass implements Serializable {
 
 			dout.writeUTF(cl.getName());
 
-			int classMods = cl.getModifiers()
-					& (Modifier.PUBLIC | Modifier.FINAL | Modifier.INTERFACE | Modifier.ABSTRACT);
+			int classMods = cl.getModifiers() & (Modifier.PUBLIC
+					| Modifier.FINAL | Modifier.INTERFACE | Modifier.ABSTRACT);
 
 			/*
 			 * compensate for javac bug in which ABSTRACT bit was set for an
@@ -1664,8 +1676,8 @@ public class ObjectStreamClass implements Serializable {
 			 */
 			Method[] methods = cl.getDeclaredMethods();
 			if ((classMods & Modifier.INTERFACE) != 0) {
-				classMods = (methods.length > 0) ? (classMods | Modifier.ABSTRACT)
-						: (classMods & ~Modifier.ABSTRACT);
+				classMods = (methods.length > 0) ? (classMods
+						| Modifier.ABSTRACT) : (classMods & ~Modifier.ABSTRACT);
 			}
 			dout.writeInt(classMods);
 
@@ -1698,11 +1710,12 @@ public class ObjectStreamClass implements Serializable {
 			});
 			for (int i = 0; i < fieldSigs.length; i++) {
 				MemberSignature sig = fieldSigs[i];
-				int mods = sig.member.getModifiers()
-						& (Modifier.PUBLIC | Modifier.PRIVATE | Modifier.PROTECTED | Modifier.STATIC
-								| Modifier.FINAL | Modifier.VOLATILE | Modifier.TRANSIENT);
-				if (((mods & Modifier.PRIVATE) == 0)
-						|| ((mods & (Modifier.STATIC | Modifier.TRANSIENT)) == 0)) {
+				int mods = sig.member.getModifiers() & (Modifier.PUBLIC
+						| Modifier.PRIVATE | Modifier.PROTECTED
+						| Modifier.STATIC | Modifier.FINAL | Modifier.VOLATILE
+						| Modifier.TRANSIENT);
+				if (((mods & Modifier.PRIVATE) == 0) || ((mods
+						& (Modifier.STATIC | Modifier.TRANSIENT)) == 0)) {
 					dout.writeUTF(sig.name);
 					dout.writeInt(mods);
 					dout.writeUTF(sig.signature);
@@ -1727,10 +1740,11 @@ public class ObjectStreamClass implements Serializable {
 			});
 			for (int i = 0; i < consSigs.length; i++) {
 				MemberSignature sig = consSigs[i];
-				int mods = sig.member.getModifiers()
-						& (Modifier.PUBLIC | Modifier.PRIVATE | Modifier.PROTECTED | Modifier.STATIC
-								| Modifier.FINAL | Modifier.SYNCHRONIZED | Modifier.NATIVE
-								| Modifier.ABSTRACT | Modifier.STRICT);
+				int mods = sig.member.getModifiers() & (Modifier.PUBLIC
+						| Modifier.PRIVATE | Modifier.PROTECTED
+						| Modifier.STATIC | Modifier.FINAL
+						| Modifier.SYNCHRONIZED | Modifier.NATIVE
+						| Modifier.ABSTRACT | Modifier.STRICT);
 				if ((mods & Modifier.PRIVATE) == 0) {
 					dout.writeUTF("<init>");
 					dout.writeInt(mods);
@@ -1753,10 +1767,11 @@ public class ObjectStreamClass implements Serializable {
 			});
 			for (int i = 0; i < methSigs.length; i++) {
 				MemberSignature sig = methSigs[i];
-				int mods = sig.member.getModifiers()
-						& (Modifier.PUBLIC | Modifier.PRIVATE | Modifier.PROTECTED | Modifier.STATIC
-								| Modifier.FINAL | Modifier.SYNCHRONIZED | Modifier.NATIVE
-								| Modifier.ABSTRACT | Modifier.STRICT);
+				int mods = sig.member.getModifiers() & (Modifier.PUBLIC
+						| Modifier.PRIVATE | Modifier.PROTECTED
+						| Modifier.STATIC | Modifier.FINAL
+						| Modifier.SYNCHRONIZED | Modifier.NATIVE
+						| Modifier.ABSTRACT | Modifier.STRICT);
 				if ((mods & Modifier.PRIVATE) == 0) {
 					dout.writeUTF(sig.name);
 					dout.writeInt(mods);
@@ -1811,7 +1826,8 @@ public class ObjectStreamClass implements Serializable {
 		public MemberSignature(Method meth) {
 			member = meth;
 			name = meth.getName();
-			signature = getMethodSignature(meth.getParameterTypes(), meth.getReturnType());
+			signature = getMethodSignature(meth.getParameterTypes(), meth
+					.getReturnType());
 		}
 	}
 
@@ -1862,7 +1878,8 @@ public class ObjectStreamClass implements Serializable {
 				long key = (rf != null) ? unsafe.objectFieldOffset(rf)
 						: Unsafe.INVALID_FIELD_OFFSET;
 				readKeys[i] = key;
-				writeKeys[i] = usedKeys.add(key) ? key : Unsafe.INVALID_FIELD_OFFSET;
+				writeKeys[i] = usedKeys.add(key) ? key
+						: Unsafe.INVALID_FIELD_OFFSET;
 				offsets[i] = f.getOffset();
 				typeCodes[i] = f.getTypeCode();
 				if (!f.isPrimitive()) {
@@ -1902,40 +1919,40 @@ public class ObjectStreamClass implements Serializable {
 				long key = readKeys[i];
 				int off = offsets[i];
 				switch (typeCodes[i]) {
-				case 'Z':
-					Bits.putBoolean(buf, off, unsafe.getBoolean(obj, key));
-					break;
+					case 'Z':
+						Bits.putBoolean(buf, off, unsafe.getBoolean(obj, key));
+						break;
 
-				case 'B':
-					buf[off] = unsafe.getByte(obj, key);
-					break;
+					case 'B':
+						buf[off] = unsafe.getByte(obj, key);
+						break;
 
-				case 'C':
-					Bits.putChar(buf, off, unsafe.getChar(obj, key));
-					break;
+					case 'C':
+						Bits.putChar(buf, off, unsafe.getChar(obj, key));
+						break;
 
-				case 'S':
-					Bits.putShort(buf, off, unsafe.getShort(obj, key));
-					break;
+					case 'S':
+						Bits.putShort(buf, off, unsafe.getShort(obj, key));
+						break;
 
-				case 'I':
-					Bits.putInt(buf, off, unsafe.getInt(obj, key));
-					break;
+					case 'I':
+						Bits.putInt(buf, off, unsafe.getInt(obj, key));
+						break;
 
-				case 'F':
-					Bits.putFloat(buf, off, unsafe.getFloat(obj, key));
-					break;
+					case 'F':
+						Bits.putFloat(buf, off, unsafe.getFloat(obj, key));
+						break;
 
-				case 'J':
-					Bits.putLong(buf, off, unsafe.getLong(obj, key));
-					break;
+					case 'J':
+						Bits.putLong(buf, off, unsafe.getLong(obj, key));
+						break;
 
-				case 'D':
-					Bits.putDouble(buf, off, unsafe.getDouble(obj, key));
-					break;
+					case 'D':
+						Bits.putDouble(buf, off, unsafe.getDouble(obj, key));
+						break;
 
-				default:
-					throw new InternalError();
+					default:
+						throw new InternalError();
 				}
 			}
 		}
@@ -1956,40 +1973,40 @@ public class ObjectStreamClass implements Serializable {
 				}
 				int off = offsets[i];
 				switch (typeCodes[i]) {
-				case 'Z':
-					unsafe.putBoolean(obj, key, Bits.getBoolean(buf, off));
-					break;
+					case 'Z':
+						unsafe.putBoolean(obj, key, Bits.getBoolean(buf, off));
+						break;
 
-				case 'B':
-					unsafe.putByte(obj, key, buf[off]);
-					break;
+					case 'B':
+						unsafe.putByte(obj, key, buf[off]);
+						break;
 
-				case 'C':
-					unsafe.putChar(obj, key, Bits.getChar(buf, off));
-					break;
+					case 'C':
+						unsafe.putChar(obj, key, Bits.getChar(buf, off));
+						break;
 
-				case 'S':
-					unsafe.putShort(obj, key, Bits.getShort(buf, off));
-					break;
+					case 'S':
+						unsafe.putShort(obj, key, Bits.getShort(buf, off));
+						break;
 
-				case 'I':
-					unsafe.putInt(obj, key, Bits.getInt(buf, off));
-					break;
+					case 'I':
+						unsafe.putInt(obj, key, Bits.getInt(buf, off));
+						break;
 
-				case 'F':
-					unsafe.putFloat(obj, key, Bits.getFloat(buf, off));
-					break;
+					case 'F':
+						unsafe.putFloat(obj, key, Bits.getFloat(buf, off));
+						break;
 
-				case 'J':
-					unsafe.putLong(obj, key, Bits.getLong(buf, off));
-					break;
+					case 'J':
+						unsafe.putLong(obj, key, Bits.getLong(buf, off));
+						break;
 
-				case 'D':
-					unsafe.putDouble(obj, key, Bits.getDouble(buf, off));
-					break;
+					case 'D':
+						unsafe.putDouble(obj, key, Bits.getDouble(buf, off));
+						break;
 
-				default:
-					throw new InternalError();
+					default:
+						throw new InternalError();
 				}
 			}
 		}
@@ -2010,13 +2027,13 @@ public class ObjectStreamClass implements Serializable {
 			 */
 			for (int i = numPrimFields; i < fields.length; i++) {
 				switch (typeCodes[i]) {
-				case 'L':
-				case '[':
-					vals[offsets[i]] = unsafe.getObject(obj, readKeys[i]);
-					break;
+					case 'L':
+					case '[':
+						vals[offsets[i]] = unsafe.getObject(obj, readKeys[i]);
+						break;
 
-				default:
-					throw new InternalError();
+					default:
+						throw new InternalError();
 				}
 			}
 		}
@@ -2038,22 +2055,26 @@ public class ObjectStreamClass implements Serializable {
 					continue; // discard value
 				}
 				switch (typeCodes[i]) {
-				case 'L':
-				case '[':
-					Object val = vals[offsets[i]];
-					if (val != null && !types[i - numPrimFields].isInstance(val)) {
-						Field f = fields[i].getField();
-						throw new ClassCastException(
-								"cannot assign instance of " + val.getClass().getName()
-										+ " to field " + f.getDeclaringClass().getName() + "."
-										+ f.getName() + " of type " + f.getType().getName()
-										+ " in instance of " + obj.getClass().getName());
-					}
-					unsafe.putObject(obj, key, val);
-					break;
+					case 'L':
+					case '[':
+						Object val = vals[offsets[i]];
+						if (val != null && !types[i - numPrimFields].isInstance(
+								val)) {
+							Field f = fields[i].getField();
+							throw new ClassCastException(
+									"cannot assign instance of " + val
+											.getClass().getName() + " to field "
+											+ f.getDeclaringClass().getName()
+											+ "." + f.getName() + " of type "
+											+ f.getType().getName()
+											+ " in instance of " + obj
+													.getClass().getName());
+						}
+						unsafe.putObject(obj, key, val);
+						break;
 
-				default:
-					throw new InternalError();
+					default:
+						throw new InternalError();
 				}
 			}
 		}
@@ -2071,9 +2092,11 @@ public class ObjectStreamClass implements Serializable {
 	private static FieldReflector getReflector(ObjectStreamField[] fields,
 			ObjectStreamClass localDesc) throws InvalidClassException {
 		// class irrelevant if no fields
-		Class<?> cl = (localDesc != null && fields.length > 0) ? localDesc.cl : null;
+		Class<?> cl = (localDesc != null && fields.length > 0) ? localDesc.cl
+				: null;
 		processQueue(Caches.reflectorsQueue, Caches.reflectors);
-		FieldReflectorKey key = new FieldReflectorKey(cl, fields, Caches.reflectorsQueue);
+		FieldReflectorKey key = new FieldReflectorKey(cl, fields,
+				Caches.reflectorsQueue);
 		Reference<?> ref = Caches.reflectors.get(key);
 		Object entry = null;
 		if (ref != null) {
@@ -2134,7 +2157,8 @@ public class ObjectStreamClass implements Serializable {
 		private final int hash;
 		private final boolean nullClass;
 
-		FieldReflectorKey(Class<?> cl, ObjectStreamField[] fields, ReferenceQueue<Class<?>> queue) {
+		FieldReflectorKey(Class<?> cl, ObjectStreamField[] fields,
+				ReferenceQueue<Class<?>> queue) {
 			super(cl, queue);
 			nullClass = (cl == null);
 			StringBuilder sbuf = new StringBuilder();
@@ -2159,8 +2183,8 @@ public class ObjectStreamClass implements Serializable {
 				FieldReflectorKey other = (FieldReflectorKey) obj;
 				Class<?> referent;
 				return (nullClass ? other.nullClass
-						: ((referent = get()) != null) && (referent == other.get()))
-						&& sigs.equals(other.sigs);
+						: ((referent = get()) != null) && (referent == other
+								.get())) && sigs.equals(other.sigs);
 			} else {
 				return false;
 			}
@@ -2180,7 +2204,8 @@ public class ObjectStreamClass implements Serializable {
 	 */
 	private static ObjectStreamField[] matchFields(ObjectStreamField[] fields,
 			ObjectStreamClass localDesc) throws InvalidClassException {
-		ObjectStreamField[] localFields = (localDesc != null) ? localDesc.fields : NO_FIELDS;
+		ObjectStreamField[] localFields = (localDesc != null) ? localDesc.fields
+				: NO_FIELDS;
 
 		/*
 		 * Even if fields == localFields, we cannot simply return localFields
@@ -2199,15 +2224,17 @@ public class ObjectStreamClass implements Serializable {
 			for (int j = 0; j < localFields.length; j++) {
 				ObjectStreamField lf = localFields[j];
 				if (f.getName().equals(lf.getName())) {
-					if ((f.isPrimitive() || lf.isPrimitive())
-							&& f.getTypeCode() != lf.getTypeCode()) {
+					if ((f.isPrimitive() || lf.isPrimitive()) && f
+							.getTypeCode() != lf.getTypeCode()) {
 						throw new InvalidClassException(localDesc.name,
 								"incompatible types for field " + f.getName());
 					}
 					if (lf.getField() != null) {
-						m = new ObjectStreamField(lf.getField(), lf.isUnshared(), false);
+						m = new ObjectStreamField(lf.getField(), lf
+								.isUnshared(), false);
 					} else {
-						m = new ObjectStreamField(lf.getName(), lf.getSignature(), lf.isUnshared());
+						m = new ObjectStreamField(lf.getName(), lf
+								.getSignature(), lf.isUnshared());
 					}
 				}
 			}
@@ -2272,7 +2299,8 @@ public class ObjectStreamClass implements Serializable {
 
 			if (obj instanceof WeakClassKey) {
 				Object referent = get();
-				return (referent != null) && (referent == ((WeakClassKey) obj).get());
+				return (referent != null) && (referent == ((WeakClassKey) obj)
+						.get());
 			} else {
 				return false;
 			}

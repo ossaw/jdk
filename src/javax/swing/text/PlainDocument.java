@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -79,7 +59,7 @@ public class PlainDocument extends AbstractDocument {
 	 * the tab size set to 8.
 	 *
 	 * @param c
-	 *            the container for the content
+	 *          the container for the content
 	 */
 	public PlainDocument(Content c) {
 		super(c);
@@ -98,24 +78,27 @@ public class PlainDocument extends AbstractDocument {
 	 * Concurrency in Swing</A> for more information.
 	 *
 	 * @param offs
-	 *            the starting offset &gt;= 0
+	 *             the starting offset &gt;= 0
 	 * @param str
-	 *            the string to insert; does nothing with null/empty strings
+	 *             the string to insert; does nothing with null/empty strings
 	 * @param a
-	 *            the attributes for the inserted content
+	 *             the attributes for the inserted content
 	 * @exception BadLocationException
-	 *                the given insert position is not a valid position within
-	 *                the document
+	 *                                 the given insert position is not a valid
+	 *                                 position within
+	 *                                 the document
 	 * @see Document#insertString
 	 */
-	public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+	public void insertString(int offs, String str, AttributeSet a)
+			throws BadLocationException {
 		// fields don't want to have multiple lines. We may provide a
 		// field-specific
 		// model in the future in which case the filtering logic here will no
 		// longer
 		// be needed.
 		Object filterNewlines = getProperty("filterNewlines");
-		if ((filterNewlines instanceof Boolean) && filterNewlines.equals(Boolean.TRUE)) {
+		if ((filterNewlines instanceof Boolean) && filterNewlines.equals(
+				Boolean.TRUE)) {
 			if ((str != null) && (str.indexOf('\n') >= 0)) {
 				StringBuilder filtered = new StringBuilder(str);
 				int n = filtered.length();
@@ -170,9 +153,9 @@ public class PlainDocument extends AbstractDocument {
 	 * refresh the line map.
 	 *
 	 * @param chng
-	 *            the change event describing the dit
+	 *             the change event describing the dit
 	 * @param attr
-	 *            the set of attributes for the inserted text
+	 *             the set of attributes for the inserted text
 	 */
 	protected void insertUpdate(DefaultDocumentEvent chng, AttributeSet attr) {
 		removed.removeAllElements();
@@ -199,7 +182,8 @@ public class PlainDocument extends AbstractDocument {
 				char c = s.array[s.offset + i];
 				if (c == '\n') {
 					int breakOffset = offset + i + 1;
-					added.addElement(createLeafElement(lineMap, null, lastOffset, breakOffset));
+					added.addElement(createLeafElement(lineMap, null,
+							lastOffset, breakOffset));
 					lastOffset = breakOffset;
 					hasBreaks = true;
 				}
@@ -213,14 +197,16 @@ public class PlainDocument extends AbstractDocument {
 					rmOffs1 = e.getEndOffset();
 				}
 				if (lastOffset < rmOffs1) {
-					added.addElement(createLeafElement(lineMap, null, lastOffset, rmOffs1));
+					added.addElement(createLeafElement(lineMap, null,
+							lastOffset, rmOffs1));
 				}
 
 				Element[] aelems = new Element[added.size()];
 				added.copyInto(aelems);
 				Element[] relems = new Element[removed.size()];
 				removed.copyInto(relems);
-				ElementEdit ee = new ElementEdit(lineMap, index, relems, aelems);
+				ElementEdit ee = new ElementEdit(lineMap, index, relems,
+						aelems);
 				chng.addEdit(ee);
 				lineMap.replace(index, relems.length, aelems);
 			}
@@ -240,7 +226,7 @@ public class PlainDocument extends AbstractDocument {
 	 * lines outside of the removal area are joined together.
 	 *
 	 * @param chng
-	 *            the change event describing the edit
+	 *             the change event describing the edit
 	 */
 	protected void removeUpdate(DefaultDocumentEvent chng) {
 		removed.removeAllElements();
@@ -270,8 +256,8 @@ public class PlainDocument extends AbstractDocument {
 				Element leaf = line.getElement(line.getElementIndex(offset));
 				if (Utilities.isComposedTextElement(leaf)) {
 					Element[] aelem = new Element[1];
-					aelem[0] = createLeafElement(map, null, line.getStartOffset(),
-							line.getEndOffset());
+					aelem[0] = createLeafElement(map, null, line
+							.getStartOffset(), line.getEndOffset());
 					Element[] relem = new Element[1];
 					relem[0] = line;
 					ElementEdit ee = new ElementEdit(map, line0, relem, aelem);
@@ -289,7 +275,8 @@ public class PlainDocument extends AbstractDocument {
 	// which contains leaf elements of the composed text and the text
 	// backing store.
 	//
-	private void insertComposedTextUpdate(DefaultDocumentEvent chng, AttributeSet attr) {
+	private void insertComposedTextUpdate(DefaultDocumentEvent chng,
+			AttributeSet attr) {
 		added.removeAllElements();
 		BranchElement lineMap = (BranchElement) getDefaultRootElement();
 		int offset = chng.getOffset();
@@ -303,10 +290,13 @@ public class PlainDocument extends AbstractDocument {
 		Element[] relem = new Element[1];
 		relem[0] = elem;
 		if (elemStart != offset)
-			added.addElement(createLeafElement(abelem[0], null, elemStart, offset));
-		added.addElement(createLeafElement(abelem[0], attr, offset, offset + length));
+			added.addElement(createLeafElement(abelem[0], null, elemStart,
+					offset));
+		added.addElement(createLeafElement(abelem[0], attr, offset, offset
+				+ length));
 		if (elemEnd != offset + length)
-			added.addElement(createLeafElement(abelem[0], null, offset + length, elemEnd));
+			added.addElement(createLeafElement(abelem[0], null, offset + length,
+					elemEnd));
 		Element[] alelem = new Element[added.size()];
 		added.copyInto(alelem);
 		ElementEdit ee = new ElementEdit(lineMap, index, relem, abelem);

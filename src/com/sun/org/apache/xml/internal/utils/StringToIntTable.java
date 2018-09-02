@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -67,7 +64,7 @@ public class StringToIntTable {
 	 * Construct a StringToIntTable, using the given block size.
 	 *
 	 * @param blocksize
-	 *            Size of block to allocate
+	 *                  Size of block to allocate
 	 */
 	public StringToIntTable(int blocksize) {
 
@@ -90,9 +87,9 @@ public class StringToIntTable {
 	 * Append a string onto the vector.
 	 *
 	 * @param key
-	 *            String to append
+	 *              String to append
 	 * @param value
-	 *            The int value of the string
+	 *              The int value of the string
 	 */
 	public final void put(String key, int value) {
 

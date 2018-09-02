@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -55,15 +35,16 @@ class SequencedEvent extends AWTEvent implements ActiveEvent {
 	private boolean disposed;
 
 	static {
-		AWTAccessor.setSequencedEventAccessor(new AWTAccessor.SequencedEventAccessor() {
-			public AWTEvent getNested(AWTEvent sequencedEvent) {
-				return ((SequencedEvent) sequencedEvent).nested;
-			}
+		AWTAccessor.setSequencedEventAccessor(
+				new AWTAccessor.SequencedEventAccessor() {
+					public AWTEvent getNested(AWTEvent sequencedEvent) {
+						return ((SequencedEvent) sequencedEvent).nested;
+					}
 
-			public boolean isSequencedEvent(AWTEvent event) {
-				return event instanceof SequencedEvent;
-			}
-		});
+					public boolean isSequencedEvent(AWTEvent event) {
+						return event instanceof SequencedEvent;
+					}
+				});
 	}
 
 	/**
@@ -71,8 +52,8 @@ class SequencedEvent extends AWTEvent implements ActiveEvent {
 	 * event.
 	 *
 	 * @param nested
-	 *            the AWTEvent which this SequencedEvent's dispatch() method
-	 *            will dispatch
+	 *               the AWTEvent which this SequencedEvent's dispatch() method
+	 *               will dispatch
 	 */
 	public SequencedEvent(AWTEvent nested) {
 		super(nested.getSource(), ID);
@@ -103,7 +84,8 @@ class SequencedEvent extends AWTEvent implements ActiveEvent {
 
 			if (getFirst() != this) {
 				if (EventQueue.isDispatchThread()) {
-					EventDispatchThread edt = (EventDispatchThread) Thread.currentThread();
+					EventDispatchThread edt = (EventDispatchThread) Thread
+							.currentThread();
 					edt.pumpEvents(SentEvent.ID, new Conditional() {
 						public boolean evaluate() {
 							return !SequencedEvent.this.isFirstOrDisposed();

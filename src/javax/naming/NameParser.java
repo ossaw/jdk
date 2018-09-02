@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.naming;
@@ -46,14 +26,15 @@ public interface NameParser {
 	 * Parses a name into its components.
 	 *
 	 * @param name
-	 *            The non-null string name to parse.
+	 *             The non-null string name to parse.
 	 * @return A non-null parsed form of the name using the naming convention of
 	 *         this parser.
 	 * @exception InvalidNameException
-	 *                If name does not conform to syntax defined for the
-	 *                namespace.
+	 *                                 If name does not conform to syntax
+	 *                                 defined for the
+	 *                                 namespace.
 	 * @exception NamingException
-	 *                If a naming exception was encountered.
+	 *                                 If a naming exception was encountered.
 	 */
 	Name parse(String name) throws NamingException;
 }

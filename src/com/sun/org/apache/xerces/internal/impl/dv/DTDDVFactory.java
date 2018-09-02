@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,8 +45,9 @@ public abstract class DTDDVFactory {
 	 *
 	 * @return an instance of DTDDVFactory implementation
 	 * @exception DVFactoryException
-	 *                cannot create an instance of the specified class name or
-	 *                the default class name
+	 *                               cannot create an instance of the specified
+	 *                               class name or
+	 *                               the default class name
 	 */
 	public static final DTDDVFactory getInstance() throws DVFactoryException {
 		return getInstance(DEFAULT_FACTORY_CLASS);
@@ -58,13 +57,15 @@ public abstract class DTDDVFactory {
 	 * Get an instance of DTDDVFactory implementation.
 	 *
 	 * @param factoryClass
-	 *            name of the implementation to load.
+	 *                     name of the implementation to load.
 	 * @return an instance of DTDDVFactory implementation
 	 * @exception DVFactoryException
-	 *                cannot create an instance of the specified class name or
-	 *                the default class name
+	 *                               cannot create an instance of the specified
+	 *                               class name or
+	 *                               the default class name
 	 */
-	public static final DTDDVFactory getInstance(String factoryClass) throws DVFactoryException {
+	public static final DTDDVFactory getInstance(String factoryClass)
+			throws DVFactoryException {
 		try {
 			if (DEFAULT_FACTORY_CLASS.equals(factoryClass)) {
 				return new DTDDVFactoryImpl();
@@ -72,23 +73,23 @@ public abstract class DTDDVFactory {
 				return new XML11DTDDVFactoryImpl();
 			} else {
 				// fall back for compatibility
-				return (DTDDVFactory) (ObjectFactory.newInstance(factoryClass, true));
+				return (DTDDVFactory) (ObjectFactory.newInstance(factoryClass,
+						true));
 			}
 		} catch (ClassCastException e) {
-			throw new DVFactoryException(
-					"DTD factory class " + factoryClass + " does not extend from DTDDVFactory.");
+			throw new DVFactoryException("DTD factory class " + factoryClass
+					+ " does not extend from DTDDVFactory.");
 		}
 	}
 
 	// can't create a new object of this class
-	protected DTDDVFactory() {
-	}
+	protected DTDDVFactory() {}
 
 	/**
 	 * return a dtd type of the given name
 	 *
 	 * @param name
-	 *            the name of the datatype
+	 *             the name of the datatype
 	 * @return the datatype validator of the given name
 	 */
 	public abstract DatatypeValidator getBuiltInDV(String name);

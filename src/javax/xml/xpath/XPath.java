@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.xpath;
@@ -138,10 +118,11 @@ public interface XPath {
 	 * </p>
 	 *
 	 * @param resolver
-	 *            Variable resolver.
+	 *                 Variable resolver.
 	 *
 	 * @throws NullPointerException
-	 *             If <code>resolver</code> is <code>null</code>.
+	 *                              If <code>resolver</code> is
+	 *                              <code>null</code>.
 	 */
 	public void setXPathVariableResolver(XPathVariableResolver resolver);
 
@@ -169,10 +150,11 @@ public interface XPath {
 	 * </p>
 	 *
 	 * @param resolver
-	 *            XPath function resolver.
+	 *                 XPath function resolver.
 	 *
 	 * @throws NullPointerException
-	 *             If <code>resolver</code> is <code>null</code>.
+	 *                              If <code>resolver</code> is
+	 *                              <code>null</code>.
 	 */
 	public void setXPathFunctionResolver(XPathFunctionResolver resolver);
 
@@ -200,10 +182,11 @@ public interface XPath {
 	 * </p>
 	 *
 	 * @param nsContext
-	 *            Namespace context to use.
+	 *                  Namespace context to use.
 	 *
 	 * @throws NullPointerException
-	 *             If <code>nsContext</code> is <code>null</code>.
+	 *                              If <code>nsContext</code> is
+	 *                              <code>null</code>.
 	 */
 	public void setNamespaceContext(NamespaceContext nsContext);
 
@@ -245,16 +228,19 @@ public interface XPath {
 	 * </p>
 	 *
 	 * @param expression
-	 *            The XPath expression.
+	 *                   The XPath expression.
 	 *
 	 * @return Compiled XPath expression.
 	 * 
 	 * @throws XPathExpressionException
-	 *             If <code>expression</code> cannot be compiled.
+	 *                                  If <code>expression</code> cannot be
+	 *                                  compiled.
 	 * @throws NullPointerException
-	 *             If <code>expression</code> is <code>null</code>.
+	 *                                  If <code>expression</code> is
+	 *                                  <code>null</code>.
 	 */
-	public XPathExpression compile(String expression) throws XPathExpressionException;
+	public XPathExpression compile(String expression)
+			throws XPathExpressionException;
 
 	/**
 	 * <p>
@@ -285,23 +271,26 @@ public interface XPath {
 	 * </p>
 	 *
 	 * @param expression
-	 *            The XPath expression.
+	 *                   The XPath expression.
 	 * @param item
-	 *            The starting context (a node, for example).
+	 *                   The starting context (a node, for example).
 	 * @param returnType
-	 *            The desired return type.
+	 *                   The desired return type.
 	 *
 	 * @return Result of evaluating an XPath expression as an
 	 *         <code>Object</code> of <code>returnType</code>.
 	 *
 	 * @throws XPathExpressionException
-	 *             If <code>expression</code> cannot be evaluated.
+	 *                                  If <code>expression</code> cannot be
+	 *                                  evaluated.
 	 * @throws IllegalArgumentException
-	 *             If <code>returnType</code> is not one of the types defined in
-	 *             {@link XPathConstants}.
+	 *                                  If <code>returnType</code> is not one of
+	 *                                  the types defined in
+	 *                                  {@link XPathConstants}.
 	 * @throws NullPointerException
-	 *             If <code>expression</code> or <code>returnType</code> is
-	 *             <code>null</code>.
+	 *                                  If <code>expression</code> or
+	 *                                  <code>returnType</code> is
+	 *                                  <code>null</code>.
 	 */
 	public Object evaluate(String expression, Object item, QName returnType)
 			throws XPathExpressionException;
@@ -331,19 +320,22 @@ public interface XPath {
 	 * </p>
 	 *
 	 * @param expression
-	 *            The XPath expression.
+	 *                   The XPath expression.
 	 * @param item
-	 *            The starting context (a node, for example).
+	 *                   The starting context (a node, for example).
 	 *
 	 * @return The <code>String</code> that is the result of evaluating the
 	 *         expression and converting the result to a <code>String</code>.
 	 *
 	 * @throws XPathExpressionException
-	 *             If <code>expression</code> cannot be evaluated.
+	 *                                  If <code>expression</code> cannot be
+	 *                                  evaluated.
 	 * @throws NullPointerException
-	 *             If <code>expression</code> is <code>null</code>.
+	 *                                  If <code>expression</code> is
+	 *                                  <code>null</code>.
 	 */
-	public String evaluate(String expression, Object item) throws XPathExpressionException;
+	public String evaluate(String expression, Object item)
+			throws XPathExpressionException;
 
 	/**
 	 * <p>
@@ -376,26 +368,29 @@ public interface XPath {
 	 * </p>
 	 *
 	 * @param expression
-	 *            The XPath expression.
+	 *                   The XPath expression.
 	 * @param source
-	 *            The input source of the document to evaluate over.
+	 *                   The input source of the document to evaluate over.
 	 * @param returnType
-	 *            The desired return type.
+	 *                   The desired return type.
 	 *
 	 * @return The <code>Object</code> that encapsulates the result of
 	 *         evaluating the expression.
 	 *
 	 * @throws XPathExpressionException
-	 *             If expression cannot be evaluated.
+	 *                                  If expression cannot be evaluated.
 	 * @throws IllegalArgumentException
-	 *             If <code>returnType</code> is not one of the types defined in
-	 *             {@link XPathConstants}.
+	 *                                  If <code>returnType</code> is not one of
+	 *                                  the types defined in
+	 *                                  {@link XPathConstants}.
 	 * @throws NullPointerException
-	 *             If <code>expression</code>, <code>source</code> or
-	 *             <code>returnType</code> is <code>null</code>.
+	 *                                  If <code>expression</code>,
+	 *                                  <code>source</code> or
+	 *                                  <code>returnType</code> is
+	 *                                  <code>null</code>.
 	 */
-	public Object evaluate(String expression, InputSource source, QName returnType)
-			throws XPathExpressionException;
+	public Object evaluate(String expression, InputSource source,
+			QName returnType) throws XPathExpressionException;
 
 	/**
 	 * <p>
@@ -421,18 +416,21 @@ public interface XPath {
 	 * </p>
 	 *
 	 * @param expression
-	 *            The XPath expression.
+	 *                   The XPath expression.
 	 * @param source
-	 *            The <code>InputSource</code> of the document to evaluate over.
+	 *                   The <code>InputSource</code> of the document to
+	 *                   evaluate over.
 	 *
 	 * @return The <code>String</code> that is the result of evaluating the
 	 *         expression and converting the result to a <code>String</code>.
 	 *
 	 * @throws XPathExpressionException
-	 *             If expression cannot be evaluated.
+	 *                                  If expression cannot be evaluated.
 	 * @throws NullPointerException
-	 *             If <code>expression</code> or <code>source</code> is
-	 *             <code>null</code>.
+	 *                                  If <code>expression</code> or
+	 *                                  <code>source</code> is
+	 *                                  <code>null</code>.
 	 */
-	public String evaluate(String expression, InputSource source) throws XPathExpressionException;
+	public String evaluate(String expression, InputSource source)
+			throws XPathExpressionException;
 }

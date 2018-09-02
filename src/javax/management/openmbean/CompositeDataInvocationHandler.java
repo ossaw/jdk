@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.openmbean;
@@ -80,8 +60,8 @@ import java.lang.reflect.Proxy;
  * 
  * <pre>
  * InvocationHandler handler = new CompositeDataInvocationHandler(cd);
- * NamedNumber nn = (NamedNumber) Proxy.newProxyInstance(NamedNumber.class.getClassLoader(),
- * 		new Class[] { NamedNumber.class }, handler);
+ * NamedNumber nn = (NamedNumber) Proxy.newProxyInstance(NamedNumber.class
+ * 		.getClassLoader(), new Class[] { NamedNumber.class }, handler);
  * </pre>
  * 
  * </blockquote>
@@ -122,11 +102,12 @@ public class CompositeDataInvocationHandler implements InvocationHandler {
 	 * </p>
 	 * 
 	 * @param compositeData
-	 *            the {@code CompositeData} that will supply information to
-	 *            getters.
+	 *                      the {@code CompositeData} that will supply
+	 *                      information to
+	 *                      getters.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             if {@code compositeData} is null.
+	 *                                  if {@code compositeData} is null.
 	 */
 	public CompositeDataInvocationHandler(CompositeData compositeData) {
 		this(compositeData, null);
@@ -139,13 +120,15 @@ public class CompositeDataInvocationHandler implements InvocationHandler {
 	 * </p>
 	 * 
 	 * @param compositeData
-	 *            the {@code CompositeData} that will supply information to
-	 *            getters.
+	 *                      the {@code CompositeData} that will supply
+	 *                      information to
+	 *                      getters.
 	 * 
 	 * @throws IllegalArgumentException
-	 *             if {@code compositeData} is null.
+	 *                                  if {@code compositeData} is null.
 	 */
-	CompositeDataInvocationHandler(CompositeData compositeData, MXBeanLookup lookup) {
+	CompositeDataInvocationHandler(CompositeData compositeData,
+			MXBeanLookup lookup) {
 		if (compositeData == null)
 			throw new IllegalArgumentException("compositeData");
 		this.compositeData = compositeData;
@@ -163,7 +146,8 @@ public class CompositeDataInvocationHandler implements InvocationHandler {
 		return compositeData;
 	}
 
-	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+	public Object invoke(Object proxy, Method method, Object[] args)
+			throws Throwable {
 		final String methodName = method.getName();
 
 		// Handle the methods from java.lang.Object
@@ -172,8 +156,8 @@ public class CompositeDataInvocationHandler implements InvocationHandler {
 				return "Proxy[" + compositeData + "]";
 			else if (methodName.equals("hashCode") && args == null)
 				return compositeData.hashCode() + 0x43444948;
-			else if (methodName.equals("equals") && args.length == 1
-					&& method.getParameterTypes()[0] == Object.class)
+			else if (methodName.equals("equals") && args.length == 1 && method
+					.getParameterTypes()[0] == Object.class)
 				return equals(proxy, args[0]);
 			else {
 				/*
@@ -192,24 +176,26 @@ public class CompositeDataInvocationHandler implements InvocationHandler {
 
 		String propertyName = DefaultMXBeanMappingFactory.propertyName(method);
 		if (propertyName == null) {
-			throw new IllegalArgumentException("Method is not getter: " + method.getName());
+			throw new IllegalArgumentException("Method is not getter: " + method
+					.getName());
 		}
 		Object openValue;
 		if (compositeData.containsKey(propertyName))
 			openValue = compositeData.get(propertyName);
 		else {
-			String decap = DefaultMXBeanMappingFactory.decapitalize(propertyName);
+			String decap = DefaultMXBeanMappingFactory.decapitalize(
+					propertyName);
 			if (compositeData.containsKey(decap))
 				openValue = compositeData.get(decap);
 			else {
 				final String msg = "No CompositeData item " + propertyName
-						+ (decap.equals(propertyName) ? "" : " or " + decap) + " to match "
-						+ methodName;
+						+ (decap.equals(propertyName) ? "" : " or " + decap)
+						+ " to match " + methodName;
 				throw new IllegalArgumentException(msg);
 			}
 		}
-		MXBeanMapping mapping = MXBeanMappingFactory.DEFAULT
-				.mappingForType(method.getGenericReturnType(), MXBeanMappingFactory.DEFAULT);
+		MXBeanMapping mapping = MXBeanMappingFactory.DEFAULT.mappingForType(
+				method.getGenericReturnType(), MXBeanMappingFactory.DEFAULT);
 		return mapping.fromOpenValue(openValue);
 	}
 
@@ -219,7 +205,6 @@ public class CompositeDataInvocationHandler implements InvocationHandler {
 	 * like this: public interface GetString { public String string(); } then we
 	 * must compare equal to another CompositeDataInvocationHandler proxy for
 	 * the same interface and where string() returns the same value.
-	 *
 	 * You might think that we should also compare equal to another object that
 	 * implements GetString directly rather than using Proxy, provided that its
 	 * string() returns the same result as ours, and in fact an earlier version

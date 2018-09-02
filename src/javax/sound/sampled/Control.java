@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled;
@@ -57,7 +37,7 @@ public abstract class Control {
 	 * Constructs a Control with the specified type.
 	 * 
 	 * @param type
-	 *            the kind of control desired
+	 *             the kind of control desired
 	 */
 	protected Control(Type type) {
 		this.type = type;
@@ -108,7 +88,7 @@ public abstract class Control {
 		 * in an application, such as "Gain" or "Balance."
 		 * 
 		 * @param name
-		 *            the name of the new control type.
+		 *             the name of the new control type.
 		 */
 		protected Type(String name) {
 			this.name = name;

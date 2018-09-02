@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.naming.cosnaming;
@@ -63,15 +43,15 @@ public class TransientBindingIterator extends BindingIteratorImpl {
 	 * Constructs a new TransientBindingIterator object.
 	 * 
 	 * @param orb
-	 *            a org.omg.CORBA.ORB object.
+	 *               a org.omg.CORBA.ORB object.
 	 * @param aTable
-	 *            A hashtable containing InternalBindingValues which is the
-	 *            content of the TransientNamingContext.
-	 * @param java.lang.Exception
-	 *            a Java exception.
+	 *               A hashtable containing InternalBindingValues which is the
+	 *               content of the TransientNamingContext.
+	 * @param        java.lang.Exception
+	 *               a Java exception.
 	 * @exception Exception
-	 *                a Java exception thrown of the base class cannot
-	 *                initialize.
+	 *                      a Java exception thrown of the base class cannot
+	 *                      initialize.
 	 */
 	public TransientBindingIterator(ORB orb, Hashtable aTable, POA thePOA)
 			throws java.lang.Exception {
@@ -88,14 +68,15 @@ public class TransientBindingIterator extends BindingIteratorImpl {
 	 * next binding from the InternalBindingValue.
 	 * 
 	 * @param b
-	 *            The Binding as an out parameter.
+	 *          The Binding as an out parameter.
 	 * @return true if there were more bindings.
 	 */
 	final public boolean NextOne(org.omg.CosNaming.BindingHolder b) {
 		// If there are more elements get the next element
 		boolean hasMore = theEnumeration.hasMoreElements();
 		if (hasMore) {
-			b.value = ((InternalBindingValue) theEnumeration.nextElement()).theBinding;
+			b.value = ((InternalBindingValue) theEnumeration
+					.nextElement()).theBinding;
 			currentSize--;
 		} else {
 			// Return empty but marshalable binding
@@ -108,7 +89,7 @@ public class TransientBindingIterator extends BindingIteratorImpl {
 	 * Destroys this BindingIterator by disconnecting from the ORB
 	 * 
 	 * @exception org.omg.CORBA.SystemException
-	 *                One of a fixed set of CORBA system exceptions.
+	 *            One of a fixed set of CORBA system exceptions.
 	 */
 	final public void Destroy() {
 		// Remove the object from the Active Object Map.

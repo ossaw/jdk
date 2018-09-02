@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -51,8 +31,7 @@ class InQueryExp extends QueryEval implements QueryExp {
 	/**
 	 * Basic Constructor.
 	 */
-	public InQueryExp() {
-	}
+	public InQueryExp() {}
 
 	/**
 	 * Creates a new InQueryExp with the specified ValueExp to be found in a
@@ -81,7 +60,8 @@ class InQueryExp extends QueryEval implements QueryExp {
 	 * Applies the InQueryExp on a MBean.
 	 *
 	 * @param name
-	 *            The name of the MBean on which the InQueryExp will be applied.
+	 *             The name of the MBean on which the InQueryExp will be
+	 *             applied.
 	 *
 	 * @return True if the query was successfully applied to the MBean, false
 	 *         otherwise.
@@ -91,9 +71,9 @@ class InQueryExp extends QueryEval implements QueryExp {
 	 * @exception BadAttributeValueExpException
 	 * @exception InvalidApplicationException
 	 */
-	public boolean apply(ObjectName name)
-			throws BadStringOperationException, BadBinaryOpValueExpException,
-			BadAttributeValueExpException, InvalidApplicationException {
+	public boolean apply(ObjectName name) throws BadStringOperationException,
+			BadBinaryOpValueExpException, BadAttributeValueExpException,
+			InvalidApplicationException {
 		if (valueList != null) {
 			ValueExp v = val.apply(name);
 			boolean numeric = v instanceof NumericValueExp;
@@ -101,13 +81,14 @@ class InQueryExp extends QueryEval implements QueryExp {
 			for (ValueExp element : valueList) {
 				element = element.apply(name);
 				if (numeric) {
-					if (((NumericValueExp) element).doubleValue() == ((NumericValueExp) v)
-							.doubleValue()) {
+					if (((NumericValueExp) element)
+							.doubleValue() == ((NumericValueExp) v)
+									.doubleValue()) {
 						return true;
 					}
 				} else {
-					if (((StringValueExp) element).getValue()
-							.equals(((StringValueExp) v).getValue())) {
+					if (((StringValueExp) element).getValue().equals(
+							((StringValueExp) v).getValue())) {
 						return true;
 					}
 				}

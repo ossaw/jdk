@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.rmi.server;
 
@@ -66,11 +46,11 @@ abstract public class RemoteStub extends RemoteObject {
 	 * Throws {@link UnsupportedOperationException}.
 	 *
 	 * @param stub
-	 *            the remote stub
+	 *             the remote stub
 	 * @param ref
-	 *            the remote reference
+	 *             the remote reference
 	 * @throws UnsupportedOperationException
-	 *             always
+	 *                                       always
 	 * @since JDK1.1
 	 * @deprecated No replacement. The {@code setRef} method was intended for
 	 *             setting the remote reference of a remote stub. This is

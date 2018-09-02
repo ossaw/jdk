@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -60,7 +40,7 @@ public abstract class AbstractCellEditor implements CellEditor, Serializable {
 	 * Returns true.
 	 * 
 	 * @param e
-	 *            an event object
+	 *          an event object
 	 * @return true
 	 */
 	public boolean isCellEditable(EventObject e) {
@@ -71,7 +51,7 @@ public abstract class AbstractCellEditor implements CellEditor, Serializable {
 	 * Returns true.
 	 * 
 	 * @param anEvent
-	 *            an event object
+	 *                an event object
 	 * @return true
 	 */
 	public boolean shouldSelectCell(EventObject anEvent) {
@@ -99,7 +79,7 @@ public abstract class AbstractCellEditor implements CellEditor, Serializable {
 	 * Adds a <code>CellEditorListener</code> to the listener list.
 	 * 
 	 * @param l
-	 *            the new listener to be added
+	 *          the new listener to be added
 	 */
 	public void addCellEditorListener(CellEditorListener l) {
 		listenerList.add(CellEditorListener.class, l);
@@ -109,7 +89,7 @@ public abstract class AbstractCellEditor implements CellEditor, Serializable {
 	 * Removes a <code>CellEditorListener</code> from the listener list.
 	 * 
 	 * @param l
-	 *            the listener to be removed
+	 *          the listener to be removed
 	 */
 	public void removeCellEditorListener(CellEditorListener l) {
 		listenerList.remove(CellEditorListener.class, l);
@@ -143,7 +123,8 @@ public abstract class AbstractCellEditor implements CellEditor, Serializable {
 				// Lazily create the event:
 				if (changeEvent == null)
 					changeEvent = new ChangeEvent(this);
-				((CellEditorListener) listeners[i + 1]).editingStopped(changeEvent);
+				((CellEditorListener) listeners[i + 1]).editingStopped(
+						changeEvent);
 			}
 		}
 	}
@@ -164,7 +145,8 @@ public abstract class AbstractCellEditor implements CellEditor, Serializable {
 				// Lazily create the event:
 				if (changeEvent == null)
 					changeEvent = new ChangeEvent(this);
-				((CellEditorListener) listeners[i + 1]).editingCanceled(changeEvent);
+				((CellEditorListener) listeners[i + 1]).editingCanceled(
+						changeEvent);
 			}
 		}
 	}

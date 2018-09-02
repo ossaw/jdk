@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.invoke;
@@ -469,18 +449,21 @@ public abstract class MethodHandle {
 	 * it will throw an {@code UnsupportedOperationException}.
 	 * 
 	 * @param args
-	 *            the signature-polymorphic parameter list, statically
-	 *            represented using varargs
+	 *             the signature-polymorphic parameter list, statically
+	 *             represented using varargs
 	 * @return the signature-polymorphic result, statically represented using
 	 *         {@code Object}
 	 * @throws WrongMethodTypeException
-	 *             if the target's type is not identical with the caller's
-	 *             symbolic type descriptor
+	 *                                  if the target's type is not identical
+	 *                                  with the caller's
+	 *                                  symbolic type descriptor
 	 * @throws Throwable
-	 *             anything thrown by the underlying method propagates unchanged
-	 *             through the method handle call
+	 *                                  anything thrown by the underlying method
+	 *                                  propagates unchanged
+	 *                                  through the method handle call
 	 */
-	public final native @PolymorphicSignature Object invokeExact(Object... args) throws Throwable;
+	public final native @PolymorphicSignature Object invokeExact(Object... args)
+			throws Throwable;
 
 	/**
 	 * Invokes the method handle, allowing any caller type descriptor, and
@@ -515,21 +498,25 @@ public abstract class MethodHandle {
 	 * it will throw an {@code UnsupportedOperationException}.
 	 * 
 	 * @param args
-	 *            the signature-polymorphic parameter list, statically
-	 *            represented using varargs
+	 *             the signature-polymorphic parameter list, statically
+	 *             represented using varargs
 	 * @return the signature-polymorphic result, statically represented using
 	 *         {@code Object}
 	 * @throws WrongMethodTypeException
-	 *             if the target's type cannot be adjusted to the caller's
-	 *             symbolic type descriptor
+	 *                                  if the target's type cannot be adjusted
+	 *                                  to the caller's
+	 *                                  symbolic type descriptor
 	 * @throws ClassCastException
-	 *             if the target's type can be adjusted to the caller, but a
-	 *             reference cast fails
+	 *                                  if the target's type can be adjusted to
+	 *                                  the caller, but a
+	 *                                  reference cast fails
 	 * @throws Throwable
-	 *             anything thrown by the underlying method propagates unchanged
-	 *             through the method handle call
+	 *                                  anything thrown by the underlying method
+	 *                                  propagates unchanged
+	 *                                  through the method handle call
 	 */
-	public final native @PolymorphicSignature Object invoke(Object... args) throws Throwable;
+	public final native @PolymorphicSignature Object invoke(Object... args)
+			throws Throwable;
 
 	/**
 	 * Private method for trusted invocation of a method handle respecting
@@ -547,13 +534,13 @@ public abstract class MethodHandle {
 	 * the range of the callee's return type.
 	 * 
 	 * @param args
-	 *            the signature-polymorphic parameter list, statically
-	 *            represented using varargs
+	 *             the signature-polymorphic parameter list, statically
+	 *             represented using varargs
 	 * @return the signature-polymorphic result, statically represented using
 	 *         {@code Object}
 	 */
-	/* non-public */ final native @PolymorphicSignature Object invokeBasic(Object... args)
-			throws Throwable;
+	/* non-public */ final native @PolymorphicSignature Object invokeBasic(
+			Object... args) throws Throwable;
 
 	/**
 	 * Private method for trusted invocation of a MemberName of kind
@@ -562,13 +549,13 @@ public abstract class MethodHandle {
 	 * must be a MemberName.
 	 * 
 	 * @param args
-	 *            the signature-polymorphic parameter list, statically
-	 *            represented using varargs
+	 *             the signature-polymorphic parameter list, statically
+	 *             represented using varargs
 	 * @return the signature-polymorphic result, statically represented using
 	 *         {@code Object}
 	 */
-	/* non-public */ static native @PolymorphicSignature Object linkToVirtual(Object... args)
-			throws Throwable;
+	/* non-public */ static native @PolymorphicSignature Object linkToVirtual(
+			Object... args) throws Throwable;
 
 	/**
 	 * Private method for trusted invocation of a MemberName of kind
@@ -577,13 +564,13 @@ public abstract class MethodHandle {
 	 * must be a MemberName.
 	 * 
 	 * @param args
-	 *            the signature-polymorphic parameter list, statically
-	 *            represented using varargs
+	 *             the signature-polymorphic parameter list, statically
+	 *             represented using varargs
 	 * @return the signature-polymorphic result, statically represented using
 	 *         {@code Object}
 	 */
-	/* non-public */ static native @PolymorphicSignature Object linkToStatic(Object... args)
-			throws Throwable;
+	/* non-public */ static native @PolymorphicSignature Object linkToStatic(
+			Object... args) throws Throwable;
 
 	/**
 	 * Private method for trusted invocation of a MemberName of kind
@@ -592,13 +579,13 @@ public abstract class MethodHandle {
 	 * must be a MemberName.
 	 * 
 	 * @param args
-	 *            the signature-polymorphic parameter list, statically
-	 *            represented using varargs
+	 *             the signature-polymorphic parameter list, statically
+	 *             represented using varargs
 	 * @return the signature-polymorphic result, statically represented using
 	 *         {@code Object}
 	 */
-	/* non-public */ static native @PolymorphicSignature Object linkToSpecial(Object... args)
-			throws Throwable;
+	/* non-public */ static native @PolymorphicSignature Object linkToSpecial(
+			Object... args) throws Throwable;
 
 	/**
 	 * Private method for trusted invocation of a MemberName of kind
@@ -607,13 +594,13 @@ public abstract class MethodHandle {
 	 * must be a MemberName.
 	 * 
 	 * @param args
-	 *            the signature-polymorphic parameter list, statically
-	 *            represented using varargs
+	 *             the signature-polymorphic parameter list, statically
+	 *             represented using varargs
 	 * @return the signature-polymorphic result, statically represented using
 	 *         {@code Object}
 	 */
-	/* non-public */ static native @PolymorphicSignature Object linkToInterface(Object... args)
-			throws Throwable;
+	/* non-public */ static native @PolymorphicSignature Object linkToInterface(
+			Object... args) throws Throwable;
 
 	/**
 	 * Performs a variable arity invocation, passing the arguments in the given
@@ -667,22 +654,25 @@ public abstract class MethodHandle {
 	 * between native or reflective code and method handles.
 	 *
 	 * @param arguments
-	 *            the arguments to pass to the target
+	 *                  the arguments to pass to the target
 	 * @return the result returned by the target
 	 * @throws ClassCastException
-	 *             if an argument cannot be converted by reference casting
+	 *                                  if an argument cannot be converted by
+	 *                                  reference casting
 	 * @throws WrongMethodTypeException
-	 *             if the target's type cannot be adjusted to take the given
-	 *             number of {@code Object} arguments
+	 *                                  if the target's type cannot be adjusted
+	 *                                  to take the given
+	 *                                  number of {@code Object} arguments
 	 * @throws Throwable
-	 *             anything thrown by the target method invocation
+	 *                                  anything thrown by the target method
+	 *                                  invocation
 	 * @see MethodHandles#spreadInvoker
 	 */
 	public Object invokeWithArguments(Object... arguments) throws Throwable {
-		MethodType invocationType = MethodType
-				.genericMethodType(arguments == null ? 0 : arguments.length);
-		return invocationType.invokers().spreadInvoker(0).invokeExact(asType(invocationType),
-				arguments);
+		MethodType invocationType = MethodType.genericMethodType(
+				arguments == null ? 0 : arguments.length);
+		return invocationType.invokers().spreadInvoker(0).invokeExact(asType(
+				invocationType), arguments);
 	}
 
 	/**
@@ -702,19 +692,23 @@ public abstract class MethodHandle {
 	 * </blockquote>
 	 *
 	 * @param arguments
-	 *            the arguments to pass to the target
+	 *                  the arguments to pass to the target
 	 * @return the result returned by the target
 	 * @throws NullPointerException
-	 *             if {@code arguments} is a null reference
+	 *                                  if {@code arguments} is a null reference
 	 * @throws ClassCastException
-	 *             if an argument cannot be converted by reference casting
+	 *                                  if an argument cannot be converted by
+	 *                                  reference casting
 	 * @throws WrongMethodTypeException
-	 *             if the target's type cannot be adjusted to take the given
-	 *             number of {@code Object} arguments
+	 *                                  if the target's type cannot be adjusted
+	 *                                  to take the given
+	 *                                  number of {@code Object} arguments
 	 * @throws Throwable
-	 *             anything thrown by the target method invocation
+	 *                                  anything thrown by the target method
+	 *                                  invocation
 	 */
-	public Object invokeWithArguments(java.util.List<?> arguments) throws Throwable {
+	public Object invokeWithArguments(java.util.List<?> arguments)
+			throws Throwable {
 		return invokeWithArguments(arguments.toArray());
 	}
 
@@ -808,14 +802,14 @@ public abstract class MethodHandle {
 	 * will be thrown.
 	 *
 	 * @param newType
-	 *            the expected type of the new method handle
+	 *                the expected type of the new method handle
 	 * @return a method handle which delegates to {@code this} after performing
 	 *         any necessary argument conversions, and arranges for any
 	 *         necessary return value conversions
 	 * @throws NullPointerException
-	 *             if {@code newType} is a null reference
+	 *                                  if {@code newType} is a null reference
 	 * @throws WrongMethodTypeException
-	 *             if the conversion cannot be made
+	 *                                  if the conversion cannot be made
 	 * @see MethodHandles#explicitCastArguments
 	 */
 	public MethodHandle asType(MethodType newType) {
@@ -840,11 +834,13 @@ public abstract class MethodHandle {
 		return null;
 	}
 
-			/** Override this to change asType behavior. */
-			/* non-public */ MethodHandle asTypeUncached(MethodType newType) {
+	/** Override this to change asType behavior. */
+	/* non-public */ MethodHandle asTypeUncached(MethodType newType) {
 		if (!type.isConvertibleTo(newType))
-			throw new WrongMethodTypeException("cannot convert " + this + " to " + newType);
-		return asTypeCache = MethodHandleImpl.makePairwiseConvert(this, newType, true);
+			throw new WrongMethodTypeException("cannot convert " + this + " to "
+					+ newType);
+		return asTypeCache = MethodHandleImpl.makePairwiseConvert(this, newType,
+				true);
 	}
 
 	/**
@@ -908,7 +904,8 @@ public abstract class MethodHandle {
 	 * 	// spread no arguments from a 0-array or null:
 	 * 	MethodHandle eq0 = equals.asSpreader(Object[].class, 0);
 	 * 	assert ((boolean) eq0.invokeExact("me", (Object) "me", new Object[0]));
-	 * 	assert (!(boolean) eq0.invokeExact("me", (Object) "thee", (Object[]) null));
+	 * 	assert (!(boolean) eq0.invokeExact("me", (Object) "thee",
+	 * 			(Object[]) null));
 	 * 	// asSpreader and asCollector are approximate inverses:
 	 * 	for (int n = 0; n <= 2; n++) {
 	 * 		for (Class<?> a : new Class<?>[] { Object[].class, String[].class,
@@ -918,36 +915,44 @@ public abstract class MethodHandle {
 	 * 			assert (!(boolean) equals2.invokeWithArguments("me", "thee"));
 	 * 		}
 	 * 	}
-	 * 	MethodHandle caToString = publicLookup().findStatic(Arrays.class, "toString",
-	 * 			methodType(String.class, char[].class));
-	 * 	assertEquals("[A, B, C]", (String) caToString.invokeExact("ABC".toCharArray()));
+	 * 	MethodHandle caToString = publicLookup().findStatic(Arrays.class,
+	 * 			"toString", methodType(String.class, char[].class));
+	 * 	assertEquals("[A, B, C]", (String) caToString.invokeExact("ABC"
+	 * 			.toCharArray()));
 	 * 	MethodHandle caString3 = caToString.asCollector(char[].class, 3);
 	 * 	assertEquals("[A, B, C]", (String) caString3.invokeExact('A', 'B', 'C'));
 	 * 	MethodHandle caToString2 = caString3.asSpreader(char[].class, 2);
-	 * 	assertEquals("[A, B, C]", (String) caToString2.invokeExact('A', "BC".toCharArray()));
+	 * 	assertEquals("[A, B, C]", (String) caToString2.invokeExact('A', "BC"
+	 * 			.toCharArray()));
 	 * }
 	 * </pre>
 	 * 
 	 * </blockquote>
 	 * 
 	 * @param arrayType
-	 *            usually {@code Object[]}, the type of the array argument from
-	 *            which to extract the spread arguments
+	 *                    usually {@code Object[]}, the type of the array
+	 *                    argument from
+	 *                    which to extract the spread arguments
 	 * @param arrayLength
-	 *            the number of arguments to spread from an incoming array
-	 *            argument
+	 *                    the number of arguments to spread from an incoming
+	 *                    array
+	 *                    argument
 	 * @return a new method handle which spreads its final array argument,
 	 *         before calling the original method handle
 	 * @throws NullPointerException
-	 *             if {@code arrayType} is a null reference
+	 *                                  if {@code arrayType} is a null reference
 	 * @throws IllegalArgumentException
-	 *             if {@code arrayType} is not an array type, or if target does
-	 *             not have at least {@code arrayLength} parameter types, or if
-	 *             {@code arrayLength} is negative, or if the resulting method
-	 *             handle's type would have
-	 *             <a href="MethodHandle.html#maxarity">too many parameters</a>
+	 *                                  if {@code arrayType} is not an array
+	 *                                  type, or if target does
+	 *                                  not have at least {@code arrayLength}
+	 *                                  parameter types, or if
+	 *                                  {@code arrayLength} is negative, or if
+	 *                                  the resulting method
+	 *                                  handle's type would have
+	 *                                  <a href="MethodHandle.html#maxarity">too
+	 *                                  many parameters</a>
 	 * @throws WrongMethodTypeException
-	 *             if the implied {@code asType} call fails
+	 *                                  if the implied {@code asType} call fails
 	 * @see #asCollector
 	 */
 	public MethodHandle asSpreader(Class<?> arrayType, int arrayLength) {
@@ -956,10 +961,10 @@ public abstract class MethodHandle {
 		int spreadArgPos = arity - arrayLength;
 		MethodHandle afterSpread = this.asType(postSpreadType);
 		BoundMethodHandle mh = afterSpread.rebind();
-		LambdaForm lform = mh.editor().spreadArgumentsForm(1 + spreadArgPos, arrayType,
-				arrayLength);
-		MethodType preSpreadType = postSpreadType.replaceParameterTypes(spreadArgPos, arity,
-				arrayType);
+		LambdaForm lform = mh.editor().spreadArgumentsForm(1 + spreadArgPos,
+				arrayType, arrayLength);
+		MethodType preSpreadType = postSpreadType.replaceParameterTypes(
+				spreadArgPos, arity, arrayType);
 		return mh.copyWith(preSpreadType, lform);
 	}
 
@@ -1002,11 +1007,13 @@ public abstract class MethodHandle {
 			throw newIllegalArgumentException("not an array type", arrayType);
 		if ((arrayLength & 0x7F) != arrayLength) {
 			if ((arrayLength & 0xFF) != arrayLength)
-				throw newIllegalArgumentException("array length is not legal", arrayLength);
+				throw newIllegalArgumentException("array length is not legal",
+						arrayLength);
 			assert (arrayLength >= 128);
 			if (arrayElement == long.class || arrayElement == double.class)
 				throw newIllegalArgumentException(
-						"array length is not legal for long[] or double[]", arrayLength);
+						"array length is not legal for long[] or double[]",
+						arrayLength);
 		}
 	}
 
@@ -1045,33 +1052,37 @@ public abstract class MethodHandle {
 	 * <pre>
 	 * {
 	 * 	&#64;code
-	 * 	MethodHandle deepToString = publicLookup().findStatic(Arrays.class, "deepToString",
-	 * 			methodType(String.class, Object[].class));
-	 * 	assertEquals("[won]", (String) deepToString.invokeExact(new Object[] { "won" }));
+	 * 	MethodHandle deepToString = publicLookup().findStatic(Arrays.class,
+	 * 			"deepToString", methodType(String.class, Object[].class));
+	 * 	assertEquals("[won]", (String) deepToString.invokeExact(new Object[] {
+	 * 			"won" }));
 	 * 	MethodHandle ts1 = deepToString.asCollector(Object[].class, 1);
 	 * 	assertEquals(methodType(String.class, Object.class), ts1.type());
 	 * 	// assertEquals("[won]", (String) ts1.invokeExact( new Object[]{"won"}));
 	 * 	// //FAIL
-	 * 	assertEquals("[[won]]", (String) ts1.invokeExact((Object) new Object[] { "won" }));
+	 * 	assertEquals("[[won]]", (String) ts1.invokeExact((Object) new Object[] {
+	 * 			"won" }));
 	 * 	// arrayType can be a subtype of Object[]
 	 * 	MethodHandle ts2 = deepToString.asCollector(String[].class, 2);
-	 * 	assertEquals(methodType(String.class, String.class, String.class), ts2.type());
+	 * 	assertEquals(methodType(String.class, String.class, String.class), ts2
+	 * 			.type());
 	 * 	assertEquals("[two, too]", (String) ts2.invokeExact("two", "too"));
 	 * 	MethodHandle ts0 = deepToString.asCollector(Object[].class, 0);
 	 * 	assertEquals("[]", (String) ts0.invokeExact());
 	 * 	// collectors can be nested, Lisp-style
-	 * 	MethodHandle ts22 = deepToString.asCollector(Object[].class, 3).asCollector(String[].class,
-	 * 			2);
-	 * 	assertEquals("[A, B, [C, D]]",
-	 * 			((String) ts22.invokeExact((Object) 'A', (Object) "B", "C", "D")));
+	 * 	MethodHandle ts22 = deepToString.asCollector(Object[].class, 3)
+	 * 			.asCollector(String[].class, 2);
+	 * 	assertEquals("[A, B, [C, D]]", ((String) ts22.invokeExact((Object) 'A',
+	 * 			(Object) "B", "C", "D")));
 	 * 	// arrayType can be any primitive array type
-	 * 	MethodHandle bytesToString = publicLookup()
-	 * 			.findStatic(Arrays.class, "toString", methodType(String.class, byte[].class))
-	 * 			.asCollector(byte[].class, 3);
-	 * 	assertEquals("[1, 2, 3]", (String) bytesToString.invokeExact((byte) 1, (byte) 2, (byte) 3));
-	 * 	MethodHandle longsToString = publicLookup()
-	 * 			.findStatic(Arrays.class, "toString", methodType(String.class, long[].class))
-	 * 			.asCollector(long[].class, 1);
+	 * 	MethodHandle bytesToString = publicLookup().findStatic(Arrays.class,
+	 * 			"toString", methodType(String.class, byte[].class)).asCollector(
+	 * 					byte[].class, 3);
+	 * 	assertEquals("[1, 2, 3]", (String) bytesToString.invokeExact((byte) 1,
+	 * 			(byte) 2, (byte) 3));
+	 * 	MethodHandle longsToString = publicLookup().findStatic(Arrays.class,
+	 * 			"toString", methodType(String.class, long[].class)).asCollector(
+	 * 					long[].class, 1);
 	 * 	assertEquals("[123]", (String) longsToString.invokeExact((long) 123));
 	 * }
 	 * </pre>
@@ -1079,23 +1090,31 @@ public abstract class MethodHandle {
 	 * </blockquote>
 	 * 
 	 * @param arrayType
-	 *            often {@code Object[]}, the type of the array argument which
-	 *            will collect the arguments
+	 *                    often {@code Object[]}, the type of the array argument
+	 *                    which
+	 *                    will collect the arguments
 	 * @param arrayLength
-	 *            the number of arguments to collect into a new array argument
+	 *                    the number of arguments to collect into a new array
+	 *                    argument
 	 * @return a new method handle which collects some trailing argument into an
 	 *         array, before calling the original method handle
 	 * @throws NullPointerException
-	 *             if {@code arrayType} is a null reference
+	 *                                  if {@code arrayType} is a null reference
 	 * @throws IllegalArgumentException
-	 *             if {@code arrayType} is not an array type or
-	 *             {@code arrayType} is not assignable to this method handle's
-	 *             trailing parameter type, or {@code arrayLength} is not a
-	 *             legal array size, or the resulting method handle's type would
-	 *             have <a href="MethodHandle.html#maxarity">too many
-	 *             parameters</a>
+	 *                                  if {@code arrayType} is not an array
+	 *                                  type or
+	 *                                  {@code arrayType} is not assignable to
+	 *                                  this method handle's
+	 *                                  trailing parameter type, or
+	 *                                  {@code arrayLength} is not a
+	 *                                  legal array size, or the resulting
+	 *                                  method handle's type would
+	 *                                  have
+	 *                                  <a href="MethodHandle.html#maxarity">too
+	 *                                  many
+	 *                                  parameters</a>
 	 * @throws WrongMethodTypeException
-	 *             if the implied {@code asType} call fails
+	 *                                  if the implied {@code asType} call fails
 	 * @see #asSpreader
 	 * @see #asVarargsCollector
 	 */
@@ -1104,21 +1123,25 @@ public abstract class MethodHandle {
 		int collectArgPos = type().parameterCount() - 1;
 		BoundMethodHandle mh = rebind();
 		MethodType resultType = type().asCollectorType(arrayType, arrayLength);
-		MethodHandle newArray = MethodHandleImpl.varargsArray(arrayType, arrayLength);
-		LambdaForm lform = mh.editor().collectArgumentArrayForm(1 + collectArgPos, newArray);
+		MethodHandle newArray = MethodHandleImpl.varargsArray(arrayType,
+				arrayLength);
+		LambdaForm lform = mh.editor().collectArgumentArrayForm(1
+				+ collectArgPos, newArray);
 		if (lform != null) {
 			return mh.copyWith(resultType, lform);
 		}
-		lform = mh.editor().collectArgumentsForm(1 + collectArgPos, newArray.type().basicType());
+		lform = mh.editor().collectArgumentsForm(1 + collectArgPos, newArray
+				.type().basicType());
 		return mh.copyWithExtendL(resultType, lform, newArray);
 	}
 
-			/**
-			 * See if {@code asCollector} can be validly called with the given
-			 * arguments. Return false if the last parameter is not an exact
-			 * match to arrayType.
-			 */
-			/* non-public */ boolean asCollectorChecks(Class<?> arrayType, int arrayLength) {
+	/**
+	 * See if {@code asCollector} can be validly called with the given
+	 * arguments. Return false if the last parameter is not an exact
+	 * match to arrayType.
+	 */
+	/* non-public */ boolean asCollectorChecks(Class<?> arrayType,
+			int arrayLength) {
 		spreadArrayChecks(arrayType, arrayLength);
 		int nargs = type().parameterCount();
 		if (nargs != 0) {
@@ -1128,7 +1151,8 @@ public abstract class MethodHandle {
 			if (lastParam.isAssignableFrom(arrayType))
 				return false;
 		}
-		throw newIllegalArgumentException("array type not assignable to trailing argument", this,
+		throw newIllegalArgumentException(
+				"array type not assignable to trailing argument", this,
 				arrayType);
 	}
 
@@ -1231,13 +1255,14 @@ public abstract class MethodHandle {
 	 * <pre>
 	 * {
 	 * 	&#64;code
-	 * 	MethodHandle deepToString = publicLookup().findStatic(Arrays.class, "deepToString",
-	 * 			methodType(String.class, Object[].class));
+	 * 	MethodHandle deepToString = publicLookup().findStatic(Arrays.class,
+	 * 			"deepToString", methodType(String.class, Object[].class));
 	 * 	MethodHandle ts1 = deepToString.asVarargsCollector(Object[].class);
 	 * 	assertEquals("[won]", (String) ts1.invokeExact(new Object[] { "won" }));
 	 * 	assertEquals("[won]", (String) ts1.invoke(new Object[] { "won" }));
 	 * 	assertEquals("[won]", (String) ts1.invoke("won"));
-	 * 	assertEquals("[[won]]", (String) ts1.invoke((Object) new Object[] { "won" }));
+	 * 	assertEquals("[[won]]", (String) ts1.invoke((Object) new Object[] {
+	 * 			"won" }));
 	 * 	// findStatic of Arrays.asList(...) produces a variable arity method
 	 * 	// handle:
 	 * 	MethodHandle asList = publicLookup().findStatic(Arrays.class, "asList",
@@ -1249,10 +1274,12 @@ public abstract class MethodHandle {
 	 * 	assertEquals("[two, too]", asList.invoke("two", "too").toString());
 	 * 	String[] argv = { "three", "thee", "tee" };
 	 * 	assertEquals("[three, thee, tee]", asList.invoke(argv).toString());
-	 * 	assertEquals("[three, thee, tee]", asList.invoke((Object[]) argv).toString());
+	 * 	assertEquals("[three, thee, tee]", asList.invoke((Object[]) argv)
+	 * 			.toString());
 	 * 	List ls = (List) asList.invoke((Object) argv);
 	 * 	assertEquals(1, ls.size());
-	 * 	assertEquals("[three, thee, tee]", Arrays.toString((Object[]) ls.get(0)));
+	 * 	assertEquals("[three, thee, tee]", Arrays.toString((Object[]) ls.get(
+	 * 			0)));
 	 * }
 	 * </pre>
 	 * 
@@ -1271,17 +1298,20 @@ public abstract class MethodHandle {
 	 * and the type descriptor of the method handle.)
 	 *
 	 * @param arrayType
-	 *            often {@code Object[]}, the type of the array argument which
-	 *            will collect the arguments
+	 *                  often {@code Object[]}, the type of the array argument
+	 *                  which
+	 *                  will collect the arguments
 	 * @return a new method handle which can collect any number of trailing
 	 *         arguments into an array, before calling the original method
 	 *         handle
 	 * @throws NullPointerException
-	 *             if {@code arrayType} is a null reference
+	 *                                  if {@code arrayType} is a null reference
 	 * @throws IllegalArgumentException
-	 *             if {@code arrayType} is not an array type or
-	 *             {@code arrayType} is not assignable to this method handle's
-	 *             trailing parameter type
+	 *                                  if {@code arrayType} is not an array
+	 *                                  type or
+	 *                                  {@code arrayType} is not assignable to
+	 *                                  this method handle's
+	 *                                  trailing parameter type
 	 * @see #asCollector
 	 * @see #isVarargsCollector
 	 * @see #asFixedArity
@@ -1336,8 +1366,8 @@ public abstract class MethodHandle {
 	 * <pre>
 	 * {
 	 * 	&#64;code
-	 * 	MethodHandle asListVar = publicLookup()
-	 * 			.findStatic(Arrays.class, "asList", methodType(List.class, Object[].class))
+	 * 	MethodHandle asListVar = publicLookup().findStatic(Arrays.class,
+	 * 			"asList", methodType(List.class, Object[].class))
 	 * 			.asVarargsCollector(Object[].class);
 	 * 	MethodHandle asListFix = asListVar.asFixedArity();
 	 * 	assertEquals("[1]", asListVar.invoke(1).toString());
@@ -1359,7 +1389,8 @@ public abstract class MethodHandle {
 	 * 	assertEquals("[three, thee, tee]", asListVar.invoke(argv).toString());
 	 * 	assertEquals("[three, thee, tee]", asListFix.invoke(argv).toString());
 	 * 	assertEquals(1, ((List) asListVar.invoke((Object) argv)).size());
-	 * 	assertEquals("[three, thee, tee]", asListFix.invoke((Object) argv).toString());
+	 * 	assertEquals("[three, thee, tee]", asListFix.invoke((Object) argv)
+	 * 			.toString());
 	 * }
 	 * </pre>
 	 * 
@@ -1394,15 +1425,17 @@ public abstract class MethodHandle {
 	 * handle retains its original type and behavior.)
 	 * 
 	 * @param x
-	 *            the value to bind to the first argument of the target
+	 *          the value to bind to the first argument of the target
 	 * @return a new method handle which prepends the given value to the
 	 *         incoming argument list, before calling the original method handle
 	 * @throws IllegalArgumentException
-	 *             if the target does not have a leading parameter type that is
-	 *             a reference type
+	 *                                  if the target does not have a leading
+	 *                                  parameter type that is
+	 *                                  a reference type
 	 * @throws ClassCastException
-	 *             if {@code x} cannot be converted to the leading parameter
-	 *             type of the target
+	 *                                  if {@code x} cannot be converted to the
+	 *                                  leading parameter
+	 *                                  type of the target
 	 * @see MethodHandles#insertArguments
 	 */
 	public MethodHandle bindTo(Object x) {
@@ -1486,10 +1519,11 @@ public abstract class MethodHandle {
 	/* non-public */
 	boolean viewAsTypeChecks(MethodType newType, boolean strict) {
 		if (strict) {
-			assert (type().isViewableAs(newType, true)) : Arrays.asList(this, newType);
+			assert (type().isViewableAs(newType, true)) : Arrays.asList(this,
+					newType);
 		} else {
-			assert (type().basicType().isViewableAs(newType.basicType(), true)) : Arrays
-					.asList(this, newType);
+			assert (type().basicType().isViewableAs(newType.basicType(),
+					true)) : Arrays.asList(this, newType);
 		}
 		return true;
 	}
@@ -1519,9 +1553,11 @@ public abstract class MethodHandle {
 	}
 
 	/* non-public */
-	MethodHandle withInternalMemberName(MemberName member, boolean isInvokeSpecial) {
+	MethodHandle withInternalMemberName(MemberName member,
+			boolean isInvokeSpecial) {
 		if (member != null) {
-			return MethodHandleImpl.makeWrappedMember(this, member, isInvokeSpecial);
+			return MethodHandleImpl.makeWrappedMember(this, member,
+					isInvokeSpecial);
 		} else if (internalMemberName() == null) {
 			// The required internaMemberName is null, and this MH (like most)
 			// doesn't have one.
@@ -1596,7 +1632,8 @@ public abstract class MethodHandle {
 	private static final long FORM_OFFSET;
 	static {
 		try {
-			FORM_OFFSET = UNSAFE.objectFieldOffset(MethodHandle.class.getDeclaredField("form"));
+			FORM_OFFSET = UNSAFE.objectFieldOffset(MethodHandle.class
+					.getDeclaredField("form"));
 		} catch (ReflectiveOperationException ex) {
 			throw newInternalError(ex);
 		}

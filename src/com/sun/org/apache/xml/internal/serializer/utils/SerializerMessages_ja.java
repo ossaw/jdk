@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,25 +41,18 @@ public class SerializerMessages_ja extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Serializer Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 * 
 	 * 1) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
-	 * 
 	 * 2) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 3) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
-	 *
 	 */
 
 	/** The lookup table for error messages. */
@@ -130,7 +120,8 @@ public class SerializerMessages_ja extends ListResourceBundle {
 				{ MsgKey.ER_COULD_NOT_LOAD_METHOD_PROPERTY,
 						"\u51FA\u529B\u30E1\u30BD\u30C3\u30C9''{1}''\u306E\u30D7\u30ED\u30D1\u30C6\u30A3\u30FB\u30D5\u30A1\u30A4\u30EB''{0}''\u3092\u30ED\u30FC\u30C9\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F(CLASSPATH\u3092\u78BA\u8A8D\u3057\u3066\u304F\u3060\u3055\u3044)" },
 
-				{ MsgKey.ER_INVALID_PORT, "\u7121\u52B9\u306A\u30DD\u30FC\u30C8\u756A\u53F7" },
+				{ MsgKey.ER_INVALID_PORT,
+						"\u7121\u52B9\u306A\u30DD\u30FC\u30C8\u756A\u53F7" },
 
 				{ MsgKey.ER_PORT_WHEN_HOST_NULL,
 						"\u30DB\u30B9\u30C8\u304Cnull\u306E\u5834\u5408\u306F\u30DD\u30FC\u30C8\u3092\u8A2D\u5B9A\u3067\u304D\u307E\u305B\u3093" },

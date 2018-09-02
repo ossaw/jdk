@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.zip;
@@ -28,8 +8,7 @@ package java.util.zip;
 /*
  * This interface defines the constants that are used by the classes
  * which manipulate ZIP files.
- *
- * @author      David Connelly
+ * @author David Connelly
  */
 interface ZipConstants {
 	/*

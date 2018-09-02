@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.channels;
@@ -118,14 +98,15 @@ import java.nio.channels.spi.SelectorProvider;
  * @since 1.4
  */
 
-public abstract class SocketChannel extends AbstractSelectableChannel
-		implements ByteChannel, ScatteringByteChannel, GatheringByteChannel, NetworkChannel {
+public abstract class SocketChannel extends AbstractSelectableChannel implements
+		ByteChannel, ScatteringByteChannel, GatheringByteChannel,
+		NetworkChannel {
 
 	/**
 	 * Initializes a new instance of this class.
 	 *
 	 * @param provider
-	 *            The provider that created this channel
+	 *                 The provider that created this channel
 	 */
 	protected SocketChannel(SelectorProvider provider) {
 		super(provider);
@@ -144,7 +125,7 @@ public abstract class SocketChannel extends AbstractSelectableChannel
 	 * @return A new socket channel
 	 *
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                     If an I/O error occurs
 	 */
 	public static SocketChannel open() throws IOException {
 		return SelectorProvider.provider().openSocketChannel();
@@ -161,31 +142,40 @@ public abstract class SocketChannel extends AbstractSelectableChannel
 	 * </p>
 	 *
 	 * @param remote
-	 *            The remote address to which the new channel is to be connected
+	 *               The remote address to which the new channel is to be
+	 *               connected
 	 *
 	 * @return A new, and connected, socket channel
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the connect
-	 *             operation is in progress
+	 *                                         If another thread closes this
+	 *                                         channel while the connect
+	 *                                         operation is in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             connect operation is in progress, thereby closing the channel
-	 *             and setting the current thread's interrupt status
+	 *                                         If another thread interrupts the
+	 *                                         current thread while the
+	 *                                         connect operation is in progress,
+	 *                                         thereby closing the channel
+	 *                                         and setting the current thread's
+	 *                                         interrupt status
 	 *
 	 * @throws UnresolvedAddressException
-	 *             If the given remote address is not fully resolved
+	 *                                         If the given remote address is
+	 *                                         not fully resolved
 	 *
 	 * @throws UnsupportedAddressTypeException
-	 *             If the type of the given remote address is not supported
+	 *                                         If the type of the given remote
+	 *                                         address is not supported
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it does not
-	 *             permit access to the given remote endpoint
+	 *                                         If a security manager has been
+	 *                                         installed and it does not
+	 *                                         permit access to the given remote
+	 *                                         endpoint
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                         If some other I/O error occurs
 	 */
 	public static SocketChannel open(SocketAddress remote) throws IOException {
 		SocketChannel sc = open();
@@ -216,27 +206,32 @@ public abstract class SocketChannel extends AbstractSelectableChannel
 	 * @return The valid-operation set
 	 */
 	public final int validOps() {
-		return (SelectionKey.OP_READ | SelectionKey.OP_WRITE | SelectionKey.OP_CONNECT);
+		return (SelectionKey.OP_READ | SelectionKey.OP_WRITE
+				| SelectionKey.OP_CONNECT);
 	}
 
 	// -- Socket-specific operations --
 
 	/**
 	 * @throws ConnectionPendingException
-	 *             If a non-blocking connect operation is already in progress on
-	 *             this channel
+	 *                                         If a non-blocking connect
+	 *                                         operation is already in progress
+	 *                                         on
+	 *                                         this channel
 	 * @throws AlreadyBoundException
-	 *             {@inheritDoc}
+	 *                                         {@inheritDoc}
 	 * @throws UnsupportedAddressTypeException
-	 *             {@inheritDoc}
+	 *                                         {@inheritDoc}
 	 * @throws ClosedChannelException
-	 *             {@inheritDoc}
+	 *                                         {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                         {@inheritDoc}
 	 * @throws SecurityException
-	 *             If a security manager has been installed and its
-	 *             {@link SecurityManager#checkListen checkListen} method denies
-	 *             the operation
+	 *                                         If a security manager has been
+	 *                                         installed and its
+	 *                                         {@link SecurityManager#checkListen
+	 *                                         checkListen} method denies
+	 *                                         the operation
 	 *
 	 * @since 1.7
 	 */
@@ -245,18 +240,19 @@ public abstract class SocketChannel extends AbstractSelectableChannel
 
 	/**
 	 * @throws UnsupportedOperationException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IllegalArgumentException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws ClosedChannelException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                       {@inheritDoc}
 	 *
 	 * @since 1.7
 	 */
 	@Override
-	public abstract <T> SocketChannel setOption(SocketOption<T> name, T value) throws IOException;
+	public abstract <T> SocketChannel setOption(SocketOption<T> name, T value)
+			throws IOException;
 
 	/**
 	 * Shutdown the connection for reading without closing the channel.
@@ -269,11 +265,11 @@ public abstract class SocketChannel extends AbstractSelectableChannel
 	 * @return The channel
 	 *
 	 * @throws NotYetConnectedException
-	 *             If this channel is not yet connected
+	 *                                  If this channel is not yet connected
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                  If this channel is closed
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                  If some other I/O error occurs
 	 *
 	 * @since 1.7
 	 */
@@ -290,11 +286,11 @@ public abstract class SocketChannel extends AbstractSelectableChannel
 	 * @return The channel
 	 *
 	 * @throws NotYetConnectedException
-	 *             If this channel is not yet connected
+	 *                                  If this channel is not yet connected
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                  If this channel is closed
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                  If some other I/O error occurs
 	 *
 	 * @since 1.7
 	 */
@@ -363,43 +359,53 @@ public abstract class SocketChannel extends AbstractSelectableChannel
 	 * </p>
 	 *
 	 * @param remote
-	 *            The remote address to which this channel is to be connected
+	 *               The remote address to which this channel is to be connected
 	 *
 	 * @return <tt>true</tt> if a connection was established, <tt>false</tt> if
 	 *         this channel is in non-blocking mode and the connection operation
 	 *         is in progress
 	 *
 	 * @throws AlreadyConnectedException
-	 *             If this channel is already connected
+	 *                                         If this channel is already
+	 *                                         connected
 	 *
 	 * @throws ConnectionPendingException
-	 *             If a non-blocking connection operation is already in progress
-	 *             on this channel
+	 *                                         If a non-blocking connection
+	 *                                         operation is already in progress
+	 *                                         on this channel
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                         If this channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the connect
-	 *             operation is in progress
+	 *                                         If another thread closes this
+	 *                                         channel while the connect
+	 *                                         operation is in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             connect operation is in progress, thereby closing the channel
-	 *             and setting the current thread's interrupt status
+	 *                                         If another thread interrupts the
+	 *                                         current thread while the
+	 *                                         connect operation is in progress,
+	 *                                         thereby closing the channel
+	 *                                         and setting the current thread's
+	 *                                         interrupt status
 	 *
 	 * @throws UnresolvedAddressException
-	 *             If the given remote address is not fully resolved
+	 *                                         If the given remote address is
+	 *                                         not fully resolved
 	 *
 	 * @throws UnsupportedAddressTypeException
-	 *             If the type of the given remote address is not supported
+	 *                                         If the type of the given remote
+	 *                                         address is not supported
 	 *
 	 * @throws SecurityException
-	 *             If a security manager has been installed and it does not
-	 *             permit access to the given remote endpoint
+	 *                                         If a security manager has been
+	 *                                         installed and it does not
+	 *                                         permit access to the given remote
+	 *                                         endpoint
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                         If some other I/O error occurs
 	 */
 	public abstract boolean connect(SocketAddress remote) throws IOException;
 
@@ -436,23 +442,28 @@ public abstract class SocketChannel extends AbstractSelectableChannel
 	 *         connected
 	 *
 	 * @throws NoConnectionPendingException
-	 *             If this channel is not connected and a connection operation
-	 *             has not been initiated
+	 *                                      If this channel is not connected and
+	 *                                      a connection operation
+	 *                                      has not been initiated
 	 *
 	 * @throws ClosedChannelException
-	 *             If this channel is closed
+	 *                                      If this channel is closed
 	 *
 	 * @throws AsynchronousCloseException
-	 *             If another thread closes this channel while the connect
-	 *             operation is in progress
+	 *                                      If another thread closes this
+	 *                                      channel while the connect
+	 *                                      operation is in progress
 	 *
 	 * @throws ClosedByInterruptException
-	 *             If another thread interrupts the current thread while the
-	 *             connect operation is in progress, thereby closing the channel
-	 *             and setting the current thread's interrupt status
+	 *                                      If another thread interrupts the
+	 *                                      current thread while the
+	 *                                      connect operation is in progress,
+	 *                                      thereby closing the channel
+	 *                                      and setting the current thread's
+	 *                                      interrupt status
 	 *
 	 * @throws IOException
-	 *             If some other I/O error occurs
+	 *                                      If some other I/O error occurs
 	 */
 	public abstract boolean finishConnect() throws IOException;
 
@@ -468,9 +479,9 @@ public abstract class SocketChannel extends AbstractSelectableChannel
 	 *         connected
 	 *
 	 * @throws ClosedChannelException
-	 *             If the channel is closed
+	 *                                If the channel is closed
 	 * @throws IOException
-	 *             If an I/O error occurs
+	 *                                If an I/O error occurs
 	 *
 	 * @since 1.7
 	 */
@@ -480,19 +491,20 @@ public abstract class SocketChannel extends AbstractSelectableChannel
 
 	/**
 	 * @throws NotYetConnectedException
-	 *             If this channel is not yet connected
+	 *                                  If this channel is not yet connected
 	 */
 	public abstract int read(ByteBuffer dst) throws IOException;
 
 	/**
 	 * @throws NotYetConnectedException
-	 *             If this channel is not yet connected
+	 *                                  If this channel is not yet connected
 	 */
-	public abstract long read(ByteBuffer[] dsts, int offset, int length) throws IOException;
+	public abstract long read(ByteBuffer[] dsts, int offset, int length)
+			throws IOException;
 
 	/**
 	 * @throws NotYetConnectedException
-	 *             If this channel is not yet connected
+	 *                                  If this channel is not yet connected
 	 */
 	public final long read(ByteBuffer[] dsts) throws IOException {
 		return read(dsts, 0, dsts.length);
@@ -500,19 +512,20 @@ public abstract class SocketChannel extends AbstractSelectableChannel
 
 	/**
 	 * @throws NotYetConnectedException
-	 *             If this channel is not yet connected
+	 *                                  If this channel is not yet connected
 	 */
 	public abstract int write(ByteBuffer src) throws IOException;
 
 	/**
 	 * @throws NotYetConnectedException
-	 *             If this channel is not yet connected
+	 *                                  If this channel is not yet connected
 	 */
-	public abstract long write(ByteBuffer[] srcs, int offset, int length) throws IOException;
+	public abstract long write(ByteBuffer[] srcs, int offset, int length)
+			throws IOException;
 
 	/**
 	 * @throws NotYetConnectedException
-	 *             If this channel is not yet connected
+	 *                                  If this channel is not yet connected
 	 */
 	public final long write(ByteBuffer[] srcs) throws IOException {
 		return write(srcs, 0, srcs.length);
@@ -534,9 +547,9 @@ public abstract class SocketChannel extends AbstractSelectableChannel
 	 *         is not bound
 	 *
 	 * @throws ClosedChannelException
-	 *             {@inheritDoc}
+	 *                                {@inheritDoc}
 	 * @throws IOException
-	 *             {@inheritDoc}
+	 *                                {@inheritDoc}
 	 */
 	@Override
 	public abstract SocketAddress getLocalAddress() throws IOException;

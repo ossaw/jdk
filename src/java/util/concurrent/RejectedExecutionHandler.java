@@ -1,33 +1,8 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -55,11 +30,11 @@ public interface RejectedExecutionHandler {
 	 * caller of {@code execute}.
 	 *
 	 * @param r
-	 *            the runnable task requested to be executed
+	 *                 the runnable task requested to be executed
 	 * @param executor
-	 *            the executor attempting to execute this task
+	 *                 the executor attempting to execute this task
 	 * @throws RejectedExecutionException
-	 *             if there is no remedy
+	 *                                    if there is no remedy
 	 */
 	void rejectedExecution(Runnable r, ThreadPoolExecutor executor);
 }

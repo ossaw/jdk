@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,8 +38,8 @@ import com.sun.org.apache.xpath.internal.compiler.OpMap;
  * 
  * @xsl.usage advanced
  */
-public class UnionPathIterator extends LocPathIterator
-		implements Cloneable, DTMIterator, java.io.Serializable, PathComponent {
+public class UnionPathIterator extends LocPathIterator implements Cloneable,
+		DTMIterator, java.io.Serializable, PathComponent {
 	static final long serialVersionUID = -3910351546843826781L;
 
 	/**
@@ -62,7 +59,7 @@ public class UnionPathIterator extends LocPathIterator
 	 * Initialize the context values for this expression after it is cloned.
 	 *
 	 * @param context
-	 *            The XPath runtime context for this transformation.
+	 *                The XPath runtime context for this transformation.
 	 */
 	public void setRoot(int context, Object environment) {
 		super.setRoot(context, environment);
@@ -73,14 +70,16 @@ public class UnionPathIterator extends LocPathIterator
 				DTMIterator newIters[] = new DTMIterator[n];
 
 				for (int i = 0; i < n; i++) {
-					DTMIterator iter = m_exprs[i].asIterator(m_execContext, context);
+					DTMIterator iter = m_exprs[i].asIterator(m_execContext,
+							context);
 					newIters[i] = iter;
 					iter.nextNode();
 				}
 				m_iterators = newIters;
 			}
 		} catch (Exception e) {
-			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(e);
+			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
+					e);
 		}
 	}
 
@@ -88,7 +87,7 @@ public class UnionPathIterator extends LocPathIterator
 	 * Add an iterator to the union list.
 	 *
 	 * @param expr
-	 *            non-null reference to a location path iterator.
+	 *             non-null reference to a location path iterator.
 	 */
 	public void addIterator(DTMIterator expr) {
 
@@ -134,10 +133,10 @@ public class UnionPathIterator extends LocPathIterator
 	 * predicate expressions.
 	 *
 	 * @param compiler
-	 *            The Compiler which is creating this expression.
+	 *                 The Compiler which is creating this expression.
 	 * @param opPos
-	 *            The position of this iterator in the opcode list from the
-	 *            compiler.
+	 *                 The position of this iterator in the opcode list from the
+	 *                 compiler.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -156,17 +155,17 @@ public class UnionPathIterator extends LocPathIterator
 	 * given.
 	 *
 	 * @param compiler
-	 *            The Compiler which is creating this expression.
+	 *                 The Compiler which is creating this expression.
 	 * @param opPos
-	 *            The position of this iterator in the opcode list from the
-	 *            compiler.
+	 *                 The position of this iterator in the opcode list from the
+	 *                 compiler.
 	 *
 	 * @return Object that is derived from LocPathIterator.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public static LocPathIterator createUnionIterator(Compiler compiler, int opPos)
-			throws javax.xml.transform.TransformerException {
+	public static LocPathIterator createUnionIterator(Compiler compiler,
+			int opPos) throws javax.xml.transform.TransformerException {
 		// For the moment, I'm going to first create a full UnionPathIterator,
 		// and
 		// then see if I can reduce it to a UnionChildIterator. It would
@@ -232,13 +231,14 @@ public class UnionPathIterator extends LocPathIterator
 	 * Read the object from a serialization stream.
 	 *
 	 * @param stream
-	 *            Input stream to read from
+	 *               Input stream to read from
 	 *
 	 * @throws java.io.IOException
 	 * @throws javax.xml.transform.TransformerException
 	 */
 	private void readObject(java.io.ObjectInputStream stream)
-			throws java.io.IOException, javax.xml.transform.TransformerException {
+			throws java.io.IOException,
+			javax.xml.transform.TransformerException {
 		try {
 			stream.defaultReadObject();
 			m_clones = new IteratorPool(this);
@@ -275,9 +275,9 @@ public class UnionPathIterator extends LocPathIterator
 	 * Create a new location path iterator.
 	 *
 	 * @param compiler
-	 *            The Compiler which is creating this expression.
+	 *                 The Compiler which is creating this expression.
 	 * @param opPos
-	 *            The position of this iterator in the
+	 *                 The position of this iterator in the
 	 *
 	 * @return New location path iterator.
 	 *
@@ -285,8 +285,8 @@ public class UnionPathIterator extends LocPathIterator
 	 */
 	protected LocPathIterator createDTMIterator(Compiler compiler, int opPos)
 			throws javax.xml.transform.TransformerException {
-		LocPathIterator lpi = (LocPathIterator) WalkerFactory.newDTMIterator(compiler, opPos,
-				(compiler.getLocationPathDepth() <= 0));
+		LocPathIterator lpi = (LocPathIterator) WalkerFactory.newDTMIterator(
+				compiler, opPos, (compiler.getLocationPathDepth() <= 0));
 		return lpi;
 	}
 
@@ -294,12 +294,12 @@ public class UnionPathIterator extends LocPathIterator
 	 * Initialize the location path iterators. Recursive.
 	 *
 	 * @param compiler
-	 *            The Compiler which is creating this expression.
+	 *                 The Compiler which is creating this expression.
 	 * @param opPos
-	 *            The position of this iterator in the opcode list from the
-	 *            compiler.
+	 *                 The position of this iterator in the opcode list from the
+	 *                 compiler.
 	 * @param count
-	 *            The insert position of the iterator.
+	 *                 The insert position of the iterator.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -310,7 +310,8 @@ public class UnionPathIterator extends LocPathIterator
 		int steptype = compiler.getOp(opPos);
 
 		if (steptype == OpCodes.OP_LOCATIONPATH) {
-			loadLocationPaths(compiler, compiler.getNextOpPos(opPos), count + 1);
+			loadLocationPaths(compiler, compiler.getNextOpPos(opPos), count
+					+ 1);
 
 			m_exprs[count] = createDTMIterator(compiler, opPos);
 			m_exprs[count].exprSetParent(this);
@@ -319,27 +320,29 @@ public class UnionPathIterator extends LocPathIterator
 			// Have to check for unwrapped functions, which the LocPathIterator
 			// doesn't handle.
 			switch (steptype) {
-			case OpCodes.OP_VARIABLE:
-			case OpCodes.OP_EXTFUNCTION:
-			case OpCodes.OP_FUNCTION:
-			case OpCodes.OP_GROUP:
-				loadLocationPaths(compiler, compiler.getNextOpPos(opPos), count + 1);
+				case OpCodes.OP_VARIABLE:
+				case OpCodes.OP_EXTFUNCTION:
+				case OpCodes.OP_FUNCTION:
+				case OpCodes.OP_GROUP:
+					loadLocationPaths(compiler, compiler.getNextOpPos(opPos),
+							count + 1);
 
-				WalkingIterator iter = new WalkingIterator(compiler.getNamespaceContext());
-				iter.exprSetParent(this);
+					WalkingIterator iter = new WalkingIterator(compiler
+							.getNamespaceContext());
+					iter.exprSetParent(this);
 
-				if (compiler.getLocationPathDepth() <= 0)
-					iter.setIsTopLevel(true);
+					if (compiler.getLocationPathDepth() <= 0)
+						iter.setIsTopLevel(true);
 
-				iter.m_firstWalker = new com.sun.org.apache.xpath.internal.axes.FilterExprWalker(
-						iter);
+					iter.m_firstWalker = new com.sun.org.apache.xpath.internal.axes.FilterExprWalker(
+							iter);
 
-				iter.m_firstWalker.init(compiler, opPos, steptype);
+					iter.m_firstWalker.init(compiler, opPos, steptype);
 
-				m_exprs[count] = iter;
-				break;
-			default:
-				m_exprs = new LocPathIterator[count];
+					m_exprs[count] = iter;
+					break;
+				default:
+					m_exprs = new LocPathIterator[count];
 			}
 		}
 	}
@@ -406,13 +409,13 @@ public class UnionPathIterator extends LocPathIterator
 	 * indexes at stylesheet build time.
 	 * 
 	 * @param vars
-	 *            List of QNames that correspond to variables. This list should
-	 *            be searched backwards for the first qualified name that
-	 *            corresponds to the variable reference qname. The position of
-	 *            the QName in the vector from the start of the vector will be
-	 *            its position in the stack frame (but variables above the
-	 *            globalsTop value will need to be offset to the current stack
-	 *            frame).
+	 *             List of QNames that correspond to variables. This list should
+	 *             be searched backwards for the first qualified name that
+	 *             corresponds to the variable reference qname. The position of
+	 *             the QName in the vector from the start of the vector will be
+	 *             its position in the stack frame (but variables above the
+	 *             globalsTop value will need to be offset to the current stack
+	 *             frame).
 	 */
 	public void fixupVariables(java.util.Vector vars, int globalsSize) {
 		for (int i = 0; i < m_exprs.length; i++) {

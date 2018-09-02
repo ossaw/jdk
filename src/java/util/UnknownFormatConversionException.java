@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -45,7 +25,7 @@ public class UnknownFormatConversionException extends IllegalFormatException {
 	 * Constructs an instance of this class with the unknown conversion.
 	 *
 	 * @param s
-	 *            Unknown conversion
+	 *          Unknown conversion
 	 */
 	public UnknownFormatConversionException(String s) {
 		if (s == null)

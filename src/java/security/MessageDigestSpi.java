@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -80,7 +60,7 @@ public abstract class MessageDigestSpi {
 	 * Updates the digest using the specified byte.
 	 *
 	 * @param input
-	 *            the byte to use for the update.
+	 *              the byte to use for the update.
 	 */
 	protected abstract void engineUpdate(byte input);
 
@@ -89,13 +69,13 @@ public abstract class MessageDigestSpi {
 	 * specified offset.
 	 *
 	 * @param input
-	 *            the array of bytes to use for the update.
+	 *               the array of bytes to use for the update.
 	 *
 	 * @param offset
-	 *            the offset to start from in the array of bytes.
+	 *               the offset to start from in the array of bytes.
 	 *
 	 * @param len
-	 *            the number of bytes to use, starting at {@code offset}.
+	 *               the number of bytes to use, starting at {@code offset}.
 	 */
 	protected abstract void engineUpdate(byte[] input, int offset, int len);
 
@@ -106,7 +86,7 @@ public abstract class MessageDigestSpi {
 	 * equal to its limit; its limit will not have changed.
 	 *
 	 * @param input
-	 *            the ByteBuffer
+	 *              the ByteBuffer
 	 * @since 1.5
 	 */
 	protected void engineUpdate(ByteBuffer input) {
@@ -155,35 +135,38 @@ public abstract class MessageDigestSpi {
 	 * compatibility. Knowledgeable providers should override this method.
 	 *
 	 * @param buf
-	 *            the output buffer in which to store the digest
+	 *               the output buffer in which to store the digest
 	 *
 	 * @param offset
-	 *            offset to start from in the output buffer
+	 *               offset to start from in the output buffer
 	 *
 	 * @param len
-	 *            number of bytes within buf allotted for the digest. Both this
-	 *            default implementation and the SUN provider do not return
-	 *            partial digests. The presence of this parameter is solely for
-	 *            consistency in our API's. If the value of this parameter is
-	 *            less than the actual digest length, the method will throw a
-	 *            DigestException. This parameter is ignored if its value is
-	 *            greater than or equal to the actual digest length.
+	 *               number of bytes within buf allotted for the digest. Both
+	 *               this
+	 *               default implementation and the SUN provider do not return
+	 *               partial digests. The presence of this parameter is solely
+	 *               for
+	 *               consistency in our API's. If the value of this parameter is
+	 *               less than the actual digest length, the method will throw a
+	 *               DigestException. This parameter is ignored if its value is
+	 *               greater than or equal to the actual digest length.
 	 *
 	 * @return the length of the digest stored in the output buffer.
 	 *
 	 * @exception DigestException
-	 *                if an error occurs.
+	 *                            if an error occurs.
 	 *
 	 * @since 1.2
 	 */
-	protected int engineDigest(byte[] buf, int offset, int len) throws DigestException {
+	protected int engineDigest(byte[] buf, int offset, int len)
+			throws DigestException {
 
 		byte[] digest = engineDigest();
 		if (len < digest.length)
 			throw new DigestException("partial digests not returned");
 		if (buf.length - offset < digest.length)
-			throw new DigestException(
-					"insufficient space in the output " + "buffer to store the digest");
+			throw new DigestException("insufficient space in the output "
+					+ "buffer to store the digest");
 		System.arraycopy(digest, 0, buf, offset, digest.length);
 		return digest.length;
 	}
@@ -199,8 +182,9 @@ public abstract class MessageDigestSpi {
 	 * @return a clone if the implementation is cloneable.
 	 *
 	 * @exception CloneNotSupportedException
-	 *                if this is called on an implementation that does not
-	 *                support {@code Cloneable}.
+	 *                                       if this is called on an
+	 *                                       implementation that does not
+	 *                                       support {@code Cloneable}.
 	 */
 	public Object clone() throws CloneNotSupportedException {
 		if (this instanceof Cloneable) {

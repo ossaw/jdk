@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA.ORBPackage;
@@ -44,7 +24,7 @@ public final class InconsistentTypeCode extends org.omg.CORBA.UserException {
 	 * specified reason message.
 	 * 
 	 * @param reason
-	 *            The String containing a reason message
+	 *               The String containing a reason message
 	 */
 	public InconsistentTypeCode(String reason) {
 		super(reason);

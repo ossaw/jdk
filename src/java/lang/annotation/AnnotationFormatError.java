@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.annotation;
@@ -43,7 +23,7 @@ public class AnnotationFormatError extends Error {
 	 * message.
 	 *
 	 * @param message
-	 *            the detail message.
+	 *                the detail message.
 	 */
 	public AnnotationFormatError(String message) {
 		super(message);
@@ -56,10 +36,11 @@ public class AnnotationFormatError extends Error {
 	 * error's detail message.
 	 *
 	 * @param message
-	 *            the detail message
+	 *                the detail message
 	 * @param cause
-	 *            the cause (A <tt>null</tt> value is permitted, and indicates
-	 *            that the cause is nonexistent or unknown.)
+	 *                the cause (A <tt>null</tt> value is permitted, and
+	 *                indicates
+	 *                that the cause is nonexistent or unknown.)
 	 */
 	public AnnotationFormatError(String message, Throwable cause) {
 		super(message, cause);
@@ -72,8 +53,8 @@ public class AnnotationFormatError extends Error {
 	 * contains the class and detail message of <tt>cause</tt>).
 	 *
 	 * @param cause
-	 *            the cause (A <tt>null</tt> value is permitted, and indicates
-	 *            that the cause is nonexistent or unknown.)
+	 *              the cause (A <tt>null</tt> value is permitted, and indicates
+	 *              that the cause is nonexistent or unknown.)
 	 */
 	public AnnotationFormatError(Throwable cause) {
 		super(cause);

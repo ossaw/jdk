@@ -91,20 +91,24 @@ public class ResolverFragment extends ResourceResolverSpi {
 			selectedElem = doc.getElementById(id);
 			if (selectedElem == null) {
 				Object exArgs[] = { id };
-				throw new ResourceResolverException("signature.Verification.MissingID", exArgs,
+				throw new ResourceResolverException(
+						"signature.Verification.MissingID", exArgs,
 						context.attr, context.baseUri);
 			}
 			if (context.secureValidation) {
-				Element start = context.attr.getOwnerDocument().getDocumentElement();
+				Element start = context.attr.getOwnerDocument()
+						.getDocumentElement();
 				if (!XMLUtils.protectAgainstWrappingAttack(start, id)) {
 					Object exArgs[] = { id };
-					throw new ResourceResolverException("signature.Verification.MultipleIDs",
-							exArgs, context.attr, context.baseUri);
+					throw new ResourceResolverException(
+							"signature.Verification.MultipleIDs", exArgs,
+							context.attr, context.baseUri);
 				}
 			}
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE, "Try to catch an Element with ID " + id
-						+ " and Element was " + selectedElem);
+				log.log(java.util.logging.Level.FINE,
+						"Try to catch an Element with ID " + id
+								+ " and Element was " + selectedElem);
 			}
 		}
 
@@ -130,22 +134,25 @@ public class ResolverFragment extends ResourceResolverSpi {
 	public boolean engineCanResolveURI(ResourceResolverContext context) {
 		if (context.uriToResolve == null) {
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
-				log.log(java.util.logging.Level.FINE, "Quick fail for null uri");
+				log.log(java.util.logging.Level.FINE,
+						"Quick fail for null uri");
 			}
 			return false;
 		}
 
-		if (context.uriToResolve.equals("") || ((context.uriToResolve.charAt(0) == '#')
-				&& !context.uriToResolve.startsWith("#xpointer("))) {
+		if (context.uriToResolve.equals("") || ((context.uriToResolve.charAt(
+				0) == '#') && !context.uriToResolve.startsWith("#xpointer("))) {
 			if (log.isLoggable(java.util.logging.Level.FINE)) {
 				log.log(java.util.logging.Level.FINE,
-						"State I can resolve reference: \"" + context.uriToResolve + "\"");
+						"State I can resolve reference: \""
+								+ context.uriToResolve + "\"");
 			}
 			return true;
 		}
 		if (log.isLoggable(java.util.logging.Level.FINE)) {
-			log.log(java.util.logging.Level.FINE, "Do not seem to be able to resolve reference: \""
-					+ context.uriToResolve + "\"");
+			log.log(java.util.logging.Level.FINE,
+					"Do not seem to be able to resolve reference: \""
+							+ context.uriToResolve + "\"");
 		}
 		return false;
 	}

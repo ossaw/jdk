@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.html;
 
@@ -69,8 +49,7 @@ class CommentView extends HiddenTagView {
 		return ta;
 	}
 
-	void resetBorder() {
-	}
+	void resetBorder() {}
 
 	/**
 	 * This is subclassed to put the text on the Comment attribute of the
@@ -117,8 +96,10 @@ class CommentView extends HiddenTagView {
 			super(Color.black, 1);
 		}
 
-		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-			super.paintBorder(c, g, x + commentPadding, y, width - commentPaddingD, height);
+		public void paintBorder(Component c, Graphics g, int x, int y,
+				int width, int height) {
+			super.paintBorder(c, g, x + commentPadding, y, width
+					- commentPaddingD, height);
 		}
 
 		public Insets getBorderInsets(Component c, Insets insets) {

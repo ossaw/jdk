@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -59,10 +39,11 @@ public interface PropertyEditor {
 	 * "java.lang.Integer".
 	 *
 	 * @param value
-	 *            The new target object to be edited. Note that this object
-	 *            should not be modified by the PropertyEditor, rather the
-	 *            PropertyEditor should create a new object to hold any modified
-	 *            value.
+	 *              The new target object to be edited. Note that this object
+	 *              should not be modified by the PropertyEditor, rather the
+	 *              PropertyEditor should create a new object to hold any
+	 *              modified
+	 *              value.
 	 */
 	void setValue(Object value);
 
@@ -160,7 +141,7 @@ public interface PropertyEditor {
 	 * formatted or if this kind of property can't be expressed as text.
 	 * 
 	 * @param text
-	 *            The string to be parsed.
+	 *             The string to be parsed.
 	 */
 	void setAsText(String text) throws java.lang.IllegalArgumentException;
 
@@ -213,7 +194,7 @@ public interface PropertyEditor {
 	 * the property name and itself as the source.
 	 *
 	 * @param listener
-	 *            the {@link PropertyChangeListener} to add
+	 *                 the {@link PropertyChangeListener} to add
 	 */
 	void addPropertyChangeListener(PropertyChangeListener listener);
 
@@ -221,7 +202,7 @@ public interface PropertyEditor {
 	 * Removes a listener for the value change.
 	 *
 	 * @param listener
-	 *            the {@link PropertyChangeListener} to remove
+	 *                 the {@link PropertyChangeListener} to remove
 	 */
 	void removePropertyChangeListener(PropertyChangeListener listener);
 

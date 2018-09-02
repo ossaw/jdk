@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,15 +45,17 @@ public abstract class Function extends Expression {
 	 * XPath compiler.
 	 *
 	 * @param arg
-	 *            non-null expression that represents the argument.
+	 *               non-null expression that represents the argument.
 	 * @param argNum
-	 *            The argument number index.
+	 *               The argument number index.
 	 *
 	 * @throws WrongNumberArgsException
-	 *             If the argNum parameter is beyond what is specified for this
-	 *             function.
+	 *                                  If the argNum parameter is beyond what
+	 *                                  is specified for this
+	 *                                  function.
 	 */
-	public void setArg(Expression arg, int argNum) throws WrongNumberArgsException {
+	public void setArg(Expression arg, int argNum)
+			throws WrongNumberArgsException {
 		// throw new
 		// WrongNumberArgsException(XSLMessages.createXPATHMessage("zero",
 		// null));
@@ -70,7 +69,8 @@ public abstract class Function extends Expression {
 	 * called by the compiler for static number of arguments checking.
 	 *
 	 * @param argNum
-	 *            The number of arguments that is being passed to the function.
+	 *               The number of arguments that is being passed to the
+	 *               function.
 	 *
 	 * @throws WrongNumberArgsException
 	 */
@@ -87,7 +87,8 @@ public abstract class Function extends Expression {
 	 * @throws WrongNumberArgsException
 	 */
 	protected void reportWrongNumberArgs() throws WrongNumberArgsException {
-		throw new WrongNumberArgsException(XSLMessages.createXPATHMessage("zero", null));
+		throw new WrongNumberArgsException(XSLMessages.createXPATHMessage(
+				"zero", null));
 	}
 
 	/**
@@ -95,12 +96,13 @@ public abstract class Function extends Expression {
 	 * object.
 	 * 
 	 * @param xctxt
-	 *            The execution current context.
+	 *              The execution current context.
 	 * @return A valid XObject.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 
 		// Programmer's assert. (And, no, I don't want the method to be
 		// abstract).
@@ -112,8 +114,7 @@ public abstract class Function extends Expression {
 	/**
 	 * Call the visitors for the function arguments.
 	 */
-	public void callArgVisitors(XPathVisitor visitor) {
-	}
+	public void callArgVisitors(XPathVisitor visitor) {}
 
 	/**
 	 * @see com.sun.org.apache.xpath.internal.XPathVisitable#callVisitors(ExpressionOwner,

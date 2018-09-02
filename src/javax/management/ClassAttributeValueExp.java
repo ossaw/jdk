@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -98,17 +78,18 @@ class ClassAttributeValueExp extends AttributeValueExp {
 	 * Java implementation class of the MBean.
 	 *
 	 * @param name
-	 *            The name of the MBean on which the ClassAttributeValueExp will
-	 *            be applied.
+	 *             The name of the MBean on which the ClassAttributeValueExp
+	 *             will
+	 *             be applied.
 	 *
 	 * @return The ValueExp.
 	 *
 	 * @exception BadAttributeValueExpException
 	 * @exception InvalidApplicationException
 	 */
-	public ValueExp apply(ObjectName name)
-			throws BadStringOperationException, BadBinaryOpValueExpException,
-			BadAttributeValueExpException, InvalidApplicationException {
+	public ValueExp apply(ObjectName name) throws BadStringOperationException,
+			BadBinaryOpValueExpException, BadAttributeValueExpException,
+			InvalidApplicationException {
 		// getAttribute(name);
 		Object result = getValue(name);
 		if (result instanceof String) {
@@ -137,9 +118,7 @@ class ClassAttributeValueExp extends AttributeValueExp {
 			 * be evaluating the query on it. But it could potentially have
 			 * disappeared in between the time we discovered it and the time the
 			 * query is evaluated.
-			 * 
 			 * Also, the exception could be a SecurityException.
-			 * 
 			 * Returning null from here will cause
 			 * BadAttributeValueExpException, which will in turn cause this
 			 * MBean to be omitted from the query result.

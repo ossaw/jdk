@@ -75,7 +75,8 @@ public class Base64DecodingException extends XMLSecurityException {
 	 * @param exArgs
 	 * @param originalException
 	 */
-	public Base64DecodingException(String msgID, Object exArgs[], Exception originalException) {
+	public Base64DecodingException(String msgID, Object exArgs[],
+			Exception originalException) {
 		super(msgID, exArgs, originalException);
 	}
 

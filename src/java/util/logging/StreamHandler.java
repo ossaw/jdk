@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.logging;
@@ -82,7 +62,8 @@ public class StreamHandler extends Handler {
 
 		setLevel(manager.getLevelProperty(cname + ".level", Level.INFO));
 		setFilter(manager.getFilterProperty(cname + ".filter", null));
-		setFormatter(manager.getFormatterProperty(cname + ".formatter", new SimpleFormatter()));
+		setFormatter(manager.getFormatterProperty(cname + ".formatter",
+				new SimpleFormatter()));
 		try {
 			setEncoding(manager.getStringProperty(cname + ".encoding", null));
 		} catch (Exception ex) {
@@ -110,9 +91,9 @@ public class StreamHandler extends Handler {
 	 * <p>
 	 * 
 	 * @param out
-	 *            the target output stream
+	 *                  the target output stream
 	 * @param formatter
-	 *            Formatter to be used to format output
+	 *                  Formatter to be used to format output
 	 */
 	public StreamHandler(OutputStream out, Formatter formatter) {
 		sealed = false;
@@ -132,10 +113,12 @@ public class StreamHandler extends Handler {
 	 * @param out
 	 *            New output stream. May not be null.
 	 * @exception SecurityException
-	 *                if a security manager exists and if the caller does not
-	 *                have <tt>LoggingPermission("control")</tt>.
+	 *                              if a security manager exists and if the
+	 *                              caller does not
+	 *                              have <tt>LoggingPermission("control")</tt>.
 	 */
-	protected synchronized void setOutputStream(OutputStream out) throws SecurityException {
+	protected synchronized void setOutputStream(OutputStream out)
+			throws SecurityException {
 		if (out == null) {
 			throw new NullPointerException();
 		}
@@ -163,13 +146,17 @@ public class StreamHandler extends Handler {
 	 * the <tt>Handler</tt>.
 	 *
 	 * @param encoding
-	 *            The name of a supported character encoding. May be null, to
-	 *            indicate the default platform encoding.
+	 *                 The name of a supported character encoding. May be null,
+	 *                 to
+	 *                 indicate the default platform encoding.
 	 * @exception SecurityException
-	 *                if a security manager exists and if the caller does not
-	 *                have <tt>LoggingPermission("control")</tt>.
+	 *                                         if a security manager exists and
+	 *                                         if the caller does not
+	 *                                         have
+	 *                                         <tt>LoggingPermission("control")</tt>.
 	 * @exception UnsupportedEncodingException
-	 *                if the named encoding is not supported.
+	 *                                         if the named encoding is not
+	 *                                         supported.
 	 */
 	@Override
 	public synchronized void setEncoding(String encoding)
@@ -202,8 +189,8 @@ public class StreamHandler extends Handler {
 	 * to the stream before the <tt>LogRecord</tt> is written.
 	 *
 	 * @param record
-	 *            description of the log event. A null record is silently
-	 *            ignored and is not published
+	 *               description of the log event. A null record is silently
+	 *               ignored and is not published
 	 */
 	@Override
 	public synchronized void publish(LogRecord record) {
@@ -243,7 +230,7 @@ public class StreamHandler extends Handler {
 	 * <p>
 	 * 
 	 * @param record
-	 *            a <tt>LogRecord</tt>
+	 *               a <tt>LogRecord</tt>
 	 * @return true if the <tt>LogRecord</tt> would be logged.
 	 *
 	 */
@@ -301,8 +288,9 @@ public class StreamHandler extends Handler {
 	 * string.
 	 *
 	 * @exception SecurityException
-	 *                if a security manager exists and if the caller does not
-	 *                have LoggingPermission("control").
+	 *                              if a security manager exists and if the
+	 *                              caller does not
+	 *                              have LoggingPermission("control").
 	 */
 	@Override
 	public synchronized void close() throws SecurityException {

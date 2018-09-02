@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.reflect;
@@ -59,8 +39,8 @@ import sun.security.util.SecurityConstants;
  * or more simply:
  * 
  * <pre>
- * Foo f = (Foo) Proxy.newProxyInstance(Foo.class.getClassLoader(), new Class&lt;?&gt;[] { Foo.class },
- * 		handler);
+ * Foo f = (Foo) Proxy.newProxyInstance(Foo.class.getClassLoader(),
+ * 		new Class&lt;?&gt;[] { Foo.class }, handler);
  * </pre>
  *
  * <p>
@@ -229,7 +209,8 @@ public class Proxy implements java.io.Serializable {
 	private static final long serialVersionUID = -2222568056686623797L;
 
 	/** parameter types of a proxy class constructor */
-	private static final Class<?>[] constructorParams = { InvocationHandler.class };
+	private static final Class<?>[] constructorParams = {
+			InvocationHandler.class };
 
 	/**
 	 * a cache of proxy classes
@@ -247,18 +228,18 @@ public class Proxy implements java.io.Serializable {
 	/**
 	 * Prohibits instantiation.
 	 */
-	private Proxy() {
-	}
+	private Proxy() {}
 
 	/**
 	 * Constructs a new {@code Proxy} instance from a subclass (typically, a
 	 * dynamic proxy class) with the specified value for its invocation handler.
 	 *
 	 * @param h
-	 *            the invocation handler for this proxy instance
+	 *          the invocation handler for this proxy instance
 	 *
 	 * @throws NullPointerException
-	 *             if the given invocation handler, {@code h}, is {@code null}.
+	 *                              if the given invocation handler, {@code h},
+	 *                              is {@code null}.
 	 */
 	protected Proxy(InvocationHandler h) {
 		Objects.requireNonNull(h);
@@ -325,37 +306,50 @@ public class Proxy implements java.io.Serializable {
 	 * a different order will result in two distinct proxy classes.
 	 *
 	 * @param loader
-	 *            the class loader to define the proxy class
+	 *                   the class loader to define the proxy class
 	 * @param interfaces
-	 *            the list of interfaces for the proxy class to implement
+	 *                   the list of interfaces for the proxy class to implement
 	 * @return a proxy class that is defined in the specified class loader and
 	 *         that implements the specified interfaces
 	 * @throws IllegalArgumentException
-	 *             if any of the restrictions on the parameters that may be
-	 *             passed to {@code getProxyClass} are violated
+	 *                                  if any of the restrictions on the
+	 *                                  parameters that may be
+	 *                                  passed to {@code getProxyClass} are
+	 *                                  violated
 	 * @throws SecurityException
-	 *             if a security manager, <em>s</em>, is present and any of the
-	 *             following conditions is met:
-	 *             <ul>
-	 *             <li>the given {@code loader} is {@code null} and the caller's
-	 *             class loader is not {@code null} and the invocation of
-	 *             {@link SecurityManager#checkPermission s.checkPermission}
-	 *             with {@code RuntimePermission("getClassLoader")} permission
-	 *             denies access.</li>
-	 *             <li>for each proxy interface, {@code intf}, the caller's
-	 *             class loader is not the same as or an ancestor of the class
-	 *             loader for {@code intf} and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to {@code intf}.</li>
-	 *             </ul>
+	 *                                  if a security manager, <em>s</em>, is
+	 *                                  present and any of the
+	 *                                  following conditions is met:
+	 *                                  <ul>
+	 *                                  <li>the given {@code loader} is
+	 *                                  {@code null} and the caller's
+	 *                                  class loader is not {@code null} and the
+	 *                                  invocation of
+	 *                                  {@link SecurityManager#checkPermission
+	 *                                  s.checkPermission}
+	 *                                  with
+	 *                                  {@code RuntimePermission("getClassLoader")}
+	 *                                  permission
+	 *                                  denies access.</li>
+	 *                                  <li>for each proxy interface,
+	 *                                  {@code intf}, the caller's
+	 *                                  class loader is not the same as or an
+	 *                                  ancestor of the class
+	 *                                  loader for {@code intf} and invocation
+	 *                                  of
+	 *                                  {@link SecurityManager#checkPackageAccess
+	 *                                  s.checkPackageAccess()} denies access to
+	 *                                  {@code intf}.</li>
+	 *                                  </ul>
 	 * 
 	 * @throws NullPointerException
-	 *             if the {@code interfaces} array argument or any of its
-	 *             elements are {@code null}
+	 *                                  if the {@code interfaces} array argument
+	 *                                  or any of its
+	 *                                  elements are {@code null}
 	 */
 	@CallerSensitive
-	public static Class<?> getProxyClass(ClassLoader loader, Class<?>... interfaces)
-			throws IllegalArgumentException {
+	public static Class<?> getProxyClass(ClassLoader loader,
+			Class<?>... interfaces) throws IllegalArgumentException {
 		final Class<?>[] intfs = interfaces.clone();
 		final SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
@@ -367,16 +361,13 @@ public class Proxy implements java.io.Serializable {
 
 	/*
 	 * Check permissions required to create a Proxy class.
-	 *
 	 * To define a proxy class, it performs the access checks as in
 	 * Class.forName (VM will invoke ClassLoader.checkPackageAccess): 1.
 	 * "getClassLoader" permission check if loader == null 2. checkPackageAccess
 	 * on the interfaces it implements
-	 *
 	 * To get a constructor and new instance of a proxy class, it performs the
 	 * package access check on the interfaces it implements as in
 	 * Class.getConstructor.
-	 *
 	 * If an interface is non-public, the proxy class must be defined by the
 	 * defining loader of the interface. If the caller's class loader is not the
 	 * same as the defining loader of the interface, the VM will throw
@@ -388,8 +379,10 @@ public class Proxy implements java.io.Serializable {
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
 			ClassLoader ccl = caller.getClassLoader();
-			if (VM.isSystemDomainLoader(loader) && !VM.isSystemDomainLoader(ccl)) {
-				sm.checkPermission(SecurityConstants.GET_CLASSLOADER_PERMISSION);
+			if (VM.isSystemDomainLoader(loader) && !VM.isSystemDomainLoader(
+					ccl)) {
+				sm.checkPermission(
+						SecurityConstants.GET_CLASSLOADER_PERMISSION);
 			}
 			ReflectUtil.checkProxyPackageAccess(ccl, interfaces);
 		}
@@ -399,7 +392,8 @@ public class Proxy implements java.io.Serializable {
 	 * Generate a proxy class. Must call the checkProxyAccess method to perform
 	 * permission checks before calling this.
 	 */
-	private static Class<?> getProxyClass0(ClassLoader loader, Class<?>... interfaces) {
+	private static Class<?> getProxyClass0(ClassLoader loader,
+			Class<?>... interfaces) {
 		if (interfaces.length > 65535) {
 			throw new IllegalArgumentException("interface limit exceeded");
 		}
@@ -467,7 +461,8 @@ public class Proxy implements java.io.Serializable {
 			Class<?> intf1, intf2;
 			return this == obj || obj != null && obj.getClass() == Key2.class
 					&& (intf1 = get()) != null && intf1 == ((Key2) obj).get()
-					&& (intf2 = ref2.get()) != null && intf2 == ((Key2) obj).ref2.get();
+					&& (intf2 = ref2.get()) != null
+					&& intf2 == ((Key2) obj).ref2.get();
 		}
 	}
 
@@ -518,18 +513,19 @@ public class Proxy implements java.io.Serializable {
 	 * A function that maps an array of interfaces to an optimal key where Class
 	 * objects representing interfaces are weakly referenced.
 	 */
-	private static final class KeyFactory implements BiFunction<ClassLoader, Class<?>[], Object> {
+	private static final class KeyFactory implements
+			BiFunction<ClassLoader, Class<?>[], Object> {
 		@Override
 		public Object apply(ClassLoader classLoader, Class<?>[] interfaces) {
 			switch (interfaces.length) {
-			case 1:
-				return new Key1(interfaces[0]); // the most frequent
-			case 2:
-				return new Key2(interfaces[0], interfaces[1]);
-			case 0:
-				return key0;
-			default:
-				return new KeyX(interfaces);
+				case 1:
+					return new Key1(interfaces[0]); // the most frequent
+				case 2:
+					return new Key2(interfaces[0], interfaces[1]);
+				case 0:
+					return key0;
+				default:
+					return new KeyX(interfaces);
 			}
 		}
 	}
@@ -538,8 +534,8 @@ public class Proxy implements java.io.Serializable {
 	 * A factory function that generates, defines and returns the proxy class
 	 * given the ClassLoader and array of interfaces.
 	 */
-	private static final class ProxyClassFactory
-			implements BiFunction<ClassLoader, Class<?>[], Class<?>> {
+	private static final class ProxyClassFactory implements
+			BiFunction<ClassLoader, Class<?>[], Class<?>> {
 		// prefix for all proxy class names
 		private static final String proxyClassNamePrefix = "$Proxy";
 
@@ -549,7 +545,8 @@ public class Proxy implements java.io.Serializable {
 		@Override
 		public Class<?> apply(ClassLoader loader, Class<?>[] interfaces) {
 
-			Map<Class<?>, Boolean> interfaceSet = new IdentityHashMap<>(interfaces.length);
+			Map<Class<?>, Boolean> interfaceSet = new IdentityHashMap<>(
+					interfaces.length);
 			for (Class<?> intf : interfaces) {
 				/*
 				 * Verify that the class loader resolves the name of this
@@ -557,26 +554,28 @@ public class Proxy implements java.io.Serializable {
 				 */
 				Class<?> interfaceClass = null;
 				try {
-					interfaceClass = Class.forName(intf.getName(), false, loader);
+					interfaceClass = Class.forName(intf.getName(), false,
+							loader);
 				} catch (ClassNotFoundException e) {
 				}
 				if (interfaceClass != intf) {
-					throw new IllegalArgumentException(intf + " is not visible from class loader");
+					throw new IllegalArgumentException(intf
+							+ " is not visible from class loader");
 				}
 				/*
 				 * Verify that the Class object actually represents an
 				 * interface.
 				 */
 				if (!interfaceClass.isInterface()) {
-					throw new IllegalArgumentException(
-							interfaceClass.getName() + " is not an interface");
+					throw new IllegalArgumentException(interfaceClass.getName()
+							+ " is not an interface");
 				}
 				/*
 				 * Verify that this interface is not a duplicate.
 				 */
 				if (interfaceSet.put(interfaceClass, Boolean.TRUE) != null) {
-					throw new IllegalArgumentException(
-							"repeated interface: " + interfaceClass.getName());
+					throw new IllegalArgumentException("repeated interface: "
+							+ interfaceClass.getName());
 				}
 			}
 
@@ -618,10 +617,11 @@ public class Proxy implements java.io.Serializable {
 			/*
 			 * Generate the specified proxy class.
 			 */
-			byte[] proxyClassFile = ProxyGenerator.generateProxyClass(proxyName, interfaces,
-					accessFlags);
+			byte[] proxyClassFile = ProxyGenerator.generateProxyClass(proxyName,
+					interfaces, accessFlags);
 			try {
-				return defineClass0(loader, proxyName, proxyClassFile, 0, proxyClassFile.length);
+				return defineClass0(loader, proxyName, proxyClassFile, 0,
+						proxyClassFile.length);
 			} catch (ClassFormatError e) {
 				/*
 				 * A ClassFormatError here means that (barring bugs in the proxy
@@ -643,47 +643,68 @@ public class Proxy implements java.io.Serializable {
 	 * for the same reasons that {@code Proxy.getProxyClass} does.
 	 *
 	 * @param loader
-	 *            the class loader to define the proxy class
+	 *                   the class loader to define the proxy class
 	 * @param interfaces
-	 *            the list of interfaces for the proxy class to implement
+	 *                   the list of interfaces for the proxy class to implement
 	 * @param h
-	 *            the invocation handler to dispatch method invocations to
+	 *                   the invocation handler to dispatch method invocations
+	 *                   to
 	 * @return a proxy instance with the specified invocation handler of a proxy
 	 *         class that is defined by the specified class loader and that
 	 *         implements the specified interfaces
 	 * @throws IllegalArgumentException
-	 *             if any of the restrictions on the parameters that may be
-	 *             passed to {@code getProxyClass} are violated
+	 *                                  if any of the restrictions on the
+	 *                                  parameters that may be
+	 *                                  passed to {@code getProxyClass} are
+	 *                                  violated
 	 * @throws SecurityException
-	 *             if a security manager, <em>s</em>, is present and any of the
-	 *             following conditions is met:
-	 *             <ul>
-	 *             <li>the given {@code loader} is {@code null} and the caller's
-	 *             class loader is not {@code null} and the invocation of
-	 *             {@link SecurityManager#checkPermission s.checkPermission}
-	 *             with {@code RuntimePermission("getClassLoader")} permission
-	 *             denies access;</li>
-	 *             <li>for each proxy interface, {@code intf}, the caller's
-	 *             class loader is not the same as or an ancestor of the class
-	 *             loader for {@code intf} and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to {@code intf};</li>
-	 *             <li>any of the given proxy interfaces is non-public and the
-	 *             caller class is not in the same {@linkplain Package runtime
-	 *             package} as the non-public interface and the invocation of
-	 *             {@link SecurityManager#checkPermission s.checkPermission}
-	 *             with {@code ReflectPermission(
-	 *             "newProxyInPackage.{package name}")} permission denies
-	 *             access.</li>
-	 *             </ul>
+	 *                                  if a security manager, <em>s</em>, is
+	 *                                  present and any of the
+	 *                                  following conditions is met:
+	 *                                  <ul>
+	 *                                  <li>the given {@code loader} is
+	 *                                  {@code null} and the caller's
+	 *                                  class loader is not {@code null} and the
+	 *                                  invocation of
+	 *                                  {@link SecurityManager#checkPermission
+	 *                                  s.checkPermission}
+	 *                                  with
+	 *                                  {@code RuntimePermission("getClassLoader")}
+	 *                                  permission
+	 *                                  denies access;</li>
+	 *                                  <li>for each proxy interface,
+	 *                                  {@code intf}, the caller's
+	 *                                  class loader is not the same as or an
+	 *                                  ancestor of the class
+	 *                                  loader for {@code intf} and invocation
+	 *                                  of
+	 *                                  {@link SecurityManager#checkPackageAccess
+	 *                                  s.checkPackageAccess()} denies access to
+	 *                                  {@code intf};</li>
+	 *                                  <li>any of the given proxy interfaces is
+	 *                                  non-public and the
+	 *                                  caller class is not in the same
+	 *                                  {@linkplain Package runtime
+	 *                                  package} as the non-public interface and
+	 *                                  the invocation of
+	 *                                  {@link SecurityManager#checkPermission
+	 *                                  s.checkPermission}
+	 *                                  with {@code ReflectPermission(
+	 *                                  "newProxyInPackage.{package name}")}
+	 *                                  permission denies
+	 *                                  access.</li>
+	 *                                  </ul>
 	 * @throws NullPointerException
-	 *             if the {@code interfaces} array argument or any of its
-	 *             elements are {@code null}, or if the invocation handler,
-	 *             {@code h}, is {@code null}
+	 *                                  if the {@code interfaces} array argument
+	 *                                  or any of its
+	 *                                  elements are {@code null}, or if the
+	 *                                  invocation handler,
+	 *                                  {@code h}, is {@code null}
 	 */
 	@CallerSensitive
-	public static Object newProxyInstance(ClassLoader loader, Class<?>[] interfaces,
-			InvocationHandler h) throws IllegalArgumentException {
+	public static Object newProxyInstance(ClassLoader loader,
+			Class<?>[] interfaces, InvocationHandler h)
+			throws IllegalArgumentException {
 		Objects.requireNonNull(h);
 
 		final Class<?>[] intfs = interfaces.clone();
@@ -730,7 +751,8 @@ public class Proxy implements java.io.Serializable {
 		}
 	}
 
-	private static void checkNewProxyPermission(Class<?> caller, Class<?> proxyClass) {
+	private static void checkNewProxyPermission(Class<?> caller,
+			Class<?> proxyClass) {
 		SecurityManager sm = System.getSecurityManager();
 		if (sm != null) {
 			if (ReflectUtil.isNonPublicProxyClass(proxyClass)) {
@@ -741,13 +763,16 @@ public class Proxy implements java.io.Serializable {
 				// package
 				// of the proxy class
 				int n = proxyClass.getName().lastIndexOf('.');
-				String pkg = (n == -1) ? "" : proxyClass.getName().substring(0, n);
+				String pkg = (n == -1) ? ""
+						: proxyClass.getName().substring(0, n);
 
 				n = caller.getName().lastIndexOf('.');
-				String callerPkg = (n == -1) ? "" : caller.getName().substring(0, n);
+				String callerPkg = (n == -1) ? ""
+						: caller.getName().substring(0, n);
 
 				if (pcl != ccl || !pkg.equals(callerPkg)) {
-					sm.checkPermission(new ReflectPermission("newProxyInPackage." + pkg));
+					sm.checkPermission(new ReflectPermission(
+							"newProxyInPackage." + pkg));
 				}
 			}
 		}
@@ -764,31 +789,36 @@ public class Proxy implements java.io.Serializable {
 	 * the class in question extends {@code Proxy}.
 	 *
 	 * @param cl
-	 *            the class to test
+	 *           the class to test
 	 * @return {@code true} if the class is a proxy class and {@code false}
 	 *         otherwise
 	 * @throws NullPointerException
-	 *             if {@code cl} is {@code null}
+	 *                              if {@code cl} is {@code null}
 	 */
 	public static boolean isProxyClass(Class<?> cl) {
-		return Proxy.class.isAssignableFrom(cl) && proxyClassCache.containsValue(cl);
+		return Proxy.class.isAssignableFrom(cl) && proxyClassCache
+				.containsValue(cl);
 	}
 
 	/**
 	 * Returns the invocation handler for the specified proxy instance.
 	 *
 	 * @param proxy
-	 *            the proxy instance to return the invocation handler for
+	 *              the proxy instance to return the invocation handler for
 	 * @return the invocation handler for the proxy instance
 	 * @throws IllegalArgumentException
-	 *             if the argument is not a proxy instance
+	 *                                  if the argument is not a proxy instance
 	 * @throws SecurityException
-	 *             if a security manager, <em>s</em>, is present and the
-	 *             caller's class loader is not the same as or an ancestor of
-	 *             the class loader for the invocation handler and invocation of
-	 *             {@link SecurityManager#checkPackageAccess
-	 *             s.checkPackageAccess()} denies access to the invocation
-	 *             handler's class.
+	 *                                  if a security manager, <em>s</em>, is
+	 *                                  present and the
+	 *                                  caller's class loader is not the same as
+	 *                                  or an ancestor of
+	 *                                  the class loader for the invocation
+	 *                                  handler and invocation of
+	 *                                  {@link SecurityManager#checkPackageAccess
+	 *                                  s.checkPackageAccess()} denies access to
+	 *                                  the invocation
+	 *                                  handler's class.
 	 */
 	@CallerSensitive
 	public static InvocationHandler getInvocationHandler(Object proxy)
@@ -814,6 +844,6 @@ public class Proxy implements java.io.Serializable {
 		return ih;
 	}
 
-	private static native Class<?> defineClass0(ClassLoader loader, String name, byte[] b, int off,
-			int len);
+	private static native Class<?> defineClass0(ClassLoader loader, String name,
+			byte[] b, int off, int len);
 }

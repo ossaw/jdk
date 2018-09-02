@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -57,7 +37,7 @@ public interface Style extends MutableAttributeSet {
 	 * Adds a listener to track whenever an attribute has been changed.
 	 *
 	 * @param l
-	 *            the change listener
+	 *          the change listener
 	 */
 	public void addChangeListener(ChangeListener l);
 
@@ -65,7 +45,7 @@ public interface Style extends MutableAttributeSet {
 	 * Removes a listener that was tracking attribute changes.
 	 *
 	 * @param l
-	 *            the change listener
+	 *          the change listener
 	 */
 	public void removeChangeListener(ChangeListener l);
 

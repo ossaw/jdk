@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt;
 
@@ -52,7 +32,8 @@ package java.awt;
  * This image depicts the check box group created by this example:
  * <p>
  * <img src="doc-files/CheckboxGroup-1.gif" alt=
- * "Shows three checkboxes, arranged vertically, labeled one, two, and three. Checkbox one is in the on state."
+ * "Shows three checkboxes, arranged vertically, labeled one, two, and three.
+ * Checkbox one is in the on state."
  * style="float:center; margin: 7px 10px;">
  * <p>
  * 
@@ -78,8 +59,7 @@ public class CheckboxGroup implements java.io.Serializable {
 	/**
 	 * Creates a new instance of <code>CheckboxGroup</code>.
 	 */
-	public CheckboxGroup() {
-	}
+	public CheckboxGroup() {}
 
 	/**
 	 * Gets the current choice from this check box group. The current choice is
@@ -150,7 +130,8 @@ public class CheckboxGroup implements java.io.Serializable {
 	 * @return a string representation of this check box group.
 	 */
 	public String toString() {
-		return getClass().getName() + "[selectedCheckbox=" + selectedCheckbox + "]";
+		return getClass().getName() + "[selectedCheckbox=" + selectedCheckbox
+				+ "]";
 	}
 
 }

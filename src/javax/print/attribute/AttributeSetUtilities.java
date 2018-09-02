@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.attribute;
@@ -67,13 +47,13 @@ public final class AttributeSetUtilities {
 	/*
 	 * Suppress default constructor, ensuring non-instantiability.
 	 */
-	private AttributeSetUtilities() {
-	}
+	private AttributeSetUtilities() {}
 
 	/**
 	 * @serial include
 	 */
-	private static class UnmodifiableAttributeSet implements AttributeSet, Serializable {
+	private static class UnmodifiableAttributeSet implements AttributeSet,
+			Serializable {
 
 		private AttributeSet attrset;
 
@@ -142,8 +122,8 @@ public final class AttributeSetUtilities {
 	/**
 	 * @serial include
 	 */
-	private static class UnmodifiableDocAttributeSet extends UnmodifiableAttributeSet
-			implements DocAttributeSet, Serializable {
+	private static class UnmodifiableDocAttributeSet extends
+			UnmodifiableAttributeSet implements DocAttributeSet, Serializable {
 
 		public UnmodifiableDocAttributeSet(DocAttributeSet attributeSet) {
 
@@ -154,9 +134,11 @@ public final class AttributeSetUtilities {
 	/**
 	 * @serial include
 	 */
-	private static class UnmodifiablePrintRequestAttributeSet extends UnmodifiableAttributeSet
-			implements PrintRequestAttributeSet, Serializable {
-		public UnmodifiablePrintRequestAttributeSet(PrintRequestAttributeSet attributeSet) {
+	private static class UnmodifiablePrintRequestAttributeSet extends
+			UnmodifiableAttributeSet implements PrintRequestAttributeSet,
+			Serializable {
+		public UnmodifiablePrintRequestAttributeSet(
+				PrintRequestAttributeSet attributeSet) {
 
 			super(attributeSet);
 		}
@@ -165,9 +147,11 @@ public final class AttributeSetUtilities {
 	/**
 	 * @serial include
 	 */
-	private static class UnmodifiablePrintJobAttributeSet extends UnmodifiableAttributeSet
-			implements PrintJobAttributeSet, Serializable {
-		public UnmodifiablePrintJobAttributeSet(PrintJobAttributeSet attributeSet) {
+	private static class UnmodifiablePrintJobAttributeSet extends
+			UnmodifiableAttributeSet implements PrintJobAttributeSet,
+			Serializable {
+		public UnmodifiablePrintJobAttributeSet(
+				PrintJobAttributeSet attributeSet) {
 
 			super(attributeSet);
 		}
@@ -176,9 +160,11 @@ public final class AttributeSetUtilities {
 	/**
 	 * @serial include
 	 */
-	private static class UnmodifiablePrintServiceAttributeSet extends UnmodifiableAttributeSet
-			implements PrintServiceAttributeSet, Serializable {
-		public UnmodifiablePrintServiceAttributeSet(PrintServiceAttributeSet attributeSet) {
+	private static class UnmodifiablePrintServiceAttributeSet extends
+			UnmodifiableAttributeSet implements PrintServiceAttributeSet,
+			Serializable {
+		public UnmodifiablePrintServiceAttributeSet(
+				PrintServiceAttributeSet attributeSet) {
 
 			super(attributeSet);
 		}
@@ -188,13 +174,14 @@ public final class AttributeSetUtilities {
 	 * Creates an unmodifiable view of the given attribute set.
 	 *
 	 * @param attributeSet
-	 *            Underlying attribute set.
+	 *                     Underlying attribute set.
 	 *
 	 * @return Unmodifiable view of <CODE>attributeSet</CODE>.
 	 *
 	 * @exception NullPointerException
-	 *                Thrown if <CODE>attributeSet</CODE> is null. Null is never
-	 *                a
+	 *                                 Thrown if <CODE>attributeSet</CODE> is
+	 *                                 null. Null is never
+	 *                                 a
 	 */
 	public static AttributeSet unmodifiableView(AttributeSet attributeSet) {
 		if (attributeSet == null) {
@@ -208,14 +195,16 @@ public final class AttributeSetUtilities {
 	 * Creates an unmodifiable view of the given doc attribute set.
 	 *
 	 * @param attributeSet
-	 *            Underlying doc attribute set.
+	 *                     Underlying doc attribute set.
 	 *
 	 * @return Unmodifiable view of <CODE>attributeSet</CODE>.
 	 *
 	 * @exception NullPointerException
-	 *                Thrown if <CODE>attributeSet</CODE> is null.
+	 *                                 Thrown if <CODE>attributeSet</CODE> is
+	 *                                 null.
 	 */
-	public static DocAttributeSet unmodifiableView(DocAttributeSet attributeSet) {
+	public static DocAttributeSet unmodifiableView(
+			DocAttributeSet attributeSet) {
 		if (attributeSet == null) {
 			throw new NullPointerException();
 		}
@@ -226,14 +215,16 @@ public final class AttributeSetUtilities {
 	 * Creates an unmodifiable view of the given print request attribute set.
 	 *
 	 * @param attributeSet
-	 *            Underlying print request attribute set.
+	 *                     Underlying print request attribute set.
 	 *
 	 * @return Unmodifiable view of <CODE>attributeSet</CODE>.
 	 *
 	 * @exception NullPointerException
-	 *                Thrown if <CODE>attributeSet</CODE> is null.
+	 *                                 Thrown if <CODE>attributeSet</CODE> is
+	 *                                 null.
 	 */
-	public static PrintRequestAttributeSet unmodifiableView(PrintRequestAttributeSet attributeSet) {
+	public static PrintRequestAttributeSet unmodifiableView(
+			PrintRequestAttributeSet attributeSet) {
 		if (attributeSet == null) {
 			throw new NullPointerException();
 		}
@@ -244,14 +235,16 @@ public final class AttributeSetUtilities {
 	 * Creates an unmodifiable view of the given print job attribute set.
 	 *
 	 * @param attributeSet
-	 *            Underlying print job attribute set.
+	 *                     Underlying print job attribute set.
 	 *
 	 * @return Unmodifiable view of <CODE>attributeSet</CODE>.
 	 *
 	 * @exception NullPointerException
-	 *                Thrown if <CODE>attributeSet</CODE> is null.
+	 *                                 Thrown if <CODE>attributeSet</CODE> is
+	 *                                 null.
 	 */
-	public static PrintJobAttributeSet unmodifiableView(PrintJobAttributeSet attributeSet) {
+	public static PrintJobAttributeSet unmodifiableView(
+			PrintJobAttributeSet attributeSet) {
 		if (attributeSet == null) {
 			throw new NullPointerException();
 		}
@@ -262,14 +255,16 @@ public final class AttributeSetUtilities {
 	 * Creates an unmodifiable view of the given print service attribute set.
 	 *
 	 * @param attributeSet
-	 *            Underlying print service attribute set.
+	 *                     Underlying print service attribute set.
 	 *
 	 * @return Unmodifiable view of <CODE>attributeSet</CODE>.
 	 *
 	 * @exception NullPointerException
-	 *                Thrown if <CODE>attributeSet</CODE> is null.
+	 *                                 Thrown if <CODE>attributeSet</CODE> is
+	 *                                 null.
 	 */
-	public static PrintServiceAttributeSet unmodifiableView(PrintServiceAttributeSet attributeSet) {
+	public static PrintServiceAttributeSet unmodifiableView(
+			PrintServiceAttributeSet attributeSet) {
 		if (attributeSet == null) {
 			throw new NullPointerException();
 		}
@@ -279,7 +274,8 @@ public final class AttributeSetUtilities {
 	/**
 	 * @serial include
 	 */
-	private static class SynchronizedAttributeSet implements AttributeSet, Serializable {
+	private static class SynchronizedAttributeSet implements AttributeSet,
+			Serializable {
 
 		private AttributeSet attrset;
 
@@ -343,8 +339,8 @@ public final class AttributeSetUtilities {
 	/**
 	 * @serial include
 	 */
-	private static class SynchronizedDocAttributeSet extends SynchronizedAttributeSet
-			implements DocAttributeSet, Serializable {
+	private static class SynchronizedDocAttributeSet extends
+			SynchronizedAttributeSet implements DocAttributeSet, Serializable {
 
 		public SynchronizedDocAttributeSet(DocAttributeSet attributeSet) {
 			super(attributeSet);
@@ -354,10 +350,12 @@ public final class AttributeSetUtilities {
 	/**
 	 * @serial include
 	 */
-	private static class SynchronizedPrintRequestAttributeSet extends SynchronizedAttributeSet
-			implements PrintRequestAttributeSet, Serializable {
+	private static class SynchronizedPrintRequestAttributeSet extends
+			SynchronizedAttributeSet implements PrintRequestAttributeSet,
+			Serializable {
 
-		public SynchronizedPrintRequestAttributeSet(PrintRequestAttributeSet attributeSet) {
+		public SynchronizedPrintRequestAttributeSet(
+				PrintRequestAttributeSet attributeSet) {
 			super(attributeSet);
 		}
 	}
@@ -365,10 +363,12 @@ public final class AttributeSetUtilities {
 	/**
 	 * @serial include
 	 */
-	private static class SynchronizedPrintJobAttributeSet extends SynchronizedAttributeSet
-			implements PrintJobAttributeSet, Serializable {
+	private static class SynchronizedPrintJobAttributeSet extends
+			SynchronizedAttributeSet implements PrintJobAttributeSet,
+			Serializable {
 
-		public SynchronizedPrintJobAttributeSet(PrintJobAttributeSet attributeSet) {
+		public SynchronizedPrintJobAttributeSet(
+				PrintJobAttributeSet attributeSet) {
 			super(attributeSet);
 		}
 	}
@@ -376,9 +376,11 @@ public final class AttributeSetUtilities {
 	/**
 	 * @serial include
 	 */
-	private static class SynchronizedPrintServiceAttributeSet extends SynchronizedAttributeSet
-			implements PrintServiceAttributeSet, Serializable {
-		public SynchronizedPrintServiceAttributeSet(PrintServiceAttributeSet attributeSet) {
+	private static class SynchronizedPrintServiceAttributeSet extends
+			SynchronizedAttributeSet implements PrintServiceAttributeSet,
+			Serializable {
+		public SynchronizedPrintServiceAttributeSet(
+				PrintServiceAttributeSet attributeSet) {
 			super(attributeSet);
 		}
 	}
@@ -387,12 +389,13 @@ public final class AttributeSetUtilities {
 	 * Creates a synchronized view of the given attribute set.
 	 *
 	 * @param attributeSet
-	 *            Underlying attribute set.
+	 *                     Underlying attribute set.
 	 *
 	 * @return Synchronized view of <CODE>attributeSet</CODE>.
 	 *
 	 * @exception NullPointerException
-	 *                Thrown if <CODE>attributeSet</CODE> is null.
+	 *                                 Thrown if <CODE>attributeSet</CODE> is
+	 *                                 null.
 	 */
 	public static AttributeSet synchronizedView(AttributeSet attributeSet) {
 		if (attributeSet == null) {
@@ -405,14 +408,16 @@ public final class AttributeSetUtilities {
 	 * Creates a synchronized view of the given doc attribute set.
 	 *
 	 * @param attributeSet
-	 *            Underlying doc attribute set.
+	 *                     Underlying doc attribute set.
 	 *
 	 * @return Synchronized view of <CODE>attributeSet</CODE>.
 	 *
 	 * @exception NullPointerException
-	 *                Thrown if <CODE>attributeSet</CODE> is null.
+	 *                                 Thrown if <CODE>attributeSet</CODE> is
+	 *                                 null.
 	 */
-	public static DocAttributeSet synchronizedView(DocAttributeSet attributeSet) {
+	public static DocAttributeSet synchronizedView(
+			DocAttributeSet attributeSet) {
 		if (attributeSet == null) {
 			throw new NullPointerException();
 		}
@@ -423,14 +428,16 @@ public final class AttributeSetUtilities {
 	 * Creates a synchronized view of the given print request attribute set.
 	 *
 	 * @param attributeSet
-	 *            Underlying print request attribute set.
+	 *                     Underlying print request attribute set.
 	 *
 	 * @return Synchronized view of <CODE>attributeSet</CODE>.
 	 *
 	 * @exception NullPointerException
-	 *                Thrown if <CODE>attributeSet</CODE> is null.
+	 *                                 Thrown if <CODE>attributeSet</CODE> is
+	 *                                 null.
 	 */
-	public static PrintRequestAttributeSet synchronizedView(PrintRequestAttributeSet attributeSet) {
+	public static PrintRequestAttributeSet synchronizedView(
+			PrintRequestAttributeSet attributeSet) {
 		if (attributeSet == null) {
 			throw new NullPointerException();
 		}
@@ -441,14 +448,16 @@ public final class AttributeSetUtilities {
 	 * Creates a synchronized view of the given print job attribute set.
 	 *
 	 * @param attributeSet
-	 *            Underlying print job attribute set.
+	 *                     Underlying print job attribute set.
 	 *
 	 * @return Synchronized view of <CODE>attributeSet</CODE>.
 	 *
 	 * @exception NullPointerException
-	 *                Thrown if <CODE>attributeSet</CODE> is null.
+	 *                                 Thrown if <CODE>attributeSet</CODE> is
+	 *                                 null.
 	 */
-	public static PrintJobAttributeSet synchronizedView(PrintJobAttributeSet attributeSet) {
+	public static PrintJobAttributeSet synchronizedView(
+			PrintJobAttributeSet attributeSet) {
 		if (attributeSet == null) {
 			throw new NullPointerException();
 		}
@@ -459,11 +468,12 @@ public final class AttributeSetUtilities {
 	 * Creates a synchronized view of the given print service attribute set.
 	 *
 	 * @param attributeSet
-	 *            Underlying print service attribute set.
+	 *                     Underlying print service attribute set.
 	 *
 	 * @return Synchronized view of <CODE>attributeSet</CODE>.
 	 */
-	public static PrintServiceAttributeSet synchronizedView(PrintServiceAttributeSet attributeSet) {
+	public static PrintServiceAttributeSet synchronizedView(
+			PrintServiceAttributeSet attributeSet) {
 		if (attributeSet == null) {
 			throw new NullPointerException();
 		}
@@ -476,9 +486,9 @@ public final class AttributeSetUtilities {
 	 * {@link Attribute Attribute} or a subinterface thereof.
 	 *
 	 * @param object
-	 *            Object to test.
+	 *                      Object to test.
 	 * @param interfaceName
-	 *            Interface the object must implement.
+	 *                      Interface the object must implement.
 	 *
 	 * @return If <CODE>object</CODE> is a {@link java.lang.Class Class} that
 	 *         implements <CODE>interfaceName</CODE>, <CODE>object</CODE> is
@@ -486,14 +496,18 @@ public final class AttributeSetUtilities {
 	 *         otherwise an exception is thrown.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>object</CODE> is
-	 *                null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>object</CODE> is
+	 *                                 null.
 	 * @exception ClassCastException
-	 *                (unchecked exception) Thrown if <CODE>object</CODE> is not
-	 *                a {@link java.lang.Class Class} that implements
-	 *                <CODE>interfaceName</CODE>.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>object</CODE> is not
+	 *                                 a {@link java.lang.Class Class} that
+	 *                                 implements
+	 *                                 <CODE>interfaceName</CODE>.
 	 */
-	public static Class<?> verifyAttributeCategory(Object object, Class<?> interfaceName) {
+	public static Class<?> verifyAttributeCategory(Object object,
+			Class<?> interfaceName) {
 
 		Class result = (Class) object;
 		if (interfaceName.isAssignableFrom(result)) {
@@ -509,9 +523,9 @@ public final class AttributeSetUtilities {
 	 * thereof.
 	 *
 	 * @param object
-	 *            Object to test.
+	 *                      Object to test.
 	 * @param interfaceName
-	 *            Interface of which the object must be an instance.
+	 *                      Interface of which the object must be an instance.
 	 *
 	 * @return If <CODE>object</CODE> is an instance of
 	 *         <CODE>interfaceName</CODE>, <CODE>object</CODE> is returned
@@ -519,13 +533,17 @@ public final class AttributeSetUtilities {
 	 *         exception is thrown.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>object</CODE> is
-	 *                null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>object</CODE> is
+	 *                                 null.
 	 * @exception ClassCastException
-	 *                (unchecked exception) Thrown if <CODE>object</CODE> is not
-	 *                an instance of <CODE>interfaceName</CODE>.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>object</CODE> is not
+	 *                                 an instance of
+	 *                                 <CODE>interfaceName</CODE>.
 	 */
-	public static Attribute verifyAttributeValue(Object object, Class<?> interfaceName) {
+	public static Attribute verifyAttributeValue(Object object,
+			Class<?> interfaceName) {
 
 		if (object == null) {
 			throw new NullPointerException();
@@ -542,19 +560,24 @@ public final class AttributeSetUtilities {
 	 * nothing. If not, this method throws an exception.
 	 *
 	 * @param category
-	 *            Attribute category to test.
+	 *                  Attribute category to test.
 	 * @param attribute
-	 *            Attribute value to test.
+	 *                  Attribute value to test.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if the <CODE>category</CODE>
-	 *                is null or if the <CODE>attribute</CODE> is null.
+	 *                                     (unchecked exception) Thrown if the
+	 *                                     <CODE>category</CODE>
+	 *                                     is null or if the
+	 *                                     <CODE>attribute</CODE> is null.
 	 * @exception IllegalArgumentException
-	 *                (unchecked exception) Thrown if the <CODE>category</CODE>
-	 *                is not equal to the category of the <CODE>attribute</CODE>
-	 *                .
+	 *                                     (unchecked exception) Thrown if the
+	 *                                     <CODE>category</CODE>
+	 *                                     is not equal to the category of the
+	 *                                     <CODE>attribute</CODE>
+	 *                                     .
 	 */
-	public static void verifyCategoryForValue(Class<?> category, Attribute attribute) {
+	public static void verifyCategoryForValue(Class<?> category,
+			Attribute attribute) {
 
 		if (!category.equals(attribute.getCategory())) {
 			throw new IllegalArgumentException();

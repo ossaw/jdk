@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -82,8 +62,8 @@ import javax.accessibility.*;
  *
  * @author Arnaud Weber
  */
-public class JApplet extends Applet
-		implements Accessible, RootPaneContainer, TransferHandler.HasGetTransferHandler {
+public class JApplet extends Applet implements Accessible, RootPaneContainer,
+		TransferHandler.HasGetTransferHandler {
 	/**
 	 * @see #getRootPane
 	 * @see #setRootPane
@@ -113,7 +93,8 @@ public class JApplet extends Applet
 	 * returned by <code>JComponent.getDefaultLocale</code>.
 	 *
 	 * @exception HeadlessException
-	 *                if GraphicsEnvironment.isHeadless() returns true.
+	 *                              if GraphicsEnvironment.isHeadless() returns
+	 *                              true.
 	 * @see java.awt.GraphicsEnvironment#isHeadless
 	 * @see JComponent#getDefaultLocale
 	 */
@@ -179,7 +160,7 @@ public class JApplet extends Applet
 	 * <em>The Java Tutorial</em>, for more information.
 	 *
 	 * @param newHandler
-	 *            the new {@code TransferHandler}
+	 *                   the new {@code TransferHandler}
 	 *
 	 * @see TransferHandler
 	 * @see #getTransferHandler
@@ -221,7 +202,7 @@ public class JApplet extends Applet
 	 * Sets the menubar for this applet.
 	 * 
 	 * @param menuBar
-	 *            the menubar being placed in the applet
+	 *                the menubar being placed in the applet
 	 *
 	 * @see #getJMenuBar
 	 *
@@ -262,9 +243,9 @@ public class JApplet extends Applet
 	 * forwarded to the <code>contentPane</code>.
 	 *
 	 * @param enabled
-	 *            true if <code>add</code> and <code>setLayout</code> are
-	 *            forwarded, false if they should operate directly on the
-	 *            <code>JApplet</code>.
+	 *                true if <code>add</code> and <code>setLayout</code> are
+	 *                forwarded, false if they should operate directly on the
+	 *                <code>JApplet</code>.
 	 *
 	 * @see #addImpl
 	 * @see #setLayout
@@ -284,17 +265,18 @@ public class JApplet extends Applet
 	 * of the frame, refer to {@link javax.swing.RootPaneContainer} for details.
 	 *
 	 * @param comp
-	 *            the component to be enhanced
+	 *                    the component to be enhanced
 	 * @param constraints
-	 *            the constraints to be respected
+	 *                    the constraints to be respected
 	 * @param index
-	 *            the index
+	 *                    the index
 	 * @exception IllegalArgumentException
-	 *                if <code>index</code> is invalid
+	 *                                     if <code>index</code> is invalid
 	 * @exception IllegalArgumentException
-	 *                if adding the container's parent to itself
+	 *                                     if adding the container's parent to
+	 *                                     itself
 	 * @exception IllegalArgumentException
-	 *                if adding a window to a container
+	 *                                     if adding a window to a container
 	 *
 	 * @see #setRootPaneCheckingEnabled
 	 * @see javax.swing.RootPaneContainer
@@ -314,9 +296,9 @@ public class JApplet extends Applet
 	 * not a child of the <code>JFrame</code> or <code>contentPane</code>.
 	 *
 	 * @param comp
-	 *            the component to be removed
+	 *             the component to be removed
 	 * @throws NullPointerException
-	 *             if <code>comp</code> is null
+	 *                              if <code>comp</code> is null
 	 * @see #add
 	 * @see javax.swing.RootPaneContainer
 	 */
@@ -334,7 +316,7 @@ public class JApplet extends Applet
 	 * {@link javax.swing.RootPaneContainer} for more information.
 	 *
 	 * @param manager
-	 *            the <code>LayoutManager</code>
+	 *                the <code>LayoutManager</code>
 	 * @see #setRootPaneCheckingEnabled
 	 * @see javax.swing.RootPaneContainer
 	 */
@@ -360,7 +342,7 @@ public class JApplet extends Applet
 	 * Sets the rootPane property. This method is called by the constructor.
 	 * 
 	 * @param root
-	 *            the rootPane object for this applet
+	 *             the rootPane object for this applet
 	 *
 	 * @see #getRootPane
 	 *
@@ -396,11 +378,11 @@ public class JApplet extends Applet
 	 * Sets the contentPane property. This method is called by the constructor.
 	 * 
 	 * @param contentPane
-	 *            the contentPane object for this applet
+	 *                    the contentPane object for this applet
 	 *
 	 * @exception java.awt.IllegalComponentStateException
-	 *                (a runtime exception) if the content pane parameter is
-	 *                null
+	 *            (a runtime exception) if the content pane parameter is
+	 *            null
 	 * @see #getContentPane
 	 * @see RootPaneContainer#setContentPane
 	 *
@@ -415,8 +397,8 @@ public class JApplet extends Applet
 	 * Returns the layeredPane object for this applet.
 	 *
 	 * @exception java.awt.IllegalComponentStateException
-	 *                (a runtime exception) if the layered pane parameter is
-	 *                null
+	 *            (a runtime exception) if the layered pane parameter is
+	 *            null
 	 * @see #setLayeredPane
 	 * @see RootPaneContainer#getLayeredPane
 	 */
@@ -428,7 +410,7 @@ public class JApplet extends Applet
 	 * Sets the layeredPane property. This method is called by the constructor.
 	 * 
 	 * @param layeredPane
-	 *            the layeredPane object for this applet
+	 *                    the layeredPane object for this applet
 	 *
 	 * @see #getLayeredPane
 	 * @see RootPaneContainer#setLayeredPane
@@ -454,7 +436,7 @@ public class JApplet extends Applet
 	 * Sets the glassPane property. This method is called by the constructor.
 	 * 
 	 * @param glassPane
-	 *            the glassPane object for this applet
+	 *                  the glassPane object for this applet
 	 *
 	 * @see #getGlassPane
 	 * @see RootPaneContainer#setGlassPane
@@ -482,21 +464,22 @@ public class JApplet extends Applet
 	 * details on how the repaint is handled.
 	 *
 	 * @param time
-	 *            maximum time in milliseconds before update
+	 *               maximum time in milliseconds before update
 	 * @param x
-	 *            the <i>x</i> coordinate
+	 *               the <i>x</i> coordinate
 	 * @param y
-	 *            the <i>y</i> coordinate
+	 *               the <i>y</i> coordinate
 	 * @param width
-	 *            the width
+	 *               the width
 	 * @param height
-	 *            the height
+	 *               the height
 	 * @see RepaintManager
 	 * @since 1.6
 	 */
 	public void repaint(long time, int x, int y, int width, int height) {
 		if (RepaintManager.HANDLE_TOP_LEVEL_PAINT) {
-			RepaintManager.currentManager(this).addDirtyRegion(this, x, y, width, height);
+			RepaintManager.currentManager(this).addDirtyRegion(this, x, y,
+					width, height);
 		} else {
 			super.repaint(time, x, y, width, height);
 		}
@@ -512,10 +495,11 @@ public class JApplet extends Applet
 	 */
 	protected String paramString() {
 		String rootPaneString = (rootPane != null ? rootPane.toString() : "");
-		String rootPaneCheckingEnabledString = (rootPaneCheckingEnabled ? "true" : "false");
+		String rootPaneCheckingEnabledString = (rootPaneCheckingEnabled ? "true"
+				: "false");
 
-		return super.paramString() + ",rootPane=" + rootPaneString + ",rootPaneCheckingEnabled="
-				+ rootPaneCheckingEnabledString;
+		return super.paramString() + ",rootPane=" + rootPaneString
+				+ ",rootPaneCheckingEnabled=" + rootPaneCheckingEnabledString;
 	}
 
 	/////////////////

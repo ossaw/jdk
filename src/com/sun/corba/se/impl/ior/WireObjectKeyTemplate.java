@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior;
@@ -132,9 +112,11 @@ public class WireObjectKeyTemplate implements ObjectKeyTemplate {
 		return ORBVersionFactory.getFOREIGN();
 	}
 
-	public CorbaServerRequestDispatcher getServerRequestDispatcher(ORB orb, ObjectId id) {
+	public CorbaServerRequestDispatcher getServerRequestDispatcher(ORB orb,
+			ObjectId id) {
 		byte[] bid = id.getId();
 		String str = new String(bid);
-		return orb.getRequestDispatcherRegistry().getServerRequestDispatcher(str);
+		return orb.getRequestDispatcherRegistry().getServerRequestDispatcher(
+				str);
 	}
 }

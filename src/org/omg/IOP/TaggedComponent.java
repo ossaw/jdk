@@ -16,8 +16,7 @@ public final class TaggedComponent implements org.omg.CORBA.portable.IDLEntity {
 	/** The component data associated with the component id. */
 	public byte component_data[] = null;
 
-	public TaggedComponent() {
-	} // ctor
+	public TaggedComponent() {} // ctor
 
 	public TaggedComponent(int _tag, byte[] _component_data) {
 		tag = _tag;

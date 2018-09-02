@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote.rmi;
@@ -72,8 +52,9 @@ public interface RMIServer extends Remote {
 	 * @return a string with the format described here.
 	 *
 	 * @exception RemoteException
-	 *                if there is a communication exception during the remote
-	 *                method call.
+	 *                            if there is a communication exception during
+	 *                            the remote
+	 *                            method call.
 	 */
 	public String getVersion() throws RemoteException;
 
@@ -84,20 +65,26 @@ public interface RMIServer extends Remote {
 	 * </p>
 	 *
 	 * @param credentials
-	 *            this object specifies the user-defined credentials to be
-	 *            passed in to the server in order to authenticate the user
-	 *            before creating the <code>RMIConnection</code>. Can be null.
+	 *                    this object specifies the user-defined credentials to
+	 *                    be
+	 *                    passed in to the server in order to authenticate the
+	 *                    user
+	 *                    before creating the <code>RMIConnection</code>. Can be
+	 *                    null.
 	 *
 	 * @return the newly-created connection object.
 	 *
 	 * @exception IOException
-	 *                if the new client object cannot be created or exported, or
-	 *                if there is a communication exception during the remote
-	 *                method call.
+	 *                              if the new client object cannot be created
+	 *                              or exported, or
+	 *                              if there is a communication exception during
+	 *                              the remote
+	 *                              method call.
 	 *
 	 * @exception SecurityException
-	 *                if the given credentials do not allow the server to
-	 *                authenticate the caller successfully.
+	 *                              if the given credentials do not allow the
+	 *                              server to
+	 *                              authenticate the caller successfully.
 	 */
 	public RMIConnection newClient(Object credentials) throws IOException;
 }

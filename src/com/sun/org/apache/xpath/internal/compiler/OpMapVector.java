@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -49,7 +46,7 @@ public class OpMapVector {
 	 * Construct a OpMapVector, using the given block size.
 	 *
 	 * @param blocksize
-	 *            Size of block to allocate
+	 *                  Size of block to allocate
 	 */
 	public OpMapVector(int blocksize, int increaseSize, int lengthPos) {
 
@@ -63,7 +60,7 @@ public class OpMapVector {
 	 * Get the nth element.
 	 *
 	 * @param i
-	 *            index of object to get
+	 *          index of object to get
 	 *
 	 * @return object at given index
 	 */
@@ -79,9 +76,9 @@ public class OpMapVector {
 	 * current size of the vector.
 	 *
 	 * @param value
-	 *            object to set
+	 *              object to set
 	 * @param index
-	 *            Index of where to set the object
+	 *              Index of where to set the object
 	 */
 	public final void setElementAt(int value, int index) {
 		if (index >= m_mapSize) {
@@ -101,7 +98,6 @@ public class OpMapVector {
 
 	/*
 	 * Reset the array to the supplied size. No checking is done.
-	 *
 	 * @param size The size to trim to.
 	 */
 	public final void setToSize(int size) {

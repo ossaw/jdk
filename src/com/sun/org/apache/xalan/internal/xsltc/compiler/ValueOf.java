@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -93,7 +90,8 @@ final class ValueOf extends Instruction {
 	public void translate(ClassGenerator classGen, MethodGenerator methodGen) {
 		final ConstantPoolGen cpg = classGen.getConstantPool();
 		final InstructionList il = methodGen.getInstructionList();
-		final int setEscaping = cpg.addInterfaceMethodref(OUTPUT_HANDLER, "setEscaping", "(Z)Z");
+		final int setEscaping = cpg.addInterfaceMethodref(OUTPUT_HANDLER,
+				"setEscaping", "(Z)Z");
 
 		// Turn off character escaping if so is wanted.
 		if (!_escaping) {
@@ -108,14 +106,16 @@ final class ValueOf extends Instruction {
 		// dom.characters(int node, TransletOutputHandler) method can dispatch
 		// the string value of the node to the output handler more efficiently.
 		if (_isString) {
-			final int characters = cpg.addMethodref(TRANSLET_CLASS, CHARACTERSW, CHARACTERSW_SIG);
+			final int characters = cpg.addMethodref(TRANSLET_CLASS, CHARACTERSW,
+					CHARACTERSW_SIG);
 
 			il.append(classGen.loadTranslet());
 			_select.translate(classGen, methodGen);
 			il.append(methodGen.loadHandler());
 			il.append(new INVOKEVIRTUAL(characters));
 		} else {
-			final int characters = cpg.addInterfaceMethodref(DOM_INTF, CHARACTERS, CHARACTERS_SIG);
+			final int characters = cpg.addInterfaceMethodref(DOM_INTF,
+					CHARACTERS, CHARACTERS_SIG);
 
 			il.append(methodGen.loadDOM());
 			_select.translate(classGen, methodGen);

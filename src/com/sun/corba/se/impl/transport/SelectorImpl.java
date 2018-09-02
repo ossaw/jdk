@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.transport;
@@ -58,7 +38,8 @@ import com.sun.corba.se.impl.orbutil.ORBUtility;
 /**
  * @author Harold Carr
  */
-class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Selector {
+class SelectorImpl extends Thread implements
+		com.sun.corba.se.pept.transport.Selector {
 	private ORB orb;
 	private Selector selector;
 	private long timeout;
@@ -80,7 +61,8 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 		listenerThreads = new HashMap();
 		readerThreads = java.util.Collections.synchronizedMap(new HashMap());
 		closed = false;
-		wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_TRANSPORT);
+		wrapper = ORBUtilSystemException.get(orb,
+				CORBALogDomains.RPC_TRANSPORT);
 	}
 
 	public void setTimeout(long timeout) {
@@ -99,7 +81,8 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 		SelectionKey selectionKey = eventHandler.getSelectionKey();
 		if (selectionKey.isValid()) {
 			int ehOps = eventHandler.getInterestOps();
-			SelectionKeyAndOp keyAndOp = new SelectionKeyAndOp(selectionKey, ehOps);
+			SelectionKeyAndOp keyAndOp = new SelectionKeyAndOp(selectionKey,
+					ehOps);
 			synchronized (interestOpsList) {
 				interestOpsList.add(keyAndOp);
 			}
@@ -117,7 +100,8 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 		} else {
 			wrapper.selectionKeyInvalid(eventHandler.toString());
 			if (orb.transportDebugFlag) {
-				dprint(".registerInterestOps: EventHandler SelectionKey not valid " + eventHandler);
+				dprint(".registerInterestOps: EventHandler SelectionKey not valid "
+						+ eventHandler);
 			}
 		}
 
@@ -150,17 +134,18 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 		}
 
 		switch (eventHandler.getInterestOps()) {
-		case SelectionKey.OP_ACCEPT:
-			createListenerThread(eventHandler);
-			break;
-		case SelectionKey.OP_READ:
-			createReaderThread(eventHandler);
-			break;
-		default:
-			if (orb.transportDebugFlag) {
-				dprint(".registerForEvent: default: " + eventHandler);
-			}
-			throw new RuntimeException("SelectorImpl.registerForEvent: unknown interest ops");
+			case SelectionKey.OP_ACCEPT:
+				createListenerThread(eventHandler);
+				break;
+			case SelectionKey.OP_READ:
+				createReaderThread(eventHandler);
+				break;
+			default:
+				if (orb.transportDebugFlag) {
+					dprint(".registerForEvent: default: " + eventHandler);
+				}
+				throw new RuntimeException(
+						"SelectorImpl.registerForEvent: unknown interest ops");
 		}
 	}
 
@@ -191,17 +176,18 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 		}
 
 		switch (eventHandler.getInterestOps()) {
-		case SelectionKey.OP_ACCEPT:
-			destroyListenerThread(eventHandler);
-			break;
-		case SelectionKey.OP_READ:
-			destroyReaderThread(eventHandler);
-			break;
-		default:
-			if (orb.transportDebugFlag) {
-				dprint(".unregisterForEvent: default: " + eventHandler);
-			}
-			throw new RuntimeException("SelectorImpl.uregisterForEvent: unknown interest ops");
+			case SelectionKey.OP_ACCEPT:
+				destroyListenerThread(eventHandler);
+				break;
+			case SelectionKey.OP_READ:
+				destroyReaderThread(eventHandler);
+				break;
+			default:
+				if (orb.transportDebugFlag) {
+					dprint(".unregisterForEvent: default: " + eventHandler);
+				}
+				throw new RuntimeException(
+						"SelectorImpl.uregisterForEvent: unknown interest ops");
 		}
 	}
 
@@ -297,7 +283,8 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 				while (iterator.hasNext()) {
 					SelectionKey selectionKey = (SelectionKey) iterator.next();
 					iterator.remove();
-					EventHandler eventHandler = (EventHandler) selectionKey.attachment();
+					EventHandler eventHandler = (EventHandler) selectionKey
+							.attachment();
 					try {
 						eventHandler.handleEvent();
 					} catch (Throwable t) {
@@ -341,10 +328,12 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 		synchronized (deferredRegistrations) {
 			int deferredListSize = deferredRegistrations.size();
 			if (orb.transportDebugFlag) {
-				dprint(".clearDeferredRegistrations:deferred list size == " + deferredListSize);
+				dprint(".clearDeferredRegistrations:deferred list size == "
+						+ deferredListSize);
 			}
 			for (int i = 0; i < deferredListSize; i++) {
-				EventHandler eventHandler = (EventHandler) deferredRegistrations.get(i);
+				EventHandler eventHandler = (EventHandler) deferredRegistrations
+						.get(i);
 				if (orb.transportDebugFlag) {
 					dprint(".clearDeferredRegistrations: " + eventHandler);
 				}
@@ -353,7 +342,8 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 
 				try {
 					if (orb.transportDebugFlag) {
-						dprint(".clearDeferredRegistrations:close channel == " + channel);
+						dprint(".clearDeferredRegistrations:close channel == "
+								+ channel);
 						dprint(".clearDeferredRegistrations:close channel class == "
 								+ channel.getClass().getName());
 					}
@@ -389,7 +379,8 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 				dprint(".startSelector: Selector.open: IOException: ", e);
 			}
 			// REVISIT - better handling/reporting
-			RuntimeException rte = new RuntimeException(".startSelector: Selector.open exception");
+			RuntimeException rte = new RuntimeException(
+					".startSelector: Selector.open exception");
 			rte.initCause(e);
 			throw rte;
 		}
@@ -405,15 +396,16 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 		synchronized (deferredRegistrations) {
 			int deferredListSize = deferredRegistrations.size();
 			for (int i = 0; i < deferredListSize; i++) {
-				EventHandler eventHandler = (EventHandler) deferredRegistrations.get(i);
+				EventHandler eventHandler = (EventHandler) deferredRegistrations
+						.get(i);
 				if (orb.transportDebugFlag) {
 					dprint(".handleDeferredRegistrations: " + eventHandler);
 				}
 				SelectableChannel channel = eventHandler.getChannel();
 				SelectionKey selectionKey = null;
 				try {
-					selectionKey = channel.register(selector, eventHandler.getInterestOps(),
-							(Object) eventHandler);
+					selectionKey = channel.register(selector, eventHandler
+							.getInterestOps(), (Object) eventHandler);
 				} catch (ClosedChannelException e) {
 					if (orb.transportDebugFlag) {
 						dprint(".handleDeferredRegistrations: ", e);
@@ -472,12 +464,13 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 			dprint(".createListenerThread: " + eventHandler);
 		}
 		Acceptor acceptor = eventHandler.getAcceptor();
-		ListenerThread listenerThread = new ListenerThreadImpl(orb, acceptor, this);
+		ListenerThread listenerThread = new ListenerThreadImpl(orb, acceptor,
+				this);
 		listenerThreads.put(eventHandler, listenerThread);
 		Throwable throwable = null;
 		try {
-			orb.getThreadPoolManager().getThreadPool(0).getWorkQueue(0)
-					.addWork((Work) listenerThread);
+			orb.getThreadPoolManager().getThreadPool(0).getWorkQueue(0).addWork(
+					(Work) listenerThread);
 		} catch (NoSuchThreadPoolException e) {
 			throwable = e;
 		} catch (NoSuchWorkQueueException e) {
@@ -494,7 +487,8 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 		if (orb.transportDebugFlag) {
 			dprint(".destroyListenerThread: " + eventHandler);
 		}
-		ListenerThread listenerThread = (ListenerThread) listenerThreads.get(eventHandler);
+		ListenerThread listenerThread = (ListenerThread) listenerThreads.get(
+				eventHandler);
 		if (listenerThread == null) {
 			if (orb.transportDebugFlag) {
 				dprint(".destroyListenerThread: cannot find ListenerThread - ignoring.");
@@ -514,8 +508,8 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 		readerThreads.put(eventHandler, readerThread);
 		Throwable throwable = null;
 		try {
-			orb.getThreadPoolManager().getThreadPool(0).getWorkQueue(0)
-					.addWork((Work) readerThread);
+			orb.getThreadPoolManager().getThreadPool(0).getWorkQueue(0).addWork(
+					(Work) readerThread);
 		} catch (NoSuchThreadPoolException e) {
 			throwable = e;
 		} catch (NoSuchWorkQueueException e) {
@@ -532,7 +526,8 @@ class SelectorImpl extends Thread implements com.sun.corba.se.pept.transport.Sel
 		if (orb.transportDebugFlag) {
 			dprint(".destroyReaderThread: " + eventHandler);
 		}
-		ReaderThread readerThread = (ReaderThread) readerThreads.get(eventHandler);
+		ReaderThread readerThread = (ReaderThread) readerThreads.get(
+				eventHandler);
 		if (readerThread == null) {
 			if (orb.transportDebugFlag) {
 				dprint(".destroyReaderThread: cannot find ReaderThread - ignoring.");

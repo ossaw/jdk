@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.soap;
@@ -42,9 +22,9 @@ public class MimeHeader {
 	 * name and value.
 	 *
 	 * @param name
-	 *            a <code>String</code> giving the name of the header
+	 *              a <code>String</code> giving the name of the header
 	 * @param value
-	 *            a <code>String</code> giving the value of the header
+	 *              a <code>String</code> giving the value of the header
 	 */
 	public MimeHeader(String name, String value) {
 		this.name = name;

@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -67,7 +65,8 @@ public class DOM2SAX implements XMLReader, Locator {
 		return _sax;
 	}
 
-	public void setContentHandler(ContentHandler handler) throws NullPointerException {
+	public void setContentHandler(ContentHandler handler)
+			throws NullPointerException {
 		_sax = handler;
 		if (handler instanceof LexicalHandler) {
 			_lex = (LexicalHandler) handler;
@@ -82,7 +81,8 @@ public class DOM2SAX implements XMLReader, Locator {
 	 * Begin the scope of namespace prefix. Forward the event to the SAX handler
 	 * only if the prefix is unknown or it is mapped to a different URI.
 	 */
-	private boolean startPrefixMapping(String prefix, String uri) throws SAXException {
+	private boolean startPrefixMapping(String prefix, String uri)
+			throws SAXException {
 		boolean pushed = true;
 		Stack uriStack = _nsPrefixes.get(prefix);
 
@@ -142,7 +142,8 @@ public class DOM2SAX implements XMLReader, Locator {
 
 	public void parse() throws IOException, SAXException {
 		if (_dom != null) {
-			boolean isIncomplete = (_dom.getNodeType() != org.w3c.dom.Node.DOCUMENT_NODE);
+			boolean isIncomplete = (_dom
+					.getNodeType() != org.w3c.dom.Node.DOCUMENT_NODE);
 
 			if (isIncomplete) {
 				_sax.startDocument();
@@ -164,146 +165,149 @@ public class DOM2SAX implements XMLReader, Locator {
 			return;
 
 		switch (node.getNodeType()) {
-		case Node.ATTRIBUTE_NODE: // handled by ELEMENT_NODE
-		case Node.DOCUMENT_FRAGMENT_NODE:
-		case Node.DOCUMENT_TYPE_NODE:
-		case Node.ENTITY_NODE:
-		case Node.ENTITY_REFERENCE_NODE:
-		case Node.NOTATION_NODE:
-			// These node types are ignored!!!
-			break;
-		case Node.CDATA_SECTION_NODE:
-			final String cdata = node.getNodeValue();
-			if (_lex != null) {
-				_lex.startCDATA();
-				_sax.characters(cdata.toCharArray(), 0, cdata.length());
-				_lex.endCDATA();
-			} else {
-				// in the case where there is no lex handler, we still
-				// want the text of the cdate to make its way through.
-				_sax.characters(cdata.toCharArray(), 0, cdata.length());
-			}
-			break;
-
-		case Node.COMMENT_NODE: // should be handled!!!
-			if (_lex != null) {
-				final String value = node.getNodeValue();
-				_lex.comment(value.toCharArray(), 0, value.length());
-			}
-			break;
-		case Node.DOCUMENT_NODE:
-			_sax.setDocumentLocator(this);
-
-			_sax.startDocument();
-			Node next = node.getFirstChild();
-			while (next != null) {
-				parse(next);
-				next = next.getNextSibling();
-			}
-			_sax.endDocument();
-			break;
-
-		case Node.ELEMENT_NODE:
-			String prefix;
-			Vector pushedPrefixes = new Vector();
-			final AttributesImpl attrs = new AttributesImpl();
-			final NamedNodeMap map = node.getAttributes();
-			final int length = map.getLength();
-
-			// Process all namespace declarations
-			for (int i = 0; i < length; i++) {
-				final Node attr = map.item(i);
-				final String qnameAttr = attr.getNodeName();
-
-				// Ignore everything but NS declarations here
-				if (qnameAttr.startsWith(XMLNS_PREFIX)) {
-					final String uriAttr = attr.getNodeValue();
-					final int colon = qnameAttr.lastIndexOf(':');
-					prefix = (colon > 0) ? qnameAttr.substring(colon + 1) : EMPTYSTRING;
-					if (startPrefixMapping(prefix, uriAttr)) {
-						pushedPrefixes.addElement(prefix);
-					}
+			case Node.ATTRIBUTE_NODE: // handled by ELEMENT_NODE
+			case Node.DOCUMENT_FRAGMENT_NODE:
+			case Node.DOCUMENT_TYPE_NODE:
+			case Node.ENTITY_NODE:
+			case Node.ENTITY_REFERENCE_NODE:
+			case Node.NOTATION_NODE:
+				// These node types are ignored!!!
+				break;
+			case Node.CDATA_SECTION_NODE:
+				final String cdata = node.getNodeValue();
+				if (_lex != null) {
+					_lex.startCDATA();
+					_sax.characters(cdata.toCharArray(), 0, cdata.length());
+					_lex.endCDATA();
+				} else {
+					// in the case where there is no lex handler, we still
+					// want the text of the cdate to make its way through.
+					_sax.characters(cdata.toCharArray(), 0, cdata.length());
 				}
-			}
+				break;
 
-			// Process all other attributes
-			for (int i = 0; i < length; i++) {
-				final Node attr = map.item(i);
-				String qnameAttr = attr.getNodeName();
+			case Node.COMMENT_NODE: // should be handled!!!
+				if (_lex != null) {
+					final String value = node.getNodeValue();
+					_lex.comment(value.toCharArray(), 0, value.length());
+				}
+				break;
+			case Node.DOCUMENT_NODE:
+				_sax.setDocumentLocator(this);
 
-				// Ignore NS declarations here
-				if (!qnameAttr.startsWith(XMLNS_PREFIX)) {
-					final String uriAttr = attr.getNamespaceURI();
-					final String localNameAttr = getLocalName(attr);
+				_sax.startDocument();
+				Node next = node.getFirstChild();
+				while (next != null) {
+					parse(next);
+					next = next.getNextSibling();
+				}
+				_sax.endDocument();
+				break;
 
-					// Uri may be implicitly declared
-					if (uriAttr != null) {
+			case Node.ELEMENT_NODE:
+				String prefix;
+				Vector pushedPrefixes = new Vector();
+				final AttributesImpl attrs = new AttributesImpl();
+				final NamedNodeMap map = node.getAttributes();
+				final int length = map.getLength();
+
+				// Process all namespace declarations
+				for (int i = 0; i < length; i++) {
+					final Node attr = map.item(i);
+					final String qnameAttr = attr.getNodeName();
+
+					// Ignore everything but NS declarations here
+					if (qnameAttr.startsWith(XMLNS_PREFIX)) {
+						final String uriAttr = attr.getNodeValue();
 						final int colon = qnameAttr.lastIndexOf(':');
-						if (colon > 0) {
-							prefix = qnameAttr.substring(0, colon);
-						} else {
-							// If no prefix for this attr, we need to create
-							// one because we cannot use the default ns
-							prefix = BasisLibrary.generatePrefix();
-							qnameAttr = prefix + ':' + qnameAttr;
-						}
+						prefix = (colon > 0) ? qnameAttr.substring(colon + 1)
+								: EMPTYSTRING;
 						if (startPrefixMapping(prefix, uriAttr)) {
 							pushedPrefixes.addElement(prefix);
 						}
 					}
-
-					// Add attribute to list
-					attrs.addAttribute(attr.getNamespaceURI(), getLocalName(attr), qnameAttr,
-							"CDATA", attr.getNodeValue());
 				}
-			}
 
-			// Now process the element itself
-			final String qname = node.getNodeName();
-			final String uri = node.getNamespaceURI();
-			final String localName = getLocalName(node);
+				// Process all other attributes
+				for (int i = 0; i < length; i++) {
+					final Node attr = map.item(i);
+					String qnameAttr = attr.getNodeName();
 
-			// Uri may be implicitly declared
-			if (uri != null) {
-				final int colon = qname.lastIndexOf(':');
-				prefix = (colon > 0) ? qname.substring(0, colon) : EMPTYSTRING;
-				if (startPrefixMapping(prefix, uri)) {
-					pushedPrefixes.addElement(prefix);
+					// Ignore NS declarations here
+					if (!qnameAttr.startsWith(XMLNS_PREFIX)) {
+						final String uriAttr = attr.getNamespaceURI();
+						final String localNameAttr = getLocalName(attr);
+
+						// Uri may be implicitly declared
+						if (uriAttr != null) {
+							final int colon = qnameAttr.lastIndexOf(':');
+							if (colon > 0) {
+								prefix = qnameAttr.substring(0, colon);
+							} else {
+								// If no prefix for this attr, we need to create
+								// one because we cannot use the default ns
+								prefix = BasisLibrary.generatePrefix();
+								qnameAttr = prefix + ':' + qnameAttr;
+							}
+							if (startPrefixMapping(prefix, uriAttr)) {
+								pushedPrefixes.addElement(prefix);
+							}
+						}
+
+						// Add attribute to list
+						attrs.addAttribute(attr.getNamespaceURI(), getLocalName(
+								attr), qnameAttr, "CDATA", attr.getNodeValue());
+					}
 				}
-			}
 
-			// Generate SAX event to start element
-			if (_saxImpl != null) {
-				_saxImpl.startElement(uri, localName, qname, attrs, node);
-			} else {
-				_sax.startElement(uri, localName, qname, attrs);
-			}
+				// Now process the element itself
+				final String qname = node.getNodeName();
+				final String uri = node.getNamespaceURI();
+				final String localName = getLocalName(node);
 
-			// Traverse all child nodes of the element (if any)
-			next = node.getFirstChild();
-			while (next != null) {
-				parse(next);
-				next = next.getNextSibling();
-			}
+				// Uri may be implicitly declared
+				if (uri != null) {
+					final int colon = qname.lastIndexOf(':');
+					prefix = (colon > 0) ? qname.substring(0, colon)
+							: EMPTYSTRING;
+					if (startPrefixMapping(prefix, uri)) {
+						pushedPrefixes.addElement(prefix);
+					}
+				}
 
-			// Generate SAX event to close element
-			_sax.endElement(uri, localName, qname);
+				// Generate SAX event to start element
+				if (_saxImpl != null) {
+					_saxImpl.startElement(uri, localName, qname, attrs, node);
+				} else {
+					_sax.startElement(uri, localName, qname, attrs);
+				}
 
-			// Generate endPrefixMapping() for all pushed prefixes
-			final int nPushedPrefixes = pushedPrefixes.size();
-			for (int i = 0; i < nPushedPrefixes; i++) {
-				endPrefixMapping((String) pushedPrefixes.elementAt(i));
-			}
-			break;
+				// Traverse all child nodes of the element (if any)
+				next = node.getFirstChild();
+				while (next != null) {
+					parse(next);
+					next = next.getNextSibling();
+				}
 
-		case Node.PROCESSING_INSTRUCTION_NODE:
-			_sax.processingInstruction(node.getNodeName(), node.getNodeValue());
-			break;
+				// Generate SAX event to close element
+				_sax.endElement(uri, localName, qname);
 
-		case Node.TEXT_NODE:
-			final String data = node.getNodeValue();
-			_sax.characters(data.toCharArray(), 0, data.length());
-			break;
+				// Generate endPrefixMapping() for all pushed prefixes
+				final int nPushedPrefixes = pushedPrefixes.size();
+				for (int i = 0; i < nPushedPrefixes; i++) {
+					endPrefixMapping((String) pushedPrefixes.elementAt(i));
+				}
+				break;
+
+			case Node.PROCESSING_INSTRUCTION_NODE:
+				_sax.processingInstruction(node.getNodeName(), node
+						.getNodeValue());
+				break;
+
+			case Node.TEXT_NODE:
+				final String data = node.getNodeValue();
+				_sax.characters(data.toCharArray(), 0, data.length());
+				break;
 		}
 	}
 
@@ -324,8 +328,8 @@ public class DOM2SAX implements XMLReader, Locator {
 	/**
 	 * This class is only used internally so this method should never be called.
 	 */
-	public boolean getFeature(String name)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
+	public boolean getFeature(String name) throws SAXNotRecognizedException,
+			SAXNotSupportedException {
 		return false;
 	}
 
@@ -333,8 +337,7 @@ public class DOM2SAX implements XMLReader, Locator {
 	 * This class is only used internally so this method should never be called.
 	 */
 	public void setFeature(String name, boolean value)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
-	}
+			throws SAXNotRecognizedException, SAXNotSupportedException {}
 
 	/**
 	 * This class is only used internally so this method should never be called.
@@ -346,14 +349,13 @@ public class DOM2SAX implements XMLReader, Locator {
 	/**
 	 * This class is only used internally so this method should never be called.
 	 */
-	public void setDTDHandler(DTDHandler handler) throws NullPointerException {
-	}
+	public void setDTDHandler(DTDHandler handler) throws NullPointerException {}
 
 	/**
 	 * This class is only used internally so this method should never be called.
 	 */
-	public void setEntityResolver(EntityResolver resolver) throws NullPointerException {
-	}
+	public void setEntityResolver(EntityResolver resolver)
+			throws NullPointerException {}
 
 	/**
 	 * This class is only used internally so this method should never be called.
@@ -365,21 +367,20 @@ public class DOM2SAX implements XMLReader, Locator {
 	/**
 	 * This class is only used internally so this method should never be called.
 	 */
-	public void setErrorHandler(ErrorHandler handler) throws NullPointerException {
-	}
+	public void setErrorHandler(ErrorHandler handler)
+			throws NullPointerException {}
 
 	/**
 	 * This class is only used internally so this method should never be called.
 	 */
 	public void setProperty(String name, Object value)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
-	}
+			throws SAXNotRecognizedException, SAXNotSupportedException {}
 
 	/**
 	 * This class is only used internally so this method should never be called.
 	 */
-	public Object getProperty(String name)
-			throws SAXNotRecognizedException, SAXNotSupportedException {
+	public Object getProperty(String name) throws SAXNotRecognizedException,
+			SAXNotSupportedException {
 		return null;
 	}
 
@@ -415,42 +416,42 @@ public class DOM2SAX implements XMLReader, Locator {
 	private String getNodeTypeFromCode(short code) {
 		String retval = null;
 		switch (code) {
-		case Node.ATTRIBUTE_NODE:
-			retval = "ATTRIBUTE_NODE";
-			break;
-		case Node.CDATA_SECTION_NODE:
-			retval = "CDATA_SECTION_NODE";
-			break;
-		case Node.COMMENT_NODE:
-			retval = "COMMENT_NODE";
-			break;
-		case Node.DOCUMENT_FRAGMENT_NODE:
-			retval = "DOCUMENT_FRAGMENT_NODE";
-			break;
-		case Node.DOCUMENT_NODE:
-			retval = "DOCUMENT_NODE";
-			break;
-		case Node.DOCUMENT_TYPE_NODE:
-			retval = "DOCUMENT_TYPE_NODE";
-			break;
-		case Node.ELEMENT_NODE:
-			retval = "ELEMENT_NODE";
-			break;
-		case Node.ENTITY_NODE:
-			retval = "ENTITY_NODE";
-			break;
-		case Node.ENTITY_REFERENCE_NODE:
-			retval = "ENTITY_REFERENCE_NODE";
-			break;
-		case Node.NOTATION_NODE:
-			retval = "NOTATION_NODE";
-			break;
-		case Node.PROCESSING_INSTRUCTION_NODE:
-			retval = "PROCESSING_INSTRUCTION_NODE";
-			break;
-		case Node.TEXT_NODE:
-			retval = "TEXT_NODE";
-			break;
+			case Node.ATTRIBUTE_NODE:
+				retval = "ATTRIBUTE_NODE";
+				break;
+			case Node.CDATA_SECTION_NODE:
+				retval = "CDATA_SECTION_NODE";
+				break;
+			case Node.COMMENT_NODE:
+				retval = "COMMENT_NODE";
+				break;
+			case Node.DOCUMENT_FRAGMENT_NODE:
+				retval = "DOCUMENT_FRAGMENT_NODE";
+				break;
+			case Node.DOCUMENT_NODE:
+				retval = "DOCUMENT_NODE";
+				break;
+			case Node.DOCUMENT_TYPE_NODE:
+				retval = "DOCUMENT_TYPE_NODE";
+				break;
+			case Node.ELEMENT_NODE:
+				retval = "ELEMENT_NODE";
+				break;
+			case Node.ENTITY_NODE:
+				retval = "ENTITY_NODE";
+				break;
+			case Node.ENTITY_REFERENCE_NODE:
+				retval = "ENTITY_REFERENCE_NODE";
+				break;
+			case Node.NOTATION_NODE:
+				retval = "NOTATION_NODE";
+				break;
+			case Node.PROCESSING_INSTRUCTION_NODE:
+				retval = "PROCESSING_INSTRUCTION_NODE";
+				break;
+			case Node.TEXT_NODE:
+				retval = "TEXT_NODE";
+				break;
 		}
 		return retval;
 	}

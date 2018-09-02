@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text.html;
 
@@ -73,7 +53,8 @@ class EditableView extends ComponentView {
 		Component c = getComponent();
 		Container host = getContainer();
 
-		if (host instanceof JTextComponent && isVisible != ((JTextComponent) host).isEditable()) {
+		if (host instanceof JTextComponent
+				&& isVisible != ((JTextComponent) host).isEditable()) {
 			isVisible = ((JTextComponent) host).isEditable();
 			preferenceChanged(null, true, true);
 			host.repaint();

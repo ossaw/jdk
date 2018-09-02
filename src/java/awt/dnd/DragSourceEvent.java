@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.dnd;
@@ -96,7 +76,8 @@ public class DragSourceEvent extends EventObject {
 	 *            the <code>DragSourceContext</code>
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>dsc</code> is <code>null</code>.
+	 *                                  if <code>dsc</code> is
+	 *                                  <code>null</code>.
 	 *
 	 * @see #getLocation
 	 */
@@ -120,7 +101,8 @@ public class DragSourceEvent extends EventObject {
 	 *            the vertical coordinate for the cursor location
 	 *
 	 * @throws IllegalArgumentException
-	 *             if <code>dsc</code> is <code>null</code>.
+	 *                                  if <code>dsc</code> is
+	 *                                  <code>null</code>.
 	 *
 	 * @since 1.4
 	 */

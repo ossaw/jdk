@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002, 2003,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,7 +33,8 @@ import com.sun.org.apache.xerces.internal.xni.grammars.XMLSchemaDescription;
  *
  * @version $Id: XSDDescription.java,v 1.6 2010-11-01 04:39:55 joehw Exp $
  */
-public class XSDDescription extends XMLResourceIdentifierImpl implements XMLSchemaDescription {
+public class XSDDescription extends XMLResourceIdentifierImpl implements
+		XMLSchemaDescription {
 	// used to indicate what triggered the call
 	/**
 	 * Indicate that this description was just initialized.
@@ -174,17 +172,22 @@ public class XSDDescription extends XMLResourceIdentifierImpl implements XMLSche
 	}
 
 	public boolean fromInstance() {
-		return fContextType == CONTEXT_ATTRIBUTE || fContextType == CONTEXT_ELEMENT
-				|| fContextType == CONTEXT_INSTANCE || fContextType == CONTEXT_XSITYPE;
+		return fContextType == CONTEXT_ATTRIBUTE
+				|| fContextType == CONTEXT_ELEMENT
+				|| fContextType == CONTEXT_INSTANCE
+				|| fContextType == CONTEXT_XSITYPE;
 	}
 
 	/**
 	 * @return true is the schema is external
 	 */
 	public boolean isExternal() {
-		return fContextType == CONTEXT_INCLUDE || fContextType == CONTEXT_REDEFINE
-				|| fContextType == CONTEXT_IMPORT || fContextType == CONTEXT_ELEMENT
-				|| fContextType == CONTEXT_ATTRIBUTE || fContextType == CONTEXT_XSITYPE;
+		return fContextType == CONTEXT_INCLUDE
+				|| fContextType == CONTEXT_REDEFINE
+				|| fContextType == CONTEXT_IMPORT
+				|| fContextType == CONTEXT_ELEMENT
+				|| fContextType == CONTEXT_ATTRIBUTE
+				|| fContextType == CONTEXT_XSITYPE;
 	}
 
 	/**
@@ -192,7 +195,7 @@ public class XSDDescription extends XMLResourceIdentifierImpl implements XMLSche
 	 * target namespaces.
 	 *
 	 * @param descObj
-	 *            The description of the grammar to be compared with
+	 *                The description of the grammar to be compared with
 	 * @return True if they are equal, else false
 	 */
 	public boolean equals(Object descObj) {

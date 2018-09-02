@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.zip;
@@ -166,9 +146,9 @@ public class Deflater {
 	 * PKZIP.
 	 * 
 	 * @param level
-	 *            the compression level (0-9)
+	 *               the compression level (0-9)
 	 * @param nowrap
-	 *            if true then use GZIP compatible compression
+	 *               if true then use GZIP compatible compression
 	 */
 	public Deflater(int level, boolean nowrap) {
 		this.level = level;
@@ -181,7 +161,7 @@ public class Deflater {
 	 * Compressed data will be generated in ZLIB format.
 	 * 
 	 * @param level
-	 *            the compression level (0-9)
+	 *              the compression level (0-9)
 	 */
 	public Deflater(int level) {
 		this(level, false);
@@ -226,7 +206,7 @@ public class Deflater {
 	 * needsInput() returns true indicating that more input data is required.
 	 * 
 	 * @param b
-	 *            the input data bytes
+	 *          the input data bytes
 	 * @see Deflater#needsInput
 	 */
 	public void setInput(byte[] b) {
@@ -270,7 +250,7 @@ public class Deflater {
 	 * decompression.
 	 * 
 	 * @param b
-	 *            the dictionary data bytes
+	 *          the dictionary data bytes
 	 * @see Inflater#inflate
 	 * @see Inflater#getAdler
 	 */
@@ -288,18 +268,19 @@ public class Deflater {
 	 * after that invocation.
 	 *
 	 * @param strategy
-	 *            the new compression strategy
+	 *                 the new compression strategy
 	 * @exception IllegalArgumentException
-	 *                if the compression strategy is invalid
+	 *                                     if the compression strategy is
+	 *                                     invalid
 	 */
 	public void setStrategy(int strategy) {
 		switch (strategy) {
-		case DEFAULT_STRATEGY:
-		case FILTERED:
-		case HUFFMAN_ONLY:
-			break;
-		default:
-			throw new IllegalArgumentException();
+			case DEFAULT_STRATEGY:
+			case FILTERED:
+			case HUFFMAN_ONLY:
+				break;
+			default:
+				throw new IllegalArgumentException();
 		}
 		synchronized (zsRef) {
 			if (this.strategy != strategy) {
@@ -319,9 +300,9 @@ public class Deflater {
 	 * that invocation.
 	 *
 	 * @param level
-	 *            the new compression level (0-9)
+	 *              the new compression level (0-9)
 	 * @exception IllegalArgumentException
-	 *                if the compression level is invalid
+	 *                                     if the compression level is invalid
 	 */
 	public void setLevel(int level) {
 		if ((level < 0 || level > 9) && level != DEFAULT_COMPRESSION) {
@@ -409,7 +390,7 @@ public class Deflater {
 	 * {@code deflater.deflate(b, 0, b.length, Deflater.NO_FLUSH)}.
 	 *
 	 * @param b
-	 *            the buffer for the compressed data
+	 *          the buffer for the compressed data
 	 * @return the actual number of bytes of compressed data written to the
 	 *         output buffer
 	 */
@@ -453,18 +434,18 @@ public class Deflater {
 	 * and more output space.
 	 *
 	 * @param b
-	 *            the buffer for the compressed data
+	 *              the buffer for the compressed data
 	 * @param off
-	 *            the start offset of the data
+	 *              the start offset of the data
 	 * @param len
-	 *            the maximum number of bytes of compressed data
+	 *              the maximum number of bytes of compressed data
 	 * @param flush
-	 *            the compression flush mode
+	 *              the compression flush mode
 	 * @return the actual number of bytes of compressed data written to the
 	 *         output buffer
 	 *
 	 * @throws IllegalArgumentException
-	 *             if the flush mode is invalid
+	 *                                  if the flush mode is invalid
 	 * @since 1.7
 	 */
 	public int deflate(byte[] b, int off, int len, int flush) {
@@ -476,7 +457,8 @@ public class Deflater {
 		}
 		synchronized (zsRef) {
 			ensureOpen();
-			if (flush == NO_FLUSH || flush == SYNC_FLUSH || flush == FULL_FLUSH) {
+			if (flush == NO_FLUSH || flush == SYNC_FLUSH
+					|| flush == FULL_FLUSH) {
 				int thisLen = this.len;
 				int n = deflateBytes(zsRef.address(), b, off, len, flush);
 				bytesWritten += n;
@@ -605,9 +587,11 @@ public class Deflater {
 
 	private native static long init(int level, int strategy, boolean nowrap);
 
-	private native static void setDictionary(long addr, byte[] b, int off, int len);
+	private native static void setDictionary(long addr, byte[] b, int off,
+			int len);
 
-	private native int deflateBytes(long addr, byte[] b, int off, int len, int flush);
+	private native int deflateBytes(long addr, byte[] b, int off, int len,
+			int flush);
 
 	private native static int getAdler(long addr);
 

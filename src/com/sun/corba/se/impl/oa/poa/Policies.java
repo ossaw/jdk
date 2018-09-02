@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.oa.poa;
@@ -46,7 +26,8 @@ public final class Policies {
 	 */
 	private static final int MIN_POA_POLICY_ID = THREAD_POLICY_ID.value;
 	private static final int MAX_POA_POLICY_ID = REQUEST_PROCESSING_POLICY_ID.value;
-	private static final int POLICY_TABLE_SIZE = MAX_POA_POLICY_ID - MIN_POA_POLICY_ID + 1;
+	private static final int POLICY_TABLE_SIZE = MAX_POA_POLICY_ID
+			- MIN_POA_POLICY_ID + 1;
 
 	int defaultObjectCopierFactoryId;
 
@@ -55,9 +36,11 @@ public final class Policies {
 
 	public static final Policies defaultPolicies = new Policies();
 
-	public static final Policies rootPOAPolicies = new Policies(ThreadPolicyValue._ORB_CTRL_MODEL,
-			LifespanPolicyValue._TRANSIENT, IdUniquenessPolicyValue._UNIQUE_ID,
-			IdAssignmentPolicyValue._SYSTEM_ID, ImplicitActivationPolicyValue._IMPLICIT_ACTIVATION,
+	public static final Policies rootPOAPolicies = new Policies(
+			ThreadPolicyValue._ORB_CTRL_MODEL, LifespanPolicyValue._TRANSIENT,
+			IdUniquenessPolicyValue._UNIQUE_ID,
+			IdAssignmentPolicyValue._SYSTEM_ID,
+			ImplicitActivationPolicyValue._IMPLICIT_ACTIVATION,
 			ServantRetentionPolicyValue._RETAIN,
 			RequestProcessingPolicyValue._USE_ACTIVE_OBJECT_MAP_ONLY);
 
@@ -71,15 +54,18 @@ public final class Policies {
 		poaPolicyValues[id - MIN_POA_POLICY_ID] = value;
 	}
 
-	private Policies(int threadModel, int lifespan, int idUniqueness, int idAssignment,
-			int implicitActivation, int retention, int requestProcessing) {
-		poaPolicyValues = new int[] { threadModel, lifespan, idUniqueness, idAssignment,
-				implicitActivation, retention, requestProcessing };
+	private Policies(int threadModel, int lifespan, int idUniqueness,
+			int idAssignment, int implicitActivation, int retention,
+			int requestProcessing) {
+		poaPolicyValues = new int[] { threadModel, lifespan, idUniqueness,
+				idAssignment, implicitActivation, retention,
+				requestProcessing };
 	}
 
 	private Policies() {
 		this(ThreadPolicyValue._ORB_CTRL_MODEL, LifespanPolicyValue._TRANSIENT,
-				IdUniquenessPolicyValue._UNIQUE_ID, IdAssignmentPolicyValue._SYSTEM_ID,
+				IdUniquenessPolicyValue._UNIQUE_ID,
+				IdAssignmentPolicyValue._SYSTEM_ID,
 				ImplicitActivationPolicyValue._NO_IMPLICIT_ACTIVATION,
 				ServantRetentionPolicyValue._RETAIN,
 				RequestProcessingPolicyValue._USE_ACTIVE_OBJECT_MAP_ONLY);
@@ -139,7 +125,8 @@ public final class Policies {
 	 * Add the first index in policies at which the policy is of type policyId
 	 * to errorSet, if the polictId is in policies (it may not be).
 	 */
-	private void addToErrorSet(Policy[] policies, int policyId, BitSet errorSet) {
+	private void addToErrorSet(Policy[] policies, int policyId,
+			BitSet errorSet) {
 		for (int ctr = 0; ctr < policies.length; ctr++)
 			if (policies[ctr].policy_type() == policyId) {
 				errorSet.set(ctr);
@@ -182,7 +169,8 @@ public final class Policies {
 				// if the value of this POA policy was previously set to a
 				// different value than the current value given in
 				// POAPolicyValue, record an error.
-				if ((prev != null) && (getPOAPolicyValue(prev) != POAPolicyValue))
+				if ((prev != null) && (getPOAPolicyValue(
+						prev) != POAPolicyValue))
 					errorSet.set(i);
 			}
 		}
@@ -191,20 +179,26 @@ public final class Policies {
 
 		// NON_RETAIN requires USE_DEFAULT_SERVANT or USE_SERVANT_MANAGER
 		if (!retainServants() && useActiveMapOnly()) {
-			addToErrorSet(policies, SERVANT_RETENTION_POLICY_ID.value, errorSet);
-			addToErrorSet(policies, REQUEST_PROCESSING_POLICY_ID.value, errorSet);
+			addToErrorSet(policies, SERVANT_RETENTION_POLICY_ID.value,
+					errorSet);
+			addToErrorSet(policies, REQUEST_PROCESSING_POLICY_ID.value,
+					errorSet);
 		}
 
 		// IMPLICIT_ACTIVATION requires SYSTEM_ID and RETAIN
 		if (isImplicitlyActivated()) {
 			if (!retainServants()) {
-				addToErrorSet(policies, IMPLICIT_ACTIVATION_POLICY_ID.value, errorSet);
-				addToErrorSet(policies, SERVANT_RETENTION_POLICY_ID.value, errorSet);
+				addToErrorSet(policies, IMPLICIT_ACTIVATION_POLICY_ID.value,
+						errorSet);
+				addToErrorSet(policies, SERVANT_RETENTION_POLICY_ID.value,
+						errorSet);
 			}
 
 			if (!isSystemAssignedIds()) {
-				addToErrorSet(policies, IMPLICIT_ACTIVATION_POLICY_ID.value, errorSet);
-				addToErrorSet(policies, ID_ASSIGNMENT_POLICY_ID.value, errorSet);
+				addToErrorSet(policies, IMPLICIT_ACTIVATION_POLICY_ID.value,
+						errorSet);
+				addToErrorSet(policies, ID_ASSIGNMENT_POLICY_ID.value,
+						errorSet);
 			}
 		}
 
@@ -219,25 +213,30 @@ public final class Policies {
 
 	/* Thread Policies */
 	public final boolean isOrbControlledThreads() {
-		return getPolicyValue(THREAD_POLICY_ID.value) == ThreadPolicyValue._ORB_CTRL_MODEL;
+		return getPolicyValue(
+				THREAD_POLICY_ID.value) == ThreadPolicyValue._ORB_CTRL_MODEL;
 	}
 
 	public final boolean isSingleThreaded() {
-		return getPolicyValue(THREAD_POLICY_ID.value) == ThreadPolicyValue._SINGLE_THREAD_MODEL;
+		return getPolicyValue(
+				THREAD_POLICY_ID.value) == ThreadPolicyValue._SINGLE_THREAD_MODEL;
 	}
 
 	/* Lifespan */
 	public final boolean isTransient() {
-		return getPolicyValue(LIFESPAN_POLICY_ID.value) == LifespanPolicyValue._TRANSIENT;
+		return getPolicyValue(
+				LIFESPAN_POLICY_ID.value) == LifespanPolicyValue._TRANSIENT;
 	}
 
 	public final boolean isPersistent() {
-		return getPolicyValue(LIFESPAN_POLICY_ID.value) == LifespanPolicyValue._PERSISTENT;
+		return getPolicyValue(
+				LIFESPAN_POLICY_ID.value) == LifespanPolicyValue._PERSISTENT;
 	}
 
 	/* ID Uniqueness */
 	public final boolean isUniqueIds() {
-		return getPolicyValue(ID_UNIQUENESS_POLICY_ID.value) == IdUniquenessPolicyValue._UNIQUE_ID;
+		return getPolicyValue(
+				ID_UNIQUENESS_POLICY_ID.value) == IdUniquenessPolicyValue._UNIQUE_ID;
 	}
 
 	public final boolean isMultipleIds() {
@@ -247,11 +246,13 @@ public final class Policies {
 
 	/* ID Assignment */
 	public final boolean isUserAssignedIds() {
-		return getPolicyValue(ID_ASSIGNMENT_POLICY_ID.value) == IdAssignmentPolicyValue._USER_ID;
+		return getPolicyValue(
+				ID_ASSIGNMENT_POLICY_ID.value) == IdAssignmentPolicyValue._USER_ID;
 	}
 
 	public final boolean isSystemAssignedIds() {
-		return getPolicyValue(ID_ASSIGNMENT_POLICY_ID.value) == IdAssignmentPolicyValue._SYSTEM_ID;
+		return getPolicyValue(
+				ID_ASSIGNMENT_POLICY_ID.value) == IdAssignmentPolicyValue._SYSTEM_ID;
 	}
 
 	/* Servant Rentention */

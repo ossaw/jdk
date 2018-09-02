@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: DOM2DTMdefaultNamespaceDeclarationNode.java,v 1.2.4.1 2005/09/15 08:15:11 suresh_emailid Exp $
+ * $Id: DOM2DTMdefaultNamespaceDeclarationNode.java,v 1.2.4.1 2005/09/15
+ * 08:15:11 suresh_emailid Exp $
  */
 
 package com.sun.org.apache.xml.internal.dtm.ref.dom2dtm;
@@ -59,8 +57,8 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 	String prefix, uri, nodename;
 	int handle;
 
-	DOM2DTMdefaultNamespaceDeclarationNode(Element pseudoparent, String prefix, String uri,
-			int handle) {
+	DOM2DTMdefaultNamespaceDeclarationNode(Element pseudoparent, String prefix,
+			String uri, int handle) {
 		this.pseudoparent = pseudoparent;
 		this.prefix = prefix;
 		this.uri = uri;
@@ -217,7 +215,8 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 	/**
 	 * @see or.gw3c.dom.TypeInfo#isDerivedFrom(String,String,int)
 	 */
-	public boolean isDerivedFrom(String ns, String localName, int derivationMethod) {
+	public boolean isDerivedFrom(String ns, String localName,
+			int derivationMethod) {
 		return false;
 	}
 
@@ -235,17 +234,20 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 	 * same key.
 	 * 
 	 * @param key
-	 *            The key to associate the object to.
+	 *                The key to associate the object to.
 	 * @param data
-	 *            The object to associate to the given key, or <code>null</code>
-	 *            to remove any existing association to that key.
+	 *                The object to associate to the given key, or
+	 *                <code>null</code>
+	 *                to remove any existing association to that key.
 	 * @param handler
-	 *            The handler to associate to that key, or <code>null</code>.
+	 *                The handler to associate to that key, or
+	 *                <code>null</code>.
 	 * @return Returns the <code>DOMObject</code> previously associated to the
 	 *         given key on this node, or <code>null</code> if there was none.
 	 * @since DOM Level 3
 	 */
-	public Object setUserData(String key, Object data, UserDataHandler handler) {
+	public Object setUserData(String key, Object data,
+			UserDataHandler handler) {
 		return getOwnerDocument().setUserData(key, data, handler);
 	}
 
@@ -271,12 +273,14 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 	 * necessarily expected to, as discussed in Mixed DOM implementations.
 	 * 
 	 * @param feature
-	 *            The name of the feature requested (case-insensitive).
+	 *                The name of the feature requested (case-insensitive).
 	 * @param version
-	 *            This is the version number of the feature to test. If the
-	 *            version is <code>null</code> or the empty string, supporting
-	 *            any version of the feature will cause the method to return an
-	 *            object that supports at least one version of the feature.
+	 *                This is the version number of the feature to test. If the
+	 *                version is <code>null</code> or the empty string,
+	 *                supporting
+	 *                any version of the feature will cause the method to return
+	 *                an
+	 *                object that supports at least one version of the feature.
 	 * @return Returns an object which implements the specialized APIs of the
 	 *         specified feature and version, if any, or <code>null</code> if
 	 *         there is no object which implements interfaces associated with
@@ -329,11 +333,12 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 	 * nodes.
 	 * 
 	 * @param arg
-	 *            The node to compare equality with.
+	 *             The node to compare equality with.
 	 * @param deep
-	 *            If <code>true</code>, recursively compare the subtrees; if
-	 *            <code>false</code>, compare only the nodes themselves (and its
-	 *            attributes, if it is an <code>Element</code>).
+	 *             If <code>true</code>, recursively compare the subtrees; if
+	 *             <code>false</code>, compare only the nodes themselves (and
+	 *             its
+	 *             attributes, if it is an <code>Element</code>).
 	 * @return If the nodes, and possibly subtrees are equal, <code>true</code>
 	 *         otherwise <code>false</code>.
 	 * @since DOM Level 3
@@ -407,77 +412,82 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 	public String lookupNamespaceURI(String specifiedPrefix) {
 		short type = this.getNodeType();
 		switch (type) {
-		case Node.ELEMENT_NODE: {
+			case Node.ELEMENT_NODE: {
 
-			String namespace = this.getNamespaceURI();
-			String prefix = this.getPrefix();
-			if (namespace != null) {
-				// REVISIT: is it possible that prefix is empty string?
-				if (specifiedPrefix == null && prefix == specifiedPrefix) {
-					// looking for default namespace
-					return namespace;
-				} else if (prefix != null && prefix.equals(specifiedPrefix)) {
-					// non default namespace
-					return namespace;
+				String namespace = this.getNamespaceURI();
+				String prefix = this.getPrefix();
+				if (namespace != null) {
+					// REVISIT: is it possible that prefix is empty string?
+					if (specifiedPrefix == null && prefix == specifiedPrefix) {
+						// looking for default namespace
+						return namespace;
+					} else if (prefix != null && prefix.equals(
+							specifiedPrefix)) {
+						// non default namespace
+						return namespace;
+					}
 				}
-			}
-			if (this.hasAttributes()) {
-				NamedNodeMap map = this.getAttributes();
-				int length = map.getLength();
-				for (int i = 0; i < length; i++) {
-					Node attr = map.item(i);
-					String attrPrefix = attr.getPrefix();
-					String value = attr.getNodeValue();
-					namespace = attr.getNamespaceURI();
-					if (namespace != null && namespace.equals("http://www.w3.org/2000/xmlns/")) {
-						// at this point we are dealing with DOM Level 2 nodes
-						// only
-						if (specifiedPrefix == null && attr.getNodeName().equals("xmlns")) {
-							// default namespace
-							return value;
-						} else if (attrPrefix != null && attrPrefix.equals("xmlns")
-								&& attr.getLocalName().equals(specifiedPrefix)) {
-							// non default namespace
-							return value;
+				if (this.hasAttributes()) {
+					NamedNodeMap map = this.getAttributes();
+					int length = map.getLength();
+					for (int i = 0; i < length; i++) {
+						Node attr = map.item(i);
+						String attrPrefix = attr.getPrefix();
+						String value = attr.getNodeValue();
+						namespace = attr.getNamespaceURI();
+						if (namespace != null && namespace.equals(
+								"http://www.w3.org/2000/xmlns/")) {
+							// at this point we are dealing with DOM Level 2 nodes
+							// only
+							if (specifiedPrefix == null && attr.getNodeName()
+									.equals("xmlns")) {
+								// default namespace
+								return value;
+							} else if (attrPrefix != null && attrPrefix.equals(
+									"xmlns") && attr.getLocalName().equals(
+											specifiedPrefix)) {
+								// non default namespace
+								return value;
+							}
 						}
 					}
 				}
-			}
-			/*
-			 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if
-			 * (ancestor != null) { return
-			 * ancestor.lookupNamespaceURI(specifiedPrefix); }
-			 */
+				/*
+				 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if
+				 * (ancestor != null) { return
+				 * ancestor.lookupNamespaceURI(specifiedPrefix); }
+				 */
 
-			return null;
-
-		}
-		/*
-		 * case Node.DOCUMENT_NODE : {
-		 * return((NodeImpl)((Document)this).getDocumentElement()).
-		 * lookupNamespaceURI(specifiedPrefix) ; }
-		 */
-		case Node.ENTITY_NODE:
-		case Node.NOTATION_NODE:
-		case Node.DOCUMENT_FRAGMENT_NODE:
-		case Node.DOCUMENT_TYPE_NODE:
-			// type is unknown
-			return null;
-		case Node.ATTRIBUTE_NODE: {
-			if (this.getOwnerElement().getNodeType() == Node.ELEMENT_NODE) {
-				return getOwnerElement().lookupNamespaceURI(specifiedPrefix);
+				return null;
 
 			}
-			return null;
-		}
-		default: {
 			/*
-			 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if
-			 * (ancestor != null) { return
-			 * ancestor.lookupNamespaceURI(specifiedPrefix); }
+			 * case Node.DOCUMENT_NODE : {
+			 * return((NodeImpl)((Document)this).getDocumentElement()).
+			 * lookupNamespaceURI(specifiedPrefix) ; }
 			 */
-			return null;
-		}
+			case Node.ENTITY_NODE:
+			case Node.NOTATION_NODE:
+			case Node.DOCUMENT_FRAGMENT_NODE:
+			case Node.DOCUMENT_TYPE_NODE:
+				// type is unknown
+				return null;
+			case Node.ATTRIBUTE_NODE: {
+				if (this.getOwnerElement().getNodeType() == Node.ELEMENT_NODE) {
+					return getOwnerElement().lookupNamespaceURI(
+							specifiedPrefix);
+
+				}
+				return null;
+			}
+			default: {
+				/*
+				 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if
+				 * (ancestor != null) { return
+				 * ancestor.lookupNamespaceURI(specifiedPrefix); }
+				 */
+				return null;
+			}
 
 		}
 	}
@@ -487,7 +497,7 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 	 * <code>namespaceURI</code> is the default namespace or not.
 	 * 
 	 * @param namespaceURI
-	 *            The namespace URI to look for.
+	 *                     The namespace URI to look for.
 	 * @return <code>true</code> if the specified <code>namespaceURI</code> is
 	 *         the default namespace, <code>false</code> otherwise.
 	 * @since DOM Level 3
@@ -497,7 +507,6 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 		 * // REVISIT: remove casts when DOM L3 becomes REC. short type =
 		 * this.getNodeType(); switch (type) { case Node.ELEMENT_NODE: { String
 		 * namespace = this.getNamespaceURI(); String prefix = this.getPrefix();
-		 * 
 		 * // REVISIT: is it possible that prefix is empty string? if (prefix ==
 		 * null || prefix.length() == 0) { if (namespaceURI == null) { return
 		 * (namespace == namespaceURI); } return namespaceURI.equals(namespace);
@@ -507,23 +516,19 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 		 * "xmlns"); if (attr != null) { String value = attr.getNodeValue(); if
 		 * (namespaceURI == null) { return (namespace == value); } return
 		 * namespaceURI.equals(value); } }
-		 * 
 		 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if (ancestor
 		 * != null) { return ancestor.isDefaultNamespace(namespaceURI); } return
 		 * false; } case Node.DOCUMENT_NODE:{
 		 * return((NodeImpl)((Document)this).getDocumentElement()).
 		 * isDefaultNamespace(namespaceURI); }
-		 * 
 		 * case Node.ENTITY_NODE : case Node.NOTATION_NODE: case
 		 * Node.DOCUMENT_FRAGMENT_NODE: case Node.DOCUMENT_TYPE_NODE: // type is
 		 * unknown return false; case Node.ATTRIBUTE_NODE:{ if
 		 * (this.ownerNode.getNodeType() == Node.ELEMENT_NODE) { return
 		 * ownerNode.isDefaultNamespace(namespaceURI);
-		 * 
 		 * } return false; } default:{ NodeImpl ancestor =
 		 * (NodeImpl)getElementAncestor(this); if (ancestor != null) { return
 		 * ancestor.isDefaultNamespace(namespaceURI); } return false; }
-		 * 
 		 * }
 		 */
 		return false;
@@ -549,37 +554,38 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 		short type = this.getNodeType();
 
 		switch (type) {
-		/*
-		 * case Node.ELEMENT_NODE: {
-		 * 
-		 * String namespace = this.getNamespaceURI(); // to flip out children
-		 * return lookupNamespacePrefix(namespaceURI, (ElementImpl)this); }
-		 * 
-		 * case Node.DOCUMENT_NODE:{
-		 * return((NodeImpl)((Document)this).getDocumentElement()).lookupPrefix(
-		 * namespaceURI); }
-		 */
-		case Node.ENTITY_NODE:
-		case Node.NOTATION_NODE:
-		case Node.DOCUMENT_FRAGMENT_NODE:
-		case Node.DOCUMENT_TYPE_NODE:
-			// type is unknown
-			return null;
-		case Node.ATTRIBUTE_NODE: {
-			if (this.getOwnerElement().getNodeType() == Node.ELEMENT_NODE) {
-				return getOwnerElement().lookupPrefix(namespaceURI);
-
-			}
-			return null;
-		}
-		default: {
 			/*
-			 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if
-			 * (ancestor != null) { return ancestor.lookupPrefix(namespaceURI);
-			 * }
+			 * case Node.ELEMENT_NODE: {
+			 * String namespace = this.getNamespaceURI(); // to flip out
+			 * children
+			 * return lookupNamespacePrefix(namespaceURI, (ElementImpl)this); }
+			 * case Node.DOCUMENT_NODE:{
+			 * return((NodeImpl)((Document)this).getDocumentElement()).
+			 * lookupPrefix(
+			 * namespaceURI); }
 			 */
-			return null;
-		}
+			case Node.ENTITY_NODE:
+			case Node.NOTATION_NODE:
+			case Node.DOCUMENT_FRAGMENT_NODE:
+			case Node.DOCUMENT_TYPE_NODE:
+				// type is unknown
+				return null;
+			case Node.ATTRIBUTE_NODE: {
+				if (this.getOwnerElement().getNodeType() == Node.ELEMENT_NODE) {
+					return getOwnerElement().lookupPrefix(namespaceURI);
+
+				}
+				return null;
+			}
+			default: {
+				/*
+				 * NodeImpl ancestor = (NodeImpl)getElementAncestor(this); if
+				 * (ancestor != null) { return
+				 * ancestor.lookupPrefix(namespaceURI);
+				 * }
+				 */
+				return null;
+			}
 		}
 	}
 
@@ -593,7 +599,7 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 	 * method on either reference always has exactly the same effect.
 	 * 
 	 * @param other
-	 *            The node to test against.
+	 *              The node to test against.
 	 * @return Returns <code>true</code> if the nodes are the same,
 	 *         <code>false</code> otherwise.
 	 * @since DOM Level 3
@@ -640,12 +646,15 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 	 * </table>
 	 * 
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised when the node is
-	 *                readonly.
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+	 *                         is
+	 *                         readonly.
 	 * @exception DOMException
-	 *                DOMSTRING_SIZE_ERR: Raised when it would return more
-	 *                characters than fit in a <code>DOMString</code> variable
-	 *                on the implementation platform.
+	 *                         DOMSTRING_SIZE_ERR: Raised when it would return
+	 *                         more
+	 *                         characters than fit in a <code>DOMString</code>
+	 *                         variable
+	 *                         on the implementation platform.
 	 * @since DOM Level 3
 	 */
 	public void setTextContent(String textContent) throws DOMException {
@@ -689,12 +698,15 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 	 * </table>
 	 * 
 	 * @exception DOMException
-	 *                NO_MODIFICATION_ALLOWED_ERR: Raised when the node is
-	 *                readonly.
+	 *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+	 *                         is
+	 *                         readonly.
 	 * @exception DOMException
-	 *                DOMSTRING_SIZE_ERR: Raised when it would return more
-	 *                characters than fit in a <code>DOMString</code> variable
-	 *                on the implementation platform.
+	 *                         DOMSTRING_SIZE_ERR: Raised when it would return
+	 *                         more
+	 *                         characters than fit in a <code>DOMString</code>
+	 *                         variable
+	 *                         on the implementation platform.
 	 * @since DOM Level 3
 	 */
 	public String getTextContent() throws DOMException {
@@ -706,7 +718,7 @@ public class DOM2DTMdefaultNamespaceDeclarationNode implements Attr, TypeInfo {
 	 * document.
 	 * 
 	 * @param other
-	 *            The node to compare against this node.
+	 *              The node to compare against this node.
 	 * @return Returns how the given node is positioned relatively to this node.
 	 * @since DOM Level 3
 	 */

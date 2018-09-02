@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -87,15 +67,18 @@ public class FileOutputStream extends OutputStream {
 	 * then a <code>FileNotFoundException</code> is thrown.
 	 *
 	 * @param name
-	 *            the system-dependent filename
+	 *             the system-dependent filename
 	 * @exception FileNotFoundException
-	 *                if the file exists but is a directory rather than a
-	 *                regular file, does not exist but cannot be created, or
-	 *                cannot be opened for any other reason
+	 *                                  if the file exists but is a directory
+	 *                                  rather than a
+	 *                                  regular file, does not exist but cannot
+	 *                                  be created, or
+	 *                                  cannot be opened for any other reason
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                <code>checkWrite</code> method denies write access to the
-	 *                file.
+	 *                                  if a security manager exists and its
+	 *                                  <code>checkWrite</code> method denies
+	 *                                  write access to the
+	 *                                  file.
 	 * @see java.lang.SecurityManager#checkWrite(java.lang.String)
 	 */
 	public FileOutputStream(String name) throws FileNotFoundException {
@@ -117,22 +100,27 @@ public class FileOutputStream extends OutputStream {
 	 * then a <code>FileNotFoundException</code> is thrown.
 	 *
 	 * @param name
-	 *            the system-dependent file name
+	 *               the system-dependent file name
 	 * @param append
-	 *            if <code>true</code>, then bytes will be written to the end of
-	 *            the file rather than the beginning
+	 *               if <code>true</code>, then bytes will be written to the end
+	 *               of
+	 *               the file rather than the beginning
 	 * @exception FileNotFoundException
-	 *                if the file exists but is a directory rather than a
-	 *                regular file, does not exist but cannot be created, or
-	 *                cannot be opened for any other reason.
+	 *                                  if the file exists but is a directory
+	 *                                  rather than a
+	 *                                  regular file, does not exist but cannot
+	 *                                  be created, or
+	 *                                  cannot be opened for any other reason.
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                <code>checkWrite</code> method denies write access to the
-	 *                file.
+	 *                                  if a security manager exists and its
+	 *                                  <code>checkWrite</code> method denies
+	 *                                  write access to the
+	 *                                  file.
 	 * @see java.lang.SecurityManager#checkWrite(java.lang.String)
 	 * @since JDK1.1
 	 */
-	public FileOutputStream(String name, boolean append) throws FileNotFoundException {
+	public FileOutputStream(String name, boolean append)
+			throws FileNotFoundException {
 		this(name != null ? new File(name) : null, append);
 	}
 
@@ -150,15 +138,18 @@ public class FileOutputStream extends OutputStream {
 	 * then a <code>FileNotFoundException</code> is thrown.
 	 *
 	 * @param file
-	 *            the file to be opened for writing.
+	 *             the file to be opened for writing.
 	 * @exception FileNotFoundException
-	 *                if the file exists but is a directory rather than a
-	 *                regular file, does not exist but cannot be created, or
-	 *                cannot be opened for any other reason
+	 *                                  if the file exists but is a directory
+	 *                                  rather than a
+	 *                                  regular file, does not exist but cannot
+	 *                                  be created, or
+	 *                                  cannot be opened for any other reason
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                <code>checkWrite</code> method denies write access to the
-	 *                file.
+	 *                                  if a security manager exists and its
+	 *                                  <code>checkWrite</code> method denies
+	 *                                  write access to the
+	 *                                  file.
 	 * @see java.io.File#getPath()
 	 * @see java.lang.SecurityException
 	 * @see java.lang.SecurityManager#checkWrite(java.lang.String)
@@ -183,24 +174,29 @@ public class FileOutputStream extends OutputStream {
 	 * then a <code>FileNotFoundException</code> is thrown.
 	 *
 	 * @param file
-	 *            the file to be opened for writing.
+	 *               the file to be opened for writing.
 	 * @param append
-	 *            if <code>true</code>, then bytes will be written to the end of
-	 *            the file rather than the beginning
+	 *               if <code>true</code>, then bytes will be written to the end
+	 *               of
+	 *               the file rather than the beginning
 	 * @exception FileNotFoundException
-	 *                if the file exists but is a directory rather than a
-	 *                regular file, does not exist but cannot be created, or
-	 *                cannot be opened for any other reason
+	 *                                  if the file exists but is a directory
+	 *                                  rather than a
+	 *                                  regular file, does not exist but cannot
+	 *                                  be created, or
+	 *                                  cannot be opened for any other reason
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                <code>checkWrite</code> method denies write access to the
-	 *                file.
+	 *                                  if a security manager exists and its
+	 *                                  <code>checkWrite</code> method denies
+	 *                                  write access to the
+	 *                                  file.
 	 * @see java.io.File#getPath()
 	 * @see java.lang.SecurityException
 	 * @see java.lang.SecurityManager#checkWrite(java.lang.String)
 	 * @since 1.4
 	 */
-	public FileOutputStream(File file, boolean append) throws FileNotFoundException {
+	public FileOutputStream(File file, boolean append)
+			throws FileNotFoundException {
 		String name = (file != null ? file.getPath() : null);
 		SecurityManager security = System.getSecurityManager();
 		if (security != null) {
@@ -238,11 +234,12 @@ public class FileOutputStream extends OutputStream {
 	 * <code>IOException</code> is thrown.
 	 *
 	 * @param fdObj
-	 *            the file descriptor to be opened for writing
+	 *              the file descriptor to be opened for writing
 	 * @exception SecurityException
-	 *                if a security manager exists and its
-	 *                <code>checkWrite</code> method denies write access to the
-	 *                file descriptor
+	 *                              if a security manager exists and its
+	 *                              <code>checkWrite</code> method denies write
+	 *                              access to the
+	 *                              file descriptor
 	 * @see java.lang.SecurityManager#checkWrite(java.io.FileDescriptor)
 	 */
 	public FileOutputStream(FileDescriptor fdObj) {
@@ -264,22 +261,24 @@ public class FileOutputStream extends OutputStream {
 	 * Opens a file, with the specified name, for overwriting or appending.
 	 * 
 	 * @param name
-	 *            name of file to be opened
+	 *               name of file to be opened
 	 * @param append
-	 *            whether the file is to be opened in append mode
+	 *               whether the file is to be opened in append mode
 	 */
-	private native void open0(String name, boolean append) throws FileNotFoundException;
+	private native void open0(String name, boolean append)
+			throws FileNotFoundException;
 
 	// wrap native call to allow instrumentation
 	/**
 	 * Opens a file, with the specified name, for overwriting or appending.
 	 * 
 	 * @param name
-	 *            name of file to be opened
+	 *               name of file to be opened
 	 * @param append
-	 *            whether the file is to be opened in append mode
+	 *               whether the file is to be opened in append mode
 	 */
-	private void open(String name, boolean append) throws FileNotFoundException {
+	private void open(String name, boolean append)
+			throws FileNotFoundException {
 		open0(name, append);
 	}
 
@@ -287,10 +286,10 @@ public class FileOutputStream extends OutputStream {
 	 * Writes the specified byte to this file output stream.
 	 *
 	 * @param b
-	 *            the byte to be written.
+	 *               the byte to be written.
 	 * @param append
-	 *            {@code true} if the write operation first advances the
-	 *            position to the end of file
+	 *               {@code true} if the write operation first advances the
+	 *               position to the end of file
 	 */
 	private native void write(int b, boolean append) throws IOException;
 
@@ -299,9 +298,9 @@ public class FileOutputStream extends OutputStream {
 	 * <code>write</code> method of <code>OutputStream</code>.
 	 *
 	 * @param b
-	 *            the byte to be written.
+	 *          the byte to be written.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	public void write(int b) throws IOException {
 		write(b, append);
@@ -311,26 +310,28 @@ public class FileOutputStream extends OutputStream {
 	 * Writes a sub array as a sequence of bytes.
 	 * 
 	 * @param b
-	 *            the data to be written
+	 *               the data to be written
 	 * @param off
-	 *            the start offset in the data
+	 *               the start offset in the data
 	 * @param len
-	 *            the number of bytes that are written
+	 *               the number of bytes that are written
 	 * @param append
-	 *            {@code true} to first advance the position to the end of file
+	 *               {@code true} to first advance the position to the end of
+	 *               file
 	 * @exception IOException
-	 *                If an I/O error has occurred.
+	 *                        If an I/O error has occurred.
 	 */
-	private native void writeBytes(byte b[], int off, int len, boolean append) throws IOException;
+	private native void writeBytes(byte b[], int off, int len, boolean append)
+			throws IOException;
 
 	/**
 	 * Writes <code>b.length</code> bytes from the specified byte array to this
 	 * file output stream.
 	 *
 	 * @param b
-	 *            the data.
+	 *          the data.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	public void write(byte b[]) throws IOException {
 		writeBytes(b, 0, b.length, append);
@@ -347,7 +348,7 @@ public class FileOutputStream extends OutputStream {
 	 * @param len
 	 *            the number of bytes to write.
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	public void write(byte b[], int off, int len) throws IOException {
 		writeBytes(b, off, len, append);
@@ -363,7 +364,7 @@ public class FileOutputStream extends OutputStream {
 	 * well.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 *
 	 * @revised 1.4
 	 * @spec JSR-51
@@ -395,7 +396,7 @@ public class FileOutputStream extends OutputStream {
 	 *         <code>FileOutputStream</code> object.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 * @see java.io.FileDescriptor
 	 */
 	public final FileDescriptor getFD() throws IOException {
@@ -426,7 +427,8 @@ public class FileOutputStream extends OutputStream {
 	public FileChannel getChannel() {
 		synchronized (this) {
 			if (channel == null) {
-				channel = FileChannelImpl.open(fd, path, false, true, append, this);
+				channel = FileChannelImpl.open(fd, path, false, true, append,
+						this);
 			}
 			return channel;
 		}
@@ -438,7 +440,7 @@ public class FileOutputStream extends OutputStream {
 	 * are no more references to this stream.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 * @see java.io.FileInputStream#close()
 	 */
 	protected void finalize() throws IOException {

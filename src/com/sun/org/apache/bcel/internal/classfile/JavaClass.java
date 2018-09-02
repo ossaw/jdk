@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.classfile;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.classfile;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -116,35 +108,38 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 	 * Constructor gets all contents as arguments.
 	 *
 	 * @param class_name_index
-	 *            Index into constant pool referencing a ConstantClass that
-	 *            represents this class.
+	 *                              Index into constant pool referencing a
+	 *                              ConstantClass that
+	 *                              represents this class.
 	 * @param superclass_name_index
-	 *            Index into constant pool referencing a ConstantClass that
-	 *            represents this class's superclass.
+	 *                              Index into constant pool referencing a
+	 *                              ConstantClass that
+	 *                              represents this class's superclass.
 	 * @param file_name
-	 *            File name
+	 *                              File name
 	 * @param major
-	 *            Major compiler version
+	 *                              Major compiler version
 	 * @param minor
-	 *            Minor compiler version
+	 *                              Minor compiler version
 	 * @param access_flags
-	 *            Access rights defined by bit flags
+	 *                              Access rights defined by bit flags
 	 * @param constant_pool
-	 *            Array of constants
+	 *                              Array of constants
 	 * @param interfaces
-	 *            Implemented interfaces
+	 *                              Implemented interfaces
 	 * @param fields
-	 *            Class fields
+	 *                              Class fields
 	 * @param methods
-	 *            Class methods
+	 *                              Class methods
 	 * @param attributes
-	 *            Class attributes
+	 *                              Class attributes
 	 * @param source
-	 *            Read from file or generated in memory?
+	 *                              Read from file or generated in memory?
 	 */
-	public JavaClass(int class_name_index, int superclass_name_index, String file_name, int major,
-			int minor, int access_flags, ConstantPool constant_pool, int[] interfaces,
-			Field[] fields, Method[] methods, Attribute[] attributes, byte source) {
+	public JavaClass(int class_name_index, int superclass_name_index,
+			String file_name, int major, int minor, int access_flags,
+			ConstantPool constant_pool, int[] interfaces, Field[] fields,
+			Method[] methods, Attribute[] attributes, byte source) {
 		if (interfaces == null) // Allowed for backward compatibility
 			interfaces = new int[0];
 		if (attributes == null)
@@ -170,7 +165,8 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 		// Get source file name if available
 		for (int i = 0; i < attributes.length; i++) {
 			if (attributes[i] instanceof SourceFile) {
-				source_file_name = ((SourceFile) attributes[i]).getSourceFileName();
+				source_file_name = ((SourceFile) attributes[i])
+						.getSourceFileName();
 				break;
 			}
 		}
@@ -180,7 +176,8 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 		 * `ConstantClass' but we check that anyway via the
 		 * `ConstPool.getConstant' method.
 		 */
-		class_name = constant_pool.getConstantString(class_name_index, Constants.CONSTANT_Class);
+		class_name = constant_pool.getConstantString(class_name_index,
+				Constants.CONSTANT_Class);
 		class_name = Utility.compactClassName(class_name, false);
 
 		int index = class_name.lastIndexOf('.');
@@ -191,15 +188,16 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 		if (superclass_name_index > 0) { // May be zero -> class is
 											// java.lang.Object
-			superclass_name = constant_pool.getConstantString(superclass_name_index,
-					Constants.CONSTANT_Class);
+			superclass_name = constant_pool.getConstantString(
+					superclass_name_index, Constants.CONSTANT_Class);
 			superclass_name = Utility.compactClassName(superclass_name, false);
 		} else
 			superclass_name = "java.lang.Object";
 
 		interface_names = new String[interfaces.length];
 		for (int i = 0; i < interfaces.length; i++) {
-			String str = constant_pool.getConstantString(interfaces[i], Constants.CONSTANT_Class);
+			String str = constant_pool.getConstantString(interfaces[i],
+					Constants.CONSTANT_Class);
 			interface_names[i] = Utility.compactClassName(str, false);
 		}
 	}
@@ -208,33 +206,35 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 	 * Constructor gets all contents as arguments.
 	 *
 	 * @param class_name_index
-	 *            Class name
+	 *                              Class name
 	 * @param superclass_name_index
-	 *            Superclass name
+	 *                              Superclass name
 	 * @param file_name
-	 *            File name
+	 *                              File name
 	 * @param major
-	 *            Major compiler version
+	 *                              Major compiler version
 	 * @param minor
-	 *            Minor compiler version
+	 *                              Minor compiler version
 	 * @param access_flags
-	 *            Access rights defined by bit flags
+	 *                              Access rights defined by bit flags
 	 * @param constant_pool
-	 *            Array of constants
+	 *                              Array of constants
 	 * @param interfaces
-	 *            Implemented interfaces
+	 *                              Implemented interfaces
 	 * @param fields
-	 *            Class fields
+	 *                              Class fields
 	 * @param methods
-	 *            Class methods
+	 *                              Class methods
 	 * @param attributes
-	 *            Class attributes
+	 *                              Class attributes
 	 */
-	public JavaClass(int class_name_index, int superclass_name_index, String file_name, int major,
-			int minor, int access_flags, ConstantPool constant_pool, int[] interfaces,
-			Field[] fields, Method[] methods, Attribute[] attributes) {
-		this(class_name_index, superclass_name_index, file_name, major, minor, access_flags,
-				constant_pool, interfaces, fields, methods, attributes, HEAP);
+	public JavaClass(int class_name_index, int superclass_name_index,
+			String file_name, int major, int minor, int access_flags,
+			ConstantPool constant_pool, int[] interfaces, Field[] fields,
+			Method[] methods, Attribute[] attributes) {
+		this(class_name_index, superclass_name_index, file_name, major, minor,
+				access_flags, constant_pool, interfaces, fields, methods,
+				attributes, HEAP);
 	}
 
 	/**
@@ -243,7 +243,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 	 * fields, attributes, etc. spawns a tree of objects.
 	 *
 	 * @param v
-	 *            Visitor object
+	 *          Visitor object
 	 */
 	public void accept(Visitor v) {
 		v.visitJavaClass(this);
@@ -261,7 +261,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 	 * Dump class to a file.
 	 *
 	 * @param file
-	 *            Output file
+	 *             Output file
 	 * @throws IOException
 	 */
 	public void dump(File file) throws IOException {
@@ -281,7 +281,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 	 * Dump class to a file named file_name.
 	 *
 	 * @param file_name
-	 *            Output file name
+	 *                  Output file name
 	 * @exception IOException
 	 */
 	public void dump(String file_name) throws IOException {
@@ -314,7 +314,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 	 * Dump Java class to output stream in binary format.
 	 *
 	 * @param file
-	 *            Output stream
+	 *             Output stream
 	 * @exception IOException
 	 */
 	public void dump(OutputStream file) throws IOException {
@@ -325,7 +325,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 	 * Dump Java class to output stream in binary format.
 	 *
 	 * @param file
-	 *            Output stream
+	 *             Output stream
 	 * @exception IOException
 	 */
 	public void dump(DataOutputStream file) throws IOException {
@@ -448,8 +448,9 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 		for (int i = 0; i < methods.length; i++) {
 			Method method = methods[i];
 
-			if (m.getName().equals(method.getName()) && (m.getModifiers() == method.getModifiers())
-					&& Type.getSignature(m).equals(method.getSignature())) {
+			if (m.getName().equals(method.getName()) && (m
+					.getModifiers() == method.getModifiers()) && Type
+							.getSignature(m).equals(method.getSignature())) {
 				return method;
 			}
 		}
@@ -509,7 +510,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 	/**
 	 * @param attributes
-	 *            .
+	 *                   .
 	 */
 	public void setAttributes(Attribute[] attributes) {
 		this.attributes = attributes;
@@ -517,7 +518,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 	/**
 	 * @param class_name
-	 *            .
+	 *                   .
 	 */
 	public void setClassName(String class_name) {
 		this.class_name = class_name;
@@ -525,7 +526,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 	/**
 	 * @param class_name_index
-	 *            .
+	 *                         .
 	 */
 	public void setClassNameIndex(int class_name_index) {
 		this.class_name_index = class_name_index;
@@ -533,7 +534,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 	/**
 	 * @param constant_pool
-	 *            .
+	 *                      .
 	 */
 	public void setConstantPool(ConstantPool constant_pool) {
 		this.constant_pool = constant_pool;
@@ -541,7 +542,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 	/**
 	 * @param fields
-	 *            .
+	 *               .
 	 */
 	public void setFields(Field[] fields) {
 		this.fields = fields;
@@ -556,7 +557,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 	/**
 	 * @param interface_names
-	 *            .
+	 *                        .
 	 */
 	public void setInterfaceNames(String[] interface_names) {
 		this.interface_names = interface_names;
@@ -564,7 +565,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 	/**
 	 * @param interfaces
-	 *            .
+	 *                   .
 	 */
 	public void setInterfaces(int[] interfaces) {
 		this.interfaces = interfaces;
@@ -572,7 +573,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 	/**
 	 * @param major
-	 *            .
+	 *              .
 	 */
 	public void setMajor(int major) {
 		this.major = major;
@@ -580,7 +581,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 	/**
 	 * @param methods
-	 *            .
+	 *                .
 	 */
 	public void setMethods(Method[] methods) {
 		this.methods = methods;
@@ -588,7 +589,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 	/**
 	 * @param minor
-	 *            .
+	 *              .
 	 */
 	public void setMinor(int minor) {
 		this.minor = minor;
@@ -603,7 +604,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 	/**
 	 * @param superclass_name
-	 *            .
+	 *                        .
 	 */
 	public void setSuperclassName(String superclass_name) {
 		this.superclass_name = superclass_name;
@@ -611,7 +612,7 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 
 	/**
 	 * @param superclass_name_index
-	 *            .
+	 *                              .
 	 */
 	public void setSuperclassNameIndex(int superclass_name_index) {
 		this.superclass_name_index = superclass_name_index;
@@ -624,9 +625,9 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 		String access = Utility.accessToString(access_flags, true);
 		access = access.equals("") ? "" : (access + " ");
 
-		StringBuffer buf = new StringBuffer(
-				access + Utility.classOrInterface(access_flags) + " " + class_name + " extends "
-						+ Utility.compactClassName(superclass_name, false) + '\n');
+		StringBuffer buf = new StringBuffer(access + Utility.classOrInterface(
+				access_flags) + " " + class_name + " extends " + Utility
+						.compactClassName(superclass_name, false) + '\n');
 		int size = interfaces.length;
 
 		if (size > 0) {
@@ -645,7 +646,8 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 		buf.append("compiled from\t\t" + source_file_name + '\n');
 		buf.append("compiler version\t" + major + "." + minor + '\n');
 		buf.append("access flags\t\t" + access_flags + '\n');
-		buf.append("constant pool\t\t" + constant_pool.getLength() + " entries\n");
+		buf.append("constant pool\t\t" + constant_pool.getLength()
+				+ " entries\n");
 		buf.append("ACC_SUPER flag\t\t" + isSuper() + "\n");
 
 		if (attributes.length > 0) {
@@ -738,7 +740,8 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 	 * Sets the ClassRepository which loaded the JavaClass. Should be called
 	 * immediately after parsing is done.
 	 */
-	public void setRepository(com.sun.org.apache.bcel.internal.util.Repository repository) {
+	public void setRepository(
+			com.sun.org.apache.bcel.internal.util.Repository repository) {
 		this.repository = repository;
 	}
 
@@ -771,7 +774,8 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 	 */
 	public boolean implementationOf(JavaClass inter) {
 		if (!inter.isInterface()) {
-			throw new IllegalArgumentException(inter.getClassName() + " is no interface");
+			throw new IllegalArgumentException(inter.getClassName()
+					+ " is no interface");
 		}
 
 		if (this.equals(inter)) {
@@ -814,7 +818,8 @@ public class JavaClass extends AccessFlags implements Cloneable, Node {
 		JavaClass clazz = this;
 		ClassVector vec = new ClassVector();
 
-		for (clazz = clazz.getSuperClass(); clazz != null; clazz = clazz.getSuperClass()) {
+		for (clazz = clazz.getSuperClass(); clazz != null; clazz = clazz
+				.getSuperClass()) {
 			vec.addElement(clazz);
 		}
 

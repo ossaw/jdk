@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -158,22 +138,22 @@ public class TabStop implements Serializable {
 	public String toString() {
 		String buf;
 		switch (alignment) {
-		default:
-		case ALIGN_LEFT:
-			buf = "";
-			break;
-		case ALIGN_RIGHT:
-			buf = "right ";
-			break;
-		case ALIGN_CENTER:
-			buf = "center ";
-			break;
-		case ALIGN_DECIMAL:
-			buf = "decimal ";
-			break;
-		case ALIGN_BAR:
-			buf = "bar ";
-			break;
+			default:
+			case ALIGN_LEFT:
+				buf = "";
+				break;
+			case ALIGN_RIGHT:
+				buf = "right ";
+				break;
+			case ALIGN_CENTER:
+				buf = "center ";
+				break;
+			case ALIGN_DECIMAL:
+				buf = "decimal ";
+				break;
+			case ALIGN_BAR:
+				buf = "bar ";
+				break;
 		}
 		buf = buf + "tab @" + String.valueOf(position);
 		if (leader != LEAD_NONE)

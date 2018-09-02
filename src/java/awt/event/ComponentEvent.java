@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -114,13 +94,13 @@ public class ComponentEvent extends AWTEvent {
 	 * <code>source</code> is <code>null</code>.
 	 *
 	 * @param source
-	 *            The <code>Component</code> that originated the event
+	 *               The <code>Component</code> that originated the event
 	 * @param id
-	 *            An integer indicating the type of event. For information on
-	 *            allowable values, see the class description for
-	 *            {@link ComponentEvent}
+	 *               An integer indicating the type of event. For information on
+	 *               allowable values, see the class description for
+	 *               {@link ComponentEvent}
 	 * @throws IllegalArgumentException
-	 *             if <code>source</code> is null
+	 *                                  if <code>source</code> is null
 	 * @see #getComponent()
 	 * @see #getID()
 	 */
@@ -146,24 +126,26 @@ public class ComponentEvent extends AWTEvent {
 	 */
 	public String paramString() {
 		String typeStr;
-		Rectangle b = (source != null ? ((Component) source).getBounds() : null);
+		Rectangle b = (source != null ? ((Component) source).getBounds()
+				: null);
 
 		switch (id) {
-		case COMPONENT_SHOWN:
-			typeStr = "COMPONENT_SHOWN";
-			break;
-		case COMPONENT_HIDDEN:
-			typeStr = "COMPONENT_HIDDEN";
-			break;
-		case COMPONENT_MOVED:
-			typeStr = "COMPONENT_MOVED (" + b.x + "," + b.y + " " + b.width + "x" + b.height + ")";
-			break;
-		case COMPONENT_RESIZED:
-			typeStr = "COMPONENT_RESIZED (" + b.x + "," + b.y + " " + b.width + "x" + b.height
-					+ ")";
-			break;
-		default:
-			typeStr = "unknown type";
+			case COMPONENT_SHOWN:
+				typeStr = "COMPONENT_SHOWN";
+				break;
+			case COMPONENT_HIDDEN:
+				typeStr = "COMPONENT_HIDDEN";
+				break;
+			case COMPONENT_MOVED:
+				typeStr = "COMPONENT_MOVED (" + b.x + "," + b.y + " " + b.width
+						+ "x" + b.height + ")";
+				break;
+			case COMPONENT_RESIZED:
+				typeStr = "COMPONENT_RESIZED (" + b.x + "," + b.y + " "
+						+ b.width + "x" + b.height + ")";
+				break;
+			default:
+				typeStr = "unknown type";
 		}
 		return typeStr;
 	}

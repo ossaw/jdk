@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -59,8 +57,7 @@ public class Extensions {
 	 * Constructor Extensions
 	 *
 	 */
-	private Extensions() {
-	} // Make sure class cannot be instantiated
+	private Extensions() {} // Make sure class cannot be instantiated
 
 	/**
 	 * This method is an extension that implements as a Xalan extension the
@@ -79,11 +76,12 @@ public class Extensions {
 	 * <code>XRTreeFrag</code>.
 	 * 
 	 * @param myProcessor
-	 *            Context passed by the extension processor
+	 *                    Context passed by the extension processor
 	 * @param rtf
-	 *            Argument in the stylesheet to the nodeset extension function
+	 *                    Argument in the stylesheet to the nodeset extension
+	 *                    function
 	 *
-	 *            NEEDSDOC ($objectName$) @return
+	 *                    NEEDSDOC ($objectName$) @return
 	 */
 	public static NodeSet nodeset(ExpressionContext myProcessor, Object rtf) {
 
@@ -95,7 +93,8 @@ public class Extensions {
 			if (rtf instanceof String) {
 				textNodeValue = (String) rtf;
 			} else if (rtf instanceof Boolean) {
-				textNodeValue = new XBoolean(((Boolean) rtf).booleanValue()).str();
+				textNodeValue = new XBoolean(((Boolean) rtf).booleanValue())
+						.str();
 			} else if (rtf instanceof Double) {
 				textNodeValue = new XNumber(((Double) rtf).doubleValue()).str();
 			} else {
@@ -153,7 +152,7 @@ public class Extensions {
 	 * Returns node-set containing distinct string values.
 	 *
 	 * @param nl
-	 *            NodeList for node-set
+	 *           NodeList for node-set
 	 * @return a NodeList with nodes from nl containing distinct string values.
 	 *         In other words, if more than one node in nl contains the same
 	 *         string value, only include the first such node found.
@@ -200,20 +199,24 @@ public class Extensions {
 	 * argument appeared in place of the evaluate function call at compile time.
 	 *
 	 * @param myContext
-	 *            an <code>ExpressionContext</code> passed in by the extension
-	 *            mechanism. This must be an XPathContext.
+	 *                  an <code>ExpressionContext</code> passed in by the
+	 *                  extension
+	 *                  mechanism. This must be an XPathContext.
 	 * @param xpathExpr
-	 *            The XPath expression to be evaluated.
+	 *                  The XPath expression to be evaluated.
 	 * @return the XObject resulting from evaluating the XPath
 	 *
 	 * @throws SAXNotSupportedException
 	 *
-	 *             Note: The usage of this extension function in the xalan
-	 *             namespace is deprecated. Please use the same function in the
-	 *             EXSLT dynamic extension (http://exslt.org/dynamic).
+	 *                                  Note: The usage of this extension
+	 *                                  function in the xalan
+	 *                                  namespace is deprecated. Please use the
+	 *                                  same function in the
+	 *                                  EXSLT dynamic extension
+	 *                                  (http://exslt.org/dynamic).
 	 */
-	public static XObject evaluate(ExpressionContext myContext, String xpathExpr)
-			throws SAXNotSupportedException {
+	public static XObject evaluate(ExpressionContext myContext,
+			String xpathExpr) throws SAXNotSupportedException {
 		return ExsltDynamic.evaluate(myContext, xpathExpr);
 	}
 
@@ -228,9 +231,9 @@ public class Extensions {
 	 * <a href="mailto:benoit.cerrina@writeme.com">Benoit Cerrina</a>.
 	 *
 	 * @param toTokenize
-	 *            The string to be split into text tokens.
+	 *                   The string to be split into text tokens.
 	 * @param delims
-	 *            The delimiters to use.
+	 *                   The delimiters to use.
 	 * @return a NodeSet as described above.
 	 */
 	public static NodeList tokenize(String toTokenize, String delims) {
@@ -261,7 +264,7 @@ public class Extensions {
 	 * <a href="mailto:benoit.cerrina@writeme.com">Benoit Cerrina</a>.
 	 *
 	 * @param toTokenize
-	 *            The string to be split into text tokens.
+	 *                   The string to be split into text tokens.
 	 * @return a NodeSet as described above.
 	 */
 	public static NodeList tokenize(String toTokenize) {
@@ -291,8 +294,9 @@ public class Extensions {
 	 * </p>
 	 *
 	 * @param myContext
-	 *            an <code>ExpressionContext</code> passed in by the extension
-	 *            mechanism. This must be an XPathContext.
+	 *                  an <code>ExpressionContext</code> passed in by the
+	 *                  extension
+	 *                  mechanism. This must be an XPathContext.
 	 * @return a Node as described above.
 	 */
 	public static Node checkEnvironment(ExpressionContext myContext) {
@@ -311,11 +315,13 @@ public class Extensions {
 			// If reflection failed, fallback to our internal EnvironmentCheck
 			EnvironmentCheck envChecker = new EnvironmentCheck();
 			Map<String, Object> h = envChecker.getEnvironmentHash();
-			resultNode = factoryDocument.createElement("checkEnvironmentExtension");
+			resultNode = factoryDocument.createElement(
+					"checkEnvironmentExtension");
 			envChecker.appendEnvironmentReport(resultNode, factoryDocument, h);
 			envChecker = null;
 		} catch (Exception e) {
-			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(e);
+			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
+					e);
 		}
 
 		return resultNode;
@@ -325,37 +331,43 @@ public class Extensions {
 	 * Private worker method to attempt to use org.apache.env.Which.
 	 *
 	 * @param myContext
-	 *            an <code>ExpressionContext</code> passed in by the extension
-	 *            mechanism. This must be an XPathContext.
+	 *                        an <code>ExpressionContext</code> passed in by the
+	 *                        extension
+	 *                        mechanism. This must be an XPathContext.
 	 * @param factoryDocument
-	 *            providing createElement services, etc.
+	 *                        providing createElement services, etc.
 	 * @return a Node with environment info; null if any error
 	 */
 	private static Node checkEnvironmentUsingWhich(ExpressionContext myContext,
 			Document factoryDocument) {
 		final String WHICH_CLASSNAME = "org.apache.env.Which";
 		final String WHICH_METHODNAME = "which";
-		final Class WHICH_METHOD_ARGS[] = { java.util.Hashtable.class, java.lang.String.class,
-				java.lang.String.class };
+		final Class WHICH_METHOD_ARGS[] = { java.util.Hashtable.class,
+				java.lang.String.class, java.lang.String.class };
 		try {
 			// Use reflection to try to find xml-commons utility 'Which'
-			Class clazz = ObjectFactory.findProviderClass(WHICH_CLASSNAME, true);
+			Class clazz = ObjectFactory.findProviderClass(WHICH_CLASSNAME,
+					true);
 			if (null == clazz)
 				return null;
 
 			// Fully qualify names since this is the only method they're used in
-			java.lang.reflect.Method method = clazz.getMethod(WHICH_METHODNAME, WHICH_METHOD_ARGS);
+			java.lang.reflect.Method method = clazz.getMethod(WHICH_METHODNAME,
+					WHICH_METHOD_ARGS);
 			Hashtable report = new Hashtable();
 
 			// Call the method with our Hashtable, common options, and ignore
 			// return value
-			Object[] methodArgs = { report, "XmlCommons;Xalan;Xerces;Crimson;Ant", "" };
+			Object[] methodArgs = { report,
+					"XmlCommons;Xalan;Xerces;Crimson;Ant", "" };
 			Object returnValue = method.invoke(null, methodArgs);
 
 			// Create a parent to hold the report and append hash to it
-			Node resultNode = factoryDocument.createElement("checkEnvironmentExtension");
-			com.sun.org.apache.xml.internal.utils.Hashtree2Node.appendHashToNode(report,
-					"whichReport", resultNode, factoryDocument);
+			Node resultNode = factoryDocument.createElement(
+					"checkEnvironmentExtension");
+			com.sun.org.apache.xml.internal.utils.Hashtree2Node
+					.appendHashToNode(report, "whichReport", resultNode,
+							factoryDocument);
 
 			return resultNode;
 		} catch (Throwable t) {
@@ -370,13 +382,15 @@ public class Extensions {
 	private static Document getDocument() {
 		try {
 			if (System.getSecurityManager() == null) {
-				return DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+				return DocumentBuilderFactory.newInstance().newDocumentBuilder()
+						.newDocument();
 			} else {
 				return DocumentBuilderFactory.newInstance(JDK_DEFAULT_DOM, null)
 						.newDocumentBuilder().newDocument();
 			}
 		} catch (ParserConfigurationException pce) {
-			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(pce);
+			throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
+					pce);
 		}
 	}
 }

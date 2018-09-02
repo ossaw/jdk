@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2011, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xalan.internal.utils;
@@ -39,8 +19,8 @@ public abstract class FeaturePropertyBase {
 	 * properties, and jaxp api properties
 	 */
 	public static enum State {
-		// this order reflects the overriding order
-		DEFAULT, FSP, JAXPDOTPROPERTIES, SYSTEMPROPERTY, APIPROPERTY
+	// this order reflects the overriding order
+	DEFAULT, FSP, JAXPDOTPROPERTIES, SYSTEMPROPERTY, APIPROPERTY
 	}
 
 	/**
@@ -56,11 +36,11 @@ public abstract class FeaturePropertyBase {
 	 * Set the value for a specific property.
 	 *
 	 * @param property
-	 *            the property
+	 *                 the property
 	 * @param state
-	 *            the state of the property
+	 *                 the state of the property
 	 * @param value
-	 *            the value of the property
+	 *                 the value of the property
 	 */
 	public void setValue(Enum property, State state, String value) {
 		// only update if it shall override
@@ -74,11 +54,11 @@ public abstract class FeaturePropertyBase {
 	 * Set the value of a property by its index
 	 * 
 	 * @param index
-	 *            the index of the property
+	 *              the index of the property
 	 * @param state
-	 *            the state of the property
+	 *              the state of the property
 	 * @param value
-	 *            the value of the property
+	 *              the value of the property
 	 */
 	public void setValue(int index, State state, String value) {
 		// only update if it shall override
@@ -92,11 +72,11 @@ public abstract class FeaturePropertyBase {
 	 * Set value by property name and state
 	 * 
 	 * @param propertyName
-	 *            property name
+	 *                     property name
 	 * @param state
-	 *            the state of the property
+	 *                     the state of the property
 	 * @param value
-	 *            the value of the property
+	 *                     the value of the property
 	 * @return true if the property is managed by the security property manager;
 	 *         false if otherwise.
 	 */
@@ -113,11 +93,11 @@ public abstract class FeaturePropertyBase {
 	 * Set value by property name and state
 	 * 
 	 * @param propertyName
-	 *            property name
+	 *                     property name
 	 * @param state
-	 *            the state of the property
+	 *                     the state of the property
 	 * @param value
-	 *            the value of the property
+	 *                     the value of the property
 	 * @return true if the property is managed by the security property manager;
 	 *         false if otherwise.
 	 */
@@ -138,7 +118,7 @@ public abstract class FeaturePropertyBase {
 	 * Return the value of the specified property
 	 *
 	 * @param property
-	 *            the property
+	 *                 the property
 	 * @return the value of the property
 	 */
 	public String getValue(Enum property) {
@@ -149,7 +129,7 @@ public abstract class FeaturePropertyBase {
 	 * Return the value of the specified property
 	 *
 	 * @param property
-	 *            the property
+	 *                 the property
 	 * @return the value of the property
 	 */
 	public String getValue(String property) {
@@ -164,7 +144,7 @@ public abstract class FeaturePropertyBase {
 	 * Return the value of the specified property.
 	 *
 	 * @param propertyName
-	 *            the property name
+	 *                     the property name
 	 * @return the value of the property as a string. If a property is managed
 	 *         by this manager, its value shall not be null.
 	 */
@@ -181,7 +161,7 @@ public abstract class FeaturePropertyBase {
 	 * Return the value of a property by its ordinal
 	 * 
 	 * @param index
-	 *            the index of a property
+	 *              the index of a property
 	 * @return value of a property
 	 */
 	public String getValueByIndex(int index) {
@@ -192,12 +172,13 @@ public abstract class FeaturePropertyBase {
 	 * Get the index by property name
 	 * 
 	 * @param propertyName
-	 *            property name
+	 *                     property name
 	 * @return the index of the property if found; return -1 if not
 	 */
 	public abstract int getIndex(String propertyName);
 
-	public <E extends Enum<E>> int getIndex(Class<E> property, String propertyName) {
+	public <E extends Enum<E>> int getIndex(Class<E> property,
+			String propertyName) {
 		for (Enum<E> enumItem : property.getEnumConstants()) {
 			if (enumItem.toString().equals(propertyName)) {
 				// internally, ordinal is used as index
@@ -211,9 +192,9 @@ public abstract class FeaturePropertyBase {
 	 * Read from system properties, or those in jaxp.properties
 	 *
 	 * @param property
-	 *            the property
+	 *                       the property
 	 * @param systemProperty
-	 *            the name of the system property
+	 *                       the name of the system property
 	 */
 	void getSystemProperty(Enum property, String systemProperty) {
 		try {

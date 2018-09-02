@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -226,14 +206,14 @@ public final class NimbusStyle extends SynthStyle {
 	 * within this style.
 	 *
 	 * @param prefix
-	 *            Something like Button or Slider.Thumb or
-	 *            org.jdesktop.swingx.JXStatusBar or
-	 *            ComboBox."ComboBox.arrowButton"
+	 *               Something like Button or Slider.Thumb or
+	 *               org.jdesktop.swingx.JXStatusBar or
+	 *               ComboBox."ComboBox.arrowButton"
 	 * @param c
-	 *            an optional reference to a component that this NimbusStyle
-	 *            should be associated with. This is only used when the
-	 *            component has Nimbus overrides registered in its client
-	 *            properties and should be null otherwise.
+	 *               an optional reference to a component that this NimbusStyle
+	 *               should be associated with. This is only used when the
+	 *               component has Nimbus overrides registered in its client
+	 *               properties and should be null otherwise.
 	 */
 	NimbusStyle(String prefix, JComponent c) {
 		if (c != null) {
@@ -274,8 +254,8 @@ public final class NimbusStyle extends SynthStyle {
 		// any Nimbus.Overrides)
 		values = new Values();
 
-		Map<String, Object> defaults = ((NimbusLookAndFeel) UIManager.getLookAndFeel())
-				.getDefaultsForPrefix(prefix);
+		Map<String, Object> defaults = ((NimbusLookAndFeel) UIManager
+				.getLookAndFeel()).getDefaultsForPrefix(prefix);
 
 		// inspect the client properties for the key "Nimbus.Overrides". If the
 		// value is an instance of UIDefaults, then these defaults are used
@@ -285,7 +265,8 @@ public final class NimbusStyle extends SynthStyle {
 			// were GC'ed, we wouldn't be processing its style.
 			Object o = component.get().getClientProperty("Nimbus.Overrides");
 			if (o instanceof UIDefaults) {
-				Object i = component.get().getClientProperty("Nimbus.Overrides.InheritDefaults");
+				Object i = component.get().getClientProperty(
+						"Nimbus.Overrides.InheritDefaults");
 				boolean inherit = i instanceof Boolean ? (Boolean) i : true;
 				UIDefaults d = (UIDefaults) o;
 				TreeMap<String, Object> map = new TreeMap<String, Object>();
@@ -490,7 +471,8 @@ public final class NimbusStyle extends SynthStyle {
 		Collections.sort(runtimeStates, STATE_COMPARATOR);
 
 		// finally, set the array of runtime states on the values object
-		values.states = runtimeStates.toArray(new RuntimeState[runtimeStates.size()]);
+		values.states = runtimeStates.toArray(new RuntimeState[runtimeStates
+				.size()]);
 	}
 
 	private Painter getPainter(Map<String, Object> defaults, String key) {
@@ -525,8 +507,8 @@ public final class NimbusStyle extends SynthStyle {
 			in.right = v.contentMargins.right;
 			// Account for scale
 			// The key "JComponent.sizeVariant" is used to match Apple's LAF
-			String scaleKey = (String) ctx.getComponent()
-					.getClientProperty("JComponent.sizeVariant");
+			String scaleKey = (String) ctx.getComponent().getClientProperty(
+					"JComponent.sizeVariant");
 			if (scaleKey != null) {
 				if (LARGE_KEY.equals(scaleKey)) {
 					in.bottom *= LARGE_SCALE;
@@ -615,7 +597,8 @@ public final class NimbusStyle extends SynthStyle {
 
 		// Account for scale
 		// The key "JComponent.sizeVariant" is used to match Apple's LAF
-		String scaleKey = (String) ctx.getComponent().getClientProperty("JComponent.sizeVariant");
+		String scaleKey = (String) ctx.getComponent().getClientProperty(
+				"JComponent.sizeVariant");
 		if (scaleKey != null) {
 			if (LARGE_KEY.equals(scaleKey)) {
 				f = f.deriveFont(Math.round(f.getSize2D() * LARGE_SCALE));
@@ -719,7 +702,8 @@ public final class NimbusStyle extends SynthStyle {
 			// Search exact matching states and then lesser matching states
 			RuntimeState s = null;
 			int[] lastIndex = new int[] { -1 };
-			while (obj == null && (s = getNextState(v.states, lastIndex, xstate)) != null) {
+			while (obj == null && (s = getNextState(v.states, lastIndex,
+					xstate)) != null) {
 				obj = s.defaults.get(partialKey);
 			}
 			// Search Region Defaults
@@ -735,7 +719,8 @@ public final class NimbusStyle extends SynthStyle {
 				obj = super.get(ctx, fullKey);
 			}
 			// if all we got was a null, store this fact for later use
-			v.cache.put(new CacheKey(partialKey, xstate), obj == null ? NULL : obj);
+			v.cache.put(new CacheKey(partialKey, xstate), obj == null ? NULL
+					: obj);
 		}
 		// return found object
 		return obj == NULL ? null : obj;
@@ -877,9 +862,9 @@ public final class NimbusStyle extends SynthStyle {
 	 * property "Nimbus.State".
 	 *
 	 * @param names
-	 *            a non-null array of strings
+	 *              a non-null array of strings
 	 * @param name
-	 *            the name to look for in the array
+	 *              the name to look for in the array
 	 * @return true or false based on whether the given name is in the array
 	 */
 	private boolean contains(String[] names, String name) {
@@ -1004,10 +989,11 @@ public final class NimbusStyle extends SynthStyle {
 	 *
 	 * @param ctx
 	 * @param lastState
-	 *            a 1 element array, allowing me to do pass-by-reference.
+	 *                  a 1 element array, allowing me to do pass-by-reference.
 	 * @return
 	 */
-	private RuntimeState getNextState(RuntimeState[] states, int[] lastState, int xstate) {
+	private RuntimeState getNextState(RuntimeState[] states, int[] lastState,
+			int xstate) {
 		// Use the StateInfo with the most bits that matches that of state.
 		// If there are none, then fallback to
 		// the StateInfo with a state of 0, indicating it'll match anything.
@@ -1048,7 +1034,8 @@ public final class NimbusStyle extends SynthStyle {
 			// -1
 			// then we know to start from the end of the state array. Otherwise,
 			// we start at the lastIndex - 1.
-			int lastStateIndex = lastState == null || lastState[0] == -1 ? states.length
+			int lastStateIndex = lastState == null || lastState[0] == -1
+					? states.length
 					: lastState[0];
 
 			for (int counter = lastStateIndex - 1; counter >= 0; counter--) {
@@ -1067,7 +1054,8 @@ public final class NimbusStyle extends SynthStyle {
 					// This comes from BigInteger.bitCnt
 					int bitCount = oState;
 					bitCount -= (0xaaaaaaaa & bitCount) >>> 1;
-					bitCount = (bitCount & 0x33333333) + ((bitCount >>> 2) & 0x33333333);
+					bitCount = (bitCount & 0x33333333) + ((bitCount >>> 2)
+							& 0x33333333);
 					bitCount = bitCount + (bitCount >>> 4) & 0x0f0f0f0f;
 					bitCount += bitCount >>> 8;
 					bitCount += bitCount >>> 16;

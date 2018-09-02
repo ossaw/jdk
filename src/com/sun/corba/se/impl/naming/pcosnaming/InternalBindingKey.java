@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.naming.pcosnaming;
@@ -44,8 +24,7 @@ public class InternalBindingKey implements Serializable {
 	public String kind;
 
 	// Default Constructor
-	public InternalBindingKey() {
-	}
+	public InternalBindingKey() {}
 
 	// Normal constructor
 	public InternalBindingKey(NameComponent n) {
@@ -75,7 +54,8 @@ public class InternalBindingKey implements Serializable {
 			} else {
 				// If One is Null and the other is not then it's a mismatch
 				// So, return false
-				if ((this.id == null && that.id != null) || (this.id != null && that.id == null)) {
+				if ((this.id == null && that.id != null) || (this.id != null
+						&& that.id == null)) {
 					return false;
 				}
 			}
@@ -84,7 +64,8 @@ public class InternalBindingKey implements Serializable {
 					return false;
 				}
 				// If kind is set it must be equal
-				if (this.kind.length() > 0 && this.kind.equals(that.kind) == false) {
+				if (this.kind.length() > 0 && this.kind.equals(
+						that.kind) == false) {
 					return false;
 				}
 			} else {

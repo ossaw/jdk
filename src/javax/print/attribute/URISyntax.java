@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.attribute;
@@ -54,7 +34,8 @@ public abstract class URISyntax implements Serializable, Cloneable {
 	 *            URI.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>uri</CODE> is null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>uri</CODE> is null.
 	 */
 	protected URISyntax(URI uri) {
 		this.uri = verify(uri);
@@ -96,14 +77,14 @@ public abstract class URISyntax implements Serializable, Cloneable {
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this URI attribute,
 	 *         false otherwise.
 	 */
 	public boolean equals(Object object) {
-		return (object != null && object instanceof URISyntax
-				&& this.uri.equals(((URISyntax) object).uri));
+		return (object != null && object instanceof URISyntax && this.uri
+				.equals(((URISyntax) object).uri));
 	}
 
 	/**

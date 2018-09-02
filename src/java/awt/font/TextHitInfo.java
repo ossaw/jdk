@@ -1,41 +1,18 @@
 /*
  * Copyright (c) 1997, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996 - 1997, All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998, All Rights Reserved
- *
  * The original version of this source code and documentation is
  * copyrighted and owned by Taligent, Inc., a wholly-owned subsidiary
  * of IBM. These materials are provided under terms of a License
  * Agreement between Taligent and Sun. This technology is protected
  * by multiple US and International patents.
- *
  * This notice and attribution to Taligent may not be removed.
  * Taligent is a registered trademark of Taligent, Inc.
- *
  */
 
 package java.awt.font;
@@ -97,9 +74,10 @@ public final class TextHitInfo {
 	 * Constructs a new <code>TextHitInfo</code>.
 	 * 
 	 * @param charIndex
-	 *            the index of the character hit
+	 *                      the index of the character hit
 	 * @param isLeadingEdge
-	 *            <code>true</code> if the leading edge of the character was hit
+	 *                      <code>true</code> if the leading edge of the
+	 *                      character was hit
 	 */
 	private TextHitInfo(int charIndex, boolean isLeadingEdge) {
 		this.charIndex = charIndex;
@@ -166,7 +144,7 @@ public final class TextHitInfo {
 	 * insertion offset.
 	 * 
 	 * @param hitInfo
-	 *            a specified <code>TextHitInfo</code>
+	 *                a specified <code>TextHitInfo</code>
 	 * @return <code>true</code> if the specified <code>TextHitInfo</code> has
 	 *         the same <code>charIndex</code> and <code>isLeadingEdge</code> as
 	 *         this <code>TextHitInfo</code>.
@@ -191,7 +169,7 @@ public final class TextHitInfo {
 	 * at the specified <code>charIndex</code>.
 	 * 
 	 * @param charIndex
-	 *            the index of the character hit
+	 *                  the index of the character hit
 	 * @return a <code>TextHitInfo</code> on the leading edge of the character
 	 *         at the specified <code>charIndex</code>.
 	 */
@@ -204,7 +182,7 @@ public final class TextHitInfo {
 	 * <code>charIndex</code>.
 	 * 
 	 * @param charIndex
-	 *            the index of the character hit
+	 *                  the index of the character hit
 	 * @return a <code>TextHitInfo</code> on the trailing edge of the character
 	 *         at the specified <code>charIndex</code>.
 	 */
@@ -217,7 +195,7 @@ public final class TextHitInfo {
 	 * with the character before the offset.
 	 * 
 	 * @param offset
-	 *            an offset associated with the character before the offset
+	 *               an offset associated with the character before the offset
 	 * @return a <code>TextHitInfo</code> at the specified offset.
 	 */
 	public static TextHitInfo beforeOffset(int offset) {
@@ -229,7 +207,7 @@ public final class TextHitInfo {
 	 * with the character after the offset.
 	 * 
 	 * @param offset
-	 *            an offset associated with the character after the offset
+	 *               an offset associated with the character after the offset
 	 * @return a <code>TextHitInfo</code> at the specified offset.
 	 */
 	public static TextHitInfo afterOffset(int offset) {
@@ -258,7 +236,7 @@ public final class TextHitInfo {
 	 * unchanged.
 	 * 
 	 * @param delta
-	 *            the value to offset this <code>charIndex</code>
+	 *              the value to offset this <code>charIndex</code>
 	 * @return a <code>TextHitInfo</code> whose <code>charIndex</code> is offset
 	 *         by <code>delta</code> from the <code>charIndex</code> of this
 	 *         <code>TextHitInfo</code>.

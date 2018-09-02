@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.colorchooser;
@@ -77,11 +57,14 @@ final class ColorModelHSL extends ColorModel {
 
 		if (saturation > 0.0f) {
 			hue = (hue < 1.0f) ? hue * 6.0f : 0.0f;
-			float q = lightness + saturation * ((lightness > 0.5f) ? 1.0f - lightness : lightness);
+			float q = lightness + saturation * ((lightness > 0.5f) ? 1.0f
+					- lightness : lightness);
 			float p = 2.0f * lightness - q;
-			rgb[0] = normalize(q, p, (hue < 4.0f) ? (hue + 2.0f) : (hue - 4.0f));
+			rgb[0] = normalize(q, p, (hue < 4.0f) ? (hue + 2.0f)
+					: (hue - 4.0f));
 			rgb[1] = normalize(q, p, hue);
-			rgb[2] = normalize(q, p, (hue < 2.0f) ? (hue + 4.0f) : (hue - 2.0f));
+			rgb[2] = normalize(q, p, (hue < 2.0f) ? (hue + 4.0f)
+					: (hue - 2.0f));
 		} else {
 			rgb[0] = lightness;
 			rgb[1] = lightness;
@@ -123,11 +106,11 @@ final class ColorModelHSL extends ColorModel {
 	 * Returns the smaller of three color components.
 	 *
 	 * @param red
-	 *            the red component of the color
+	 *              the red component of the color
 	 * @param green
-	 *            the green component of the color
+	 *              the green component of the color
 	 * @param blue
-	 *            the blue component of the color
+	 *              the blue component of the color
 	 * @return the smaller of {@code red}, {@code green} and {@code blue}
 	 */
 	static float min(float red, float green, float blue) {
@@ -139,11 +122,11 @@ final class ColorModelHSL extends ColorModel {
 	 * Returns the larger of three color components.
 	 *
 	 * @param red
-	 *            the red component of the color
+	 *              the red component of the color
 	 * @param green
-	 *            the green component of the color
+	 *              the green component of the color
 	 * @param blue
-	 *            the blue component of the color
+	 *              the blue component of the color
 	 * @return the larger of {@code red}, {@code green} and {@code blue}
 	 */
 	static float max(float red, float green, float blue) {
@@ -155,18 +138,19 @@ final class ColorModelHSL extends ColorModel {
 	 * Calculates the hue component for HSL and HSV color spaces.
 	 *
 	 * @param red
-	 *            the red component of the color
+	 *              the red component of the color
 	 * @param green
-	 *            the green component of the color
+	 *              the green component of the color
 	 * @param blue
-	 *            the blue component of the color
+	 *              the blue component of the color
 	 * @param max
-	 *            the larger of {@code red}, {@code green} and {@code blue}
+	 *              the larger of {@code red}, {@code green} and {@code blue}
 	 * @param min
-	 *            the smaller of {@code red}, {@code green} and {@code blue}
+	 *              the smaller of {@code red}, {@code green} and {@code blue}
 	 * @return the hue component
 	 */
-	static float getHue(float red, float green, float blue, float max, float min) {
+	static float getHue(float red, float green, float blue, float max,
+			float min) {
 		float hue = max - min;
 		if (hue > 0.0f) {
 			if (max == red) {

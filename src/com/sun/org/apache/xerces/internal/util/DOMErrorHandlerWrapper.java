@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -50,7 +48,8 @@ import org.w3c.dom.Node;
 // sends one call back to the application
 // I think we can avoid this indirection if we modify XMLErrorReporter. --el
 
-public class DOMErrorHandlerWrapper implements XMLErrorHandler, DOMErrorHandler {
+public class DOMErrorHandlerWrapper implements XMLErrorHandler,
+		DOMErrorHandler {
 
 	// It keeps the reference of DOMErrorHandler of application
 	protected DOMErrorHandler fDomErrorHandler;
@@ -106,19 +105,21 @@ public class DOMErrorHandlerWrapper implements XMLErrorHandler, DOMErrorHandler 
 	 * most applications.
 	 *
 	 * @param domain
-	 *            The domain of the warning. The domain can be any string but is
-	 *            suggested to be a valid URI. The domain can be used to
-	 *            conveniently specify a web site location of the relevent
-	 *            specification or document pertaining to this warning.
+	 *                  The domain of the warning. The domain can be any string
+	 *                  but is
+	 *                  suggested to be a valid URI. The domain can be used to
+	 *                  conveniently specify a web site location of the relevent
+	 *                  specification or document pertaining to this warning.
 	 * @param key
-	 *            The warning key. This key can be any string and is
-	 *            implementation dependent.
+	 *                  The warning key. This key can be any string and is
+	 *                  implementation dependent.
 	 * @param exception
-	 *            Exception.
+	 *                  Exception.
 	 *
 	 * @throws XNIException
-	 *             Thrown to signal that the parser should stop parsing the
-	 *             document.
+	 *                      Thrown to signal that the parser should stop parsing
+	 *                      the
+	 *                      document.
 	 */
 
 	public void warning(String domain, String key, XMLParseException exception)
@@ -146,21 +147,24 @@ public class DOMErrorHandlerWrapper implements XMLErrorHandler, DOMErrorHandler 
 	 * document is invalid with respect to its grammar(s).
 	 *
 	 * @param domain
-	 *            The domain of the error. The domain can be any string but is
-	 *            suggested to be a valid URI. The domain can be used to
-	 *            conveniently specify a web site location of the relevent
-	 *            specification or document pertaining to this error.
+	 *                  The domain of the error. The domain can be any string
+	 *                  but is
+	 *                  suggested to be a valid URI. The domain can be used to
+	 *                  conveniently specify a web site location of the relevent
+	 *                  specification or document pertaining to this error.
 	 * @param key
-	 *            The error key. This key can be any string and is
-	 *            implementation dependent.
+	 *                  The error key. This key can be any string and is
+	 *                  implementation dependent.
 	 * @param exception
-	 *            Exception.
+	 *                  Exception.
 	 *
 	 * @throws XNIException
-	 *             Thrown to signal that the parser should stop parsing the
-	 *             document.
+	 *                      Thrown to signal that the parser should stop parsing
+	 *                      the
+	 *                      document.
 	 */
-	public void error(String domain, String key, XMLParseException exception) throws XNIException {
+	public void error(String domain, String key, XMLParseException exception)
+			throws XNIException {
 		fDOMError.fSeverity = DOMError.SEVERITY_ERROR;
 		fDOMError.fException = exception;
 		// REVISIT: May need to lookup from DOMErrorTypeMap in the future.
@@ -191,22 +195,26 @@ public class DOMErrorHandlerWrapper implements XMLErrorHandler, DOMErrorHandler 
 	 * exception, the continuing operation of the parser is undetermined.
 	 *
 	 * @param domain
-	 *            The domain of the fatal error. The domain can be any string
-	 *            but is suggested to be a valid URI. The domain can be used to
-	 *            conveniently specify a web site location of the relevent
-	 *            specification or document pertaining to this fatal error.
+	 *                  The domain of the fatal error. The domain can be any
+	 *                  string
+	 *                  but is suggested to be a valid URI. The domain can be
+	 *                  used to
+	 *                  conveniently specify a web site location of the relevent
+	 *                  specification or document pertaining to this fatal
+	 *                  error.
 	 * @param key
-	 *            The fatal error key. This key can be any string and is
-	 *            implementation dependent.
+	 *                  The fatal error key. This key can be any string and is
+	 *                  implementation dependent.
 	 * @param exception
-	 *            Exception.
+	 *                  Exception.
 	 *
 	 * @throws XNIException
-	 *             Thrown to signal that the parser should stop parsing the
-	 *             document.
+	 *                      Thrown to signal that the parser should stop parsing
+	 *                      the
+	 *                      document.
 	 */
-	public void fatalError(String domain, String key, XMLParseException exception)
-			throws XNIException {
+	public void fatalError(String domain, String key,
+			XMLParseException exception) throws XNIException {
 		fDOMError.fSeverity = DOMError.SEVERITY_FATAL_ERROR;
 		fDOMError.fException = exception;
 		fErrorCode.setValues(domain, key);
@@ -298,375 +306,414 @@ public class DOMErrorHandlerWrapper implements XMLErrorHandler, DOMErrorHandler 
 			// xmlVersion, etc.
 
 			Map<XMLErrorCode, String> aDOMErrorTypeTable = new HashMap<>();
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInCDSect"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "InvalidCharInCDSect"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInContent"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "InvalidCharInContent"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "TwoColonsInQName"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "TwoColonsInQName"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "ColonNotLegalWithNS"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "ColonNotLegalWithNS"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInProlog"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "InvalidCharInProlog"),
 					"wf-invalid-character"); // e.g. in Processing Instruction
 
 			// InvalidCharInXMLDecl omitted because XML declaration is not a DOM
 			// Node
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "CDEndInContent"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "CDEndInContent"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "CDSectUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "CDSectUnterminated"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "DoctypeNotAllowed"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "DoctypeNotAllowed"),
 					"doctype-not-allowed");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "ETagRequired"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "ETagRequired"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "ElementUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "ElementUnterminated"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "EqRequiredInAttribute"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "EqRequiredInAttribute"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "OpenQuoteExpected"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "OpenQuoteExpected"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "CloseQuoteExpected"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "CloseQuoteExpected"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "ETagUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "ETagUnterminated"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
 					"MarkupNotRecognizedInContent"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "DoctypeIllegalInContent"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "DoctypeIllegalInContent"),
 					"doctype-not-allowed");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInAttValue"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "InvalidCharInAttValue"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInPI"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "InvalidCharInPI"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInInternalSubset"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"InvalidCharInInternalSubset"), "wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "QuoteRequiredInAttValue"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "QuoteRequiredInAttValue"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "LessthanInAttValue"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "LessthanInAttValue"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"AttributeValueUnterminated"), "wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "PITargetRequired"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "AttributeValueUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "SpaceRequiredInPI"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "PITargetRequired"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "PIUnterminated"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "SpaceRequiredInPI"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "ReservedPITarget"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "PIUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "PI_NOT_IN_ONE_ENTITY"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "ReservedPITarget"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "PINotInOneEntity"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "PI_NOT_IN_ONE_ENTITY"),
-					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "PINotInOneEntity"),
-					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "EncodingDeclInvalid"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "EncodingDeclInvalid"),
 					"unsupported-encoding");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
 					"EncodingByteOrderUnsupported"), "unsupported-encoding");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInEntityValue"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "InvalidCharInEntityValue"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInExternalSubset"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"InvalidCharInExternalSubset"), "wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "InvalidCharInIgnoreSect"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInIgnoreSect"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "InvalidCharInPublicID"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInPublicID"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "InvalidCharInSystemID"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInSystemID"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "SpaceRequiredAfterSYSTEM"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "SpaceRequiredAfterSYSTEM"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "QuoteRequiredInSystemID"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "QuoteRequiredInSystemID"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "SystemIDUnterminated"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "SystemIDUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "SpaceRequiredAfterPUBLIC"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "SpaceRequiredAfterPUBLIC"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "QuoteRequiredInPublicID"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "QuoteRequiredInPublicID"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "PublicIDUnterminated"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "PublicIDUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "PubidCharIllegal"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "PubidCharIllegal"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"SpaceRequiredBetweenPublicAndSystem"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"SpaceRequiredBetweenPublicAndSystem"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_ROOT_ELEMENT_TYPE_IN_DOCTYPEDECL"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_ROOT_ELEMENT_TYPE_IN_DOCTYPEDECL"),
 					"wf-invalid-character-in-node-name"); // considered error in
-															// name of node
-															// (which follows
-															// !DOCTYPE)
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_ROOT_ELEMENT_TYPE_REQUIRED"), "wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "DoctypedeclUnterminated"),
+																																																	// name of node
+																																																	// (which follows
+																																																	// !DOCTYPE)
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_ROOT_ELEMENT_TYPE_REQUIRED"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "PEReferenceWithinMarkup"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "DoctypedeclUnterminated"),
+					"wf-invalid-character-in-node-name");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "PEReferenceWithinMarkup"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_MARKUP_NOT_RECOGNIZED_IN_DTD"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_ELEMENT_TYPE_IN_ELEMENTDECL"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_MARKUP_NOT_RECOGNIZED_IN_DTD"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_ELEMENT_TYPE_REQUIRED_IN_ELEMENTDECL"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_CONTENTSPEC_IN_ELEMENTDECL"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_ELEMENT_TYPE_IN_ELEMENTDECL"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_CONTENTSPEC_REQUIRED_IN_ELEMENTDECL"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "ElementDeclUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_ELEMENT_TYPE_REQUIRED_IN_ELEMENTDECL"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_OPEN_PAREN_OR_ELEMENT_TYPE_REQUIRED_IN_CHILDREN"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_CONTENTSPEC_IN_ELEMENTDECL"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_CLOSE_PAREN_REQUIRED_IN_CHILDREN"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_ELEMENT_TYPE_REQUIRED_IN_MIXED_CONTENT"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_CLOSE_PAREN_REQUIRED_IN_MIXED"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "MixedContentUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_CONTENTSPEC_REQUIRED_IN_ELEMENTDECL"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_ELEMENT_TYPE_IN_ATTLISTDECL"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "ElementDeclUnterminated"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_ELEMENT_TYPE_REQUIRED_IN_ATTLISTDECL"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_ATTRIBUTE_NAME_IN_ATTDEF"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_OPEN_PAREN_OR_ELEMENT_TYPE_REQUIRED_IN_CHILDREN"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "AttNameRequiredInAttDef"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_CLOSE_PAREN_REQUIRED_IN_CHILDREN"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_SPACE_REQUIRED_BEFORE_ATTTYPE_IN_ATTDEF"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "AttTypeRequiredInAttDef"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_ELEMENT_TYPE_REQUIRED_IN_MIXED_CONTENT"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_DEFAULTDECL_IN_ATTDEF"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_CLOSE_PAREN_REQUIRED_IN_MIXED"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_DUPLICATE_ATTRIBUTE_DEFINITION"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_AFTER_NOTATION_IN_NOTATIONTYPE"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "MixedContentUnterminated"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_OPEN_PAREN_REQUIRED_IN_NOTATIONTYPE"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_NAME_REQUIRED_IN_NOTATIONTYPE"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "NotationTypeUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_ELEMENT_TYPE_IN_ATTLISTDECL"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_NMTOKEN_REQUIRED_IN_ENUMERATION"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "EnumerationUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_ELEMENT_TYPE_REQUIRED_IN_ATTLISTDECL"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_DISTINCT_TOKENS_IN_ENUMERATION"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-					"MSG_DISTINCT_NOTATION_IN_ENUMERATION"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_AFTER_FIXED_IN_DEFAULTDECL"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_ATTRIBUTE_NAME_IN_ATTDEF"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "IncludeSectUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "AttNameRequiredInAttDef"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "IgnoreSectUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_ATTTYPE_IN_ATTDEF"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "NameRequiredInPEReference"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "AttTypeRequiredInAttDef"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_DEFAULTDECL_IN_ATTDEF"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_DUPLICATE_ATTRIBUTE_DEFINITION"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_AFTER_NOTATION_IN_NOTATIONTYPE"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_OPEN_PAREN_REQUIRED_IN_NOTATIONTYPE"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_NAME_REQUIRED_IN_NOTATIONTYPE"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "NotationTypeUnterminated"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_NMTOKEN_REQUIRED_IN_ENUMERATION"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "EnumerationUnterminated"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_DISTINCT_TOKENS_IN_ENUMERATION"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_DISTINCT_NOTATION_IN_ENUMERATION"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_AFTER_FIXED_IN_DEFAULTDECL"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "IncludeSectUnterminated"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "IgnoreSectUnterminated"),
+					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"NameRequiredInPEReference"), "wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
 					"SemicolonRequiredInPEReference"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_ENTITY_NAME_IN_ENTITYDECL"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_ENTITY_NAME_IN_ENTITYDECL"),
 					"wf-invalid-character-in-node-name"); // considered error in
-															// name of node
-															// (which follows
-															// !ENTITY)
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_PERCENT_IN_PEDECL"),
+																																															// name of node
+																																															// (which follows
+																																															// !ENTITY)
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_PERCENT_IN_PEDECL"),
 					"wf-invalid-character-in-node-name"); // considered error in
-															// name of node
-															// (which follows
-															// !ENTITY %)
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_ENTITY_NAME_IN_PEDECL"),
+																																													// name of node
+																																													// (which follows
+																																													// !ENTITY %)
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_ENTITY_NAME_IN_PEDECL"),
 					"wf-invalid-character-in-node-name"); // considered error in
-															// name of node
-															// (which follows
-															// !ENTITY %)
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_ENTITY_NAME_REQUIRED_IN_ENTITYDECL"),
+																																														// name of node
+																																														// (which follows
+																																														// !ENTITY %)
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_ENTITY_NAME_REQUIRED_IN_ENTITYDECL"),
 					"wf-invalid-character-in-node-name"); // considered error in
-															// name of node
-															// (which follows
-															// !ENTITY)
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_AFTER_ENTITY_NAME_IN_ENTITYDECL"),
+																																												// name of node
+																																												// (which follows
+																																												// !ENTITY)
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_AFTER_ENTITY_NAME_IN_ENTITYDECL"),
 					"wf-invalid-character-in-node-name"); // considered error in
-															// name of node
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_NOTATION_NAME_IN_UNPARSED_ENTITYDECL"),
+																																															// name of node
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_NOTATION_NAME_IN_UNPARSED_ENTITYDECL"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_NDATA_IN_UNPARSED_ENTITYDECL"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_NDATA_IN_UNPARSED_ENTITYDECL"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_NOTATION_NAME_REQUIRED_FOR_UNPARSED_ENTITYDECL"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_NOTATION_NAME_REQUIRED_FOR_UNPARSED_ENTITYDECL"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "EntityDeclUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "EntityDeclUnterminated"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_DUPLICATE_ENTITY_DEFINITION"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_DUPLICATE_ENTITY_DEFINITION"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "ExternalIDRequired"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "ExternalIDRequired"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_PUBIDLITERAL_IN_EXTERNALID"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_PUBIDLITERAL_IN_EXTERNALID"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_AFTER_PUBIDLITERAL_IN_EXTERNALID"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_AFTER_PUBIDLITERAL_IN_EXTERNALID"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_SYSTEMLITERAL_IN_EXTERNALID"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_SYSTEMLITERAL_IN_EXTERNALID"),
 					"wf-invalid-character");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
 					"MSG_URI_FRAGMENT_IN_SYSTEMID"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_BEFORE_NOTATION_NAME_IN_NOTATIONDECL"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_BEFORE_NOTATION_NAME_IN_NOTATIONDECL"),
 					"wf-invalid-character-in-node-name"); // considered error in
-															// name of node,
-															// which follows
-															// !NOTATION
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_NOTATION_NAME_REQUIRED_IN_NOTATIONDECL"),
+																																																// name of node,
+																																																// which follows
+																																																// !NOTATION
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_NOTATION_NAME_REQUIRED_IN_NOTATIONDECL"),
 					"wf-invalid-character-in-node-name"); // considered error in
-															// name of node,
-															// which follows
-															// !NOTATION
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
-							"MSG_SPACE_REQUIRED_AFTER_NOTATION_NAME_IN_NOTATIONDECL"),
+																																													// name of node,
+																																													// which follows
+																																													// !NOTATION
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"MSG_SPACE_REQUIRED_AFTER_NOTATION_NAME_IN_NOTATIONDECL"),
 					"wf-invalid-character-in-node-name"); // considered error in
-															// name of node,
-															// which follows
-															// !NOTATION
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN,
+																																																// name of node,
+																																																// which follows
+																																																// !NOTATION
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
 					"ExternalIDorPublicIDRequired"), "wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "NotationDeclUnterminated"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "NotationDeclUnterminated"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "ReferenceToExternalEntity"),
-					"wf-invalid-character");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "ReferenceToUnparsedEntity"),
-					"wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"ReferenceToExternalEntity"), "wf-invalid-character");
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN,
+					"ReferenceToUnparsedEntity"), "wf-invalid-character");
 
 			// REVISIT: do EntityNotDeclared, RecursiveReference,
 			// RecursiveGeneralReference, RecursivePEReference belong here?
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "EncodingNotSupported"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "EncodingNotSupported"),
 					"unsupported-encoding");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "EncodingRequired"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "EncodingRequired"),
 					"unsupported-encoding");
-			aDOMErrorTypeTable.put(new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "IllegalQName"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "IllegalQName"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "ElementXMLNSPrefix"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "ElementXMLNSPrefix"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "ElementPrefixUnbound"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "ElementPrefixUnbound"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "AttributePrefixUnbound"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "AttributePrefixUnbound"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "EmptyPrefixedAttName"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "EmptyPrefixedAttName"),
 					"wf-invalid-character-in-node-name");
-			aDOMErrorTypeTable.put(
-					new XMLErrorCode(XMLMessageFormatter.XML_DOMAIN, "PrefixDeclared"),
+			aDOMErrorTypeTable.put(new XMLErrorCode(
+					XMLMessageFormatter.XML_DOMAIN, "PrefixDeclared"),
 					"wf-invalid-character-in-node-name");
 
-			fgDOMErrorTypeTable = Collections.unmodifiableMap(aDOMErrorTypeTable);
+			fgDOMErrorTypeTable = Collections.unmodifiableMap(
+					aDOMErrorTypeTable);
 		}
 
 		public static String getDOMErrorType(XMLErrorCode error) {
 			return fgDOMErrorTypeTable.get(error);
 		}
 
-		private DOMErrorTypeMap() {
-		}
+		private DOMErrorTypeMap() {}
 	}
 
 } // class DOMErrorHandlerWrapper

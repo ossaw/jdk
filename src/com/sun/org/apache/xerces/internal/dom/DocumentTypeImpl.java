@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -103,28 +101,28 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 
 	/**
 	 * @serialField name
-	 *                  String document type name
+	 *              String document type name
 	 * @serialField entities
-	 *                  NamedNodeMapImpl entities
+	 *              NamedNodeMapImpl entities
 	 * @serialField notations
-	 *                  NamedNodeMapImpl notations
+	 *              NamedNodeMapImpl notations
 	 * @serialField elements
-	 *                  NamedNodeMapImpl elements
+	 *              NamedNodeMapImpl elements
 	 * @serialField publicID
-	 *                  String support public ID
+	 *              String support public ID
 	 * @serialField systemID
-	 *                  String support system ID
+	 *              String support system ID
 	 * @serialField internalSubset
-	 *                  String support internal subset
+	 *              String support internal subset
 	 * @serialField doctypeNumber
-	 *                  int Doctype number
+	 *              int Doctype number
 	 * @serialField userData
-	 *                  Hashtable user data
+	 *              Hashtable user data
 	 */
 	private static final ObjectStreamField[] serialPersistentFields = new ObjectStreamField[] {
-			new ObjectStreamField("name", String.class),
-			new ObjectStreamField("entities", NamedNodeMapImpl.class),
-			new ObjectStreamField("notations", NamedNodeMapImpl.class),
+			new ObjectStreamField("name", String.class), new ObjectStreamField(
+					"entities", NamedNodeMapImpl.class), new ObjectStreamField(
+							"notations", NamedNodeMapImpl.class),
 			new ObjectStreamField("elements", NamedNodeMapImpl.class),
 			new ObjectStreamField("publicID", String.class),
 			new ObjectStreamField("systemID", String.class),
@@ -151,8 +149,8 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 	} // <init>(CoreDocumentImpl,String)
 
 	/** Factory method for creating a document type node. */
-	public DocumentTypeImpl(CoreDocumentImpl ownerDocument, String qualifiedName, String publicID,
-			String systemID) {
+	public DocumentTypeImpl(CoreDocumentImpl ownerDocument,
+			String qualifiedName, String publicID, String systemID) {
 		this(ownerDocument, qualifiedName);
 		this.publicID = publicID;
 		this.systemID = systemID;
@@ -258,7 +256,6 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 
 	/*
 	 * Get Node text content
-	 * 
 	 * @since DOM Level 3
 	 */
 	public String getTextContent() throws DOMException {
@@ -267,7 +264,6 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 
 	/*
 	 * Set Node text content
-	 * 
 	 * @since DOM Level 3
 	 */
 	public void setTextContent(String textContent) throws DOMException {
@@ -295,8 +291,10 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 				|| (getPublicId() != null && argDocType.getPublicId() == null)
 				|| (getSystemId() == null && argDocType.getSystemId() != null)
 				|| (getSystemId() != null && argDocType.getSystemId() == null)
-				|| (getInternalSubset() == null && argDocType.getInternalSubset() != null)
-				|| (getInternalSubset() != null && argDocType.getInternalSubset() == null)) {
+				|| (getInternalSubset() == null && argDocType
+						.getInternalSubset() != null)
+				|| (getInternalSubset() != null && argDocType
+						.getInternalSubset() == null)) {
 			return false;
 		}
 
@@ -321,7 +319,8 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 		// test if NamedNodeMaps entities and notations are equal
 		NamedNodeMapImpl argEntities = argDocType.entities;
 
-		if ((entities == null && argEntities != null) || (entities != null && argEntities == null))
+		if ((entities == null && argEntities != null) || (entities != null
+				&& argEntities == null))
 			return false;
 
 		if (entities != null && argEntities != null) {
@@ -330,7 +329,8 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 
 			for (int index = 0; entities.item(index) != null; index++) {
 				Node entNode1 = entities.item(index);
-				Node entNode2 = argEntities.getNamedItem(entNode1.getNodeName());
+				Node entNode2 = argEntities.getNamedItem(entNode1
+						.getNodeName());
 
 				if (!((NodeImpl) entNode1).isEqualNode((NodeImpl) entNode2))
 					return false;
@@ -339,8 +339,8 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 
 		NamedNodeMapImpl argNotations = argDocType.notations;
 
-		if ((notations == null && argNotations != null)
-				|| (notations != null && argNotations == null))
+		if ((notations == null && argNotations != null) || (notations != null
+				&& argNotations == null))
 			return false;
 
 		if (notations != null && argNotations != null) {
@@ -349,7 +349,8 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 
 			for (int index = 0; notations.item(index) != null; index++) {
 				Node noteNode1 = notations.item(index);
-				Node noteNode2 = argNotations.getNamedItem(noteNode1.getNodeName());
+				Node noteNode2 = argNotations.getNamedItem(noteNode1
+						.getNodeName());
 
 				if (!((NodeImpl) noteNode1).isEqualNode((NodeImpl) noteNode2))
 					return false;
@@ -484,7 +485,8 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 		return elements;
 	}
 
-	public Object setUserData(String key, Object data, UserDataHandler handler) {
+	public Object setUserData(String key, Object data,
+			UserDataHandler handler) {
 		if (userData == null)
 			userData = new HashMap<>();
 		if (data == null) {
@@ -496,7 +498,8 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 			}
 			return null;
 		} else {
-			UserDataRecord udr = userData.put(key, new UserDataRecord(data, handler));
+			UserDataRecord udr = userData.put(key, new UserDataRecord(data,
+					handler));
 			if (udr != null) {
 				return udr.fData;
 			}
@@ -544,7 +547,8 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		// We have to read serialized fields first.
 		ObjectInputStream.GetField gf = in.readFields();
 		name = (String) gf.get("name", null);

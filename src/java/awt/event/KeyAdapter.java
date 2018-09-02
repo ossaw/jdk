@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -56,18 +36,15 @@ public abstract class KeyAdapter implements KeyListener {
 	 * Invoked when a key has been typed. This event occurs when a key press is
 	 * followed by a key release.
 	 */
-	public void keyTyped(KeyEvent e) {
-	}
+	public void keyTyped(KeyEvent e) {}
 
 	/**
 	 * Invoked when a key has been pressed.
 	 */
-	public void keyPressed(KeyEvent e) {
-	}
+	public void keyPressed(KeyEvent e) {}
 
 	/**
 	 * Invoked when a key has been released.
 	 */
-	public void keyReleased(KeyEvent e) {
-	}
+	public void keyReleased(KeyEvent e) {}
 }

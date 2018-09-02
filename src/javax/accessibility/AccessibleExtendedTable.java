@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.accessibility;
 
@@ -42,8 +22,9 @@ public interface AccessibleExtendedTable extends AccessibleTable {
 	 * Returns the row number of an index in the table.
 	 *
 	 * @param index
-	 *            the zero-based index in the table. The index is the table cell
-	 *            offset from row == 0 and column == 0.
+	 *              the zero-based index in the table. The index is the table
+	 *              cell
+	 *              offset from row == 0 and column == 0.
 	 * @return the zero-based row of the table if one exists; otherwise -1.
 	 */
 	public int getAccessibleRow(int index);
@@ -52,8 +33,9 @@ public interface AccessibleExtendedTable extends AccessibleTable {
 	 * Returns the column number of an index in the table.
 	 *
 	 * @param index
-	 *            the zero-based index in the table. The index is the table cell
-	 *            offset from row == 0 and column == 0.
+	 *              the zero-based index in the table. The index is the table
+	 *              cell
+	 *              offset from row == 0 and column == 0.
 	 * @return the zero-based column of the table if one exists; otherwise -1.
 	 */
 	public int getAccessibleColumn(int index);
@@ -62,9 +44,9 @@ public interface AccessibleExtendedTable extends AccessibleTable {
 	 * Returns the index at a row and column in the table.
 	 *
 	 * @param r
-	 *            zero-based row of the table
+	 *          zero-based row of the table
 	 * @param c
-	 *            zero-based column of the table
+	 *          zero-based column of the table
 	 * @return the zero-based index in the table if one exists; otherwise -1.
 	 *         The index is the table cell offset from row == 0 and column == 0.
 	 */

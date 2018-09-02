@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: XMLCharacterRecognizer.java,v 1.2.4.1 2005/09/15 08:16:01 suresh_emailid Exp $
+ * $Id: XMLCharacterRecognizer.java,v 1.2.4.1 2005/09/15 08:16:01 suresh_emailid
+ * Exp $
  */
 package com.sun.org.apache.xml.internal.utils;
 
@@ -37,7 +35,7 @@ public class XMLCharacterRecognizer {
 	 * of <CODE>S</CODE></A> for details.
 	 * 
 	 * @param ch
-	 *            Character to check as XML whitespace.
+	 *           Character to check as XML whitespace.
 	 * @return =true if <var>ch</var> is XML whitespace; otherwise =false.
 	 */
 	public static boolean isWhiteSpace(char ch) {
@@ -48,11 +46,11 @@ public class XMLCharacterRecognizer {
 	 * Tell if the string is whitespace.
 	 *
 	 * @param ch
-	 *            Character array to check as XML whitespace.
+	 *               Character array to check as XML whitespace.
 	 * @param start
-	 *            Start index of characters in the array
+	 *               Start index of characters in the array
 	 * @param length
-	 *            Number of characters in the array
+	 *               Number of characters in the array
 	 * @return True if the characters in the array are XML whitespace;
 	 *         otherwise, false.
 	 */
@@ -91,7 +89,7 @@ public class XMLCharacterRecognizer {
 	 * Tell if the string is whitespace.
 	 *
 	 * @param s
-	 *            String to check as XML whitespace.
+	 *          String to check as XML whitespace.
 	 * @return True if characters in buffer are XML whitespace, false otherwise
 	 */
 	public static boolean isWhiteSpace(String s) {

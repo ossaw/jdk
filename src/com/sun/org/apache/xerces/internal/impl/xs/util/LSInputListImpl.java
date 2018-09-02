@@ -4,14 +4,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,7 +39,8 @@ public final class LSInputListImpl extends AbstractList implements LSInputList {
 	/**
 	 * An immutable empty list.
 	 */
-	public static final LSInputListImpl EMPTY_LIST = new LSInputListImpl(new LSInput[0], 0);
+	public static final LSInputListImpl EMPTY_LIST = new LSInputListImpl(
+			new LSInput[0], 0);
 
 	// The array to hold all data
 	private final LSInput[] fArray;
@@ -52,9 +51,9 @@ public final class LSInputListImpl extends AbstractList implements LSInputList {
 	 * Construct an LSInputList implementation
 	 *
 	 * @param array
-	 *            the data array
+	 *               the data array
 	 * @param length
-	 *            the number of elements
+	 *               the number of elements
 	 */
 	public LSInputListImpl(LSInput[] array, int length) {
 		fArray = array;
@@ -75,7 +74,7 @@ public final class LSInputListImpl extends AbstractList implements LSInputList {
 	 * number of objects in the list. The index starts at 0.
 	 * 
 	 * @param index
-	 *            index into the collection.
+	 *              index into the collection.
 	 * @return The <code>LSInput</code> at the <code>index</code>th position in
 	 *         the <code>LSInputList</code>, or <code>null</code> if the index
 	 *         specified is not valid.

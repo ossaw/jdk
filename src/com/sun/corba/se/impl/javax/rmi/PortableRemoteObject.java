@@ -1,32 +1,11 @@
 /*
  * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
  * Licensed Materials - Property of IBM
  * RMI-IIOP v1.0
- * Copyright IBM Corp. 1998 1999  All Rights Reserved
- *
+ * Copyright IBM Corp. 1998 1999 All Rights Reserved
  */
 
 package com.sun.corba.se.impl.javax.rmi;
@@ -74,7 +53,8 @@ import com.sun.corba.se.impl.orbutil.GetPropertyAction;
  * operation is successful the result will be an object of the specified type,
  * otherwise an exception will be thrown.
  */
-public class PortableRemoteObject implements javax.rmi.CORBA.PortableRemoteObjectDelegate {
+public class PortableRemoteObject implements
+		javax.rmi.CORBA.PortableRemoteObjectDelegate {
 
 	/**
 	 * Makes a server object ready to receive remote calls. Note that subclasses
@@ -84,7 +64,7 @@ public class PortableRemoteObject implements javax.rmi.CORBA.PortableRemoteObjec
 	 * @param obj
 	 *            the server object to export.
 	 * @exception RemoteException
-	 *                if export fails.
+	 *                            if export fails.
 	 */
 	public void exportObject(Remote obj) throws RemoteException {
 
@@ -98,7 +78,8 @@ public class PortableRemoteObject implements javax.rmi.CORBA.PortableRemoteObjec
 
 			// Yes, so this is an error...
 
-			throw new ExportException(obj.getClass().getName() + " already exported");
+			throw new ExportException(obj.getClass().getName()
+					+ " already exported");
 		}
 
 		// Can we load a Tie?
@@ -129,7 +110,8 @@ public class PortableRemoteObject implements javax.rmi.CORBA.PortableRemoteObjec
 	 *            target of a call to {@link #exportObject}.
 	 * @return the most derived stub for the object.
 	 * @exception NoSuchObjectException
-	 *                if a stub cannot be located for the given server object.
+	 *                                  if a stub cannot be located for the
+	 *                                  given server object.
 	 */
 	public Remote toStub(Remote obj) throws NoSuchObjectException {
 		Remote result = null;
@@ -172,7 +154,8 @@ public class PortableRemoteObject implements javax.rmi.CORBA.PortableRemoteObjec
 	 * @param obj
 	 *            the object to unexport.
 	 * @exception NoSuchObjectException
-	 *                if the remote object is not currently exported.
+	 *                                  if the remote object is not currently
+	 *                                  exported.
 	 */
 	public void unexportObject(Remote obj) throws NoSuchObjectException {
 
@@ -180,8 +163,10 @@ public class PortableRemoteObject implements javax.rmi.CORBA.PortableRemoteObjec
 			throw new NullPointerException("invalid argument");
 		}
 
-		if (StubAdapter.isStub(obj) || obj instanceof java.rmi.server.RemoteStub) {
-			throw new NoSuchObjectException("Can only unexport a server object.");
+		if (StubAdapter.isStub(obj)
+				|| obj instanceof java.rmi.server.RemoteStub) {
+			throw new NoSuchObjectException(
+					"Can only unexport a server object.");
 		}
 
 		Tie theTie = Util.getTie(obj);
@@ -201,15 +186,15 @@ public class PortableRemoteObject implements javax.rmi.CORBA.PortableRemoteObjec
 	 * can be cast to a desired type.
 	 * 
 	 * @param narrowFrom
-	 *            the object to check.
+	 *                   the object to check.
 	 * @param narrowTo
-	 *            the desired type.
+	 *                   the desired type.
 	 * @return an object which can be cast to the desired type.
 	 * @throws ClassCastException
-	 *             if narrowFrom cannot be cast to narrowTo.
+	 *                            if narrowFrom cannot be cast to narrowTo.
 	 */
-	public java.lang.Object narrow(java.lang.Object narrowFrom, java.lang.Class narrowTo)
-			throws ClassCastException {
+	public java.lang.Object narrow(java.lang.Object narrowFrom,
+			java.lang.Class narrowTo) throws ClassCastException {
 		java.lang.Object result = null;
 
 		if (narrowFrom == null)
@@ -235,12 +220,12 @@ public class PortableRemoteObject implements javax.rmi.CORBA.PortableRemoteObjec
 				if (narrowObj._is_a(id)) {
 					return Utility.loadStub(narrowObj, narrowTo);
 				} else {
-					throw new ClassCastException(
-							"Object is not of remote type " + narrowTo.getName());
+					throw new ClassCastException("Object is not of remote type "
+							+ narrowTo.getName());
 				}
 			} else {
-				throw new ClassCastException(
-						"Class " + narrowTo.getName() + " is not a valid remote interface");
+				throw new ClassCastException("Class " + narrowTo.getName()
+						+ " is not a valid remote interface");
 			}
 		} catch (Exception error) {
 			ClassCastException cce = new ClassCastException();
@@ -257,13 +242,14 @@ public class PortableRemoteObject implements javax.rmi.CORBA.PortableRemoteObjec
 	 * method for more information.
 	 * 
 	 * @param target
-	 *            the object to connect.
+	 *               the object to connect.
 	 * @param source
-	 *            a previously connected object.
+	 *               a previously connected object.
 	 * @throws RemoteException
-	 *             if <code>source</code> is not connected or if
-	 *             <code>target</code> is already connected to a different ORB
-	 *             than <code>source</code>.
+	 *                         if <code>source</code> is not connected or if
+	 *                         <code>target</code> is already connected to a
+	 *                         different ORB
+	 *                         than <code>source</code>.
 	 */
 	public void connect(Remote target, Remote source) throws RemoteException {
 		if (target == null || source == null) {
@@ -317,13 +303,15 @@ public class PortableRemoteObject implements javax.rmi.CORBA.PortableRemoteObjec
 			// connect a JRMP object. If so, it is an error because
 			// the caller mixed JRMP and IIOP...
 			if (orb != null) {
-				throw new RemoteException("'source' object exported to IIOP, 'target' is JRMP");
+				throw new RemoteException(
+						"'source' object exported to IIOP, 'target' is JRMP");
 			}
 		} else {
 			// The target object is IIOP. Make sure we have a
 			// valid ORB from the source object...
 			if (orb == null) {
-				throw new RemoteException("'source' object is JRMP, 'target' is IIOP");
+				throw new RemoteException(
+						"'source' object is JRMP, 'target' is IIOP");
 			}
 
 			// And, finally, connect it up...
@@ -340,7 +328,8 @@ public class PortableRemoteObject implements javax.rmi.CORBA.PortableRemoteObjec
 							return;
 						} else {
 							// No, so this is an error...
-							throw new RemoteException("'target' object was already connected");
+							throw new RemoteException(
+									"'target' object was already connected");
 						}
 					} catch (SystemException e) {
 					}
@@ -353,7 +342,8 @@ public class PortableRemoteObject implements javax.rmi.CORBA.PortableRemoteObjec
 			} catch (SystemException e) {
 
 				// The stub or tie was already connected...
-				throw new RemoteException("'target' object was already connected", e);
+				throw new RemoteException(
+						"'target' object was already connected", e);
 			}
 		}
 	}

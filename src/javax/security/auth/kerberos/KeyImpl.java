@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth.kerberos;
@@ -60,10 +40,11 @@ class KeyImpl implements SecretKey, Destroyable, Serializable {
 	 * Constructs a KeyImpl from the given bytes.
 	 *
 	 * @param keyBytes
-	 *            the raw bytes for the secret key
+	 *                 the raw bytes for the secret key
 	 * @param keyType
-	 *            the key type for the secret key as defined by the Kerberos
-	 *            protocol specification.
+	 *                 the key type for the secret key as defined by the
+	 *                 Kerberos
+	 *                 protocol specification.
 	 */
 	public KeyImpl(byte[] keyBytes, int keyType) {
 		this.keyBytes = keyBytes.clone();
@@ -74,18 +55,22 @@ class KeyImpl implements SecretKey, Destroyable, Serializable {
 	 * Constructs a KeyImpl from a password.
 	 *
 	 * @param principal
-	 *            the principal from which to derive the salt
+	 *                  the principal from which to derive the salt
 	 * @param password
-	 *            the password that should be used to compute the key.
+	 *                  the password that should be used to compute the key.
 	 * @param algorithm
-	 *            the name for the algorithm that this key wil be used for. This
-	 *            parameter may be null in which case "DES" will be assumed.
+	 *                  the name for the algorithm that this key wil be used
+	 *                  for. This
+	 *                  parameter may be null in which case "DES" will be
+	 *                  assumed.
 	 */
-	public KeyImpl(KerberosPrincipal principal, char[] password, String algorithm) {
+	public KeyImpl(KerberosPrincipal principal, char[] password,
+			String algorithm) {
 
 		try {
 			PrincipalName princ = new PrincipalName(principal.getName());
-			EncryptionKey key = new EncryptionKey(password, princ.getSalt(), algorithm);
+			EncryptionKey key = new EncryptionKey(password, princ.getSalt(),
+					algorithm);
 			this.keyBytes = key.getBytes();
 			this.keyType = key.getEType();
 		} catch (KrbException e) {
@@ -115,27 +100,28 @@ class KeyImpl implements SecretKey, Destroyable, Serializable {
 			throw new IllegalStateException("This key is no longer valid");
 
 		switch (eType) {
-		case EncryptedData.ETYPE_DES_CBC_CRC:
-		case EncryptedData.ETYPE_DES_CBC_MD5:
-			return "DES";
+			case EncryptedData.ETYPE_DES_CBC_CRC:
+			case EncryptedData.ETYPE_DES_CBC_MD5:
+				return "DES";
 
-		case EncryptedData.ETYPE_DES3_CBC_HMAC_SHA1_KD:
-			return "DESede";
+			case EncryptedData.ETYPE_DES3_CBC_HMAC_SHA1_KD:
+				return "DESede";
 
-		case EncryptedData.ETYPE_ARCFOUR_HMAC:
-			return "ArcFourHmac";
+			case EncryptedData.ETYPE_ARCFOUR_HMAC:
+				return "ArcFourHmac";
 
-		case EncryptedData.ETYPE_AES128_CTS_HMAC_SHA1_96:
-			return "AES128";
+			case EncryptedData.ETYPE_AES128_CTS_HMAC_SHA1_96:
+				return "AES128";
 
-		case EncryptedData.ETYPE_AES256_CTS_HMAC_SHA1_96:
-			return "AES256";
+			case EncryptedData.ETYPE_AES256_CTS_HMAC_SHA1_96:
+				return "AES256";
 
-		case EncryptedData.ETYPE_NULL:
-			return "NULL";
+			case EncryptedData.ETYPE_NULL:
+				return "NULL";
 
-		default:
-			throw new IllegalArgumentException("Unsupported encryption type: " + eType);
+			default:
+				throw new IllegalArgumentException(
+						"Unsupported encryption type: " + eType);
 		}
 	}
 
@@ -175,15 +161,18 @@ class KeyImpl implements SecretKey, Destroyable, Serializable {
 		}
 
 		try {
-			ois.writeObject((new EncryptionKey(keyType, keyBytes)).asn1Encode());
+			ois.writeObject((new EncryptionKey(keyType, keyBytes))
+					.asn1Encode());
 		} catch (Asn1Exception ae) {
 			throw new IOException(ae.getMessage());
 		}
 	}
 
-	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream ois) throws IOException,
+			ClassNotFoundException {
 		try {
-			EncryptionKey encKey = new EncryptionKey(new DerValue((byte[]) ois.readObject()));
+			EncryptionKey encKey = new EncryptionKey(new DerValue((byte[]) ois
+					.readObject()));
 			keyType = encKey.getEType();
 			keyBytes = encKey.getBytes();
 		} catch (Asn1Exception ae) {
@@ -222,7 +211,8 @@ class KeyImpl implements SecretKey, Destroyable, Serializable {
 			return false;
 		}
 
-		if (keyType != otherKey.getKeyType() || !Arrays.equals(keyBytes, otherKey.getEncoded())) {
+		if (keyType != otherKey.getKeyType() || !Arrays.equals(keyBytes,
+				otherKey.getEncoded())) {
 			return false;
 		}
 

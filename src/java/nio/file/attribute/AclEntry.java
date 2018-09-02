@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file.attribute;
@@ -89,8 +69,8 @@ public final class AclEntry {
 	private volatile int hash;
 
 	// private constructor
-	private AclEntry(AclEntryType type, UserPrincipal who, Set<AclEntryPermission> perms,
-			Set<AclEntryFlag> flags) {
+	private AclEntry(AclEntryType type, UserPrincipal who,
+			Set<AclEntryPermission> perms, Set<AclEntryFlag> flags) {
 		this.type = type;
 		this.who = who;
 		this.perms = perms;
@@ -117,8 +97,8 @@ public final class AclEntry {
 		private Set<AclEntryPermission> perms;
 		private Set<AclEntryFlag> flags;
 
-		private Builder(AclEntryType type, UserPrincipal who, Set<AclEntryPermission> perms,
-				Set<AclEntryFlag> flags) {
+		private Builder(AclEntryType type, UserPrincipal who,
+				Set<AclEntryPermission> perms, Set<AclEntryFlag> flags) {
 			assert perms != null && flags != null;
 			this.type = type;
 			this.who = who;
@@ -134,7 +114,8 @@ public final class AclEntry {
 		 * @return a new ACL entry
 		 *
 		 * @throws IllegalStateException
-		 *             if the type or who component have not been set
+		 *                               if the type or who component have not
+		 *                               been set
 		 */
 		public AclEntry build() {
 			if (type == null)
@@ -148,7 +129,7 @@ public final class AclEntry {
 		 * Sets the type component of this builder.
 		 *
 		 * @param type
-		 *            the component type
+		 *             the component type
 		 * @return this builder
 		 */
 		public Builder setType(AclEntryType type) {
@@ -186,11 +167,12 @@ public final class AclEntry {
 		 * permissions component of this builder is a copy of the given set.
 		 *
 		 * @param perms
-		 *            the permissions component
+		 *              the permissions component
 		 * @return this builder
 		 *
 		 * @throws ClassCastException
-		 *             if the set contains elements that are not of type {@code
+		 *                            if the set contains elements that are not
+		 *                            of type {@code
 		 *          AclEntryPermission}
 		 */
 		public Builder setPermissions(Set<AclEntryPermission> perms) {
@@ -213,11 +195,12 @@ public final class AclEntry {
 		 * the given array.
 		 *
 		 * @param perms
-		 *            the permissions component
+		 *              the permissions component
 		 * @return this builder
 		 */
 		public Builder setPermissions(AclEntryPermission... perms) {
-			Set<AclEntryPermission> set = EnumSet.noneOf(AclEntryPermission.class);
+			Set<AclEntryPermission> set = EnumSet.noneOf(
+					AclEntryPermission.class);
 			// copy and check for null elements
 			for (AclEntryPermission p : perms) {
 				if (p == null)
@@ -233,11 +216,12 @@ public final class AclEntry {
 		 * component of this builder is a copy of the given set.
 		 *
 		 * @param flags
-		 *            the flags component
+		 *              the flags component
 		 * @return this builder
 		 *
 		 * @throws ClassCastException
-		 *             if the set contains elements that are not of type {@code
+		 *                            if the set contains elements that are not
+		 *                            of type {@code
 		 *          AclEntryFlag}
 		 */
 		public Builder setFlags(Set<AclEntryFlag> flags) {
@@ -259,7 +243,7 @@ public final class AclEntry {
 		 * component of this builder is a copy of the flags in the given array.
 		 *
 		 * @param flags
-		 *            the flags component
+		 *              the flags component
 		 * @return this builder
 		 */
 		public Builder setFlags(AclEntryFlag... flags) {
@@ -292,7 +276,7 @@ public final class AclEntry {
 	 * Constructs a new builder with the components of an existing ACL entry.
 	 *
 	 * @param entry
-	 *            an ACL entry
+	 *              an ACL entry
 	 * @return a new builder
 	 */
 	public static Builder newBuilder(AclEntry entry) {
@@ -359,7 +343,7 @@ public final class AclEntry {
 	 * </p>
 	 *
 	 * @param ob
-	 *            the object to which this object is to be compared
+	 *           the object to which this object is to be compared
 	 *
 	 * @return {@code true} if, and only if, the given object is an AclEntry
 	 *         that is identical to this AclEntry

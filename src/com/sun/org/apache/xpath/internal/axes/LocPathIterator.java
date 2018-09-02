@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -51,22 +48,22 @@ import com.sun.org.apache.xpath.internal.res.XPATHErrorResources;
  * 
  * @xsl.usage advanced
  */
-public abstract class LocPathIterator extends PredicatedNodeTest
-		implements Cloneable, DTMIterator, java.io.Serializable, PathComponent {
+public abstract class LocPathIterator extends PredicatedNodeTest implements
+		Cloneable, DTMIterator, java.io.Serializable, PathComponent {
 	static final long serialVersionUID = -4602476357268405754L;
 
 	/**
 	 * Create a LocPathIterator object.
 	 *
 	 */
-	protected LocPathIterator() {
-	}
+	protected LocPathIterator() {}
 
 	/**
 	 * Create a LocPathIterator object.
 	 *
 	 * @param nscontext
-	 *            The namespace context for this iterator, should be OK if null.
+	 *                  The namespace context for this iterator, should be OK if
+	 *                  null.
 	 */
 	protected LocPathIterator(PrefixResolver nscontext) {
 
@@ -80,10 +77,10 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * expressions.
 	 *
 	 * @param compiler
-	 *            The Compiler which is creating this expression.
+	 *                 The Compiler which is creating this expression.
 	 * @param opPos
-	 *            The position of this iterator in the opcode list from the
-	 *            compiler.
+	 *                 The position of this iterator in the opcode list from the
+	 *                 compiler.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
@@ -98,17 +95,21 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * expressions.
 	 *
 	 * @param compiler
-	 *            The Compiler which is creating this expression.
+	 *                          The Compiler which is creating this expression.
 	 * @param opPos
-	 *            The position of this iterator in the opcode list from the
-	 *            compiler.
+	 *                          The position of this iterator in the opcode list
+	 *                          from the
+	 *                          compiler.
 	 * @param shouldLoadWalkers
-	 *            True if walkers should be loaded, or false if this is a
-	 *            derived iterator and it doesn't wish to load child walkers.
+	 *                          True if walkers should be loaded, or false if
+	 *                          this is a
+	 *                          derived iterator and it doesn't wish to load
+	 *                          child walkers.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	protected LocPathIterator(Compiler compiler, int opPos, int analysis, boolean shouldLoadWalkers)
+	protected LocPathIterator(Compiler compiler, int opPos, int analysis,
+			boolean shouldLoadWalkers)
 			throws javax.xml.transform.TransformerException {
 		setLocPathIterator(this);
 	}
@@ -128,13 +129,14 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * Read the object from a serialization stream.
 	 *
 	 * @param stream
-	 *            Input stream to read from
+	 *               Input stream to read from
 	 *
 	 * @throws java.io.IOException
 	 * @throws javax.xml.transform.TransformerException
 	 */
 	private void readObject(java.io.ObjectInputStream stream)
-			throws java.io.IOException, javax.xml.transform.TransformerException {
+			throws java.io.IOException,
+			javax.xml.transform.TransformerException {
 		try {
 			stream.defaultReadObject();
 			m_clones = new IteratorPool(this);
@@ -156,7 +158,7 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * </p>
 	 *
 	 * @param environment
-	 *            The environment object.
+	 *                    The environment object.
 	 */
 	public void setEnvironment(Object environment) {
 		// no-op for now.
@@ -168,7 +170,7 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * the DTM using just the iterator.
 	 *
 	 * @param nodeHandle
-	 *            the nodeHandle.
+	 *                   the nodeHandle.
 	 *
 	 * @return a non-null DTM reference.
 	 */
@@ -195,13 +197,14 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * performed.
 	 *
 	 * @param xctxt
-	 *            The XPath execution context.
+	 *              The XPath execution context.
 	 *
 	 * @return An XNodeSet reference that holds this iterator.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public XObject execute(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 
 		XNodeSet iter = new XNodeSet((LocPathIterator) m_clones.getInstance());
 
@@ -216,19 +219,21 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 *
 	 *
 	 * @param xctxt
-	 *            The XPath runtime context.
+	 *                The XPath runtime context.
 	 * @param handler
-	 *            The target content handler.
+	 *                The target content handler.
 	 *
 	 * @return The result of the expression in the form of a
 	 *         <code>XObject</code>.
 	 *
 	 * @throws javax.xml.transform.TransformerException
-	 *             if a runtime exception occurs.
+	 *         if a runtime exception occurs.
 	 * @throws org.xml.sax.SAXException
 	 */
-	public void executeCharsToContentHandler(XPathContext xctxt, org.xml.sax.ContentHandler handler)
-			throws javax.xml.transform.TransformerException, org.xml.sax.SAXException {
+	public void executeCharsToContentHandler(XPathContext xctxt,
+			org.xml.sax.ContentHandler handler)
+			throws javax.xml.transform.TransformerException,
+			org.xml.sax.SAXException {
 		LocPathIterator clone = (LocPathIterator) m_clones.getInstance();
 
 		int current = xctxt.getCurrentNode();
@@ -248,14 +253,16 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * the resulting iterator.
 	 *
 	 * @param xctxt
-	 *            The execution context.
+	 *                    The execution context.
 	 * @param contextNode
-	 *            The node that "." expresses.
+	 *                    The node that "." expresses.
 	 * @throws TransformerException
-	 *             thrown if the active ProblemListener decides the error
-	 *             condition is severe enough to halt processing.
+	 *                              thrown if the active ProblemListener decides
+	 *                              the error
+	 *                              condition is severe enough to halt
+	 *                              processing.
 	 *
-	 * @throws javax.xml.transform.TransformerException
+	 * @throws                      javax.xml.transform.TransformerException
 	 * @xsl.usage experimental
 	 */
 	public DTMIterator asIterator(XPathContext xctxt, int contextNode)
@@ -283,10 +290,11 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * do a clone operation.
 	 * 
 	 * @param xctxt
-	 *            The XPath runtime context.
+	 *              The XPath runtime context.
 	 * @return the first node out of the nodeset, or DTM.NULL.
 	 */
-	public int asNode(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public int asNode(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		DTMIterator iter = (DTMIterator) m_clones.getInstance();
 
 		int current = xctxt.getCurrentNode();
@@ -303,13 +311,14 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * Evaluate this operation directly to a boolean.
 	 *
 	 * @param xctxt
-	 *            The runtime execution context.
+	 *              The runtime execution context.
 	 *
 	 * @return The result of the operation as a boolean.
 	 *
 	 * @throws javax.xml.transform.TransformerException
 	 */
-	public boolean bool(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+	public boolean bool(XPathContext xctxt)
+			throws javax.xml.transform.TransformerException {
 		return (asNode(xctxt) != DTM.NULL);
 	}
 
@@ -317,8 +326,8 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * Set if this is an iterator at the upper level of the XPath.
 	 *
 	 * @param b
-	 *            true if this location path is at the top level of the
-	 *            expression.
+	 *          true if this location path is at the top level of the
+	 *          expression.
 	 * @xsl.usage advanced
 	 */
 	public void setIsTopLevel(boolean b) {
@@ -339,7 +348,7 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * Initialize the context values for this expression after it is cloned.
 	 *
 	 * @param context
-	 *            The XPath runtime context for this transformation.
+	 *                The XPath runtime context for this transformation.
 	 */
 	public void setRoot(int context, Object environment) {
 
@@ -370,8 +379,8 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * Set the next position index of this iterator.
 	 *
 	 * @param next
-	 *            A value greater than or equal to zero that indicates the next
-	 *            node position to fetch.
+	 *             A value greater than or equal to zero that indicates the next
+	 *             node position to fetch.
 	 */
 	protected void setNextPosition(int next) {
 		assertion(false, "setNextPosition not supported in this iterator!");
@@ -394,7 +403,7 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * are not cached by default.
 	 *
 	 * @param b
-	 *            True if this iterator should cache nodes.
+	 *          True if this iterator should cache nodes.
 	 */
 	public void setShouldCacheNodes(boolean b) {
 
@@ -415,8 +424,8 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * Set the current position in the node set.
 	 *
 	 * @param i
-	 *            Must be a valid index greater than or equal to zero and less
-	 *            than m_cachedNodes.size().
+	 *          Must be a valid index greater than or equal to zero and less
+	 *          than m_cachedNodes.size().
 	 */
 	public void setCurrentPos(int i) {
 		assertion(false, "setCurrentPos not supported by this iterator!");
@@ -451,7 +460,7 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * list, this returns <code>null</code> .
 	 * 
 	 * @param index
-	 *            Index into the collection.
+	 *              Index into the collection.
 	 * @return The node at the <code>index</code> th position in the
 	 *         <code>NodeList</code> , or <code>null</code> if that is not a
 	 *         valid index.
@@ -475,9 +484,9 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * </p>
 	 *
 	 * @param node
-	 *            Node to set
+	 *              Node to set
 	 * @param index
-	 *            Index of where to set the node
+	 *              Index of where to set the node
 	 */
 	public void setItem(int node, int index) {
 		assertion(false, "setItem not supported by this iterator!");
@@ -561,16 +570,16 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 *         <code>null</code> if there are no more members in that set.
 	 */
 	public int previousNode() {
-		throw new RuntimeException(XSLMessages
-				.createXPATHMessage(XPATHErrorResources.ER_NODESETDTM_CANNOT_ITERATE, null)); // "This
-																								// NodeSetDTM
-																								// can
-																								// not
-																								// iterate
-																								// to
-																								// a
-																								// previous
-																								// node!");
+		throw new RuntimeException(XSLMessages.createXPATHMessage(
+				XPATHErrorResources.ER_NODESETDTM_CANNOT_ITERATE, null)); // "This
+																																	// NodeSetDTM
+																																	// can
+																																	// not
+																																	// iterate
+																																	// to
+																																	// a
+																																	// previous
+																																	// node!");
 	}
 
 	/**
@@ -641,8 +650,9 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * Specify if it's OK for detach to release the iterator for reuse.
 	 *
 	 * @param allowRelease
-	 *            true if it is OK for detach to release this iterator for
-	 *            pooling.
+	 *                     true if it is OK for detach to release this iterator
+	 *                     for
+	 *                     pooling.
 	 */
 	public void allowDetachToRelease(boolean allowRelease) {
 		m_allowDetach = allowRelease;
@@ -732,7 +742,7 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * nextNode().
 	 *
 	 * @param nextNode
-	 *            The next node found, may be null.
+	 *                 The next node found, may be null.
 	 *
 	 * @return The same node that was passed as an argument.
 	 */
@@ -766,8 +776,8 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * end.
 	 *
 	 * @param index
-	 *            The index to run to, or -1 if the iterator should run to the
-	 *            end.
+	 *              The index to run to, or -1 if the iterator should run to the
+	 *              end.
 	 */
 	public void runTo(int index) {
 
@@ -829,7 +839,7 @@ public abstract class LocPathIterator extends PredicatedNodeTest
 	 * Set the current context node for this iterator.
 	 *
 	 * @param n
-	 *            Must be a non-null reference to the node context.
+	 *          Must be a non-null reference to the node context.
 	 */
 	public final void setCurrentContextNode(int n) {
 		m_currentContextNode = n;

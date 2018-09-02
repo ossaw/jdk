@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.multi;
 
@@ -77,7 +57,8 @@ public class MultiTabbedPaneUI extends TabbedPaneUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public int tabForCoordinate(JTabbedPane a, int b, int c) {
-		int returnValue = ((TabbedPaneUI) (uis.elementAt(0))).tabForCoordinate(a, b, c);
+		int returnValue = ((TabbedPaneUI) (uis.elementAt(0))).tabForCoordinate(
+				a, b, c);
 		for (int i = 1; i < uis.size(); i++) {
 			((TabbedPaneUI) (uis.elementAt(i))).tabForCoordinate(a, b, c);
 		}
@@ -92,7 +73,8 @@ public class MultiTabbedPaneUI extends TabbedPaneUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Rectangle getTabBounds(JTabbedPane a, int b) {
-		Rectangle returnValue = ((TabbedPaneUI) (uis.elementAt(0))).getTabBounds(a, b);
+		Rectangle returnValue = ((TabbedPaneUI) (uis.elementAt(0)))
+				.getTabBounds(a, b);
 		for (int i = 1; i < uis.size(); i++) {
 			((TabbedPaneUI) (uis.elementAt(i))).getTabBounds(a, b);
 		}
@@ -126,7 +108,8 @@ public class MultiTabbedPaneUI extends TabbedPaneUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public boolean contains(JComponent a, int b, int c) {
-		boolean returnValue = ((ComponentUI) (uis.elementAt(0))).contains(a, b, c);
+		boolean returnValue = ((ComponentUI) (uis.elementAt(0))).contains(a, b,
+				c);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).contains(a, b, c);
 		}
@@ -149,7 +132,8 @@ public class MultiTabbedPaneUI extends TabbedPaneUI {
 	 */
 	public static ComponentUI createUI(JComponent a) {
 		ComponentUI mui = new MultiTabbedPaneUI();
-		return MultiLookAndFeel.createUIs(mui, ((MultiTabbedPaneUI) mui).uis, a);
+		return MultiLookAndFeel.createUIs(mui, ((MultiTabbedPaneUI) mui).uis,
+				a);
 	}
 
 	/**
@@ -189,7 +173,8 @@ public class MultiTabbedPaneUI extends TabbedPaneUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Dimension getPreferredSize(JComponent a) {
-		Dimension returnValue = ((ComponentUI) (uis.elementAt(0))).getPreferredSize(a);
+		Dimension returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getPreferredSize(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getPreferredSize(a);
 		}
@@ -204,7 +189,8 @@ public class MultiTabbedPaneUI extends TabbedPaneUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Dimension getMinimumSize(JComponent a) {
-		Dimension returnValue = ((ComponentUI) (uis.elementAt(0))).getMinimumSize(a);
+		Dimension returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getMinimumSize(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getMinimumSize(a);
 		}
@@ -219,7 +205,8 @@ public class MultiTabbedPaneUI extends TabbedPaneUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Dimension getMaximumSize(JComponent a) {
-		Dimension returnValue = ((ComponentUI) (uis.elementAt(0))).getMaximumSize(a);
+		Dimension returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getMaximumSize(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getMaximumSize(a);
 		}
@@ -234,7 +221,8 @@ public class MultiTabbedPaneUI extends TabbedPaneUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public int getAccessibleChildrenCount(JComponent a) {
-		int returnValue = ((ComponentUI) (uis.elementAt(0))).getAccessibleChildrenCount(a);
+		int returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getAccessibleChildrenCount(a);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getAccessibleChildrenCount(a);
 		}
@@ -249,7 +237,8 @@ public class MultiTabbedPaneUI extends TabbedPaneUI {
 	 *         from the default <code>LookAndFeel</code>
 	 */
 	public Accessible getAccessibleChild(JComponent a, int b) {
-		Accessible returnValue = ((ComponentUI) (uis.elementAt(0))).getAccessibleChild(a, b);
+		Accessible returnValue = ((ComponentUI) (uis.elementAt(0)))
+				.getAccessibleChild(a, b);
 		for (int i = 1; i < uis.size(); i++) {
 			((ComponentUI) (uis.elementAt(i))).getAccessibleChild(a, b);
 		}

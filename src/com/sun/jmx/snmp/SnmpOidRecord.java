@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -44,11 +43,11 @@ public class SnmpOidRecord {
 	 * name, OID and type.
 	 * 
 	 * @param name
-	 *            The logical name of the MIB variable.
+	 *             The logical name of the MIB variable.
 	 * @param oid
-	 *            The OID of the MIB variable.
+	 *             The OID of the MIB variable.
 	 * @param type
-	 *            The type of the MIB variable.
+	 *             The type of the MIB variable.
 	 */
 	public SnmpOidRecord(String name, String oid, String type) {
 		this.name = name;

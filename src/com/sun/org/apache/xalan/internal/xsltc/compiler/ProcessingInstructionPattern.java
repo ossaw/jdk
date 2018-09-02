@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: ProcessingInstructionPattern.java,v 1.2.4.1 2005/09/12 11:04:08 pvedula Exp $
+ * $Id: ProcessingInstructionPattern.java,v 1.2.4.1 2005/09/12 11:04:08 pvedula
+ * Exp $
  */
 
 package com.sun.org.apache.xalan.internal.xsltc.compiler;
@@ -96,8 +94,10 @@ final class ProcessingInstructionPattern extends StepPattern {
 		final InstructionList il = methodGen.getInstructionList();
 
 		// context node is on the stack
-		int gname = cpg.addInterfaceMethodref(DOM_INTF, "getNodeName", "(I)Ljava/lang/String;");
-		int cmp = cpg.addMethodref(STRING_CLASS, "equals", "(Ljava/lang/Object;)Z");
+		int gname = cpg.addInterfaceMethodref(DOM_INTF, "getNodeName",
+				"(I)Ljava/lang/String;");
+		int cmp = cpg.addMethodref(STRING_CLASS, "equals",
+				"(Ljava/lang/Object;)Z");
 
 		// Push current node on the stack
 		il.append(methodGen.loadCurrentNode());
@@ -109,7 +109,8 @@ final class ProcessingInstructionPattern extends StepPattern {
 		// If pattern not reduced then check kernel
 		if (!_typeChecked) {
 			il.append(methodGen.loadCurrentNode());
-			final int getType = cpg.addInterfaceMethodref(DOM_INTF, "getExpandedTypeID", "(I)I");
+			final int getType = cpg.addInterfaceMethodref(DOM_INTF,
+					"getExpandedTypeID", "(I)I");
 			il.append(methodGen.loadDOM());
 			il.append(methodGen.loadCurrentNode());
 			il.append(new INVOKEINTERFACE(getType, 2));

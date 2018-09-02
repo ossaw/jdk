@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.server;
@@ -60,7 +40,7 @@ public abstract class RemoteObject implements Remote, java.io.Serializable {
 	 * Creates a remote object, initialized with the specified remote reference.
 	 * 
 	 * @param newref
-	 *            remote reference
+	 *               remote reference
 	 */
 	protected RemoteObject(RemoteRef newref) {
 		ref = newref;
@@ -94,12 +74,14 @@ public abstract class RemoteObject implements Remote, java.io.Serializable {
 	 *            the remote object whose stub is needed
 	 * @return the stub for the remote object, <code>obj</code>.
 	 * @exception NoSuchObjectException
-	 *                if the stub for the remote object could not be found.
+	 *                                  if the stub for the remote object could
+	 *                                  not be found.
 	 * @since 1.2
 	 */
 	public static Remote toStub(Remote obj) throws NoSuchObjectException {
-		if (obj instanceof RemoteStub || (obj != null && Proxy.isProxyClass(obj.getClass())
-				&& Proxy.getInvocationHandler(obj) instanceof RemoteObjectInvocationHandler)) {
+		if (obj instanceof RemoteStub || (obj != null && Proxy.isProxyClass(obj
+				.getClass()) && Proxy.getInvocationHandler(
+						obj) instanceof RemoteObjectInvocationHandler)) {
 			return obj;
 		} else {
 			return sun.rmi.transport.ObjectTable.getStub(obj);
@@ -156,7 +138,8 @@ public abstract class RemoteObject implements Remote, java.io.Serializable {
 	 */
 	public String toString() {
 		String classname = Util.getUnqualifiedName(getClass());
-		return (ref == null) ? classname : classname + "[" + ref.remoteToString() + "]";
+		return (ref == null) ? classname
+				: classname + "[" + ref.remoteToString() + "]";
 	}
 
 	/**
@@ -438,7 +421,8 @@ public abstract class RemoteObject implements Remote, java.io.Serializable {
 			 * Built-in reference class specified, so delegate to internal
 			 * reference class to initialize its fields from its external form.
 			 */
-			String internalRefClassName = RemoteRef.packagePrefix + "." + refClassName;
+			String internalRefClassName = RemoteRef.packagePrefix + "."
+					+ refClassName;
 			Class<?> refClass = Class.forName(internalRefClassName);
 			try {
 				ref = (RemoteRef) refClass.newInstance();

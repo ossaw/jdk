@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,16 +42,16 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
 	/**
 	 * Construct an element node.
 	 */
-	public PSVIElementNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI,
-			String qualifiedName, String localName) {
+	public PSVIElementNSImpl(CoreDocumentImpl ownerDocument,
+			String namespaceURI, String qualifiedName, String localName) {
 		super(ownerDocument, namespaceURI, qualifiedName, localName);
 	}
 
 	/**
 	 * Construct an element node.
 	 */
-	public PSVIElementNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI,
-			String qualifiedName) {
+	public PSVIElementNSImpl(CoreDocumentImpl ownerDocument,
+			String namespaceURI, String qualifiedName) {
 		super(ownerDocument, namespaceURI, qualifiedName);
 	}
 
@@ -256,7 +253,7 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
 	 * Copy PSVI properties from another psvi item.
 	 *
 	 * @param attr
-	 *            the source of attribute PSVI items
+	 *             the source of attribute PSVI items
 	 */
 	public void setPSVI(ElementPSVI elem) {
 		this.fDeclaration = elem.getElementDeclaration();
@@ -278,7 +275,6 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * com.sun.org.apache.xerces.internal.xs.ItemPSVI#getActualNormalizedValue()
 	 */
@@ -288,7 +284,6 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see com.sun.org.apache.xerces.internal.xs.ItemPSVI#
 	 * getActualNormalizedValueType()
 	 */
@@ -298,7 +293,6 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see com.sun.org.apache.xerces.internal.xs.ItemPSVI#getItemValueTypes()
 	 */
 	public ShortList getItemValueTypes() {
@@ -312,7 +306,8 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
 		throw new NotSerializableException(getClass().getName());
 	}
 
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		throw new NotSerializableException(getClass().getName());
 	}
 }

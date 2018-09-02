@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -45,7 +25,8 @@ import javax.print.attribute.PrintServiceAttribute;
  * @author Robert Herriot
  */
 
-public final class PrinterURI extends URISyntax implements PrintServiceAttribute {
+public final class PrinterURI extends URISyntax implements
+		PrintServiceAttribute {
 
 	private static final long serialVersionUID = 7923912792485606497L;
 
@@ -56,7 +37,8 @@ public final class PrinterURI extends URISyntax implements PrintServiceAttribute
 	 *            URI of the printer
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>uri</CODE> is null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>uri</CODE> is null.
 	 */
 	public PrinterURI(URI uri) {
 		super(uri);
@@ -74,7 +56,7 @@ public final class PrinterURI extends URISyntax implements PrintServiceAttribute
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this PrinterURI
 	 *         attribute, false otherwise.

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA.DynAnyPackage;
@@ -45,8 +25,8 @@ public final class InvalidValue extends org.omg.CORBA.UserException {
 	 * Constructs an <code>InvalidValue</code> object.
 	 * 
 	 * @param reason
-	 *            a <code>String</code> giving more information regarding the
-	 *            exception.
+	 *               a <code>String</code> giving more information regarding the
+	 *               exception.
 	 */
 	public InvalidValue(String reason) {
 		super(reason);

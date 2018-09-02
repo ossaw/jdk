@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -65,7 +45,8 @@ public class MetalCheckBoxUI extends MetalRadioButtonUI {
 	// ********************************
 	public static ComponentUI createUI(JComponent b) {
 		AppContext appContext = AppContext.getAppContext();
-		MetalCheckBoxUI checkboxUI = (MetalCheckBoxUI) appContext.get(METAL_CHECK_BOX_UI_KEY);
+		MetalCheckBoxUI checkboxUI = (MetalCheckBoxUI) appContext.get(
+				METAL_CHECK_BOX_UI_KEY);
 		if (checkboxUI == null) {
 			checkboxUI = new MetalCheckBoxUI();
 			appContext.put(METAL_CHECK_BOX_UI_KEY, checkboxUI);

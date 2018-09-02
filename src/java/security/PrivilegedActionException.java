@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security;
@@ -60,7 +40,7 @@ public class PrivilegedActionException extends Exception {
 	 * specific Exception.
 	 *
 	 * @param exception
-	 *            The exception thrown
+	 *                  The exception thrown
 	 */
 	public PrivilegedActionException(Exception exception) {
 		super((Throwable) null); // Disallow initCause

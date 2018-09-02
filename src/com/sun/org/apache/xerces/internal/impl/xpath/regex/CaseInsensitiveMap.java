@@ -4,14 +4,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -120,8 +118,8 @@ public class CaseInsensitiveMap {
 		caseInsensitiveMap[chunk][offset] = map;
 	}
 
-	private static int[] updateMap(int codePoint, int[] codePointMap, int ciCodePoint,
-			int[] ciCodePointMap, int matchType) {
+	private static int[] updateMap(int codePoint, int[] codePointMap,
+			int ciCodePoint, int[] ciCodePointMap, int matchType) {
 		for (int i = 0; i < ciCodePointMap.length; i += 2) {
 			int c = ciCodePointMap[i];
 			int[] cMap = getMapping(c);
@@ -164,7 +162,8 @@ public class CaseInsensitiveMap {
 		return false;
 	}
 
-	private static int[] expandAndAdd(int[] srcMap, int codePoint, int matchType) {
+	private static int[] expandAndAdd(int[] srcMap, int codePoint,
+			int matchType) {
 		final int oldLen = srcMap.length;
 		int[] newMap = new int[oldLen + 2];
 

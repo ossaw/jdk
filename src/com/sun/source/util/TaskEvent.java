@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.source.util;
@@ -46,30 +26,30 @@ public final class TaskEvent {
 	 */
 	@jdk.Exported
 	public enum Kind {
-		/**
-		 * For events related to the parsing of a file.
-		 */
-		PARSE,
-		/**
-		 * For events relating to elements being entered.
-		 **/
-		ENTER,
-		/**
-		 * For events relating to elements being analyzed for errors.
-		 **/
-		ANALYZE,
-		/**
-		 * For events relating to class files being generated.
-		 **/
-		GENERATE,
-		/**
-		 * For events relating to overall annotation processing.
-		 **/
-		ANNOTATION_PROCESSING,
-		/**
-		 * For events relating to an individual annotation processing round.
-		 **/
-		ANNOTATION_PROCESSING_ROUND
+	/**
+	 * For events related to the parsing of a file.
+	 */
+	PARSE,
+	/**
+	 * For events relating to elements being entered.
+	 **/
+	ENTER,
+	/**
+	 * For events relating to elements being analyzed for errors.
+	 **/
+	ANALYZE,
+	/**
+	 * For events relating to class files being generated.
+	 **/
+	GENERATE,
+	/**
+	 * For events relating to overall annotation processing.
+	 **/
+	ANNOTATION_PROCESSING,
+	/**
+	 * For events relating to an individual annotation processing round.
+	 **/
+	ANNOTATION_PROCESSING_ROUND
 	};
 
 	public TaskEvent(Kind kind) {
@@ -88,7 +68,8 @@ public final class TaskEvent {
 		this(kind, unit.getSourceFile(), unit, clazz);
 	}
 
-	private TaskEvent(Kind kind, JavaFileObject file, CompilationUnitTree unit, TypeElement clazz) {
+	private TaskEvent(Kind kind, JavaFileObject file, CompilationUnitTree unit,
+			TypeElement clazz) {
 		this.kind = kind;
 		this.file = file;
 		this.unit = unit;

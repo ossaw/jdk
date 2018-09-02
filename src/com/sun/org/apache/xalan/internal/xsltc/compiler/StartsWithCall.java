@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -58,7 +55,8 @@ final class StartsWithCall extends FunctionCall {
 
 		// Check that the function was passed exactly two arguments
 		if (argumentCount() != 2) {
-			ErrorMsg err = new ErrorMsg(ErrorMsg.ILLEGAL_ARG_ERR, getName(), this);
+			ErrorMsg err = new ErrorMsg(ErrorMsg.ILLEGAL_ARG_ERR, getName(),
+					this);
 			throw new TypeCheckError(err);
 		}
 
@@ -85,7 +83,7 @@ final class StartsWithCall extends FunctionCall {
 		final InstructionList il = methodGen.getInstructionList();
 		_base.translate(classGen, methodGen);
 		_token.translate(classGen, methodGen);
-		il.append(new INVOKEVIRTUAL(
-				cpg.addMethodref(STRING_CLASS, "startsWith", "(" + STRING_SIG + ")Z")));
+		il.append(new INVOKEVIRTUAL(cpg.addMethodref(STRING_CLASS, "startsWith",
+				"(" + STRING_SIG + ")Z")));
 	}
 }

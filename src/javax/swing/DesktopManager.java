@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing;
@@ -131,7 +111,8 @@ public interface DesktopManager {
 	 * by calls to beginResizingFrame(). Normally <b>f</b> will be a
 	 * JInternalFrame.
 	 */
-	void resizeFrame(JComponent f, int newX, int newY, int newWidth, int newHeight);
+	void resizeFrame(JComponent f, int newX, int newY, int newWidth,
+			int newHeight);
 
 	/**
 	 * This method signals the end of the resize session. Any state maintained
@@ -141,5 +122,6 @@ public interface DesktopManager {
 	void endResizingFrame(JComponent f);
 
 	/** This is a primitive reshape method. */
-	void setBoundsForFrame(JComponent f, int newX, int newY, int newWidth, int newHeight);
+	void setBoundsForFrame(JComponent f, int newX, int newY, int newWidth,
+			int newHeight);
 }

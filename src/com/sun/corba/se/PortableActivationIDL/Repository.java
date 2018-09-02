@@ -8,6 +8,5 @@ package com.sun.corba.se.PortableActivationIDL;
  * 21, 2017 9:58:51 PM PDT
  */
 
-public interface Repository
-		extends RepositoryOperations, org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {
-} // interface Repository
+public interface Repository extends RepositoryOperations, org.omg.CORBA.Object,
+		org.omg.CORBA.portable.IDLEntity {} // interface Repository

@@ -1,31 +1,10 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 /*
- * @author    IBM Corp.
- *
- * Copyright IBM Corp. 1999-2000.  All rights reserved.
+ * @author IBM Corp.
+ * Copyright IBM Corp. 1999-2000. All rights reserved.
  */
 
 package javax.management.modelmbean;
@@ -68,66 +47,76 @@ import javax.management.RuntimeOperationsException;
  * @since 1.5
  */
 
-public interface ModelMBeanNotificationBroadcaster extends NotificationBroadcaster {
+public interface ModelMBeanNotificationBroadcaster extends
+		NotificationBroadcaster {
 
 	/**
 	 * Sends a Notification which is passed in to the registered Notification
 	 * listeners on the ModelMBean as a jmx.modelmbean.generic notification.
 	 *
 	 * @param ntfyObj
-	 *            The notification which is to be passed to the
-	 *            'handleNotification' method of the listener object.
+	 *                The notification which is to be passed to the
+	 *                'handleNotification' method of the listener object.
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException: The Notification object
-	 *                passed in parameter is null.
+	 *                                       Wraps an IllegalArgumentException:
+	 *                                       The Notification object
+	 *                                       passed in parameter is null.
 	 *
 	 */
 
-	public void sendNotification(Notification ntfyObj)
-			throws MBeanException, RuntimeOperationsException;
+	public void sendNotification(Notification ntfyObj) throws MBeanException,
+			RuntimeOperationsException;
 
 	/**
 	 * Sends a Notification which contains the text string that is passed in to
 	 * the registered Notification listeners on the ModelMBean.
 	 *
 	 * @param ntfyText
-	 *            The text which is to be passed in the Notification to the
-	 *            'handleNotification' method of the listener object. the
-	 *            constructed Notification will be: type
-	 *            "jmx.modelmbean.generic" source this ModelMBean instance
-	 *            sequence 1
+	 *                 The text which is to be passed in the Notification to the
+	 *                 'handleNotification' method of the listener object. the
+	 *                 constructed Notification will be: type
+	 *                 "jmx.modelmbean.generic" source this ModelMBean instance
+	 *                 sequence 1
 	 *
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException: The Notification text
-	 *                string passed in parameter is null.
+	 *                                       Wraps an IllegalArgumentException:
+	 *                                       The Notification text
+	 *                                       string passed in parameter is null.
 	 *
 	 */
-	public void sendNotification(String ntfyText) throws MBeanException, RuntimeOperationsException;
+	public void sendNotification(String ntfyText) throws MBeanException,
+			RuntimeOperationsException;
 
 	/**
 	 * Sends an attributeChangeNotification which is passed in to the registered
 	 * attributeChangeNotification listeners on the ModelMBean.
 	 *
 	 * @param notification
-	 *            The notification which is to be passed to the
-	 *            'handleNotification' method of the listener object.
+	 *                     The notification which is to be passed to the
+	 *                     'handleNotification' method of the listener object.
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException: The
-	 *                AttributeChangeNotification object passed in parameter is
-	 *                null.
+	 *                                       Wraps an IllegalArgumentException:
+	 *                                       The
+	 *                                       AttributeChangeNotification object
+	 *                                       passed in parameter is
+	 *                                       null.
 	 *
 	 */
-	public void sendAttributeChangeNotification(AttributeChangeNotification notification)
-			throws MBeanException, RuntimeOperationsException;
+	public void sendAttributeChangeNotification(
+			AttributeChangeNotification notification) throws MBeanException,
+			RuntimeOperationsException;
 
 	/**
 	 * Sends an attributeChangeNotification which contains the old value and new
@@ -136,11 +125,11 @@ public interface ModelMBeanNotificationBroadcaster extends NotificationBroadcast
 	 * <P>
 	 * 
 	 * @param oldValue
-	 *            The original value for the Attribute
+	 *                 The original value for the Attribute
 	 * @param newValue
-	 *            The current value for the Attribute
+	 *                 The current value for the Attribute
 	 * 
-	 *            <PRE>
+	 *                 <PRE>
 	 * The constructed attributeChangeNotification will be:
 	 *   type        "jmx.attribute.change"
 	 *   source      this ModelMBean instance
@@ -149,17 +138,22 @@ public interface ModelMBeanNotificationBroadcaster extends NotificationBroadcast
 	 *   attributeType oldValue's class
 	 *   attributeOldValue oldValue.getValue()
 	 *   attributeNewValue newValue.getValue()
-	 *            </PRE>
+	 *                 </PRE>
 	 *
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException: An Attribute object
-	 *                passed in parameter is null or the names of the two
-	 *                Attribute objects in parameter are not the same.
+	 *                                       Wraps an IllegalArgumentException:
+	 *                                       An Attribute object
+	 *                                       passed in parameter is null or the
+	 *                                       names of the two
+	 *                                       Attribute objects in parameter are
+	 *                                       not the same.
 	 */
-	public void sendAttributeChangeNotification(Attribute oldValue, Attribute newValue)
-			throws MBeanException, RuntimeOperationsException;
+	public void sendAttributeChangeNotification(Attribute oldValue,
+			Attribute newValue) throws MBeanException,
+			RuntimeOperationsException;
 
 	/**
 	 * Registers an object which implements the NotificationListener interface
@@ -170,56 +164,73 @@ public interface ModelMBeanNotificationBroadcaster extends NotificationBroadcast
 	 * generated for this attributeName.
 	 *
 	 * @param listener
-	 *            The listener object which will handles notifications emitted
-	 *            by the registered MBean.
+	 *                      The listener object which will handles notifications
+	 *                      emitted
+	 *                      by the registered MBean.
 	 * @param attributeName
-	 *            The name of the ModelMBean attribute for which to receive
-	 *            change notifications. If null, then all attribute changes will
-	 *            cause an attributeChangeNotification to be issued.
+	 *                      The name of the ModelMBean attribute for which to
+	 *                      receive
+	 *                      change notifications. If null, then all attribute
+	 *                      changes will
+	 *                      cause an attributeChangeNotification to be issued.
 	 * @param handback
-	 *            The context to be sent to the listener with the notification
-	 *            when a notification is emitted.
+	 *                      The context to be sent to the listener with the
+	 *                      notification
+	 *                      when a notification is emitted.
 	 *
 	 * @exception IllegalArgumentException
-	 *                The listener cannot be null.
+	 *                                       The listener cannot be null.
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException The attribute name
-	 *                passed in parameter does not exist.
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       The attribute name
+	 *                                       passed in parameter does not exist.
 	 *
 	 * @see #removeAttributeChangeNotificationListener
 	 */
-	public void addAttributeChangeNotificationListener(NotificationListener listener,
-			String attributeName, Object handback)
-			throws MBeanException, RuntimeOperationsException, IllegalArgumentException;
+	public void addAttributeChangeNotificationListener(
+			NotificationListener listener, String attributeName,
+			Object handback) throws MBeanException, RuntimeOperationsException,
+			IllegalArgumentException;
 
 	/**
 	 * Removes a listener for attributeChangeNotifications from the
 	 * RequiredModelMBean.
 	 *
 	 * @param listener
-	 *            The listener name which was handling notifications emitted by
-	 *            the registered MBean. This method will remove all information
-	 *            related to this listener.
+	 *                      The listener name which was handling notifications
+	 *                      emitted by
+	 *                      the registered MBean. This method will remove all
+	 *                      information
+	 *                      related to this listener.
 	 * @param attributeName
-	 *            The attribute for which the listener no longer wants to
-	 *            receive attributeChangeNotifications. If null the listener
-	 *            will be removed for all attributeChangeNotifications.
+	 *                      The attribute for which the listener no longer wants
+	 *                      to
+	 *                      receive attributeChangeNotifications. If null the
+	 *                      listener
+	 *                      will be removed for all
+	 *                      attributeChangeNotifications.
 	 *
 	 * @exception ListenerNotFoundException
-	 *                The listener is not registered in the MBean or is null.
+	 *                                       The listener is not registered in
+	 *                                       the MBean or is null.
 	 * @exception MBeanException
-	 *                Wraps a distributed communication Exception.
+	 *                                       Wraps a distributed communication
+	 *                                       Exception.
 	 * @exception RuntimeOperationsException
-	 *                Wraps an IllegalArgumentException If the inAttributeName
-	 *                parameter does not correspond to an attribute name.
+	 *                                       Wraps an IllegalArgumentException
+	 *                                       If the inAttributeName
+	 *                                       parameter does not correspond to an
+	 *                                       attribute name.
 	 *
 	 * @see #addAttributeChangeNotificationListener
 	 */
 
-	public void removeAttributeChangeNotificationListener(NotificationListener listener,
-			String attributeName)
-			throws MBeanException, RuntimeOperationsException, ListenerNotFoundException;
+	public void removeAttributeChangeNotificationListener(
+			NotificationListener listener, String attributeName)
+			throws MBeanException, RuntimeOperationsException,
+			ListenerNotFoundException;
 
 }

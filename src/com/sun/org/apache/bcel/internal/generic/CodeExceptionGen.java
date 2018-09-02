@@ -4,44 +4,37 @@
  */
 package com.sun.org.apache.bcel.internal.generic;
 
-/* ====================================================================
+/*
+ * ====================================================================
  * The Apache Software License, Version 1.1
- *
- * Copyright (c) 2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001 The Apache Software Foundation. All rights
  * reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
+ * notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
  * 3. The end-user documentation included with the redistribution,
- *    if any, must include the following acknowledgment:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowledgment may appear in the software itself,
- *    if and wherever such third-party acknowledgments normally appear.
- *
+ * if any, must include the following acknowledgment:
+ * "This product includes software developed by the
+ * Apache Software Foundation (http://www.apache.org/)."
+ * Alternately, this acknowledgment may appear in the software itself,
+ * if and wherever such third-party acknowledgments normally appear.
  * 4. The names "Apache" and "Apache Software Foundation" and
- *    "Apache BCEL" must not be used to endorse or promote products
- *    derived from this software without prior written permission. For
- *    written permission, please contact apache@apache.org.
- *
+ * "Apache BCEL" must not be used to endorse or promote products
+ * derived from this software without prior written permission. For
+ * written permission, please contact apache@apache.org.
  * 5. Products derived from this software may not be called "Apache",
- *    "Apache BCEL", nor may "Apache" appear in their name, without
- *    prior written permission of the Apache Software Foundation.
- *
+ * "Apache BCEL", nor may "Apache" appear in their name, without
+ * prior written permission of the Apache Software Foundation.
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
  * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
@@ -51,9 +44,8 @@ package com.sun.org.apache.bcel.internal.generic;
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  * ====================================================================
- *
  * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
+ * individuals on behalf of the Apache Software Foundation. For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
@@ -74,8 +66,8 @@ import com.sun.org.apache.bcel.internal.classfile.*;
  * @see CodeException
  * @see InstructionHandle
  */
-public final class CodeExceptionGen
-		implements InstructionTargeter, Cloneable, java.io.Serializable {
+public final class CodeExceptionGen implements InstructionTargeter, Cloneable,
+		java.io.Serializable {
 	private InstructionHandle start_pc;
 	private InstructionHandle end_pc;
 	private InstructionHandle handler_pc;
@@ -86,16 +78,17 @@ public final class CodeExceptionGen
 	 * and an instruction where the actual handling is done.
 	 *
 	 * @param start_pc
-	 *            Start of handled region (inclusive)
+	 *                   Start of handled region (inclusive)
 	 * @param end_pc
-	 *            End of handled region (inclusive)
+	 *                   End of handled region (inclusive)
 	 * @param handler_pc
-	 *            Where handling is done
+	 *                   Where handling is done
 	 * @param catch_type
-	 *            which exception is handled, null for ANY
+	 *                   which exception is handled, null for ANY
 	 */
-	public CodeExceptionGen(InstructionHandle start_pc, InstructionHandle end_pc,
-			InstructionHandle handler_pc, ObjectType catch_type) {
+	public CodeExceptionGen(InstructionHandle start_pc,
+			InstructionHandle end_pc, InstructionHandle handler_pc,
+			ObjectType catch_type) {
 		setStartPC(start_pc);
 		setEndPC(end_pc);
 		setHandlerPC(handler_pc);
@@ -110,17 +103,16 @@ public final class CodeExceptionGen
 	 * instruction list.
 	 *
 	 * @param cp
-	 *            constant pool
+	 *           constant pool
 	 */
 	public CodeException getCodeException(ConstantPoolGen cp) {
-		return new CodeException(start_pc.getPosition(),
-				end_pc.getPosition() + end_pc.getInstruction().getLength(),
-				handler_pc.getPosition(), (catch_type == null) ? 0 : cp.addClass(catch_type));
+		return new CodeException(start_pc.getPosition(), end_pc.getPosition()
+				+ end_pc.getInstruction().getLength(), handler_pc.getPosition(),
+				(catch_type == null) ? 0 : cp.addClass(catch_type));
 	}
 
 	/*
 	 * Set start of handler
-	 * 
 	 * @param start_pc Start of handled region (inclusive)
 	 */
 	public final void setStartPC(InstructionHandle start_pc) {
@@ -131,7 +123,6 @@ public final class CodeExceptionGen
 
 	/*
 	 * Set end of handler
-	 * 
 	 * @param end_pc End of handled region (inclusive)
 	 */
 	public final void setEndPC(InstructionHandle end_pc) {
@@ -142,7 +133,6 @@ public final class CodeExceptionGen
 
 	/*
 	 * Set handler code
-	 * 
 	 * @param handler_pc Start of handler
 	 */
 	public final void setHandlerPC(InstructionHandle handler_pc) {
@@ -153,12 +143,13 @@ public final class CodeExceptionGen
 
 	/**
 	 * @param old_ih
-	 *            old target, either start or end
+	 *               old target, either start or end
 	 * @param new_ih
-	 *            new target
+	 *               new target
 	 */
 	@Override
-	public void updateTarget(InstructionHandle old_ih, InstructionHandle new_ih) {
+	public void updateTarget(InstructionHandle old_ih,
+			InstructionHandle new_ih) {
 		boolean targeted = false;
 
 		if (start_pc == old_ih) {
@@ -177,8 +168,8 @@ public final class CodeExceptionGen
 		}
 
 		if (!targeted)
-			throw new ClassGenException("Not targeting " + old_ih + ", but {" + start_pc + ", "
-					+ end_pc + ", " + handler_pc + "}");
+			throw new ClassGenException("Not targeting " + old_ih + ", but {"
+					+ start_pc + ", " + end_pc + ", " + handler_pc + "}");
 	}
 
 	/**
@@ -222,7 +213,8 @@ public final class CodeExceptionGen
 
 	@Override
 	public String toString() {
-		return "CodeExceptionGen(" + start_pc + ", " + end_pc + ", " + handler_pc + ")";
+		return "CodeExceptionGen(" + start_pc + ", " + end_pc + ", "
+				+ handler_pc + ")";
 	}
 
 	@Override

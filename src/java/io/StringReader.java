@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -43,7 +23,7 @@ public class StringReader extends Reader {
 	 * Creates a new string reader.
 	 *
 	 * @param s
-	 *            String providing the character stream.
+	 *          String providing the character stream.
 	 */
 	public StringReader(String s) {
 		this.str = s;
@@ -63,7 +43,7 @@ public class StringReader extends Reader {
 	 *         reached
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public int read() throws IOException {
 		synchronized (lock) {
@@ -78,23 +58,23 @@ public class StringReader extends Reader {
 	 * Reads characters into a portion of an array.
 	 *
 	 * @param cbuf
-	 *            Destination buffer
+	 *             Destination buffer
 	 * @param off
-	 *            Offset at which to start writing characters
+	 *             Offset at which to start writing characters
 	 * @param len
-	 *            Maximum number of characters to read
+	 *             Maximum number of characters to read
 	 *
 	 * @return The number of characters read, or -1 if the end of the stream has
 	 *         been reached
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public int read(char cbuf[], int off, int len) throws IOException {
 		synchronized (lock) {
 			ensureOpen();
-			if ((off < 0) || (off > cbuf.length) || (len < 0) || ((off + len) > cbuf.length)
-					|| ((off + len) < 0)) {
+			if ((off < 0) || (off > cbuf.length) || (len < 0) || ((off
+					+ len) > cbuf.length) || ((off + len) < 0)) {
 				throw new IndexOutOfBoundsException();
 			} else if (len == 0) {
 				return 0;
@@ -125,7 +105,7 @@ public class StringReader extends Reader {
 	 * effect and always returns 0.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public long skip(long ns) throws IOException {
 		synchronized (lock) {
@@ -146,7 +126,7 @@ public class StringReader extends Reader {
 	 * @return True if the next read() is guaranteed not to block for input
 	 *
 	 * @exception IOException
-	 *                If the stream is closed
+	 *                        If the stream is closed
 	 */
 	public boolean ready() throws IOException {
 		synchronized (lock) {
@@ -167,15 +147,18 @@ public class StringReader extends Reader {
 	 * will reposition the stream to this point.
 	 *
 	 * @param readAheadLimit
-	 *            Limit on the number of characters that may be read while still
-	 *            preserving the mark. Because the stream's input comes from a
-	 *            string, there is no actual limit, so this argument must not be
-	 *            negative, but is otherwise ignored.
+	 *                       Limit on the number of characters that may be read
+	 *                       while still
+	 *                       preserving the mark. Because the stream's input
+	 *                       comes from a
+	 *                       string, there is no actual limit, so this argument
+	 *                       must not be
+	 *                       negative, but is otherwise ignored.
 	 *
 	 * @exception IllegalArgumentException
-	 *                If {@code readAheadLimit < 0}
+	 *                                     If {@code readAheadLimit < 0}
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                                     If an I/O error occurs
 	 */
 	public void mark(int readAheadLimit) throws IOException {
 		if (readAheadLimit < 0) {
@@ -192,7 +175,7 @@ public class StringReader extends Reader {
 	 * string if it has never been marked.
 	 *
 	 * @exception IOException
-	 *                If an I/O error occurs
+	 *                        If an I/O error occurs
 	 */
 	public void reset() throws IOException {
 		synchronized (lock) {

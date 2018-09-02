@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2012, 2013 Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -109,12 +78,14 @@ public interface TemporalAmount {
 	 *           developers.
 	 *
 	 * @param unit
-	 *            the {@code TemporalUnit} for which to return the value
+	 *             the {@code TemporalUnit} for which to return the value
 	 * @return the long value of the unit
 	 * @throws DateTimeException
-	 *             if a value for the unit cannot be obtained
+	 *                                          if a value for the unit cannot
+	 *                                          be obtained
 	 * @throws UnsupportedTemporalTypeException
-	 *             if the {@code unit} is not supported
+	 *                                          if the {@code unit} is not
+	 *                                          supported
 	 */
 	long get(TemporalUnit unit);
 
@@ -173,13 +144,13 @@ public interface TemporalAmount {
 	 *           must be thread-safe when invoked.
 	 *
 	 * @param temporal
-	 *            the temporal object to add the amount to, not null
+	 *                 the temporal object to add the amount to, not null
 	 * @return an object of the same observable type with the addition made, not
 	 *         null
 	 * @throws DateTimeException
-	 *             if unable to add
+	 *                             if unable to add
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	Temporal addTo(Temporal temporal);
 
@@ -223,13 +194,13 @@ public interface TemporalAmount {
 	 *           must be thread-safe when invoked.
 	 *
 	 * @param temporal
-	 *            the temporal object to subtract the amount from, not null
+	 *                 the temporal object to subtract the amount from, not null
 	 * @return an object of the same observable type with the subtraction made,
 	 *         not null
 	 * @throws DateTimeException
-	 *             if unable to subtract
+	 *                             if unable to subtract
 	 * @throws ArithmeticException
-	 *             if numeric overflow occurs
+	 *                             if numeric overflow occurs
 	 */
 	Temporal subtractFrom(Temporal temporal);
 }

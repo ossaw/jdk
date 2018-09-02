@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.event;
@@ -53,58 +33,50 @@ package java.awt.event;
  * @author David Mendenhall
  * @since 1.1
  */
-public abstract class WindowAdapter
-		implements WindowListener, WindowStateListener, WindowFocusListener {
+public abstract class WindowAdapter implements WindowListener,
+		WindowStateListener, WindowFocusListener {
 	/**
 	 * Invoked when a window has been opened.
 	 */
-	public void windowOpened(WindowEvent e) {
-	}
+	public void windowOpened(WindowEvent e) {}
 
 	/**
 	 * Invoked when a window is in the process of being closed. The close
 	 * operation can be overridden at this point.
 	 */
-	public void windowClosing(WindowEvent e) {
-	}
+	public void windowClosing(WindowEvent e) {}
 
 	/**
 	 * Invoked when a window has been closed.
 	 */
-	public void windowClosed(WindowEvent e) {
-	}
+	public void windowClosed(WindowEvent e) {}
 
 	/**
 	 * Invoked when a window is iconified.
 	 */
-	public void windowIconified(WindowEvent e) {
-	}
+	public void windowIconified(WindowEvent e) {}
 
 	/**
 	 * Invoked when a window is de-iconified.
 	 */
-	public void windowDeiconified(WindowEvent e) {
-	}
+	public void windowDeiconified(WindowEvent e) {}
 
 	/**
 	 * Invoked when a window is activated.
 	 */
-	public void windowActivated(WindowEvent e) {
-	}
+	public void windowActivated(WindowEvent e) {}
 
 	/**
 	 * Invoked when a window is de-activated.
 	 */
-	public void windowDeactivated(WindowEvent e) {
-	}
+	public void windowDeactivated(WindowEvent e) {}
 
 	/**
 	 * Invoked when a window state is changed.
 	 * 
 	 * @since 1.4
 	 */
-	public void windowStateChanged(WindowEvent e) {
-	}
+	public void windowStateChanged(WindowEvent e) {}
 
 	/**
 	 * Invoked when the Window is set to be the focused Window, which means that
@@ -112,8 +84,7 @@ public abstract class WindowAdapter
 	 *
 	 * @since 1.4
 	 */
-	public void windowGainedFocus(WindowEvent e) {
-	}
+	public void windowGainedFocus(WindowEvent e) {}
 
 	/**
 	 * Invoked when the Window is no longer the focused Window, which means that
@@ -122,6 +93,5 @@ public abstract class WindowAdapter
 	 *
 	 * @since 1.4
 	 */
-	public void windowLostFocus(WindowEvent e) {
-	}
+	public void windowLostFocus(WindowEvent e) {}
 }

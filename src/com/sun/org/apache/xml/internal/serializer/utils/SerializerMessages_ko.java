@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,25 +41,18 @@ public class SerializerMessages_ko extends ListResourceBundle {
 	/*
 	 * This file contains error and warning messages related to Serializer Error
 	 * Handling.
-	 *
 	 * General notes to translators:
-	 * 
 	 * 1) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
-	 * 
 	 * 2) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 3) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
-	 *
 	 */
 
 	/** The lookup table for error messages. */
@@ -82,7 +72,8 @@ public class SerializerMessages_ko extends ListResourceBundle {
 				{ MsgKey.ER_RESOURCE_COULD_NOT_LOAD,
 						"[{0}] \uB9AC\uC18C\uC2A4\uAC00 \uB2E4\uC74C\uC744 \uB85C\uB4DC\uD560 \uC218 \uC5C6\uC74C: {1} \n {2} \t {3}" },
 
-				{ MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO, "\uBC84\uD37C \uD06C\uAE30 <=0" },
+				{ MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO,
+						"\uBC84\uD37C \uD06C\uAE30 <=0" },
 
 				{ MsgKey.ER_INVALID_UTF16_SURROGATE,
 						"\uBD80\uC801\uD569\uD55C UTF-16 \uB300\uB9AC \uC694\uC18C\uAC00 \uAC10\uC9C0\uB428: {0}" },
@@ -180,7 +171,8 @@ public class SerializerMessages_ko extends ListResourceBundle {
 				{ MsgKey.ER_XML_VERSION_NOT_SUPPORTED,
 						"\uACBD\uACE0: \uCD9C\uB825 \uBB38\uC11C\uC758 \uBC84\uC804\uC774 ''{0}''\uC774(\uAC00) \uB418\uB3C4\uB85D \uC694\uCCAD\uD588\uC2B5\uB2C8\uB2E4. \uC774 \uBC84\uC804\uC758 XML\uC740 \uC9C0\uC6D0\uB418\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. \uCD9C\uB825 \uBB38\uC11C\uC758 \uBC84\uC804\uC740 ''1.0''\uC774 \uB429\uB2C8\uB2E4." },
 
-				{ MsgKey.ER_SCHEME_REQUIRED, "\uCCB4\uACC4\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4!" },
+				{ MsgKey.ER_SCHEME_REQUIRED,
+						"\uCCB4\uACC4\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4!" },
 
 				/*
 				 * Note to translators: The words 'Properties' and

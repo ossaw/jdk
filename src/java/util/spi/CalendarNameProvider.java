@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.spi;
@@ -183,8 +163,7 @@ public abstract class CalendarNameProvider extends LocaleServiceProvider {
 	 * Sole constructor. (For invocation by subclass constructors, typically
 	 * implicit.)
 	 */
-	protected CalendarNameProvider() {
-	}
+	protected CalendarNameProvider() {}
 
 	/**
 	 * Returns the string representation (display name) of the calendar
@@ -216,42 +195,46 @@ public abstract class CalendarNameProvider extends LocaleServiceProvider {
 	 * For example, the following call will return {@code "Sunday"}.
 	 * 
 	 * <pre>
-	 * getDisplayName("gregory", Calendar.DAY_OF_WEEK, Calendar.SUNDAY, Calendar.LONG_STANDALONE,
-	 * 		Locale.ENGLISH);
+	 * getDisplayName("gregory", Calendar.DAY_OF_WEEK, Calendar.SUNDAY,
+	 * 		Calendar.LONG_STANDALONE, Locale.ENGLISH);
 	 * </pre>
 	 *
 	 * @param calendarType
-	 *            the calendar type. (Any calendar type given by {@code locale}
-	 *            is ignored.)
+	 *                     the calendar type. (Any calendar type given by
+	 *                     {@code locale}
+	 *                     is ignored.)
 	 * @param field
-	 *            the {@code Calendar} field index, such as
-	 *            {@link Calendar#DAY_OF_WEEK}
+	 *                     the {@code Calendar} field index, such as
+	 *                     {@link Calendar#DAY_OF_WEEK}
 	 * @param value
-	 *            the value of the {@code Calendar field}, such as
-	 *            {@link Calendar#MONDAY}
+	 *                     the value of the {@code Calendar field}, such as
+	 *                     {@link Calendar#MONDAY}
 	 * @param style
-	 *            the string representation style: one of
-	 *            {@link Calendar#SHORT_FORMAT} ({@link Calendar#SHORT SHORT}),
-	 *            {@link Calendar#SHORT_STANDALONE},
-	 *            {@link Calendar#LONG_FORMAT} ({@link Calendar#LONG LONG}),
-	 *            {@link Calendar#LONG_STANDALONE},
-	 *            {@link Calendar#NARROW_FORMAT}, or
-	 *            {@link Calendar#NARROW_STANDALONE}
+	 *                     the string representation style: one of
+	 *                     {@link Calendar#SHORT_FORMAT} ({@link Calendar#SHORT
+	 *                     SHORT}),
+	 *                     {@link Calendar#SHORT_STANDALONE},
+	 *                     {@link Calendar#LONG_FORMAT} ({@link Calendar#LONG
+	 *                     LONG}),
+	 *                     {@link Calendar#LONG_STANDALONE},
+	 *                     {@link Calendar#NARROW_FORMAT}, or
+	 *                     {@link Calendar#NARROW_STANDALONE}
 	 * @param locale
-	 *            the desired locale
+	 *                     the desired locale
 	 * @return the string representation of the {@code field value}, or {@code
 	 *         null} if the string representation is not applicable or the given
 	 *         calendar type is unknown
 	 * @throws IllegalArgumentException
-	 *             if {@code field} or {@code style} is invalid
+	 *                                  if {@code field} or {@code style} is
+	 *                                  invalid
 	 * @throws NullPointerException
-	 *             if {@code locale} is {@code null}
+	 *                                  if {@code locale} is {@code null}
 	 * @see TimeZoneNameProvider
 	 * @see java.util.Calendar#get(int)
 	 * @see java.util.Calendar#getDisplayName(int, int, Locale)
 	 */
-	public abstract String getDisplayName(String calendarType, int field, int value, int style,
-			Locale locale);
+	public abstract String getDisplayName(String calendarType, int field,
+			int value, int style, Locale locale);
 
 	/**
 	 * Returns a {@code Map} containing all string representations (display
@@ -282,32 +265,37 @@ public abstract class CalendarNameProvider extends LocaleServiceProvider {
 	 * , {@code "Feb"} to {@link Calendar#FEBRUARY}, and so on.
 	 * 
 	 * <pre>
-	 * getDisplayNames("gregory", Calendar.MONTH, Calendar.ALL_STYLES, Locale.ENGLISH);
+	 * getDisplayNames("gregory", Calendar.MONTH, Calendar.ALL_STYLES,
+	 * 		Locale.ENGLISH);
 	 * </pre>
 	 *
 	 * @param calendarType
-	 *            the calendar type. (Any calendar type given by {@code locale}
-	 *            is ignored.)
+	 *                     the calendar type. (Any calendar type given by
+	 *                     {@code locale}
+	 *                     is ignored.)
 	 * @param field
-	 *            the calendar field for which the display names are returned
+	 *                     the calendar field for which the display names are
+	 *                     returned
 	 * @param style
-	 *            the style applied to the display names; one of
-	 *            {@link Calendar#ALL_STYLES}, {@link Calendar#SHORT_FORMAT} (
-	 *            {@link Calendar#SHORT SHORT}),
-	 *            {@link Calendar#SHORT_STANDALONE},
-	 *            {@link Calendar#LONG_FORMAT} ({@link Calendar#LONG LONG}),
-	 *            {@link Calendar#LONG_STANDALONE},
-	 *            {@link Calendar#NARROW_FORMAT}, or
-	 *            {@link Calendar#NARROW_STANDALONE}
+	 *                     the style applied to the display names; one of
+	 *                     {@link Calendar#ALL_STYLES},
+	 *                     {@link Calendar#SHORT_FORMAT} (
+	 *                     {@link Calendar#SHORT SHORT}),
+	 *                     {@link Calendar#SHORT_STANDALONE},
+	 *                     {@link Calendar#LONG_FORMAT} ({@link Calendar#LONG
+	 *                     LONG}),
+	 *                     {@link Calendar#LONG_STANDALONE},
+	 *                     {@link Calendar#NARROW_FORMAT}, or
+	 *                     {@link Calendar#NARROW_STANDALONE}
 	 * @param locale
-	 *            the desired locale
+	 *                     the desired locale
 	 * @return a {@code Map} containing all display names of {@code field} in
 	 *         {@code style} and {@code locale} and their {@code field} values,
 	 *         or {@code null} if no display names are defined for {@code field}
 	 * @throws NullPointerException
-	 *             if {@code locale} is {@code null}
+	 *                              if {@code locale} is {@code null}
 	 * @see Calendar#getDisplayNames(int, int, Locale)
 	 */
-	public abstract Map<String, Integer> getDisplayNames(String calendarType, int field, int style,
-			Locale locale);
+	public abstract Map<String, Integer> getDisplayNames(String calendarType,
+			int field, int style, Locale locale);
 }

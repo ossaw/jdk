@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2002, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.rmi.server;
 
@@ -69,8 +49,9 @@ public abstract class RemoteServer extends RemoteObject {
 	 * @return a string representation of the client host
 	 *
 	 * @throws ServerNotActiveException
-	 *             if no remote method invocation is being processed in the
-	 *             current thread
+	 *                                  if no remote method invocation is being
+	 *                                  processed in the
+	 *                                  current thread
 	 *
 	 * @since JDK1.1
 	 */
@@ -91,8 +72,9 @@ public abstract class RemoteServer extends RemoteObject {
 	 * @param out
 	 *            the output stream to which RMI calls should be logged
 	 * @throws SecurityException
-	 *             if there is a security manager and the invocation of its
-	 *             <code>checkPermission</code> method fails
+	 *                           if there is a security manager and the
+	 *                           invocation of its
+	 *                           <code>checkPermission</code> method fails
 	 * @see #getLog
 	 * @since JDK1.1
 	 */

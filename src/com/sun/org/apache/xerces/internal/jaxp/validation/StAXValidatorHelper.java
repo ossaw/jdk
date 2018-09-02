@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xerces.internal.jaxp.validation;
@@ -62,33 +42,41 @@ public final class StAXValidatorHelper implements ValidatorHelper {
 	private ValidatorHandlerImpl handler = null;
 
 	/** Creates a new instance of StaxValidatorHelper */
-	public StAXValidatorHelper(XMLSchemaValidatorComponentManager componentManager) {
+	public StAXValidatorHelper(
+			XMLSchemaValidatorComponentManager componentManager) {
 		fComponentManager = componentManager;
 	}
 
-	public void validate(Source source, Result result) throws SAXException, IOException {
+	public void validate(Source source, Result result) throws SAXException,
+			IOException {
 
 		if (result == null || result instanceof StAXResult) {
 
 			if (identityTransformer1 == null) {
 				try {
-					SAXTransformerFactory tf = fComponentManager
-							.getFeature(Constants.ORACLE_FEATURE_SERVICE_MECHANISM)
-									? (SAXTransformerFactory) SAXTransformerFactory.newInstance()
-									: (SAXTransformerFactory) TransformerFactory.newInstance(
-											DEFAULT_TRANSFORMER_IMPL,
-											StAXValidatorHelper.class.getClassLoader());
+					SAXTransformerFactory tf = fComponentManager.getFeature(
+							Constants.ORACLE_FEATURE_SERVICE_MECHANISM)
+									? (SAXTransformerFactory) SAXTransformerFactory
+											.newInstance()
+									: (SAXTransformerFactory) TransformerFactory
+											.newInstance(
+													DEFAULT_TRANSFORMER_IMPL,
+													StAXValidatorHelper.class
+															.getClassLoader());
 					XMLSecurityManager securityManager = (XMLSecurityManager) fComponentManager
 							.getProperty(Constants.SECURITY_MANAGER);
 					if (securityManager != null) {
-						for (XMLSecurityManager.Limit limit : XMLSecurityManager.Limit.values()) {
+						for (XMLSecurityManager.Limit limit : XMLSecurityManager.Limit
+								.values()) {
 							if (securityManager.isSet(limit.ordinal())) {
 								tf.setAttribute(limit.apiProperty(),
-										securityManager.getLimitValueAsString(limit));
+										securityManager.getLimitValueAsString(
+												limit));
 							}
 						}
 						if (securityManager.printEntityCountInfo()) {
-							tf.setAttribute(Constants.JDK_ENTITY_COUNT_INFO, "yes");
+							tf.setAttribute(Constants.JDK_ENTITY_COUNT_INFO,
+									"yes");
 						}
 					}
 
@@ -117,8 +105,9 @@ public final class StAXValidatorHelper implements ValidatorHelper {
 			}
 			return;
 		}
-		throw new IllegalArgumentException(JAXPValidationMessageFormatter.formatMessage(
-				fComponentManager.getLocale(), "SourceResultMismatch",
-				new Object[] { source.getClass().getName(), result.getClass().getName() }));
+		throw new IllegalArgumentException(JAXPValidationMessageFormatter
+				.formatMessage(fComponentManager.getLocale(),
+						"SourceResultMismatch", new Object[] { source.getClass()
+								.getName(), result.getClass().getName() }));
 	}
 }

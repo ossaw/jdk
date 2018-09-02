@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -132,7 +112,8 @@ class FileTreeWalker implements Closeable {
 		private final BasicFileAttributes attrs;
 		private final IOException ioe;
 
-		private Event(EventType type, Path file, BasicFileAttributes attrs, IOException ioe) {
+		private Event(EventType type, Path file, BasicFileAttributes attrs,
+				IOException ioe) {
 			this.type = type;
 			this.file = file;
 			this.attrs = attrs;
@@ -168,24 +149,26 @@ class FileTreeWalker implements Closeable {
 	 * Creates a {@code FileTreeWalker}.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code maxDepth} is negative
+	 *                                  if {@code maxDepth} is negative
 	 * @throws ClassCastException
-	 *             if (@code options} contains an element that is not a
-	 *             {@code FileVisitOption}
+	 *                                  if (@code options} contains an element
+	 *                                  that is not a
+	 *                                  {@code FileVisitOption}
 	 * @throws NullPointerException
-	 *             if {@code options} is {@ocde null} or the options array
-	 *             contains a {@code null} element
+	 *                                  if {@code options} is {@ocde null} or
+	 *                                  the options array
+	 *                                  contains a {@code null} element
 	 */
 	FileTreeWalker(Collection<FileVisitOption> options, int maxDepth) {
 		boolean fl = false;
 		for (FileVisitOption option : options) {
 			// will throw NPE if options contains null
 			switch (option) {
-			case FOLLOW_LINKS:
-				fl = true;
-				break;
-			default:
-				throw new AssertionError("Should not get here");
+				case FOLLOW_LINKS:
+					fl = true;
+					break;
+				default:
+					throw new AssertionError("Should not get here");
 			}
 		}
 		if (maxDepth < 0)
@@ -202,11 +185,13 @@ class FileTreeWalker implements Closeable {
 	 * walk is following sym links is not. The {@code canUseCached} argument
 	 * determines whether this method can use cached attributes.
 	 */
-	private BasicFileAttributes getAttributes(Path file, boolean canUseCached) throws IOException {
+	private BasicFileAttributes getAttributes(Path file, boolean canUseCached)
+			throws IOException {
 		// if attributes are cached then use them if possible
 		if (canUseCached && (file instanceof BasicFileAttributesHolder)
 				&& (System.getSecurityManager() == null)) {
-			BasicFileAttributes cached = ((BasicFileAttributesHolder) file).get();
+			BasicFileAttributes cached = ((BasicFileAttributesHolder) file)
+					.get();
 			if (cached != null && (!followLinks || !cached.isSymbolicLink())) {
 				return cached;
 			}
@@ -216,7 +201,8 @@ class FileTreeWalker implements Closeable {
 		// links then a link target might not exist so get attributes of link
 		BasicFileAttributes attrs;
 		try {
-			attrs = Files.readAttributes(file, BasicFileAttributes.class, linkOptions);
+			attrs = Files.readAttributes(file, BasicFileAttributes.class,
+					linkOptions);
 		} catch (IOException ioe) {
 			if (!followLinks)
 				throw ioe;
@@ -268,7 +254,8 @@ class FileTreeWalker implements Closeable {
 	 * The {@code canUseCached} parameter determines whether cached attributes
 	 * for the file can be used or not.
 	 */
-	private Event visit(Path entry, boolean ignoreSecurityException, boolean canUseCached) {
+	private Event visit(Path entry, boolean ignoreSecurityException,
+			boolean canUseCached) {
 		// need the file attributes
 		BasicFileAttributes attrs;
 		try {
@@ -289,7 +276,8 @@ class FileTreeWalker implements Closeable {
 
 		// check for cycles when following links
 		if (followLinks && wouldLoop(entry, attrs.fileKey())) {
-			return new Event(EventType.ENTRY, entry, new FileSystemLoopException(entry.toString()));
+			return new Event(EventType.ENTRY, entry,
+					new FileSystemLoopException(entry.toString()));
 		}
 
 		// file is a directory, attempt to open it

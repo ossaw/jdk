@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.resolver;
@@ -34,7 +14,8 @@ public class SplitLocalResolverImpl implements LocalResolver {
 	private Resolver resolver;
 	private LocalResolver localResolver;
 
-	public SplitLocalResolverImpl(Resolver resolver, LocalResolver localResolver) {
+	public SplitLocalResolverImpl(Resolver resolver,
+			LocalResolver localResolver) {
 		this.resolver = resolver;
 		this.localResolver = localResolver;
 	}

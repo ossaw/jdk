@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -50,7 +30,7 @@ public class MethodDescriptor extends FeatureDescriptor {
 	 * Constructs a <code>MethodDescriptor</code> from a <code>Method</code>.
 	 *
 	 * @param method
-	 *            The low-level method information.
+	 *               The low-level method information.
 	 */
 	public MethodDescriptor(Method method) {
 		this(method, null);
@@ -61,14 +41,17 @@ public class MethodDescriptor extends FeatureDescriptor {
 	 * providing descriptive information for each of the method's parameters.
 	 *
 	 * @param method
-	 *            The low-level method information.
+	 *                             The low-level method information.
 	 * @param parameterDescriptors
-	 *            Descriptive information for each of the method's parameters.
+	 *                             Descriptive information for each of the
+	 *                             method's parameters.
 	 */
-	public MethodDescriptor(Method method, ParameterDescriptor parameterDescriptors[]) {
+	public MethodDescriptor(Method method,
+			ParameterDescriptor parameterDescriptors[]) {
 		setName(method.getName());
 		setMethod(method);
-		this.parameterDescriptors = (parameterDescriptors != null) ? parameterDescriptors.clone()
+		this.parameterDescriptors = (parameterDescriptors != null)
+				? parameterDescriptors.clone()
 				: null;
 	}
 
@@ -97,7 +80,8 @@ public class MethodDescriptor extends FeatureDescriptor {
 						}
 					}
 				} else {
-					method = Introspector.findMethod(cls, name, params.length, params);
+					method = Introspector.findMethod(cls, name, params.length,
+							params);
 				}
 				setMethod(method);
 			}
@@ -138,7 +122,8 @@ public class MethodDescriptor extends FeatureDescriptor {
 		Class<?>[] clss = new Class<?>[params.size()];
 
 		for (int i = 0; i < params.size(); i++) {
-			Reference<? extends Class<?>> ref = (Reference<? extends Class<?>>) params.get(i);
+			Reference<? extends Class<?>> ref = (Reference<? extends Class<?>>) params
+					.get(i);
 			Class<?> cls = ref.get();
 			if (cls == null) {
 				return null;
@@ -157,7 +142,8 @@ public class MethodDescriptor extends FeatureDescriptor {
 	 *         array if the parameter names aren't known.
 	 */
 	public ParameterDescriptor[] getParameterDescriptors() {
-		return (this.parameterDescriptors != null) ? this.parameterDescriptors.clone() : null;
+		return (this.parameterDescriptors != null) ? this.parameterDescriptors
+				.clone() : null;
 	}
 
 	private static Method resolve(Method oldMethod, Method newMethod) {
@@ -167,16 +153,15 @@ public class MethodDescriptor extends FeatureDescriptor {
 		if (newMethod == null) {
 			return oldMethod;
 		}
-		return !oldMethod.isSynthetic() && newMethod.isSynthetic() ? oldMethod : newMethod;
+		return !oldMethod.isSynthetic() && newMethod.isSynthetic() ? oldMethod
+				: newMethod;
 	}
 
 	/*
 	 * Package-private constructor Merge two method descriptors. Where they
 	 * conflict, give the second argument (y) priority over the first argument
 	 * (x).
-	 * 
 	 * @param x The first (lower priority) MethodDescriptor
-	 * 
 	 * @param y The second (higher priority) MethodDescriptor
 	 */
 
@@ -214,7 +199,8 @@ public class MethodDescriptor extends FeatureDescriptor {
 			int len = old.parameterDescriptors.length;
 			parameterDescriptors = new ParameterDescriptor[len];
 			for (int i = 0; i < len; i++) {
-				parameterDescriptors[i] = new ParameterDescriptor(old.parameterDescriptors[i]);
+				parameterDescriptors[i] = new ParameterDescriptor(
+						old.parameterDescriptors[i]);
 			}
 		}
 	}

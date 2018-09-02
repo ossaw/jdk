@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -128,7 +108,8 @@ public final class Float extends Number implements Comparable<Float> {
 	 * @since JDK1.1
 	 */
 	@SuppressWarnings("unchecked")
-	public static final Class<Float> TYPE = (Class<Float>) Class.getPrimitiveClass("float");
+	public static final Class<Float> TYPE = (Class<Float>) Class
+			.getPrimitiveClass("float");
 
 	/**
 	 * Returns a string representation of the {@code float} argument. All
@@ -186,7 +167,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * subclasses of {@link java.text.NumberFormat}.
 	 *
 	 * @param f
-	 *            the float to be converted.
+	 *          the float to be converted.
 	 * @return a string representation of the argument.
 	 */
 	public static String toString(float f) {
@@ -275,7 +256,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * </table>
 	 * 
 	 * @param f
-	 *            the {@code float} to be converted.
+	 *          the {@code float} to be converted.
 	 * @return a hex string representation of the argument.
 	 * @since 1.5
 	 * @author Joseph D. Darcy
@@ -283,9 +264,9 @@ public final class Float extends Number implements Comparable<Float> {
 	public static String toHexString(float f) {
 		if (Math.abs(f) < FloatConsts.MIN_NORMAL && f != 0.0f) {// float
 																// subnormal
-			// Adjust exponent to create subnormal double, then
-			// replace subnormal double exponent with subnormal float
-			// exponent
+																// Adjust exponent to create subnormal double, then
+																// replace subnormal double exponent with subnormal float
+																// exponent
 			String s = Double.toHexString(Math.scalb((double) f,
 					/* -1022+126 */
 					DoubleConsts.MIN_EXPONENT - FloatConsts.MIN_EXPONENT));
@@ -397,11 +378,12 @@ public final class Float extends Number implements Comparable<Float> {
 	 * can be used to screen the input.
 	 *
 	 * @param s
-	 *            the string to be parsed.
+	 *          the string to be parsed.
 	 * @return a {@code Float} object holding the value represented by the
 	 *         {@code String} argument.
 	 * @throws NumberFormatException
-	 *             if the string does not contain a parsable number.
+	 *                               if the string does not contain a parsable
+	 *                               number.
 	 */
 	public static Float valueOf(String s) throws NumberFormatException {
 		return new Float(parseFloat(s));
@@ -415,7 +397,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * better space and time performance by caching frequently requested values.
 	 *
 	 * @param f
-	 *            a float value.
+	 *          a float value.
 	 * @return a {@code Float} instance representing {@code f}.
 	 * @since 1.5
 	 */
@@ -429,12 +411,13 @@ public final class Float extends Number implements Comparable<Float> {
 	 * class {@code Float}.
 	 *
 	 * @param s
-	 *            the string to be parsed.
+	 *          the string to be parsed.
 	 * @return the {@code float} value represented by the string argument.
 	 * @throws NullPointerException
-	 *             if the string is null
+	 *                               if the string is null
 	 * @throws NumberFormatException
-	 *             if the string does not contain a parsable {@code float}.
+	 *                               if the string does not contain a parsable
+	 *                               {@code float}.
 	 * @see java.lang.Float#valueOf(String)
 	 * @since 1.2
 	 */
@@ -447,7 +430,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * value, {@code false} otherwise.
 	 *
 	 * @param v
-	 *            the value to be tested.
+	 *          the value to be tested.
 	 * @return {@code true} if the argument is NaN; {@code false} otherwise.
 	 */
 	public static boolean isNaN(float v) {
@@ -459,7 +442,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * magnitude, {@code false} otherwise.
 	 *
 	 * @param v
-	 *            the value to be tested.
+	 *          the value to be tested.
 	 * @return {@code true} if the argument is positive infinity or negative
 	 *         infinity; {@code false} otherwise.
 	 */
@@ -472,7 +455,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * returns {@code false} otherwise (for NaN and infinity arguments).
 	 *
 	 * @param f
-	 *            the {@code float} value to be tested
+	 *          the {@code float} value to be tested
 	 * @return {@code true} if the argument is a finite floating-point value,
 	 *         {@code false} otherwise.
 	 * @since 1.8
@@ -493,7 +476,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * primitive {@code float} argument.
 	 *
 	 * @param value
-	 *            the value to be represented by the {@code Float}.
+	 *              the value to be represented by the {@code Float}.
 	 */
 	public Float(float value) {
 		this.value = value;
@@ -504,7 +487,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * argument converted to type {@code float}.
 	 *
 	 * @param value
-	 *            the value to be represented by the {@code Float}.
+	 *              the value to be represented by the {@code Float}.
 	 */
 	public Float(double value) {
 		this.value = (float) value;
@@ -517,9 +500,10 @@ public final class Float extends Number implements Comparable<Float> {
 	 * method.
 	 *
 	 * @param s
-	 *            a string to be converted to a {@code Float}.
+	 *          a string to be converted to a {@code Float}.
 	 * @throws NumberFormatException
-	 *             if the string does not contain a parsable number.
+	 *                               if the string does not contain a parsable
+	 *                               number.
 	 * @see java.lang.Float#valueOf(java.lang.String)
 	 */
 	public Float(String s) throws NumberFormatException {
@@ -649,7 +633,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * {@code Float.hashCode()}.
 	 *
 	 * @param value
-	 *            the value to hash
+	 *              the value to hash
 	 * @return a hash code value for a {@code float} value.
 	 * @since 1.8
 	 */
@@ -701,8 +685,8 @@ public final class Float extends Number implements Comparable<Float> {
 	 * @see java.lang.Float#floatToIntBits(float)
 	 */
 	public boolean equals(Object obj) {
-		return (obj instanceof Float)
-				&& (floatToIntBits(((Float) obj).value) == floatToIntBits(value));
+		return (obj instanceof Float) && (floatToIntBits(
+				((Float) obj).value) == floatToIntBits(value));
 	}
 
 	/**
@@ -733,7 +717,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * are collapsed to a single "canonical" NaN value).
 	 *
 	 * @param value
-	 *            a floating-point number.
+	 *              a floating-point number.
 	 * @return the bits that represent the floating-point number.
 	 */
 	public static int floatToIntBits(float value) {
@@ -777,7 +761,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * the same as the argument to {@code floatToRawIntBits}.
 	 *
 	 * @param value
-	 *            a floating-point number.
+	 *              a floating-point number.
 	 * @return the bits that represent the floating-point number.
 	 * @since 1.3
 	 */
@@ -814,7 +798,8 @@ public final class Float extends Number implements Comparable<Float> {
 	 * 	&#64;code
 	 * 	int s = ((bits >> 31) == 0) ? 1 : -1;
 	 * 	int e = ((bits >> 23) & 0xff);
-	 * 	int m = (e == 0) ? (bits & 0x7fffff) << 1 : (bits & 0x7fffff) | 0x800000;
+	 * 	int m = (e == 0) ? (bits & 0x7fffff) << 1
+	 * 			: (bits & 0x7fffff) | 0x800000;
 	 * }
 	 * </pre>
 	 * 
@@ -841,7 +826,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * quiet or signaling, must be in the NaN range identified above.
 	 *
 	 * @param bits
-	 *            an integer.
+	 *             an integer.
 	 * @return the {@code float} floating-point value with the same bit pattern.
 	 */
 	public static native float intBitsToFloat(int bits);
@@ -864,7 +849,7 @@ public final class Float extends Number implements Comparable<Float> {
 	 * imposed by this method is <i>consistent with equals</i>.
 	 *
 	 * @param anotherFloat
-	 *            the {@code Float} to be compared.
+	 *                     the {@code Float} to be compared.
 	 * @return the value {@code 0} if {@code anotherFloat} is numerically equal
 	 *         to this {@code Float}; a value less than {@code 0} if this
 	 *         {@code Float} is numerically less than {@code anotherFloat}; and
@@ -888,9 +873,9 @@ public final class Float extends Number implements Comparable<Float> {
 	 * </pre>
 	 *
 	 * @param f1
-	 *            the first {@code float} to compare.
+	 *           the first {@code float} to compare.
 	 * @param f2
-	 *            the second {@code float} to compare.
+	 *           the second {@code float} to compare.
 	 * @return the value {@code 0} if {@code f1} is numerically equal to
 	 *         {@code f2}; a value less than {@code 0} if {@code f1} is
 	 *         numerically less than {@code f2}; and a value greater than
@@ -916,9 +901,9 @@ public final class Float extends Number implements Comparable<Float> {
 	 * Adds two {@code float} values together as per the + operator.
 	 *
 	 * @param a
-	 *            the first operand
+	 *          the first operand
 	 * @param b
-	 *            the second operand
+	 *          the second operand
 	 * @return the sum of {@code a} and {@code b}
 	 * @jls 4.2.4 Floating-Point Operations
 	 * @see java.util.function.BinaryOperator
@@ -933,9 +918,9 @@ public final class Float extends Number implements Comparable<Float> {
 	 * {@link Math#max(float, float) Math.max}.
 	 *
 	 * @param a
-	 *            the first operand
+	 *          the first operand
 	 * @param b
-	 *            the second operand
+	 *          the second operand
 	 * @return the greater of {@code a} and {@code b}
 	 * @see java.util.function.BinaryOperator
 	 * @since 1.8
@@ -949,9 +934,9 @@ public final class Float extends Number implements Comparable<Float> {
 	 * {@link Math#min(float, float) Math.min}.
 	 *
 	 * @param a
-	 *            the first operand
+	 *          the first operand
 	 * @param b
-	 *            the second operand
+	 *          the second operand
 	 * @return the smaller of {@code a} and {@code b}
 	 * @see java.util.function.BinaryOperator
 	 * @since 1.8

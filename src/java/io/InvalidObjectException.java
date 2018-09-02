@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.io;
@@ -43,7 +23,7 @@ public class InvalidObjectException extends ObjectStreamException {
 	 * Constructs an <code>InvalidObjectException</code>.
 	 * 
 	 * @param reason
-	 *            Detailed message explaining the reason for the failure.
+	 *               Detailed message explaining the reason for the failure.
 	 *
 	 * @see ObjectInputValidation
 	 */

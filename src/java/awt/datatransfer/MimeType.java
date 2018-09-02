@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.datatransfer;
@@ -53,16 +33,15 @@ class MimeType implements Externalizable, Cloneable {
 	 * directly by an application, since the result will be an uninitialized,
 	 * immutable <code>MimeType</code> object.
 	 */
-	public MimeType() {
-	}
+	public MimeType() {}
 
 	/**
 	 * Builds a <code>MimeType</code> from a <code>String</code>.
 	 *
 	 * @param rawdata
-	 *            text used to initialize the <code>MimeType</code>
+	 *                text used to initialize the <code>MimeType</code>
 	 * @throws NullPointerException
-	 *             if <code>rawdata</code> is null
+	 *                              if <code>rawdata</code> is null
 	 */
 	public MimeType(String rawdata) throws MimeTypeParseException {
 		parse(rawdata);
@@ -73,11 +52,12 @@ class MimeType implements Externalizable, Cloneable {
 	 * has an empty parameter list.
 	 *
 	 * @param primary
-	 *            the primary type of this <code>MimeType</code>
+	 *                the primary type of this <code>MimeType</code>
 	 * @param sub
-	 *            the subtype of this <code>MimeType</code>
+	 *                the subtype of this <code>MimeType</code>
 	 * @throws NullPointerException
-	 *             if either <code>primary</code> or <code>sub</code> is null
+	 *                              if either <code>primary</code> or
+	 *                              <code>sub</code> is null
 	 */
 	public MimeType(String primary, String sub) throws MimeTypeParseException {
 		this(primary, sub, new MimeTypeParameterList());
@@ -88,14 +68,15 @@ class MimeType implements Externalizable, Cloneable {
 	 * parameter list.
 	 *
 	 * @param primary
-	 *            the primary type of this <code>MimeType</code>
+	 *                the primary type of this <code>MimeType</code>
 	 * @param sub
-	 *            the subtype of this <code>MimeType</code>
+	 *                the subtype of this <code>MimeType</code>
 	 * @param mtpl
-	 *            the requested parameter list
+	 *                the requested parameter list
 	 * @throws NullPointerException
-	 *             if either <code>primary</code>, <code>sub</code> or
-	 *             <code>mtpl</code> is null
+	 *                              if either <code>primary</code>,
+	 *                              <code>sub</code> or
+	 *                              <code>mtpl</code> is null
 	 */
 	public MimeType(String primary, String sub, MimeTypeParameterList mtpl)
 			throws MimeTypeParseException {
@@ -132,7 +113,7 @@ class MimeType implements Externalizable, Cloneable {
 	 * parameters are all equal. No default values are taken into account.
 	 * 
 	 * @param thatObject
-	 *            the object to be evaluated as a <code>MimeType</code>
+	 *                   the object to be evaluated as a <code>MimeType</code>
 	 * @return <code>true</code> if <code>thatObject</code> is a
 	 *         <code>MimeType</code>; otherwise returns <code>false</code>
 	 */
@@ -142,8 +123,8 @@ class MimeType implements Externalizable, Cloneable {
 		}
 		MimeType that = (MimeType) thatObject;
 		boolean isIt = ((this.primaryType.equals(that.primaryType))
-				&& (this.subType.equals(that.subType))
-				&& (this.parameters.equals(that.parameters)));
+				&& (this.subType.equals(that.subType)) && (this.parameters
+						.equals(that.parameters)));
 		return isIt;
 	} // equals()
 
@@ -151,7 +132,7 @@ class MimeType implements Externalizable, Cloneable {
 	 * A routine for parsing the MIME type out of a String.
 	 *
 	 * @throws NullPointerException
-	 *             if <code>rawdata</code> is null
+	 *                              if <code>rawdata</code> is null
 	 */
 	private void parse(String rawdata) throws MimeTypeParseException {
 		int slashIndex = rawdata.indexOf('/');
@@ -166,12 +147,15 @@ class MimeType implements Externalizable, Cloneable {
 			throw new MimeTypeParseException("Unable to find a sub type.");
 		} else if ((slashIndex >= 0) && (semIndex < 0)) {
 			// we have a primary and sub type but no parameter list
-			primaryType = rawdata.substring(0, slashIndex).trim().toLowerCase(Locale.ENGLISH);
-			subType = rawdata.substring(slashIndex + 1).trim().toLowerCase(Locale.ENGLISH);
+			primaryType = rawdata.substring(0, slashIndex).trim().toLowerCase(
+					Locale.ENGLISH);
+			subType = rawdata.substring(slashIndex + 1).trim().toLowerCase(
+					Locale.ENGLISH);
 			parameters = new MimeTypeParameterList();
 		} else if (slashIndex < semIndex) {
 			// we have all three items in the proper sequence
-			primaryType = rawdata.substring(0, slashIndex).trim().toLowerCase(Locale.ENGLISH);
+			primaryType = rawdata.substring(0, slashIndex).trim().toLowerCase(
+					Locale.ENGLISH);
 			subType = rawdata.substring(slashIndex + 1, semIndex).trim()
 					.toLowerCase(Locale.ENGLISH);
 			parameters = new MimeTypeParameterList(rawdata.substring(semIndex));
@@ -263,7 +247,7 @@ class MimeType implements Externalizable, Cloneable {
 	 * <code>false</code>.
 	 *
 	 * @param type
-	 *            the type to compare to <code>this</code>'s type
+	 *             the type to compare to <code>this</code>'s type
 	 * @return <code>true</code> if the primary type and the subtype of this
 	 *         object are the same as the specified <code>type</code>; otherwise
 	 *         returns <code>false</code>
@@ -272,7 +256,8 @@ class MimeType implements Externalizable, Cloneable {
 		if (type == null)
 			return false;
 		return primaryType.equals(type.getPrimaryType()) && (subType.equals("*")
-				|| type.getSubType().equals("*") || (subType.equals(type.getSubType())));
+				|| type.getSubType().equals("*") || (subType.equals(type
+						.getSubType())));
 	}
 
 	/**
@@ -281,7 +266,7 @@ class MimeType implements Externalizable, Cloneable {
 	 * ; otherwise returns <code>false</code>.
 	 *
 	 * @param rawdata
-	 *            the raw data to be examined
+	 *                the raw data to be examined
 	 * @return <code>true</code> if the primary type and the subtype of this
 	 *         object are the same as the content type described in
 	 *         <code>rawdata</code>; otherwise returns <code>false</code>; if
@@ -300,7 +285,7 @@ class MimeType implements Externalizable, Cloneable {
 	 * writeObject method of ObjectOutput for objects, strings and arrays.
 	 * 
 	 * @exception IOException
-	 *                Includes any I/O exceptions that may occur
+	 *                        Includes any I/O exceptions that may occur
 	 */
 	public void writeExternal(ObjectOutput out) throws IOException {
 		String s = toString(); // contains ASCII chars only
@@ -323,9 +308,11 @@ class MimeType implements Externalizable, Cloneable {
 	 * writeExternal.
 	 * 
 	 * @exception ClassNotFoundException
-	 *                If the class for an object being restored cannot be found.
+	 *                                   If the class for an object being
+	 *                                   restored cannot be found.
 	 */
-	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+	public void readExternal(ObjectInput in) throws IOException,
+			ClassNotFoundException {
 		String s = in.readUTF();
 		if (s == null || s.length() == 0) { // long mime type
 			byte[] ba = new byte[in.readInt()];
@@ -372,7 +359,7 @@ class MimeType implements Externalizable, Cloneable {
 	 * Determines whether or not a given string is a legal token.
 	 *
 	 * @throws NullPointerException
-	 *             if <code>s</code> is null
+	 *                              if <code>s</code> is null
 	 */
 	private boolean isValidToken(String s) {
 		int len = s.length();

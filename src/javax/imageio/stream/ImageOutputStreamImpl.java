@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.stream;
@@ -41,8 +21,7 @@ public abstract class ImageOutputStreamImpl extends ImageInputStreamImpl
 	/**
 	 * Constructs an <code>ImageOutputStreamImpl</code>.
 	 */
-	public ImageOutputStreamImpl() {
-	}
+	public ImageOutputStreamImpl() {}
 
 	public abstract void write(int b) throws IOException;
 
@@ -200,7 +179,8 @@ public abstract class ImageOutputStreamImpl extends ImageInputStreamImpl
 	public void writeShorts(short[] s, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > s.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > s.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > s.length!");
 		}
 
 		byte[] b = new byte[len * 2];
@@ -225,7 +205,8 @@ public abstract class ImageOutputStreamImpl extends ImageInputStreamImpl
 	public void writeChars(char[] c, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > c.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > c.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > c.length!");
 		}
 
 		byte[] b = new byte[len * 2];
@@ -250,7 +231,8 @@ public abstract class ImageOutputStreamImpl extends ImageInputStreamImpl
 	public void writeInts(int[] i, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > i.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > i.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > i.length!");
 		}
 
 		byte[] b = new byte[len * 4];
@@ -279,7 +261,8 @@ public abstract class ImageOutputStreamImpl extends ImageInputStreamImpl
 	public void writeLongs(long[] l, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > l.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > l.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > l.length!");
 		}
 
 		byte[] b = new byte[len * 8];
@@ -316,7 +299,8 @@ public abstract class ImageOutputStreamImpl extends ImageInputStreamImpl
 	public void writeFloats(float[] f, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > f.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > f.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > f.length!");
 		}
 
 		byte[] b = new byte[len * 4];
@@ -345,7 +329,8 @@ public abstract class ImageOutputStreamImpl extends ImageInputStreamImpl
 	public void writeDoubles(double[] d, int off, int len) throws IOException {
 		// Fix 4430357 - if off + len < 0, overflow occurred
 		if (off < 0 || len < 0 || off + len > d.length || off + len < 0) {
-			throw new IndexOutOfBoundsException("off < 0 || len < 0 || off + len > d.length!");
+			throw new IndexOutOfBoundsException(
+					"off < 0 || len < 0 || off + len > d.length!");
 		}
 
 		byte[] b = new byte[len * 8];
@@ -434,7 +419,8 @@ public abstract class ImageOutputStreamImpl extends ImageInputStreamImpl
 			int extra = numBits % 8;
 			for (int numBytes = numBits / 8; numBytes > 0; numBytes--) {
 				int shift = (numBytes - 1) * 8 + extra;
-				int value = (int) ((shift == 0) ? bits & 0xFF : (bits >> shift) & 0xFF);
+				int value = (int) ((shift == 0) ? bits & 0xFF
+						: (bits >> shift) & 0xFF);
 				write(value);
 			}
 			numBits = extra;
@@ -475,7 +461,7 @@ public abstract class ImageOutputStreamImpl extends ImageInputStreamImpl
 	 * <code>write(byte[], int, int)</code> methods.
 	 *
 	 * @exception IOException
-	 *                if an I/O error occurs.
+	 *                        if an I/O error occurs.
 	 */
 	protected final void flushBits() throws IOException {
 		checkClosed();

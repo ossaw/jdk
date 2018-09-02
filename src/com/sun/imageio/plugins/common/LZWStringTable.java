@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.imageio.plugins.common;
@@ -70,10 +50,8 @@ public class LZWStringTable {
 	/*
 	 * @param index value of -1 indicates no predecessor [used in
 	 * initialisation]
-	 * 
 	 * @param b the byte [character] to add to the string store which follows
 	 * the predecessor string specified the index.
-	 * 
 	 * @return 0xFFFF if no space in table left for addition of predecesor index
 	 * and byte b. Else return the code allocated for combination index + b.
 	 */
@@ -104,9 +82,7 @@ public class LZWStringTable {
 
 	/*
 	 * @param index index to prefix string
-	 * 
 	 * @param b the character that follws the index prefix
-	 * 
 	 * @return b if param index is HASH_FREE. Else return the code for this
 	 * prefix and byte successor
 	 */
@@ -155,18 +131,13 @@ public class LZWStringTable {
 	 * code and have the skip parameter set the negated value of the previous
 	 * return. Succesive negative return values should be negated and added
 	 * together for next skip parameter value with same code.
-	 *
 	 * @param buf buffer to place expanded data into
-	 * 
 	 * @param offset offset to place expanded data
-	 * 
 	 * @param code the code to expand to the byte array it represents.
 	 * PRECONDITION This code must already be in the LZSS
-	 * 
 	 * @param skipHead is the number of bytes at the start of the expanded code
 	 * to be skipped before data is written to buf. It is possible that skipHead
 	 * is equal to codeLen.
-	 * 
 	 * @return the length of data expanded into buf. If the expanded code is
 	 * longer than space left in buf then the value returned is a negative
 	 * number which when negated is equal to the number of bytes that were used

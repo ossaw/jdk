@@ -1,39 +1,17 @@
 /*
  * Copyright (c) 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996 - All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - All Rights Reserved
- *
- *   The original version of this source code and documentation is copyrighted
+ * The original version of this source code and documentation is copyrighted
  * and owned by Taligent, Inc., a wholly-owned subsidiary of IBM. These
  * materials are provided under terms of a License Agreement between Taligent
  * and Sun. This technology is protected by multiple US and International
  * patents. This notice and attribution to Taligent may not be removed.
- *   Taligent is a registered trademark of Taligent, Inc.
- *
+ * Taligent is a registered trademark of Taligent, Inc.
  */
 
 package java.text;
@@ -51,7 +29,7 @@ final class RuleBasedCollationKey extends CollationKey {
 	 * Collators can not be compared.
 	 * 
 	 * @param target
-	 *            target RuleBasedCollationKey
+	 *               target RuleBasedCollationKey
 	 * @return Returns an integer value. Value is less than zero if this is less
 	 *         than target, value is zero if this and target are equal and value
 	 *         is greater than zero if this is greater than target.
@@ -73,7 +51,7 @@ final class RuleBasedCollationKey extends CollationKey {
 	 * different Collators can not be compared.
 	 * 
 	 * @param target
-	 *            the RuleBasedCollationKey to compare to.
+	 *               the RuleBasedCollationKey to compare to.
 	 * @return Returns true if two objects are equal, false otherwise.
 	 */
 	public boolean equals(Object target) {

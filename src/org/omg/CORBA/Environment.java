@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -48,7 +28,7 @@ public abstract class Environment {
 	 * Inserts the given exception into this <code>Environment</code> object.
 	 *
 	 * @param except
-	 *            the exception to be set
+	 *               the exception to be set
 	 */
 
 	public abstract void exception(java.lang.Exception except);

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -137,25 +117,27 @@ public class IndexColorModel extends ColorModel {
 	 * <code>DataBuffer.TYPE_USHORT</code> that can hold a single pixel.
 	 * 
 	 * @param bits
-	 *            the number of bits each pixel occupies
+	 *             the number of bits each pixel occupies
 	 * @param size
-	 *            the size of the color component arrays
+	 *             the size of the color component arrays
 	 * @param r
-	 *            the array of red color components
+	 *             the array of red color components
 	 * @param g
-	 *            the array of green color components
+	 *             the array of green color components
 	 * @param b
-	 *            the array of blue color components
+	 *             the array of blue color components
 	 * @throws IllegalArgumentException
-	 *             if <code>bits</code> is less than 1 or greater than 16
+	 *                                  if <code>bits</code> is less than 1 or
+	 *                                  greater than 16
 	 * @throws IllegalArgumentException
-	 *             if <code>size</code> is less than 1
+	 *                                  if <code>size</code> is less than 1
 	 */
 	public IndexColorModel(int bits, int size, byte r[], byte g[], byte b[]) {
-		super(bits, opaqueBits, ColorSpace.getInstance(ColorSpace.CS_sRGB), false, false, OPAQUE,
-				ColorModel.getDefaultTransferType(bits));
+		super(bits, opaqueBits, ColorSpace.getInstance(ColorSpace.CS_sRGB),
+				false, false, OPAQUE, ColorModel.getDefaultTransferType(bits));
 		if (bits < 1 || bits > 16) {
-			throw new IllegalArgumentException("Number of bits must be between" + " 1 and 16.");
+			throw new IllegalArgumentException("Number of bits must be between"
+					+ " 1 and 16.");
 		}
 		setRGBs(size, r, g, b, null);
 		calculatePixelMask();
@@ -176,27 +158,30 @@ public class IndexColorModel extends ColorModel {
 	 * <code>DataBuffer.TYPE_USHORT</code> that can hold a single pixel.
 	 * 
 	 * @param bits
-	 *            the number of bits each pixel occupies
+	 *              the number of bits each pixel occupies
 	 * @param size
-	 *            the size of the color component arrays
+	 *              the size of the color component arrays
 	 * @param r
-	 *            the array of red color components
+	 *              the array of red color components
 	 * @param g
-	 *            the array of green color components
+	 *              the array of green color components
 	 * @param b
-	 *            the array of blue color components
+	 *              the array of blue color components
 	 * @param trans
-	 *            the index of the transparent pixel
+	 *              the index of the transparent pixel
 	 * @throws IllegalArgumentException
-	 *             if <code>bits</code> is less than 1 or greater than 16
+	 *                                  if <code>bits</code> is less than 1 or
+	 *                                  greater than 16
 	 * @throws IllegalArgumentException
-	 *             if <code>size</code> is less than 1
+	 *                                  if <code>size</code> is less than 1
 	 */
-	public IndexColorModel(int bits, int size, byte r[], byte g[], byte b[], int trans) {
-		super(bits, opaqueBits, ColorSpace.getInstance(ColorSpace.CS_sRGB), false, false, OPAQUE,
-				ColorModel.getDefaultTransferType(bits));
+	public IndexColorModel(int bits, int size, byte r[], byte g[], byte b[],
+			int trans) {
+		super(bits, opaqueBits, ColorSpace.getInstance(ColorSpace.CS_sRGB),
+				false, false, OPAQUE, ColorModel.getDefaultTransferType(bits));
 		if (bits < 1 || bits > 16) {
-			throw new IllegalArgumentException("Number of bits must be between" + " 1 and 16.");
+			throw new IllegalArgumentException("Number of bits must be between"
+					+ " 1 and 16.");
 		}
 		setRGBs(size, r, g, b, null);
 		setTransparentPixel(trans);
@@ -216,27 +201,30 @@ public class IndexColorModel extends ColorModel {
 	 * <code>DataBuffer.TYPE_USHORT</code> that can hold a single pixel.
 	 * 
 	 * @param bits
-	 *            the number of bits each pixel occupies
+	 *             the number of bits each pixel occupies
 	 * @param size
-	 *            the size of the color component arrays
+	 *             the size of the color component arrays
 	 * @param r
-	 *            the array of red color components
+	 *             the array of red color components
 	 * @param g
-	 *            the array of green color components
+	 *             the array of green color components
 	 * @param b
-	 *            the array of blue color components
+	 *             the array of blue color components
 	 * @param a
-	 *            the array of alpha value components
+	 *             the array of alpha value components
 	 * @throws IllegalArgumentException
-	 *             if <code>bits</code> is less than 1 or greater than 16
+	 *                                  if <code>bits</code> is less than 1 or
+	 *                                  greater than 16
 	 * @throws IllegalArgumentException
-	 *             if <code>size</code> is less than 1
+	 *                                  if <code>size</code> is less than 1
 	 */
-	public IndexColorModel(int bits, int size, byte r[], byte g[], byte b[], byte a[]) {
-		super(bits, alphaBits, ColorSpace.getInstance(ColorSpace.CS_sRGB), true, false, TRANSLUCENT,
-				ColorModel.getDefaultTransferType(bits));
+	public IndexColorModel(int bits, int size, byte r[], byte g[], byte b[],
+			byte a[]) {
+		super(bits, alphaBits, ColorSpace.getInstance(ColorSpace.CS_sRGB), true,
+				false, TRANSLUCENT, ColorModel.getDefaultTransferType(bits));
 		if (bits < 1 || bits > 16) {
-			throw new IllegalArgumentException("Number of bits must be between" + " 1 and 16.");
+			throw new IllegalArgumentException("Number of bits must be between"
+					+ " 1 and 16.");
 		}
 		setRGBs(size, r, g, b, a);
 		calculatePixelMask();
@@ -255,25 +243,28 @@ public class IndexColorModel extends ColorModel {
 	 * <code>DataBuffer.TYPE_USHORT</code> that can hold a single pixel.
 	 *
 	 * @param bits
-	 *            the number of bits each pixel occupies
+	 *                 the number of bits each pixel occupies
 	 * @param size
-	 *            the size of the color component arrays
+	 *                 the size of the color component arrays
 	 * @param cmap
-	 *            the array of color components
+	 *                 the array of color components
 	 * @param start
-	 *            the starting offset of the first color component
+	 *                 the starting offset of the first color component
 	 * @param hasalpha
-	 *            indicates whether alpha values are contained in the
-	 *            <code>cmap</code> array
+	 *                 indicates whether alpha values are contained in the
+	 *                 <code>cmap</code> array
 	 * @throws IllegalArgumentException
-	 *             if <code>bits</code> is less than 1 or greater than 16
+	 *                                  if <code>bits</code> is less than 1 or
+	 *                                  greater than 16
 	 * @throws IllegalArgumentException
-	 *             if <code>size</code> is less than 1
+	 *                                  if <code>size</code> is less than 1
 	 */
-	public IndexColorModel(int bits, int size, byte cmap[], int start, boolean hasalpha) {
+	public IndexColorModel(int bits, int size, byte cmap[], int start,
+			boolean hasalpha) {
 		this(bits, size, cmap, start, hasalpha, -1);
 		if (bits < 1 || bits > 16) {
-			throw new IllegalArgumentException("Number of bits must be between" + " 1 and 16.");
+			throw new IllegalArgumentException("Number of bits must be between"
+					+ " 1 and 16.");
 		}
 	}
 
@@ -292,34 +283,37 @@ public class IndexColorModel extends ColorModel {
 	 * <code>DataBuffer.TYPE_USHORT</code> that can hold a single pixel.
 	 * 
 	 * @param bits
-	 *            the number of bits each pixel occupies
+	 *                 the number of bits each pixel occupies
 	 * @param size
-	 *            the size of the color component arrays
+	 *                 the size of the color component arrays
 	 * @param cmap
-	 *            the array of color components
+	 *                 the array of color components
 	 * @param start
-	 *            the starting offset of the first color component
+	 *                 the starting offset of the first color component
 	 * @param hasalpha
-	 *            indicates whether alpha values are contained in the
-	 *            <code>cmap</code> array
+	 *                 indicates whether alpha values are contained in the
+	 *                 <code>cmap</code> array
 	 * @param trans
-	 *            the index of the fully transparent pixel
+	 *                 the index of the fully transparent pixel
 	 * @throws IllegalArgumentException
-	 *             if <code>bits</code> is less than 1 or greater than 16
+	 *                                  if <code>bits</code> is less than 1 or
+	 *                                  greater than 16
 	 * @throws IllegalArgumentException
-	 *             if <code>size</code> is less than 1
+	 *                                  if <code>size</code> is less than 1
 	 */
-	public IndexColorModel(int bits, int size, byte cmap[], int start, boolean hasalpha,
-			int trans) {
+	public IndexColorModel(int bits, int size, byte cmap[], int start,
+			boolean hasalpha, int trans) {
 		// REMIND: This assumes the ordering: RGB[A]
-		super(bits, opaqueBits, ColorSpace.getInstance(ColorSpace.CS_sRGB), false, false, OPAQUE,
-				ColorModel.getDefaultTransferType(bits));
+		super(bits, opaqueBits, ColorSpace.getInstance(ColorSpace.CS_sRGB),
+				false, false, OPAQUE, ColorModel.getDefaultTransferType(bits));
 
 		if (bits < 1 || bits > 16) {
-			throw new IllegalArgumentException("Number of bits must be between" + " 1 and 16.");
+			throw new IllegalArgumentException("Number of bits must be between"
+					+ " 1 and 16.");
 		}
 		if (size < 1) {
-			throw new IllegalArgumentException("Map size (" + size + ") must be >= 1");
+			throw new IllegalArgumentException("Map size (" + size
+					+ ") must be >= 1");
 		}
 		map_size = size;
 		rgb = new int[calcRealMapSize(bits, size)];
@@ -370,44 +364,51 @@ public class IndexColorModel extends ColorModel {
 	 * specified in the <a href="#transparency">class description</a> above.
 	 * 
 	 * @param bits
-	 *            the number of bits each pixel occupies
+	 *                     the number of bits each pixel occupies
 	 * @param size
-	 *            the size of the color component arrays
+	 *                     the size of the color component arrays
 	 * @param cmap
-	 *            the array of color components
+	 *                     the array of color components
 	 * @param start
-	 *            the starting offset of the first color component
+	 *                     the starting offset of the first color component
 	 * @param hasalpha
-	 *            indicates whether alpha values are contained in the
-	 *            <code>cmap</code> array
+	 *                     indicates whether alpha values are contained in the
+	 *                     <code>cmap</code> array
 	 * @param trans
-	 *            the index of the fully transparent pixel
+	 *                     the index of the fully transparent pixel
 	 * @param transferType
-	 *            the data type of the array used to represent pixel values. The
-	 *            data type must be either <code>DataBuffer.TYPE_BYTE</code> or
-	 *            <code>DataBuffer.TYPE_USHORT</code>.
+	 *                     the data type of the array used to represent pixel
+	 *                     values. The
+	 *                     data type must be either
+	 *                     <code>DataBuffer.TYPE_BYTE</code> or
+	 *                     <code>DataBuffer.TYPE_USHORT</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>bits</code> is less than 1 or greater than 16
+	 *                                  if <code>bits</code> is less than 1 or
+	 *                                  greater than 16
 	 * @throws IllegalArgumentException
-	 *             if <code>size</code> is less than 1
+	 *                                  if <code>size</code> is less than 1
 	 * @throws IllegalArgumentException
-	 *             if <code>transferType</code> is not one of
-	 *             <code>DataBuffer.TYPE_BYTE</code> or
-	 *             <code>DataBuffer.TYPE_USHORT</code>
+	 *                                  if <code>transferType</code> is not one
+	 *                                  of
+	 *                                  <code>DataBuffer.TYPE_BYTE</code> or
+	 *                                  <code>DataBuffer.TYPE_USHORT</code>
 	 */
-	public IndexColorModel(int bits, int size, int cmap[], int start, boolean hasalpha, int trans,
-			int transferType) {
+	public IndexColorModel(int bits, int size, int cmap[], int start,
+			boolean hasalpha, int trans, int transferType) {
 		// REMIND: This assumes the ordering: RGB[A]
-		super(bits, opaqueBits, ColorSpace.getInstance(ColorSpace.CS_sRGB), false, false, OPAQUE,
-				transferType);
+		super(bits, opaqueBits, ColorSpace.getInstance(ColorSpace.CS_sRGB),
+				false, false, OPAQUE, transferType);
 
 		if (bits < 1 || bits > 16) {
-			throw new IllegalArgumentException("Number of bits must be between" + " 1 and 16.");
+			throw new IllegalArgumentException("Number of bits must be between"
+					+ " 1 and 16.");
 		}
 		if (size < 1) {
-			throw new IllegalArgumentException("Map size (" + size + ") must be >= 1");
+			throw new IllegalArgumentException("Map size (" + size
+					+ ") must be >= 1");
 		}
-		if ((transferType != DataBuffer.TYPE_BYTE) && (transferType != DataBuffer.TYPE_USHORT)) {
+		if ((transferType != DataBuffer.TYPE_BYTE)
+				&& (transferType != DataBuffer.TYPE_USHORT)) {
 			throw new IllegalArgumentException("transferType must be either"
 					+ "DataBuffer.TYPE_BYTE or DataBuffer.TYPE_USHORT");
 		}
@@ -435,44 +436,53 @@ public class IndexColorModel extends ColorModel {
 	 * set.
 	 * 
 	 * @param bits
-	 *            the number of bits each pixel occupies
+	 *                     the number of bits each pixel occupies
 	 * @param size
-	 *            the size of the color component array
+	 *                     the size of the color component array
 	 * @param cmap
-	 *            the array of color components
+	 *                     the array of color components
 	 * @param start
-	 *            the starting offset of the first color component
+	 *                     the starting offset of the first color component
 	 * @param transferType
-	 *            the specified data type
+	 *                     the specified data type
 	 * @param validBits
-	 *            a <code>BigInteger</code> object. If a bit is set in the
-	 *            BigInteger, the pixel at that index is valid. If a bit is not
-	 *            set, the pixel at that index is considered invalid. If null,
-	 *            all pixels are valid. Only bits from 0 to the map size are
-	 *            considered.
+	 *                     a <code>BigInteger</code> object. If a bit is set in
+	 *                     the
+	 *                     BigInteger, the pixel at that index is valid. If a
+	 *                     bit is not
+	 *                     set, the pixel at that index is considered invalid.
+	 *                     If null,
+	 *                     all pixels are valid. Only bits from 0 to the map
+	 *                     size are
+	 *                     considered.
 	 * @throws IllegalArgumentException
-	 *             if <code>bits</code> is less than 1 or greater than 16
+	 *                                  if <code>bits</code> is less than 1 or
+	 *                                  greater than 16
 	 * @throws IllegalArgumentException
-	 *             if <code>size</code> is less than 1
+	 *                                  if <code>size</code> is less than 1
 	 * @throws IllegalArgumentException
-	 *             if <code>transferType</code> is not one of
-	 *             <code>DataBuffer.TYPE_BYTE</code> or
-	 *             <code>DataBuffer.TYPE_USHORT</code>
+	 *                                  if <code>transferType</code> is not one
+	 *                                  of
+	 *                                  <code>DataBuffer.TYPE_BYTE</code> or
+	 *                                  <code>DataBuffer.TYPE_USHORT</code>
 	 *
 	 * @since 1.3
 	 */
-	public IndexColorModel(int bits, int size, int cmap[], int start, int transferType,
-			BigInteger validBits) {
-		super(bits, alphaBits, ColorSpace.getInstance(ColorSpace.CS_sRGB), true, false, TRANSLUCENT,
-				transferType);
+	public IndexColorModel(int bits, int size, int cmap[], int start,
+			int transferType, BigInteger validBits) {
+		super(bits, alphaBits, ColorSpace.getInstance(ColorSpace.CS_sRGB), true,
+				false, TRANSLUCENT, transferType);
 
 		if (bits < 1 || bits > 16) {
-			throw new IllegalArgumentException("Number of bits must be between" + " 1 and 16.");
+			throw new IllegalArgumentException("Number of bits must be between"
+					+ " 1 and 16.");
 		}
 		if (size < 1) {
-			throw new IllegalArgumentException("Map size (" + size + ") must be >= 1");
+			throw new IllegalArgumentException("Map size (" + size
+					+ ") must be >= 1");
 		}
-		if ((transferType != DataBuffer.TYPE_BYTE) && (transferType != DataBuffer.TYPE_USHORT)) {
+		if ((transferType != DataBuffer.TYPE_BYTE)
+				&& (transferType != DataBuffer.TYPE_USHORT)) {
 			throw new IllegalArgumentException("transferType must be either"
 					+ "DataBuffer.TYPE_BYTE or DataBuffer.TYPE_USHORT");
 		}
@@ -493,7 +503,8 @@ public class IndexColorModel extends ColorModel {
 
 	private void setRGBs(int size, byte r[], byte g[], byte b[], byte a[]) {
 		if (size < 1) {
-			throw new IllegalArgumentException("Map size (" + size + ") must be >= 1");
+			throw new IllegalArgumentException("Map size (" + size
+					+ ") must be >= 1");
 		}
 		map_size = size;
 		rgb = new int[calcRealMapSize(pixel_bits, size)];
@@ -646,8 +657,8 @@ public class IndexColorModel extends ColorModel {
 	 * getMapSize} are written.
 	 * 
 	 * @param r
-	 *            the specified array into which the elements of the array of
-	 *            red color components are copied
+	 *          the specified array into which the elements of the array of
+	 *          red color components are copied
 	 */
 	final public void getReds(byte r[]) {
 		for (int i = 0; i < map_size; i++) {
@@ -661,8 +672,8 @@ public class IndexColorModel extends ColorModel {
 	 * are written.
 	 * 
 	 * @param g
-	 *            the specified array into which the elements of the array of
-	 *            green color components are copied
+	 *          the specified array into which the elements of the array of
+	 *          green color components are copied
 	 */
 	final public void getGreens(byte g[]) {
 		for (int i = 0; i < map_size; i++) {
@@ -676,8 +687,8 @@ public class IndexColorModel extends ColorModel {
 	 * are written.
 	 * 
 	 * @param b
-	 *            the specified array into which the elements of the array of
-	 *            blue color components are copied
+	 *          the specified array into which the elements of the array of
+	 *          blue color components are copied
 	 */
 	final public void getBlues(byte b[]) {
 		for (int i = 0; i < map_size; i++) {
@@ -691,8 +702,8 @@ public class IndexColorModel extends ColorModel {
 	 * <code>getMapSize</code> are written.
 	 * 
 	 * @param a
-	 *            the specified array into which the elements of the array of
-	 *            alpha components are copied
+	 *          the specified array into which the elements of the array of
+	 *          alpha components are copied
 	 */
 	final public void getAlphas(byte a[]) {
 		for (int i = 0; i < map_size; i++) {
@@ -767,7 +778,7 @@ public class IndexColorModel extends ColorModel {
 	 * value.
 	 * 
 	 * @param pixel
-	 *            the specified pixel
+	 *              the specified pixel
 	 * @return the value of the red color component for the specified pixel
 	 */
 	final public int getRed(int pixel) {
@@ -783,7 +794,7 @@ public class IndexColorModel extends ColorModel {
 	 * pre-multiplied value.
 	 * 
 	 * @param pixel
-	 *            the specified pixel
+	 *              the specified pixel
 	 * @return the value of the green color component for the specified pixel
 	 */
 	final public int getGreen(int pixel) {
@@ -799,7 +810,7 @@ public class IndexColorModel extends ColorModel {
 	 * pre-multiplied value.
 	 * 
 	 * @param pixel
-	 *            the specified pixel
+	 *              the specified pixel
 	 * @return the value of the blue color component for the specified pixel
 	 */
 	final public int getBlue(int pixel) {
@@ -814,7 +825,7 @@ public class IndexColorModel extends ColorModel {
 	 * calculate the returned value.
 	 * 
 	 * @param pixel
-	 *            the specified pixel
+	 *              the specified pixel
 	 * @return the value of the alpha component for the specified pixel
 	 */
 	final public int getAlpha(int pixel) {
@@ -830,7 +841,7 @@ public class IndexColorModel extends ColorModel {
 	 * pre-multiplied format.
 	 * 
 	 * @param pixel
-	 *            the specified pixel
+	 *              the specified pixel
 	 * @return the color and alpha components of the specified pixel
 	 * @see ColorModel#getRGBdefault
 	 */
@@ -860,20 +871,24 @@ public class IndexColorModel extends ColorModel {
 	 * throw an exception if they use an unsupported <code>transferType</code>.
 	 *
 	 * @param rgb
-	 *            the integer pixel representation in the default RGB color
-	 *            model
+	 *              the integer pixel representation in the default RGB color
+	 *              model
 	 * @param pixel
-	 *            the specified pixel
+	 *              the specified pixel
 	 * @return an array representation of the specified pixel in this
 	 *         <code>IndexColorModel</code>.
 	 * @throws ClassCastException
-	 *             if <code>pixel</code> is not a primitive array of type
-	 *             <code>transferType</code>
+	 *                                        if <code>pixel</code> is not a
+	 *                                        primitive array of type
+	 *                                        <code>transferType</code>
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <code>pixel</code> is not large enough to hold a pixel
-	 *             value for this <code>ColorModel</code>
+	 *                                        if <code>pixel</code> is not large
+	 *                                        enough to hold a pixel
+	 *                                        value for this
+	 *                                        <code>ColorModel</code>
 	 * @throws UnsupportedOperationException
-	 *             if <code>transferType</code> is invalid
+	 *                                        if <code>transferType</code> is
+	 *                                        invalid
 	 * @see WritableRaster#setDataElements
 	 * @see SampleModel#setDataElements
 	 */
@@ -1016,7 +1031,8 @@ public class IndexColorModel extends ColorModel {
 							tmp = (lutrgb >>> 24) - alpha;
 							currentError += tmp * tmp;
 							if (currentError < smallestError
-									&& (validBits == null || validBits.testBit(i))) {
+									&& (validBits == null || validBits.testBit(
+											i))) {
 								pix = i;
 								smallestError = currentError;
 							}
@@ -1033,36 +1049,38 @@ public class IndexColorModel extends ColorModel {
 
 	private Object installpixel(Object pixel, int pix) {
 		switch (transferType) {
-		case DataBuffer.TYPE_INT:
-			int[] intObj;
-			if (pixel == null) {
-				pixel = intObj = new int[1];
-			} else {
-				intObj = (int[]) pixel;
-			}
-			intObj[0] = pix;
-			break;
-		case DataBuffer.TYPE_BYTE:
-			byte[] byteObj;
-			if (pixel == null) {
-				pixel = byteObj = new byte[1];
-			} else {
-				byteObj = (byte[]) pixel;
-			}
-			byteObj[0] = (byte) pix;
-			break;
-		case DataBuffer.TYPE_USHORT:
-			short[] shortObj;
-			if (pixel == null) {
-				pixel = shortObj = new short[1];
-			} else {
-				shortObj = (short[]) pixel;
-			}
-			shortObj[0] = (short) pix;
-			break;
-		default:
-			throw new UnsupportedOperationException(
-					"This method has not been " + "implemented for transferType " + transferType);
+			case DataBuffer.TYPE_INT:
+				int[] intObj;
+				if (pixel == null) {
+					pixel = intObj = new int[1];
+				} else {
+					intObj = (int[]) pixel;
+				}
+				intObj[0] = pix;
+				break;
+			case DataBuffer.TYPE_BYTE:
+				byte[] byteObj;
+				if (pixel == null) {
+					pixel = byteObj = new byte[1];
+				} else {
+					byteObj = (byte[]) pixel;
+				}
+				byteObj[0] = (byte) pix;
+				break;
+			case DataBuffer.TYPE_USHORT:
+				short[] shortObj;
+				if (pixel == null) {
+					pixel = shortObj = new short[1];
+				} else {
+					shortObj = (short[]) pixel;
+				}
+				shortObj[0] = (short) pix;
+				break;
+			default:
+				throw new UnsupportedOperationException(
+						"This method has not been "
+								+ "implemented for transferType "
+								+ transferType);
 		}
 		return pixel;
 	}
@@ -1082,13 +1100,15 @@ public class IndexColorModel extends ColorModel {
 	 * <code>offset</code>.
 	 * 
 	 * @param pixel
-	 *            the specified pixel
+	 *                   the specified pixel
 	 * @param components
-	 *            the array to receive the color and alpha components of the
-	 *            specified pixel
+	 *                   the array to receive the color and alpha components of
+	 *                   the
+	 *                   specified pixel
 	 * @param offset
-	 *            the offset into the <code>components</code> array at which to
-	 *            start storing the color and alpha components
+	 *                   the offset into the <code>components</code> array at
+	 *                   which to
+	 *                   start storing the color and alpha components
 	 * @return an array containing the color and alpha components of the
 	 *         specified pixel starting at the specified offset.
 	 * @see ColorModel#hasAlpha
@@ -1135,49 +1155,60 @@ public class IndexColorModel extends ColorModel {
 	 * throw an exception if they use an unsupported <code>transferType</code>.
 	 *
 	 * @param pixel
-	 *            the specified pixel
+	 *                   the specified pixel
 	 * @param components
-	 *            an array that receives the color and alpha components of the
-	 *            specified pixel
+	 *                   an array that receives the color and alpha components
+	 *                   of the
+	 *                   specified pixel
 	 * @param offset
-	 *            the index into the <code>components</code> array at which to
-	 *            begin storing the color and alpha components of the specified
-	 *            pixel
+	 *                   the index into the <code>components</code> array at
+	 *                   which to
+	 *                   begin storing the color and alpha components of the
+	 *                   specified
+	 *                   pixel
 	 * @return an array containing the color and alpha components of the
 	 *         specified pixel starting at the specified offset.
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <code>pixel</code> is not large enough to hold a pixel
-	 *             value for this <code>ColorModel</code> or if the
-	 *             <code>components</code> array is not <code>null</code> and is
-	 *             not large enough to hold all the color and alpha components
-	 *             starting at <code>offset</code>
+	 *                                        if <code>pixel</code> is not large
+	 *                                        enough to hold a pixel
+	 *                                        value for this
+	 *                                        <code>ColorModel</code> or if the
+	 *                                        <code>components</code> array is
+	 *                                        not <code>null</code> and is
+	 *                                        not large enough to hold all the
+	 *                                        color and alpha components
+	 *                                        starting at <code>offset</code>
 	 * @throws ClassCastException
-	 *             if <code>pixel</code> is not a primitive array of type
-	 *             <code>transferType</code>
+	 *                                        if <code>pixel</code> is not a
+	 *                                        primitive array of type
+	 *                                        <code>transferType</code>
 	 * @throws UnsupportedOperationException
-	 *             if <code>transferType</code> is not one of the supported
-	 *             transfer types
+	 *                                        if <code>transferType</code> is
+	 *                                        not one of the supported
+	 *                                        transfer types
 	 * @see ColorModel#hasAlpha
 	 * @see ColorModel#getNumComponents
 	 */
 	public int[] getComponents(Object pixel, int[] components, int offset) {
 		int intpixel;
 		switch (transferType) {
-		case DataBuffer.TYPE_BYTE:
-			byte bdata[] = (byte[]) pixel;
-			intpixel = bdata[0] & 0xff;
-			break;
-		case DataBuffer.TYPE_USHORT:
-			short sdata[] = (short[]) pixel;
-			intpixel = sdata[0] & 0xffff;
-			break;
-		case DataBuffer.TYPE_INT:
-			int idata[] = (int[]) pixel;
-			intpixel = idata[0];
-			break;
-		default:
-			throw new UnsupportedOperationException(
-					"This method has not been " + "implemented for transferType " + transferType);
+			case DataBuffer.TYPE_BYTE:
+				byte bdata[] = (byte[]) pixel;
+				intpixel = bdata[0] & 0xff;
+				break;
+			case DataBuffer.TYPE_USHORT:
+				short sdata[] = (short[]) pixel;
+				intpixel = sdata[0] & 0xffff;
+				break;
+			case DataBuffer.TYPE_INT:
+				int idata[] = (int[]) pixel;
+				intpixel = idata[0];
+				break;
+			default:
+				throw new UnsupportedOperationException(
+						"This method has not been "
+								+ "implemented for transferType "
+								+ transferType);
 		}
 		return getComponents(intpixel, components, offset);
 	}
@@ -1193,18 +1224,22 @@ public class IndexColorModel extends ColorModel {
 	 * throw an exception if they use an unsupported transferType.
 	 * 
 	 * @param components
-	 *            an array of unnormalized color and alpha components
+	 *                   an array of unnormalized color and alpha components
 	 * @param offset
-	 *            the index into <code>components</code> at which to begin
-	 *            retrieving the color and alpha components
+	 *                   the index into <code>components</code> at which to
+	 *                   begin
+	 *                   retrieving the color and alpha components
 	 * @return an <code>int</code> pixel value in this <code>ColorModel</code>
 	 *         corresponding to the specified components.
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if the <code>components</code> array is not large enough to
-	 *             hold all of the color and alpha components starting at
-	 *             <code>offset</code>
+	 *                                        if the <code>components</code>
+	 *                                        array is not large enough to
+	 *                                        hold all of the color and alpha
+	 *                                        components starting at
+	 *                                        <code>offset</code>
 	 * @throws UnsupportedOperationException
-	 *             if <code>transferType</code> is invalid
+	 *                                        if <code>transferType</code> is
+	 *                                        invalid
 	 */
 	public int getDataElement(int[] components, int offset) {
 		int rgb = (components[offset + 0] << 16) | (components[offset + 1] << 8)
@@ -1217,21 +1252,23 @@ public class IndexColorModel extends ColorModel {
 		Object inData = getDataElements(rgb, null);
 		int pixel;
 		switch (transferType) {
-		case DataBuffer.TYPE_BYTE:
-			byte bdata[] = (byte[]) inData;
-			pixel = bdata[0] & 0xff;
-			break;
-		case DataBuffer.TYPE_USHORT:
-			short sdata[] = (short[]) inData;
-			pixel = sdata[0];
-			break;
-		case DataBuffer.TYPE_INT:
-			int idata[] = (int[]) inData;
-			pixel = idata[0];
-			break;
-		default:
-			throw new UnsupportedOperationException(
-					"This method has not been " + "implemented for transferType " + transferType);
+			case DataBuffer.TYPE_BYTE:
+				byte bdata[] = (byte[]) inData;
+				pixel = bdata[0] & 0xff;
+				break;
+			case DataBuffer.TYPE_USHORT:
+				short sdata[] = (short[]) inData;
+				pixel = sdata[0];
+				break;
+			case DataBuffer.TYPE_INT:
+				int idata[] = (int[]) inData;
+				pixel = idata[0];
+				break;
+			default:
+				throw new UnsupportedOperationException(
+						"This method has not been "
+								+ "implemented for transferType "
+								+ transferType);
 		}
 		return pixel;
 	}
@@ -1256,27 +1293,35 @@ public class IndexColorModel extends ColorModel {
 	 * throw an exception if they use an unsupported <code>transferType</code>
 	 *
 	 * @param components
-	 *            an array of unnormalized color and alpha components
+	 *                   an array of unnormalized color and alpha components
 	 * @param offset
-	 *            the index into <code>components</code> at which to begin
-	 *            retrieving color and alpha components
+	 *                   the index into <code>components</code> at which to
+	 *                   begin
+	 *                   retrieving color and alpha components
 	 * @param pixel
-	 *            the <code>Object</code> representing an array of color and
-	 *            alpha components
+	 *                   the <code>Object</code> representing an array of color
+	 *                   and
+	 *                   alpha components
 	 * @return an <code>Object</code> representing an array of color and alpha
 	 *         components.
 	 * @throws ClassCastException
-	 *             if <code>pixel</code> is not a primitive array of type
-	 *             <code>transferType</code>
+	 *                                        if <code>pixel</code> is not a
+	 *                                        primitive array of type
+	 *                                        <code>transferType</code>
 	 * @throws ArrayIndexOutOfBoundsException
-	 *             if <code>pixel</code> is not large enough to hold a pixel
-	 *             value for this <code>ColorModel</code> or the
-	 *             <code>components</code> array is not large enough to hold all
-	 *             of the color and alpha components starting at
-	 *             <code>offset</code>
+	 *                                        if <code>pixel</code> is not large
+	 *                                        enough to hold a pixel
+	 *                                        value for this
+	 *                                        <code>ColorModel</code> or the
+	 *                                        <code>components</code> array is
+	 *                                        not large enough to hold all
+	 *                                        of the color and alpha components
+	 *                                        starting at
+	 *                                        <code>offset</code>
 	 * @throws UnsupportedOperationException
-	 *             if <code>transferType</code> is not one of the supported
-	 *             transfer types
+	 *                                        if <code>transferType</code> is
+	 *                                        not one of the supported
+	 *                                        transfer types
 	 * @see WritableRaster#setDataElements
 	 * @see SampleModel#setDataElements
 	 */
@@ -1301,13 +1346,14 @@ public class IndexColorModel extends ColorModel {
 	 * supports greater than 16 bits per pixel must override this method.
 	 *
 	 * @param w
-	 *            the width to apply to the new <code>WritableRaster</code>
+	 *          the width to apply to the new <code>WritableRaster</code>
 	 * @param h
-	 *            the height to apply to the new <code>WritableRaster</code>
+	 *          the height to apply to the new <code>WritableRaster</code>
 	 * @return a <code>WritableRaster</code> object with the specified width and
 	 *         height.
 	 * @throws UnsupportedOperationException
-	 *             if the number of bits in a pixel is greater than 16
+	 *                                       if the number of bits in a pixel is
+	 *                                       greater than 16
 	 * @see WritableRaster
 	 * @see SampleModel
 	 */
@@ -1316,11 +1362,14 @@ public class IndexColorModel extends ColorModel {
 
 		if (pixel_bits == 1 || pixel_bits == 2 || pixel_bits == 4) {
 			// TYPE_BINARY
-			raster = Raster.createPackedRaster(DataBuffer.TYPE_BYTE, w, h, 1, pixel_bits, null);
+			raster = Raster.createPackedRaster(DataBuffer.TYPE_BYTE, w, h, 1,
+					pixel_bits, null);
 		} else if (pixel_bits <= 8) {
-			raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE, w, h, 1, null);
+			raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE, w, h,
+					1, null);
 		} else if (pixel_bits <= 16) {
-			raster = Raster.createInterleavedRaster(DataBuffer.TYPE_USHORT, w, h, 1, null);
+			raster = Raster.createInterleavedRaster(DataBuffer.TYPE_USHORT, w,
+					h, 1, null);
 		} else {
 			throw new UnsupportedOperationException(
 					"This method is not supported " + " for pixel bits > 16.");
@@ -1334,7 +1383,7 @@ public class IndexColorModel extends ColorModel {
 	 * with this <code>ColorModel</code>.
 	 * 
 	 * @param raster
-	 *            the {@link Raster} object to test for compatibility
+	 *               the {@link Raster} object to test for compatibility
 	 * @return <code>true</code> if <code>raster</code> is compatible with this
 	 *         <code>ColorModel</code>; <code>false</code> otherwise.
 	 *
@@ -1342,8 +1391,8 @@ public class IndexColorModel extends ColorModel {
 	public boolean isCompatibleRaster(Raster raster) {
 
 		int size = raster.getSampleModel().getSampleSize(0);
-		return ((raster.getTransferType() == transferType) && (raster.getNumBands() == 1)
-				&& ((1 << size) >= map_size));
+		return ((raster.getTransferType() == transferType) && (raster
+				.getNumBands() == 1) && ((1 << size) >= map_size));
 	}
 
 	/**
@@ -1351,20 +1400,22 @@ public class IndexColorModel extends ColorModel {
 	 * that has a data layout compatible with this <code>ColorModel</code>.
 	 * 
 	 * @param w
-	 *            the width to apply to the new <code>SampleModel</code>
+	 *          the width to apply to the new <code>SampleModel</code>
 	 * @param h
-	 *            the height to apply to the new <code>SampleModel</code>
+	 *          the height to apply to the new <code>SampleModel</code>
 	 * @return a <code>SampleModel</code> object with the specified width and
 	 *         height.
 	 * @throws IllegalArgumentException
-	 *             if <code>w</code> or <code>h</code> is not greater than 0
+	 *                                  if <code>w</code> or <code>h</code> is
+	 *                                  not greater than 0
 	 * @see SampleModel
 	 */
 	public SampleModel createCompatibleSampleModel(int w, int h) {
 		int[] off = new int[1];
 		off[0] = 0;
 		if (pixel_bits == 1 || pixel_bits == 2 || pixel_bits == 4) {
-			return new MultiPixelPackedSampleModel(transferType, w, h, pixel_bits);
+			return new MultiPixelPackedSampleModel(transferType, w, h,
+					pixel_bits);
 		} else {
 			return new ComponentSampleModel(transferType, w, h, 1, w, off);
 		}
@@ -1376,7 +1427,7 @@ public class IndexColorModel extends ColorModel {
 	 * method returns <code>false</code>.
 	 * 
 	 * @param sm
-	 *            the specified <code>SampleModel</code>, or <code>null</code>
+	 *           the specified <code>SampleModel</code>, or <code>null</code>
 	 * @return <code>true</code> if the specified <code>SampleModel</code> is
 	 *         compatible with this <code>ColorModel</code>; <code>false</code>
 	 *         otherwise.
@@ -1384,7 +1435,8 @@ public class IndexColorModel extends ColorModel {
 	 */
 	public boolean isCompatibleSampleModel(SampleModel sm) {
 		// fix 4238629
-		if (!(sm instanceof ComponentSampleModel) && !(sm instanceof MultiPixelPackedSampleModel)) {
+		if (!(sm instanceof ComponentSampleModel)
+				&& !(sm instanceof MultiPixelPackedSampleModel)) {
 			return false;
 		}
 
@@ -1413,27 +1465,31 @@ public class IndexColorModel extends ColorModel {
 	 * or a transparent pixel.
 	 * 
 	 * @param raster
-	 *            the specified <code>Raster</code>
+	 *                  the specified <code>Raster</code>
 	 * @param forceARGB
-	 *            if <code>true</code>, the returned <code>BufferedImage</code>
-	 *            is TYPE_INT_ARGB; otherwise it is TYPE_INT_RGB
+	 *                  if <code>true</code>, the returned
+	 *                  <code>BufferedImage</code>
+	 *                  is TYPE_INT_ARGB; otherwise it is TYPE_INT_RGB
 	 * @return a <code>BufferedImage</code> created with the specified
 	 *         <code>Raster</code>
 	 * @throws IllegalArgumentException
-	 *             if the raster argument is not compatible with this
-	 *             IndexColorModel
+	 *                                  if the raster argument is not compatible
+	 *                                  with this
+	 *                                  IndexColorModel
 	 */
-	public BufferedImage convertToIntDiscrete(Raster raster, boolean forceARGB) {
+	public BufferedImage convertToIntDiscrete(Raster raster,
+			boolean forceARGB) {
 		ColorModel cm;
 
 		if (!isCompatibleRaster(raster)) {
-			throw new IllegalArgumentException(
-					"This raster is not compatible" + "with this IndexColorModel.");
+			throw new IllegalArgumentException("This raster is not compatible"
+					+ "with this IndexColorModel.");
 		}
 		if (forceARGB || transparency == TRANSLUCENT) {
 			cm = ColorModel.getRGBdefault();
 		} else if (transparency == BITMASK) {
-			cm = new DirectColorModel(25, 0xff0000, 0x00ff00, 0x0000ff, 0x1000000);
+			cm = new DirectColorModel(25, 0xff0000, 0x00ff00, 0x0000ff,
+					0x1000000);
 		} else {
 			cm = new DirectColorModel(24, 0xff0000, 0x00ff00, 0x0000ff);
 		}
@@ -1467,14 +1523,14 @@ public class IndexColorModel extends ColorModel {
 	 * Returns whether or not the pixel is valid.
 	 * 
 	 * @param pixel
-	 *            the specified pixel value
+	 *              the specified pixel value
 	 * @return <code>true</code> if <code>pixel</code> is valid;
 	 *         <code>false</code> otherwise.
 	 * @since 1.3
 	 */
 	public boolean isValid(int pixel) {
-		return ((pixel >= 0 && pixel < map_size)
-				&& (validBits == null || validBits.testBit(pixel)));
+		return ((pixel >= 0 && pixel < map_size) && (validBits == null
+				|| validBits.testBit(pixel)));
 	}
 
 	/**
@@ -1510,8 +1566,7 @@ public class IndexColorModel extends ColorModel {
 	 * Disposes of system resources associated with this <code>ColorModel</code>
 	 * once this <code>ColorModel</code> is no longer referenced.
 	 */
-	public void finalize() {
-	}
+	public void finalize() {}
 
 	/**
 	 * Returns the <code>String</code> representation of the contents of this
@@ -1521,9 +1576,10 @@ public class IndexColorModel extends ColorModel {
 	 *         <code>ColorModel</code> object.
 	 */
 	public String toString() {
-		return new String("IndexColorModel: #pixelBits = " + pixel_bits + " numComponents = "
-				+ numComponents + " color space = " + colorSpace + " transparency = " + transparency
-				+ " transIndex   = " + transparent_index + " has alpha = " + supportsAlpha
-				+ " isAlphaPre = " + isAlphaPremultiplied);
+		return new String("IndexColorModel: #pixelBits = " + pixel_bits
+				+ " numComponents = " + numComponents + " color space = "
+				+ colorSpace + " transparency = " + transparency
+				+ " transIndex   = " + transparent_index + " has alpha = "
+				+ supportsAlpha + " isAlphaPre = " + isAlphaPremultiplied);
 	}
 }

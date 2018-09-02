@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.logging;
@@ -80,7 +60,8 @@ public class LogRecord implements java.io.Serializable {
 	 */
 	private static final int MIN_SEQUENTIAL_THREAD_ID = Integer.MAX_VALUE / 2;
 
-	private static final AtomicInteger nextThreadId = new AtomicInteger(MIN_SEQUENTIAL_THREAD_ID);
+	private static final AtomicInteger nextThreadId = new AtomicInteger(
+			MIN_SEQUENTIAL_THREAD_ID);
 
 	private static final ThreadLocal<Integer> threadIds = new ThreadLocal<>();
 
@@ -169,9 +150,9 @@ public class LogRecord implements java.io.Serializable {
 	 * All other properties will be initialized to "null".
 	 *
 	 * @param level
-	 *            a logging level value
+	 *              a logging level value
 	 * @param msg
-	 *            the raw non-localized logging message (may be null)
+	 *              the raw non-localized logging message (may be null)
 	 */
 	public LogRecord(Level level, String msg) {
 		// Make sure level isn't null, by calling random method.
@@ -198,7 +179,7 @@ public class LogRecord implements java.io.Serializable {
 	 * Set the source Logger's name.
 	 *
 	 * @param name
-	 *            the source logger name (may be null)
+	 *             the source logger name (may be null)
 	 */
 	public void setLoggerName(String name) {
 		loggerName = name;
@@ -221,7 +202,7 @@ public class LogRecord implements java.io.Serializable {
 	 * Set the localization resource bundle.
 	 *
 	 * @param bundle
-	 *            localization bundle (may be null)
+	 *               localization bundle (may be null)
 	 */
 	public void setResourceBundle(ResourceBundle bundle) {
 		resourceBundle = bundle;
@@ -244,7 +225,7 @@ public class LogRecord implements java.io.Serializable {
 	 * Set the localization resource bundle name.
 	 *
 	 * @param name
-	 *            localization bundle name (may be null)
+	 *             localization bundle name (may be null)
 	 */
 	public void setResourceBundleName(String name) {
 		resourceBundleName = name;
@@ -263,7 +244,7 @@ public class LogRecord implements java.io.Serializable {
 	 * Set the logging message level, for example Level.SEVERE.
 	 * 
 	 * @param level
-	 *            the logging message level
+	 *              the logging message level
 	 */
 	public void setLevel(Level level) {
 		if (level == null) {
@@ -322,7 +303,7 @@ public class LogRecord implements java.io.Serializable {
 	 * Set the name of the class that (allegedly) issued the logging request.
 	 *
 	 * @param sourceClassName
-	 *            the source class name (may be null)
+	 *                        the source class name (may be null)
 	 */
 	public void setSourceClassName(String sourceClassName) {
 		this.sourceClassName = sourceClassName;
@@ -353,7 +334,7 @@ public class LogRecord implements java.io.Serializable {
 	 * Set the name of the method that (allegedly) issued the logging request.
 	 *
 	 * @param sourceMethodName
-	 *            the source method name (may be null)
+	 *                         the source method name (may be null)
 	 */
 	public void setSourceMethodName(String sourceMethodName) {
 		this.sourceMethodName = sourceMethodName;
@@ -381,7 +362,7 @@ public class LogRecord implements java.io.Serializable {
 	 * Set the "raw" log message, before localization or formatting.
 	 *
 	 * @param message
-	 *            the raw message string (may be null)
+	 *                the raw message string (may be null)
 	 */
 	public void setMessage(String message) {
 		this.message = message;
@@ -401,7 +382,7 @@ public class LogRecord implements java.io.Serializable {
 	 * Set the parameters to the log message.
 	 *
 	 * @param parameters
-	 *            the log message parameters. (may be null)
+	 *                   the log message parameters. (may be null)
 	 */
 	public void setParameters(Object parameters[]) {
 		this.parameters = parameters;
@@ -423,7 +404,7 @@ public class LogRecord implements java.io.Serializable {
 	 * Set an identifier for the thread where the message originated.
 	 * 
 	 * @param threadID
-	 *            the thread ID
+	 *                 the thread ID
 	 */
 	public void setThreadID(int threadID) {
 		this.threadID = threadID;
@@ -442,7 +423,7 @@ public class LogRecord implements java.io.Serializable {
 	 * Set event time.
 	 *
 	 * @param millis
-	 *            event time in millis since 1970
+	 *               event time in millis since 1970
 	 */
 	public void setMillis(long millis) {
 		this.millis = millis;
@@ -464,7 +445,7 @@ public class LogRecord implements java.io.Serializable {
 	 * Set a throwable associated with the log event.
 	 *
 	 * @param thrown
-	 *            a throwable (may be null)
+	 *               a throwable (may be null)
 	 */
 	public void setThrown(Throwable thrown) {
 		this.thrown = thrown;
@@ -504,7 +485,8 @@ public class LogRecord implements java.io.Serializable {
 		}
 	}
 
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		// We have to call defaultReadObject first.
 		in.defaultReadObject();
 
@@ -512,7 +494,8 @@ public class LogRecord implements java.io.Serializable {
 		byte major = in.readByte();
 		byte minor = in.readByte();
 		if (major != 1) {
-			throw new IOException("LogRecord: bad version: " + major + "." + minor);
+			throw new IOException("LogRecord: bad version: " + major + "."
+					+ minor);
 		}
 		int len = in.readInt();
 		if (len < -1) {
@@ -536,8 +519,9 @@ public class LogRecord implements java.io.Serializable {
 			try {
 				// use system class loader to ensure the ResourceBundle
 				// instance is a different instance than null loader uses
-				final ResourceBundle bundle = ResourceBundle.getBundle(resourceBundleName,
-						Locale.getDefault(), ClassLoader.getSystemClassLoader());
+				final ResourceBundle bundle = ResourceBundle.getBundle(
+						resourceBundleName, Locale.getDefault(), ClassLoader
+								.getSystemClassLoader());
 				resourceBundle = bundle;
 			} catch (MissingResourceException ex) {
 				// This is not a good place to throw an exception,
@@ -560,7 +544,8 @@ public class LogRecord implements java.io.Serializable {
 		for (int ix = 0; ix < depth; ix++) {
 			// Calling getStackTraceElement directly prevents the VM
 			// from paying the cost of building the entire stack frame.
-			StackTraceElement frame = access.getStackTraceElement(throwable, ix);
+			StackTraceElement frame = access.getStackTraceElement(throwable,
+					ix);
 			String cname = frame.getClassName();
 			boolean isLoggerImpl = isLoggerImplFrame(cname);
 			if (lookingForLogger) {
@@ -571,8 +556,8 @@ public class LogRecord implements java.io.Serializable {
 			} else {
 				if (!isLoggerImpl) {
 					// skip reflection call
-					if (!cname.startsWith("java.lang.reflect.")
-							&& !cname.startsWith("sun.reflect.")) {
+					if (!cname.startsWith("java.lang.reflect.") && !cname
+							.startsWith("sun.reflect.")) {
 						// We've found the relevant frame.
 						setSourceClassName(cname);
 						setSourceMethodName(frame.getMethodName());
@@ -587,8 +572,8 @@ public class LogRecord implements java.io.Serializable {
 
 	private boolean isLoggerImplFrame(String cname) {
 		// the log record could be created for a platform logger
-		return (cname.equals("java.util.logging.Logger")
-				|| cname.startsWith("java.util.logging.LoggingProxyImpl")
-				|| cname.startsWith("sun.util.logging."));
+		return (cname.equals("java.util.logging.Logger") || cname.startsWith(
+				"java.util.logging.LoggingProxyImpl") || cname.startsWith(
+						"sun.util.logging."));
 	}
 }

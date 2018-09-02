@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset.serial;
@@ -38,8 +18,7 @@ public class SerialException extends java.sql.SQLException {
 	/**
 	 * Creates a new <code>SerialException</code> without a message.
 	 */
-	public SerialException() {
-	}
+	public SerialException() {}
 
 	/**
 	 * Creates a new <code>SerialException</code> with the specified message.

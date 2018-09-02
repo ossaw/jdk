@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -136,7 +116,8 @@ public class MetalTreeUI extends BasicTreeUI {
 	 *
 	 */
 	protected void decodeLineStyle(Object lineStyleFlag) {
-		if (lineStyleFlag == null || lineStyleFlag.equals(LEG_LINE_STYLE_STRING)) {
+		if (lineStyleFlag == null || lineStyleFlag.equals(
+				LEG_LINE_STYLE_STRING)) {
 			lineStyle = LEG_LINE_STYLE; // default case
 		} else {
 			if (lineStyleFlag.equals(NO_STYLE_STRING)) {
@@ -148,7 +129,8 @@ public class MetalTreeUI extends BasicTreeUI {
 
 	}
 
-	protected boolean isLocationInExpandControl(int row, int rowLevel, int mouseX, int mouseY) {
+	protected boolean isLocationInExpandControl(int row, int rowLevel,
+			int mouseX, int mouseY) {
 		if (tree != null && !isLeaf(row)) {
 			int boxWidth;
 
@@ -160,8 +142,8 @@ public class MetalTreeUI extends BasicTreeUI {
 			Insets i = tree.getInsets();
 			int boxLeftX = (i != null) ? i.left : 0;
 
-			boxLeftX += (((rowLevel + depthOffset - 1) * totalChildIndent) + getLeftChildIndent())
-					- boxWidth / 2;
+			boxLeftX += (((rowLevel + depthOffset - 1) * totalChildIndent)
+					+ getLeftChildIndent()) - boxWidth / 2;
 
 			int boxRightX = boxLeftX + boxWidth;
 
@@ -184,9 +166,10 @@ public class MetalTreeUI extends BasicTreeUI {
 
 		Rectangle clipBounds = g.getClipBounds();
 
-		int beginRow = getRowForPath(tree, getClosestPathForLocation(tree, 0, clipBounds.y));
-		int endRow = getRowForPath(tree,
-				getClosestPathForLocation(tree, 0, clipBounds.y + clipBounds.height - 1));
+		int beginRow = getRowForPath(tree, getClosestPathForLocation(tree, 0,
+				clipBounds.y));
+		int endRow = getRowForPath(tree, getClosestPathForLocation(tree, 0,
+				clipBounds.y + clipBounds.height - 1));
 
 		if (beginRow <= -1 || endRow <= -1) {
 			return;
@@ -196,30 +179,31 @@ public class MetalTreeUI extends BasicTreeUI {
 			TreePath path = getPathForRow(tree, i);
 
 			if (path != null && path.getPathCount() == 2) {
-				Rectangle rowBounds = getPathBounds(tree, getPathForRow(tree, i));
+				Rectangle rowBounds = getPathBounds(tree, getPathForRow(tree,
+						i));
 
 				// Draw a line at the top
 				if (rowBounds != null)
-					g.drawLine(clipBounds.x, rowBounds.y, clipBounds.x + clipBounds.width,
-							rowBounds.y);
+					g.drawLine(clipBounds.x, rowBounds.y, clipBounds.x
+							+ clipBounds.width, rowBounds.y);
 			}
 		}
 
 	}
 
-	protected void paintVerticalPartOfLeg(Graphics g, Rectangle clipBounds, Insets insets,
-			TreePath path) {
+	protected void paintVerticalPartOfLeg(Graphics g, Rectangle clipBounds,
+			Insets insets, TreePath path) {
 		if (lineStyle == LEG_LINE_STYLE) {
 			super.paintVerticalPartOfLeg(g, clipBounds, insets, path);
 		}
 	}
 
-	protected void paintHorizontalPartOfLeg(Graphics g, Rectangle clipBounds, Insets insets,
-			Rectangle bounds, TreePath path, int row, boolean isExpanded, boolean hasBeenExpanded,
-			boolean isLeaf) {
+	protected void paintHorizontalPartOfLeg(Graphics g, Rectangle clipBounds,
+			Insets insets, Rectangle bounds, TreePath path, int row,
+			boolean isExpanded, boolean hasBeenExpanded, boolean isLeaf) {
 		if (lineStyle == LEG_LINE_STYLE) {
-			super.paintHorizontalPartOfLeg(g, clipBounds, insets, bounds, path, row, isExpanded,
-					hasBeenExpanded, isLeaf);
+			super.paintHorizontalPartOfLeg(g, clipBounds, insets, bounds, path,
+					row, isExpanded, hasBeenExpanded, isLeaf);
 		}
 	}
 

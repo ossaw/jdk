@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -91,70 +71,88 @@ public class MBeanAttributeInfo extends MBeanFeatureInfo implements Cloneable {
 	 * Constructs an <CODE>MBeanAttributeInfo</CODE> object.
 	 *
 	 * @param name
-	 *            The name of the attribute.
+	 *                    The name of the attribute.
 	 * @param type
-	 *            The type or class name of the attribute.
+	 *                    The type or class name of the attribute.
 	 * @param description
-	 *            A human readable description of the attribute.
+	 *                    A human readable description of the attribute.
 	 * @param isReadable
-	 *            True if the attribute has a getter method, false otherwise.
+	 *                    True if the attribute has a getter method, false
+	 *                    otherwise.
 	 * @param isWritable
-	 *            True if the attribute has a setter method, false otherwise.
+	 *                    True if the attribute has a setter method, false
+	 *                    otherwise.
 	 * @param isIs
-	 *            True if this attribute has an "is" getter, false otherwise.
+	 *                    True if this attribute has an "is" getter, false
+	 *                    otherwise.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code isIs} is true but {@code isReadable} is not, or if
-	 *             {@code isIs} is true and {@code type} is not {@code boolean}
-	 *             or {@code java.lang.Boolean}. (New code should always use
-	 *             {@code boolean} rather than {@code java.lang.Boolean}.)
+	 *                                  if {@code isIs} is true but
+	 *                                  {@code isReadable} is not, or if
+	 *                                  {@code isIs} is true and {@code type} is
+	 *                                  not {@code boolean}
+	 *                                  or {@code java.lang.Boolean}. (New code
+	 *                                  should always use
+	 *                                  {@code boolean} rather than
+	 *                                  {@code java.lang.Boolean}.)
 	 */
-	public MBeanAttributeInfo(String name, String type, String description, boolean isReadable,
-			boolean isWritable, boolean isIs) {
-		this(name, type, description, isReadable, isWritable, isIs, (Descriptor) null);
+	public MBeanAttributeInfo(String name, String type, String description,
+			boolean isReadable, boolean isWritable, boolean isIs) {
+		this(name, type, description, isReadable, isWritable, isIs,
+				(Descriptor) null);
 	}
 
 	/**
 	 * Constructs an <CODE>MBeanAttributeInfo</CODE> object.
 	 *
 	 * @param name
-	 *            The name of the attribute.
+	 *                    The name of the attribute.
 	 * @param type
-	 *            The type or class name of the attribute.
+	 *                    The type or class name of the attribute.
 	 * @param description
-	 *            A human readable description of the attribute.
+	 *                    A human readable description of the attribute.
 	 * @param isReadable
-	 *            True if the attribute has a getter method, false otherwise.
+	 *                    True if the attribute has a getter method, false
+	 *                    otherwise.
 	 * @param isWritable
-	 *            True if the attribute has a setter method, false otherwise.
+	 *                    True if the attribute has a setter method, false
+	 *                    otherwise.
 	 * @param isIs
-	 *            True if this attribute has an "is" getter, false otherwise.
+	 *                    True if this attribute has an "is" getter, false
+	 *                    otherwise.
 	 * @param descriptor
-	 *            The descriptor for the attribute. This may be null which is
-	 *            equivalent to an empty descriptor.
+	 *                    The descriptor for the attribute. This may be null
+	 *                    which is
+	 *                    equivalent to an empty descriptor.
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code isIs} is true but {@code isReadable} is not, or if
-	 *             {@code isIs} is true and {@code type} is not {@code boolean}
-	 *             or {@code java.lang.Boolean}. (New code should always use
-	 *             {@code boolean} rather than {@code java.lang.Boolean}.)
+	 *                                  if {@code isIs} is true but
+	 *                                  {@code isReadable} is not, or if
+	 *                                  {@code isIs} is true and {@code type} is
+	 *                                  not {@code boolean}
+	 *                                  or {@code java.lang.Boolean}. (New code
+	 *                                  should always use
+	 *                                  {@code boolean} rather than
+	 *                                  {@code java.lang.Boolean}.)
 	 *
 	 * @since 1.6
 	 */
-	public MBeanAttributeInfo(String name, String type, String description, boolean isReadable,
-			boolean isWritable, boolean isIs, Descriptor descriptor) {
+	public MBeanAttributeInfo(String name, String type, String description,
+			boolean isReadable, boolean isWritable, boolean isIs,
+			Descriptor descriptor) {
 		super(name, description, descriptor);
 
 		this.attributeType = type;
 		this.isRead = isReadable;
 		this.isWrite = isWritable;
 		if (isIs && !isReadable) {
-			throw new IllegalArgumentException(
-					"Cannot have an \"is\" getter " + "for a non-readable attribute");
+			throw new IllegalArgumentException("Cannot have an \"is\" getter "
+					+ "for a non-readable attribute");
 		}
-		if (isIs && !type.equals("java.lang.Boolean") && !type.equals("boolean")) {
-			throw new IllegalArgumentException(
-					"Cannot have an \"is\" getter " + "for a non-boolean attribute");
+		if (isIs && !type.equals("java.lang.Boolean") && !type.equals(
+				"boolean")) {
+			throw new IllegalArgumentException("Cannot have an \"is\" getter "
+					+ "for a non-boolean attribute");
 		}
 		this.is = isIs;
 	}
@@ -168,24 +166,28 @@ public class MBeanAttributeInfo extends MBeanFeatureInfo implements Cloneable {
 	 * meta-annotation.
 	 *
 	 * @param name
-	 *            The programmatic name of the attribute.
+	 *                    The programmatic name of the attribute.
 	 * @param description
-	 *            A human readable description of the attribute.
+	 *                    A human readable description of the attribute.
 	 * @param getter
-	 *            The method used for reading the attribute value. May be null
-	 *            if the property is write-only.
+	 *                    The method used for reading the attribute value. May
+	 *                    be null
+	 *                    if the property is write-only.
 	 * @param setter
-	 *            The method used for writing the attribute value. May be null
-	 *            if the attribute is read-only.
+	 *                    The method used for writing the attribute value. May
+	 *                    be null
+	 *                    if the attribute is read-only.
 	 * @exception IntrospectionException
-	 *                There is a consistency problem in the definition of this
-	 *                attribute.
+	 *                                   There is a consistency problem in the
+	 *                                   definition of this
+	 *                                   attribute.
 	 */
-	public MBeanAttributeInfo(String name, String description, Method getter, Method setter)
-			throws IntrospectionException {
-		this(name, attributeType(getter, setter), description, (getter != null), (setter != null),
-				isIs(getter), ImmutableDescriptor.union(Introspector.descriptorForElement(getter),
-						Introspector.descriptorForElement(setter)));
+	public MBeanAttributeInfo(String name, String description, Method getter,
+			Method setter) throws IntrospectionException {
+		this(name, attributeType(getter, setter), description, (getter != null),
+				(setter != null), isIs(getter), ImmutableDescriptor.union(
+						Introspector.descriptorForElement(getter), Introspector
+								.descriptorForElement(setter)));
 	}
 
 	/**
@@ -258,16 +260,17 @@ public class MBeanAttributeInfo extends MBeanFeatureInfo implements Cloneable {
 		else
 			access = "no-access";
 
-		return getClass().getName() + "[" + "description=" + getDescription() + ", " + "name="
-				+ getName() + ", " + "type=" + getType() + ", " + access + ", "
-				+ (isIs() ? "isIs, " : "") + "descriptor=" + getDescriptor() + "]";
+		return getClass().getName() + "[" + "description=" + getDescription()
+				+ ", " + "name=" + getName() + ", " + "type=" + getType() + ", "
+				+ access + ", " + (isIs() ? "isIs, " : "") + "descriptor="
+				+ getDescriptor() + "]";
 	}
 
 	/**
 	 * Compare this MBeanAttributeInfo to another.
 	 *
 	 * @param o
-	 *            the object to compare to.
+	 *          the object to compare to.
 	 *
 	 * @return true if and only if <code>o</code> is an MBeanAttributeInfo such
 	 *         that its {@link #getName()}, {@link #getType()},
@@ -281,10 +284,12 @@ public class MBeanAttributeInfo extends MBeanFeatureInfo implements Cloneable {
 		if (!(o instanceof MBeanAttributeInfo))
 			return false;
 		MBeanAttributeInfo p = (MBeanAttributeInfo) o;
-		return (Objects.equals(p.getName(), getName()) && Objects.equals(p.getType(), getType())
-				&& Objects.equals(p.getDescription(), getDescription())
-				&& Objects.equals(p.getDescriptor(), getDescriptor())
-				&& p.isReadable() == isReadable() && p.isWritable() == isWritable()
+		return (Objects.equals(p.getName(), getName()) && Objects.equals(p
+				.getType(), getType()) && Objects.equals(p.getDescription(),
+						getDescription()) && Objects.equals(p.getDescriptor(),
+								getDescriptor()) && p
+										.isReadable() == isReadable() && p
+												.isWritable() == isWritable()
 				&& p.isIs() == isIs());
 	}
 
@@ -300,9 +305,9 @@ public class MBeanAttributeInfo extends MBeanFeatureInfo implements Cloneable {
 	}
 
 	private static boolean isIs(Method getter) {
-		return (getter != null && getter.getName().startsWith("is")
-				&& (getter.getReturnType().equals(Boolean.TYPE)
-						|| getter.getReturnType().equals(Boolean.class)));
+		return (getter != null && getter.getName().startsWith("is") && (getter
+				.getReturnType().equals(Boolean.TYPE) || getter.getReturnType()
+						.equals(Boolean.class)));
 	}
 
 	/**
@@ -318,7 +323,8 @@ public class MBeanAttributeInfo extends MBeanFeatureInfo implements Cloneable {
 			}
 			type = getter.getReturnType();
 			if (type == Void.TYPE) {
-				throw new IntrospectionException("getter " + getter.getName() + " returns void");
+				throw new IntrospectionException("getter " + getter.getName()
+						+ " returns void");
 			}
 		}
 
@@ -330,12 +336,14 @@ public class MBeanAttributeInfo extends MBeanFeatureInfo implements Cloneable {
 			if (type == null)
 				type = params[0];
 			else if (type != params[0]) {
-				throw new IntrospectionException("type mismatch between " + "getter and setter");
+				throw new IntrospectionException("type mismatch between "
+						+ "getter and setter");
 			}
 		}
 
 		if (type == null) {
-			throw new IntrospectionException("getter and setter cannot " + "both be null");
+			throw new IntrospectionException("getter and setter cannot "
+					+ "both be null");
 		}
 
 		return type.getName();

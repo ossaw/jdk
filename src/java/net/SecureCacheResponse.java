@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -69,10 +49,11 @@ public abstract class SecureCacheResponse extends CacheResponse {
 	 * @return an immutable List of Certificate representing the server's
 	 *         certificate chain.
 	 * @throws SSLPeerUnverifiedException
-	 *             if the peer is not verified.
+	 *                                    if the peer is not verified.
 	 * @see #getPeerPrincipal()
 	 */
-	public abstract List<Certificate> getServerCertificateChain() throws SSLPeerUnverifiedException;
+	public abstract List<Certificate> getServerCertificateChain()
+			throws SSLPeerUnverifiedException;
 
 	/**
 	 * Returns the server's principal which was established as part of defining
@@ -84,12 +65,13 @@ public abstract class SecureCacheResponse extends CacheResponse {
 	 *         KerberosPrincipal for Kerberos cipher suites.
 	 *
 	 * @throws SSLPeerUnverifiedException
-	 *             if the peer was not verified.
+	 *                                    if the peer was not verified.
 	 *
 	 * @see #getServerCertificateChain()
 	 * @see #getLocalPrincipal()
 	 */
-	public abstract Principal getPeerPrincipal() throws SSLPeerUnverifiedException;
+	public abstract Principal getPeerPrincipal()
+			throws SSLPeerUnverifiedException;
 
 	/**
 	 * Returns the principal that was sent to the server during handshaking in

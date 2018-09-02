@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.peer;
@@ -42,8 +22,8 @@ public interface FileDialogPeer extends DialogPeer {
 	 * Sets the selected file for this file dialog.
 	 *
 	 * @param file
-	 *            the file to set as selected file, or {@code null} for no
-	 *            selected file
+	 *             the file to set as selected file, or {@code null} for no
+	 *             selected file
 	 *
 	 * @see FileDialog#setFile(String)
 	 */
@@ -63,7 +43,7 @@ public interface FileDialogPeer extends DialogPeer {
 	 * Sets the filename filter for filtering the displayed files.
 	 *
 	 * @param filter
-	 *            the filter to set
+	 *               the filter to set
 	 *
 	 * @see FileDialog#setFilenameFilter(FilenameFilter)
 	 */

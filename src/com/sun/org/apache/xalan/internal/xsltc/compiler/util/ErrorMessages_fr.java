@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,58 +26,44 @@ public class ErrorMessages_fr extends ListResourceBundle {
 
 	/*
 	 * XSLTC compile-time error messages.
-	 *
 	 * General notes to translators and definitions:
-	 *
 	 * 1) XSLTC is the name of the product. It is an acronym for "XSLT Compiler"
 	 * . XSLT is an acronym for "XML Stylesheet Language: Transformations".
-	 *
 	 * 2) A stylesheet is a description of how to transform an input XML
 	 * document into a resultant XML document (or HTML document or text). The
 	 * stylesheet itself is described in the form of an XML document.
-	 *
 	 * 3) A template is a component of a stylesheet that is used to match a
 	 * particular portion of an input document and specifies the form of the
 	 * corresponding portion of the output document.
-	 *
 	 * 4) An axis is a particular "dimension" in a tree representation of an XML
 	 * document; the nodes in the tree are divided along different axes.
 	 * Traversing the "child" axis, for instance, means that the program would
 	 * visit each child of a particular node; traversing the "descendant" axis
 	 * means that the program would visit the child nodes of a particular node,
 	 * their children, and so on until the leaf nodes of the tree are reached.
-	 *
 	 * 5) An iterator is an object that traverses nodes in a tree along a
 	 * particular axis, one at a time.
-	 *
 	 * 6) An element is a mark-up tag in an XML document; an attribute is a
 	 * modifier on the tag. For example, in <elem attr='val' attr2='val2'>
 	 * "elem" is an element name, "attr" and "attr2" are attribute names with
 	 * the values "val" and "val2", respectively.
-	 *
 	 * 7) A namespace declaration is a special attribute that is used to
 	 * associate a prefix with a URI (the namespace). The meanings of element
 	 * names and attribute names that use that prefix are defined with respect
 	 * to that namespace.
-	 *
 	 * 8) DOM is an acronym for Document Object Model. It is a tree
 	 * representation of an XML document.
-	 *
 	 * SAX is an acronym for the Simple API for XML processing. It is an API
 	 * used inform an XML processor (in this case XSLTC) of the structure and
 	 * content of an XML document.
-	 *
 	 * Input to the stylesheet processor can come from an XML parser in the form
 	 * of a DOM tree or through the SAX API.
-	 *
 	 * 9) DTD is a document type declaration. It is a way of specifying the
 	 * grammar for an XML file, the names and types of elements, attributes,
 	 * etc.
-	 *
 	 * 10) XPath is a specification that describes a notation for identifying
 	 * nodes in a tree-structured representation of an XML document. An instance
 	 * of that notation is referred to as an XPath expression.
-	 *
 	 * 11) Translet is an invented term that refers to the class file that
 	 * contains the compiled form of a stylesheet.
 	 */
@@ -92,9 +75,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 	 * @return The message lookup table.
 	 */
 	public Object[][] getContents() {
-		return new Object[][] {
-				{ ErrorMsg.MULTIPLE_STYLESHEET_ERR,
-						"Plusieurs feuilles de style d\u00E9finies dans le m\u00EAme fichier." },
+		return new Object[][] { { ErrorMsg.MULTIPLE_STYLESHEET_ERR,
+				"Plusieurs feuilles de style d\u00E9finies dans le m\u00EAme fichier." },
 
 				/*
 				 * Note to translators: The substitution text is the name of a
@@ -133,7 +115,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * loaded, but it could not be found. The substitution text is
 				 * the name of the class.
 				 */
-				{ ErrorMsg.CLASS_NOT_FOUND_ERR, "Impossible de trouver la classe ''{0}''." },
+				{ ErrorMsg.CLASS_NOT_FOUND_ERR,
+						"Impossible de trouver la classe ''{0}''." },
 
 				/*
 				 * Note to translators: The word "method" here refers to a Java
@@ -157,7 +140,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * Note to translators: The file or URI named in the
 				 * substitution text is missing.
 				 */
-				{ ErrorMsg.FILE_NOT_FOUND_ERR, "Fichier ou URI ''{0}'' introuvable." },
+				{ ErrorMsg.FILE_NOT_FOUND_ERR,
+						"Fichier ou URI ''{0}'' introuvable." },
 
 				/*
 				 * Note to translators: This message is displayed when the URI
@@ -170,7 +154,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * Note to translators: The file or URI named in the
 				 * substitution text exists but could not be opened.
 				 */
-				{ ErrorMsg.FILE_ACCESS_ERR, "Impossible d''ouvrir le fichier ou l''URI ''{0}''." },
+				{ ErrorMsg.FILE_ACCESS_ERR,
+						"Impossible d''ouvrir le fichier ou l''URI ''{0}''." },
 
 				/*
 				 * Note to translators: <xsl:stylesheet> and <xsl:transform> are
@@ -215,7 +200,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * particular attribute named by the substitution text, but that
 				 * attribute was not specified in the stylesheet.
 				 */
-				{ ErrorMsg.REQUIRED_ATTR_ERR, "Attribut ''{0}'' obligatoire manquant." },
+				{ ErrorMsg.REQUIRED_ATTR_ERR,
+						"Attribut ''{0}'' obligatoire manquant." },
 
 				/*
 				 * Note to translators: This message indicates that a character
@@ -249,7 +235,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * specified on an element in the stylesheet. The attribute is
 				 * named by the substitution text.
 				 */
-				{ ErrorMsg.ILLEGAL_ATTRIBUTE_ERR, "Attribut ''{0}'' non admis." },
+				{ ErrorMsg.ILLEGAL_ATTRIBUTE_ERR,
+						"Attribut ''{0}'' non admis." },
 
 				/*
 				 * Note to translators: "import" and "include" are keywords that
@@ -302,7 +289,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * Note to translators: This message is produced if a reference
 				 * to a function has too many or too few arguments.
 				 */
-				{ ErrorMsg.ILLEGAL_ARG_ERR, "Arguments non admis pour l'appel de la fonction." },
+				{ ErrorMsg.ILLEGAL_ARG_ERR,
+						"Arguments non admis pour l'appel de la fonction." },
 
 				/*
 				 * Note to translators: "document()" is the name of function and
@@ -363,7 +351,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * Note to translators: An element in the stylesheet contained
 				 * an element of a type that it was not permitted to contain.
 				 */
-				{ ErrorMsg.ILLEGAL_CHILD_ERR, "El\u00E9ment enfant non admis." },
+				{ ErrorMsg.ILLEGAL_CHILD_ERR,
+						"El\u00E9ment enfant non admis." },
 
 				/*
 				 * Note to translators: The stylesheet tried to create an
@@ -405,14 +394,16 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * Note to translators: The substitution text names the internal
 				 * error encountered.
 				 */
-				{ ErrorMsg.INTERNAL_ERR, "Erreur interne XSLTC irr\u00E9cup\u00E9rable : ''{0}''" },
+				{ ErrorMsg.INTERNAL_ERR,
+						"Erreur interne XSLTC irr\u00E9cup\u00E9rable : ''{0}''" },
 
 				/*
 				 * Note to translators: The stylesheet contained an element that
 				 * was not recognized as part of the XSL syntax. The
 				 * substitution text gives the element name.
 				 */
-				{ ErrorMsg.UNSUPPORTED_XSL_ERR, "El\u00E9ment ''{0}'' XSL non pris en charge." },
+				{ ErrorMsg.UNSUPPORTED_XSL_ERR,
+						"El\u00E9ment ''{0}'' XSL non pris en charge." },
 
 				/*
 				 * Note to translators: The stylesheet referred to an extension
@@ -420,7 +411,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * but XSTLC does not recognized the particular extension named.
 				 * The substitution text gives the extension name.
 				 */
-				{ ErrorMsg.UNSUPPORTED_EXT_ERR, "Extension ''{0}'' XSLTC non reconnue." },
+				{ ErrorMsg.UNSUPPORTED_EXT_ERR,
+						"Extension ''{0}'' XSLTC non reconnue." },
 
 				/*
 				 * Note to translators: The XML document given to XSLTC as a
@@ -452,7 +444,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * error in condition in XSLTC. The substitution text is the
 				 * class name in XSLTC that is missing some functionality.
 				 */
-				{ ErrorMsg.NOT_IMPLEMENTED_ERR, "Non impl\u00E9ment\u00E9 : ''{0}''." },
+				{ ErrorMsg.NOT_IMPLEMENTED_ERR,
+						"Non impl\u00E9ment\u00E9 : ''{0}''." },
 
 				/*
 				 * Note to translators: The XML document given to XSLTC as a
@@ -581,7 +574,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * Note to translators: The message indicates that XSLTC failed
 				 * to compile the stylesheet into a translet (class file).
 				 */
-				{ ErrorMsg.JAXP_COMPILE_ERR, "Impossible de compiler la feuille de style" },
+				{ ErrorMsg.JAXP_COMPILE_ERR,
+						"Impossible de compiler la feuille de style" },
 
 				/*
 				 * Note to translators: "TransformerFactory" is a class name. In
@@ -657,7 +651,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				{ ErrorMsg.XSLTC_SOURCE_ERR,
 						"XSLTCSource.build() appel\u00E9 sans que l'ID syst\u00E8me soit d\u00E9fini." },
 
-				{ ErrorMsg.ER_RESULT_NULL, "Le r\u00E9sultat ne doit pas \u00EAtre NULL" },
+				{ ErrorMsg.ER_RESULT_NULL,
+						"Le r\u00E9sultat ne doit pas \u00EAtre NULL" },
 
 				/*
 				 * Note to translators: This message indicates that the value
@@ -725,7 +720,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * message is displayed if XSLTC could not find a constructor
 				 * for the specified class.
 				 */
-				{ ErrorMsg.CONSTRUCTOR_NOT_FOUND, "Constructeur ''{0}'' externe introuvable." },
+				{ ErrorMsg.CONSTRUCTOR_NOT_FOUND,
+						"Constructeur ''{0}'' externe introuvable." },
 
 				/*
 				 * Note to translators: "static" is the Java keyword. The
@@ -772,7 +768,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * substitution text indents it the same amount as the first in
 				 * English.
 				 */
-				{ ErrorMsg.WARNING_PLUS_WRAPPED_MSG, "WARNING:  ''{0}''\n       :{1}" },
+				{ ErrorMsg.WARNING_PLUS_WRAPPED_MSG,
+						"WARNING:  ''{0}''\n       :{1}" },
 
 				/*
 				 * Note to translators: This message is used to indicate the
@@ -788,7 +785,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * substitution text indents it the same amount as the first in
 				 * English.
 				 */
-				{ ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG, "FATAL ERROR:  ''{0}''\n           :{1}" },
+				{ ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG,
+						"FATAL ERROR:  ''{0}''\n           :{1}" },
 
 				/*
 				 * Note to translators: This message is used to indicate the
@@ -804,7 +802,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * substitution text indents it the same amount as the first in
 				 * English.
 				 */
-				{ ErrorMsg.ERROR_PLUS_WRAPPED_MSG, "ERROR:  ''{0}''\n     :{1}" },
+				{ ErrorMsg.ERROR_PLUS_WRAPPED_MSG,
+						"ERROR:  ''{0}''\n     :{1}" },
 
 				/*
 				 * Note to translators: This message is used to indicate the
@@ -859,7 +858,8 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * header. All the warning messages are collected together and
 				 * displayed beneath this message.
 				 */
-				{ ErrorMsg.COMPILER_WARNING_KEY, "Avertissements de compilateur :" },
+				{ ErrorMsg.COMPILER_WARNING_KEY,
+						"Avertissements de compilateur :" },
 
 				/*
 				 * Note to translators: The following message is used as a
@@ -957,7 +957,6 @@ public class ErrorMessages_fr extends ListResourceBundle {
 				 * Note to translators: This message describes an internal error
 				 * in the processor. The "method" that is being referred to is a
 				 * Java method in a translet that XSLTC is generating.
-				 *
 				 */
 				{ ErrorMsg.OUTLINE_ERR_METHOD_TOO_BIG,
 						"Erreur XSLTC interne : une m\u00E9thode dans le translet d\u00E9passe la limite de la JVM concernant la longueur d'une m\u00E9thode de 64 kilo-octets. En g\u00E9n\u00E9ral, ceci est d\u00FB \u00E0 de tr\u00E8s grands mod\u00E8les dans une feuille de style. Essayez de restructurer la feuille de style pour utiliser des mod\u00E8les plus petits." },

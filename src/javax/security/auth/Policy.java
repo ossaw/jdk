@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.security.auth;
@@ -173,8 +153,7 @@ public abstract class Policy {
 	 * Sole constructor. (For invocation by subclass constructors, typically
 	 * implicit.)
 	 */
-	protected Policy() {
-	}
+	protected Policy() {}
 
 	/**
 	 * Returns the installed Policy object. This method first calls
@@ -187,8 +166,8 @@ public abstract class Policy {
 	 * @return the installed Policy. The return value cannot be {@code null}.
 	 *
 	 * @exception java.lang.SecurityException
-	 *                if the current thread does not have permission to get the
-	 *                Policy object.
+	 *            if the current thread does not have permission to get the
+	 *            Policy object.
 	 *
 	 * @see #setPolicy
 	 */
@@ -212,11 +191,13 @@ public abstract class Policy {
 
 				if (policy == null) {
 					String policy_class = null;
-					policy_class = AccessController.doPrivileged(new PrivilegedAction<String>() {
-						public String run() {
-							return java.security.Security.getProperty("auth.policy.provider");
-						}
-					});
+					policy_class = AccessController.doPrivileged(
+							new PrivilegedAction<String>() {
+								public String run() {
+									return java.security.Security.getProperty(
+											"auth.policy.provider");
+								}
+							});
 					if (policy_class == null) {
 						policy_class = AUTH_POLICY;
 					}
@@ -224,10 +205,12 @@ public abstract class Policy {
 					try {
 						final String finalClass = policy_class;
 
-						Policy untrustedImpl = AccessController
-								.doPrivileged(new PrivilegedExceptionAction<Policy>() {
-									public Policy run() throws ClassNotFoundException,
-											InstantiationException, IllegalAccessException {
+						Policy untrustedImpl = AccessController.doPrivileged(
+								new PrivilegedExceptionAction<Policy>() {
+									public Policy run()
+											throws ClassNotFoundException,
+											InstantiationException,
+											IllegalAccessException {
 										Class<? extends Policy> implClass = Class
 												.forName(finalClass, false,
 														Thread.currentThread()
@@ -236,16 +219,19 @@ public abstract class Policy {
 										return implClass.newInstance();
 									}
 								});
-						AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
-							public Void run() {
-								setPolicy(untrustedImpl);
-								isCustomPolicy = !finalClass.equals(AUTH_POLICY);
-								return null;
-							}
-						}, Objects.requireNonNull(untrustedImpl.acc));
+						AccessController.doPrivileged(
+								new PrivilegedExceptionAction<Void>() {
+									public Void run() {
+										setPolicy(untrustedImpl);
+										isCustomPolicy = !finalClass.equals(
+												AUTH_POLICY);
+										return null;
+									}
+								}, Objects.requireNonNull(untrustedImpl.acc));
 					} catch (Exception e) {
-						throw new SecurityException(sun.security.util.ResourcesMgr
-								.getString("unable.to.instantiate.Subject.based.policy"));
+						throw new SecurityException(
+								sun.security.util.ResourcesMgr.getString(
+										"unable.to.instantiate.Subject.based.policy"));
 					}
 				}
 			}
@@ -262,11 +248,11 @@ public abstract class Policy {
 	 * <p>
 	 *
 	 * @param policy
-	 *            the new system Policy object.
+	 *               the new system Policy object.
 	 *
 	 * @exception java.lang.SecurityException
-	 *                if the current thread does not have permission to set the
-	 *                Policy.
+	 *            if the current thread does not have permission to set the
+	 *            Policy.
 	 *
 	 * @see #getPolicy
 	 */
@@ -292,13 +278,14 @@ public abstract class Policy {
 		if (policy != null) {
 			if (debug != null && isCustomPolicy) {
 				debug.println("Providing backwards compatibility for "
-						+ "javax.security.auth.policy implementation: " + policy.toString());
+						+ "javax.security.auth.policy implementation: " + policy
+								.toString());
 			}
 			return isCustomPolicy;
 		}
 		// check if custom policy has been set using auth.policy.provider prop
-		String policyClass = java.security.AccessController
-				.doPrivileged(new java.security.PrivilegedAction<String>() {
+		String policyClass = java.security.AccessController.doPrivileged(
+				new java.security.PrivilegedAction<String>() {
 					public String run() {
 						return Security.getProperty("auth.policy.provider");
 					}
@@ -306,7 +293,8 @@ public abstract class Policy {
 		if (policyClass != null && !policyClass.equals(AUTH_POLICY)) {
 			if (debug != null) {
 				debug.println("Providing backwards compatibility for "
-						+ "javax.security.auth.policy implementation: " + policyClass);
+						+ "javax.security.auth.policy implementation: "
+						+ policyClass);
 			}
 			return true;
 		}
@@ -320,24 +308,27 @@ public abstract class Policy {
 	 * <p>
 	 *
 	 * @param subject
-	 *            the {@code Subject} whose associated Principals, in
-	 *            conjunction with the provided {@code CodeSource}, determines
-	 *            the Permissions returned by this method. This parameter may be
-	 *            {@code null}.
-	 *            <p>
+	 *                the {@code Subject} whose associated Principals, in
+	 *                conjunction with the provided {@code CodeSource},
+	 *                determines
+	 *                the Permissions returned by this method. This parameter
+	 *                may be
+	 *                {@code null}.
+	 *                <p>
 	 *
 	 * @param cs
-	 *            the code specified by its {@code CodeSource} that determines,
-	 *            in conjunction with the provided {@code Subject}, the
-	 *            Permissions returned by this method. This parameter may be
-	 *            {@code null}.
+	 *                the code specified by its {@code CodeSource} that
+	 *                determines,
+	 *                in conjunction with the provided {@code Subject}, the
+	 *                Permissions returned by this method. This parameter may be
+	 *                {@code null}.
 	 *
 	 * @return the Collection of Permissions granted to all the {@code Subject}
 	 *         and code specified in the provided <i>subject</i> and <i>cs</i>
 	 *         parameters.
 	 */
-	public abstract java.security.PermissionCollection getPermissions(Subject subject,
-			java.security.CodeSource cs);
+	public abstract java.security.PermissionCollection getPermissions(
+			Subject subject, java.security.CodeSource cs);
 
 	/**
 	 * Refresh and reload the Policy.
@@ -350,8 +341,9 @@ public abstract class Policy {
 	 * <p>
 	 *
 	 * @exception SecurityException
-	 *                if the caller does not have permission to refresh the
-	 *                Policy.
+	 *                              if the caller does not have permission to
+	 *                              refresh the
+	 *                              Policy.
 	 */
 	public abstract void refresh();
 }

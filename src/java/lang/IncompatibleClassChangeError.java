@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -49,7 +29,7 @@ public class IncompatibleClassChangeError extends LinkageError {
 	 * specified detail message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public IncompatibleClassChangeError(String s) {
 		super(s);

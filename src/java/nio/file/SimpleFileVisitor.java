@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.nio.file;
@@ -37,7 +17,7 @@ import java.util.Objects;
  * Methods in this class may be overridden subject to their general contract.
  *
  * @param <T>
- *            The type of reference to the files
+ *        The type of reference to the files
  *
  * @since 1.7
  */
@@ -46,8 +26,7 @@ public class SimpleFileVisitor<T> implements FileVisitor<T> {
 	/**
 	 * Initializes a new instance of this class.
 	 */
-	protected SimpleFileVisitor() {
-	}
+	protected SimpleFileVisitor() {}
 
 	/**
 	 * Invoked for a directory before entries in the directory are visited.
@@ -57,7 +36,8 @@ public class SimpleFileVisitor<T> implements FileVisitor<T> {
 	 * CONTINUE}.
 	 */
 	@Override
-	public FileVisitResult preVisitDirectory(T dir, BasicFileAttributes attrs) throws IOException {
+	public FileVisitResult preVisitDirectory(T dir, BasicFileAttributes attrs)
+			throws IOException {
 		Objects.requireNonNull(dir);
 		Objects.requireNonNull(attrs);
 		return FileVisitResult.CONTINUE;
@@ -71,7 +51,8 @@ public class SimpleFileVisitor<T> implements FileVisitor<T> {
 	 * CONTINUE}.
 	 */
 	@Override
-	public FileVisitResult visitFile(T file, BasicFileAttributes attrs) throws IOException {
+	public FileVisitResult visitFile(T file, BasicFileAttributes attrs)
+			throws IOException {
 		Objects.requireNonNull(file);
 		Objects.requireNonNull(attrs);
 		return FileVisitResult.CONTINUE;
@@ -85,7 +66,8 @@ public class SimpleFileVisitor<T> implements FileVisitor<T> {
 	 * the file from being visited.
 	 */
 	@Override
-	public FileVisitResult visitFileFailed(T file, IOException exc) throws IOException {
+	public FileVisitResult visitFileFailed(T file, IOException exc)
+			throws IOException {
 		Objects.requireNonNull(file);
 		throw exc;
 	}
@@ -101,7 +83,8 @@ public class SimpleFileVisitor<T> implements FileVisitor<T> {
 	 * iteration of the directory to terminate prematurely.
 	 */
 	@Override
-	public FileVisitResult postVisitDirectory(T dir, IOException exc) throws IOException {
+	public FileVisitResult postVisitDirectory(T dir, IOException exc)
+			throws IOException {
 		Objects.requireNonNull(dir);
 		if (exc != null)
 			throw exc;

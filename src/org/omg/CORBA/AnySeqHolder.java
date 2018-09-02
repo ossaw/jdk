@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package org.omg.CORBA;
 
@@ -37,8 +17,7 @@ package org.omg.CORBA;
 public final class AnySeqHolder implements org.omg.CORBA.portable.Streamable {
 	public org.omg.CORBA.Any value[] = null;
 
-	public AnySeqHolder() {
-	}
+	public AnySeqHolder() {}
 
 	public AnySeqHolder(org.omg.CORBA.Any[] initialValue) {
 		value = initialValue;

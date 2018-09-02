@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.source.util;
@@ -58,15 +38,17 @@ public abstract class JavacTask implements CompilationTask {
 	 * that task will be returned.
 	 * 
 	 * @param processingEnvironment
-	 *            the processing environment
+	 *                              the processing environment
 	 * @return the {@code JavacTask} for a {@code ProcessingEnvironment}
 	 * @since 1.8
 	 */
-	public static JavacTask instance(ProcessingEnvironment processingEnvironment) {
-		if (!processingEnvironment.getClass().getName()
-				.equals("com.sun.tools.javac.processing.JavacProcessingEnvironment"))
+	public static JavacTask instance(
+			ProcessingEnvironment processingEnvironment) {
+		if (!processingEnvironment.getClass().getName().equals(
+				"com.sun.tools.javac.processing.JavacProcessingEnvironment"))
 			throw new IllegalArgumentException();
-		Context c = ((JavacProcessingEnvironment) processingEnvironment).getContext();
+		Context c = ((JavacProcessingEnvironment) processingEnvironment)
+				.getContext();
 		JavacTask t = c.get(JavacTask.class);
 		return (t != null) ? t : new BasicJavacTask(c, true);
 	}
@@ -76,20 +58,25 @@ public abstract class JavacTask implements CompilationTask {
 	 *
 	 * @return a list of abstract syntax trees
 	 * @throws IOException
-	 *             if an unhandled I/O error occurred in the compiler.
+	 *                               if an unhandled I/O error occurred in the
+	 *                               compiler.
 	 * @throws IllegalStateException
-	 *             if the operation cannot be performed at this time.
+	 *                               if the operation cannot be performed at
+	 *                               this time.
 	 */
-	public abstract Iterable<? extends CompilationUnitTree> parse() throws IOException;
+	public abstract Iterable<? extends CompilationUnitTree> parse()
+			throws IOException;
 
 	/**
 	 * Complete all analysis.
 	 *
 	 * @return a list of elements that were analyzed
 	 * @throws IOException
-	 *             if an unhandled I/O error occurred in the compiler.
+	 *                               if an unhandled I/O error occurred in the
+	 *                               compiler.
 	 * @throws IllegalStateException
-	 *             if the operation cannot be performed at this time.
+	 *                               if the operation cannot be performed at
+	 *                               this time.
 	 */
 	public abstract Iterable<? extends Element> analyze() throws IOException;
 
@@ -98,11 +85,14 @@ public abstract class JavacTask implements CompilationTask {
 	 *
 	 * @return a list of files that were generated
 	 * @throws IOException
-	 *             if an unhandled I/O error occurred in the compiler.
+	 *                               if an unhandled I/O error occurred in the
+	 *                               compiler.
 	 * @throws IllegalStateException
-	 *             if the operation cannot be performed at this time.
+	 *                               if the operation cannot be performed at
+	 *                               this time.
 	 */
-	public abstract Iterable<? extends JavaFileObject> generate() throws IOException;
+	public abstract Iterable<? extends JavaFileObject> generate()
+			throws IOException;
 
 	/**
 	 * The specified listener will receive notification of events describing the
@@ -117,7 +107,8 @@ public abstract class JavacTask implements CompilationTask {
 	 * followed by {@code addTaskListener} for the new listener.
 	 *
 	 * @throws IllegalStateException
-	 *             if the specified listener has already been added.
+	 *                               if the specified listener has already been
+	 *                               added.
 	 */
 	public abstract void setTaskListener(TaskListener taskListener);
 
@@ -128,7 +119,8 @@ public abstract class JavacTask implements CompilationTask {
 	 * This method may be called at any time before or during the compilation.
 	 *
 	 * @throws IllegalStateException
-	 *             if the specified listener has already been added.
+	 *                               if the specified listener has already been
+	 *                               added.
 	 * @since 1.8
 	 */
 	public abstract void addTaskListener(TaskListener taskListener);

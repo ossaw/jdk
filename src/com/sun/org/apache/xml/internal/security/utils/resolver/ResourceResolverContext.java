@@ -26,7 +26,8 @@ import org.w3c.dom.Attr;
 
 public class ResourceResolverContext {
 
-	public ResourceResolverContext(Attr attr, String baseUri, boolean secureValidation) {
+	public ResourceResolverContext(Attr attr, String baseUri,
+			boolean secureValidation) {
 		this.attr = attr;
 		this.baseUri = baseUri;
 		this.secureValidation = secureValidation;

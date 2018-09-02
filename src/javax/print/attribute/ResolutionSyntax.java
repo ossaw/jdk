@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.print.attribute;
@@ -114,19 +94,22 @@ public abstract class ResolutionSyntax implements Serializable, Cloneable {
 	 * Construct a new resolution attribute from the given items.
 	 *
 	 * @param crossFeedResolution
-	 *            Cross feed direction resolution.
+	 *                            Cross feed direction resolution.
 	 * @param feedResolution
-	 *            Feed direction resolution.
+	 *                            Feed direction resolution.
 	 * @param units
-	 *            Unit conversion factor, e.g. {@link #DPI DPI} or {@link #DPCM
-	 *            DPCM}.
+	 *                            Unit conversion factor, e.g. {@link #DPI DPI}
+	 *                            or {@link #DPCM
+	 *                            DPCM}.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (unchecked exception) Thrown if
-	 *                {@code crossFeedResolution < 1} or
-	 *                {@code feedResolution < 1} or {@code units < 1}.
+	 *                                     (unchecked exception) Thrown if
+	 *                                     {@code crossFeedResolution < 1} or
+	 *                                     {@code feedResolution < 1} or
+	 *                                     {@code units < 1}.
 	 */
-	public ResolutionSyntax(int crossFeedResolution, int feedResolution, int units) {
+	public ResolutionSyntax(int crossFeedResolution, int feedResolution,
+			int units) {
 
 		if (crossFeedResolution < 1) {
 			throw new IllegalArgumentException("crossFeedResolution is < 1");
@@ -147,15 +130,17 @@ public abstract class ResolutionSyntax implements Serializable, Cloneable {
 	 * the nearest integer.
 	 *
 	 * @param dphi
-	 *            Value (dphi) to convert.
+	 *              Value (dphi) to convert.
 	 * @param units
-	 *            Unit conversion factor, e.g. {@link #DPI <CODE>DPI</CODE>} or
-	 *            {@link #DPCM <CODE>DPCM</CODE>}.
+	 *              Unit conversion factor, e.g. {@link #DPI <CODE>DPI</CODE>}
+	 *              or
+	 *              {@link #DPCM <CODE>DPCM</CODE>}.
 	 *
 	 * @return The value of <CODE>dphi</CODE> converted to the desired units.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (unchecked exception) Thrown if <CODE>units</CODE> < 1.
+	 *                                     (unchecked exception) Thrown if
+	 *                                     <CODE>units</CODE> < 1.
 	 */
 	private static int convertFromDphi(int dphi, int units) {
 		if (units < 1) {
@@ -170,17 +155,20 @@ public abstract class ResolutionSyntax implements Serializable, Cloneable {
 	 * values are rounded to the nearest integer.
 	 *
 	 * @param units
-	 *            Unit conversion factor, e.g. {@link #DPI DPI} or {@link #DPCM
-	 *            DPCM}.
+	 *              Unit conversion factor, e.g. {@link #DPI DPI} or
+	 *              {@link #DPCM
+	 *              DPCM}.
 	 *
 	 * @return A two-element array with the cross feed direction resolution at
 	 *         index 0 and the feed direction resolution at index 1.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (unchecked exception) Thrown if {@code units < 1}.
+	 *                                     (unchecked exception) Thrown if
+	 *                                     {@code units < 1}.
 	 */
 	public int[] getResolution(int units) {
-		return new int[] { getCrossFeedResolution(units), getFeedResolution(units) };
+		return new int[] { getCrossFeedResolution(units), getFeedResolution(
+				units) };
 	}
 
 	/**
@@ -188,13 +176,15 @@ public abstract class ResolutionSyntax implements Serializable, Cloneable {
 	 * the given units. The value is rounded to the nearest integer.
 	 *
 	 * @param units
-	 *            Unit conversion factor, e.g. {@link #DPI DPI} or {@link #DPCM
-	 *            DPCM}.
+	 *              Unit conversion factor, e.g. {@link #DPI DPI} or
+	 *              {@link #DPCM
+	 *              DPCM}.
 	 *
 	 * @return Cross feed direction resolution.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (unchecked exception) Thrown if {@code units < 1}.
+	 *                                     (unchecked exception) Thrown if
+	 *                                     {@code units < 1}.
 	 */
 	public int getCrossFeedResolution(int units) {
 		return convertFromDphi(crossFeedResolution, units);
@@ -205,13 +195,15 @@ public abstract class ResolutionSyntax implements Serializable, Cloneable {
 	 * given units. The value is rounded to the nearest integer.
 	 *
 	 * @param units
-	 *            Unit conversion factor, e.g. {@link #DPI DPI} or {@link #DPCM
-	 *            DPCM}.
+	 *              Unit conversion factor, e.g. {@link #DPI DPI} or
+	 *              {@link #DPCM
+	 *              DPCM}.
 	 *
 	 * @return Feed direction resolution.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (unchecked exception) Thrown if {@code units < 1}.
+	 *                                     (unchecked exception) Thrown if
+	 *                                     {@code units < 1}.
 	 */
 	public int getFeedResolution(int units) {
 		return convertFromDphi(feedResolution, units);
@@ -225,17 +217,19 @@ public abstract class ResolutionSyntax implements Serializable, Cloneable {
 	 * rounded to the nearest integer.
 	 *
 	 * @param units
-	 *            Unit conversion factor, e.g. {@link #DPI CODE>DPI} or
-	 *            {@link #DPCM DPCM}.
+	 *                  Unit conversion factor, e.g. {@link #DPI CODE>DPI} or
+	 *                  {@link #DPCM DPCM}.
 	 * @param unitsName
-	 *            Units name string, e.g. <CODE>"dpi"</CODE> or
-	 *            <CODE>"dpcm"</CODE>. If null, no units name is appended to the
-	 *            result.
+	 *                  Units name string, e.g. <CODE>"dpi"</CODE> or
+	 *                  <CODE>"dpcm"</CODE>. If null, no units name is appended
+	 *                  to the
+	 *                  result.
 	 *
 	 * @return String version of this resolution attribute.
 	 *
 	 * @exception IllegalArgumentException
-	 *                (unchecked exception) Thrown if {@code units < 1}.
+	 *                                     (unchecked exception) Thrown if
+	 *                                     {@code units < 1}.
 	 */
 	public String toString(int units, String unitsName) {
 		StringBuffer result = new StringBuffer();
@@ -262,14 +256,15 @@ public abstract class ResolutionSyntax implements Serializable, Cloneable {
 	 * </UL>
 	 *
 	 * @param other
-	 *            Resolution attribute to compare with.
+	 *              Resolution attribute to compare with.
 	 *
 	 * @return True if this resolution attribute is less than or equal to the
 	 *         <CODE>other</CODE> resolution attribute, false otherwise.
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>other</CODE> is
-	 *                null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>other</CODE> is
+	 *                                 null.
 	 */
 	public boolean lessThanOrEquals(ResolutionSyntax other) {
 		return (this.crossFeedResolution <= other.crossFeedResolution
@@ -289,7 +284,7 @@ public abstract class ResolutionSyntax implements Serializable, Cloneable {
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this resolution
 	 *         attribute, false otherwise.
@@ -305,7 +300,8 @@ public abstract class ResolutionSyntax implements Serializable, Cloneable {
 	 * Returns a hash code value for this resolution attribute.
 	 */
 	public int hashCode() {
-		return (((crossFeedResolution & 0x0000FFFF)) | ((feedResolution & 0x0000FFFF) << 16));
+		return (((crossFeedResolution & 0x0000FFFF)) | ((feedResolution
+				& 0x0000FFFF) << 16));
 	}
 
 	/**

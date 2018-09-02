@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -54,7 +34,8 @@ public interface MenuElement {
 	/**
 	 * Process a key event.
 	 */
-	public void processKeyEvent(KeyEvent event, MenuElement path[], MenuSelectionManager manager);
+	public void processKeyEvent(KeyEvent event, MenuElement path[],
+			MenuSelectionManager manager);
 
 	/**
 	 * Call by the <code>MenuSelectionManager</code> when the

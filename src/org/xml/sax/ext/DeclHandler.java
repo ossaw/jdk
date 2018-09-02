@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // DeclHandler.java - Optional handler for DTD declaration events.
@@ -88,13 +68,14 @@ public interface DeclHandler {
 	 * </p>
 	 *
 	 * @param name
-	 *            The element type name.
+	 *              The element type name.
 	 * @param model
-	 *            The content model as a normalized string.
+	 *              The content model as a normalized string.
 	 * @exception SAXException
-	 *                The application may raise an exception.
+	 *                         The application may raise an exception.
 	 */
-	public abstract void elementDecl(String name, String model) throws SAXException;
+	public abstract void elementDecl(String name, String model)
+			throws SAXException;
 
 	/**
 	 * Report an attribute type declaration.
@@ -114,23 +95,23 @@ public interface DeclHandler {
 	 * </p>
 	 *
 	 * @param eName
-	 *            The name of the associated element.
+	 *              The name of the associated element.
 	 * @param aName
-	 *            The name of the attribute.
+	 *              The name of the attribute.
 	 * @param type
-	 *            A string representing the attribute type.
+	 *              A string representing the attribute type.
 	 * @param mode
-	 *            A string representing the attribute defaulting mode
-	 *            ("#IMPLIED", "#REQUIRED", or "#FIXED") or null if none of
-	 *            these applies.
+	 *              A string representing the attribute defaulting mode
+	 *              ("#IMPLIED", "#REQUIRED", or "#FIXED") or null if none of
+	 *              these applies.
 	 * @param value
-	 *            A string representing the attribute's default value, or null
-	 *            if there is none.
+	 *              A string representing the attribute's default value, or null
+	 *              if there is none.
 	 * @exception SAXException
-	 *                The application may raise an exception.
+	 *                         The application may raise an exception.
 	 */
-	public abstract void attributeDecl(String eName, String aName, String type, String mode,
-			String value) throws SAXException;
+	public abstract void attributeDecl(String eName, String aName, String type,
+			String mode, String value) throws SAXException;
 
 	/**
 	 * Report an internal entity declaration.
@@ -142,16 +123,18 @@ public interface DeclHandler {
 	 * </p>
 	 *
 	 * @param name
-	 *            The name of the entity. If it is a parameter entity, the name
-	 *            will begin with '%'.
+	 *              The name of the entity. If it is a parameter entity, the
+	 *              name
+	 *              will begin with '%'.
 	 * @param value
-	 *            The replacement text of the entity.
+	 *              The replacement text of the entity.
 	 * @exception SAXException
-	 *                The application may raise an exception.
+	 *                         The application may raise an exception.
 	 * @see #externalEntityDecl
 	 * @see org.xml.sax.DTDHandler#unparsedEntityDecl
 	 */
-	public abstract void internalEntityDecl(String name, String value) throws SAXException;
+	public abstract void internalEntityDecl(String name, String value)
+			throws SAXException;
 
 	/**
 	 * Report a parsed external entity declaration.
@@ -166,19 +149,21 @@ public interface DeclHandler {
 	 * </p>
 	 *
 	 * @param name
-	 *            The name of the entity. If it is a parameter entity, the name
-	 *            will begin with '%'.
+	 *                 The name of the entity. If it is a parameter entity, the
+	 *                 name
+	 *                 will begin with '%'.
 	 * @param publicId
-	 *            The entity's public identifier, or null if none was given.
+	 *                 The entity's public identifier, or null if none was
+	 *                 given.
 	 * @param systemId
-	 *            The entity's system identifier.
+	 *                 The entity's system identifier.
 	 * @exception SAXException
-	 *                The application may raise an exception.
+	 *                         The application may raise an exception.
 	 * @see #internalEntityDecl
 	 * @see org.xml.sax.DTDHandler#unparsedEntityDecl
 	 */
-	public abstract void externalEntityDecl(String name, String publicId, String systemId)
-			throws SAXException;
+	public abstract void externalEntityDecl(String name, String publicId,
+			String systemId) throws SAXException;
 
 }
 

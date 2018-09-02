@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -54,7 +34,8 @@ public class MetalSeparatorUI extends BasicSeparatorUI {
 	}
 
 	protected void installDefaults(JSeparator s) {
-		LookAndFeel.installColors(s, "Separator.background", "Separator.foreground");
+		LookAndFeel.installColors(s, "Separator.background",
+				"Separator.foreground");
 	}
 
 	public void paint(Graphics g, JComponent c) {

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -37,7 +17,8 @@ import java.awt.FocusTraversalPolicy;
  *
  * @since 1.4
  */
-public abstract class InternalFrameFocusTraversalPolicy extends FocusTraversalPolicy {
+public abstract class InternalFrameFocusTraversalPolicy extends
+		FocusTraversalPolicy {
 
 	/**
 	 * Returns the Component that should receive the focus when a JInternalFrame
@@ -50,13 +31,13 @@ public abstract class InternalFrameFocusTraversalPolicy extends FocusTraversalPo
 	 * method returns the JInternalFrame's default Component to focus.
 	 *
 	 * @param frame
-	 *            the JInternalFrame whose initial Component is to be returned
+	 *              the JInternalFrame whose initial Component is to be returned
 	 * @return the Component that should receive the focus when frame is
 	 *         selected for the first time, or null if no suitable Component can
 	 *         be found
 	 * @see JInternalFrame#getMostRecentFocusOwner
 	 * @throws IllegalArgumentException
-	 *             if window is null
+	 *                                  if window is null
 	 */
 	public Component getInitialComponent(JInternalFrame frame) {
 		return getDefaultComponent(frame);

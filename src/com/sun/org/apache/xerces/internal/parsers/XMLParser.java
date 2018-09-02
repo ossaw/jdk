@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -68,7 +65,8 @@ public abstract class XMLParser {
 			+ Constants.ERROR_HANDLER_PROPERTY;
 
 	/** Recognized properties. */
-	private static final String[] RECOGNIZED_PROPERTIES = { ENTITY_RESOLVER, ERROR_HANDLER, };
+	private static final String[] RECOGNIZED_PROPERTIES = { ENTITY_RESOLVER,
+			ERROR_HANDLER, };
 
 	//
 	// Data
@@ -90,8 +88,8 @@ public abstract class XMLParser {
 	/**
 	 * Query the state of a feature.
 	 */
-	public boolean getFeature(String featureId)
-			throws SAXNotSupportedException, SAXNotRecognizedException {
+	public boolean getFeature(String featureId) throws SAXNotSupportedException,
+			SAXNotRecognizedException {
 		return fConfiguration.getFeature(featureId);
 
 	}
@@ -119,13 +117,15 @@ public abstract class XMLParser {
 	 * @param inputSource
 	 *
 	 * @exception XNIException
-	 * @exception java.io.IOException
+	 * @exception              java.io.IOException
 	 */
-	public void parse(XMLInputSource inputSource) throws XNIException, IOException {
+	public void parse(XMLInputSource inputSource) throws XNIException,
+			IOException {
 		// null indicates that the parser is called directly, initialize them
 		if (securityManager == null) {
 			securityManager = new XMLSecurityManager(true);
-			fConfiguration.setProperty(Constants.SECURITY_MANAGER, securityManager);
+			fConfiguration.setProperty(Constants.SECURITY_MANAGER,
+					securityManager);
 		}
 		if (securityPropertyManager == null) {
 			securityPropertyManager = new XMLSecurityPropertyManager();
@@ -145,7 +145,6 @@ public abstract class XMLParser {
 	/**
 	 * reset all components before parsing
 	 */
-	protected void reset() throws XNIException {
-	} // reset()
+	protected void reset() throws XNIException {} // reset()
 
 } // class XMLParser

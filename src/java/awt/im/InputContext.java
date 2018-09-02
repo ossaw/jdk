@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.im;
@@ -130,11 +110,11 @@ public class InputContext {
 	 * typing in the language of the surrounding text.
 	 *
 	 * @param locale
-	 *            The desired new locale.
+	 *               The desired new locale.
 	 * @return true if the input method or keyboard layout that's active after
 	 *         this call supports the desired locale.
 	 * @exception NullPointerException
-	 *                if <code>locale</code> is null
+	 *                                 if <code>locale</code> is null
 	 */
 	public boolean selectInputMethod(Locale locale) {
 		// real implementation is in sun.awt.im.InputContext
@@ -175,8 +155,9 @@ public class InputContext {
 	 * has no effect.
 	 *
 	 * @param subsets
-	 *            The subsets of the Unicode character set from which characters
-	 *            may be input
+	 *                The subsets of the Unicode character set from which
+	 *                characters
+	 *                may be input
 	 */
 	public void setCharacterSubsets(Subset[] subsets) {
 		// real implementation is in sun.awt.im.InputContext
@@ -203,11 +184,13 @@ public class InputContext {
 	 * composition is enabled.
 	 *
 	 * @param enable
-	 *            whether to enable the current input method for composition
+	 *               whether to enable the current input method for composition
 	 * @throws UnsupportedOperationException
-	 *             if there is no current input method available or the current
-	 *             input method does not support the enabling/disabling
-	 *             operation
+	 *                                       if there is no current input method
+	 *                                       available or the current
+	 *                                       input method does not support the
+	 *                                       enabling/disabling
+	 *                                       operation
 	 * @see #isCompositionEnabled
 	 * @since 1.3
 	 */
@@ -224,9 +207,11 @@ public class InputContext {
 	 * @return <code>true</code> if the current input method is enabled for
 	 *         composition; <code>false</code> otherwise
 	 * @throws UnsupportedOperationException
-	 *             if there is no current input method available or the current
-	 *             input method does not support checking whether it is enabled
-	 *             for composition
+	 *                                       if there is no current input method
+	 *                                       available or the current
+	 *                                       input method does not support
+	 *                                       checking whether it is enabled
+	 *                                       for composition
 	 * @see #setCompositionEnabled
 	 * @since 1.3
 	 */
@@ -249,8 +234,10 @@ public class InputContext {
 	 * <code>InputMethodEvent</code>.
 	 *
 	 * @throws UnsupportedOperationException
-	 *             if there is no current input method available or the current
-	 *             input method does not support the reconversion operation.
+	 *                                       if there is no current input method
+	 *                                       available or the current
+	 *                                       input method does not support the
+	 *                                       reconversion operation.
 	 *
 	 * @since 1.3
 	 */
@@ -263,9 +250,9 @@ public class InputContext {
 	 * input method is available, then the event will never be consumed.
 	 *
 	 * @param event
-	 *            The event
+	 *              The event
 	 * @exception NullPointerException
-	 *                if <code>event</code> is null
+	 *                                 if <code>event</code> is null
 	 */
 	public void dispatchEvent(AWTEvent event) {
 		// real implementation is in sun.awt.im.InputContext
@@ -281,9 +268,9 @@ public class InputContext {
 	 * available, then this method has no effect.
 	 *
 	 * @param client
-	 *            Client component
+	 *               Client component
 	 * @exception NullPointerException
-	 *                if <code>client</code> is null
+	 *                                 if <code>client</code> is null
 	 */
 	public void removeNotify(Component client) {
 		// real implementation is in sun.awt.im.InputContext

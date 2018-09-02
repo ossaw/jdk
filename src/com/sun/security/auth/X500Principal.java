@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth;
@@ -55,11 +35,13 @@ public class X500Principal implements Principal, java.io.Serializable {
 	private static final long serialVersionUID = -8222422609431628648L;
 
 	private static final java.util.ResourceBundle rb = java.security.AccessController
-			.doPrivileged(new java.security.PrivilegedAction<java.util.ResourceBundle>() {
-				public java.util.ResourceBundle run() {
-					return (java.util.ResourceBundle.getBundle("sun.security.util.AuthResources"));
-				}
-			});
+			.doPrivileged(
+					new java.security.PrivilegedAction<java.util.ResourceBundle>() {
+						public java.util.ResourceBundle run() {
+							return (java.util.ResourceBundle.getBundle(
+									"sun.security.util.AuthResources"));
+						}
+					});
 
 	/**
 	 * @serial
@@ -75,14 +57,16 @@ public class X500Principal implements Principal, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param name
-	 *            the X.500 name
+	 *             the X.500 name
 	 *
 	 * @exception NullPointerException
-	 *                if the <code>name</code> is <code>null</code>.
-	 *                <p>
+	 *                                     if the <code>name</code> is
+	 *                                     <code>null</code>.
+	 *                                     <p>
 	 *
 	 * @exception IllegalArgumentException
-	 *                if the <code>name</code> is improperly specified.
+	 *                                     if the <code>name</code> is
+	 *                                     improperly specified.
 	 */
 	public X500Principal(String name) {
 		if (name == null)
@@ -126,8 +110,8 @@ public class X500Principal implements Principal, java.io.Serializable {
 	 * <p>
 	 *
 	 * @param o
-	 *            Object to be compared for equality with this
-	 *            <code>X500Principal</code>.
+	 *          Object to be compared for equality with this
+	 *          <code>X500Principal</code>.
 	 *
 	 * @return true if the specified Object is equal equal to this
 	 *         <code>X500Principal</code>.
@@ -172,7 +156,8 @@ public class X500Principal implements Principal, java.io.Serializable {
 	 * Reads this object from a stream (i.e., deserializes it)
 	 */
 	private void readObject(java.io.ObjectInputStream s)
-			throws java.io.IOException, java.io.NotActiveException, ClassNotFoundException {
+			throws java.io.IOException, java.io.NotActiveException,
+			ClassNotFoundException {
 
 		s.defaultReadObject();
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp;
@@ -66,7 +46,7 @@ public interface SnmpPduFactory {
 	 *            The <CODE>SnmpMsg</CODE> to be decoded.
 	 * @return Null or a fully initialized <CODE>SnmpPdu</CODE>.
 	 * @exception SnmpStatusException
-	 *                If the encoding is invalid.
+	 *                                If the encoding is invalid.
 	 *
 	 * @since 1.5
 	 */
@@ -79,16 +59,18 @@ public interface SnmpPduFactory {
 	 * aborted.
 	 *
 	 * @param p
-	 *            The <CODE>SnmpPdu</CODE> to be encoded.
+	 *                      The <CODE>SnmpPdu</CODE> to be encoded.
 	 * @param maxDataLength
-	 *            The size limit of the resulting encoding.
+	 *                      The size limit of the resulting encoding.
 	 * @return Null or a fully encoded <CODE>SnmpMsg</CODE>.
 	 * @exception SnmpStatusException
-	 *                If <CODE>pdu</CODE> contains illegal values and cannot be
-	 *                encoded.
+	 *                                If <CODE>pdu</CODE> contains illegal
+	 *                                values and cannot be
+	 *                                encoded.
 	 * @exception SnmpTooBigException
-	 *                If the resulting encoding does not fit into
-	 *                <CODE>maxPktSize</CODE> bytes.
+	 *                                If the resulting encoding does not fit
+	 *                                into
+	 *                                <CODE>maxPktSize</CODE> bytes.
 	 *
 	 * @since 1.5
 	 */

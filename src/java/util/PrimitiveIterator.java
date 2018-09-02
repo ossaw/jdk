@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util;
 
@@ -59,14 +39,14 @@ import java.util.function.LongConsumer;
  *           specializations.
  *
  * @param <T>
- *            the type of elements returned by this PrimitiveIterator. The type
- *            must be a wrapper type for a primitive type, such as
- *            {@code Integer} for the primitive {@code int} type.
+ *        the type of elements returned by this PrimitiveIterator. The type
+ *        must be a wrapper type for a primitive type, such as
+ *        {@code Integer} for the primitive {@code int} type.
  * @param <T_CONS>
- *            the type of primitive consumer. The type must be a primitive
- *            specialization of {@link java.util.function.Consumer} for
- *            {@code T}, such as {@link java.util.function.IntConsumer} for
- *            {@code Integer}.
+ *        the type of primitive consumer. The type must be a primitive
+ *        specialization of {@link java.util.function.Consumer} for
+ *        {@code T}, such as {@link java.util.function.IntConsumer} for
+ *        {@code Integer}.
  *
  * @since 1.8
  */
@@ -79,9 +59,9 @@ public interface PrimitiveIterator<T, T_CONS> extends Iterator<T> {
 	 * the action are relayed to the caller.
 	 *
 	 * @param action
-	 *            The action to be performed for each element
+	 *               The action to be performed for each element
 	 * @throws NullPointerException
-	 *             if the specified action is null
+	 *                              if the specified action is null
 	 */
 	@SuppressWarnings("overloads")
 	void forEachRemaining(T_CONS action);
@@ -91,14 +71,15 @@ public interface PrimitiveIterator<T, T_CONS> extends Iterator<T> {
 	 * 
 	 * @since 1.8
 	 */
-	public static interface OfInt extends PrimitiveIterator<Integer, IntConsumer> {
+	public static interface OfInt extends
+			PrimitiveIterator<Integer, IntConsumer> {
 
 		/**
 		 * Returns the next {@code int} element in the iteration.
 		 *
 		 * @return the next {@code int} element in the iteration
 		 * @throws NoSuchElementException
-		 *             if the iteration has no more elements
+		 *                                if the iteration has no more elements
 		 */
 		int nextInt();
 
@@ -120,9 +101,9 @@ public interface PrimitiveIterator<T, T_CONS> extends Iterator<T> {
 		 *           </pre>
 		 *
 		 * @param action
-		 *            The action to be performed for each element
+		 *               The action to be performed for each element
 		 * @throws NullPointerException
-		 *             if the specified action is null
+		 *                              if the specified action is null
 		 */
 		default void forEachRemaining(IntConsumer action) {
 			Objects.requireNonNull(action);
@@ -139,7 +120,8 @@ public interface PrimitiveIterator<T, T_CONS> extends Iterator<T> {
 		@Override
 		default Integer next() {
 			if (Tripwire.ENABLED)
-				Tripwire.trip(getClass(), "{0} calling PrimitiveIterator.OfInt.nextInt()");
+				Tripwire.trip(getClass(),
+						"{0} calling PrimitiveIterator.OfInt.nextInt()");
 			return nextInt();
 		}
 
@@ -174,14 +156,15 @@ public interface PrimitiveIterator<T, T_CONS> extends Iterator<T> {
 	 * 
 	 * @since 1.8
 	 */
-	public static interface OfLong extends PrimitiveIterator<Long, LongConsumer> {
+	public static interface OfLong extends
+			PrimitiveIterator<Long, LongConsumer> {
 
 		/**
 		 * Returns the next {@code long} element in the iteration.
 		 *
 		 * @return the next {@code long} element in the iteration
 		 * @throws NoSuchElementException
-		 *             if the iteration has no more elements
+		 *                                if the iteration has no more elements
 		 */
 		long nextLong();
 
@@ -203,9 +186,9 @@ public interface PrimitiveIterator<T, T_CONS> extends Iterator<T> {
 		 *           </pre>
 		 *
 		 * @param action
-		 *            The action to be performed for each element
+		 *               The action to be performed for each element
 		 * @throws NullPointerException
-		 *             if the specified action is null
+		 *                              if the specified action is null
 		 */
 		default void forEachRemaining(LongConsumer action) {
 			Objects.requireNonNull(action);
@@ -222,7 +205,8 @@ public interface PrimitiveIterator<T, T_CONS> extends Iterator<T> {
 		@Override
 		default Long next() {
 			if (Tripwire.ENABLED)
-				Tripwire.trip(getClass(), "{0} calling PrimitiveIterator.OfLong.nextLong()");
+				Tripwire.trip(getClass(),
+						"{0} calling PrimitiveIterator.OfLong.nextLong()");
 			return nextLong();
 		}
 
@@ -256,14 +240,15 @@ public interface PrimitiveIterator<T, T_CONS> extends Iterator<T> {
 	 * 
 	 * @since 1.8
 	 */
-	public static interface OfDouble extends PrimitiveIterator<Double, DoubleConsumer> {
+	public static interface OfDouble extends
+			PrimitiveIterator<Double, DoubleConsumer> {
 
 		/**
 		 * Returns the next {@code double} element in the iteration.
 		 *
 		 * @return the next {@code double} element in the iteration
 		 * @throws NoSuchElementException
-		 *             if the iteration has no more elements
+		 *                                if the iteration has no more elements
 		 */
 		double nextDouble();
 
@@ -285,9 +270,9 @@ public interface PrimitiveIterator<T, T_CONS> extends Iterator<T> {
 		 *           </pre>
 		 *
 		 * @param action
-		 *            The action to be performed for each element
+		 *               The action to be performed for each element
 		 * @throws NullPointerException
-		 *             if the specified action is null
+		 *                              if the specified action is null
 		 */
 		default void forEachRemaining(DoubleConsumer action) {
 			Objects.requireNonNull(action);
@@ -304,7 +289,8 @@ public interface PrimitiveIterator<T, T_CONS> extends Iterator<T> {
 		@Override
 		default Double next() {
 			if (Tripwire.ENABLED)
-				Tripwire.trip(getClass(), "{0} calling PrimitiveIterator.OfDouble.nextLong()");
+				Tripwire.trip(getClass(),
+						"{0} calling PrimitiveIterator.OfDouble.nextLong()");
 			return nextDouble();
 		}
 

@@ -7,13 +7,10 @@
 /*
  * Copyright 2001-2004 The Apache Software Foundation or its licensors,
  * as applicable.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -145,8 +142,8 @@ public class CatalogManager {
 
 	/** Flag to ignore missing property files and/or properties */
 	private boolean ignoreMissingProperties = (SecuritySupport
-			.getSystemProperty(pIgnoreMissing) != null
-			|| SecuritySupport.getSystemProperty(pFiles) != null);
+			.getSystemProperty(pIgnoreMissing) != null || SecuritySupport
+					.getSystemProperty(pFiles) != null);
 
 	/** Holds the resources after they are loaded from the file. */
 	private ResourceBundle resources;
@@ -256,8 +253,10 @@ public class CatalogManager {
 	 */
 	private synchronized void readProperties() {
 		try {
-			propertyFileURI = CatalogManager.class.getResource("/" + propertyFile);
-			InputStream in = CatalogManager.class.getResourceAsStream("/" + propertyFile);
+			propertyFileURI = CatalogManager.class.getResource("/"
+					+ propertyFile);
+			InputStream in = CatalogManager.class.getResourceAsStream("/"
+					+ propertyFile);
 			if (in == null) {
 				if (!ignoreMissingProperties) {
 					System.err.println("Cannot find " + propertyFile);
@@ -426,8 +425,8 @@ public class CatalogManager {
 
 		try {
 			String allow = resources.getString("relative-catalogs");
-			return (allow.equalsIgnoreCase("true") || allow.equalsIgnoreCase("yes")
-					|| allow.equalsIgnoreCase("1"));
+			return (allow.equalsIgnoreCase("true") || allow.equalsIgnoreCase(
+					"yes") || allow.equalsIgnoreCase("1"));
 		} catch (MissingResourceException e) {
 			return defaultRelativeCatalogs;
 		}
@@ -657,8 +656,9 @@ public class CatalogManager {
 			return defaultUseStaticCatalog;
 		}
 
-		return (staticCatalog.equalsIgnoreCase("true") || staticCatalog.equalsIgnoreCase("yes")
-				|| staticCatalog.equalsIgnoreCase("1"));
+		return (staticCatalog.equalsIgnoreCase("true") || staticCatalog
+				.equalsIgnoreCase("yes") || staticCatalog.equalsIgnoreCase(
+						"1"));
 	}
 
 	/**
@@ -710,9 +710,11 @@ public class CatalogManager {
 					catalog = new Catalog();
 				} else {
 					try {
-						catalog = (Catalog) ReflectUtil.forName(catalogClassName).newInstance();
+						catalog = (Catalog) ReflectUtil.forName(
+								catalogClassName).newInstance();
 					} catch (ClassNotFoundException cnfe) {
-						debug.message(1, "Catalog class named '" + catalogClassName
+						debug.message(1, "Catalog class named '"
+								+ catalogClassName
 								+ "' could not be found. Using default.");
 						catalog = new Catalog();
 					} catch (ClassCastException cnfe) {

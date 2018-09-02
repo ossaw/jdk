@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.security.auth;
@@ -52,11 +32,12 @@ public class NTSidGroupPrincipal extends NTSid {
 	 * <p>
 	 *
 	 * @param name
-	 *            the Windows NT group SID for this user.
-	 *            <p>
+	 *             the Windows NT group SID for this user.
+	 *             <p>
 	 *
 	 * @exception NullPointerException
-	 *                if the <code>name</code> is <code>null</code>.
+	 *                                 if the <code>name</code> is
+	 *                                 <code>null</code>.
 	 */
 	public NTSidGroupPrincipal(String name) {
 		super(name);
@@ -70,8 +51,10 @@ public class NTSidGroupPrincipal extends NTSid {
 	 * @return a string representation of this <code>NTSidGroupPrincipal</code>.
 	 */
 	public String toString() {
-		java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
-				.getString("NTSidGroupPrincipal.name", "sun.security.util.AuthResources"));
+		java.text.MessageFormat form = new java.text.MessageFormat(
+				sun.security.util.ResourcesMgr.getString(
+						"NTSidGroupPrincipal.name",
+						"sun.security.util.AuthResources"));
 		Object[] source = { getName() };
 		return form.format(source);
 	}
@@ -85,8 +68,8 @@ public class NTSidGroupPrincipal extends NTSid {
 	 * <p>
 	 *
 	 * @param o
-	 *            Object to be compared for equality with this
-	 *            <code>NTSidGroupPrincipal</code>.
+	 *          Object to be compared for equality with this
+	 *          <code>NTSidGroupPrincipal</code>.
 	 *
 	 * @return true if the specified Object is equal equal to this
 	 *         <code>NTSidGroupPrincipal</code>.

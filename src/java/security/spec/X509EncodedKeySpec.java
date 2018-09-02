@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.spec;
@@ -55,11 +35,13 @@ public class X509EncodedKeySpec extends EncodedKeySpec {
 	 * Creates a new X509EncodedKeySpec with the given encoded key.
 	 *
 	 * @param encodedKey
-	 *            the key, which is assumed to be encoded according to the X.509
-	 *            standard. The contents of the array are copied to protect
-	 *            against subsequent modification.
+	 *                   the key, which is assumed to be encoded according to
+	 *                   the X.509
+	 *                   standard. The contents of the array are copied to
+	 *                   protect
+	 *                   against subsequent modification.
 	 * @exception NullPointerException
-	 *                if {@code encodedKey} is null.
+	 *                                 if {@code encodedKey} is null.
 	 */
 	public X509EncodedKeySpec(byte[] encodedKey) {
 		super(encodedKey);

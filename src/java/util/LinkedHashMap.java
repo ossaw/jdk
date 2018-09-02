@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -161,9 +141,9 @@ import java.io.IOException;
  *           are created from the iterators of the corresponding collections.
  *
  * @param <K>
- *            the type of keys maintained by this map
+ *        the type of keys maintained by this map
  * @param <V>
- *            the type of mapped values
+ *        the type of mapped values
  *
  * @author Josh Bloch
  * @see Object#hashCode()
@@ -187,7 +167,6 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 	 * relied on a symbol resolution corner case rule in calls to
 	 * removeEldestEntry that suppressed compilation errors due to ambiguous
 	 * usages. So, we keep the name to preserve unmodified compilability.
-	 *
 	 * The changes in node classes also require using two fields (head, tail)
 	 * rather than a pointer to a header node to maintain the doubly-linked
 	 * before/after list. This class also previously used a different style of
@@ -240,7 +219,8 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 	}
 
 	// apply src's links to dst
-	private void transferLinks(LinkedHashMap.Entry<K, V> src, LinkedHashMap.Entry<K, V> dst) {
+	private void transferLinks(LinkedHashMap.Entry<K, V> src,
+			LinkedHashMap.Entry<K, V> dst) {
 		LinkedHashMap.Entry<K, V> b = dst.before = src.before;
 		LinkedHashMap.Entry<K, V> a = dst.after = src.after;
 		if (b == null)
@@ -261,14 +241,16 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 	}
 
 	Node<K, V> newNode(int hash, K key, V value, Node<K, V> e) {
-		LinkedHashMap.Entry<K, V> p = new LinkedHashMap.Entry<K, V>(hash, key, value, e);
+		LinkedHashMap.Entry<K, V> p = new LinkedHashMap.Entry<K, V>(hash, key,
+				value, e);
 		linkNodeLast(p);
 		return p;
 	}
 
 	Node<K, V> replacementNode(Node<K, V> p, Node<K, V> next) {
 		LinkedHashMap.Entry<K, V> q = (LinkedHashMap.Entry<K, V>) p;
-		LinkedHashMap.Entry<K, V> t = new LinkedHashMap.Entry<K, V>(q.hash, q.key, q.value, next);
+		LinkedHashMap.Entry<K, V> t = new LinkedHashMap.Entry<K, V>(q.hash,
+				q.key, q.value, next);
 		transferLinks(q, t);
 		return t;
 	}
@@ -287,7 +269,8 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 	}
 
 	void afterNodeRemoval(Node<K, V> e) { // unlink
-		LinkedHashMap.Entry<K, V> p = (LinkedHashMap.Entry<K, V>) e, b = p.before, a = p.after;
+		LinkedHashMap.Entry<K, V> p = (LinkedHashMap.Entry<K, V>) e,
+				b = p.before, a = p.after;
 		p.before = p.after = null;
 		if (b == null)
 			head = a;
@@ -310,7 +293,8 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 	void afterNodeAccess(Node<K, V> e) { // move node to last
 		LinkedHashMap.Entry<K, V> last;
 		if (accessOrder && (last = tail) != e) {
-			LinkedHashMap.Entry<K, V> p = (LinkedHashMap.Entry<K, V>) e, b = p.before, a = p.after;
+			LinkedHashMap.Entry<K, V> p = (LinkedHashMap.Entry<K, V>) e,
+					b = p.before, a = p.after;
 			p.after = null;
 			if (b == null)
 				head = a;
@@ -343,12 +327,13 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 	 * with the specified initial capacity and load factor.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity
+	 *                        the initial capacity
 	 * @param loadFactor
-	 *            the load factor
+	 *                        the load factor
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is negative or the load factor is
-	 *             nonpositive
+	 *                                  if the initial capacity is negative or
+	 *                                  the load factor is
+	 *                                  nonpositive
 	 */
 	public LinkedHashMap(int initialCapacity, float loadFactor) {
 		super(initialCapacity, loadFactor);
@@ -360,9 +345,9 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 	 * with the specified initial capacity and a default load factor (0.75).
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity
+	 *                        the initial capacity
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is negative
+	 *                                  if the initial capacity is negative
 	 */
 	public LinkedHashMap(int initialCapacity) {
 		super(initialCapacity);
@@ -385,9 +370,9 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 	 * sufficient to hold the mappings in the specified map.
 	 *
 	 * @param m
-	 *            the map whose mappings are to be placed in this map
+	 *          the map whose mappings are to be placed in this map
 	 * @throws NullPointerException
-	 *             if the specified map is null
+	 *                              if the specified map is null
 	 */
 	public LinkedHashMap(Map<? extends K, ? extends V> m) {
 		super();
@@ -400,17 +385,20 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 	 * initial capacity, load factor and ordering mode.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity
+	 *                        the initial capacity
 	 * @param loadFactor
-	 *            the load factor
+	 *                        the load factor
 	 * @param accessOrder
-	 *            the ordering mode - <tt>true</tt> for access-order,
-	 *            <tt>false</tt> for insertion-order
+	 *                        the ordering mode - <tt>true</tt> for
+	 *                        access-order,
+	 *                        <tt>false</tt> for insertion-order
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is negative or the load factor is
-	 *             nonpositive
+	 *                                  if the initial capacity is negative or
+	 *                                  the load factor is
+	 *                                  nonpositive
 	 */
-	public LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder) {
+	public LinkedHashMap(int initialCapacity, float loadFactor,
+			boolean accessOrder) {
 		super(initialCapacity, loadFactor);
 		this.accessOrder = accessOrder;
 	}
@@ -420,7 +408,7 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 	 * value.
 	 *
 	 * @param value
-	 *            value whose presence in this map is to be tested
+	 *              value whose presence in this map is to be tested
 	 * @return <tt>true</tt> if this map maps one or more keys to the specified
 	 *         value
 	 */
@@ -513,14 +501,19 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 	 * like a normal map - the eldest element is never removed).
 	 *
 	 * @param eldest
-	 *            The least recently inserted entry in the map, or if this is an
-	 *            access-ordered map, the least recently accessed entry. This is
-	 *            the entry that will be removed it this method returns
-	 *            <tt>true</tt>. If the map was empty prior to the <tt>put</tt>
-	 *            or <tt>putAll</tt> invocation resulting in this invocation,
-	 *            this will be the entry that was just inserted; in other words,
-	 *            if the map contains a single entry, the eldest entry is also
-	 *            the newest.
+	 *               The least recently inserted entry in the map, or if this is
+	 *               an
+	 *               access-ordered map, the least recently accessed entry. This
+	 *               is
+	 *               the entry that will be removed it this method returns
+	 *               <tt>true</tt>. If the map was empty prior to the
+	 *               <tt>put</tt>
+	 *               or <tt>putAll</tt> invocation resulting in this invocation,
+	 *               this will be the entry that was just inserted; in other
+	 *               words,
+	 *               if the map contains a single entry, the eldest entry is
+	 *               also
+	 *               the newest.
 	 * @return <tt>true</tt> if the eldest entry should be removed from the map;
 	 *         <tt>false</tt> if it should be retained.
 	 */
@@ -574,8 +567,8 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 		}
 
 		public final Spliterator<K> spliterator() {
-			return Spliterators.spliterator(this,
-					Spliterator.SIZED | Spliterator.ORDERED | Spliterator.DISTINCT);
+			return Spliterators.spliterator(this, Spliterator.SIZED
+					| Spliterator.ORDERED | Spliterator.DISTINCT);
 		}
 
 		public final void forEach(Consumer<? super K> action) {
@@ -632,7 +625,8 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 		}
 
 		public final Spliterator<V> spliterator() {
-			return Spliterators.spliterator(this, Spliterator.SIZED | Spliterator.ORDERED);
+			return Spliterators.spliterator(this, Spliterator.SIZED
+					| Spliterator.ORDERED);
 		}
 
 		public final void forEach(Consumer<? super V> action) {
@@ -700,8 +694,8 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 		}
 
 		public final Spliterator<Map.Entry<K, V>> spliterator() {
-			return Spliterators.spliterator(this,
-					Spliterator.SIZED | Spliterator.ORDERED | Spliterator.DISTINCT);
+			return Spliterators.spliterator(this, Spliterator.SIZED
+					| Spliterator.ORDERED | Spliterator.DISTINCT);
 		}
 
 		public final void forEach(Consumer<? super Map.Entry<K, V>> action) {
@@ -727,7 +721,8 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 			throw new ConcurrentModificationException();
 	}
 
-	public void replaceAll(BiFunction<? super K, ? super V, ? extends V> function) {
+	public void replaceAll(
+			BiFunction<? super K, ? super V, ? extends V> function) {
 		if (function == null)
 			throw new NullPointerException();
 		int mc = modCount;
@@ -778,20 +773,22 @@ public class LinkedHashMap<K, V> extends HashMap<K, V> implements Map<K, V> {
 		}
 	}
 
-	final class LinkedKeyIterator extends LinkedHashIterator implements Iterator<K> {
+	final class LinkedKeyIterator extends LinkedHashIterator implements
+			Iterator<K> {
 		public final K next() {
 			return nextNode().getKey();
 		}
 	}
 
-	final class LinkedValueIterator extends LinkedHashIterator implements Iterator<V> {
+	final class LinkedValueIterator extends LinkedHashIterator implements
+			Iterator<V> {
 		public final V next() {
 			return nextNode().value;
 		}
 	}
 
-	final class LinkedEntryIterator extends LinkedHashIterator
-			implements Iterator<Map.Entry<K, V>> {
+	final class LinkedEntryIterator extends LinkedHashIterator implements
+			Iterator<Map.Entry<K, V>> {
 		public final Map.Entry<K, V> next() {
 			return nextNode();
 		}

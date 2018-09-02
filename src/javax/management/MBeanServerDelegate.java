@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -36,7 +16,8 @@ import com.sun.jmx.mbeanserver.Util;
  *
  * @since 1.5
  */
-public class MBeanServerDelegate implements MBeanServerDelegateMBean, NotificationEmitter {
+public class MBeanServerDelegate implements MBeanServerDelegateMBean,
+		NotificationEmitter {
 
 	/** The MBean server agent identification. */
 	private String mbeanServerId;
@@ -53,10 +34,12 @@ public class MBeanServerDelegate implements MBeanServerDelegateMBean, Notificati
 	private static final MBeanNotificationInfo[] notifsInfo;
 
 	static {
-		final String[] types = { MBeanServerNotification.UNREGISTRATION_NOTIFICATION,
+		final String[] types = {
+				MBeanServerNotification.UNREGISTRATION_NOTIFICATION,
 				MBeanServerNotification.REGISTRATION_NOTIFICATION };
 		notifsInfo = new MBeanNotificationInfo[1];
-		notifsInfo[0] = new MBeanNotificationInfo(types, "javax.management.MBeanServerNotification",
+		notifsInfo[0] = new MBeanNotificationInfo(types,
+				"javax.management.MBeanServerNotification",
 				"Notifications sent by the MBeanServerDelegate MBean");
 	}
 
@@ -158,22 +141,24 @@ public class MBeanServerDelegate implements MBeanServerDelegateMBean, Notificati
 
 	// From NotificationEmitter extends NotificationBroacaster
 	//
-	public synchronized void addNotificationListener(NotificationListener listener,
-			NotificationFilter filter, Object handback) throws IllegalArgumentException {
+	public synchronized void addNotificationListener(
+			NotificationListener listener, NotificationFilter filter,
+			Object handback) throws IllegalArgumentException {
 		broadcaster.addNotificationListener(listener, filter, handback);
 	}
 
 	// From NotificationEmitter extends NotificationBroacaster
 	//
-	public synchronized void removeNotificationListener(NotificationListener listener,
-			NotificationFilter filter, Object handback) throws ListenerNotFoundException {
+	public synchronized void removeNotificationListener(
+			NotificationListener listener, NotificationFilter filter,
+			Object handback) throws ListenerNotFoundException {
 		broadcaster.removeNotificationListener(listener, filter, handback);
 	}
 
 	// From NotificationEmitter extends NotificationBroacaster
 	//
-	public synchronized void removeNotificationListener(NotificationListener listener)
-			throws ListenerNotFoundException {
+	public synchronized void removeNotificationListener(
+			NotificationListener listener) throws ListenerNotFoundException {
 		broadcaster.removeNotificationListener(listener);
 	}
 
@@ -183,7 +168,7 @@ public class MBeanServerDelegate implements MBeanServerDelegateMBean, Notificati
 	 * replace it with the delegate's own sequence number.
 	 * 
 	 * @param notification
-	 *            The notification to send.
+	 *                     The notification to send.
 	 *
 	 */
 	public void sendNotification(Notification notification) {
@@ -200,8 +185,8 @@ public class MBeanServerDelegate implements MBeanServerDelegateMBean, Notificati
 	 *
 	 * @since 1.6
 	 */
-	public static final ObjectName DELEGATE_NAME = Util
-			.newObjectName("JMImplementation:type=MBeanServerDelegate");
+	public static final ObjectName DELEGATE_NAME = Util.newObjectName(
+			"JMImplementation:type=MBeanServerDelegate");
 
 	/*
 	 * Return a timestamp that is monotonically increasing even if

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.java.swing.plaf.motif;
 
@@ -72,7 +52,7 @@ public class MotifTextUI {
 		 * re-rendered, as well as providing the superclass behavior.
 		 *
 		 * @param e
-		 *            the focus event
+		 *          the focus event
 		 * @see FocusListener#focusGained
 		 */
 		public void focusGained(FocusEvent e) {
@@ -85,7 +65,7 @@ public class MotifTextUI {
 		 * implemented to set the caret to visibility to false.
 		 *
 		 * @param e
-		 *            the focus event
+		 *          the focus event
 		 * @see FocusListener#focusLost
 		 */
 		public void focusLost(FocusEvent e) {
@@ -99,7 +79,7 @@ public class MotifTextUI {
 		 * reimplemented.
 		 *
 		 * @param r
-		 *            the current location of the caret, does nothing if null
+		 *          the current location of the caret, does nothing if null
 		 * @see #paint
 		 */
 		protected void damage(Rectangle r) {
@@ -120,14 +100,15 @@ public class MotifTextUI {
 		 * focus, else from getDisabledTextColor().
 		 *
 		 * @param g
-		 *            the graphics context
+		 *          the graphics context
 		 * @see #damage
 		 */
 		public void paint(Graphics g) {
 			if (isVisible()) {
 				try {
 					JTextComponent c = getComponent();
-					Color fg = c.hasFocus() ? c.getCaretColor() : c.getDisabledTextColor();
+					Color fg = c.hasFocus() ? c.getCaretColor()
+							: c.getDisabledTextColor();
 					TextUI mapper = c.getUI();
 					int dot = getDot();
 					Rectangle r = mapper.modelToView(c, dot);
@@ -153,20 +134,20 @@ public class MotifTextUI {
 	 * Default bindings all keymaps implementing the Motif feel.
 	 */
 	static final JTextComponent.KeyBinding[] defaultBindings = {
-			new JTextComponent.KeyBinding(
-					KeyStroke.getKeyStroke(KeyEvent.VK_INSERT, InputEvent.CTRL_MASK),
-					DefaultEditorKit.copyAction),
-			new JTextComponent.KeyBinding(
-					KeyStroke.getKeyStroke(KeyEvent.VK_INSERT, InputEvent.SHIFT_MASK),
-					DefaultEditorKit.pasteAction),
-			new JTextComponent.KeyBinding(
-					KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, InputEvent.SHIFT_MASK),
-					DefaultEditorKit.cutAction),
-			new JTextComponent.KeyBinding(
-					KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, InputEvent.SHIFT_MASK),
-					DefaultEditorKit.selectionBackwardAction),
-			new JTextComponent.KeyBinding(
-					KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, InputEvent.SHIFT_MASK),
+			new JTextComponent.KeyBinding(KeyStroke.getKeyStroke(
+					KeyEvent.VK_INSERT, InputEvent.CTRL_MASK),
+					DefaultEditorKit.copyAction), new JTextComponent.KeyBinding(
+							KeyStroke.getKeyStroke(KeyEvent.VK_INSERT,
+									InputEvent.SHIFT_MASK),
+							DefaultEditorKit.pasteAction),
+			new JTextComponent.KeyBinding(KeyStroke.getKeyStroke(
+					KeyEvent.VK_DELETE, InputEvent.SHIFT_MASK),
+					DefaultEditorKit.cutAction), new JTextComponent.KeyBinding(
+							KeyStroke.getKeyStroke(KeyEvent.VK_LEFT,
+									InputEvent.SHIFT_MASK),
+							DefaultEditorKit.selectionBackwardAction),
+			new JTextComponent.KeyBinding(KeyStroke.getKeyStroke(
+					KeyEvent.VK_RIGHT, InputEvent.SHIFT_MASK),
 					DefaultEditorKit.selectionForwardAction), };
 
 }

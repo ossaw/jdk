@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -51,7 +31,7 @@ public class InputMismatchException extends NoSuchElementException {
 	 * <tt>getMessage</tt> method.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public InputMismatchException(String s) {
 		super(s);

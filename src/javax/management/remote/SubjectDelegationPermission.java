@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.remote;
@@ -71,12 +51,13 @@ public final class SubjectDelegationPermission extends BasicPermission {
 	 * name is the symbolic name of the SubjectDelegationPermission.
 	 *
 	 * @param name
-	 *            the name of the SubjectDelegationPermission
+	 *             the name of the SubjectDelegationPermission
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                  if <code>name</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>name</code> is empty.
+	 *                                  if <code>name</code> is empty.
 	 */
 	public SubjectDelegationPermission(String name) {
 		super(name);
@@ -88,15 +69,17 @@ public final class SubjectDelegationPermission extends BasicPermission {
 	 * actions String is currently unused and must be null.
 	 *
 	 * @param name
-	 *            the name of the SubjectDelegationPermission
+	 *                the name of the SubjectDelegationPermission
 	 * @param actions
-	 *            must be null.
+	 *                must be null.
 	 *
 	 * @throws NullPointerException
-	 *             if <code>name</code> is <code>null</code>.
+	 *                                  if <code>name</code> is
+	 *                                  <code>null</code>.
 	 * @throws IllegalArgumentException
-	 *             if <code>name</code> is empty or <code>actions</code> is not
-	 *             null.
+	 *                                  if <code>name</code> is empty or
+	 *                                  <code>actions</code> is not
+	 *                                  null.
 	 */
 	public SubjectDelegationPermission(String name, String actions) {
 		super(name, actions);

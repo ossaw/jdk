@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -52,8 +32,7 @@ class QualifiedAttributeValueExp extends AttributeValueExp {
 	 * @deprecated see {@link AttributeValueExp#AttributeValueExp()}
 	 */
 	@Deprecated
-	public QualifiedAttributeValueExp() {
-	}
+	public QualifiedAttributeValueExp() {}
 
 	/**
 	 * Creates a new QualifiedAttributeValueExp representing the specified
@@ -75,8 +54,8 @@ class QualifiedAttributeValueExp extends AttributeValueExp {
 	 * Applies the QualifiedAttributeValueExp to an MBean.
 	 *
 	 * @param name
-	 *            The name of the MBean on which the QualifiedAttributeValueExp
-	 *            will be applied.
+	 *             The name of the MBean on which the QualifiedAttributeValueExp
+	 *             will be applied.
 	 *
 	 * @return The ValueExp.
 	 *
@@ -86,9 +65,9 @@ class QualifiedAttributeValueExp extends AttributeValueExp {
 	 * @exception InvalidApplicationException
 	 */
 	@Override
-	public ValueExp apply(ObjectName name)
-			throws BadStringOperationException, BadBinaryOpValueExpException,
-			BadAttributeValueExpException, InvalidApplicationException {
+	public ValueExp apply(ObjectName name) throws BadStringOperationException,
+			BadBinaryOpValueExpException, BadAttributeValueExpException,
+			InvalidApplicationException {
 		try {
 			MBeanServer server = QueryEval.getMBeanServer();
 			String v = server.getObjectInstance(name).getClassName();
@@ -96,8 +75,8 @@ class QualifiedAttributeValueExp extends AttributeValueExp {
 			if (v.equals(className)) {
 				return super.apply(name);
 			}
-			throw new InvalidApplicationException(
-					"Class name is " + v + ", should be " + className);
+			throw new InvalidApplicationException("Class name is " + v
+					+ ", should be " + className);
 
 		} catch (Exception e) {
 			throw new InvalidApplicationException("Qualified attribute: " + e);

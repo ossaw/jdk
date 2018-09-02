@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.extension;
@@ -90,14 +70,14 @@ public class ServantCachingPolicy extends LocalObject implements Policy {
 
 	public String typeToName() {
 		switch (type) {
-		case FULL_SEMANTICS:
-			return "FULL";
-		case INFO_ONLY_SEMANTICS:
-			return "INFO_ONLY";
-		case MINIMAL_SEMANTICS:
-			return "MINIMAL";
-		default:
-			return "UNKNOWN(" + type + ")";
+			case FULL_SEMANTICS:
+				return "FULL";
+			case INFO_ONLY_SEMANTICS:
+				return "INFO_ONLY";
+			case MINIMAL_SEMANTICS:
+				return "MINIMAL";
+			default:
+				return "UNKNOWN(" + type + ")";
 		}
 	}
 

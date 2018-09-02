@@ -1,47 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * Copyright (c) 2011-2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -118,16 +92,15 @@ final class Ser implements Externalizable {
 	/**
 	 * Constructor for deserialization.
 	 */
-	public Ser() {
-	}
+	public Ser() {}
 
 	/**
 	 * Creates an instance for serialization.
 	 *
 	 * @param type
-	 *            the type
+	 *               the type
 	 * @param object
-	 *            the object
+	 *               the object
 	 */
 	Ser(byte type, Object object) {
 		this.type = type;
@@ -189,39 +162,39 @@ final class Ser implements Externalizable {
 		writeInternal(type, object, out);
 	}
 
-	private static void writeInternal(byte type, Object object, ObjectOutput out)
-			throws IOException {
+	private static void writeInternal(byte type, Object object,
+			ObjectOutput out) throws IOException {
 		out.writeByte(type);
 		switch (type) {
-		case CHRONO_TYPE:
-			((AbstractChronology) object).writeExternal(out);
-			break;
-		case CHRONO_LOCAL_DATE_TIME_TYPE:
-			((ChronoLocalDateTimeImpl<?>) object).writeExternal(out);
-			break;
-		case CHRONO_ZONE_DATE_TIME_TYPE:
-			((ChronoZonedDateTimeImpl<?>) object).writeExternal(out);
-			break;
-		case JAPANESE_DATE_TYPE:
-			((JapaneseDate) object).writeExternal(out);
-			break;
-		case JAPANESE_ERA_TYPE:
-			((JapaneseEra) object).writeExternal(out);
-			break;
-		case HIJRAH_DATE_TYPE:
-			((HijrahDate) object).writeExternal(out);
-			break;
-		case MINGUO_DATE_TYPE:
-			((MinguoDate) object).writeExternal(out);
-			break;
-		case THAIBUDDHIST_DATE_TYPE:
-			((ThaiBuddhistDate) object).writeExternal(out);
-			break;
-		case CHRONO_PERIOD_TYPE:
-			((ChronoPeriodImpl) object).writeExternal(out);
-			break;
-		default:
-			throw new InvalidClassException("Unknown serialized type");
+			case CHRONO_TYPE:
+				((AbstractChronology) object).writeExternal(out);
+				break;
+			case CHRONO_LOCAL_DATE_TIME_TYPE:
+				((ChronoLocalDateTimeImpl<?>) object).writeExternal(out);
+				break;
+			case CHRONO_ZONE_DATE_TIME_TYPE:
+				((ChronoZonedDateTimeImpl<?>) object).writeExternal(out);
+				break;
+			case JAPANESE_DATE_TYPE:
+				((JapaneseDate) object).writeExternal(out);
+				break;
+			case JAPANESE_ERA_TYPE:
+				((JapaneseEra) object).writeExternal(out);
+				break;
+			case HIJRAH_DATE_TYPE:
+				((HijrahDate) object).writeExternal(out);
+				break;
+			case MINGUO_DATE_TYPE:
+				((MinguoDate) object).writeExternal(out);
+				break;
+			case THAIBUDDHIST_DATE_TYPE:
+				((ThaiBuddhistDate) object).writeExternal(out);
+				break;
+			case CHRONO_PERIOD_TYPE:
+				((ChronoPeriodImpl) object).writeExternal(out);
+				break;
+			default:
+				throw new InvalidClassException("Unknown serialized type");
 		}
 	}
 
@@ -280,15 +253,17 @@ final class Ser implements Externalizable {
 	 *             </ul>
 	 *
 	 * @param in
-	 *            the data stream to read from, not null
+	 *           the data stream to read from, not null
 	 */
 	@Override
-	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+	public void readExternal(ObjectInput in) throws IOException,
+			ClassNotFoundException {
 		type = in.readByte();
 		object = readInternal(type, in);
 	}
 
-	static Object read(ObjectInput in) throws IOException, ClassNotFoundException {
+	static Object read(ObjectInput in) throws IOException,
+			ClassNotFoundException {
 		byte type = in.readByte();
 		return readInternal(type, in);
 	}
@@ -296,26 +271,26 @@ final class Ser implements Externalizable {
 	private static Object readInternal(byte type, ObjectInput in)
 			throws IOException, ClassNotFoundException {
 		switch (type) {
-		case CHRONO_TYPE:
-			return AbstractChronology.readExternal(in);
-		case CHRONO_LOCAL_DATE_TIME_TYPE:
-			return ChronoLocalDateTimeImpl.readExternal(in);
-		case CHRONO_ZONE_DATE_TIME_TYPE:
-			return ChronoZonedDateTimeImpl.readExternal(in);
-		case JAPANESE_DATE_TYPE:
-			return JapaneseDate.readExternal(in);
-		case JAPANESE_ERA_TYPE:
-			return JapaneseEra.readExternal(in);
-		case HIJRAH_DATE_TYPE:
-			return HijrahDate.readExternal(in);
-		case MINGUO_DATE_TYPE:
-			return MinguoDate.readExternal(in);
-		case THAIBUDDHIST_DATE_TYPE:
-			return ThaiBuddhistDate.readExternal(in);
-		case CHRONO_PERIOD_TYPE:
-			return ChronoPeriodImpl.readExternal(in);
-		default:
-			throw new StreamCorruptedException("Unknown serialized type");
+			case CHRONO_TYPE:
+				return AbstractChronology.readExternal(in);
+			case CHRONO_LOCAL_DATE_TIME_TYPE:
+				return ChronoLocalDateTimeImpl.readExternal(in);
+			case CHRONO_ZONE_DATE_TIME_TYPE:
+				return ChronoZonedDateTimeImpl.readExternal(in);
+			case JAPANESE_DATE_TYPE:
+				return JapaneseDate.readExternal(in);
+			case JAPANESE_ERA_TYPE:
+				return JapaneseEra.readExternal(in);
+			case HIJRAH_DATE_TYPE:
+				return HijrahDate.readExternal(in);
+			case MINGUO_DATE_TYPE:
+				return MinguoDate.readExternal(in);
+			case THAIBUDDHIST_DATE_TYPE:
+				return ThaiBuddhistDate.readExternal(in);
+			case CHRONO_PERIOD_TYPE:
+				return ChronoPeriodImpl.readExternal(in);
+			default:
+				throw new StreamCorruptedException("Unknown serialized type");
 		}
 	}
 

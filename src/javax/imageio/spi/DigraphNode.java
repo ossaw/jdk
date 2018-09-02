@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.spi;
@@ -78,7 +58,7 @@ class DigraphNode implements Cloneable, Serializable {
 	 * updated and the in-degree of the other node is incremented.
 	 *
 	 * @param node
-	 *            a <code>DigraphNode</code>.
+	 *             a <code>DigraphNode</code>.
 	 *
 	 * @return <code>true</code> if the node was not previously the target of an
 	 *         edge.
@@ -99,7 +79,7 @@ class DigraphNode implements Cloneable, Serializable {
 	 * given node.
 	 *
 	 * @param node
-	 *            a <code>DigraphNode</code>.
+	 *             a <code>DigraphNode</code>.
 	 *
 	 * @return <code>true</code> if the node is the target of an edge.
 	 */

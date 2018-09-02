@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2009, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.ws.spi;
@@ -56,16 +36,20 @@ public abstract class Invoker {
 	 * requests.
 	 *
 	 * @param webServiceContext
-	 *            a holder for MessageContext
+	 *                          a holder for MessageContext
 	 * @throws IllegalAccessException
-	 *             if the injection done by reflection API throws this exception
+	 *                                   if the injection done by reflection API
+	 *                                   throws this exception
 	 * @throws IllegalArgumentException
-	 *             if the injection done by reflection API throws this exception
+	 *                                   if the injection done by reflection API
+	 *                                   throws this exception
 	 * @throws InvocationTargetException
-	 *             if the injection done by reflection API throws this exception
+	 *                                   if the injection done by reflection API
+	 *                                   throws this exception
 	 */
 	public abstract void inject(WebServiceContext webServiceContext)
-			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException;
+			throws IllegalAccessException, IllegalArgumentException,
+			InvocationTargetException;
 
 	/**
 	 * JAX-WS runtime calls this method to do the actual web service invocation
@@ -74,23 +58,27 @@ public abstract class Invoker {
 	 * information for this invocation.
 	 *
 	 * @param m
-	 *            Method to be invoked on the service
+	 *             Method to be invoked on the service
 	 * @param args
-	 *            Method arguments
+	 *             Method arguments
 	 * @return return value of the method
 	 * @throws IllegalAccessException
-	 *             if the invocation done by reflection API throws this
-	 *             exception
+	 *                                   if the invocation done by reflection
+	 *                                   API throws this
+	 *                                   exception
 	 * @throws IllegalArgumentException
-	 *             if the invocation done by reflection API throws this
-	 *             exception
+	 *                                   if the invocation done by reflection
+	 *                                   API throws this
+	 *                                   exception
 	 * @throws InvocationTargetException
-	 *             if the invocation done by reflection API throws this
-	 *             exception
+	 *                                   if the invocation done by reflection
+	 *                                   API throws this
+	 *                                   exception
 	 * 
 	 * @see Method#invoke
 	 */
 	public abstract Object invoke(Method m, Object... args)
-			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException;
+			throws IllegalAccessException, IllegalArgumentException,
+			InvocationTargetException;
 
 }

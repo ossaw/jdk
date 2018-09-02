@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.PortableServer.ServantLocatorPackage;
@@ -35,8 +15,7 @@ package org.omg.PortableServer.ServantLocatorPackage;
 final public class CookieHolder implements org.omg.CORBA.portable.Streamable {
 	public java.lang.Object value;
 
-	public CookieHolder() {
-	}
+	public CookieHolder() {}
 
 	public CookieHolder(java.lang.Object initial) {
 		value = initial;

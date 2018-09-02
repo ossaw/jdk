@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2001-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +15,8 @@
  * limitations under the License.
  */
 /*
- * $Id: SmartTransformerFactoryImpl.java,v 1.2.4.1 2005/09/14 09:57:13 pvedula Exp $
+ * $Id: SmartTransformerFactoryImpl.java,v 1.2.4.1 2005/09/14 09:57:13 pvedula
+ * Exp $
  */
 
 package com.sun.org.apache.xalan.internal.xsltc.trax;
@@ -80,8 +78,7 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 	 * com.sun.org.apache.xalan.internal.processor.TransformerFactory to return
 	 * Transformer objects.
 	 */
-	public SmartTransformerFactoryImpl() {
-	}
+	public SmartTransformerFactoryImpl() {}
 
 	private void createXSLTCTransformerFactory() {
 		_xsltcFactory = new TransformerFactoryImpl();
@@ -95,8 +92,10 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 		// try to create instance of Xalan factory...
 		try {
 			Class xalanFactClass = ObjectFactory.findProviderClass(
-					"com.sun.org.apache.xalan.internal.processor.TransformerFactoryImpl", true);
-			_xalanFactory = (SAXTransformerFactory) xalanFactClass.newInstance();
+					"com.sun.org.apache.xalan.internal.processor.TransformerFactoryImpl",
+					true);
+			_xalanFactory = (SAXTransformerFactory) xalanFactClass
+					.newInstance();
 		} catch (ClassNotFoundException e) {
 			System.err.println(xalanMessage);
 		} catch (InstantiationException e) {
@@ -107,7 +106,8 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 		_currFactory = _xalanFactory;
 	}
 
-	public void setErrorListener(ErrorListener listener) throws IllegalArgumentException {
+	public void setErrorListener(ErrorListener listener)
+			throws IllegalArgumentException {
 		_errorlistener = listener;
 	}
 
@@ -130,7 +130,8 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 		}
 	}
 
-	public void setAttribute(String name, Object value) throws IllegalArgumentException {
+	public void setAttribute(String name, Object value)
+			throws IllegalArgumentException {
 		// GTM: NB: 'debug' should change to something more unique...
 		if ((name.equals("translet-name")) || (name.equals("debug"))) {
 			if (_xsltcFactory == null) {
@@ -168,18 +169,24 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 	 * </p>
 	 *
 	 * @param name
-	 *            Feature name.
+	 *              Feature name.
 	 * @param value
-	 *            Is feature state <code>true</code> or <code>false</code>.
+	 *              Is feature state <code>true</code> or <code>false</code>.
 	 *
 	 * @throws TransformerConfigurationException
-	 *             if this <code>TransformerFactory</code> or the
-	 *             <code>Transformer</code>s or <code>Template</code>s it
-	 *             creates cannot support this feature.
+	 *                                           if this
+	 *                                           <code>TransformerFactory</code>
+	 *                                           or the
+	 *                                           <code>Transformer</code>s or
+	 *                                           <code>Template</code>s it
+	 *                                           creates cannot support this
+	 *                                           feature.
 	 * @throws NullPointerException
-	 *             If the <code>name</code> parameter is null.
+	 *                                           If the <code>name</code>
+	 *                                           parameter is null.
 	 */
-	public void setFeature(String name, boolean value) throws TransformerConfigurationException {
+	public void setFeature(String name, boolean value)
+			throws TransformerConfigurationException {
 
 		// feature name cannot be null
 		if (name == null) {
@@ -193,7 +200,8 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 			return;
 		} else {
 			// unknown feature
-			ErrorMsg err = new ErrorMsg(ErrorMsg.JAXP_UNSUPPORTED_FEATURE, name);
+			ErrorMsg err = new ErrorMsg(ErrorMsg.JAXP_UNSUPPORTED_FEATURE,
+					name);
 			throw new TransformerConfigurationException(err.toString());
 		}
 	}
@@ -205,13 +213,14 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 	 * implemented.
 	 *
 	 * @param name
-	 *            The feature name
+	 *             The feature name
 	 * @return 'true' if feature is supported, 'false' if not
 	 */
 	public boolean getFeature(String name) {
 		// All supported features should be listed here
-		String[] features = { DOMSource.FEATURE, DOMResult.FEATURE, SAXSource.FEATURE,
-				SAXResult.FEATURE, StreamSource.FEATURE, StreamResult.FEATURE };
+		String[] features = { DOMSource.FEATURE, DOMResult.FEATURE,
+				SAXSource.FEATURE, SAXResult.FEATURE, StreamSource.FEATURE,
+				StreamResult.FEATURE };
 
 		// feature name cannot be null
 		if (name == null) {
@@ -242,12 +251,14 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 		_uriresolver = resolver;
 	}
 
-	public Source getAssociatedStylesheet(Source source, String media, String title, String charset)
+	public Source getAssociatedStylesheet(Source source, String media,
+			String title, String charset)
 			throws TransformerConfigurationException {
 		if (_currFactory == null) {
 			createXSLTCTransformerFactory();
 		}
-		return _currFactory.getAssociatedStylesheet(source, media, title, charset);
+		return _currFactory.getAssociatedStylesheet(source, media, title,
+				charset);
 	}
 
 	/**
@@ -256,7 +267,8 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 	 * 
 	 * @return A Transformer object.
 	 */
-	public Transformer newTransformer() throws TransformerConfigurationException {
+	public Transformer newTransformer()
+			throws TransformerConfigurationException {
 		if (_xalanFactory == null) {
 			createXalanTransformerFactory();
 		}
@@ -275,10 +287,11 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 	 * com.sun.org.apache.xalan.internal.processor.TransformerFactory.
 	 * 
 	 * @param source
-	 *            the stylesheet.
+	 *               the stylesheet.
 	 * @return A Transformer object.
 	 */
-	public Transformer newTransformer(Source source) throws TransformerConfigurationException {
+	public Transformer newTransformer(Source source)
+			throws TransformerConfigurationException {
 		if (_xalanFactory == null) {
 			createXalanTransformerFactory();
 		}
@@ -297,10 +310,11 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 	 * com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactory.
 	 * 
 	 * @param source
-	 *            the stylesheet.
+	 *               the stylesheet.
 	 * @return A Templates object.
 	 */
-	public Templates newTemplates(Source source) throws TransformerConfigurationException {
+	public Templates newTemplates(Source source)
+			throws TransformerConfigurationException {
 		if (_xsltcFactory == null) {
 			createXSLTCTransformerFactory();
 		}
@@ -319,7 +333,8 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 	 * into a Templates object. Uses the
 	 * com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactory.
 	 */
-	public TemplatesHandler newTemplatesHandler() throws TransformerConfigurationException {
+	public TemplatesHandler newTemplatesHandler()
+			throws TransformerConfigurationException {
 		if (_xsltcFactory == null) {
 			createXSLTCTransformerFactory();
 		}
@@ -337,7 +352,8 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 	 * events based on a copy transformer. Uses
 	 * com.sun.org.apache.xalan.internal.processor.TransformerFactory.
 	 */
-	public TransformerHandler newTransformerHandler() throws TransformerConfigurationException {
+	public TransformerHandler newTransformerHandler()
+			throws TransformerConfigurationException {
 		if (_xalanFactory == null) {
 			createXalanTransformerFactory();
 		}
@@ -393,7 +409,8 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 	 * instructions. Uses
 	 * com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactory.
 	 */
-	public XMLFilter newXMLFilter(Source src) throws TransformerConfigurationException {
+	public XMLFilter newXMLFilter(Source src)
+			throws TransformerConfigurationException {
 		if (_xsltcFactory == null) {
 			createXSLTCTransformerFactory();
 		}
@@ -414,9 +431,11 @@ public class SmartTransformerFactoryImpl extends SAXTransformerFactory {
 	 * instructions. Uses
 	 * com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactory.
 	 */
-	public XMLFilter newXMLFilter(Templates templates) throws TransformerConfigurationException {
+	public XMLFilter newXMLFilter(Templates templates)
+			throws TransformerConfigurationException {
 		try {
-			return new com.sun.org.apache.xalan.internal.xsltc.trax.TrAXFilter(templates);
+			return new com.sun.org.apache.xalan.internal.xsltc.trax.TrAXFilter(
+					templates);
 		} catch (TransformerConfigurationException e1) {
 			if (_xsltcFactory == null) {
 				createXSLTCTransformerFactory();

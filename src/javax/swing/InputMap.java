@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -63,8 +43,7 @@ public class InputMap implements Serializable {
 	/**
 	 * Creates an <code>InputMap</code> with no parent and no mappings.
 	 */
-	public InputMap() {
-	}
+	public InputMap() {}
 
 	/**
 	 * Sets this <code>InputMap</code>'s parent.
@@ -223,7 +202,8 @@ public class InputMap implements Serializable {
 		ArrayTable.writeArrayTable(s, arrayTable);
 	}
 
-	private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
+	private void readObject(ObjectInputStream s) throws ClassNotFoundException,
+			IOException {
 		s.defaultReadObject();
 		for (int counter = s.readInt() - 1; counter >= 0; counter--) {
 			put((KeyStroke) s.readObject(), s.readObject());

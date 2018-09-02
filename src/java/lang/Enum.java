@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -44,7 +24,7 @@ import java.io.ObjectStreamException;
  * set} and {@linkplain java.util.EnumMap map} implementations are available.
  *
  * @param <E>
- *            The enum type subclass
+ *        The enum type subclass
  * @author Josh Bloch
  * @author Neal Gafter
  * @see Class#getEnumConstants()
@@ -52,7 +32,8 @@ import java.io.ObjectStreamException;
  * @see java.util.EnumMap
  * @since 1.5
  */
-public abstract class Enum<E extends Enum<E>> implements Comparable<E>, Serializable {
+public abstract class Enum<E extends Enum<E>> implements Comparable<E>,
+		Serializable {
 	/**
 	 * The name of this enum constant, as declared in the enum declaration. Most
 	 * programmers should use the {@link #toString} method rather than accessing
@@ -107,12 +88,15 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>, Serializ
 	 * declarations.
 	 *
 	 * @param name
-	 *            - The name of this enum constant, which is the identifier used
-	 *            to declare it.
+	 *                - The name of this enum constant, which is the identifier
+	 *                used
+	 *                to declare it.
 	 * @param ordinal
-	 *            - The ordinal of this enumeration constant (its position in
-	 *            the enum declaration, where the initial constant is assigned
-	 *            an ordinal of zero).
+	 *                - The ordinal of this enumeration constant (its position
+	 *                in
+	 *                the enum declaration, where the initial constant is
+	 *                assigned
+	 *                an ordinal of zero).
 	 */
 	protected Enum(String name, int ordinal) {
 		this.name = name;
@@ -135,7 +119,7 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>, Serializ
 	 * Returns true if the specified object is equal to this enum constant.
 	 *
 	 * @param other
-	 *            the object to be compared for equality with this object.
+	 *              the object to be compared for equality with this object.
 	 * @return true if the specified object is equal to this enum constant.
 	 */
 	public final boolean equals(Object other) {
@@ -209,43 +193,48 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>, Serializ
 	 * constant. All the constants of an enum type can be obtained by calling
 	 * the implicit {@code public static T[] values()} method of that type.
 	 *
-	 * @param <T>
-	 *            The enum type whose constant is to be returned
+	 * @param          <T>
+	 *                 The enum type whose constant is to be returned
 	 * @param enumType
-	 *            the {@code Class} object of the enum type from which to return
-	 *            a constant
+	 *                 the {@code Class} object of the enum type from which to
+	 *                 return
+	 *                 a constant
 	 * @param name
-	 *            the name of the constant to return
+	 *                 the name of the constant to return
 	 * @return the enum constant of the specified enum type with the specified
 	 *         name
 	 * @throws IllegalArgumentException
-	 *             if the specified enum type has no constant with the specified
-	 *             name, or the specified class object does not represent an
-	 *             enum type
+	 *                                  if the specified enum type has no
+	 *                                  constant with the specified
+	 *                                  name, or the specified class object does
+	 *                                  not represent an
+	 *                                  enum type
 	 * @throws NullPointerException
-	 *             if {@code enumType} or {@code name} is null
+	 *                                  if {@code enumType} or {@code name} is
+	 *                                  null
 	 * @since 1.5
 	 */
-	public static <T extends Enum<T>> T valueOf(Class<T> enumType, String name) {
+	public static <T extends Enum<T>> T valueOf(Class<T> enumType,
+			String name) {
 		T result = enumType.enumConstantDirectory().get(name);
 		if (result != null)
 			return result;
 		if (name == null)
 			throw new NullPointerException("Name is null");
-		throw new IllegalArgumentException(
-				"No enum constant " + enumType.getCanonicalName() + "." + name);
+		throw new IllegalArgumentException("No enum constant " + enumType
+				.getCanonicalName() + "." + name);
 	}
 
 	/**
 	 * enum classes cannot have finalize methods.
 	 */
-	protected final void finalize() {
-	}
+	protected final void finalize() {}
 
 	/**
 	 * prevent default deserialization
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		throw new InvalidObjectException("can't deserialize enum");
 	}
 

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.spi;
@@ -60,11 +40,11 @@ public interface ResourceBundleControlProvider {
 	 * {@code baseName} isn't handled by this provider.
 	 *
 	 * @param baseName
-	 *            the base name of the resource bundle
+	 *                 the base name of the resource bundle
 	 * @return a {@code ResourceBundle.Control} instance, or {@code null} if the
 	 *         given {@code baseName} is not applicable to this provider.
 	 * @throws NullPointerException
-	 *             if {@code baseName} is {@code null}
+	 *                              if {@code baseName} is {@code null}
 	 */
 	public ResourceBundle.Control getControl(String baseName);
 }

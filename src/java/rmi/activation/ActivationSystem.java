@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.rmi.activation;
@@ -62,16 +42,18 @@ public interface ActivationSystem extends Remote {
 	 * <p>
 	 *
 	 * @param desc
-	 *            the object's activation descriptor
+	 *             the object's activation descriptor
 	 * @return the activation id that can be used to activate the object
 	 * @exception ActivationException
-	 *                if registration fails (e.g., database update failure,
-	 *                etc).
+	 *                                  if registration fails (e.g., database
+	 *                                  update failure,
+	 *                                  etc).
 	 * @exception UnknownGroupException
-	 *                if group referred to in <code>desc</code> is not
-	 *                registered with this system
+	 *                                  if group referred to in
+	 *                                  <code>desc</code> is not
+	 *                                  registered with this system
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                  if remote call fails
 	 * @since 1.2
 	 */
 	public ActivationID registerObject(ActivationDesc desc)
@@ -83,17 +65,18 @@ public interface ActivationSystem extends Remote {
 	 * activated via the object's activation id.
 	 *
 	 * @param id
-	 *            the object's activation id (from previous registration)
+	 *           the object's activation id (from previous registration)
 	 * @exception ActivationException
-	 *                if unregister fails (e.g., database update failure, etc).
+	 *                                   if unregister fails (e.g., database
+	 *                                   update failure, etc).
 	 * @exception UnknownObjectException
-	 *                if object is unknown (not registered)
+	 *                                   if object is unknown (not registered)
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                   if remote call fails
 	 * @since 1.2
 	 */
-	public void unregisterObject(ActivationID id)
-			throws ActivationException, UnknownObjectException, RemoteException;
+	public void unregisterObject(ActivationID id) throws ActivationException,
+			UnknownObjectException, RemoteException;
 
 	/**
 	 * Register the activation group. An activation group must be registered
@@ -101,12 +84,12 @@ public interface ActivationSystem extends Remote {
 	 * within that group.
 	 *
 	 * @param desc
-	 *            the group's descriptor
+	 *             the group's descriptor
 	 * @return an identifier for the group
 	 * @exception ActivationException
-	 *                if group registration fails
+	 *                                if group registration fails
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                if remote call fails
 	 * @since 1.2
 	 */
 	public ActivationGroupID registerGroup(ActivationGroupDesc desc)
@@ -118,26 +101,31 @@ public interface ActivationSystem extends Remote {
 	 * to inform the <code>ActivationSystem</code> that the group is now active.
 	 *
 	 * @param id
-	 *            the activation group's identifier
+	 *                    the activation group's identifier
 	 * @param group
-	 *            the group's instantiator
+	 *                    the group's instantiator
 	 * @param incarnation
-	 *            the group's incarnation number
+	 *                    the group's incarnation number
 	 * @return monitor for activation group
 	 * @exception UnknownGroupException
-	 *                if group is not registered
+	 *                                  if group is not registered
 	 * @exception ActivationException
-	 *                if a group for the specified <code>id</code> is already
-	 *                active and that group is not equal to the specified
-	 *                <code>group</code> or that group has a different
-	 *                <code>incarnation</code> than the specified
-	 *                <code>group</code>
+	 *                                  if a group for the specified
+	 *                                  <code>id</code> is already
+	 *                                  active and that group is not equal to
+	 *                                  the specified
+	 *                                  <code>group</code> or that group has a
+	 *                                  different
+	 *                                  <code>incarnation</code> than the
+	 *                                  specified
+	 *                                  <code>group</code>
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                  if remote call fails
 	 * @since 1.2
 	 */
-	public ActivationMonitor activeGroup(ActivationGroupID id, ActivationInstantiator group,
-			long incarnation) throws UnknownGroupException, ActivationException, RemoteException;
+	public ActivationMonitor activeGroup(ActivationGroupID id,
+			ActivationInstantiator group, long incarnation)
+			throws UnknownGroupException, ActivationException, RemoteException;
 
 	/**
 	 * Remove the activation group. An activation group makes this call back to
@@ -147,13 +135,14 @@ public interface ActivationSystem extends Remote {
 	 * associated objects is removed from the system.
 	 *
 	 * @param id
-	 *            the activation group's identifier
+	 *           the activation group's identifier
 	 * @exception ActivationException
-	 *                if unregister fails (e.g., database update failure, etc).
+	 *                                  if unregister fails (e.g., database
+	 *                                  update failure, etc).
 	 * @exception UnknownGroupException
-	 *                if group is not registered
+	 *                                  if group is not registered
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                  if remote call fails
 	 * @since 1.2
 	 */
 	public void unregisterGroup(ActivationGroupID id)
@@ -164,7 +153,8 @@ public interface ActivationSystem extends Remote {
 	 * activation daemon and exits the activation daemon.
 	 * 
 	 * @exception RemoteException
-	 *                if failed to contact/shutdown the activation daemon
+	 *                            if failed to contact/shutdown the activation
+	 *                            daemon
 	 * @since 1.2
 	 */
 	public void shutdown() throws RemoteException;
@@ -175,25 +165,28 @@ public interface ActivationSystem extends Remote {
 	 * subsequent activation of the object.
 	 *
 	 * @param id
-	 *            the activation identifier for the activatable object
+	 *             the activation identifier for the activatable object
 	 * @param desc
-	 *            the activation descriptor for the activatable object
+	 *             the activation descriptor for the activatable object
 	 * @exception UnknownGroupException
-	 *                the group associated with <code>desc</code> is not a
-	 *                registered group
+	 *                                   the group associated with
+	 *                                   <code>desc</code> is not a
+	 *                                   registered group
 	 * @exception UnknownObjectException
-	 *                the activation <code>id</code> is not registered
+	 *                                   the activation <code>id</code> is not
+	 *                                   registered
 	 * @exception ActivationException
-	 *                for general failure (e.g., unable to update log)
+	 *                                   for general failure (e.g., unable to
+	 *                                   update log)
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                   if remote call fails
 	 * @return the previous value of the activation descriptor
 	 * @see #getActivationDesc
 	 * @since 1.2
 	 */
-	public ActivationDesc setActivationDesc(ActivationID id, ActivationDesc desc)
-			throws ActivationException, UnknownObjectException, UnknownGroupException,
-			RemoteException;
+	public ActivationDesc setActivationDesc(ActivationID id,
+			ActivationDesc desc) throws ActivationException,
+			UnknownObjectException, UnknownGroupException, RemoteException;
 
 	/**
 	 * Set the activation group descriptor, <code>desc</code> for the object
@@ -201,36 +194,38 @@ public interface ActivationSystem extends Remote {
 	 * take effect upon subsequent activation of the group.
 	 *
 	 * @param id
-	 *            the activation group identifier for the activation group
+	 *             the activation group identifier for the activation group
 	 * @param desc
-	 *            the activation group descriptor for the activation group
+	 *             the activation group descriptor for the activation group
 	 * @exception UnknownGroupException
-	 *                the group associated with <code>id</code> is not a
-	 *                registered group
+	 *                                  the group associated with
+	 *                                  <code>id</code> is not a
+	 *                                  registered group
 	 * @exception ActivationException
-	 *                for general failure (e.g., unable to update log)
+	 *                                  for general failure (e.g., unable to
+	 *                                  update log)
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                  if remote call fails
 	 * @return the previous value of the activation group descriptor
 	 * @see #getActivationGroupDesc
 	 * @since 1.2
 	 */
 	public ActivationGroupDesc setActivationGroupDesc(ActivationGroupID id,
-			ActivationGroupDesc desc)
-			throws ActivationException, UnknownGroupException, RemoteException;
+			ActivationGroupDesc desc) throws ActivationException,
+			UnknownGroupException, RemoteException;
 
 	/**
 	 * Returns the activation descriptor, for the object with the activation
 	 * identifier, <code>id</code>.
 	 *
 	 * @param id
-	 *            the activation identifier for the activatable object
+	 *           the activation identifier for the activatable object
 	 * @exception UnknownObjectException
-	 *                if <code>id</code> is not registered
+	 *                                   if <code>id</code> is not registered
 	 * @exception ActivationException
-	 *                for general failure
+	 *                                   for general failure
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                   if remote call fails
 	 * @return the activation descriptor
 	 * @see #setActivationDesc
 	 * @since 1.2
@@ -243,13 +238,13 @@ public interface ActivationSystem extends Remote {
 	 * activation group identifier, <code>id</code>.
 	 *
 	 * @param id
-	 *            the activation group identifier for the group
+	 *           the activation group identifier for the group
 	 * @exception UnknownGroupException
-	 *                if <code>id</code> is not registered
+	 *                                  if <code>id</code> is not registered
 	 * @exception ActivationException
-	 *                for general failure
+	 *                                  for general failure
 	 * @exception RemoteException
-	 *                if remote call fails
+	 *                                  if remote call fails
 	 * @return the activation group descriptor
 	 * @see #setActivationGroupDesc
 	 * @since 1.2

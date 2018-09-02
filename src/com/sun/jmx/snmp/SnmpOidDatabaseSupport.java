@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (c) 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -44,8 +43,8 @@ public class SnmpOidDatabaseSupport implements SnmpOidDatabase {
 	 * <CODE>SnmpOidTable</CODE> object.
 	 * 
 	 * @param table
-	 *            The <CODE>SnmpOidTable</CODE> object used to initialize this
-	 *            <CODE>SnmpOidDatabaseSupport</CODE>.
+	 *              The <CODE>SnmpOidTable</CODE> object used to initialize this
+	 *              <CODE>SnmpOidDatabaseSupport</CODE>.
 	 */
 	public SnmpOidDatabaseSupport(SnmpOidTable table) {
 		tables = new Vector<SnmpOidTable>();
@@ -57,7 +56,7 @@ public class SnmpOidDatabaseSupport implements SnmpOidDatabase {
 	 * <CODE>SnmpOidDatabase</CODE>.
 	 * 
 	 * @param table
-	 *            The table to add.
+	 *              The table to add.
 	 */
 	public void add(SnmpOidTable table) {
 		if (!tables.contains(table)) {
@@ -70,10 +69,11 @@ public class SnmpOidDatabaseSupport implements SnmpOidDatabase {
 	 * <CODE>SnmpOidDatabase</CODE>.
 	 * 
 	 * @param table
-	 *            The table to be removed.
+	 *              The table to be removed.
 	 * @exception SnmpStatusException
-	 *                The specified <CODE>SnmpOidTable</CODE> does not exist in
-	 *                this <CODE>SnmpOidDatabase</CODE>.
+	 *                                The specified <CODE>SnmpOidTable</CODE>
+	 *                                does not exist in
+	 *                                this <CODE>SnmpOidDatabase</CODE>.
 	 */
 	public void remove(SnmpOidTable table) throws SnmpStatusException {
 		if (!tables.contains(table)) {
@@ -88,15 +88,16 @@ public class SnmpOidDatabaseSupport implements SnmpOidDatabase {
 	 * <CODE>SnmpOidRecord</CODE> object containing information on the variable.
 	 * 
 	 * @param name
-	 *            The name of the MIB variable.
+	 *             The name of the MIB variable.
 	 * @return The <CODE>SnmpOidRecord</CODE> object containing information on
 	 *         the variable.
 	 *
 	 * @exception SnmpStatusException
-	 *                The specified name does not exist in this
-	 *                <CODE>SnmpOidDatabase</CODE>
+	 *                                The specified name does not exist in this
+	 *                                <CODE>SnmpOidDatabase</CODE>
 	 */
-	public SnmpOidRecord resolveVarName(String name) throws SnmpStatusException {
+	public SnmpOidRecord resolveVarName(String name)
+			throws SnmpStatusException {
 		for (int i = 0; i < tables.size(); i++) {
 			try {
 				return (tables.elementAt(i).resolveVarName(name));
@@ -118,8 +119,8 @@ public class SnmpOidDatabaseSupport implements SnmpOidDatabase {
 	 * @return The <CODE>SnmpOidRecord</CODE> object containing information on
 	 *         the variable.
 	 * @exception SnmpStatusException
-	 *                The specified oid does not exist in this
-	 *                <CODE>SnmpOidDatabase</CODE>.
+	 *                                The specified oid does not exist in this
+	 *                                <CODE>SnmpOidDatabase</CODE>.
 	 */
 	public SnmpOidRecord resolveVarOid(String oid) throws SnmpStatusException {
 		for (int i = 0; i < tables.size(); i++) {
@@ -144,7 +145,8 @@ public class SnmpOidDatabaseSupport implements SnmpOidDatabase {
 	public Vector<?> getAllEntries() {
 		Vector<SnmpOidTable> res = new Vector<SnmpOidTable>();
 		for (int i = 0; i < tables.size(); i++) {
-			Vector<SnmpOidTable> tmp = cast(tables.elementAt(i).getAllEntries());
+			Vector<SnmpOidTable> tmp = cast(tables.elementAt(i)
+					.getAllEntries());
 			if (tmp != null) {
 				for (int ii = 0; ii < tmp.size(); ii++) {
 					res.addElement(tmp.elementAt(ii));

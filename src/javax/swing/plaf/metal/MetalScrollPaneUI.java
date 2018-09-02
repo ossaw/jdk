@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -132,15 +112,18 @@ public class MetalScrollPaneUI extends BasicScrollPaneUI {
 		return new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent e) {
 				String propertyName = e.getPropertyName();
-				if (propertyName.equals("verticalScrollBar")
-						|| propertyName.equals("horizontalScrollBar")) {
+				if (propertyName.equals("verticalScrollBar") || propertyName
+						.equals("horizontalScrollBar")) {
 					JScrollBar oldSB = (JScrollBar) e.getOldValue();
 					if (oldSB != null) {
-						oldSB.putClientProperty(MetalScrollBarUI.FREE_STANDING_PROP, null);
+						oldSB.putClientProperty(
+								MetalScrollBarUI.FREE_STANDING_PROP, null);
 					}
 					JScrollBar newSB = (JScrollBar) e.getNewValue();
 					if (newSB != null) {
-						newSB.putClientProperty(MetalScrollBarUI.FREE_STANDING_PROP, Boolean.FALSE);
+						newSB.putClientProperty(
+								MetalScrollBarUI.FREE_STANDING_PROP,
+								Boolean.FALSE);
 					}
 				} else if ("border".equals(propertyName)) {
 					updateScrollbarsFreeStanding();

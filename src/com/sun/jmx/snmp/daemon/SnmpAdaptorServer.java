@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2012, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.daemon;
@@ -123,8 +103,9 @@ import com.sun.jmx.snmp.tasks.ThreadService;
  * </p>
  */
 
-public class SnmpAdaptorServer extends CommunicatorServer
-		implements SnmpAdaptorServerMBean, MBeanRegistration, SnmpDefinitions, SnmpMibHandler {
+public class SnmpAdaptorServer extends CommunicatorServer implements
+		SnmpAdaptorServerMBean, MBeanRegistration, SnmpDefinitions,
+		SnmpMibHandler {
 
 	// PRIVATE VARIABLES
 	// ------------------
@@ -323,9 +304,11 @@ public class SnmpAdaptorServer extends CommunicatorServer
 			try {
 				threadNumber = Integer.parseInt(System.getProperty(s));
 			} catch (Exception e) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpAdaptorServer.class.getName(),
-						"<static init>", "Got wrong value for com.sun.jmx.snmp.threadnumber: " + s
-								+ ". Use the default value: " + threadNumber);
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpAdaptorServer.class
+						.getName(), "<static init>",
+						"Got wrong value for com.sun.jmx.snmp.threadnumber: "
+								+ s + ". Use the default value: "
+								+ threadNumber);
 			}
 		}
 	}
@@ -348,7 +331,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * <CODE>InetAddressAcl</CODE> interface.
 	 *
 	 * @param port
-	 *            The port number for sending SNMP responses.
+	 *             The port number for sending SNMP responses.
 	 */
 	public SnmpAdaptorServer(int port) {
 		this(true, null, port, null);
@@ -375,7 +358,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * <CODE>InetAddressAcl</CODE> interface.
 	 *
 	 * @param addr
-	 *            The IP address to bind.
+	 *             The IP address to bind.
 	 */
 	public SnmpAdaptorServer(InetAddress addr) {
 		this(true, null, com.sun.jmx.snmp.ServiceName.SNMP_ADAPTOR_PORT, addr);
@@ -386,10 +369,10 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * specified IP address based ACL implementation.
 	 *
 	 * @param acl
-	 *            The <CODE>InetAddressAcl</CODE> implementation.
-	 *            <code>null</code> means no ACL - everybody is authorized.
+	 *             The <CODE>InetAddressAcl</CODE> implementation.
+	 *             <code>null</code> means no ACL - everybody is authorized.
 	 * @param port
-	 *            The port number for sending SNMP responses.
+	 *             The port number for sending SNMP responses.
 	 *
 	 * @since 1.5
 	 */
@@ -404,9 +387,9 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * <CODE>InetAddressAcl</CODE> interface.
 	 *
 	 * @param port
-	 *            The port number for sending SNMP responses.
+	 *             The port number for sending SNMP responses.
 	 * @param addr
-	 *            The IP address to bind.
+	 *             The IP address to bind.
 	 */
 	public SnmpAdaptorServer(int port, InetAddress addr) {
 		this(true, null, port, addr);
@@ -417,9 +400,9 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * based ACL implementation and the specified <CODE>InetAddress</CODE>.
 	 *
 	 * @param acl
-	 *            The <CODE>InetAddressAcl</CODE> implementation.
+	 *             The <CODE>InetAddressAcl</CODE> implementation.
 	 * @param addr
-	 *            The IP address to bind.
+	 *             The IP address to bind.
 	 *
 	 * @since 1.5
 	 */
@@ -433,11 +416,11 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * <CODE>InetAddress</CODE>.
 	 *
 	 * @param acl
-	 *            The <CODE>InetAddressAcl</CODE> implementation.
+	 *             The <CODE>InetAddressAcl</CODE> implementation.
 	 * @param port
-	 *            The port number for sending SNMP responses.
+	 *             The port number for sending SNMP responses.
 	 * @param addr
-	 *            The IP address to bind.
+	 *             The IP address to bind.
 	 *
 	 * @since 1.5
 	 */
@@ -454,14 +437,15 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * support the <CODE>java.security.acl</CODE> package like pJava.
 	 *
 	 * @param useAcl
-	 *            Specifies if this new SNMP adaptor uses the ACL mechanism. If
-	 *            the specified parameter is set to <CODE>true</CODE>, this
-	 *            constructor is equivalent to
-	 *            <CODE>SnmpAdaptorServer((int)port,(InetAddress)addr)</CODE>.
+	 *               Specifies if this new SNMP adaptor uses the ACL mechanism.
+	 *               If
+	 *               the specified parameter is set to <CODE>true</CODE>, this
+	 *               constructor is equivalent to
+	 *               <CODE>SnmpAdaptorServer((int)port,(InetAddress)addr)</CODE>.
 	 * @param port
-	 *            The port number for sending SNMP responses.
+	 *               The port number for sending SNMP responses.
 	 * @param addr
-	 *            The IP address to bind.
+	 *               The IP address to bind.
 	 */
 	public SnmpAdaptorServer(boolean useAcl, int port, InetAddress addr) {
 		this(useAcl, null, port, addr);
@@ -470,7 +454,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	// If forceAcl is `true' and InetAddressAcl is null, then a default
 	// SnmpAcl object is created.
 	//
-	private SnmpAdaptorServer(boolean forceAcl, InetAddressAcl acl, int port, InetAddress addr) {
+	private SnmpAdaptorServer(boolean forceAcl, InetAddressAcl acl, int port,
+			InetAddress addr) {
 		super(CommunicatorServer.SNMP_TYPE);
 
 		// Initialize the ACL implementation.
@@ -480,7 +465,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 				acl = new SnmpAcl("SNMP protocol adaptor IP ACL");
 			} catch (UnknownHostException e) {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "constructor",
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+							"constructor",
 							"UnknowHostException when creating ACL", e);
 				}
 			}
@@ -536,14 +522,15 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * process concurrently.
 	 *
 	 * @param c
-	 *            The number of managers.
+	 *          The number of managers.
 	 *
 	 * @exception java.lang.IllegalStateException
-	 *                This method has been invoked while the communicator was
-	 *                <CODE>ONLINE</CODE> or <CODE>STARTING</CODE>.
+	 *            This method has been invoked while the communicator was
+	 *            <CODE>ONLINE</CODE> or <CODE>STARTING</CODE>.
 	 */
 	@Override
-	public void setMaxActiveClientCount(int c) throws java.lang.IllegalStateException {
+	public void setMaxActiveClientCount(int c)
+			throws java.lang.IllegalStateException {
 		super.setMaxActiveClientCount(c);
 	}
 
@@ -574,7 +561,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * Sets the port used by this SNMP protocol adaptor for sending traps.
 	 *
 	 * @param port
-	 *            The port number for sending SNMP traps.
+	 *             The port number for sending SNMP traps.
 	 */
 	@Override
 	public void setTrapPort(Integer port) {
@@ -585,12 +572,13 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * Sets the port used by this SNMP protocol adaptor for sending traps.
 	 *
 	 * @param port
-	 *            The port number for sending SNMP traps.
+	 *             The port number for sending SNMP traps.
 	 */
 	public void setTrapPort(int port) {
 		int val = port;
 		if (val < 0)
-			throw new IllegalArgumentException("Trap port cannot be a negative value");
+			throw new IllegalArgumentException(
+					"Trap port cannot be a negative value");
 		trapPort = val;
 	}
 
@@ -610,13 +598,13 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * requests.
 	 *
 	 * @param port
-	 *            The port number for sending SNMP inform requests.
+	 *             The port number for sending SNMP inform requests.
 	 */
 	@Override
 	public void setInformPort(int port) {
 		if (port < 0)
-			throw new IllegalArgumentException(
-					"Inform request port " + "cannot be a negative value");
+			throw new IllegalArgumentException("Inform request port "
+					+ "cannot be a negative value");
 		informPort = port;
 	}
 
@@ -647,16 +635,18 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * used for both incoming request and outgoing inform requests.
 	 *
 	 * @param s
-	 *            The buffer size.
+	 *          The buffer size.
 	 *
 	 * @exception java.lang.IllegalStateException
-	 *                This method has been invoked while the communicator was
-	 *                <CODE>ONLINE</CODE> or <CODE>STARTING</CODE>.
+	 *            This method has been invoked while the communicator was
+	 *            <CODE>ONLINE</CODE> or <CODE>STARTING</CODE>.
 	 */
 	@Override
-	public void setBufferSize(Integer s) throws java.lang.IllegalStateException {
+	public void setBufferSize(Integer s)
+			throws java.lang.IllegalStateException {
 		if ((state == ONLINE) || (state == STARTING)) {
-			throw new IllegalStateException("Stop server before carrying out" + " this operation");
+			throw new IllegalStateException("Stop server before carrying out"
+					+ " this operation");
 		}
 		bufferSize = s.intValue();
 	}
@@ -677,7 +667,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * before giving up.
 	 * 
 	 * @param newMaxTries
-	 *            The maximun number of tries.
+	 *                    The maximun number of tries.
 	 */
 	@Override
 	final public synchronized void setMaxTries(int newMaxTries) {
@@ -701,7 +691,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * Changes the timeout to wait for an inform response from the manager.
 	 * 
 	 * @param newTimeout
-	 *            The timeout (in milliseconds).
+	 *                   The timeout (in milliseconds).
 	 */
 	@Override
 	final public synchronized void setTimeout(int newTimeout) {
@@ -724,7 +714,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * Sets the message factory of this SNMP protocol adaptor.
 	 *
 	 * @param factory
-	 *            The factory object (null means the default factory).
+	 *                The factory object (null means the default factory).
 	 */
 	@Override
 	public void setPduFactory(SnmpPduFactory factory) {
@@ -738,7 +728,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * Set the user-data factory of this SNMP protocol adaptor.
 	 *
 	 * @param factory
-	 *            The factory object (null means no factory).
+	 *                The factory object (null means no factory).
 	 * @see com.sun.jmx.snmp.agent.SnmpUserDataFactory
 	 */
 	@Override
@@ -779,7 +769,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * authentication failure.
 	 *
 	 * @param enabled
-	 *            Flag indicating if traps need to be sent.
+	 *                Flag indicating if traps need to be sent.
 	 */
 	@Override
 	public void setAuthTrapEnabled(boolean enabled) {
@@ -809,7 +799,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * authentication failure.
 	 *
 	 * @param enabled
-	 *            Flag indicating if responses need to be sent.
+	 *                Flag indicating if responses need to be sent.
 	 */
 	@Override
 	public void setAuthRespEnabled(boolean enabled) {
@@ -834,7 +824,7 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 *            The OID in string format "x.x.x.x".
 	 *
 	 * @exception IllegalArgumentException
-	 *                The string format is incorrect
+	 *                                     The string format is incorrect
 	 */
 	@Override
 	public void setEnterpriseOid(String oid) throws IllegalArgumentException {
@@ -850,7 +840,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	public String[] getMibs() {
 		String[] result = new String[mibs.size()];
 		int i = 0;
-		for (Enumeration<SnmpMibAgent> e = mibs.elements(); e.hasMoreElements();) {
+		for (Enumeration<SnmpMibAgent> e = mibs.elements(); e
+				.hasMoreElements();) {
 			SnmpMibAgent mib = e.nextElement();
 			result[i++] = mib.getMibName();
 		}
@@ -1071,16 +1062,17 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * MBean server.
 	 *
 	 * @param server
-	 *            The MBean server to register the service with.
+	 *               The MBean server to register the service with.
 	 * @param name
-	 *            The object name.
+	 *               The object name.
 	 *
 	 * @return The name of the SNMP protocol adaptor registered.
 	 *
 	 * @exception java.lang.Exception
 	 */
 	@Override
-	public ObjectName preRegister(MBeanServer server, ObjectName name) throws java.lang.Exception {
+	public ObjectName preRegister(MBeanServer server, ObjectName name)
+			throws java.lang.Exception {
 
 		if (name == null) {
 			name = new ObjectName(server.getDefaultDomain() + ":"
@@ -1122,10 +1114,11 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * @return A reference to the SNMP MIB handler.
 	 *
 	 * @exception IllegalArgumentException
-	 *                If the parameter is null.
+	 *                                     If the parameter is null.
 	 */
 	@Override
-	public SnmpMibHandler addMib(SnmpMibAgent mib) throws IllegalArgumentException {
+	public SnmpMibHandler addMib(SnmpMibAgent mib)
+			throws IllegalArgumentException {
 		if (mib == null) {
 			throw new IllegalArgumentException();
 		}
@@ -1145,19 +1138,20 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * In this case, the OID nearer agent will be used on SNMP operations.
 	 *
 	 * @param mib
-	 *            The MIB to add.
+	 *             The MIB to add.
 	 * @param oids
-	 *            The set of OIDs this agent implements.
+	 *             The set of OIDs this agent implements.
 	 *
 	 * @return A reference to the SNMP MIB handler.
 	 *
 	 * @exception IllegalArgumentException
-	 *                If the parameter is null.
+	 *                                     If the parameter is null.
 	 *
 	 * @since 1.5
 	 */
 	@Override
-	public SnmpMibHandler addMib(SnmpMibAgent mib, SnmpOid[] oids) throws IllegalArgumentException {
+	public SnmpMibHandler addMib(SnmpMibAgent mib, SnmpOid[] oids)
+			throws IllegalArgumentException {
 		if (mib == null) {
 			throw new IllegalArgumentException();
 		}
@@ -1181,13 +1175,13 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * <CODE>addMib(SnmpMibAgent mib)</CODE>.
 	 *
 	 * @param mib
-	 *            The MIB to add.
+	 *                    The MIB to add.
 	 * @param contextName
-	 *            The MIB context name.
+	 *                    The MIB context name.
 	 * @return A reference on the SNMP MIB handler.
 	 *
 	 * @exception IllegalArgumentException
-	 *                If the parameter is null.
+	 *                                     If the parameter is null.
 	 *
 	 * @since 1.5
 	 */
@@ -1203,23 +1197,24 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * <CODE>addMib(SnmpMibAgent mib, SnmpOid[] oids)</CODE>.
 	 *
 	 * @param mib
-	 *            The MIB to add.
+	 *                    The MIB to add.
 	 * @param contextName
-	 *            The MIB context. If null is passed, will be registered in the
-	 *            default context.
+	 *                    The MIB context. If null is passed, will be registered
+	 *                    in the
+	 *                    default context.
 	 * @param oids
-	 *            The set of OIDs this agent implements.
+	 *                    The set of OIDs this agent implements.
 	 *
 	 * @return A reference to the SNMP MIB handler.
 	 *
 	 * @exception IllegalArgumentException
-	 *                If the parameter is null.
+	 *                                     If the parameter is null.
 	 *
 	 * @since 1.5
 	 */
 	@Override
-	public SnmpMibHandler addMib(SnmpMibAgent mib, String contextName, SnmpOid[] oids)
-			throws IllegalArgumentException {
+	public SnmpMibHandler addMib(SnmpMibAgent mib, String contextName,
+			SnmpOid[] oids) throws IllegalArgumentException {
 
 		return addMib(mib, oids);
 	}
@@ -1230,9 +1225,9 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * to <CODE>removeMib(SnmpMibAgent mib)</CODE>.
 	 *
 	 * @param mib
-	 *            The MIB to be removed.
+	 *                    The MIB to be removed.
 	 * @param contextName
-	 *            The context name used at registration time.
+	 *                    The context name used at registration time.
 	 *
 	 * @return <CODE>true</CODE> if the specified <CODE>mib</CODE> was a MIB
 	 *         included in the SNMP MIB handler, <CODE>false</CODE> otherwise.
@@ -1263,9 +1258,9 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * Removes the specified MIB from the SNMP protocol adaptor.
 	 *
 	 * @param mib
-	 *            The MIB to be removed.
+	 *             The MIB to be removed.
 	 * @param oids
-	 *            The oid the MIB was previously registered for.
+	 *             The oid the MIB was previously registered for.
 	 * @return <CODE>true</CODE> if the specified <CODE>mib</CODE> was a MIB
 	 *         included in the SNMP MIB handler, <CODE>false</CODE> otherwise.
 	 *
@@ -1281,18 +1276,19 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * Removes the specified MIB from the SNMP protocol adaptor.
 	 *
 	 * @param mib
-	 *            The MIB to be removed.
+	 *                    The MIB to be removed.
 	 * @param contextName
-	 *            The context name used at registration time.
+	 *                    The context name used at registration time.
 	 * @param oids
-	 *            The oid the MIB was previously registered for.
+	 *                    The oid the MIB was previously registered for.
 	 * @return <CODE>true</CODE> if the specified <CODE>mib</CODE> was a MIB
 	 *         included in the SNMP MIB handler, <CODE>false</CODE> otherwise.
 	 *
 	 * @since 1.5
 	 */
 	@Override
-	public boolean removeMib(SnmpMibAgent mib, String contextName, SnmpOid[] oids) {
+	public boolean removeMib(SnmpMibAgent mib, String contextName,
+			SnmpOid[] oids) {
 		return removeMib(mib, oids);
 	}
 
@@ -1303,7 +1299,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * Creates the datagram socket.
 	 */
 	@Override
-	protected void doBind() throws CommunicationException, InterruptedException {
+	protected void doBind() throws CommunicationException,
+			InterruptedException {
 
 		try {
 			synchronized (this) {
@@ -1342,9 +1339,11 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * Closes the datagram socket.
 	 */
 	@Override
-	protected void doUnbind() throws CommunicationException, InterruptedException {
+	protected void doUnbind() throws CommunicationException,
+			InterruptedException {
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "doUnbind", "Finally close the socket");
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "doUnbind",
+					"Finally close the socket");
 		}
 		synchronized (this) {
 			if (socket != null) {
@@ -1357,11 +1356,12 @@ public class SnmpAdaptorServer extends CommunicatorServer
 		closeInformSocketIfNeeded();
 	}
 
-	private void createSnmpRequestHandler(SnmpAdaptorServer server, int id, DatagramSocket s,
-			DatagramPacket p, SnmpMibTree tree, Vector<SnmpMibAgent> m, InetAddressAcl a,
-			SnmpPduFactory factory, SnmpUserDataFactory dataFactory, MBeanServer f, ObjectName n) {
-		final SnmpRequestHandler handler = new SnmpRequestHandler(this, id, s, p, tree, m, a,
-				factory, dataFactory, f, n);
+	private void createSnmpRequestHandler(SnmpAdaptorServer server, int id,
+			DatagramSocket s, DatagramPacket p, SnmpMibTree tree,
+			Vector<SnmpMibAgent> m, InetAddressAcl a, SnmpPduFactory factory,
+			SnmpUserDataFactory dataFactory, MBeanServer f, ObjectName n) {
+		final SnmpRequestHandler handler = new SnmpRequestHandler(this, id, s,
+				p, tree, m, a, factory, dataFactory, f, n);
 		threadService.submitTask(handler);
 	}
 
@@ -1370,7 +1370,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * which decodes and processes the request.
 	 */
 	@Override
-	protected void doReceive() throws CommunicationException, InterruptedException {
+	protected void doReceive() throws CommunicationException,
+			InterruptedException {
 
 		// Let's wait for something to be received.
 		//
@@ -1387,8 +1388,9 @@ public class SnmpAdaptorServer extends CommunicatorServer
 				return;
 			}
 
-			createSnmpRequestHandler(this, servedClientCount, socket, packet, root, mibs, ipacl,
-					pduFactory, userDataFactory, topMBS, objectName);
+			createSnmpRequestHandler(this, servedClientCount, socket, packet,
+					root, mibs, ipacl, pduFactory, userDataFactory, topMBS,
+					objectName);
 		} catch (SocketException e) {
 			// Let's check if we have been interrupted by stop().
 			//
@@ -1404,20 +1406,20 @@ public class SnmpAdaptorServer extends CommunicatorServer
 			throw new CommunicationException(e);
 		}
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "doReceive", "received a message");
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "doReceive",
+					"received a message");
 		}
 	}
 
 	@Override
-	protected void doError(Exception e) throws CommunicationException {
-	}
+	protected void doError(Exception e) throws CommunicationException {}
 
 	/**
 	 * Not used in this context.
 	 */
 	@Override
-	protected void doProcess() throws CommunicationException, InterruptedException {
-	}
+	protected void doProcess() throws CommunicationException,
+			InterruptedException {}
 
 	/**
 	 * The number of times the communicator server will attempt to bind before
@@ -1441,7 +1443,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 
 		final int port = getPort();
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "stop", "Stopping: using port " + port);
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "stop",
+					"Stopping: using port " + port);
 		}
 		if ((state == ONLINE) || (state == STARTING)) {
 			super.stop();
@@ -1454,7 +1457,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 					if (address != null)
 						pk = new DatagramPacket(ob, 1, address, port);
 					else
-						pk = new DatagramPacket(ob, 1, java.net.InetAddress.getLocalHost(), port);
+						pk = new DatagramPacket(ob, 1, java.net.InetAddress
+								.getLocalHost(), port);
 
 					if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
 						SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "stop",
@@ -1483,21 +1487,23 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * sent to the local host.
 	 *
 	 * @param generic
-	 *            The generic number of the trap.
+	 *                    The generic number of the trap.
 	 * @param specific
-	 *            The specific number of the trap.
+	 *                    The specific number of the trap.
 	 * @param varBindList
-	 *            A list of <CODE>SnmpVarBind</CODE> instances or null.
+	 *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
 	 *
 	 * @exception IOException
-	 *                An I/O error occurred while sending the trap.
+	 *                                An I/O error occurred while sending the
+	 *                                trap.
 	 * @exception SnmpStatusException
-	 *                If the trap exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                If the trap exceeds the limit defined by
+	 *                                <CODE>bufferSize</CODE>.
 	 */
 	@Override
-	public void snmpV1Trap(int generic, int specific, SnmpVarBindList varBindList)
-			throws IOException, SnmpStatusException {
+	public void snmpV1Trap(int generic, int specific,
+			SnmpVarBindList varBindList) throws IOException,
+			SnmpStatusException {
 
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
 			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "snmpV1Trap",
@@ -1528,7 +1534,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 			if (address != null)
 				pdu.agentAddr = handleMultipleIpVersion(address.getAddress());
 			else
-				pdu.agentAddr = handleMultipleIpVersion(InetAddress.getLocalHost().getAddress());
+				pdu.agentAddr = handleMultipleIpVersion(InetAddress
+						.getLocalHost().getAddress());
 		} catch (UnknownHostException e) {
 			byte[] zeroedAddr = new byte[4];
 			pdu.agentAddr = handleMultipleIpVersion(zeroedAddr);
@@ -1544,7 +1551,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 			return new SnmpIpAddress(address);
 		else {
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "handleMultipleIPVersion",
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+						"handleMultipleIPVersion",
 						"Not an IPv4 address, return null");
 			}
 			return null;
@@ -1557,25 +1565,27 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * using the specified community string (and the ACL file is not used).
 	 *
 	 * @param addr
-	 *            The <CODE>InetAddress</CODE> destination of the trap.
+	 *                    The <CODE>InetAddress</CODE> destination of the trap.
 	 * @param cs
-	 *            The community string to be used for the trap.
+	 *                    The community string to be used for the trap.
 	 * @param generic
-	 *            The generic number of the trap.
+	 *                    The generic number of the trap.
 	 * @param specific
-	 *            The specific number of the trap.
+	 *                    The specific number of the trap.
 	 * @param varBindList
-	 *            A list of <CODE>SnmpVarBind</CODE> instances or null.
+	 *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
 	 *
 	 * @exception IOException
-	 *                An I/O error occurred while sending the trap.
+	 *                                An I/O error occurred while sending the
+	 *                                trap.
 	 * @exception SnmpStatusException
-	 *                If the trap exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                If the trap exceeds the limit defined by
+	 *                                <CODE>bufferSize</CODE>.
 	 */
 	@Override
-	public void snmpV1Trap(InetAddress addr, String cs, int generic, int specific,
-			SnmpVarBindList varBindList) throws IOException, SnmpStatusException {
+	public void snmpV1Trap(InetAddress addr, String cs, int generic,
+			int specific, SnmpVarBindList varBindList) throws IOException,
+			SnmpStatusException {
 
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
 			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "snmpV1Trap",
@@ -1611,7 +1621,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 			if (address != null)
 				pdu.agentAddr = handleMultipleIpVersion(address.getAddress());
 			else
-				pdu.agentAddr = handleMultipleIpVersion(InetAddress.getLocalHost().getAddress());
+				pdu.agentAddr = handleMultipleIpVersion(InetAddress
+						.getLocalHost().getAddress());
 		} catch (UnknownHostException e) {
 			byte[] zeroedAddr = new byte[4];
 			pdu.agentAddr = handleMultipleIpVersion(zeroedAddr);
@@ -1633,34 +1644,37 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * ACL file mechanism is used.
 	 *
 	 * @param addr
-	 *            The <CODE>InetAddress</CODE> destination of the trap.
+	 *                    The <CODE>InetAddress</CODE> destination of the trap.
 	 * @param agentAddr
-	 *            The agent address to be used for the trap.
+	 *                    The agent address to be used for the trap.
 	 * @param cs
-	 *            The community string to be used for the trap.
+	 *                    The community string to be used for the trap.
 	 * @param enterpOid
-	 *            The enterprise OID to be used for the trap.
+	 *                    The enterprise OID to be used for the trap.
 	 * @param generic
-	 *            The generic number of the trap.
+	 *                    The generic number of the trap.
 	 * @param specific
-	 *            The specific number of the trap.
+	 *                    The specific number of the trap.
 	 * @param varBindList
-	 *            A list of <CODE>SnmpVarBind</CODE> instances or null.
+	 *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
 	 * @param time
-	 *            The time stamp (overwrite the current time).
+	 *                    The time stamp (overwrite the current time).
 	 *
 	 * @exception IOException
-	 *                An I/O error occurred while sending the trap.
+	 *                                An I/O error occurred while sending the
+	 *                                trap.
 	 * @exception SnmpStatusException
-	 *                If the trap exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                If the trap exceeds the limit defined by
+	 *                                <CODE>bufferSize</CODE>.
 	 *
 	 * @since 1.5
 	 */
-	public void snmpV1Trap(InetAddress addr, SnmpIpAddress agentAddr, String cs, SnmpOid enterpOid,
-			int generic, int specific, SnmpVarBindList varBindList, SnmpTimeticks time)
-			throws IOException, SnmpStatusException {
-		snmpV1Trap(addr, trapPort, agentAddr, cs, enterpOid, generic, specific, varBindList, time);
+	public void snmpV1Trap(InetAddress addr, SnmpIpAddress agentAddr, String cs,
+			SnmpOid enterpOid, int generic, int specific,
+			SnmpVarBindList varBindList, SnmpTimeticks time) throws IOException,
+			SnmpStatusException {
+		snmpV1Trap(addr, trapPort, agentAddr, cs, enterpOid, generic, specific,
+				varBindList, time);
 	}
 
 	/**
@@ -1670,41 +1684,45 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * parameters (<CODE>SnmpParameters.getRdCommunity() </CODE>).
 	 *
 	 * @param peer
-	 *            The <CODE>SnmpPeer</CODE> destination of the trap.
+	 *                    The <CODE>SnmpPeer</CODE> destination of the trap.
 	 * @param agentAddr
-	 *            The agent address to be used for the trap.
+	 *                    The agent address to be used for the trap.
 	 * @param enterpOid
-	 *            The enterprise OID to be used for the trap.
+	 *                    The enterprise OID to be used for the trap.
 	 * @param generic
-	 *            The generic number of the trap.
+	 *                    The generic number of the trap.
 	 * @param specific
-	 *            The specific number of the trap.
+	 *                    The specific number of the trap.
 	 * @param varBindList
-	 *            A list of <CODE>SnmpVarBind</CODE> instances or null.
+	 *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
 	 * @param time
-	 *            The time stamp (overwrite the current time).
+	 *                    The time stamp (overwrite the current time).
 	 *
 	 * @exception IOException
-	 *                An I/O error occurred while sending the trap.
+	 *                                An I/O error occurred while sending the
+	 *                                trap.
 	 * @exception SnmpStatusException
-	 *                If the trap exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                If the trap exceeds the limit defined by
+	 *                                <CODE>bufferSize</CODE>.
 	 *
 	 * @since 1.5
 	 */
 	@Override
-	public void snmpV1Trap(SnmpPeer peer, SnmpIpAddress agentAddr, SnmpOid enterpOid, int generic,
-			int specific, SnmpVarBindList varBindList, SnmpTimeticks time)
-			throws IOException, SnmpStatusException {
+	public void snmpV1Trap(SnmpPeer peer, SnmpIpAddress agentAddr,
+			SnmpOid enterpOid, int generic, int specific,
+			SnmpVarBindList varBindList, SnmpTimeticks time) throws IOException,
+			SnmpStatusException {
 
 		SnmpParameters p = (SnmpParameters) peer.getParams();
-		snmpV1Trap(peer.getDestAddr(), peer.getDestPort(), agentAddr, p.getRdCommunity(), enterpOid,
-				generic, specific, varBindList, time);
+		snmpV1Trap(peer.getDestAddr(), peer.getDestPort(), agentAddr, p
+				.getRdCommunity(), enterpOid, generic, specific, varBindList,
+				time);
 	}
 
-	private void snmpV1Trap(InetAddress addr, int port, SnmpIpAddress agentAddr, String cs,
-			SnmpOid enterpOid, int generic, int specific, SnmpVarBindList varBindList,
-			SnmpTimeticks time) throws IOException, SnmpStatusException {
+	private void snmpV1Trap(InetAddress addr, int port, SnmpIpAddress agentAddr,
+			String cs, SnmpOid enterpOid, int generic, int specific,
+			SnmpVarBindList varBindList, SnmpTimeticks time) throws IOException,
+			SnmpStatusException {
 
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
 			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "snmpV1Trap",
@@ -1790,29 +1808,31 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * </UL>
 	 *
 	 * @param peer
-	 *            The <CODE>SnmpPeer</CODE> destination of the trap.
+	 *                    The <CODE>SnmpPeer</CODE> destination of the trap.
 	 * @param trapOid
-	 *            The OID identifying the trap.
+	 *                    The OID identifying the trap.
 	 * @param varBindList
-	 *            A list of <CODE>SnmpVarBind</CODE> instances or null.
+	 *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
 	 * @param time
-	 *            The time stamp (overwrite the current time).
+	 *                    The time stamp (overwrite the current time).
 	 *
 	 * @exception IOException
-	 *                An I/O error occurred while sending the trap.
+	 *                                An I/O error occurred while sending the
+	 *                                trap.
 	 * @exception SnmpStatusException
-	 *                If the trap exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                If the trap exceeds the limit defined by
+	 *                                <CODE>bufferSize</CODE>.
 	 *
 	 * @since 1.5
 	 */
 	@Override
-	public void snmpV2Trap(SnmpPeer peer, SnmpOid trapOid, SnmpVarBindList varBindList,
-			SnmpTimeticks time) throws IOException, SnmpStatusException {
+	public void snmpV2Trap(SnmpPeer peer, SnmpOid trapOid,
+			SnmpVarBindList varBindList, SnmpTimeticks time) throws IOException,
+			SnmpStatusException {
 
 		SnmpParameters p = (SnmpParameters) peer.getParams();
-		snmpV2Trap(peer.getDestAddr(), peer.getDestPort(), p.getRdCommunity(), trapOid, varBindList,
-				time);
+		snmpV2Trap(peer.getDestAddr(), peer.getDestPort(), p.getRdCommunity(),
+				trapOid, varBindList, time);
 	}
 
 	/**
@@ -1831,22 +1851,24 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * </UL>
 	 *
 	 * @param trapOid
-	 *            The OID identifying the trap.
+	 *                    The OID identifying the trap.
 	 * @param varBindList
-	 *            A list of <CODE>SnmpVarBind</CODE> instances or null.
+	 *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
 	 *
 	 * @exception IOException
-	 *                An I/O error occurred while sending the trap.
+	 *                                An I/O error occurred while sending the
+	 *                                trap.
 	 * @exception SnmpStatusException
-	 *                If the trap exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                If the trap exceeds the limit defined by
+	 *                                <CODE>bufferSize</CODE>.
 	 */
 	@Override
 	public void snmpV2Trap(SnmpOid trapOid, SnmpVarBindList varBindList)
 			throws IOException, SnmpStatusException {
 
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "snmpV2Trap", "trapOid=" + trapOid);
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "snmpV2Trap",
+					"trapOid=" + trapOid);
 		}
 
 		// First, make an SNMP V2 trap pdu
@@ -1866,7 +1888,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 			fullVbl = new SnmpVarBindList(2);
 		SnmpTimeticks sysUpTimeValue = new SnmpTimeticks(getSysUpTime());
 		fullVbl.insertElementAt(new SnmpVarBind(snmpTrapOidOid, trapOid), 0);
-		fullVbl.insertElementAt(new SnmpVarBind(sysUpTimeOid, sysUpTimeValue), 0);
+		fullVbl.insertElementAt(new SnmpVarBind(sysUpTimeOid, sysUpTimeValue),
+				0);
 		pdu.varBindList = new SnmpVarBind[fullVbl.size()];
 		fullVbl.copyInto(pdu.varBindList);
 
@@ -1890,26 +1913,29 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * </UL>
 	 *
 	 * @param addr
-	 *            The <CODE>InetAddress</CODE> destination of the trap.
+	 *                    The <CODE>InetAddress</CODE> destination of the trap.
 	 * @param cs
-	 *            The community string to be used for the trap.
+	 *                    The community string to be used for the trap.
 	 * @param trapOid
-	 *            The OID identifying the trap.
+	 *                    The OID identifying the trap.
 	 * @param varBindList
-	 *            A list of <CODE>SnmpVarBind</CODE> instances or null.
+	 *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
 	 *
 	 * @exception IOException
-	 *                An I/O error occurred while sending the trap.
+	 *                                An I/O error occurred while sending the
+	 *                                trap.
 	 * @exception SnmpStatusException
-	 *                If the trap exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                If the trap exceeds the limit defined by
+	 *                                <CODE>bufferSize</CODE>.
 	 */
 	@Override
 	public void snmpV2Trap(InetAddress addr, String cs, SnmpOid trapOid,
-			SnmpVarBindList varBindList) throws IOException, SnmpStatusException {
+			SnmpVarBindList varBindList) throws IOException,
+			SnmpStatusException {
 
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "snmpV2Trap", "trapOid=" + trapOid);
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "snmpV2Trap",
+					"trapOid=" + trapOid);
 		}
 
 		// First, make an SNMP V2 trap pdu
@@ -1933,7 +1959,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 			fullVbl = new SnmpVarBindList(2);
 		SnmpTimeticks sysUpTimeValue = new SnmpTimeticks(getSysUpTime());
 		fullVbl.insertElementAt(new SnmpVarBind(snmpTrapOidOid, trapOid), 0);
-		fullVbl.insertElementAt(new SnmpVarBind(sysUpTimeOid, sysUpTimeValue), 0);
+		fullVbl.insertElementAt(new SnmpVarBind(sysUpTimeOid, sysUpTimeValue),
+				0);
 		pdu.varBindList = new SnmpVarBind[fullVbl.size()];
 		fullVbl.copyInto(pdu.varBindList);
 
@@ -1963,41 +1990,44 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * </UL>
 	 *
 	 * @param addr
-	 *            The <CODE>InetAddress</CODE> destination of the trap.
+	 *                    The <CODE>InetAddress</CODE> destination of the trap.
 	 * @param cs
-	 *            The community string to be used for the trap.
+	 *                    The community string to be used for the trap.
 	 * @param trapOid
-	 *            The OID identifying the trap.
+	 *                    The OID identifying the trap.
 	 * @param varBindList
-	 *            A list of <CODE>SnmpVarBind</CODE> instances or null.
+	 *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
 	 * @param time
-	 *            The time stamp (overwrite the current time).
+	 *                    The time stamp (overwrite the current time).
 	 *
 	 * @exception IOException
-	 *                An I/O error occurred while sending the trap.
+	 *                                An I/O error occurred while sending the
+	 *                                trap.
 	 * @exception SnmpStatusException
-	 *                If the trap exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                If the trap exceeds the limit defined by
+	 *                                <CODE>bufferSize</CODE>.
 	 *
 	 * @since 1.5
 	 */
 	public void snmpV2Trap(InetAddress addr, String cs, SnmpOid trapOid,
-			SnmpVarBindList varBindList, SnmpTimeticks time)
-			throws IOException, SnmpStatusException {
+			SnmpVarBindList varBindList, SnmpTimeticks time) throws IOException,
+			SnmpStatusException {
 
 		snmpV2Trap(addr, trapPort, cs, trapOid, varBindList, time);
 	}
 
-	private void snmpV2Trap(InetAddress addr, int port, String cs, SnmpOid trapOid,
-			SnmpVarBindList varBindList, SnmpTimeticks time)
+	private void snmpV2Trap(InetAddress addr, int port, String cs,
+			SnmpOid trapOid, SnmpVarBindList varBindList, SnmpTimeticks time)
 			throws IOException, SnmpStatusException {
 
 		if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-			final StringBuilder strb = new StringBuilder().append("trapOid=").append(trapOid)
-					.append("\ncommunity=").append(cs).append("\naddr=").append(addr)
-					.append("\nvarBindList=").append(varBindList).append("\ntime=").append(time)
-					.append("\ntrapPort=").append(port);
-			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "snmpV2Trap", strb.toString());
+			final StringBuilder strb = new StringBuilder().append("trapOid=")
+					.append(trapOid).append("\ncommunity=").append(cs).append(
+							"\naddr=").append(addr).append("\nvarBindList=")
+					.append(varBindList).append("\ntime=").append(time).append(
+							"\ntrapPort=").append(port);
+			SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "snmpV2Trap", strb
+					.toString());
 		}
 
 		// First, make an SNMP V2 trap pdu
@@ -2029,7 +2059,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 		// End of diff
 
 		fullVbl.insertElementAt(new SnmpVarBind(snmpTrapOidOid, trapOid), 0);
-		fullVbl.insertElementAt(new SnmpVarBind(sysUpTimeOid, sysUpTimeValue), 0);
+		fullVbl.insertElementAt(new SnmpVarBind(sysUpTimeOid, sysUpTimeValue),
+				0);
 		pdu.varBindList = new SnmpVarBind[fullVbl.size()];
 		fullVbl.copyInto(pdu.varBindList);
 
@@ -2047,14 +2078,15 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * Send the specified trap PDU to the passed <CODE>InetAddress</CODE>.
 	 * 
 	 * @param address
-	 *            The destination address.
+	 *                The destination address.
 	 * @param pdu
-	 *            The pdu to send.
+	 *                The pdu to send.
 	 * @exception IOException
-	 *                An I/O error occurred while sending the trap.
+	 *                                An I/O error occurred while sending the
+	 *                                trap.
 	 * @exception SnmpStatusException
-	 *                If the trap exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                If the trap exceeds the limit defined by
+	 *                                <CODE>bufferSize</CODE>.
 	 *
 	 * @since 1.5
 	 */
@@ -2072,16 +2104,17 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * Send the specified trap PDU to the passed <CODE>SnmpPeer</CODE>.
 	 * 
 	 * @param peer
-	 *            The destination peer. The Read community string is used of
-	 *            <CODE>SnmpParameters</CODE> is used as the trap community
-	 *            string.
+	 *             The destination peer. The Read community string is used of
+	 *             <CODE>SnmpParameters</CODE> is used as the trap community
+	 *             string.
 	 * @param pdu
-	 *            The pdu to send.
+	 *             The pdu to send.
 	 * @exception IOException
-	 *                An I/O error occurred while sending the trap.
+	 *                                An I/O error occurred while sending the
+	 *                                trap.
 	 * @exception SnmpStatusException
-	 *                If the trap exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                If the trap exceeds the limit defined by
+	 *                                <CODE>bufferSize</CODE>.
 	 * @since 1.5
 	 */
 	@Override
@@ -2099,7 +2132,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	/**
 	 * Send the specified trap PDU to every destinations from the ACL file.
 	 */
-	private void sendTrapPdu(SnmpPduPacket pdu) throws SnmpStatusException, IOException {
+	private void sendTrapPdu(SnmpPduPacket pdu) throws SnmpStatusException,
+			IOException {
 
 		// Make an SNMP message from the pdu
 		//
@@ -2107,12 +2141,14 @@ public class SnmpAdaptorServer extends CommunicatorServer
 		try {
 			msg = (SnmpMessage) pduFactory.encodeSnmpPdu(pdu, bufferSize);
 			if (msg == null) {
-				throw new SnmpStatusException(SnmpDefinitions.snmpRspAuthorizationError);
+				throw new SnmpStatusException(
+						SnmpDefinitions.snmpRspAuthorizationError);
 			}
 		} catch (SnmpTooBigException x) {
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
 				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "sendTrapPdu",
-						"Trap pdu is too big. " + "Trap hasn't been sent to anyone");
+						"Trap pdu is too big. "
+								+ "Trap hasn't been sent to anyone");
 			}
 			throw new SnmpStatusException(SnmpDefinitions.snmpRspTooBig);
 			// FIXME: is the right exception to throw ?
@@ -2135,8 +2171,9 @@ public class SnmpAdaptorServer extends CommunicatorServer
 						sendingCount++;
 					} catch (SnmpTooBigException x) {
 						if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-							SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "sendTrapPdu",
-									"Trap pdu is too big. " + "Trap hasn't been sent to "
+							SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+									"sendTrapPdu", "Trap pdu is too big. "
+											+ "Trap hasn't been sent to "
 											+ msg.address);
 						}
 					}
@@ -2154,13 +2191,15 @@ public class SnmpAdaptorServer extends CommunicatorServer
 				sendTrapMessage(msg);
 			} catch (SnmpTooBigException x) {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "sendTrapPdu",
-							"Trap pdu is too big. " + "Trap hasn't been sent.");
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+							"sendTrapPdu", "Trap pdu is too big. "
+									+ "Trap hasn't been sent.");
 				}
 			} catch (UnknownHostException e) {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "sendTrapPdu",
-							"Trap pdu is too big. " + "Trap hasn't been sent.");
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+							"sendTrapPdu", "Trap pdu is too big. "
+									+ "Trap hasn't been sent.");
 				}
 			}
 		}
@@ -2180,12 +2219,14 @@ public class SnmpAdaptorServer extends CommunicatorServer
 		try {
 			msg = (SnmpMessage) pduFactory.encodeSnmpPdu(pdu, bufferSize);
 			if (msg == null) {
-				throw new SnmpStatusException(SnmpDefinitions.snmpRspAuthorizationError);
+				throw new SnmpStatusException(
+						SnmpDefinitions.snmpRspAuthorizationError);
 			}
 		} catch (SnmpTooBigException x) {
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
 				SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "sendTrapPdu",
-						"Trap pdu is too big. " + "Trap hasn't been sent to the specified host.");
+						"Trap pdu is too big. "
+								+ "Trap hasn't been sent to the specified host.");
 			}
 			throw new SnmpStatusException(SnmpDefinitions.snmpRspTooBig);
 			// FIXME: is the right exception to throw ?
@@ -2201,8 +2242,10 @@ public class SnmpAdaptorServer extends CommunicatorServer
 				sendTrapMessage(msg);
 			} catch (SnmpTooBigException x) {
 				if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag, "sendTrapPdu",
-							"Trap pdu is too big. " + "Trap hasn't been sent to " + msg.address);
+					SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, dbgTag,
+							"sendTrapPdu", "Trap pdu is too big. "
+									+ "Trap hasn't been sent to "
+									+ msg.address);
 				}
 			}
 		}
@@ -2213,7 +2256,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	/**
 	 * Send the specified message on trapSocket.
 	 */
-	private void sendTrapMessage(SnmpMessage msg) throws IOException, SnmpTooBigException {
+	private void sendTrapMessage(SnmpMessage msg) throws IOException,
+			SnmpTooBigException {
 
 		byte[] buffer = new byte[bufferSize];
 		DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
@@ -2241,8 +2285,9 @@ public class SnmpAdaptorServer extends CommunicatorServer
 		if (trapSocket == null) {
 			trapSocket = new DatagramSocket(0, address);
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "openTrapSocketIfNeeded",
-						"using port " + trapSocket.getLocalPort() + " to send traps");
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag,
+						"openTrapSocketIfNeeded", "using port " + trapSocket
+								.getLocalPort() + " to send traps");
 			}
 		}
 	}
@@ -2277,11 +2322,12 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * To send an inform request, the SNMP adaptor server must be active.
 	 *
 	 * @param cb
-	 *            The callback that is invoked when a request is complete.
+	 *                    The callback that is invoked when a request is
+	 *                    complete.
 	 * @param trapOid
-	 *            The OID identifying the trap.
+	 *                    The OID identifying the trap.
 	 * @param varBindList
-	 *            A list of <CODE>SnmpVarBind</CODE> instances or null.
+	 *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
 	 *
 	 * @return A vector of {@link com.sun.jmx.snmp.daemon.SnmpInformRequest}
 	 *         objects.
@@ -2290,17 +2336,20 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 *         returned vector will be empty.
 	 *
 	 * @exception IllegalStateException
-	 *                This method has been invoked while the SNMP adaptor server
-	 *                was not active.
+	 *                                  This method has been invoked while the
+	 *                                  SNMP adaptor server
+	 *                                  was not active.
 	 * @exception IOException
-	 *                An I/O error occurred while sending the inform request.
+	 *                                  An I/O error occurred while sending the
+	 *                                  inform request.
 	 * @exception SnmpStatusException
-	 *                If the inform request exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                  If the inform request exceeds the limit
+	 *                                  defined by
+	 *                                  <CODE>bufferSize</CODE>.
 	 */
 	@Override
-	public Vector<SnmpInformRequest> snmpInformRequest(SnmpInformHandler cb, SnmpOid trapOid,
-			SnmpVarBindList varBindList)
+	public Vector<SnmpInformRequest> snmpInformRequest(SnmpInformHandler cb,
+			SnmpOid trapOid, SnmpVarBindList varBindList)
 			throws IllegalStateException, IOException, SnmpStatusException {
 
 		if (!isActive()) {
@@ -2322,7 +2371,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 			fullVbl = new SnmpVarBindList(2);
 		SnmpTimeticks sysUpTimeValue = new SnmpTimeticks(getSysUpTime());
 		fullVbl.insertElementAt(new SnmpVarBind(snmpTrapOidOid, trapOid), 0);
-		fullVbl.insertElementAt(new SnmpVarBind(sysUpTimeOid, sysUpTimeValue), 0);
+		fullVbl.insertElementAt(new SnmpVarBind(sysUpTimeOid, sysUpTimeValue),
+				0);
 
 		// Next, send the pdu to the specified destination
 		//
@@ -2340,8 +2390,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 				Enumeration<String> ec = ipacl.getInformCommunities(addr);
 				while (ec.hasMoreElements()) {
 					cs = ec.nextElement();
-					informReqList.addElement(
-							informSession.makeAsyncRequest(addr, cs, cb, fullVbl, getInformPort()));
+					informReqList.addElement(informSession.makeAsyncRequest(
+							addr, cs, cb, fullVbl, getInformPort()));
 				}
 			}
 		}
@@ -2365,34 +2415,41 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * To send an inform request, the SNMP adaptor server must be active.
 	 *
 	 * @param addr
-	 *            The <CODE>InetAddress</CODE> destination for this inform
-	 *            request.
+	 *                    The <CODE>InetAddress</CODE> destination for this
+	 *                    inform
+	 *                    request.
 	 * @param cs
-	 *            The community string to be used for the inform request.
+	 *                    The community string to be used for the inform
+	 *                    request.
 	 * @param cb
-	 *            The callback that is invoked when a request is complete.
+	 *                    The callback that is invoked when a request is
+	 *                    complete.
 	 * @param trapOid
-	 *            The OID identifying the trap.
+	 *                    The OID identifying the trap.
 	 * @param varBindList
-	 *            A list of <CODE>SnmpVarBind</CODE> instances or null.
+	 *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
 	 *
 	 * @return The inform request object.
 	 *
 	 * @exception IllegalStateException
-	 *                This method has been invoked while the SNMP adaptor server
-	 *                was not active.
+	 *                                  This method has been invoked while the
+	 *                                  SNMP adaptor server
+	 *                                  was not active.
 	 * @exception IOException
-	 *                An I/O error occurred while sending the inform request.
+	 *                                  An I/O error occurred while sending the
+	 *                                  inform request.
 	 * @exception SnmpStatusException
-	 *                If the inform request exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                  If the inform request exceeds the limit
+	 *                                  defined by
+	 *                                  <CODE>bufferSize</CODE>.
 	 */
 	@Override
-	public SnmpInformRequest snmpInformRequest(InetAddress addr, String cs, SnmpInformHandler cb,
-			SnmpOid trapOid, SnmpVarBindList varBindList)
+	public SnmpInformRequest snmpInformRequest(InetAddress addr, String cs,
+			SnmpInformHandler cb, SnmpOid trapOid, SnmpVarBindList varBindList)
 			throws IllegalStateException, IOException, SnmpStatusException {
 
-		return snmpInformRequest(addr, getInformPort(), cs, cb, trapOid, varBindList);
+		return snmpInformRequest(addr, getInformPort(), cs, cb, trapOid,
+				varBindList);
 	}
 
 	/**
@@ -2413,35 +2470,40 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * To send an inform request, the SNMP adaptor server must be active.
 	 *
 	 * @param peer
-	 *            The <CODE>SnmpPeer</CODE> destination for this inform request.
+	 *                    The <CODE>SnmpPeer</CODE> destination for this inform
+	 *                    request.
 	 * @param cb
-	 *            The callback that is invoked when a request is complete.
+	 *                    The callback that is invoked when a request is
+	 *                    complete.
 	 * @param trapOid
-	 *            The OID identifying the trap.
+	 *                    The OID identifying the trap.
 	 * @param varBindList
-	 *            A list of <CODE>SnmpVarBind</CODE> instances or null.
+	 *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
 	 *
 	 * @return The inform request object.
 	 *
 	 * @exception IllegalStateException
-	 *                This method has been invoked while the SNMP adaptor server
-	 *                was not active.
+	 *                                  This method has been invoked while the
+	 *                                  SNMP adaptor server
+	 *                                  was not active.
 	 * @exception IOException
-	 *                An I/O error occurred while sending the inform request.
+	 *                                  An I/O error occurred while sending the
+	 *                                  inform request.
 	 * @exception SnmpStatusException
-	 *                If the inform request exceeds the limit defined by
-	 *                <CODE>bufferSize</CODE>.
+	 *                                  If the inform request exceeds the limit
+	 *                                  defined by
+	 *                                  <CODE>bufferSize</CODE>.
 	 *
 	 * @since 1.5
 	 */
 	@Override
-	public SnmpInformRequest snmpInformRequest(SnmpPeer peer, SnmpInformHandler cb, SnmpOid trapOid,
-			SnmpVarBindList varBindList)
+	public SnmpInformRequest snmpInformRequest(SnmpPeer peer,
+			SnmpInformHandler cb, SnmpOid trapOid, SnmpVarBindList varBindList)
 			throws IllegalStateException, IOException, SnmpStatusException {
 
 		SnmpParameters p = (SnmpParameters) peer.getParams();
-		return snmpInformRequest(peer.getDestAddr(), peer.getDestPort(), p.getInformCommunity(), cb,
-				trapOid, varBindList);
+		return snmpInformRequest(peer.getDestAddr(), peer.getDestPort(), p
+				.getInformCommunity(), cb, trapOid, varBindList);
 	}
 
 	/**
@@ -2449,19 +2511,22 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	 * according to the provided pdu type.
 	 * 
 	 * @param errorStatus
-	 *            The error status to convert.
+	 *                        The error status to convert.
 	 * @param protocolVersion
-	 *            The protocol version.
+	 *                        The protocol version.
 	 * @param reqPduType
-	 *            The pdu type.
+	 *                        The pdu type.
 	 */
-	public static int mapErrorStatus(int errorStatus, int protocolVersion, int reqPduType) {
-		return SnmpSubRequestHandler.mapErrorStatus(errorStatus, protocolVersion, reqPduType);
+	public static int mapErrorStatus(int errorStatus, int protocolVersion,
+			int reqPduType) {
+		return SnmpSubRequestHandler.mapErrorStatus(errorStatus,
+				protocolVersion, reqPduType);
 	}
 
-	private SnmpInformRequest snmpInformRequest(InetAddress addr, int port, String cs,
-			SnmpInformHandler cb, SnmpOid trapOid, SnmpVarBindList varBindList)
-			throws IllegalStateException, IOException, SnmpStatusException {
+	private SnmpInformRequest snmpInformRequest(InetAddress addr, int port,
+			String cs, SnmpInformHandler cb, SnmpOid trapOid,
+			SnmpVarBindList varBindList) throws IllegalStateException,
+			IOException, SnmpStatusException {
 
 		if (!isActive()) {
 			throw new IllegalStateException(
@@ -2482,7 +2547,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 			fullVbl = new SnmpVarBindList(2);
 		SnmpTimeticks sysUpTimeValue = new SnmpTimeticks(getSysUpTime());
 		fullVbl.insertElementAt(new SnmpVarBind(snmpTrapOidOid, trapOid), 0);
-		fullVbl.insertElementAt(new SnmpVarBind(sysUpTimeOid, sysUpTimeValue), 0);
+		fullVbl.insertElementAt(new SnmpVarBind(sysUpTimeOid, sysUpTimeValue),
+				0);
 
 		// Next, send the pdu to the specified destination
 		//
@@ -2497,7 +2563,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 		if (informSession == null) {
 			informSession = new SnmpSession(this);
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "openInformSocketIfNeeded",
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag,
+						"openInformSocketIfNeeded",
 						"to send inform requests and receive inform responses");
 			}
 		}
@@ -2543,8 +2610,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 			threadService.terminate();
 		} catch (Exception e) {
 			if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "finalize", "Exception in finalizer",
-						e);
+				SNMP_ADAPTOR_LOGGER.logp(Level.FINER, dbgTag, "finalize",
+						"Exception in finalizer", e);
 			}
 		}
 	}
@@ -2563,17 +2630,17 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	void updateRequestCounters(int pduType) {
 		switch (pduType) {
 
-		case pduGetRequestPdu:
-			snmpInGetRequests++;
-			break;
-		case pduGetNextRequestPdu:
-			snmpInGetNexts++;
-			break;
-		case pduSetRequestPdu:
-			snmpInSetRequests++;
-			break;
-		default:
-			break;
+			case pduGetRequestPdu:
+				snmpInGetRequests++;
+				break;
+			case pduGetNextRequestPdu:
+				snmpInGetNexts++;
+				break;
+			case pduSetRequestPdu:
+				snmpInSetRequests++;
+				break;
+			default:
+				break;
 		}
 		snmpInPkts++;
 	}
@@ -2581,23 +2648,23 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	void updateErrorCounters(int errorStatus) {
 		switch (errorStatus) {
 
-		case snmpRspNoError:
-			snmpOutGetResponses++;
-			break;
-		case snmpRspGenErr:
-			snmpOutGenErrs++;
-			break;
-		case snmpRspBadValue:
-			snmpOutBadValues++;
-			break;
-		case snmpRspNoSuchName:
-			snmpOutNoSuchNames++;
-			break;
-		case snmpRspTooBig:
-			snmpOutTooBigs++;
-			break;
-		default:
-			break;
+			case snmpRspNoError:
+				snmpOutGetResponses++;
+				break;
+			case snmpRspGenErr:
+				snmpOutGenErrs++;
+				break;
+			case snmpRspBadValue:
+				snmpOutBadValues++;
+				break;
+			case snmpRspNoSuchName:
+				snmpOutNoSuchNames++;
+				break;
+			case snmpRspTooBig:
+				snmpOutTooBigs++;
+				break;
+			default:
+				break;
 		}
 		snmpOutPkts++;
 	}
@@ -2605,14 +2672,14 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	void updateVarCounters(int pduType, int n) {
 		switch (pduType) {
 
-		case pduGetRequestPdu:
-		case pduGetNextRequestPdu:
-		case pduGetBulkRequestPdu:
-			snmpInTotalReqVars += n;
-			break;
-		case pduSetRequestPdu:
-			snmpInTotalSetVars += n;
-			break;
+			case pduGetRequestPdu:
+			case pduGetNextRequestPdu:
+			case pduGetBulkRequestPdu:
+				snmpInTotalReqVars += n;
+				break;
+			case pduSetRequestPdu:
+				snmpInTotalSetVars += n;
+				break;
 		}
 	}
 
@@ -2649,7 +2716,8 @@ public class SnmpAdaptorServer extends CommunicatorServer
 	/**
 	 * Control the way the SnmpAdaptorServer service is deserialized.
 	 */
-	private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream stream) throws IOException,
+			ClassNotFoundException {
 
 		// Call the default deserialization of the object.
 		//

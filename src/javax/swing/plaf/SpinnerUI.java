@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf;
@@ -31,5 +11,4 @@ package javax.swing.plaf;
  * @author Hans Muller
  * @since 1.4
  */
-public abstract class SpinnerUI extends javax.swing.plaf.ComponentUI {
-}
+public abstract class SpinnerUI extends javax.swing.plaf.ComponentUI {}

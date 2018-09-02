@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.print;
@@ -61,12 +41,14 @@ public interface Pageable {
 	 * <code>pageIndex</code>.
 	 * 
 	 * @param pageIndex
-	 *            the zero based index of the page whose <code>PageFormat</code>
-	 *            is being requested
+	 *                  the zero based index of the page whose
+	 *                  <code>PageFormat</code>
+	 *                  is being requested
 	 * @return the <code>PageFormat</code> describing the size and orientation.
 	 * @throws IndexOutOfBoundsException
-	 *             if the <code>Pageable</code> does not contain the requested
-	 *             page.
+	 *                                   if the <code>Pageable</code> does not
+	 *                                   contain the requested
+	 *                                   page.
 	 */
 	PageFormat getPageFormat(int pageIndex) throws IndexOutOfBoundsException;
 
@@ -75,12 +57,14 @@ public interface Pageable {
 	 * page specified by <code>pageIndex</code>.
 	 * 
 	 * @param pageIndex
-	 *            the zero based index of the page whose <code>Printable</code>
-	 *            is being requested
+	 *                  the zero based index of the page whose
+	 *                  <code>Printable</code>
+	 *                  is being requested
 	 * @return the <code>Printable</code> that renders the page.
 	 * @throws IndexOutOfBoundsException
-	 *             if the <code>Pageable</code> does not contain the requested
-	 *             page.
+	 *                                   if the <code>Pageable</code> does not
+	 *                                   contain the requested
+	 *                                   page.
 	 */
 	Printable getPrintable(int pageIndex) throws IndexOutOfBoundsException;
 }

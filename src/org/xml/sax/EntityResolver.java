@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // SAX entity resolver.
@@ -129,18 +109,20 @@ public interface EntityResolver {
 	 * </p>
 	 *
 	 * @param publicId
-	 *            The public identifier of the external entity being referenced,
-	 *            or null if none was supplied.
+	 *                 The public identifier of the external entity being
+	 *                 referenced,
+	 *                 or null if none was supplied.
 	 * @param systemId
-	 *            The system identifier of the external entity being referenced.
+	 *                 The system identifier of the external entity being
+	 *                 referenced.
 	 * @return An InputSource object describing the new input source, or null to
 	 *         request that the parser open a regular URI connection to the
 	 *         system identifier.
 	 * @exception org.xml.sax.SAXException
-	 *                Any SAX exception, possibly wrapping another exception.
+	 *            Any SAX exception, possibly wrapping another exception.
 	 * @exception java.io.IOException
-	 *                A Java-specific IO exception, possibly the result of
-	 *                creating a new InputStream or Reader for the InputSource.
+	 *            A Java-specific IO exception, possibly the result of
+	 *            creating a new InputStream or Reader for the InputSource.
 	 * @see org.xml.sax.InputSource
 	 */
 	public abstract InputSource resolveEntity(String publicId, String systemId)

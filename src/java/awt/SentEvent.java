@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt;
@@ -57,7 +37,8 @@ class SentEvent extends AWTEvent implements ActiveEvent {
 	}
 
 	SentEvent(AWTEvent nested, AppContext toNotify) {
-		super((nested != null) ? nested.getSource() : Toolkit.getDefaultToolkit(), ID);
+		super((nested != null) ? nested.getSource()
+				: Toolkit.getDefaultToolkit(), ID);
 		this.nested = nested;
 		this.toNotify = toNotify;
 	}

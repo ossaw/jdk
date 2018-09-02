@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.transform.dom;
@@ -82,8 +62,7 @@ public class DOMSource implements Source {
 	 * @see javax.xml.transform.Transformer#transform(Source xmlSource, Result
 	 *      outputTarget)
 	 */
-	public DOMSource() {
-	}
+	public DOMSource() {}
 
 	/**
 	 * Create a new input source with a DOM node. The operation will be applied
@@ -92,7 +71,7 @@ public class DOMSource implements Source {
 	 * variables and parameters is done from the root node also.
 	 *
 	 * @param n
-	 *            The DOM node that will contain the Source tree.
+	 *          The DOM node that will contain the Source tree.
 	 */
 	public DOMSource(Node n) {
 		setNode(n);
@@ -103,9 +82,9 @@ public class DOMSource implements Source {
 	 * passed in as the base URI.
 	 *
 	 * @param node
-	 *            The DOM node that will contain the Source tree.
+	 *                 The DOM node that will contain the Source tree.
 	 * @param systemID
-	 *            Specifies the base URI associated with node.
+	 *                 Specifies the base URI associated with node.
 	 */
 	public DOMSource(Node node, String systemID) {
 		setNode(node);
@@ -116,7 +95,7 @@ public class DOMSource implements Source {
 	 * Set the node that will represents a Source DOM tree.
 	 *
 	 * @param node
-	 *            The node that is to be transformed.
+	 *             The node that is to be transformed.
 	 */
 	public void setNode(Node node) {
 		this.node = node;
@@ -135,7 +114,7 @@ public class DOMSource implements Source {
 	 * Set the base ID (URL or system ID) from where URLs will be resolved.
 	 *
 	 * @param systemID
-	 *            Base URL for this DOM tree.
+	 *                 Base URL for this DOM tree.
 	 */
 	public void setSystemId(String systemID) {
 		this.systemID = systemID;

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.mbeanserver;
 
@@ -49,7 +29,8 @@ final class SecureClassLoaderRepository implements ClassLoaderRepository {
 		this.clr = clr;
 	}
 
-	public final Class<?> loadClass(String className) throws ClassNotFoundException {
+	public final Class<?> loadClass(String className)
+			throws ClassNotFoundException {
 		return clr.loadClass(className);
 	}
 

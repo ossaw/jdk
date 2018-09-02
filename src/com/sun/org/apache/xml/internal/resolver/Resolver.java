@@ -7,13 +7,10 @@
 /*
  * Copyright 2001-2004 The Apache Software Foundation or its licensors,
  * as applicable.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,7 +54,8 @@ public class Resolver extends Catalog {
 	 * URI suffix entries match URIs that end in a specified suffix.
 	 * </p>
 	 */
-	public static final int URISUFFIX = CatalogEntry.addEntryType("URISUFFIX", 2);
+	public static final int URISUFFIX = CatalogEntry.addEntryType("URISUFFIX",
+			2);
 
 	/**
 	 * The SYSTEMSUFFIX Catalog Entry type.
@@ -67,7 +65,8 @@ public class Resolver extends Catalog {
 	 * suffix.
 	 * </p>
 	 */
-	public static final int SYSTEMSUFFIX = CatalogEntry.addEntryType("SYSTEMSUFFIX", 2);
+	public static final int SYSTEMSUFFIX = CatalogEntry.addEntryType(
+			"SYSTEMSUFFIX", 2);
 
 	/**
 	 * The RESOLVER Catalog Entry type.
@@ -86,14 +85,16 @@ public class Resolver extends Catalog {
 	 * entry type is used to indicate that a reverse lookup is being performed.
 	 * (This allows the Resolver to implement RFC2483 I2N and I2NS.)
 	 */
-	public static final int SYSTEMREVERSE = CatalogEntry.addEntryType("SYSTEMREVERSE", 1);
+	public static final int SYSTEMREVERSE = CatalogEntry.addEntryType(
+			"SYSTEMREVERSE", 1);
 
 	/**
 	 * Setup readers.
 	 */
 	public void setupReaders() {
 		SAXParserFactory spf = catalogManager.useServicesMechanism()
-				? SAXParserFactory.newInstance() : new SAXParserFactoryImpl();
+				? SAXParserFactory.newInstance()
+				: new SAXParserFactoryImpl();
 		spf.setNamespaceAware(true);
 		spf.setValidating(false);
 
@@ -102,7 +103,8 @@ public class Resolver extends Catalog {
 		saxReader.setCatalogParser(null, "XMLCatalog",
 				"com.sun.org.apache.xml.internal.resolver.readers.XCatalogReader");
 
-		saxReader.setCatalogParser(OASISXMLCatalogReader.namespaceName, "catalog",
+		saxReader.setCatalogParser(OASISXMLCatalogReader.namespaceName,
+				"catalog",
 				"com.sun.org.apache.xml.internal.resolver.readers.ExtendedXMLCatalogReader");
 
 		addReader("application/xml", saxReader);
@@ -121,7 +123,7 @@ public class Resolver extends Catalog {
 	 * </p>
 	 *
 	 * @param entry
-	 *            The CatalogEntry to process.
+	 *              The CatalogEntry to process.
 	 */
 	public void addEntry(CatalogEntry entry) {
 		int type = entry.getEntryType();
@@ -168,12 +170,14 @@ public class Resolver extends Catalog {
 	 * @return The resolved URI.
 	 *
 	 * @throws MalformedURLException
-	 *             The system identifier of a subordinate catalog cannot be
-	 *             turned into a valid URL.
+	 *                               The system identifier of a subordinate
+	 *                               catalog cannot be
+	 *                               turned into a valid URL.
 	 * @throws IOException
-	 *             Error reading subordinate catalog file.
+	 *                               Error reading subordinate catalog file.
 	 */
-	public String resolveURI(String uri) throws MalformedURLException, IOException {
+	public String resolveURI(String uri) throws MalformedURLException,
+			IOException {
 
 		String resolved = super.resolveURI(uri);
 		if (resolved != null) {
@@ -192,8 +196,8 @@ public class Resolver extends Catalog {
 				String suffix = e.getEntryArg(0);
 				String result = e.getEntryArg(1);
 
-				if (suffix.length() <= uri.length()
-						&& uri.substring(uri.length() - suffix.length()).equals(suffix)) {
+				if (suffix.length() <= uri.length() && uri.substring(uri
+						.length() - suffix.length()).equals(suffix)) {
 					return result;
 				}
 			}
@@ -224,17 +228,19 @@ public class Resolver extends Catalog {
 	 * </p>
 	 *
 	 * @param systemId
-	 *            The system ID to locate in the catalog.
+	 *                 The system ID to locate in the catalog.
 	 *
 	 * @return The system identifier to use for systemId.
 	 *
 	 * @throws MalformedURLException
-	 *             The formal system identifier of a subordinate catalog cannot
-	 *             be turned into a valid URL.
+	 *                               The formal system identifier of a
+	 *                               subordinate catalog cannot
+	 *                               be turned into a valid URL.
 	 * @throws IOException
-	 *             Error reading subordinate catalog file.
+	 *                               Error reading subordinate catalog file.
 	 */
-	public String resolveSystem(String systemId) throws MalformedURLException, IOException {
+	public String resolveSystem(String systemId) throws MalformedURLException,
+			IOException {
 
 		String resolved = super.resolveSystem(systemId);
 		if (resolved != null) {
@@ -253,8 +259,8 @@ public class Resolver extends Catalog {
 				String suffix = e.getEntryArg(0);
 				String result = e.getEntryArg(1);
 
-				if (suffix.length() <= systemId.length()
-						&& systemId.substring(systemId.length() - suffix.length()).equals(suffix)) {
+				if (suffix.length() <= systemId.length() && systemId.substring(
+						systemId.length() - suffix.length()).equals(suffix)) {
 					return result;
 				}
 			}
@@ -281,17 +287,19 @@ public class Resolver extends Catalog {
 	 * </p>
 	 *
 	 * @param publicId
-	 *            The public identifier to locate in the catalog. Public
-	 *            identifiers are normalized before comparison.
+	 *                 The public identifier to locate in the catalog. Public
+	 *                 identifiers are normalized before comparison.
 	 * @param systemId
-	 *            The nominal system identifier for the entity in question (as
-	 *            provided in the source document).
+	 *                 The nominal system identifier for the entity in question
+	 *                 (as
+	 *                 provided in the source document).
 	 *
 	 * @throws MalformedURLException
-	 *             The formal system identifier of a subordinate catalog cannot
-	 *             be turned into a valid URL.
+	 *                               The formal system identifier of a
+	 *                               subordinate catalog cannot
+	 *                               be turned into a valid URL.
 	 * @throws IOException
-	 *             Error reading subordinate catalog file.
+	 *                               Error reading subordinate catalog file.
 	 *
 	 * @return The system identifier to use. Note that the nominal system
 	 *         identifier is not returned if a match is not found in the
@@ -311,7 +319,8 @@ public class Resolver extends Catalog {
 			CatalogEntry e = (CatalogEntry) en.nextElement();
 			if (e.getEntryType() == RESOLVER) {
 				if (systemId != null) {
-					resolved = resolveExternalSystem(systemId, e.getEntryArg(0));
+					resolved = resolveExternalSystem(systemId, e.getEntryArg(
+							0));
 					if (resolved != null) {
 						return resolved;
 					}
@@ -323,16 +332,17 @@ public class Resolver extends Catalog {
 			}
 		}
 
-		return resolveSubordinateCatalogs(Catalog.PUBLIC, null, publicId, systemId);
+		return resolveSubordinateCatalogs(Catalog.PUBLIC, null, publicId,
+				systemId);
 	}
 
 	/**
 	 * Query an external RFC2483 resolver for a system identifier.
 	 *
 	 * @param systemId
-	 *            The system ID to locate.
+	 *                 The system ID to locate.
 	 * @param resolver
-	 *            The name of the resolver to use.
+	 *                 The name of the resolver to use.
 	 *
 	 * @return The system identifier to use for the systemId.
 	 */
@@ -350,9 +360,9 @@ public class Resolver extends Catalog {
 	 * Query an external RFC2483 resolver for a public identifier.
 	 *
 	 * @param publicId
-	 *            The system ID to locate.
+	 *                 The system ID to locate.
 	 * @param resolver
-	 *            The name of the resolver to use.
+	 *                 The name of the resolver to use.
 	 *
 	 * @return The system identifier to use for the systemId.
 	 */
@@ -370,20 +380,21 @@ public class Resolver extends Catalog {
 	 * Query an external RFC2483 resolver.
 	 *
 	 * @param resolver
-	 *            The URL of the RFC2483 resolver.
+	 *                 The URL of the RFC2483 resolver.
 	 * @param command
-	 *            The command to send the resolver.
+	 *                 The command to send the resolver.
 	 * @param arg1
-	 *            The first argument to the resolver.
+	 *                 The first argument to the resolver.
 	 * @param arg2
-	 *            The second argument to the resolver, usually null.
+	 *                 The second argument to the resolver, usually null.
 	 *
 	 * @return The Resolver constructed.
 	 */
-	protected Resolver queryResolver(String resolver, String command, String arg1, String arg2) {
+	protected Resolver queryResolver(String resolver, String command,
+			String arg1, String arg2) {
 		InputStream iStream = null;
-		String RFC2483 = resolver + "?command=" + command + "&format=tr9401&uri=" + arg1 + "&uri2="
-				+ arg2;
+		String RFC2483 = resolver + "?command=" + command
+				+ "&format=tr9401&uri=" + arg1 + "&uri2=" + arg2;
 		String line = null;
 
 		try {
@@ -407,16 +418,21 @@ public class Resolver extends Catalog {
 			return r;
 		} catch (CatalogException cex) {
 			if (cex.getExceptionType() == CatalogException.UNPARSEABLE) {
-				catalogManager.debug.message(1, "Unparseable catalog: " + RFC2483);
-			} else if (cex.getExceptionType() == CatalogException.UNKNOWN_FORMAT) {
-				catalogManager.debug.message(1, "Unknown catalog format: " + RFC2483);
+				catalogManager.debug.message(1, "Unparseable catalog: "
+						+ RFC2483);
+			} else if (cex
+					.getExceptionType() == CatalogException.UNKNOWN_FORMAT) {
+				catalogManager.debug.message(1, "Unknown catalog format: "
+						+ RFC2483);
 			}
 			return null;
 		} catch (MalformedURLException mue) {
-			catalogManager.debug.message(1, "Malformed resolver URL: " + RFC2483);
+			catalogManager.debug.message(1, "Malformed resolver URL: "
+					+ RFC2483);
 			return null;
 		} catch (IOException ie) {
-			catalogManager.debug.message(1, "I/O Exception opening resolver: " + RFC2483);
+			catalogManager.debug.message(1, "I/O Exception opening resolver: "
+					+ RFC2483);
 			return null;
 		}
 	}
@@ -425,9 +441,9 @@ public class Resolver extends Catalog {
 	 * Append two vectors, returning the result.
 	 *
 	 * @param vec
-	 *            The first vector
+	 *               The first vector
 	 * @param appvec
-	 *            The vector to be appended
+	 *               The vector to be appended
 	 * @return The vector vec, with appvec's elements appended to it
 	 */
 	private Vector appendVector(Vector vec, Vector appvec) {
@@ -443,7 +459,7 @@ public class Resolver extends Catalog {
 	 * Find the URNs for a given system identifier in all catalogs.
 	 *
 	 * @param systemId
-	 *            The system ID to locate.
+	 *                 The system ID to locate.
 	 *
 	 * @return A vector of URNs that map to the systemId.
 	 */
@@ -458,7 +474,8 @@ public class Resolver extends Catalog {
 		}
 
 		// Otherwise, look in the subordinate catalogs
-		Vector subResolved = resolveAllSubordinateCatalogs(SYSTEMREVERSE, null, null, systemId);
+		Vector subResolved = resolveAllSubordinateCatalogs(SYSTEMREVERSE, null,
+				null, systemId);
 
 		return appendVector(resolved, subResolved);
 	}
@@ -467,11 +484,12 @@ public class Resolver extends Catalog {
 	 * Find the URN for a given system identifier.
 	 *
 	 * @param systemId
-	 *            The system ID to locate.
+	 *                 The system ID to locate.
 	 *
 	 * @return A (single) URN that maps to the systemId.
 	 */
-	public String resolveSystemReverse(String systemId) throws MalformedURLException, IOException {
+	public String resolveSystemReverse(String systemId)
+			throws MalformedURLException, IOException {
 		Vector resolved = resolveAllSystemReverse(systemId);
 		if (resolved != null && resolved.size() > 0) {
 			return (String) resolved.elementAt(0);
@@ -506,17 +524,19 @@ public class Resolver extends Catalog {
 	 * </p>
 	 *
 	 * @param systemId
-	 *            The system ID to locate in the catalog.
+	 *                 The system ID to locate in the catalog.
 	 *
 	 * @return The system identifier to use for the notation.
 	 *
 	 * @throws MalformedURLException
-	 *             The formal system identifier of a subordinate catalog cannot
-	 *             be turned into a valid URL.
+	 *                               The formal system identifier of a
+	 *                               subordinate catalog cannot
+	 *                               be turned into a valid URL.
 	 * @throws IOException
-	 *             Error reading subordinate catalog file.
+	 *                               Error reading subordinate catalog file.
 	 */
-	public Vector resolveAllSystem(String systemId) throws MalformedURLException, IOException {
+	public Vector resolveAllSystem(String systemId)
+			throws MalformedURLException, IOException {
 		Vector resolutions = new Vector();
 
 		// If there are SYSTEM entries in this catalog, start with them
@@ -526,7 +546,8 @@ public class Resolver extends Catalog {
 		}
 
 		// Then look in the subordinate catalogs
-		Vector subResolutions = resolveAllSubordinateCatalogs(SYSTEM, null, null, systemId);
+		Vector subResolutions = resolveAllSubordinateCatalogs(SYSTEM, null,
+				null, systemId);
 		resolutions = appendVector(resolutions, subResolutions);
 
 		if (resolutions.size() > 0) {
@@ -545,7 +566,7 @@ public class Resolver extends Catalog {
 	 * </p>
 	 *
 	 * @param systemId
-	 *            The system ID to locate in the catalog
+	 *                 The system ID to locate in the catalog
 	 *
 	 * @return A vector of the mapped system identifiers or null
 	 */
@@ -557,7 +578,8 @@ public class Resolver extends Catalog {
 		while (en.hasMoreElements()) {
 			CatalogEntry e = (CatalogEntry) en.nextElement();
 			if (e.getEntryType() == SYSTEM && (e.getEntryArg(0).equals(systemId)
-					|| (windows && e.getEntryArg(0).equalsIgnoreCase(systemId)))) {
+					|| (windows && e.getEntryArg(0).equalsIgnoreCase(
+							systemId)))) {
 				map.addElement(e.getEntryArg(1));
 			}
 		}
@@ -572,7 +594,7 @@ public class Resolver extends Catalog {
 	 * Find the URNs for a given system identifier in the current catalog.
 	 *
 	 * @param systemId
-	 *            The system ID to locate.
+	 *                 The system ID to locate.
 	 *
 	 * @return A vector of URNs that map to the systemId.
 	 */
@@ -584,7 +606,8 @@ public class Resolver extends Catalog {
 		while (en.hasMoreElements()) {
 			CatalogEntry e = (CatalogEntry) en.nextElement();
 			if (e.getEntryType() == SYSTEM && (e.getEntryArg(1).equals(systemId)
-					|| (windows && e.getEntryArg(1).equalsIgnoreCase(systemId)))) {
+					|| (windows && e.getEntryArg(1).equalsIgnoreCase(
+							systemId)))) {
 				map.addElement(e.getEntryArg(0));
 			}
 		}
@@ -605,31 +628,38 @@ public class Resolver extends Catalog {
 	 * </p>
 	 *
 	 * @param entityType
-	 *            The CatalogEntry type for which this query is being conducted.
-	 *            This is necessary in order to do the approprate query on a
-	 *            subordinate catalog.
+	 *                   The CatalogEntry type for which this query is being
+	 *                   conducted.
+	 *                   This is necessary in order to do the approprate query
+	 *                   on a
+	 *                   subordinate catalog.
 	 * @param entityName
-	 *            The name of the entity being searched for, if appropriate.
+	 *                   The name of the entity being searched for, if
+	 *                   appropriate.
 	 * @param publicId
-	 *            The public identifier of the entity in question (as provided
-	 *            in the source document).
+	 *                   The public identifier of the entity in question (as
+	 *                   provided
+	 *                   in the source document).
 	 * @param systemId
-	 *            The nominal system identifier for the entity in question (as
-	 *            provided in the source document).
+	 *                   The nominal system identifier for the entity in
+	 *                   question (as
+	 *                   provided in the source document).
 	 *
 	 * @throws MalformedURLException
-	 *             The formal system identifier of a delegated catalog cannot be
-	 *             turned into a valid URL.
+	 *                               The formal system identifier of a delegated
+	 *                               catalog cannot be
+	 *                               turned into a valid URL.
 	 * @throws IOException
-	 *             Error reading delegated catalog file.
+	 *                               Error reading delegated catalog file.
 	 *
 	 * @return The system identifier to use. Note that the nominal system
 	 *         identifier is not returned if a match is not found in the
 	 *         catalog, instead null is returned to indicate that no match was
 	 *         found.
 	 */
-	private synchronized Vector resolveAllSubordinateCatalogs(int entityType, String entityName,
-			String publicId, String systemId) throws MalformedURLException, IOException {
+	private synchronized Vector resolveAllSubordinateCatalogs(int entityType,
+			String entityName, String publicId, String systemId)
+			throws MalformedURLException, IOException {
 
 		Vector resolutions = new Vector();
 
@@ -645,12 +675,14 @@ public class Resolver extends Catalog {
 				try {
 					c.parseCatalog(catfile);
 				} catch (MalformedURLException mue) {
-					catalogManager.debug.message(1, "Malformed Catalog URL", catfile);
-				} catch (FileNotFoundException fnfe) {
-					catalogManager.debug.message(1, "Failed to load catalog, file not found",
+					catalogManager.debug.message(1, "Malformed Catalog URL",
 							catfile);
+				} catch (FileNotFoundException fnfe) {
+					catalogManager.debug.message(1,
+							"Failed to load catalog, file not found", catfile);
 				} catch (IOException ioe) {
-					catalogManager.debug.message(1, "Failed to load catalog, I/O error", catfile);
+					catalogManager.debug.message(1,
+							"Failed to load catalog, I/O error", catfile);
 				}
 
 				catalogs.setElementAt(c, catPos);

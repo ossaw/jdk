@@ -88,9 +88,9 @@ public interface EncryptionProperty {
 	 * Set the attribute value.
 	 *
 	 * @param attribute
-	 *            the attribute's name.
+	 *                  the attribute's name.
 	 * @param value
-	 *            the attribute's value.
+	 *                  the attribute's value.
 	 */
 	void setAttribute(String attribute, String value);
 
@@ -106,7 +106,7 @@ public interface EncryptionProperty {
 	 * Adds encryption information.
 	 *
 	 * @param information
-	 *            the additional encryption information.
+	 *                    the additional encryption information.
 	 */
 	void addEncryptionInformation(Element information);
 
@@ -114,7 +114,7 @@ public interface EncryptionProperty {
 	 * Removes encryption information.
 	 *
 	 * @param information
-	 *            the information to remove.
+	 *                    the information to remove.
 	 */
 	void removeEncryptionInformation(Element information);
 }

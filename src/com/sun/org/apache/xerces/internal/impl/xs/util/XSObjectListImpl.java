@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002,2003-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,7 +40,8 @@ public class XSObjectListImpl extends AbstractList implements XSObjectList {
 	/**
 	 * An immutable empty list.
 	 */
-	public static final XSObjectListImpl EMPTY_LIST = new XSObjectListImpl(new XSObject[0], 0);
+	public static final XSObjectListImpl EMPTY_LIST = new XSObjectListImpl(
+			new XSObject[0], 0);
 	private static final ListIterator EMPTY_ITERATOR = new ListIterator() {
 		public boolean hasNext() {
 			return false;
@@ -98,9 +96,9 @@ public class XSObjectListImpl extends AbstractList implements XSObjectList {
 	 * Construct an XSObjectList implementation
 	 *
 	 * @param array
-	 *            the data array
+	 *               the data array
 	 * @param length
-	 *            the number of elements
+	 *               the number of elements
 	 */
 	public XSObjectListImpl(XSObject[] array, int length) {
 		fArray = array;
@@ -121,7 +119,7 @@ public class XSObjectListImpl extends AbstractList implements XSObjectList {
 	 * nodes in the list, this returns <code>null</code>.
 	 * 
 	 * @param index
-	 *            index into the collection.
+	 *              index into the collection.
 	 * @return The XSObject at the <code>index</code>th position in the
 	 *         <code>XSObjectList</code>, or <code>null</code> if that is not a
 	 *         valid index.

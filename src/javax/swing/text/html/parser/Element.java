@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.text.html.parser;
@@ -56,8 +36,7 @@ public final class Element implements DTDConstants, Serializable {
 	 */
 	public Object data;
 
-	Element() {
-	}
+	Element() {}
 
 	/**
 	 * Create a new element.

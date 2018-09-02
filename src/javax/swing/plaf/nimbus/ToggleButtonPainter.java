@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -57,7 +37,8 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 	// layers
 	private Path2D path = new Path2D.Float();
 	private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
+	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
+			0, 0);
 	private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
 	// All Colors used for painting are stored here. Ideally, only those colors
@@ -65,74 +46,102 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 	// by a particular instance of ToggleButtonPainter would be created. For the
 	// moment at least,
 	// however, all are created for each instance.
-	private Color color1 = decodeColor("nimbusBlueGrey", -0.027777791f, -0.06885965f, -0.36862746f,
-			-232);
-	private Color color2 = decodeColor("nimbusBlueGrey", 0.0f, -0.06766917f, 0.07843137f, 0);
-	private Color color3 = decodeColor("nimbusBlueGrey", 0.0f, -0.06484103f, 0.027450979f, 0);
-	private Color color4 = decodeColor("nimbusBlueGrey", 0.0f, -0.08477524f, 0.16862744f, 0);
-	private Color color5 = decodeColor("nimbusBlueGrey", -0.015872955f, -0.080091536f, 0.15686274f,
-			0);
-	private Color color6 = decodeColor("nimbusBlueGrey", 0.0f, -0.07016757f, 0.12941176f, 0);
-	private Color color7 = decodeColor("nimbusBlueGrey", 0.0f, -0.07052632f, 0.1372549f, 0);
-	private Color color8 = decodeColor("nimbusBlueGrey", 0.0f, -0.070878744f, 0.14509803f, 0);
-	private Color color9 = decodeColor("nimbusBlueGrey", -0.027777791f, -0.06885965f, -0.36862746f,
-			-190);
-	private Color color10 = decodeColor("nimbusBlueGrey", -0.055555522f, -0.05356429f, -0.12549019f,
-			0);
-	private Color color11 = decodeColor("nimbusBlueGrey", 0.0f, -0.0147816315f, -0.3764706f, 0);
-	private Color color12 = decodeColor("nimbusBlueGrey", 0.055555582f, -0.10655806f, 0.24313724f,
-			0);
-	private Color color13 = decodeColor("nimbusBlueGrey", 0.0f, -0.09823123f, 0.2117647f, 0);
-	private Color color14 = decodeColor("nimbusBlueGrey", 0.0f, -0.0749532f, 0.24705881f, 0);
-	private Color color15 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f, 0.25490195f, 0);
+	private Color color1 = decodeColor("nimbusBlueGrey", -0.027777791f,
+			-0.06885965f, -0.36862746f, -232);
+	private Color color2 = decodeColor("nimbusBlueGrey", 0.0f, -0.06766917f,
+			0.07843137f, 0);
+	private Color color3 = decodeColor("nimbusBlueGrey", 0.0f, -0.06484103f,
+			0.027450979f, 0);
+	private Color color4 = decodeColor("nimbusBlueGrey", 0.0f, -0.08477524f,
+			0.16862744f, 0);
+	private Color color5 = decodeColor("nimbusBlueGrey", -0.015872955f,
+			-0.080091536f, 0.15686274f, 0);
+	private Color color6 = decodeColor("nimbusBlueGrey", 0.0f, -0.07016757f,
+			0.12941176f, 0);
+	private Color color7 = decodeColor("nimbusBlueGrey", 0.0f, -0.07052632f,
+			0.1372549f, 0);
+	private Color color8 = decodeColor("nimbusBlueGrey", 0.0f, -0.070878744f,
+			0.14509803f, 0);
+	private Color color9 = decodeColor("nimbusBlueGrey", -0.027777791f,
+			-0.06885965f, -0.36862746f, -190);
+	private Color color10 = decodeColor("nimbusBlueGrey", -0.055555522f,
+			-0.05356429f, -0.12549019f, 0);
+	private Color color11 = decodeColor("nimbusBlueGrey", 0.0f, -0.0147816315f,
+			-0.3764706f, 0);
+	private Color color12 = decodeColor("nimbusBlueGrey", 0.055555582f,
+			-0.10655806f, 0.24313724f, 0);
+	private Color color13 = decodeColor("nimbusBlueGrey", 0.0f, -0.09823123f,
+			0.2117647f, 0);
+	private Color color14 = decodeColor("nimbusBlueGrey", 0.0f, -0.0749532f,
+			0.24705881f, 0);
+	private Color color15 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f,
+			0.25490195f, 0);
 	private Color color16 = decodeColor("nimbusFocus", 0.0f, 0.0f, 0.0f, 0);
-	private Color color17 = decodeColor("nimbusBlueGrey", 0.0f, -0.020974077f, -0.21960783f, 0);
-	private Color color18 = decodeColor("nimbusBlueGrey", 0.0f, 0.11169591f, -0.53333336f, 0);
-	private Color color19 = decodeColor("nimbusBlueGrey", 0.055555582f, -0.10658931f, 0.25098038f,
-			0);
-	private Color color20 = decodeColor("nimbusBlueGrey", 0.0f, -0.098526314f, 0.2352941f, 0);
-	private Color color21 = decodeColor("nimbusBlueGrey", 0.0f, -0.07333623f, 0.20392156f, 0);
+	private Color color17 = decodeColor("nimbusBlueGrey", 0.0f, -0.020974077f,
+			-0.21960783f, 0);
+	private Color color18 = decodeColor("nimbusBlueGrey", 0.0f, 0.11169591f,
+			-0.53333336f, 0);
+	private Color color19 = decodeColor("nimbusBlueGrey", 0.055555582f,
+			-0.10658931f, 0.25098038f, 0);
+	private Color color20 = decodeColor("nimbusBlueGrey", 0.0f, -0.098526314f,
+			0.2352941f, 0);
+	private Color color21 = decodeColor("nimbusBlueGrey", 0.0f, -0.07333623f,
+			0.20392156f, 0);
 	private Color color22 = new Color(245, 250, 255, 160);
-	private Color color23 = decodeColor("nimbusBlueGrey", 0.055555582f, 0.8894737f, -0.7176471f, 0);
-	private Color color24 = decodeColor("nimbusBlueGrey", 0.0f, 5.847961E-4f, -0.32156864f, 0);
-	private Color color25 = decodeColor("nimbusBlueGrey", -0.00505054f, -0.05960039f, 0.10196078f,
-			0);
-	private Color color26 = decodeColor("nimbusBlueGrey", -0.008547008f, -0.04772438f, 0.06666666f,
-			0);
-	private Color color27 = decodeColor("nimbusBlueGrey", -0.0027777553f, -0.0018306673f,
-			-0.02352941f, 0);
-	private Color color28 = decodeColor("nimbusBlueGrey", -0.0027777553f, -0.0212406f, 0.13333333f,
-			0);
-	private Color color29 = decodeColor("nimbusBlueGrey", 0.0055555105f, -0.030845039f, 0.23921567f,
-			0);
-	private Color color30 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f, 0.25490195f, -86);
-	private Color color31 = decodeColor("nimbusBlueGrey", 0.0f, -0.06472479f, -0.23137254f, 0);
-	private Color color32 = decodeColor("nimbusBlueGrey", 0.007936537f, -0.06959064f, -0.0745098f,
-			0);
-	private Color color33 = decodeColor("nimbusBlueGrey", 0.0138888955f, -0.06401469f, -0.07058823f,
-			0);
-	private Color color34 = decodeColor("nimbusBlueGrey", 0.0f, -0.06530018f, 0.035294116f, 0);
-	private Color color35 = decodeColor("nimbusBlueGrey", 0.0f, -0.06507177f, 0.031372547f, 0);
-	private Color color36 = decodeColor("nimbusBlueGrey", -0.027777791f, -0.05338346f, -0.47058824f,
-			0);
-	private Color color37 = decodeColor("nimbusBlueGrey", 0.0f, -0.049301825f, -0.36078432f, 0);
-	private Color color38 = decodeColor("nimbusBlueGrey", -0.018518567f, -0.03909774f, -0.2509804f,
-			0);
-	private Color color39 = decodeColor("nimbusBlueGrey", -0.00505054f, -0.040013492f, -0.13333333f,
-			0);
-	private Color color40 = decodeColor("nimbusBlueGrey", 0.01010108f, -0.039558575f, -0.1372549f,
-			0);
-	private Color color41 = decodeColor("nimbusBlueGrey", -0.01111114f, -0.060526315f, -0.3529412f,
-			0);
-	private Color color42 = decodeColor("nimbusBlueGrey", 0.0f, -0.064372465f, -0.2352941f, 0);
-	private Color color43 = decodeColor("nimbusBlueGrey", -0.006944418f, -0.0595709f, -0.12941176f,
-			0);
-	private Color color44 = decodeColor("nimbusBlueGrey", 0.0f, -0.061075766f, -0.031372547f, 0);
-	private Color color45 = decodeColor("nimbusBlueGrey", 0.0f, -0.06080256f, -0.035294116f, 0);
-	private Color color46 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f, 0.25490195f, -220);
-	private Color color47 = decodeColor("nimbusBlueGrey", 0.0f, -0.066408664f, 0.054901958f, 0);
-	private Color color48 = decodeColor("nimbusBlueGrey", 0.0f, -0.06807348f, 0.086274505f, 0);
-	private Color color49 = decodeColor("nimbusBlueGrey", 0.0f, -0.06924191f, 0.109803915f, 0);
+	private Color color23 = decodeColor("nimbusBlueGrey", 0.055555582f,
+			0.8894737f, -0.7176471f, 0);
+	private Color color24 = decodeColor("nimbusBlueGrey", 0.0f, 5.847961E-4f,
+			-0.32156864f, 0);
+	private Color color25 = decodeColor("nimbusBlueGrey", -0.00505054f,
+			-0.05960039f, 0.10196078f, 0);
+	private Color color26 = decodeColor("nimbusBlueGrey", -0.008547008f,
+			-0.04772438f, 0.06666666f, 0);
+	private Color color27 = decodeColor("nimbusBlueGrey", -0.0027777553f,
+			-0.0018306673f, -0.02352941f, 0);
+	private Color color28 = decodeColor("nimbusBlueGrey", -0.0027777553f,
+			-0.0212406f, 0.13333333f, 0);
+	private Color color29 = decodeColor("nimbusBlueGrey", 0.0055555105f,
+			-0.030845039f, 0.23921567f, 0);
+	private Color color30 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f,
+			0.25490195f, -86);
+	private Color color31 = decodeColor("nimbusBlueGrey", 0.0f, -0.06472479f,
+			-0.23137254f, 0);
+	private Color color32 = decodeColor("nimbusBlueGrey", 0.007936537f,
+			-0.06959064f, -0.0745098f, 0);
+	private Color color33 = decodeColor("nimbusBlueGrey", 0.0138888955f,
+			-0.06401469f, -0.07058823f, 0);
+	private Color color34 = decodeColor("nimbusBlueGrey", 0.0f, -0.06530018f,
+			0.035294116f, 0);
+	private Color color35 = decodeColor("nimbusBlueGrey", 0.0f, -0.06507177f,
+			0.031372547f, 0);
+	private Color color36 = decodeColor("nimbusBlueGrey", -0.027777791f,
+			-0.05338346f, -0.47058824f, 0);
+	private Color color37 = decodeColor("nimbusBlueGrey", 0.0f, -0.049301825f,
+			-0.36078432f, 0);
+	private Color color38 = decodeColor("nimbusBlueGrey", -0.018518567f,
+			-0.03909774f, -0.2509804f, 0);
+	private Color color39 = decodeColor("nimbusBlueGrey", -0.00505054f,
+			-0.040013492f, -0.13333333f, 0);
+	private Color color40 = decodeColor("nimbusBlueGrey", 0.01010108f,
+			-0.039558575f, -0.1372549f, 0);
+	private Color color41 = decodeColor("nimbusBlueGrey", -0.01111114f,
+			-0.060526315f, -0.3529412f, 0);
+	private Color color42 = decodeColor("nimbusBlueGrey", 0.0f, -0.064372465f,
+			-0.2352941f, 0);
+	private Color color43 = decodeColor("nimbusBlueGrey", -0.006944418f,
+			-0.0595709f, -0.12941176f, 0);
+	private Color color44 = decodeColor("nimbusBlueGrey", 0.0f, -0.061075766f,
+			-0.031372547f, 0);
+	private Color color45 = decodeColor("nimbusBlueGrey", 0.0f, -0.06080256f,
+			-0.035294116f, 0);
+	private Color color46 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f,
+			0.25490195f, -220);
+	private Color color47 = decodeColor("nimbusBlueGrey", 0.0f, -0.066408664f,
+			0.054901958f, 0);
+	private Color color48 = decodeColor("nimbusBlueGrey", 0.0f, -0.06807348f,
+			0.086274505f, 0);
+	private Color color49 = decodeColor("nimbusBlueGrey", 0.0f, -0.06924191f,
+			0.109803915f, 0);
 
 	// Array of current component colors, updated in each paint call
 	private Object[] componentColors;
@@ -152,48 +161,48 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		// generate this entire method. Each state/bg/fg/border combo that has
 		// been painted gets its own KEY and paint method.
 		switch (state) {
-		case BACKGROUND_DISABLED:
-			paintBackgroundDisabled(g);
-			break;
-		case BACKGROUND_ENABLED:
-			paintBackgroundEnabled(g);
-			break;
-		case BACKGROUND_FOCUSED:
-			paintBackgroundFocused(g);
-			break;
-		case BACKGROUND_MOUSEOVER:
-			paintBackgroundMouseOver(g);
-			break;
-		case BACKGROUND_MOUSEOVER_FOCUSED:
-			paintBackgroundMouseOverAndFocused(g);
-			break;
-		case BACKGROUND_PRESSED:
-			paintBackgroundPressed(g);
-			break;
-		case BACKGROUND_PRESSED_FOCUSED:
-			paintBackgroundPressedAndFocused(g);
-			break;
-		case BACKGROUND_SELECTED:
-			paintBackgroundSelected(g);
-			break;
-		case BACKGROUND_SELECTED_FOCUSED:
-			paintBackgroundSelectedAndFocused(g);
-			break;
-		case BACKGROUND_PRESSED_SELECTED:
-			paintBackgroundPressedAndSelected(g);
-			break;
-		case BACKGROUND_PRESSED_SELECTED_FOCUSED:
-			paintBackgroundPressedAndSelectedAndFocused(g);
-			break;
-		case BACKGROUND_MOUSEOVER_SELECTED:
-			paintBackgroundMouseOverAndSelected(g);
-			break;
-		case BACKGROUND_MOUSEOVER_SELECTED_FOCUSED:
-			paintBackgroundMouseOverAndSelectedAndFocused(g);
-			break;
-		case BACKGROUND_DISABLED_SELECTED:
-			paintBackgroundDisabledAndSelected(g);
-			break;
+			case BACKGROUND_DISABLED:
+				paintBackgroundDisabled(g);
+				break;
+			case BACKGROUND_ENABLED:
+				paintBackgroundEnabled(g);
+				break;
+			case BACKGROUND_FOCUSED:
+				paintBackgroundFocused(g);
+				break;
+			case BACKGROUND_MOUSEOVER:
+				paintBackgroundMouseOver(g);
+				break;
+			case BACKGROUND_MOUSEOVER_FOCUSED:
+				paintBackgroundMouseOverAndFocused(g);
+				break;
+			case BACKGROUND_PRESSED:
+				paintBackgroundPressed(g);
+				break;
+			case BACKGROUND_PRESSED_FOCUSED:
+				paintBackgroundPressedAndFocused(g);
+				break;
+			case BACKGROUND_SELECTED:
+				paintBackgroundSelected(g);
+				break;
+			case BACKGROUND_SELECTED_FOCUSED:
+				paintBackgroundSelectedAndFocused(g);
+				break;
+			case BACKGROUND_PRESSED_SELECTED:
+				paintBackgroundPressedAndSelected(g);
+				break;
+			case BACKGROUND_PRESSED_SELECTED_FOCUSED:
+				paintBackgroundPressedAndSelectedAndFocused(g);
+				break;
+			case BACKGROUND_MOUSEOVER_SELECTED:
+				paintBackgroundMouseOverAndSelected(g);
+				break;
+			case BACKGROUND_MOUSEOVER_SELECTED_FOCUSED:
+				paintBackgroundMouseOverAndSelectedAndFocused(g);
+				break;
+			case BACKGROUND_DISABLED_SELECTED:
+				paintBackgroundDisabledAndSelected(g);
+				break;
 
 		}
 	}
@@ -201,88 +210,122 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 	protected Object[] getExtendedCacheKeys(JComponent c) {
 		Object[] extendedCacheKeys = null;
 		switch (state) {
-		case BACKGROUND_ENABLED:
-			extendedCacheKeys = new Object[] {
-					getComponentColor(c, "background", color12, -0.10655806f, 0.24313724f, 0),
-					getComponentColor(c, "background", color13, -0.09823123f, 0.2117647f, 0),
-					getComponentColor(c, "background", color6, -0.07016757f, 0.12941176f, 0),
-					getComponentColor(c, "background", color14, -0.0749532f, 0.24705881f, 0),
-					getComponentColor(c, "background", color15, -0.110526316f, 0.25490195f, 0) };
-			break;
-		case BACKGROUND_FOCUSED:
-			extendedCacheKeys = new Object[] {
-					getComponentColor(c, "background", color12, -0.10655806f, 0.24313724f, 0),
-					getComponentColor(c, "background", color13, -0.09823123f, 0.2117647f, 0),
-					getComponentColor(c, "background", color6, -0.07016757f, 0.12941176f, 0),
-					getComponentColor(c, "background", color14, -0.0749532f, 0.24705881f, 0),
-					getComponentColor(c, "background", color15, -0.110526316f, 0.25490195f, 0) };
-			break;
-		case BACKGROUND_MOUSEOVER:
-			extendedCacheKeys = new Object[] {
-					getComponentColor(c, "background", color19, -0.10658931f, 0.25098038f, 0),
-					getComponentColor(c, "background", color20, -0.098526314f, 0.2352941f, 0),
-					getComponentColor(c, "background", color21, -0.07333623f, 0.20392156f, 0),
-					getComponentColor(c, "background", color15, -0.110526316f, 0.25490195f, 0) };
-			break;
-		case BACKGROUND_MOUSEOVER_FOCUSED:
-			extendedCacheKeys = new Object[] {
-					getComponentColor(c, "background", color19, -0.10658931f, 0.25098038f, 0),
-					getComponentColor(c, "background", color20, -0.098526314f, 0.2352941f, 0),
-					getComponentColor(c, "background", color21, -0.07333623f, 0.20392156f, 0),
-					getComponentColor(c, "background", color15, -0.110526316f, 0.25490195f, 0) };
-			break;
-		case BACKGROUND_PRESSED:
-			extendedCacheKeys = new Object[] {
-					getComponentColor(c, "background", color25, -0.05960039f, 0.10196078f, 0),
-					getComponentColor(c, "background", color26, -0.04772438f, 0.06666666f, 0),
-					getComponentColor(c, "background", color27, -0.0018306673f, -0.02352941f, 0),
-					getComponentColor(c, "background", color28, -0.0212406f, 0.13333333f, 0),
-					getComponentColor(c, "background", color29, -0.030845039f, 0.23921567f, 0) };
-			break;
-		case BACKGROUND_PRESSED_FOCUSED:
-			extendedCacheKeys = new Object[] {
-					getComponentColor(c, "background", color25, -0.05960039f, 0.10196078f, 0),
-					getComponentColor(c, "background", color26, -0.04772438f, 0.06666666f, 0),
-					getComponentColor(c, "background", color27, -0.0018306673f, -0.02352941f, 0),
-					getComponentColor(c, "background", color28, -0.0212406f, 0.13333333f, 0),
-					getComponentColor(c, "background", color29, -0.030845039f, 0.23921567f, 0) };
-			break;
-		case BACKGROUND_SELECTED:
-			extendedCacheKeys = new Object[] {
-					getComponentColor(c, "background", color33, -0.06401469f, -0.07058823f, 0),
-					getComponentColor(c, "background", color34, -0.06530018f, 0.035294116f, 0),
-					getComponentColor(c, "background", color35, -0.06507177f, 0.031372547f, 0) };
-			break;
-		case BACKGROUND_SELECTED_FOCUSED:
-			extendedCacheKeys = new Object[] {
-					getComponentColor(c, "background", color33, -0.06401469f, -0.07058823f, 0),
-					getComponentColor(c, "background", color34, -0.06530018f, 0.035294116f, 0),
-					getComponentColor(c, "background", color35, -0.06507177f, 0.031372547f, 0) };
-			break;
-		case BACKGROUND_PRESSED_SELECTED:
-			extendedCacheKeys = new Object[] {
-					getComponentColor(c, "background", color38, -0.03909774f, -0.2509804f, 0),
-					getComponentColor(c, "background", color39, -0.040013492f, -0.13333333f, 0),
-					getComponentColor(c, "background", color40, -0.039558575f, -0.1372549f, 0) };
-			break;
-		case BACKGROUND_PRESSED_SELECTED_FOCUSED:
-			extendedCacheKeys = new Object[] {
-					getComponentColor(c, "background", color38, -0.03909774f, -0.2509804f, 0),
-					getComponentColor(c, "background", color39, -0.040013492f, -0.13333333f, 0),
-					getComponentColor(c, "background", color40, -0.039558575f, -0.1372549f, 0) };
-			break;
-		case BACKGROUND_MOUSEOVER_SELECTED:
-			extendedCacheKeys = new Object[] {
-					getComponentColor(c, "background", color43, -0.0595709f, -0.12941176f, 0),
-					getComponentColor(c, "background", color44, -0.061075766f, -0.031372547f, 0),
-					getComponentColor(c, "background", color45, -0.06080256f, -0.035294116f, 0) };
-			break;
-		case BACKGROUND_MOUSEOVER_SELECTED_FOCUSED:
-			extendedCacheKeys = new Object[] {
-					getComponentColor(c, "background", color43, -0.0595709f, -0.12941176f, 0),
-					getComponentColor(c, "background", color44, -0.061075766f, -0.031372547f, 0),
-					getComponentColor(c, "background", color45, -0.06080256f, -0.035294116f, 0) };
-			break;
+			case BACKGROUND_ENABLED:
+				extendedCacheKeys = new Object[] { getComponentColor(c,
+						"background", color12, -0.10655806f, 0.24313724f, 0),
+						getComponentColor(c, "background", color13,
+								-0.09823123f, 0.2117647f, 0), getComponentColor(
+										c, "background", color6, -0.07016757f,
+										0.12941176f, 0), getComponentColor(c,
+												"background", color14,
+												-0.0749532f, 0.24705881f, 0),
+						getComponentColor(c, "background", color15,
+								-0.110526316f, 0.25490195f, 0) };
+				break;
+			case BACKGROUND_FOCUSED:
+				extendedCacheKeys = new Object[] { getComponentColor(c,
+						"background", color12, -0.10655806f, 0.24313724f, 0),
+						getComponentColor(c, "background", color13,
+								-0.09823123f, 0.2117647f, 0), getComponentColor(
+										c, "background", color6, -0.07016757f,
+										0.12941176f, 0), getComponentColor(c,
+												"background", color14,
+												-0.0749532f, 0.24705881f, 0),
+						getComponentColor(c, "background", color15,
+								-0.110526316f, 0.25490195f, 0) };
+				break;
+			case BACKGROUND_MOUSEOVER:
+				extendedCacheKeys = new Object[] { getComponentColor(c,
+						"background", color19, -0.10658931f, 0.25098038f, 0),
+						getComponentColor(c, "background", color20,
+								-0.098526314f, 0.2352941f, 0),
+						getComponentColor(c, "background", color21,
+								-0.07333623f, 0.20392156f, 0),
+						getComponentColor(c, "background", color15,
+								-0.110526316f, 0.25490195f, 0) };
+				break;
+			case BACKGROUND_MOUSEOVER_FOCUSED:
+				extendedCacheKeys = new Object[] { getComponentColor(c,
+						"background", color19, -0.10658931f, 0.25098038f, 0),
+						getComponentColor(c, "background", color20,
+								-0.098526314f, 0.2352941f, 0),
+						getComponentColor(c, "background", color21,
+								-0.07333623f, 0.20392156f, 0),
+						getComponentColor(c, "background", color15,
+								-0.110526316f, 0.25490195f, 0) };
+				break;
+			case BACKGROUND_PRESSED:
+				extendedCacheKeys = new Object[] { getComponentColor(c,
+						"background", color25, -0.05960039f, 0.10196078f, 0),
+						getComponentColor(c, "background", color26,
+								-0.04772438f, 0.06666666f, 0),
+						getComponentColor(c, "background", color27,
+								-0.0018306673f, -0.02352941f, 0),
+						getComponentColor(c, "background", color28, -0.0212406f,
+								0.13333333f, 0), getComponentColor(c,
+										"background", color29, -0.030845039f,
+										0.23921567f, 0) };
+				break;
+			case BACKGROUND_PRESSED_FOCUSED:
+				extendedCacheKeys = new Object[] { getComponentColor(c,
+						"background", color25, -0.05960039f, 0.10196078f, 0),
+						getComponentColor(c, "background", color26,
+								-0.04772438f, 0.06666666f, 0),
+						getComponentColor(c, "background", color27,
+								-0.0018306673f, -0.02352941f, 0),
+						getComponentColor(c, "background", color28, -0.0212406f,
+								0.13333333f, 0), getComponentColor(c,
+										"background", color29, -0.030845039f,
+										0.23921567f, 0) };
+				break;
+			case BACKGROUND_SELECTED:
+				extendedCacheKeys = new Object[] { getComponentColor(c,
+						"background", color33, -0.06401469f, -0.07058823f, 0),
+						getComponentColor(c, "background", color34,
+								-0.06530018f, 0.035294116f, 0),
+						getComponentColor(c, "background", color35,
+								-0.06507177f, 0.031372547f, 0) };
+				break;
+			case BACKGROUND_SELECTED_FOCUSED:
+				extendedCacheKeys = new Object[] { getComponentColor(c,
+						"background", color33, -0.06401469f, -0.07058823f, 0),
+						getComponentColor(c, "background", color34,
+								-0.06530018f, 0.035294116f, 0),
+						getComponentColor(c, "background", color35,
+								-0.06507177f, 0.031372547f, 0) };
+				break;
+			case BACKGROUND_PRESSED_SELECTED:
+				extendedCacheKeys = new Object[] { getComponentColor(c,
+						"background", color38, -0.03909774f, -0.2509804f, 0),
+						getComponentColor(c, "background", color39,
+								-0.040013492f, -0.13333333f, 0),
+						getComponentColor(c, "background", color40,
+								-0.039558575f, -0.1372549f, 0) };
+				break;
+			case BACKGROUND_PRESSED_SELECTED_FOCUSED:
+				extendedCacheKeys = new Object[] { getComponentColor(c,
+						"background", color38, -0.03909774f, -0.2509804f, 0),
+						getComponentColor(c, "background", color39,
+								-0.040013492f, -0.13333333f, 0),
+						getComponentColor(c, "background", color40,
+								-0.039558575f, -0.1372549f, 0) };
+				break;
+			case BACKGROUND_MOUSEOVER_SELECTED:
+				extendedCacheKeys = new Object[] { getComponentColor(c,
+						"background", color43, -0.0595709f, -0.12941176f, 0),
+						getComponentColor(c, "background", color44,
+								-0.061075766f, -0.031372547f, 0),
+						getComponentColor(c, "background", color45,
+								-0.06080256f, -0.035294116f, 0) };
+				break;
+			case BACKGROUND_MOUSEOVER_SELECTED_FOCUSED:
+				extendedCacheKeys = new Object[] { getComponentColor(c,
+						"background", color43, -0.0595709f, -0.12941176f, 0),
+						getComponentColor(c, "background", color44,
+								-0.061075766f, -0.031372547f, 0),
+						getComponentColor(c, "background", color45,
+								-0.06080256f, -0.035294116f, 0) };
+				break;
 		}
 		return extendedCacheKeys;
 	}
@@ -534,9 +577,10 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.09f, 0.52f, 0.95f },
-				new Color[] { color2, decodeColor(color2, color3, 0.5f), color3 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.09f, 0.52f, 0.95f },
+				new Color[] { color2, decodeColor(color2, color3, 0.5f),
+						color3 });
 	}
 
 	private Paint decodeGradient2(Shape s) {
@@ -545,13 +589,13 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.03f, 0.06f, 0.33f, 0.6f, 0.65f, 0.7f, 0.825f, 0.95f, 0.975f,
-						1.0f },
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.03f, 0.06f, 0.33f, 0.6f,
+						0.65f, 0.7f, 0.825f, 0.95f, 0.975f, 1.0f },
 				new Color[] { color4, decodeColor(color4, color5, 0.5f), color5,
-						decodeColor(color5, color6, 0.5f), color6,
-						decodeColor(color6, color6, 0.5f), color6,
-						decodeColor(color6, color7, 0.5f), color7,
+						decodeColor(color5, color6, 0.5f), color6, decodeColor(
+								color6, color6, 0.5f), color6, decodeColor(
+										color6, color7, 0.5f), color7,
 						decodeColor(color7, color8, 0.5f), color8 });
 	}
 
@@ -561,9 +605,10 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.09f, 0.52f, 0.95f },
-				new Color[] { color10, decodeColor(color10, color11, 0.5f), color11 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.09f, 0.52f, 0.95f },
+				new Color[] { color10, decodeColor(color10, color11, 0.5f),
+						color11 });
 	}
 
 	private Paint decodeGradient4(Shape s) {
@@ -572,19 +617,23 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.024f, 0.06f, 0.276f, 0.6f, 0.65f, 0.7f, 0.856f, 0.96f,
-						0.98399997f, 1.0f },
-				new Color[] { (Color) componentColors[0],
-						decodeColor((Color) componentColors[0], (Color) componentColors[1], 0.5f),
-						(Color) componentColors[1],
-						decodeColor((Color) componentColors[1], (Color) componentColors[2], 0.5f),
-						(Color) componentColors[2],
-						decodeColor((Color) componentColors[2], (Color) componentColors[2], 0.5f),
-						(Color) componentColors[2],
-						decodeColor((Color) componentColors[2], (Color) componentColors[3], 0.5f),
-						(Color) componentColors[3],
-						decodeColor((Color) componentColors[3], (Color) componentColors[4], 0.5f),
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.024f, 0.06f, 0.276f, 0.6f,
+						0.65f, 0.7f, 0.856f, 0.96f, 0.98399997f, 1.0f },
+				new Color[] { (Color) componentColors[0], decodeColor(
+						(Color) componentColors[0], (Color) componentColors[1],
+						0.5f), (Color) componentColors[1], decodeColor(
+								(Color) componentColors[1],
+								(Color) componentColors[2], 0.5f),
+						(Color) componentColors[2], decodeColor(
+								(Color) componentColors[2],
+								(Color) componentColors[2], 0.5f),
+						(Color) componentColors[2], decodeColor(
+								(Color) componentColors[2],
+								(Color) componentColors[3], 0.5f),
+						(Color) componentColors[3], decodeColor(
+								(Color) componentColors[3],
+								(Color) componentColors[4], 0.5f),
 						(Color) componentColors[4] });
 	}
 
@@ -594,19 +643,23 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.03f, 0.06f, 0.33f, 0.6f, 0.65f, 0.7f, 0.825f, 0.95f, 0.975f,
-						1.0f },
-				new Color[] { (Color) componentColors[0],
-						decodeColor((Color) componentColors[0], (Color) componentColors[1], 0.5f),
-						(Color) componentColors[1],
-						decodeColor((Color) componentColors[1], (Color) componentColors[2], 0.5f),
-						(Color) componentColors[2],
-						decodeColor((Color) componentColors[2], (Color) componentColors[2], 0.5f),
-						(Color) componentColors[2],
-						decodeColor((Color) componentColors[2], (Color) componentColors[3], 0.5f),
-						(Color) componentColors[3],
-						decodeColor((Color) componentColors[3], (Color) componentColors[4], 0.5f),
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.03f, 0.06f, 0.33f, 0.6f,
+						0.65f, 0.7f, 0.825f, 0.95f, 0.975f, 1.0f },
+				new Color[] { (Color) componentColors[0], decodeColor(
+						(Color) componentColors[0], (Color) componentColors[1],
+						0.5f), (Color) componentColors[1], decodeColor(
+								(Color) componentColors[1],
+								(Color) componentColors[2], 0.5f),
+						(Color) componentColors[2], decodeColor(
+								(Color) componentColors[2],
+								(Color) componentColors[2], 0.5f),
+						(Color) componentColors[2], decodeColor(
+								(Color) componentColors[2],
+								(Color) componentColors[3], 0.5f),
+						(Color) componentColors[3], decodeColor(
+								(Color) componentColors[3],
+								(Color) componentColors[4], 0.5f),
 						(Color) componentColors[4] });
 	}
 
@@ -616,9 +669,10 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.09f, 0.52f, 0.95f },
-				new Color[] { color17, decodeColor(color17, color18, 0.5f), color18 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.09f, 0.52f, 0.95f },
+				new Color[] { color17, decodeColor(color17, color18, 0.5f),
+						color18 });
 	}
 
 	private Paint decodeGradient7(Shape s) {
@@ -627,20 +681,25 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.024f, 0.06f, 0.276f, 0.6f, 0.65f, 0.7f, 0.856f, 0.96f, 0.98f,
-						1.0f },
-				new Color[] { (Color) componentColors[0],
-						decodeColor((Color) componentColors[0], (Color) componentColors[1], 0.5f),
-						(Color) componentColors[1],
-						decodeColor((Color) componentColors[1], (Color) componentColors[2], 0.5f),
-						(Color) componentColors[2],
-						decodeColor((Color) componentColors[2], (Color) componentColors[2], 0.5f),
-						(Color) componentColors[2],
-						decodeColor((Color) componentColors[2], (Color) componentColors[3], 0.5f),
-						(Color) componentColors[3],
-						decodeColor((Color) componentColors[3], (Color) componentColors[3], 0.5f),
-						(Color) componentColors[3] });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.024f, 0.06f, 0.276f, 0.6f,
+						0.65f, 0.7f, 0.856f, 0.96f, 0.98f, 1.0f }, new Color[] {
+								(Color) componentColors[0], decodeColor(
+										(Color) componentColors[0],
+										(Color) componentColors[1], 0.5f),
+								(Color) componentColors[1], decodeColor(
+										(Color) componentColors[1],
+										(Color) componentColors[2], 0.5f),
+								(Color) componentColors[2], decodeColor(
+										(Color) componentColors[2],
+										(Color) componentColors[2], 0.5f),
+								(Color) componentColors[2], decodeColor(
+										(Color) componentColors[2],
+										(Color) componentColors[3], 0.5f),
+								(Color) componentColors[3], decodeColor(
+										(Color) componentColors[3],
+										(Color) componentColors[3], 0.5f),
+								(Color) componentColors[3] });
 	}
 
 	private Paint decodeGradient8(Shape s) {
@@ -649,9 +708,10 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.05f, 0.5f, 0.95f },
-				new Color[] { color23, decodeColor(color23, color24, 0.5f), color24 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.05f, 0.5f, 0.95f },
+				new Color[] { color23, decodeColor(color23, color24, 0.5f),
+						color24 });
 	}
 
 	private Paint decodeGradient9(Shape s) {
@@ -660,9 +720,10 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color31, decodeColor(color31, color32, 0.5f), color32 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
+						color31, decodeColor(color31, color32, 0.5f),
+						color32 });
 	}
 
 	private Paint decodeGradient10(Shape s) {
@@ -671,13 +732,16 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.06684492f, 0.13368984f, 0.56684494f, 1.0f },
-				new Color[] { (Color) componentColors[0],
-						decodeColor((Color) componentColors[0], (Color) componentColors[1], 0.5f),
-						(Color) componentColors[1],
-						decodeColor((Color) componentColors[1], (Color) componentColors[2], 0.5f),
-						(Color) componentColors[2] });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.06684492f, 0.13368984f,
+						0.56684494f, 1.0f }, new Color[] {
+								(Color) componentColors[0], decodeColor(
+										(Color) componentColors[0],
+										(Color) componentColors[1], 0.5f),
+								(Color) componentColors[1], decodeColor(
+										(Color) componentColors[1],
+										(Color) componentColors[2], 0.5f),
+								(Color) componentColors[2] });
 	}
 
 	private Paint decodeGradient11(Shape s) {
@@ -686,9 +750,10 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color36, decodeColor(color36, color37, 0.5f), color37 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
+						color36, decodeColor(color36, color37, 0.5f),
+						color37 });
 	}
 
 	private Paint decodeGradient12(Shape s) {
@@ -697,9 +762,10 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color41, decodeColor(color41, color42, 0.5f), color42 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
+						color41, decodeColor(color41, color42, 0.5f),
+						color42 });
 	}
 
 	private Paint decodeGradient13(Shape s) {
@@ -708,9 +774,10 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color47, decodeColor(color47, color48, 0.5f), color48 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
+						color47, decodeColor(color47, color48, 0.5f),
+						color48 });
 	}
 
 	private Paint decodeGradient14(Shape s) {
@@ -719,10 +786,11 @@ final class ToggleButtonPainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.06684492f, 0.13368984f, 0.56684494f, 1.0f },
-				new Color[] { color48, decodeColor(color48, color49, 0.5f), color49,
-						decodeColor(color49, color49, 0.5f), color49 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.06684492f, 0.13368984f,
+						0.56684494f, 1.0f }, new Color[] { color48, decodeColor(
+								color48, color49, 0.5f), color49, decodeColor(
+										color49, color49, 0.5f), color49 });
 	}
 
 }

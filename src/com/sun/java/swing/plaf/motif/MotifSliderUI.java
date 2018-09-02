@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.java.swing.plaf.motif;
@@ -94,11 +74,9 @@ public class MotifSliderUI extends BasicSliderUI {
 		}
 	}
 
-	public void paintFocus(Graphics g) {
-	}
+	public void paintFocus(Graphics g) {}
 
-	public void paintTrack(Graphics g) {
-	}
+	public void paintTrack(Graphics g) {}
 
 	public void paintThumb(Graphics g) {
 		Rectangle knobBounds = thumbRect;

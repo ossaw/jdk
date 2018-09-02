@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.security.acl;
@@ -47,7 +27,7 @@ public interface Group extends Principal {
 	 * Adds the specified member to the group.
 	 *
 	 * @param user
-	 *            the principal to add to this group.
+	 *             the principal to add to this group.
 	 *
 	 * @return true if the member was successfully added, false if the principal
 	 *         was already a member.
@@ -58,7 +38,7 @@ public interface Group extends Principal {
 	 * Removes the specified member from the group.
 	 *
 	 * @param user
-	 *            the principal to remove from this group.
+	 *             the principal to remove from this group.
 	 *
 	 * @return true if the principal was removed, or false if the principal was
 	 *         not a member.
@@ -71,7 +51,7 @@ public interface Group extends Principal {
 	 * which is a member of this group, true is returned.
 	 *
 	 * @param member
-	 *            the principal whose membership is to be checked.
+	 *               the principal whose membership is to be checked.
 	 *
 	 * @return true if the principal is a member of this group, false otherwise.
 	 */

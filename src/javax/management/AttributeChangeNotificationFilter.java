@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management;
@@ -58,20 +38,23 @@ public class AttributeChangeNotificationFilter implements NotificationFilter {
 	 * to the listener and this method returns <CODE>true</CODE>.
 	 *
 	 * @param notification
-	 *            The attribute change notification to be sent.
+	 *                     The attribute change notification to be sent.
 	 * @return <CODE>true</CODE> if the notification has to be sent to the
 	 *         listener, <CODE>false</CODE> otherwise.
 	 */
-	public synchronized boolean isNotificationEnabled(Notification notification) {
+	public synchronized boolean isNotificationEnabled(
+			Notification notification) {
 
 		String type = notification.getType();
 
-		if ((type == null) || (type.equals(AttributeChangeNotification.ATTRIBUTE_CHANGE) == false)
+		if ((type == null) || (type.equals(
+				AttributeChangeNotification.ATTRIBUTE_CHANGE) == false)
 				|| (!(notification instanceof AttributeChangeNotification))) {
 			return false;
 		}
 
-		String attributeName = ((AttributeChangeNotification) notification).getAttributeName();
+		String attributeName = ((AttributeChangeNotification) notification)
+				.getAttributeName();
 		return enabledAttributes.contains(attributeName);
 	}
 
@@ -82,15 +65,16 @@ public class AttributeChangeNotificationFilter implements NotificationFilter {
 	 * this method has no effect.
 	 *
 	 * @param name
-	 *            The attribute name.
+	 *             The attribute name.
 	 * @exception java.lang.IllegalArgumentException
-	 *                The attribute name parameter is null.
+	 *            The attribute name parameter is null.
 	 */
 	public synchronized void enableAttribute(String name)
 			throws java.lang.IllegalArgumentException {
 
 		if (name == null) {
-			throw new java.lang.IllegalArgumentException("The name cannot be null.");
+			throw new java.lang.IllegalArgumentException(
+					"The name cannot be null.");
 		}
 		if (!enabledAttributes.contains(name)) {
 			enabledAttributes.addElement(name);
@@ -105,7 +89,7 @@ public class AttributeChangeNotificationFilter implements NotificationFilter {
 	 * method has no effect.
 	 *
 	 * @param name
-	 *            The attribute name.
+	 *             The attribute name.
 	 */
 	public synchronized void disableAttribute(String name) {
 		enabledAttributes.removeElement(name);

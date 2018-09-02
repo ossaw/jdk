@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -118,8 +115,7 @@ class XPathNamespaceImpl implements XPathNamespace {
 	/**
 	 * @see org.w3c.dom.Node#setNodeValue(String)
 	 */
-	public void setNodeValue(String arg0) throws DOMException {
-	}
+	public void setNodeValue(String arg0) throws DOMException {}
 
 	/**
 	 * @see org.w3c.dom.Node#getNodeType()
@@ -260,8 +256,7 @@ class XPathNamespaceImpl implements XPathNamespace {
 	/**
 	 * @see org.w3c.dom.Node#setPrefix(String)
 	 */
-	public void setPrefix(String arg0) throws DOMException {
-	}
+	public void setPrefix(String arg0) throws DOMException {}
 
 	/**
 	 * @see org.w3c.dom.Node#getLocalName()
@@ -321,7 +316,8 @@ class XPathNamespaceImpl implements XPathNamespace {
 		return null; // PENDING
 	}
 
-	public Object setUserData(String key, Object data, UserDataHandler handler) {
+	public Object setUserData(String key, Object data,
+			UserDataHandler handler) {
 		return null; // PENDING
 	}
 

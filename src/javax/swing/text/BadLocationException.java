@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.text;
 
@@ -43,9 +23,9 @@ public class BadLocationException extends Exception {
 	 * Creates a new BadLocationException object.
 	 *
 	 * @param s
-	 *            a string indicating what was wrong with the arguments
+	 *             a string indicating what was wrong with the arguments
 	 * @param offs
-	 *            offset within the document that was requested &gt;= 0
+	 *             offset within the document that was requested &gt;= 0
 	 */
 	public BadLocationException(String s, int offs) {
 		super(s);

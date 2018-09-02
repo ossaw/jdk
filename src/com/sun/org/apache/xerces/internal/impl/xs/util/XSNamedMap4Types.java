@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2002,2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,11 +39,11 @@ public final class XSNamedMap4Types extends XSNamedMapImpl {
 	 * Construct an XSNamedMap implementation for one namespace
 	 *
 	 * @param namespace
-	 *            the namespace to which the components belong
+	 *                  the namespace to which the components belong
 	 * @param map
-	 *            the map from local names to components
+	 *                  the map from local names to components
 	 * @param type
-	 *            the type of components
+	 *                  the type of components
 	 */
 	public XSNamedMap4Types(String namespace, SymbolHash map, short type) {
 		super(namespace, map);
@@ -57,15 +54,16 @@ public final class XSNamedMap4Types extends XSNamedMapImpl {
 	 * Construct an XSNamedMap implementation for a list of namespaces
 	 *
 	 * @param namespaces
-	 *            the namespaces to which the components belong
+	 *                   the namespaces to which the components belong
 	 * @param maps
-	 *            the maps from local names to components
+	 *                   the maps from local names to components
 	 * @param num
-	 *            the number of namespaces
+	 *                   the number of namespaces
 	 * @param type
-	 *            the type of components
+	 *                   the type of components
 	 */
-	public XSNamedMap4Types(String[] namespaces, SymbolHash[] maps, int num, short type) {
+	public XSNamedMap4Types(String[] namespaces, SymbolHash[] maps, int num,
+			short type) {
 		super(namespaces, maps, num);
 		fType = type;
 	}
@@ -108,9 +106,10 @@ public final class XSNamedMap4Types extends XSNamedMapImpl {
 	 * URI.
 	 * 
 	 * @param namespace
-	 *            The namespace URI of the <code>XSObject</code> to retrieve.
+	 *                  The namespace URI of the <code>XSObject</code> to
+	 *                  retrieve.
 	 * @param localName
-	 *            The local name of the <code>XSObject</code> to retrieve.
+	 *                  The local name of the <code>XSObject</code> to retrieve.
 	 * @return A <code>XSObject</code> (of any type) with the specified local
 	 *         name and namespace URI, or <code>null</code> if they do not
 	 *         identify any <code>XSObject</code> in this map.
@@ -118,7 +117,8 @@ public final class XSNamedMap4Types extends XSNamedMapImpl {
 	public XSObject itemByName(String namespace, String localName) {
 		for (int i = 0; i < fNSNum; i++) {
 			if (isEqual(namespace, fNamespaces[i])) {
-				XSTypeDefinition type = (XSTypeDefinition) fMaps[i].get(localName);
+				XSTypeDefinition type = (XSTypeDefinition) fMaps[i].get(
+						localName);
 				// only return it if it matches the required type
 				if (type != null && type.getTypeCategory() == fType) {
 					return type;
@@ -135,8 +135,8 @@ public final class XSNamedMap4Types extends XSNamedMapImpl {
 	 * the list, this returns <code>null</code>.
 	 * 
 	 * @param index
-	 *            The position in the map from which the item is to be
-	 *            retrieved.
+	 *              The position in the map from which the item is to be
+	 *              retrieved.
 	 * @return The <code>XSObject</code> at the <code>index</code>th position in
 	 *         the <code>XSNamedMap</code>, or <code>null</code> if that is not
 	 *         a valid index.

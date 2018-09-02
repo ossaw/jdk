@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -33,12 +13,11 @@ import java.util.Hashtable;
 /*
  * Private storage mechanism for Action key-value pairs.
  * In most cases this will be an array of alternating
- * key-value pairs.  As it grows larger it is scaled
+ * key-value pairs. As it grows larger it is scaled
  * up to a Hashtable.
  * <p>
  * This does no synchronization, if you need thread safety synchronize on
  * another object before calling this.
- *
  * @author Georges Saab
  * @author Scott Violet
  */
@@ -56,7 +35,8 @@ class ArrayTable implements Cloneable {
 	 * This is a convenience method that ActionMap/InputMap and AbstractAction
 	 * use to avoid having the same code in each class.
 	 */
-	static void writeArrayTable(ObjectOutputStream s, ArrayTable table) throws IOException {
+	static void writeArrayTable(ObjectOutputStream s, ArrayTable table)
+			throws IOException {
 		Object keys[];
 
 		if (table == null || (keys = table.getKeys(null)) == null) {
@@ -74,13 +54,15 @@ class ArrayTable implements Cloneable {
 				 * include in Serialization when both keys and values are
 				 * Serializable
 				 */
-				if ((key instanceof Serializable && table.get(key) instanceof Serializable) ||
+				if ((key instanceof Serializable && table.get(
+						key) instanceof Serializable) ||
 				/*
 				 * include these only so that we get the appropriate exception
 				 * below
 				 */
 						(key instanceof ClientPropertyKey
-								&& ((ClientPropertyKey) key).getReportValueNotSerializable())) {
+								&& ((ClientPropertyKey) key)
+										.getReportValueNotSerializable())) {
 
 					validCount++;
 				} else {
@@ -226,7 +208,8 @@ class ArrayTable implements Cloneable {
 					// the end of tmp (which is two elements
 					// shorter than the old list)
 					if (index < tmp.length)
-						System.arraycopy(array, index + 2, tmp, index, tmp.length - index);
+						System.arraycopy(array, index + 2, tmp, index,
+								tmp.length - index);
 					// set the listener array to the new array or null
 					table = (tmp.length == 0) ? null : tmp;
 				}
@@ -273,7 +256,7 @@ class ArrayTable implements Cloneable {
 	 * currently no bindings.
 	 * 
 	 * @param keys
-	 *            array of keys
+	 *             array of keys
 	 * @return an array of bindings
 	 */
 	public Object[] getKeys(Object[] keys) {
@@ -315,7 +298,8 @@ class ArrayTable implements Cloneable {
 	 */
 	private void grow() {
 		Object[] array = (Object[]) table;
-		Hashtable<Object, Object> tmp = new Hashtable<Object, Object>(array.length / 2);
+		Hashtable<Object, Object> tmp = new Hashtable<Object, Object>(
+				array.length / 2);
 		for (int i = 0; i < array.length; i += 2) {
 			tmp.put(array[i], array[i + 1]);
 		}

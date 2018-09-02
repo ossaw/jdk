@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang;
@@ -78,7 +58,7 @@ public class ClassNotFoundException extends ReflectiveOperationException {
 	 * detail message.
 	 *
 	 * @param s
-	 *            the detail message.
+	 *          the detail message.
 	 */
 	public ClassNotFoundException(String s) {
 		super(s, null); // Disallow initCause
@@ -90,9 +70,9 @@ public class ClassNotFoundException extends ReflectiveOperationException {
 	 * class.
 	 *
 	 * @param s
-	 *            the detail message
+	 *           the detail message
 	 * @param ex
-	 *            the exception that was raised while loading the class
+	 *           the exception that was raised while loading the class
 	 * @since 1.2
 	 */
 	public ClassNotFoundException(String s, Throwable ex) {

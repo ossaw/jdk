@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -74,7 +71,7 @@ public class NodeVector implements Serializable, Cloneable {
 	 * Construct a NodeVector, using the given block size.
 	 *
 	 * @param blocksize
-	 *            Size of blocks to allocate
+	 *                  Size of blocks to allocate
 	 */
 	public NodeVector(int blocksize) {
 		m_blocksize = blocksize;
@@ -114,7 +111,7 @@ public class NodeVector implements Serializable, Cloneable {
 	 * Append a Node onto the vector.
 	 *
 	 * @param value
-	 *            Node to add to the vector
+	 *              Node to add to the vector
 	 */
 	public void addElement(int value) {
 
@@ -142,7 +139,7 @@ public class NodeVector implements Serializable, Cloneable {
 	 * Append a Node onto the vector.
 	 *
 	 * @param value
-	 *            Node to add to the vector
+	 *              Node to add to the vector
 	 */
 	public final void push(int value) {
 
@@ -219,7 +216,8 @@ public class NodeVector implements Serializable, Cloneable {
 	 * @return Node at the top of the stack or null if stack is empty.
 	 */
 	public final int peepOrNull() {
-		return ((null != m_map) && (m_firstFree > 0)) ? m_map[m_firstFree - 1] : DTM.NULL;
+		return ((null != m_map) && (m_firstFree > 0)) ? m_map[m_firstFree - 1]
+				: DTM.NULL;
 	}
 
 	/**
@@ -227,9 +225,9 @@ public class NodeVector implements Serializable, Cloneable {
 	 * TransformerImpl, pushElemTemplateElement. Performance critical.
 	 *
 	 * @param v1
-	 *            First node to add to vector
+	 *           First node to add to vector
 	 * @param v2
-	 *            Second node to add to vector
+	 *           Second node to add to vector
 	 */
 	public final void pushPair(int v1, int v2) {
 
@@ -269,7 +267,7 @@ public class NodeVector implements Serializable, Cloneable {
 	 * TransformerImpl, pushElemTemplateElement. Performance critical.
 	 *
 	 * @param n
-	 *            Node to set at the tail of vector
+	 *          Node to set at the tail of vector
 	 */
 	public final void setTail(int n) {
 		m_map[m_firstFree - 1] = n;
@@ -280,7 +278,7 @@ public class NodeVector implements Serializable, Cloneable {
 	 * TransformerImpl, pushElemTemplateElement. Performance critical.
 	 *
 	 * @param n
-	 *            Node to set
+	 *          Node to set
 	 */
 	public final void setTailSub1(int n) {
 		m_map[m_firstFree - 2] = n;
@@ -312,7 +310,7 @@ public class NodeVector implements Serializable, Cloneable {
 	 * Insert a node in order in the list.
 	 *
 	 * @param value
-	 *            Node to insert
+	 *              Node to insert
 	 */
 	public void insertInOrder(int value) {
 
@@ -334,9 +332,9 @@ public class NodeVector implements Serializable, Cloneable {
 	 * had previously.
 	 *
 	 * @param value
-	 *            Node to insert
+	 *              Node to insert
 	 * @param at
-	 *            Position where to insert
+	 *              Position where to insert
 	 */
 	public void insertElementAt(int value, int at) {
 
@@ -366,7 +364,7 @@ public class NodeVector implements Serializable, Cloneable {
 	 * Append the nodes to the list.
 	 *
 	 * @param nodes
-	 *            NodeVector to append to this list
+	 *              NodeVector to append to this list
 	 */
 	public void appendNodes(NodeVector nodes) {
 
@@ -426,7 +424,7 @@ public class NodeVector implements Serializable, Cloneable {
 	 * an index one smaller than the value it had previously.
 	 *
 	 * @param s
-	 *            Node to remove from the list
+	 *          Node to remove from the list
 	 *
 	 * @return True if the node was successfully removed
 	 */
@@ -440,7 +438,8 @@ public class NodeVector implements Serializable, Cloneable {
 
 			if (node == s) {
 				if (i > m_firstFree)
-					System.arraycopy(m_map, i + 1, m_map, i - 1, m_firstFree - i);
+					System.arraycopy(m_map, i + 1, m_map, i - 1, m_firstFree
+							- i);
 				else
 					m_map[i] = DTM.NULL;
 
@@ -459,7 +458,7 @@ public class NodeVector implements Serializable, Cloneable {
 	 * downward to have an index one smaller than the value it had previously.
 	 *
 	 * @param i
-	 *            Index of node to remove
+	 *          Index of node to remove
 	 */
 	public void removeElementAt(int i) {
 
@@ -480,9 +479,9 @@ public class NodeVector implements Serializable, Cloneable {
 	 * current size of the vector.
 	 *
 	 * @param node
-	 *            Node to set
+	 *              Node to set
 	 * @param index
-	 *            Index of where to set the node
+	 *              Index of where to set the node
 	 */
 	public void setElementAt(int node, int index) {
 
@@ -501,7 +500,7 @@ public class NodeVector implements Serializable, Cloneable {
 	 * Get the nth element.
 	 *
 	 * @param i
-	 *            Index of node to get
+	 *          Index of node to get
 	 *
 	 * @return Node at specified index
 	 */
@@ -517,7 +516,7 @@ public class NodeVector implements Serializable, Cloneable {
 	 * Tell if the table contains the given node.
 	 *
 	 * @param s
-	 *            Node to look for
+	 *          Node to look for
 	 *
 	 * @return True if the given node was found.
 	 */
@@ -541,9 +540,9 @@ public class NodeVector implements Serializable, Cloneable {
 	 * search at index, and testing for equality using the equals method.
 	 *
 	 * @param elem
-	 *            Node to look for
+	 *              Node to look for
 	 * @param index
-	 *            Index of where to start the search
+	 *              Index of where to start the search
 	 * @return the index of the first occurrence of the object argument in this
 	 *         vector at position index or later in the vector; returns -1 if
 	 *         the object is not found.
@@ -568,7 +567,7 @@ public class NodeVector implements Serializable, Cloneable {
 	 * search at index, and testing for equality using the equals method.
 	 *
 	 * @param elem
-	 *            Node to look for
+	 *             Node to look for
 	 * @return the index of the first occurrence of the object argument in this
 	 *         vector at position index or later in the vector; returns -1 if
 	 *         the object is not found.

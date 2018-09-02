@@ -3,14 +3,12 @@
  */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
+ * contributor license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -119,7 +117,7 @@ class ElemDesc {
 	 * Construct an ElementDescription with an initial set of flags.
 	 *
 	 * @param flags
-	 *            Element flags
+	 *              Element flags
 	 * @see m_flags
 	 */
 	ElemDesc(int flags) {
@@ -136,7 +134,7 @@ class ElemDesc {
 	 * "don't test", not "must be set false".
 	 *
 	 * @param flags
-	 *            Vector of flags to compare against this element's flags
+	 *              Vector of flags to compare against this element's flags
 	 *
 	 * @return true if the flags set in the parameter are also set in the
 	 *         element's stored flags.
@@ -154,9 +152,9 @@ class ElemDesc {
 	 *
 	 *
 	 * @param name
-	 *            Attribute name
+	 *              Attribute name
 	 * @param flags
-	 *            Attibute flags
+	 *              Attibute flags
 	 */
 	void setAttr(String name, int flags) {
 
@@ -171,9 +169,9 @@ class ElemDesc {
 	 *
 	 *
 	 * @param name
-	 *            Attribute name
+	 *              Attribute name
 	 * @param flags
-	 *            Flag to check
+	 *              Flag to check
 	 *
 	 * @return True if the flag is set in the attribute. Returns false if the
 	 *         attribute is not found

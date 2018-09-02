@@ -1,41 +1,18 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996 - 1997, All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998, All Rights Reserved
- *
  * The original version of this source code and documentation is
  * copyrighted and owned by Taligent, Inc., a wholly-owned subsidiary
  * of IBM. These materials are provided under terms of a License
  * Agreement between Taligent and Sun. This technology is protected
  * by multiple US and International patents.
- *
  * This notice and attribution to Taligent may not be removed.
  * Taligent is a registered trademark of Taligent, Inc.
- *
  */
 
 package java.awt.font;
@@ -172,11 +149,11 @@ public final class GlyphMetrics {
 	 * Constructs a <code>GlyphMetrics</code> object.
 	 * 
 	 * @param advance
-	 *            the advance width of the glyph
+	 *                  the advance width of the glyph
 	 * @param bounds
-	 *            the black box bounds of the glyph
+	 *                  the black box bounds of the glyph
 	 * @param glyphType
-	 *            the type of the glyph
+	 *                  the type of the glyph
 	 */
 	public GlyphMetrics(float advance, Rectangle2D bounds, byte glyphType) {
 		this.horizontal = true;
@@ -191,20 +168,21 @@ public final class GlyphMetrics {
 	 * Constructs a <code>GlyphMetrics</code> object.
 	 * 
 	 * @param horizontal
-	 *            if true, metrics are for a horizontal baseline, otherwise they
-	 *            are for a vertical baseline
+	 *                   if true, metrics are for a horizontal baseline,
+	 *                   otherwise they
+	 *                   are for a vertical baseline
 	 * @param advanceX
-	 *            the X-component of the glyph's advance
+	 *                   the X-component of the glyph's advance
 	 * @param advanceY
-	 *            the Y-component of the glyph's advance
+	 *                   the Y-component of the glyph's advance
 	 * @param bounds
-	 *            the visual bounds of the glyph
+	 *                   the visual bounds of the glyph
 	 * @param glyphType
-	 *            the type of the glyph
+	 *                   the type of the glyph
 	 * @since 1.4
 	 */
-	public GlyphMetrics(boolean horizontal, float advanceX, float advanceY, Rectangle2D bounds,
-			byte glyphType) {
+	public GlyphMetrics(boolean horizontal, float advanceX, float advanceY,
+			Rectangle2D bounds, byte glyphType) {
 
 		this.horizontal = horizontal;
 		this.advanceX = advanceX;
@@ -253,7 +231,8 @@ public final class GlyphMetrics {
 	 * @return a {@link Rectangle2D} that is the bounds of the glyph.
 	 */
 	public Rectangle2D getBounds2D() {
-		return new Rectangle2D.Float(bounds.x, bounds.y, bounds.width, bounds.height);
+		return new Rectangle2D.Float(bounds.x, bounds.y, bounds.width,
+				bounds.height);
 	}
 
 	/**

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.sampled;
@@ -74,7 +54,8 @@ package javax.sound.sampled;
  * <b>Reverberation Types and Parameters</b>
  * <p>
  * <table border=1 cellpadding=5 summary=
- * "reverb types and params: decay time, late intensity, late delay, early intensity, and early delay"
+ * "reverb types and params: decay time, late intensity, late delay, early
+ * intensity, and early delay"
  * >
  *
  * <tr>
@@ -173,21 +154,27 @@ public class ReverbType {
 	 * parameter values.
 	 * 
 	 * @param name
-	 *            the name of the new reverb type, or a zero-length
-	 *            <code>String</code>
+	 *                                 the name of the new reverb type, or a
+	 *                                 zero-length
+	 *                                 <code>String</code>
 	 * @param earlyReflectionDelay
-	 *            the new type's early reflection delay time in microseconds
+	 *                                 the new type's early reflection delay
+	 *                                 time in microseconds
 	 * @param earlyReflectionIntensity
-	 *            the new type's early reflection intensity in dB
+	 *                                 the new type's early reflection intensity
+	 *                                 in dB
 	 * @param lateReflectionDelay
-	 *            the new type's late reflection delay time in microseconds
+	 *                                 the new type's late reflection delay time
+	 *                                 in microseconds
 	 * @param lateReflectionIntensity
-	 *            the new type's late reflection intensity in dB
+	 *                                 the new type's late reflection intensity
+	 *                                 in dB
 	 * @param decayTime
-	 *            the new type's decay time in microseconds
+	 *                                 the new type's decay time in microseconds
 	 */
-	protected ReverbType(String name, int earlyReflectionDelay, float earlyReflectionIntensity,
-			int lateReflectionDelay, float lateReflectionIntensity, int decayTime) {
+	protected ReverbType(String name, int earlyReflectionDelay,
+			float earlyReflectionIntensity, int lateReflectionDelay,
+			float lateReflectionIntensity, int decayTime) {
 
 		this.name = name;
 		this.earlyReflectionDelay = earlyReflectionDelay;
@@ -296,8 +283,8 @@ public class ReverbType {
 		return (name + ", early reflection delay " + earlyReflectionDelay
 				+ " ns, early reflection intensity " + earlyReflectionIntensity
 				+ " dB, late deflection delay " + lateReflectionDelay
-				+ " ns, late reflection intensity " + lateReflectionIntensity + " dB, decay time "
-				+ decayTime);
+				+ " ns, late reflection intensity " + lateReflectionIntensity
+				+ " dB, decay time " + decayTime);
 	}
 
 } // class ReverbType

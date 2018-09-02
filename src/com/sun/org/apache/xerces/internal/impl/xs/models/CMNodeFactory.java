@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 2003-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -69,18 +66,20 @@ public class CMNodeFactory {
 	private XMLSecurityManager fSecurityManager = null;
 
 	/** default constructor */
-	public CMNodeFactory() {
-	}
+	public CMNodeFactory() {}
 
 	public void reset(XMLComponentManager componentManager) {
-		fErrorReporter = (XMLErrorReporter) componentManager.getProperty(ERROR_REPORTER);
+		fErrorReporter = (XMLErrorReporter) componentManager.getProperty(
+				ERROR_REPORTER);
 		try {
-			fSecurityManager = (XMLSecurityManager) componentManager.getProperty(SECURITY_MANAGER);
+			fSecurityManager = (XMLSecurityManager) componentManager
+					.getProperty(SECURITY_MANAGER);
 			// we are setting the limit of number of nodes to 3times the
 			// maxOccur value..
 			if (fSecurityManager != null) {
-				maxNodeLimit = fSecurityManager
-						.getLimit(XMLSecurityManager.Limit.MAX_OCCUR_NODE_LIMIT) * MULTIPLICITY;
+				maxNodeLimit = fSecurityManager.getLimit(
+						XMLSecurityManager.Limit.MAX_OCCUR_NODE_LIMIT)
+						* MULTIPLICITY;
 			}
 		} catch (XMLConfigurationException e) {
 			fSecurityManager = null;
@@ -92,10 +91,11 @@ public class CMNodeFactory {
 		return new XSCMLeaf(type, leaf, id, position);
 	}
 
-	public CMNode getCMRepeatingLeafNode(int type, Object leaf, int minOccurs, int maxOccurs,
-			int id, int position) {
+	public CMNode getCMRepeatingLeafNode(int type, Object leaf, int minOccurs,
+			int maxOccurs, int id, int position) {
 		nodeCountCheck();
-		return new XSCMRepeatingLeaf(type, leaf, minOccurs, maxOccurs, id, position);
+		return new XSCMRepeatingLeaf(type, leaf, minOccurs, maxOccurs, id,
+				position);
 	}
 
 	public CMNode getCMUniOpNode(int type, CMNode childNode) {
@@ -108,14 +108,14 @@ public class CMNodeFactory {
 	}
 
 	public void nodeCountCheck() {
-		if (fSecurityManager != null && !fSecurityManager.isNoLimit(maxNodeLimit)
-				&& nodeCount++ > maxNodeLimit) {
+		if (fSecurityManager != null && !fSecurityManager.isNoLimit(
+				maxNodeLimit) && nodeCount++ > maxNodeLimit) {
 			if (DEBUG) {
 				System.out.println("nodeCount = " + nodeCount);
 				System.out.println("nodeLimit = " + maxNodeLimit);
 			}
-			fErrorReporter.reportError(XSMessageFormatter.SCHEMA_DOMAIN, "MaxOccurLimit",
-					new Object[] { new Integer(maxNodeLimit) },
+			fErrorReporter.reportError(XSMessageFormatter.SCHEMA_DOMAIN,
+					"MaxOccurLimit", new Object[] { new Integer(maxNodeLimit) },
 					XMLErrorReporter.SEVERITY_FATAL_ERROR);
 			// similarly to entity manager behaviour, take into accont
 			// behaviour if continue-after-fatal-error is set.
@@ -137,16 +137,19 @@ public class CMNodeFactory {
 	 * do not affect the operation of the component.
 	 *
 	 * @param propertyId
-	 *            The property identifier.
+	 *                   The property identifier.
 	 * @param value
-	 *            The value of the property.
+	 *                   The value of the property.
 	 *
 	 * @throws SAXNotRecognizedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 * @throws SAXNotSupportedException
-	 *             The component should not throw this exception.
+	 *                                   The component should not throw this
+	 *                                   exception.
 	 */
-	public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
+	public void setProperty(String propertyId, Object value)
+			throws XMLConfigurationException {
 
 		// Xerces properties
 		if (propertyId.startsWith(Constants.XERCES_PROPERTY_PREFIX)) {
@@ -154,12 +157,12 @@ public class CMNodeFactory {
 					- Constants.XERCES_PROPERTY_PREFIX.length();
 
 			if (suffixLength == Constants.SECURITY_MANAGER_PROPERTY.length()
-					&& propertyId.endsWith(Constants.SECURITY_MANAGER_PROPERTY)) {
+					&& propertyId.endsWith(
+							Constants.SECURITY_MANAGER_PROPERTY)) {
 				fSecurityManager = (XMLSecurityManager) value;
-				maxNodeLimit = (fSecurityManager != null)
-						? fSecurityManager.getLimit(XMLSecurityManager.Limit.MAX_OCCUR_NODE_LIMIT)
-								* MULTIPLICITY
-						: 0;
+				maxNodeLimit = (fSecurityManager != null) ? fSecurityManager
+						.getLimit(XMLSecurityManager.Limit.MAX_OCCUR_NODE_LIMIT)
+						* MULTIPLICITY : 0;
 				return;
 			}
 			if (suffixLength == Constants.ERROR_REPORTER_PROPERTY.length()

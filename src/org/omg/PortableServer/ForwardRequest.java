@@ -19,7 +19,8 @@ public final class ForwardRequest extends org.omg.CORBA.UserException {
 		forward_reference = _forward_reference;
 	} // ctor
 
-	public ForwardRequest(String $reason, org.omg.CORBA.Object _forward_reference) {
+	public ForwardRequest(String $reason,
+			org.omg.CORBA.Object _forward_reference) {
 		super(ForwardRequestHelper.id() + "  " + $reason);
 		forward_reference = _forward_reference;
 	} // ctor

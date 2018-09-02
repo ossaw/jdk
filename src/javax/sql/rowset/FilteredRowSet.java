@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sql.rowset;
@@ -138,14 +118,15 @@ public interface FilteredRowSet extends WebRowSet {
 	 * underling <code>Predicate</code> objects change.
 	 *
 	 * @param p
-	 *            a <code>Predicate</code> object defining the filter for this
-	 *            <code>FilteredRowSet</code> object. Setting a <b>null</b>
-	 *            value will clear the predicate, allowing all rows to become
-	 *            visible.
+	 *          a <code>Predicate</code> object defining the filter for this
+	 *          <code>FilteredRowSet</code> object. Setting a <b>null</b>
+	 *          value will clear the predicate, allowing all rows to become
+	 *          visible.
 	 *
 	 * @throws SQLException
-	 *             if an error occurs when setting the <code>Predicate</code>
-	 *             object
+	 *                      if an error occurs when setting the
+	 *                      <code>Predicate</code>
+	 *                      object
 	 */
 	public void setFilter(Predicate p) throws SQLException;
 

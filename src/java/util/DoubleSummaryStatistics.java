@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util;
 
@@ -39,8 +19,9 @@ import java.util.stream.Collector;
  * <pre>
  * {
  * 	&#64;code
- * 	DoubleSummaryStatistics stats = doubleStream.collect(DoubleSummaryStatistics::new,
- * 			DoubleSummaryStatistics::accept, DoubleSummaryStatistics::combine);
+ * 	DoubleSummaryStatistics stats = doubleStream.collect(
+ * 			DoubleSummaryStatistics::new, DoubleSummaryStatistics::accept,
+ * 			DoubleSummaryStatistics::combine);
  * }
  * </pre>
  *
@@ -52,8 +33,8 @@ import java.util.stream.Collector;
  * <pre>
  * {
  * 	&#64;code
- * 	DoubleSummaryStatistics stats = people.stream()
- * 			.collect(Collectors.summarizingDouble(Person::getWeight));
+ * 	DoubleSummaryStatistics stats = people.stream().collect(Collectors
+ * 			.summarizingDouble(Person::getWeight));
  * }
  * </pre>
  *
@@ -81,14 +62,13 @@ public class DoubleSummaryStatistics implements DoubleConsumer {
 	 * {@code Double.POSITIVE_INFINITY} min, {@code Double.NEGATIVE_INFINITY}
 	 * max and zero average.
 	 */
-	public DoubleSummaryStatistics() {
-	}
+	public DoubleSummaryStatistics() {}
 
 	/**
 	 * Records another value into the summary information.
 	 *
 	 * @param value
-	 *            the input value
+	 *              the input value
 	 */
 	@Override
 	public void accept(double value) {
@@ -104,9 +84,9 @@ public class DoubleSummaryStatistics implements DoubleConsumer {
 	 * one.
 	 *
 	 * @param other
-	 *            another {@code DoubleSummaryStatistics}
+	 *              another {@code DoubleSummaryStatistics}
 	 * @throws NullPointerException
-	 *             if {@code other} is null
+	 *                              if {@code other} is null
 	 */
 	public void combine(DoubleSummaryStatistics other) {
 		count += other.count;
@@ -235,7 +215,7 @@ public class DoubleSummaryStatistics implements DoubleConsumer {
 	@Override
 	public String toString() {
 		return String.format("%s{count=%d, sum=%f, min=%f, average=%f, max=%f}",
-				this.getClass().getSimpleName(), getCount(), getSum(), getMin(), getAverage(),
-				getMax());
+				this.getClass().getSimpleName(), getCount(), getSum(), getMin(),
+				getAverage(), getMax());
 	}
 }

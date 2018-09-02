@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.spi.servicecontext;
@@ -80,7 +60,8 @@ public class ServiceContexts {
 
 	public static void writeNullServiceContext(OutputStream os) {
 		if (isDebugging(os))
-			ORBUtility.dprint("ServiceContexts", "Writing null service context");
+			ORBUtility.dprint("ServiceContexts",
+					"Writing null service context");
 		os.write_long(0);
 	}
 
@@ -186,8 +167,9 @@ public class ServiceContexts {
 			// Note: As of Jan 2001, no standard OMG or Sun service contexts
 			// ship wchar data or are defined as using anything but GIOP 1.0
 			// CDR.
-			EncapsInputStream eis = EncapsInputStreamFactory.newEncapsInputStream(orb, data,
-					data.length, giopVersion, codeBase);
+			EncapsInputStream eis = EncapsInputStreamFactory
+					.newEncapsInputStream(orb, data, data.length, giopVersion,
+							codeBase);
 			eis.consumeEndian();
 
 			// Now the input stream passed to a ServiceContext
@@ -197,7 +179,8 @@ public class ServiceContexts {
 			// data.
 			sc = scd.makeServiceContext(eis, giopVersion);
 			if (sc == null)
-				throw wrapper.svcctxUnmarshalError(CompletionStatus.COMPLETED_MAYBE);
+				throw wrapper.svcctxUnmarshalError(
+						CompletionStatus.COMPLETED_MAYBE);
 		}
 
 		return sc;
@@ -296,7 +279,8 @@ public class ServiceContexts {
 	 * giopVersion. The service context should know the GIOP version it is meant
 	 * for.
 	 */
-	private void writeMapEntry(OutputStream os, Integer id, Object scObj, GIOPVersion gv) {
+	private void writeMapEntry(OutputStream os, Integer id, Object scObj,
+			GIOPVersion gv) {
 
 		// If it's still in byte[] form, we don't need to
 		// unmarshal it here, just copy the bytes into

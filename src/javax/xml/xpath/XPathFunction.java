@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.xpath;
@@ -54,14 +34,15 @@ public interface XPathFunction {
 	 * </p>
 	 *
 	 * @param args
-	 *            The arguments, <code>null</code> is a valid value.
+	 *             The arguments, <code>null</code> is a valid value.
 	 *
 	 * @return The result of evaluating the <code>XPath</code> function as an
 	 *         <code>Object</code>.
 	 *
 	 * @throws XPathFunctionException
-	 *             If <code>args</code> cannot be evaluated with this
-	 *             <code>XPath</code> function.
+	 *                                If <code>args</code> cannot be evaluated
+	 *                                with this
+	 *                                <code>XPath</code> function.
 	 */
 	public Object evaluate(List args) throws XPathFunctionException;
 }

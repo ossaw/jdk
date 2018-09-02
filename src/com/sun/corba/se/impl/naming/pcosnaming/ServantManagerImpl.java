@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.naming.pcosnaming;
@@ -53,7 +33,8 @@ import com.sun.corba.se.spi.orb.ORB;
  * @since JDK1.2
  */
 
-public class ServantManagerImpl extends org.omg.CORBA.LocalObject implements ServantLocator {
+public class ServantManagerImpl extends org.omg.CORBA.LocalObject implements
+		ServantLocator {
 
 	// computed using serialver tool
 
@@ -81,8 +62,8 @@ public class ServantManagerImpl extends org.omg.CORBA.LocalObject implements Ser
 		theNameService = aNameService;
 	}
 
-	public Servant preinvoke(byte[] oid, POA adapter, String operation, CookieHolder cookie)
-			throws ForwardRequest {
+	public Servant preinvoke(byte[] oid, POA adapter, String operation,
+			CookieHolder cookie) throws ForwardRequest {
 
 		String objKey = new String(oid);
 
@@ -95,8 +76,8 @@ public class ServantManagerImpl extends org.omg.CORBA.LocalObject implements Ser
 		return servant;
 	}
 
-	public void postinvoke(byte[] oid, POA adapter, String operation, java.lang.Object cookie,
-			Servant servant) {
+	public void postinvoke(byte[] oid, POA adapter, String operation,
+			java.lang.Object cookie, Servant servant) {
 		// nada
 	}
 
@@ -127,7 +108,8 @@ public class ServantManagerImpl extends org.omg.CORBA.LocalObject implements Ser
 		return context;
 	}
 
-	public NamingContextImpl addContext(String objKey, NamingContextImpl context) {
+	public NamingContextImpl addContext(String objKey,
+			NamingContextImpl context) {
 		File contextFile = new File(logDir, objKey);
 
 		if (contextFile.exists()) {

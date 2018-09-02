@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.nimbus;
 
@@ -45,7 +25,8 @@ final class InternalFramePainter extends AbstractRegionPainter {
 	// layers
 	private Path2D path = new Path2D.Float();
 	private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
+	private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
+			0, 0);
 	private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
 	// All Colors used for painting are stored here. Ideally, only those colors
@@ -53,27 +34,37 @@ final class InternalFramePainter extends AbstractRegionPainter {
 	// by a particular instance of InternalFramePainter would be created. For
 	// the moment at least,
 	// however, all are created for each instance.
-	private Color color1 = decodeColor("nimbusBase", 0.032459438f, -0.53637654f, 0.043137252f, 0);
-	private Color color2 = decodeColor("nimbusBlueGrey", 0.004273474f, -0.039488062f, -0.027450979f,
-			0);
-	private Color color3 = decodeColor("nimbusBlueGrey", -0.00505054f, -0.056339122f, 0.05098039f,
-			0);
-	private Color color4 = decodeColor("nimbusBlueGrey", -0.01111114f, -0.06357796f, 0.09019607f,
-			0);
-	private Color color5 = decodeColor("nimbusBlueGrey", 0.0f, -0.023821115f, -0.06666666f, 0);
+	private Color color1 = decodeColor("nimbusBase", 0.032459438f, -0.53637654f,
+			0.043137252f, 0);
+	private Color color2 = decodeColor("nimbusBlueGrey", 0.004273474f,
+			-0.039488062f, -0.027450979f, 0);
+	private Color color3 = decodeColor("nimbusBlueGrey", -0.00505054f,
+			-0.056339122f, 0.05098039f, 0);
+	private Color color4 = decodeColor("nimbusBlueGrey", -0.01111114f,
+			-0.06357796f, 0.09019607f, 0);
+	private Color color5 = decodeColor("nimbusBlueGrey", 0.0f, -0.023821115f,
+			-0.06666666f, 0);
 	private Color color6 = decodeColor("control", 0.0f, 0.0f, 0.0f, 0);
-	private Color color7 = decodeColor("nimbusBlueGrey", -0.006944418f, -0.07399663f, 0.11372548f,
-			0);
-	private Color color8 = decodeColor("nimbusBase", 0.02551502f, -0.47885156f, -0.34901965f, 0);
+	private Color color7 = decodeColor("nimbusBlueGrey", -0.006944418f,
+			-0.07399663f, 0.11372548f, 0);
+	private Color color8 = decodeColor("nimbusBase", 0.02551502f, -0.47885156f,
+			-0.34901965f, 0);
 	private Color color9 = new Color(255, 200, 0, 255);
-	private Color color10 = decodeColor("nimbusBase", 0.004681647f, -0.6274498f, 0.39999998f, 0);
-	private Color color11 = decodeColor("nimbusBase", 0.032459438f, -0.5934608f, 0.2862745f, 0);
+	private Color color10 = decodeColor("nimbusBase", 0.004681647f, -0.6274498f,
+			0.39999998f, 0);
+	private Color color11 = decodeColor("nimbusBase", 0.032459438f, -0.5934608f,
+			0.2862745f, 0);
 	private Color color12 = new Color(204, 207, 213, 255);
-	private Color color13 = decodeColor("nimbusBase", 0.032459438f, -0.55506915f, 0.18039215f, 0);
-	private Color color14 = decodeColor("nimbusBase", 0.004681647f, -0.52792984f, 0.10588235f, 0);
-	private Color color15 = decodeColor("nimbusBase", 0.03801495f, -0.4794643f, -0.04705882f, 0);
-	private Color color16 = decodeColor("nimbusBase", 0.021348298f, -0.61416256f, 0.3607843f, 0);
-	private Color color17 = decodeColor("nimbusBase", 0.032459438f, -0.5546332f, 0.17647058f, 0);
+	private Color color13 = decodeColor("nimbusBase", 0.032459438f,
+			-0.55506915f, 0.18039215f, 0);
+	private Color color14 = decodeColor("nimbusBase", 0.004681647f,
+			-0.52792984f, 0.10588235f, 0);
+	private Color color15 = decodeColor("nimbusBase", 0.03801495f, -0.4794643f,
+			-0.04705882f, 0);
+	private Color color16 = decodeColor("nimbusBase", 0.021348298f,
+			-0.61416256f, 0.3607843f, 0);
+	private Color color17 = decodeColor("nimbusBase", 0.032459438f, -0.5546332f,
+			0.17647058f, 0);
 	private Color color18 = new Color(235, 236, 238, 255);
 
 	// Array of current component colors, updated in each paint call
@@ -94,12 +85,12 @@ final class InternalFramePainter extends AbstractRegionPainter {
 		// generate this entire method. Each state/bg/fg/border combo that has
 		// been painted gets its own KEY and paint method.
 		switch (state) {
-		case BACKGROUND_ENABLED:
-			paintBackgroundEnabled(g);
-			break;
-		case BACKGROUND_ENABLED_WINDOWFOCUSED:
-			paintBackgroundEnabledAndWindowFocused(g);
-			break;
+			case BACKGROUND_ENABLED:
+				paintBackgroundEnabled(g);
+				break;
+			case BACKGROUND_ENABLED_WINDOWFOCUSED:
+				paintBackgroundEnabledAndWindowFocused(g);
+				break;
 
 		}
 	}
@@ -189,22 +180,27 @@ final class InternalFramePainter extends AbstractRegionPainter {
 	private Path2D decodePath1() {
 		path.reset();
 		path.moveTo(decodeX(0.16666667f), decodeY(0.12f));
-		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f),
-				decodeAnchorY(0.11999999731779099f, -1.0f), decodeAnchorX(0.5f, -1.0f),
-				decodeAnchorY(0.03999999910593033f, 0.0f), decodeX(0.5f), decodeY(0.04f));
-		path.curveTo(decodeAnchorX(0.5f, 1.0f), decodeAnchorY(0.03999999910593033f, 0.0f),
-				decodeAnchorX(2.5f, -1.0f), decodeAnchorY(0.03999999910593033f, 0.0f),
-				decodeX(2.5f), decodeY(0.04f));
-		path.curveTo(decodeAnchorX(2.5f, 1.0f), decodeAnchorY(0.03999999910593033f, 0.0f),
-				decodeAnchorX(2.8333332538604736f, 0.0f),
-				decodeAnchorY(0.11999999731779099f, -1.0f), decodeX(2.8333333f), decodeY(0.12f));
-		path.curveTo(decodeAnchorX(2.8333332538604736f, 0.0f),
-				decodeAnchorY(0.11999999731779099f, 1.0f), decodeAnchorX(2.8333332538604736f, 0.0f),
-				decodeAnchorY(0.9599999785423279f, 0.0f), decodeX(2.8333333f), decodeY(0.96f));
+		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f), decodeAnchorY(
+				0.11999999731779099f, -1.0f), decodeAnchorX(0.5f, -1.0f),
+				decodeAnchorY(0.03999999910593033f, 0.0f), decodeX(0.5f),
+				decodeY(0.04f));
+		path.curveTo(decodeAnchorX(0.5f, 1.0f), decodeAnchorY(
+				0.03999999910593033f, 0.0f), decodeAnchorX(2.5f, -1.0f),
+				decodeAnchorY(0.03999999910593033f, 0.0f), decodeX(2.5f),
+				decodeY(0.04f));
+		path.curveTo(decodeAnchorX(2.5f, 1.0f), decodeAnchorY(
+				0.03999999910593033f, 0.0f), decodeAnchorX(2.8333332538604736f,
+						0.0f), decodeAnchorY(0.11999999731779099f, -1.0f),
+				decodeX(2.8333333f), decodeY(0.12f));
+		path.curveTo(decodeAnchorX(2.8333332538604736f, 0.0f), decodeAnchorY(
+				0.11999999731779099f, 1.0f), decodeAnchorX(2.8333332538604736f,
+						0.0f), decodeAnchorY(0.9599999785423279f, 0.0f),
+				decodeX(2.8333333f), decodeY(0.96f));
 		path.lineTo(decodeX(0.16666667f), decodeY(0.96f));
-		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f),
-				decodeAnchorY(0.9599999785423279f, 0.0f), decodeAnchorX(0.1666666716337204f, 0.0f),
-				decodeAnchorY(0.11999999731779099f, 1.0f), decodeX(0.16666667f), decodeY(0.12f));
+		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f), decodeAnchorY(
+				0.9599999785423279f, 0.0f), decodeAnchorX(0.1666666716337204f,
+						0.0f), decodeAnchorY(0.11999999731779099f, 1.0f),
+				decodeX(0.16666667f), decodeY(0.12f));
 		path.closePath();
 		return path;
 	}
@@ -213,21 +209,26 @@ final class InternalFramePainter extends AbstractRegionPainter {
 		path.reset();
 		path.moveTo(decodeX(0.6666667f), decodeY(0.96f));
 		path.lineTo(decodeX(0.16666667f), decodeY(0.96f));
-		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f),
-				decodeAnchorY(0.9599999785423279f, 0.0f), decodeAnchorX(0.1666666716337204f, 0.0f),
-				decodeAnchorY(2.5f, -1.0f), decodeX(0.16666667f), decodeY(2.5f));
-		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f), decodeAnchorY(2.5f, 1.0f),
-				decodeAnchorX(0.5f, -1.0f), decodeAnchorY(2.8333332538604736f, 0.0f), decodeX(0.5f),
+		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f), decodeAnchorY(
+				0.9599999785423279f, 0.0f), decodeAnchorX(0.1666666716337204f,
+						0.0f), decodeAnchorY(2.5f, -1.0f), decodeX(0.16666667f),
+				decodeY(2.5f));
+		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f), decodeAnchorY(
+				2.5f, 1.0f), decodeAnchorX(0.5f, -1.0f), decodeAnchorY(
+						2.8333332538604736f, 0.0f), decodeX(0.5f), decodeY(
+								2.8333333f));
+		path.curveTo(decodeAnchorX(0.5f, 1.0f), decodeAnchorY(
+				2.8333332538604736f, 0.0f), decodeAnchorX(2.5f, -1.0f),
+				decodeAnchorY(2.8333332538604736f, 0.0f), decodeX(2.5f),
 				decodeY(2.8333333f));
-		path.curveTo(decodeAnchorX(0.5f, 1.0f), decodeAnchorY(2.8333332538604736f, 0.0f),
-				decodeAnchorX(2.5f, -1.0f), decodeAnchorY(2.8333332538604736f, 0.0f), decodeX(2.5f),
-				decodeY(2.8333333f));
-		path.curveTo(decodeAnchorX(2.5f, 1.0f), decodeAnchorY(2.8333332538604736f, 0.0f),
-				decodeAnchorX(2.8333332538604736f, 0.0f), decodeAnchorY(2.5f, 1.0f),
-				decodeX(2.8333333f), decodeY(2.5f));
-		path.curveTo(decodeAnchorX(2.8333332538604736f, 0.0f), decodeAnchorY(2.5f, -1.0f),
-				decodeAnchorX(2.8333332538604736f, 0.0f), decodeAnchorY(0.9599999785423279f, 0.0f),
-				decodeX(2.8333333f), decodeY(0.96f));
+		path.curveTo(decodeAnchorX(2.5f, 1.0f), decodeAnchorY(
+				2.8333332538604736f, 0.0f), decodeAnchorX(2.8333332538604736f,
+						0.0f), decodeAnchorY(2.5f, 1.0f), decodeX(2.8333333f),
+				decodeY(2.5f));
+		path.curveTo(decodeAnchorX(2.8333332538604736f, 0.0f), decodeAnchorY(
+				2.5f, -1.0f), decodeAnchorX(2.8333332538604736f, 0.0f),
+				decodeAnchorY(0.9599999785423279f, 0.0f), decodeX(2.8333333f),
+				decodeY(0.96f));
 		path.lineTo(decodeX(2.3333333f), decodeY(0.96f));
 		path.lineTo(decodeX(2.3333333f), decodeY(2.3333333f));
 		path.lineTo(decodeX(0.6666667f), decodeY(2.3333333f));
@@ -296,9 +297,10 @@ final class InternalFramePainter extends AbstractRegionPainter {
 	private Path2D decodePath5() {
 		path.reset();
 		path.moveTo(decodeX(0.16666667f), decodeY(0.08f));
-		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f),
-				decodeAnchorY(0.07999999821186066f, 1.0f), decodeAnchorX(0.1666666716337204f, 0.0f),
-				decodeAnchorY(0.07999999821186066f, -1.0f), decodeX(0.16666667f), decodeY(0.08f));
+		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f), decodeAnchorY(
+				0.07999999821186066f, 1.0f), decodeAnchorX(0.1666666716337204f,
+						0.0f), decodeAnchorY(0.07999999821186066f, -1.0f),
+				decodeX(0.16666667f), decodeY(0.08f));
 		path.closePath();
 		return path;
 	}
@@ -307,21 +309,26 @@ final class InternalFramePainter extends AbstractRegionPainter {
 		path.reset();
 		path.moveTo(decodeX(0.5f), decodeY(0.96f));
 		path.lineTo(decodeX(0.16666667f), decodeY(0.96f));
-		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f),
-				decodeAnchorY(0.9599999785423279f, 0.0f), decodeAnchorX(0.1666666716337204f, 0.0f),
-				decodeAnchorY(2.5f, -1.0f), decodeX(0.16666667f), decodeY(2.5f));
-		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f), decodeAnchorY(2.5f, 1.0f),
-				decodeAnchorX(0.5f, -1.0f), decodeAnchorY(2.8333332538604736f, 0.0f), decodeX(0.5f),
+		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f), decodeAnchorY(
+				0.9599999785423279f, 0.0f), decodeAnchorX(0.1666666716337204f,
+						0.0f), decodeAnchorY(2.5f, -1.0f), decodeX(0.16666667f),
+				decodeY(2.5f));
+		path.curveTo(decodeAnchorX(0.1666666716337204f, 0.0f), decodeAnchorY(
+				2.5f, 1.0f), decodeAnchorX(0.5f, -1.0f), decodeAnchorY(
+						2.8333332538604736f, 0.0f), decodeX(0.5f), decodeY(
+								2.8333333f));
+		path.curveTo(decodeAnchorX(0.5f, 1.0f), decodeAnchorY(
+				2.8333332538604736f, 0.0f), decodeAnchorX(2.5f, -1.0f),
+				decodeAnchorY(2.8333332538604736f, 0.0f), decodeX(2.5f),
 				decodeY(2.8333333f));
-		path.curveTo(decodeAnchorX(0.5f, 1.0f), decodeAnchorY(2.8333332538604736f, 0.0f),
-				decodeAnchorX(2.5f, -1.0f), decodeAnchorY(2.8333332538604736f, 0.0f), decodeX(2.5f),
-				decodeY(2.8333333f));
-		path.curveTo(decodeAnchorX(2.5f, 1.0f), decodeAnchorY(2.8333332538604736f, 0.0f),
-				decodeAnchorX(2.8333332538604736f, 0.0f), decodeAnchorY(2.5f, 1.0f),
-				decodeX(2.8333333f), decodeY(2.5f));
-		path.curveTo(decodeAnchorX(2.8333332538604736f, 0.0f), decodeAnchorY(2.5f, -1.0f),
-				decodeAnchorX(2.8333332538604736f, 0.0f), decodeAnchorY(0.9599999785423279f, 0.0f),
-				decodeX(2.8333333f), decodeY(0.96f));
+		path.curveTo(decodeAnchorX(2.5f, 1.0f), decodeAnchorY(
+				2.8333332538604736f, 0.0f), decodeAnchorX(2.8333332538604736f,
+						0.0f), decodeAnchorY(2.5f, 1.0f), decodeX(2.8333333f),
+				decodeY(2.5f));
+		path.curveTo(decodeAnchorX(2.8333332538604736f, 0.0f), decodeAnchorY(
+				2.5f, -1.0f), decodeAnchorX(2.8333332538604736f, 0.0f),
+				decodeAnchorY(0.9599999785423279f, 0.0f), decodeX(2.8333333f),
+				decodeY(0.96f));
 		path.lineTo(decodeX(2.5f), decodeY(0.96f));
 		path.lineTo(decodeX(2.5f), decodeY(2.5f));
 		path.lineTo(decodeX(0.5f), decodeY(2.5f));
@@ -334,22 +341,26 @@ final class InternalFramePainter extends AbstractRegionPainter {
 		path.reset();
 		path.moveTo(decodeX(0.6666667f), decodeY(0.96f));
 		path.lineTo(decodeX(0.33333334f), decodeY(0.96f));
-		path.curveTo(decodeAnchorX(0.3333333432674408f, 0.0f),
-				decodeAnchorY(0.9599999785423279f, 0.0f), decodeAnchorX(0.3333333432674408f, 0.0f),
-				decodeAnchorY(2.3333332538604736f, -1.0f), decodeX(0.33333334f),
-				decodeY(2.3333333f));
-		path.curveTo(decodeAnchorX(0.3333333432674408f, 0.0f),
-				decodeAnchorY(2.3333332538604736f, 1.0f), decodeAnchorX(0.6666666865348816f, -1.0f),
-				decodeAnchorY(2.6666667461395264f, 0.0f), decodeX(0.6666667f), decodeY(2.6666667f));
-		path.curveTo(decodeAnchorX(0.6666666865348816f, 1.0f),
-				decodeAnchorY(2.6666667461395264f, 0.0f), decodeAnchorX(2.3333332538604736f, -1.0f),
-				decodeAnchorY(2.6666667461395264f, 0.0f), decodeX(2.3333333f), decodeY(2.6666667f));
-		path.curveTo(decodeAnchorX(2.3333332538604736f, 1.0f),
-				decodeAnchorY(2.6666667461395264f, 0.0f), decodeAnchorX(2.6666667461395264f, 0.0f),
-				decodeAnchorY(2.3333332538604736f, 1.0f), decodeX(2.6666667f), decodeY(2.3333333f));
-		path.curveTo(decodeAnchorX(2.6666667461395264f, 0.0f),
-				decodeAnchorY(2.3333332538604736f, -1.0f), decodeAnchorX(2.6666667461395264f, 0.0f),
-				decodeAnchorY(0.9599999785423279f, 0.0f), decodeX(2.6666667f), decodeY(0.96f));
+		path.curveTo(decodeAnchorX(0.3333333432674408f, 0.0f), decodeAnchorY(
+				0.9599999785423279f, 0.0f), decodeAnchorX(0.3333333432674408f,
+						0.0f), decodeAnchorY(2.3333332538604736f, -1.0f),
+				decodeX(0.33333334f), decodeY(2.3333333f));
+		path.curveTo(decodeAnchorX(0.3333333432674408f, 0.0f), decodeAnchorY(
+				2.3333332538604736f, 1.0f), decodeAnchorX(0.6666666865348816f,
+						-1.0f), decodeAnchorY(2.6666667461395264f, 0.0f),
+				decodeX(0.6666667f), decodeY(2.6666667f));
+		path.curveTo(decodeAnchorX(0.6666666865348816f, 1.0f), decodeAnchorY(
+				2.6666667461395264f, 0.0f), decodeAnchorX(2.3333332538604736f,
+						-1.0f), decodeAnchorY(2.6666667461395264f, 0.0f),
+				decodeX(2.3333333f), decodeY(2.6666667f));
+		path.curveTo(decodeAnchorX(2.3333332538604736f, 1.0f), decodeAnchorY(
+				2.6666667461395264f, 0.0f), decodeAnchorX(2.6666667461395264f,
+						0.0f), decodeAnchorY(2.3333332538604736f, 1.0f),
+				decodeX(2.6666667f), decodeY(2.3333333f));
+		path.curveTo(decodeAnchorX(2.6666667461395264f, 0.0f), decodeAnchorY(
+				2.3333332538604736f, -1.0f), decodeAnchorX(2.6666667461395264f,
+						0.0f), decodeAnchorY(0.9599999785423279f, 0.0f),
+				decodeX(2.6666667f), decodeY(0.96f));
 		path.lineTo(decodeX(2.3333333f), decodeY(0.96f));
 		path.lineTo(decodeX(2.3333333f), decodeY(2.3333333f));
 		path.lineTo(decodeX(0.6666667f), decodeY(2.3333333f));
@@ -412,9 +423,10 @@ final class InternalFramePainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.3203593f, 1.0f },
-				new Color[] { color2, decodeColor(color2, color3, 0.5f), color3 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.3203593f, 1.0f },
+				new Color[] { color2, decodeColor(color2, color3, 0.5f),
+						color3 });
 	}
 
 	private Paint decodeGradient2(Shape s) {
@@ -423,9 +435,10 @@ final class InternalFramePainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.5f, 1.0f },
-				new Color[] { color10, decodeColor(color10, color11, 0.5f), color11 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.5f, 1.0f }, new Color[] {
+						color10, decodeColor(color10, color11, 0.5f),
+						color11 });
 	}
 
 	private Paint decodeGradient3(Shape s) {
@@ -434,9 +447,10 @@ final class InternalFramePainter extends AbstractRegionPainter {
 		float y = (float) bounds.getY();
 		float w = (float) bounds.getWidth();
 		float h = (float) bounds.getHeight();
-		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y,
-				new float[] { 0.0f, 0.24251497f, 1.0f },
-				new Color[] { color16, decodeColor(color16, color17, 0.5f), color17 });
+		return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
+				(1.0f * h) + y, new float[] { 0.0f, 0.24251497f, 1.0f },
+				new Color[] { color16, decodeColor(color16, color17, 0.5f),
+						color17 });
 	}
 
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.xml.xpath;
@@ -68,10 +48,11 @@ public class XPathException extends Exception {
 	 * </p>
 	 *
 	 * @param message
-	 *            The detail message.
+	 *                The detail message.
 	 *
 	 * @throws NullPointerException
-	 *             When <code>message</code> is <code>null</code>.
+	 *                              When <code>message</code> is
+	 *                              <code>null</code>.
 	 */
 	public XPathException(String message) {
 		super(message);
@@ -92,10 +73,10 @@ public class XPathException extends Exception {
 	 * </p>
 	 *
 	 * @param cause
-	 *            The cause.
+	 *              The cause.
 	 *
 	 * @throws NullPointerException
-	 *             if <code>cause</code> is <code>null</code>.
+	 *                              if <code>cause</code> is <code>null</code>.
 	 */
 	public XPathException(Throwable cause) {
 		super(cause);
@@ -122,7 +103,7 @@ public class XPathException extends Exception {
 	 * @param out
 	 *            stream used for serialization.
 	 * @throws IOException
-	 *             thrown by <code>ObjectOutputStream</code>
+	 *                     thrown by <code>ObjectOutputStream</code>
 	 *
 	 */
 	private void writeObject(ObjectOutputStream out) throws IOException {
@@ -136,13 +117,14 @@ public class XPathException extends Exception {
 	 * it wasn't done before.
 	 *
 	 * @param in
-	 *            stream used for deserialization
+	 *           stream used for deserialization
 	 * @throws IOException
-	 *             thrown by <code>ObjectInputStream</code>
+	 *                                thrown by <code>ObjectInputStream</code>
 	 * @throws ClassNotFoundException
-	 *             thrown by <code>ObjectInputStream</code>
+	 *                                thrown by <code>ObjectInputStream</code>
 	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
 		ObjectInputStream.GetField fields = in.readFields();
 		Throwable scause = (Throwable) fields.get("cause", null);
 
@@ -150,7 +132,8 @@ public class XPathException extends Exception {
 			try {
 				super.initCause(scause);
 			} catch (IllegalStateException e) {
-				throw new InvalidClassException("Inconsistent state: two causes");
+				throw new InvalidClassException(
+						"Inconsistent state: two causes");
 			}
 		}
 	}
@@ -161,7 +144,7 @@ public class XPathException extends Exception {
 	 * </p>
 	 *
 	 * @param s
-	 *            Print stack trace to this <code>PrintStream</code>.
+	 *          Print stack trace to this <code>PrintStream</code>.
 	 */
 	public void printStackTrace(java.io.PrintStream s) {
 		if (getCause() != null) {
@@ -187,7 +170,7 @@ public class XPathException extends Exception {
 	 * </p>
 	 *
 	 * @param s
-	 *            Print stack trace to this <code>PrintWriter</code>.
+	 *          Print stack trace to this <code>PrintWriter</code>.
 	 */
 	public void printStackTrace(PrintWriter s) {
 

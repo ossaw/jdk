@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -145,8 +125,8 @@ import java.util.function.BiFunction;
  * @see TreeMap
  * @since JDK1.0
  */
-public class Hashtable<K, V> extends Dictionary<K, V>
-		implements Map<K, V>, Cloneable, java.io.Serializable {
+public class Hashtable<K, V> extends Dictionary<K, V> implements Map<K, V>,
+		Cloneable, java.io.Serializable {
 
 	/**
 	 * The hash table data.
@@ -190,16 +170,18 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 * the specified load factor.
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the hashtable.
+	 *                        the initial capacity of the hashtable.
 	 * @param loadFactor
-	 *            the load factor of the hashtable.
+	 *                        the load factor of the hashtable.
 	 * @exception IllegalArgumentException
-	 *                if the initial capacity is less than zero, or if the load
-	 *                factor is nonpositive.
+	 *                                     if the initial capacity is less than
+	 *                                     zero, or if the load
+	 *                                     factor is nonpositive.
 	 */
 	public Hashtable(int initialCapacity, float loadFactor) {
 		if (initialCapacity < 0)
-			throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
+			throw new IllegalArgumentException("Illegal Capacity: "
+					+ initialCapacity);
 		if (loadFactor <= 0 || Float.isNaN(loadFactor))
 			throw new IllegalArgumentException("Illegal Load: " + loadFactor);
 
@@ -207,7 +189,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 			initialCapacity = 1;
 		this.loadFactor = loadFactor;
 		table = new Entry<?, ?>[initialCapacity];
-		threshold = (int) Math.min(initialCapacity * loadFactor, MAX_ARRAY_SIZE + 1);
+		threshold = (int) Math.min(initialCapacity * loadFactor, MAX_ARRAY_SIZE
+				+ 1);
 	}
 
 	/**
@@ -215,9 +198,10 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 * default load factor (0.75).
 	 *
 	 * @param initialCapacity
-	 *            the initial capacity of the hashtable.
+	 *                        the initial capacity of the hashtable.
 	 * @exception IllegalArgumentException
-	 *                if the initial capacity is less than zero.
+	 *                                     if the initial capacity is less than
+	 *                                     zero.
 	 */
 	public Hashtable(int initialCapacity) {
 		this(initialCapacity, 0.75f);
@@ -237,9 +221,9 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 * mappings in the given Map and a default load factor (0.75).
 	 *
 	 * @param t
-	 *            the map whose mappings are to be placed in this map.
+	 *          the map whose mappings are to be placed in this map.
 	 * @throws NullPointerException
-	 *             if the specified map is null.
+	 *                              if the specified map is null.
 	 * @since 1.2
 	 */
 	public Hashtable(Map<? extends K, ? extends V> t) {
@@ -276,7 +260,7 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 * @see Map
 	 */
 	public synchronized Enumeration<K> keys() {
-		return this.<K> getEnumeration(KEYS);
+		return this.<K>getEnumeration(KEYS);
 	}
 
 	/**
@@ -291,7 +275,7 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 * @see Map
 	 */
 	public synchronized Enumeration<V> elements() {
-		return this.<V> getEnumeration(VALUES);
+		return this.<V>getEnumeration(VALUES);
 	}
 
 	/**
@@ -305,12 +289,12 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 * interface in the collections framework).
 	 *
 	 * @param value
-	 *            a value to search for
+	 *              a value to search for
 	 * @return <code>true</code> if and only if some key maps to the
 	 *         <code>value</code> argument in this hashtable as determined by
 	 *         the <tt>equals</tt> method; <code>false</code> otherwise.
 	 * @exception NullPointerException
-	 *                if the value is <code>null</code>
+	 *                                 if the value is <code>null</code>
 	 */
 	public synchronized boolean contains(Object value) {
 		if (value == null) {
@@ -336,11 +320,11 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 * contains} (which predates the {@link Map} interface).
 	 *
 	 * @param value
-	 *            value whose presence in this hashtable is to be tested
+	 *              value whose presence in this hashtable is to be tested
 	 * @return <tt>true</tt> if this map maps one or more keys to the specified
 	 *         value
 	 * @throws NullPointerException
-	 *             if the value is <code>null</code>
+	 *                              if the value is <code>null</code>
 	 * @since 1.2
 	 */
 	public boolean containsValue(Object value) {
@@ -356,7 +340,7 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 *         this hashtable, as determined by the <tt>equals</tt> method;
 	 *         <code>false</code> otherwise.
 	 * @throws NullPointerException
-	 *             if the key is <code>null</code>
+	 *                              if the key is <code>null</code>
 	 * @see #contains(Object)
 	 */
 	public synchronized boolean containsKey(Object key) {
@@ -386,7 +370,7 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 * @return the value to which the specified key is mapped, or {@code null}
 	 *         if this map contains no mapping for the key
 	 * @throws NullPointerException
-	 *             if the specified key is null
+	 *                              if the specified key is null
 	 * @see #put(Object, Object)
 	 */
 	@SuppressWarnings("unchecked")
@@ -431,7 +415,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 		Entry<?, ?>[] newMap = new Entry<?, ?>[newCapacity];
 
 		modCount++;
-		threshold = (int) Math.min(newCapacity * loadFactor, MAX_ARRAY_SIZE + 1);
+		threshold = (int) Math.min(newCapacity * loadFactor, MAX_ARRAY_SIZE
+				+ 1);
 		table = newMap;
 
 		for (int i = oldCapacity; i-- > 0;) {
@@ -476,13 +461,13 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 * key that is equal to the original key.
 	 *
 	 * @param key
-	 *            the hashtable key
+	 *              the hashtable key
 	 * @param value
-	 *            the value
+	 *              the value
 	 * @return the previous value of the specified key in this hashtable, or
 	 *         <code>null</code> if it did not have one
 	 * @exception NullPointerException
-	 *                if the key or value is <code>null</code>
+	 *                                 if the key or value is <code>null</code>
 	 * @see Object#equals(Object)
 	 * @see #get(Object)
 	 */
@@ -519,7 +504,7 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 * @return the value to which the key had been mapped in this hashtable, or
 	 *         <code>null</code> if the key did not have a mapping
 	 * @throws NullPointerException
-	 *             if the key is <code>null</code>
+	 *                              if the key is <code>null</code>
 	 */
 	public synchronized V remove(Object key) {
 		Entry<?, ?> tab[] = table;
@@ -550,9 +535,9 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 * of the keys currently in the specified map.
 	 *
 	 * @param t
-	 *            mappings to be stored in this map
+	 *          mappings to be stored in this map
 	 * @throws NullPointerException
-	 *             if the specified map is null
+	 *                              if the specified map is null
 	 * @since 1.2
 	 */
 	public synchronized void putAll(Map<? extends K, ? extends V> t) {
@@ -583,7 +568,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 			Hashtable<?, ?> t = (Hashtable<?, ?>) super.clone();
 			t.table = new Entry<?, ?>[table.length];
 			for (int i = table.length; i-- > 0;) {
-				t.table[i] = (table[i] != null) ? (Entry<?, ?>) table[i].clone() : null;
+				t.table[i] = (table[i] != null) ? (Entry<?, ?>) table[i].clone()
+						: null;
 			}
 			t.keySet = null;
 			t.entrySet = null;
@@ -793,7 +779,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 */
 	public Collection<V> values() {
 		if (values == null)
-			values = Collections.synchronizedCollection(new ValueCollection(), this);
+			values = Collections.synchronizedCollection(new ValueCollection(),
+					this);
 		return values;
 	}
 
@@ -822,7 +809,7 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	 * definition in the Map interface.
 	 *
 	 * @param o
-	 *            object to be compared for equality with this hashtable
+	 *          object to be compared for equality with this hashtable
 	 * @return true if the specified Object is equal to this Map
 	 * @see Map#equals(Object)
 	 * @since 1.2
@@ -923,7 +910,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public synchronized void replaceAll(BiFunction<? super K, ? super V, ? extends V> function) {
+	public synchronized void replaceAll(
+			BiFunction<? super K, ? super V, ? extends V> function) {
 		Objects.requireNonNull(function); // explicit check required in case
 											// table is empty.
 		final int expectedModCount = modCount;
@@ -931,7 +919,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 		Entry<K, V>[] tab = (Entry<K, V>[]) table;
 		for (Entry<K, V> entry : tab) {
 			while (entry != null) {
-				entry.value = Objects.requireNonNull(function.apply(entry.key, entry.value));
+				entry.value = Objects.requireNonNull(function.apply(entry.key,
+						entry.value));
 				entry = entry.next;
 
 				if (expectedModCount != modCount) {
@@ -975,7 +964,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 		@SuppressWarnings("unchecked")
 		Entry<K, V> e = (Entry<K, V>) tab[index];
 		for (Entry<K, V> prev = null; e != null; prev = e, e = e.next) {
-			if ((e.hash == hash) && e.key.equals(key) && e.value.equals(value)) {
+			if ((e.hash == hash) && e.key.equals(key) && e.value.equals(
+					value)) {
 				modCount++;
 				if (prev != null) {
 					prev.next = e.next;
@@ -1031,7 +1021,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	}
 
 	@Override
-	public synchronized V computeIfAbsent(K key, Function<? super K, ? extends V> mappingFunction) {
+	public synchronized V computeIfAbsent(K key,
+			Function<? super K, ? extends V> mappingFunction) {
 		Objects.requireNonNull(mappingFunction);
 
 		Entry<?, ?> tab[] = table;
@@ -1181,7 +1172,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 				Entry<?, ?> entry = table[index];
 
 				while (entry != null) {
-					entryStack = new Entry<>(0, entry.key, entry.value, entryStack);
+					entryStack = new Entry<>(0, entry.key, entry.value,
+							entryStack);
 					entry = entry.next;
 				}
 			}
@@ -1198,8 +1190,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 	/**
 	 * Reconstitute the Hashtable from a stream (i.e., deserialize it).
 	 */
-	private void readObject(java.io.ObjectInputStream s)
-			throws IOException, ClassNotFoundException {
+	private void readObject(java.io.ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 		// Read in the threshold and loadFactor
 		s.defaultReadObject();
 
@@ -1213,7 +1205,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 
 		// Validate # of elements
 		if (elements < 0)
-			throw new StreamCorruptedException("Illegal # of Elements: " + elements);
+			throw new StreamCorruptedException("Illegal # of Elements: "
+					+ elements);
 
 		// Clamp original length to be more than elements / loadFactor
 		// (this is the invariant enforced with auto-growth)
@@ -1293,8 +1286,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 
 		@SuppressWarnings("unchecked")
 		protected Object clone() {
-			return new Entry<>(hash, key, value,
-					(next == null ? null : (Entry<K, V>) next.clone()));
+			return new Entry<>(hash, key, value, (next == null ? null
+					: (Entry<K, V>) next.clone()));
 		}
 
 		// Map.Entry Ops
@@ -1322,7 +1315,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 			Map.Entry<?, ?> e = (Map.Entry<?, ?>) o;
 
 			return (key == null ? e.getKey() == null : key.equals(e.getKey()))
-					&& (value == null ? e.getValue() == null : value.equals(e.getValue()));
+					&& (value == null ? e.getValue() == null
+							: value.equals(e.getValue()));
 		}
 
 		public int hashCode() {
@@ -1397,7 +1391,8 @@ public class Hashtable<K, V> extends Dictionary<K, V>
 			if (et != null) {
 				Entry<?, ?> e = lastReturned = entry;
 				entry = e.next;
-				return type == KEYS ? (T) e.key : (type == VALUES ? (T) e.value : (T) e);
+				return type == KEYS ? (T) e.key
+						: (type == VALUES ? (T) e.value : (T) e);
 			}
 			throw new NoSuchElementException("Hashtable Enumerator");
 		}

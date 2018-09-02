@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.imageio.spi;
@@ -65,27 +45,31 @@ public abstract class ImageOutputStreamSpi extends IIOServiceProvider {
 	 * subclass to initialize instance variables and/or override method
 	 * implementations in order to provide working versions of all methods.
 	 */
-	protected ImageOutputStreamSpi() {
-	}
+	protected ImageOutputStreamSpi() {}
 
 	/**
 	 * Constructs an <code>ImageOutputStreamSpi</code> with a given set of
 	 * values.
 	 *
 	 * @param vendorName
-	 *            the vendor name.
+	 *                    the vendor name.
 	 * @param version
-	 *            a version identifier.
+	 *                    a version identifier.
 	 * @param outputClass
-	 *            a <code>Class</code> object indicating the legal object type
-	 *            for use by the <code>createOutputStreamInstance</code> method.
+	 *                    a <code>Class</code> object indicating the legal
+	 *                    object type
+	 *                    for use by the <code>createOutputStreamInstance</code>
+	 *                    method.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>vendorName</code> is <code>null</code>.
+	 *                                     if <code>vendorName</code> is
+	 *                                     <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if <code>version</code> is <code>null</code>.
+	 *                                     if <code>version</code> is
+	 *                                     <code>null</code>.
 	 */
-	public ImageOutputStreamSpi(String vendorName, String version, Class<?> outputClass) {
+	public ImageOutputStreamSpi(String vendorName, String version,
+			Class<?> outputClass) {
 		super(vendorName, version);
 		this.outputClass = outputClass;
 	}
@@ -149,30 +133,37 @@ public abstract class ImageOutputStreamSpi extends IIOServiceProvider {
 	 * will be ignored.
 	 *
 	 * @param output
-	 *            an object of the class type returned by
-	 *            <code>getOutputClass</code>.
+	 *                 an object of the class type returned by
+	 *                 <code>getOutputClass</code>.
 	 * @param useCache
-	 *            a <code>boolean</code> indicating whether a cache file should
-	 *            be used, in cases where it is optional.
+	 *                 a <code>boolean</code> indicating whether a cache file
+	 *                 should
+	 *                 be used, in cases where it is optional.
 	 * @param cacheDir
-	 *            a <code>File</code> indicating where the cache file should be
-	 *            created, or <code>null</code> to use the system directory.
+	 *                 a <code>File</code> indicating where the cache file
+	 *                 should be
+	 *                 created, or <code>null</code> to use the system
+	 *                 directory.
 	 *
 	 * @return an <code>ImageOutputStream</code> instance.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>output</code> is not an instance of the correct
-	 *                class or is <code>null</code>.
+	 *                                     if <code>output</code> is not an
+	 *                                     instance of the correct
+	 *                                     class or is <code>null</code>.
 	 * @exception IllegalArgumentException
-	 *                if a cache file is needed, but <code>cacheDir</code> is
-	 *                non-<code>null</code> and is not a directory.
+	 *                                     if a cache file is needed, but
+	 *                                     <code>cacheDir</code> is
+	 *                                     non-<code>null</code> and is not a
+	 *                                     directory.
 	 * @exception IOException
-	 *                if a cache file is needed but cannot be created.
+	 *                                     if a cache file is needed but cannot
+	 *                                     be created.
 	 *
 	 * @see #getOutputClass
 	 */
-	public abstract ImageOutputStream createOutputStreamInstance(Object output, boolean useCache,
-			File cacheDir) throws IOException;
+	public abstract ImageOutputStream createOutputStreamInstance(Object output,
+			boolean useCache, File cacheDir) throws IOException;
 
 	/**
 	 * Returns an instance of the <code>ImageOutputStream</code> implementation
@@ -180,20 +171,23 @@ public abstract class ImageOutputStreamSpi extends IIOServiceProvider {
 	 * the system-dependent default temporary-file directory, if needed.
 	 *
 	 * @param output
-	 *            an object of the class type returned by
-	 *            <code>getOutputClass</code>.
+	 *               an object of the class type returned by
+	 *               <code>getOutputClass</code>.
 	 *
 	 * @return an <code>ImageOutputStream</code> instance.
 	 *
 	 * @exception IllegalArgumentException
-	 *                if <code>output</code> is not an instance of the correct
-	 *                class or is <code>null</code>.
+	 *                                     if <code>output</code> is not an
+	 *                                     instance of the correct
+	 *                                     class or is <code>null</code>.
 	 * @exception IOException
-	 *                if a cache file is needed but cannot be created.
+	 *                                     if a cache file is needed but cannot
+	 *                                     be created.
 	 *
 	 * @see #getOutputClass()
 	 */
-	public ImageOutputStream createOutputStreamInstance(Object output) throws IOException {
+	public ImageOutputStream createOutputStreamInstance(Object output)
+			throws IOException {
 		return createOutputStreamInstance(output, true, null);
 	}
 }

@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util.regex;
@@ -45,8 +25,9 @@ public interface MatchResult {
 	 * @return The index of the first character matched
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                               If no match has yet been attempted, or if
+	 *                               the previous match
+	 *                               operation failed
 	 */
 	public int start();
 
@@ -62,19 +43,21 @@ public interface MatchResult {
 	 * </p>
 	 *
 	 * @param group
-	 *            The index of a capturing group in this matcher's pattern
+	 *              The index of a capturing group in this matcher's pattern
 	 *
 	 * @return The index of the first character captured by the group, or
 	 *         <tt>-1</tt> if the match was successful but the group itself did
 	 *         not match anything
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                                   If no match has yet been attempted, or
+	 *                                   if the previous match
+	 *                                   operation failed
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If there is no capturing group in the pattern with the given
-	 *             index
+	 *                                   If there is no capturing group in the
+	 *                                   pattern with the given
+	 *                                   index
 	 */
 	public int start(int group);
 
@@ -84,8 +67,9 @@ public interface MatchResult {
 	 * @return The offset after the last character matched
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                               If no match has yet been attempted, or if
+	 *                               the previous match
+	 *                               operation failed
 	 */
 	public int end();
 
@@ -101,19 +85,21 @@ public interface MatchResult {
 	 * </p>
 	 *
 	 * @param group
-	 *            The index of a capturing group in this matcher's pattern
+	 *              The index of a capturing group in this matcher's pattern
 	 *
 	 * @return The offset after the last character captured by the group, or
 	 *         <tt>-1</tt> if the match was successful but the group itself did
 	 *         not match anything
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                                   If no match has yet been attempted, or
+	 *                                   if the previous match
+	 *                                   operation failed
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If there is no capturing group in the pattern with the given
-	 *             index
+	 *                                   If there is no capturing group in the
+	 *                                   pattern with the given
+	 *                                   index
 	 */
 	public int end(int group);
 
@@ -136,8 +122,9 @@ public interface MatchResult {
 	 *         in string form
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                               If no match has yet been attempted, or if
+	 *                               the previous match
+	 *                               operation failed
 	 */
 	public String group();
 
@@ -167,19 +154,21 @@ public interface MatchResult {
 	 * </p>
 	 *
 	 * @param group
-	 *            The index of a capturing group in this matcher's pattern
+	 *              The index of a capturing group in this matcher's pattern
 	 *
 	 * @return The (possibly empty) subsequence captured by the group during the
 	 *         previous match, or <tt>null</tt> if the group failed to match
 	 *         part of the input
 	 *
 	 * @throws IllegalStateException
-	 *             If no match has yet been attempted, or if the previous match
-	 *             operation failed
+	 *                                   If no match has yet been attempted, or
+	 *                                   if the previous match
+	 *                                   operation failed
 	 *
 	 * @throws IndexOutOfBoundsException
-	 *             If there is no capturing group in the pattern with the given
-	 *             index
+	 *                                   If there is no capturing group in the
+	 *                                   pattern with the given
+	 *                                   index
 	 */
 	public String group(int group);
 

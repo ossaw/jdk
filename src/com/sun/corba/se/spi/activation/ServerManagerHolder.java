@@ -8,13 +8,14 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public final class ServerManagerHolder implements org.omg.CORBA.portable.Streamable {
+public final class ServerManagerHolder implements
+		org.omg.CORBA.portable.Streamable {
 	public com.sun.corba.se.spi.activation.ServerManager value = null;
 
-	public ServerManagerHolder() {
-	}
+	public ServerManagerHolder() {}
 
-	public ServerManagerHolder(com.sun.corba.se.spi.activation.ServerManager initialValue) {
+	public ServerManagerHolder(
+			com.sun.corba.se.spi.activation.ServerManager initialValue) {
 		value = initialValue;
 	}
 

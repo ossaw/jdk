@@ -7,13 +7,10 @@
 /*
  * Copyright 2001-2004 The Apache Software Foundation or its licensors,
  * as applicable.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -70,14 +67,14 @@ public class TR9401CatalogReader extends TextCatalogReader {
 	 * </p>
 	 *
 	 * @param catalog
-	 *            The Catalog to populate
+	 *                The Catalog to populate
 	 * @param is
-	 *            The input stream from which to read the TR9401 Catalog
+	 *                The input stream from which to read the TR9401 Catalog
 	 *
 	 * @throws MalformedURLException
-	 *             Improper fileUrl
+	 *                               Improper fileUrl
 	 * @throws IOException
-	 *             Error reading catalog file
+	 *                               Error reading catalog file
 	 */
 	public void readCatalog(Catalog catalog, InputStream is)
 			throws MalformedURLException, IOException {
@@ -136,12 +133,15 @@ public class TR9401CatalogReader extends TextCatalogReader {
 							unknownEntry = new Vector();
 						}
 						unknownEntry.addElement(token);
-					} else if (cex.getExceptionType() == CatalogException.INVALID_ENTRY) {
-						catalog.getCatalogManager().debug.message(1, "Invalid catalog entry",
-								token);
+					} else if (cex
+							.getExceptionType() == CatalogException.INVALID_ENTRY) {
+						catalog.getCatalogManager().debug.message(1,
+								"Invalid catalog entry", token);
 						unknownEntry = null;
-					} else if (cex.getExceptionType() == CatalogException.UNENDED_COMMENT) {
-						catalog.getCatalogManager().debug.message(1, cex.getMessage());
+					} else if (cex
+							.getExceptionType() == CatalogException.UNENDED_COMMENT) {
+						catalog.getCatalogManager().debug.message(1, cex
+								.getMessage());
 					}
 				}
 			}

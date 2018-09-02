@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.awt.image;
@@ -58,21 +38,21 @@ public interface ImageObserver {
 	 * <code>ALLBITS</code>, <code>ERROR</code>, <code>ABORT</code>.
 	 *
 	 * @param img
-	 *            the image being observed.
+	 *                  the image being observed.
 	 * @param infoflags
-	 *            the bitwise inclusive OR of the following flags:
-	 *            <code>WIDTH</code>, <code>HEIGHT</code>,
-	 *            <code>PROPERTIES</code>, <code>SOMEBITS</code>,
-	 *            <code>FRAMEBITS</code>, <code>ALLBITS</code>,
-	 *            <code>ERROR</code>, <code>ABORT</code>.
+	 *                  the bitwise inclusive OR of the following flags:
+	 *                  <code>WIDTH</code>, <code>HEIGHT</code>,
+	 *                  <code>PROPERTIES</code>, <code>SOMEBITS</code>,
+	 *                  <code>FRAMEBITS</code>, <code>ALLBITS</code>,
+	 *                  <code>ERROR</code>, <code>ABORT</code>.
 	 * @param x
-	 *            the <i>x</i> coordinate.
+	 *                  the <i>x</i> coordinate.
 	 * @param y
-	 *            the <i>y</i> coordinate.
+	 *                  the <i>y</i> coordinate.
 	 * @param width
-	 *            the width.
+	 *                  the width.
 	 * @param height
-	 *            the height.
+	 *                  the height.
 	 * @return <code>false</code> if the infoflags indicate that the image is
 	 *         completely loaded; <code>true</code> otherwise.
 	 *
@@ -88,7 +68,8 @@ public interface ImageObserver {
 	 * @see Image#getHeight
 	 * @see java.awt.Graphics#drawImage
 	 */
-	public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height);
+	public boolean imageUpdate(Image img, int infoflags, int x, int y,
+			int width, int height);
 
 	/**
 	 * This flag in the infoflags argument to imageUpdate indicates that the

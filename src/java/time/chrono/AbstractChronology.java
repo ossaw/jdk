@@ -1,52 +1,21 @@
 /*
  * Copyright (c) 2012, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Copyright (c) 2012, Stephen Colebourne & Michael Nascimento Santos
- *
  * All rights reserved.
- *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- *  * Neither the name of JSR-310 nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
+ * * Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * * Neither the name of JSR-310 nor the names of its contributors
+ * may be used to endorse or promote products derived from this software
+ * without specific prior written permission.
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -141,11 +110,11 @@ public abstract class AbstractChronology implements Chronology {
 	 */
 	static final Comparator<ChronoLocalDateTime<? extends ChronoLocalDate>> DATE_TIME_ORDER = (Comparator<ChronoLocalDateTime<? extends ChronoLocalDate>> & Serializable) (
 			dateTime1, dateTime2) -> {
-		int cmp = Long.compare(dateTime1.toLocalDate().toEpochDay(),
-				dateTime2.toLocalDate().toEpochDay());
+		int cmp = Long.compare(dateTime1.toLocalDate().toEpochDay(), dateTime2
+				.toLocalDate().toEpochDay());
 		if (cmp == 0) {
-			cmp = Long.compare(dateTime1.toLocalTime().toNanoOfDay(),
-					dateTime2.toLocalTime().toNanoOfDay());
+			cmp = Long.compare(dateTime1.toLocalTime().toNanoOfDay(), dateTime2
+					.toLocalTime().toNanoOfDay());
 		}
 		return cmp;
 	};
@@ -154,10 +123,11 @@ public abstract class AbstractChronology implements Chronology {
 	 */
 	static final Comparator<ChronoZonedDateTime<?>> INSTANT_ORDER = (Comparator<ChronoZonedDateTime<?>> & Serializable) (
 			dateTime1, dateTime2) -> {
-		int cmp = Long.compare(dateTime1.toEpochSecond(), dateTime2.toEpochSecond());
+		int cmp = Long.compare(dateTime1.toEpochSecond(), dateTime2
+				.toEpochSecond());
 		if (cmp == 0) {
-			cmp = Long.compare(dateTime1.toLocalTime().getNano(),
-					dateTime2.toLocalTime().getNano());
+			cmp = Long.compare(dateTime1.toLocalTime().getNano(), dateTime2
+					.toLocalTime().getNano());
 		}
 		return cmp;
 	};
@@ -178,7 +148,7 @@ public abstract class AbstractChronology implements Chronology {
 	 * Chronology.
 	 *
 	 * @param chrono
-	 *            the chronology to register; not null
+	 *               the chronology to register; not null
 	 * @return the already registered Chronology if any, may be null
 	 */
 	static Chronology registerChrono(Chronology chrono) {
@@ -191,9 +161,9 @@ public abstract class AbstractChronology implements Chronology {
 	 * Specifically, not in the constructor of Chronology.
 	 *
 	 * @param chrono
-	 *            the chronology to register; not null
+	 *               the chronology to register; not null
 	 * @param id
-	 *            the ID to register the chronology; not null
+	 *               the ID to register the chronology; not null
 	 * @return the already registered Chronology if any, may be null
 	 */
 	static Chronology registerChrono(Chronology chrono, String id) {
@@ -234,13 +204,14 @@ public abstract class AbstractChronology implements Chronology {
 
 			// Register Chronologies from the ServiceLoader
 			@SuppressWarnings("rawtypes")
-			ServiceLoader<AbstractChronology> loader = ServiceLoader.load(AbstractChronology.class,
-					null);
+			ServiceLoader<AbstractChronology> loader = ServiceLoader.load(
+					AbstractChronology.class, null);
 			for (AbstractChronology chrono : loader) {
 				String id = chrono.getId();
 				if (id.equals("ISO") || registerChrono(chrono) != null) {
 					// Log the attempt to replace an existing Chronology
-					PlatformLogger logger = PlatformLogger.getLogger("java.time.chrono");
+					PlatformLogger logger = PlatformLogger.getLogger(
+							"java.time.chrono");
 					logger.warning(
 							"Ignoring duplicate Chronology, from ServiceLoader configuration "
 									+ id);
@@ -262,10 +233,10 @@ public abstract class AbstractChronology implements Chronology {
 	 * See {@link Chronology#ofLocale(Locale)}.
 	 *
 	 * @param locale
-	 *            the locale to use to obtain the calendar system, not null
+	 *               the locale to use to obtain the calendar system, not null
 	 * @return the calendar system associated with the locale, not null
 	 * @throws java.time.DateTimeException
-	 *             if the locale-specified calendar cannot be found
+	 *         if the locale-specified calendar cannot be found
 	 */
 	static Chronology ofLocale(Locale locale) {
 		Objects.requireNonNull(locale, "locale");
@@ -303,10 +274,10 @@ public abstract class AbstractChronology implements Chronology {
 	 * See {@link Chronology#of(String)}.
 	 *
 	 * @param id
-	 *            the chronology ID or calendar system type, not null
+	 *           the chronology ID or calendar system type, not null
 	 * @return the chronology with the identifier requested, not null
 	 * @throws java.time.DateTimeException
-	 *             if the chronology cannot be found
+	 *         if the chronology cannot be found
 	 */
 	static Chronology of(String id) {
 		Objects.requireNonNull(id, "id");
@@ -324,7 +295,8 @@ public abstract class AbstractChronology implements Chronology {
 		@SuppressWarnings("rawtypes")
 		ServiceLoader<Chronology> loader = ServiceLoader.load(Chronology.class);
 		for (Chronology chrono : loader) {
-			if (id.equals(chrono.getId()) || id.equals(chrono.getCalendarType())) {
+			if (id.equals(chrono.getId()) || id.equals(chrono
+					.getCalendarType())) {
 				return chrono;
 			}
 		}
@@ -336,7 +308,7 @@ public abstract class AbstractChronology implements Chronology {
 	 * calendar system type.
 	 *
 	 * @param id
-	 *            the chronology ID or calendar system type, not null
+	 *           the chronology ID or calendar system type, not null
 	 * @return the chronology with the identifier requested, or {@code null} if
 	 *         not found
 	 */
@@ -375,8 +347,7 @@ public abstract class AbstractChronology implements Chronology {
 	/**
 	 * Creates an instance.
 	 */
-	protected AbstractChronology() {
-	}
+	protected AbstractChronology() {}
 
 	// -----------------------------------------------------------------------
 	/**
@@ -466,14 +437,15 @@ public abstract class AbstractChronology implements Chronology {
 	 * value 1, and that the first of the month and year always exists.
 	 *
 	 * @param fieldValues
-	 *            the map of fields to values, which can be updated, not null
+	 *                      the map of fields to values, which can be updated,
+	 *                      not null
 	 * @param resolverStyle
-	 *            the requested type of resolve, not null
+	 *                      the requested type of resolve, not null
 	 * @return the resolved date, null if insufficient information to create a
 	 *         date
 	 * @throws java.time.DateTimeException
-	 *             if the date cannot be resolved, typically because of a
-	 *             conflict in the input data
+	 *         if the date cannot be resolved, typically because of a
+	 *         conflict in the input data
 	 */
 	@Override
 	public ChronoLocalDate resolveDate(Map<TemporalField, Long> fieldValues,
@@ -522,7 +494,8 @@ public abstract class AbstractChronology implements Chronology {
 		return null;
 	}
 
-	void resolveProlepticMonth(Map<TemporalField, Long> fieldValues, ResolverStyle resolverStyle) {
+	void resolveProlepticMonth(Map<TemporalField, Long> fieldValues,
+			ResolverStyle resolverStyle) {
 		Long pMonth = fieldValues.remove(PROLEPTIC_MONTH);
 		if (pMonth != null) {
 			if (resolverStyle != ResolverStyle.LENIENT) {
@@ -531,9 +504,10 @@ public abstract class AbstractChronology implements Chronology {
 			// first day-of-month is likely to be safest for setting
 			// proleptic-month
 			// cannot add to year zero, as not all chronologies have a year zero
-			ChronoLocalDate chronoDate = dateNow().with(DAY_OF_MONTH, 1).with(PROLEPTIC_MONTH,
-					pMonth);
-			addFieldValue(fieldValues, MONTH_OF_YEAR, chronoDate.get(MONTH_OF_YEAR));
+			ChronoLocalDate chronoDate = dateNow().with(DAY_OF_MONTH, 1).with(
+					PROLEPTIC_MONTH, pMonth);
+			addFieldValue(fieldValues, MONTH_OF_YEAR, chronoDate.get(
+					MONTH_OF_YEAR));
 			addFieldValue(fieldValues, YEAR, chronoDate.get(YEAR));
 		}
 	}
@@ -545,7 +519,8 @@ public abstract class AbstractChronology implements Chronology {
 			Long eraLong = fieldValues.remove(ERA);
 			int yoe;
 			if (resolverStyle != ResolverStyle.LENIENT) {
-				yoe = range(YEAR_OF_ERA).checkValidIntValue(yoeLong, YEAR_OF_ERA);
+				yoe = range(YEAR_OF_ERA).checkValidIntValue(yoeLong,
+						YEAR_OF_ERA);
 			} else {
 				yoe = Math.toIntExact(yoeLong);
 			}
@@ -554,9 +529,11 @@ public abstract class AbstractChronology implements Chronology {
 				addFieldValue(fieldValues, YEAR, prolepticYear(eraObj, yoe));
 			} else {
 				if (fieldValues.containsKey(YEAR)) {
-					int year = range(YEAR).checkValidIntValue(fieldValues.get(YEAR), YEAR);
+					int year = range(YEAR).checkValidIntValue(fieldValues.get(
+							YEAR), YEAR);
 					ChronoLocalDate chronoDate = dateYearDay(year, 1);
-					addFieldValue(fieldValues, YEAR, prolepticYear(chronoDate.getEra(), yoe));
+					addFieldValue(fieldValues, YEAR, prolepticYear(chronoDate
+							.getEra(), yoe));
 				} else if (resolverStyle == ResolverStyle.STRICT) {
 					// do not invent era if strict
 					// reinstate the field removed earlier, no cross-check
@@ -568,7 +545,8 @@ public abstract class AbstractChronology implements Chronology {
 						addFieldValue(fieldValues, YEAR, yoe);
 					} else {
 						Era eraObj = eras.get(eras.size() - 1);
-						addFieldValue(fieldValues, YEAR, prolepticYear(eraObj, yoe));
+						addFieldValue(fieldValues, YEAR, prolepticYear(eraObj,
+								yoe));
 					}
 				}
 			}
@@ -579,17 +557,20 @@ public abstract class AbstractChronology implements Chronology {
 		return null;
 	}
 
-	ChronoLocalDate resolveYMD(Map<TemporalField, Long> fieldValues, ResolverStyle resolverStyle) {
+	ChronoLocalDate resolveYMD(Map<TemporalField, Long> fieldValues,
+			ResolverStyle resolverStyle) {
 		int y = range(YEAR).checkValidIntValue(fieldValues.remove(YEAR), YEAR);
 		if (resolverStyle == ResolverStyle.LENIENT) {
-			long months = Math.subtractExact(fieldValues.remove(MONTH_OF_YEAR), 1);
+			long months = Math.subtractExact(fieldValues.remove(MONTH_OF_YEAR),
+					1);
 			long days = Math.subtractExact(fieldValues.remove(DAY_OF_MONTH), 1);
 			return date(y, 1, 1).plus(months, MONTHS).plus(days, DAYS);
 		}
-		int moy = range(MONTH_OF_YEAR).checkValidIntValue(fieldValues.remove(MONTH_OF_YEAR),
-				MONTH_OF_YEAR);
+		int moy = range(MONTH_OF_YEAR).checkValidIntValue(fieldValues.remove(
+				MONTH_OF_YEAR), MONTH_OF_YEAR);
 		ValueRange domRange = range(DAY_OF_MONTH);
-		int dom = domRange.checkValidIntValue(fieldValues.remove(DAY_OF_MONTH), DAY_OF_MONTH);
+		int dom = domRange.checkValidIntValue(fieldValues.remove(DAY_OF_MONTH),
+				DAY_OF_MONTH);
 		if (resolverStyle == ResolverStyle.SMART) { // previous valid
 			try {
 				return date(y, moy, dom);
@@ -600,74 +581,92 @@ public abstract class AbstractChronology implements Chronology {
 		return date(y, moy, dom);
 	}
 
-	ChronoLocalDate resolveYD(Map<TemporalField, Long> fieldValues, ResolverStyle resolverStyle) {
+	ChronoLocalDate resolveYD(Map<TemporalField, Long> fieldValues,
+			ResolverStyle resolverStyle) {
 		int y = range(YEAR).checkValidIntValue(fieldValues.remove(YEAR), YEAR);
 		if (resolverStyle == ResolverStyle.LENIENT) {
 			long days = Math.subtractExact(fieldValues.remove(DAY_OF_YEAR), 1);
 			return dateYearDay(y, 1).plus(days, DAYS);
 		}
-		int doy = range(DAY_OF_YEAR).checkValidIntValue(fieldValues.remove(DAY_OF_YEAR),
-				DAY_OF_YEAR);
+		int doy = range(DAY_OF_YEAR).checkValidIntValue(fieldValues.remove(
+				DAY_OF_YEAR), DAY_OF_YEAR);
 		return dateYearDay(y, doy); // smart is same as strict
 	}
 
-	ChronoLocalDate resolveYMAA(Map<TemporalField, Long> fieldValues, ResolverStyle resolverStyle) {
+	ChronoLocalDate resolveYMAA(Map<TemporalField, Long> fieldValues,
+			ResolverStyle resolverStyle) {
 		int y = range(YEAR).checkValidIntValue(fieldValues.remove(YEAR), YEAR);
 		if (resolverStyle == ResolverStyle.LENIENT) {
-			long months = Math.subtractExact(fieldValues.remove(MONTH_OF_YEAR), 1);
-			long weeks = Math.subtractExact(fieldValues.remove(ALIGNED_WEEK_OF_MONTH), 1);
-			long days = Math.subtractExact(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_MONTH), 1);
-			return date(y, 1, 1).plus(months, MONTHS).plus(weeks, WEEKS).plus(days, DAYS);
+			long months = Math.subtractExact(fieldValues.remove(MONTH_OF_YEAR),
+					1);
+			long weeks = Math.subtractExact(fieldValues.remove(
+					ALIGNED_WEEK_OF_MONTH), 1);
+			long days = Math.subtractExact(fieldValues.remove(
+					ALIGNED_DAY_OF_WEEK_IN_MONTH), 1);
+			return date(y, 1, 1).plus(months, MONTHS).plus(weeks, WEEKS).plus(
+					days, DAYS);
 		}
-		int moy = range(MONTH_OF_YEAR).checkValidIntValue(fieldValues.remove(MONTH_OF_YEAR),
-				MONTH_OF_YEAR);
-		int aw = range(ALIGNED_WEEK_OF_MONTH).checkValidIntValue(
-				fieldValues.remove(ALIGNED_WEEK_OF_MONTH), ALIGNED_WEEK_OF_MONTH);
+		int moy = range(MONTH_OF_YEAR).checkValidIntValue(fieldValues.remove(
+				MONTH_OF_YEAR), MONTH_OF_YEAR);
+		int aw = range(ALIGNED_WEEK_OF_MONTH).checkValidIntValue(fieldValues
+				.remove(ALIGNED_WEEK_OF_MONTH), ALIGNED_WEEK_OF_MONTH);
 		int ad = range(ALIGNED_DAY_OF_WEEK_IN_MONTH).checkValidIntValue(
-				fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_MONTH), ALIGNED_DAY_OF_WEEK_IN_MONTH);
-		ChronoLocalDate date = date(y, moy, 1).plus((aw - 1) * 7 + (ad - 1), DAYS);
-		if (resolverStyle == ResolverStyle.STRICT && date.get(MONTH_OF_YEAR) != moy) {
+				fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_MONTH),
+				ALIGNED_DAY_OF_WEEK_IN_MONTH);
+		ChronoLocalDate date = date(y, moy, 1).plus((aw - 1) * 7 + (ad - 1),
+				DAYS);
+		if (resolverStyle == ResolverStyle.STRICT && date.get(
+				MONTH_OF_YEAR) != moy) {
 			throw new DateTimeException(
 					"Strict mode rejected resolved date as it is in a different month");
 		}
 		return date;
 	}
 
-	ChronoLocalDate resolveYMAD(Map<TemporalField, Long> fieldValues, ResolverStyle resolverStyle) {
+	ChronoLocalDate resolveYMAD(Map<TemporalField, Long> fieldValues,
+			ResolverStyle resolverStyle) {
 		int y = range(YEAR).checkValidIntValue(fieldValues.remove(YEAR), YEAR);
 		if (resolverStyle == ResolverStyle.LENIENT) {
-			long months = Math.subtractExact(fieldValues.remove(MONTH_OF_YEAR), 1);
-			long weeks = Math.subtractExact(fieldValues.remove(ALIGNED_WEEK_OF_MONTH), 1);
+			long months = Math.subtractExact(fieldValues.remove(MONTH_OF_YEAR),
+					1);
+			long weeks = Math.subtractExact(fieldValues.remove(
+					ALIGNED_WEEK_OF_MONTH), 1);
 			long dow = Math.subtractExact(fieldValues.remove(DAY_OF_WEEK), 1);
 			return resolveAligned(date(y, 1, 1), months, weeks, dow);
 		}
-		int moy = range(MONTH_OF_YEAR).checkValidIntValue(fieldValues.remove(MONTH_OF_YEAR),
-				MONTH_OF_YEAR);
-		int aw = range(ALIGNED_WEEK_OF_MONTH).checkValidIntValue(
-				fieldValues.remove(ALIGNED_WEEK_OF_MONTH), ALIGNED_WEEK_OF_MONTH);
-		int dow = range(DAY_OF_WEEK).checkValidIntValue(fieldValues.remove(DAY_OF_WEEK),
-				DAY_OF_WEEK);
-		ChronoLocalDate date = date(y, moy, 1).plus((aw - 1) * 7, DAYS)
-				.with(nextOrSame(DayOfWeek.of(dow)));
-		if (resolverStyle == ResolverStyle.STRICT && date.get(MONTH_OF_YEAR) != moy) {
+		int moy = range(MONTH_OF_YEAR).checkValidIntValue(fieldValues.remove(
+				MONTH_OF_YEAR), MONTH_OF_YEAR);
+		int aw = range(ALIGNED_WEEK_OF_MONTH).checkValidIntValue(fieldValues
+				.remove(ALIGNED_WEEK_OF_MONTH), ALIGNED_WEEK_OF_MONTH);
+		int dow = range(DAY_OF_WEEK).checkValidIntValue(fieldValues.remove(
+				DAY_OF_WEEK), DAY_OF_WEEK);
+		ChronoLocalDate date = date(y, moy, 1).plus((aw - 1) * 7, DAYS).with(
+				nextOrSame(DayOfWeek.of(dow)));
+		if (resolverStyle == ResolverStyle.STRICT && date.get(
+				MONTH_OF_YEAR) != moy) {
 			throw new DateTimeException(
 					"Strict mode rejected resolved date as it is in a different month");
 		}
 		return date;
 	}
 
-	ChronoLocalDate resolveYAA(Map<TemporalField, Long> fieldValues, ResolverStyle resolverStyle) {
+	ChronoLocalDate resolveYAA(Map<TemporalField, Long> fieldValues,
+			ResolverStyle resolverStyle) {
 		int y = range(YEAR).checkValidIntValue(fieldValues.remove(YEAR), YEAR);
 		if (resolverStyle == ResolverStyle.LENIENT) {
-			long weeks = Math.subtractExact(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
-			long days = Math.subtractExact(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
+			long weeks = Math.subtractExact(fieldValues.remove(
+					ALIGNED_WEEK_OF_YEAR), 1);
+			long days = Math.subtractExact(fieldValues.remove(
+					ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
 			return dateYearDay(y, 1).plus(weeks, WEEKS).plus(days, DAYS);
 		}
-		int aw = range(ALIGNED_WEEK_OF_YEAR)
-				.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), ALIGNED_WEEK_OF_YEAR);
+		int aw = range(ALIGNED_WEEK_OF_YEAR).checkValidIntValue(fieldValues
+				.remove(ALIGNED_WEEK_OF_YEAR), ALIGNED_WEEK_OF_YEAR);
 		int ad = range(ALIGNED_DAY_OF_WEEK_IN_YEAR).checkValidIntValue(
-				fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR), ALIGNED_DAY_OF_WEEK_IN_YEAR);
-		ChronoLocalDate date = dateYearDay(y, 1).plus((aw - 1) * 7 + (ad - 1), DAYS);
+				fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR),
+				ALIGNED_DAY_OF_WEEK_IN_YEAR);
+		ChronoLocalDate date = dateYearDay(y, 1).plus((aw - 1) * 7 + (ad - 1),
+				DAYS);
 		if (resolverStyle == ResolverStyle.STRICT && date.get(YEAR) != y) {
 			throw new DateTimeException(
 					"Strict mode rejected resolved date as it is in a different year");
@@ -675,19 +674,21 @@ public abstract class AbstractChronology implements Chronology {
 		return date;
 	}
 
-	ChronoLocalDate resolveYAD(Map<TemporalField, Long> fieldValues, ResolverStyle resolverStyle) {
+	ChronoLocalDate resolveYAD(Map<TemporalField, Long> fieldValues,
+			ResolverStyle resolverStyle) {
 		int y = range(YEAR).checkValidIntValue(fieldValues.remove(YEAR), YEAR);
 		if (resolverStyle == ResolverStyle.LENIENT) {
-			long weeks = Math.subtractExact(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
+			long weeks = Math.subtractExact(fieldValues.remove(
+					ALIGNED_WEEK_OF_YEAR), 1);
 			long dow = Math.subtractExact(fieldValues.remove(DAY_OF_WEEK), 1);
 			return resolveAligned(dateYearDay(y, 1), 0, weeks, dow);
 		}
-		int aw = range(ALIGNED_WEEK_OF_YEAR)
-				.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), ALIGNED_WEEK_OF_YEAR);
-		int dow = range(DAY_OF_WEEK).checkValidIntValue(fieldValues.remove(DAY_OF_WEEK),
-				DAY_OF_WEEK);
-		ChronoLocalDate date = dateYearDay(y, 1).plus((aw - 1) * 7, DAYS)
-				.with(nextOrSame(DayOfWeek.of(dow)));
+		int aw = range(ALIGNED_WEEK_OF_YEAR).checkValidIntValue(fieldValues
+				.remove(ALIGNED_WEEK_OF_YEAR), ALIGNED_WEEK_OF_YEAR);
+		int dow = range(DAY_OF_WEEK).checkValidIntValue(fieldValues.remove(
+				DAY_OF_WEEK), DAY_OF_WEEK);
+		ChronoLocalDate date = dateYearDay(y, 1).plus((aw - 1) * 7, DAYS).with(
+				nextOrSame(DayOfWeek.of(dow)));
 		if (resolverStyle == ResolverStyle.STRICT && date.get(YEAR) != y) {
 			throw new DateTimeException(
 					"Strict mode rejected resolved date as it is in a different year");
@@ -695,7 +696,8 @@ public abstract class AbstractChronology implements Chronology {
 		return date;
 	}
 
-	ChronoLocalDate resolveAligned(ChronoLocalDate base, long months, long weeks, long dow) {
+	ChronoLocalDate resolveAligned(ChronoLocalDate base, long months,
+			long weeks, long dow) {
 		ChronoLocalDate date = base.plus(months, MONTHS).plus(weeks, WEEKS);
 		if (dow > 7) {
 			date = date.plus((dow - 1) / 7, WEEKS);
@@ -716,18 +718,19 @@ public abstract class AbstractChronology implements Chronology {
 	 * has a different value to that specified, then an exception is thrown.
 	 *
 	 * @param field
-	 *            the field to add, not null
+	 *              the field to add, not null
 	 * @param value
-	 *            the value to add, not null
+	 *              the value to add, not null
 	 * @throws java.time.DateTimeException
-	 *             if the field is already present with a different value
+	 *         if the field is already present with a different value
 	 */
-	void addFieldValue(Map<TemporalField, Long> fieldValues, ChronoField field, long value) {
+	void addFieldValue(Map<TemporalField, Long> fieldValues, ChronoField field,
+			long value) {
 		Long old = fieldValues.get(field); // check first for better error
 											// message
 		if (old != null && old.longValue() != value) {
-			throw new DateTimeException("Conflict found: " + field + " " + old + " differs from "
-					+ field + " " + value);
+			throw new DateTimeException("Conflict found: " + field + " " + old
+					+ " differs from " + field + " " + value);
 		}
 		fieldValues.put(field, value);
 	}
@@ -744,7 +747,7 @@ public abstract class AbstractChronology implements Chronology {
 	 *           compare any additional state that they store.
 	 *
 	 * @param other
-	 *            the other chronology to compare to, not null
+	 *              the other chronology to compare to, not null
 	 * @return the comparator value, negative if less, positive if greater
 	 */
 	@Override
@@ -822,12 +825,13 @@ public abstract class AbstractChronology implements Chronology {
 	 * Defend against malicious streams.
 	 *
 	 * @param s
-	 *            the stream to read
+	 *          the stream to read
 	 * @throws java.io.InvalidObjectException
-	 *             always
+	 *         always
 	 */
 	private void readObject(ObjectInputStream s) throws ObjectStreamException {
-		throw new InvalidObjectException("Deserialization via serialization delegate");
+		throw new InvalidObjectException(
+				"Deserialization via serialization delegate");
 	}
 
 	void writeExternal(DataOutput out) throws IOException {

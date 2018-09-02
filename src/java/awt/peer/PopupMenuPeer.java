@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 1998, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.awt.peer;
 
@@ -41,8 +21,8 @@ public interface PopupMenuPeer extends MenuPeer {
 	 * Shows the popup menu.
 	 *
 	 * @param e
-	 *            a synthetic event describing the origin and location of the
-	 *            popup menu
+	 *          a synthetic event describing the origin and location of the
+	 *          popup menu
 	 *
 	 * @see PopupMenu#show(java.awt.Component, int, int)
 	 */

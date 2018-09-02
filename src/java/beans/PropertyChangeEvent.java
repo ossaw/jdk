@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1996, 2011, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.beans;
@@ -51,19 +31,20 @@ public class PropertyChangeEvent extends EventObject {
 	 * Constructs a new {@code PropertyChangeEvent}.
 	 *
 	 * @param source
-	 *            the bean that fired the event
+	 *                     the bean that fired the event
 	 * @param propertyName
-	 *            the programmatic name of the property that was changed
+	 *                     the programmatic name of the property that was
+	 *                     changed
 	 * @param oldValue
-	 *            the old value of the property
+	 *                     the old value of the property
 	 * @param newValue
-	 *            the new value of the property
+	 *                     the new value of the property
 	 *
 	 * @throws IllegalArgumentException
-	 *             if {@code source} is {@code null}
+	 *                                  if {@code source} is {@code null}
 	 */
-	public PropertyChangeEvent(Object source, String propertyName, Object oldValue,
-			Object newValue) {
+	public PropertyChangeEvent(Object source, String propertyName,
+			Object oldValue, Object newValue) {
 		super(source);
 		this.propertyName = propertyName;
 		this.newValue = newValue;
@@ -104,7 +85,7 @@ public class PropertyChangeEvent extends EventObject {
 	 * Sets the propagationId object for the event.
 	 *
 	 * @param propagationId
-	 *            The propagationId object for the event.
+	 *                      The propagationId object for the event.
 	 */
 	public void setPropagationId(Object propagationId) {
 		this.propagationId = propagationId;
@@ -171,6 +152,5 @@ public class PropertyChangeEvent extends EventObject {
 		return sb.append("]").toString();
 	}
 
-	void appendTo(StringBuilder sb) {
-	}
+	void appendTo(StringBuilder sb) {}
 }

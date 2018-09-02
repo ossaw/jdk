@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.oa.poa;
@@ -63,7 +43,8 @@ public class POAPolicyMediatorImpl_R_AOM extends POAPolicyMediatorBase_R {
 			throws ForwardRequest {
 		java.lang.Object servant = internalIdToServant(id);
 		if (servant == null)
-			servant = new NullServantImpl(poa.invocationWrapper().nullServant());
+			servant = new NullServantImpl(poa.invocationWrapper()
+					.nullServant());
 		return servant;
 	}
 
@@ -75,7 +56,8 @@ public class POAPolicyMediatorImpl_R_AOM extends POAPolicyMediatorBase_R {
 		throw new WrongPolicy();
 	}
 
-	public void setServantManager(ServantManager servantManager) throws WrongPolicy {
+	public void setServantManager(ServantManager servantManager)
+			throws WrongPolicy {
 		throw new WrongPolicy();
 	}
 

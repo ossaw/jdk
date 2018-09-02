@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.org.apache.xalan.internal.xsltc.trax;
@@ -127,9 +107,9 @@ public class SAX2StAXEventWriter extends SAX2StAXBaseWriter {
 				writer.add(eventFactory.createStartDocument());
 			else {
 				try {
-					writer.add(
-							eventFactory.createStartDocument(((Locator2) docLocator).getEncoding(),
-									((Locator2) docLocator).getXMLVersion()));
+					writer.add(eventFactory.createStartDocument(
+							((Locator2) docLocator).getEncoding(),
+							((Locator2) docLocator).getXMLVersion()));
 				} catch (ClassCastException e) {
 					writer.add(eventFactory.createStartDocument());
 				}
@@ -161,8 +141,8 @@ public class SAX2StAXEventWriter extends SAX2StAXBaseWriter {
 
 	}
 
-	public void startElement(String uri, String localName, String qName, Attributes attributes)
-			throws SAXException {
+	public void startElement(String uri, String localName, String qName,
+			Attributes attributes) throws SAXException {
 
 		if (needToCallStartDocument) {
 			writeStartDocument();
@@ -197,7 +177,8 @@ public class SAX2StAXEventWriter extends SAX2StAXBaseWriter {
 
 	}
 
-	public void endElement(String uri, String localName, String qName) throws SAXException {
+	public void endElement(String uri, String localName, String qName)
+			throws SAXException {
 
 		super.endElement(uri, localName, qName);
 
@@ -208,12 +189,14 @@ public class SAX2StAXEventWriter extends SAX2StAXBaseWriter {
 		parseQName(qName, qname);
 
 		// get namespaces
-		Collection nsList = (Collection) namespaceStack.remove(namespaceStack.size() - 1);
+		Collection nsList = (Collection) namespaceStack.remove(namespaceStack
+				.size() - 1);
 		Iterator nsIter = nsList.iterator();
 
 		try {
 
-			writer.add(eventFactory.createEndElement(qname[0], uri, qname[1], nsIter));
+			writer.add(eventFactory.createEndElement(qname[0], uri, qname[1],
+					nsIter));
 
 		} catch (XMLStreamException e) {
 
@@ -239,7 +222,8 @@ public class SAX2StAXEventWriter extends SAX2StAXBaseWriter {
 		eventFactory.setLocation(getCurrentLocation());
 		try {
 
-			writer.add(eventFactory.createComment(new String(ch, start, length)));
+			writer.add(eventFactory.createComment(new String(ch, start,
+					length)));
 
 		} catch (XMLStreamException e) {
 
@@ -249,7 +233,8 @@ public class SAX2StAXEventWriter extends SAX2StAXBaseWriter {
 
 	}
 
-	public void characters(char[] ch, int start, int length) throws SAXException {
+	public void characters(char[] ch, int start, int length)
+			throws SAXException {
 
 		super.characters(ch, start, length);
 
@@ -258,7 +243,8 @@ public class SAX2StAXEventWriter extends SAX2StAXBaseWriter {
 			if (!isCDATA) {
 
 				eventFactory.setLocation(getCurrentLocation());
-				writer.add(eventFactory.createCharacters(new String(ch, start, length)));
+				writer.add(eventFactory.createCharacters(new String(ch, start,
+						length)));
 
 			}
 
@@ -270,14 +256,16 @@ public class SAX2StAXEventWriter extends SAX2StAXBaseWriter {
 
 	}
 
-	public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {
+	public void ignorableWhitespace(char[] ch, int start, int length)
+			throws SAXException {
 
 		super.ignorableWhitespace(ch, start, length);
 		characters(ch, start, length);
 
 	}
 
-	public void processingInstruction(String target, String data) throws SAXException {
+	public void processingInstruction(String target, String data)
+			throws SAXException {
 
 		if (needToCallStartDocument) {
 			// Drat. We were trying to postpone this until the first element so
@@ -319,7 +307,8 @@ public class SAX2StAXEventWriter extends SAX2StAXBaseWriter {
 
 	}
 
-	protected void createStartEvents(Attributes attributes, Collection[] events) {
+	protected void createStartEvents(Attributes attributes,
+			Collection[] events) {
 
 		Map nsMap = null;
 		List attrs = null;
@@ -369,12 +358,13 @@ public class SAX2StAXEventWriter extends SAX2StAXBaseWriter {
 				Attribute attribute;
 				if (attrPrefix.length() > 0) {
 
-					attribute = eventFactory.createAttribute(attrPrefix, attrURI, attrLocal,
-							attrValue);
+					attribute = eventFactory.createAttribute(attrPrefix,
+							attrURI, attrLocal, attrValue);
 
 				} else {
 
-					attribute = eventFactory.createAttribute(attrLocal, attrValue);
+					attribute = eventFactory.createAttribute(attrLocal,
+							attrValue);
 
 				}
 

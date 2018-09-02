@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2005, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.tools;
@@ -52,18 +32,20 @@ public interface Tool {
 	 * unspecified format.
 	 *
 	 * @param in
-	 *            "standard" input; use System.in if null
+	 *                  "standard" input; use System.in if null
 	 * @param out
-	 *            "standard" output; use System.out if null
+	 *                  "standard" output; use System.out if null
 	 * @param err
-	 *            "standard" error; use System.err if null
+	 *                  "standard" error; use System.err if null
 	 * @param arguments
-	 *            arguments to pass to the tool
+	 *                  arguments to pass to the tool
 	 * @return 0 for success; nonzero otherwise
 	 * @throws NullPointerException
-	 *             if the array of arguments contains any {@code null} elements.
+	 *                              if the array of arguments contains any
+	 *                              {@code null} elements.
 	 */
-	int run(InputStream in, OutputStream out, OutputStream err, String... arguments);
+	int run(InputStream in, OutputStream out, OutputStream err,
+			String... arguments);
 
 	/**
 	 * Gets the source versions of the Java&trade; programming language

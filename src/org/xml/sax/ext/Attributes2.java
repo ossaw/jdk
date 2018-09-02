@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2004, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // Attributes2.java - extended Attributes
@@ -67,10 +47,10 @@ public interface Attributes2 extends Attributes {
 	 * which are never valid).
 	 *
 	 * @param index
-	 *            The attribute index (zero-based).
+	 *              The attribute index (zero-based).
 	 * @return true if the attribute was declared in the DTD, false otherwise.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                When the supplied index does not identify an attribute.
+	 *            When the supplied index does not identify an attribute.
 	 */
 	public boolean isDeclared(int index);
 
@@ -81,10 +61,10 @@ public interface Attributes2 extends Attributes {
 	 * which are never valid).
 	 *
 	 * @param qName
-	 *            The XML qualified (prefixed) name.
+	 *              The XML qualified (prefixed) name.
 	 * @return true if the attribute was declared in the DTD, false otherwise.
 	 * @exception java.lang.IllegalArgumentException
-	 *                When the supplied name does not identify an attribute.
+	 *            When the supplied name does not identify an attribute.
 	 */
 	public boolean isDeclared(String qName);
 
@@ -100,13 +80,14 @@ public interface Attributes2 extends Attributes {
 	 * declaration will have applied to the attribute's <em>qName</em>.
 	 *
 	 * @param uri
-	 *            The Namespace URI, or the empty string if the name has no
-	 *            Namespace URI.
+	 *                  The Namespace URI, or the empty string if the name has
+	 *                  no
+	 *                  Namespace URI.
 	 * @param localName
-	 *            The attribute's local name.
+	 *                  The attribute's local name.
 	 * @return true if the attribute was declared in the DTD, false otherwise.
 	 * @exception java.lang.IllegalArgumentException
-	 *                When the supplied names do not identify an attribute.
+	 *            When the supplied names do not identify an attribute.
 	 */
 	public boolean isDeclared(String uri, String localName);
 
@@ -114,11 +95,11 @@ public interface Attributes2 extends Attributes {
 	 * Returns true unless the attribute value was provided by DTD defaulting.
 	 *
 	 * @param index
-	 *            The attribute index (zero-based).
+	 *              The attribute index (zero-based).
 	 * @return true if the value was found in the XML text, false if the value
 	 *         was provided by DTD defaulting.
 	 * @exception java.lang.ArrayIndexOutOfBoundsException
-	 *                When the supplied index does not identify an attribute.
+	 *            When the supplied index does not identify an attribute.
 	 */
 	public boolean isSpecified(int index);
 
@@ -131,14 +112,15 @@ public interface Attributes2 extends Attributes {
 	 * declaration will have applied to the attribute's <em>qName</em>.
 	 *
 	 * @param uri
-	 *            The Namespace URI, or the empty string if the name has no
-	 *            Namespace URI.
+	 *                  The Namespace URI, or the empty string if the name has
+	 *                  no
+	 *                  Namespace URI.
 	 * @param localName
-	 *            The attribute's local name.
+	 *                  The attribute's local name.
 	 * @return true if the value was found in the XML text, false if the value
 	 *         was provided by DTD defaulting.
 	 * @exception java.lang.IllegalArgumentException
-	 *                When the supplied names do not identify an attribute.
+	 *            When the supplied names do not identify an attribute.
 	 */
 	public boolean isSpecified(String uri, String localName);
 
@@ -146,11 +128,11 @@ public interface Attributes2 extends Attributes {
 	 * Returns true unless the attribute value was provided by DTD defaulting.
 	 *
 	 * @param qName
-	 *            The XML qualified (prefixed) name.
+	 *              The XML qualified (prefixed) name.
 	 * @return true if the value was found in the XML text, false if the value
 	 *         was provided by DTD defaulting.
 	 * @exception java.lang.IllegalArgumentException
-	 *                When the supplied name does not identify an attribute.
+	 *            When the supplied name does not identify an attribute.
 	 */
 	public boolean isSpecified(String qName);
 }

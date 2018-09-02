@@ -35,7 +35,8 @@ import com.sun.org.apache.xml.internal.security.utils.SignatureElementProxy;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLX509Certificate extends SignatureElementProxy implements XMLX509DataContent {
+public class XMLX509Certificate extends SignatureElementProxy implements
+		XMLX509DataContent {
 
 	/** Field JCA_CERT_ID */
 	public static final String JCA_CERT_ID = "X.509";
@@ -47,7 +48,8 @@ public class XMLX509Certificate extends SignatureElementProxy implements XMLX509
 	 * @param BaseURI
 	 * @throws XMLSecurityException
 	 */
-	public XMLX509Certificate(Element element, String BaseURI) throws XMLSecurityException {
+	public XMLX509Certificate(Element element, String BaseURI)
+			throws XMLSecurityException {
 		super(element, BaseURI);
 	}
 
@@ -100,8 +102,8 @@ public class XMLX509Certificate extends SignatureElementProxy implements XMLX509
 	public X509Certificate getX509Certificate() throws XMLSecurityException {
 		try {
 			byte certbytes[] = this.getCertificateBytes();
-			CertificateFactory certFact = CertificateFactory
-					.getInstance(XMLX509Certificate.JCA_CERT_ID);
+			CertificateFactory certFact = CertificateFactory.getInstance(
+					XMLX509Certificate.JCA_CERT_ID);
 			X509Certificate cert = (X509Certificate) certFact
 					.generateCertificate(new ByteArrayInputStream(certbytes));
 
@@ -138,7 +140,8 @@ public class XMLX509Certificate extends SignatureElementProxy implements XMLX509
 		}
 		XMLX509Certificate other = (XMLX509Certificate) obj;
 		try {
-			return Arrays.equals(other.getCertificateBytes(), this.getCertificateBytes());
+			return Arrays.equals(other.getCertificateBytes(), this
+					.getCertificateBytes());
 		} catch (XMLSecurityException ex) {
 			return false;
 		}

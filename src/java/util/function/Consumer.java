@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.util.function;
 
@@ -36,7 +16,7 @@ import java.util.Objects;
  * functional method is {@link #accept(Object)}.
  *
  * @param <T>
- *            the type of the input to the operation
+ *        the type of the input to the operation
  *
  * @since 1.8
  */
@@ -47,7 +27,7 @@ public interface Consumer<T> {
 	 * Performs this operation on the given argument.
 	 *
 	 * @param t
-	 *            the input argument
+	 *          the input argument
 	 */
 	void accept(T t);
 
@@ -59,11 +39,11 @@ public interface Consumer<T> {
 	 * {@code after} operation will not be performed.
 	 *
 	 * @param after
-	 *            the operation to perform after this operation
+	 *              the operation to perform after this operation
 	 * @return a composed {@code Consumer} that performs in sequence this
 	 *         operation followed by the {@code after} operation
 	 * @throws NullPointerException
-	 *             if {@code after} is null
+	 *                              if {@code after} is null
 	 */
 	default Consumer<T> andThen(Consumer<? super T> after) {
 		Objects.requireNonNull(after);

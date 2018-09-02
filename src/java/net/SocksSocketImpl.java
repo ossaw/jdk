@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package java.net;
 
@@ -74,23 +54,25 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 		useV4 = true;
 	}
 
-	private synchronized void privilegedConnect(final String host, final int port,
-			final int timeout) throws IOException {
+	private synchronized void privilegedConnect(final String host,
+			final int port, final int timeout) throws IOException {
 		try {
-			AccessController.doPrivileged(new java.security.PrivilegedExceptionAction<Void>() {
-				public Void run() throws IOException {
-					superConnectServer(host, port, timeout);
-					cmdIn = getInputStream();
-					cmdOut = getOutputStream();
-					return null;
-				}
-			});
+			AccessController.doPrivileged(
+					new java.security.PrivilegedExceptionAction<Void>() {
+						public Void run() throws IOException {
+							superConnectServer(host, port, timeout);
+							cmdIn = getInputStream();
+							cmdOut = getOutputStream();
+							return null;
+						}
+					});
 		} catch (java.security.PrivilegedActionException pae) {
 			throw (IOException) pae.getException();
 		}
 	}
 
-	private void superConnectServer(String host, int port, int timeout) throws IOException {
+	private void superConnectServer(String host, int port, int timeout)
+			throws IOException {
 		super.connect(new InetSocketAddress(host, port), timeout);
 	}
 
@@ -116,8 +98,8 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 		for (int attempts = 0; received < len && attempts < 3; attempts++) {
 			int count;
 			try {
-				count = ((SocketInputStream) in).read(data, received, len - received,
-						remainingMillis(deadlineMillis));
+				count = ((SocketInputStream) in).read(data, received, len
+						- received, remainingMillis(deadlineMillis));
 			} catch (SocketTimeoutException e) {
 				throw new SocketTimeoutException("Connect timed out");
 			}
@@ -131,13 +113,13 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 	/**
 	 * Provides the authentication machanism required by the proxy.
 	 */
-	private boolean authenticate(byte method, InputStream in, BufferedOutputStream out)
-			throws IOException {
+	private boolean authenticate(byte method, InputStream in,
+			BufferedOutputStream out) throws IOException {
 		return authenticate(method, in, out, 0L);
 	}
 
-	private boolean authenticate(byte method, InputStream in, BufferedOutputStream out,
-			long deadlineMillis) throws IOException {
+	private boolean authenticate(byte method, InputStream in,
+			BufferedOutputStream out, long deadlineMillis) throws IOException {
 		// No Authentication required. We're done then!
 		if (method == NO_AUTH)
 			return true;
@@ -151,18 +133,23 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 			String password = null;
 			final InetAddress addr = InetAddress.getByName(server);
 			PasswordAuthentication pw = java.security.AccessController
-					.doPrivileged(new java.security.PrivilegedAction<PasswordAuthentication>() {
-						public PasswordAuthentication run() {
-							return Authenticator.requestPasswordAuthentication(server, addr,
-									serverPort, "SOCKS5", "SOCKS authentication", null);
-						}
-					});
+					.doPrivileged(
+							new java.security.PrivilegedAction<PasswordAuthentication>() {
+								public PasswordAuthentication run() {
+									return Authenticator
+											.requestPasswordAuthentication(
+													server, addr, serverPort,
+													"SOCKS5",
+													"SOCKS authentication",
+													null);
+								}
+							});
 			if (pw != null) {
 				userName = pw.getUserName();
 				password = new String(pw.getPassword());
 			} else {
-				userName = java.security.AccessController
-						.doPrivileged(new sun.security.action.GetPropertyAction("user.name"));
+				userName = java.security.AccessController.doPrivileged(
+						new sun.security.action.GetPropertyAction("user.name"));
 			}
 			if (userName == null)
 				return false;
@@ -255,8 +242,9 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 		return false;
 	}
 
-	private void connectV4(InputStream in, OutputStream out, InetSocketAddress endpoint,
-			long deadlineMillis) throws IOException {
+	private void connectV4(InputStream in, OutputStream out,
+			InetSocketAddress endpoint, long deadlineMillis)
+			throws IOException {
 		if (!(endpoint.getAddress() instanceof Inet4Address)) {
 			throw new SocketException("SOCKS V4 requires IPv4 only addresses");
 		}
@@ -276,27 +264,31 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 		byte[] data = new byte[8];
 		int n = readSocksReply(in, data, deadlineMillis);
 		if (n != 8)
-			throw new SocketException("Reply from SOCKS server has bad length: " + n);
+			throw new SocketException("Reply from SOCKS server has bad length: "
+					+ n);
 		if (data[0] != 0 && data[0] != 4)
-			throw new SocketException("Reply from SOCKS server has bad version");
+			throw new SocketException(
+					"Reply from SOCKS server has bad version");
 		SocketException ex = null;
 		switch (data[1]) {
-		case 90:
-			// Success!
-			external_address = endpoint;
-			break;
-		case 91:
-			ex = new SocketException("SOCKS request rejected");
-			break;
-		case 92:
-			ex = new SocketException("SOCKS server couldn't reach destination");
-			break;
-		case 93:
-			ex = new SocketException("SOCKS authentication failed");
-			break;
-		default:
-			ex = new SocketException("Reply from SOCKS server contains bad status");
-			break;
+			case 90:
+				// Success!
+				external_address = endpoint;
+				break;
+			case 91:
+				ex = new SocketException("SOCKS request rejected");
+				break;
+			case 92:
+				ex = new SocketException(
+						"SOCKS server couldn't reach destination");
+				break;
+			case 93:
+				ex = new SocketException("SOCKS authentication failed");
+				break;
+			default:
+				ex = new SocketException(
+						"Reply from SOCKS server contains bad status");
+				break;
 		}
 		if (ex != null) {
 			in.close();
@@ -312,20 +304,23 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 	 * will go to the "real" endpoint.
 	 *
 	 * @param endpoint
-	 *            the {@code SocketAddress} to connect to.
+	 *                 the {@code SocketAddress} to connect to.
 	 * @param timeout
-	 *            the timeout value in milliseconds
+	 *                 the timeout value in milliseconds
 	 * @throws IOException
-	 *             if the connection can't be established.
+	 *                                  if the connection can't be established.
 	 * @throws SecurityException
-	 *             if there is a security manager and it doesn't allow the
-	 *             connection
+	 *                                  if there is a security manager and it
+	 *                                  doesn't allow the
+	 *                                  connection
 	 * @throws IllegalArgumentException
-	 *             if endpoint is null or a SocketAddress subclass not supported
-	 *             by this socket
+	 *                                  if endpoint is null or a SocketAddress
+	 *                                  subclass not supported
+	 *                                  by this socket
 	 */
 	@Override
-	protected void connect(SocketAddress endpoint, int timeout) throws IOException {
+	protected void connect(SocketAddress endpoint, int timeout)
+			throws IOException {
 		final long deadlineMillis;
 
 		if (timeout == 0) {
@@ -343,14 +338,15 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 			if (epoint.isUnresolved())
 				security.checkConnect(epoint.getHostName(), epoint.getPort());
 			else
-				security.checkConnect(epoint.getAddress().getHostAddress(), epoint.getPort());
+				security.checkConnect(epoint.getAddress().getHostAddress(),
+						epoint.getPort());
 		}
 		if (server == null) {
 			// This is the general case
 			// server is not null only when the socket was created with a
 			// specified proxy in which case it does bypass the ProxySelector
-			ProxySelector sel = java.security.AccessController
-					.doPrivileged(new java.security.PrivilegedAction<ProxySelector>() {
+			ProxySelector sel = java.security.AccessController.doPrivileged(
+					new java.security.PrivilegedAction<ProxySelector>() {
 						public ProxySelector run() {
 							return ProxySelector.getDefault();
 						}
@@ -366,12 +362,13 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 			// Use getHostString() to avoid reverse lookups
 			String host = epoint.getHostString();
 			// IPv6 litteral?
-			if (epoint.getAddress() instanceof Inet6Address && (!host.startsWith("["))
-					&& (host.indexOf(":") >= 0)) {
+			if (epoint.getAddress() instanceof Inet6Address && (!host
+					.startsWith("[")) && (host.indexOf(":") >= 0)) {
 				host = "[" + host + "]";
 			}
 			try {
-				uri = new URI("socket://" + ParseUtil.encodePath(host) + ":" + epoint.getPort());
+				uri = new URI("socket://" + ParseUtil.encodePath(host) + ":"
+						+ epoint.getPort());
 			} catch (URISyntaxException e) {
 				// This shouldn't happen
 				assert false : e;
@@ -393,7 +390,8 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 				}
 
 				if (!(p.address() instanceof InetSocketAddress))
-					throw new SocketException("Unknown address type for proxy: " + p);
+					throw new SocketException("Unknown address type for proxy: "
+							+ p);
 				// Use getHostString() to avoid reverse lookups
 				server = ((InetSocketAddress) p.address()).getHostString();
 				serverPort = ((InetSocketAddress) p.address()).getPort();
@@ -405,7 +403,8 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 
 				// Connects to the SOCKS server
 				try {
-					privilegedConnect(server, serverPort, remainingMillis(deadlineMillis));
+					privilegedConnect(server, serverPort, remainingMillis(
+							deadlineMillis));
 					// Worked, let's get outta here
 					break;
 				} catch (IOException e) {
@@ -422,12 +421,14 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 			 * If server is still null at this point, none of the proxy worked
 			 */
 			if (server == null) {
-				throw new SocketException("Can't connect to SOCKS proxy:" + savedExc.getMessage());
+				throw new SocketException("Can't connect to SOCKS proxy:"
+						+ savedExc.getMessage());
 			}
 		} else {
 			// Connects to the SOCKS server
 			try {
-				privilegedConnect(server, serverPort, remainingMillis(deadlineMillis));
+				privilegedConnect(server, serverPort, remainingMillis(
+						deadlineMillis));
 			} catch (IOException e) {
 				throw new SocketException(e.getMessage());
 			}
@@ -503,70 +504,78 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 		int len;
 		byte[] addr;
 		switch (data[1]) {
-		case REQUEST_OK:
-			// success!
-			switch (data[3]) {
-			case IPV4:
-				addr = new byte[4];
-				i = readSocksReply(in, addr, deadlineMillis);
-				if (i != 4)
-					throw new SocketException("Reply from SOCKS server badly formatted");
-				data = new byte[2];
-				i = readSocksReply(in, data, deadlineMillis);
-				if (i != 2)
-					throw new SocketException("Reply from SOCKS server badly formatted");
+			case REQUEST_OK:
+				// success!
+				switch (data[3]) {
+					case IPV4:
+						addr = new byte[4];
+						i = readSocksReply(in, addr, deadlineMillis);
+						if (i != 4)
+							throw new SocketException(
+									"Reply from SOCKS server badly formatted");
+						data = new byte[2];
+						i = readSocksReply(in, data, deadlineMillis);
+						if (i != 2)
+							throw new SocketException(
+									"Reply from SOCKS server badly formatted");
+						break;
+					case DOMAIN_NAME:
+						len = data[1];
+						byte[] host = new byte[len];
+						i = readSocksReply(in, host, deadlineMillis);
+						if (i != len)
+							throw new SocketException(
+									"Reply from SOCKS server badly formatted");
+						data = new byte[2];
+						i = readSocksReply(in, data, deadlineMillis);
+						if (i != 2)
+							throw new SocketException(
+									"Reply from SOCKS server badly formatted");
+						break;
+					case IPV6:
+						len = data[1];
+						addr = new byte[len];
+						i = readSocksReply(in, addr, deadlineMillis);
+						if (i != len)
+							throw new SocketException(
+									"Reply from SOCKS server badly formatted");
+						data = new byte[2];
+						i = readSocksReply(in, data, deadlineMillis);
+						if (i != 2)
+							throw new SocketException(
+									"Reply from SOCKS server badly formatted");
+						break;
+					default:
+						ex = new SocketException(
+								"Reply from SOCKS server contains wrong code");
+						break;
+				}
 				break;
-			case DOMAIN_NAME:
-				len = data[1];
-				byte[] host = new byte[len];
-				i = readSocksReply(in, host, deadlineMillis);
-				if (i != len)
-					throw new SocketException("Reply from SOCKS server badly formatted");
-				data = new byte[2];
-				i = readSocksReply(in, data, deadlineMillis);
-				if (i != 2)
-					throw new SocketException("Reply from SOCKS server badly formatted");
+			case GENERAL_FAILURE:
+				ex = new SocketException("SOCKS server general failure");
 				break;
-			case IPV6:
-				len = data[1];
-				addr = new byte[len];
-				i = readSocksReply(in, addr, deadlineMillis);
-				if (i != len)
-					throw new SocketException("Reply from SOCKS server badly formatted");
-				data = new byte[2];
-				i = readSocksReply(in, data, deadlineMillis);
-				if (i != 2)
-					throw new SocketException("Reply from SOCKS server badly formatted");
+			case NOT_ALLOWED:
+				ex = new SocketException(
+						"SOCKS: Connection not allowed by ruleset");
 				break;
-			default:
-				ex = new SocketException("Reply from SOCKS server contains wrong code");
+			case NET_UNREACHABLE:
+				ex = new SocketException("SOCKS: Network unreachable");
 				break;
-			}
-			break;
-		case GENERAL_FAILURE:
-			ex = new SocketException("SOCKS server general failure");
-			break;
-		case NOT_ALLOWED:
-			ex = new SocketException("SOCKS: Connection not allowed by ruleset");
-			break;
-		case NET_UNREACHABLE:
-			ex = new SocketException("SOCKS: Network unreachable");
-			break;
-		case HOST_UNREACHABLE:
-			ex = new SocketException("SOCKS: Host unreachable");
-			break;
-		case CONN_REFUSED:
-			ex = new SocketException("SOCKS: Connection refused");
-			break;
-		case TTL_EXPIRED:
-			ex = new SocketException("SOCKS: TTL expired");
-			break;
-		case CMD_NOT_SUPPORTED:
-			ex = new SocketException("SOCKS: Command not supported");
-			break;
-		case ADDR_TYPE_NOT_SUP:
-			ex = new SocketException("SOCKS: address type not supported");
-			break;
+			case HOST_UNREACHABLE:
+				ex = new SocketException("SOCKS: Host unreachable");
+				break;
+			case CONN_REFUSED:
+				ex = new SocketException("SOCKS: Connection refused");
+				break;
+			case TTL_EXPIRED:
+				ex = new SocketException("SOCKS: TTL expired");
+				break;
+			case CMD_NOT_SUPPORTED:
+				ex = new SocketException("SOCKS: Command not supported");
+				break;
+			case ADDR_TYPE_NOT_SUP:
+				ex = new SocketException("SOCKS: address type not supported");
+				break;
 		}
 		if (ex != null) {
 			in.close();
@@ -576,8 +585,8 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 		external_address = epoint;
 	}
 
-	private void bindV4(InputStream in, OutputStream out, InetAddress baddr, int lport)
-			throws IOException {
+	private void bindV4(InputStream in, OutputStream out, InetAddress baddr,
+			int lport) throws IOException {
 		if (!(baddr instanceof Inet4Address)) {
 			throw new SocketException("SOCKS V4 requires IPv4 only addresses");
 		}
@@ -586,12 +595,13 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 		/* Test for AnyLocal */
 		InetAddress naddr = baddr;
 		if (naddr.isAnyLocalAddress()) {
-			naddr = AccessController.doPrivileged(new PrivilegedAction<InetAddress>() {
-				public InetAddress run() {
-					return cmdsock.getLocalAddress();
+			naddr = AccessController.doPrivileged(
+					new PrivilegedAction<InetAddress>() {
+						public InetAddress run() {
+							return cmdsock.getLocalAddress();
 
-				}
-			});
+						}
+					});
 			addr1 = naddr.getAddress();
 		}
 		out.write(PROTO_VERS4);
@@ -610,27 +620,31 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 		byte[] data = new byte[8];
 		int n = readSocksReply(in, data);
 		if (n != 8)
-			throw new SocketException("Reply from SOCKS server has bad length: " + n);
+			throw new SocketException("Reply from SOCKS server has bad length: "
+					+ n);
 		if (data[0] != 0 && data[0] != 4)
-			throw new SocketException("Reply from SOCKS server has bad version");
+			throw new SocketException(
+					"Reply from SOCKS server has bad version");
 		SocketException ex = null;
 		switch (data[1]) {
-		case 90:
-			// Success!
-			external_address = new InetSocketAddress(baddr, lport);
-			break;
-		case 91:
-			ex = new SocketException("SOCKS request rejected");
-			break;
-		case 92:
-			ex = new SocketException("SOCKS server couldn't reach destination");
-			break;
-		case 93:
-			ex = new SocketException("SOCKS authentication failed");
-			break;
-		default:
-			ex = new SocketException("Reply from SOCKS server contains bad status");
-			break;
+			case 90:
+				// Success!
+				external_address = new InetSocketAddress(baddr, lport);
+				break;
+			case 91:
+				ex = new SocketException("SOCKS request rejected");
+				break;
+			case 92:
+				ex = new SocketException(
+						"SOCKS server couldn't reach destination");
+				break;
+			case 93:
+				ex = new SocketException("SOCKS authentication failed");
+				break;
+			default:
+				ex = new SocketException(
+						"Reply from SOCKS server contains bad status");
+				break;
 		}
 		if (ex != null) {
 			in.close();
@@ -646,11 +660,12 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 	 * one of the host we do accept connection from.
 	 *
 	 * @param saddr
-	 *            the Socket address of the remote host.
+	 *              the Socket address of the remote host.
 	 * @exception IOException
-	 *                if an I/O error occurs when binding this socket.
+	 *                        if an I/O error occurs when binding this socket.
 	 */
-	protected synchronized void socksBind(InetSocketAddress saddr) throws IOException {
+	protected synchronized void socksBind(InetSocketAddress saddr)
+			throws IOException {
 		if (socket != null) {
 			// this is a client socket, not a server socket, don't
 			// call the SOCKS proxy for a bind!
@@ -663,8 +678,8 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 			// This is the general case
 			// server is not null only when the socket was created with a
 			// specified proxy in which case it does bypass the ProxySelector
-			ProxySelector sel = java.security.AccessController
-					.doPrivileged(new java.security.PrivilegedAction<ProxySelector>() {
+			ProxySelector sel = java.security.AccessController.doPrivileged(
+					new java.security.PrivilegedAction<ProxySelector>() {
 						public ProxySelector run() {
 							return ProxySelector.getDefault();
 						}
@@ -679,13 +694,13 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 			// Use getHostString() to avoid reverse lookups
 			String host = saddr.getHostString();
 			// IPv6 litteral?
-			if (saddr.getAddress() instanceof Inet6Address && (!host.startsWith("["))
-					&& (host.indexOf(":") >= 0)) {
+			if (saddr.getAddress() instanceof Inet6Address && (!host.startsWith(
+					"[")) && (host.indexOf(":") >= 0)) {
 				host = "[" + host + "]";
 			}
 			try {
-				uri = new URI(
-						"serversocket://" + ParseUtil.encodePath(host) + ":" + saddr.getPort());
+				uri = new URI("serversocket://" + ParseUtil.encodePath(host)
+						+ ":" + saddr.getPort());
 			} catch (URISyntaxException e) {
 				// This shouldn't happen
 				assert false : e;
@@ -705,7 +720,8 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 				}
 
 				if (!(p.address() instanceof InetSocketAddress))
-					throw new SocketException("Unknown address type for proxy: " + p);
+					throw new SocketException("Unknown address type for proxy: "
+							+ p);
 				// Use getHostString() to avoid reverse lookups
 				server = ((InetSocketAddress) p.address()).getHostString();
 				serverPort = ((InetSocketAddress) p.address()).getPort();
@@ -717,18 +733,21 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 
 				// Connects to the SOCKS server
 				try {
-					AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
-						public Void run() throws Exception {
-							cmdsock = new Socket(new PlainSocketImpl());
-							cmdsock.connect(new InetSocketAddress(server, serverPort));
-							cmdIn = cmdsock.getInputStream();
-							cmdOut = cmdsock.getOutputStream();
-							return null;
-						}
-					});
+					AccessController.doPrivileged(
+							new PrivilegedExceptionAction<Void>() {
+								public Void run() throws Exception {
+									cmdsock = new Socket(new PlainSocketImpl());
+									cmdsock.connect(new InetSocketAddress(
+											server, serverPort));
+									cmdIn = cmdsock.getInputStream();
+									cmdOut = cmdsock.getOutputStream();
+									return null;
+								}
+							});
 				} catch (Exception e) {
 					// Ooops, let's notify the ProxySelector
-					sel.connectFailed(uri, p.address(), new SocketException(e.getMessage()));
+					sel.connectFailed(uri, p.address(), new SocketException(e
+							.getMessage()));
 					server = null;
 					serverPort = -1;
 					cmdsock = null;
@@ -741,19 +760,22 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 			 * If server is still null at this point, none of the proxy worked
 			 */
 			if (server == null || cmdsock == null) {
-				throw new SocketException("Can't connect to SOCKS proxy:" + savedExc.getMessage());
+				throw new SocketException("Can't connect to SOCKS proxy:"
+						+ savedExc.getMessage());
 			}
 		} else {
 			try {
-				AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
-					public Void run() throws Exception {
-						cmdsock = new Socket(new PlainSocketImpl());
-						cmdsock.connect(new InetSocketAddress(server, serverPort));
-						cmdIn = cmdsock.getInputStream();
-						cmdOut = cmdsock.getOutputStream();
-						return null;
-					}
-				});
+				AccessController.doPrivileged(
+						new PrivilegedExceptionAction<Void>() {
+							public Void run() throws Exception {
+								cmdsock = new Socket(new PlainSocketImpl());
+								cmdsock.connect(new InetSocketAddress(server,
+										serverPort));
+								cmdIn = cmdsock.getInputStream();
+								cmdOut = cmdsock.getOutputStream();
+								return null;
+							}
+						});
 			} catch (Exception e) {
 				throw new SocketException(e.getMessage());
 			}
@@ -821,76 +843,85 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 		int len, nport;
 		byte[] addr;
 		switch (data[1]) {
-		case REQUEST_OK:
-			// success!
-			switch (data[3]) {
-			case IPV4:
-				addr = new byte[4];
-				i = readSocksReply(in, addr);
-				if (i != 4)
-					throw new SocketException("Reply from SOCKS server badly formatted");
-				data = new byte[2];
-				i = readSocksReply(in, data);
-				if (i != 2)
-					throw new SocketException("Reply from SOCKS server badly formatted");
-				nport = ((int) data[0] & 0xff) << 8;
-				nport += ((int) data[1] & 0xff);
-				external_address = new InetSocketAddress(new Inet4Address("", addr), nport);
+			case REQUEST_OK:
+				// success!
+				switch (data[3]) {
+					case IPV4:
+						addr = new byte[4];
+						i = readSocksReply(in, addr);
+						if (i != 4)
+							throw new SocketException(
+									"Reply from SOCKS server badly formatted");
+						data = new byte[2];
+						i = readSocksReply(in, data);
+						if (i != 2)
+							throw new SocketException(
+									"Reply from SOCKS server badly formatted");
+						nport = ((int) data[0] & 0xff) << 8;
+						nport += ((int) data[1] & 0xff);
+						external_address = new InetSocketAddress(
+								new Inet4Address("", addr), nport);
+						break;
+					case DOMAIN_NAME:
+						len = data[1];
+						byte[] host = new byte[len];
+						i = readSocksReply(in, host);
+						if (i != len)
+							throw new SocketException(
+									"Reply from SOCKS server badly formatted");
+						data = new byte[2];
+						i = readSocksReply(in, data);
+						if (i != 2)
+							throw new SocketException(
+									"Reply from SOCKS server badly formatted");
+						nport = ((int) data[0] & 0xff) << 8;
+						nport += ((int) data[1] & 0xff);
+						external_address = new InetSocketAddress(new String(
+								host), nport);
+						break;
+					case IPV6:
+						len = data[1];
+						addr = new byte[len];
+						i = readSocksReply(in, addr);
+						if (i != len)
+							throw new SocketException(
+									"Reply from SOCKS server badly formatted");
+						data = new byte[2];
+						i = readSocksReply(in, data);
+						if (i != 2)
+							throw new SocketException(
+									"Reply from SOCKS server badly formatted");
+						nport = ((int) data[0] & 0xff) << 8;
+						nport += ((int) data[1] & 0xff);
+						external_address = new InetSocketAddress(
+								new Inet6Address("", addr), nport);
+						break;
+				}
 				break;
-			case DOMAIN_NAME:
-				len = data[1];
-				byte[] host = new byte[len];
-				i = readSocksReply(in, host);
-				if (i != len)
-					throw new SocketException("Reply from SOCKS server badly formatted");
-				data = new byte[2];
-				i = readSocksReply(in, data);
-				if (i != 2)
-					throw new SocketException("Reply from SOCKS server badly formatted");
-				nport = ((int) data[0] & 0xff) << 8;
-				nport += ((int) data[1] & 0xff);
-				external_address = new InetSocketAddress(new String(host), nport);
+			case GENERAL_FAILURE:
+				ex = new SocketException("SOCKS server general failure");
 				break;
-			case IPV6:
-				len = data[1];
-				addr = new byte[len];
-				i = readSocksReply(in, addr);
-				if (i != len)
-					throw new SocketException("Reply from SOCKS server badly formatted");
-				data = new byte[2];
-				i = readSocksReply(in, data);
-				if (i != 2)
-					throw new SocketException("Reply from SOCKS server badly formatted");
-				nport = ((int) data[0] & 0xff) << 8;
-				nport += ((int) data[1] & 0xff);
-				external_address = new InetSocketAddress(new Inet6Address("", addr), nport);
+			case NOT_ALLOWED:
+				ex = new SocketException("SOCKS: Bind not allowed by ruleset");
 				break;
-			}
-			break;
-		case GENERAL_FAILURE:
-			ex = new SocketException("SOCKS server general failure");
-			break;
-		case NOT_ALLOWED:
-			ex = new SocketException("SOCKS: Bind not allowed by ruleset");
-			break;
-		case NET_UNREACHABLE:
-			ex = new SocketException("SOCKS: Network unreachable");
-			break;
-		case HOST_UNREACHABLE:
-			ex = new SocketException("SOCKS: Host unreachable");
-			break;
-		case CONN_REFUSED:
-			ex = new SocketException("SOCKS: Connection refused");
-			break;
-		case TTL_EXPIRED:
-			ex = new SocketException("SOCKS: TTL expired");
-			break;
-		case CMD_NOT_SUPPORTED:
-			ex = new SocketException("SOCKS: Command not supported");
-			break;
-		case ADDR_TYPE_NOT_SUP:
-			ex = new SocketException("SOCKS: address type not supported");
-			break;
+			case NET_UNREACHABLE:
+				ex = new SocketException("SOCKS: Network unreachable");
+				break;
+			case HOST_UNREACHABLE:
+				ex = new SocketException("SOCKS: Host unreachable");
+				break;
+			case CONN_REFUSED:
+				ex = new SocketException("SOCKS: Connection refused");
+				break;
+			case TTL_EXPIRED:
+				ex = new SocketException("SOCKS: TTL expired");
+				break;
+			case CMD_NOT_SUPPORTED:
+				ex = new SocketException("SOCKS: Command not supported");
+				break;
+			case ADDR_TYPE_NOT_SUP:
+				ex = new SocketException("SOCKS: address type not supported");
+				break;
 		}
 		if (ex != null) {
 			in.close();
@@ -907,13 +938,15 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 	 * Accepts a connection from a specific host.
 	 *
 	 * @param s
-	 *            the accepted connection.
+	 *              the accepted connection.
 	 * @param saddr
-	 *            the socket address of the host we do accept connection from
+	 *              the socket address of the host we do accept connection from
 	 * @exception IOException
-	 *                if an I/O error occurs when accepting the connection.
+	 *                        if an I/O error occurs when accepting the
+	 *                        connection.
 	 */
-	protected void acceptFrom(SocketImpl s, InetSocketAddress saddr) throws IOException {
+	protected void acceptFrom(SocketImpl s, InetSocketAddress saddr)
+			throws IOException {
 		if (cmdsock == null) {
 			// Not a Socks ServerSocket.
 			return;
@@ -929,58 +962,62 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 		byte[] addr;
 		InetSocketAddress real_end = null;
 		switch (i) {
-		case REQUEST_OK:
-			// success!
-			i = in.read();
-			switch (i) {
-			case IPV4:
-				addr = new byte[4];
-				readSocksReply(in, addr);
-				nport = in.read() << 8;
-				nport += in.read();
-				real_end = new InetSocketAddress(new Inet4Address("", addr), nport);
+			case REQUEST_OK:
+				// success!
+				i = in.read();
+				switch (i) {
+					case IPV4:
+						addr = new byte[4];
+						readSocksReply(in, addr);
+						nport = in.read() << 8;
+						nport += in.read();
+						real_end = new InetSocketAddress(new Inet4Address("",
+								addr), nport);
+						break;
+					case DOMAIN_NAME:
+						int len = in.read();
+						addr = new byte[len];
+						readSocksReply(in, addr);
+						nport = in.read() << 8;
+						nport += in.read();
+						real_end = new InetSocketAddress(new String(addr),
+								nport);
+						break;
+					case IPV6:
+						addr = new byte[16];
+						readSocksReply(in, addr);
+						nport = in.read() << 8;
+						nport += in.read();
+						real_end = new InetSocketAddress(new Inet6Address("",
+								addr), nport);
+						break;
+				}
 				break;
-			case DOMAIN_NAME:
-				int len = in.read();
-				addr = new byte[len];
-				readSocksReply(in, addr);
-				nport = in.read() << 8;
-				nport += in.read();
-				real_end = new InetSocketAddress(new String(addr), nport);
+			case GENERAL_FAILURE:
+				ex = new SocketException("SOCKS server general failure");
 				break;
-			case IPV6:
-				addr = new byte[16];
-				readSocksReply(in, addr);
-				nport = in.read() << 8;
-				nport += in.read();
-				real_end = new InetSocketAddress(new Inet6Address("", addr), nport);
+			case NOT_ALLOWED:
+				ex = new SocketException(
+						"SOCKS: Accept not allowed by ruleset");
 				break;
-			}
-			break;
-		case GENERAL_FAILURE:
-			ex = new SocketException("SOCKS server general failure");
-			break;
-		case NOT_ALLOWED:
-			ex = new SocketException("SOCKS: Accept not allowed by ruleset");
-			break;
-		case NET_UNREACHABLE:
-			ex = new SocketException("SOCKS: Network unreachable");
-			break;
-		case HOST_UNREACHABLE:
-			ex = new SocketException("SOCKS: Host unreachable");
-			break;
-		case CONN_REFUSED:
-			ex = new SocketException("SOCKS: Connection refused");
-			break;
-		case TTL_EXPIRED:
-			ex = new SocketException("SOCKS: TTL expired");
-			break;
-		case CMD_NOT_SUPPORTED:
-			ex = new SocketException("SOCKS: Command not supported");
-			break;
-		case ADDR_TYPE_NOT_SUP:
-			ex = new SocketException("SOCKS: address type not supported");
-			break;
+			case NET_UNREACHABLE:
+				ex = new SocketException("SOCKS: Network unreachable");
+				break;
+			case HOST_UNREACHABLE:
+				ex = new SocketException("SOCKS: Host unreachable");
+				break;
+			case CONN_REFUSED:
+				ex = new SocketException("SOCKS: Connection refused");
+				break;
+			case TTL_EXPIRED:
+				ex = new SocketException("SOCKS: TTL expired");
+				break;
+			case CMD_NOT_SUPPORTED:
+				ex = new SocketException("SOCKS: Command not supported");
+				break;
+			case ADDR_TYPE_NOT_SUP:
+				ex = new SocketException("SOCKS: address type not supported");
+				break;
 		}
 		if (ex != null) {
 			cmdIn.close();
@@ -1073,8 +1110,8 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 			} catch (SecurityException se) {
 				/* swallow Exception */ }
 		} else {
-			userName = java.security.AccessController
-					.doPrivileged(new sun.security.action.GetPropertyAction("user.name"));
+			userName = java.security.AccessController.doPrivileged(
+					new sun.security.action.GetPropertyAction("user.name"));
 		}
 		return userName;
 	}

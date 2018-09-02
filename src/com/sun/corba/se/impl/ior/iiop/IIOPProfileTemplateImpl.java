@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.corba.se.impl.ior.iiop;
@@ -89,7 +69,8 @@ public class IIOPProfileTemplateImpl extends TaggedProfileTemplateBase
 		return primary;
 	}
 
-	public IIOPProfileTemplateImpl(ORB orb, GIOPVersion version, IIOPAddress primary) {
+	public IIOPProfileTemplateImpl(ORB orb, GIOPVersion version,
+			IIOPAddress primary) {
 		this.orb = orb;
 		this.giopVersion = version;
 		this.primary = primary;
@@ -107,13 +88,14 @@ public class IIOPProfileTemplateImpl extends TaggedProfileTemplateBase
 		orb = (ORB) (istr.orb());
 		// Handle any tagged components (if applicable)
 		if (minor > 0)
-			EncapsulationUtility.readIdentifiableSequence(this,
-					orb.getTaggedComponentFactoryFinder(), istr);
+			EncapsulationUtility.readIdentifiableSequence(this, orb
+					.getTaggedComponentFactoryFinder(), istr);
 
 		makeImmutable();
 	}
 
-	public void write(ObjectKeyTemplate okeyTemplate, ObjectId id, OutputStream os) {
+	public void write(ObjectKeyTemplate okeyTemplate, ObjectId id,
+			OutputStream os) {
 		giopVersion.write(os);
 		primary.write(os);
 
@@ -123,7 +105,8 @@ public class IIOPProfileTemplateImpl extends TaggedProfileTemplateBase
 
 		// Use the byte order of the given stream
 		OutputStream encapsulatedOS = sun.corba.OutputStreamFactory
-				.newEncapsOutputStream((ORB) os.orb(), ((CDROutputStream) os).isLittleEndian());
+				.newEncapsOutputStream((ORB) os.orb(), ((CDROutputStream) os)
+						.isLittleEndian());
 
 		okeyTemplate.write(id, encapsulatedOS);
 		EncapsulationUtility.writeOutputStream(encapsulatedOS, os);

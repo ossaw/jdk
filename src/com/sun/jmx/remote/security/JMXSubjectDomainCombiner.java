@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.remote.security;
@@ -53,7 +33,8 @@ public class JMXSubjectDomainCombiner extends SubjectDomainCombiner {
 		super(s);
 	}
 
-	public ProtectionDomain[] combine(ProtectionDomain[] current, ProtectionDomain[] assigned) {
+	public ProtectionDomain[] combine(ProtectionDomain[] current,
+			ProtectionDomain[] assigned) {
 		// Add a new ProtectionDomain with the null codesource/signers, and
 		// the empty permission set, to the end of the array containing the
 		// 'current' protections domains, i.e. the ones that will be augmented
@@ -83,8 +64,8 @@ public class JMXSubjectDomainCombiner extends SubjectDomainCombiner {
 	/**
 	 * A ProtectionDomain with a null CodeSource and an empty permission set.
 	 */
-	private static final ProtectionDomain pdNoPerms = new ProtectionDomain(nullCodeSource,
-			new Permissions(), null, null);
+	private static final ProtectionDomain pdNoPerms = new ProtectionDomain(
+			nullCodeSource, new Permissions(), null, null);
 
 	/**
 	 * Get the current AccessControlContext combined with the supplied subject.
@@ -100,8 +81,10 @@ public class JMXSubjectDomainCombiner extends SubjectDomainCombiner {
 	 * created with the supplied subject and where the caller's context has been
 	 * removed.
 	 */
-	public static AccessControlContext getDomainCombinerContext(Subject subject) {
-		return new AccessControlContext(new AccessControlContext(new ProtectionDomain[0]),
-				new JMXSubjectDomainCombiner(subject));
+	public static AccessControlContext getDomainCombinerContext(
+			Subject subject) {
+		return new AccessControlContext(new AccessControlContext(
+				new ProtectionDomain[0]), new JMXSubjectDomainCombiner(
+						subject));
 	}
 }

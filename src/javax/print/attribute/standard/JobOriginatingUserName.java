@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2004, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.print.attribute.standard;
 
@@ -49,7 +29,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class JobOriginatingUserName extends TextSyntax implements PrintJobAttribute {
+public final class JobOriginatingUserName extends TextSyntax implements
+		PrintJobAttribute {
 
 	private static final long serialVersionUID = -8052537926362933477L;
 
@@ -58,15 +39,17 @@ public final class JobOriginatingUserName extends TextSyntax implements PrintJob
 	 * name and locale.
 	 *
 	 * @param userName
-	 *            User name.
+	 *                 User name.
 	 * @param locale
-	 *            Natural language of the text string. null is interpreted to
-	 *            mean the default locale as returned by
-	 *            <code>Locale.getDefault()</code>
+	 *                 Natural language of the text string. null is interpreted
+	 *                 to
+	 *                 mean the default locale as returned by
+	 *                 <code>Locale.getDefault()</code>
 	 *
 	 * @exception NullPointerException
-	 *                (unchecked exception) Thrown if <CODE>userName</CODE> is
-	 *                null.
+	 *                                 (unchecked exception) Thrown if
+	 *                                 <CODE>userName</CODE> is
+	 *                                 null.
 	 */
 	public JobOriginatingUserName(String userName, Locale locale) {
 		super(userName, locale);
@@ -86,13 +69,14 @@ public final class JobOriginatingUserName extends TextSyntax implements PrintJob
 	 * </OL>
 	 *
 	 * @param object
-	 *            Object to compare to.
+	 *               Object to compare to.
 	 *
 	 * @return True if <CODE>object</CODE> is equivalent to this job originating
 	 *         user name attribute, false otherwise.
 	 */
 	public boolean equals(Object object) {
-		return (super.equals(object) && object instanceof JobOriginatingUserName);
+		return (super.equals(object)
+				&& object instanceof JobOriginatingUserName);
 	}
 
 	/**

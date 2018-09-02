@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2001, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package com.sun.jmx.snmp.internal;
@@ -64,13 +44,15 @@ public interface SnmpOutgoingRequest {
 	 * array.
 	 *
 	 * @param outputBytes
-	 *            An array to receive the resulting encoding.
+	 *                    An array to receive the resulting encoding.
 	 *
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                If the result does not fit into the specified array.
+	 *                                           If the result does not fit into
+	 *                                           the specified array.
 	 */
-	public int encodeMessage(byte[] outputBytes) throws SnmpStatusException, SnmpTooBigException,
-			SnmpSecurityException, SnmpUnknownSecModelException, SnmpBadSecurityLevelException;
+	public int encodeMessage(byte[] outputBytes) throws SnmpStatusException,
+			SnmpTooBigException, SnmpSecurityException,
+			SnmpUnknownSecModelException, SnmpBadSecurityLevelException;
 
 	/**
 	 * Initializes the message to send with the passed Pdu.
@@ -80,17 +62,21 @@ public interface SnmpOutgoingRequest {
 	 * </P>
 	 *
 	 * @param p
-	 *            The PDU to be encoded.
+	 *                      The PDU to be encoded.
 	 * @param maxDataLength
-	 *            The maximum length permitted for the data field.
+	 *                      The maximum length permitted for the data field.
 	 *
 	 * @exception SnmpStatusException
-	 *                If the specified PDU <CODE>p</CODE> is not valid.
+	 *                                           If the specified PDU
+	 *                                           <CODE>p</CODE> is not valid.
 	 * @exception SnmpTooBigException
-	 *                If the resulting encoding does not fit into
-	 *                <CODE>maxDataLength</CODE> bytes.
+	 *                                           If the resulting encoding does
+	 *                                           not fit into
+	 *                                           <CODE>maxDataLength</CODE>
+	 *                                           bytes.
 	 * @exception ArrayIndexOutOfBoundsException
-	 *                If the encoding exceeds <CODE>maxDataLength</CODE>.
+	 *                                           If the encoding exceeds
+	 *                                           <CODE>maxDataLength</CODE>.
 	 */
 	public SnmpMsg encodeSnmpPdu(SnmpPdu p, int maxDataLength)
 			throws SnmpStatusException, SnmpTooBigException;

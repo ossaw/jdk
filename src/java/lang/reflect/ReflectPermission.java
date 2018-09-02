@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.lang.reflect;
@@ -32,7 +12,8 @@ package java.lang.reflect;
  * allows, and discusses the risks of granting code the permission.
  *
  * <table border=1 cellpadding=5 summary=
- * "Table shows permission target name, what the permission allows, and associated risks"
+ * "Table shows permission target name, what the permission allows, and
+ * associated risks"
  * >
  * <tr>
  * <th>Permission Target Name</th>
@@ -79,12 +60,12 @@ public final class ReflectPermission extends java.security.BasicPermission {
 	 * Constructs a ReflectPermission with the specified name.
 	 *
 	 * @param name
-	 *            the name of the ReflectPermission
+	 *             the name of the ReflectPermission
 	 *
 	 * @throws NullPointerException
-	 *             if {@code name} is {@code null}.
+	 *                                  if {@code name} is {@code null}.
 	 * @throws IllegalArgumentException
-	 *             if {@code name} is empty.
+	 *                                  if {@code name} is empty.
 	 */
 	public ReflectPermission(String name) {
 		super(name);
@@ -95,15 +76,15 @@ public final class ReflectPermission extends java.security.BasicPermission {
 	 * actions should be null; they are ignored.
 	 *
 	 * @param name
-	 *            the name of the ReflectPermission
+	 *                the name of the ReflectPermission
 	 *
 	 * @param actions
-	 *            should be null
+	 *                should be null
 	 *
 	 * @throws NullPointerException
-	 *             if {@code name} is {@code null}.
+	 *                                  if {@code name} is {@code null}.
 	 * @throws IllegalArgumentException
-	 *             if {@code name} is empty.
+	 *                                  if {@code name} is empty.
 	 */
 	public ReflectPermission(String name, String actions) {
 		super(name, actions);

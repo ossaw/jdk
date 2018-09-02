@@ -4,13 +4,10 @@
  */
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -63,7 +60,8 @@ public class SourceTreeManager {
 	 * Set an object that will be used to resolve URIs used in document(), etc.
 	 * 
 	 * @param resolver
-	 *            An object that implements the URIResolver interface, or null.
+	 *                 An object that implements the URIResolver interface, or
+	 *                 null.
 	 */
 	public void setURIResolver(URIResolver resolver) {
 		m_uriResolver = resolver;
@@ -82,7 +80,7 @@ public class SourceTreeManager {
 	 * Given a document, find the URL associated with that document.
 	 * 
 	 * @param owner
-	 *            Document that was previously processed by this liaison.
+	 *              Document that was previously processed by this liaison.
 	 *
 	 * @return The base URI of the owner argument.
 	 */
@@ -104,18 +102,19 @@ public class SourceTreeManager {
 	 * xsl:import, or document() function.
 	 *
 	 * @param base
-	 *            The base URI that should be used.
+	 *                  The base URI that should be used.
 	 * @param urlString
-	 *            Value from an xsl:import or xsl:include's href attribute, or a
-	 *            URI specified in the document() function.
+	 *                  Value from an xsl:import or xsl:include's href
+	 *                  attribute, or a
+	 *                  URI specified in the document() function.
 	 *
 	 * @return a Source that can be used to process the resource.
 	 *
 	 * @throws IOException
 	 * @throws TransformerException
 	 */
-	public Source resolveURI(String base, String urlString, SourceLocator locator)
-			throws TransformerException, IOException {
+	public Source resolveURI(String base, String urlString,
+			SourceLocator locator) throws TransformerException, IOException {
 
 		Source source = null;
 
@@ -137,7 +136,7 @@ public class SourceTreeManager {
 	 * function is highly dangerous. Cache management must be improved.
 	 *
 	 * @param n
-	 *            The node to remove.
+	 *          The node to remove.
 	 */
 	public void removeDocumentFromCache(int n) {
 		if (DTM.NULL == n)
@@ -156,9 +155,9 @@ public class SourceTreeManager {
 	 * needs to be a LOT more sophisticated.
 	 *
 	 * @param n
-	 *            The node to cache.
+	 *               The node to cache.
 	 * @param source
-	 *            The Source object to cache.
+	 *               The Source object to cache.
 	 */
 	public void putDocumentInCache(int n, Source source) {
 
@@ -167,7 +166,8 @@ public class SourceTreeManager {
 		if (DTM.NULL != cachedNode) {
 			if (!(cachedNode == n))
 				throw new RuntimeException("Programmer's Error!  "
-						+ "putDocumentInCache found reparse of doc: " + source.getSystemId());
+						+ "putDocumentInCache found reparse of doc: " + source
+								.getSystemId());
 			return;
 		}
 		if (null != source.getSystemId()) {
@@ -179,7 +179,7 @@ public class SourceTreeManager {
 	 * Given a Source object, find the node associated with it.
 	 *
 	 * @param source
-	 *            The Source object to act as the key.
+	 *               The Source object to act as the key.
 	 *
 	 * @return The node that is associated with the Source, or null if not
 	 *         found.
@@ -215,20 +215,21 @@ public class SourceTreeManager {
 	 * Get the source tree from the a base URL and a URL string.
 	 *
 	 * @param base
-	 *            The base URI to use if the urlString is relative.
+	 *                  The base URI to use if the urlString is relative.
 	 * @param urlString
-	 *            An absolute or relative URL string.
+	 *                  An absolute or relative URL string.
 	 * @param locator
-	 *            The location of the caller, for diagnostic purposes.
+	 *                  The location of the caller, for diagnostic purposes.
 	 *
 	 * @return should be a non-null reference to the node identified by the base
 	 *         and urlString.
 	 *
 	 * @throws TransformerException
-	 *             If the URL can not resolve to a node.
+	 *                              If the URL can not resolve to a node.
 	 */
-	public int getSourceTree(String base, String urlString, SourceLocator locator,
-			XPathContext xctxt) throws TransformerException {
+	public int getSourceTree(String base, String urlString,
+			SourceLocator locator, XPathContext xctxt)
+			throws TransformerException {
 
 		// System.out.println("getSourceTree");
 		try {
@@ -251,17 +252,18 @@ public class SourceTreeManager {
 	 * Get the source tree from the input source.
 	 *
 	 * @param source
-	 *            The Source object that should identify the desired node.
+	 *                The Source object that should identify the desired node.
 	 * @param locator
-	 *            The location of the caller, for diagnostic purposes.
+	 *                The location of the caller, for diagnostic purposes.
 	 *
 	 * @return non-null reference to a node.
 	 *
 	 * @throws TransformerException
-	 *             if the Source argument can't be resolved to a node.
+	 *                              if the Source argument can't be resolved to
+	 *                              a node.
 	 */
-	public int getSourceTree(Source source, SourceLocator locator, XPathContext xctxt)
-			throws TransformerException {
+	public int getSourceTree(Source source, SourceLocator locator,
+			XPathContext xctxt) throws TransformerException {
 
 		int n = getNode(source);
 
@@ -280,17 +282,18 @@ public class SourceTreeManager {
 	 * Try to create a DOM source tree from the input source.
 	 *
 	 * @param source
-	 *            The Source object that identifies the source node.
+	 *                The Source object that identifies the source node.
 	 * @param locator
-	 *            The location of the caller, for diagnostic purposes.
+	 *                The location of the caller, for diagnostic purposes.
 	 *
 	 * @return non-null reference to node identified by the source argument.
 	 *
 	 * @throws TransformerException
-	 *             if the source argument can not be resolved to a source node.
+	 *                              if the source argument can not be resolved
+	 *                              to a source node.
 	 */
-	public int parseToNode(Source source, SourceLocator locator, XPathContext xctxt)
-			throws TransformerException {
+	public int parseToNode(Source source, SourceLocator locator,
+			XPathContext xctxt) throws TransformerException {
 
 		try {
 			Object xowner = xctxt.getOwnerObject();
@@ -298,7 +301,8 @@ public class SourceTreeManager {
 			if (null != xowner
 					&& xowner instanceof com.sun.org.apache.xml.internal.dtm.DTMWSFilter) {
 				dtm = xctxt.getDTM(source, false,
-						(com.sun.org.apache.xml.internal.dtm.DTMWSFilter) xowner, false, true);
+						(com.sun.org.apache.xml.internal.dtm.DTMWSFilter) xowner,
+						false, true);
 			} else {
 				dtm = xctxt.getDTM(source, false, null, false, true);
 			}
@@ -317,27 +321,30 @@ public class SourceTreeManager {
 	 * free for use (i.e. not currently in use for another parse().
 	 *
 	 * @param inputSource
-	 *            The value returned from the URIResolver.
+	 *                    The value returned from the URIResolver.
 	 * @return a SAX2 XMLReader to use to resolve the inputSource argument.
 	 * @param locator
-	 *            The location of the original caller, for diagnostic purposes.
+	 *                The location of the original caller, for diagnostic
+	 *                purposes.
 	 *
 	 * @throws TransformerException
-	 *             if the reader can not be created.
+	 *                              if the reader can not be created.
 	 */
-	public static XMLReader getXMLReader(Source inputSource, SourceLocator locator)
-			throws TransformerException {
+	public static XMLReader getXMLReader(Source inputSource,
+			SourceLocator locator) throws TransformerException {
 
 		try {
 			XMLReader reader = (inputSource instanceof SAXSource)
-					? ((SAXSource) inputSource).getXMLReader() : null;
+					? ((SAXSource) inputSource).getXMLReader()
+					: null;
 
 			if (null == reader) {
 				try {
 					javax.xml.parsers.SAXParserFactory factory = javax.xml.parsers.SAXParserFactory
 							.newInstance();
 					factory.setNamespaceAware(true);
-					javax.xml.parsers.SAXParser jaxpParser = factory.newSAXParser();
+					javax.xml.parsers.SAXParser jaxpParser = factory
+							.newSAXParser();
 					reader = jaxpParser.getXMLReader();
 
 				} catch (javax.xml.parsers.ParserConfigurationException ex) {
@@ -352,7 +359,8 @@ public class SourceTreeManager {
 			}
 
 			try {
-				reader.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
+				reader.setFeature(
+						"http://xml.org/sax/features/namespace-prefixes", true);
 			} catch (org.xml.sax.SAXException se) {
 
 				// What can we do?

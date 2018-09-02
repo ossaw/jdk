@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2007, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.management.monitor;
@@ -54,18 +34,19 @@ public interface MonitorMBean {
 	 * Adds the specified object in the set of observed MBeans.
 	 *
 	 * @param object
-	 *            The object to observe.
+	 *               The object to observe.
 	 * @exception java.lang.IllegalArgumentException
-	 *                the specified object is null.
+	 *            the specified object is null.
 	 *
 	 */
-	public void addObservedObject(ObjectName object) throws java.lang.IllegalArgumentException;
+	public void addObservedObject(ObjectName object)
+			throws java.lang.IllegalArgumentException;
 
 	/**
 	 * Removes the specified object from the set of observed MBeans.
 	 *
 	 * @param object
-	 *            The object to remove.
+	 *               The object to remove.
 	 *
 	 */
 	public void removeObservedObject(ObjectName object);
@@ -74,7 +55,7 @@ public interface MonitorMBean {
 	 * Tests whether the specified object is in the set of observed MBeans.
 	 *
 	 * @param object
-	 *            The object to check.
+	 *               The object to check.
 	 * @return <CODE>true</CODE> if the specified object is in the set,
 	 *         <CODE>false</CODE> otherwise.
 	 *
@@ -105,7 +86,7 @@ public interface MonitorMBean {
 	 * Sets the object to observe identified by its object name.
 	 *
 	 * @param object
-	 *            The object to observe.
+	 *               The object to observe.
 	 *
 	 * @see #getObservedObject
 	 *
@@ -127,7 +108,7 @@ public interface MonitorMBean {
 	 * Sets the attribute to observe.
 	 *
 	 * @param attribute
-	 *            The attribute to observe.
+	 *                  The attribute to observe.
 	 *
 	 * @see #getObservedAttribute
 	 */
@@ -146,13 +127,14 @@ public interface MonitorMBean {
 	 * Sets the granularity period (in milliseconds).
 	 *
 	 * @param period
-	 *            The granularity period.
+	 *               The granularity period.
 	 * @exception java.lang.IllegalArgumentException
-	 *                The granularity period is less than or equal to zero.
+	 *            The granularity period is less than or equal to zero.
 	 *
 	 * @see #getGranularityPeriod
 	 */
-	public void setGranularityPeriod(long period) throws java.lang.IllegalArgumentException;
+	public void setGranularityPeriod(long period)
+			throws java.lang.IllegalArgumentException;
 
 	/**
 	 * Tests if the monitor MBean is active. A monitor MBean is marked active

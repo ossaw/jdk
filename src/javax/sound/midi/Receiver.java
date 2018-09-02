@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2010, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.sound.midi;
@@ -45,11 +25,11 @@ public interface Receiver extends AutoCloseable {
 	 * not supported by this receiver, the time-stamp value should be -1.
 	 * 
 	 * @param message
-	 *            the MIDI message to send
+	 *                  the MIDI message to send
 	 * @param timeStamp
-	 *            the time-stamp for the message, in microseconds.
+	 *                  the time-stamp for the message, in microseconds.
 	 * @throws IllegalStateException
-	 *             if the receiver is closed
+	 *                               if the receiver is closed
 	 */
 	public void send(MidiMessage message, long timeStamp);
 

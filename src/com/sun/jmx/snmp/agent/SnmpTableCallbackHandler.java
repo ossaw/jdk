@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2003, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package com.sun.jmx.snmp.agent;
 
@@ -59,8 +39,8 @@ public interface SnmpTableCallbackHandler {
 	 * </b></i>
 	 *
 	 **/
-	public void addEntryCb(int pos, SnmpOid row, ObjectName name, Object entry, SnmpMibTable meta)
-			throws SnmpStatusException;
+	public void addEntryCb(int pos, SnmpOid row, ObjectName name, Object entry,
+			SnmpMibTable meta) throws SnmpStatusException;
 
 	/**
 	 * This method is called by the SNMP runtime after a new entry has been
@@ -74,6 +54,6 @@ public interface SnmpTableCallbackHandler {
 	 * </b></i>
 	 *
 	 **/
-	public void removeEntryCb(int pos, SnmpOid row, ObjectName name, Object entry,
-			SnmpMibTable meta) throws SnmpStatusException;
+	public void removeEntryCb(int pos, SnmpOid row, ObjectName name,
+			Object entry, SnmpMibTable meta) throws SnmpStatusException;
 }

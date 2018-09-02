@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1998, 2006, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package javax.swing.plaf.metal;
@@ -534,20 +514,18 @@ public abstract class MetalTheme {
 	 * to customize the defaults table.
 	 *
 	 * @param table
-	 *            the {@code UIDefaults} to add the values to
+	 *              the {@code UIDefaults} to add the values to
 	 *
 	 * @see MetalLookAndFeel#getDefaults
 	 */
-	public void addCustomEntriesToTable(UIDefaults table) {
-	}
+	public void addCustomEntriesToTable(UIDefaults table) {}
 
 	/**
 	 * This is invoked when a MetalLookAndFeel is installed and about to start
 	 * using this theme. When we can add API this should be nuked in favor of
 	 * DefaultMetalTheme overriding addCustomEntriesToTable.
 	 */
-	void install() {
-	}
+	void install() {}
 
 	/**
 	 * Returns true if this is a theme provided by the core platform.

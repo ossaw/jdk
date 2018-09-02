@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 // -- This file was mechanically generated: Do not edit! -- //
@@ -59,8 +39,8 @@ class DirectFloatBufferRS
 	}
 
 	public FloatBuffer duplicate() {
-		return new DirectFloatBufferRS(this, this.markValue(), this.position(), this.limit(),
-				this.capacity(), 0);
+		return new DirectFloatBufferRS(this, this.markValue(), this.position(),
+				this.limit(), this.capacity(), 0);
 	}
 
 	public FloatBuffer asReadOnlyBuffer() {
@@ -109,7 +89,8 @@ class DirectFloatBufferRS
 
 	public ByteOrder order() {
 
-		return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN) ? ByteOrder.LITTLE_ENDIAN
+		return ((ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN)
+				? ByteOrder.LITTLE_ENDIAN
 				: ByteOrder.BIG_ENDIAN);
 
 	}

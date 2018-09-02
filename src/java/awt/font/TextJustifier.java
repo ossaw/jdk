@@ -1,41 +1,18 @@
 /*
  * Copyright (c) 1997, 1999, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
  * (C) Copyright Taligent, Inc. 1996 - 1997, All Rights Reserved
  * (C) Copyright IBM Corp. 1996 - 1998, All Rights Reserved
- *
  * The original version of this source code and documentation is
  * copyrighted and owned by Taligent, Inc., a wholly-owned subsidiary
  * of IBM. These materials are provided under terms of a License
  * Agreement between Taligent and Sun. This technology is protected
  * by multiple US and International patents.
- *
  * This notice and attribution to Taligent may not be removed.
  * Taligent is a registered trademark of Taligent, Inc.
- *
  */
 
 package java.awt.font;
@@ -43,7 +20,7 @@ package java.awt.font;
 /*
  * one info for each side of each glyph
  * separate infos for grow and shrink case
- * !!! this doesn't really need to be a separate class.  If we keep it
+ * !!! this doesn't really need to be a separate class. If we keep it
  * separate, probably the newJustify code from TextLayout belongs here as well.
  */
 
@@ -67,8 +44,9 @@ class TextJustifier {
 			System.out.println("start: " + start + ", limit: " + limit);
 			for (int i = start; i < limit; i++) {
 				GlyphJustificationInfo gji = info[i];
-				System.out.println("w: " + gji.weight + ", gp: " + gji.growPriority + ", gll: "
-						+ gji.growLeftLimit + ", grl: " + gji.growRightLimit);
+				System.out.println("w: " + gji.weight + ", gp: "
+						+ gji.growPriority + ", gll: " + gji.growLeftLimit
+						+ ", grl: " + gji.growRightLimit);
 			}
 		}
 	}
@@ -149,7 +127,8 @@ class TextJustifier {
 			if (!grow) {
 				gslimit = -gslimit; // negative for negative deltas
 			}
-			boolean hitLimit = (weight == 0) || (!lastPass && ((delta < 0) == (delta < gslimit)));
+			boolean hitLimit = (weight == 0) || (!lastPass
+					&& ((delta < 0) == (delta < gslimit)));
 			boolean absorbing = hitLimit && absorbweight > 0;
 
 			// predivide delta by weight
@@ -161,9 +140,10 @@ class TextJustifier {
 			}
 
 			if (DEBUG) {
-				System.out.println("pass: " + p + ", d: " + delta + ", l: " + gslimit + ", w: "
-						+ weight + ", aw: " + absorbweight + ", wd: " + weightedDelta + ", wa: "
-						+ weightedAbsorb + ", hit: " + (hitLimit ? "y" : "n"));
+				System.out.println("pass: " + p + ", d: " + delta + ", l: "
+						+ gslimit + ", w: " + weight + ", aw: " + absorbweight
+						+ ", wd: " + weightedDelta + ", wa: " + weightedAbsorb
+						+ ", hit: " + (hitLimit ? "y" : "n"));
 			}
 
 			// now allocate this based on ratio of weight to total weight

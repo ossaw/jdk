@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1999, 2001, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.omg.CORBA;
@@ -60,8 +40,7 @@ public final class ValueBaseHolder implements Streamable {
 	 * Constructs a new <code>ValueBaseHolder</code> object with its
 	 * <code>value</code> field initialized to <code>0</code>.
 	 */
-	public ValueBaseHolder() {
-	}
+	public ValueBaseHolder() {}
 
 	/**
 	 * Constructs a new <code>ValueBaseHolder</code> object with its
@@ -69,9 +48,10 @@ public final class ValueBaseHolder implements Streamable {
 	 * <code>java.io.Serializable</code>.
 	 * 
 	 * @param initial
-	 *            the <code>java.io.Serializable</code> with which to initialize
-	 *            the <code>value</code> field of the newly-created
-	 *            <code>ValueBaseHolder</code> object
+	 *                the <code>java.io.Serializable</code> with which to
+	 *                initialize
+	 *                the <code>value</code> field of the newly-created
+	 *                <code>ValueBaseHolder</code> object
 	 */
 	public ValueBaseHolder(java.io.Serializable initial) {
 		value = initial;
@@ -82,7 +62,7 @@ public final class ValueBaseHolder implements Streamable {
 	 * the unmarshalled data.
 	 *
 	 * @param input
-	 *            the InputStream containing CDR formatted data from the wire
+	 *              the InputStream containing CDR formatted data from the wire
 	 */
 	public void _read(InputStream input) {
 		value = ((org.omg.CORBA_2_3.portable.InputStream) input).read_value();
@@ -92,7 +72,7 @@ public final class ValueBaseHolder implements Streamable {
 	 * Marshals to <code>output</code> the value in the Holder.
 	 *
 	 * @param output
-	 *            the OutputStream which will contain the CDR formatted data
+	 *               the OutputStream which will contain the CDR formatted data
 	 */
 	public void _write(OutputStream output) {
 		((org.omg.CORBA_2_3.portable.OutputStream) output).write_value(value);

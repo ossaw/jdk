@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing;
 
@@ -93,7 +73,7 @@ public class JCheckBox extends JToggleButton implements Accessible {
 	 * Creates an initially unselected check box with an icon.
 	 *
 	 * @param icon
-	 *            the Icon image to display
+	 *             the Icon image to display
 	 */
 	public JCheckBox(Icon icon) {
 		this(null, icon, false);
@@ -104,10 +84,11 @@ public class JCheckBox extends JToggleButton implements Accessible {
 	 * initially selected.
 	 *
 	 * @param icon
-	 *            the Icon image to display
+	 *                 the Icon image to display
 	 * @param selected
-	 *            a boolean value indicating the initial selection state. If
-	 *            <code>true</code> the check box is selected
+	 *                 a boolean value indicating the initial selection state.
+	 *                 If
+	 *                 <code>true</code> the check box is selected
 	 */
 	public JCheckBox(Icon icon, boolean selected) {
 		this(null, icon, selected);
@@ -117,7 +98,7 @@ public class JCheckBox extends JToggleButton implements Accessible {
 	 * Creates an initially unselected check box with text.
 	 *
 	 * @param text
-	 *            the text of the check box.
+	 *             the text of the check box.
 	 */
 	public JCheckBox(String text) {
 		this(text, null, false);
@@ -138,10 +119,11 @@ public class JCheckBox extends JToggleButton implements Accessible {
 	 * initially selected.
 	 *
 	 * @param text
-	 *            the text of the check box.
+	 *                 the text of the check box.
 	 * @param selected
-	 *            a boolean value indicating the initial selection state. If
-	 *            <code>true</code> the check box is selected
+	 *                 a boolean value indicating the initial selection state.
+	 *                 If
+	 *                 <code>true</code> the check box is selected
 	 */
 	public JCheckBox(String text, boolean selected) {
 		this(text, null, selected);
@@ -152,9 +134,9 @@ public class JCheckBox extends JToggleButton implements Accessible {
 	 * icon.
 	 *
 	 * @param text
-	 *            the text of the check box.
+	 *             the text of the check box.
 	 * @param icon
-	 *            the Icon image to display
+	 *             the Icon image to display
 	 */
 	public JCheckBox(String text, Icon icon) {
 		this(text, icon, false);
@@ -165,12 +147,13 @@ public class JCheckBox extends JToggleButton implements Accessible {
 	 * is initially selected.
 	 *
 	 * @param text
-	 *            the text of the check box.
+	 *                 the text of the check box.
 	 * @param icon
-	 *            the Icon image to display
+	 *                 the Icon image to display
 	 * @param selected
-	 *            a boolean value indicating the initial selection state. If
-	 *            <code>true</code> the check box is selected
+	 *                 a boolean value indicating the initial selection state.
+	 *                 If
+	 *                 <code>true</code> the check box is selected
 	 */
 	public JCheckBox(String text, Icon icon, boolean selected) {
 		super(text, icon, selected);
@@ -189,8 +172,8 @@ public class JCheckBox extends JToggleButton implements Accessible {
 	 * implement flat borders; they will ignore this property.
 	 *
 	 * @param b
-	 *            <code>true</code> requests that the border be painted flat;
-	 *            <code>false</code> requests normal borders
+	 *          <code>true</code> requests that the border be painted flat;
+	 *          <code>false</code> requests normal borders
 	 * @see #isBorderPaintedFlat
 	 * @beaninfo bound: true attribute: visualUpdate true description: Whether
 	 *           the border is painted flat.
@@ -199,7 +182,8 @@ public class JCheckBox extends JToggleButton implements Accessible {
 	public void setBorderPaintedFlat(boolean b) {
 		boolean oldValue = flat;
 		flat = b;
-		firePropertyChange(BORDER_PAINTED_FLAT_CHANGED_PROPERTY, oldValue, flat);
+		firePropertyChange(BORDER_PAINTED_FLAT_CHANGED_PROPERTY, oldValue,
+				flat);
 		if (b != oldValue) {
 			revalidate();
 			repaint();
@@ -244,8 +228,7 @@ public class JCheckBox extends JToggleButton implements Accessible {
 	 * The icon for checkboxs comes from the look and feel, not the Action; this
 	 * is overriden to do nothing.
 	 */
-	void setIconFromAction(Action a) {
-	}
+	void setIconFromAction(Action a) {}
 
 	/*
 	 * See readObject and writeObject in JComponent for more information about
@@ -265,7 +248,8 @@ public class JCheckBox extends JToggleButton implements Accessible {
 	/**
 	 * See JComponent.readObject() for information about serialization in Swing.
 	 */
-	private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
 		s.defaultReadObject();
 		if (getUIClassID().equals(uiClassID)) {
 			updateUI();

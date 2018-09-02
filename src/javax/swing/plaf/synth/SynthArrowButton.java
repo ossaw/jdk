@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 2002, 2008, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 package javax.swing.plaf.synth;
 
@@ -61,8 +41,7 @@ class SynthArrowButton extends JButton implements SwingConstants, UIResource {
 		return direction;
 	}
 
-	public void setFocusable(boolean focusable) {
-	}
+	public void setFocusable(boolean focusable) {}
 
 	private static class SynthArrowButtonUI extends SynthButtonUI {
 		protected void installDefaults(AbstractButton b) {
@@ -72,16 +51,18 @@ class SynthArrowButton extends JButton implements SwingConstants, UIResource {
 
 		protected void paint(SynthContext context, Graphics g) {
 			SynthArrowButton button = (SynthArrowButton) context.getComponent();
-			context.getPainter().paintArrowButtonForeground(context, g, 0, 0, button.getWidth(),
-					button.getHeight(), button.getDirection());
+			context.getPainter().paintArrowButtonForeground(context, g, 0, 0,
+					button.getWidth(), button.getHeight(), button
+							.getDirection());
 		}
 
 		void paintBackground(SynthContext context, Graphics g, JComponent c) {
-			context.getPainter().paintArrowButtonBackground(context, g, 0, 0, c.getWidth(),
-					c.getHeight());
+			context.getPainter().paintArrowButtonBackground(context, g, 0, 0, c
+					.getWidth(), c.getHeight());
 		}
 
-		public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+		public void paintBorder(SynthContext context, Graphics g, int x, int y,
+				int w, int h) {
 			context.getPainter().paintArrowButtonBorder(context, g, x, y, w, h);
 		}
 
@@ -100,13 +81,15 @@ class SynthArrowButton extends JButton implements SwingConstants, UIResource {
 				// ScrollBar arrow buttons can be non-square when
 				// the ScrollBar.squareButtons property is set to FALSE
 				// and the ScrollBar.buttonSize property is non-null
-				dim = (Dimension) context.getStyle().get(context, "ScrollBar.buttonSize");
+				dim = (Dimension) context.getStyle().get(context,
+						"ScrollBar.buttonSize");
 			}
 			if (dim == null) {
 				// For all other cases (including Spinner, ComboBox), we will
 				// fall back on the single ArrowButton.size value to create
 				// a square return value
-				int size = context.getStyle().getInt(context, "ArrowButton.size", 16);
+				int size = context.getStyle().getInt(context,
+						"ArrowButton.size", 16);
 				dim = new Dimension(size, size);
 			}
 
@@ -114,15 +97,20 @@ class SynthArrowButton extends JButton implements SwingConstants, UIResource {
 			// key "JComponent.sizeVariant" scales for large/small/mini
 			// components are based on Apples LAF
 			Container parent = context.getComponent().getParent();
-			if (parent instanceof JComponent && !(parent instanceof JComboBox)) {
-				Object scaleKey = ((JComponent) parent).getClientProperty("JComponent.sizeVariant");
+			if (parent instanceof JComponent
+					&& !(parent instanceof JComboBox)) {
+				Object scaleKey = ((JComponent) parent).getClientProperty(
+						"JComponent.sizeVariant");
 				if (scaleKey != null) {
 					if ("large".equals(scaleKey)) {
-						dim = new Dimension((int) (dim.width * 1.15), (int) (dim.height * 1.15));
+						dim = new Dimension((int) (dim.width * 1.15),
+								(int) (dim.height * 1.15));
 					} else if ("small".equals(scaleKey)) {
-						dim = new Dimension((int) (dim.width * 0.857), (int) (dim.height * 0.857));
+						dim = new Dimension((int) (dim.width * 0.857),
+								(int) (dim.height * 0.857));
 					} else if ("mini".equals(scaleKey)) {
-						dim = new Dimension((int) (dim.width * 0.714), (int) (dim.height * 0.714));
+						dim = new Dimension((int) (dim.width * 0.714),
+								(int) (dim.height * 0.714));
 					}
 				}
 			}

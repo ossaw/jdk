@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.net;
@@ -158,8 +138,9 @@ public abstract class JarURLConnection extends URLConnection {
 	 * @param url
 	 *            the URL
 	 * @throws MalformedURLException
-	 *             if no legal protocol could be found in a specification string
-	 *             or the string could not be parsed.
+	 *                               if no legal protocol could be found in a
+	 *                               specification string
+	 *                               or the string could not be parsed.
 	 */
 
 	protected JarURLConnection(URL url) throws MalformedURLException {
@@ -220,8 +201,9 @@ public abstract class JarURLConnection extends URLConnection {
 	 *         returned
 	 *
 	 * @exception IOException
-	 *                if an IOException occurs while trying to connect to the
-	 *                JAR file for this connection.
+	 *                        if an IOException occurs while trying to connect
+	 *                        to the
+	 *                        JAR file for this connection.
 	 *
 	 * @see #connect
 	 */
@@ -234,8 +216,9 @@ public abstract class JarURLConnection extends URLConnection {
 	 *         connection.
 	 *
 	 * @exception IOException
-	 *                if getting the JAR file for this connection causes an
-	 *                IOException to be thrown.
+	 *                        if getting the JAR file for this connection causes
+	 *                        an
+	 *                        IOException to be thrown.
 	 *
 	 * @see #getJarFile
 	 */
@@ -252,8 +235,9 @@ public abstract class JarURLConnection extends URLConnection {
 	 *         for this connection points to a JAR file.
 	 *
 	 * @exception IOException
-	 *                if getting the JAR file for this connection causes an
-	 *                IOException to be thrown.
+	 *                        if getting the JAR file for this connection causes
+	 *                        an
+	 *                        IOException to be thrown.
 	 *
 	 * @see #getJarFile
 	 * @see #getJarEntry
@@ -270,8 +254,9 @@ public abstract class JarURLConnection extends URLConnection {
 	 *         points to a JAR file entry, null otherwise.
 	 *
 	 * @exception IOException
-	 *                if getting the JAR entry causes an IOException to be
-	 *                thrown.
+	 *                        if getting the JAR entry causes an IOException to
+	 *                        be
+	 *                        thrown.
 	 *
 	 * @see #getJarEntry
 	 */
@@ -286,8 +271,9 @@ public abstract class JarURLConnection extends URLConnection {
 	 * @return the main Attributes for the JAR file for this connection.
 	 *
 	 * @exception IOException
-	 *                if getting the manifest causes an IOException to be
-	 *                thrown.
+	 *                        if getting the manifest causes an IOException to
+	 *                        be
+	 *                        thrown.
 	 *
 	 * @see #getJarFile
 	 * @see #getManifest
@@ -308,12 +294,14 @@ public abstract class JarURLConnection extends URLConnection {
 	 *         points to a JAR file entry, null otherwise.
 	 *
 	 * @exception IOException
-	 *                if getting the JAR entry causes an IOException to be
-	 *                thrown.
+	 *                        if getting the JAR entry causes an IOException to
+	 *                        be
+	 *                        thrown.
 	 *
 	 * @see #getJarEntry
 	 */
-	public java.security.cert.Certificate[] getCertificates() throws IOException {
+	public java.security.cert.Certificate[] getCertificates()
+			throws IOException {
 		JarEntry e = getJarEntry();
 		return e != null ? e.getCertificates() : null;
 	}
