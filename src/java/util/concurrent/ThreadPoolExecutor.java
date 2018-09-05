@@ -918,6 +918,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 							&& firstTask == null)) {
 						if (t.isAlive()) // precheck that t is startable
 							throw new IllegalThreadStateException();
+						// workers只在锁内使用，无需用volatile关键字修饰
 						workers.add(w);
 						int s = workers.size();
 						if (s > largestPoolSize)
